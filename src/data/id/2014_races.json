@@ -139,6 +139,10 @@
       "abilityScoreIncreases": {
         "str": 2,
         "dex": 1
+      },
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A tall, aggressive goblinoid with reach and ambush mechanics. Fun for hit-and-run tactics, but the extra movement and surprise rules can trip up new players."
       }
     },
     {
@@ -210,6 +214,10 @@
       "abilityScoreIncreases": {
         "cha": 2,
         "dex": 1
+      },
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A shapeshifting diplomat with identity-changing abilities. High social and deceptive potential, but shapechange mechanics add a mechanical and roleplay learning curve."
       }
     },
     {
@@ -324,7 +332,11 @@
         "Gnomish",
         "Undercommon"
       ],
-      "source": "SCAG"
+      "source": "SCAG",
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A subterranean gnome with superior darkvision and stealth bonuses. Niche but flavorful, best suited for players who enjoy light-dependent exploration tactics."
+      }
     },
     {
       "index": "dhampir",
@@ -440,6 +452,10 @@
       "abilityScoreIncreases": {
         "cha": 2,
         "dex": 1
+      },
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A vampire-like undead descendant with spider climb and biting. Adds dark thematic mechanics and resource-like hunger that can overwhelm new players."
       }
     },
     {
@@ -590,7 +606,11 @@
             }
           ]
         }
-      ]
+      ],
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A draconic hero with breath weapon and damage resistance. Simple racial traits, but choosing the right draconic ancestry adds a small decision layer for newer players."
+      }
     },
     {
       "index": "dragonborn-chromatic",
@@ -707,6 +727,10 @@
       "abilityScoreIncreases": {
         "str": 2,
         "cha": 1
+      },
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A draconic descendant with a damaging breath weapon and damage resistance. Simple core, but ancestry choice adds a small selection step."
       }
     },
     {
@@ -848,6 +872,10 @@
       "abilityScoreIncreases": {
         "int": 2,
         "cha": 1
+      },
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A gem-scaled dragonborn with psionic-like breath and resistance. Adds another ancestry option layer, which can distract from core class learning."
       }
     },
     {
@@ -965,6 +993,10 @@
       "abilityScoreIncreases": {
         "str": 2,
         "cha": 1
+      },
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A metallic dragonborn with a stronger breath weapon and a minor transformative trait. Adds choice complexity and resource awareness."
       }
     },
     {
@@ -1104,7 +1136,11 @@
         "Dwarvish"
       ],
       "languageDesc": "You can speak, read, and write Common and Dwarvish. Dwarvish is full of hard consonants and guttural sounds, and those characteristics spill over into whatever other language a dwarf might speak.",
-      "source": "PHB"
+      "source": "PHB",
+      "recommendation": {
+        "is_recommended": true,
+        "text": "A sturdy traditional warrior with excellent durability and darkvision. Dwarven Resilience and Combat Training are easy to use, making it an ideal beginner race."
+      }
     },
     {
       "name": "Hill Dwarf",
@@ -1623,7 +1659,11 @@
             }
           ]
         }
-      ]
+      ],
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A fey-touched elf with seasonal abilities that shift their playstyle. Interesting tactical variety, but the changing mechanics can confuse new players."
+      }
     },
     {
       "name": "Elf",
@@ -1738,7 +1778,11 @@
         "Elvish"
       ],
       "languageDesc": "You can speak, read, and write Common and Elvish. Elvish is fluid, with subtle intonations and intricate grammar. Elven literature is rich and varied, and their songs and poems are famous among other races. Many bards learn their language so they can add Elvish ballads to their repertoires.",
-      "source": "PHB"
+      "source": "PHB",
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A graceful, long-lived warrior with keen senses and fey ancestry. Strong in exploration and stealth, but the variety of elven subraces and traits adds choice complexity."
+      }
     },
     {
       "index": "firbolg",
@@ -1856,6 +1900,10 @@
       "abilityScoreIncreases": {
         "wis": 2,
         "str": 1
+      },
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A gentle giant with invisibility and nature magic. Easy to roleplay, but the subtle defensive tools require tactical timing to use well."
       }
     },
     {
@@ -2152,6 +2200,10 @@
       "abilityScoreIncreases": {
         "str": 2,
         "int": 1
+      },
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A psionic warrior from the Astral Plane with innate spellcasting and teleportation. Cool concept, but managing innate spells and psionic options adds complexity."
       }
     },
     {
@@ -2245,6 +2297,10 @@
       "abilityScoreIncreases": {
         "wis": 2,
         "int": 1
+      },
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A disciplined monk-like race with psionic defense and meditation. The mental discipline mechanics add another layer for new players to track."
       }
     },
     {
@@ -2312,7 +2368,11 @@
         "Gnomish"
       ],
       "languageDesc": "You can speak, read, and write Common and Gnomish. The Gnomish language, which uses the Dwarvish script, is renowned for its technical treatises and its catalogs of knowledge about the natural world.",
-      "source": "PHB"
+      "source": "PHB",
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A small, clever inventor with innate magic resistance. Good for trickster or arcane builds, but gnomish subraces and feature interactions add mild complexity."
+      }
     },
     {
       "name": "Forest Gnome",
@@ -2637,6 +2697,10 @@
       "abilityScoreIncreases": {
         "dex": 2,
         "con": 1
+      },
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A small, crafty creature with Fury of the Small and Nimble Escape. Strong tactical positioning tools, but the extra bonus-action option can be tricky for new players."
       }
     },
     {
@@ -2728,7 +2792,11 @@
         "Elvish"
       ],
       "languageDesc": "You can speak, read, and write Common, Elvish, and one extra language of your choice.",
-      "source": "PHB"
+      "source": "PHB",
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A versatile hybrid with ability score bonuses and skill versatility. Flexible by design, which is great for concept, but the breadth of options can slow new players."
+      }
     },
     {
       "name": "Half-Elf (High Elf)",
@@ -2883,7 +2951,11 @@
             }
           ]
         }
-      ]
+      ],
+      "recommendation": {
+        "is_recommended": false,
+        "text": "An elf-leaning half-elf with an extra cantrip and a skill. Adds a small spellcasting choice layer that beginners may find confusing."
+      }
     },
     {
       "name": "Half-Elf (Wood Elf)",
@@ -2998,7 +3070,11 @@
         "Elvish"
       ],
       "languageDesc": "You can speak, read, and write Common, Elvish, and one extra language of your choice.",
-      "source": "SCAG"
+      "source": "SCAG",
+      "recommendation": {
+        "is_recommended": false,
+        "text": "An elf-leaning half-elf suited to wilderness exploration. Movement and mask of the wild are easy to use, but subrace selection still adds decision weight."
+      }
     },
     {
       "name": "Half-Elf (Drow)",
@@ -3113,7 +3189,11 @@
         "Elvish"
       ],
       "languageDesc": "You can speak, read, and write Common, Elvish, and one extra language of your choice.",
-      "source": "SCAG"
+      "source": "SCAG",
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A dark elf-leaning half-elf with innate spellcasting and darkness control. Strong concept, but sunlight sensitivity and spell options add tactical bookkeeping."
+      }
     },
     {
       "name": "Half-Elf (Moon Elf)",
@@ -3228,7 +3308,11 @@
         "Elvish"
       ],
       "languageDesc": "You can speak, read, and write Common, Elvish, and one extra language of your choice.",
-      "source": "SCAG"
+      "source": "SCAG",
+      "recommendation": {
+        "is_recommended": false,
+        "text": "An elf-leaning half-elf with heightened senses and a cantrip. Adds mild spellcasting complexity to an already flexible chassis."
+      }
     },
     {
       "name": "Half-Elf (Sun Elf)",
@@ -3343,7 +3427,11 @@
         "Elvish"
       ],
       "languageDesc": "You can speak, read, and write Common, Elvish, and one extra language of your choice.",
-      "source": "SCAG"
+      "source": "SCAG",
+      "recommendation": {
+        "is_recommended": false,
+        "text": "An elf-leaning half-elf with magic resistance and a weapon training bonus. Good for gishes, but the flexibility can distract new players."
+      }
     },
     {
       "name": "Half-Elf (Sea Elf)",
@@ -3458,7 +3546,11 @@
         "Elvish"
       ],
       "languageDesc": "You can speak, read, and write Common, Elvish, and one extra language of your choice.",
-      "source": "SCAG"
+      "source": "SCAG",
+      "recommendation": {
+        "is_recommended": false,
+        "text": "An ocean-themed half-elf with swim speed and amphibious breathing. Niche but thematic, best when water exploration is frequent."
+      }
     },
     {
       "name": "Half-Elf (Shadar-kai)",
@@ -3573,7 +3665,11 @@
         "Elvish"
       ],
       "languageDesc": "You can speak, read, and write Common, Elvish, and one extra language of your choice.",
-      "source": "SCAG"
+      "source": "SCAG",
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A shadow-touched half-elf with resistance and necrotic teleportation. Interesting tactical tool, but death-tinged mechanics may be less intuitive for beginners."
+      }
     },
     {
       "name": "Half-Elf (Eladrin)",
@@ -3688,7 +3784,11 @@
         "Elvish"
       ],
       "languageDesc": "You can speak, read, and write Common, Elvish, and one extra language of your choice.",
-      "source": "SCAG"
+      "source": "SCAG",
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A fey-touched half-elf with a season-linked teleport and charm resistance. Cool flavor, but seasonal ability swaps can confuse new players."
+      }
     },
     {
       "name": "Half-Orc",
@@ -3804,7 +3904,11 @@
         "Orc"
       ],
       "languageDesc": "You can speak, read, and write Common and Orc. Orc is a harsh, grating language with hard consonants. It has no script of its own but is written in the Dwarvish script.",
-      "source": "PHB"
+      "source": "PHB",
+      "recommendation": {
+        "is_recommended": true,
+        "text": "A tough, aggressive warrior with darkvision, intimidation presence, and a second-wind style death-defying trait. Low mechanical complexity with strong combat feel."
+      }
     },
     {
       "name": "Halfling",
@@ -3896,7 +4000,11 @@
         "Halfling"
       ],
       "languageDesc": "You can speak, read, and write Common and Halfling. The Halfling language isn't secret, but halflings are loath to share it with others. They write very little, so they don't have a rich body of literature. Their oral tradition, however, is very strong. Almost all halflings speak Common to converse with the people in whose lands they dwell or through which they are traveling.",
-      "source": "PHB"
+      "source": "PHB",
+      "recommendation": {
+        "is_recommended": true,
+        "text": "A lucky, nimble smallfolk with reroll advantages and stealth. Lucky and Brave are simple to use, making halflings a very friendly beginner race."
+      }
     },
     {
       "name": "Lightfoot Halfling",
@@ -4013,7 +4121,11 @@
         "Halfling"
       ],
       "languageDesc": "You can speak, read, and write Common and Halfling.",
-      "source": "PHB"
+      "source": "PHB",
+      "recommendation": {
+        "is_recommended": true,
+        "text": "A stealthy halfling that can hide behind larger allies. Low mechanical complexity and strong roleplay hooks."
+      }
     },
     {
       "name": "Stout Halfling",
@@ -4130,7 +4242,11 @@
         "Halfling"
       ],
       "languageDesc": "You can speak, read, and write Common and Halfling.",
-      "source": "PHB"
+      "source": "PHB",
+      "recommendation": {
+        "is_recommended": true,
+        "text": "A hearty halfling with poison resistance and bonus constitution. Simple durability boost that is easy to explain and use."
+      }
     },
     {
       "name": "Ghostwise Halfling",
@@ -4247,7 +4363,11 @@
         "Halfling"
       ],
       "languageDesc": "You can speak, read, and write Common and Halfling.",
-      "source": "SCAG"
+      "source": "SCAG",
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A rare halfling subrace with silent speech. Unique communication mechanics, but very niche and situational."
+      }
     },
     {
       "index": "hexblood",
@@ -4339,6 +4459,10 @@
       "abilityScoreIncreases": {
         "cha": 2,
         "str": 1
+      },
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A fey-touched or undead-touched lineage with a dark bargain. Adds a narrative and mechanical bargain layer that adds complexity to character creation."
       }
     },
     {
@@ -4432,6 +4556,10 @@
       "abilityScoreIncreases": {
         "con": 2,
         "int": 1
+      },
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A disciplined warrior with tactical positioning bonuses. The Saving Face feature adds reactive decision-making that rewards experience."
       }
     },
     {
@@ -4467,7 +4595,11 @@
             }
           ]
         }
-      ]
+      ],
+      "recommendation": {
+        "is_recommended": true,
+        "text": "The baseline adventurer with balanced ability increases and an extra language. Simple, flexible, and forgiving for new players who want to focus on class mechanics."
+      }
     },
     {
       "index": "kenku",
@@ -4560,6 +4692,10 @@
       "abilityScoreIncreases": {
         "dex": 2,
         "wis": 1
+      },
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A bird-like mimic with clever movement and mimicry. Roleplay-heavy with limited but flavorful racial abilities; easy to underestimate mechanically."
       }
     },
     {
@@ -4677,6 +4813,10 @@
       "abilityScoreIncreases": {
         "con": 2,
         "wis": 1
+      },
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A reptilian survivor with natural armor and a bite attack. Simple durability, but the many optional racial traits can slow new players down."
       }
     },
     {
@@ -4794,6 +4934,10 @@
       "abilityScoreIncreases": {
         "str": 2,
         "con": 1
+      },
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A powerful brute with Aggressive and darkvision. Simple combat presence, but reduced intelligence and pack tactics can confuse new tactical positioning."
       }
     },
     {
@@ -4886,6 +5030,10 @@
       "abilityScoreIncreases": {
         "cha": 2,
         "con": 1
+      },
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A revenant-style race with past-life knowledge and death resilience. Flavorful, but the extra history and resilience mechanics add bookkeeping."
       }
     },
     {
@@ -5008,6 +5156,10 @@
       "abilityScoreIncreases": {
         "dex": 2,
         "con": 1
+      },
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A druidic shapeshifter with temporary shifting bonuses. Simple core loop, but Shifter type choice and temporary boost management add decision weight."
       }
     },
     {
@@ -5124,6 +5276,10 @@
       "abilityScoreIncreases": {
         "dex": 2,
         "cha": 1
+      },
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A feline explorer with speed and climb. Fun for exploration and hit-and-run, but Feline Agility can leave new players overextended."
       }
     },
     {
@@ -5216,7 +5372,11 @@
         "Infernal"
       ],
       "languageDesc": "You can speak, read, and write Common and Infernal.",
-      "source": "PHB"
+      "source": "PHB",
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A hellish descendant with resistance and minor spellcasting. Fiendish legacy features are flavorful but can add spell-management weight for new players."
+      }
     },
     {
       "name": "Tiefling (Asmodeus)",
@@ -5308,7 +5468,11 @@
         "Infernal"
       ],
       "languageDesc": "You can speak, read, and write Common and Infernal.",
-      "source": "MTF"
+      "source": "MTF",
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A fire-touched tiefling with a cantrip and charisma boost. Simple offense, but managing the extra spell can distract from core class choices."
+      }
     },
     {
       "name": "Tiefling (Baalzebul)",
@@ -5400,7 +5564,11 @@
         "Infernal"
       ],
       "languageDesc": "You can speak, read, and write Common and Infernal.",
-      "source": "MTF"
+      "source": "MTF",
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A tiefling with a debuff cantrip and Thaumaturgy. Adds social and control options, which increases decision space for beginners."
+      }
     },
     {
       "name": "Tiefling (Zariel)",
@@ -5492,7 +5660,11 @@
         "Infernal"
       ],
       "languageDesc": "You can speak, read, and write Common and Infernal.",
-      "source": "MTF"
+      "source": "MTF",
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A martial tiefling with weapon bonuses and a damaging cantrip. Adds minor combat complexity, but still fairly straightforward."
+      }
     },
     {
       "name": "Tiefling (Dispater)",
@@ -5584,7 +5756,11 @@
         "Infernal"
       ],
       "languageDesc": "You can speak, read, and write Common and Infernal.",
-      "source": "MTF"
+      "source": "MTF",
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A deceptive tiefling with a detection cantrip and stealth utility. Adds exploration choices that new players may underuse."
+      }
     },
     {
       "name": "Tiefling (Fierna)",
@@ -5676,7 +5852,11 @@
         "Infernal"
       ],
       "languageDesc": "You can speak, read, and write Common and Infernal.",
-      "source": "MTF"
+      "source": "MTF",
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A tiefling with charm-focused cantrips and social utility. Adds roleplay and spellcasting layers that increase cognitive load."
+      }
     },
     {
       "name": "Tiefling (Glasya)",
@@ -5768,7 +5948,11 @@
         "Infernal"
       ],
       "languageDesc": "You can speak, read, and write Common and Infernal.",
-      "source": "MTF"
+      "source": "MTF",
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A trickster tiefling with illusion and deception tools. Fun conceptually, but illusions add mechanical overhead for new players."
+      }
     },
     {
       "name": "Tiefling (Levistus)",
@@ -5860,7 +6044,11 @@
         "Infernal"
       ],
       "languageDesc": "You can speak, read, and write Common and Infernal.",
-      "source": "MTF"
+      "source": "MTF",
+      "recommendation": {
+        "is_recommended": false,
+        "text": "An ice-themed tiefling with defensive and damaging cantrips. Adds elemental and tactical options that can overwhelm beginners."
+      }
     },
     {
       "name": "Tiefling (Mammon)",
@@ -5952,7 +6140,11 @@
         "Infernal"
       ],
       "languageDesc": "You can speak, read, and write Common and Infernal.",
-      "source": "MTF"
+      "source": "MTF",
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A wealth-themed tiefling with a utility cantrip and gold-themed flavor. Adds minor magic and social complexity."
+      }
     },
     {
       "name": "Tiefling (Mephistopheles)",
@@ -6044,7 +6236,11 @@
         "Infernal"
       ],
       "languageDesc": "You can speak, read, and write Common and Infernal.",
-      "source": "MTF"
+      "source": "MTF",
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A fire-and-flames tiefling with a damaging cantrip. Adds offensive spell management to an otherwise simple package."
+      }
     },
     {
       "index": "triton",
@@ -6162,6 +6358,10 @@
       "abilityScoreIncreases": {
         "cha": 2,
         "str": 1
+      },
+      "recommendation": {
+        "is_recommended": false,
+        "text": "An aquatic warrior with amphibious breathing and elemental resistance. Strong in water-heavy campaigns, but situational otherwise."
       }
     },
     {
@@ -6255,6 +6455,10 @@
       "abilityScoreIncreases": {
         "dexterity": 2,
         "wisdom": 1
+      },
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A bird-like humanoid with flight and talon attacks. Flight is powerful, but managing aerial positioning and reach can be punishing for new players."
       }
     },
     {
@@ -6349,6 +6553,10 @@
       "abilityScoreIncreases": {
         "charisma": 2,
         "intelligence": 1
+      },
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A serpent-touched humanoid with innate spellcasting and poison immunity. Flavorful, but the extra spell list and immunity interactions add complexity."
       }
     },
     {
@@ -6580,6 +6788,10 @@
       "abilityScoreIncreases": {
         "dexterity": 2,
         "constitution": 1
+      },
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A mechanical gnome with a built-in tool and limited flight. Fun tinker theme, but the mechanical features add small but persistent complexity."
       }
     },
     {
@@ -6649,6 +6861,10 @@
       "abilityScoreIncreases": {
         "constitution": 2,
         "dexterity": 1
+      },
+      "recommendation": {
+        "is_recommended": false,
+        "text": "An ooze-like creature with flexible anatomy and poison resistance. Niche defensive toolkit that rewards experienced positioning."
       }
     },
     {
@@ -6835,6 +7051,10 @@
       "abilityScoreIncreases": {
         "charisma": 2,
         "constitution": 1
+      },
+      "recommendation": {
+        "is_recommended": false,
+        "text": "A celestial-touched hero with resistance and a healing transformation. Easy to flavor, but the transformation mechanics add a burst-management layer."
       }
     }
   ]

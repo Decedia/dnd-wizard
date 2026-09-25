@@ -13,6 +13,7 @@ import {
   CaretRightIcon as ChevronRight,
   WarningCircleIcon as AlertCircle,
   MagnifyingGlassIcon as MagnifyingGlass,
+  StarIcon as Star,
   BarbarianIcon,
   MusicNotesIcon,
   ClericIcon,
@@ -41,6 +42,8 @@ export interface SelectionOption {
   basicStats?: string;
   subclassCount?: number;
   subclassLevel?: number;
+  isRecommended?: boolean;
+  recommendationText?: string;
 }
 
 export interface ConfigChoice {
@@ -143,6 +146,8 @@ export function UnifiedSelectionModal<T extends SelectionType>({
         choiceType: "subclass",
         subclassCount: cls.subclasses?.length || 0,
         subclassLevel: cls.subclassLevel || 3,
+        isRecommended: (cls as any).recommendation?.is_recommended || false,
+        recommendationText: (cls as any).recommendation?.text || "",
       })) as SelectionOption[];
     } else {
       const races = getStaticRaces(characterSources, undefined, language);
@@ -154,6 +159,8 @@ export function UnifiedSelectionModal<T extends SelectionType>({
         hasChoice: (race.choices?.length || 0) > 0,
         choiceType: race.choices?.[0]?.type || "ancestry",
         basicStats: `${race.size} • Speed ${race.speed} ft`,
+        isRecommended: (race as any).recommendation?.is_recommended || false,
+        recommendationText: (race as any).recommendation?.text || "",
       })) as SelectionOption[];
     }
   }, [selectionType, characterSources, language]);
@@ -396,12 +403,17 @@ function SelectionCard({
     <button
       type="button"
       onClick={onClick}
-      className={`w-full p-3 text-left rounded-xl border transition-all flex items-center gap-3 ${
+      className={`relative w-full p-3 text-left rounded-xl border transition-all flex items-center gap-3 overflow-visible ${
         isSelected
           ? "border-[var(--color-accent-indigo-500)] bg-[var(--color-accent-indigo-50)]"
           : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
       }`}
     >
+      {option.isRecommended && (
+        <span className="absolute -top-4 -left-4 w-8 h-8 text-amber-400 drop-shadow-md z-10">
+          <Star className="h-8 w-8 fill-amber-400" />
+        </span>
+      )}
       <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-lg bg-[var(--color-bg)]">
         <Icon className="h-7 w-7 text-[var(--color-text-primary)]" />
       </div>
@@ -522,6 +534,13 @@ function ConfigDrawer({
       
       {(!isHumanVariant || useVariant) && configChoices.length > 0 && (
         <>
+          {parentOption.recommendationText && (
+            <div className="px-4 py-3 border-b border-[var(--color-border)] bg-[var(--color-bg)]">
+              <p className="text-xs text-amber-300 leading-relaxed">
+                {parentOption.recommendationText}
+              </p>
+            </div>
+          )}
           <div className="px-4 py-3 border-b border-[var(--color-border)] bg-[var(--color-bg)]">
             <div className="flex items-center gap-2 mb-1">
               <span className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wider">
