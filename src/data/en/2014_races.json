@@ -4575,7 +4575,21 @@
       "speed": 30,
       "size": "Medium",
       "darkvision": false,
-      "traits": [],
+      "traits": [
+        {
+          "name": "Human",
+          "description": "Versatile and adaptable, humans are the most diverse race in the world. They excel at a wide range of classes and roles, making them an excellent choice for any adventurer.",
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        }
+      ],
       "languages": [
         "Common"
       ],

@@ -4575,7 +4575,21 @@
       "speed": 30,
       "size": "Medium",
       "darkvision": false,
-      "traits": [],
+      "traits": [
+        {
+          "name": "Human",
+          "description": "Serbaguna dan mudah beradaptasi, manusia adalah ras yang paling beragam di dunia. Mereka unggul di berbagai kelas dan peran, menjadikannya pilihan yang sangat baik untuk petualang apapun.",
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null
+        }
+      ],
       "languages": [
         "Common"
       ],
