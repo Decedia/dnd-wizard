@@ -31,7 +31,7 @@ export function BottomSheet({
         onClick={onClose}
       />
       <div
-        className={`relative w-full max-w-sm max-h-[80vh] flex flex-col bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] shadow-2xl ${className}`}
+        className={`relative w-full max-w-sm max-h-[80vh] flex flex-col bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] shadow-2xl overflow-hidden ${className}`}
         onClick={(e) => e.stopPropagation()}
       >
         {showHeader && title && (
