@@ -416,10 +416,8 @@ function SelectionCard({
       isRecommended={option.isRecommended}
       isSelected={isSelected}
       onSelect={onClick}
-      onInfoToggle={() => {}}
       infoType="modal"
-      isExpanded={false}
-      expandedContent={null}
+      modalContent={<p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{option.description}</p>}
     />
   );
 }

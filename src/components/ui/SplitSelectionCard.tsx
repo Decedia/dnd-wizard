@@ -1,11 +1,12 @@
 "use client";
 
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import {
   StarIcon as Star,
   InfoIcon as Info,
   CaretDownIcon as ChevronDown,
 } from "@/components/icons";
+import { BasePopup } from "@/components/BasePopup";
 
 export interface SplitSelectionCardProps {
   title: string;
@@ -14,11 +15,12 @@ export interface SplitSelectionCardProps {
   badges?: string[];
   isRecommended?: boolean;
   onSelect: () => void;
-  onInfoToggle: (e: React.MouseEvent) => void;
+  onInfoToggle?: (e: React.MouseEvent) => void;
   infoType: "modal" | "expand";
   isExpanded?: boolean;
   expandedContent?: ReactNode;
   isSelected?: boolean;
+  modalContent?: ReactNode;
 }
 
 export function SplitSelectionCard({
@@ -33,7 +35,19 @@ export function SplitSelectionCard({
   isExpanded = false,
   expandedContent,
   isSelected = false,
+  modalContent,
 }: SplitSelectionCardProps) {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleInfoClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (infoType === "modal" && modalContent) {
+      setShowModal(true);
+    } else {
+      onInfoToggle?.(e);
+    }
+  };
+
   return (
     <div className="relative overflow-visible">
       {isRecommended && (
@@ -83,7 +97,7 @@ export function SplitSelectionCard({
 
         <button
           type="button"
-          onClick={onInfoToggle}
+          onClick={handleInfoClick}
           className="w-14 border-l border-[var(--color-border)] flex items-center justify-center hover:bg-[var(--color-bg)]/50 transition shrink-0"
         >
           {infoType === "expand" ? (
@@ -102,6 +116,19 @@ export function SplitSelectionCard({
         <div className="mt-2 p-3 bg-[var(--color-surface)]/80 rounded-xl border border-[var(--color-border)]">
           {expandedContent}
         </div>
+      )}
+
+      {infoType === "modal" && showModal && modalContent && (
+        <BasePopup
+          isOpen={showModal}
+          onClose={() => setShowModal(false)}
+          title={title}
+          showFooter={true}
+          confirmLabel="Got it"
+          onConfirm={() => setShowModal(false)}
+        >
+          {modalContent}
+        </BasePopup>
       )}
     </div>
   );

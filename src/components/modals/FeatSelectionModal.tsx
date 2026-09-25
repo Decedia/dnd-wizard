@@ -77,10 +77,8 @@ export function FeatSelectionModal({ onSelect, onClose, selectedFeat, sources }:
               badges={sourceLabel && sourceLabel !== "PHB" ? [sourceLabel] : []}
               isRecommended={isRecommended("feat", feat.name)}
               onSelect={() => setPendingSelection(feat.name)}
-              onInfoToggle={() => {}}
-              infoType="expand"
-              isExpanded={isSelected}
-              expandedContent={
+              infoType="modal"
+              modalContent={
                 <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">
                   {feat.description}
                 </p>
