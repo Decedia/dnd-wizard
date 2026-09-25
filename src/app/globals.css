@@ -230,6 +230,15 @@
   --color-accent-muted: #555555;
   --color-disabled: #555555;
 
+  --color-accent-indigo-50: #1e1b4b;
+  --color-accent-indigo-100: #312e81;
+  --color-accent-indigo-200: #3730a3;
+  --color-accent-indigo-300: #4f46e5;
+  --color-accent-indigo-500: #6366f1;
+  --color-accent-indigo-600: #818cf8;
+  --color-accent-indigo-700: #a5b4fc;
+  --color-accent-indigo-800: #c7d2fe;
+
   --color-bg: #1a1a1a;
   --color-surface: #161616;
   --color-border: #2a2a2a;
