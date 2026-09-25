@@ -7,12 +7,14 @@ import { getStaticClasses, getStaticRaces, getStaticSubclasses, type SRDClass, t
 import { FeatSelectionModal } from "../modals/FeatSelectionModal";
 import { SourceBadge } from "../SourceBadge";
 import { NewPlayerTips } from "@/components/NewPlayerTips";
-import { BasePopup } from "@/components/BasePopup";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
 import { SKILLS } from "@/lib/storage";
 import { isRecommended } from "@/lib/recommendations";
 import type { SRDFeat } from "@/lib/srd-client";
+import { BasePopup } from "@/components/BasePopup";
+import { ClassSelectionModal } from "../modals/ClassSelectionModal";
+import { RaceSelectionModal } from "../modals/RaceSelectionModal";
 
 const CLASS_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
   Barbarian: BarbarianIcon,
@@ -76,7 +78,7 @@ const RACE_SKIN_COLORS: Record<string, string> = {
   "Half-Elf (Sun Elf)": "#f1c27d",
   "Half-Elf (Sea Elf)": "#f1c27d",
   "Half-Elf (Shadar-kai)": "#f1c27d",
-  "Half-Elf (Eladrin)": "#f1c27d",
+  "Half-Elf (Eladrin)": "#ffdbac",
   "Tiefling (Asmodeus)": "#8b3a3a",
   "Tiefling (Baalzebul)": "#8b3a3a",
   "Tiefling (Zariel)": "#c0c0c0",
@@ -146,31 +148,6 @@ const RACE_ICONS_GI: Record<string, React.ComponentType<{ className?: string }>>
   "Tiefling (Mephistopheles)": DevilMaskIcon,
 };
 
-function HybridRaceIcon({
-  leftIcon: LeftIcon,
-  rightIcon: RightIcon,
-  leftColor,
-  rightColor,
-  className,
-}: {
-  leftIcon: React.ComponentType<{ className?: string }>;
-  rightIcon: React.ComponentType<{ className?: string }>;
-  leftColor: string;
-  rightColor: string;
-  className?: string;
-}) {
-  return (
-    <div className={`flex ${className || ""}`}>
-      <span style={{ color: leftColor }} className="inline-flex w-1/2 h-full items-center justify-center overflow-hidden">
-        <LeftIcon className="w-full h-full" />
-      </span>
-      <span style={{ color: rightColor }} className="inline-flex w-1/2 h-full items-center justify-center overflow-hidden">
-        <RightIcon className="w-full h-full" />
-      </span>
-    </div>
-  );
-}
-
 function RaceIconRenderer({ raceName, isVariant, className }: { raceName: string; isVariant: boolean; className?: string }) {
   if (raceName === "Human" && isVariant) {
     return <span style={{ color: RACE_SKIN_COLORS["Variant Human"] }} className="inline-flex"><HumanIcon className={className} /></span>;
@@ -188,11 +165,10 @@ interface StepOriginProps {
 
 export function StepOrigin({ data, onChange }: StepOriginProps) {
   const { t } = useLanguage();
-  const [popupType, setPopupType] = useState<"class" | "race" | null>(null);
+  const [classModalOpen, setClassModalOpen] = useState(false);
+  const [raceModalOpen, setRaceModalOpen] = useState(false);
   const [featModalOpen, setFeatModalOpen] = useState(false);
   const [variantModalOpen, setVariantModalOpen] = useState(false);
-  const [pendingClass, setPendingClass] = useState<string | null>(data.class || null);
-  const [pendingRace, setPendingRace] = useState<string | null>(data.race || null);
   const [pendingVariant, setPendingVariant] = useState<boolean>(data.raceVariant === "variant");
   const classes: SRDClass[] = getStaticClasses(data.sources, data.ruleset);
   const races: SRDRace[] = getStaticRaces(data.sources, data.ruleset);
@@ -213,69 +189,62 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
   );
 
   const handleClassSelect = useCallback(
-    (className: string) => {
-      setPendingClass(className);
+    (payload: any) => {
+      const className = payload.name;
+      if (className !== data.class) {
+        onChange({
+          class: className,
+          subclass: undefined,
+          inventory: [],
+          skills: {},
+          spells: [],
+          cantrips: [],
+          features: [],
+          featureSelections: {},
+          appliedAsi: [],
+          attacks: [],
+          costumeSpells: [],
+        });
+      }
+      setClassModalOpen(false);
     },
-    []
+    [data.class, onChange]
   );
-
-  const handleConfirmClass = () => {
-    if (pendingClass && pendingClass !== data.class) {
-      onChange({
-        class: pendingClass,
-        subclass: undefined,
-        inventory: [],
-        skills: {},
-        spells: [],
-        cantrips: [],
-        features: [],
-        featureSelections: {},
-        appliedAsi: [],
-        attacks: [],
-        costumeSpells: [],
-      });
-    }
-    setPopupType(null);
-  };
 
   const handleRaceSelect = useCallback(
-    (raceName: string) => {
-      setPendingRace(raceName);
-      setPendingVariant(false);
+    (payload: any) => {
+      const raceName = payload.name;
+      const isVariant = payload.configChoice?.name === "Variant Human" || payload.configChoice?.featureData?.choiceType === "variant";
+      
+      if (raceName !== data.race || isVariant !== (data.raceVariant === "variant")) {
+        onChange({
+          race: raceName,
+          raceVariant: isVariant ? "variant" : undefined,
+          ...(isVariant ? {} : { 
+            variantHumanAbilities: undefined, 
+            variantHumanSkill: undefined, 
+            featureSelections: { ...data.featureSelections, "variant-human-feat": [] } 
+          }),
+          ...(raceName !== data.race ? { raceChoices: undefined } : {}),
+        });
+      }
+      setRaceModalOpen(false);
     },
-    []
+    [data.race, data.raceVariant, data.featureSelections, onChange]
   );
 
-  const handleConfirmRace = () => {
-    if (pendingRace) {
-      const isVariant = pendingVariant;
-      const raceChanged = pendingRace !== data.race;
-      onChange({
-        race: pendingRace,
-        raceVariant: isVariant ? "variant" : undefined,
-        ...(isVariant ? {} : { variantHumanAbilities: undefined, variantHumanSkill: undefined, featureSelections: { ...data.featureSelections, "variant-human-feat": [] } }),
-        ...(raceChanged ? { raceChoices: undefined } : {}),
-      });
-    }
-    setPopupType(null);
-  };
-
   const handleVariantToggle = useCallback(() => {
-    if (popupType === "race") {
-      setPendingVariant((prev) => !prev);
+    if (isVariantHuman) {
+      onChange({
+        raceVariant: undefined,
+        featureSelections: { ...data.featureSelections, "variant-human-feat": [] },
+        variantHumanAbilities: undefined,
+        variantHumanSkill: undefined,
+      });
     } else {
-      if (isVariantHuman) {
-        onChange({
-          raceVariant: undefined,
-          featureSelections: { ...data.featureSelections, "variant-human-feat": [] },
-          variantHumanAbilities: undefined,
-          variantHumanSkill: undefined,
-        });
-      } else {
-        onChange({ raceVariant: "variant" });
-      }
+      onChange({ raceVariant: "variant" });
     }
-  }, [isVariantHuman, data.featureSelections, onChange, popupType]);
+  }, [isVariantHuman, data.featureSelections, onChange]);
 
   const handleFeatSelect = useCallback(
     (feat: SRDFeat) => {
@@ -316,8 +285,6 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
   const variantSkill = data.variantHumanSkill;
   const abilityOptions = ["str", "dex", "con", "int", "wis", "cha"];
 
-  const canConfirmRace = pendingRace && (!pendingVariant || (variantAbilities.length === 2 && variantSkill && selectedFeat));
-
   return (
     <StepCard title={t("origin.title")} hint={t("origin.hint")}>
       <div className="space-y-4">
@@ -354,7 +321,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
 
         <button
           type="button"
-          onClick={() => setPopupType("class")}
+          onClick={() => setClassModalOpen(true)}
           className={`w-full p-5 sm:p-6 text-left rounded-[var(--radius-md)] transition-all border-2 ${
             data.class
               ? "bg-[var(--color-surface)] border-[var(--color-border-active)]"
@@ -377,7 +344,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
 
         <button
           type="button"
-          onClick={() => setPopupType("race")}
+          onClick={() => setRaceModalOpen(true)}
           className={`w-full p-5 sm:p-6 text-left rounded-[var(--radius-md)] transition-all border-2 ${
             data.race
               ? "bg-[var(--color-surface)] border-[var(--color-border-active)]"
@@ -399,216 +366,25 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
         </button>
       </div>
 
-      {popupType === "class" && (
-        <BasePopup
+      {classModalOpen && (
+        <ClassSelectionModal
           isOpen={true}
-          onClose={() => { setPopupType(null); setPendingClass(data.class || null); }}
-           title={t("origin.selectClassPopup")}
-           confirmLabel={t("wizard.confirm")}
-          cancelLabel={t("button.cancel", "Cancel")}
-          onConfirm={handleConfirmClass}
-          confirmDisabled={!pendingClass}
-          showFooter={true}
-        >
-           <div className="flex-1 overflow-y-auto px-4 py-4">
-             <div className="grid grid-cols-2 gap-3">
-               {[...classes].sort((a, b) => (isRecommended("class", b.name) ? 1 : 0) - (isRecommended("class", a.name) ? 1 : 0)).map((cls) => {
-                const isSelected = pendingClass === cls.name;
-                const hasSubclasses = cls.subclasses && cls.subclasses.length > 0;
-                const WeaponIcon = CLASS_ICONS[cls.name] || SwordIcon;
-
-                return (
-                  <div key={cls.name} className="flex flex-col">
-                    <button
-                      type="button"
-                      onClick={() => setPendingClass(cls.name)}
-                      className={`w-full h-full p-4 text-left rounded-[var(--radius-lg)] transition-all border-2 relative flex flex-col items-center justify-between ${
-                        isSelected
-                          ? "bg-[var(--color-ink)] border-[var(--color-ink)]"
-                          : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                      }`}
-                    >
-                      {isRecommended("class", cls.name) && (
-                        <span className="absolute top-2 right-2">
-                          <Star className="h-3.5 w-3.5 text-amber-500" />
-                        </span>
-                      )}
-                       <div className="flex flex-col items-center text-center gap-2 w-full min-w-0">
-                         <div className={`flex items-center justify-center w-20 h-20 rounded-[var(--radius-md)] shrink-0 ${isSelected ? "bg-[var(--color-surface)] text-[var(--color-ink)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
-                           <WeaponIcon className="h-10 w-10" />
-                         </div>
-                         <div className="flex flex-col gap-1 w-full px-1 items-center min-w-0">
-                           <span
-                             title={cls.name}
-                             className={`text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-center whitespace-nowrap truncate w-full block leading-tight ${isSelected ? "text-[var(--color-surface)]" : "text-[var(--color-text-primary)]"}`}
-                           >
-                             {cls.name}
-                           </span>
-                           {hasSubclasses && (() => {
-                              const filteredCount = getStaticSubclasses(cls.name, data.sources, data.ruleset).length;
-                             return (
-                               <span className={`text-[10px] font-semibold text-center whitespace-nowrap truncate w-full block leading-tight ${isSelected ? "text-[var(--color-surface)]/80" : "text-[var(--color-text-muted)]"}`}>
-                                 {filteredCount} subclass{filteredCount !== 1 ? "es" : ""} at Lv {cls.subclassLevel}
-                               </span>
-                             );
-                           })()}
-                         </div>
-                       </div>
-                       {cls.source && (
-                         <div className="mt-2 flex justify-center w-full shrink-0">
-                           <SourceBadge source={cls.source} />
-                         </div>
-                       )}
-                    </button>
-                 </div>
-               );
-             })}
-             </div>
-           </div>
-        </BasePopup>
+          onClose={() => setClassModalOpen(false)}
+          onConfirm={handleClassSelect}
+          characterSources={data.sources}
+          currentCharacter={data}
+        />
       )}
 
-      {popupType === "race" && (
-        <BasePopup
+      {raceModalOpen && (
+        <RaceSelectionModal
           isOpen={true}
-          onClose={() => { setPopupType(null); setPendingRace(data.race || null); setPendingVariant(data.raceVariant === "variant"); }}
-           title={t("origin.selectRacePopup")}
-           confirmLabel={t("wizard.confirm")}
-          cancelLabel={t("button.cancel", "Cancel")}
-          onConfirm={handleConfirmRace}
-          confirmDisabled={!canConfirmRace}
-          showFooter={true}
-        >
-           <div className="flex-1 overflow-y-auto px-4 py-4">
-              <div className="grid grid-cols-2 gap-3">
-                {(() => {
-                  const raceEntries: Array<{ name: string; isVariant: boolean; race?: SRDRace }> = [];
-                  races.forEach((race) => {
-                    raceEntries.push({ name: race.name, isVariant: false, race });
-                    if (race.name === "Human") {
-                      raceEntries.push({ name: "Variant Human", isVariant: true, race });
-                    }
-                  });
-                  return raceEntries;
-                })().sort((a, b) => {
-                  const aName = a.isVariant ? "Human" : a.name;
-                  const bName = b.isVariant ? "Human" : b.name;
-                  const aRec = isRecommended("race", aName);
-                  const bRec = isRecommended("race", bName);
-                  return (bRec ? 1 : 0) - (aRec ? 1 : 0);
-                }).map((entry) => {
-                  const race = entry.race!;
-                  const isSelected = entry.isVariant ? (pendingRace === "Human" && pendingVariant) : pendingRace === entry.name;
-                  const isHuman = race.name === "Human";
-                  const displayName = entry.isVariant ? "Variant Human" : race.name;
-
-                  return (
-                    <div key={entry.name + (entry.isVariant ? "-variant" : "")} className="space-y-2 flex flex-col">
-                      <button
-                        type="button"
-                        onClick={() => {
-                          if (entry.isVariant) {
-                            setPendingRace("Human");
-                            setPendingVariant(true);
-                            setVariantModalOpen(true);
-                          } else {
-                            setPendingRace(race.name);
-                            setPendingVariant(false);
-                          }
-                        }}
-                        className={`w-full h-full p-4 text-left rounded-[var(--radius-lg)] transition-all border-2 relative flex flex-col items-center justify-between ${
-                          isSelected
-                            ? "bg-[var(--color-ink)] border-[var(--color-ink)]"
-                            : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                        }`}
-                      >
-                        {isRecommended("race", race.name) && !entry.isVariant && (
-                          <span className="absolute top-2 right-2">
-                            <Star className="h-3.5 w-3.5 text-amber-500" />
-                          </span>
-                        )}
-                          <div className="flex flex-col items-center text-center gap-2 w-full min-w-0">
-                            <div className={`flex items-center justify-center w-20 h-20 rounded-[var(--radius-md)] shrink-0 ${isSelected ? "bg-[var(--color-surface)] text-[var(--color-ink)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
-                               <RaceIconRenderer raceName={race.name} isVariant={isHuman && pendingVariant} className="h-10 w-10" />
-                            </div>
-                            <div className="flex flex-col gap-1 w-full px-1 items-center min-w-0">
-                              <span
-                                title={displayName}
-                                className={`text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-center whitespace-nowrap truncate w-full block leading-tight ${isSelected ? "text-[var(--color-surface)]" : "text-[var(--color-text-primary)]"}`}
-                              >
-                                {displayName}
-                              </span>
-                              <span className={`text-[9px] sm:text-[10px] font-medium text-center whitespace-nowrap truncate w-full block leading-tight ${isSelected ? "text-[var(--color-surface)]/80" : "text-[var(--color-text-muted)]"}`}>
-                                {race.size} / Speed {race.speed} ft
-                              </span>
-                            </div>
-                          </div>
-                          {race.source && (
-                            <div className="mt-2 flex justify-center w-full shrink-0">
-                              <SourceBadge source={race.source} />
-                            </div>
-                          )}
-                       </button>
-
-                      {isSelected && !entry.isVariant && race.choices && race.choices.length > 0 && (
-                      <div className="w-full mt-2 space-y-2 p-2 rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)]">
-                        <div className="text-[10px] font-semibold text-[var(--color-text-muted)] uppercase tracking-wider">Race Options</div>
-                        {race.choices.map((choice) => (
-                          <div key={choice.id} className="space-y-1">
-                            <div className="text-xs font-semibold text-[var(--color-text-primary)]">{choice.name}</div>
-                            {choice.type === "single" && choice.options && (
-                              <div className="flex flex-wrap gap-1">
-                                {choice.options.map((opt) => (
-                                  <button
-                                    key={opt.id}
-                                    type="button"
-                                    onClick={() => handleRaceChoiceChange(choice.id, opt.id)}
-                                    className={`px-2 py-1 text-[10px] font-bold rounded border transition-colors ${
-                                      data.raceChoices?.[choice.id] === opt.id
-                                        ? "border-[var(--color-border-active)] bg-[var(--color-text-primary)] text-[var(--color-surface)]"
-                                        : "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-secondary)] hover:border-[var(--color-border-active)]"
-                                    }`}
-                                  >
-                                    {opt.name}
-                                  </button>
-                                ))}
-                              </div>
-                            )}
-                            {choice.type === "language" && (
-                              <select
-                                value={data.raceChoices?.[choice.id] || ""}
-                                onChange={(e) => handleRaceChoiceChange(choice.id, e.target.value)}
-                                className="input text-xs"
-                              >
-                                 <option value="">{t("placeholder.selectLanguage")}</option>
-                                {["Common", "Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc", "Abyssal", "Celestial", "Draconic", "Deep Speech", "Infernal", "Primordial", "Sylvan", "Undercommon", "Gith", "Quori", "Thri-kreen", "Druidic"].map(lang => (
-                                  <option key={lang} value={lang}>{lang}</option>
-                                ))}
-                              </select>
-                            )}
-                            {choice.type === "proficiency" && (
-                              <select
-                                value={data.raceChoices?.[choice.id] || ""}
-                                onChange={(e) => handleRaceChoiceChange(choice.id, e.target.value)}
-                                className="input text-xs"
-                              >
-                                 <option value="">{t("placeholder.selectSkillOrTool")}</option>
-                                {["Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception", "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature", "Perception", "Performance", "Persuasion", "Religion", "Sleight of Hand", "Stealth", "Survival", "Alchemist's Supplies", "Brewer's Supplies", "Calligrapher's Supplies", "Carpenter's Tools", "Cartographer's Tools", "Cobbler's Tools", "Cook's Utensils", "Glassblower's Tools", "Jeweler's Tools", "Leatherworker's Tools", "Mason's Tools", "Painter's Supplies", "Potter's Tools", "Smith's Tools", "Tinker's Tools", "Weaver's Tools", "Woodcarver's Tools", "Dice Set", "Dragonchess Set", "Playing Card Set", "Three-Dragon Ante Set", "Bagpipes", "Drum", "Dulcimer", "Flute", "Lute", "Lyre", "Horn", "Pan Flute", "Shawm", "Viol", "Navigator's Tools", "Poisoner's Kit", "Thieves' Tools", "Herbalism Kit", "Disguise Kit", "Forgery Kit"].map(prof => (
-                                  <option key={prof} value={prof}>{prof}</option>
-                                ))}
-                              </select>
-                            )}
-                          </div>
-                        ))}
-                       </div>
-                     )}
-                   </div>
-                  );
-                })}
-              </div>
-            </div>
-            </BasePopup>
-        )}
+          onClose={() => setRaceModalOpen(false)}
+          onConfirm={handleRaceSelect}
+          characterSources={data.sources}
+          currentCharacter={data}
+        />
+      )}
 
       {variantModalOpen && (
         <BasePopup
@@ -700,12 +476,12 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
                   </div>
                 </div>
 
-                 {selectedFeat && (
+                {selectedFeat && (
                   <div className="rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)] p-3">
                       <div className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-wider">{t("origin.selectedFeat")}</div>
                       <div className="text-sm font-bold text-[var(--color-text-primary)] mt-0.5">{selectedFeat}</div>
                     </div>
-                  )}
+                )}
                 <button
                   type="button"
                   onClick={() => setFeatModalOpen(true)}
