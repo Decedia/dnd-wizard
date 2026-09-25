@@ -6,6 +6,7 @@ import { getStaticRaces, getStaticRaceDetails } from "@/lib/srd-client";
 import { SourceBadge, SOURCE_OPTIONS } from "@/components/SourceBadge";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { RACE_ICONS } from "@/components/race-icons";
+import { HumanVariantConfig, type HumanVariantConfigPayload } from "@/components/modals/HumanVariantConfig";
 import { useLanguage } from "@/contexts/LanguageContext";
 import {
   CheckIcon as Check,
@@ -207,6 +208,9 @@ export function UnifiedSelectionModal<T extends SelectionType>({
           children: configChoice && requireChoice ? [configChoice.featureData] : [],
         },
       };
+      if (selectedItem.name === "Human" && configChoice?.featureData?.choiceType === "variant") {
+        (payload as any).variantConfig = configChoice.featureData.variantConfig;
+      }
       onConfirm(payload);
       onClose();
     } else if (step === "list" && previewItem && !previewItem.hasChoice) {
@@ -341,15 +345,33 @@ export function UnifiedSelectionModal<T extends SelectionType>({
       )}
 
       {step === "config" && selectedItem && (
-        <ConfigDrawer
-          parentOption={selectedItem}
-          onChoice={handleConfigChoice}
-          selectedChoice={configChoice}
-          characterSources={characterSources}
-          language={language}
-          requireChoice={requireChoice}
-          onRequirementChange={setRequireChoice}
-        />
+        <>
+          {selectedItem.name === "Human" ? (
+            <HumanVariantConfig
+              initialEnabled={!!configChoice}
+              initialAbilities={configChoice?.featureData?.abilities || []}
+              initialSkill={configChoice?.featureData?.skill}
+              initialFeat={configChoice?.featureData?.feat}
+              onChange={(variantConfig) => {
+                setConfigChoice({
+                  id: "variant-human",
+                  name: "Variant Human",
+                  description: "You gain +1 to two different ability scores of your choice, proficiency in one skill of your choice, and one feat of your choice.",
+                  featureData: { ...configChoice, choiceType: "variant" },
+                  parentChoiceId: "human-variant",
+                } as any);
+              }}
+            />
+          ) : (
+            <ConfigDrawer
+              parentOption={selectedItem}
+              onChoice={handleConfigChoice}
+              selectedChoice={configChoice}
+              characterSources={characterSources}
+              language={language}
+            />
+          )}
+        </>
       )}
     </BottomSheet>
   );
