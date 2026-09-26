@@ -82,12 +82,6 @@ const PROTECTED_TERMS = [
   "Warrior", "Rune", "Knight", "Swarmkeeper", "Monster", "Slayer",
   "Horizon", "Gloom", "Stalker", "Fey", "Wanderer", "Giant", "Genie",
   "Fathomless", "Ghost", "Archfey", "Celestial", "Fiend", "Great", "Old",
-  "Undying", "Hexblade", "Aberrant", "Clockwork", "Lore", "War", "Illusion",
-  "Necromancy", "Transmutation", "Abjuration", "Conjuration", "Divination",
-  "Enchantment", "Evocation", "Rune", "Psi", "Wild", "Magic", "Psi",
-  "Warrior", "Rune", "Knight", "Swarmkeeper", "Monster", "Slayer",
-  "Horizon", "Gloom", "Stalker", "Fey", "Wanderer", "Giant", "Genie",
-  "Fathomless", "Ghost", "Archfey", "Celestial", "Fiend", "Great", "Old",
   "Undying", "Hexblade",
 ];
 
@@ -213,7 +207,7 @@ async function processFile(fileName) {
   }
   
   totalTranslated = 0;
-  console.log(`\nProcessing ${fileName}...`);
+  console.log(`Processing ${fileName}...`);
   const translated = await translateValue(idData, enData);
   fs.mkdirSync(path.dirname(dstPath), { recursive: true });
   fs.writeFileSync(dstPath, JSON.stringify(translated, null, 2));
@@ -227,10 +221,7 @@ async function main() {
 
   console.log("Found files to translate with Riva (en -> id):");
   files.forEach((f) => console.log(`  ${f}`));
-  console.log("WARNING: Translating all SRD data may use significant API credits.");
-  console.log("Press Ctrl+C within 10 seconds to cancel...\n");
-
-  await new Promise((resolve) => setTimeout(resolve, 10000));
+  console.log("WARNING: Translating all SRD data may use significant API credits.\n");
 
   let processed = 0;
   for (const file of files) {
@@ -239,8 +230,7 @@ async function main() {
       processed++;
       console.log(`Progress: ${processed}/${files.length}`);
       if (processed < files.length) {
-        console.log("Waiting 2 seconds before next file...");
-        await new Promise((resolve) => setTimeout(resolve, 2000));
+        await new Promise((resolve) => setTimeout(resolve, 500));
       }
     } catch (err) {
       console.error(`Failed to translate ${file}:`, err);
