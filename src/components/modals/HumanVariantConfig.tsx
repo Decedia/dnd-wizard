@@ -40,7 +40,7 @@ export function HumanVariantConfig({
   disabledFeats = [],
   onChange,
 }: HumanVariantConfigProps) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [enabled, setEnabled] = useState(initialEnabled);
   const [abilities, setAbilities] = useState<string[]>(initialAbilities);
   const [skill, setSkill] = useState<string | undefined>(initialSkill);
@@ -97,12 +97,12 @@ export function HumanVariantConfig({
             className="h-4 w-4 rounded border-[var(--color-border)] text-[var(--color-accent-indigo-600)] focus:ring-[var(--color-accent-indigo-500)]"
           />
           <span className="text-sm font-medium text-[var(--color-text-primary)]">
-            Enable Variant Human
+            {t("modal.enableVariantHuman", "Enable Variant Human")}
           </span>
         </label>
-        <p className="text-xs text-[var(--color-text-secondary)] mt-1">
-          When enabled, you gain +1 to two abilities, one skill proficiency, and one feat.
-        </p>
+          <p className="text-xs text-[var(--color-text-secondary)] mt-1">
+            {t("modal.variantHumanHint", "When enabled, you gain +1 to two abilities, one skill proficiency, and one feat.")}
+          </p>
       </div>
     );
   }
@@ -118,18 +118,18 @@ export function HumanVariantConfig({
             className="h-4 w-4 rounded border-[var(--color-border)] text-[var(--color-accent-indigo-600)] focus:ring-[var(--color-accent-indigo-500)]"
           />
           <span className="text-sm font-medium text-[var(--color-text-primary)]">
-            Enable Variant Human
+            {t("modal.enableVariantHuman", "Enable Variant Human")}
           </span>
         </label>
-        <p className="text-xs text-[var(--color-text-secondary)] mt-1">
-          When enabled, you gain +1 to two abilities, one skill proficiency, and one feat.
-        </p>
+          <p className="text-xs text-[var(--color-text-secondary)] mt-1">
+            {t("modal.variantHumanHint", "When enabled, you gain +1 to two abilities, one skill proficiency, and one feat.")}
+          </p>
       </div>
 
       <div className="p-4 space-y-4">
         <div className="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-3">
           <div className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wider mb-2">
-            +1 to Two Abilities
+            {t("modal.plusOneToTwoAbilities", "+1 to Two Abilities")}
           </div>
           <div className="grid grid-cols-3 gap-1.5">
             {ABILITY_OPTIONS.map((ability) => {
@@ -152,16 +152,16 @@ export function HumanVariantConfig({
           </div>
           <div className="text-[10px] text-[var(--color-text-muted)] mt-1.5">
             {abilities.length === 0
-              ? "Select 2 abilities"
+              ? t("modal.select2Abilities", "Select 2 abilities")
               : abilities.length === 1
-              ? "1 ability selected"
-              : "2 abilities selected"}
+              ? t("modal.oneAbilitySelected", "1 ability selected")
+              : t("modal.twoAbilitiesSelected", "2 abilities selected")}
           </div>
         </div>
 
         <div className="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-3">
           <div className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wider mb-2">
-            Skill Proficiency
+            {t("origin.skillProficiency", "Skill Proficiency")}
           </div>
           <div className="grid grid-cols-2 gap-1.5">
             {[
@@ -191,7 +191,7 @@ export function HumanVariantConfig({
 
         <div className="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-3">
           <div className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wider mb-2">
-            Feat
+            {t("feat.feat", "Feat")}
           </div>
           {feat && (
             <div className="flex items-center gap-2 mb-2">
@@ -201,7 +201,7 @@ export function HumanVariantConfig({
                 onClick={() => selectFeat(undefined as any)}
                 className="text-xs text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]"
               >
-                Change
+                {t("creator.change", "Change")}
               </button>
             </div>
           )}
@@ -210,7 +210,7 @@ export function HumanVariantConfig({
             onClick={() => setFeatModalOpen(true)}
             className="btn btn-secondary w-full text-sm"
           >
-            {feat ? "Change Feat" : "Choose Feat"}
+            {feat ? t("creator.changeFeat", "Change Feat") : t("creator.chooseFeat", "Choose Feat")}
           </button>
         </div>
       </div>

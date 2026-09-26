@@ -106,7 +106,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
   characterSources = [],
   currentCharacter,
 }: SelectionModalProps<T>) {
-  const { tDesc, language } = useLanguage();
+  const { t, tDesc, language } = useLanguage();
   const [step, setStep] = useState<SelectionStep>("list");
   const [searchQuery, setSearchQuery] = useState("");
   const [sourceFilter, setSourceFilter] = useState<string>("ALL");
@@ -254,13 +254,13 @@ export function UnifiedSelectionModal<T extends SelectionType>({
 
   if (!isOpen) return null;
 
-  const title = selectionType === "class" ? "Choose Your Class" : "Choose Your Race";
+  const title = selectionType === "class" ? t("modal.selectClass", "Choose Your Class") : t("modal.selectRace", "Choose Your Race");
   const confirmLabel =
     step === "config"
-      ? `Confirm ${configChoice ? configChoice.name : "Selection"}`
+      ? `${t("common.confirm")} ${configChoice ? configChoice.name : t("common.selection", "Selection")}`
       : previewItem
-      ? "Confirm Selection"
-      : "Select an Option";
+      ? t("common.confirmSelection", "Confirm Selection")
+      : t("modal.selectOption", "Select an Option");
 
   const isHumanVariantStep = step === "config" && selectedItem?.name === "Human" && selectedItem.choiceType === "variant";
   const variantHumanSelected = isHumanVariantStep && configChoice?.featureData?.choiceType === "variant";
@@ -283,7 +283,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder={`Search ${selectionType}s...`}
+          placeholder={t("modal.searchPlaceholder")}
           className="w-full pl-10 pr-4 py-2 text-sm bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-indigo-500)] focus:border-transparent"
         />
       </div>
@@ -293,7 +293,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
           onChange={(e) => setSourceFilter(e.target.value)}
           className="w-full px-4 py-2 text-sm bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg text-[var(--color-text-primary)] appearance-none focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-indigo-500)] focus:border-transparent"
         >
-          <option value="ALL">All Sources</option>
+          <option value="ALL">{t("common.all", "All")}</option>
           {availableSources.map((src) => (
             <option key={src} value={src}>
               {src}
@@ -314,7 +314,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
         onClick={handleCancel}
         className="flex-1 py-2.5 px-4 text-sm font-medium rounded-lg border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:bg-[var(--color-bg)] transition-colors"
       >
-        {step === "config" ? "Back" : "Cancel"}
+        {step === "config" ? t("common.back", "Back") : t("common.cancel", "Cancel")}
       </button>
       <button
         type="button"
@@ -345,7 +345,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
         <div className="px-4 pt-4 pb-2 space-y-3">
           {filteredOptions.length === 0 && (
             <p className="text-sm text-[var(--color-text-muted)] text-center py-8">
-              No {selectionType}s found.
+              No {selectionType}s {t("common.found", "found")}.
             </p>
           )}
           {filteredOptions
@@ -358,6 +358,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
                 isSelected={previewItem?.name === opt.name}
                 onClick={() => handleItemClick(opt)}
                 selectionType={selectionType}
+                t={t}
               />
             ))}
         </div>
@@ -383,7 +384,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
                     setConfigChoice({
                       id: "variant-human",
                       name: "Variant Human",
-                      description: "You gain +1 to two different ability scores of your choice, proficiency in one skill of your choice, and one feat of your choice.",
+                      description: t("modal.variantHumanDescription", "You gain +1 to two different ability scores of your choice, proficiency in one skill of your choice, and one feat of your choice."),
                       featureData: { ...variantConfig, choiceType: "variant" },
                       parentChoiceId: "human-variant",
                     } as any);
@@ -398,6 +399,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
               language={language}
               requireChoice={requireChoice}
               onRequirementChange={handleRequirementChange}
+              t={t}
             />
           )}
         </>
@@ -411,6 +413,7 @@ interface SelectionCardProps {
   isSelected: boolean;
   onClick: () => void;
   selectionType: SelectionType;
+  t: ReturnType<typeof useLanguage>["t"];
 }
 
 function SelectionCard({
@@ -418,13 +421,14 @@ function SelectionCard({
   isSelected,
   onClick,
   selectionType,
+  t,
 }: SelectionCardProps) {
   const Icon = option.icon || FallbackIcon;
 
   const badges: string[] = [];
   if (option.source) badges.push(option.source);
   if (selectionType === "class" && option.subclassCount !== undefined) {
-    badges.push(`${option.subclassCount} Subclasses`);
+    badges.push(`${option.subclassCount} ${t("modal.subclasses", "Subclasses")}`);
   }
 
   return (
@@ -450,6 +454,7 @@ interface ConfigDrawerProps {
   language: string;
   requireChoice?: boolean;
   onRequirementChange?: (required: boolean) => void;
+  t: ReturnType<typeof useLanguage>["t"];
 }
 
 function ConfigDrawer({
@@ -460,6 +465,7 @@ function ConfigDrawer({
   language,
   requireChoice = true,
   onRequirementChange,
+  t,
 }: ConfigDrawerProps) {
   const [useVariant, setUseVariant] = useState(false);
   const isHumanVariant = parentOption.name === "Human" && parentOption.choiceType === "variant";
@@ -489,7 +495,7 @@ function ConfigDrawer({
     return (
       <div className="flex-1 flex items-center justify-center px-4 py-8">
         <p className="text-sm text-[var(--color-text-muted)] text-center">
-          No configuration options available.
+          No configuration options {t("common.available", "available")}.
         </p>
       </div>
     );
@@ -507,11 +513,11 @@ function ConfigDrawer({
               className="h-4 w-4 rounded border-[var(--color-border)] text-[var(--color-accent-indigo-600)] focus:ring-[var(--color-accent-indigo-500)]"
             />
             <span className="text-sm font-medium text-[var(--color-text-primary)]">
-              Enable Variant Human
+              {t("modal.enableVariantHuman", "Enable Variant Human")}
             </span>
           </label>
           <p className="text-xs text-[var(--color-text-secondary)] mt-1">
-            When enabled, you gain +1 to two abilities, one skill proficiency, and one feat.
+            {t("modal.variantHumanHint", "When enabled, you gain +1 to two abilities, one skill proficiency, and one feat.")}
           </p>
         </div>
       )}
@@ -528,7 +534,7 @@ function ConfigDrawer({
           <div className="px-4 py-3 border-b border-[var(--color-border)] bg-[var(--color-bg)]">
             <div className="flex items-center gap-2 mb-1">
               <span className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wider">
-                {parentOption.choiceType === "variant" ? "Variant" : "Choose"}
+                {parentOption.choiceType === "variant" ? t("modal.variant", "Variant") : t("common.choose", "Choose")}
               </span>
               <span className="text-sm font-bold text-[var(--color-text-primary)]">
                 {parentOption.name}
@@ -536,8 +542,8 @@ function ConfigDrawer({
             </div>
             <p className="text-xs text-[var(--color-text-secondary)]">
               {parentOption.choiceType === "variant"
-                ? "Select the variant human traits for your character."
-                : `Select your ${parentOption.choiceType}`}
+                ? t("modal.selectVariantTraits", "Select the variant human traits for your character.")
+                : t("modal.selectChoice", { type: parentOption.choiceType || "" }, "Select your {type}")}
             </p>
           </div>
 
