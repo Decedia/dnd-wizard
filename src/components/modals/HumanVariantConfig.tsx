@@ -28,6 +28,7 @@ interface HumanVariantConfigProps {
   initialAbilities?: string[];
   initialSkill?: string;
   initialFeat?: string;
+  disabledFeats?: string[];
   onChange: (payload: HumanVariantConfigPayload) => void;
 }
 
@@ -36,6 +37,7 @@ export function HumanVariantConfig({
   initialAbilities = [],
   initialSkill,
   initialFeat,
+  disabledFeats = [],
   onChange,
 }: HumanVariantConfigProps) {
   const { t } = useLanguage();
@@ -217,6 +219,7 @@ export function HumanVariantConfig({
         <FeatSelectionModal
           selectedFeat={feat}
           sources={[]}
+          disabledFeats={disabledFeats}
           onSelect={(selected: SRDFeat) => {
             selectFeat(selected.name);
             setFeatModalOpen(false);

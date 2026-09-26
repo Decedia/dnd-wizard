@@ -722,6 +722,10 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
         <FeatSelectionModal
           selectedFeat={asiState.feat}
           sources={data.sources}
+          disabledFeats={[
+            ...(data.features || []).filter((f: any) => f.name && f.source !== "custom").map((f: any) => f.name),
+            ...Object.values(data.featureSelections || {}).flat(),
+          ]}
           onSelect={(feat: SRDFeat) => {
             setAsiState((prev) => ({ ...prev, feat: feat.name }));
           }}

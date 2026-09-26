@@ -364,28 +364,32 @@ export function UnifiedSelectionModal<T extends SelectionType>({
       )}
 
       {step === "config" && selectedItem && (
-        <>
-          {selectedItem.name === "Human" ? (
-            <HumanVariantConfig
-              initialEnabled={!!configChoice}
-              initialAbilities={configChoice?.featureData?.abilities || []}
-              initialSkill={configChoice?.featureData?.skill}
-              initialFeat={configChoice?.featureData?.feat}
-              onChange={(variantConfig) => {
-                if (!variantConfig.enabled) {
-                  setConfigChoice(null);
-                  return;
-                }
-                setConfigChoice({
-                  id: "variant-human",
-                  name: "Variant Human",
-                  description: "You gain +1 to two different ability scores of your choice, proficiency in one skill of your choice, and one feat of your choice.",
-                  featureData: { ...variantConfig, choiceType: "variant" },
-                  parentChoiceId: "human-variant",
-                } as any);
-              }}
-            />
-          ) : (
+    <>
+              {selectedItem.name === "Human" ? (
+                <HumanVariantConfig
+                  initialEnabled={!!configChoice}
+                  initialAbilities={configChoice?.featureData?.abilities || []}
+                  initialSkill={configChoice?.featureData?.skill}
+                  initialFeat={configChoice?.featureData?.feat}
+                  disabledFeats={[
+                    ...(currentCharacter?.features || []).filter((f: any) => f.name && f.source !== "custom").map((f: any) => f.name),
+                    ...Object.values(currentCharacter?.featureSelections || {}).flat(),
+                  ]}
+                  onChange={(variantConfig) => {
+                    if (!variantConfig.enabled) {
+                      setConfigChoice(null);
+                      return;
+                    }
+                    setConfigChoice({
+                      id: "variant-human",
+                      name: "Variant Human",
+                      description: "You gain +1 to two different ability scores of your choice, proficiency in one skill of your choice, and one feat of your choice.",
+                      featureData: { ...variantConfig, choiceType: "variant" },
+                      parentChoiceId: "human-variant",
+                    } as any);
+                  }}
+                />
+              ) : (
             <ConfigDrawer
               parentOption={selectedItem}
               onChoice={handleConfigChoice}

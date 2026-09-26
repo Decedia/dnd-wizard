@@ -12,18 +12,22 @@ interface FeatSelectionModalProps {
   onClose: () => void;
   selectedFeat?: string;
   sources?: string[];
+  disabledFeats?: string[];
 }
 
-export function FeatSelectionModal({ onSelect, onClose, selectedFeat, sources }: FeatSelectionModalProps) {
+export function FeatSelectionModal({ onSelect, onClose, selectedFeat, sources, disabledFeats = [] }: FeatSelectionModalProps) {
   const feats = getStaticFeats(sources);
   const [search, setSearch] = useState("");
   const [pendingSelection, setPendingSelection] = useState<string | null>(selectedFeat || null);
 
+  const disabledFeatNames = useMemo(() => new Set(disabledFeats), [disabledFeats]);
+
   const filteredFeats = useMemo(() => {
-    if (!search.trim()) return feats;
+    const base = feats.filter((feat) => !disabledFeatNames.has(feat.name));
+    if (!search.trim()) return base;
     const q = search.toLowerCase();
-    return feats.filter((feat) => feat.name.toLowerCase().includes(q) || (feat.description || "").toLowerCase().includes(q));
-  }, [feats, search]);
+    return base.filter((feat) => feat.name.toLowerCase().includes(q) || (feat.description || "").toLowerCase().includes(q));
+  }, [feats, search, disabledFeatNames]);
 
   const handleConfirm = () => {
     const feat = feats.find((f) => f.name === pendingSelection);
