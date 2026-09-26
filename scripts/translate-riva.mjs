@@ -5,9 +5,13 @@ import https from "https";
 const EN_DIR = path.join(process.cwd(), "src/data/en");
 const ID_DIR = path.join(process.cwd(), "src/data/id");
 
-const TRANSLATABLE_KEYS = new Set([
-  "description", "fullDescription", "flavorText", "effectSummary", "summary", "languageDesc",
-]);
+const FILES = [
+  { name: "2014_races.json", root: "races", label: (item) => item.name || item.race || "unknown", batchSize: 10 },
+  { name: "2014_classes.json", root: "classes", label: (item) => item.name || "unknown", batchSize: 1 },
+];
+
+const BATCH_SIZE = 10;
+const BATCH_DELAY_MS = 2000;
 
 const PROTECTED_TERMS = [
   "Action", "Bonus Action", "Reaction", "Free Action", "Action Surge",
@@ -108,6 +112,11 @@ function unshieldPlaceholders(text) {
   return text.replace(/__TAG[A-Za-z0-9+/=]+__/g, (match) => match);
 }
 
+function sanitizeLabel(name) {
+  const base = String(name || "item").replace(/[^a-zA-Z0-9_-]+/g, "_").replace(/^_+|_+$/g, "");
+  return base || "item";
+}
+
 async function translateText(text) {
   const apiKey = process.env.RIVA_API_KEY;
   if (!apiKey) throw new Error("Missing RIVA_API_KEY environment variable.");
@@ -115,7 +124,11 @@ async function translateText(text) {
   const payload = JSON.stringify({
     model: "nvidia/riva-translate-4b-instruct-v2",
     messages: [
-      { role: "system", content: "en-id" },
+      {
+        role: "system",
+        content:
+          "You are an expert English to Bahasa Indonesia translator. You will receive a JSON object of text strings. Translate the VALUES into natural Bahasa Indonesia. Do NOT translate or alter the JSON keys. Keep all D&D mechanical terms (e.g., Action, Hit Points) and placeholders (e.g., TAG0) strictly in English. You MUST return ONLY valid JSON.",
+      },
       { role: "user", content: text },
     ],
     temperature: 0.2,
@@ -128,7 +141,7 @@ async function translateText(text) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.RIVA_API_KEY}`,
+        Authorization: `Bearer ${apiKey}`,
       },
     }, (res) => {
       let body = "";
@@ -148,96 +161,124 @@ async function translateText(text) {
   return translated;
 }
 
-async function translateTextWithRetry(text, maxRetries = 3) {
-  for (let i = 0; i < maxRetries; i++) {
-    try {
-      const result = await translateText(text);
-      return result;
-    } catch (err) {
-      if (i === maxRetries - 1) throw err;
-      console.log(`  Retry ${i + 1}/${maxRetries} after error: ${err.message}`);
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+function buildBatchPayload(items) {
+  const payload = {};
+  for (const item of items) {
+    const label = sanitizeLabel(item._label);
+    if (typeof item.summary === "string" && item.summary.trim()) {
+      payload[`${label}_summary`] = protectTerms(item.summary);
+    }
+    if (typeof item.description === "string" && item.description.trim()) {
+      payload[`${label}_description`] = protectTerms(item.description);
+    }
+  }
+  return payload;
+}
+
+function applyBatchResult(data, items, result) {
+  for (const item of items) {
+    const label = sanitizeLabel(item._label);
+    const summaryKey = `${label}_summary`;
+    const descriptionKey = `${label}_description`;
+
+    if (typeof item.summary === "string" && item.summary.trim() && result[summaryKey] !== undefined) {
+      data.summary = restoreTerms(unshieldPlaceholders(result[summaryKey]));
+    }
+    if (typeof item.description === "string" && item.description.trim() && result[descriptionKey] !== undefined) {
+      data.description = restoreTerms(unshieldPlaceholders(result[descriptionKey]));
     }
   }
 }
 
-let totalTranslated = 0;
-
-async function translateValue(value, enValue, path = "") {
-  if (typeof value === "string" && typeof enValue === "string") {
-    if (value !== enValue && value.length > 0) {
-      return value;
-    }
-    totalTranslated++;
-    const protectedText = protectTerms(enValue);
-    const shieldedText = shieldPlaceholders(protectedText);
-    const translated = await translateTextWithRetry(shieldedText);
-    const unshielded = unshieldPlaceholders(translated);
-    return restoreTerms(unshielded);
+async function translateBatch(items) {
+  const payload = buildBatchPayload(items);
+  const raw = await translateText(JSON.stringify(payload));
+  let parsed;
+  try {
+    parsed = JSON.parse(raw);
+  } catch (err) {
+    throw new Error(`Invalid JSON response: ${err.message}`);
   }
-  
-  if (Array.isArray(value) && Array.isArray(enValue)) {
-    const out = [];
-    for (let i = 0; i < enValue.length; i++) {
-      out.push(await translateValue(value[i], enValue[i], `${path}[${i}]`));
-    }
-    return out;
+  for (const item of items) {
+    applyBatchResult(item, items, parsed);
   }
-  
-  if (value && typeof value === "object" && enValue && typeof enValue === "object") {
-    const out = {};
-    for (const key of Object.keys(enValue)) {
-      out[key] = await translateValue(value?.[key], enValue[key], `${path}.${key}`);
-    }
-    return out;
-  }
-  
-  return value;
 }
 
-async function processFile(fileName) {
-  const srcPath = path.join(EN_DIR, fileName);
+function getItemsToTranslate(fileConfig) {
+  const srcPath = path.join(EN_DIR, fileConfig.name);
+  const data = JSON.parse(fs.readFileSync(srcPath, "utf8"));
+  const items = data[fileConfig.root] || [];
+  return items.map((item) => ({
+    ...item,
+    _label: fileConfig.label(item),
+  }));
+}
+
+function saveFile(fileName, data) {
   const dstPath = path.join(ID_DIR, fileName);
-  
-  const enData = JSON.parse(fs.readFileSync(srcPath, "utf8"));
-  let idData = {};
-  
-  if (fs.existsSync(dstPath)) {
-    idData = JSON.parse(fs.readFileSync(dstPath, "utf8"));
-  }
-  
-  totalTranslated = 0;
-  console.log(`Processing ${fileName}...`);
-  const translated = await translateValue(idData, enData);
   fs.mkdirSync(path.dirname(dstPath), { recursive: true });
-  fs.writeFileSync(dstPath, JSON.stringify(translated, null, 2));
-  console.log(`Translated ${totalTranslated} fields in ${fileName}`);
+  fs.writeFileSync(dstPath, JSON.stringify(data, null, 2));
+}
+
+function buildChunks(items, batchSize) {
+  const chunks = [];
+  for (let i = 0; i < items.length; i += batchSize) {
+    chunks.push(items.slice(i, i + batchSize));
+  }
+  return chunks;
+}
+
+async function translateFile(fileConfig) {
+  const items = getItemsToTranslate(fileConfig);
+  const chunks = buildChunks(items, fileConfig.batchSize || BATCH_SIZE);
+  const totalBatches = chunks.length;
+
+  console.log(`\n${fileConfig.name}: ${items.length} items, ${totalBatches} batches`);
+  for (let i = 0; i < chunks.length; i++) {
+    const startItem = i * (fileConfig.batchSize || BATCH_SIZE) + 1;
+    const endItem = Math.min((i + 1) * (fileConfig.batchSize || BATCH_SIZE), items.length);
+    console.log(`[Batch ${i + 1}/${totalBatches}] Processing items ${startItem} to ${endItem}...`);
+    try {
+      await translateBatch(chunks[i]);
+      saveFile(fileConfig.name, { [fileConfig.root]: items });
+      const completed = Math.min(endItem, items.length);
+      const pct = Math.round((completed / items.length) * 100);
+      console.log(`✅ [Batch ${i + 1}/${totalBatches}] Success! Progress: ${completed}/${items.length} items (${pct}%). Incremental save complete.`);
+    } catch (err) {
+      console.log(`⚠️ [Batch ${i + 1}/${totalBatches}] Failed. Skipping... ${err.message}`);
+    }
+    if (i + 1 < totalBatches) {
+      await new Promise((resolve) => setTimeout(resolve, BATCH_DELAY_MS));
+    }
+  }
 }
 
 async function main() {
-  const files = [
-    "2014_races.json", "2014_classes.json", "2014_subclasses.json", "2014_feats.json", "2024_phb.json",
-  ];
+  console.log("Found files to translate with Riva batch mode (en -> id):");
+  FILES.forEach((f) => console.log(`  ${f.name}`));
+  console.log("WARNING: Translating SRD data may use significant API credits.\n");
 
-  console.log("Found files to translate with Riva (en -> id):");
-  files.forEach((f) => console.log(`  ${f}`));
-  console.log("WARNING: Translating all SRD data may use significant API credits.\n");
+  let totalItems = 0;
+  let totalBatches = 0;
+  for (const file of FILES) {
+    const items = getItemsToTranslate(file);
+    totalItems += items.length;
+    totalBatches += Math.ceil(items.length / (file.batchSize || BATCH_SIZE));
+  }
+  console.log(`Total items to translate: ${totalItems}`);
+  console.log(`Total batches: ${totalBatches}\n`);
 
   let processed = 0;
-  for (const file of files) {
+  for (const file of FILES) {
     try {
-      await processFile(file);
+      await translateFile(file);
       processed++;
-      console.log(`Progress: ${processed}/${files.length}`);
-      if (processed < files.length) {
-        await new Promise((resolve) => setTimeout(resolve, 500));
-      }
     } catch (err) {
-      console.error(`Failed to translate ${file}:`, err);
+      console.error(`Failed to translate ${file.name}:`, err);
     }
   }
 
-  console.log(`\nRiva translation complete. ${processed}/${files.length} files processed.`);
+  console.log(`\n🎉 Translation Complete! ${processed}/${FILES.length} files processed.`);
 }
 
 main().catch((err) => { console.error("Fatal error:", err); process.exit(1); });
