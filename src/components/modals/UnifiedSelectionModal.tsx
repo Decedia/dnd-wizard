@@ -372,6 +372,10 @@ export function UnifiedSelectionModal<T extends SelectionType>({
               initialSkill={configChoice?.featureData?.skill}
               initialFeat={configChoice?.featureData?.feat}
               onChange={(variantConfig) => {
+                if (!variantConfig.enabled) {
+                  setConfigChoice(null);
+                  return;
+                }
                 setConfigChoice({
                   id: "variant-human",
                   name: "Variant Human",

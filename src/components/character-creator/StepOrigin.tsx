@@ -206,7 +206,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
   const handleRaceSelect = useCallback(
     (payload: any) => {
       const raceName = payload.name;
-      const isVariant = payload.configChoice?.name === "Variant Human" || payload.configChoice?.featureData?.choiceType === "variant";
+      const isVariant = payload.configChoice?.featureData?.choiceType === "variant";
       const nextRaceChoices = { ...data.raceChoices };
       if (payload.configChoice?.parentChoiceId && payload.configChoice?.featureData?.id) {
         nextRaceChoices[payload.configChoice.parentChoiceId] = payload.configChoice.featureData.id;
@@ -216,27 +216,26 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
       const variantHumanSkill = isVariant ? payload.configChoice?.featureData?.skill : undefined;
       const variantHumanFeat = isVariant ? payload.configChoice?.featureData?.feat : undefined;
 
-      if (raceName !== data.race || isVariant !== (data.raceVariant === "variant")) {
-        onChange({
-          race: raceName,
-          raceVariant: isVariant ? "variant" : undefined,
-          raceChoices: nextRaceChoices,
-          ...(isVariant ? {
-            variantHumanAbilities,
-            variantHumanSkill,
-            featureSelections: {
-              ...data.featureSelections,
-              "variant-human-feat": variantHumanFeat ? [variantHumanFeat] : [],
-            },
-          } : { 
-            variantHumanAbilities: undefined, 
-            variantHumanSkill: undefined, 
-            featureSelections: { ...data.featureSelections, "variant-human-feat": [] } 
-          }),
-        });
-      }
+      onChange({
+        race: raceName,
+        raceVariant: isVariant ? "variant" : undefined,
+        raceChoices: nextRaceChoices,
+        ...(isVariant ? {
+          variantHumanAbilities,
+          variantHumanSkill,
+          featureSelections: {
+            ...data.featureSelections,
+            "variant-human-feat": variantHumanFeat ? [variantHumanFeat] : [],
+          },
+        } : { 
+          variantHumanAbilities: undefined, 
+          variantHumanSkill: undefined, 
+          featureSelections: { ...data.featureSelections, "variant-human-feat": [] } 
+        }),
+      });
+      setRaceModalOpen(false);
     },
-    [data.race, data.raceVariant, data.featureSelections, data.raceChoices, onChange]
+    [data.featureSelections, data.raceChoices, onChange]
   );
 
   return (
