@@ -64,6 +64,22 @@ export const RECOMMENDED_SKILLS = new Set([
   "Persuasion",
 ]);
 
+export const RECOMMENDED_SKILLS_PER_CLASS: Record<string, string[]> = {
+  Barbarian: ["Athletics", "Survival", "Intimidation", "Perception"],
+  Bard: ["Performance", "Persuasion", "Deception", "Insight"],
+  Cleric: ["History", "Insight", "Medicine", "Religion"],
+  Druid: ["Nature", "Survival", "Animal Handling", "Insight"],
+  Fighter: ["Athletics", "Perception", "Survival", "Intimidation"],
+  Monk: ["Acrobatics", "Athletics", "Perception", "Stealth"],
+  Paladin: ["Athletics", "Persuasion", "Religion", "Intimidation"],
+  Ranger: ["Athletics", "Stealth", "Perception", "Survival", "Animal Handling"],
+  Rogue: ["Stealth", "Acrobatics", "Deception", "Sleight of Hand", "Perception", "Investigation"],
+  Sorcerer: ["Arcana", "Deception", "Persuasion", "Intimidation"],
+  Warlock: ["Arcana", "Deception", "Intimidation", "Persuasion"],
+  Wizard: ["Arcana", "History", "Investigation", "Religion", "Insight"],
+  Artificer: ["Arcana", "History", "Investigation", "Perception"],
+};
+
 export const RECOMMENDED_STATS: Record<string, string[]> = {
   Fighter: ["STR", "CON"],
   Rogue: ["DEX", "INT"],
@@ -108,6 +124,10 @@ export function isRecommended(type: "class" | "race" | "subclass" | "spell" | "s
     case "spell":
       return RECOMMENDED_SPELLS.has(name);
     case "skill":
+      if (className) {
+        const classRecs = RECOMMENDED_SKILLS_PER_CLASS[className];
+        if (classRecs?.includes(name)) return true;
+      }
       return RECOMMENDED_SKILLS.has(name);
     case "stat":
       return className ? RECOMMENDED_STATS[className]?.includes(name) ?? false : false;
