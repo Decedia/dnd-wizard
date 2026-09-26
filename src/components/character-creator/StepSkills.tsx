@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { CheckCircleIcon as CheckCircle, ListChecksIcon as ListChecks, CrownIcon as Trophy, BookIcon as Book } from "@/components/icons";
+import { CheckCircleIcon as CheckCircle, ListChecksIcon as ListChecks, CrownIcon as Trophy, BookIcon as Book, StarIcon as Star } from "@/components/icons";
 import { StepCard } from "./StepCard";
 import { getStaticClass } from "@/lib/srd-client";
 import { getProficiencyBonus } from "@/lib/storage";
@@ -9,6 +9,7 @@ import { NewPlayerTips } from "@/components/NewPlayerTips";
 import type { Character } from "@/lib/storage";
 import { getBackgroundData } from "@/data/backgrounds";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { isRecommended } from "@/lib/recommendations";
 
 interface StepSkillsProps {
   data: Character;
@@ -117,22 +118,23 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
           const disabled = !isAllowed || (!isProficient && atMax) || isBackgroundSkill;
 
           return (
-             <button
-                key={name}
-                type="button"
-                onClick={() => toggleSkill(name)}
-                disabled={disabled}
-                 className={`btn w-full px-3 py-2 text-left transition-all rounded-[var(--border-radius-sm)] ${
-                   isBackgroundSkill
-                     ? "btn-secondary bg-[var(--color-success-50)] border-[var(--color-success-300)]"
-                     : isProficient
-                     ? "btn-primary"
-                     : disabled
-                       ? "btn-secondary opacity-20 cursor-not-allowed"
-                       : "btn-secondary"
-                 }`}
-              >
-               <div className="flex items-center justify-between">
+              <button
+                 key={name}
+                 type="button"
+                 onClick={() => toggleSkill(name)}
+                 disabled={disabled}
+                  className={`btn relative w-full px-3 py-2 text-left transition-all rounded-[var(--border-radius-sm)] ${
+                    isBackgroundSkill
+                      ? "btn-secondary bg-[var(--color-success-50)] border-[var(--color-success-300)]"
+                      : isProficient
+                      ? "btn-primary"
+                      : disabled
+                        ? "btn-secondary opacity-20 cursor-not-allowed"
+                        : "btn-secondary"
+                  }`}
+               >
+                {isRecommended("skill", name, data.class) && (<span className="absolute -top-3 -left-3 w-8 h-8 text-amber-400 drop-shadow-md z-10"><Star className="h-8 w-8 fill-amber-400" /></span>)}
+                <div className="flex items-center justify-between">
                  <div className="flex flex-col">
                    <span className={`text-body ${isProficient ? "font-semibold" : ""} ${isProficient ? "text-[var(--color-surface)]" : ""}`}>{name}</span>
                    <span className={`text-[10px] ${isProficient ? "text-[var(--color-surface)]" : isAllowed || isBackgroundSkill ? "text-[var(--color-text-secondary)]" : "text-[var(--color-text-muted)]"}`}>
