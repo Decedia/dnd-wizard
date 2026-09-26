@@ -3,12 +3,11 @@
 import { useState, useEffect, useMemo } from "react";
 import { getStaticSpells, getClassSpells, getSubclassFlags, deduplicateSpells } from "@/lib/srd-client";
 import { SourceBadge } from "@/components/SourceBadge";
-import { DamageBadge } from "@/components/character-sheet/DamageBadge";
-import { CheckIcon as Check, StarIcon as Star, MagnifyingGlassIcon as MagnifyingGlass, InfoIcon, XIcon as X } from "@/components/icons";
+import { CheckIcon as Check, MagnifyingGlassIcon as MagnifyingGlass } from "@/components/icons";
 import { isRecommended } from "@/lib/recommendations";
 import { GroupedList } from "@/components/GroupedList";
 import { BottomSheet } from "@/components/modals/BottomSheet";
-import { getSpellSchoolStyle } from "@/lib/spell-schools";
+import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
 import { getMaxSpellLevel } from "@/lib/storage";
@@ -223,98 +222,42 @@ export function SpellSelectionModal({
     const finalDisabled = disabled || isAlreadyKnown || isDisabled;
     const spellId = `${sp.name}:${level}`;
 
+    const subtitleParts: string[] = [];
+    if (sp.school) subtitleParts.push(sp.school);
+    if (level > 0 && sp.castingTime) subtitleParts.push(sp.castingTime);
+    if (isDisabled) subtitleParts.push("From higher level");
+    else if (isAlreadyKnown) subtitleParts.push("Already known");
+    else if (isSel) subtitleParts.push("Selected");
+    else if (disabled) subtitleParts.push("Maximum reached");
+    const subtitle = subtitleParts.join(" · ");
+
+    const badges: string[] = [];
+    if (level > 0) badges.push(`Lv ${level}`);
+
     return (
-      <div key={sp.name} className="flex gap-1.5">
-         <button
-           type="button"
-           onClick={() => !isAlreadyKnown && !isDisabled && toggle(sp.name, level)}
-           disabled={finalDisabled}
-           className={`flex-1 px-3 py-2 text-left rounded-lg border transition-all ${
-             isDisabled
-               ? "bg-[var(--color-accent)]/20 border-[var(--color-accent)]/40 cursor-default"
-               : isAlreadyKnown
-                 ? "bg-[var(--color-bg)] border-[var(--color-border)] opacity-60 cursor-default"
-                 : isSel
-                   ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-2 border-[var(--border-active)]"
-                   : disabled
-                     ? "bg-[var(--color-bg)] border-[var(--color-border)] opacity-50"
-                     : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-           }`}
-         >
-           <div className="flex items-center gap-2">
-             <SourceBadge source={(sp as any).source || "PHB"} size="sm" />
-             <span className={`text-xs font-bold flex-1 ${isAlreadyKnown || isDisabled ? "text-[var(--color-text-secondary)]" : ""}`}>
-               {sp.name}
-             </span>
-             {isRecommended("spell", sp.name) && <Star className="h-3 w-3 text-amber-500 shrink-0" />}
-<button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setInfoSpell(sp.name);
-                }}
-                className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-2 hover:border-[var(--color-text-primary)] active:bg-[var(--color-bg)] transition-all shrink-0"
-                aria-label={`Info: ${sp.name}`}
-              >
-                <InfoIcon className="h-4 w-4" />
-              </button>
-              {infoSpell === sp.name && (
-                <div className="fixed inset-0 z-[1000000] flex items-center justify-center bg-black/50 backdrop-blur-sm" onClick={() => setInfoSpell(null)}>
-                  <div className="relative w-full max-w-sm mx-4 bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] shadow-2xl p-4">
-                    <div className="flex items-center justify-between mb-2">
-                      <h3 className="text-sm font-semibold text-[var(--color-text-primary)]">{sp.name}</h3>
-                      <button type="button" onClick={() => setInfoSpell(null)} className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]">
-                        <X className="h-4 w-4" />
-                      </button>
-                    </div>
-                    <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">
-                      {(() => {
-                        const rawDesc = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description;
-                        const translatedDesc = tDesc(`spell.desc.${slugify(sp.name)}`, rawDesc);
-                        const s = (sp as any).effectSummary || (sp as any).summary || "";
-                        return s ? `${s}\n\n${translatedDesc}` : translatedDesc;
-                      })()}
-                    </p>
-                    <button type="button" onClick={() => setInfoSpell(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">Got it</button>
-                  </div>
-                </div>
-              )}
-             <div className="w-3 shrink-0">
-               {isDisabled && <Check className="h-3 w-3 text-[var(--color-accent)]" />}
-               {isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-text-secondary)]" />}
-               {isSel && !isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
-             </div>
-           </div>
-           <div className="flex items-center gap-2 mt-0.5 ml-1">
-             {sp.school && (() => {
-               const schoolStyle = getSpellSchoolStyle(sp.school);
-               if (!schoolStyle) return <span className="text-[10px] text-[var(--color-text-muted)]">{sp.school}</span>;
-               return (
-                 <span
-                   className="inline-flex items-center gap-1 font-semibold"
-                   style={{
-                     fontSize: "10px",
-                     padding: "1px 5px",
-                     borderRadius: "4px",
-                     backgroundColor: `var(${schoolStyle.bgColorVar})`,
-                     color: `var(${schoolStyle.colorVar})`,
-                   }}
-                 >
-                   <schoolStyle.icon className="h-3 w-3" />
-                   {schoolStyle.label}
-                 </span>
-               );
-             })()}
-             {level > 0 && <span className="text-[10px] text-[var(--color-text-muted)]">·</span>}
-             {level > 0 && <span className="text-[10px] text-[var(--color-text-muted)]">{sp.castingTime}</span>}
-             {isDisabled && <span className="text-[10px] text-[var(--color-accent)] font-medium">From higher level</span>}
-             {isAlreadyKnown && !isDisabled && <span className="text-[10px] text-[var(--color-text-secondary)] font-medium">Already known</span>}
-             {isSel && !isAlreadyKnown && !isDisabled && <span className="text-[10px] text-[var(--color-surface)] font-medium">Selected</span>}
-           </div>
-         </button>
-       </div>
-     );
-   };
+      <SplitSelectionCard
+        key={sp.name}
+        title={sp.name}
+        subtitle={subtitle}
+        icon={<SourceBadge source={(sp as any).source || "PHB"} size="sm" />}
+        badges={badges.length > 0 ? badges : undefined}
+        isRecommended={isRecommended("spell", sp.name)}
+        isSelected={isSel}
+        onSelect={() => !isAlreadyKnown && !isDisabled && toggle(sp.name, level)}
+        infoType="modal"
+        modalContent={
+          <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">
+            {(() => {
+              const rawDesc = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description;
+              const translatedDesc = tDesc(`spell.desc.${slugify(sp.name)}`, rawDesc);
+              const s = (sp as any).effectSummary || (sp as any).summary || "";
+              return s ? `${s}\n\n${translatedDesc}` : translatedDesc;
+            })()}
+          </p>
+        }
+      />
+    );
+  };
 
   const renderLevelContent = (spellsForLevel: any[]) => {
     if (spellsForLevel.length === 0 && searchQuery) {
