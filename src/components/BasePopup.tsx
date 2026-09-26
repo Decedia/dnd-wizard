@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { XIcon as X, InfoIcon as Info } from "@/components/icons";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export interface BasePopupProps {
   isOpen: boolean;
@@ -26,14 +27,15 @@ export function BasePopup({
   description,
   infoTitle,
   infoDescription,
-  confirmLabel = "Confirm",
-  cancelLabel = "Cancel",
+  confirmLabel,
+  cancelLabel,
   onConfirm,
   onCancel,
   children,
   showFooter = true,
   confirmDisabled = false,
 }: BasePopupProps) {
+  const { t } = useLanguage();
   const [showInfo, setShowInfo] = useState(false);
 
   if (!isOpen) return null;
@@ -94,7 +96,7 @@ export function BasePopup({
               onClick={onCancel || onClose}
               className="btn btn-secondary flex-1"
             >
-              {cancelLabel}
+              {cancelLabel || t("common.cancel", "Cancel")}
             </button>
             <button
               type="button"
@@ -106,7 +108,7 @@ export function BasePopup({
                   : "bg-[var(--color-text-primary)] text-[var(--color-surface)] hover:opacity-90"
               }`}
             >
-              {confirmLabel}
+              {confirmLabel || t("common.confirm", "Confirm")}
             </button>
           </div>
         )}

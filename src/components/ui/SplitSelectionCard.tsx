@@ -7,6 +7,7 @@ import {
   CaretDownIcon as ChevronDown,
 } from "@/components/icons";
 import { BasePopup } from "@/components/BasePopup";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export interface SplitSelectionCardProps {
   title: string;
@@ -37,6 +38,7 @@ export function SplitSelectionCard({
   isSelected = false,
   modalContent,
 }: SplitSelectionCardProps) {
+  const { t } = useLanguage();
   const [showModal, setShowModal] = useState(false);
 
   const handleInfoClick = (e: React.MouseEvent) => {
@@ -124,7 +126,7 @@ export function SplitSelectionCard({
           onClose={() => setShowModal(false)}
           title={title}
           showFooter={true}
-          confirmLabel="Got it"
+          confirmLabel={t("common.gotIt", "Got it")}
           onConfirm={() => setShowModal(false)}
         >
           {modalContent}
