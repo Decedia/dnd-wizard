@@ -88,42 +88,6 @@ const PROTECTED_TERMS = [
   "Warrior", "Rune", "Knight", "Swarmkeeper", "Monster", "Slayer",
   "Horizon", "Gloom", "Stalker", "Fey", "Wanderer", "Giant", "Genie",
   "Fathomless", "Ghost", "Archfey", "Celestial", "Fiend", "Great", "Old",
-  "Undying", "Hexblade", "Aberrant", "Clockwork", "Lore", "War", "Illusion",
-  "Necromancy", "Transmutation", "Abjuration", "Conjuration", "Divination",
-  "Enchantment", "Evocation", "Rune", "Psi", "Wild", "Magic", "Psi",
-  "Warrior", "Rune", "Knight", "Swarmkeeper", "Monster", "Slayer",
-  "Horizon", "Gloom", "Stalker", "Fey", "Wanderer", "Giant", "Genie",
-  "Fathomless", "Ghost", "Archfey", "Celestial", "Fiend", "Great", "Old",
-  "Undying", "Hexblade", "Aberrant", "Clockwork", "Lore", "War", "Illusion",
-  "Necromancy", "Transmutation", "Abjuration", "Conjuration", "Divination",
-  "Enchantment", "Evocation", "Rune", "Psi", "Wild", "Magic", "Psi",
-  "Warrior", "Rune", "Knight", "Swarmkeeper", "Monster", "Slayer",
-  "Horizon", "Gloom", "Stalker", "Fey", "Wanderer", "Giant", "Genie",
-  "Fathomless", "Ghost", "Archfey", "Celestial", "Fiend", "Great", "Old",
-  "Undying", "Hexblade", "Aberrant", "Clockwork", "Lore", "War", "Illusion",
-  "Necromancy", "Transmutation", "Abjuration", "Conjuration", "Divination",
-  "Enchantment", "Evocation", "Rune", "Psi", "Wild", "Magic", "Psi",
-  "Warrior", "Rune", "Knight", "Swarmkeeper", "Monster", "Slayer",
-  "Horizon", "Gloom", "Stalker", "Fey", "Wanderer", "Giant", "Genie",
-  "Fathomless", "Ghost", "Archfey", "Celestial", "Fiend", "Great", "Old",
-  "Undying", "Hexblade", "Aberrant", "Clockwork", "Lore", "War", "Illusion",
-  "Necromancy", "Transmutation", "Abjuration", "Conjuration", "Divination",
-  "Enchantment", "Evocation", "Rune", "Psi", "Wild", "Magic", "Psi",
-  "Warrior", "Rune", "Knight", "Swarmkeeper", "Monster", "Slayer",
-  "Horizon", "Gloom", "Stalker", "Fey", "Wanderer", "Giant", "Genie",
-  "Fathomless", "Ghost", "Archfey", "Celestial", "Fiend", "Great", "Old",
-  "Undying", "Hexblade", "Aberrant", "Clockwork", "Lore", "War", "Illusion",
-  "Necromancy", "Transmutation", "Abjuration", "Conjuration", "Divination",
-  "Enchantment", "Evocation", "Rune", "Psi", "Wild", "Magic", "Psi",
-  "Warrior", "Rune", "Knight", "Swarmkeeper", "Monster", "Slayer",
-  "Horizon", "Gloom", "Stalker", "Fey", "Wanderer", "Giant", "Genie",
-  "Fathomless", "Ghost", "Archfey", "Celestial", "Fiend", "Great", "Old",
-  "Undying", "Hexblade", "Aberrant", "Clockwork", "Lore", "War", "Illusion",
-  "Necromancy", "Transmutation", "Abjuration", "Conjuration", "Divination",
-  "Enchantment", "Evocation", "Rune", "Psi", "Wild", "Magic", "Psi",
-  "Warrior", "Rune", "Knight", "Swarmkeeper", "Monster", "Slayer",
-  "Horizon", "Gloom", "Stalker", "Fey", "Wanderer", "Giant", "Genie",
-  "Fathomless", "Ghost", "Archfey", "Celestial", "Fiend", "Great", "Old",
   "Undying", "Hexblade",
 ];
 
@@ -190,37 +154,70 @@ async function translateText(text) {
   return translated;
 }
 
-async function translateValue(value) {
-  if (typeof value === "string") {
-    const protectedText = protectTerms(value);
+async function translateTextWithRetry(text, maxRetries = 3) {
+  for (let i = 0; i < maxRetries; i++) {
+    try {
+      const result = await translateText(text);
+      return result;
+    } catch (err) {
+      if (i === maxRetries - 1) throw err;
+      console.log(`  Retry ${i + 1}/${maxRetries} after error: ${err.message}`);
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+    }
+  }
+}
+
+let totalTranslated = 0;
+
+async function translateValue(value, enValue, path = "") {
+  if (typeof value === "string" && typeof enValue === "string") {
+    if (value !== enValue && value.length > 0) {
+      return value;
+    }
+    totalTranslated++;
+    const protectedText = protectTerms(enValue);
     const shieldedText = shieldPlaceholders(protectedText);
-    const translated = await translateText(shieldedText);
+    const translated = await translateTextWithRetry(shieldedText);
     const unshielded = unshieldPlaceholders(translated);
     return restoreTerms(unshielded);
   }
-  if (Array.isArray(value)) return Promise.all(value.map(translateValue));
-  if (value && typeof value === "object") {
-    const out = {};
-    for (const [k, v] of Object.entries(value)) {
-      if (TRANSLATABLE_KEYS.has(k) && typeof v === "string") {
-        console.log(`Translating ${k}: ${v.slice(0, 60)}...`);
-        out[k] = await translateValue(v);
-      } else {
-        out[k] = await translateValue(v);
-      }
+  
+  if (Array.isArray(value) && Array.isArray(enValue)) {
+    const out = [];
+    for (let i = 0; i < enValue.length; i++) {
+      out.push(await translateValue(value[i], enValue[i], `${path}[${i}]`));
     }
     return out;
   }
+  
+  if (value && typeof value === "object" && enValue && typeof enValue === "object") {
+    const out = {};
+    for (const key of Object.keys(enValue)) {
+      out[key] = await translateValue(value?.[key], enValue[key], `${path}.${key}`);
+    }
+    return out;
+  }
+  
   return value;
 }
 
-async function processFile(filePath, outPath) {
-  const raw = fs.readFileSync(filePath, "utf8");
-  const data = JSON.parse(raw);
-  const translated = await translateValue(data);
-  fs.mkdirSync(path.dirname(outPath), { recursive: true });
-  fs.writeFileSync(outPath, JSON.stringify(translated, null, 2));
-  console.log(`Translated: ${path.basename(filePath)} -> ${path.basename(outPath)}`);
+async function processFile(fileName) {
+  const srcPath = path.join(EN_DIR, fileName);
+  const dstPath = path.join(ID_DIR, fileName);
+  
+  const enData = JSON.parse(fs.readFileSync(srcPath, "utf8"));
+  let idData = {};
+  
+  if (fs.existsSync(dstPath)) {
+    idData = JSON.parse(fs.readFileSync(dstPath, "utf8"));
+  }
+  
+  totalTranslated = 0;
+  console.log(`\nProcessing ${fileName}...`);
+  const translated = await translateValue(idData, enData);
+  fs.mkdirSync(path.dirname(dstPath), { recursive: true });
+  fs.writeFileSync(dstPath, JSON.stringify(translated, null, 2));
+  console.log(`Translated ${totalTranslated} fields in ${fileName}`);
 }
 
 async function main() {
@@ -237,18 +234,20 @@ async function main() {
 
   let processed = 0;
   for (const file of files) {
-    const srcPath = path.join(EN_DIR, file);
-    const dstPath = path.join(ID_DIR, file);
     try {
-      await processFile(srcPath, dstPath);
+      await processFile(file);
       processed++;
       console.log(`Progress: ${processed}/${files.length}`);
+      if (processed < files.length) {
+        console.log("Waiting 2 seconds before next file...");
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+      }
     } catch (err) {
       console.error(`Failed to translate ${file}:`, err);
     }
   }
 
-  console.log(`\nRiva translation complete. ${processed}/5 files translated.`);
+  console.log(`\nRiva translation complete. ${processed}/${files.length} files processed.`);
 }
 
 main().catch((err) => { console.error("Fatal error:", err); process.exit(1); });
