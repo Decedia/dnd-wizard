@@ -201,6 +201,10 @@ export function UnifiedSelectionModal<T extends SelectionType>({
     setConfigChoice(choice);
   }, []);
 
+  const handleRequirementChange = useCallback((required: boolean) => {
+    setRequireChoice(required);
+  }, []);
+
   const handleConfirm = useCallback(() => {
     if (step === "config") {
       if (!selectedItem) return;
@@ -258,10 +262,16 @@ export function UnifiedSelectionModal<T extends SelectionType>({
       ? "Confirm Selection"
       : "Select an Option";
 
+  const isHumanVariantStep = step === "config" && selectedItem?.name === "Human" && selectedItem.choiceType === "variant";
+  const variantHumanSelected = isHumanVariantStep && configChoice?.featureData?.choiceType === "variant";
   const isConfirmDisabled =
     step === "config"
-      ? requireChoice && !configChoice
+      ? requireChoice && !configChoice && !(isHumanVariantStep && !variantHumanSelected)
       : !previewItem || (previewItem.hasChoice && !configChoice && requireChoice);
+
+  const isHumanVariantConfig = step === "config" && selectedItem?.name === "Human" && selectedItem.choiceType === "variant";
+  const variantEnabled = isHumanVariantConfig && configChoice?.featureData?.choiceType === "variant";
+  const canConfirmHuman = isHumanVariantConfig && !variantEnabled;
 
   const stickyHeader = (
     <div className="sticky top-0 z-20 bg-[var(--color-surface)] border-b border-[var(--color-border)] px-4 py-3 space-y-2">
@@ -378,6 +388,8 @@ export function UnifiedSelectionModal<T extends SelectionType>({
               selectedChoice={configChoice}
               characterSources={characterSources}
               language={language}
+              requireChoice={requireChoice}
+              onRequirementChange={handleRequirementChange}
             />
           )}
         </>
