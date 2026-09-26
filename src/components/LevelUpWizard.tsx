@@ -511,7 +511,15 @@ function buildLevelInfos(
 export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLevel, title, subtitle, startFromLevelOne }: LevelUpWizardProps) {
   const { language, tDesc } = useLanguage();
   const dict = language === "id" ? idTranslations : enTranslations;
-  const t = (key: string, fb?: string) => (dict as Record<string, string>)[key] || fb || key;
+  const t = useCallback((key: string, fb?: string, params?: Record<string, string | number>) => {
+    let text = (dict as Record<string, string>)[key] || fb || key;
+    if (params) {
+      Object.entries(params).forEach(([k, v]) => {
+        text = text.replace(new RegExp(`\\{${k}\\}`, "g"), String(v));
+      });
+    }
+    return text;
+  }, [dict]);
   const [infoState, setInfoState] = useState<{title: string; description: string; descKey?: string} | null>(null);
   const classData = character.class ? getStaticClass(character.class, character.sources, character.ruleset, language) : undefined;
   const currentLevel = startFromLevelOne ? 1 : (character.level || 1);
@@ -722,41 +730,41 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       const isLevelOneAuto = lvl === 1 && startFromLevelOne;
       if (!isLevelOneAuto) {
         if (!hpValues[lvl] || hpValues[lvl] <= 0) {
-          items.push({ level: lvl, label: `Level ${lvl} — Roll HP`, sectionId: `hp-${lvl}` });
+          items.push({ level: lvl, label: t("levelUp.taskRollHp", "Level {level} — Roll HP", { level: lvl }), sectionId: `hp-${lvl}` });
         }
       }
       if (info.asi) {
         const sel = asiSelections[lvl];
         const isValid = (sel?.mode === "single" && !!sel?.single) || (sel?.mode === "double" && !!sel?.d1 && !!sel?.d2 && sel?.d1 !== sel?.d2) || (sel?.mode === "feat" && !!sel?.feat);
-        if (!isValid) items.push({ level: lvl, label: `Level ${lvl} — Ability Score Improvement`, sectionId: `asi-${lvl}` });
+        if (!isValid) items.push({ level: lvl, label: t("levelUp.taskAsi", "Level {level} — Ability Score Improvement", { level: lvl }), sectionId: `asi-${lvl}` });
       }
       if (info.subclassOptions && !subclassSelection) {
-        items.push({ level: lvl, label: `Level ${lvl} — Choose Subclass`, sectionId: `subclass-${lvl}` });
+        items.push({ level: lvl, label: t("levelUp.taskSubclass", "Level {level} — Choose Subclass", { level: lvl }), sectionId: `subclass-${lvl}` });
       }
       if (info.subclassFeatureChoices) {
         for (const fc of info.subclassFeatureChoices) {
-          if (!isFeatureSelected(lvl, fc.name, true)) items.push({ level: lvl, label: `Level ${lvl} — ${fc.name}`, sectionId: `subclass-fc-${lvl}` });
+          if (!isFeatureSelected(lvl, fc.name, true)) items.push({ level: lvl, label: t("levelUp.taskFeature", "Level {level} — {feature}", { level: lvl, feature: fc.name }), sectionId: `subclass-fc-${lvl}` });
         }
       }
       if (info.classFeatureChoices) {
         for (const fc of info.classFeatureChoices) {
-          if (!isFeatureSelected(lvl, fc.name, false)) items.push({ level: lvl, label: `Level ${lvl} — ${fc.name}`, sectionId: `class-fc-${lvl}` });
+          if (!isFeatureSelected(lvl, fc.name, false)) items.push({ level: lvl, label: t("levelUp.taskFeature", "Level {level} — {feature}", { level: lvl, feature: fc.name }), sectionId: `class-fc-${lvl}` });
         }
       }
       if (info.expertise && expertiseSelections[lvl] && expertiseSelections[lvl].length < info.expertise.count) {
-        items.push({ level: lvl, label: `Level ${lvl} — Expertise`, sectionId: `expertise-${lvl}` });
+        items.push({ level: lvl, label: t("levelUp.taskExpertise", "Level {level} — Expertise", { level: lvl }), sectionId: `expertise-${lvl}` });
       }
       if (info.hasSpellSelection) {
         const lvlSpells = spellSelections[lvl] || [];
         const cantripsCount = lvlSpells.filter((s) => s.endsWith(":0")).length;
         const spellsCount = lvlSpells.filter((s) => !s.endsWith(":0")).length;
         if (cantripsCount < info.cantripSelectionCount || spellsCount < info.spellSelectionCount) {
-          items.push({ level: lvl, label: `Level ${lvl} — Select spells`, sectionId: `spells-${lvl}` });
+          items.push({ level: lvl, label: t("levelUp.taskSpells", "Level {level} — Select spells", { level: lvl }), sectionId: `spells-${lvl}` });
         }
       }
     }
     return items;
-  }, [levelInfos, asiSelections, subclassSelection, spellSelections, hpValues, startFromLevelOne, expertiseSelections, isFeatureSelected]);
+  }, [levelInfos, asiSelections, subclassSelection, spellSelections, hpValues, startFromLevelOne, expertiseSelections, isFeatureSelected, t]);
 
   const handleFinish = () => {
     if (!classData) return;
@@ -1170,10 +1178,10 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       <div className="sticky top-0 z-40 bg-[var(--color-surface)]/90 backdrop-blur-sm border-b border-[var(--color-border)]">
         <div className="mx-auto max-w-lg px-4 py-3">
           <div className="flex items-center justify-between">
-            <button onClick={onCancel} className="px-3 py-1.5 text-xs font-semibold text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors rounded-[var(--border-radius-sm)] border border-transparent hover:border-[var(--color-border)]">
-              Cancel
-            </button>
-            <div className="text-xs font-semibold text-[var(--color-text-primary)]">{title ?? "Level Up"}</div>
+              <button onClick={onCancel} className="px-3 py-1.5 text-xs font-semibold text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors rounded-[var(--border-radius-sm)] border border-transparent hover:border-[var(--color-border)]">
+                {t("wizard.cancel", "Cancel")}
+              </button>
+              <div className="text-xs font-semibold text-[var(--color-text-primary)]">{title ?? t("levelUp.title", "Level Up")}</div>
             <button
               type="button"
               onClick={() => setShowNotifPanel(!showNotifPanel)}
@@ -1204,7 +1212,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
             </button>
             <div className="text-center">
               <div className="text-2xl font-bold text-[var(--color-text-primary)]">{targetLevel}</div>
-              <div className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-wider">Target Level</div>
+               <div className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-wider">{t("levelUp.targetLevel", "Target Level")}</div>
             </div>
             <button
               type="button"
@@ -1225,15 +1233,15 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--color-border)]">
-              <span className="text-xs font-bold text-[var(--color-text-primary)]">Tasks</span>
+              <span className="text-xs font-bold text-[var(--color-text-primary)]">{t("sheet.tasks", "Tasks")}</span>
               {unfinishedItems.length > 0 && (
-                <span className="text-[10px] font-bold text-red-500 bg-red-50 px-2 py-0.5 rounded-full">{unfinishedItems.length} unfinished</span>
+                  <span className="text-[10px] font-bold text-red-500 bg-red-50 px-2 py-0.5 rounded-full">{unfinishedItems.length} {t("levelUp.unfinished", "unfinished")}</span>
               )}
             </div>
             <div className="p-2 space-y-1">
               {unfinishedItems.length === 0 ? (
                 <div className="px-3 py-4 text-center">
-                  <span className="text-xs text-green-600 font-semibold">All tasks complete!</span>
+                   <span className="text-xs text-green-600 font-semibold">{t("levelUp.allTasksComplete", "All tasks complete!")}</span>
                 </div>
               ) : (
                  unfinishedItems.map((item, idx) => (
@@ -1264,10 +1272,10 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
             <button
               type="button"
               onClick={rollAllHp}
-              className="w-full py-2.5 text-xs font-semibold rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all"
-            >
-              🎲 Roll All HP
-            </button>
+               className="w-full py-2.5 text-xs font-semibold rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all"
+             >
+               {t("levelUp.rollAllHp", "🎲 Roll All HP")}
+             </button>
           )}
 
           {levelInfos.map((info) => (
@@ -1336,8 +1344,8 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       <WizardNav
         onBack={onCancel}
         onNext={handleFinish}
-        backLabel="Cancel"
-        nextLabel="Complete"
+        backLabel={t("wizard.cancel", "Cancel")}
+        nextLabel={t("levelUp.complete", "Complete")}
         canProceed={allLevelsComplete}
         showBack={true}
       />
@@ -1434,7 +1442,15 @@ function LevelCard({
 }: LevelCardProps) {
     const { language, tDesc } = useLanguage();
     const dict = language === "id" ? idTranslations : enTranslations;
-    const t = (key: string, fb?: string) => (dict as Record<string, string>)[key] || fb || key;
+    const t = useCallback((key: string, fb?: string, params?: Record<string, string | number>) => {
+      let text = (dict as Record<string, string>)[key] || fb || key;
+      if (params) {
+        Object.entries(params).forEach(([k, v]) => {
+          text = text.replace(new RegExp(`\\{${k}\\}`, "g"), String(v));
+        });
+      }
+      return text;
+    }, [dict]);
     const [infoState, setInfoState] = useState<{title: string; description: string; descKey?: string} | null>(null);
 
     const [showSpellSelection, setShowSpellSelection] = useState(false);
@@ -1568,7 +1584,7 @@ function LevelCard({
           </h3>
           {isComplete && (
             <span className="flex items-center gap-1 text-[10px] font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded-full">
-              <Check className="h-3 w-3" /> Complete
+              <Check className="h-3 w-3" /> {t("levelUp.complete", "Complete")}
             </span>
           )}
         </div>
@@ -1577,10 +1593,10 @@ function LevelCard({
           <div ref={setSectionRef(`hp-${lvl}`)} className={`flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)] ${!isHpComplete && !(lvl === 1 && startFromLevelOne) ? "border border-red-400 bg-red-50/30" : ""}`}>
             <Heart className={`h-4 w-4 ${!isHpComplete && !(lvl === 1 && startFromLevelOne) ? "text-red-400" : "text-[var(--color-text-muted)]"}`} />
             <div className="flex-1">
-              <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Hit Points</div>
+               <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">{t("sheet.hitPoints", "Hit Points")}</div>
               <div className="text-xs text-[var(--color-text-primary)]">
-                {lvl === 1 && startFromLevelOne
-                  ? `${hitDie} + ${conMod >= 0 ? `+${conMod}` : conMod} = ${hitDie + conMod} HP (automatic)`
+                 {lvl === 1 && startFromLevelOne
+                  ? `${hitDie} + ${conMod >= 0 ? `+${conMod}` : conMod} = ${hitDie + conMod} HP ({t("common.automatic", "automatic")})`
                   : `d${hitDie} + ${conMod >= 0 ? `+${conMod}` : conMod} (avg: ${averageHp})`}
               </div>
             </div>
@@ -1600,7 +1616,7 @@ function LevelCard({
            <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
              <Star className="h-4 w-4 text-[var(--color-text-muted)]" />
              <div className="flex-1">
-               <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Proficiency Bonus</div>
+               <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">{t("sheet.proficiencyBonus", "Proficiency Bonus")}</div>
                <div className="text-xs text-[var(--color-text-primary)]">+{info.proficiencyBonus}</div>
              </div>
            </div>
@@ -1614,10 +1630,10 @@ function LevelCard({
                <div className={`flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)] ${!isComplete ? "border border-red-400 bg-red-50/30" : ""}`}>
                  <Target className={`h-4 w-4 ${!isComplete ? "text-red-400" : "text-[var(--color-text-muted)]"}`} />
                  <div className="flex-1">
-                   <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Expertise</div>
-                   <div className={`text-xs ${!isComplete ? "text-red-500" : "text-[var(--color-text-primary)]"}`}>
-                     Choose {expCount} skill{expCount !== 1 ? "s" : ""} to double proficiency
-                     {selectedCount > 0 && <span className="ml-1">({selectedCount}/{expCount} selected)</span>}
+                    <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">{t("sheet.expertise", "Expertise")}</div>
+                    <div className={`text-xs ${!isComplete ? "text-red-500" : "text-[var(--color-text-primary)]"}`}>
+                      {t("creator.expertiseHint", "Choose")} {expCount} {t("creator.skill", "skill")}{expCount !== 1 ? t("creator.skillPlural", "s") : ""} {t("creator.toDoubleProficiency", "to double proficiency")}
+                      {selectedCount > 0 && <span className="ml-1">({selectedCount}/{expCount} selected)</span>}
                    </div>
                    {selectedCount > 0 && (
                      <div className="text-[10px] text-[var(--color-text-primary)] mt-0.5">
@@ -1629,9 +1645,9 @@ function LevelCard({
                    type="button"
                    onClick={() => { setShowExpertiseModal(true); }}
                    className={`shrink-0 px-2.5 py-1 text-[10px] font-bold rounded border transition-colors ${!isComplete ? "border-red-300 text-red-600 hover:bg-red-50" : "border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-border-active)]"}`}
-                 >
-                   {isComplete ? "Change" : "Select"}
-                 </button>
+                  >
+                    {isComplete ? t("common.change", "Change") : t("common.select", "Select")}
+                  </button>
                </div>
              );
            })()}
@@ -1640,7 +1656,7 @@ function LevelCard({
             <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
               <Sword className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
               <div className="flex-1">
-                <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Class Features</div>
+                <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">{t("sheet.classFeatures", "Class Features")}</div>
                 <div className="space-y-1 mt-1">
                   {info.classFeatures.map((f) => (
                     <div key={f.name} className="text-xs text-[var(--color-text-primary)]">
@@ -1656,7 +1672,7 @@ function LevelCard({
               <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
                 <Lightning className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
                 <div className="flex-1">
-                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">New Features</div>
+                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">{t("levelUp.newFeatures", "New Features")}</div>
                   <div className="space-y-2 mt-1">
                     {info.features.map((f) => (
                       <div key={f.name}>
@@ -1683,7 +1699,7 @@ function LevelCard({
                                     </button>
                                   </div>
                                   <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{(() => { const rawDesc = Array.isArray(f.description) ? f.description.join("\n") : f.description; return infoState.descKey ? tDesc(infoState.descKey, rawDesc) : rawDesc; })()}</p>
-                                  <button type="button" onClick={() => setInfoState(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">Got it</button>
+                                   <button type="button" onClick={() => setInfoState(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">{t("wizard.gotIt", "Got it")}</button>
                                 </div>
                               </div>
                             )}
@@ -1699,7 +1715,7 @@ function LevelCard({
               <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
                 <ChartBar className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
                 <div className="flex-1">
-                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Ability Score Improvement</div>
+                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">{t("creator.abilityScoreImprovement", "Ability Score Improvement")}</div>
                   <button
                     type="button"
                     onClick={openAsiModal}
@@ -1724,7 +1740,7 @@ function LevelCard({
             <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
               <Sparkle className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
               <div className="flex-1">
-                <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Spell Slots</div>
+                <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">{t("spell.spellSlots", "Spell Slots")}</div>
                 <div className="flex flex-wrap gap-1.5 mt-1">
                   {Object.entries(info.spellSlots).map(([level, count]) => (
                     <span key={level} className="text-[10px] font-bold text-[var(--color-text-primary)] bg-[var(--color-surface)] border border-[var(--color-border)] px-2 py-0.5 rounded-full">
@@ -1750,7 +1766,7 @@ function LevelCard({
               <div className={`flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)] ${needCantrips ? "border border-red-400 bg-red-50/30" : ""}`}>
                 <MagicWand className={`h-4 w-4 ${needCantrips ? "text-red-400" : "text-[var(--color-text-muted)]"}`} />
                 <div className="flex-1">
-                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Cantrips Known</div>
+                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">{t("spell.cantripsKnown", "Cantrips Known")}</div>
                   <div className={`text-xs ${cantripColor}`}>
                     {info.cantripsKnown}
                     {info.cantripSelectionCount > 0 && (
@@ -1758,9 +1774,9 @@ function LevelCard({
                     )}
                   </div>
                   {higherCantrips.length > 0 && (
-                    <div className="text-[10px] text-[var(--color-text-muted)] mt-0.5">
-                      From higher: {higherCantrips.join(", ")}
-                    </div>
+                   <div className="text-[10px] text-[var(--color-text-muted)] mt-0.5">
+                     {t("sheet.fromHigherLevel", "From higher")}: {higherCantrips.join(", ")}
+                   </div>
                   )}
                 </div>
                 {info.cantripSelectionCount > 0 && (
@@ -1768,9 +1784,9 @@ function LevelCard({
                     type="button"
                     onClick={() => { setSpellModalMode("cantrips"); setShowSpellModal(true); }}
                     className={`shrink-0 px-2.5 py-1 text-[10px] font-bold rounded border transition-colors ${needCantrips ? "border-red-300 text-red-600 hover:bg-red-50" : "border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-border-active)]"}`}
-                  >
-                    Select
-                  </button>
+                   >
+                     {t("common.select", "Select")}
+                   </button>
                 )}
               </div>
             );
@@ -1790,7 +1806,7 @@ function LevelCard({
               <div className={`flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)] ${needSpells ? "border border-red-400 bg-red-50/30" : ""}`}>
                 <Book className={`h-4 w-4 ${needSpells ? "text-red-400" : "text-[var(--color-text-muted)]"}`} />
                 <div className="flex-1">
-                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Spells Known</div>
+                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">{t("spell.spellsKnown", "Spells Known")}</div>
                   <div className={`text-xs ${spellColor}`}>
                     {info.spellsKnown}
                     {info.spellSelectionCount > 0 && (
@@ -1811,9 +1827,9 @@ function LevelCard({
                     type="button"
                     onClick={() => { setSpellModalMode("spells"); setShowSpellModal(true); }}
                     className={`shrink-0 px-2.5 py-1 text-[10px] font-bold rounded border transition-colors ${needSpells ? "border-red-300 text-red-600 hover:bg-red-50" : "border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-border-active)]"}`}
-                  >
-                    Select
-                  </button>
+                   >
+                     {t("common.select", "Select")}
+                   </button>
                 )}
               </div>
             );
@@ -1832,7 +1848,7 @@ function LevelCard({
               <div className={`flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)] ${needSpells ? "border border-red-400 bg-red-50/30" : ""}`}>
                 <Book className={`h-4 w-4 ${needSpells ? "text-red-400" : "text-[var(--color-text-muted)]"}`} />
                 <div className="flex-1">
-                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Spellbook</div>
+                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">{t("spell.spellbook", "Spellbook")}</div>
                   <div className={`text-xs ${needSpells ? "text-red-500" : "text-[var(--color-text-primary)]"}`}>
                     {info.spellbookTotal} spells
                     {info.spellSelectionCount > 0 && (
@@ -1850,9 +1866,9 @@ function LevelCard({
                     type="button"
                     onClick={() => { setSpellModalMode("spells"); setShowSpellModal(true); }}
                     className={`shrink-0 px-2.5 py-1 text-[10px] font-bold rounded border transition-colors ${needSpells ? "border-red-300 text-red-600 hover:bg-red-50" : "border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-border-active)]"}`}
-                  >
-                    Select
-                  </button>
+                   >
+                     {t("common.select", "Select")}
+                   </button>
                 )}
               </div>
             );
@@ -1871,7 +1887,7 @@ function LevelCard({
               <div className={`flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)] ${needPrepare ? "border border-red-400 bg-red-50/30" : ""}`}>
                 <Book className={`h-4 w-4 ${needPrepare ? "text-red-400" : "text-[var(--color-text-muted)]"}`} />
                 <div className="flex-1">
-                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Prepare Spells</div>
+                  <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">{t("spell.prepareSpells", "Prepare Spells")}</div>
                   <div className={`text-xs ${needPrepare ? "text-red-500" : "text-[var(--color-text-primary)]"}`}>
                     {info.maxPrepared} spells preparable
                     {info.spellSelectionCount > 0 && (
@@ -1889,9 +1905,9 @@ function LevelCard({
                     type="button"
                     onClick={() => { setSpellModalMode("spells"); setShowSpellModal(true); }}
                     className={`shrink-0 px-2.5 py-1 text-[10px] font-bold rounded border transition-colors ${needPrepare ? "border-red-300 text-red-600 hover:bg-red-50" : "border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-border-active)]"}`}
-                  >
-                    Select
-                  </button>
+                   >
+                     {t("common.select", "Select")}
+                   </button>
                 )}
               </div>
             );
@@ -1901,13 +1917,13 @@ function LevelCard({
             <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
               <Crown className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
               <div className="flex-1">
-                <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">Choose Subclass</div>
+                 <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">{t("creator.chooseSubclass", "Choose Subclass")}</div>
                 <button
                   type="button"
                   onClick={() => setShowSubclassModal(true)}
                   className="mt-1 w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all"
                 >
-                  {subclassSelection ? `Selected: ${subclassSelection}` : "Select Subclass"}
+                   {subclassSelection ? `${t("creator.selectedFeat", "Selected")}: ${subclassSelection}` : t("creator.selectSubclass", "Select Subclass")}
                 </button>
               </div>
             </div>
@@ -1946,13 +1962,13 @@ function LevelCard({
                           </div>
                         )}
                      </div>
-                    <div className="text-[10px] text-[var(--color-text-secondary)] mb-2">Subclass · Level {info.level}</div>
+                    <div className="text-[10px] text-[var(--color-text-secondary)] mb-2">{t("levelUp.subclassLevel", "Subclass · Level {level}", { level: info.level })}</div>
                       <button
                         type="button"
                         onClick={() => { setFeatureSelections([]); setShowFeaturePopup({ ...fc, isSubclass: true, count: fc.count }); }}
                         className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
                        >
-                       <span>{subclassFeatureChoices[fc.name] || "Select an option..."}</span>
+                        <span>{subclassFeatureChoices[fc.name] || t("creator.selectOption", "Select an option...")}</span>
                        <CaretDown className="h-3 w-3 text-[var(--color-text-muted)]" />
                      </button>
                   </div>
@@ -1998,12 +2014,12 @@ function LevelCard({
                                     </button>
                                   </div>
                                   <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{(() => { const rawDesc = Array.isArray(fc.description) ? fc.description.join("\n") : fc.description; return infoState.descKey ? tDesc(infoState.descKey, rawDesc) : rawDesc; })()}</p>
-                                  <button type="button" onClick={() => setInfoState(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">Got it</button>
+                                   <button type="button" onClick={() => setInfoState(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">{t("wizard.gotIt", "Got it")}</button>
                                 </div>
                               </div>
                             )}
                          </div>
-                        <div className="text-[10px] text-[var(--color-text-secondary)] mb-2">Class · Level {info.level}</div>
+                        <div className="text-[10px] text-[var(--color-text-secondary)] mb-2">{t("levelUp.classLevel", "Class · Level {level}", { level: info.level })}</div>
                         {maxCount > 1 ? (
                           <FeatureChipSelector
                             name={fc.name}
@@ -2037,9 +2053,9 @@ function LevelCard({
               <div className="p-3 rounded-lg border border-amber-300 bg-amber-50/30">
                 <div className="flex items-center gap-2 mb-1">
                   <Sparkle className="h-3.5 w-3.5 text-amber-600" />
-                  <span className="text-sm font-bold text-[var(--color-text-primary)]">Spell Mastery</span>
-                </div>
-                <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Choose one 1st-level and one 2nd-level spell to cast at will without spell slots.</p>
+                   <span className="text-sm font-bold text-[var(--color-text-primary)]">{t("spell.spellMastery", "Spell Mastery")}</span>
+                 </div>
+                 <p className="text-[10px] text-[var(--color-text-muted)] mb-2">{t("spell.spellMasteryHint", "Choose one 1st-level and one 2nd-level spell to cast at will without spell slots.")}</p>
                 <button
                   type="button"
                   onClick={() => { setSpellMasterySelections([]); setShowSpellMasteryModal(true); }}
@@ -2058,20 +2074,20 @@ function LevelCard({
               <div className="p-3 rounded-lg border border-purple-300 bg-purple-50/30">
                 <div className="flex items-center gap-2 mb-1">
                   <Crown className="h-3.5 w-3.5 text-purple-600" />
-                  <span className="text-sm font-bold text-[var(--color-text-primary)]">Pact Boon</span>
-                </div>
-                <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Your patron bestows a gift. Choose one.</p>
+                   <span className="text-sm font-bold text-[var(--color-text-primary)]">{t("spell.pactBoon", "Pact Boon")}</span>
+                 </div>
+                 <p className="text-[10px] text-[var(--color-text-muted)] mb-2">{t("spell.pactBoonGift", "Your patron bestows a gift. Choose one.")}</p>
                 <button
                   type="button"
                   onClick={() => { setFeatureSelections([]); setShowFeaturePopup({ name: "Pact Boon", description: "", options: getPactBoons().map(b => ({ name: b.name, description: b.description })), isSubclass: false, count: 1 }); }}
                   className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
                 >
-                  <span>{pactBoon || "Select Pact Boon..."}</span>
+                   <span>{pactBoon || t("levelUp.selectPactBoon", "Select Pact Boon...")}</span>
                   <CaretDown className="h-3 w-3 text-[var(--color-text-muted)]" />
                 </button>
                 {pactBoon === "Pact of the Tome" && (
                   <div className="mt-3">
-                    <p className="text-[10px] font-semibold text-purple-700 mb-1">Choose 3 Cantrips from Any Class:</p>
+                     <p className="text-[10px] font-semibold text-purple-700 mb-1">{t("spell.chooseCantripsFromAnyClass", "Choose 3 Cantrips from Any Class:")}</p>
                     <div className="flex flex-wrap gap-1 mb-2">
                       {pactTomeCantrips.map((c) => (
                         <span key={c} className="inline-flex items-center gap-1 text-[10px] px-1.5 py-0.5 bg-purple-100 border border-purple-300 rounded-full text-purple-800">
@@ -2081,8 +2097,8 @@ function LevelCard({
                       ))}
                     </div>
                     <FeatureChipSelector
-                      name="Bonus Cantrip"
-                      description="Choose one additional druid cantrip (does not count against cantrip limit)"
+                       name="Bonus Cantrip"
+                       description={t("spell.bonusCantripHint", "Choose one additional druid cantrip (does not count against cantrip limit)")}
                       options={getStaticSpells(character.sources, undefined, language)
                         .filter((s) => s.level === 0 && !pactTomeCantrips.includes(s.name))
                         .map((s) => ({ name: s.name, description: s.school || "" }))}
@@ -2095,7 +2111,7 @@ function LevelCard({
                 )}
                 {pactBoon === "Pact of the Chain" && (
                   <div className="mt-2">
-                    <p className="text-[10px] text-[var(--color-text-muted)]">Special familiar forms available: imp, pseudodragon, quasit, sprite</p>
+                    <p className="text-[10px] text-[var(--color-text-muted)]">{t("spell.familiarForms", "Special familiar forms available: imp, pseudodragon, quasit, sprite")}</p>
                   </div>
                 )}
               </div>
@@ -2124,19 +2140,19 @@ function LevelCard({
 
             return (
               <div className="p-3 rounded-lg border border-indigo-300 bg-indigo-50/30">
-                <div className="flex items-center gap-2 mb-1">
-                  <Sparkle className="h-3.5 w-3.5 text-indigo-600" />
-                  <span className="text-sm font-bold text-[var(--color-text-primary)]">Eldritch Invocations</span>
-                </div>
-                <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Choose {invocationCount} invocation{invocationCount > 1 ? "s" : ""}. Spell slots recover on short rest.</p>
+                 <div className="flex items-center gap-2 mb-1">
+                   <Sparkle className="h-3.5 w-3.5 text-indigo-600" />
+                   <span className="text-sm font-bold text-[var(--color-text-primary)]">{t("spell.eldritchInvocations", "Eldritch Invocations")}</span>
+                 </div>
+                 <p className="text-[10px] text-[var(--color-text-muted)] mb-2">{t("spell.invocationCountHint", "Choose {count} invocation{count, plural, one {} other {s}}. Spell slots recover on short rest.", { count: invocationCount })}</p>
                 <FeatureChipSelector
                   name="Eldritch Invocations"
                   description={`Choose ${invocationCount} invocation${invocationCount > 1 ? "s" : ""}`}
-                  options={availableInvocations.map((i) => ({
-                    name: i.name,
-                    description: i.available ? `Available at level ${info.level}` : i.reason || "Not available",
-                    disabled: !i.available,
-                    unavailableReason: i.reason,
+                   options={availableInvocations.map((i) => ({
+                     name: i.name,
+                     description: i.available ? t("spell.availableAtLevel", "Available at level {level}", { level: info.level }) : i.reason || t("common.notAvailable", "Not available"),
+                     disabled: !i.available,
+                     unavailableReason: i.reason,
                   }))}
                   selectedValues={currentInvocations}
                   maxCount={invocationCount}
@@ -2145,31 +2161,31 @@ function LevelCard({
                 />
                 {hasPriorInvocations && info.level > 2 && (
                   <div className="mt-3">
-                    <p className="text-[10px] font-semibold text-orange-700 mb-1">Replace an invocation (optional):</p>
+                    <p className="text-[10px] font-semibold text-orange-700 mb-1">{t("spell.replaceInvocation", "Replace an invocation (optional):")}</p>
                     <button
                       type="button"
                       onClick={() =>
-                        setShowFeaturePopup({
-                          name: "__replace_invocation__",
-                          description: "Choose an existing invocation to replace.",
-                          options: priorInvocations.map((inv) => ({ name: inv, description: `Replace ${inv}` })),
+                       setShowFeaturePopup({
+                           name: "__replace_invocation__",
+                           description: t("spell.replaceInvocationHint", "Choose an existing invocation to replace."),
+                           options: priorInvocations.map((inv) => ({ name: inv, description: t("spell.replaceInvocationOption", "Replace {name}", { name: inv }) })),
                           isSubclass: false,
                           count: 1,
                         })
                       }
                       className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
                     >
-                      <span>{replacedInvocation || "No replacement"}</span>
+                       <span>{replacedInvocation || t("common.noReplacement", "No replacement")}</span>
                       <CaretDown className="h-3 w-3 text-[var(--color-text-muted)]" />
                     </button>
                     {replacedInvocation && (
                       <button
                         type="button"
                         onClick={() => onReplacedInvocationChange("")}
-                        className="mt-1 text-[10px] text-[var(--color-error-600)] hover:underline"
-                      >
-                        Clear replacement
-                      </button>
+                         className="mt-1 text-[10px] text-[var(--color-error-600)] hover:underline"
+                       >
+                         {t("common.clearReplacement", "Clear replacement")}
+                       </button>
                     )}
                   </div>
                 )}
@@ -2179,21 +2195,21 @@ function LevelCard({
 
           {info.magicalSecretsCount > 0 && (
             <div className="p-3 rounded-lg border border-purple-300 bg-purple-50/30">
-              <div className="flex items-center gap-2 mb-1">
-                <Sparkle className="h-3.5 w-3.5 text-purple-600" />
-                <span className="text-sm font-bold text-[var(--color-text-primary)]">Magical Secrets</span>
-              </div>
-              <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Choose {info.magicalSecretsCount} spell{info.magicalSecretsCount > 1 ? "s" : ""} from any class</p>
+               <div className="flex items-center gap-2 mb-1">
+                 <Sparkle className="h-3.5 w-3.5 text-purple-600" />
+                 <span className="text-sm font-bold text-[var(--color-text-primary)]">{t("spell.magicalSecrets", "Magical Secrets")}</span>
+               </div>
+               <p className="text-[10px] text-[var(--color-text-muted)] mb-2">{t("spell.magicalSecretsHint", "Choose {count} spell{count, plural, one {} other {s}} from any class", { count: info.magicalSecretsCount })}</p>
               <button
                 type="button"
                 onClick={() => setShowSpellModal(true)}
                 className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
               >
-                <span>
-                  {magicalSecretsSpells.length > 0
-                    ? `${magicalSecretsSpells.length} of ${info.magicalSecretsCount} selected`
-                    : `Select ${info.magicalSecretsCount} spells from any class...`}
-                </span>
+                 <span>
+                   {magicalSecretsSpells.length > 0
+                     ? t("common.selectedCount", "{selected} of {total} selected", { selected: magicalSecretsSpells.length, total: info.magicalSecretsCount })
+                     : t("levelUp.selectSpellsFromAnyClass", "Select {count} spells from any class...", { count: info.magicalSecretsCount })}
+                 </span>
                 <CaretDown className="h-3 w-3 text-[var(--color-text-muted)]" />
               </button>
               {magicalSecretsSpells.length > 0 && (
@@ -2214,21 +2230,21 @@ function LevelCard({
 
           {info.subclassSpellSelectionCount > 0 && (
             <div className="p-3 rounded-lg border border-indigo-300 bg-indigo-50/30">
-              <div className="flex items-center gap-2 mb-1">
-                <Sparkle className="h-3.5 w-3.5 text-indigo-600" />
-                <span className="text-sm font-bold text-[var(--color-text-primary)]">Additional Magical Secrets</span>
-              </div>
-              <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Choose {info.subclassSpellSelectionCount} spell{info.subclassSpellSelectionCount > 1 ? "s" : ""} from any class (Lore feature)</p>
+               <div className="flex items-center gap-2 mb-1">
+                 <Sparkle className="h-3.5 w-3.5 text-indigo-600" />
+                 <span className="text-sm font-bold text-[var(--color-text-primary)]">{t("spell.additionalMagicalSecrets", "Additional Magical Secrets")}</span>
+               </div>
+               <p className="text-[10px] text-[var(--color-text-muted)] mb-2">{t("spell.additionalMagicalSecretsHint", "Choose {count} spell{count, plural, one {} other {s}} from any class (Lore feature)", { count: info.subclassSpellSelectionCount })}</p>
               <button
                 type="button"
                 onClick={() => setShowSpellModal(true)}
                 className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
               >
-                <span>
-                  {subclassSpellSelections.length > 0
-                    ? `${subclassSpellSelections.length} of ${info.subclassSpellSelectionCount} selected`
-                    : `Select ${info.subclassSpellSelectionCount} spells from any class...`}
-                </span>
+                 <span>
+                   {subclassSpellSelections.length > 0
+                     ? t("common.selectedCount", "{selected} of {total} selected", { selected: subclassSpellSelections.length, total: info.subclassSpellSelectionCount })
+                     : t("levelUp.selectSpellsFromAnyClass", "Select {count} spells from any class...", { count: info.subclassSpellSelectionCount })}
+                 </span>
                 <CaretDown className="h-3 w-3 text-[var(--color-text-muted)]" />
               </button>
               {subclassSpellSelections.length > 0 && (
@@ -2249,11 +2265,11 @@ function LevelCard({
 
           {info.canReplaceSpell && (
             <div className="p-3 rounded-lg border border-orange-300 bg-orange-50/30">
-              <div className="flex items-center gap-2 mb-1">
-                <Book className="h-3.5 w-3.5 text-orange-600" />
-                <span className="text-sm font-bold text-[var(--color-text-primary)]">Replace Known Spell</span>
-              </div>
-              <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Optionally replace one known spell with another from the {character.class} spell list</p>
+               <div className="flex items-center gap-2 mb-1">
+                 <Book className="h-3.5 w-3.5 text-orange-600" />
+                 <span className="text-sm font-bold text-[var(--color-text-primary)]">{t("spell.replaceKnownSpell", "Replace Known Spell")}</span>
+               </div>
+               <p className="text-[10px] text-[var(--color-text-muted)] mb-2">{t("spell.replaceKnownSpellHint", "Optionally replace one known spell with another from the {class} spell list", { class: character.class })}</p>
               <button
                 type="button"
                 onClick={() =>
@@ -2269,7 +2285,7 @@ function LevelCard({
                 }
                 className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
               >
-                <span>{replacedSpell ? (character.spells || []).find((s) => s.id === replacedSpell)?.name || "No replacement" : "No replacement"}</span>
+                 <span>{replacedSpell ? (character.spells || []).find((s) => s.id === replacedSpell)?.name || t("common.noReplacement", "No replacement") : t("common.noReplacement", "No replacement")}</span>
                 <CaretDown className="h-3 w-3 text-[var(--color-text-muted)]" />
               </button>
               {replacedSpell && (
@@ -2278,7 +2294,7 @@ function LevelCard({
                   onClick={() => onReplacedSpellChange("")}
                   className="mt-1 text-[10px] text-[var(--color-error-600)] hover:underline"
                 >
-                  Clear replacement
+                  {t("common.clearReplacement", "Clear replacement")}
                 </button>
               )}
             </div>
@@ -2286,17 +2302,17 @@ function LevelCard({
 
           {info.bonusCantripSelection && (
             <div className="p-3 rounded-lg border border-teal-300 bg-teal-50/30">
-              <div className="flex items-center gap-2 mb-1">
-                <MagicWand className="h-3.5 w-3.5 text-teal-600" />
-                <span className="text-sm font-bold text-[var(--color-text-primary)]">Bonus Cantrip</span>
-              </div>
-              <p className="text-[10px] text-[var(--color-text-muted)] mb-2">Choose one additional druid cantrip (does not count against cantrip limit)</p>
+               <div className="flex items-center gap-2 mb-1">
+                 <MagicWand className="h-3.5 w-3.5 text-teal-600" />
+                 <span className="text-sm font-bold text-[var(--color-text-primary)]">{t("spell.bonusCantrip", "Bonus Cantrip")}</span>
+               </div>
+               <p className="text-[10px] text-[var(--color-text-muted)] mb-2">{t("spell.bonusCantripHint", "Choose one additional druid cantrip (does not count against cantrip limit)")}</p>
               <button
                 type="button"
                 onClick={() => setShowBonusCantripModal(true)}
                 className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
               >
-                <span>{bonusCantrip || "Select cantrip..."}</span>
+                 <span>{bonusCantrip || t("spell.selectCantrip", "Select cantrip...")}</span>
                 <CaretDown className="h-3 w-3 text-[var(--color-text-muted)]" />
               </button>
             </div>
@@ -2314,7 +2330,7 @@ function LevelCard({
                 onClick={() => setShowTerrainModal(true)}
                 className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
               >
-                <span>{circleTerrain ? circleTerrain.charAt(0).toUpperCase() + circleTerrain.slice(1) : "Select terrain..."}</span>
+                 <span>{circleTerrain ? circleTerrain.charAt(0).toUpperCase() + circleTerrain.slice(1) : t("creator.chooseTerrain", "Select terrain...")}</span>
                 <CaretDown className="h-3 w-3 text-[var(--color-text-muted)]" />
               </button>
               {circleTerrain && (() => {
@@ -2326,7 +2342,7 @@ function LevelCard({
                 if (spellsForLevel.length === 0) return null;
                 return (
                   <div className="mt-2 p-2 bg-green-100 border border-green-200 rounded-lg">
-                    <p className="text-[10px] text-green-700 font-semibold mb-1">Circle Spells gained:</p>
+                     <p className="text-[10px] text-green-700 font-semibold mb-1">{t("creator.circleSpellsGained", "Circle Spells gained:")}</p>
                     <div className="flex flex-wrap gap-1">
                       {spellsForLevel.map((name) => (
                         <span key={name} className="text-[10px] font-bold text-green-600 bg-green-200 px-1.5 py-0.5 rounded">
@@ -2390,15 +2406,15 @@ function LevelCard({
 
       {showAsiModal && info.asi && (
         <BasePopup
-          isOpen={true}
-          onClose={() => setShowAsiModal(false)}
-          title={`Ability Score Improvement (Level ${lvl})`}
-          confirmLabel="Apply ASI"
-          cancelLabel="Cancel"
-          onConfirm={applyAsi}
-          confirmDisabled={!canApplyAsi}
-          showFooter={true}
-        >
+           isOpen={true}
+           onClose={() => setShowAsiModal(false)}
+           title={t("creator.abilityScoreImprovement", "Ability Score Improvement") + ` (${t("character.level", "Level")} ${lvl})`}
+           confirmLabel={t("feat.applyAsi", "Apply ASI")}
+           cancelLabel={t("wizard.cancel", "Cancel")}
+           onConfirm={applyAsi}
+           confirmDisabled={!canApplyAsi}
+           showFooter={true}
+         >
           <div className="max-h-[65vh] overflow-y-auto px-4 py-4 space-y-4">
             <div className="space-y-2">
               <button
@@ -2409,10 +2425,10 @@ function LevelCard({
                     ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
                     : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                 }`}
-              >
-                <div className="text-sm font-bold text-[var(--color-text-primary)]">Improve Ability Scores</div>
-                <div className="text-[10px] text-[var(--color-text-secondary)] mt-0.5">+2 to one ability or +1 to two abilities</div>
-              </button>
+               >
+                 <div className="text-sm font-bold text-[var(--color-text-primary)]">{t("creator.improveAbilityScores", "Improve Ability Scores")}</div>
+                 <div className="text-[10px] text-[var(--color-text-secondary)] mt-0.5">{t("creator.asiHint", "+2 to one ability or +1 to two abilities")}</div>
+               </button>
               <button
                 type="button"
                 onClick={() => onAsiChange({ mode: "feat" })}
@@ -2421,16 +2437,16 @@ function LevelCard({
                     ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
                     : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                 }`}
-              >
-                <div className="text-sm font-bold text-[var(--color-text-primary)]">Take a Feat</div>
-                <div className="text-[10px] text-[var(--color-text-secondary)] mt-0.5">Gain a feat instead of ability score improvements</div>
-              </button>
+               >
+                 <div className="text-sm font-bold text-[var(--color-text-primary)]">{t("creator.takeFeat", "Take a Feat")}</div>
+                 <div className="text-[10px] text-[var(--color-text-secondary)] mt-0.5">{t("creator.featGain", "Gain a feat instead of ability score improvements")}</div>
+               </button>
             </div>
 
             {asiSelection?.mode !== "feat" && (
               <>
                 <p className="text-xs text-[var(--color-text-secondary)]">
-                  Distribute 2 points: +2 to one ability, or +1 to two abilities. Maximum ability score is 20.
+                  {t("creator.asiDistribute", "Distribute 2 points: +2 to one ability, or +1 to two abilities. Maximum ability score is 20.")}
                 </p>
                 <div className="space-y-2">
                   {ABILITIES.map(({ key, label, full }) => {
@@ -2489,7 +2505,7 @@ function LevelCard({
                   onClick={() => setShowAsiFeatModal(true)}
                   className="btn btn-secondary w-full text-sm"
                 >
-                  {asiSelection.feat ? "Change Feat" : "Choose Feat"}
+                  {asiSelection.feat ? t("feat.changeFeat", "Change Feat") : t("feat.chooseFeat", "Choose Feat")}
                 </button>
               </div>
             )}
@@ -2597,9 +2613,9 @@ function LevelCard({
       )}
 
       {showExpertiseModal && info.expertise && (
-        <BasePopup isOpen={showExpertiseModal} onClose={() => setShowExpertiseModal(false)} title="Select Expertise">
+        <BasePopup isOpen={showExpertiseModal} onClose={() => setShowExpertiseModal(false)} title={t("creator.selectExpertise", "Select Expertise")}>
           <div className="space-y-2">
-            <p className="text-xs text-[var(--color-text-secondary)]">Choose {info.expertise.count} skill{info.expertise.count !== 1 ? "s" : ""} to double your proficiency bonus.</p>
+            <p className="text-xs text-[var(--color-text-secondary)]">{t("creator.expertiseHint", "Choose")} {info.expertise.count} {t("creator.skill", "skill")}{info.expertise.count !== 1 ? t("creator.skillPlural", "s") : ""} {t("creator.toDoubleProficiency", "to double your proficiency bonus.")}</p>
             <div className="space-y-1.5 max-h-64 overflow-y-auto">
               {(info.expertise.availableOptions || []).map((skill) => {
                 const isSelected = expertise.includes(skill);
@@ -2623,7 +2639,7 @@ function LevelCard({
                       className="checkbox"
                     />
                     <span className="text-sm font-bold text-[var(--color-text-primary)]">{skill}</span>
-                    {isSelected && <span className="badge text-ink bg-paper-muted ml-auto">EXPERTISE</span>}
+                     {isSelected && <span className="badge text-ink bg-paper-muted ml-auto">{t("common.expertiseBadge", "EXPERTISE")}</span>}
                   </label>
                 );
               })}
