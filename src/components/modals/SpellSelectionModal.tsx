@@ -153,15 +153,11 @@ export function SpellSelectionModal({
       if (prev.includes(name)) {
         return prev.filter((s) => s !== name);
       }
-      if (selectionType === "known") {
-        if ((spell as any).level > 0 && maxSpellsKnown > 0) {
-          const currentLeveled = prev.filter((s) => (allSpells.find((sp) => sp.name === s)?.level ?? 0) > 0).length;
-          if (currentLeveled >= maxSpellsKnown) return prev;
-        }
-        if ((spell as any).level === 0 && maxCantripsKnown > 0) {
-          const currentCantrips = prev.filter((s) => (allSpells.find((sp) => sp.name === s)?.level ?? -1) === 0).length;
-          if (currentCantrips >= maxCantripsKnown) return prev;
-        }
+      if (selectionType === "known" && maxSpellsKnown > 0 && prev.length >= maxSpellsKnown) {
+        return prev;
+      }
+      if (selectionType === "known" && maxCantripsKnown > 0 && spell.level === 0 && prev.filter((s) => allSpells.find((sp) => sp.name === s)?.level === 0).length >= maxCantripsKnown) {
+        return prev;
       }
       return [...prev, name];
     });
@@ -295,25 +291,7 @@ export function SpellSelectionModal({
             ))}
           </div>
         )}
-        {mode === "spells" && (
-          <div className="flex gap-2 border-b border-[var(--color-border)]">
-            {Array.from({ length: maxSpellLevelForClass }, (_, i) => i + 1).map((level) => (
-              <button
-                key={level}
-                type="button"
-                onClick={() => setActiveTab(level)}
-                className={`flex-1 py-2 text-xs font-semibold transition-all ${
-                  activeTab === level
-                    ? "text-[var(--color-text-primary)] border-b-2 border-[var(--color-text-primary)]"
-                    : "text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]"
-                }`}
-              >
-                Level {level} ({spellsByLevel[level]?.length || 0})
-              </button>
-            ))}
-          </div>
-        )}
-        {mode === "cantrips" ? renderSpellList(cantrips) : activeTab === "cantrips" ? renderSpellList(cantrips) : renderSpellList(spellsByLevel[activeTab] || [])}
+        {mode === "spells" && activeTab !== "cantrips" ? renderSpellList(spellsByLevel[activeTab] || []) : renderSpellList(cantrips)}
       </div>
     </BottomSheet>
   );
