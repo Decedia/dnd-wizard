@@ -211,20 +211,30 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
       if (payload.configChoice?.parentChoiceId && payload.configChoice?.featureData?.id) {
         nextRaceChoices[payload.configChoice.parentChoiceId] = payload.configChoice.featureData.id;
       }
-      
+
+      const variantHumanAbilities = isVariant ? (payload.configChoice?.featureData?.abilities || []) : undefined;
+      const variantHumanSkill = isVariant ? payload.configChoice?.featureData?.skill : undefined;
+      const variantHumanFeat = isVariant ? payload.configChoice?.featureData?.feat : undefined;
+
       if (raceName !== data.race || isVariant !== (data.raceVariant === "variant")) {
         onChange({
           race: raceName,
           raceVariant: isVariant ? "variant" : undefined,
           raceChoices: nextRaceChoices,
-          ...(isVariant ? {} : { 
+          ...(isVariant ? {
+            variantHumanAbilities,
+            variantHumanSkill,
+            featureSelections: {
+              ...data.featureSelections,
+              "variant-human-feat": variantHumanFeat ? [variantHumanFeat] : [],
+            },
+          } : { 
             variantHumanAbilities: undefined, 
             variantHumanSkill: undefined, 
             featureSelections: { ...data.featureSelections, "variant-human-feat": [] } 
           }),
         });
       }
-      setRaceModalOpen(false);
     },
     [data.race, data.raceVariant, data.featureSelections, data.raceChoices, onChange]
   );

@@ -376,7 +376,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
                   id: "variant-human",
                   name: "Variant Human",
                   description: "You gain +1 to two different ability scores of your choice, proficiency in one skill of your choice, and one feat of your choice.",
-                  featureData: { ...configChoice, choiceType: "variant" },
+                  featureData: { ...variantConfig, choiceType: "variant" },
                   parentChoiceId: "human-variant",
                 } as any);
               }}
