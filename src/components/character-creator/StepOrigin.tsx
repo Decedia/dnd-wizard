@@ -3,7 +3,7 @@
 import { useState, useCallback } from "react";
 import { UsersIcon as Users, StarIcon as Star, PersonIcon, BarbarianIcon, MusicNotesIcon, ClericIcon, DruidIcon, FighterIcon, MonkIcon, PaladinIcon, RangerIcon, RogueIcon, SparkleIcon, WarlockIcon, WizardStaffIcon, GearGiIcon as ArtificerIcon, SwordIcon, HumanIcon, ElfIcon, DwarfIcon, GnomeIcon, DragonHeadIcon, GoblinIcon, DevilMaskIcon, KenkuIcon, LizardfolkIcon } from "@/components/icons";
 import { StepCard } from "./StepCard";
-import { getStaticClasses, getStaticRaces, getStaticSubclasses, type SRDClass, type SRDRace } from "@/lib/srd-client";
+import { getStaticClasses, getStaticRaces, getStaticSubclasses, getStaticFeat, type SRDClass, type SRDRace } from "@/lib/srd-client";
 import { SourceBadge } from "../SourceBadge";
 import { NewPlayerTips } from "@/components/NewPlayerTips";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -212,30 +212,72 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
         nextRaceChoices[payload.configChoice.parentChoiceId] = payload.configChoice.featureData.id;
       }
 
-      const variantHumanAbilities = isVariant ? (payload.configChoice?.featureData?.abilities || []) : undefined;
-      const variantHumanSkill = isVariant ? payload.configChoice?.featureData?.skill : undefined;
-      const variantHumanFeat = isVariant ? payload.configChoice?.featureData?.feat : undefined;
+      const oldAbilities = data.variantHumanAbilities || [];
+      const newAbilities = isVariant ? (payload.configChoice?.featureData?.abilities || []) : [];
+      const oldSkill = data.variantHumanSkill;
+      const newSkill = isVariant ? payload.configChoice?.featureData?.skill : undefined;
+      const oldFeat = data.featureSelections?.["variant-human-feat"]?.[0];
+      const newFeat = isVariant ? payload.configChoice?.featureData?.feat : undefined;
+
+      const abilityPatch: Record<string, number> = {};
+      for (const ab of oldAbilities) {
+        if (abilityPatch[ab] !== undefined) continue;
+        abilityPatch[ab] = ((data[ab as keyof Character] as number) || 10) - 1;
+      }
+      for (const ab of newAbilities) {
+        if (abilityPatch[ab] !== undefined) continue;
+        abilityPatch[ab] = ((data[ab as keyof Character] as number) || 10) + 1;
+      }
+
+      const skillPatch: Record<string, any> = {};
+      if (newSkill && !data.skills[newSkill]) {
+        skillPatch.skills = { ...data.skills, [newSkill]: true };
+      }
+
+      const featPatch: Record<string, any> = { features: data.features };
+      if (newFeat && !data.features.some((f) => f.name === newFeat)) {
+        const featData = getStaticFeat(newFeat);
+        if (featData) {
+          featPatch.features = [
+            ...data.features,
+            {
+              id: `feat-${newFeat}`.replace(/\s+/g, "-"),
+              name: featData.name,
+              description: featData.description,
+              summary: featData.summary || null,
+              source: "race" as const,
+              locked: true,
+            },
+          ];
+        }
+      }
+      if (!newFeat && oldFeat) {
+        featPatch.features = data.features.filter((f) => f.name !== oldFeat);
+      }
 
       onChange({
         race: raceName,
         raceVariant: isVariant ? "variant" : undefined,
         raceChoices: nextRaceChoices,
         ...(isVariant ? {
-          variantHumanAbilities,
-          variantHumanSkill,
+          variantHumanAbilities: newAbilities,
+          variantHumanSkill: newSkill,
           featureSelections: {
             ...data.featureSelections,
-            "variant-human-feat": variantHumanFeat ? [variantHumanFeat] : [],
+            "variant-human-feat": newFeat ? [newFeat] : [],
           },
         } : { 
           variantHumanAbilities: undefined, 
           variantHumanSkill: undefined, 
           featureSelections: { ...data.featureSelections, "variant-human-feat": [] } 
         }),
+        ...abilityPatch,
+        ...skillPatch,
+        ...featPatch,
       });
       setRaceModalOpen(false);
     },
-    [data.featureSelections, data.raceChoices, onChange]
+    [data, onChange]
   );
 
   return (

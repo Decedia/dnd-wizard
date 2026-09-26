@@ -101,17 +101,10 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
   const raceBonuses = useMemo(() => {
     if (!raceData?.abilityScoreIncreases) return {} as Record<AbilityKey, number>;
     if (data.race === "Human" && data.raceVariant === "variant") {
-      const bonuses: Record<AbilityKey, number> = { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 };
-      const selected = data.variantHumanAbilities || [];
-      for (const ab of selected) {
-        if (ab in bonuses) {
-          bonuses[ab as AbilityKey] = 1;
-        }
-      }
-      return bonuses;
+      return {} as Record<AbilityKey, number>;
     }
     return raceData.abilityScoreIncreases as Record<AbilityKey, number>;
-  }, [raceData, data.race, data.raceVariant, data.variantHumanAbilities]);
+  }, [raceData, data.race, data.raceVariant]);
 
   const getBaseScore = useCallback((key: AbilityKey): number => {
     return (data[key] as number) || 10;
