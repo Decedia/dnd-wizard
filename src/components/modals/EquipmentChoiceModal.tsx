@@ -247,64 +247,16 @@ export function EquipmentChoiceModal({
                           const isWeaponSelected = wc.selectedWeaponNames.includes(weapon.name);
                           const weaponInfo = getItemInfo?.(weapon.name);
                           return (
-                            <div key={wIdx} className="flex gap-1.5">
-                              <button
-                                type="button"
-                                onClick={() => {
-                                  wc.onWeaponSelect(weapon.name);
-                                }}
-                                className={`flex-1 text-left flex items-center gap-3 p-3 rounded-lg border-2 transition-all ${
-                                  isWeaponSelected
-                                    ? "border-[var(--color-ink)] bg-[var(--color-bg)]"
-                                    : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                                }`}
-                              >
-                                <div
-                                  className="w-11 h-11 rounded-[10px] flex items-center justify-center shrink-0"
-                                  style={{ backgroundColor: "var(--color-bg)" }}
-                                >
-                                  <span className="text-[22px] leading-none">{weapon.icon || "📦"}</span>
-                                </div>
-                                <div className="flex-1 min-w-0">
-                                  <div className="text-[14px] font-medium text-[var(--color-text-primary)] truncate">
-                                    {weapon.name}
-                                  </div>
-                                  {weapon.description && (
-                                    <div className="text-[12px] text-[var(--color-text-secondary)] truncate">
-                                      {weapon.description}
-                                    </div>
-                                  )}
-                                </div>
-                                {isWeaponSelected ? (
-                                  <Check className="h-4 w-4 text-[var(--color-text-primary)] shrink-0" />
-                                ) : (
-                                  weaponInfo?.description ? (
-                                    <button
-                                      type="button"
-                                      onClick={(e) => { e.stopPropagation(); setInfoIndex(wIdx); }}
-                                      className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-2 hover:border-[var(--color-text-primary)] active:bg-[var(--color-bg)] transition-all shrink-0"
-                                      aria-label={`Info: ${weapon.name}`}
-                                    >
-                                      <InfoIcon className="h-4 w-4" />
-                                    </button>
-                                  ) : null
-                                )}
-                              </button>
-                              {infoIndex === wIdx && (
-                                <div className="fixed inset-0 z-[1000000] flex items-center justify-center bg-black/50 backdrop-blur-sm" onClick={() => setInfoIndex(null)}>
-                                  <div className="relative w-full max-w-sm mx-4 bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] shadow-2xl p-4">
-                                    <div className="flex items-center justify-between mb-2">
-                                      <h3 className="text-sm font-semibold text-[var(--color-text-primary)]">{weapon.name}</h3>
-                                      <button type="button" onClick={() => setInfoIndex(null)} className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]">
-                                        <X className="h-4 w-4" />
-                                      </button>
-                                    </div>
-                                    <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{weaponInfo?.description || ""}</p>
-                                    <button type="button" onClick={() => setInfoIndex(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">Got it</button>
-                                  </div>
-                                </div>
-                              )}
-                            </div>
+                            <SplitSelectionCard
+                              key={wIdx}
+                              title={weapon.name}
+                              subtitle={weapon.description}
+                              icon={<span className="text-[22px] leading-none">{weapon.icon || "📦"}</span>}
+                              isSelected={isWeaponSelected}
+                              onSelect={() => wc.onWeaponSelect(weapon.name)}
+                              infoType="modal"
+                              modalContent={<p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{weaponInfo?.description || ""}</p>}
+                            />
                           );
                         })}
                       </div>
