@@ -6,6 +6,7 @@ import { XIcon as X, CheckIcon as Check, InfoIcon } from "@/components/icons";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
 import type { ChoiceGroup, EquipmentOption } from "@/lib/character-creation";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface WeaponOption {
   name: string;
@@ -58,6 +59,7 @@ export function EquipmentChoiceModal({
   renderRightContent,
   getItemInfo,
 }: EquipmentChoiceModalProps) {
+  const { t } = useLanguage();
   const [mounted, setMounted] = useState(false);
   const [infoIndex, setInfoIndex] = useState<number | null>(null);
 
@@ -94,7 +96,7 @@ export function EquipmentChoiceModal({
             : "bg-[var(--color-border)] text-[var(--color-text-muted)] cursor-not-allowed"
         }`}
       >
-        Confirm selection
+        {t("equipment.confirmSelection", "Confirm selection")}
       </button>
     </div>
   );
@@ -105,7 +107,7 @@ export function EquipmentChoiceModal({
         {hasConcrete && (
           <div className="space-y-2">
             <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">
-              Choose equipment package
+              {t("equipment.choosePackage", "Choose equipment package")}
             </div>
             {concreteOptions.map((opt, idx) => {
               const globalIdx = group.options.indexOf(opt);
@@ -155,7 +157,7 @@ export function EquipmentChoiceModal({
                           </button>
                         </div>
                         <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{infoDescription || ""}</p>
-                        <button type="button" onClick={() => setInfoIndex(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">Got it</button>
+                                       <button type="button" onClick={() => setInfoIndex(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">{t("common.gotIt", "Got it")}</button>
                       </div>
                     </div>
                   )}
@@ -168,7 +170,7 @@ export function EquipmentChoiceModal({
         {hasWeaponChoices && hasConcrete && (
           <div className="border-t border-[var(--color-border)] pt-3">
             <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider mb-2">
-              Or choose weapons
+              {t("equipment.orChooseWeapons", "Or choose weapons")}
             </div>
           </div>
         )}
@@ -180,7 +182,7 @@ export function EquipmentChoiceModal({
               <div key={wc.id} className="space-y-2">
                 <SplitSelectionCard
                   title={wc.label}
-                  subtitle={`Choose ${wc.selectionCount} weapon${wc.selectionCount > 1 ? "s" : ""}`}
+                   subtitle={t("equipment.chooseWeapons", { count: wc.selectionCount }, "Choose {count} weapon(s)")}
                   isSelected={isWeaponChoiceSelected}
                   onSelect={() => onWeaponChoiceSelect(wcIdx)}
                   infoType="expand"
@@ -208,7 +210,7 @@ export function EquipmentChoiceModal({
                                     {item.name}
                                   </div>
                                   <div className="text-[12px] text-[var(--color-text-muted)]">
-                                    Included
+                                    {t("equipment.included", "Included")}
                                   </div>
                                 </div>
                                 {itemInfo?.description && (
@@ -233,7 +235,7 @@ export function EquipmentChoiceModal({
                                         </button>
                                       </div>
                                       <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{itemInfo?.description || ""}</p>
-                                      <button type="button" onClick={() => setInfoIndex(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">Got it</button>
+                                                     <button type="button" onClick={() => setInfoIndex(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">{t("common.gotIt", "Got it")}</button>
                                     </div>
                                   </div>
                                 )}

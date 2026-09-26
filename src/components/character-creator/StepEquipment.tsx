@@ -110,9 +110,9 @@ const DRUIDIC_FOCUS_TYPES = [
 ];
 
 export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
-  const classData = data.class ? getStaticClass(data.class, data.ruleset) : null;
   const debug = useDebugLogger("StepEquipment");
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const classData = data.class ? getStaticClass(data.class, data.ruleset, undefined, language) : null;
   const [modalGroup, setModalGroup] = useState<{ group: ChoiceGroup; selectedOptionIndex: number | null; selectedWeaponChoiceIndex: number | null } | null>(null);
   const [tempWeaponSelectionsMap, setTempWeaponSelectionsMap] = useState<Record<number, string[]>>({});
   const [tempSelectedName, setTempSelectedName] = useState<string | null>(null);
@@ -132,9 +132,9 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
     return JSON.parse(JSON.stringify(data));
   }, [classData?.startingEquipment]);
 
-   const weapons = useMemo(() => getStaticWeapons(data.sources, data.ruleset), [data.sources, data.ruleset]);
-  const armors = useMemo(() => getStaticArmors(data.sources, data.ruleset), [data.sources, data.ruleset]);
-  const allEquipment = useMemo(() => getEquipmentNames(data.sources), [data.sources]);
+   const weapons = useMemo(() => getStaticWeapons(data.sources, data.ruleset, language), [data.sources, data.ruleset, language]);
+   const armors = useMemo(() => getStaticArmors(data.sources, data.ruleset, language), [data.sources, data.ruleset, language]);
+   const allEquipment = useMemo(() => getEquipmentNames(data.sources, language), [data.sources, language]);
 
   useEffect(() => {
     debug.log('startingEquipment CHANGED', {
@@ -166,36 +166,36 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
     onChange({ inventory: data.inventory.filter(item => item.choiceGroupIndex !== groupIndex) });
   }, [tempWeaponSelectionsMap, modalGroup, data.inventory, onChange, getGroupIndex, debug]);
 
-  const isMusicalInstrument = useCallback((itemName: string) => {
-    return MUSICAL_INSTRUMENTS.some(i => i.toLowerCase() === itemName.toLowerCase());
-  }, []);
+const isMusicalInstrument = useCallback((itemName: string) => {
+  return MUSICAL_INSTRUMENTS.some(i => i.toLowerCase() === itemName.toLowerCase());
+}, []);
 
-  const generateFallbackDescription = (itemName: string, info: any): string => {
-    if (info.type === "weapon") {
-      const parts: string[] = [];
-      if (info.category) parts.push(`A ${info.category} weapon.`);
-      if (info.damageDice) parts.push(`Deals ${info.damageDice} ${info.damageType || "damage"}.`);
-      if (info.properties?.length) parts.push(`Properties: ${info.properties.join(", ")}.`);
-      return parts.join(" ") || `A weapon called ${itemName}.`;
+function buildFallbackDescription(t: ReturnType<typeof useLanguage>["t"], itemName: string, info: any): string {
+  if (info.type === "weapon") {
+    const parts: string[] = [];
+    if (info.category) parts.push(`${t("equipment.weaponCategory", "A")} ${info.category} ${t("equipment.weapon", "weapon")}.`);
+    if (info.damageDice) parts.push(`${t("equipment.deals", "Deals")} ${info.damageDice} ${info.damageType || t("equipment.damage", "damage")}.`);
+    if (info.properties?.length) parts.push(`${t("equipment.properties", "Properties")}: ${info.properties.join(", ")}.`);
+    return parts.join(" ") || t("equipment.weaponFallback", { itemName }, "A weapon called {itemName}.");
+  }
+  if (info.type === "armor") {
+    const parts: string[] = [];
+    const armorLabel = info.armorType ? info.armorType.charAt(0).toUpperCase() + info.armorType.slice(1) : t("equipment.armorTypeFallback", "A type of");
+    parts.push(t("equipment.armorTypeLabel", { armorLabel }, "{armorLabel} armor."));
+    if (info.baseAC) parts.push(t("equipment.baseAC", { baseAC: info.baseAC }, "Base AC {baseAC}."));
+    if (info.maxDex !== undefined && info.maxDex !== null) {
+      parts.push(info.maxDex === 0 ? t("equipment.noDexBonus", "No Dex bonus.") : t("equipment.maxDexBonus", { maxDex: info.maxDex }, "Max Dex bonus +{maxDex}."));
     }
-    if (info.type === "armor") {
-      const parts: string[] = [];
-      const armorLabel = info.armorType ? info.armorType.charAt(0).toUpperCase() + info.armorType.slice(1) : "A type of";
-      parts.push(`${armorLabel} armor.`);
-      if (info.baseAC) parts.push(`Base AC ${info.baseAC}.`);
-      if (info.maxDex !== undefined && info.maxDex !== null) {
-        parts.push(info.maxDex === 0 ? "No Dex bonus." : `Max Dex bonus +${info.maxDex}.`);
-      }
-      return parts.join(" ") || `A type of armor called ${itemName}.`;
-    }
-    if (info.type === "instrument") {
-      return "Musical instrument used as a spellcasting focus.";
-    }
-    if (info.contents) {
-      return `Contains: ${info.contents}.`;
-    }
-    return `A ${itemName}.`;
-  };
+    return parts.join(" ") || t("equipment.armorFallback", { itemName }, "A type of armor called {itemName}.");
+  }
+  if (info.type === "instrument") {
+    return t("equipment.musicalInstrumentFocus", "Musical instrument used as a spellcasting focus.");
+  }
+  if (info.contents) {
+    return t("equipment.contentsLabel", { contents: info.contents }, "Contains: {contents}.");
+  }
+  return t("equipment.unknownFallback", { itemName }, "A {itemName}.");
+}
 
   const getItemInfo = useCallback((itemName: string) => {
     const weapon = weapons.find((w: any) => w.name === itemName) as any;
@@ -203,7 +203,7 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
       const rawDescription = weapon.description || "";
       const description = rawDescription.length >= 30 && rawDescription !== weapon.name
         ? rawDescription
-        : generateFallbackDescription(itemName, {
+        : buildFallbackDescription(t, itemName, {
             type: "weapon",
             damageDice: weapon.damage?.damage_dice || "",
             damageType: weapon.damage?.damage_type?.name || "",
@@ -227,7 +227,7 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
       const rawDescription = armor.description || "";
       const description = rawDescription.length >= 30 && rawDescription !== armor.name
         ? rawDescription
-        : generateFallbackDescription(itemName, {
+        : buildFallbackDescription(t, itemName, {
             type: "armor",
             baseAC: armor.armor_class?.base || 0,
             maxDex: armor.armor_class?.max_bonus ?? (armor.armor_class?.dex_bonus ? null : 0),
@@ -246,7 +246,7 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
     if (isMusicalInstrument(itemName)) {
       return {
         type: "instrument",
-        description: "Musical instrument. Bards use musical instruments as a spellcasting focus.",
+        description: t("equipment.bardInstrument", "Musical instrument. Bards use musical instruments as a spellcasting focus."),
         icon: "🎵",
       };
     }
@@ -256,7 +256,7 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
       const rawDescription = equipmentData.description || "";
       const description = rawDescription.length >= 30 && rawDescription !== itemName
         ? rawDescription
-        : generateFallbackDescription(itemName, {
+        : buildFallbackDescription(t, itemName, {
             type: equipmentData.type,
             baseAC: equipmentData.baseAC,
             armorType: equipmentData.armorType,
@@ -282,10 +282,10 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
 
     return {
       type: "unknown",
-      description: generateFallbackDescription(itemName, { type: "unknown" }),
+      description: buildFallbackDescription(t, itemName, { type: "unknown" }),
       icon: "📦",
     };
-  }, [weapons, armors, isMusicalInstrument]);
+  }, [weapons, armors, isMusicalInstrument, t]);
 
   const isOptionSelected = useCallback((group: ChoiceGroup, optionIndex: number): boolean => {
     const groupIndex = getGroupIndex(group.id);
@@ -314,15 +314,15 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
   const getOptionLabel = useCallback((option: EquipmentOption): string => {
     if (option.isWeaponChoice) {
       const count = option.selectionCount || 1;
-      return `Select ${count > 1 ? `${count} ` : "a "}${option.weaponType?.replace('_', ' ')} weapon${count > 1 ? "s" : ""}`;
+      return t("creator.selectWeapons", { count: count > 1 ? `${count} ` : "a ", weaponType: option.weaponType?.replace('_', ' ') || "" }, "Select {count} {weaponType} weapon(s)");
     }
-    if (option.isInstrumentChoice) return "Select a musical instrument";
-    if (option.isArcaneFocusChoice) return "Select an arcane focus";
-    if (option.isHolySymbolChoice) return "Select a holy symbol";
-    if (option.isDruidicFocusChoice) return "Select a druidic focus";
+    if (option.isInstrumentChoice) return t("creator.selectMusicalInstrument", "Select a musical instrument");
+    if (option.isArcaneFocusChoice) return t("creator.selectArcaneFocus", "Select an arcane focus");
+    if (option.isHolySymbolChoice) return t("creator.selectHolySymbol", "Select a holy symbol");
+    if (option.isDruidicFocusChoice) return t("creator.selectDruidicFocus", "Select a druidic focus");
     if (option.items.length === 1) return option.items[0].name;
     return option.items.map(i => `${i.quantity || 1}× ${i.name}`).join(", ");
-  }, []);
+  }, [t]);
 
   const getOptionSummary = useCallback((option: EquipmentOption): string => {
     if (option.items.length === 0) return "";
@@ -679,24 +679,24 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
           {!compact && itemInfo.description && (
             <button
               type="button"
-              onClick={() => setInfoState({ title: "Armor Details", description: itemInfo.description })}
+              onClick={() => setInfoState({ title: t("equipment.armorDetails", "Armor Details"), description: itemInfo.description })}
               className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-2 hover:border-[var(--color-text-primary)] active:bg-[var(--color-bg)] transition-all shrink-0"
-              aria-label="Info: Armor Details"
+              aria-label={t("equipment.armorDetails", "Info: Armor Details")}
             >
               <InfoIcon className="h-4 w-4" />
             </button>
           )}
-          {infoState?.title === "Armor Details" && itemInfo.description && (
+          {infoState?.title === t("equipment.armorDetails", "Armor Details") && itemInfo.description && (
             <div className="fixed inset-0 z-[1000000] flex items-center justify-center bg-black/50 backdrop-blur-sm" onClick={() => setInfoState(null)}>
               <div className="relative w-full max-w-sm mx-4 bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] shadow-2xl p-4">
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-sm font-semibold text-[var(--color-text-primary)]">Armor Details</h3>
+                  <h3 className="text-sm font-semibold text-[var(--color-text-primary)]">{infoState.title}</h3>
                   <button type="button" onClick={() => setInfoState(null)} className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]">
                     <XIcon className="h-4 w-4" />
                   </button>
                 </div>
                 <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{itemInfo.description}</p>
-                <button type="button" onClick={() => setInfoState(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">Got it</button>
+                <button type="button" onClick={() => setInfoState(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">{t("common.gotIt", "Got it")}</button>
               </div>
             </div>
           )}
@@ -705,7 +705,7 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
     }
 
     if (itemInfo.type === "instrument") {
-      return <span>Musical instrument</span>;
+      return <span>{t("equipment.musicalInstrument", "Musical instrument")}</span>;
     }
 
     if (itemInfo.type === "item") {
@@ -714,36 +714,36 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
           {itemInfo.description && (
             <button
               type="button"
-              onClick={() => setInfoState({ title: "Item Details", description: itemInfo.description })}
+              onClick={() => setInfoState({ title: t("equipment.itemDetails", "Item Details"), description: itemInfo.description })}
               className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-2 hover:border-[var(--color-text-primary)] active:bg-[var(--color-bg)] transition-all shrink-0"
-              aria-label="Info: Item Details"
+              aria-label={t("equipment.itemDetails", "Info: Item Details")}
             >
               <InfoIcon className="h-4 w-4" />
             </button>
           )}
-          {infoState?.title === "Item Details" && itemInfo.description && (
+          {infoState?.title === t("equipment.itemDetails", "Item Details") && itemInfo.description && (
             <div className="fixed inset-0 z-[1000000] flex items-center justify-center bg-black/50 backdrop-blur-sm" onClick={() => setInfoState(null)}>
               <div className="relative w-full max-w-sm mx-4 bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] shadow-2xl p-4">
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-sm font-semibold text-[var(--color-text-primary)]">Item Details</h3>
+                  <h3 className="text-sm font-semibold text-[var(--color-text-primary)]">{infoState.title}</h3>
                   <button type="button" onClick={() => setInfoState(null)} className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]">
                     <XIcon className="h-4 w-4" />
                   </button>
                 </div>
                 <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{itemInfo.description}</p>
-                <button type="button" onClick={() => setInfoState(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">Got it</button>
+                <button type="button" onClick={() => setInfoState(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">{t("common.gotIt", "Got it")}</button>
               </div>
             </div>
           )}
           {itemInfo.contents && (
-            <span className="ml-2 text-[var(--color-text-secondary)] font-medium">Contains: {itemInfo.contents}</span>
+            <span className="ml-2 text-[var(--color-text-secondary)] font-medium">{t("equipment.contains", "Contains:")} {itemInfo.contents}</span>
           )}
         </span>
       );
     }
 
     return null;
-  }, [infoState]);
+  }, [infoState, t]);
 
   const getItemDescription = useCallback((itemInfo: any): string => {
     if (!itemInfo) return "";
@@ -752,22 +752,22 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
 
     if (itemInfo.type === "weapon") {
       if (itemInfo.description) parts.push(itemInfo.description);
-      if (itemInfo.damageDice) parts.push(`Damage: [dice]${itemInfo.damageDice}[/dice] [damage]${itemInfo.damageType || ""}[/damage]`);
-      if (itemInfo.category) parts.push(`Category: ${itemInfo.category}`);
-      if (itemInfo.properties && itemInfo.properties.length > 0) parts.push(`Properties: ${itemInfo.properties.join(", ")}`);
+      if (itemInfo.damageDice) parts.push(t("equipment.damage", { damageDice: itemInfo.damageDice, damageType: itemInfo.damageType || "" }, "Damage: [dice]{damageDice}[/dice] [damage]{damageType}[/damage]"));
+      if (itemInfo.category) parts.push(t("equipment.category", { category: itemInfo.category }, "Category: {category}"));
+      if (itemInfo.properties && itemInfo.properties.length > 0) parts.push(t("equipment.properties", { properties: itemInfo.properties.join(", ") }, "Properties: {properties}"));
     } else if (itemInfo.type === "armor") {
       if (itemInfo.description) parts.push(itemInfo.description);
-      parts.push(`AC: ${itemInfo.baseAC} + Dex${itemInfo.maxDex !== null ? ` (max +${itemInfo.maxDex})` : ""}`);
-      if (itemInfo.armorType) parts.push(`Type: ${itemInfo.armorType}`);
+      parts.push(t("equipment.ac", { baseAC: itemInfo.baseAC, maxDex: itemInfo.maxDex }, "AC: {baseAC} + Dex") + (itemInfo.maxDex !== null ? ` (max +${itemInfo.maxDex})` : ""));
+      if (itemInfo.armorType) parts.push(t("equipment.type", { type: itemInfo.armorType }, "Type: {type}"));
     } else if (itemInfo.type === "instrument") {
-      parts.push("Musical instrument. Bards use musical instruments as a spellcasting focus.");
+      parts.push(t("equipment.bardInstrument", "Musical instrument. Bards use musical instruments as a spellcasting focus."));
     } else if (itemInfo.type === "item") {
       if (itemInfo.description) parts.push(itemInfo.description);
-      if (itemInfo.contents) parts.push(`Contains: ${itemInfo.contents}`);
+      if (itemInfo.contents) parts.push(t("equipment.contentsLabel", { contents: itemInfo.contents }, "Contains: {contents}"));
     }
 
     return parts.join("\n");
-  }, []);
+  }, [t]);
 
   const isAllRequiredSelected = useMemo(() => {
     if (choiceGroups.length === 0) return true;
@@ -917,7 +917,7 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
                           ) : (
                             <>
                               <span className="text-2xl text-[var(--color-text-muted)] leading-none">+</span>
-                              <span className="text-[9px] font-bold text-[var(--color-text-muted)]">Choose</span>
+                               <span className="text-[9px] font-bold text-[var(--color-text-muted)]">{t("creator.choose", "Choose")}</span>
                             </>
                           )}
                         </button>
@@ -1054,7 +1054,7 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
                 isOpen={!!modalGroup}
                 onClose={handleModalClose}
                 onConfirm={handleModalConfirm}
-                title="Select from the options below"
+                title={t("equipment.selectFromOptions", "Select from the options below")}
                 group={group}
                 concreteOptions={concreteOptions}
                 selectedConcreteIndex={modalGroup.selectedOptionIndex}
