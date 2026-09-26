@@ -1596,8 +1596,8 @@ function LevelCard({
                <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">{t("sheet.hitPoints", "Hit Points")}</div>
               <div className="text-xs text-[var(--color-text-primary)]">
                  {lvl === 1 && startFromLevelOne
-                  ? `${hitDie} + ${conMod >= 0 ? `+${conMod}` : conMod} = ${hitDie + conMod} HP ({t("common.automatic", "automatic")})`
-                  : `d${hitDie} + ${conMod >= 0 ? `+${conMod}` : conMod} (avg: ${averageHp})`}
+                  ? `${hitDie} + ${conMod >= 0 ? conMod : `-${Math.abs(conMod)}`} = ${hitDie + conMod} HP ({t("common.automatic", "automatic")})`
+                  : `d${hitDie} + ${conMod >= 0 ? conMod : `-${Math.abs(conMod)}`} (avg: ${averageHp})`}
               </div>
             </div>
             {lvl === 1 && startFromLevelOne ? (
