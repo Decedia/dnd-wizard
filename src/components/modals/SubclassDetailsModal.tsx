@@ -15,8 +15,8 @@ interface SubclassDetailsModalProps {
 }
 
 export function SubclassDetailsModal({ characterClass, subclass, onClose, character }: SubclassDetailsModalProps) {
-  const { t, tDesc } = useLanguage();
-  const details = getStaticSubclassDetails(characterClass, subclass);
+  const { t, tDesc, language } = useLanguage();
+  const details = getStaticSubclassDetails(characterClass, subclass, language);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";

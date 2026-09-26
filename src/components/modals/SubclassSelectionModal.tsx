@@ -31,7 +31,7 @@ export function SubclassSelectionModal({
   character,
   characterSources,
 }: SubclassSelectionModalProps) {
-  const { tDesc } = useLanguage();
+  const { tDesc, language } = useLanguage();
   const [previewSubclass, setPreviewSubclass] = useState<string | null>(selected || null);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -43,13 +43,13 @@ export function SubclassSelectionModal({
   }, []);
 
   const subclassData = useMemo(() => {
-    const subclasses = getStaticSubclasses(characterClass, characterSources);
+    const subclasses = getStaticSubclasses(characterClass, characterSources, undefined, language);
     const map: Record<string, any> = {};
     for (const s of subclasses) {
       map[s.name] = s;
     }
     return map;
-  }, [characterClass, characterSources]);
+  }, [characterClass, characterSources, language]);
 
   const filteredOptions = useMemo(() => {
     if (!searchQuery.trim()) return options;
@@ -112,7 +112,7 @@ export function SubclassSelectionModal({
         )}
         {filteredOptions.map((opt) => {
           const modalContent = (() => {
-            const details = getStaticSubclassDetails(characterClass, opt.name);
+            const details = getStaticSubclassDetails(characterClass, opt.name, language);
             const descKey = `subclass.desc.${characterClass.toLowerCase()}-${slugify(opt.name)}`;
             const translatedDesc = tDesc(descKey, opt.description);
             const parts = [translatedDesc];
