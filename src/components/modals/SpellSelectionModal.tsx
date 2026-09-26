@@ -4,11 +4,10 @@ import { useState, useEffect, useMemo } from "react";
 import { getStaticSpells, getClassSpells, getSubclassFlags, deduplicateSpells } from "@/lib/srd-client";
 import { SourceBadge } from "@/components/SourceBadge";
 import { DamageBadge } from "@/components/character-sheet/DamageBadge";
-import { CheckIcon as Check, StarIcon as Star, MagnifyingGlassIcon as MagnifyingGlass } from "@/components/icons";
+import { CheckIcon as Check, StarIcon as Star, MagnifyingGlassIcon as MagnifyingGlass, InfoIcon, XIcon as X } from "@/components/icons";
 import { isRecommended } from "@/lib/recommendations";
 import { GroupedList } from "@/components/GroupedList";
 import { BottomSheet } from "@/components/modals/BottomSheet";
-import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
 import { getSpellSchoolStyle } from "@/lib/spell-schools";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
@@ -66,13 +65,10 @@ export function SpellSelectionModal({
   disabledSpells = [],
 }: SpellSelectionModalProps) {
   const { tDesc, language } = useLanguage();
-  const [activeTab, setActiveTab] = useState<"cantrips" | number>(() => {
-    if (mode === "cantrips") return "cantrips";
-    if (mode === "spells") return 1;
-    return "cantrips";
-  });
+  const [activeTab, setActiveTab] = useState<"cantrips" | number>(mode === "spells" ? 1 : "cantrips");
   const [selectedSpells, setSelectedSpells] = useState<string[]>(spells);
   const [searchQuery, setSearchQuery] = useState("");
+  const [infoSpell, setInfoSpell] = useState<string | null>(null);
 
   useEffect(() => {
     setSelectedSpells(spells);
@@ -85,142 +81,259 @@ export function SpellSelectionModal({
     };
   }, []);
 
-  const classSpells = useMemo(() => {
-    const classData = character.class ? getClassSpells(character.class) : [];
-    return classData;
-  }, [character.class]);
+  const atFlags = character.subclassIndex ? getSubclassFlags(character.subclassIndex) : {};
+  const isArcaneTrickster = atFlags.usesMageSpellList;
+  const effectiveMaxLevel = onChange ? (maxLevel ?? getMaxSpellLevel(character.class, character.level, character.ruleset)) : (maxLevel || 0);
+  const classSpells = isArcaneTrickster
+    ? getClassSpells("arcane-trickster")
+    : [];
+  const allSpells = classSpells.length > 0
+    ? deduplicateSpells(classSpells.filter((s: any) => s.level === 0 || s.level <= effectiveMaxLevel))
+    : deduplicateSpells(getStaticSpells(character.sources, character.ruleset, language).filter((s) => s.classes?.includes(character.class) && (s.level === 0 || s.level <= effectiveMaxLevel)));
 
-  const subclassFlags = useMemo(() => {
-    if (!character.subclass || !character.subclassIndex) return {};
-    const subclassData = getSubclassFlags(character.subclassIndex);
-    return subclassData || {};
-  }, [character.subclass, character.subclassIndex]);
-
-  const allSpells = useMemo(() => {
-    const srdSpells = getStaticSpells(character.sources, character.ruleset, language);
-    const classSpellNames = new Set<string>();
-    classSpells.forEach((s: any) => {
-      classSpellNames.add(s.name || s);
-    });
-    const subclassSpells: string[] = [];
-    if (subclassFlags.spells && character.subclass) {
-      const details = getStaticSpells(character.sources, character.ruleset, language);
-      details.forEach((s) => {
-        if (s.classes?.includes(character.subclass || "")) {
-          subclassSpells.push(s.name);
-        }
-      });
+  const existingCantripNames = new Set((character.cantrips || []).map(c => c.name));
+  const earlierSpellNames = new Set((earlierSelections || []).map(s => s.split(":")[0]));
+  const alreadyKnownCantripNames = new Set([...existingCantripNames, ...earlierSpellNames]);
+  const cantrips = allSpells.filter((s: any) => s.level === 0);
+  const levelSpells: { [key: number]: any[] } = useMemo(() => {
+    const map: { [key: number]: any[] } = {};
+    for (const sp of allSpells) {
+      if (sp.level > 0) {
+        if (!map[sp.level]) map[sp.level] = [];
+        map[sp.level].push(sp);
+      }
     }
-    return deduplicateSpells(srdSpells);
-  }, [character.sources, character.ruleset, language, classSpells, subclassFlags, character.subclass]);
-
-  const maxSpellLevelForClass = useMemo(() => {
-    if (maxLevel > 0) return maxLevel;
-    return getMaxSpellLevel(character.class, character.level);
-  }, [character.class, character.level, maxLevel]);
-
-  const cantrips = useMemo(() => {
-    return allSpells.filter((s) => s.level === 0);
+    return map;
   }, [allSpells]);
-
-  const spellsByLevel = useMemo(() => {
-    const grouped: Record<number, typeof allSpells> = {};
-    for (let i = 1; i <= maxSpellLevelForClass; i++) {
-      grouped[i] = [];
-    }
-    allSpells.forEach((s) => {
-      if (s.level >= 1 && s.level <= maxSpellLevelForClass) {
-        grouped[s.level].push(s);
+  const sortSpells = (list: any[]) => {
+    list.sort((a, b) => {
+      const recA = isRecommended("spell", a.name) ? 0 : 1;
+      const recB = isRecommended("spell", b.name) ? 0 : 1;
+      if (recA !== recB) return recA - recB;
+      const sourceA = a.source || "PHB";
+      const sourceB = b.source || "PHB";
+      if (sourceA !== sourceB) {
+        if (sourceA === "PHB") return -1;
+        if (sourceB === "PHB") return 1;
+        return sourceA.localeCompare(sourceB);
       }
-    });
-    return grouped;
-  }, [allSpells, maxSpellLevelForClass]);
-
-  const isSpellDisabled = (spell: any) => {
-    if (disabledSpells.includes(spell.name)) return true;
-    if (selectionType === "book" && !allKnownSpells.includes(spell.name) && !spells.includes(spell.name)) return true;
-    return false;
-  };
-
-  const isSpellAlreadyKnown = (spell: any) => {
-    return allKnownSpells.includes(spell.name) || existingSpells?.some((s) => s.name === spell.name);
-  };
-
-  const handleToggle = (spell: any) => {
-    if (isSpellDisabled(spell)) return;
-    const name = spell.name;
-    setSelectedSpells((prev) => {
-      if (prev.includes(name)) {
-        return prev.filter((s) => s !== name);
-      }
-      if (selectionType === "known" && maxSpellsKnown > 0 && prev.length >= maxSpellsKnown) {
-        return prev;
-      }
-      if (selectionType === "known" && maxCantripsKnown > 0 && spell.level === 0 && prev.filter((s) => allSpells.find((sp) => sp.name === s)?.level === 0).length >= maxCantripsKnown) {
-        return prev;
-      }
-      return [...prev, name];
+      return a.name.localeCompare(b.name);
     });
   };
+  for (const level in levelSpells) {
+    sortSpells(levelSpells[level]);
+  }
+  sortSpells(cantrips);
+  const spellLevels = Object.keys(levelSpells).map(Number).sort((a, b) => a - b);
 
-  const handleConfirm = () => {
-    if (onSpellsChange) {
-      onSpellsChange(selectedSpells);
+  const searchLower = searchQuery.trim().toLowerCase();
+  const filterBySearch = useMemo(() => {
+    const lower = searchQuery.trim().toLowerCase();
+    return (sp: any) => {
+      const desc = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description || "";
+      return sp.name.toLowerCase().includes(lower) || sp.school?.toLowerCase().includes(lower) || desc.toLowerCase().includes(lower);
+    };
+  }, [searchQuery]);
+  const filteredCantrips = useMemo(() => (searchLower ? cantrips.filter(filterBySearch) : cantrips), [cantrips, searchLower, filterBySearch]);
+  const filteredLevelSpells = useMemo(() => {
+    if (!searchLower) return levelSpells;
+    const next: Record<number, any[]> = {};
+    for (const level in levelSpells) {
+      const filtered = levelSpells[level].filter(filterBySearch);
+      if (filtered.length > 0) next[level] = filtered;
     }
-    onClose();
+    return next;
+  }, [levelSpells, searchLower, filterBySearch]);
+
+  const existingSpellNames = new Set((existingSpells || []).map(s => s.name));
+  const earlierKnownSpellNames = new Set([...existingSpellNames, ...earlierSpellNames]);
+  const disabledSpellNames = new Set((disabledSpells || []).map(s => s.split(":")[0]));
+
+  const isPrepareMode = selectionType === "prepare" && !onChange;
+  const prepareAlreadyKnown = new Set((allKnownSpells || []).map(s => s.split(":")[0]));
+
+  const toggle = (name: string, level: number) => {
+    const isDisabled = disabledSpellNames.has(name);
+    if (isDisabled) return;
+
+    if (onChange) {
+      const isSelected = (character.spells || []).some(s => s.name === name && s.level === level);
+      if (isSelected) {
+        onChange({
+          spells: (character.spells || []).filter(s => !(s.name === name && s.level === level)),
+        });
+      } else {
+        if (level === 0) {
+          const currentCantrips = (character.spells || []).filter(s => s.level === 0).length;
+          if (currentCantrips >= maxCantripsKnown) return;
+        } else {
+          const currentSpells = (character.spells || []).filter(s => s.level > 0).length;
+          if (currentSpells >= maxSpellsKnown) return;
+        }
+        const srdSpell = getStaticSpells(character.sources, undefined, language).find(s => s.name === name);
+        const id = `spell-${name}-${level}`.replace(/\s+/g, "-");
+        onChange({
+          spells: [...(character.spells || []), { id, name, level, source: "srd" as const, srdSpellName: name, description: Array.isArray(srdSpell?.description) ? srdSpell.description.join("\n") : (srdSpell?.description || "") }],
+        });
+      }
+    } else {
+      if (selectedSpells.some((s) => s === `${name}:${level}`)) {
+        const newList = selectedSpells.filter((s) => s !== `${name}:${level}`);
+        setSelectedSpells(newList);
+        onSpellsChange?.(newList);
+      } else {
+        if (level === 0) {
+          const currentCantrips = selectedSpells.filter((s) => s.endsWith(":0")).length;
+          if (currentCantrips < cantripCount) {
+            const newList = [...selectedSpells, `${name}:${level}`];
+            setSelectedSpells(newList);
+            onSpellsChange?.(newList);
+          }
+        } else {
+          const currentSpells = selectedSpells.filter((s) => !s.endsWith(":0")).length;
+          const maxSpells = selectionType === "prepare" ? count : count;
+          if (selectionType === "prepare" || currentSpells < maxSpells) {
+            const newList = [...selectedSpells, `${name}:${level}`];
+            setSelectedSpells(newList);
+            onSpellsChange?.(newList);
+          }
+        }
+      }
+    }
+  };
+
+  const currentCantrips = useMemo(() => onChange
+    ? (character.spells || []).filter(s => s.level === 0)
+    : selectedSpells.filter((s) => s.endsWith(":0")), [onChange, character.spells, selectedSpells]);
+  const currentSpells = useMemo(() => onChange
+    ? (character.spells || []).filter(s => s.level > 0)
+    : selectedSpells.filter((s) => !s.endsWith(":0")), [onChange, character.spells, selectedSpells]);
+
+  const selectedCantripNames = useMemo(() => new Set(currentCantrips.map(s => typeof s === "string" ? s.split(":")[0] : s.name)), [currentCantrips]);
+  const selectedSpellNames = useMemo(() => new Set(currentSpells.map(s => typeof s === "string" ? s.split(":")[0] : s.name)), [currentSpells]);
+
+  const renderSpell = (sp: any) => {
+    const level = sp.level ?? 0;
+    const isAlreadyKnown = level === 0 ? alreadyKnownCantripNames.has(sp.name) : earlierKnownSpellNames.has(sp.name);
+    const isDisabled = disabledSpellNames.has(sp.name);
+    const isSel = level === 0 ? selectedCantripNames.has(sp.name) : selectedSpellNames.has(sp.name);
+    const maxForLevel = level === 0 ? (onChange ? maxCantripsKnown : cantripCount) : (onChange ? maxSpellsKnown : count);
+    const disabled = !isSel && !isAlreadyKnown && !isDisabled && (level === 0 ? currentCantrips.length : currentSpells.length) >= maxForLevel;
+    const desc = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description;
+    const finalDisabled = disabled || isAlreadyKnown || isDisabled;
+    const spellId = `${sp.name}:${level}`;
+
+    return (
+      <div key={sp.name} className="flex gap-1.5">
+         <button
+           type="button"
+           onClick={() => !isAlreadyKnown && !isDisabled && toggle(sp.name, level)}
+           disabled={finalDisabled}
+           className={`flex-1 px-3 py-2 text-left rounded-lg border transition-all ${
+             isDisabled
+               ? "bg-[var(--color-accent)]/20 border-[var(--color-accent)]/40 cursor-default"
+               : isAlreadyKnown
+                 ? "bg-[var(--color-bg)] border-[var(--color-border)] opacity-60 cursor-default"
+                 : isSel
+                   ? "bg-[var(--color-text-primary)] text-[var(--color-surface)] border-2 border-[var(--border-active)]"
+                   : disabled
+                     ? "bg-[var(--color-bg)] border-[var(--color-border)] opacity-50"
+                     : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+           }`}
+         >
+           <div className="flex items-center gap-2">
+             <SourceBadge source={(sp as any).source || "PHB"} size="sm" />
+             <span className={`text-xs font-bold flex-1 ${isAlreadyKnown || isDisabled ? "text-[var(--color-text-secondary)]" : ""}`}>
+               {sp.name}
+             </span>
+             {isRecommended("spell", sp.name) && <Star className="h-3 w-3 text-amber-500 shrink-0" />}
+<button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setInfoSpell(sp.name);
+                }}
+                className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-2 hover:border-[var(--color-text-primary)] active:bg-[var(--color-bg)] transition-all shrink-0"
+                aria-label={`Info: ${sp.name}`}
+              >
+                <InfoIcon className="h-4 w-4" />
+              </button>
+              {infoSpell === sp.name && (
+                <div className="fixed inset-0 z-[1000000] flex items-center justify-center bg-black/50 backdrop-blur-sm" onClick={() => setInfoSpell(null)}>
+                  <div className="relative w-full max-w-sm mx-4 bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] shadow-2xl p-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <h3 className="text-sm font-semibold text-[var(--color-text-primary)]">{sp.name}</h3>
+                      <button type="button" onClick={() => setInfoSpell(null)} className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]">
+                        <X className="h-4 w-4" />
+                      </button>
+                    </div>
+                    <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">
+                      {(() => {
+                        const rawDesc = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description;
+                        const translatedDesc = tDesc(`spell.desc.${slugify(sp.name)}`, rawDesc);
+                        const s = (sp as any).effectSummary || (sp as any).summary || "";
+                        return s ? `${s}\n\n${translatedDesc}` : translatedDesc;
+                      })()}
+                    </p>
+                    <button type="button" onClick={() => setInfoSpell(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">Got it</button>
+                  </div>
+                </div>
+              )}
+             <div className="w-3 shrink-0">
+               {isDisabled && <Check className="h-3 w-3 text-[var(--color-accent)]" />}
+               {isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-text-secondary)]" />}
+               {isSel && !isAlreadyKnown && !isDisabled && <Check className="h-3 w-3 text-[var(--color-surface)]" />}
+             </div>
+           </div>
+           <div className="flex items-center gap-2 mt-0.5 ml-1">
+             {sp.school && (() => {
+               const schoolStyle = getSpellSchoolStyle(sp.school);
+               if (!schoolStyle) return <span className="text-[10px] text-[var(--color-text-muted)]">{sp.school}</span>;
+               return (
+                 <span
+                   className="inline-flex items-center gap-1 font-semibold"
+                   style={{
+                     fontSize: "10px",
+                     padding: "1px 5px",
+                     borderRadius: "4px",
+                     backgroundColor: `var(${schoolStyle.bgColorVar})`,
+                     color: `var(${schoolStyle.colorVar})`,
+                   }}
+                 >
+                   <schoolStyle.icon className="h-3 w-3" />
+                   {schoolStyle.label}
+                 </span>
+               );
+             })()}
+             {level > 0 && <span className="text-[10px] text-[var(--color-text-muted)]">·</span>}
+             {level > 0 && <span className="text-[10px] text-[var(--color-text-muted)]">{sp.castingTime}</span>}
+             {isDisabled && <span className="text-[10px] text-[var(--color-accent)] font-medium">From higher level</span>}
+             {isAlreadyKnown && !isDisabled && <span className="text-[10px] text-[var(--color-text-secondary)] font-medium">Already known</span>}
+             {isSel && !isAlreadyKnown && !isDisabled && <span className="text-[10px] text-[var(--color-surface)] font-medium">Selected</span>}
+           </div>
+         </button>
+       </div>
+     );
+   };
+
+  const renderLevelContent = (spellsForLevel: any[]) => {
+    if (spellsForLevel.length === 0 && searchQuery) {
+      return <p className="text-xs text-[var(--color-text-muted)] text-center py-6">No spells match your search.</p>;
+    }
+    return (
+      <GroupedList
+        items={spellsForLevel}
+        isRecommended={(sp) => isRecommended("spell", sp.name)}
+        renderItem={renderSpell}
+        emptyAllMessage="No spells found for this level."
+      />
+    );
   };
 
   const getTitle = () => {
     if (cantripCount > 0 && count === 0) return `Learn ${cantripCount} Additional Cantrip${cantripCount > 1 ? "s" : ""}`;
     if (spellsKnownChanged) return `Choose ${count} New Spell${count > 1 ? "s" : ""}`;
     return "Replace a Spell";
-  };
-
-  const getSubtitle = () => {
-    if (selectionType === "known") return `Select spells to learn (${selectedSpells.length}/${maxSpellsKnown || "∞"})`;
-    if (selectionType === "prepare") return `Select spells to prepare (${selectedSpells.length} selected)`;
-    return `Select spells for your spellbook (${selectedSpells.length} selected)`;
-  };
-
-  const renderSpellList = (spellsList: any[], levelLabel?: string) => {
-    const filtered = spellsList.filter((sp) => {
-      if (!searchQuery.trim()) return true;
-      const q = searchQuery.toLowerCase();
-      return sp.name.toLowerCase().includes(q) || (sp.description || "").toLowerCase().includes(q);
-    });
-
-    if (filtered.length === 0 && searchQuery) {
-      return <p className="text-sm text-[var(--color-text-muted)] text-center py-6">No spells match your search.</p>;
-    }
-
-    return (
-      <div className="space-y-2">
-        {filtered.map((sp) => {
-          const isSelected = selectedSpells.includes(sp.name);
-          const isDisabled = isSpellDisabled(sp);
-          const isAlreadyKnown = isSpellAlreadyKnown(sp);
-          const rawDesc = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description;
-          const schoolBadge = sp.school
-            ? (() => {
-                const schoolStyle = getSpellSchoolStyle(sp.school);
-                return schoolStyle ? `[${schoolStyle.label}]` : `[${sp.school}]`;
-              })()
-            : "";
-          const subtitleText = schoolBadge ? `${schoolBadge} ${rawDesc || ""}` : rawDesc;
-          return (
-            <SplitSelectionCard
-              key={sp.name}
-              title={sp.name}
-              subtitle={subtitleText}
-              isSelected={isSelected}
-              onSelect={() => handleToggle(sp)}
-              infoType="modal"
-              modalContent={<p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{rawDesc}</p>}
-            />
-          );
-        })}
-      </div>
-    );
   };
 
   const stickyFooter = (
@@ -234,14 +347,10 @@ export function SpellSelectionModal({
       </button>
       <button
         type="button"
-        onClick={handleConfirm}
-        className={`flex-1 py-2.5 px-4 text-sm font-semibold rounded-lg transition-all ${
-          selectedSpells.length > 0
-            ? "bg-[var(--color-accent-indigo-600)] text-white hover:bg-[var(--color-accent-indigo-700)] active:bg-[var(--color-accent-indigo-800)]"
-            : "bg-[var(--color-bg)] text-[var(--color-text-muted)] cursor-not-allowed"
-        }`}
+        onClick={onClose}
+        className="flex-1 py-2.5 px-4 text-sm font-semibold rounded-lg transition-all bg-[var(--color-accent-indigo-600)] text-white hover:bg-[var(--color-accent-indigo-700)] active:bg-[var(--color-accent-indigo-800)]"
       >
-        Confirm Selection ({selectedSpells.length})
+        Confirm Selection
       </button>
     </div>
   );
@@ -249,7 +358,6 @@ export function SpellSelectionModal({
   return (
     <BottomSheet isOpen={true} onClose={onClose} title={getTitle()} footer={stickyFooter} showHeader={false}>
       <div className="px-4 pt-4 pb-2 space-y-3">
-        <p className="text-xs text-[var(--color-text-secondary)] mb-2">{getSubtitle()}</p>
         <div className="relative mb-3">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <MagnifyingGlass className="h-4 w-4 text-[var(--color-text-muted)]" />
@@ -262,36 +370,97 @@ export function SpellSelectionModal({
             className="w-full pl-10 pr-4 py-2 text-sm bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-indigo-500)] focus:border-transparent"
           />
         </div>
-        {mode === "all" && (
-          <div className="flex gap-2 border-b border-[var(--color-border)]">
+
+        {(currentCantrips.length > 0 || currentSpells.length > 0) && !onChange && (
+          <div className="px-4 py-2 bg-green-50 border border-[var(--color-border)] rounded-[var(--radius-sm)] mb-3">
+            <div className="text-[10px] font-semibold text-green-700 mb-1">
+              Selected this level ({currentCantrips.length + currentSpells.length} of {(cantripCount || 0) + (count || 0)})
+            </div>
+            <div className="flex flex-wrap gap-1">
+              {currentCantrips.map((s) => {
+                const name = typeof s === "string" ? s.split(":")[0] : s.name;
+                return (
+                  <span key={name} className="inline-flex items-center gap-1 text-[10px] px-1.5 py-0.5 bg-green-100 border border-green-300 rounded-full text-green-800">
+                    {name}
+                    {!onChange && <button type="button" onClick={() => onSpellsChange?.(spells.filter(x => x !== s))} className="hover:text-red-600 font-bold">×</button>}
+                  </span>
+                );
+              })}
+              {currentSpells.map((s) => {
+                const name = typeof s === "string" ? s.split(":")[0] : s.name;
+                const lvl = typeof s === "string" ? s.split(":")[1] : String(s.level);
+                return (
+                  <span key={`${name}-${lvl}`} className="inline-flex items-center gap-1 text-[10px] px-1.5 py-0.5 bg-green-100 border border-green-300 rounded-full text-green-800">
+                    {name} <span className="text-green-600">Lv {lvl}</span>
+                  </span>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {cantripCount > 0 && count === 0 && (
+          <div className="px-4 py-2 bg-blue-50 border border-[var(--color-border)] rounded-[var(--radius-sm)] mb-3">
+            <p className="text-[10px] text-blue-700">
+              You can now learn {cantripCount} additional cantrip{cantripCount > 1 ? "s" : ""}. Select from the tab below.
+            </p>
+          </div>
+        )}
+        {spellsKnownChanged && !(cantripCount > 0 && count === 0) && (
+          <div className="px-4 py-2 bg-blue-50 border border-[var(--color-border)] rounded-[var(--radius-sm)] mb-3">
+            <p className="text-[10px] text-blue-700">
+              You learned {count} new spell{count > 1 ? "s" : ""}. Select from the tabs below.
+            </p>
+          </div>
+        )}
+        {!spellsKnownChanged && existingSpells && existingSpells.length > 0 && !(cantripCount > 0 && count === 0) && (
+          <div className="px-4 py-2 bg-yellow-50 border border-[var(--color-border)] rounded-[var(--radius-sm)] mb-3">
+            <p className="text-[10px] text-yellow-700 mb-1">Replace a spell (optional):</p>
+            <div className="flex flex-wrap gap-1">
+              {existingSpells.map((sp) => (
+                <span key={`${sp.name}:${sp.level}`} className="text-[10px] px-1.5 py-0.5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-full">
+                  {sp.name}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+        <div className="flex-shrink-0 flex border-b border-[var(--color-border)] overflow-x-auto scrollbar-hide -mx-4 px-4">
+          {mode !== "spells" && (
             <button
               type="button"
               onClick={() => setActiveTab("cantrips")}
-              className={`flex-1 py-2 text-xs font-semibold transition-all ${
+              className={`px-3 py-2 text-[10px] font-semibold whitespace-nowrap transition-all ${
                 activeTab === "cantrips"
-                  ? "text-[var(--color-text-primary)] border-b-2 border-[var(--color-text-primary)]"
-                  : "text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]"
+                  ? "text-[var(--color-text-primary)] bg-[var(--color-bg)] border-b-2 border-[var(--color-text-primary)]"
+                  : "text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-bg)]"
               }`}
             >
-              Cantrips ({cantrips.length})
+              Cantrips ({currentCantrips.length}/{onChange ? maxCantripsKnown : cantripCount})
             </button>
-            {Array.from({ length: maxSpellLevelForClass }, (_, i) => i + 1).map((level) => (
-              <button
-                key={level}
-                type="button"
-                onClick={() => setActiveTab(level)}
-                className={`flex-1 py-2 text-xs font-semibold transition-all ${
-                  activeTab === level
-                    ? "text-[var(--color-text-primary)] border-b-2 border-[var(--color-text-primary)]"
-                    : "text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]"
-                }`}
-              >
-                Level {level} ({spellsByLevel[level]?.length || 0})
-              </button>
-            ))}
-          </div>
-        )}
-        {mode === "spells" && activeTab !== "cantrips" ? renderSpellList(spellsByLevel[activeTab] || []) : renderSpellList(cantrips)}
+          )}
+          {mode !== "cantrips" && spellLevels.map((lvl) => (
+            <button
+              key={lvl}
+              type="button"
+              onClick={() => setActiveTab(lvl)}
+              className={`px-3 py-2 text-[10px] font-semibold whitespace-nowrap transition-all ${
+                activeTab === lvl
+                  ? "text-[var(--color-text-primary)] bg-[var(--color-bg)] border-b-2 border-[var(--color-text-primary)]"
+                  : "text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-bg)]"
+              }`}
+            >
+              Level {lvl} ({currentSpells.filter((s) => typeof s !== "string" ? s.level === lvl : false).length}/{onChange ? maxSpellsKnown : count})
+            </button>
+          ))}
+        </div>
+        <div className="flex-1 min-h-0 overflow-hidden mt-3">
+          {activeTab === "cantrips" ? (
+            renderLevelContent(filteredCantrips)
+          ) : (
+            <div className="h-full overflow-y-auto">{renderLevelContent(filteredLevelSpells[activeTab as number] || [])}</div>
+          )}
+        </div>
       </div>
     </BottomSheet>
   );
