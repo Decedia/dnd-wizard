@@ -1,9 +1,9 @@
 {
   "2014_spells.acid-splash.description": "As an action, you hurl a bubble of acid. Choose one creature within 60 feet, or choose two creatures within 60 feet that are within 5 feet of each other. A target must succeed on a Dexterity saving throw or take **1d6** acid damage.\n\nThis spell's damage increases as you reach higher levels:\n- 5th level: **2d6**\n- 11th level: **3d6**\n- 17th level: **4d6**",
-  "2014_spells.acid-splash.effectSummary": "Hurl a bubble of acid at one or two nearby creatures, forcing them to make a Dexterity saving throw or take acid damage.",
+  "2014_spells.acid-splash.effectSummary": "Hurl a bubble of acid at one creature or two creatures standing close together to deal acid damage upon a failed Dexterity saving throw.",
   "2014_spells.acid-splash.fullDescription": "As an action, you hurl a bubble of acid. Choose one creature within 60 feet, or choose two creatures within 60 feet that are within 5 feet of each other. A target must succeed on a Dexterity saving throw or take **1d6** acid damage.\n\nThis spell's damage increases as you reach higher levels:\n- 5th level: **2d6**\n- 11th level: **3d6**\n- 17th level: **4d6**",
   "2014_spells.blade-bite.description": "As part of the action to cast this spell, you must make a melee attack against one creature within yourself, or the spell fails. On a hit, the target suffers normal attack effects and takes necrotic damage:\n\n- Base damage: **1d6**\n- 5th level: **2d6**\n- 11th level: **3d6**\n- 17th level: **4d6**",
-  "2014_spells.blade-bite.effectSummary": "Perform a melee attack to deal necrotic damage to a single target, with damage scaling as your character level increases.",
+  "2014_spells.blade-bite.effectSummary": "Perform a melee attack against a creature within your reach to deal necrotic damage that scales as you increase in level.",
   "2014_spells.blade-bite.fullDescription": "As part of the action to cast this spell, you must make a melee attack against one creature within yourself, or the spell fails. On a hit, the target suffers normal attack effects and takes necrotic damage:\n\n- Base damage: **1d6**\n- 5th level: **2d6**\n- 11th level: **3d6**\n- 17th level: **4d6**",
   "2014_spells.blade-bite-egw.description": "As part of the action to cast this spell, you must make a melee attack against one creature within range of yourself, or the spell fails. On a hit, the target suffers normal attack effects and takes necrotic damage based on the level of the spell:\n\n- Base damage: **1d6** necrotic damage\n- 5th level: **2d6** necrotic damage\n- 11th level: **3d6** necrotic damage\n- 17th level: **4d6** necrotic damage",
   "2014_spells.blade-bite-egw.effectSummary": "A melee-range offensive spell that requires a successful attack roll to deal scaling necrotic damage to a single target creature.",
@@ -1687,8 +1687,7 @@
   "2014_spells.poison-spray.lastUpdated": "2026-09-27",
   "2014_spells.blade-bite.mechanics_badges": [
     "Self",
-    "1 round",
-    "Melee Attack"
+    "1 round"
   ],
   "2014_spells.blade-bite.lastUpdated": "2026-09-27",
   "2014_spells.blade-bite-egw.mechanics_badges": [

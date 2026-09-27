@@ -18,9 +18,11 @@ const spellFile = path.resolve("src/locales/parts/en/2014_spells.json");
 const BATCH_SIZE = 2;
 const MAX_RETRIES = 3;
 const RETRY_BASE_DELAY_MS = 2000;
-const BATCH_DELAY_MS = 3000;
+const BATCH_DELAY_MS = 5000;
 const PROGRESS_FILE = path.resolve("src/locales/parts/en/.enhance-progress.json");
-const DND5E_API_BASE = "https://www.dnd5eapi.co/api/spells";
+const DND5E_API_BASE = "https://www.dnd5eapi.co/api/2014/spells";
+const MAX_API_RETRIES = 3;
+const API_RETRY_BASE_DELAY_MS = 2000;
 
 const apiCache = new Map();
 
@@ -29,30 +31,50 @@ async function fetchSpellFromAPI(slug) {
     return apiCache.get(slug);
   }
 
-  try {
-    const response = await axios.get(`${DND5E_API_BASE}/${slug}`, {
-      timeout: 10000,
-      headers: { Accept: "application/json" },
-    });
+  for (let attempt = 1; attempt <= MAX_API_RETRIES; attempt++) {
+    try {
+      const response = await axios.get(`${DND5E_API_BASE}/${slug}`, {
+        timeout: 15000,
+        headers: { Accept: "application/json" },
+      });
 
-    const data = response.data;
-    const apiData = {
-      description: (data.desc || []).join("\n\n"),
-      range: data.range || "",
-      casting_time: data.casting_time || "",
-      duration: data.duration || "",
-      components: data.components || {},
-      damage: data.damage || {},
-      save: data.save || "",
-      name: data.name || "",
-    };
+      const data = response.data;
+      const apiData = {
+        description: (data.desc || []).join("\n\n"),
+        range: data.range || "",
+        casting_time: data.casting_time || "",
+        duration: data.duration || "",
+        components: data.components || {},
+        damage: data.damage || {},
+        save: data.save || "",
+        name: data.name || "",
+      };
 
-    apiCache.set(slug, apiData);
-    return apiData;
-  } catch (error) {
-    console.warn(`  API fetch failed for ${slug}: ${error.message}`);
-    return null;
+      apiCache.set(slug, apiData);
+      return apiData;
+    } catch (error) {
+      const isLastAttempt = attempt === MAX_API_RETRIES;
+      const status = error.response?.status;
+      const isNotFound = status === 404;
+      const shouldRetry = !isLastAttempt && !isNotFound && (status === 429 || status >= 500 || error.code === "ECONNABORTED" || error.code === "ETIMEDOUT");
+
+      if (shouldRetry) {
+        const delay = API_RETRY_BASE_DELAY_MS * Math.pow(2, attempt - 1);
+        console.warn(`  API fetch failed for ${slug} (attempt ${attempt}/${MAX_API_RETRIES}, ${error.message}). Retrying in ${delay}ms...`);
+        await sleep(delay);
+        continue;
+      }
+
+      if (isNotFound) {
+        console.warn(`  Spell ${slug} not in 2014 SRD (404), using local data`);
+      } else {
+        console.warn(`  API fetch failed for ${slug} after ${attempt} attempts: ${error.message}`);
+      }
+      return null;
+    }
   }
+
+  return null;
 }
 
   const SYSTEM_PROMPT = "You are an expert D&D 5e technical writer. Rewrite the provided spell or feature text into a JSON object with four required keys: 'summary', 'mechanics_badges', 'description', and 'lastUpdated'. RULES FOR SUMMARY: * Must be a detailed, actionable overview at least 20 words long. RULES FOR MECHANICS_BADGES: * REQUIRED. Always include this field as an array of 2-6 short string badges. * Use ONLY the mechanical facts provided in the input (range, casting time, duration, components, save/check, damage). * Do NOT invent or guess missing mechanical facts; if a fact is missing from the input, omit it. * Prefer exact values from the input, for example: casting time as '1 Action', range as '60 feet', duration as 'Instantaneous'. * Include save/check info if applicable: ability save (DEX Save, WIS Save), skill check (Athletics, Perception), or attack roll. * Include damage/dice info if applicable: dice amount and damage type (1d6 acid damage, 3d8 cold damage). RULES FOR DESCRIPTION: * Enhance the provided description into clearer, cleaner Markdown. * If mechanical facts are provided in the input, weave them into the description naturally. * For example, if range is '60 feet', say 'within 60 feet' instead of only 'within range'. * For example, if casting_time is '1 action', include it naturally in the description. * Do not remove existing rules, examples, scaling text, or important details from the original description. * Use standard dashes (-) for lists, NEVER asterisks (*). * Dice must be written as plain numbers like 1d6 or bold **1d6**. * Damage types must be written as plain text like acid damage, fire damage, or cold damage. * Saving throws must be written as plain text like Dexterity saving throw, Wisdom saving throw. * Skills and ability checks must be written as plain text like Athletics, Perception, or Intelligence (Arcana) check. * Do NOT wrap dice, damage types, saving throws, or skills in custom tags, XML-like markup, or special delimiters. * Do not alter any core game rules or stats. RULES FOR LASTUPDATED: * REQUIRED. Set this field to today's date in ISO 8601 format (YYYY-MM-DD). STRICT OUTPUT FORMAT: Output STRICTLY raw JSON. Do NOT wrap the response in markdown blocks like ```json. Do NOT include any intro or conversational text.";
