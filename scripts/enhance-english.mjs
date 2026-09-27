@@ -20,6 +20,40 @@ const MAX_RETRIES = 3;
 const RETRY_BASE_DELAY_MS = 2000;
 const BATCH_DELAY_MS = 3000;
 const PROGRESS_FILE = path.resolve("src/locales/parts/en/.enhance-progress.json");
+const DND5E_API_BASE = "https://www.dnd5eapi.co/api/spells";
+
+const apiCache = new Map();
+
+async function fetchSpellFromAPI(slug) {
+  if (apiCache.has(slug)) {
+    return apiCache.get(slug);
+  }
+
+  try {
+    const response = await axios.get(`${DND5E_API_BASE}/${slug}`, {
+      timeout: 10000,
+      headers: { Accept: "application/json" },
+    });
+
+    const data = response.data;
+    const apiData = {
+      description: (data.desc || []).join("\n\n"),
+      range: data.range || "",
+      casting_time: data.casting_time || "",
+      duration: data.duration || "",
+      components: data.components || {},
+      damage: data.damage || {},
+      save: data.save || "",
+      name: data.name || "",
+    };
+
+    apiCache.set(slug, apiData);
+    return apiData;
+  } catch (error) {
+    console.warn(`  API fetch failed for ${slug}: ${error.message}`);
+    return null;
+  }
+}
 
   const SYSTEM_PROMPT = "You are an expert D&D 5e technical writer. Rewrite the provided spell or feature text into a JSON object with four required keys: 'summary', 'mechanics_badges', 'description', and 'lastUpdated'. RULES FOR SUMMARY: * Must be a detailed, actionable overview at least 20 words long. RULES FOR MECHANICS_BADGES: * REQUIRED. Always include this field as an array of 2-6 short string badges. * Use ONLY the mechanical facts provided in the input (range, casting time, duration, components, save/check, damage). * Do NOT invent or guess missing mechanical facts; if a fact is missing from the input, omit it. * Prefer exact values from the input, for example: casting time as '1 Action', range as '60 feet', duration as 'Instantaneous'. * Include save/check info if applicable: ability save (DEX Save, WIS Save), skill check (Athletics, Perception), or attack roll. * Include damage/dice info if applicable: dice amount and damage type (1d6 acid damage, 3d8 cold damage). RULES FOR DESCRIPTION & TEXT FORMATTING: * Write clean Markdown for the description. Use standard dashes (-) for lists, NEVER asterisks (*). * Dice must be written as plain numbers like 1d6 or bold **1d6**. * Damage types must be written as plain text like acid damage, fire damage, or cold damage. * Saving throws must be written as plain text like Dexterity saving throw, Wisdom saving throw. * Skills and ability checks must be written as plain text like Athletics, Perception, or Intelligence (Arcana) check. * Do NOT wrap dice, damage types, saving throws, or skills in custom tags, XML-like markup, or special delimiters. * Do not alter any core game rules or stats. RULES FOR LASTUPDATED: * REQUIRED. Set this field to today's date in ISO 8601 format (YYYY-MM-DD). STRICT OUTPUT FORMAT: Output STRICTLY raw JSON. Do NOT wrap the response in markdown blocks like ```json. Do NOT include any intro or conversational text.";
 
@@ -172,20 +206,32 @@ async function main() {
     const payload = {};
     const spellNamesInBatch = [];
 
-    for (const name of batch) {
+    for (let i = 0; i < batch.length; i++) {
+      const name = batch[i];
       const entry = grouped[name];
       const original = originalSpellsMap.get(name) || {};
       if (entry && entry.description) {
+        const apiData = await fetchSpellFromAPI(name);
+        const source = apiData || original;
+
         payload[name] = {
           description: entry.description,
-          range: original.range || "",
-          casting_time: original.casting_time || "",
-          duration: original.duration || "",
-          components: original.components || {},
-          damage: original.damage || {},
-          save: original.save || "",
+          range: source.range || "",
+          casting_time: source.casting_time || "",
+          duration: source.duration || "",
+          components: source.components || {},
+          damage: source.damage || {},
+          save: source.save || "",
         };
         spellNamesInBatch.push(name);
+
+        if (apiData) {
+          console.log(`  Fetched API data for ${name}`);
+        }
+      }
+
+      if (i < batch.length - 1) {
+        await sleep(500);
       }
     }
 
