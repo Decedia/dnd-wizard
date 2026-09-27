@@ -113,7 +113,7 @@ export function DiceText({ text }: { text: string }) {
           return (
             <span
               key={idx}
-              className="inline-flex items-center rounded-md border border-indigo-500/40 bg-indigo-500/10 px-1.5 py-0.5 text-xs font-bold text-indigo-600 dark:text-indigo-300 mx-0.5"
+              className="inline-flex items-center rounded-md border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 text-xs font-bold text-slate-800 dark:text-slate-200 mx-0.5"
             >
               {part.value}
             </span>
