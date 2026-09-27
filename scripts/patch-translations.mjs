@@ -10,11 +10,11 @@ import OpenAI from "openai";
 import fs from "fs";
 
 const openai = new OpenAI({
-  apiKey: process.env.NIM_API_KEY || "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",
+  apiKey: process.env.RIVA_API_KEY || "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",
   baseURL: "https://integrate.api.nvidia.com/v1",
 });
 
-const MODEL = "nvidia/nemotron-3-super-120b-a12b";
+const MODEL = "nvidia/riva-translate-4b-instruct-v2";
 let BATCH_SIZE = 10;
 const MIN_BATCH = 2;
 const TARGET_FILE = path.join(process.cwd(), "src/locales/parts/id/2014_races.json");
