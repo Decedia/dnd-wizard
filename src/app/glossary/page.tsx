@@ -6,6 +6,7 @@ import { getStaticSpells, getStaticFeats } from "@/lib/srd-client";
 import { AppHeader } from "@/components/AppHeader";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { ArrowsUpDownIcon as FilterIcon, XIcon as X } from "@/components/icons";
+import { DiceText } from "@/components/DiceText";
 
 type Category = "spells" | "feats" | "conditions" | "rules";
 
@@ -354,9 +355,7 @@ export default function GlossaryPage() {
             {selectedSpell.effectSummary && (
               <p className="text-xs text-slate-500 dark:text-slate-400 italic leading-relaxed">{selectedSpell.effectSummary}</p>
             )}
-            <p className="text-sm text-slate-800 dark:text-slate-200 whitespace-pre-wrap leading-relaxed">
-              {getFullDescription(selectedSpell)}
-            </p>
+            <DiceText text={getFullDescription(selectedSpell)} />
             <div className="flex flex-wrap gap-2 pt-1">
               <span className="rounded-full border border-slate-200 dark:border-slate-600 bg-slate-100 dark:bg-slate-700 px-2.5 py-1 text-[10px] font-semibold text-slate-700 dark:text-slate-200">
                 {t("glossary.level", "Level")} {selectedSpell.level}
