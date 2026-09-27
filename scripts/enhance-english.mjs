@@ -21,7 +21,7 @@ const RETRY_BASE_DELAY_MS = 2000;
 const BATCH_DELAY_MS = 3000;
 const PROGRESS_FILE = path.resolve("src/locales/parts/en/.enhance-progress.json");
 
-const SYSTEM_PROMPT = "You are an expert D&D 5e technical writer. Rewrite the provided spell or feature text into a JSON object with four required keys: 'summary', 'mechanics_badges', 'description', and 'lastUpdated'. RULES FOR SUMMARY: * Must be a detailed, actionable overview at least 20 words long. RULES FOR MECHANICS_BADGES: * REQUIRED. Always include this field as an array of 2-6 short string badges. * Include core casting info: action type, range/distance, and duration if relevant. * Include save/check info if applicable: ability save (DEX Save, WIS Save), skill check (Athletics, Perception), or attack roll. * Include damage/dice info if applicable: dice amount and damage type (1d6 fire damage, 3d8 cold damage). * Examples: ['1 Action', '60 ft', 'DEX Save', '1d6 acid damage'], ['1 Reaction', 'Self', 'DEX Save'], ['1 Action', '120 ft', 'WIS (Perception) Check'], ['1d8 fire damage', 'Self (30-foot cone)']. RULES FOR DESCRIPTION & TEXT FORMATTING: * Write clean Markdown for the description. Use standard dashes (-) for lists, NEVER asterisks (*). * Dice must be written as plain numbers like 1d6 or bold **1d6**. * Damage types must be written as plain text like acid damage, fire damage, or cold damage. * Saving throws must be written as plain text like Dexterity saving throw, Wisdom saving throw. * Skills and ability checks must be written as plain text like Athletics, Perception, or Intelligence (Arcana) check. * Do NOT wrap dice, damage types, saving throws, or skills in custom tags, XML-like markup, or special delimiters. * Do not alter any core game rules or stats. RULES FOR LASTUPDATED: * REQUIRED. Set this field to today's date in ISO 8601 format (YYYY-MM-DD). STRICT OUTPUT FORMAT: Output STRICTLY raw JSON. Do NOT wrap the response in markdown blocks like ```json. Do NOT include any intro or conversational text.";
+  const SYSTEM_PROMPT = "You are an expert D&D 5e technical writer. Rewrite the provided spell or feature text into a JSON object with four required keys: 'summary', 'mechanics_badges', 'description', and 'lastUpdated'. RULES FOR SUMMARY: * Must be a detailed, actionable overview at least 20 words long. RULES FOR MECHANICS_BADGES: * REQUIRED. Always include this field as an array of 2-6 short string badges. * Use ONLY the mechanical facts provided in the input (range, casting time, duration, components, save/check, damage). * Do NOT invent or guess missing mechanical facts; if a fact is missing from the input, omit it. * Prefer exact values from the input, for example: casting time as '1 Action', range as '60 feet', duration as 'Instantaneous'. * Include save/check info if applicable: ability save (DEX Save, WIS Save), skill check (Athletics, Perception), or attack roll. * Include damage/dice info if applicable: dice amount and damage type (1d6 acid damage, 3d8 cold damage). RULES FOR DESCRIPTION & TEXT FORMATTING: * Write clean Markdown for the description. Use standard dashes (-) for lists, NEVER asterisks (*). * Dice must be written as plain numbers like 1d6 or bold **1d6**. * Damage types must be written as plain text like acid damage, fire damage, or cold damage. * Saving throws must be written as plain text like Dexterity saving throw, Wisdom saving throw. * Skills and ability checks must be written as plain text like Athletics, Perception, or Intelligence (Arcana) check. * Do NOT wrap dice, damage types, saving throws, or skills in custom tags, XML-like markup, or special delimiters. * Do not alter any core game rules or stats. RULES FOR LASTUPDATED: * REQUIRED. Set this field to today's date in ISO 8601 format (YYYY-MM-DD). STRICT OUTPUT FORMAT: Output STRICTLY raw JSON. Do NOT wrap the response in markdown blocks like ```json. Do NOT include any intro or conversational text.";
 
 function chunkArray(arr, size) {
   const chunks = [];
@@ -99,7 +99,7 @@ async function callNvidiaNimWithRetry(batch, retries = MAX_RETRIES) {
 }
 
 async function callNvidiaNim(batch) {
-  const userPrompt = `Rewrite each spell below into {summary, mechanics_badges, description, lastUpdated}. Keep rules exact. Output ONLY a JSON object mapping spell name to {summary, mechanics_badges, description, lastUpdated}. No markdown, no extra text.\n\n` + JSON.stringify(batch);
+  const userPrompt = `Rewrite each spell below into {summary, mechanics_badges, description, lastUpdated}. Use ONLY the mechanical facts provided in the input fields. Do NOT invent or guess missing mechanical facts; if a fact is missing, omit it. Output ONLY a JSON object mapping spell name to {summary, mechanics_badges, description, lastUpdated}. No markdown, no extra text.\n\n` + JSON.stringify(batch);
 
   const body = {
     model,
@@ -151,6 +151,10 @@ async function main() {
   const raw = fs.readFileSync(spellFile, "utf-8");
   const data = JSON.parse(raw);
 
+  const originalSpellsRaw = fs.readFileSync(path.resolve("src/data/en/2014_spells.json"), "utf-8");
+  const originalSpellsData = JSON.parse(originalSpellsRaw);
+  const originalSpellsMap = new Map((originalSpellsData.spells || []).map((s) => [s.index, s]));
+
   const grouped = groupSpells(data);
   const spellNames = Object.keys(grouped);
   console.log(`Total spells found: ${spellNames.length}`);
@@ -170,8 +174,17 @@ async function main() {
 
     for (const name of batch) {
       const entry = grouped[name];
+      const original = originalSpellsMap.get(name) || {};
       if (entry && entry.description) {
-        payload[name] = entry.description;
+        payload[name] = {
+          description: entry.description,
+          range: original.range || "",
+          casting_time: original.casting_time || "",
+          duration: original.duration || "",
+          components: original.components || {},
+          damage: original.damage || {},
+          save: original.save || "",
+        };
         spellNamesInBatch.push(name);
       }
     }
