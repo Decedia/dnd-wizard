@@ -231,8 +231,8 @@ function splitStatusTokens(value: string) {
   return tokens;
 }
 
-function renderTextSegment(value: string): React.ReactNode[] {
-  const nodes: React.ReactNode[] = [];
+function renderTextSegment(value: string): React.ReactElement[] {
+  const nodes: React.ReactElement[] = [];
   const segments = value.split(/(\*\*[^*]+\*\*)/g);
 
   segments.forEach((segment, segIdx) => {
@@ -253,7 +253,7 @@ function renderTextSegment(value: string): React.ReactNode[] {
   return nodes;
 }
 
-function renderInlineText(value: string): React.ReactNode[] {
+function renderInlineText(value: string): React.ReactElement[] {
   const damageTokens = splitDamageTokens(value);
 
   return damageTokens.flatMap((token, tokenIdx) => {

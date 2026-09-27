@@ -339,7 +339,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
 
                 {(spell.mechanics_badges || []).length > 0 && (
                   <div className="flex flex-wrap gap-1.5 my-2">
-                    {spell.mechanics_badges.map((badge: string, badgeIdx: number) => (
+                    {(spell.mechanics_badges || []).map((badge: string, badgeIdx: number) => (
                       <span
                         key={badgeIdx}
                         className={`text-xs font-semibold px-2.5 py-0.5 rounded-md border shadow-sm ${getStatBadgeStyle(badge)}`}
@@ -464,7 +464,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
             )}
             {(selectedSpell.mechanics_badges || []).length > 0 && (
               <div className="flex flex-wrap gap-1.5">
-                {selectedSpell.mechanics_badges.map((badge: string, badgeIdx: number) => (
+                {(selectedSpell.mechanics_badges || []).map((badge: string, badgeIdx: number) => (
                   <span
                     key={badgeIdx}
                     className={`text-xs font-semibold px-2.5 py-0.5 rounded-md border shadow-sm ${getStatBadgeStyle(badge)}`}
