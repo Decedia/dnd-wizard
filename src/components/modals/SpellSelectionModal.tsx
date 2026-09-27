@@ -84,7 +84,7 @@ export function SpellSelectionModal({
   const isArcaneTrickster = atFlags.usesMageSpellList;
   const effectiveMaxLevel = onChange ? (maxLevel ?? getMaxSpellLevel(character.class, character.level, character.ruleset)) : (maxLevel || 0);
   const classSpells = isArcaneTrickster
-    ? getClassSpells("arcane-trickster")
+    ? getClassSpells("arcane-trickster", language)
     : [];
   const allSpells = classSpells.length > 0
     ? deduplicateSpells(classSpells.filter((s: any) => s.level === 0 || s.level <= effectiveMaxLevel))
