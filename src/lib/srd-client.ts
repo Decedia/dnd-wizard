@@ -746,7 +746,8 @@ export function applySpellLocalesOverrides(spells: any[], locale: string = "en")
 
   return spells.map((spell) => {
     const name = spell.name;
-    const overrides = index[name];
+    const normalized = name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    const overrides = index[normalized];
     if (!overrides) return spell;
 
     const next = { ...spell };
