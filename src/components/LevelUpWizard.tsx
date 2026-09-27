@@ -1173,6 +1173,8 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     }
   };
 
+  const pactBoon = Object.values(classFeatureChoices).map((choices) => choices["Pact Boon"]).find(Boolean) || "";
+
   return (
     <div className="min-h-screen bg-[var(--color-bg)]">
       <div className="sticky top-0 z-40 bg-[var(--color-surface)]/90 backdrop-blur-sm border-b border-[var(--color-border)]">
@@ -1276,9 +1278,9 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
              >
                {t("levelUp.rollAllHp", "🎲 Roll All HP")}
              </button>
-          )}
+           )}
 
-          {levelInfos.map((info) => (
+           {levelInfos.map((info) => (
             <div
               key={info.level}
               ref={(el) => { sectionRefs.current[`level-card-${info.level}`] = el; }}
@@ -1333,8 +1335,9 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
                onPactTomeCantripsChange={setPactTomeCantrips}
                expertise={expertiseSelections[info.level] || []}
                onExpertiseChange={(list) => setExpertise(info.level, list)}
-               allInvocationSelections={invocationSelections}
-                sectionRefs={sectionRefs}
+                allInvocationSelections={invocationSelections}
+                pactBoon={pactBoon}
+                 sectionRefs={sectionRefs}
              />
             </div>
           ))}
@@ -1394,6 +1397,7 @@ interface LevelCardProps {
   expertise: string[];
   onExpertiseChange: (list: string[]) => void;
   allInvocationSelections?: Record<number, string[]>;
+  pactBoon?: string;
   sectionRefs: React.MutableRefObject<Record<string, HTMLDivElement | null>>;
 }
 
@@ -1438,6 +1442,7 @@ function LevelCard({
   expertise,
   onExpertiseChange,
   allInvocationSelections,
+  pactBoon,
   sectionRefs,
 }: LevelCardProps) {
     const { language, tDesc } = useLanguage();
@@ -2133,8 +2138,7 @@ function LevelCard({
             if (!invocationFeature) return null;
             const currentInvocations = invocationSelections;
             const invocationCount = invocationFeature.count || 1;
-            const pactBoon = classFeatureChoices["Pact Boon"] || "";
-            const availableInvocations = getAvailableInvocations(info.level, pactBoon, currentInvocations);
+            const availableInvocations = getAvailableInvocations(info.level, pactBoon || "", currentInvocations);
             const priorInvocations = Object.entries(allInvocationSelections || {}).filter(([l]) => Number(l) < info.level).flatMap(([, invs]) => invs);
             const hasPriorInvocations = info.level > 2 && priorInvocations.length > 0;
 
