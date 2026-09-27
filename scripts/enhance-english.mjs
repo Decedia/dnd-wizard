@@ -15,10 +15,10 @@ if (!apiKey) {
 }
 
 const spellFile = path.resolve("src/locales/parts/en/2014_spells.json");
-const BATCH_SIZE = 1;
+const BATCH_SIZE = 2;
 const MAX_RETRIES = 3;
 const RETRY_BASE_DELAY_MS = 2000;
-const BATCH_DELAY_MS = 2000;
+const BATCH_DELAY_MS = 3000;
 const PROGRESS_FILE = path.resolve("src/locales/parts/en/.enhance-progress.json");
 
 const SYSTEM_PROMPT = "You are an expert D&D 5e technical writer. Rewrite the provided spell or feature text into a JSON object with three required keys: 'summary', 'mechanics_badges', and 'description'. RULES FOR SUMMARY: * Must be a detailed, actionable overview at least 20 words long. RULES FOR MECHANICS_BADGES: * An array of short string badges for core mechanics (e.g., ['1 Action', '150 ft', 'DEX Save'], ['WIS (Perception) Check'], or ['1 Reaction', 'Self']). RULES FOR DESCRIPTION & TEXT FORMATTING: * Write clean Markdown for the description. Use standard dashes (-) for lists, NEVER asterisks (*). * Apply the dice badge to any dice-related text (e.g., 1d6, 8d6). * Apply the damage type badge to any damage-related text (e.g., fire, slashing). * Do not alter any core game rules or stats. STRICT OUTPUT FORMAT: Output STRICTLY raw JSON. Do NOT wrap the response in markdown blocks like ```json. Do NOT include any intro or conversational text.";
