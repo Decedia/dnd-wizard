@@ -10,10 +10,11 @@ import { LightningIcon as Lightning, PlusIcon as Plus, CheckIcon as Check, Circl
 import { SpellSelectionModal } from "../modals/SpellSelectionModal";
 import { BUFF_DEFINITIONS, type BuffDefinition, parseDurationToTurns, advanceTurn } from "@/lib/spellEffects";
 import { SourceBadge } from "@/components/SourceBadge";
-import { SpellMechanicsChips } from "./SpellMechanicsChips";
 import { getSpellMechanic } from "@/lib/spell-mechanics-accessor";
 import { getSpellSchoolStyle } from "@/lib/spell-schools";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { BottomSheet } from "@/components/modals/BottomSheet";
+import { DiceText } from "@/components/DiceText";
 
 interface SpellsSectionProps {
   character: Character;
@@ -46,7 +47,19 @@ interface UnifiedSpell {
   escapeCondition?: string | null;
   immunities?: string | null;
   upcastEffect?: string | null;
+  classes?: string[];
 }
+
+const SCHOOL_COLORS: Record<string, string> = {
+  Abjuration: "bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-500/20 dark:text-blue-300 dark:border-blue-500/30",
+  Conjuration: "bg-yellow-100 text-yellow-700 border-yellow-200 dark:bg-yellow-500/20 dark:text-yellow-300 dark:border-yellow-500/30",
+  Divination: "bg-emerald-100 text-emerald-700 border-emerald-200 dark:bg-emerald-500/20 dark:text-emerald-300 dark:border-emerald-500/30",
+  Enchantment: "bg-pink-100 text-pink-700 border-pink-200 dark:bg-pink-500/20 dark:text-pink-300 dark:border-pink-500/30",
+  Evocation: "bg-orange-100 text-orange-700 border-orange-200 dark:bg-orange-500/20 dark:text-orange-300 dark:border-orange-500/30",
+  Illusion: "bg-purple-100 text-purple-700 border-purple-200 dark:bg-purple-500/20 dark:text-purple-300 dark:border-purple-500/30",
+  Necromancy: "bg-green-100 text-green-700 border-green-200 dark:bg-green-500/20 dark:text-green-300 dark:border-green-500/30",
+  Transmutation: "bg-red-100 text-red-700 border-red-200 dark:bg-red-500/20 dark:text-red-300 dark:border-red-500/30",
+};
 
 export function SpellsSection({ character, onChange, editMode = true }: SpellsSectionProps) {
   const { onFieldBlur, showDescriptions } = useCharacterSheet();
@@ -55,6 +68,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
   const srdSpells = data?.spells || [];
   const [showSpellModal, setShowSpellModal] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
+  const [selectedSpell, setSelectedSpell] = useState<UnifiedSpell | null>(null);
 
   const preparationCaster = isPreparationCaster(character);
   const maxPrepared = getMaxPreparedSpells(character);
@@ -85,6 +99,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
       const duration = srdSpell?.duration || "";
       const srdSource = (srdSpell as any)?.source || "PHB";
       const school = (srdSpell as any)?.school || "";
+      const classes = (srdSpell as any)?.classes || [];
       const mechanic = s.source === "srd" && s.srdSpellName
         ? getSpellMechanic(s.srdSpellName, srdSource) || getSpellMechanic(s.srdSpellName)
         : undefined;
@@ -100,6 +115,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
         duration,
         srdSource,
         school,
+        classes,
         effectSummary: srdSpell?.effectSummary || "",
         mechanic,
         ritual: (srdSpell as any)?.ritual || false,
@@ -124,13 +140,11 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
       existing.push(spell);
       map.set(spell.level, existing);
     }
-    // Sort each level's spells by source (PHB first), then alphabetically
     for (const [level, spells] of map.entries()) {
       spells.sort((a, b) => {
         const sourceA = a.srdSource || "PHB";
         const sourceB = b.srdSource || "PHB";
         if (sourceA !== sourceB) {
-          // PHB first, then alphabetical by source
           if (sourceA === "PHB") return -1;
           if (sourceB === "PHB") return 1;
           return sourceA.localeCompare(sourceB);
@@ -220,6 +234,12 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
     return `${level}th`;
   };
 
+  const getSummary = (spell: UnifiedSpell) => {
+    if (spell.effectSummary) return spell.effectSummary;
+    const desc = spell.description || "";
+    return desc.slice(0, 180);
+  };
+
   return (
     <SectionCard id="spells" title={t("section.spells")} icon={<Lightning className="h-5 w-5" />}>
       {preparationCaster && (
@@ -270,91 +290,99 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
         </button>
       )}
 
-      <div className="space-y-2">
+      <div className="flex flex-col gap-3">
         {activeSpells.map((spell) => {
           const spellPrepared = isPrepared(spell.id);
           const spellUsed = (character.spellsUsedThisTurn || []).includes(spell.id);
           const buffDef = getSpellBuff(spell.name);
+          const summary = getSummary(spell);
+          const schoolStyle = spell.school ? getSpellSchoolStyle(spell.school) : undefined;
+
           return (
-            <div key={spell.id} className={`card p-3 ${spellPrepared ? "border-l-4 border-[var(--color-success-500)]" : ""} ${spellUsed ? "opacity-50" : ""}`}>
-              <div className="flex items-center gap-2">
-                <span className={`text-[17px] font-semibold ${spellUsed ? "text-[var(--color-text-muted)] line-through" : "text-[var(--color-text-primary)]"}`}>{spell.name}</span>
+            <button
+              key={spell.id}
+              type="button"
+              onClick={() => setSelectedSpell(spell)}
+              className={`w-full text-left rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4 transition-all ${
+                spellPrepared ? "border-l-4 border-[var(--color-success-500)]" : ""
+              } ${spellUsed ? "opacity-50" : "active:scale-[0.98] hover:border-[var(--color-border-active)]"}`}
+            >
+              <div className="flex items-start justify-between gap-2">
+                <h3 className="text-sm font-bold text-[var(--color-text-primary)] leading-tight">{spell.name}</h3>
+                <div className="flex shrink-0 gap-1.5">
+                  <span className="rounded-full border border-[var(--color-border)] bg-[var(--color-bg)] px-2 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)]">
+                    {t("glossary.level", "Level")} {spell.level}
+                  </span>
+                  {schoolStyle && (() => {
+                    const schoolColor = spell.school ? SCHOOL_COLORS[spell.school] : undefined;
+                    return (
+                      <span className={`rounded-full border px-2 py-0.5 text-[10px] font-semibold ${schoolColor || "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border-[var(--color-border)]"}`}>
+                        {schoolStyle.label}
+                      </span>
+                    );
+                  })()}
+                </div>
               </div>
-              <div className="mt-1">
-                <SpellMechanicsChips
-                  mechanic={spell.mechanic}
-                  effectSummary={spell.effectSummary}
-                  description={spell.description}
-                  showDescriptions={showDescriptions}
-                  character={character}
-                  ritual={spell.ritual}
-                  actionType={spell.actionType}
-                  onHit={spell.onHit}
-                  saveType={spell.saveType}
-                  onFailedSave={spell.onFailedSave}
-                  onSuccessfulSave={spell.onSuccessfulSave}
-                  ongoingEffect={spell.ongoingEffect}
-                  escapeCondition={spell.escapeCondition}
-                  immunities={spell.immunities}
-                  upcastEffect={spell.upcastEffect}
-                  components={spell.components}
-                  school={spell.school}
-                  srdSource={spell.srdSource}
-                />
-              </div>
+
               {spell.duration && (() => {
                 const activeBuff = buffDef ? (character.activeBuffs || []).find(b => b.spellId === buffDef.id) : undefined;
                 if (activeBuff && activeBuff.turnsRemaining !== null && activeBuff.turnsRemaining !== undefined) {
                   return (
-                    <span className="text-[10px] text-[var(--color-accent)] font-semibold">
+                    <span className="mt-2 text-[10px] text-[var(--color-accent)] font-semibold">
                       ⏱ {activeBuff.turnsRemaining} turn{activeBuff.turnsRemaining !== 1 ? "s" : ""}
                     </span>
                   );
                 }
                 return (
-                  <span className="text-[10px] text-[var(--color-text-muted)]">⏱ {spell.duration}</span>
+                  <span className="mt-2 text-[10px] text-[var(--color-text-muted)]">⏱ {spell.duration}</span>
                 );
               })()}
-              <div className="flex items-center gap-1 mt-2">
+
+              {summary && (
+                <p className="mt-2 text-sm text-[var(--color-text-secondary)] line-clamp-2">{summary}</p>
+              )}
+
+              <div className="flex items-center gap-1 mt-3">
                 {preparationCaster && spell.level > 0 && (
                   <button
                     type="button"
-                    onClick={() => togglePrepared(spell.id)}
+                    onClick={(e) => { e.stopPropagation(); togglePrepared(spell.id); }}
                     className={`px-2 py-1 text-[10px] font-bold rounded transition-colors ${
                       spellPrepared
                         ? "bg-[var(--color-success-500)] text-[var(--color-surface)]"
                         : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                     }`}
-                     title={spellPrepared ? t("spells.clickToUnprepare") : t("spells.clickToPrepare")}
+                    title={spellPrepared ? t("spells.clickToUnprepare") : t("spells.clickToPrepare")}
                   >
-                     {spellPrepared ? t("spells.prepared") : t("spells.prepare")}
+                    {spellPrepared ? t("spells.prepared") : t("spells.prepare")}
                   </button>
                 )}
                 <button
                   type="button"
-                  onClick={() => toggleSpellUsed(spell.id, buffDef, spell.duration)}
+                  onClick={(e) => { e.stopPropagation(); toggleSpellUsed(spell.id, buffDef, spell.duration); }}
                   className={`flex items-center gap-1 px-2 py-1 text-[10px] font-bold rounded transition-colors ${
                     spellUsed
                       ? "bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)]"
                       : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
                   }`}
-                   title={spellUsed ? t("spells.clickToMarkUnused") : buffDef ? t("spells.clickToMarkUsed") : t("spells.clickToMarkUsed")}
+                  title={spellUsed ? t("spells.clickToMarkUnused") : buffDef ? t("spells.clickToMarkUsed") : t("spells.clickToMarkUsed")}
                 >
-                   {buffDef ? <Sparkle className="h-4 w-4" /> : <Clock className="h-4 w-4" />}
-                   {spellUsed ? t("spells.used") : t("spells.use")}
+                  {buffDef ? <Sparkle className="h-4 w-4" /> : <Clock className="h-4 w-4" />}
+                  {spellUsed ? t("spells.used") : t("spells.use")}
                   {buffDef?.concentration && <span className="text-[8px] opacity-70">C</span>}
                 </button>
                 {spellUsed && buffDef?.concentration && (
                   <button
                     type="button"
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation();
                       const currentBuffs = character.activeBuffs || [];
                       onChange({ activeBuffs: currentBuffs.filter(b => b.spellId !== buffDef.id) });
                       const currentUsed = character.spellsUsedThisTurn || [];
                       onChange({ spellsUsedThisTurn: currentUsed.filter(id => id !== spell.id) });
                     }}
                     className="flex items-center justify-center w-5 h-5 text-[10px] font-bold rounded border border-[var(--color-error-200)] text-[var(--color-error-600)] hover:bg-[var(--color-error-50)] hover:border-[var(--color-error-300)] transition-all"
-                     title={t("spells.breakConcentration")}
+                    title={t("spells.breakConcentration")}
                   >
                     ✕
                   </button>
@@ -362,15 +390,15 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                 {editMode && (
                   <button
                     type="button"
-                    onClick={() => removeSpell(spell.id)}
+                    onClick={(e) => { e.stopPropagation(); removeSpell(spell.id); }}
                     className="text-[var(--color-text-secondary)] hover:text-[var(--color-error-500)]"
-                     aria-label={t("spells.remove")}
+                    aria-label={t("spells.remove")}
                   >
                     <X className="h-4 w-4" />
                   </button>
                 )}
               </div>
-            </div>
+            </button>
           );
         })}
       </div>
@@ -395,6 +423,38 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
           maxCantripsKnown={maxCantripsKnown}
           maxLevel={maxLevel}
         />
+      )}
+
+      {selectedSpell && (
+        <BottomSheet
+          isOpen={!!selectedSpell}
+          onClose={() => setSelectedSpell(null)}
+          title={selectedSpell.name}
+          showHeader={true}
+        >
+          <div className="px-4 py-4 space-y-3">
+            {selectedSpell.effectSummary && (
+              <p className="text-xs text-[var(--color-text-muted)] italic leading-relaxed">{selectedSpell.effectSummary}</p>
+            )}
+            <DiceText text={selectedSpell.description || ""} />
+            <div className="flex flex-wrap gap-2 pt-1">
+              <span className="rounded-full border border-[var(--color-border)] bg-[var(--color-bg)] px-2.5 py-1 text-[10px] font-semibold text-[var(--color-text-secondary)]">
+                {t("glossary.level", "Level")} {selectedSpell.level}
+              </span>
+              {selectedSpell.school && (() => {
+                const schoolColor = SCHOOL_COLORS[selectedSpell.school];
+                return (
+                  <span className={`rounded-full border px-2.5 py-1 text-[10px] font-semibold ${schoolColor || "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border-[var(--color-border)]"}`}>
+                    {selectedSpell.school}
+                  </span>
+                );
+              })()}
+            </div>
+            {(selectedSpell.classes || []).length > 0 && (
+              <p className="text-xs text-[var(--color-text-muted)]">{(selectedSpell.classes || []).join(", ")}</p>
+            )}
+          </div>
+        </BottomSheet>
       )}
     </SectionCard>
   );
