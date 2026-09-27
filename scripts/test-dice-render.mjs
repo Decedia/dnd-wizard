@@ -40,7 +40,26 @@ const DAMAGE_TYPES = [
   "thunder",
 ];
 
+const STATUSES = [
+  "blinded",
+  "charmed",
+  "deafened",
+  "frightened",
+  "grappled",
+  "incapacitated",
+  "invisible",
+  "paralyzed",
+  "petrified",
+  "poisoned",
+  "prone",
+  "restrained",
+  "stunned",
+  "unconscious",
+  "exhaustion",
+];
+
 const DAMAGE_TYPE_RE = new RegExp(`\\b(${DAMAGE_TYPES.join("|")})\\s+damage\\b`, "gi");
+const STATUS_RE = new RegExp(`\\b(${STATUSES.join("|")})\\b`, "gi");
 
 function highlightDice(text) {
   const parts = [];
@@ -87,6 +106,28 @@ function splitDamageTokens(value) {
   return tokens;
 }
 
+function splitStatusTokens(value) {
+  const tokens = [];
+  let lastIndex = 0;
+  let match;
+
+  while ((match = STATUS_RE.exec(value)) !== null) {
+    if (match.index > lastIndex) {
+      tokens.push({ type: "text", value: value.slice(lastIndex, match.index) });
+    }
+
+    tokens.push({ type: "status", value: match[0] });
+
+    lastIndex = STATUS_RE.lastIndex;
+  }
+
+  if (lastIndex < value.length) {
+    tokens.push({ type: "text", value: value.slice(lastIndex) });
+  }
+
+  return tokens;
+}
+
 function renderTextSegment(value) {
   const nodes = [];
   const segments = value.split(/(\*\*[^*]+\*\*)/g);
@@ -119,7 +160,15 @@ function renderDiceText(text) {
         return `[DAMAGE:${token.value}]`;
       }
 
-      return renderTextSegment(token.value);
+      const statusTokens = splitStatusTokens(token.value);
+
+      return statusTokens.map((statusToken, statusIdx) => {
+        if (statusToken.type === "status") {
+          return `[STATUS:${statusToken.value}]`;
+        }
+
+        return renderTextSegment(statusToken.value);
+      }).join("");
     }).join("");
   }).join("");
 }
@@ -130,9 +179,9 @@ async function main() {
   const data = JSON.parse(raw);
 
   const grouped = groupSpells(data);
-  const testSpells = ["acid-splash", "blade-bite", "booming-blade"];
+  const testSpells = ["protection-from-evil-and-good", "ray-of-sickness", "acid-splash"];
 
-  console.log("\n=== Dice + Damage Rendering Test for 3 Spells ===\n");
+  console.log("\n=== Dice + Damage + Status Rendering Test ===\n");
 
   for (const name of testSpells) {
     const entry = grouped[name];
@@ -145,7 +194,7 @@ async function main() {
     console.log(`\n--- ${name} ---`);
     console.log("Original description:");
     console.log(entry.description);
-    console.log("\nRendered with dice + damage tags:");
+    console.log("\nRendered with dice + damage + status tags:");
     console.log(renderDiceText(entry.description));
     console.log("\n---\n");
   }

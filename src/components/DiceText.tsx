@@ -9,6 +9,17 @@ import {
   PsychicWaveIcon,
   HolyGrailIcon,
   SparklesIcon,
+  HeartIcon,
+  WarningCircleIcon,
+  PoisonBottleIcon,
+  EyeSlashIcon,
+  EarIcon,
+  HandIcon,
+  LockIcon,
+  ShieldCheckIcon,
+  MoonIcon,
+  LightningBoltIcon,
+  FistIcon,
 } from "@/components/icons";
 
 const DICE_RE = /\*\*(\d+d\d+)\*\*|(?<!\*)(\d+d\d+)(?!\*)/g;
@@ -29,7 +40,26 @@ const DAMAGE_TYPES = [
   "thunder",
 ];
 
+const STATUSES = [
+  "blinded",
+  "charmed",
+  "deafened",
+  "frightened",
+  "grappled",
+  "incapacitated",
+  "invisible",
+  "paralyzed",
+  "petrified",
+  "poisoned",
+  "prone",
+  "restrained",
+  "stunned",
+  "unconscious",
+  "exhaustion",
+];
+
 const DAMAGE_TYPE_RE = new RegExp(`\\b(${DAMAGE_TYPES.join("|")})\\s+damage\\b`, "gi");
+const STATUS_RE = new RegExp(`\\b(${STATUSES.join("|")})\\b`, "gi");
 
 const DAMAGE_STYLE: Record<string, string> = {
   acid: "bg-[var(--color-damage-acid-bg)] text-[var(--color-damage-acid)] border-[var(--color-damage-acid)]",
@@ -45,6 +75,24 @@ const DAMAGE_STYLE: Record<string, string> = {
   radiant: "bg-[var(--color-damage-radiant-bg)] text-[var(--color-damage-radiant)] border-[var(--color-damage-radiant)]",
   slashing: "bg-[var(--color-damage-slashing-bg)] text-[var(--color-damage-slashing)] border-[var(--color-damage-slashing)]",
   thunder: "bg-[var(--color-damage-thunder-bg)] text-[var(--color-damage-thunder)] border-[var(--color-damage-thunder)]",
+};
+
+const STATUS_STYLE: Record<string, string> = {
+  blinded: "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border-[var(--color-border)]",
+  charmed: "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border-[var(--color-border)]",
+  deafened: "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border-[var(--color-border)]",
+  frightened: "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border-[var(--color-border)]",
+  grappled: "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border-[var(--color-border)]",
+  incapacitated: "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border-[var(--color-border)]",
+  invisible: "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border-[var(--color-border)]",
+  paralyzed: "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border-[var(--color-border)]",
+  petrified: "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border-[var(--color-border)]",
+  poisoned: "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border-[var(--color-border)]",
+  prone: "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border-[var(--color-border)]",
+  restrained: "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border-[var(--color-border)]",
+  stunned: "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border-[var(--color-border)]",
+  unconscious: "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border-[var(--color-border)]",
+  exhaustion: "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border-[var(--color-border)]",
 };
 
 const DAMAGE_ICON: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -63,8 +111,26 @@ const DAMAGE_ICON: Record<string, React.ComponentType<{ className?: string }>> =
   thunder: ThunderStruckIcon,
 };
 
+const STATUS_ICON: Record<string, React.ComponentType<{ className?: string }>> = {
+  blinded: EyeSlashIcon,
+  charmed: HeartIcon,
+  deafened: EarIcon,
+  frightened: WarningCircleIcon,
+  grappled: HandIcon,
+  incapacitated: SparklesIcon,
+  invisible: EyeSlashIcon,
+  paralyzed: LightningBoltIcon,
+  petrified: SparklesIcon,
+  poisoned: PoisonBottleIcon,
+  prone: FistIcon,
+  restrained: LockIcon,
+  stunned: SparklesIcon,
+  unconscious: MoonIcon,
+  exhaustion: WarningCircleIcon,
+};
+
 export function highlightDice(text: string) {
-  const parts: Array<{ type: "text" | "dice" | "damage"; value: string; damageType?: string }> = [];
+  const parts: Array<{ type: "text" | "dice" | "damage" | "status"; value: string; damageType?: string; statusType?: string }> = [];
   let lastIndex = 0;
   let match;
 
@@ -87,7 +153,7 @@ export function highlightDice(text: string) {
 }
 
 function splitDamageTokens(value: string) {
-  const tokens: Array<{ type: "text" | "bold" | "damage"; value: string; damageType?: string }> = [];
+  const tokens: Array<{ type: "text" | "bold" | "damage" | "status"; value: string; damageType?: string; statusType?: string }> = [];
   let lastIndex = 0;
   let match;
 
@@ -99,6 +165,28 @@ function splitDamageTokens(value: string) {
     tokens.push({ type: "damage", value: match[0], damageType: match[1].toLowerCase() });
 
     lastIndex = DAMAGE_TYPE_RE.lastIndex;
+  }
+
+  if (lastIndex < value.length) {
+    tokens.push({ type: "text", value: value.slice(lastIndex) });
+  }
+
+  return tokens;
+}
+
+function splitStatusTokens(value: string) {
+  const tokens: Array<{ type: "text" | "bold" | "damage" | "status"; value: string; statusType?: string }> = [];
+  let lastIndex = 0;
+  let match;
+
+  while ((match = STATUS_RE.exec(value)) !== null) {
+    if (match.index > lastIndex) {
+      tokens.push({ type: "text", value: value.slice(lastIndex, match.index) });
+    }
+
+    tokens.push({ type: "status", value: match[0], statusType: match[1].toLowerCase() });
+
+    lastIndex = STATUS_RE.lastIndex;
   }
 
   if (lastIndex < value.length) {
@@ -166,7 +254,31 @@ export function DiceText({ text }: { text: string }) {
                 );
               }
 
-              return <span key={`txt-${tokenIdx}`}>{renderTextSegment(token.value)}</span>;
+              const statusTokens = splitStatusTokens(
+                typeof token.value === "string" ? token.value : "",
+              );
+
+              return (
+                <span key={`txt-${tokenIdx}`}>
+                  {statusTokens.map((statusToken, statusIdx) => {
+                    if (statusToken.type === "status") {
+                      const style = STATUS_STYLE[statusToken.statusType || ""] || "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border-[var(--color-border)]";
+                      const Icon = statusToken.statusType ? STATUS_ICON[statusToken.statusType] : null;
+                      return (
+                        <span
+                          key={`status-${statusIdx}`}
+                          className={`inline-flex items-center gap-1 rounded-md border px-1.5 py-0.5 text-xs font-semibold ${style}`}
+                        >
+                          {Icon && <Icon className="h-3.5 w-3.5" />}
+                          {statusToken.value}
+                        </span>
+                      );
+                    }
+
+                    return <span key={`text-${statusIdx}`}>{renderTextSegment(statusToken.value)}</span>;
+                  })}
+                </span>
+              );
             })}
           </span>
         );
