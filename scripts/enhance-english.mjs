@@ -15,6 +15,11 @@ if (!apiKey) {
 }
 
 const spellFile = path.resolve("src/locales/parts/en/2014_spells.json");
+const BATCH_SIZE = 5;
+const MAX_RETRIES = 3;
+const RETRY_BASE_DELAY_MS = 2000;
+const BATCH_DELAY_MS = 2000;
+const PROGRESS_FILE = path.resolve("src/locales/parts/en/.enhance-progress.json");
 
 const SYSTEM_PROMPT = "You are an expert D&D 5e technical writer. Rewrite the provided text into a JSON object with 'summary' and 'description'. RULES FOR SUMMARY: It MUST be at least 20 words long. It should be a detailed, actionable overview of the spell or feature. The summary must be DIFFERENT from the description - do not copy or repeat the description text verbatim. Focus on what the spell does and when to use it. RULES FOR DESCRIPTION: Clean Markdown, bolding dice rolls like 8d6, using bullet points for lists. Do not change rules. Keep every dice roll, damage type, and status condition in the text exactly as it appears in the rules so they can be rendered as inline badges. OUTPUT STRICTLY RAW JSON. Do not use markdown formatting blocks like ```json. Do not include conversational text.";
 
@@ -45,6 +50,54 @@ function groupSpells(data) {
   return grouped;
 }
 
+function loadProgress() {
+  try {
+    if (fs.existsSync(PROGRESS_FILE)) {
+      const raw = fs.readFileSync(PROGRESS_FILE, "utf-8");
+      const progress = JSON.parse(raw);
+      if (Array.isArray(progress.completed)) {
+        return new Set(progress.completed);
+      }
+    }
+  } catch (err) {
+    console.warn("Could not load progress file:", err.message);
+  }
+  return new Set();
+}
+
+function saveProgress(completedSet) {
+  try {
+    fs.writeFileSync(PROGRESS_FILE, JSON.stringify({ completed: Array.from(completedSet) }, null, 2) + "\n", "utf-8");
+  } catch (err) {
+    console.warn("Could not save progress:", err.message);
+  }
+}
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function callNvidiaNimWithRetry(batch, retries = MAX_RETRIES) {
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      return await callNvidiaNim(batch);
+    } catch (err) {
+      const isLastAttempt = attempt === retries;
+      const status = err.response?.status;
+      const shouldRetry = !isLastAttempt && (status === 429 || status === 502 || status === 503 || status === 524 || err.code === "ECONNABORTED" || err.code === "ETIMEDOUT");
+
+      if (shouldRetry) {
+        const delay = RETRY_BASE_DELAY_MS * Math.pow(2, attempt - 1);
+        console.warn(`  Retry ${attempt}/${retries} after ${delay}ms due to: ${err.message}`);
+        await sleep(delay);
+        continue;
+      }
+
+      throw err;
+    }
+  }
+}
+
 async function callNvidiaNim(batch) {
   const userPrompt = `Rewrite each spell below into {summary, description}. Keep rules exact. Output ONLY a JSON object mapping spell name to {summary, description}. No markdown, no extra text.\n\n` + JSON.stringify(batch);
 
@@ -63,6 +116,7 @@ async function callNvidiaNim(batch) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${apiKey}`,
     },
+    timeout: 110000,
   });
 
   const content = response.data.choices?.[0]?.message?.content;
@@ -92,8 +146,12 @@ async function main() {
   const spellNames = Object.keys(grouped);
   console.log(`Total spells found: ${spellNames.length}`);
 
-  const batches = chunkArray(spellNames, 1);
-  console.log(`Batch size: 1, Total batches: ${batches.length}`);
+  const completedSet = loadProgress();
+  const remaining = spellNames.filter((name) => !completedSet.has(name));
+  console.log(`Already completed: ${completedSet.size}, Remaining: ${remaining.length}`);
+
+  const batches = chunkArray(remaining, BATCH_SIZE);
+  console.log(`Batch size: ${BATCH_SIZE}, Total batches: ${batches.length}`);
 
   for (let batchIndex = 0; batchIndex < batches.length; batchIndex++) {
     const batch = batches[batchIndex];
@@ -113,57 +171,56 @@ async function main() {
       continue;
     }
 
-    console.log(`Batch ${batchIndex + 1}/${batches.length}: enhancing ${spellNamesInBatch.join(", ")}...`);
+    console.log(`\nBatch ${batchIndex + 1}/${batches.length}: enhancing ${spellNamesInBatch.join(", ")}...`);
+
+    const result = await callNvidiaNimWithRetry(payload);
 
     for (const name of spellNamesInBatch) {
-      const singlePayload = { [name]: payload[name] };
+      const enhanced = result[name];
 
-      const originalDescription = grouped[name].description;
-      const originalSummary = grouped[name].effectSummary || "";
+      if (!enhanced || typeof enhanced !== "object") {
+        console.warn(`  Skipped ${name}: no enhanced data returned`);
+        completedSet.add(name);
+        saveProgress(completedSet);
+        continue;
+      }
+
+      const summary = typeof enhanced.summary === "string" ? enhanced.summary : "";
+      const description = typeof enhanced.description === "string" ? enhanced.description : "";
 
       console.log(`\n--- ${name} ---`);
-      console.log(`Original summary: ${originalSummary}`);
-      console.log(`Original description: ${originalDescription.slice(0, 200)}${originalDescription.length > 200 ? "..." : ""}`);
+      console.log(`Original summary: ${grouped[name].effectSummary || ""}`);
+      console.log(`Original description: ${grouped[name].description.slice(0, 200)}${grouped[name].description.length > 200 ? "..." : ""}`);
+      console.log(`New summary: ${summary}`);
+      console.log(`New description: ${description.slice(0, 200)}${description.length > 200 ? "..." : ""}`);
 
-      try {
-        const result = await callNvidiaNim(singlePayload);
-        const enhanced = result[name];
-
-        if (!enhanced || typeof enhanced !== "object") {
-          console.warn(`  Skipped ${name}: no enhanced data returned`);
-          continue;
-        }
-
-        const summary = typeof enhanced.summary === "string" ? enhanced.summary : "";
-        const description = typeof enhanced.description === "string" ? enhanced.description : "";
-
-        console.log(`New summary: ${summary}`);
-        console.log(`New description: ${description.slice(0, 200)}${description.length > 200 ? "..." : ""}`);
-
-        if (summary) {
-          data[`2014_spells.${name}.effectSummary`] = summary;
-        }
-        if (description) {
-          data[`2014_spells.${name}.description`] = description;
-          data[`2014_spells.${name}.fullDescription`] = description;
-        }
-
-        grouped[name].effectSummary = summary;
-        grouped[name].description = description;
-        grouped[name].fullDescription = description;
-
-        console.log(`  Updated ${name}`);
-        fs.writeFileSync(spellFile, JSON.stringify(data, null, 2) + "\n", "utf-8");
-      } catch (err) {
-        console.error(`  Failed ${name}:`, err.message);
+      if (summary) {
+        data[`2014_spells.${name}.effectSummary`] = summary;
       }
+      if (description) {
+        data[`2014_spells.${name}.description`] = description;
+        data[`2014_spells.${name}.fullDescription`] = description;
+      }
+
+      grouped[name].effectSummary = summary;
+      grouped[name].description = description;
+      grouped[name].fullDescription = description;
+
+      console.log(`  Updated ${name}`);
+      completedSet.add(name);
+      fs.writeFileSync(spellFile, JSON.stringify(data, null, 2) + "\n", "utf-8");
+      saveProgress(completedSet);
     }
 
-    console.log(`\nBatch ${batchIndex + 1}/${batches.length} complete. Saved progress.\n`);
+    console.log(`\nBatch ${batchIndex + 1}/${batches.length} complete.`);
+
+    if (batchIndex < batches.length - 1) {
+      console.log(`Waiting ${BATCH_DELAY_MS / 1000}s before next batch...\n`);
+      await sleep(BATCH_DELAY_MS);
+    }
   }
 
-  console.log("Done.");
+  console.log("\nDone.");
 }
 
 main();
-
