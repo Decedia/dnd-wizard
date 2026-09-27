@@ -8,7 +8,6 @@ import {
   DeathSkullIcon,
   PsychicWaveIcon,
   HolyGrailIcon,
-  SoundWavesIcon,
   SparklesIcon,
 } from "@/components/icons";
 
@@ -33,19 +32,19 @@ const DAMAGE_TYPES = [
 const DAMAGE_TYPE_RE = new RegExp(`\\b(${DAMAGE_TYPES.join("|")})\\s+damage\\b`, "gi");
 
 const DAMAGE_STYLE: Record<string, string> = {
-  acid: "bg-lime-100 text-lime-700 border-lime-200 dark:bg-lime-500/20 dark:text-lime-200 dark:border-lime-500/30",
-  bludgeoning: "bg-stone-100 text-stone-700 border-stone-200 dark:bg-stone-500/20 dark:text-stone-200 dark:border-stone-500/30",
-  cold: "bg-sky-100 text-sky-700 border-sky-200 dark:bg-sky-500/20 dark:text-sky-200 dark:border-sky-500/30",
-  fire: "bg-orange-100 text-orange-700 border-orange-200 dark:bg-orange-500/20 dark:text-orange-300 dark:border-orange-500/30",
-  force: "bg-violet-100 text-violet-700 border-violet-200 dark:bg-violet-500/20 dark:text-violet-200 dark:border-violet-500/30",
-  lightning: "bg-yellow-100 text-yellow-700 border-yellow-200 dark:bg-yellow-500/20 dark:text-yellow-200 dark:border-yellow-500/30",
-  necrotic: "bg-green-100 text-green-700 border-green-200 dark:bg-green-500/20 dark:text-green-200 dark:border-green-500/30",
-  piercing: "bg-stone-100 text-stone-700 border-stone-200 dark:bg-stone-500/20 dark:text-stone-200 dark:border-stone-500/30",
-  poison: "bg-emerald-100 text-emerald-700 border-emerald-200 dark:bg-emerald-500/20 dark:text-emerald-300 dark:border-emerald-500/30",
-  psychic: "bg-pink-100 text-pink-700 border-pink-200 dark:bg-pink-500/20 dark:text-pink-200 dark:border-pink-500/30",
-  radiant: "bg-amber-100 text-amber-700 border-amber-200 dark:bg-amber-500/20 dark:text-amber-200 dark:border-amber-500/30",
-  slashing: "bg-stone-100 text-stone-700 border-stone-200 dark:bg-stone-500/20 dark:text-stone-200 dark:border-stone-500/30",
-  thunder: "bg-indigo-100 text-indigo-700 border-indigo-200 dark:bg-indigo-500/20 dark:text-indigo-300 dark:border-indigo-500/30",
+  acid: "bg-[var(--color-damage-acid-bg)] text-[var(--color-damage-acid)] border-[var(--color-damage-acid)]",
+  bludgeoning: "bg-[var(--color-damage-bludgeoning-bg)] text-[var(--color-damage-bludgeoning)] border-[var(--color-damage-bludgeoning)]",
+  cold: "bg-[var(--color-damage-cold-bg)] text-[var(--color-damage-cold)] border-[var(--color-damage-cold)]",
+  fire: "bg-[var(--color-damage-fire-bg)] text-[var(--color-damage-fire)] border-[var(--color-damage-fire)]",
+  force: "bg-[var(--color-damage-force-bg)] text-[var(--color-damage-force)] border-[var(--color-damage-force)]",
+  lightning: "bg-[var(--color-damage-lightning-bg)] text-[var(--color-damage-lightning)] border-[var(--color-damage-lightning)]",
+  necrotic: "bg-[var(--color-damage-necrotic-bg)] text-[var(--color-damage-necrotic)] border-[var(--color-damage-necrotic)]",
+  piercing: "bg-[var(--color-damage-piercing-bg)] text-[var(--color-damage-piercing)] border-[var(--color-damage-piercing)]",
+  poison: "bg-[var(--color-damage-poison-bg)] text-[var(--color-damage-poison)] border-[var(--color-damage-poison)]",
+  psychic: "bg-[var(--color-damage-psychic-bg)] text-[var(--color-damage-psychic)] border-[var(--color-damage-psychic)]",
+  radiant: "bg-[var(--color-damage-radiant-bg)] text-[var(--color-damage-radiant)] border-[var(--color-damage-radiant)]",
+  slashing: "bg-[var(--color-damage-slashing-bg)] text-[var(--color-damage-slashing)] border-[var(--color-damage-slashing)]",
+  thunder: "bg-[var(--color-damage-thunder-bg)] text-[var(--color-damage-thunder)] border-[var(--color-damage-thunder)]",
 };
 
 const DAMAGE_ICON: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -119,7 +118,7 @@ function renderTextSegment(value: string): React.ReactNode[] {
     if (segment.startsWith("**") && segment.endsWith("**")) {
       const inner = segment.slice(2, -2);
       nodes.push(
-        <strong key={`bold-${segIdx}`} className="font-semibold text-slate-900 dark:text-slate-100">
+        <strong key={`bold-${segIdx}`} className="font-semibold text-[var(--color-text-primary)]">
           {inner}
         </strong>,
       );
@@ -135,13 +134,13 @@ export function DiceText({ text }: { text: string }) {
   const parts = useMemo(() => highlightDice(text), [text]);
 
   return (
-    <span className="text-sm text-slate-800 dark:text-slate-200 leading-relaxed">
+    <span className="text-sm text-[var(--color-text-secondary)] leading-relaxed">
       {parts.map((part, idx) => {
         if (part.type === "dice") {
           return (
             <span
               key={idx}
-              className="inline-flex items-center rounded-md border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 text-xs font-bold text-slate-800 dark:text-slate-200 mx-0.5"
+              className="inline-flex items-center rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] px-1.5 py-0.5 text-xs font-bold text-[var(--color-text-primary)] mx-0.5"
             >
               {part.value}
             </span>
@@ -154,7 +153,7 @@ export function DiceText({ text }: { text: string }) {
           <span key={idx}>
             {damageTokens.map((token, tokenIdx) => {
               if (token.type === "damage") {
-                const style = DAMAGE_STYLE[token.damageType || ""] || "bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-600";
+                const style = DAMAGE_STYLE[token.damageType || ""] || "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border-[var(--color-border)]";
                 const Icon = token.damageType ? DAMAGE_ICON[token.damageType] : null;
                 return (
                   <span
