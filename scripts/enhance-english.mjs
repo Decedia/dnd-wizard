@@ -15,7 +15,7 @@ if (!apiKey) {
 }
 
 const spellFile = path.resolve("src/locales/parts/en/2014_spells.json");
-const BATCH_SIZE = 5;
+const BATCH_SIZE = 1;
 const MAX_RETRIES = 3;
 const RETRY_BASE_DELAY_MS = 2000;
 const BATCH_DELAY_MS = 2000;
@@ -84,7 +84,7 @@ async function callNvidiaNimWithRetry(batch, retries = MAX_RETRIES) {
     } catch (err) {
       const isLastAttempt = attempt === retries;
       const status = err.response?.status;
-      const shouldRetry = !isLastAttempt && (status === 429 || status === 502 || status === 503 || status === 524 || err.code === "ECONNABORTED" || err.code === "ETIMEDOUT");
+      const shouldRetry = !isLastAttempt && (status === 429 || status === 502 || status === 503 || status === 524 || status === 529 || err.code === "ECONNABORTED" || err.code === "ETIMEDOUT");
 
       if (shouldRetry) {
         const delay = RETRY_BASE_DELAY_MS * Math.pow(2, attempt - 1);
