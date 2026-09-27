@@ -1135,7 +1135,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
           "pact-tome-cantrips": pactTomeCantrips,
         };
       }
-      const pactBoon = (classFeatureChoices as any)["Pact Boon"] || "";
+      const pactBoon = Object.values(classFeatureChoices).map((choices) => choices["Pact Boon"]).find(Boolean) || "";
       if (pactBoon) {
         draft.featureSelections = {
           ...draft.featureSelections,
