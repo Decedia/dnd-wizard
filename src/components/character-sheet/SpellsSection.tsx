@@ -339,7 +339,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
               })()}
 
               {summary && (
-                <p className="mt-2 text-sm text-[var(--color-text-secondary)] line-clamp-2">{summary}</p>
+                <p className="mt-2 text-sm text-[var(--color-text-secondary)]">{summary}</p>
               )}
 
               <div className="flex items-center gap-1 mt-3">
