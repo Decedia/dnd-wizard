@@ -155,6 +155,8 @@ export const translations = {
   "creator.selectExpertise": "Pilih Keahlian",
   "creator.createCharacter": "Buat Karakter",
   "creator.startingLevel": "Level Awal",
+  "creator.startingLevelHint": "Pilih level awalmu dan roll HP",
+  "creator.title": "Pembuat Karakter",
   "creator.chooseLevel": "Pilih level awal karakter...",
   "creator.levelSummary": "Ringkasan Level {level}",
   "creator.selectSkills": "Pilih Keterampilan",
