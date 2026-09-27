@@ -344,7 +344,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                     {(spell.mechanics_badges || []).map((badge: string, badgeIdx: number) => (
                       <span
                         key={badgeIdx}
-                        className={`text-xs font-semibold px-2.5 py-0.5 rounded-md border shadow-sm ${getStatBadgeStyle(badge)}`}
+                        className="text-xs font-semibold px-2.5 py-0.5 rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text-secondary)] shadow-sm"
                       >
                         {badge}
                       </span>
@@ -473,7 +473,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                 {(selectedSpell.mechanics_badges || []).map((badge: string, badgeIdx: number) => (
                   <span
                     key={badgeIdx}
-                    className={`text-xs font-semibold px-2.5 py-0.5 rounded-md border shadow-sm ${getStatBadgeStyle(badge)}`}
+                    className="text-xs font-semibold px-2.5 py-0.5 rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text-secondary)] shadow-sm"
                   >
                     {badge}
                   </span>
