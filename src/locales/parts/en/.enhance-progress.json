@@ -1,6 +1,5 @@
 {
   "completed": [
-    "acid-splash",
     "blade-bite",
     "blade-bite-egw",
     "blade-ward",
@@ -9,6 +8,10 @@
     "booster-pulse-egw",
     "chill-touch",
     "control-flames",
-    "create-bonfire"
+    "create-bonfire",
+    "acid-splash",
+    "dancing-lights",
+    "dialing-disruption-egw",
+    "druidcraft"
   ]
 }
