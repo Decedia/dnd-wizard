@@ -1,4 +1,16 @@
 import { useMemo } from "react";
+import {
+  AcidIcon,
+  SnowflakeIcon,
+  FireGiIcon,
+  PowerLightningIcon,
+  ThunderStruckIcon,
+  DeathSkullIcon,
+  PsychicWaveIcon,
+  HolyGrailIcon,
+  SoundWavesIcon,
+  SparklesIcon,
+} from "@/components/icons";
 
 const DICE_RE = /\*\*(\d+d\d+)\*\*|(?<!\*)(\d+d\d+)(?!\*)/g;
 
@@ -34,6 +46,22 @@ const DAMAGE_STYLE: Record<string, string> = {
   radiant: "bg-amber-100 text-amber-700 border-amber-200 dark:bg-amber-500/20 dark:text-amber-200 dark:border-amber-500/30",
   slashing: "bg-stone-100 text-stone-700 border-stone-200 dark:bg-stone-500/20 dark:text-stone-200 dark:border-stone-500/30",
   thunder: "bg-indigo-100 text-indigo-700 border-indigo-200 dark:bg-indigo-500/20 dark:text-indigo-300 dark:border-indigo-500/30",
+};
+
+const DAMAGE_ICON: Record<string, React.ComponentType<{ className?: string }>> = {
+  acid: AcidIcon,
+  bludgeoning: SparklesIcon,
+  cold: SnowflakeIcon,
+  fire: FireGiIcon,
+  force: SparklesIcon,
+  lightning: PowerLightningIcon,
+  necrotic: DeathSkullIcon,
+  piercing: SparklesIcon,
+  poison: SparklesIcon,
+  psychic: PsychicWaveIcon,
+  radiant: HolyGrailIcon,
+  slashing: SparklesIcon,
+  thunder: ThunderStruckIcon,
 };
 
 export function highlightDice(text: string) {
@@ -127,11 +155,13 @@ export function DiceText({ text }: { text: string }) {
             {damageTokens.map((token, tokenIdx) => {
               if (token.type === "damage") {
                 const style = DAMAGE_STYLE[token.damageType || ""] || "bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-600";
+                const Icon = token.damageType ? DAMAGE_ICON[token.damageType] : null;
                 return (
                   <span
                     key={`dmg-${tokenIdx}`}
-                    className={`inline-flex items-center rounded-md border px-1.5 py-0.5 text-xs font-semibold ${style}`}
+                    className={`inline-flex items-center gap-1 rounded-md border px-1.5 py-0.5 text-xs font-semibold ${style}`}
                   >
+                    {Icon && <Icon className="h-3.5 w-3.5" />}
                     {token.value}
                   </span>
                 );
