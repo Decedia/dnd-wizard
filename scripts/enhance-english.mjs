@@ -138,6 +138,15 @@ async function callNvidiaNim(batch) {
 }
 
 async function main() {
+  const args = process.argv.slice(2);
+  const singleSpell = args.find(a => a.startsWith("--spell="))?.split("=")[1];
+  const reset = args.includes("--reset");
+
+  if (reset) {
+    fs.writeFileSync(PROGRESS_FILE, JSON.stringify({ completed: [] }, null, 2) + "\n", "utf-8");
+    console.log("Progress reset.");
+  }
+
   console.log("Loading spell data...");
   const raw = fs.readFileSync(spellFile, "utf-8");
   const data = JSON.parse(raw);
@@ -147,10 +156,17 @@ async function main() {
   console.log(`Total spells found: ${spellNames.length}`);
 
   const completedSet = loadProgress();
-  const remaining = spellNames.filter((name) => !completedSet.has(name));
-  console.log(`Already completed: ${completedSet.size}, Remaining: ${remaining.length}`);
 
-  const batches = chunkArray(remaining, BATCH_SIZE);
+  let targetSpells: string[];
+  if (singleSpell) {
+    targetSpells = [singleSpell];
+    console.log(`Single spell mode: ${singleSpell}`);
+  } else {
+    targetSpells = spellNames.filter((name) => !completedSet.has(name));
+  }
+  console.log(`Target spells: ${targetSpells.length}`);
+
+  const batches = chunkArray(targetSpells, BATCH_SIZE);
   console.log(`Batch size: ${BATCH_SIZE}, Total batches: ${batches.length}`);
 
   for (let batchIndex = 0; batchIndex < batches.length; batchIndex++) {
@@ -180,8 +196,10 @@ async function main() {
 
       if (!enhanced || typeof enhanced !== "object") {
         console.warn(`  Skipped ${name}: no enhanced data returned`);
-        completedSet.add(name);
-        saveProgress(completedSet);
+        if (!singleSpell) {
+          completedSet.add(name);
+          saveProgress(completedSet);
+        }
         continue;
       }
 
@@ -211,9 +229,11 @@ async function main() {
       grouped[name].fullDescription = description;
 
       console.log(`  Updated ${name}`);
-      completedSet.add(name);
+      if (!singleSpell) {
+        completedSet.add(name);
+        saveProgress(completedSet);
+      }
       fs.writeFileSync(spellFile, JSON.stringify(data, null, 2) + "\n", "utf-8");
-      saveProgress(completedSet);
     }
 
     console.log(`\nBatch ${batchIndex + 1}/${batches.length} complete.`);
