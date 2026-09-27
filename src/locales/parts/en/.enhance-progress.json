@@ -1,5 +1,6 @@
 {
   "completed": [
+    "acid-splash",
     "blade-bite",
     "blade-bite-egw",
     "blade-ward",
@@ -12,27 +13,6 @@
     "dancing-lights",
     "dialing-disruption-egw",
     "druidcraft",
-    "eldritch-blast",
-    "fire-bolt",
-    "acid-splash",
-    "friends",
-    "frostbite",
-    "gravity-shift",
-    "gravity-shift-egw",
-    "green-flame-blade",
-    "guidance",
-    "gust",
-    "infestation",
-    "light",
-    "lightning-lure",
-    "mage-hand",
-    "magic-stone",
-    "mending",
-    "message",
-    "mind-sliver",
-    "minor-illusion",
-    "mold-earth",
-    "nathair-nuisance",
-    "poison-spray"
+    "eldritch-blast"
   ]
 }

@@ -2,45 +2,45 @@
   "2014_spells.acid-splash.description": "As an action, you hurl a bubble of acid. Choose one creature within 60 feet, or choose two creatures within 60 feet that are within 5 feet of each other. A target must succeed on a Dexterity saving throw or take **1d6** acid damage.\n\nThis spell's damage increases as you reach higher levels:\n- 5th level: **2d6**\n- 11th level: **3d6**\n- 17th level: **4d6**",
   "2014_spells.acid-splash.effectSummary": "Hurl a bubble of acid at one or two nearby creatures, forcing them to make a Dexterity saving throw or take acid damage.",
   "2014_spells.acid-splash.fullDescription": "As an action, you hurl a bubble of acid. Choose one creature within 60 feet, or choose two creatures within 60 feet that are within 5 feet of each other. A target must succeed on a Dexterity saving throw or take **1d6** acid damage.\n\nThis spell's damage increases as you reach higher levels:\n- 5th level: **2d6**\n- 11th level: **3d6**\n- 17th level: **4d6**",
-  "2014_spells.blade-bite.description": "As part of the action to cast this spell, you must make a melee attack against one creature within range, or the spell fails. On a hit, the target suffers normal attack effects and takes {damage}necrotic{/damage} damage:\n\n- Base damage: {dice}1d6{/dice}\n- 5th level: {dice}2d6{/dice}\n- 11th level: {dice}3d6{/dice}\n- 17th level: {dice}4d6{/dice}",
-  "2014_spells.blade-bite.effectSummary": "Infuse a melee weapon attack with necrotic energy to deal additional damage to a single target upon a successful hit.",
-  "2014_spells.blade-bite.fullDescription": "As part of the action to cast this spell, you must make a melee attack against one creature within range, or the spell fails. On a hit, the target suffers normal attack effects and takes {damage}necrotic{/damage} damage:\n\n- Base damage: {dice}1d6{/dice}\n- 5th level: {dice}2d6{/dice}\n- 11th level: {dice}3d6{/dice}\n- 17th level: {dice}4d6{/dice}",
-  "2014_spells.blade-bite-egw.description": "As part of the action to cast this spell, you must make a melee attack against one creature within range, or the spell fails. On a hit, the target suffers normal attack effects and takes {necrotic} damage:\n\n- Base damage: {1d6}\n- 5th level: {2d6}\n- 11th level: {3d6}\n- 17th level: {4d6}",
-  "2014_spells.blade-bite-egw.effectSummary": "Perform a melee attack against a single creature to deal additional necrotic damage upon hitting the target, with damage scaling as you reach higher levels.",
-  "2014_spells.blade-bite-egw.fullDescription": "As part of the action to cast this spell, you must make a melee attack against one creature within range, or the spell fails. On a hit, the target suffers normal attack effects and takes {necrotic} damage:\n\n- Base damage: {1d6}\n- 5th level: {2d6}\n- 11th level: {3d6}\n- 17th level: {4d6}",
-  "2014_spells.blade-ward.description": "Until the end of your next turn, you have resistance against the following damage dealt by weapon attacks:\n\n- {bludgeoning}\n- {piercing}\n- {slashing}",
-  "2014_spells.blade-ward.effectSummary": "Grant yourself temporary resistance to physical damage from weapon attacks, reducing the amount of damage taken until the end of your next turn.",
-  "2014_spells.blade-ward.fullDescription": "Until the end of your next turn, you have resistance against the following damage dealt by weapon attacks:\n\n- {bludgeoning}\n- {piercing}\n- {slashing}",
-  "2014_spells.booming-blade.description": "Make a melee attack with your weapon against a creature within 5 feet. On a hit:\n\n- The target suffers normal weapon effects.\n- The target is sheathed in booming energy until the start of your next turn.\n- If the target willingly moves 5 feet or more before then, it takes {1d8} {thunder} damage and the spell ends.",
-  "2014_spells.booming-blade.effectSummary": "Perform a melee weapon attack that coats the target in sonic energy, punishing them with additional damage if they move before your next turn.",
-  "2014_spells.booming-blade.fullDescription": "Make a melee attack with your weapon against a creature within 5 feet. On a hit:\n\n- The target suffers normal weapon effects.\n- The target is sheathed in booming energy until the start of your next turn.\n- If the target willingly moves 5 feet or more before then, it takes {1d8} {thunder} damage and the spell ends.",
-  "2014_spells.booster-pulse.description": "Touch a creature to boost its energy. On its next turn, if it takes the Attack action:\n\n- It can make one additional weapon attack or attack roll.\n- If the additional attack hits, the target takes an extra {1d4} {force} damage. This increases to {2d4} at 5th level, {3d4} at 11th level, and {4d4} at 17th level.\n- If the creature uses a piercing weapon, it can push the target of the attack up to 10 feet away on a hit.",
-  "2014_spells.booster-pulse.effectSummary": "Touch a creature to grant them an extra attack on their next turn, adding bonus force damage and a potential knockback effect.",
-  "2014_spells.booster-pulse.fullDescription": "Touch a creature to boost its energy. On its next turn, if it takes the Attack action:\n\n- It can make one additional weapon attack or attack roll.\n- If the additional attack hits, the target takes an extra {1d4} {force} damage. This increases to {2d4} at 5th level, {3d4} at 11th level, and {4d4} at 17th level.\n- If the creature uses a piercing weapon, it can push the target of the attack up to 10 feet away on a hit.",
-  "2014_spells.booster-pulse-egw.description": "Touch a creature to boost its energy. On its next turn, if it takes the Attack action:\n\n- It can make one additional weapon attack or attack roll.\n- If the additional attack hits, the target takes an extra {1d4} {force} damage. This increases to {2d4} at 5th level, {3d4} at 11th level, and {4d4} at 17th level.\n- If the creature uses a piercing weapon, it can push the target of the attack up to 10 feet away on a hit.",
-  "2014_spells.booster-pulse-egw.effectSummary": "Touch a creature to enhance its next Attack action, granting an extra attack and bonus force damage, with a potential push effect for piercing weapons.",
-  "2014_spells.booster-pulse-egw.fullDescription": "Touch a creature to boost its energy. On its next turn, if it takes the Attack action:\n\n- It can make one additional weapon attack or attack roll.\n- If the additional attack hits, the target takes an extra {1d4} {force} damage. This increases to {2d4} at 5th level, {3d4} at 11th level, and {4d4} at 17th level.\n- If the creature uses a piercing weapon, it can push the target of the attack up to 10 feet away on a hit.",
-  "2014_spells.chill-touch.description": "Make a ranged spell attack against a creature to create a ghostly hand. On a hit:\n\n- The target takes {1d8} {necrotic} damage.\n- The target cannot regain hit points until the start of your next turn.\n- If the target is undead, it has disadvantage on attack rolls against you until the end of your next turn.",
-  "2014_spells.chill-touch.effectSummary": "Launch a ghostly hand at a target to deal necrotic damage, prevent them from healing, and impose disadvantage on undead attackers.",
-  "2014_spells.chill-touch.fullDescription": "Make a ranged spell attack against a creature to create a ghostly hand. On a hit:\n\n- The target takes {1d8} {necrotic} damage.\n- The target cannot regain hit points until the start of your next turn.\n- If the target is undead, it has disadvantage on attack rolls against you until the end of your next turn.",
-  "2014_spells.control-flames.description": "You choose a nonmagical flame that you can see within range and that fits within a 5-foot cube. You affect it in one of the following ways:\n\n- Expand: You instantaneously expand the flame 5 feet in one direction, provided wood or other fuel is present in the new location.\n- Extinguish: You instantaneously extinguish the flames within the cube.\n- Modify Light: You double or halve the area of bright light and dim light cast by the flame, change its color, or both. The change lasts for 1 hour.\n- Create Shapes: You cause simple shapes—such as the vague form of a creature, an inanimate object, or a location—to appear within the flames and animate as you like. The shapes last for 1 hour.",
-  "2014_spells.control-flames.effectSummary": "Manipulate a nonmagical flame within a 5-foot cube to expand its reach, extinguish it completely, alter its light properties, or create animated shapes.",
-  "2014_spells.control-flames.fullDescription": "You choose a nonmagical flame that you can see within range and that fits within a 5-foot cube. You affect it in one of the following ways:\n\n- Expand: You instantaneously expand the flame 5 feet in one direction, provided wood or other fuel is present in the new location.\n- Extinguish: You instantaneously extinguish the flames within the cube.\n- Modify Light: You double or halve the area of bright light and dim light cast by the flame, change its color, or both. The change lasts for 1 hour.\n- Create Shapes: You cause simple shapes—such as the vague form of a creature, an inanimate object, or a location—to appear within the flames and animate as you like. The shapes last for 1 hour.",
-  "2014_spells.create-bonfire.description": "You create a bonfire on ground that you can see within range. Until the spell ends, the magic bonfire fills a 5-foot cube.\n\n- Any creature in the bonfire's space when you cast the spell must succeed on a Dexterity saving throw or take 1d8 fire damage.\n- A creature must also make the saving throw when it moves into the bonfire's space for the first time on a turn or ends its turn there.",
-  "2014_spells.create-bonfire.effectSummary": "Summon a magical bonfire in a 5-foot cube that deals fire damage to creatures entering the space or ending their turn there.",
-  "2014_spells.create-bonfire.fullDescription": "You create a bonfire on ground that you can see within range. Until the spell ends, the magic bonfire fills a 5-foot cube.\n\n- Any creature in the bonfire's space when you cast the spell must succeed on a Dexterity saving throw or take 1d8 fire damage.\n- A creature must also make the saving throw when it moves into the bonfire's space for the first time on a turn or ends its turn there.",
-  "2014_spells.dancing-lights.description": "You create up to four torch-sized lights within range, making them appear as torches, lanterns, or glowing orbs that hover in the air for the duration. You can also combine the four lights into one glowing vaguely humanoid form of Medium size.\n\n- Each light sheds dim light in a 10-foot radius.\n- As a bonus action on your turn, you can move the lights up to 60 feet to a new spot within range.\n- A light must be within 20 feet of another light created by this spell, and a light winks out if it exceeds the spell's range.",
-  "2014_spells.dancing-lights.effectSummary": "Create up to four hovering, torch-sized lights that you can manipulate and move as a bonus action to illuminate your surroundings.",
-  "2014_spells.dancing-lights.fullDescription": "You create up to four torch-sized lights within range, making them appear as torches, lanterns, or glowing orbs that hover in the air for the duration. You can also combine the four lights into one glowing vaguely humanoid form of Medium size.\n\n- Each light sheds dim light in a 10-foot radius.\n- As a bonus action on your turn, you can move the lights up to 60 feet to a new spot within range.\n- A light must be within 20 feet of another light created by this spell, and a light winks out if it exceeds the spell's range.",
-  "2014_spells.dialing-disruption-egw.description": "The target must succeed on a Constitution saving throw or take **1d8** force damage. If the target is concentrating on a spell, it must immediately make a Constitution saving throw to maintain concentration.\n\nThis spell's damage increases as follows:\n- 5th level: **2d8**\n- 11th level: **3d8**\n- 17th level: **4d8**",
-  "2014_spells.dialing-disruption-egw.effectSummary": "Target a creature to deal force damage and force them to immediately make a concentration check if they are currently maintaining a spell.",
-  "2014_spells.dialing-disruption-egw.fullDescription": "The target must succeed on a Constitution saving throw or take **1d8** force damage. If the target is concentrating on a spell, it must immediately make a Constitution saving throw to maintain concentration.\n\nThis spell's damage increases as follows:\n- 5th level: **2d8**\n- 11th level: **3d8**\n- 17th level: **4d8**",
-  "2014_spells.druidcraft.description": "You create one of the following effects within range:\n- You create a tiny, harmless sensory effect that predicts what the weather will be at your location for the next 24 hours. The effect might manifest as a golden orb for clear skies, a cloud for rain, falling snowflakes for snow, and so on. This effect persists for 1 round.\n- You instantly make a flower blossom, a seed pod open, or a leaf bud bloom.\n- You create an instantaneous, harmless sensory effect, such as falling leaves, a puff of wind, the sound of a small animal, or the faint odor of skunk. The effect must fit in a 5-foot cube.\n- You instantly light or snuff out a candle, a torch, or a small campfire.",
-  "2014_spells.druidcraft.effectSummary": "Create minor nature-themed sensory effects, predict the weather for the next day, manipulate plant growth, or toggle small fires.",
-  "2014_spells.druidcraft.fullDescription": "You create one of the following effects within range:\n- You create a tiny, harmless sensory effect that predicts what the weather will be at your location for the next 24 hours. The effect might manifest as a golden orb for clear skies, a cloud for rain, falling snowflakes for snow, and so on. This effect persists for 1 round.\n- You instantly make a flower blossom, a seed pod open, or a leaf bud bloom.\n- You create an instantaneous, harmless sensory effect, such as falling leaves, a puff of wind, the sound of a small animal, or the faint odor of skunk. The effect must fit in a 5-foot cube.\n- You instantly light or snuff out a candle, a torch, or a small campfire.",
-  "2014_spells.eldritch-blast.description": "Make a ranged spell attack against a creature within range. On a hit, the target takes **1d10** force damage. The spell creates more than one beam when you reach higher levels:\n\n- 5th level: two beams\n- 11th level: three beams\n- 17th level: four beams\n\nYou can direct the beams at the same target or at different ones. Make a separate attack roll for each beam.",
-  "2014_spells.eldritch-blast.effectSummary": "Launch a beam of crackling energy at a target to deal force damage, with the number of beams increasing as you reach higher levels.",
-  "2014_spells.eldritch-blast.fullDescription": "Make a ranged spell attack against a creature within range. On a hit, the target takes **1d10** force damage. The spell creates more than one beam when you reach higher levels:\n\n- 5th level: two beams\n- 11th level: three beams\n- 17th level: four beams\n\nYou can direct the beams at the same target or at different ones. Make a separate attack roll for each beam.",
+  "2014_spells.blade-bite.description": "As part of the action to cast this spell, you must make a melee attack against one creature within yourself, or the spell fails. On a hit, the target suffers normal attack effects and takes necrotic damage:\n\n- Base damage: **1d6**\n- 5th level: **2d6**\n- 11th level: **3d6**\n- 17th level: **4d6**",
+  "2014_spells.blade-bite.effectSummary": "Perform a melee attack to deal necrotic damage to a single target, with damage scaling as your character level increases.",
+  "2014_spells.blade-bite.fullDescription": "As part of the action to cast this spell, you must make a melee attack against one creature within yourself, or the spell fails. On a hit, the target suffers normal attack effects and takes necrotic damage:\n\n- Base damage: **1d6**\n- 5th level: **2d6**\n- 11th level: **3d6**\n- 17th level: **4d6**",
+  "2014_spells.blade-bite-egw.description": "As part of the action to cast this spell, you must make a melee attack against one creature within range of yourself, or the spell fails. On a hit, the target suffers normal attack effects and takes necrotic damage based on the level of the spell:\n\n- Base damage: **1d6** necrotic damage\n- 5th level: **2d6** necrotic damage\n- 11th level: **3d6** necrotic damage\n- 17th level: **4d6** necrotic damage",
+  "2014_spells.blade-bite-egw.effectSummary": "A melee-range offensive spell that requires a successful attack roll to deal scaling necrotic damage to a single target creature.",
+  "2014_spells.blade-bite-egw.fullDescription": "As part of the action to cast this spell, you must make a melee attack against one creature within range of yourself, or the spell fails. On a hit, the target suffers normal attack effects and takes necrotic damage based on the level of the spell:\n\n- Base damage: **1d6** necrotic damage\n- 5th level: **2d6** necrotic damage\n- 11th level: **3d6** necrotic damage\n- 17th level: **4d6** necrotic damage",
+  "2014_spells.blade-ward.description": "Until the end of your next turn, you have resistance against the following damage dealt by weapon attacks while the spell is active within range of yourself:\n\n- bludgeoning\n- piercing\n- slashing",
+  "2014_spells.blade-ward.effectSummary": "A defensive spell that grants the caster resistance to common physical weapon damage types until the end of their next turn.",
+  "2014_spells.blade-ward.fullDescription": "Until the end of your next turn, you have resistance against the following damage dealt by weapon attacks while the spell is active within range of yourself:\n\n- bludgeoning\n- piercing\n- slashing",
+  "2014_spells.booming-blade.description": "As part of the spell, make a melee attack with your weapon against a creature within 5 feet. On a hit, the following effects occur:\n\n- The target suffers normal weapon effects.\n- The target is sheathed in booming energy until the start of your next turn.\n- If the target willingly moves 5 feet or more before then, it takes **1d8** thunder damage and the spell ends. This effect lasts for a duration of 1 round.",
+  "2014_spells.booming-blade.effectSummary": "Perform a melee weapon attack that coats the target in sonic energy, punishing them with thunder damage if they move before your next turn.",
+  "2014_spells.booming-blade.fullDescription": "As part of the spell, make a melee attack with your weapon against a creature within 5 feet. On a hit, the following effects occur:\n\n- The target suffers normal weapon effects.\n- The target is sheathed in booming energy until the start of your next turn.\n- If the target willingly moves 5 feet or more before then, it takes **1d8** thunder damage and the spell ends. This effect lasts for a duration of 1 round.",
+  "2014_spells.booster-pulse.description": "Touch a creature to boost its energy for a duration of 1 round. On its next turn, if it takes the Attack action, the following benefits apply:\n\n- The creature can make one additional weapon attack or attack roll.\n- If the additional attack hits, the target takes an extra **1d4** force damage. This damage increases to **2d4** at 5th level, **3d4** at 11th level, and **4d4** at 17th level.\n- If the creature uses a piercing weapon, it can push the target of the attack up to 10 feet away on a hit.",
+  "2014_spells.booster-pulse.effectSummary": "Touch a creature to grant them an additional weapon attack on their next turn, potentially dealing extra force damage and pushing enemies away.",
+  "2014_spells.booster-pulse.fullDescription": "Touch a creature to boost its energy for a duration of 1 round. On its next turn, if it takes the Attack action, the following benefits apply:\n\n- The creature can make one additional weapon attack or attack roll.\n- If the additional attack hits, the target takes an extra **1d4** force damage. This damage increases to **2d4** at 5th level, **3d4** at 11th level, and **4d4** at 17th level.\n- If the creature uses a piercing weapon, it can push the target of the attack up to 10 feet away on a hit.",
+  "2014_spells.booster-pulse-egw.description": "By using a touch range and verbal and somatic components, you boost a creature's energy for a duration of 1 round. On its next turn, if the creature takes the Attack action, it gains the following benefits:\n\n- It can make one additional weapon attack or attack roll.\n- If the additional attack hits, the target takes an extra **1d4** force damage. This damage increases to **2d4** at 5th level, **3d4** at 11th level, and **4d4** at 17th level.\n- If the creature uses a piercing weapon, it can push the target of the attack up to 10 feet away on a hit.",
+  "2014_spells.booster-pulse-egw.effectSummary": "Touch a creature to enhance its combat capabilities for one round, granting an extra attack and bonus force damage on its next turn.",
+  "2014_spells.booster-pulse-egw.fullDescription": "By using a touch range and verbal and somatic components, you boost a creature's energy for a duration of 1 round. On its next turn, if the creature takes the Attack action, it gains the following benefits:\n\n- It can make one additional weapon attack or attack roll.\n- If the additional attack hits, the target takes an extra **1d4** force damage. This damage increases to **2d4** at 5th level, **3d4** at 11th level, and **4d4** at 17th level.\n- If the creature uses a piercing weapon, it can push the target of the attack up to 10 feet away on a hit.",
+  "2014_spells.chill-touch.description": "As an action, you create a ghostly, skeletal hand in the space of a creature within 120 feet. Make a ranged spell attack against the creature to assail it with the chill of the grave. On a hit, the target takes **1d8** necrotic damage, and it cannot regain hit points until the start of your next turn. Until then, the hand clings to the target.\n\nIf you hit an undead target, it also has disadvantage on attack rolls against you until the end of your next turn.\n\nThis spell's damage increases by **1d8** when you reach 5th level (**2d8**), 11th level (**3d8**), and 17th level (**4d8**).",
+  "2014_spells.chill-touch.effectSummary": "Launch a ghostly hand at a target to deal necrotic damage and prevent them from regaining hit points for one round.",
+  "2014_spells.chill-touch.fullDescription": "As an action, you create a ghostly, skeletal hand in the space of a creature within 120 feet. Make a ranged spell attack against the creature to assail it with the chill of the grave. On a hit, the target takes **1d8** necrotic damage, and it cannot regain hit points until the start of your next turn. Until then, the hand clings to the target.\n\nIf you hit an undead target, it also has disadvantage on attack rolls against you until the end of your next turn.\n\nThis spell's damage increases by **1d8** when you reach 5th level (**2d8**), 11th level (**3d8**), and 17th level (**4d8**).",
+  "2014_spells.control-flames.description": "You choose a nonmagical flame that you can see within 60 feet and that fits within a 5-foot cube. You affect it in one of the following ways:\n\n- Expand: You instantaneously expand the flame 5 feet in one direction, provided wood or other fuel is present in the new location.\n- Extinguish: You instantaneously extinguish the flames within the cube.\n- Modify Light: You double or halve the area of bright light and dim light cast by the flame, change its color, or both. The change lasts for 1 hour.\n- Create Shapes: You cause simple shapes—such as the vague form of a creature, an inanimate object, or a location—to appear within the flames and animate as you like. The shapes last for 1 hour.",
+  "2014_spells.control-flames.effectSummary": "Manipulate a nonmagical flame within 60 feet to expand its size, extinguish it completely, alter its light properties, or create animated shapes.",
+  "2014_spells.control-flames.fullDescription": "You choose a nonmagical flame that you can see within 60 feet and that fits within a 5-foot cube. You affect it in one of the following ways:\n\n- Expand: You instantaneously expand the flame 5 feet in one direction, provided wood or other fuel is present in the new location.\n- Extinguish: You instantaneously extinguish the flames within the cube.\n- Modify Light: You double or halve the area of bright light and dim light cast by the flame, change its color, or both. The change lasts for 1 hour.\n- Create Shapes: You cause simple shapes—such as the vague form of a creature, an inanimate object, or a location—to appear within the flames and animate as you like. The shapes last for 1 hour.",
+  "2014_spells.create-bonfire.description": "You create a bonfire on ground that you can see within 60 feet. Until the spell ends, which requires Concentration for up to 1 minute, the magic bonfire fills a 5-foot cube.\n\n- Any creature in the bonfire's space when you cast the spell must succeed on a Dexterity saving throw or take **1d8** fire damage.\n- A creature must also make the Dexterity saving throw when it moves into the bonfire's space for the first time on a turn or ends its turn there.",
+  "2014_spells.create-bonfire.effectSummary": "Summon a magical bonfire in a 5-foot cube within 60 feet that deals fire damage to creatures entering or ending their turn in its space.",
+  "2014_spells.create-bonfire.fullDescription": "You create a bonfire on ground that you can see within 60 feet. Until the spell ends, which requires Concentration for up to 1 minute, the magic bonfire fills a 5-foot cube.\n\n- Any creature in the bonfire's space when you cast the spell must succeed on a Dexterity saving throw or take **1d8** fire damage.\n- A creature must also make the Dexterity saving throw when it moves into the bonfire's space for the first time on a turn or ends its turn there.",
+  "2014_spells.dancing-lights.description": "As 1 action, you create up to four torch-sized lights within 120 feet, making them appear as torches, lanterns, or glowing orbs that hover in the air for a duration of up to 1 minute. You can also combine the four lights into one glowing vaguely humanoid form of Medium size. Whichever form you choose, each light sheds dim light in a 10-foot radius.\n\nAs a bonus action on your turn, you can move the lights up to 60 feet to a new spot within 120 feet. A light must be within 20 feet of another light created by this spell, and a light winks out if it exceeds the spell's range.",
+  "2014_spells.dancing-lights.effectSummary": "Create up to four hovering, torch-sized lights or one Medium humanoid form that provide dim illumination and can be repositioned as a bonus action.",
+  "2014_spells.dancing-lights.fullDescription": "As 1 action, you create up to four torch-sized lights within 120 feet, making them appear as torches, lanterns, or glowing orbs that hover in the air for a duration of up to 1 minute. You can also combine the four lights into one glowing vaguely humanoid form of Medium size. Whichever form you choose, each light sheds dim light in a 10-foot radius.\n\nAs a bonus action on your turn, you can move the lights up to 60 feet to a new spot within 120 feet. A light must be within 20 feet of another light created by this spell, and a light winks out if it exceeds the spell's range.",
+  "2014_spells.dialing-disruption-egw.description": "Targeting a creature within 60 feet, the target must succeed on a Constitution saving throw or take **1d8** force damage. If the target is concentrating on a spell, it must immediately make a Constitution saving throw to maintain concentration. This effect is instantaneous.\n\nThis spell's damage increases as follows:\n- 5th level: **2d8**\n- 11th level: **3d8**\n- 17th level: **4d8**",
+  "2014_spells.dialing-disruption-egw.effectSummary": "Deal force damage to a target within range and force them to make an immediate concentration check if they are currently concentrating on a spell.",
+  "2014_spells.dialing-disruption-egw.fullDescription": "Targeting a creature within 60 feet, the target must succeed on a Constitution saving throw or take **1d8** force damage. If the target is concentrating on a spell, it must immediately make a Constitution saving throw to maintain concentration. This effect is instantaneous.\n\nThis spell's damage increases as follows:\n- 5th level: **2d8**\n- 11th level: **3d8**\n- 17th level: **4d8**",
+  "2014_spells.druidcraft.description": "By whispering to the spirits of nature, you use 1 action to create one of the following effects within 30 feet:\n\n- You create a tiny, harmless sensory effect that predicts what the weather will be at your location for the next 24 hours. The effect might manifest as a golden orb for clear skies, a cloud for rain, falling snowflakes for snow, and so on. This effect persists for 1 round.\n- You instantly make a flower bloom, a seed pod open, or a leaf bud bloom.\n- You create an instantaneous, harmless sensory effect, such as falling leaves, a puff of wind, the sound of a small animal, or the faint order of skunk. The effect must fit in a 5-foot cube.\n- You instantly light or snuff out a candle, a torch, or a small campfire.",
+  "2014_spells.druidcraft.effectSummary": "A versatile nature-based utility spell that allows you to predict the weather, manipulate plants, create minor sensory effects, or control small fires within 30 feet.",
+  "2014_spells.druidcraft.fullDescription": "By whispering to the spirits of nature, you use 1 action to create one of the following effects within 30 feet:\n\n- You create a tiny, harmless sensory effect that predicts what the weather will be at your location for the next 24 hours. The effect might manifest as a golden orb for clear skies, a cloud for rain, falling snowflakes for snow, and so on. This effect persists for 1 round.\n- You instantly make a flower bloom, a seed pod open, or a leaf bud bloom.\n- You create an instantaneous, harmless sensory effect, such as falling leaves, a puff of wind, the sound of a small animal, or the faint order of skunk. The effect must fit in a 5-foot cube.\n- You instantly light or snuff out a candle, a torch, or a small campfire.",
+  "2014_spells.eldritch-blast.description": "As 1 action, you send a beam of crackling energy toward a creature within 120 feet. Make a ranged spell attack against the target. On a hit, the target takes **1d10** force damage.\n\nThe spell creates more than one beam when you reach higher levels:\n- Two beams at 5th level\n- Three beams at 11th level\n- Four beams at 17th level\n\nYou can direct the beams at the same target or at different ones, making a separate attack roll for each beam.",
+  "2014_spells.eldritch-blast.effectSummary": "A powerful offensive beam of energy that deals force damage to a target within 120 feet, scaling in the number of beams as you level up.",
+  "2014_spells.eldritch-blast.fullDescription": "As 1 action, you send a beam of crackling energy toward a creature within 120 feet. Make a ranged spell attack against the target. On a hit, the target takes **1d10** force damage.\n\nThe spell creates more than one beam when you reach higher levels:\n- Two beams at 5th level\n- Three beams at 11th level\n- Four beams at 17th level\n\nYou can direct the beams at the same target or at different ones, making a separate attack roll for each beam.",
   "2014_spells.fire-bolt.description": "You hurl a mote of fire at a creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes **1d10** fire damage. A flammable object hit by this spell ignites if it isn't being worn or carried.",
   "2014_spells.fire-bolt.effectSummary": "Hurl a mote of fire at a creature or object to deal fire damage and potentially ignite flammable materials not being held.",
   "2014_spells.fire-bolt.fullDescription": "You hurl a mote of fire at a creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes **1d10** fire damage. A flammable object hit by this spell ignites if it isn't being worn or carried.",
@@ -1539,23 +1539,24 @@
   "2014_spells.bigbys-hand.effectSummary": "Create a magical effect at a point you choose",
   "2014_spells.bigbys-hand.fullDescription": "Using 1 action, create a Large hand of shimmering force. Create a Large hand of shimmering force. The effect lasts for 1 minute; you must concentrate, and the effect ends if your concentration ends.",
   "2014_spells.dancing-lights.mechanics_badges": [
-    "1 Action",
-    "120 ft",
-    "Concentration",
-    "1 Hour"
+    "1 action",
+    "120 feet",
+    "Up to 1 minute"
   ],
   "2014_spells.dialing-disruption-egw.mechanics_badges": [
-    "CON Save",
-    "Force Damage"
+    "60 feet",
+    "Instantaneous",
+    "1d8 force damage"
   ],
   "2014_spells.druidcraft.mechanics_badges": [
-    "Cantrip",
-    "Utility"
+    "1 Action",
+    "30 feet",
+    "Instantaneous"
   ],
   "2014_spells.eldritch-blast.mechanics_badges": [
     "1 Action",
-    "120 ft",
-    "Ranged Spell Attack",
+    "120 feet",
+    "Instantaneous",
     "1d10 force damage"
   ],
   "2014_spells.fire-bolt.mechanics_badges": [
@@ -1683,5 +1684,63 @@
     "Instantaneous",
     "1d12 poison damage"
   ],
-  "2014_spells.poison-spray.lastUpdated": "2026-09-27"
+  "2014_spells.poison-spray.lastUpdated": "2026-09-27",
+  "2014_spells.blade-bite.mechanics_badges": [
+    "Self",
+    "1 round",
+    "Melee Attack"
+  ],
+  "2014_spells.blade-bite.lastUpdated": "2026-09-27",
+  "2014_spells.blade-bite-egw.mechanics_badges": [
+    "Range: Self",
+    "Duration: 1 round",
+    "1d6 necrotic damage"
+  ],
+  "2014_spells.blade-bite-egw.lastUpdated": "2026-09-27",
+  "2014_spells.blade-ward.mechanics_badges": [
+    "Range: Self",
+    "Duration: 1 round"
+  ],
+  "2014_spells.blade-ward.lastUpdated": "2026-09-27",
+  "2014_spells.booming-blade.mechanics_badges": [
+    "Self (5-foot radius)",
+    "1 round",
+    "1d8 thunder damage"
+  ],
+  "2014_spells.booming-blade.lastUpdated": "2026-09-27",
+  "2014_spells.booster-pulse.mechanics_badges": [
+    "Touch",
+    "1 round",
+    "1d4 force damage"
+  ],
+  "2014_spells.booster-pulse.lastUpdated": "2026-09-27",
+  "2014_spells.booster-pulse-egw.mechanics_badges": [
+    "Touch",
+    "1 round",
+    "V, S"
+  ],
+  "2014_spells.booster-pulse-egw.lastUpdated": "2026-09-27",
+  "2014_spells.chill-touch.mechanics_badges": [
+    "1 action",
+    "120 feet",
+    "1 round",
+    "1d8 necrotic damage"
+  ],
+  "2014_spells.chill-touch.lastUpdated": "2026-09-27",
+  "2014_spells.control-flames.mechanics_badges": [
+    "60 Feet",
+    "Instantaneous or 1 hour"
+  ],
+  "2014_spells.control-flames.lastUpdated": "2026-09-27",
+  "2014_spells.create-bonfire.mechanics_badges": [
+    "60 Feet",
+    "Concentration, up to 1 minute",
+    "DEX Save",
+    "1d8 fire damage"
+  ],
+  "2014_spells.create-bonfire.lastUpdated": "2026-09-27",
+  "2014_spells.dancing-lights.lastUpdated": "2026-09-27",
+  "2014_spells.dialing-disruption-egw.lastUpdated": "2026-09-27",
+  "2014_spells.druidcraft.lastUpdated": "2026-09-27",
+  "2014_spells.eldritch-blast.lastUpdated": "2026-09-27"
 }
