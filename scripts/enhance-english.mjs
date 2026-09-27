@@ -16,7 +16,7 @@ if (!apiKey) {
 
 const spellFile = path.resolve("src/locales/parts/en/2014_spells.json");
 
-const SYSTEM_PROMPT = "You are an expert D&D 5e technical writer. Rewrite the provided text into a JSON object with 'summary' and 'description'. RULES FOR SUMMARY: It MUST be at least 20 words long. It should be a detailed, actionable overview of the spell or feature. RULES FOR DESCRIPTION: Clean Markdown, bolding dice rolls like 8d6, using bullet points for lists. Do not change rules. Keep every dice roll, damage type, and status condition in the text exactly as it appears in the rules so they can be rendered as inline badges. OUTPUT STRICTLY RAW JSON. Do not use markdown formatting blocks like ```json. Do not include conversational text.";
+const SYSTEM_PROMPT = "You are an expert D&D 5e technical writer. Rewrite the provided text into a JSON object with 'summary' and 'description'. RULES FOR SUMMARY: It MUST be at least 20 words long. It should be a detailed, actionable overview of the spell or feature. The summary must be DIFFERENT from the description - do not copy or repeat the description text verbatim. Focus on what the spell does and when to use it. RULES FOR DESCRIPTION: Clean Markdown, bolding dice rolls like 8d6, using bullet points for lists. Do not change rules. Keep every dice roll, damage type, and status condition in the text exactly as it appears in the rules so they can be rendered as inline badges. OUTPUT STRICTLY RAW JSON. Do not use markdown formatting blocks like ```json. Do not include conversational text.";
 
 function chunkArray(arr, size) {
   const chunks = [];
