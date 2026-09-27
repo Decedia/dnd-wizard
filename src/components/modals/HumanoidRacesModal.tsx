@@ -106,6 +106,7 @@ export function HumanoidRacesModal({
               key={idx}
               title={race}
               isSelected={isSelected}
+              disabled={isDisabled}
               onSelect={() => handleToggle(race)}
               infoType="expand"
               isExpanded={isSelected}

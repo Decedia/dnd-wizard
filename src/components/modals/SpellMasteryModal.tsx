@@ -111,6 +111,7 @@ export function SpellMasteryModal({
               title={name}
               subtitle={subtitle}
               isSelected={isSelected}
+              disabled={isDisabled}
               onSelect={() => handleToggle(name)}
               infoType="expand"
               isExpanded={isSelected}

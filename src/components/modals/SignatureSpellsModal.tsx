@@ -105,6 +105,7 @@ export function SignatureSpellsModal({
               key={name}
               title={name}
               isSelected={isSelected}
+              disabled={isDisabled}
               onSelect={() => handleToggle(name)}
               infoType="expand"
               isExpanded={isSelected}
