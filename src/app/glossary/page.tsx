@@ -83,15 +83,26 @@ function getFullDescription(spell: any): string {
   return desc;
 }
 
+function getStatBadgeStyle(text: string) {
+  const t = text.toLowerCase();
+  if (t.includes("str") || t.includes("athletics")) return "bg-red-100 text-red-800 border-red-300 dark:bg-red-500/20 dark:text-red-300 dark:border-red-500/40";
+  if (t.includes("dex") || t.includes("acrobatics") || t.includes("stealth") || t.includes("sleight")) return "bg-emerald-100 text-emerald-800 border-emerald-300 dark:bg-emerald-500/20 dark:text-emerald-300 dark:border-emerald-500/40";
+  if (t.includes("con") || t.includes("concentration")) return "bg-amber-100 text-amber-800 border-amber-300 dark:bg-amber-500/20 dark:text-amber-300 dark:border-amber-500/40";
+  if (t.includes("int") || t.includes("arcana") || t.includes("history") || t.includes("investigation") || t.includes("nature") || t.includes("religion")) return "bg-blue-100 text-blue-800 border-blue-300 dark:bg-blue-500/20 dark:text-blue-300 dark:border-blue-500/40";
+  if (t.includes("wis") || t.includes("perception") || t.includes("insight") || t.includes("survival") || t.includes("medicine") || t.includes("animal")) return "bg-purple-100 text-purple-800 border-purple-300 dark:bg-purple-500/20 dark:text-purple-300 dark:border-purple-500/40";
+  if (t.includes("cha") || t.includes("deception") || t.includes("intimidation") || t.includes("performance") || t.includes("persuasion")) return "bg-rose-100 text-rose-800 border-rose-300 dark:bg-rose-500/20 dark:text-rose-300 dark:border-rose-500/40";
+  return "bg-slate-100 text-slate-800 border-slate-300 dark:bg-slate-800 dark:text-slate-200 dark:border-slate-700";
+}
+
 const SCHOOL_COLORS: Record<string, string> = {
-  Abjuration: "bg-[var(--color-school-abjuration-bg)] text-[var(--color-school-abjuration)] border-[var(--color-school-abjuration)]",
-  Conjuration: "bg-[var(--color-school-conjuration-bg)] text-[var(--color-school-conjuration)] border-[var(--color-school-conjuration)]",
-  Divination: "bg-[var(--color-school-divination-bg)] text-[var(--color-school-divination)] border-[var(--color-school-divination)]",
-  Enchantment: "bg-[var(--color-school-enchantment-bg)] text-[var(--color-school-enchantment)] border-[var(--color-school-enchantment)]",
-  Evocation: "bg-[var(--color-school-evocation-bg)] text-[var(--color-school-evocation)] border-[var(--color-school-evocation)]",
-  Illusion: "bg-[var(--color-school-illusion-bg)] text-[var(--color-school-illusion)] border-[var(--color-school-illusion)]",
-  Necromancy: "bg-[var(--color-school-necromancy-bg)] text-[var(--color-school-necromancy)] border-[var(--color-school-necromancy)]",
-  Transmutation: "bg-[var(--color-school-transmutation-bg)] text-[var(--color-school-transmutation)] border-[var(--color-school-transmutation)]",
+  Abjuration: "bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-500/20 dark:text-blue-300 dark:border-blue-500/30",
+  Conjuration: "bg-yellow-100 text-yellow-700 border-yellow-200 dark:bg-yellow-500/20 dark:text-yellow-300 dark:border-yellow-500/30",
+  Divination: "bg-emerald-100 text-emerald-700 border-emerald-200 dark:bg-emerald-500/20 dark:text-emerald-300 dark:border-emerald-500/30",
+  Enchantment: "bg-pink-100 text-pink-700 border-pink-200 dark:bg-pink-500/20 dark:text-pink-300 dark:border-pink-500/30",
+  Evocation: "bg-orange-100 text-orange-700 border-orange-200 dark:bg-orange-500/20 dark:text-orange-300 dark:border-orange-500/30",
+  Illusion: "bg-purple-100 text-purple-700 border-purple-200 dark:bg-purple-500/20 dark:text-purple-300 dark:border-purple-500/30",
+  Necromancy: "bg-green-100 text-green-700 border-green-200 dark:bg-green-500/20 dark:text-green-300 dark:border-green-500/30",
+  Transmutation: "bg-red-100 text-red-700 border-red-200 dark:bg-red-500/20 dark:text-red-300 dark:border-red-500/30",
 };
 
 export default function GlossaryPage() {
@@ -217,6 +228,7 @@ export default function GlossaryPage() {
             const level = isSpell ? item.level : undefined;
             const school = isSpell ? item.school : undefined;
             const classes = isSpell ? item.classes : [];
+            const mechanicsBadges = isSpell ? item.mechanics_badges : [];
 
             return (
               <button
@@ -244,8 +256,21 @@ export default function GlossaryPage() {
                   </div>
                 </div>
 
+                {mechanicsBadges.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5 my-2">
+                    {mechanicsBadges.map((badge: string, badgeIdx: number) => (
+                      <span
+                        key={badgeIdx}
+                        className={`text-xs font-semibold px-2.5 py-0.5 rounded-md border shadow-sm ${getStatBadgeStyle(badge)}`}
+                      >
+                        {badge}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
                 {classes.length > 0 && (
-                  <p className="mt-2 text-xs text-[var(--color-text-muted)] line-clamp-1">{classes.join(", ")}</p>
+                  <p className="text-xs text-[var(--color-text-muted)] line-clamp-1">{classes.join(", ")}</p>
                 )}
 
                 {summary && (
@@ -360,11 +385,14 @@ export default function GlossaryPage() {
               <span className="rounded-full border border-[var(--color-border)] bg-[var(--color-bg)] px-2.5 py-1 text-[10px] font-semibold text-[var(--color-text-secondary)]">
                 {t("glossary.level", "Level")} {selectedSpell.level}
               </span>
-              {selectedSpell.school && (
-                <span className={`rounded-full border px-2.5 py-1 text-[10px] font-semibold ${SCHOOL_COLORS[selectedSpell.school] || "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border-[var(--color-border)]"}`}>
-                  {selectedSpell.school}
-                </span>
-              )}
+              {selectedSpell.school && (() => {
+                const schoolColor = SCHOOL_COLORS[selectedSpell.school];
+                return (
+                  <span className={`rounded-full border px-2.5 py-1 text-[10px] font-semibold ${schoolColor || "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border-[var(--color-border)]"}`}>
+                    {selectedSpell.school}
+                  </span>
+                );
+              })()}
             </div>
             {(selectedSpell.classes || []).length > 0 && (
               <p className="text-xs text-[var(--color-text-muted)]">{(selectedSpell.classes || []).join(", ")}</p>

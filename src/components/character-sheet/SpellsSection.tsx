@@ -48,6 +48,7 @@ interface UnifiedSpell {
   immunities?: string | null;
   upcastEffect?: string | null;
   classes?: string[];
+  mechanics_badges?: string[];
 }
 
 const SCHOOL_COLORS: Record<string, string> = {
@@ -60,6 +61,17 @@ const SCHOOL_COLORS: Record<string, string> = {
   Necromancy: "bg-green-100 text-green-700 border-green-200 dark:bg-green-500/20 dark:text-green-300 dark:border-green-500/30",
   Transmutation: "bg-red-100 text-red-700 border-red-200 dark:bg-red-500/20 dark:text-red-300 dark:border-red-500/30",
 };
+
+function getStatBadgeStyle(text: string) {
+  const t = text.toLowerCase();
+  if (t.includes("str") || t.includes("athletics")) return "bg-red-100 text-red-800 border-red-300 dark:bg-red-500/20 dark:text-red-300 dark:border-red-500/40";
+  if (t.includes("dex") || t.includes("acrobatics") || t.includes("stealth") || t.includes("sleight")) return "bg-emerald-100 text-emerald-800 border-emerald-300 dark:bg-emerald-500/20 dark:text-emerald-300 dark:border-emerald-500/40";
+  if (t.includes("con") || t.includes("concentration")) return "bg-amber-100 text-amber-800 border-amber-300 dark:bg-amber-500/20 dark:text-amber-300 dark:border-amber-500/40";
+  if (t.includes("int") || t.includes("arcana") || t.includes("history") || t.includes("investigation") || t.includes("nature") || t.includes("religion")) return "bg-blue-100 text-blue-800 border-blue-300 dark:bg-blue-500/20 dark:text-blue-300 dark:border-blue-500/40";
+  if (t.includes("wis") || t.includes("perception") || t.includes("insight") || t.includes("survival") || t.includes("medicine") || t.includes("animal")) return "bg-purple-100 text-purple-800 border-purple-300 dark:bg-purple-500/20 dark:text-purple-300 dark:border-purple-500/40";
+  if (t.includes("cha") || t.includes("deception") || t.includes("intimidation") || t.includes("performance") || t.includes("persuasion")) return "bg-rose-100 text-rose-800 border-rose-300 dark:bg-rose-500/20 dark:text-rose-300 dark:border-rose-500/40";
+  return "bg-slate-100 text-slate-800 border-slate-300 dark:bg-slate-800 dark:text-slate-200 dark:border-slate-700";
+}
 
 export function SpellsSection({ character, onChange, editMode = true }: SpellsSectionProps) {
   const { onFieldBlur, showDescriptions } = useCharacterSheet();
@@ -116,6 +128,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
         srdSource,
         school,
         classes,
+        mechanics_badges: (srdSpell as any)?.mechanics_badges || [],
         effectSummary: srdSpell?.effectSummary || "",
         mechanic,
         ritual: (srdSpell as any)?.ritual || false,
@@ -322,9 +335,22 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                     );
                   })()}
                 </div>
-              </div>
+                </div>
 
-              {spell.duration && (() => {
+                {(spell.mechanics_badges || []).length > 0 && (
+                  <div className="flex flex-wrap gap-1.5 my-2">
+                    {spell.mechanics_badges.map((badge: string, badgeIdx: number) => (
+                      <span
+                        key={badgeIdx}
+                        className={`text-xs font-semibold px-2.5 py-0.5 rounded-md border shadow-sm ${getStatBadgeStyle(badge)}`}
+                      >
+                        {badge}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                {spell.duration && (() => {
                 const activeBuff = buffDef ? (character.activeBuffs || []).find(b => b.spellId === buffDef.id) : undefined;
                 if (activeBuff && activeBuff.turnsRemaining !== null && activeBuff.turnsRemaining !== undefined) {
                   return (
@@ -435,6 +461,18 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
           <div className="px-4 py-4 space-y-3">
             {selectedSpell.effectSummary && (
               <p className="text-xs text-[var(--color-text-muted)] italic leading-relaxed">{selectedSpell.effectSummary}</p>
+            )}
+            {(selectedSpell.mechanics_badges || []).length > 0 && (
+              <div className="flex flex-wrap gap-1.5">
+                {selectedSpell.mechanics_badges.map((badge: string, badgeIdx: number) => (
+                  <span
+                    key={badgeIdx}
+                    className={`text-xs font-semibold px-2.5 py-0.5 rounded-md border shadow-sm ${getStatBadgeStyle(badge)}`}
+                  >
+                    {badge}
+                  </span>
+                ))}
+              </div>
             )}
             <DiceText text={selectedSpell.description || ""} />
             <div className="flex flex-wrap gap-2 pt-1">
