@@ -58,8 +58,40 @@ const STATUSES = [
   "exhaustion",
 ];
 
+const ABILITIES = [
+  "Strength",
+  "Dexterity",
+  "Constitution",
+  "Intelligence",
+  "Wisdom",
+  "Charisma",
+];
+
+const SKILLS = [
+  "Athletics",
+  "Acrobatics",
+  "Sleight of Hand",
+  "Stealth",
+  "Arcana",
+  "History",
+  "Investigation",
+  "Nature",
+  "Religion",
+  "Animal Handling",
+  "Insight",
+  "Medicine",
+  "Perception",
+  "Survival",
+  "Deception",
+  "Intimidation",
+  "Performance",
+  "Persuasion",
+];
+
 const DAMAGE_TYPE_RE = new RegExp(`\\b(${DAMAGE_TYPES.join("|")})\\s+damage\\b`, "gi");
 const STATUS_RE = new RegExp(`\\b(${STATUSES.join("|")})\\b`, "gi");
+const SAVING_THROW_RE = new RegExp(`\\b(${ABILITIES.join("|")})\\s+saving\\s+throw\\b`, "gi");
+const SKILL_RE = new RegExp(`\\b(${SKILLS.join("|")})\\b`, "gi");
 
 const DAMAGE_STYLE: Record<string, string> = {
   acid: "bg-[var(--color-damage-acid-bg)] text-[var(--color-damage-acid)] border-[var(--color-damage-acid)]",
@@ -128,6 +160,17 @@ const STATUS_STYLE: Record<string, string> = {
   unconscious: "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border-[var(--color-border)]",
   exhaustion: "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border-[var(--color-border)]",
 };
+
+function getAbilityBadgeStyle(text: string) {
+  const t = text.toLowerCase();
+  if (t.includes("str") || t.includes("athletics")) return "bg-red-100 text-red-800 border-red-300 dark:bg-red-500/20 dark:text-red-300 dark:border-red-500/40";
+  if (t.includes("dex") || t.includes("acrobatics") || t.includes("stealth") || t.includes("sleight")) return "bg-emerald-100 text-emerald-800 border-emerald-300 dark:bg-emerald-500/20 dark:text-emerald-300 dark:border-emerald-500/40";
+  if (t.includes("con") || t.includes("concentration")) return "bg-amber-100 text-amber-800 border-amber-300 dark:bg-amber-500/20 dark:text-amber-300 dark:border-amber-500/40";
+  if (t.includes("int") || t.includes("arcana") || t.includes("history") || t.includes("investigation") || t.includes("nature") || t.includes("religion")) return "bg-blue-100 text-blue-800 border-blue-300 dark:bg-blue-500/20 dark:text-blue-300 dark:border-blue-500/40";
+  if (t.includes("wis") || t.includes("perception") || t.includes("insight") || t.includes("survival") || t.includes("medicine") || t.includes("animal")) return "bg-purple-100 text-purple-800 border-purple-300 dark:bg-purple-500/20 dark:text-purple-300 dark:border-purple-500/40";
+  if (t.includes("cha") || t.includes("deception") || t.includes("intimidation") || t.includes("performance") || t.includes("persuasion")) return "bg-rose-100 text-rose-800 border-rose-300 dark:bg-rose-500/20 dark:text-rose-300 dark:border-rose-500/40";
+  return "bg-slate-100 text-slate-800 border-slate-300 dark:bg-slate-800 dark:text-slate-200 dark:border-slate-700";
+}
 
 const UNORDERED_LIST_RE = /^(?:[-*])\s+(.+)$/gm;
 const ORDERED_LIST_RE = /^(\d+)\.\s+(.+)$/gm;
@@ -231,6 +274,38 @@ function splitStatusTokens(value: string) {
   return tokens;
 }
 
+function splitAbilityTokens(value: string) {
+  const tokens: Array<{ type: "text" | "bold" | "damage" | "status" | "ability"; value: string; abilityType?: string }> = [];
+  let lastIndex = 0;
+  let match;
+
+  while ((match = SAVING_THROW_RE.exec(value)) !== null) {
+    if (match.index > lastIndex) {
+      tokens.push({ type: "text", value: value.slice(lastIndex, match.index) });
+    }
+
+    tokens.push({ type: "ability", value: match[0], abilityType: match[1].toLowerCase() });
+
+    lastIndex = SAVING_THROW_RE.lastIndex;
+  }
+
+  while ((match = SKILL_RE.exec(value)) !== null) {
+    if (match.index > lastIndex) {
+      tokens.push({ type: "text", value: value.slice(lastIndex, match.index) });
+    }
+
+    tokens.push({ type: "ability", value: match[0], abilityType: match[1].toLowerCase() });
+
+    lastIndex = SKILL_RE.lastIndex;
+  }
+
+  if (lastIndex < value.length) {
+    tokens.push({ type: "text", value: value.slice(lastIndex) });
+  }
+
+  return tokens;
+}
+
 function renderTextSegment(value: string): React.ReactElement[] {
   const nodes: React.ReactElement[] = [];
   const segments = value.split(/(\*\*[^*]+\*\*)/g);
@@ -288,7 +363,23 @@ function renderInlineText(value: string): React.ReactElement[] {
         ];
       }
 
-      return renderTextSegment(statusToken.value);
+      const abilityTokens = splitAbilityTokens(typeof statusToken.value === "string" ? statusToken.value : "");
+
+      return abilityTokens.flatMap((abilityToken, abilityIdx) => {
+        if (abilityToken.type === "ability") {
+          const style = getAbilityBadgeStyle(abilityToken.abilityType || "");
+          return [
+            <span
+              key={`ability-${abilityIdx}`}
+              className={`inline-flex items-center rounded-md border px-1.5 py-0.5 text-xs font-semibold ${style}`}
+            >
+              {abilityToken.value}
+            </span>,
+          ];
+        }
+
+        return renderTextSegment(abilityToken.value);
+      });
     });
   });
 }

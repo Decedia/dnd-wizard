@@ -21,7 +21,7 @@ const RETRY_BASE_DELAY_MS = 2000;
 const BATCH_DELAY_MS = 3000;
 const PROGRESS_FILE = path.resolve("src/locales/parts/en/.enhance-progress.json");
 
-const SYSTEM_PROMPT = "You are an expert D&D 5e technical writer. Rewrite the provided spell or feature text into a JSON object with three required keys: 'summary', 'mechanics_badges', and 'description'. RULES FOR SUMMARY: * Must be a detailed, actionable overview at least 20 words long. RULES FOR MECHANICS_BADGES: * An array of short string badges for core mechanics (e.g., ['1 Action', '150 ft', 'DEX Save'], ['WIS (Perception) Check'], or ['1 Reaction', 'Self']). RULES FOR DESCRIPTION & TEXT FORMATTING: * Write clean Markdown for the description. Use standard dashes (-) for lists, NEVER asterisks (*). * Apply the dice badge to any dice-related text (e.g., 1d6, 8d6). * Apply the damage type badge to any damage-related text (e.g., fire, slashing). * Do not alter any core game rules or stats. STRICT OUTPUT FORMAT: Output STRICTLY raw JSON. Do NOT wrap the response in markdown blocks like ```json. Do NOT include any intro or conversational text.";
+const SYSTEM_PROMPT = "You are an expert D&D 5e technical writer. Rewrite the provided spell or feature text into a JSON object with three required keys: 'summary', 'mechanics_badges', and 'description'. RULES FOR SUMMARY: * Must be a detailed, actionable overview at least 20 words long. RULES FOR MECHANICS_BADGES: * An array of short string badges for core mechanics (e.g., ['1 Action', '150 ft', 'DEX Save'], ['WIS (Perception) Check'], or ['1 Reaction', 'Self']). RULES FOR DESCRIPTION & TEXT FORMATTING: * Write clean Markdown for the description. Use standard dashes (-) for lists, NEVER asterisks (*). * Dice must be written as plain numbers like 1d6 or bold **1d6**. * Damage types must be written as plain text like acid damage, fire damage, or cold damage. * Saving throws must be written as plain text like Dexterity saving throw, Wisdom saving throw. * Skills and ability checks must be written as plain text like Athletics, Perception, or Intelligence (Arcana) check. * Do NOT wrap dice, damage types, saving throws, or skills in custom tags, XML-like markup, or special delimiters. * Do not alter any core game rules or stats. STRICT OUTPUT FORMAT: Output STRICTLY raw JSON. Do NOT wrap the response in markdown blocks like ```json. Do NOT include any intro or conversational text.";
 
 function chunkArray(arr, size) {
   const chunks = [];
@@ -99,7 +99,7 @@ async function callNvidiaNimWithRetry(batch, retries = MAX_RETRIES) {
 }
 
 async function callNvidiaNim(batch) {
-  const userPrompt = `Rewrite each spell below into {summary, description}. Keep rules exact. Output ONLY a JSON object mapping spell name to {summary, description}. No markdown, no extra text.\n\n` + JSON.stringify(batch);
+  const userPrompt = `Rewrite each spell below into {summary, mechanics_badges, description}. Keep rules exact. Output ONLY a JSON object mapping spell name to {summary, mechanics_badges, description}. No markdown, no extra text.\n\n` + JSON.stringify(batch);
 
   const body = {
     model,
@@ -186,6 +186,7 @@ async function main() {
       }
 
       const summary = typeof enhanced.summary === "string" ? enhanced.summary : "";
+      const mechanicsBadges = Array.isArray(enhanced.mechanics_badges) ? enhanced.mechanics_badges : [];
       const description = typeof enhanced.description === "string" ? enhanced.description : "";
 
       console.log(`\n--- ${name} ---`);
@@ -196,6 +197,9 @@ async function main() {
 
       if (summary) {
         data[`2014_spells.${name}.effectSummary`] = summary;
+      }
+      if (mechanicsBadges.length > 0) {
+        data[`2014_spells.${name}.mechanics_badges`] = mechanicsBadges;
       }
       if (description) {
         data[`2014_spells.${name}.description`] = description;
