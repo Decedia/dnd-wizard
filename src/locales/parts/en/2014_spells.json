@@ -1,6 +1,6 @@
 {
   "2014_spells.acid-splash.description": "Choose one creature within range, or two creatures within range that are within 5 feet of each other. Targets must succeed on a Dexterity saving throw or take **1d6** acid damage.",
-  "2014_spells.acid-splash.effectSummary": "Launch a burst of acid at one or two creatures within range, forcing them to make a Dexterity saving throw to avoid taking acid damage.",
+  "2014_spells.acid-splash.effectSummary": "Launch a burst of acid at one or two nearby creatures, forcing them to make a Dexterity saving throw to avoid taking acid damage.",
   "2014_spells.acid-splash.fullDescription": "Choose one creature within range, or two creatures within range that are within 5 feet of each other. Targets must succeed on a Dexterity saving throw or take **1d6** acid damage.",
   "2014_spells.blade-bite.description": "As part of the action to cast this spell, you must make a melee attack against one creature within range, or the spell fails. On a hit, the target suffers normal attack effects and takes {damage}necrotic{/damage} damage:\n\n- Base damage: {dice}1d6{/dice}\n- 5th level: {dice}2d6{/dice}\n- 11th level: {dice}3d6{/dice}\n- 17th level: {dice}4d6{/dice}",
   "2014_spells.blade-bite.effectSummary": "Infuse a melee weapon attack with necrotic energy to deal additional damage to a single target upon a successful hit.",
@@ -1569,5 +1569,6 @@
     "120 ft",
     "Ranged Spell Attack",
     "1d10 fire damage"
-  ]
+  ],
+  "2014_spells.acid-splash.lastUpdated": "2026-09-27"
 }

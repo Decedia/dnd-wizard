@@ -49,6 +49,7 @@ interface UnifiedSpell {
   upcastEffect?: string | null;
   classes?: string[];
   mechanics_badges?: string[];
+  lastUpdated?: string;
 }
 
 const SCHOOL_COLORS: Record<string, string> = {
@@ -129,6 +130,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
         school,
         classes,
         mechanics_badges: (srdSpell as any)?.mechanics_badges || [],
+        lastUpdated: (srdSpell as any)?.lastUpdated || "",
         effectSummary: srdSpell?.effectSummary || "",
         mechanic,
         ritual: (srdSpell as any)?.ritual || false,
@@ -368,6 +370,10 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                 <p className="mt-2 text-sm text-[var(--color-text-secondary)]">{summary}</p>
               )}
 
+              {spell.lastUpdated && (
+                <p className="mt-1 text-[10px] text-[var(--color-text-muted)]">Last updated: {spell.lastUpdated}</p>
+              )}
+
               <div className="flex items-center gap-1 mt-3">
                 {preparationCaster && spell.level > 0 && (
                   <button
@@ -473,6 +479,9 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                   </span>
                 ))}
               </div>
+            )}
+            {selectedSpell.lastUpdated && (
+              <p className="text-[10px] text-[var(--color-text-muted)]">Last updated: {selectedSpell.lastUpdated}</p>
             )}
             <DiceText text={selectedSpell.description || ""} />
             <div className="flex flex-wrap gap-2 pt-1">
