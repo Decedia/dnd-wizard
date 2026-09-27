@@ -74,7 +74,7 @@ function getSummary(spell: any): string {
   const raw = spell.effectSummary || spell.summary || "";
   if (raw) return raw;
   const desc = Array.isArray(spell.description) ? spell.description.join(" ") : spell.description || "";
-  return desc.slice(0, 180);
+  return desc;
 }
 
 function getFullDescription(spell: any): string {
@@ -224,7 +224,7 @@ export default function GlossaryPage() {
           {filtered.map((item: any, idx: number) => {
             const isSpell = category === "spells";
             const name = item.name;
-            const summary = isSpell ? getSummary(item) : (item.summary || item.description || "").slice(0, 180);
+            const summary = isSpell ? getSummary(item) : (item.summary || item.description || "");
             const level = isSpell ? item.level : undefined;
             const school = isSpell ? item.school : undefined;
             const classes = isSpell ? item.classes : [];
@@ -274,7 +274,7 @@ export default function GlossaryPage() {
                 )}
 
                 {summary && (
-                  <p className="mt-2 text-sm text-[var(--color-text-secondary)] line-clamp-2">{summary}</p>
+                  <p className="mt-2 text-sm text-[var(--color-text-secondary)]">{summary}</p>
                 )}
               </button>
             );
