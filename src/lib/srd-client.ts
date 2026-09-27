@@ -712,21 +712,25 @@ export function normalizeSpell(s: any): any {
   };
 }
 
-function buildLocalesIndex(locale: string): Record<string, { description?: string; effectSummary?: string; fullDescription?: string }> {
+function buildLocalesIndex(locale: string): Record<string, { description?: string; effectSummary?: string; fullDescription?: string; mechanics_badges?: string[]; lastUpdated?: string }> {
   const localesData = pickLocaleData(spellLocalesMap, locale) as any;
-  const index: Record<string, { description?: string; effectSummary?: string; fullDescription?: string }> = {};
+  const index: Record<string, { description?: string; effectSummary?: string; fullDescription?: string; mechanics_badges?: string[]; lastUpdated?: string }> = {};
 
   for (const [key, value] of Object.entries(localesData)) {
-    const match = key.match(/^2014_spells\.([^.]+)\.(description|effectSummary|fullDescription)$/);
+    const match = key.match(/^2014_spells\.([^.]+)\.(description|effectSummary|fullDescription|mechanics_badges|lastUpdated)$/);
     if (!match) continue;
 
     const spellName = match[1];
-    const field = match[2] as "description" | "effectSummary" | "fullDescription";
+    const field = match[2] as "description" | "effectSummary" | "fullDescription" | "mechanics_badges" | "lastUpdated";
 
     if (!index[spellName]) {
       index[spellName] = {};
     }
-    index[spellName][field] = value as string;
+    if (field === "mechanics_badges") {
+      index[spellName].mechanics_badges = Array.isArray(value) ? value : [];
+    } else {
+      index[spellName][field] = value as string;
+    }
   }
 
   return index;
@@ -760,6 +764,12 @@ export function applySpellLocalesOverrides(spells: any[], locale: string = "en")
     }
     if (overrides.fullDescription) {
       next.fullDescription = overrides.fullDescription;
+    }
+    if (overrides.mechanics_badges) {
+      next.mechanics_badges = overrides.mechanics_badges;
+    }
+    if (overrides.lastUpdated) {
+      next.lastUpdated = overrides.lastUpdated;
     }
 
     return next;

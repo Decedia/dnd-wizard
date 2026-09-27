@@ -229,6 +229,7 @@ export default function GlossaryPage() {
             const school = isSpell ? item.school : undefined;
             const classes = isSpell ? item.classes : [];
             const mechanicsBadges = isSpell ? (item.mechanics_badges || []) : [];
+            const lastUpdated = isSpell ? item.lastUpdated : "";
 
             return (
               <button
@@ -275,6 +276,10 @@ export default function GlossaryPage() {
 
                 {summary && (
                   <p className="mt-2 text-sm text-[var(--color-text-secondary)]">{summary}</p>
+                )}
+
+                {lastUpdated && (
+                  <p className="mt-1 text-[10px] text-[var(--color-text-muted)]">Last updated: {lastUpdated}</p>
                 )}
               </button>
             );
@@ -379,6 +384,21 @@ export default function GlossaryPage() {
           <div className="px-4 py-4 space-y-3">
             {selectedSpell.effectSummary && (
               <p className="text-xs text-[var(--color-text-muted)] italic leading-relaxed">{selectedSpell.effectSummary}</p>
+            )}
+            {(selectedSpell.mechanics_badges || []).length > 0 && (
+              <div className="flex flex-wrap gap-1.5">
+                {(selectedSpell.mechanics_badges || []).map((badge: string, badgeIdx: number) => (
+                  <span
+                    key={badgeIdx}
+                    className={`text-xs font-semibold px-2.5 py-0.5 rounded-md border shadow-sm ${getStatBadgeStyle(badge)}`}
+                  >
+                    {badge}
+                  </span>
+                ))}
+              </div>
+            )}
+            {selectedSpell.lastUpdated && (
+              <p className="text-[10px] text-[var(--color-text-muted)]">Last updated: {selectedSpell.lastUpdated}</p>
             )}
             <DiceText text={getFullDescription(selectedSpell)} />
             <div className="flex flex-wrap gap-2 pt-1">
