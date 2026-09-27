@@ -21,6 +21,7 @@ export interface SplitSelectionCardProps {
   isExpanded?: boolean;
   expandedContent?: ReactNode;
   isSelected?: boolean;
+  disabled?: boolean;
   modalContent?: ReactNode;
 }
 
@@ -36,6 +37,7 @@ export function SplitSelectionCard({
   isExpanded = false,
   expandedContent,
   isSelected = false,
+  disabled = false,
   modalContent,
 }: SplitSelectionCardProps) {
   const { t } = useLanguage();
@@ -62,13 +64,16 @@ export function SplitSelectionCard({
         className={`flex flex-row rounded-2xl overflow-hidden ${
           isSelected
             ? "border border-[var(--color-accent-indigo-500)] bg-[var(--color-accent-indigo-50)]"
-            : "border border-[var(--color-border)] bg-[var(--color-surface)]"
+            : disabled
+              ? "border border-[var(--color-border)] bg-[var(--color-surface)] opacity-60"
+              : "border border-[var(--color-border)] bg-[var(--color-surface)]"
         }`}
       >
         <button
           type="button"
           onClick={onSelect}
-          className="flex-1 p-3.5 hover:bg-[var(--color-bg)]/50 transition text-left flex items-start gap-3"
+          disabled={disabled}
+          className="flex-1 p-3.5 hover:bg-[var(--color-bg)]/50 transition text-left flex items-start gap-3 disabled:opacity-60 disabled:cursor-not-allowed"
         >
           {icon && (
             <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-lg bg-[var(--color-bg)]">

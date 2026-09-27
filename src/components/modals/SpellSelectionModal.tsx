@@ -243,6 +243,7 @@ export function SpellSelectionModal({
         badges={badges.length > 0 ? badges : undefined}
         isRecommended={isRecommended("spell", sp.name)}
         isSelected={isSel}
+        disabled={finalDisabled}
         onSelect={() => !isAlreadyKnown && !isDisabled && toggle(sp.name, level)}
         infoType="modal"
         modalContent={
