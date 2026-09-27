@@ -1,6 +1,6 @@
 {
   "2014_spells.acid-splash.description": "Choose one creature within range, or two creatures within range that are within 5 feet of each other. Targets must succeed on a Dexterity saving throw or take **1d6** acid damage.",
-  "2014_spells.acid-splash.effectSummary": "Launch a burst of acid at one creature or two creatures standing close together, forcing them to dodge the caustic spray to avoid damage.",
+  "2014_spells.acid-splash.effectSummary": "Launch a burst of acid at one or two creatures within range, forcing them to make a Dexterity saving throw to avoid taking acid damage.",
   "2014_spells.acid-splash.fullDescription": "Choose one creature within range, or two creatures within range that are within 5 feet of each other. Targets must succeed on a Dexterity saving throw or take **1d6** acid damage.",
   "2014_spells.blade-bite.description": "As part of the action to cast this spell, you must make a melee attack against one creature within range, or the spell fails. On a hit, the target suffers normal attack effects and takes {damage}necrotic{/damage} damage:\n\n- Base damage: {dice}1d6{/dice}\n- 5th level: {dice}2d6{/dice}\n- 11th level: {dice}3d6{/dice}\n- 17th level: {dice}4d6{/dice}",
   "2014_spells.blade-bite.effectSummary": "Infuse a melee weapon attack with necrotic energy to deal additional damage to a single target upon a successful hit.",
@@ -38,11 +38,11 @@
   "2014_spells.druidcraft.description": "You create one of the following effects within range:\n- You create a tiny, harmless sensory effect that predicts what the weather will be at your location for the next 24 hours. The effect might manifest as a golden orb for clear skies, a cloud for rain, falling snowflakes for snow, and so on. This effect persists for 1 round.\n- You instantly make a flower blossom, a seed pod open, or a leaf bud bloom.\n- You create an instantaneous, harmless sensory effect, such as falling leaves, a puff of wind, the sound of a small animal, or the faint odor of skunk. The effect must fit in a 5-foot cube.\n- You instantly light or snuff out a candle, a torch, or a small campfire.",
   "2014_spells.druidcraft.effectSummary": "Create minor nature-themed sensory effects, predict the weather for the next day, manipulate plant growth, or toggle small fires.",
   "2014_spells.druidcraft.fullDescription": "You create one of the following effects within range:\n- You create a tiny, harmless sensory effect that predicts what the weather will be at your location for the next 24 hours. The effect might manifest as a golden orb for clear skies, a cloud for rain, falling snowflakes for snow, and so on. This effect persists for 1 round.\n- You instantly make a flower blossom, a seed pod open, or a leaf bud bloom.\n- You create an instantaneous, harmless sensory effect, such as falling leaves, a puff of wind, the sound of a small animal, or the faint odor of skunk. The effect must fit in a 5-foot cube.\n- You instantly light or snuff out a candle, a torch, or a small campfire.",
-  "2014_spells.eldritch-blast.description": "Make a ranged spell attack against a creature within range. On a hit, the target takes **1d10** force damage. The spell creates more than one beam when you reach higher levels:\n\n* 5th level: two beams\n* 11th level: three beams\n* 17th level: four beams\n\nYou can direct the beams at the same target or at different ones. Make a separate attack roll for each beam.",
-  "2014_spells.eldritch-blast.effectSummary": "Launch powerful beams of force energy at one or more targets, scaling in the number of attacks as your character level increases.",
-  "2014_spells.eldritch-blast.fullDescription": "Make a ranged spell attack against a creature within range. On a hit, the target takes **1d10** force damage. The spell creates more than one beam when you reach higher levels:\n\n* 5th level: two beams\n* 11th level: three beams\n* 17th level: four beams\n\nYou can direct the beams at the same target or at different ones. Make a separate attack roll for each beam.",
+  "2014_spells.eldritch-blast.description": "Make a ranged spell attack against a creature within range. On a hit, the target takes **1d10** force damage. The spell creates more than one beam when you reach higher levels:\n\n- 5th level: two beams\n- 11th level: three beams\n- 17th level: four beams\n\nYou can direct the beams at the same target or at different ones. Make a separate attack roll for each beam.",
+  "2014_spells.eldritch-blast.effectSummary": "Launch a beam of crackling energy at a target to deal force damage, with the number of beams increasing as you reach higher levels.",
+  "2014_spells.eldritch-blast.fullDescription": "Make a ranged spell attack against a creature within range. On a hit, the target takes **1d10** force damage. The spell creates more than one beam when you reach higher levels:\n\n- 5th level: two beams\n- 11th level: three beams\n- 17th level: four beams\n\nYou can direct the beams at the same target or at different ones. Make a separate attack roll for each beam.",
   "2014_spells.fire-bolt.description": "You hurl a mote of fire at a creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes **1d10** fire damage. A flammable object hit by this spell ignites if it isn't being worn or carried.",
-  "2014_spells.fire-bolt.effectSummary": "Hurl a mote of fire to deal damage to a creature or ignite flammable objects that are not being held or worn.",
+  "2014_spells.fire-bolt.effectSummary": "Hurl a mote of fire at a creature or object to deal fire damage and potentially ignite flammable materials not being held.",
   "2014_spells.fire-bolt.fullDescription": "You hurl a mote of fire at a creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes **1d10** fire damage. A flammable object hit by this spell ignites if it isn't being worn or carried.",
   "2014_spells.friends.description": "For the duration, you have advantage on all Charisma checks directed at one creature of your choice that isn't hostile toward you. When the spell ends, the creature realizes that you used magic to influence its mood and becomes hostile toward you. A creature prone to violence might attack you. Another creature might seek retribution from you in other ways (at the DM's discretion).",
   "2014_spells.friends.effectSummary": "Use this spell to gain a social advantage during negotiations or deception by granting yourself advantage on Charisma checks against a non-hostile target.",
@@ -1541,7 +1541,8 @@
   "2014_spells.acid-splash.mechanics_badges": [
     "1 Action",
     "60 ft",
-    "DEX Save"
+    "DEX Save",
+    "1d6 acid damage"
   ],
   "2014_spells.dancing-lights.mechanics_badges": [
     "1 Action",
@@ -1556,5 +1557,17 @@
   "2014_spells.druidcraft.mechanics_badges": [
     "Cantrip",
     "Utility"
+  ],
+  "2014_spells.eldritch-blast.mechanics_badges": [
+    "1 Action",
+    "120 ft",
+    "Ranged Spell Attack",
+    "1d10 force damage"
+  ],
+  "2014_spells.fire-bolt.mechanics_badges": [
+    "1 Action",
+    "120 ft",
+    "Ranged Spell Attack",
+    "1d10 fire damage"
   ]
 }
