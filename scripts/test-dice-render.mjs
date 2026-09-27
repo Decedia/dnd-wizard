@@ -24,6 +24,24 @@ function groupSpells(data) {
 
 const DICE_RE = /\*\*(\d+d\d+)\*\*|(?<!\*)(\d+d\d+)(?!\*)/g;
 
+const DAMAGE_TYPES = [
+  "acid",
+  "bludgeoning",
+  "cold",
+  "fire",
+  "force",
+  "lightning",
+  "necrotic",
+  "piercing",
+  "poison",
+  "psychic",
+  "radiant",
+  "slashing",
+  "thunder",
+];
+
+const DAMAGE_TYPE_RE = new RegExp(`\\b(${DAMAGE_TYPES.join("|")})\\s+damage\\b`, "gi");
+
 function highlightDice(text) {
   const parts = [];
   let lastIndex = 0;
@@ -47,6 +65,46 @@ function highlightDice(text) {
   return parts;
 }
 
+function splitDamageTokens(value) {
+  const tokens = [];
+  let lastIndex = 0;
+  let match;
+
+  while ((match = DAMAGE_TYPE_RE.exec(value)) !== null) {
+    if (match.index > lastIndex) {
+      tokens.push({ type: "text", value: value.slice(lastIndex, match.index) });
+    }
+
+    tokens.push({ type: "damage", value: match[0] });
+
+    lastIndex = DAMAGE_TYPE_RE.lastIndex;
+  }
+
+  if (lastIndex < value.length) {
+    tokens.push({ type: "text", value: value.slice(lastIndex) });
+  }
+
+  return tokens;
+}
+
+function renderTextSegment(value) {
+  const nodes = [];
+  const segments = value.split(/(\*\*[^*]+\*\*)/g);
+
+  segments.forEach((segment, segIdx) => {
+    if (!segment) return;
+
+    if (segment.startsWith("**") && segment.endsWith("**")) {
+      const inner = segment.slice(2, -2);
+      nodes.push(`**${inner}**`);
+    } else {
+      nodes.push(segment);
+    }
+  });
+
+  return nodes.join("");
+}
+
 function renderDiceText(text) {
   const parts = highlightDice(text);
   return parts.map((part, idx) => {
@@ -54,21 +112,15 @@ function renderDiceText(text) {
       return `[DICE:${part.value}]`;
     }
 
-    const nodes = [];
-    const segments = part.value.split(/(\*\*[^*]+\*\*)/g);
+    const damageTokens = splitDamageTokens(part.value);
 
-    segments.forEach((segment, segIdx) => {
-      if (!segment) return;
-
-      if (segment.startsWith("**") && segment.endsWith("**")) {
-        const inner = segment.slice(2, -2);
-        nodes.push(`**${inner}**`);
-      } else {
-        nodes.push(segment);
+    return damageTokens.map((token, tokenIdx) => {
+      if (token.type === "damage") {
+        return `[DAMAGE:${token.value}]`;
       }
-    });
 
-    return nodes.join("");
+      return renderTextSegment(token.value);
+    }).join("");
   }).join("");
 }
 
@@ -80,7 +132,7 @@ async function main() {
   const grouped = groupSpells(data);
   const testSpells = ["acid-splash", "blade-bite", "booming-blade"];
 
-  console.log("\n=== Dice Rendering Test for 3 Spells ===\n");
+  console.log("\n=== Dice + Damage Rendering Test for 3 Spells ===\n");
 
   for (const name of testSpells) {
     const entry = grouped[name];
@@ -93,7 +145,7 @@ async function main() {
     console.log(`\n--- ${name} ---`);
     console.log("Original description:");
     console.log(entry.description);
-    console.log("\nRendered with dice tags:");
+    console.log("\nRendered with dice + damage tags:");
     console.log(renderDiceText(entry.description));
     console.log("\n---\n");
   }
