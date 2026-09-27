@@ -15,7 +15,7 @@ if (!apiKey) {
 }
 
 const spellFile = path.resolve("src/locales/parts/en/2014_spells.json");
-const BATCH_SIZE = 2;
+const BATCH_SIZE = 3;
 const MAX_RETRIES = 3;
 const RETRY_BASE_DELAY_MS = 2000;
 const BATCH_DELAY_MS = 5000;
