@@ -157,13 +157,7 @@ async function main() {
 
   const completedSet = loadProgress();
 
-  let targetSpells: string[];
-  if (singleSpell) {
-    targetSpells = [singleSpell];
-    console.log(`Single spell mode: ${singleSpell}`);
-  } else {
-    targetSpells = spellNames.filter((name) => !completedSet.has(name));
-  }
+  const targetSpells = singleSpell ? [singleSpell] : spellNames.filter((name) => !completedSet.has(name));
   console.log(`Target spells: ${targetSpells.length}`);
 
   const batches = chunkArray(targetSpells, BATCH_SIZE);
