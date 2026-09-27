@@ -228,7 +228,7 @@ export default function GlossaryPage() {
             const level = isSpell ? item.level : undefined;
             const school = isSpell ? item.school : undefined;
             const classes = isSpell ? item.classes : [];
-            const mechanicsBadges = isSpell ? item.mechanics_badges : [];
+            const mechanicsBadges = isSpell ? (item.mechanics_badges || []) : [];
 
             return (
               <button
