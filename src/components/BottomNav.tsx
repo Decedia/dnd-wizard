@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { HomeIcon, PlusCircleIcon } from "@/components/icons";
+import { HomeIcon, PlusCircleIcon, BookIcon } from "@/components/icons";
 import { WizardHatIcon } from "@/components/icons";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -11,6 +11,11 @@ const navItems = [
     nameKey: "nav.home",
     href: "/",
     icon: HomeIcon,
+  },
+  {
+    nameKey: "nav.glossary",
+    href: "/glossary",
+    icon: BookIcon,
   },
   {
     nameKey: "nav.new",
