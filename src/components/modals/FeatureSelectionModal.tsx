@@ -109,6 +109,7 @@ export function FeatureSelectionModal({
               icon={icon ? <span className="text-[22px] leading-none">{icon}</span> : undefined}
               badges={[]}
               isSelected={isSelected}
+              disabled={isDisabled}
               onSelect={() => !isDisabled && handleOptionClick(opt.name)}
               infoType="modal"
               modalContent={
