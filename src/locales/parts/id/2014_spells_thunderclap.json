@@ -1,5 +1,5 @@
 {
-  "2014_spells.thunderclap.description": "Kamu menciptakan ledakan suara yang gemuruh yang bisa terdengar hingga 100 kaki jauhnya. Setiap makhluk selain kamu dalam jangkauan harus melakukan Constitution saving throw. Pada save yang gagal, makhluk tersebut menerima 1d6 thunder damage.",
-  "2014_spells.thunderclap.effectSummary": "Berikan 1d6 thunder damage ke target dalam Self (radius 5 kaki)",
-  "2014_spells.thunderclap.fullDescription": "Menggunakan 1 Action, kamu menciptakan ledakan suara yang gemuruh yang bisa terdengar hingga 100 kaki jauhnya. Pada save yang gagal, makhluk tersebut menerima 1d6 thunder damage; Setiap makhluk selain kamu dalam jangkauan harus melakukan Constitution saving throw; roll d20, tambahkan modifier CON, dan bandingkan dengan spell save DC kamu; Damage sihir meningkat sebesar 1d6 ketika kamu mencapai level 5 (2d6), level 11 (3d6), dan level 17 (4d6). Efek terjadi segera lalu berakhir."
+  "2014_spells.thunderclap.description": "Kamu menciptakan ledakan suara guntur yang dapat terdengar hingga jarak 100 kaki. Setiap makhluk selain dirimu dalam radius 5 kaki harus melakukan saving throw Konstitusi. Jika gagal, makhluk tersebut menerima **1d6** kerusakan guntur.",
+  "2014_spells.thunderclap.effectSummary": "Kamu menciptakan ledakan suara guntur yang berpusat pada dirimu, memberikan kerusakan guntur kepada makhluk di sekitar yang gagal melakukan saving throw Konstitusi.",
+  "2014_spells.thunderclap.fullDescription": "Kamu menciptakan ledakan suara guntur yang dapat terdengar hingga jarak 100 kaki. Setiap makhluk selain dirimu dalam radius 5 kaki harus melakukan saving throw Konstitusi. Jika gagal, makhluk tersebut menerima **1d6** kerusakan guntur."
 }

@@ -1,5 +1,5 @@
 {
-  "2014_spells.blade-ward.description": "Kamu mengulurkan tangan dan melukiskan sigil pelindung di udara. Sampai akhir giliranmu berikutnya, kamu memiliki resistance terhadap bludgeoning, piercing, dan slashing damage dari weapon attacks.",
-  "2014_spells.blade-ward.effectSummary": "Gain resistance terhadap bludgeoning, piercing, slashing sampai akhir turn berikutnya",
-  "2014_spells.blade-ward.fullDescription": "Menggunakan 1 Action, kamu mengulurkan tangan dan melukiskan sigil pelindung di udara. Sampai akhir giliranmu berikutnya, kamu memiliki resistance terhadap bludgeoning, piercing, dan slashing damage dari weapon attacks; Kamu mengulurkan tangan dan melukiskan sigil pelindung di udara."
+  "2014_spells.blade-ward.description": "Selama sihir ini aktif, kamu mendapatkan resistansi terhadap kerusakan berikut yang dihasilkan oleh serangan senjata hingga akhir giliranmu berikutnya:\n\n- blunt\n- tembus\n- potong\n\nSihir ini memiliki durasi 1 ronde dan membutuhkan komponen verbal serta somatik.",
+  "2014_spells.blade-ward.effectSummary": "Sihir pertahanan yang memberikan resistansi terhadap berbagai jenis kerusakan fisik dari serangan senjata sampai giliranmu berikutnya.",
+  "2014_spells.blade-ward.fullDescription": "Selama sihir ini aktif, kamu mendapatkan resistansi terhadap kerusakan berikut yang dihasilkan oleh serangan senjata hingga akhir giliranmu berikutnya:\n\n- blunt\n- tembus\n- potong\n\nSihir ini memiliki durasi 1 ronde dan membutuhkan komponen verbal serta somatik."
 }

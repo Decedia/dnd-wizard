@@ -27,22 +27,21 @@ const BATCH_DELAY_MS = Number(process.env.BATCH_DELAY_MS || 5000);
 const MAX_TOKENS = Number(process.env.MAX_TOKENS || 4096);
 const TEMPERATURE = 0.3;
 
-// Mechanical terms that stay in English, matching the convention already used
-// across src/locales/parts/id. Measured from the existing corpus: "saving throw",
-// "spell", "target", "damage", "Action", "DC", "Advantage/Disadvantage" and
-// "Hit Points" are English; distances ("kaki"), "range" ("jangkauan"),
-// "duration" ("durasi"), "creature" ("makhluk") and damage types are translated.
+// Terms that stay in English because Indonesian D&D players say them in English
+// and the rest of the app already renders them that way. They are marked with
+// visible [[...]] brackets rather than encoded, so the model can still read the
+// word and write natural Indonesian grammar around it (e.g. "sebuah Action",
+// not "satu action" and not a mangled token).
 const PROTECTED_TERMS = [
-  // Core save/check vocabulary - by far the strongest English signal in the corpus
+  // Saves and checks - the strongest English signal in the existing ID corpus
   "saving throw", "spell save DC", "DC", "attack roll", "ability check",
   // Action economy
   "Action", "Bonus Action", "Reaction", "Free Action",
   "Advantage", "Disadvantage", "Opportunity Attack",
-  // Core nouns the app and UI already surface in English
-  "spell", "Spell", "target", "Target", "damage", "Hit Points", "level",
-  "roll", "slot", "Spell Slot", "Long Rest", "Short Rest",
-  "Attack", "Melee", "Ranged", "Area", "Point",
-  "crit", "critical hit",
+  // Rest and resources
+  "Hit Points", "Long Rest", "Short Rest", "Spell Slot",
+  // Dice and rolls
+  "roll", "d20", "critical hit",
 ];
 
 const PROTECTED_REGEX = new RegExp(
@@ -50,31 +49,22 @@ const PROTECTED_REGEX = new RegExp(
   "gi"
 );
 
+const TOKEN_PATTERN = /\[\[([^\]]+)\]\]/g;
+
 function protectTerms(text) {
-  return String(text).replace(PROTECTED_REGEX, (match) => `__PROTECTED_${Buffer.from(match).toString("base64")}__`);
+  return String(text).replace(PROTECTED_REGEX, (match) => `[[${match}]]`);
 }
 
 function restoreTerms(text) {
-  return String(text).replace(/__PROTECTED_([A-Za-z0-9+/=]+)__/g, (_, b64) => {
-    try {
-      return Buffer.from(b64, "base64").toString("utf8");
-    } catch {
-      return "";
-    }
-  });
+  return String(text).replace(TOKEN_PATTERN, "$1");
 }
 
-// A protected token that failed to survive the round trip means the model
-// mangled it; keep the shielded form rather than silently dropping the term.
-function restoreOrKeep(text) {
-  return String(text).replace(/__PROTECTED_([A-Za-z0-9+/=]+)__/g, (_, b64) => {
-    try {
-      const decoded = Buffer.from(b64, "base64").toString("utf8");
-      return /[a-z]/i.test(decoded) ? decoded : `__PROTECTED_${b64}__`;
-    } catch {
-      return `__PROTECTED_${b64}__`;
-    }
-  });
+function countProtectedTokens(text) {
+  return (String(text).match(/\[\[[^\]]+\]\]/g) || []).length;
+}
+
+function hasLeftoverTokens(text) {
+  return /\[\[|\]\]/.test(String(text));
 }
 
 function sleep(ms) {
@@ -168,45 +158,63 @@ function saveProgress(completedSet) {
 }
 
 const SYSTEM_PROMPT = [
-  "You are an expert D&D 5e technical writer and translator working in Bahasa Indonesia.",
-  "You will receive spell entries written in English and must rewrite them into natural Bahasa Indonesia as STRICT raw JSON.",
+  "You are an Indonesian D&D 5e player and technical writer. You rewrite official English spell text into Bahasa Indonesia so that an Indonesian player reads it and immediately understands how the spell works.",
+  "",
+  "GOAL: NATURAL INDONESIAN, NOT A WORD-FOR-WORD TRANSLATION.",
+  "* Indonesian players already know the D&D rules and vocabulary. Write the way a good Indonesian",
+  "  tabletop guide would: fluent, natural, and immediately understandable.",
+  "* Do NOT translate literally. English word order, idioms and filler must be reshaped into natural Indonesian.",
+  "* Fix anything that reads awkwardly in English so it reads naturally in Indonesian.",
+  "* Use 'sebuah' or 'satu' for count nouns as Indonesian normally does. Never leave 'a' untranslated",
+  "  (write 'lakukan sebuah action', NOT 'lakukan a action' or 'lakukan satu action').",
+  "* Use natural connectives: 'dan', 'atau', 'tetapi', 'jika', 'ketika', 'setelah', 'sebelum', 'karena'.",
+  "* Address the reader as 'kamu' consistently throughout.",
+  "",
+  "TERMS THAT STAY IN ENGLISH:",
+  "* Words wrapped in double square brackets, such as [[Action]] or [[saving throw]], are D&D terms that",
+  "  Indonesian players use in English. Keep the word itself in English and keep the [[ ]] brackets.",
+  "* Write natural Indonesian grammar AROUND them. 'seorang [[target]]', 'menggunakan [[Bonus Action]]',",
+  "  'harus berhasil melakukan [[saving throw]]'.",
+  "* Never translate the bracketed word, never merge the brackets into other text, never drop one.",
+  "",
+  "TERMS TO TRANSLATE:",
+  "* creature -> makhluk, range -> jangkauan, duration -> durasi, feet -> kaki, turn -> giliran,",
+  "  round -> ronde, damage -> kerusakan, spell -> sihir, target (when not bracketed) -> sasaran.",
+  "* Damage types: acid -> asam, fire -> api, cold -> dingin, lightning -> petir, thunder -> guntur,",
+  "  necrotic -> nekrotik, radiant -> radiasi, force -> kekuatan, psychic -> psikis, bludgeoning -> blunt,",
+  "  piercing -> tembus, slashing -> potong.",
+  "* Abilities: Strength -> Kekuatan, Dexterity -> Destrezza, Constitution -> Konstitusi,",
+  "  Intelligence -> Kecerdasan, Wisdom -> Kearifan, Charisma -> Karisma.",
+  "* Conditions: Blinded -> Buta, Deafened -> Tuli, Charmed -> Terpesona, Frightened -> Takut,",
+  "  Grappled -> Terpegang, Incapacitated -> Tidak Mampu Bertindak, Invisible -> Tidak Terlihat,",
+  "  Paralyzed -> Lumpuh, Petrified -> Membatu, Poisoned -> Keracunan, Prone -> Terbaring,",
+  "  Restrained -> Terikat, Stunned -> Pusing, Unconscious -> Tidak Sadar.",
   "",
   "RULES FOR SUMMARY (effectSummary):",
-  "* Write a detailed, actionable one or two sentence overview in Bahasa Indonesia.",
-  "* Keep it at least 20 words long.",
-  "* Do not truncate or abbreviate the effect.",
+  "* One or two sentences, at least 20 words, in fluid Bahasa Indonesia.",
+  "* State what the spell DOES and what the player must choose or roll.",
+  "* Do not truncate the effect.",
   "",
   "RULES FOR DESCRIPTION:",
-  "* Translate the description into clear, natural Bahasa Indonesia, following the style already used in this app.",
-  "* Keep the full structure: paragraph breaks, list items using standard dashes (-), and any upcast or higher level text.",
-  "* Do not remove, merge, or summarize away any rules, numbers, examples, or scaling text.",
-  "* Dice stay as plain notation like 1d8 or bold **1d8**. Never spell them out or translate them.",
-  "* Keep every number at its original value; only the surrounding wording is translated.",
-  "* Translate these into Indonesian: creature (makhluk), range (jangkauan), duration (durasi),",
-  "  feet (kaki), damage types (api, dingin, petir, guntur, asam, nekrotik, radiasi, kekuatan, psikis),",
-  "  and conditions (buta, takut, tak terlihat, lumpuh, pusing, Fatigue, Kehilangan Nyawa).",
-  "* Ability names are translated: Strength (Kekuatan), Dexterity (Destrezza), Constitution (Konstitusi),",
-  "  Intelligence (Kecerdasan), Wisdom (Kearifan), Charisma (Karisma).",
-  "* Preserve markdown bold exactly where it marks dice or key values.",
+  "* Keep every rule, number, example and scaling line. Never summarise away mechanics.",
+  "* Keep paragraph breaks and use standard dashes (-) for lists.",
+  "* Keep the upcast/higher level section as a list, e.g. '- Tingkat 5: **2d6**'.",
+  "* Dice stay as plain notation like 1d6 or bold **1d6**. Never spell out or translate dice.",
+  "* Keep every numeric value exactly as written in the input.",
+  "* Preserve markdown bold around dice and key values.",
   "* Never translate or alter the spell name.",
   "",
-  "RULES FOR PROTECTED TERMS:",
-  "* Tokens of the form __PROTECTED_<base64>__ are D&D mechanical terms that must appear VERBATIM in your output.",
-  "* Never translate, reorder inside, abbreviate, or drop them. Copy the whole token exactly as given.",
-  "* This specifically covers 'saving throw', 'spell', 'target', 'damage', 'Action', 'Bonus Action',",
-  "  'Reaction', 'DC', 'Advantage', 'Disadvantage', and 'Hit Points' - keep those in English.",
-  "",
-  "RULES FOR OUTPUT:",
-  "* Output STRICT raw JSON only, with no markdown code fences and no commentary.",
+  "OUTPUT:",
+  "* Output STRICT raw JSON. No markdown fences, no commentary.",
   "* Map each spell slug to an object with exactly two keys: 'effectSummary' and 'description'.",
-  "* 'description' must be a single string containing both markdown and protected tokens.",
 ].join("\n");
 
 function buildUserPrompt(batch) {
   return (
-    "Terjemahkan dan tulis ulang setiap spell di bawah ke dalam Bahasa Indonesia. " +
-    "Kembalikan HANYA objek JSON yang memetakan slug spell ke {effectSummary, description}. " +
-    "Pertahankan setiap token __PROTECTED_<base64>__ apa adanya. Tanpa penjelasan.\n\n" +
+    "Tulis ulang setiap spell di bawah dalam Bahasa Indonesia yang natural dan enak dibaca pemain Indonesia. " +
+    "Ini bukan terjemahan harfiah: sesuaikan struktur kalimatnya agar mengalir dan masuk akal. " +
+    "Kembalikan HANYA objek JSON yang memetakan slug spell ke {effectSummary, description}, " +
+    "dan pertahankan setiap istilah berformat [[...]] apa adanya. Tanpa penjelasan.\n\n" +
     JSON.stringify(batch)
   );
 }
@@ -271,11 +279,7 @@ async function callGemmaOnce(batch) {
   return parsed;
 }
 
-function countProtectedTokens(text) {
-  return (String(text).match(/__PROTECTED_[A-Za-z0-9+/=]+__/g) || []).length;
-}
-
-function validateResult(result, slug, shieldedSource) {
+function validateResult(result, slug, markedSource) {
   const enhanced = result[slug];
   if (!enhanced || typeof enhanced !== "object") {
     return { ok: false, reason: "no entry in response" };
@@ -284,13 +288,12 @@ function validateResult(result, slug, shieldedSource) {
   const description = typeof enhanced.description === "string" ? enhanced.description.trim() : "";
   if (!summary) return { ok: false, reason: "empty effectSummary" };
   if (!description) return { ok: false, reason: "empty description" };
-  if (/__PROTECTED_/.test(summary)) return { ok: false, reason: "unrestored token in effectSummary" };
 
-  // Compare against the text that was actually sent, which is the shielded form.
-  const expected = countProtectedTokens(shieldedSource);
+  // Compare against the text that was actually sent, which carries the markers.
+  const expected = countProtectedTokens(markedSource);
   const got = countProtectedTokens(description);
   if (got < expected) {
-    return { ok: false, reason: `lost protected tokens (expected ${expected}, got ${got})` };
+    return { ok: false, reason: `lost protected terms (expected ${expected}, got ${got})` };
   }
   return { ok: true, summary, description };
 }
@@ -416,7 +419,7 @@ async function main() {
         continue;
       }
 
-      const summary = restoreOrKeep(validated.summary);
+      const summary = restoreTerms(validated.summary);
       const description = restoreTerms(validated.description);
 
       console.log(`\n--- ${slug} ---`);

@@ -1,5 +1,5 @@
 {
-  "2014_spells.sword-burst.description": "Kamu menciptakan lingkaran pisau spektrum sesaat yang menyapu mengelilingimu. Semua makhluk lain dalam jangkauan harus berhasil melakukan Dexterity saving throw atau menerima 1d6 force damage.",
-  "2014_spells.sword-burst.effectSummary": "Berikan 1d6 force damage ke target dalam Self (radius 5 kaki)",
-  "2014_spells.sword-burst.fullDescription": "Menggunakan 1 Action, kamu menciptakan lingkaran pisau spektrum sesaat yang menyapu mengelilingimu. Semua makhluk lain dalam jangkauan harus berhasil melakukan Dexterity saving throw; roll d20, tambahkan modifier DEX, dan bandingkan dengan spell save DC kamu atau menerima 1d6 force damage; Damage sihir meningkat sebesar 1d6 ketika kamu mencapai level 5 (2d6), level 11 (3d6), dan level 17 (4d6). Efek terjadi segera lalu berakhir."
+  "2014_spells.sword-burst.description": "Kamu menciptakan lingkaran pedang spektral sesaat yang menyapu area dalam radius 5 kaki di sekitarmu. Semua makhluk lain dalam jangkauan ini harus berhasil melakukan saving throw Destrezza atau menerima **1d6** kerusakan kekuatan. Efek ini terjadi secara instan.",
+  "2014_spells.sword-burst.effectSummary": "Kamu menciptakan lingkaran pedang spektral di sekitarmu yang memberikan kerusakan kekuatan kepada semua makhluk terdekat yang gagal melakukan saving throw Destrezza.",
+  "2014_spells.sword-burst.fullDescription": "Kamu menciptakan lingkaran pedang spektral sesaat yang menyapu area dalam radius 5 kaki di sekitarmu. Semua makhluk lain dalam jangkauan ini harus berhasil melakukan saving throw Destrezza atau menerima **1d6** kerusakan kekuatan. Efek ini terjadi secara instan."
 }
