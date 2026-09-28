@@ -3,15 +3,16 @@
 import { useState, useMemo } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
-import { StarIcon as Star, PlusIcon as Plus, CrownIcon as Crown } from "@/components/icons";
+import { StarIcon as Star, PlusIcon as Plus, CrownIcon as Crown, ClockIcon as Clock, SparklesIcon as Sparkle } from "@/components/icons";
 import { FeatModal } from "../modals/FeatModal";
 import { FeatureSelectionModal } from "../modals/FeatureSelectionModal";
 import { getStaticFeats, getStaticSubclasses, getStaticClass, getStaticRace, getStaticFeat } from "@/lib/srd-client";
 import { syncBaseFeatures, getMissingFeatureChoices, resolveFeatureChoice } from "@/lib/character-creation";
 import { saveCharacter } from "@/lib/storage";
 import type { Character } from "@/lib/storage";
-import { FeatureMechanicsChips } from "./FeatureMechanicsChips";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { BottomSheet } from "@/components/modals/BottomSheet";
+import { DiceText } from "@/components/DiceText";
 
 interface FeaturesTraitsSectionProps {
   character: Character;
@@ -23,18 +24,12 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
   const { onFieldBlur, showDescriptions } = useCharacterSheet();
   const { t, tDesc, language } = useLanguage();
   const [popupFeatName, setPopupFeatName] = useState<string | null>(null);
+  const [selectedFeature, setSelectedFeature] = useState<any | null>(null);
   const [syncing, setSyncing] = useState(false);
   const [missingChoices, setMissingChoices] = useState<ReturnType<typeof getMissingFeatureChoices>>([]);
   const [currentChoiceIndex, setCurrentChoiceIndex] = useState(0);
   const feats = useMemo(() => getStaticFeats([], character.ruleset, language), [character.ruleset, language]);
   const popupFeat = feats.find((f) => f.name === popupFeatName) || null;
-  const updateItem = (id: string, patch: Partial<Character["features"][number]>) => {
-    onChange({
-      features: character.features.map((f) =>
-        f.id === id ? { ...f, ...patch } : f
-      ),
-    });
-  };
 
   const addItem = () => {
     onChange({
@@ -232,6 +227,56 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
     return feature.book || null;
   };
 
+  const getFeatureLevel = (feature: any): number | null => {
+    const source = feature.source;
+    if (source && typeof source === "object" && typeof source.level === "number") return source.level;
+    return null;
+  };
+
+  const isRacialFeature = (feature: any): boolean => {
+    const source = feature.source;
+    return !!source && typeof source === "object" && source.type === "race";
+  };
+
+  const getFeatureBadges = (feature: any): string[] => {
+    const badges: string[] = [];
+    const actionType = feature.actionType;
+    if (actionType && String(actionType).toLowerCase() !== "passive") badges.push(String(actionType));
+    const uses = feature.uses;
+    if (uses) {
+      const total = typeof uses.total === "number" ? String(uses.total) : "";
+      const recharge = uses.recharge || "";
+      const badge = total && recharge ? `${total} / ${recharge}` : total || recharge;
+      if (badge) badges.push(badge);
+    }
+    const requirement = feature.requirement;
+    if (requirement && String(requirement).length <= 48) badges.push(String(requirement));
+    if (feature.scaling) badges.push(t("feature.scales", "Scales"));
+    const book = getBookTag(feature);
+    if (book) badges.push(book);
+    return badges;
+  };
+
+  const getFeatureDetailRows = (feature: any): { label: string; value: string }[] => {
+    const rows: { label: string; value: string }[] = [];
+    const push = (key: string, fallback: string, value: unknown) => {
+      if (value) rows.push({ label: t(key, fallback), value: String(value) });
+    };
+    push("feature.requires", "Requires", feature.requirement);
+    push("feature.onUse", "On Use", feature.onUse);
+    push("feature.endsIf", "Ends If", feature.endsIf);
+    push("feature.scales", "Scales", feature.scaling);
+    return rows;
+  };
+
+  const toggleFeatureUsed = (featureId: string) => {
+    const current = character.featuresUsedThisTurn || [];
+    const used = current.includes(featureId);
+    onChange({
+      featuresUsedThisTurn: used ? current.filter(id => id !== featureId) : [...current, featureId],
+    });
+  };
+
   return (
     <SectionCard
       id="features"
@@ -276,42 +321,95 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
           </div>
         )}
          {enrichedFeatures.map((feature) => {
-            const isLocked = feature.locked === true;
             const safeFeature = { ...feature, source: (feature as any).source || "class" };
-             const summaryText = (feature as any).summary || "";
-            const bookTag = getBookTag(feature);
+            const summaryText = (feature as any).summary || "";
+            const badges = getFeatureBadges(feature);
+            const duration = (feature as any).duration || "";
+            const level = getFeatureLevel(feature);
+            const isActive = ((feature as any).featureType || "Passive") === "Active";
+            const featureUsed = (character.featuresUsedThisTurn || []).includes(feature.id);
+            const summary = summaryText || (feature.description || "").slice(0, 180);
             return (
-              <div key={safeFeature.id} className={`card p-3 ${isLocked ? "" : ""}`}>
-                <div className="flex items-center gap-2">
-                  <span className="text-[17px] font-semibold text-[var(--color-text-primary)]">{feature.name}</span>
-                  {(feature as any).showInSheet === false && (
-                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-paper-muted)] text-[var(--color-text-muted)] border border-[var(--color-border)]">{t("sheet.referenceOnly")}</span>
-                  )}
+              <div
+                key={safeFeature.id}
+                role="button"
+                tabIndex={0}
+                onClick={() => setSelectedFeature(feature)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setSelectedFeature(feature);
+                  }
+                }}
+                className={`w-full text-left rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4 transition-all ${
+                  featureUsed ? "opacity-50" : "active:scale-[0.98] hover:border-[var(--color-border-active)]"
+                }`}
+              >
+                <div className="flex items-start justify-between gap-2">
+                  <h3 className="text-sm font-bold text-[var(--color-text-primary)] leading-tight">{feature.name}</h3>
+                  <div className="flex shrink-0 gap-1.5">
+                    {level !== null ? (
+                      <span className="rounded-full border border-[var(--color-border)] bg-[var(--color-bg)] px-2 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)]">
+                        {t("feature.level", "Level")} {level}
+                      </span>
+                    ) : isRacialFeature(feature) ? (
+                      <span className="rounded-full border border-[var(--color-border)] bg-[var(--color-bg)] px-2 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)]">
+                        {t("feature.racial", "Racial")}
+                      </span>
+                    ) : null}
+                    {isActive && (
+                      <span className="rounded-full border border-[var(--color-border)] bg-[var(--color-info-50)] px-2 py-0.5 text-[10px] font-semibold text-[var(--color-info-700)]">
+                        {t("feature.active", "Active")}
+                      </span>
+                    )}
+                    {(feature as any).showInSheet === false && (
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-paper-muted)] text-[var(--color-text-muted)] border border-[var(--color-border)]">{t("sheet.referenceOnly")}</span>
+                    )}
+                  </div>
                 </div>
-                <div className="mt-1">
-                  <FeatureMechanicsChips
-                    summary={showDescriptions ? "" : summaryText}
-                    description={feature.description || ""}
-                    featureType={(feature as any).featureType}
-                    actionType={(feature as any).actionType}
-                    uses={(feature as any).uses}
-                    requirement={(feature as any).requirement}
-                    duration={(feature as any).duration}
-                    endsIf={(feature as any).endsIf}
-                    effect={(feature as any).effect}
-                    onUse={(feature as any).onUse}
-                    scaling={(feature as any).scaling}
-                    source={typeof (feature as any).source === "object" ? (feature as any).source : (feature as any).source ? { type: (feature as any).source, name: (feature as any).source === "class" ? character.class : (feature as any).source === "race" ? character.race : (feature as any).source === "subclass" ? character.subclass : "Custom", level: null } : null}
-                    book={bookTag}
-                    onUseClick={() => {
-                      if ((feature as any).onUse) {
-                        updateItem(feature.id, { onUse: (feature as any).onUse });
-                      }
-                    }}
-                    showInSheet={showDescriptions || (feature as any).showInSheet !== false}
-                    showDescriptions={showDescriptions}
-                  />
-                </div>
+
+                {badges.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5 my-2">
+                    {badges.map((badge: string, badgeIdx: number) => (
+                      <span
+                        key={badgeIdx}
+                        className="text-xs font-semibold px-2.5 py-0.5 rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text-secondary)] shadow-sm"
+                      >
+                        {badge}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                {duration && (
+                  <span className="mt-2 text-[10px] text-[var(--color-text-muted)]">⏱ {duration}</span>
+                )}
+
+                {summary && (
+                  <p className="mt-2 text-sm text-[var(--color-text-secondary)]">{summary}</p>
+                )}
+
+                {(feature as any).lastUpdated && (
+                  <p className="mt-1 text-[10px] text-[var(--color-text-muted)]">{t("glossary.lastUpdated")}: {(feature as any).lastUpdated}</p>
+                )}
+
+                {isActive && (
+                  <div className="flex items-center gap-1 mt-3">
+                    <button
+                      type="button"
+                      onClick={(e) => { e.stopPropagation(); toggleFeatureUsed(feature.id); }}
+                      className={`flex items-center gap-1 px-2 py-1 text-[10px] font-bold rounded transition-colors ${
+                        featureUsed
+                          ? "bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)]"
+                          : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                      }`}
+                      title={featureUsed ? t("spells.clickToMarkUnused") : t("spells.clickToMarkUsed")}
+                    >
+                      <Sparkle className="h-4 w-4" />
+                      {featureUsed ? t("spells.used") : t("spells.use")}
+                    </button>
+                  </div>
+                )}
               </div>
             );
           })}
@@ -326,7 +424,73 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
              {t("button.addFeature", "Add Feature")}
            </button>
        )}
-       {popupFeat && <FeatModal feat={popupFeat} onClose={() => setPopupFeatName(null)} />}
+        {popupFeat && <FeatModal feat={popupFeat} onClose={() => setPopupFeatName(null)} />}
+        {selectedFeature && (() => {
+          const badges = getFeatureBadges(selectedFeature);
+          const detailRows = getFeatureDetailRows(selectedFeature);
+          const sheetLevel = getFeatureLevel(selectedFeature);
+          const source = selectedFeature.source && typeof selectedFeature.source === "object" ? selectedFeature.source : null;
+          const sheetIsActive = (selectedFeature.featureType || "Passive") === "Active";
+          const sheetDuration = selectedFeature.duration || (sheetIsActive ? "Instantaneous" : "");
+          return (
+            <BottomSheet
+              isOpen={!!selectedFeature}
+              onClose={() => setSelectedFeature(null)}
+              title={selectedFeature.name}
+              showHeader={true}
+            >
+              <div className="px-4 py-4 space-y-3">
+                {(selectedFeature.summary || "") && (
+                  <p className="text-xs text-[var(--color-text-muted)] italic leading-relaxed">{selectedFeature.summary}</p>
+                )}
+                {badges.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5">
+                    {badges.map((badge: string, badgeIdx: number) => (
+                      <span
+                        key={badgeIdx}
+                        className="text-xs font-semibold px-2.5 py-0.5 rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text-secondary)] shadow-sm"
+                      >
+                        {badge}
+                      </span>
+                    ))}
+                  </div>
+                )}
+                {(selectedFeature as any).lastUpdated && (
+                  <p className="text-[10px] text-[var(--color-text-muted)]">{t("glossary.lastUpdated")}: {(selectedFeature as any).lastUpdated}</p>
+                )}
+                <DiceText text={selectedFeature.description || ""} />
+                <div className="flex flex-wrap gap-2 pt-1">
+                  {sheetLevel !== null && (
+                    <span className="rounded-full border border-[var(--color-border)] bg-[var(--color-bg)] px-2.5 py-1 text-[10px] font-semibold text-[var(--color-text-secondary)]">
+                      {t("feature.levelN", { level: sheetLevel }, "Level {level}")}
+                    </span>
+                  )}
+                  <span className="rounded-full border border-[var(--color-border)] bg-[var(--color-bg)] px-2.5 py-1 text-[10px] font-semibold text-[var(--color-text-secondary)]">
+                    {sheetIsActive ? t("feature.active", "Active") : t("feature.passive", "Passive")}
+                  </span>
+                  {sheetDuration && (
+                    <span className="rounded-full border border-[var(--color-border)] bg-[var(--color-bg)] px-2.5 py-1 text-[10px] font-semibold text-[var(--color-text-secondary)]">
+                      ⏱ {sheetDuration}
+                    </span>
+                  )}
+                </div>
+                {source?.name && (
+                  <p className="text-xs text-[var(--color-text-muted)]">{source.name}</p>
+                )}
+                {detailRows.length > 0 && (
+                  <div className="space-y-2 border-t border-[var(--color-border-muted)] pt-2">
+                    {detailRows.map((row) => (
+                      <div key={row.label}>
+                        <span className="block text-[10px] font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">{row.label}</span>
+                        <span className="block text-sm text-[var(--color-text-primary)] leading-relaxed">{row.value}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </BottomSheet>
+          );
+        })()}
        {currentChoice && (
          <FeatureSelectionModal
            isOpen={!!currentChoice}

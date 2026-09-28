@@ -610,6 +610,8 @@ export const translations = {
   "feature.source": "Source",
   "feature.book": "Book",
   "feature.type": "Type",
+  "feature.active": "Active",
+  "feature.passive": "Passive",
   "feature.action": "Action",
   "feature.level": "Level",
   "feature.levelN": "Level {level}",
