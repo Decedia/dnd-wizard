@@ -36,9 +36,9 @@ export default function RootLayout({
       <body
         className={`${inter.variable} antialiased bg-paper text-ink`}
       >
-        <SRDProvider>
-          <ThemeProvider>
-            <LanguageProvider>
+        <ThemeProvider>
+          <LanguageProvider>
+            <SRDProvider>
               <DebugProvider>
                 <div className="mx-auto max-w-lg pb-36">
                   {children}
@@ -46,9 +46,9 @@ export default function RootLayout({
                 <DebugButton />
                 <BottomNav />
               </DebugProvider>
-            </LanguageProvider>
-          </ThemeProvider>
-        </SRDProvider>
+            </SRDProvider>
+          </LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -1,5 +1,5 @@
 {
-  "2014_spells.barkskin.description": "Kamu menyentuh creature yang bersedia. Sampai spell berakhir, kulit target terlihat kasar seperti kulit pohon, dan AC target tidak bisa kurang dari 16, tidak peduli jenis armor apa yang dipakai.",
-  "2014_spells.barkskin.effectSummary": "AC target tidak bisa kurang dari 16 selama durasi",
-  "2014_spells.barkskin.fullDescription": "Menggunakan 1 Action, kamu menyentuh creature yang bersedia. Sampai spell berakhir, kulit target terlihat kasar seperti kulit pohon, dan AC target tidak bisa kurang dari 16, tidak peduli jenis armor apa yang dipakai; Sampai spell berakhir, kulit target terlihat kasar seperti kulit pohon, dan AC target tidak bisa kurang dari 16; you must concentrate, and the effect ends if your concentration ends."
+  "2014_spells.barkskin.description": "Sebagai 1 action, kamu menyentuh makhluk yang bersedia dalam jangkauan sentuhan. Hingga sihir berakhir (maksimal 1 jam), kulit sasaran akan berubah menjadi kasar seperti kulit kayu, dan AC sasaran tidak bisa kurang dari 16, terlepas dari jenis armor apa pun yang mereka kenakan.",
+  "2014_spells.barkskin.effectSummary": "Kamu menyentuh makhluk yang bersedia untuk memberikan kulit seperti kulit kayu, sehingga AC mereka tidak akan turun di bawah 16 selama durasi sihir.",
+  "2014_spells.barkskin.fullDescription": "Sebagai 1 action, kamu menyentuh makhluk yang bersedia dalam jangkauan sentuhan. Hingga sihir berakhir (maksimal 1 jam), kulit sasaran akan berubah menjadi kasar seperti kulit kayu, dan AC sasaran tidak bisa kurang dari 16, terlepas dari jenis armor apa pun yang mereka kenakan."
 }

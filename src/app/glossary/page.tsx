@@ -279,7 +279,7 @@ export default function GlossaryPage() {
                 )}
 
                 {lastUpdated && (
-                  <p className="mt-1 text-[10px] text-[var(--color-text-muted)]">Last updated: {lastUpdated}</p>
+                  <p className="mt-1 text-[10px] text-[var(--color-text-muted)]">{t("glossary.lastUpdated")}: {lastUpdated}</p>
                 )}
               </button>
             );
@@ -398,7 +398,7 @@ export default function GlossaryPage() {
               </div>
             )}
             {selectedSpell.lastUpdated && (
-              <p className="text-[10px] text-[var(--color-text-muted)]">Last updated: {selectedSpell.lastUpdated}</p>
+              <p className="text-[10px] text-[var(--color-text-muted)]">{t("glossary.lastUpdated")}: {selectedSpell.lastUpdated}</p>
             )}
             <DiceText text={getFullDescription(selectedSpell)} />
             <div className="flex flex-wrap gap-2 pt-1">

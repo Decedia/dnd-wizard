@@ -259,19 +259,19 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
     <SectionCard id="spells" title={t("section.spells")} icon={<Lightning className="h-5 w-5" />}>
       {preparationCaster && (
         <div className="mb-4 surface bg-paper-muted px-4 py-3">
-          <span className="text-sm font-bold text-ink">Prepared Spells: {preparedCount}/{maxPrepared}</span>
-          <span className="text-xs text-ink ml-2">(Spellcasting ability mod + level)</span>
+          <span className="text-sm font-bold text-ink">{t("sheet.preparedSpells")}: {preparedCount}/{maxPrepared}</span>
+          <span className="text-xs text-ink ml-2">{t("sheet.spellcastingModHint")}</span>
         </div>
       )}
       {!preparationCaster && maxSpellsKnown > 0 && (
         <div className="mb-4 surface bg-paper-muted px-4 py-3">
-          <span className="text-sm font-bold text-ink">Spells Known: {currentSpellsKnown}/{maxSpellsKnown}</span>
-          <span className="text-xs text-ink ml-2">Cantrips: {currentCantripsKnown}/{maxCantripsKnown}</span>
+          <span className="text-sm font-bold text-ink">{t("sheet.spellsKnown")}: {currentSpellsKnown}/{maxSpellsKnown}</span>
+          <span className="text-xs text-ink ml-2">{t("sheet.cantrips")}: {currentCantripsKnown}/{maxCantripsKnown}</span>
         </div>
       )}
       {preparationCaster && maxCantripsKnown > 0 && (
         <div className="mb-2 surface bg-paper-muted px-4 py-2">
-          <span className="text-sm font-bold text-ink">Cantrips: {currentCantripsKnown}/{maxCantripsKnown}</span>
+          <span className="text-sm font-bold text-ink">{t("sheet.cantrips")}: {currentCantripsKnown}/{maxCantripsKnown}</span>
         </div>
       )}
 
@@ -371,7 +371,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
               )}
 
               {spell.lastUpdated && (
-                <p className="mt-1 text-[10px] text-[var(--color-text-muted)]">Last updated: {spell.lastUpdated}</p>
+                <p className="mt-1 text-[10px] text-[var(--color-text-muted)]">{t("glossary.lastUpdated")}: {spell.lastUpdated}</p>
               )}
 
               <div className="flex items-center gap-1 mt-3">
@@ -481,7 +481,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
               </div>
             )}
             {selectedSpell.lastUpdated && (
-              <p className="text-[10px] text-[var(--color-text-muted)]">Last updated: {selectedSpell.lastUpdated}</p>
+              <p className="text-[10px] text-[var(--color-text-muted)]">{t("glossary.lastUpdated")}: {selectedSpell.lastUpdated}</p>
             )}
             <DiceText text={selectedSpell.description || ""} />
             <div className="flex flex-wrap gap-2 pt-1">
