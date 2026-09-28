@@ -1541,5 +1541,3338 @@
   "2014_spells.teleport.description": "Sihir ini secara langsung memindahkan Anda dan hingga delapan makhluk sukarela pilihan Anda yang Anda lihat dalam jangkauan, atau satu objek yang Anda lihat dalam jangkauan, ke tujuan yang Anda pilih. Jika Anda menargetkan objek, ia harus mampu muat sepenuhnya dalam kubus berukuran 10 kaki, dan tidak boleh ditahan atau dibawa oleh makhluk yang tidak sukarela. Tujuan yang Anda pilih harus dikenal oleh Anda, dan harus berada pada bidang kehidupan yang sama dengan Anda. Keakraban Anda dengan tujuan menentukan apakah Anda tiba di sana dengan sukses. DM melempar d100 dan berkonsultasi dengan tabel.\n\n**Keakraban.** \"Lingkaran permanen\" berarti lingkaran teleportasi permanen yang urut sigilnya Anda ketahui. \"Objek terkait\" berarti Anda memiliki objek yang diambil dari tujuan yang diinginkan dalam enam bulan terakhir, seperti buku dari perpustakaan seorang penyihir, selimut kamar kerajaan, atau potongan marmer dari makam rahasia seorang lich. \"Sangat familiar\" adalah tempat yang Anda kunjungi sangat sering, tempat yang Anda pelajari dengan seksama, atau tempat yang Anda lihat saat Anda mengincar sihir. \"Dilihat secara casual\" adalah tempat yang Anda lihat lebih dari sekali tetapi dengan yang Anda tidak sangat familiar. \"Dilihat sekali\" adalah tempat yang Anda lihat sekali, mungkin menggunakan sihir. \"Deskripsi\" adalah tempat yang lokasi dan penampilannya Anda ketahui melalui deskripsi orang lain, mungkin dari peta. \"Tujuan palsu\" adalah tempat yang tidak ada. Mungkin Anda telah mencoba menyaksi sanctum musuh tetapi justru melihat ilusi, atau Anda sedang berusaha teleport ke lokasi familiar yang tidak lagi ada.\n\n**Sasaran Tepat.** Anda dan kelompok Anda (atau objek sasaran) muncul di tempat yang Anda inginkan.\n\n**Sasar Salah.** Anda dan kelompok Anda (atau objek sasaran) muncul secara acak jauh dari tujuan dalam sebuah arah acak. Jarak yang salah sasaran adalah 1d10 × 1d10 persen dari jarak yang akan ditempuh. Misalnya, jika Anda mencoba menempuh 120 mil, tiba sasaran salah, dan menggelar 5 dan 3 pada dua d10, maka Anda akan salah sasaran sebesar 15 persen, atau 18 mil. GM menentukan arah yang salah sasaran secara acak dengan melempar d8 dan menetapkan 1 sebagai utara, 2 sebagai timur laut, 3 sebagai timur, dan seterusnya sekitar titik kompas. Jika Anda sedang teleport ke kota pantai dan akhirnya berada 18 mil di laut, Anda bisa berada dalam masalah.\n\n**Area Serupa.** Anda dan kelompok Anda (atau objek sasaran) akhirnya berada di area yang berbeda yang secara visual atau tematika mirip dengan area tujuan. Jika Anda menuju laboratorium rumah Anda, misalnya, Anda mungkin finally berada di laboratorium penyihir lain atau di toko bahan kimia yang memiliki banyak alat dan implementasi yang sama seperti laboratorium Anda. Secara umum, Anda muncul di tempat serupa yang terdekat, tetapi karena sihir ini tidak memiliki batas jangkauan, Anda bisa jadi akhirnya berada di mana saja di bidang tersebut.\n\n**Kejadian Buruk.** Magir sihir yang tidak dapat diprediksi menghasilkan perjalanan yang sulit. Setiap makhluk yang teleport (atau objek sasaran) menerima kerusakan kekuatan sebesar 3d10, dan GM mengulang ulang pada tabel untuk melihat di mana Anda akhirnya berada (beberapa kejadian buruk dapat terjadi, masing-masing menimbulkan kerusakan).",
   "2014_spells.teleport.effectSummary": "Menyerang target dalam jarak 10 kaki dengan 3d10 kerusakan gaya",
   "2014_spells.teleport.fullDescription": "Menggunakan 1 action, sihir ini langsung memindahkan Anda dan hingga delapan makhluk yang bersedia pilihan Anda yang dapat Anda lihat dalam jangkauan, atau satu benda yang dapat Anda lihat dalam jangkauan, ke tujuan yang Anda pilih. Setiap makhluk yang teleportasi (atau benda target) menerima 3d10 kerusakan gaya, dan GM mengulang pelemparan pada tabel untuk melihat di mana Anda akhirnya berada (bisa terjadi beberapa kecelakaan, masing-masing menimbulkan kerusakan); Jarak menyimpang dari target adalah 1d10 × 1d10 persen dari jarak yang akan ditempuh. Efek terjadi segera lalu berakhir.",
-  "2014_spells.bones-of-the-earth.effectSummary": "Ubah target: setiap pilar adalah silinder yang memiliki diameter 5 feet dan tinggi hingga 30 feet"
+  "2014_spells.bones-of-the-earth.effectSummary": "Ubah target: setiap pilar adalah silinder yang memiliki diameter 5 feet dan tinggi hingga 30 feet",
+  "2014_spells.dancing-lights.mechanics_badges": [
+    "1 action",
+    "120 feet",
+    "Up to 1 minute"
+  ],
+  "2014_spells.dialing-disruption-egw.mechanics_badges": [
+    "60 feet",
+    "Instantaneous",
+    "CON Save",
+    "1d8 force damage"
+  ],
+  "2014_spells.druidcraft.mechanics_badges": [
+    "1 Action",
+    "30 feet",
+    "Instantaneous"
+  ],
+  "2014_spells.eldritch-blast.mechanics_badges": [
+    "1 Action",
+    "120 feet",
+    "Instantaneous",
+    "1d10 force damage"
+  ],
+  "2014_spells.fire-bolt.mechanics_badges": [
+    "1 action",
+    "120 feet",
+    "Instantaneous",
+    "1d10 fire damage"
+  ],
+  "2014_spells.acid-splash.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "Instantaneous",
+    "DEX Save",
+    "1d6 acid damage"
+  ],
+  "2014_spells.acid-splash.lastUpdated": "2026-09-27",
+  "2014_spells.friends.mechanics_badges": [
+    "Self",
+    "Concentration, up to 1 minute"
+  ],
+  "2014_spells.friends.lastUpdated": "2026-09-27",
+  "2014_spells.frostbite.mechanics_badges": [
+    "60 feet",
+    "Instantaneous",
+    "CON Save",
+    "1d6 cold damage"
+  ],
+  "2014_spells.frostbite.lastUpdated": "2026-09-27",
+  "2014_spells.gravity-shift.mechanics_badges": [
+    "60 feet",
+    "Instantaneous",
+    "STR Save"
+  ],
+  "2014_spells.gravity-shift.lastUpdated": "2026-09-27",
+  "2014_spells.gravity-shift-egw.mechanics_badges": [
+    "60 feet",
+    "Instantaneous",
+    "STR Save"
+  ],
+  "2014_spells.gravity-shift-egw.lastUpdated": "2026-09-27",
+  "2014_spells.green-flame-blade.mechanics_badges": [
+    "Self (5-foot radius)",
+    "Instantaneous"
+  ],
+  "2014_spells.green-flame-blade.lastUpdated": "2026-09-27",
+  "2014_spells.guidance.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "Up to 1 minute"
+  ],
+  "2014_spells.guidance.lastUpdated": "2026-09-27",
+  "2014_spells.gust.mechanics_badges": [
+    "30 feet",
+    "Instantaneous"
+  ],
+  "2014_spells.gust.lastUpdated": "2026-09-27",
+  "2014_spells.infestation.mechanics_badges": [
+    "30 feet",
+    "Instantaneous",
+    "Constitution saving throw",
+    "1d6 poison damage"
+  ],
+  "2014_spells.infestation.lastUpdated": "2026-09-27",
+  "2014_spells.light.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "1 hour"
+  ],
+  "2014_spells.light.lastUpdated": "2026-09-27",
+  "2014_spells.lightning-lure.mechanics_badges": [
+    "Self (15-foot radius)",
+    "Instantaneous",
+    "Strength saving throw",
+    "1d8 lightning damage"
+  ],
+  "2014_spells.lightning-lure.lastUpdated": "2026-09-27",
+  "2014_spells.mage-hand.mechanics_badges": [
+    "1 action",
+    "30 feet",
+    "1 minute"
+  ],
+  "2014_spells.mage-hand.lastUpdated": "2026-09-27",
+  "2014_spells.magic-stone.mechanics_badges": [
+    "Touch",
+    "1 minute"
+  ],
+  "2014_spells.magic-stone.lastUpdated": "2026-09-27",
+  "2014_spells.mending.mechanics_badges": [
+    "1 minute",
+    "Touch",
+    "Instantaneous"
+  ],
+  "2014_spells.mending.lastUpdated": "2026-09-27",
+  "2014_spells.message.mechanics_badges": [
+    "1 action",
+    "120 feet",
+    "1 round"
+  ],
+  "2014_spells.message.lastUpdated": "2026-09-27",
+  "2014_spells.mind-sliver.mechanics_badges": [
+    "60 feet",
+    "1 round",
+    "1d6 psychic damage"
+  ],
+  "2014_spells.mind-sliver.lastUpdated": "2026-09-27",
+  "2014_spells.minor-illusion.mechanics_badges": [
+    "1 action",
+    "30 feet",
+    "1 minute"
+  ],
+  "2014_spells.minor-illusion.lastUpdated": "2026-09-27",
+  "2014_spells.mold-earth.mechanics_badges": [
+    "30 feet",
+    "Instantaneous or 1 hour",
+    "Somatic"
+  ],
+  "2014_spells.mold-earth.lastUpdated": "2026-09-27",
+  "2014_spells.nathair-nuisance.mechanics_badges": [
+    "30 feet",
+    "1 minute",
+    "Somatic",
+    "WIS Save"
+  ],
+  "2014_spells.nathair-nuisance.lastUpdated": "2026-09-27",
+  "2014_spells.poison-spray.mechanics_badges": [
+    "1 action",
+    "10 feet",
+    "Instantaneous",
+    "1d12 poison damage"
+  ],
+  "2014_spells.poison-spray.lastUpdated": "2026-09-27",
+  "2014_spells.blade-bite.mechanics_badges": [
+    "Self",
+    "1 round"
+  ],
+  "2014_spells.blade-bite.lastUpdated": "2026-09-27",
+  "2014_spells.blade-bite-egw.mechanics_badges": [
+    "Range: Self",
+    "Duration: 1 round",
+    "Verbal"
+  ],
+  "2014_spells.blade-bite-egw.lastUpdated": "2026-09-27",
+  "2014_spells.blade-ward.mechanics_badges": [
+    "Range: Self",
+    "Duration: 1 round",
+    "Verbal",
+    "Somatic"
+  ],
+  "2014_spells.blade-ward.lastUpdated": "2026-09-27",
+  "2014_spells.booming-blade.mechanics_badges": [
+    "Self (5-foot radius)",
+    "1 round",
+    "1d8 thunder damage"
+  ],
+  "2014_spells.booming-blade.lastUpdated": "2026-09-27",
+  "2014_spells.booster-pulse.mechanics_badges": [
+    "Touch",
+    "1 round"
+  ],
+  "2014_spells.booster-pulse.lastUpdated": "2026-09-27",
+  "2014_spells.booster-pulse-egw.mechanics_badges": [
+    "Touch",
+    "1 round"
+  ],
+  "2014_spells.booster-pulse-egw.lastUpdated": "2026-09-27",
+  "2014_spells.chill-touch.mechanics_badges": [
+    "1 action",
+    "120 feet",
+    "1 round",
+    "1d8 necrotic damage"
+  ],
+  "2014_spells.chill-touch.lastUpdated": "2026-09-27",
+  "2014_spells.control-flames.mechanics_badges": [
+    "60 Feet",
+    "Instantaneous or 1 hour",
+    "Somatic"
+  ],
+  "2014_spells.control-flames.lastUpdated": "2026-09-27",
+  "2014_spells.create-bonfire.mechanics_badges": [
+    "60 Feet",
+    "Concentration, up to 1 minute",
+    "Verbal",
+    "Somatic",
+    "DEX Save",
+    "1d8 fire damage"
+  ],
+  "2014_spells.create-bonfire.lastUpdated": "2026-09-27",
+  "2014_spells.dancing-lights.lastUpdated": "2026-09-27",
+  "2014_spells.dialing-disruption-egw.lastUpdated": "2026-09-27",
+  "2014_spells.druidcraft.lastUpdated": "2026-09-27",
+  "2014_spells.eldritch-blast.lastUpdated": "2026-09-27",
+  "2014_spells.fire-bolt.lastUpdated": "2026-09-27",
+  "2014_spells.precision-beam-egw.mechanics_badges": [
+    "120 feet",
+    "Instantaneous",
+    "1d8 radiant damage"
+  ],
+  "2014_spells.precision-beam-egw.lastUpdated": "2026-09-27",
+  "2014_spells.pressure-reversal-egw.mechanics_badges": [
+    "Self (5-foot radius)",
+    "Instantaneous",
+    "Dexterity saving throw",
+    "1d6 force damage"
+  ],
+  "2014_spells.pressure-reversal-egw.lastUpdated": "2026-09-27",
+  "2014_spells.prestidigitation.mechanics_badges": [
+    "1 action",
+    "10 feet",
+    "1 hour"
+  ],
+  "2014_spells.prestidigitation.lastUpdated": "2026-09-27",
+  "2014_spells.primal-savagery.mechanics_badges": [
+    "Self",
+    "Instantaneous",
+    "1d10 acid damage"
+  ],
+  "2014_spells.primal-savagery.lastUpdated": "2026-09-27",
+  "2014_spells.produce-flame.mechanics_badges": [
+    "1 action",
+    "Self",
+    "10 minutes",
+    "1d8 fire damage"
+  ],
+  "2014_spells.produce-flame.lastUpdated": "2026-09-27",
+  "2014_spells.ray-of-frost.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "Instantaneous",
+    "1d8 cold damage"
+  ],
+  "2014_spells.ray-of-frost.lastUpdated": "2026-09-27",
+  "2014_spells.resistance.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "Up to 1 minute"
+  ],
+  "2014_spells.resistance.lastUpdated": "2026-09-28",
+  "2014_spells.sacred-flame.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "Instantaneous",
+    "DEX Save",
+    "1d8 radiant damage"
+  ],
+  "2014_spells.sacred-flame.lastUpdated": "2026-09-28",
+  "2014_spells.sapping-sting.mechanics_badges": [
+    "30 feet",
+    "Instantaneous",
+    "CON Save"
+  ],
+  "2014_spells.sapping-sting.lastUpdated": "2026-09-28",
+  "2014_spells.sapping-sting-egw.mechanics_badges": [
+    "30 feet",
+    "Instantaneous",
+    "Constitution save",
+    "1d4 necrotic damage"
+  ],
+  "2014_spells.sapping-sting-egw.lastUpdated": "2026-09-28",
+  "2014_spells.shape-water.mechanics_badges": [
+    "30 feet",
+    "Instantaneous or 1 hour"
+  ],
+  "2014_spells.shape-water.lastUpdated": "2026-09-28",
+  "2014_spells.shillelagh.mechanics_badges": [
+    "1 bonus action",
+    "Touch",
+    "1 minute"
+  ],
+  "2014_spells.shillelagh.lastUpdated": "2026-09-28",
+  "2014_spells.shocking-grasp.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "Instantaneous",
+    "1d8 lightning damage"
+  ],
+  "2014_spells.shocking-grasp.lastUpdated": "2026-09-28",
+  "2014_spells.spare-the-dying.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "Instantaneous"
+  ],
+  "2014_spells.spare-the-dying.lastUpdated": "2026-09-28",
+  "2014_spells.sword-burst.mechanics_badges": [
+    "Self (5-foot radius)",
+    "Instantaneous",
+    "Dexterity saving throw",
+    "1d6 force damage"
+  ],
+  "2014_spells.sword-burst.lastUpdated": "2026-09-28",
+  "2014_spells.thaumaturgy.mechanics_badges": [
+    "1 action",
+    "30 feet",
+    "1 minute",
+    "V"
+  ],
+  "2014_spells.thaumaturgy.lastUpdated": "2026-09-28",
+  "2014_spells.thunderclap.mechanics_badges": [
+    "Self (5-foot radius)",
+    "Instantaneous",
+    "1d6 thunder damage"
+  ],
+  "2014_spells.thunderclap.lastUpdated": "2026-09-28",
+  "2014_spells.time-slipp.mechanics_badges": [
+    "Touch",
+    "Instantaneous"
+  ],
+  "2014_spells.time-slipp.lastUpdated": "2026-09-28",
+  "2014_spells.toll-the-dead.mechanics_badges": [
+    "60 feet",
+    "Instantaneous",
+    "Wisdom saving throw"
+  ],
+  "2014_spells.toll-the-dead.lastUpdated": "2026-09-28",
+  "2014_spells.touch-of-the-void.mechanics_badges": [
+    "Touch",
+    "Instantaneous"
+  ],
+  "2014_spells.touch-of-the-void.lastUpdated": "2026-09-28",
+  "2014_spells.touch-of-the-void-egw.mechanics_badges": [
+    "Touch",
+    "Instantaneous"
+  ],
+  "2014_spells.touch-of-the-void-egw.lastUpdated": "2026-09-28",
+  "2014_spells.true-strike.mechanics_badges": [
+    "1 Action",
+    "30 feet",
+    "Up to 1 round",
+    "S"
+  ],
+  "2014_spells.true-strike.lastUpdated": "2026-09-28",
+  "2014_spells.umbramancy-egw.mechanics_badges": [
+    "Self",
+    "1 minute",
+    "Verbal",
+    "Somatic"
+  ],
+  "2014_spells.umbramancy-egw.lastUpdated": "2026-09-28",
+  "2014_spells.vicious-mockery.mechanics_badges": [
+    "1 Action",
+    "60 feet",
+    "Instantaneous",
+    "V",
+    "Wisdom saving throw",
+    "1d4 psychic damage"
+  ],
+  "2014_spells.vicious-mockery.lastUpdated": "2026-09-28",
+  "2014_spells.void-writing.mechanics_badges": [
+    "Range: Self",
+    "Duration: 1 hour",
+    "Verbal",
+    "Somatic"
+  ],
+  "2014_spells.void-writing.lastUpdated": "2026-09-28",
+  "2014_spells.void-writing-egw.mechanics_badges": [
+    "Range: Self",
+    "Duration: 1 hour",
+    "Verbal",
+    "Somatic"
+  ],
+  "2014_spells.void-writing-egw.lastUpdated": "2026-09-28",
+  "2014_spells.word-of-radiance.mechanics_badges": [
+    "Range: 5 feet",
+    "Duration: Instantaneous",
+    "Verbal",
+    "Material",
+    "Constitution saving throw",
+    "1d6 radiant damage"
+  ],
+  "2014_spells.word-of-radiance.lastUpdated": "2026-09-28",
+  "2014_spells.absorb-elements.mechanics_badges": [
+    "Range: Self",
+    "Duration: 1 round"
+  ],
+  "2014_spells.absorb-elements.lastUpdated": "2026-09-28",
+  "2014_spells.alarm.mechanics_badges": [
+    "Casting Time: 1 minute",
+    "Range: 30 feet",
+    "Duration: 8 hours"
+  ],
+  "2014_spells.alarm.lastUpdated": "2026-09-28",
+  "2014_spells.animal-friendship.mechanics_badges": [
+    "Casting Time: 1 action",
+    "Range: 30 feet",
+    "Duration: 24 hours",
+    "WIS Save"
+  ],
+  "2014_spells.animal-friendship.lastUpdated": "2026-09-28",
+  "2014_spells.armor-of-agathys.mechanics_badges": [
+    "Self",
+    "1 hour",
+    "V, S, M"
+  ],
+  "2014_spells.armor-of-agathys.lastUpdated": "2026-09-28",
+  "2014_spells.arms-of-hadar.mechanics_badges": [
+    "Self (10-foot radius)",
+    "Instantaneous",
+    "V, S",
+    "Strength saving throw",
+    "2d6 necrotic damage"
+  ],
+  "2014_spells.arms-of-hadar.lastUpdated": "2026-09-28",
+  "2014_spells.bane.mechanics_badges": [
+    "1 action",
+    "30 feet",
+    "Up to 1 minute",
+    "V, S, M",
+    "Charisma saving throw"
+  ],
+  "2014_spells.bane.lastUpdated": "2026-09-28",
+  "2014_spells.beast-bond.mechanics_badges": [
+    "Touch",
+    "Concentration, up to 10 minutes"
+  ],
+  "2014_spells.beast-bond.lastUpdated": "2026-09-28",
+  "2014_spells.bless.mechanics_badges": [
+    "1 action",
+    "30 feet",
+    "Up to 1 minute"
+  ],
+  "2014_spells.bless.lastUpdated": "2026-09-28",
+  "2014_spells.burning-hands.mechanics_badges": [
+    "1 action",
+    "Self",
+    "Instantaneous",
+    "DEX Save",
+    "3d6 fire damage"
+  ],
+  "2014_spells.burning-hands.lastUpdated": "2026-09-28",
+  "2014_spells.catapult.mechanics_badges": [
+    "60 feet",
+    "Instantaneous",
+    "DEX Save",
+    "3d8 bludgeoning damage"
+  ],
+  "2014_spells.catapult.lastUpdated": "2026-09-28",
+  "2014_spells.cause-fear.mechanics_badges": [
+    "60 feet",
+    "Concentration, up to 1 minute"
+  ],
+  "2014_spells.cause-fear.lastUpdated": "2026-09-28",
+  "2014_spells.ceremony.mechanics_badges": [
+    "Touch",
+    "Instantaneous"
+  ],
+  "2014_spells.ceremony.lastUpdated": "2026-09-28",
+  "2014_spells.chaos-bolt.mechanics_badges": [
+    "120 feet",
+    "Instantaneous",
+    "Ranged Spell Attack"
+  ],
+  "2014_spells.chaos-bolt.lastUpdated": "2026-09-28",
+  "2014_spells.charm-person.mechanics_badges": [
+    "1 action",
+    "30 feet",
+    "1 hour",
+    "Wisdom saving throw"
+  ],
+  "2014_spells.charm-person.lastUpdated": "2026-09-28",
+  "2014_spells.chromatic-orb.mechanics_badges": [
+    "90 feet",
+    "Instantaneous",
+    "Ranged Spell Attack",
+    "3d8 damage"
+  ],
+  "2014_spells.chromatic-orb.lastUpdated": "2026-09-28",
+  "2014_spells.color-spray.mechanics_badges": [
+    "1 action",
+    "Self",
+    "1 round",
+    "V, S, M"
+  ],
+  "2014_spells.color-spray.lastUpdated": "2026-09-28",
+  "2014_spells.command.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "1 round",
+    "V"
+  ],
+  "2014_spells.command.lastUpdated": "2026-09-28",
+  "2014_spells.compelled-duel.mechanics_badges": [
+    "Concentration, up to 1 minute",
+    "30 feet"
+  ],
+  "2014_spells.compelled-duel.lastUpdated": "2026-09-28",
+  "2014_spells.comprehend-languages.mechanics_badges": [
+    "1 Action",
+    "Self",
+    "1 hour"
+  ],
+  "2014_spells.comprehend-languages.lastUpdated": "2026-09-28",
+  "2014_spells.create-or-destroy-water.mechanics_badges": [
+    "1 Action",
+    "30 feet",
+    "Instantaneous"
+  ],
+  "2014_spells.create-or-destroy-water.lastUpdated": "2026-09-28",
+  "2014_spells.cure-wounds.mechanics_badges": [
+    "1 Action",
+    "Touch",
+    "Instantaneous",
+    "1d8"
+  ],
+  "2014_spells.cure-wounds.lastUpdated": "2026-09-28",
+  "2014_spells.detect-evil-and-good.mechanics_badges": [
+    "1 action",
+    "Self",
+    "Up to 10 minutes"
+  ],
+  "2014_spells.detect-evil-and-good.lastUpdated": "2026-09-28",
+  "2014_spells.detect-magic.mechanics_badges": [
+    "1 action",
+    "Self",
+    "Up to 10 minutes"
+  ],
+  "2014_spells.detect-magic.lastUpdated": "2026-09-28",
+  "2014_spells.detect-poison-and-disease.mechanics_badges": [
+    "1 action",
+    "Self",
+    "Up to 10 minutes"
+  ],
+  "2014_spells.detect-poison-and-disease.lastUpdated": "2026-09-28",
+  "2014_spells.disguise-self.mechanics_badges": [
+    "1 action",
+    "Self",
+    "1 hour",
+    "Intelligence (Investigation)"
+  ],
+  "2014_spells.disguise-self.lastUpdated": "2026-09-28",
+  "2014_spells.dissonant-whispers.mechanics_badges": [
+    "60 feet",
+    "Instantaneous",
+    "Wisdom saving throw",
+    "3d6 psychic damage"
+  ],
+  "2014_spells.dissonant-whispers.lastUpdated": "2026-09-28",
+  "2014_spells.divine-favor.mechanics_badges": [
+    "1 bonus action",
+    "Self",
+    "Up to 1 minute",
+    "1d4 radiant damage"
+  ],
+  "2014_spells.divine-favor.lastUpdated": "2026-09-28",
+  "2014_spells.draconic-crush.mechanics_badges": [
+    "60 feet",
+    "Instantaneous",
+    "Ranged Spell Attack",
+    "2d8 force damage",
+    "Strength saving throw"
+  ],
+  "2014_spells.draconic-crush.lastUpdated": "2026-09-28",
+  "2014_spells.draconic-strike.mechanics_badges": [
+    "Self",
+    "Instantaneous",
+    "1d6 force damage"
+  ],
+  "2014_spells.draconic-strike.lastUpdated": "2026-09-28",
+  "2014_spells.earth-tremor.mechanics_badges": [
+    "Self (10-foot radius)",
+    "Instantaneous",
+    "Dexterity saving throw",
+    "1d6 bludgeoning damage"
+  ],
+  "2014_spells.earth-tremor.lastUpdated": "2026-09-28",
+  "2014_spells.ensnaring-strike.mechanics_badges": [
+    "Range: Self",
+    "Duration: Concentration, up to 1 minute"
+  ],
+  "2014_spells.ensnaring-strike.lastUpdated": "2026-09-28",
+  "2014_spells.entangle.mechanics_badges": [
+    "1 action",
+    "Range: 90 feet",
+    "Duration: Up to 1 minute"
+  ],
+  "2014_spells.entangle.lastUpdated": "2026-09-28",
+  "2014_spells.expeditious-retreat.mechanics_badges": [
+    "1 bonus action",
+    "Range: Self",
+    "Duration: Up to 10 minutes"
+  ],
+  "2014_spells.expeditious-retreat.lastUpdated": "2026-09-28",
+  "2014_spells.faerie-fire.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "Up to 1 minute",
+    "V"
+  ],
+  "2014_spells.faerie-fire.lastUpdated": "2026-09-28",
+  "2014_spells.false-life.mechanics_badges": [
+    "1 action",
+    "Self",
+    "1 hour",
+    "V, S, M"
+  ],
+  "2014_spells.false-life.lastUpdated": "2026-09-28",
+  "2014_spells.feather-fall.mechanics_badges": [
+    "1 reaction",
+    "60 feet",
+    "1 minute",
+    "V, M"
+  ],
+  "2014_spells.feather-fall.lastUpdated": "2026-09-28",
+  "2014_spells.find-familiar.mechanics_badges": [
+    "1 hour",
+    "10 feet",
+    "Instantaneous",
+    "V, S, M"
+  ],
+  "2014_spells.find-familiar.lastUpdated": "2026-09-28",
+  "2014_spells.floating-disk.mechanics_badges": [
+    "1 action",
+    "30 feet",
+    "1 hour",
+    "V, S, M"
+  ],
+  "2014_spells.floating-disk.lastUpdated": "2026-09-28",
+  "2014_spells.fog-cloud.mechanics_badges": [
+    "1 action",
+    "120 feet",
+    "Up to 1 hour",
+    "V, S"
+  ],
+  "2014_spells.fog-cloud.lastUpdated": "2026-09-28",
+  "2014_spells.frost-fingers.mechanics_badges": [
+    "Self (15-foot cone)",
+    "Instantaneous",
+    "2d8 cold damage"
+  ],
+  "2014_spells.frost-fingers.lastUpdated": "2026-09-28",
+  "2014_spells.goodberry.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "Instantaneous"
+  ],
+  "2014_spells.goodberry.lastUpdated": "2026-09-28",
+  "2014_spells.grease.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "1 minute"
+  ],
+  "2014_spells.grease.lastUpdated": "2026-09-28",
+  "2014_spells.guiding-bolt.mechanics_badges": [
+    "1 action",
+    "120 feet",
+    "1 round",
+    "4d6 radiant damage"
+  ],
+  "2014_spells.guiding-bolt.lastUpdated": "2026-09-28",
+  "2014_spells.hail-of-thorns.mechanics_badges": [
+    "Self",
+    "Concentration, up to 1 minute",
+    "DEX Save",
+    "1d10 piercing damage"
+  ],
+  "2014_spells.hail-of-thorns.lastUpdated": "2026-09-28",
+  "2014_spells.healing-word.mechanics_badges": [
+    "1 bonus action",
+    "60 feet",
+    "Instantaneous"
+  ],
+  "2014_spells.healing-word.lastUpdated": "2026-09-28",
+  "2014_spells.hellish-rebuke.mechanics_badges": [
+    "1 reaction",
+    "60 feet",
+    "Instantaneous",
+    "DEX Save",
+    "2d10 fire damage"
+  ],
+  "2014_spells.hellish-rebuke.lastUpdated": "2026-09-28",
+  "2014_spells.heroism.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "Up to 1 minute"
+  ],
+  "2014_spells.heroism.lastUpdated": "2026-09-28",
+  "2014_spells.hideous-laughter.mechanics_badges": [
+    "1 action",
+    "30 feet",
+    "Up to 1 minute",
+    "WIS Save"
+  ],
+  "2014_spells.hideous-laughter.lastUpdated": "2026-09-28",
+  "2014_spells.hunters-mark.mechanics_badges": [
+    "1 bonus action",
+    "90 feet",
+    "Up to 1 hour",
+    "1d6 damage"
+  ],
+  "2014_spells.hunters-mark.lastUpdated": "2026-09-28",
+  "2014_spells.ice-knife.mechanics_badges": [
+    "60 feet",
+    "Instantaneous",
+    "1d10 piercing damage",
+    "2d6 cold damage",
+    "Dexterity saving throw"
+  ],
+  "2014_spells.ice-knife.lastUpdated": "2026-09-28",
+  "2014_spells.identify.mechanics_badges": [
+    "1 minute",
+    "Touch",
+    "Instantaneous"
+  ],
+  "2014_spells.identify.lastUpdated": "2026-09-28",
+  "2014_spells.illusory-script.mechanics_badges": [
+    "1 minute",
+    "Touch",
+    "10 days",
+    "S, M"
+  ],
+  "2014_spells.illusory-script.lastUpdated": "2026-09-28",
+  "2014_spells.inflict-wounds.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "Instantaneous",
+    "V, S",
+    "3d10 necrotic damage"
+  ],
+  "2014_spells.inflict-wounds.lastUpdated": "2026-09-28",
+  "2014_spells.jump.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "1 minute",
+    "V, S, M"
+  ],
+  "2014_spells.jump.lastUpdated": "2026-09-28",
+  "2014_spells.longstrider.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "1 hour"
+  ],
+  "2014_spells.longstrider.lastUpdated": "2026-09-28",
+  "2014_spells.mage-armor.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "8 hours"
+  ],
+  "2014_spells.mage-armor.lastUpdated": "2026-09-28",
+  "2014_spells.magic-missile.mechanics_badges": [
+    "1 action",
+    "120 feet",
+    "Instantaneous",
+    "1d4 + 1 force damage"
+  ],
+  "2014_spells.magic-missile.lastUpdated": "2026-09-28",
+  "2014_spells.power-word-pain.mechanics_badges": [
+    "60 feet",
+    "Instantaneous"
+  ],
+  "2014_spells.power-word-pain.lastUpdated": "2026-09-28",
+  "2014_spells.protection-from-evil-and-good.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "Up to 10 minutes"
+  ],
+  "2014_spells.protection-from-evil-and-good.lastUpdated": "2026-09-28",
+  "2014_spells.purify-food-and-drink.mechanics_badges": [
+    "1 action",
+    "10 feet",
+    "Instantaneous"
+  ],
+  "2014_spells.purify-food-and-drink.lastUpdated": "2026-09-28",
+  "2014_spells.ray-of-sickness.mechanics_badges": [
+    "60 feet",
+    "Instantaneous",
+    "Ranged Spell Attack",
+    "2d8 poison damage"
+  ],
+  "2014_spells.ray-of-sickness.lastUpdated": "2026-09-28",
+  "2014_spells.sanctuary.mechanics_badges": [
+    "1 bonus action",
+    "30 feet",
+    "1 minute"
+  ],
+  "2014_spells.sanctuary.lastUpdated": "2026-09-28",
+  "2014_spells.searing-smite.mechanics_badges": [
+    "Self",
+    "Concentration, up to 1 minute",
+    "1d6 fire damage"
+  ],
+  "2014_spells.searing-smite.lastUpdated": "2026-09-28",
+  "2014_spells.shield.mechanics_badges": [
+    "1 reaction",
+    "Self",
+    "1 round"
+  ],
+  "2014_spells.shield.lastUpdated": "2026-09-28",
+  "2014_spells.shield-of-faith.mechanics_badges": [
+    "1 bonus action",
+    "60 feet",
+    "Up to 10 minutes"
+  ],
+  "2014_spells.shield-of-faith.lastUpdated": "2026-09-28",
+  "2014_spells.silent-image.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "Up to 10 minutes",
+    "Intelligence (Investigation)"
+  ],
+  "2014_spells.silent-image.lastUpdated": "2026-09-28",
+  "2014_spells.silvery-barbs.mechanics_badges": [
+    "60 feet",
+    "Instantaneous",
+    "WIS Save"
+  ],
+  "2014_spells.silvery-barbs.lastUpdated": "2026-09-28",
+  "2014_spells.sleep.mechanics_badges": [
+    "1 action",
+    "90 feet",
+    "1 minute",
+    "5d8"
+  ],
+  "2014_spells.sleep.lastUpdated": "2026-09-28",
+  "2014_spells.snare.mechanics_badges": [
+    "Touch",
+    "8 hours",
+    "DEX Save"
+  ],
+  "2014_spells.snare.lastUpdated": "2026-09-28",
+  "2014_spells.speak-with-animals.mechanics_badges": [
+    "1 action",
+    "Self",
+    "10 minutes"
+  ],
+  "2014_spells.speak-with-animals.lastUpdated": "2026-09-28",
+  "2014_spells.tashas-caustic-brew.mechanics_badges": [
+    "Self (30-foot line)",
+    "Concentration, up to 1 minute",
+    "DEX Save",
+    "2d4 acid damage"
+  ],
+  "2014_spells.tashas-caustic-brew.lastUpdated": "2026-09-28",
+  "2014_spells.tensers-floating-disk.mechanics_badges": [
+    "30 feet",
+    "1 hour"
+  ],
+  "2014_spells.tensers-floating-disk.lastUpdated": "2026-09-28",
+  "2014_spells.thunderous-smite.mechanics_badges": [
+    "Self",
+    "Concentration, up to 1 minute"
+  ],
+  "2014_spells.thunderous-smite.lastUpdated": "2026-09-28",
+  "2014_spells.thunderwave.mechanics_badges": [
+    "1 action",
+    "Self",
+    "Instantaneous",
+    "Constitution save",
+    "2d8 thunder damage"
+  ],
+  "2014_spells.thunderwave.lastUpdated": "2026-09-28",
+  "2014_spells.unseen-servant.mechanics_badges": [
+    "1 Action",
+    "60 feet",
+    "1 hour",
+    "V, S, M"
+  ],
+  "2014_spells.unseen-servant.lastUpdated": "2026-09-28",
+  "2014_spells.witch-bolt.mechanics_badges": [
+    "30 feet",
+    "Concentration, up to 1 minute",
+    "Ranged Spell Attack",
+    "1d12 lightning damage"
+  ],
+  "2014_spells.witch-bolt.lastUpdated": "2026-09-28",
+  "2014_spells.wrathful-smite.mechanics_badges": [
+    "Self",
+    "Concentration, up to 1 minute",
+    "WIS Save",
+    "1d6 psychic damage"
+  ],
+  "2014_spells.wrathful-smite.lastUpdated": "2026-09-28",
+  "2014_spells.zephyr-strike.mechanics_badges": [
+    "Self",
+    "Concentration, up to 1 minute"
+  ],
+  "2014_spells.zephyr-strike.lastUpdated": "2026-09-28",
+  "2014_spells.acid-arrow.mechanics_badges": [
+    "1 action",
+    "90 feet",
+    "Instantaneous",
+    "4d4 acid damage"
+  ],
+  "2014_spells.acid-arrow.lastUpdated": "2026-09-28",
+  "2014_spells.aganazzarss-scorcher.mechanics_badges": [
+    "30 feet",
+    "Instantaneous",
+    "DEX Save",
+    "3d8 fire damage"
+  ],
+  "2014_spells.aganazzarss-scorcher.lastUpdated": "2026-09-28",
+  "2014_spells.aid.mechanics_badges": [
+    "1 action",
+    "30 feet",
+    "8 hours"
+  ],
+  "2014_spells.aid.lastUpdated": "2026-09-28",
+  "2014_spells.airy-name.mechanics_badges": [
+    "30 feet",
+    "Concentration, up to 1 hour"
+  ],
+  "2014_spells.airy-name.lastUpdated": "2026-09-28",
+  "2014_spells.alter-self.mechanics_badges": [
+    "1 action",
+    "Self",
+    "Up to 1 hour",
+    "1d6 bludgeoning, piercing, or slashing damage"
+  ],
+  "2014_spells.alter-self.lastUpdated": "2026-09-28",
+  "2014_spells.animal-messenger.mechanics_badges": [
+    "1 Action",
+    "30 feet",
+    "24 hours"
+  ],
+  "2014_spells.animal-messenger.lastUpdated": "2026-09-28",
+  "2014_spells.arcane-lock.mechanics_badges": [
+    "1 Action",
+    "Touch",
+    "Until dispelled"
+  ],
+  "2014_spells.arcane-lock.lastUpdated": "2026-09-28",
+  "2014_spells.arcanists-magic-aura.mechanics_badges": [
+    "1 Action",
+    "Touch",
+    "24 hours"
+  ],
+  "2014_spells.arcanists-magic-aura.lastUpdated": "2026-09-28",
+  "2014_spells.augury.mechanics_badges": [
+    "1 minute",
+    "Self",
+    "Instantaneous"
+  ],
+  "2014_spells.augury.lastUpdated": "2026-09-28",
+  "2014_spells.barkskin.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "Up to 1 hour"
+  ],
+  "2014_spells.barkskin.lastUpdated": "2026-09-28",
+  "2014_spells.blindness-deafness.mechanics_badges": [
+    "1 action",
+    "30 feet",
+    "1 minute",
+    "CON Save"
+  ],
+  "2014_spells.blindness-deafness.lastUpdated": "2026-09-28",
+  "2014_spells.blur.mechanics_badges": [
+    "1 action",
+    "Self",
+    "Up to 1 minute"
+  ],
+  "2014_spells.blur.lastUpdated": "2026-09-28",
+  "2014_spells.branding-smite.mechanics_badges": [
+    "1 bonus action",
+    "Self",
+    "Up to 1 minute",
+    "2d6 radiant damage"
+  ],
+  "2014_spells.branding-smite.lastUpdated": "2026-09-28",
+  "2014_spells.calm-emotions.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "Up to 1 minute"
+  ],
+  "2014_spells.calm-emotions.lastUpdated": "2026-09-28",
+  "2014_spells.cloud-of-daggers.mechanics_badges": [
+    "60 feet",
+    "Concentration, up to 1 minute"
+  ],
+  "2014_spells.cloud-of-daggers.lastUpdated": "2026-09-28",
+  "2014_spells.continual-flame.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "Until dispelled"
+  ],
+  "2014_spells.continual-flame.lastUpdated": "2026-09-28",
+  "2014_spells.cordon-of-arrows.mechanics_badges": [
+    "5 feet",
+    "8 hours",
+    "Dexterity saving throw",
+    "1d6 piercing damage"
+  ],
+  "2014_spells.cordon-of-arrows.lastUpdated": "2026-09-28",
+  "2014_spells.crown-of-madness.mechanics_badges": [
+    "120 feet",
+    "Concentration, up to 1 minute",
+    "Wisdom saving throw"
+  ],
+  "2014_spells.crown-of-madness.lastUpdated": "2026-09-28",
+  "2014_spells.darkness.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "Up to 10 minutes"
+  ],
+  "2014_spells.darkness.lastUpdated": "2026-09-28",
+  "2014_spells.darkvision.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "8 hours"
+  ],
+  "2014_spells.darkvision.lastUpdated": "2026-09-28",
+  "2014_spells.detect-thoughts.mechanics_badges": [
+    "1 action",
+    "Self",
+    "Up to 1 minute"
+  ],
+  "2014_spells.detect-thoughts.lastUpdated": "2026-09-28",
+  "2014_spells.draconic-fear.mechanics_badges": [
+    "Self (30-foot cone)",
+    "Instantaneous"
+  ],
+  "2014_spells.draconic-fear.lastUpdated": "2026-09-28",
+  "2014_spells.draconic-senses.mechanics_badges": [
+    "Touch",
+    "Up to 1 hour"
+  ],
+  "2014_spells.draconic-senses.lastUpdated": "2026-09-28",
+  "2014_spells.dust-devil.mechanics_badges": [
+    "60 feet",
+    "Concentration, up to 1 minute",
+    "Strength save"
+  ],
+  "2014_spells.dust-devil.lastUpdated": "2026-09-28",
+  "2014_spells.earthbind.mechanics_badges": [
+    "300 feet",
+    "Concentration, up to 1 minute",
+    "Strength save"
+  ],
+  "2014_spells.earthbind.lastUpdated": "2026-09-28",
+  "2014_spells.elemental-bane.mechanics_badges": [
+    "90 feet",
+    "Concentration, up to 1 minute"
+  ],
+  "2014_spells.elemental-bane.lastUpdated": "2026-09-28",
+  "2014_spells.enhance-ability.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "Up to 1 hour"
+  ],
+  "2014_spells.enhance-ability.lastUpdated": "2026-09-28",
+  "2014_spells.enlarge-reduce.mechanics_badges": [
+    "1 action",
+    "30 feet",
+    "Up to 1 minute"
+  ],
+  "2014_spells.enlarge-reduce.lastUpdated": "2026-09-28",
+  "2014_spells.enthrall.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "1 minute",
+    "V, S"
+  ],
+  "2014_spells.enthrall.lastUpdated": "2026-09-28",
+  "2014_spells.find-steed.mechanics_badges": [
+    "10 minutes",
+    "30 feet",
+    "Instantaneous",
+    "V, S"
+  ],
+  "2014_spells.find-steed.lastUpdated": "2026-09-28",
+  "2014_spells.find-traps.mechanics_badges": [
+    "1 action",
+    "120 feet",
+    "Instantaneous",
+    "V, S"
+  ],
+  "2014_spells.find-traps.lastUpdated": "2026-09-28",
+  "2014_spells.flame-blade.mechanics_badges": [
+    "1 bonus action",
+    "Self",
+    "Up to 10 minutes",
+    "3d6 fire damage"
+  ],
+  "2014_spells.flame-blade.lastUpdated": "2026-09-28",
+  "2014_spells.flaming-sphere.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "Up to 1 minute",
+    "DEX Save",
+    "2d6 fire damage"
+  ],
+  "2014_spells.flaming-sphere.lastUpdated": "2026-09-28",
+  "2014_spells.gentle-repose.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "10 days"
+  ],
+  "2014_spells.gentle-repose.lastUpdated": "2026-09-28",
+  "2014_spells.gust-of-wind.mechanics_badges": [
+    "1 Action",
+    "Self",
+    "Up to 1 minute"
+  ],
+  "2014_spells.gust-of-wind.lastUpdated": "2026-09-28",
+  "2014_spells.heat-metal.mechanics_badges": [
+    "1 Action",
+    "60 feet",
+    "Up to 1 minute",
+    "2d8 fire damage"
+  ],
+  "2014_spells.heat-metal.lastUpdated": "2026-09-28",
+  "2014_spells.hold-person.mechanics_badges": [
+    "1 Action",
+    "60 feet",
+    "Up to 1 minute"
+  ],
+  "2014_spells.hold-person.lastUpdated": "2026-09-28",
+  "2014_spells.immovable-object.mechanics_badges": [
+    "Touch",
+    "Concentration, up to 1 minute"
+  ],
+  "2014_spells.immovable-object.lastUpdated": "2026-09-28",
+  "2014_spells.invisibility.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "Up to 1 hour"
+  ],
+  "2014_spells.invisibility.lastUpdated": "2026-09-28",
+  "2014_spells.kinetic-jaunt.mechanics_badges": [
+    "Self",
+    "Concentration, up to 1 minute"
+  ],
+  "2014_spells.kinetic-jaunt.lastUpdated": "2026-09-28",
+  "2014_spells.knock.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "Instantaneous",
+    "V"
+  ],
+  "2014_spells.knock.lastUpdated": "2026-09-28",
+  "2014_spells.lesser-restoration.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "Instantaneous",
+    "V, S"
+  ],
+  "2014_spells.lesser-restoration.lastUpdated": "2026-09-28",
+  "2014_spells.levitate.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "Up to 10 minutes",
+    "V, S, M"
+  ],
+  "2014_spells.levitate.lastUpdated": "2026-09-28",
+  "2014_spells.locate-animals-or-plants.mechanics_badges": [
+    "1 action",
+    "Self",
+    "Instantaneous"
+  ],
+  "2014_spells.locate-animals-or-plants.lastUpdated": "2026-09-28",
+  "2014_spells.locate-object.mechanics_badges": [
+    "1 action",
+    "Self",
+    "Up to 10 minutes"
+  ],
+  "2014_spells.locate-object.lastUpdated": "2026-09-28",
+  "2014_spells.magic-mouth.mechanics_badges": [
+    "1 minute",
+    "30 feet",
+    "Until dispelled"
+  ],
+  "2014_spells.magic-mouth.lastUpdated": "2026-09-28",
+  "2014_spells.magic-weapon.mechanics_badges": [
+    "1 bonus action",
+    "Touch",
+    "Up to 1 hour"
+  ],
+  "2014_spells.magic-weapon.lastUpdated": "2026-09-28",
+  "2014_spells.melfs-acid-arrow.mechanics_badges": [
+    "90 feet",
+    "Instantaneous",
+    "Ranged Spell Attack",
+    "4d4 acid damage",
+    "2d4 acid damage"
+  ],
+  "2014_spells.melfs-acid-arrow.lastUpdated": "2026-09-28",
+  "2014_spells.mind-spike.mechanics_badges": [
+    "60 feet",
+    "Concentration, up to 1 hour",
+    "Wisdom saving throw",
+    "3d8 psychic damage"
+  ],
+  "2014_spells.mind-spike.lastUpdated": "2026-09-28",
+  "2014_spells.mirror-image.mechanics_badges": [
+    "1 action",
+    "Self",
+    "1 minute"
+  ],
+  "2014_spells.mirror-image.lastUpdated": "2026-09-28",
+  "2014_spells.misty-step.mechanics_badges": [
+    "1 bonus action",
+    "Self",
+    "Instantaneous"
+  ],
+  "2014_spells.misty-step.lastUpdated": "2026-09-28",
+  "2014_spells.moonbeam.mechanics_badges": [
+    "1 action",
+    "120 feet",
+    "Up to 1 minute",
+    "CON Save",
+    "2d10 radiant damage"
+  ],
+  "2014_spells.moonbeam.lastUpdated": "2026-09-28",
+  "2014_spells.nystuls-magic-aura.mechanics_badges": [
+    "Touch",
+    "24 hours"
+  ],
+  "2014_spells.nystuls-magic-aura.lastUpdated": "2026-09-28",
+  "2014_spells.pass-without-trace.mechanics_badges": [
+    "1 action",
+    "Self",
+    "Up to 1 hour",
+    "Dexterity (Stealth)"
+  ],
+  "2014_spells.pass-without-trace.lastUpdated": "2026-09-28",
+  "2014_spells.phantasmal-force.mechanics_badges": [
+    "60 feet",
+    "Up to 1 minute",
+    "Intelligence save"
+  ],
+  "2014_spells.phantasmal-force.lastUpdated": "2026-09-28",
+  "2014_spells.prayer-of-healing.mechanics_badges": [
+    "10 minutes",
+    "30 feet",
+    "Instantaneous",
+    "2d8 healing"
+  ],
+  "2014_spells.prayer-of-healing.lastUpdated": "2026-09-28",
+  "2014_spells.protection-from-poison.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "1 hour"
+  ],
+  "2014_spells.protection-from-poison.lastUpdated": "2026-09-28",
+  "2014_spells.pyrotechnics.mechanics_badges": [
+    "60 feet",
+    "Instantaneous"
+  ],
+  "2014_spells.pyrotechnics.lastUpdated": "2026-09-28",
+  "2014_spells.ray-of-enfeeblement.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "Up to 1 minute"
+  ],
+  "2014_spells.ray-of-enfeeblement.lastUpdated": "2026-09-28",
+  "2014_spells.rope-trick.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "1 hour"
+  ],
+  "2014_spells.rope-trick.lastUpdated": "2026-09-28",
+  "2014_spells.scorching-ray.mechanics_badges": [
+    "1 action",
+    "120 feet",
+    "Instantaneous",
+    "2d6 fire damage"
+  ],
+  "2014_spells.scorching-ray.lastUpdated": "2026-09-28",
+  "2014_spells.see-invisibility.mechanics_badges": [
+    "1 action",
+    "Self",
+    "1 hour"
+  ],
+  "2014_spells.see-invisibility.lastUpdated": "2026-09-28",
+  "2014_spells.shadow-blade.mechanics_badges": [
+    "Self",
+    "Concentration, up to 1 minute"
+  ],
+  "2014_spells.shadow-blade.lastUpdated": "2026-09-28",
+  "2014_spells.shatter.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "Instantaneous",
+    "Constitution saving throw",
+    "3d8 thunder damage"
+  ],
+  "2014_spells.shatter.lastUpdated": "2026-09-28",
+  "2014_spells.silence.mechanics_badges": [
+    "1 action",
+    "120 feet",
+    "Up to 10 minutes"
+  ],
+  "2014_spells.silence.lastUpdated": "2026-09-28",
+  "2014_spells.skywrite.mechanics_badges": [
+    "Sight",
+    "Concentration, up to 1 hour"
+  ],
+  "2014_spells.skywrite.lastUpdated": "2026-09-28",
+  "2014_spells.spider-climb.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "Up to 1 hour"
+  ],
+  "2014_spells.spider-climb.lastUpdated": "2026-09-28",
+  "2014_spells.spike-growth.mechanics_badges": [
+    "1 action",
+    "150 feet",
+    "Up to 10 minutes",
+    "2d4 piercing damage",
+    "Wisdom (Perception)"
+  ],
+  "2014_spells.spike-growth.lastUpdated": "2026-09-28",
+  "2014_spells.spiritual-weapon.mechanics_badges": [
+    "1 bonus action",
+    "60 feet",
+    "1 minute",
+    "1d8 force damage"
+  ],
+  "2014_spells.spiritual-weapon.lastUpdated": "2026-09-28",
+  "2014_spells.suggestion.mechanics_badges": [
+    "1 action",
+    "30 feet",
+    "Up to 8 hours",
+    "V, M"
+  ],
+  "2014_spells.suggestion.lastUpdated": "2026-09-28",
+  "2014_spells.summon-beast.mechanics_badges": [
+    "90 feet",
+    "Up to 1 hour",
+    "V, S, M"
+  ],
+  "2014_spells.summon-beast.lastUpdated": "2026-09-28",
+  "2014_spells.vortex-warp.mechanics_badges": [
+    "90 feet",
+    "Instantaneous",
+    "V, S",
+    "CON Save"
+  ],
+  "2014_spells.vortex-warp.lastUpdated": "2026-09-28",
+  "2014_spells.warding-bond.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "1 hour"
+  ],
+  "2014_spells.warding-bond.lastUpdated": "2026-09-28",
+  "2014_spells.warding-wind.mechanics_badges": [
+    "Self",
+    "Concentration, up to 10 minutes"
+  ],
+  "2014_spells.warding-wind.lastUpdated": "2026-09-28",
+  "2014_spells.web.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "Up to 1 hour"
+  ],
+  "2014_spells.web.lastUpdated": "2026-09-28",
+  "2014_spells.zone-of-truth.mechanics_badges": [
+    "1 Action",
+    "60 feet",
+    "10 minutes",
+    "Charisma saving throw"
+  ],
+  "2014_spells.zone-of-truth.lastUpdated": "2026-09-28",
+  "2014_spells.animate-dead.mechanics_badges": [
+    "1 minute",
+    "10 feet",
+    "Instantaneous"
+  ],
+  "2014_spells.animate-dead.lastUpdated": "2026-09-28",
+  "2014_spells.beacon-of-hope.mechanics_badges": [
+    "1 Action",
+    "30 feet",
+    "Up to 1 minute"
+  ],
+  "2014_spells.beacon-of-hope.lastUpdated": "2026-09-28",
+  "2014_spells.bestow-curse.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "Up to 1 minute",
+    "WIS Save"
+  ],
+  "2014_spells.bestow-curse.lastUpdated": "2026-09-28",
+  "2014_spells.blink.mechanics_badges": [
+    "1 action",
+    "Self",
+    "1 minute"
+  ],
+  "2014_spells.blink.lastUpdated": "2026-09-28",
+  "2014_spells.call-lightning.mechanics_badges": [
+    "1 action",
+    "120 feet",
+    "Up to 10 minutes",
+    "DEX Save",
+    "3d10 lightning damage"
+  ],
+  "2014_spells.call-lightning.lastUpdated": "2026-09-28",
+  "2014_spells.catnap.mechanics_badges": [
+    "30 feet",
+    "10 minutes"
+  ],
+  "2014_spells.catnap.lastUpdated": "2026-09-28",
+  "2014_spells.clairvoyance.mechanics_badges": [
+    "10 minutes",
+    "1 mile",
+    "Up to 10 minutes"
+  ],
+  "2014_spells.clairvoyance.lastUpdated": "2026-09-28",
+  "2014_spells.conjure-animals.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "Up to 1 hour"
+  ],
+  "2014_spells.conjure-animals.lastUpdated": "2026-09-28",
+  "2014_spells.counterspell.mechanics_badges": [
+    "1 reaction",
+    "60 feet",
+    "Instantaneous",
+    "S"
+  ],
+  "2014_spells.counterspell.lastUpdated": "2026-09-28",
+  "2014_spells.create-food-and-water.mechanics_badges": [
+    "1 action",
+    "30 feet",
+    "Instantaneous",
+    "V, S"
+  ],
+  "2014_spells.create-food-and-water.lastUpdated": "2026-09-28",
+  "2014_spells.daylight.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "1 hour",
+    "V, S"
+  ],
+  "2014_spells.daylight.lastUpdated": "2026-09-28",
+  "2014_spells.dispel-magic.mechanics_badges": [
+    "1 action",
+    "120 feet",
+    "Instantaneous"
+  ],
+  "2014_spells.dispel-magic.lastUpdated": "2026-09-28",
+  "2014_spells.draconic-transmutation.mechanics_badges": [
+    "Touch",
+    "Up to 1 hour"
+  ],
+  "2014_spells.draconic-transmutation.lastUpdated": "2026-09-28",
+  "2014_spells.draconic-word.mechanics_badges": [
+    "60 feet",
+    "Instantaneous",
+    "Constitution saving throw",
+    "2d6 force damage"
+  ],
+  "2014_spells.draconic-word.lastUpdated": "2026-09-28",
+  "2014_spells.enemies-abound.mechanics_badges": [
+    "120 feet",
+    "Concentration, up to 1 minute"
+  ],
+  "2014_spells.enemies-abound.lastUpdated": "2026-09-28",
+  "2014_spells.fear.mechanics_badges": [
+    "1 action",
+    "Self",
+    "Up to 1 minute"
+  ],
+  "2014_spells.fear.lastUpdated": "2026-09-28",
+  "2014_spells.fireball.mechanics_badges": [
+    "1 action",
+    "150 feet",
+    "Instantaneous",
+    "DEX Save",
+    "8d6 fire damage"
+  ],
+  "2014_spells.fireball.lastUpdated": "2026-09-28",
+  "2014_spells.flame-arrows.mechanics_badges": [
+    "Touch",
+    "Concentration, up to 1 hour"
+  ],
+  "2014_spells.flame-arrows.lastUpdated": "2026-09-28",
+  "2014_spells.fly.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "Up to 10 minutes"
+  ],
+  "2014_spells.fly.lastUpdated": "2026-09-28",
+  "2014_spells.gaseous-form.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "Up to 1 hour"
+  ],
+  "2014_spells.gaseous-form.lastUpdated": "2026-09-28",
+  "2014_spells.glyph-of-warding.mechanics_badges": [
+    "1 hour",
+    "Touch",
+    "Until dispelled"
+  ],
+  "2014_spells.glyph-of-warding.lastUpdated": "2026-09-28",
+  "2014_spells.haste.mechanics_badges": [
+    "1 action",
+    "30 feet",
+    "Up to 1 minute"
+  ],
+  "2014_spells.haste.lastUpdated": "2026-09-28",
+  "2014_spells.hypnotic-pattern.mechanics_badges": [
+    "1 action",
+    "120 feet",
+    "Up to 1 minute",
+    "WIS Save"
+  ],
+  "2014_spells.hypnotic-pattern.lastUpdated": "2026-09-28",
+  "2014_spells.intellect-fortress.mechanics_badges": [
+    "30 feet",
+    "1 hour"
+  ],
+  "2014_spells.intellect-fortress.lastUpdated": "2026-09-28",
+  "2014_spells.intellect-fortress-2.lastUpdated": "2026-09-28",
+  "2014_spells.intellect-fortress-egw.mechanics_badges": [
+    "30 feet",
+    "1 hour",
+    "Verbal"
+  ],
+  "2014_spells.intellect-fortress-egw.lastUpdated": "2026-09-28",
+  "2014_spells.intellect-fortress-vrgr.mechanics_badges": [
+    "30 feet",
+    "1 hour",
+    "Verbal"
+  ],
+  "2014_spells.intellect-fortress-vrgr.lastUpdated": "2026-09-28",
+  "2014_spells.life-transference.mechanics_badges": [
+    "30 feet",
+    "Instantaneous",
+    "4d8 necrotic damage"
+  ],
+  "2014_spells.life-transference.lastUpdated": "2026-09-28",
+  "2014_spells.lightning-bolt.mechanics_badges": [
+    "1 Action",
+    "Self",
+    "Instantaneous",
+    "DEX Save",
+    "8d6 lightning damage"
+  ],
+  "2014_spells.lightning-bolt.lastUpdated": "2026-09-28",
+  "2014_spells.magic-circle.mechanics_badges": [
+    "1 minute",
+    "10 feet",
+    "1 hour"
+  ],
+  "2014_spells.magic-circle.lastUpdated": "2026-09-28",
+  "2014_spells.major-image.mechanics_badges": [
+    "1 action",
+    "120 feet",
+    "Up to 10 minutes"
+  ],
+  "2014_spells.major-image.lastUpdated": "2026-09-28",
+  "2014_spells.mass-healing-word.mechanics_badges": [
+    "1 bonus action",
+    "60 feet",
+    "Instantaneous"
+  ],
+  "2014_spells.mass-healing-word.lastUpdated": "2026-09-28",
+  "2014_spells.meld-into-stone.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "8 hours"
+  ],
+  "2014_spells.meld-into-stone.lastUpdated": "2026-09-28",
+  "2014_spells.melfs-minute-meteors.mechanics_badges": [
+    "Range: Self",
+    "Duration: Concentration, up to 10 minutes"
+  ],
+  "2014_spells.melfs-minute-meteors.lastUpdated": "2026-09-28",
+  "2014_spells.nondetection.mechanics_badges": [
+    "1 action",
+    "Range: Touch",
+    "Duration: 8 hours"
+  ],
+  "2014_spells.nondetection.lastUpdated": "2026-09-28",
+  "2014_spells.phantom-steed.mechanics_badges": [
+    "1 minute",
+    "Range: 30 feet",
+    "Duration: 1 hour"
+  ],
+  "2014_spells.phantom-steed.lastUpdated": "2026-09-28",
+  "2014_spells.plant-growth.mechanics_badges": [
+    "1 action",
+    "150 feet",
+    "Instantaneous"
+  ],
+  "2014_spells.plant-growth.lastUpdated": "2026-09-28",
+  "2014_spells.protection-from-energy.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "Up to 1 hour"
+  ],
+  "2014_spells.protection-from-energy.lastUpdated": "2026-09-28",
+  "2014_spells.pulse-wave.mechanics_badges": [
+    "Self (30-foot cone)",
+    "Instantaneous",
+    "Constitution saving throw",
+    "6d6 force damage"
+  ],
+  "2014_spells.pulse-wave.lastUpdated": "2026-09-28",
+  "2014_spells.remove-curse.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "Instantaneous"
+  ],
+  "2014_spells.remove-curse.lastUpdated": "2026-09-28",
+  "2014_spells.revivify.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "Instantaneous"
+  ],
+  "2014_spells.revivify.lastUpdated": "2026-09-28",
+  "2014_spells.sending.mechanics_badges": [
+    "1 action",
+    "Unlimited",
+    "1 round"
+  ],
+  "2014_spells.sending.lastUpdated": "2026-09-28",
+  "2014_spells.sleet-storm.mechanics_badges": [
+    "1 action",
+    "150 feet",
+    "Up to 1 minute",
+    "DEX Save"
+  ],
+  "2014_spells.sleet-storm.lastUpdated": "2026-09-28",
+  "2014_spells.slow.mechanics_badges": [
+    "1 action",
+    "120 feet",
+    "Up to 1 minute",
+    "WIS Save"
+  ],
+  "2014_spells.slow.lastUpdated": "2026-09-28",
+  "2014_spells.speak-with-dead.mechanics_badges": [
+    "1 action",
+    "10 feet",
+    "10 minutes"
+  ],
+  "2014_spells.speak-with-dead.lastUpdated": "2026-09-28",
+  "2014_spells.speak-with-plants.mechanics_badges": [
+    "1 action",
+    "Self",
+    "10 minutes",
+    "V, S"
+  ],
+  "2014_spells.speak-with-plants.lastUpdated": "2026-09-28",
+  "2014_spells.spirit-guardians.mechanics_badges": [
+    "1 action",
+    "Self",
+    "Up to 10 minutes",
+    "V, S, M",
+    "WIS Save",
+    "3d8 radiant damage",
+    "3d8 necrotic damage"
+  ],
+  "2014_spells.spirit-guardians.lastUpdated": "2026-09-28",
+  "2014_spells.spirit-shroud.mechanics_badges": [
+    "Self",
+    "Up to 1 minute",
+    "V, S"
+  ],
+  "2014_spells.spirit-shroud.lastUpdated": "2026-09-28",
+  "2014_spells.spirit-shroud-2.mechanics_badges": [
+    "1d8 damage",
+    "Wisdom saving throw"
+  ],
+  "2014_spells.spirit-shroud-2.lastUpdated": "2026-09-28",
+  "2014_spells.spirit-shroud-egw.mechanics_badges": [
+    "Range: Self",
+    "Duration: Up to 1 minute",
+    "1d8 damage",
+    "Wisdom saving throw"
+  ],
+  "2014_spells.spirit-shroud-egw.lastUpdated": "2026-09-28",
+  "2014_spells.spirit-shroud-vrgr.mechanics_badges": [
+    "Range: Self",
+    "Duration: Up to 1 minute",
+    "1d8 damage",
+    "Wisdom saving throw"
+  ],
+  "2014_spells.spirit-shroud-vrgr.lastUpdated": "2026-09-28",
+  "2014_spells.stinking-cloud.mechanics_badges": [
+    "1 action",
+    "90 feet",
+    "Up to 1 minute",
+    "Constitution saving throw"
+  ],
+  "2014_spells.stinking-cloud.lastUpdated": "2026-09-28",
+  "2014_spells.summon-fey.mechanics_badges": [
+    "90 feet",
+    "Up to 1 hour"
+  ],
+  "2014_spells.summon-fey.lastUpdated": "2026-09-28",
+  "2014_spells.summon-fey-egw.mechanics_badges": [
+    "90 feet",
+    "Up to 1 hour"
+  ],
+  "2014_spells.summon-fey-egw.lastUpdated": "2026-09-28",
+  "2014_spells.summon-fey-vrgr.mechanics_badges": [
+    "90 feet",
+    "Up to 1 hour"
+  ],
+  "2014_spells.summon-fey-vrgr.lastUpdated": "2026-09-28",
+  "2014_spells.summon-shadowspawn.mechanics_badges": [
+    "90 feet",
+    "Up to 1 hour"
+  ],
+  "2014_spells.summon-shadowspawn.lastUpdated": "2026-09-28",
+  "2014_spells.summon-shadowspawn-egw.mechanics_badges": [
+    "90 feet",
+    "Up to 1 hour"
+  ],
+  "2014_spells.summon-shadowspawn-egw.lastUpdated": "2026-09-28",
+  "2014_spells.summon-shadowspawn-vrgr.mechanics_badges": [
+    "90 feet",
+    "Up to 1 hour"
+  ],
+  "2014_spells.summon-shadowspawn-vrgr.lastUpdated": "2026-09-28",
+  "2014_spells.summon-undead.mechanics_badges": [
+    "90 feet",
+    "Up to 1 hour"
+  ],
+  "2014_spells.summon-undead.lastUpdated": "2026-09-28",
+  "2014_spells.summon-undead-egw.mechanics_badges": [
+    "90 feet",
+    "Up to 1 hour"
+  ],
+  "2014_spells.summon-undead-egw.lastUpdated": "2026-09-28",
+  "2014_spells.summon-undead-vrgr.mechanics_badges": [
+    "90 feet",
+    "Up to 1 hour"
+  ],
+  "2014_spells.summon-undead-vrgr.lastUpdated": "2026-09-28",
+  "2014_spells.thunder-step.mechanics_badges": [
+    "90 feet",
+    "Instantaneous",
+    "CON Save",
+    "3d10 thunder damage"
+  ],
+  "2014_spells.thunder-step.lastUpdated": "2026-09-28",
+  "2014_spells.tidal-wave.mechanics_badges": [
+    "120 feet",
+    "Instantaneous",
+    "DEX Save",
+    "4d8 bludgeoning damage"
+  ],
+  "2014_spells.tidal-wave.lastUpdated": "2026-09-28",
+  "2014_spells.tiny-hut.mechanics_badges": [
+    "1 minute",
+    "Self",
+    "8 hours"
+  ],
+  "2014_spells.tiny-hut.lastUpdated": "2026-09-28",
+  "2014_spells.tiny-servant.mechanics_badges": [
+    "Touch",
+    "8 hours",
+    "Verbal",
+    "Somatic"
+  ],
+  "2014_spells.tiny-servant.lastUpdated": "2026-09-28",
+  "2014_spells.tongues.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "1 hour",
+    "V",
+    "M"
+  ],
+  "2014_spells.tongues.lastUpdated": "2026-09-28",
+  "2014_spells.vampiric-touch.mechanics_badges": [
+    "1 action",
+    "Self",
+    "Up to 1 minute",
+    "V",
+    "S",
+    "3d6 necrotic damage"
+  ],
+  "2014_spells.vampiric-touch.lastUpdated": "2026-09-28",
+  "2014_spells.wall-of-sand.mechanics_badges": [
+    "90 feet",
+    "Concentration, up to 10 minutes"
+  ],
+  "2014_spells.wall-of-sand.lastUpdated": "2026-09-28",
+  "2014_spells.wall-of-water.mechanics_badges": [
+    "60 feet",
+    "Concentration, up to 10 minutes"
+  ],
+  "2014_spells.wall-of-water.lastUpdated": "2026-09-28",
+  "2014_spells.water-breathing.mechanics_badges": [
+    "1 action",
+    "30 feet",
+    "24 hours"
+  ],
+  "2014_spells.water-breathing.lastUpdated": "2026-09-28",
+  "2014_spells.water-walk.mechanics_badges": [
+    "1 Action",
+    "30 feet",
+    "1 hour",
+    "V, S, M"
+  ],
+  "2014_spells.water-walk.lastUpdated": "2026-09-28",
+  "2014_spells.wind-wall.mechanics_badges": [
+    "1 Action",
+    "120 feet",
+    "Up to 1 minute",
+    "V, S, M",
+    "Strength save",
+    "3d8 bludgeoning damage"
+  ],
+  "2014_spells.wind-wall.lastUpdated": "2026-09-28",
+  "2014_spells.arcane-eye.mechanics_badges": [
+    "1 Action",
+    "30 feet",
+    "Up to 1 hour",
+    "V, S, M"
+  ],
+  "2014_spells.arcane-eye.lastUpdated": "2026-09-28",
+  "2014_spells.banishment.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "Up to 1 minute",
+    "Charisma saving throw"
+  ],
+  "2014_spells.banishment.lastUpdated": "2026-09-28",
+  "2014_spells.black-tentacles.mechanics_badges": [
+    "1 action",
+    "90 feet",
+    "Up to 1 minute",
+    "3d6 bludgeoning damage",
+    "Dexterity saving throw"
+  ],
+  "2014_spells.black-tentacles.lastUpdated": "2026-09-28",
+  "2014_spells.blight.mechanics_badges": [
+    "1 action",
+    "30 feet",
+    "Instantaneous",
+    "8d8 necrotic damage",
+    "Constitution saving throw"
+  ],
+  "2014_spells.blight.lastUpdated": "2026-09-28",
+  "2014_spells.compulsion.mechanics_badges": [
+    "1 action",
+    "30 feet",
+    "Up to 1 minute",
+    "Wisdom save"
+  ],
+  "2014_spells.compulsion.lastUpdated": "2026-09-28",
+  "2014_spells.confusion.mechanics_badges": [
+    "1 action",
+    "90 feet",
+    "Up to 1 minute",
+    "Wisdom save"
+  ],
+  "2014_spells.confusion.lastUpdated": "2026-09-28",
+  "2014_spells.conjure-minor-elementals.mechanics_badges": [
+    "1 minute",
+    "90 feet",
+    "Up to 1 hour"
+  ],
+  "2014_spells.conjure-minor-elementals.lastUpdated": "2026-09-28",
+  "2014_spells.conjure-woodland-beings.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "Up to 1 hour",
+    "V, S, M"
+  ],
+  "2014_spells.conjure-woodland-beings.lastUpdated": "2026-09-28",
+  "2014_spells.control-water.mechanics_badges": [
+    "1 Action",
+    "300 feet",
+    "Up to 10 minutes",
+    "2d8 bludgeoning damage"
+  ],
+  "2014_spells.control-water.lastUpdated": "2026-09-28",
+  "2014_spells.death-ward.mechanics_badges": [
+    "1 Action",
+    "Touch",
+    "8 hours"
+  ],
+  "2014_spells.death-ward.lastUpdated": "2026-09-28",
+  "2014_spells.dimension-door.mechanics_badges": [
+    "1 Action",
+    "500 feet",
+    "Instantaneous",
+    "4d6 force damage"
+  ],
+  "2014_spells.dimension-door.lastUpdated": "2026-09-28",
+  "2014_spells.divination.mechanics_badges": [
+    "1 action",
+    "Self",
+    "Instantaneous"
+  ],
+  "2014_spells.divination.lastUpdated": "2026-09-28",
+  "2014_spells.dominate-beast.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "Up to 1 minute",
+    "WIS Save"
+  ],
+  "2014_spells.dominate-beast.lastUpdated": "2026-09-28",
+  "2014_spells.draconic-domination.mechanics_badges": [
+    "60 feet",
+    "Up to 1 minute",
+    "WIS Save"
+  ],
+  "2014_spells.draconic-domination.lastUpdated": "2026-09-28",
+  "2014_spells.elemental-bane-4.mechanics_badges": [
+    "90 feet",
+    "Concentration, up to 1 minute",
+    "Constitution saving throw",
+    "1d6 damage"
+  ],
+  "2014_spells.elemental-bane-4.lastUpdated": "2026-09-28",
+  "2014_spells.fabricate.mechanics_badges": [
+    "10 minutes",
+    "120 feet",
+    "Instantaneous"
+  ],
+  "2014_spells.fabricate.lastUpdated": "2026-09-28",
+  "2014_spells.faithful-hound.mechanics_badges": [
+    "1 action",
+    "30 feet",
+    "8 hours",
+    "4d8 piercing damage"
+  ],
+  "2014_spells.faithful-hound.lastUpdated": "2026-09-28",
+  "2014_spells.find-greater-steed.mechanics_badges": [
+    "30 feet",
+    "Instantaneous"
+  ],
+  "2014_spells.find-greater-steed.lastUpdated": "2026-09-28",
+  "2014_spells.fire-shield.mechanics_badges": [
+    "1 action",
+    "Self",
+    "10 minutes",
+    "2d8 fire damage"
+  ],
+  "2014_spells.fire-shield.lastUpdated": "2026-09-28",
+  "2014_spells.freedom-of-movement.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "1 hour"
+  ],
+  "2014_spells.freedom-of-movement.lastUpdated": "2026-09-28",
+  "2014_spells.gate-seal.mechanics_badges": [
+    "60 feet",
+    "24 hours"
+  ],
+  "2014_spells.gate-seal.lastUpdated": "2026-09-28",
+  "2014_spells.giant-insect.mechanics_badges": [
+    "1 action",
+    "30 feet",
+    "Up to 10 minutes"
+  ],
+  "2014_spells.giant-insect.lastUpdated": "2026-09-28",
+  "2014_spells.greater-invisibility.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "Up to 1 minute"
+  ],
+  "2014_spells.greater-invisibility.lastUpdated": "2026-09-28",
+  "2014_spells.guardian-of-faith.mechanics_badges": [
+    "1 Action",
+    "30 feet",
+    "8 hours",
+    "Dexterity saving throw",
+    "20 radiant damage"
+  ],
+  "2014_spells.guardian-of-faith.lastUpdated": "2026-09-28",
+  "2014_spells.guild-banner.mechanics_badges": [
+    "30 feet",
+    "Concentration, up to 1 minute",
+    "Wisdom saving throw"
+  ],
+  "2014_spells.guild-banner.lastUpdated": "2026-09-28",
+  "2014_spells.hallucinatory-terrain.mechanics_badges": [
+    "10 minutes",
+    "300 feet",
+    "24 hours",
+    "Intelligence (Investigation)"
+  ],
+  "2014_spells.hallucinatory-terrain.lastUpdated": "2026-09-28",
+  "2014_spells.ice-storm.mechanics_badges": [
+    "1 action",
+    "300 feet",
+    "Instantaneous",
+    "DEX Save",
+    "2d8 bludgeoning damage",
+    "4d6 cold damage"
+  ],
+  "2014_spells.ice-storm.lastUpdated": "2026-09-28",
+  "2014_spells.locate-creature.mechanics_badges": [
+    "1 action",
+    "Self",
+    "Up to 1 hour"
+  ],
+  "2014_spells.locate-creature.lastUpdated": "2026-09-28",
+  "2014_spells.miniature-grasp.mechanics_badges": [
+    "30 feet",
+    "8 hours"
+  ],
+  "2014_spells.miniature-grasp.lastUpdated": "2026-09-28",
+  "2014_spells.phantasmal-killer.mechanics_badges": [
+    "1 action",
+    "120 feet",
+    "Up to 1 minute",
+    "WIS Save",
+    "4d10 psychic damage"
+  ],
+  "2014_spells.phantasmal-killer.lastUpdated": "2026-09-28",
+  "2014_spells.polymorph.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "Up to 1 hour",
+    "WIS Save"
+  ],
+  "2014_spells.polymorph.lastUpdated": "2026-09-28",
+  "2014_spells.private-sanctum.mechanics_badges": [
+    "10 minutes",
+    "120 feet",
+    "24 hours"
+  ],
+  "2014_spells.private-sanctum.lastUpdated": "2026-09-28",
+  "2014_spells.resilient-sphere.mechanics_badges": [
+    "1 action",
+    "30 feet",
+    "Up to 1 minute",
+    "Dexterity saving throw"
+  ],
+  "2014_spells.resilient-sphere.lastUpdated": "2026-09-28",
+  "2014_spells.secret-chest.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "Instantaneous"
+  ],
+  "2014_spells.secret-chest.lastUpdated": "2026-09-28",
+  "2014_spells.stone-shape.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "Instantaneous"
+  ],
+  "2014_spells.stone-shape.lastUpdated": "2026-09-28",
+  "2014_spells.stoneskin.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "Up to 1 hour"
+  ],
+  "2014_spells.stoneskin.lastUpdated": "2026-09-28",
+  "2014_spells.summon-aberration.mechanics_badges": [
+    "90 feet",
+    "Up to 1 hour"
+  ],
+  "2014_spells.summon-aberration.lastUpdated": "2026-09-28",
+  "2014_spells.summon-aberration-egw.mechanics_badges": [
+    "90 feet",
+    "Up to 1 hour"
+  ],
+  "2014_spells.summon-aberration-egw.lastUpdated": "2026-09-28",
+  "2014_spells.summon-aberration-vrgr.mechanics_badges": [
+    "90 feet",
+    "Up to 1 hour"
+  ],
+  "2014_spells.summon-aberration-vrgr.lastUpdated": "2026-09-28",
+  "2014_spells.summon-construct.mechanics_badges": [
+    "90 feet",
+    "Up to 1 hour"
+  ],
+  "2014_spells.summon-construct.lastUpdated": "2026-09-28",
+  "2014_spells.summon-elemental.mechanics_badges": [
+    "90 feet",
+    "Up to 1 hour"
+  ],
+  "2014_spells.summon-elemental.lastUpdated": "2026-09-28",
+  "2014_spells.wall-of-fire.mechanics_badges": [
+    "1 action",
+    "120 feet",
+    "Up to 1 minute",
+    "5d8 fire damage"
+  ],
+  "2014_spells.wall-of-fire.lastUpdated": "2026-09-28",
+  "2014_spells.animate-objects.mechanics_badges": [
+    "1 action",
+    "120 feet",
+    "Up to 1 minute",
+    "V, S"
+  ],
+  "2014_spells.animate-objects.lastUpdated": "2026-09-28",
+  "2014_spells.antilife-shell.mechanics_badges": [
+    "1 action",
+    "Self",
+    "Up to 1 hour"
+  ],
+  "2014_spells.antilife-shell.lastUpdated": "2026-09-28",
+  "2014_spells.arcane-hand.mechanics_badges": [
+    "1 action",
+    "120 feet",
+    "Up to 1 minute",
+    "4d8 force damage"
+  ],
+  "2014_spells.arcane-hand.lastUpdated": "2026-09-28",
+  "2014_spells.awaken.mechanics_badges": [
+    "8 hours",
+    "Touch",
+    "Instantaneous"
+  ],
+  "2014_spells.awaken.lastUpdated": "2026-09-28",
+  "2014_spells.cloudkill.mechanics_badges": [
+    "1 action",
+    "120 feet",
+    "Up to 10 minutes",
+    "Constitution saving throw",
+    "5d8 poison damage"
+  ],
+  "2014_spells.cloudkill.lastUpdated": "2026-09-28",
+  "2014_spells.commune.mechanics_badges": [
+    "1 minute",
+    "Self",
+    "1 minute"
+  ],
+  "2014_spells.commune.lastUpdated": "2026-09-28",
+  "2014_spells.commune-with-nature.mechanics_badges": [
+    "1 minute",
+    "Self",
+    "Instantaneous"
+  ],
+  "2014_spells.commune-with-nature.lastUpdated": "2026-09-28",
+  "2014_spells.cone-of-cold.mechanics_badges": [
+    "1 action",
+    "Self",
+    "Instantaneous",
+    "CON Save",
+    "8d8 cold damage"
+  ],
+  "2014_spells.cone-of-cold.lastUpdated": "2026-09-28",
+  "2014_spells.conjure-elemental.mechanics_badges": [
+    "1 minute",
+    "90 feet",
+    "Up to 1 hour"
+  ],
+  "2014_spells.conjure-elemental.lastUpdated": "2026-09-28",
+  "2014_spells.contact-other-plane.mechanics_badges": [
+    "1 minute",
+    "Self",
+    "1 minute",
+    "INT Save"
+  ],
+  "2014_spells.contact-other-plane.lastUpdated": "2026-09-28",
+  "2014_spells.contagion.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "7 days",
+    "V, S"
+  ],
+  "2014_spells.contagion.lastUpdated": "2026-09-28",
+  "2014_spells.creation.mechanics_badges": [
+    "1 minute",
+    "30 feet",
+    "Special",
+    "V, S, M"
+  ],
+  "2014_spells.creation.lastUpdated": "2026-09-28",
+  "2014_spells.dispel-evil-and-good.mechanics_badges": [
+    "1 action",
+    "Self",
+    "Up to 1 minute"
+  ],
+  "2014_spells.dispel-evil-and-good.lastUpdated": "2026-09-28",
+  "2014_spells.dominate-person.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "Up to 1 minute"
+  ],
+  "2014_spells.dominate-person.lastUpdated": "2026-09-28",
+  "2014_spells.draconic-transport.mechanics_badges": [
+    "Self",
+    "Instantaneous"
+  ],
+  "2014_spells.draconic-transport.lastUpdated": "2026-09-28",
+  "2014_spells.dream.mechanics_badges": [
+    "1 minute",
+    "Special",
+    "8 hours",
+    "3d6 psychic damage"
+  ],
+  "2014_spells.dream.lastUpdated": "2026-09-28",
+  "2014_spells.flame-strike.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "Instantaneous",
+    "DEX Save",
+    "4d6 fire damage",
+    "4d6 radiant damage"
+  ],
+  "2014_spells.flame-strike.lastUpdated": "2026-09-28",
+  "2014_spells.geas.mechanics_badges": [
+    "1 minute",
+    "60 feet",
+    "30 days",
+    "WIS Save",
+    "5d10 psychic damage"
+  ],
+  "2014_spells.geas.lastUpdated": "2026-09-28",
+  "2014_spells.greater-restoration.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "Instantaneous"
+  ],
+  "2014_spells.greater-restoration.lastUpdated": "2026-09-28",
+  "2014_spells.hallow.mechanics_badges": [
+    "24 hours",
+    "Touch",
+    "Until dispelled"
+  ],
+  "2014_spells.hallow.lastUpdated": "2026-09-28",
+  "2014_spells.hold-monster.mechanics_badges": [
+    "1 action",
+    "90 feet",
+    "Up to 1 minute"
+  ],
+  "2014_spells.hold-monster.lastUpdated": "2026-09-28",
+  "2014_spells.insect-plague.mechanics_badges": [
+    "1 action",
+    "300 feet",
+    "Up to 10 minutes",
+    "CON Save",
+    "4d10 piercing damage"
+  ],
+  "2014_spells.insect-plague.lastUpdated": "2026-09-28",
+  "2014_spells.legend-lore.mechanics_badges": [
+    "10 minutes",
+    "Self",
+    "Instantaneous"
+  ],
+  "2014_spells.legend-lore.lastUpdated": "2026-09-28",
+  "2014_spells.mass-cure-wounds.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "Instantaneous",
+    "V, S"
+  ],
+  "2014_spells.mass-cure-wounds.lastUpdated": "2026-09-28",
+  "2014_spells.mislead.mechanics_badges": [
+    "1 action",
+    "Self",
+    "Up to 1 hour",
+    "S"
+  ],
+  "2014_spells.mislead.lastUpdated": "2026-09-28",
+  "2014_spells.modify-memory.mechanics_badges": [
+    "1 action",
+    "30 feet",
+    "Up to 1 minute",
+    "V, S",
+    "WIS Save"
+  ],
+  "2014_spells.modify-memory.lastUpdated": "2026-09-28",
+  "2014_spells.passwall.mechanics_badges": [
+    "1 action",
+    "30 feet",
+    "1 hour"
+  ],
+  "2014_spells.passwall.lastUpdated": "2026-09-28",
+  "2014_spells.planar-binding.mechanics_badges": [
+    "1 hour",
+    "60 feet",
+    "24 hours"
+  ],
+  "2014_spells.planar-binding.lastUpdated": "2026-09-28",
+  "2014_spells.raise-dead.mechanics_badges": [
+    "1 hour",
+    "Touch",
+    "Instantaneous"
+  ],
+  "2014_spells.raise-dead.lastUpdated": "2026-09-28",
+  "2014_spells.reincarnate.mechanics_badges": [
+    "1 hour",
+    "Touch",
+    "Instantaneous"
+  ],
+  "2014_spells.reincarnate.lastUpdated": "2026-09-28",
+  "2014_spells.scrying.mechanics_badges": [
+    "10 minutes",
+    "Self",
+    "Up to 10 minutes"
+  ],
+  "2014_spells.scrying.lastUpdated": "2026-09-28",
+  "2014_spells.seeming.mechanics_badges": [
+    "1 action",
+    "30 feet",
+    "8 hours"
+  ],
+  "2014_spells.seeming.lastUpdated": "2026-09-28",
+  "2014_spells.steel-wind-strike.mechanics_badges": [
+    "30 feet",
+    "Instantaneous",
+    "6d10 force damage"
+  ],
+  "2014_spells.steel-wind-strike.lastUpdated": "2026-09-28",
+  "2014_spells.summon-celestial.mechanics_badges": [
+    "90 feet",
+    "Up to 1 hour"
+  ],
+  "2014_spells.summon-celestial.lastUpdated": "2026-09-28",
+  "2014_spells.synaptic-static.mechanics_badges": [
+    "120 feet",
+    "Instantaneous",
+    "Intelligence save"
+  ],
+  "2014_spells.synaptic-static.lastUpdated": "2026-09-28",
+  "2014_spells.telekinesis.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "Up to 10 minutes"
+  ],
+  "2014_spells.telekinesis.lastUpdated": "2026-09-28",
+  "2014_spells.telepathic-bond.mechanics_badges": [
+    "1 action",
+    "30 feet",
+    "1 hour"
+  ],
+  "2014_spells.telepathic-bond.lastUpdated": "2026-09-28",
+  "2014_spells.teleportation-circle.mechanics_badges": [
+    "1 minute",
+    "10 feet",
+    "1 round",
+    "V, M"
+  ],
+  "2014_spells.teleportation-circle.lastUpdated": "2026-09-28",
+  "2014_spells.tree-stride.mechanics_badges": [
+    "1 action",
+    "Self",
+    "Up to 1 minute",
+    "V, S"
+  ],
+  "2014_spells.tree-stride.lastUpdated": "2026-09-28",
+  "2014_spells.vitriolic-sphere.mechanics_badges": [
+    "150 feet",
+    "Instantaneous",
+    "Dexterity saving throw"
+  ],
+  "2014_spells.vitriolic-sphere.lastUpdated": "2026-09-28",
+  "2014_spells.wall-of-force.mechanics_badges": [
+    "1 action",
+    "120 feet",
+    "Up to 10 minutes"
+  ],
+  "2014_spells.wall-of-force.lastUpdated": "2026-09-28",
+  "2014_spells.wall-of-stone.mechanics_badges": [
+    "1 action",
+    "120 feet",
+    "Up to 10 minutes"
+  ],
+  "2014_spells.wall-of-stone.lastUpdated": "2026-09-28",
+  "2014_spells.blade-barrier.mechanics_badges": [
+    "1 action",
+    "90 feet",
+    "Up to 10 minutes",
+    "6d10 slashing damage"
+  ],
+  "2014_spells.blade-barrier.lastUpdated": "2026-09-28",
+  "2014_spells.bones-of-the-earth.mechanics_badges": [
+    "120 feet",
+    "Instantaneous"
+  ],
+  "2014_spells.bones-of-the-earth.lastUpdated": "2026-09-28",
+  "2014_spells.chain-lightning.mechanics_badges": [
+    "1 action",
+    "150 feet",
+    "Instantaneous",
+    "DEX Save",
+    "10d8 lightning damage"
+  ],
+  "2014_spells.chain-lightning.lastUpdated": "2026-09-28",
+  "2014_spells.circle-of-death.mechanics_badges": [
+    "1 action",
+    "150 feet",
+    "Instantaneous",
+    "CON Save",
+    "8d6 necrotic damage"
+  ],
+  "2014_spells.circle-of-death.lastUpdated": "2026-09-28",
+  "2014_spells.conjure-fey.mechanics_badges": [
+    "1 minute",
+    "90 feet",
+    "Up to 1 hour"
+  ],
+  "2014_spells.conjure-fey.lastUpdated": "2026-09-28",
+  "2014_spells.contingency.mechanics_badges": [
+    "10 minutes",
+    "Self",
+    "10 days",
+    "V, S, M"
+  ],
+  "2014_spells.contingency.lastUpdated": "2026-09-28",
+  "2014_spells.create-undead.mechanics_badges": [
+    "1 minute",
+    "10 feet",
+    "Instantaneous",
+    "V, S, M"
+  ],
+  "2014_spells.create-undead.lastUpdated": "2026-09-28",
+  "2014_spells.disintegrate.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "Instantaneous",
+    "DEX Save",
+    "10d6 + 40 force damage"
+  ],
+  "2014_spells.disintegrate.lastUpdated": "2026-09-28",
+  "2014_spells.druid-grove.mechanics_badges": [
+    "Touch",
+    "24 hours"
+  ],
+  "2014_spells.druid-grove.lastUpdated": "2026-09-28",
+  "2014_spells.eyebite.mechanics_badges": [
+    "1 action",
+    "Self",
+    "Up to 1 minute"
+  ],
+  "2014_spells.eyebite.lastUpdated": "2026-09-28",
+  "2014_spells.find-the-path.mechanics_badges": [
+    "1 minute",
+    "Self",
+    "Up to 24 hours"
+  ],
+  "2014_spells.find-the-path.lastUpdated": "2026-09-28",
+  "2014_spells.flesh-to-stone.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "Up to 1 minute"
+  ],
+  "2014_spells.flesh-to-stone.lastUpdated": "2026-09-28",
+  "2014_spells.forbiddance.mechanics_badges": [
+    "10 minutes",
+    "Touch",
+    "24 hours"
+  ],
+  "2014_spells.forbiddance.lastUpdated": "2026-09-28",
+  "2014_spells.freezing-sphere.mechanics_badges": [
+    "1 action",
+    "300 feet",
+    "Instantaneous",
+    "CON Save",
+    "10d6 cold damage"
+  ],
+  "2014_spells.freezing-sphere.lastUpdated": "2026-09-28",
+  "2014_spells.globe-of-invulnerability.mechanics_badges": [
+    "1 action",
+    "Self",
+    "Up to 1 minute"
+  ],
+  "2014_spells.globe-of-invulnerability.lastUpdated": "2026-09-28",
+  "2014_spells.gravity-fissure.mechanics_badges": [
+    "Self (100-foot line)",
+    "Instantaneous",
+    "CON Save",
+    "8d8 force damage"
+  ],
+  "2014_spells.gravity-fissure.lastUpdated": "2026-09-28",
+  "2014_spells.guards-and-wards.mechanics_badges": [
+    "10 minutes",
+    "Touch",
+    "24 hours"
+  ],
+  "2014_spells.guards-and-wards.lastUpdated": "2026-09-28",
+  "2014_spells.harm.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "Instantaneous",
+    "14d6 necrotic damage"
+  ],
+  "2014_spells.harm.lastUpdated": "2026-09-28",
+  "2014_spells.heal.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "Instantaneous"
+  ],
+  "2014_spells.heal.lastUpdated": "2026-09-28",
+  "2014_spells.heroes-feast.mechanics_badges": [
+    "10 minutes",
+    "30 feet",
+    "Instantaneous"
+  ],
+  "2014_spells.heroes-feast.lastUpdated": "2026-09-28",
+  "2014_spells.instant-summons.mechanics_badges": [
+    "1 minute",
+    "Touch",
+    "Until dispelled"
+  ],
+  "2014_spells.instant-summons.lastUpdated": "2026-09-28",
+  "2014_spells.irresistible-dance.mechanics_badges": [
+    "1 Action",
+    "30 feet",
+    "Up to 1 minute",
+    "V"
+  ],
+  "2014_spells.irresistible-dance.lastUpdated": "2026-09-28",
+  "2014_spells.magic-jar.mechanics_badges": [
+    "1 minute",
+    "Self",
+    "Until dispelled",
+    "V, S, M"
+  ],
+  "2014_spells.magic-jar.lastUpdated": "2026-09-28",
+  "2014_spells.malicious-smite.mechanics_badges": [
+    "Range: Self",
+    "Duration: Concentration, up to 1 minute",
+    "4d6 necrotic damage"
+  ],
+  "2014_spells.malicious-smite.lastUpdated": "2026-09-28",
+  "2014_spells.mass-suggestion.mechanics_badges": [
+    "1 action",
+    "Range: 60 feet",
+    "Duration: 24 hours"
+  ],
+  "2014_spells.mass-suggestion.lastUpdated": "2026-09-28",
+  "2014_spells.move-earth.mechanics_badges": [
+    "1 Action",
+    "120 feet",
+    "Up to 2 hours"
+  ],
+  "2014_spells.move-earth.lastUpdated": "2026-09-28",
+  "2014_spells.otherworldly-form.mechanics_badges": [
+    "Self",
+    "Up to 1 minute"
+  ],
+  "2014_spells.otherworldly-form.lastUpdated": "2026-09-28",
+  "2014_spells.otherworldly-form-egw.mechanics_badges": [
+    "Self",
+    "Up to 1 minute",
+    "V, S, M"
+  ],
+  "2014_spells.otherworldly-form-egw.lastUpdated": "2026-09-28",
+  "2014_spells.otherworldly-form-vrgr.mechanics_badges": [
+    "Self",
+    "Up to 1 minute",
+    "V, S, M"
+  ],
+  "2014_spells.otherworldly-form-vrgr.lastUpdated": "2026-09-28",
+  "2014_spells.planar-ally.mechanics_badges": [
+    "10 minutes",
+    "60 feet",
+    "Instantaneous",
+    "V, S"
+  ],
+  "2014_spells.planar-ally.lastUpdated": "2026-09-28",
+  "2014_spells.programmed-illusion.mechanics_badges": [
+    "1 action",
+    "120 feet",
+    "Until dispelled"
+  ],
+  "2014_spells.programmed-illusion.lastUpdated": "2026-09-28",
+  "2014_spells.summon-fiend.mechanics_badges": [
+    "90 feet",
+    "Up to 1 hour"
+  ],
+  "2014_spells.summon-fiend.lastUpdated": "2026-09-28",
+  "2014_spells.sunbeam.mechanics_badges": [
+    "1 action",
+    "Self",
+    "Up to 1 minute",
+    "CON Save",
+    "6d8 radiant damage"
+  ],
+  "2014_spells.sunbeam.lastUpdated": "2026-09-28",
+  "2014_spells.transport-via-plants.mechanics_badges": [
+    "1 action",
+    "10 feet",
+    "1 round",
+    "V, S"
+  ],
+  "2014_spells.transport-via-plants.lastUpdated": "2026-09-28",
+  "2014_spells.true-seeing.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "1 hour",
+    "V, S, M"
+  ],
+  "2014_spells.true-seeing.lastUpdated": "2026-09-28",
+  "2014_spells.wall-of-ice.mechanics_badges": [
+    "1 action",
+    "120 feet",
+    "Up to 10 minutes",
+    "DEX Save",
+    "10d6 cold damage"
+  ],
+  "2014_spells.wall-of-ice.lastUpdated": "2026-09-28",
+  "2014_spells.wall-of-thorns.mechanics_badges": [
+    "1 action",
+    "120 feet",
+    "Up to 10 minutes",
+    "DEX Save",
+    "7d8 piercing damage"
+  ],
+  "2014_spells.wall-of-thorns.lastUpdated": "2026-09-28",
+  "2014_spells.wind-walk.mechanics_badges": [
+    "1 minute",
+    "30 feet",
+    "8 hours"
+  ],
+  "2014_spells.wind-walk.lastUpdated": "2026-09-28",
+  "2014_spells.word-of-recall.mechanics_badges": [
+    "1 Action",
+    "5 feet",
+    "Instantaneous"
+  ],
+  "2014_spells.word-of-recall.lastUpdated": "2026-09-28",
+  "2014_spells.arcane-sword.mechanics_badges": [
+    "1 Action",
+    "60 feet",
+    "Up to 1 minute",
+    "3d10 force damage"
+  ],
+  "2014_spells.arcane-sword.lastUpdated": "2026-09-28",
+  "2014_spells.concordant-crossing.mechanics_badges": [
+    "60 feet",
+    "1 minute"
+  ],
+  "2014_spells.concordant-crossing.lastUpdated": "2026-09-28",
+  "2014_spells.conjure-celestial.mechanics_badges": [
+    "1 minute",
+    "90 feet",
+    "Up to 1 hour",
+    "V, S"
+  ],
+  "2014_spells.conjure-celestial.lastUpdated": "2026-09-28",
+  "2014_spells.delayed-blast-fireball.mechanics_badges": [
+    "1 action",
+    "150 feet",
+    "Up to 1 minute",
+    "V, S, M",
+    "DEX Save",
+    "12d6 fire damage"
+  ],
+  "2014_spells.delayed-blast-fireball.lastUpdated": "2026-09-28",
+  "2014_spells.divine-word.mechanics_badges": [
+    "1 bonus action",
+    "30 feet",
+    "Instantaneous",
+    "Charisma saving throw"
+  ],
+  "2014_spells.divine-word.lastUpdated": "2026-09-28",
+  "2014_spells.draconic-transformation.mechanics_badges": [
+    "Self",
+    "Up to 1 minute",
+    "6d6 damage",
+    "Dexterity saving throw"
+  ],
+  "2014_spells.draconic-transformation.lastUpdated": "2026-09-28",
+  "2014_spells.dream-of-the-blue-veil.mechanics_badges": [
+    "20 feet",
+    "6 hours"
+  ],
+  "2014_spells.dream-of-the-blue-veil.lastUpdated": "2026-09-28",
+  "2014_spells.etherealness.mechanics_badges": [
+    "1 action",
+    "Self",
+    "8 hours",
+    "V, S"
+  ],
+  "2014_spells.etherealness.lastUpdated": "2026-09-28",
+  "2014_spells.finger-of-death.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "Instantaneous",
+    "V, S",
+    "CON Save",
+    "7d8 + 30 necrotic damage"
+  ],
+  "2014_spells.finger-of-death.lastUpdated": "2026-09-28",
+  "2014_spells.fire-storm.mechanics_badges": [
+    "1 action",
+    "150 feet",
+    "Instantaneous",
+    "V, S",
+    "DEX Save",
+    "7d10 fire damage"
+  ],
+  "2014_spells.fire-storm.lastUpdated": "2026-09-28",
+  "2014_spells.forcecage.mechanics_badges": [
+    "1 action",
+    "100 feet",
+    "1 hour",
+    "V, S, M"
+  ],
+  "2014_spells.forcecage.lastUpdated": "2026-09-28",
+  "2014_spells.magnificent-mansion.mechanics_badges": [
+    "1 minute",
+    "300 feet",
+    "24 hours",
+    "V, S, M"
+  ],
+  "2014_spells.magnificent-mansion.lastUpdated": "2026-09-28",
+  "2014_spells.mirage-arcane.mechanics_badges": [
+    "10 minutes",
+    "Sight",
+    "10 days",
+    "V, S"
+  ],
+  "2014_spells.mirage-arcane.lastUpdated": "2026-09-28",
+  "2014_spells.plane-shift.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "Instantaneous"
+  ],
+  "2014_spells.plane-shift.lastUpdated": "2026-09-28",
+  "2014_spells.power-word-pain-2.lastUpdated": "2026-09-28",
+  "2014_spells.prismatic-spray.mechanics_badges": [
+    "1 action",
+    "Self",
+    "Instantaneous",
+    "DEX Save",
+    "10d6 fire damage"
+  ],
+  "2014_spells.prismatic-spray.lastUpdated": "2026-09-28",
+  "2014_spells.project-image.mechanics_badges": [
+    "1 Action",
+    "500 miles",
+    "Up to 24 hours"
+  ],
+  "2014_spells.project-image.lastUpdated": "2026-09-28",
+  "2014_spells.regenerate.mechanics_badges": [
+    "1 minute",
+    "Touch",
+    "1 hour"
+  ],
+  "2014_spells.regenerate.lastUpdated": "2026-09-28",
+  "2014_spells.resurrection.mechanics_badges": [
+    "1 hour",
+    "Touch",
+    "Instantaneous"
+  ],
+  "2014_spells.resurrection.lastUpdated": "2026-09-28",
+  "2014_spells.reverse-gravity.mechanics_badges": [
+    "1 Action",
+    "100 feet",
+    "Up to 1 minute",
+    "DEX Save"
+  ],
+  "2014_spells.reverse-gravity.lastUpdated": "2026-09-28",
+  "2014_spells.sequester.mechanics_badges": [
+    "1 Action",
+    "Touch",
+    "Until dispelled"
+  ],
+  "2014_spells.sequester.lastUpdated": "2026-09-28",
+  "2014_spells.simulacrum.mechanics_badges": [
+    "12 hours",
+    "Touch",
+    "Until dispelled"
+  ],
+  "2014_spells.simulacrum.lastUpdated": "2026-09-28",
+  "2014_spells.symbol.mechanics_badges": [
+    "1 minute",
+    "Touch",
+    "Until dispelled"
+  ],
+  "2014_spells.symbol.lastUpdated": "2026-09-28",
+  "2014_spells.teleport.mechanics_badges": [
+    "1 action",
+    "10 feet",
+    "Instantaneous"
+  ],
+  "2014_spells.teleport.lastUpdated": "2026-09-28",
+  "2014_spells.animal-shapes.mechanics_badges": [
+    "1 action",
+    "30 feet",
+    "Up to 24 hours",
+    "V, S"
+  ],
+  "2014_spells.animal-shapes.lastUpdated": "2026-09-28",
+  "2014_spells.antimagic-field.mechanics_badges": [
+    "1 action",
+    "Self",
+    "Up to 1 hour",
+    "V, S, M"
+  ],
+  "2014_spells.antimagic-field.lastUpdated": "2026-09-28",
+  "2014_spells.antipathy-sympathy.mechanics_badges": [
+    "1 hour",
+    "60 feet",
+    "10 days",
+    "WIS Save"
+  ],
+  "2014_spells.antipathy-sympathy.lastUpdated": "2026-09-28",
+  "2014_spells.clone.mechanics_badges": [
+    "1 hour",
+    "Touch",
+    "Instantaneous"
+  ],
+  "2014_spells.clone.lastUpdated": "2026-09-28",
+  "2014_spells.control-weather.mechanics_badges": [
+    "10 minutes",
+    "Self",
+    "Up to 8 hours"
+  ],
+  "2014_spells.control-weather.lastUpdated": "2026-09-28",
+  "2014_spells.demiplane.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "1 hour",
+    "S"
+  ],
+  "2014_spells.demiplane.lastUpdated": "2026-09-28",
+  "2014_spells.dominate-monster.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "Up to 1 hour",
+    "V",
+    "S"
+  ],
+  "2014_spells.dominate-monster.lastUpdated": "2026-09-28",
+  "2014_spells.earthquake.mechanics_badges": [
+    "1 action",
+    "500 feet",
+    "Up to 1 minute",
+    "V",
+    "S",
+    "M"
+  ],
+  "2014_spells.earthquake.lastUpdated": "2026-09-28",
+  "2014_spells.feeblemind.mechanics_badges": [
+    "1 action",
+    "150 feet",
+    "Instantaneous",
+    "4d6 psychic damage"
+  ],
+  "2014_spells.feeblemind.lastUpdated": "2026-09-28",
+  "2014_spells.glibness.mechanics_badges": [
+    "1 action",
+    "Self",
+    "1 hour"
+  ],
+  "2014_spells.glibness.lastUpdated": "2026-09-28",
+  "2014_spells.holy-aura.mechanics_badges": [
+    "1 action",
+    "Self",
+    "Up to 1 minute"
+  ],
+  "2014_spells.holy-aura.lastUpdated": "2026-09-28",
+  "2014_spells.incendiary-cloud.mechanics_badges": [
+    "1 Action",
+    "150 feet",
+    "Up to 1 minute",
+    "DEX Save",
+    "10d8 fire damage"
+  ],
+  "2014_spells.incendiary-cloud.lastUpdated": "2026-09-28",
+  "2014_spells.maddening-darkness.mechanics_badges": [
+    "150 feet",
+    "Concentration, up to 10 minutes"
+  ],
+  "2014_spells.maddening-darkness.lastUpdated": "2026-09-28",
+  "2014_spells.maze.mechanics_badges": [
+    "1 Action",
+    "60 feet",
+    "Up to 10 minutes",
+    "Intelligence"
+  ],
+  "2014_spells.maze.lastUpdated": "2026-09-28",
+  "2014_spells.mind-blank.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "24 hours"
+  ],
+  "2014_spells.mind-blank.lastUpdated": "2026-09-28",
+  "2014_spells.power-word-stun.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "Instantaneous"
+  ],
+  "2014_spells.power-word-stun.lastUpdated": "2026-09-28",
+  "2014_spells.sunburst.mechanics_badges": [
+    "1 action",
+    "150 feet",
+    "Instantaneous",
+    "12d6 radiant damage"
+  ],
+  "2014_spells.sunburst.lastUpdated": "2026-09-28",
+  "2014_spells.astral-projection.mechanics_badges": [
+    "1 hour",
+    "10 feet",
+    "Special",
+    "V, S, M"
+  ],
+  "2014_spells.astral-projection.lastUpdated": "2026-09-28",
+  "2014_spells.blade-of-disaster.mechanics_badges": [
+    "60 feet",
+    "Concentration, up to 1 minute"
+  ],
+  "2014_spells.blade-of-disaster.lastUpdated": "2026-09-28",
+  "2014_spells.foresight.mechanics_badges": [
+    "1 minute",
+    "Touch",
+    "8 hours"
+  ],
+  "2014_spells.foresight.lastUpdated": "2026-09-28",
+  "2014_spells.gate.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "Up to 1 minute"
+  ],
+  "2014_spells.gate.lastUpdated": "2026-09-28",
+  "2014_spells.imprisonment.mechanics_badges": [
+    "1 minute",
+    "30 feet",
+    "Until dispelled",
+    "V, S, M"
+  ],
+  "2014_spells.imprisonment.lastUpdated": "2026-09-28",
+  "2014_spells.mass-heal.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "Instantaneous",
+    "V, S"
+  ],
+  "2014_spells.mass-heal.lastUpdated": "2026-09-28",
+  "2014_spells.mass-polymorph.mechanics_badges": [
+    "Concentration, up to 1 hour",
+    "120 feet",
+    "V, S, M"
+  ],
+  "2014_spells.mass-polymorph.lastUpdated": "2026-09-28",
+  "2014_spells.meteor-swarm.mechanics_badges": [
+    "1 Action",
+    "1 mile",
+    "Instantaneous",
+    "DEX Save",
+    "20d6 fire damage",
+    "20d6 bludgeoning damage"
+  ],
+  "2014_spells.meteor-swarm.lastUpdated": "2026-09-28",
+  "2014_spells.power-word-kill.mechanics_badges": [
+    "1 Action",
+    "60 feet",
+    "Instantaneous"
+  ],
+  "2014_spells.power-word-kill.lastUpdated": "2026-09-28",
+  "2014_spells.prismatic-wall.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "10 minutes",
+    "V, S"
+  ],
+  "2014_spells.prismatic-wall.lastUpdated": "2026-09-28",
+  "2014_spells.psychic-scream.mechanics_badges": [
+    "90 feet",
+    "Instantaneous",
+    "S"
+  ],
+  "2014_spells.psychic-scream.lastUpdated": "2026-09-28",
+  "2014_spells.psychic-scream-2.lastUpdated": "2026-09-28",
+  "2014_spells.psychic-scream-egw.mechanics_badges": [
+    "90 feet",
+    "Instantaneous",
+    "Intelligence saving throw"
+  ],
+  "2014_spells.psychic-scream-egw.lastUpdated": "2026-09-28",
+  "2014_spells.psychic-scream-vrgr.mechanics_badges": [
+    "90 feet",
+    "Instantaneous",
+    "Intelligence saving throw"
+  ],
+  "2014_spells.psychic-scream-vrgr.lastUpdated": "2026-09-28",
+  "2014_spells.shapechange.mechanics_badges": [
+    "1 action",
+    "Self",
+    "Up to 1 hour"
+  ],
+  "2014_spells.shapechange.lastUpdated": "2026-09-28",
+  "2014_spells.storm-of-vengeance.mechanics_badges": [
+    "1 Action",
+    "Sight",
+    "Up to 1 minute",
+    "2d6 thunder damage"
+  ],
+  "2014_spells.storm-of-vengeance.lastUpdated": "2026-09-28",
+  "2014_spells.time-stop.mechanics_badges": [
+    "1 Action",
+    "Self",
+    "Instantaneous"
+  ],
+  "2014_spells.time-stop.lastUpdated": "2026-09-28",
+  "2014_spells.true-polymorph.mechanics_badges": [
+    "1 Action",
+    "30 feet",
+    "Up to 1 hour"
+  ],
+  "2014_spells.true-polymorph.lastUpdated": "2026-09-28",
+  "2014_spells.true-resurrection.mechanics_badges": [
+    "1 hour",
+    "Touch",
+    "Instantaneous"
+  ],
+  "2014_spells.true-resurrection.lastUpdated": "2026-09-28",
+  "2014_spells.weird.mechanics_badges": [
+    "1 action",
+    "120 feet",
+    "Up to 1 minute",
+    "WIS Save",
+    "4d10 psychic damage"
+  ],
+  "2014_spells.weird.lastUpdated": "2026-09-28",
+  "2014_spells.wish.mechanics_badges": [
+    "1 action",
+    "Self",
+    "Instantaneous"
+  ],
+  "2014_spells.wish.lastUpdated": "2026-09-28",
+  "2014_spells.thorn-whip.mechanics_badges": [
+    "1 Action",
+    "30 feet",
+    "Instantaneous",
+    "1d6 piercing damage"
+  ],
+  "2014_spells.thorn-whip.lastUpdated": "2026-09-28",
+  "2014_spells.wristpocket.mechanics_badges": [
+    "1 Action",
+    "Self",
+    "Concentration, up to 1 hour"
+  ],
+  "2014_spells.wristpocket.lastUpdated": "2026-09-28",
+  "2014_spells.aura-of-life.mechanics_badges": [
+    "1 Action",
+    "Self (30-foot radius)",
+    "Concentration, up to 10 minutes"
+  ],
+  "2014_spells.aura-of-life.lastUpdated": "2026-09-28",
+  "2014_spells.aura-of-purity.mechanics_badges": [
+    "1 action",
+    "Self (30-foot radius)",
+    "Concentration, up to 10 minutes"
+  ],
+  "2014_spells.aura-of-purity.lastUpdated": "2026-09-28",
+  "2014_spells.elemental-weapon.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "Concentration, up to 1 hour"
+  ],
+  "2014_spells.elemental-weapon.lastUpdated": "2026-09-28",
+  "2014_spells.fast-friends.mechanics_badges": [
+    "1 action",
+    "30 feet",
+    "Concentration, up to 1 hour",
+    "Wisdom save"
+  ],
+  "2014_spells.fast-friends.lastUpdated": "2026-09-28",
+  "2014_spells.protection-from-energy-2.lastUpdated": "2026-09-28",
+  "2014_spells.aura-of-vitality.mechanics_badges": [
+    "1 bonus action",
+    "Self (30-foot radius)",
+    "Concentration, up to 1 minute",
+    "2d6 hit points"
+  ],
+  "2014_spells.aura-of-vitality.lastUpdated": "2026-09-28",
+  "2014_spells.leomunds-secret-chest.mechanics_badges": [
+    "1 action",
+    "Touch",
+    "Instantaneous"
+  ],
+  "2014_spells.leomunds-secret-chest.lastUpdated": "2026-09-28",
+  "2014_spells.greater-transport-via-plants.mechanics_badges": [
+    "1 Action",
+    "10 feet",
+    "1 round"
+  ],
+  "2014_spells.greater-transport-via-plants.lastUpdated": "2026-09-28",
+  "2014_spells.illusory-dragon.mechanics_badges": [
+    "1 Action",
+    "120 feet",
+    "Concentration, up to 1 minute"
+  ],
+  "2014_spells.illusory-dragon.lastUpdated": "2026-09-28",
+  "2014_spells.polar-ray.mechanics_badges": [
+    "1 Action",
+    "120 feet",
+    "Instantaneous",
+    "9d8 cold damage"
+  ],
+  "2014_spells.polar-ray.lastUpdated": "2026-09-28",
+  "2014_spells.power-heal.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "Instantaneous"
+  ],
+  "2014_spells.power-heal.lastUpdated": "2026-09-28",
+  "2014_spells.summon-draconic-spirit.mechanics_badges": [
+    "1 action",
+    "60 feet",
+    "1 hour"
+  ],
+  "2014_spells.summon-draconic-spirit.lastUpdated": "2026-09-28",
+  "2014_spells.bigbys-hand.mechanics_badges": [
+    "1 action",
+    "120 feet",
+    "1 minute"
+  ],
+  "2014_spells.bigbys-hand.lastUpdated": "2026-09-28",
+  "2014_spells.tasha-s-hideous-laughter.mechanics_badges": [
+    "30 feet",
+    "Up to 1 minute",
+    "Wisdom saving throw"
+  ],
+  "2014_spells.tasha-s-hideous-laughter.lastUpdated": "2026-09-28",
+  "2014_spells.dragon-s-breath.mechanics_badges": [
+    "Touch",
+    "Up to 1 minute",
+    "Dexterity saving throw",
+    "3d6 damage"
+  ],
+  "2014_spells.dragon-s-breath.lastUpdated": "2026-09-28",
+  "2014_spells.maximilian-s-earthen-grasp.mechanics_badges": [
+    "30 feet",
+    "Up to 1 minute",
+    "2d6 bludgeoning damage"
+  ],
+  "2014_spells.maximilian-s-earthen-grasp.lastUpdated": "2026-09-28",
+  "2014_spells.erupting-earth.mechanics_badges": [
+    "120 feet",
+    "Instantaneous",
+    "Dexterity saving throw",
+    "3d12 bludgeoning damage"
+  ],
+  "2014_spells.erupting-earth.lastUpdated": "2026-09-28",
+  "2014_spells.leomund-s-tiny-hut.mechanics_badges": [
+    "Self (10-foot-radius hemisphere)",
+    "8 hours"
+  ],
+  "2014_spells.leomund-s-tiny-hut.lastUpdated": "2026-09-28",
+  "2014_spells.mordenkainen-s-faithful-hound.mechanics_badges": [
+    "30 feet",
+    "8 hours",
+    "4d8 piercing damage"
+  ],
+  "2014_spells.mordenkainen-s-faithful-hound.lastUpdated": "2026-09-28",
+  "2014_spells.mordenkainen-s-private-sanctum.mechanics_badges": [
+    "120 feet",
+    "24 hours"
+  ],
+  "2014_spells.mordenkainen-s-private-sanctum.lastUpdated": "2026-09-28",
+  "2014_spells.otiluke-s-resilient-sphere.mechanics_badges": [
+    "1 Action",
+    "30 feet",
+    "Up to 1 minute",
+    "DEX Save"
+  ],
+  "2014_spells.otiluke-s-resilient-sphere.lastUpdated": "2026-09-28",
+  "2014_spells.sickening-radiance.mechanics_badges": [
+    "1 Action",
+    "120 feet",
+    "Up to 10 minutes",
+    "CON Save",
+    "4d10 radiant damage"
+  ],
+  "2014_spells.sickening-radiance.lastUpdated": "2026-09-28",
+  "2014_spells.storm-sphere.mechanics_badges": [
+    "150 feet",
+    "Up to 1 minute",
+    "Strength saving throw",
+    "2d6 bludgeoning damage",
+    "4d6 lightning damage"
+  ],
+  "2014_spells.storm-sphere.lastUpdated": "2026-09-28",
+  "2014_spells.watery-sphere.mechanics_badges": [
+    "90 feet",
+    "Up to 1 minute",
+    "Dexterity saving throw"
+  ],
+  "2014_spells.watery-sphere.lastUpdated": "2026-09-28",
+  "2014_spells.danse-macabre.mechanics_badges": [
+    "60 feet",
+    "Up to 1 hour"
+  ],
+  "2014_spells.danse-macabre.lastUpdated": "2026-09-28",
+  "2014_spells.dawn.mechanics_badges": [
+    "60 feet",
+    "Up to 1 minute",
+    "CON Save",
+    "4d10 radiant damage"
+  ],
+  "2014_spells.dawn.lastUpdated": "2026-09-28",
+  "2014_spells.enervation.mechanics_badges": [
+    "60 feet",
+    "Up to 1 minute",
+    "4d8 necrotic damage"
+  ],
+  "2014_spells.enervation.lastUpdated": "2026-09-28",
+  "2014_spells.far-step.mechanics_badges": [
+    "Self",
+    "Up to 1 minute"
+  ],
+  "2014_spells.far-step.lastUpdated": "2026-09-28",
+  "2014_spells.holy-weapon.mechanics_badges": [
+    "Touch",
+    "Up to 1 hour"
+  ],
+  "2014_spells.holy-weapon.lastUpdated": "2026-09-28",
+  "2014_spells.immolation.mechanics_badges": [
+    "90 feet",
+    "Up to 1 minute"
+  ],
+  "2014_spells.immolation.lastUpdated": "2026-09-28",
+  "2014_spells.infernal-calling.mechanics_badges": [
+    "90 feet",
+    "Up to 1 hour"
+  ],
+  "2014_spells.infernal-calling.lastUpdated": "2026-09-28",
+  "2014_spells.maelstrom.mechanics_badges": [
+    "120 feet",
+    "Up to 1 minute",
+    "Strength saving throw",
+    "6d6 bludgeoning damage"
+  ],
+  "2014_spells.maelstrom.lastUpdated": "2026-09-28",
+  "2014_spells.skill-empowerment.mechanics_badges": [
+    "Touch",
+    "Up to 1 hour"
+  ],
+  "2014_spells.skill-empowerment.lastUpdated": "2026-09-28",
+  "2014_spells.transmute-rock.mechanics_badges": [
+    "120 feet",
+    "Instantaneous",
+    "Strength saving throw"
+  ],
+  "2014_spells.transmute-rock.lastUpdated": "2026-09-28",
+  "2014_spells.wall-of-light.mechanics_badges": [
+    "120 feet",
+    "Up to 10 minutes"
+  ],
+  "2014_spells.wall-of-light.lastUpdated": "2026-09-28",
+  "2014_spells.create-homunculus.mechanics_badges": [
+    "Touch",
+    "Instantaneous"
+  ],
+  "2014_spells.create-homunculus.lastUpdated": "2026-09-28",
+  "2014_spells.gravity-sinkhole.mechanics_badges": [
+    "120 feet",
+    "Instantaneous",
+    "Constitution saving throw"
+  ],
+  "2014_spells.gravity-sinkhole.lastUpdated": "2026-09-28",
+  "2014_spells.investiture-of-flame.mechanics_badges": [
+    "Self",
+    "Up to 10 minutes",
+    "1d10 fire damage",
+    "4d8 fire damage"
+  ],
+  "2014_spells.investiture-of-flame.lastUpdated": "2026-09-28",
+  "2014_spells.investiture-of-ice.mechanics_badges": [
+    "Self",
+    "Up to 10 minutes",
+    "1d6 cold damage",
+    "4d6 cold damage",
+    "Constitution saving throw"
+  ],
+  "2014_spells.investiture-of-ice.lastUpdated": "2026-09-28",
+  "2014_spells.investiture-of-stone.mechanics_badges": [
+    "Self",
+    "Up to 10 minutes",
+    "1d10 force damage",
+    "Dexterity saving throw"
+  ],
+  "2014_spells.investiture-of-stone.lastUpdated": "2026-09-28",
+  "2014_spells.investiture-of-wind.mechanics_badges": [
+    "Self",
+    "Up to 10 minutes"
+  ],
+  "2014_spells.investiture-of-wind.lastUpdated": "2026-09-28",
+  "2014_spells.mental-prison.mechanics_badges": [
+    "60 feet",
+    "Up to 1 minute"
+  ],
+  "2014_spells.mental-prison.lastUpdated": "2026-09-28",
+  "2014_spells.primordial-ward.mechanics_badges": [
+    "Self",
+    "Up to 1 minute"
+  ],
+  "2014_spells.primordial-ward.lastUpdated": "2026-09-28",
+  "2014_spells.scatter.mechanics_badges": [
+    "1 Action",
+    "30 feet",
+    "Instantaneous",
+    "WIS Save"
+  ],
+  "2014_spells.scatter.lastUpdated": "2026-09-28",
+  "2014_spells.soul-cage.mechanics_badges": [
+    "1 Reaction",
+    "60 feet",
+    "8 hours",
+    "8d8 necrotic damage"
+  ],
+  "2014_spells.soul-cage.lastUpdated": "2026-09-28",
+  "2014_spells.tenser-s-transformation.mechanics_badges": [
+    "1 Action",
+    "Self",
+    "Up to 10 minutes",
+    "2d12 force damage"
+  ],
+  "2014_spells.tenser-s-transformation.lastUpdated": "2026-09-28",
+  "2014_spells.crown-of-stars.mechanics_badges": [
+    "Self",
+    "1 hour"
+  ],
+  "2014_spells.crown-of-stars.lastUpdated": "2026-09-28",
+  "2014_spells.whirlwind.mechanics_badges": [
+    "300 feet",
+    "Up to 1 minute"
+  ],
+  "2014_spells.whirlwind.lastUpdated": "2026-09-28",
+  "2014_spells.abi-dalzim-s-horrid-wilting.mechanics_badges": [
+    "150 feet",
+    "Instantaneous"
+  ],
+  "2014_spells.abi-dalzim-s-horrid-wilting.lastUpdated": "2026-09-28",
+  "2014_spells.telepathy.mechanics_badges": [
+    "Unlimited range",
+    "24 hours duration"
+  ],
+  "2014_spells.telepathy.lastUpdated": "2026-09-28",
+  "2014_spells.tsunami.mechanics_badges": [
+    "Sight range",
+    "Up to 6 rounds duration"
+  ],
+  "2014_spells.tsunami.lastUpdated": "2026-09-28",
+  "2014_spells.power-word-heal.mechanics_badges": [
+    "Touch range",
+    "Instantaneous duration"
+  ],
+  "2014_spells.power-word-heal.lastUpdated": "2026-09-28"
 }
