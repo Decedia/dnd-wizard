@@ -1,5 +1,5 @@
 {
-  "2014_spells.darkvision.description": "Kamu menyentuh makhluk yang bersedia untuk memberinya kemampuan melihat dalam gelap. Selama durasi, makhluk itu memiliki darkvision dengan jangkauan hingga 60 kaki.",
-  "2014_spells.darkvision.effectSummary": "Ubah target: makhluk itu memiliki darkvision dengan jangkauan hingga 60 kaki",
-  "2014_spells.darkvision.fullDescription": "Menggunakan 1 aksi, kamu menyentuh makhluk yang bersedia untuk memberinya kemampuan melihat dalam gelap. Selama durasi, makhluk itu memiliki darkvision dengan jangkauan hingga 60 kaki. Efek berlangsung selama 8 jam."
+  "2014_spells.darkvision.description": "Menggunakan sebuah action, kamu menyentuh satu makhluk yang bersedia untuk memberinya kemampuan melihat dalam gelap. Selama durasi 8 jam, makhluk tersebut memiliki darkvision dengan jangkauan hingga 60 kaki.",
+  "2014_spells.darkvision.effectSummary": "Kamu menyentuh satu makhluk yang bersedia untuk memberikannya kemampuan melihat dalam gelap sejauh 60 kaki selama 8 jam.",
+  "2014_spells.darkvision.fullDescription": "Menggunakan sebuah action, kamu menyentuh satu makhluk yang bersedia untuk memberinya kemampuan melihat dalam gelap. Selama durasi 8 jam, makhluk tersebut memiliki darkvision dengan jangkauan hingga 60 kaki."
 }
