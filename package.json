@@ -9,7 +9,8 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "srd:extract": "node scripts/extract-srd-strings.mjs",
-    "srd:build": "node scripts/build-srd-locale.mjs"
+    "srd:build": "node scripts/build-srd-locale.mjs",
+    "srd:enhance:id": "node scripts/enhance-indonesian.mjs"
   },
   "dependencies": {
     "@react-pdf/renderer": "^4.9.0",
