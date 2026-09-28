@@ -26,6 +26,7 @@ import {
   Gear,
 } from "@phosphor-icons/react";
 import { AppHeader } from "@/components/AppHeader";
+import { GiDragonHead } from "react-icons/gi";
 import { getCharacters, saveCharacter, deleteCharacter, type Character } from "@/lib/storage";
 import { importCharacterFromJson } from "@/lib/character-io";
 import { useDebug } from "@/lib/debug/DebugContext";
@@ -135,10 +136,8 @@ export default function Home() {
       {/* pb-32 keeps the last row of content clear of the bottom nav and watermark. */}
       <main className="px-4 py-4 pb-32">
         <div className="relative mb-4 overflow-hidden rounded-3xl border border-border-muted bg-paper-muted p-6 shadow-sm">
-          <div className="absolute -bottom-4 -right-4 text-paper-darker" aria-hidden="true">
-            <svg width="140" height="140" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 2C8.5 2 7 5 7 5C7 5 8.5 4.5 9 4.5C9.5 4.5 11 6 10.5 7.5C10 9 8 10.5 5 11.5C3.5 12 2 12.5 2 12.5C2 12.5 4.5 13 6.5 12.5C8 12 10 11 11.5 12C12.5 12.5 13 14 12 15.5C11.5 16.5 9.5 17 9.5 17C9.5 17 11.5 17.5 13 17C15 16 16.5 14 17 12C17.5 10 17.5 8.5 19 7C20.5 5.5 22 5 22 5C22 5 20.5 5.5 19.5 6.5C18.5 7.5 18 9 17 10C16 11 14.5 12 13 11C11.5 10 11.5 8 12 6.5C12.5 5 14 4 14 4C14 4 13 2 12 2Z" />
-            </svg>
+          <div className="pointer-events-none absolute -bottom-6 -right-5 select-none text-paper-darker" aria-hidden="true">
+            <GiDragonHead size={168} />
           </div>
           <div className="relative z-10">
             <h1 className="text-page-title">{t("home.heroTitle")}</h1>
