@@ -21,11 +21,13 @@ const EN_DATA_FILE = path.resolve("src/data/en/2014_spells.json");
 const PROGRESS_FILE = path.resolve("src/locales/parts/id/.enhance-progress.json");
 const LOCK_FILE = path.resolve("src/locales/parts/id/.enhance-progress.lock");
 
-const BATCH_SIZE = Number(process.env.BATCH_SIZE || 3);
+const BATCH_SIZE = Number(process.env.BATCH_SIZE || 8);
 const MAX_RETRIES = 3;
 const RETRY_BASE_DELAY_MS = 2000;
-const BATCH_DELAY_MS = Number(process.env.BATCH_DELAY_MS || 5000);
-const MAX_TOKENS = Number(process.env.MAX_TOKENS || 4096);
+const BATCH_DELAY_MS = Number(process.env.BATCH_DELAY_MS || 2000);
+// 8 spells x ~400 output tokens fits comfortably; validateResult still rejects
+// any response that drops a slug or a protected term, so truncation is caught.
+const MAX_TOKENS = Number(process.env.MAX_TOKENS || 8192);
 const TEMPERATURE = 0.3;
 
 // Terms that stay in English because Indonesian D&D players say them in English
