@@ -751,7 +751,10 @@ export function applySpellLocalesOverrides(spells: any[], locale: string = "en")
   return spells.map((spell) => {
     const name = spell.name;
     const normalized = name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-    const overrides = index[normalized];
+    // Locale keys are derived from the spell's index, which carries a source
+    // suffix (e.g. `-egw`, `-vrgr`, `-2`) that the display name does not. Prefer
+    // the index so same-named spells from different books get their own text.
+    const overrides = (spell.index ? index[spell.index] : undefined) || index[normalized];
     if (!overrides) return spell;
 
     const next = { ...spell };
