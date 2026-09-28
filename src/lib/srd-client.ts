@@ -759,8 +759,12 @@ export function applySpellLocalesOverrides(spells: any[], locale: string = "en")
 
     const next = { ...spell };
 
-    if (overrides.description) {
-      next.description = overrides.description;
+    // Most locale entries only carry fullDescription (the XGE/FXdD wave was
+    // translated that way), so fall back to it instead of leaving the spell on
+    // its raw English description.
+    const description = overrides.description || overrides.fullDescription;
+    if (description) {
+      next.description = description;
     }
     if (overrides.effectSummary) {
       next.effectSummary = overrides.effectSummary;
