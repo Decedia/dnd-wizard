@@ -232,25 +232,35 @@ async function main() {
       const name = batch[i];
       const entry = grouped[name];
       const original = originalSpellsMap.get(name) || {};
-      if (entry && entry.description) {
-        const apiData = await fetchSpellFromAPI(name);
-        const source = apiData || original;
-        const baseDescription = apiData && apiData.description ? apiData.description : entry.description;
+      const apiData = await fetchSpellFromAPI(name);
+      const source = apiData || original;
 
-        payload[name] = {
-          description: baseDescription,
-          range: source.range || "",
-          casting_time: source.casting_time || "",
-          duration: source.duration || "",
-          components: source.components || {},
-          damage: source.damage || {},
-          save: source.save || "",
-        };
-        spellNamesInBatch.push(name);
+      let baseDescription = "";
+      if (apiData && apiData.description) {
+        baseDescription = apiData.description;
+      } else if (entry && entry.description) {
+        baseDescription = entry.description;
+      } else if (entry && entry.fullDescription) {
+        baseDescription = entry.fullDescription;
+      } else {
+        baseDescription = name;
+      }
 
-        if (apiData) {
-          console.log(`  Fetched API data for ${name}`);
-        }
+      payload[name] = {
+        description: baseDescription,
+        range: source.range || "",
+        casting_time: source.casting_time || "",
+        duration: source.duration || "",
+        components: source.components || {},
+        damage: source.damage || {},
+        save: source.save || "",
+      };
+      spellNamesInBatch.push(name);
+
+      if (apiData) {
+        console.log(`  Fetched API data for ${name}`);
+      } else if (!baseDescription || baseDescription === name) {
+        console.warn(`  Warning: no description found for ${name}, using spell name as fallback`);
       }
 
       if (i < batch.length - 1) {
