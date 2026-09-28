@@ -5,7 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
 import { BottomNav } from "@/components/BottomNav";
-import { getCharacter, saveCharacter, deleteCharacter, computeDerivedStats, type Character } from "@/lib/storage";
+import { getCharacter, saveCharacter, deleteCharacter, computeDerivedStats, touchCharacterOpened, type Character } from "@/lib/storage";
 import { importCharacterFromJson } from "@/lib/character-io";
 import { advanceTurn, parseDurationToTurns } from "@/lib/spellEffects";
 import { useSRD } from "@/contexts/SRDContext";
@@ -47,6 +47,7 @@ export default function CharacterView() {
         if (!cancelled && loaded) {
           const derived = computeDerivedStats(loaded);
           setCharacter({ ...loaded, ...derived });
+          touchCharacterOpened(id);
         }
       }
     })();

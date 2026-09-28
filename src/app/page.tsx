@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback, useEffect, useMemo } from "react";
 import Link from "next/link";
 import {
   Axe,
@@ -23,6 +23,7 @@ import {
   Plus,
   Trash,
   CaretRight,
+  CaretLeft,
   Gear,
 } from "@phosphor-icons/react";
 import { AppHeader } from "@/components/AppHeader";
@@ -49,11 +50,17 @@ const getClassIcon = (className = "") => {
   return User;
 };
 
+type SortKey = "opened" | "newest" | "oldest" | "name";
+const PAGE_SIZES = [5, 10, 20];
+
 export default function Home() {
   const debug = useDebug();
   const { t, language } = useLanguage();
   const isAdmin = debug.enabled && debug.unlocked;
   const [characters, setCharacters] = useState<Character[]>([]);
+  const [sortKey, setSortKey] = useState<SortKey>("opened");
+  const [pageSize, setPageSize] = useState(5);
+  const [page, setPage] = useState(1);
   const [importError, setImportError] = useState<string | null>(null);
   const [importSuccess, setImportSuccess] = useState<string | null>(null);
   const importInputRef = useRef<HTMLInputElement | null>(null);
@@ -129,6 +136,42 @@ export default function Home() {
     exportAllCharactersToJson(chars);
   }, []);
 
+  const sorted = useMemo(() => {
+    const list = [...characters];
+    switch (sortKey) {
+      case "newest":
+        return list.sort((a, b) => (b.createdAt ?? 0) - (a.createdAt ?? 0));
+      case "oldest":
+        return list.sort((a, b) => (a.createdAt ?? 0) - (b.createdAt ?? 0));
+      case "name":
+        return list.sort((a, b) => (a.name || "").localeCompare(b.name || ""));
+      case "opened":
+      default:
+        // Never-opened characters sort last rather than being treated as 1970.
+        return list.sort((a, b) => {
+          const av = a.lastOpenedAt ?? -1;
+          const bv = b.lastOpenedAt ?? -1;
+          if (av === bv) return (b.createdAt ?? 0) - (a.createdAt ?? 0);
+          return bv - av;
+        });
+    }
+  }, [characters, sortKey]);
+
+  const totalPages = Math.max(1, Math.ceil(sorted.length / pageSize));
+  // Clamp so deleting a character on the last page cannot strand the user.
+  const currentPage = Math.min(page, totalPages);
+  const visible = sorted.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+
+  const changeSort = (next: SortKey) => {
+    setSortKey(next);
+    setPage(1);
+  };
+
+  const changePageSize = (next: number) => {
+    setPageSize(next);
+    setPage(1);
+  };
+
   return (
     <div className="min-h-screen bg-paper">
       <AppHeader title={t("app.name")} subtitle={t("nav.myCharacters")} showThemeToggle />
@@ -162,8 +205,28 @@ export default function Home() {
               <p className="text-muted">{t("home.noCharacters")}</p>
             </div>
           ) : (
-            <ul className="space-y-2">
-              {characters.map((char) => {
+            <>
+              <div className="mb-3 flex items-center justify-between gap-2">
+                <label className="flex items-center gap-2 text-xs text-muted">
+                  {t("home.sortBy")}
+                  <select
+                    value={sortKey}
+                    onChange={(e) => changeSort(e.target.value as SortKey)}
+                    className="rounded-lg border border-border-muted bg-paper px-2 py-1.5 text-xs text-ink"
+                  >
+                    <option value="opened">{t("home.sortLastOpened")}</option>
+                    <option value="newest">{t("home.sortNewest")}</option>
+                    <option value="oldest">{t("home.sortOldest")}</option>
+                    <option value="name">{t("home.sortName")}</option>
+                  </select>
+                </label>
+                <span className="text-xs text-muted">
+                  {t("home.showing", { from: (currentPage - 1) * pageSize + 1, to: Math.min(currentPage * pageSize, sorted.length), total: sorted.length } as any)}
+                </span>
+              </div>
+
+              <ul className="space-y-2">
+              {visible.map((char) => {
                 const ClassIcon = getClassIcon(char.class);
                 return (
                   <li
@@ -206,7 +269,64 @@ export default function Home() {
                   </li>
                 );
               })}
-            </ul>
+              </ul>
+
+              {totalPages > 1 && (
+                <nav className="mt-4 flex items-center justify-between gap-2" aria-label={t("home.pagination")}>
+                  <button
+                    onClick={() => setPage((p) => Math.max(1, p - 1))}
+                    disabled={currentPage === 1}
+                    className="flex h-9 w-9 items-center justify-center rounded-full border border-border-muted bg-paper text-ink transition-colors hover:bg-paper-muted disabled:opacity-40"
+                    aria-label={t("home.prevPage")}
+                  >
+                    <CaretLeft size={16} />
+                  </button>
+
+                  <div className="flex items-center gap-1.5">
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
+                      <button
+                        key={n}
+                        onClick={() => setPage(n)}
+                        aria-current={n === currentPage ? "page" : undefined}
+                        className={
+                          n === currentPage
+                            ? "flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-accent-indigo-500)] text-xs font-semibold text-white"
+                            : "flex h-8 w-8 items-center justify-center rounded-full border border-border-muted bg-paper text-xs text-ink transition-colors hover:bg-paper-muted"
+                        }
+                      >
+                        {n}
+                      </button>
+                    ))}
+                  </div>
+
+                  <button
+                    onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                    disabled={currentPage === totalPages}
+                    className="flex h-9 w-9 items-center justify-center rounded-full border border-border-muted bg-paper text-ink transition-colors hover:bg-paper-muted disabled:opacity-40"
+                    aria-label={t("home.nextPage")}
+                  >
+                    <CaretRight size={16} />
+                  </button>
+                </nav>
+              )}
+
+              <div className="mt-3 flex items-center justify-end gap-2 text-xs text-muted">
+                <label className="flex items-center gap-2">
+                  {t("home.perPage")}
+                  <select
+                    value={pageSize}
+                    onChange={(e) => changePageSize(Number(e.target.value))}
+                    className="rounded-lg border border-border-muted bg-paper px-2 py-1.5 text-xs text-ink"
+                  >
+                    {PAGE_SIZES.map((n) => (
+                      <option key={n} value={n}>
+                        {n}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              </div>
+            </>
           )}
         </section>
 

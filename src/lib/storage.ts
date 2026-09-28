@@ -2,7 +2,7 @@ import { getStaticClass, getStaticRace, getDomainSpells, getCircleSpells as getJ
 import { computeBuffModifiers, type ActiveBuff } from "@/lib/spellEffects";
 import { getSpellMechanic } from "@/lib/spell-mechanics-accessor";
 import { determineDefaultVisibility } from "@/lib/feature-filters";
-import { db, type CharacterRecord, dbGetCharacters, dbGetCharacter, dbSaveCharacter, dbDeleteCharacter } from "@/lib/db";
+import { db, type CharacterRecord, dbGetCharacters, dbGetCharacter, dbSaveCharacter, dbDeleteCharacter, dbTouchCharacterOpened } from "@/lib/db";
 export interface Character {
   id: string;
   name: string;
@@ -110,6 +110,7 @@ export interface Character {
   };
   createdAt: number;
   updatedAt: number;
+  lastOpenedAt?: number;
   // Class resource fields
   kiPoints?: number;
   maxKiPoints?: number;
@@ -660,6 +661,25 @@ export async function deleteCharacter(id: string): Promise<void> {
   } catch {
     const characters = (await getCharacters()).filter((c) => c.id !== id);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(characters));
+  }
+}
+
+// Stamps lastOpenedAt on open. Deliberately does not bump updatedAt (that would
+// conflate "opened" with "edited") and does not run maybeAutoBackup, so simply
+// viewing a character does not churn backups.
+export async function touchCharacterOpened(id: string): Promise<void> {
+  if (typeof window === "undefined") return;
+  const now = Date.now();
+  try {
+    await dbTouchCharacterOpened(id, now);
+  } catch {
+    try {
+      const characters = await getCharacters();
+      const next = characters.map((c) => (c.id === id ? { ...c, lastOpenedAt: now } : c));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+    } catch {
+      // ignore tracking failures; opening the character must still work
+    }
   }
 }
 

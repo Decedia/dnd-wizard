@@ -37,6 +37,14 @@ export async function dbDeleteCharacter(id: string): Promise<void> {
   await db.characters.delete(id);
 }
 
+// Records that a character was opened without touching updatedAt, so "last
+// opened" stays independent of "last edited" and does not trigger auto-backup.
+export async function dbTouchCharacterOpened(id: string, at: number): Promise<void> {
+  const existing = await db.characters.get(id);
+  if (!existing) return;
+  await db.characters.put({ ...existing, lastOpenedAt: at });
+}
+
 export async function dbClearAll(): Promise<void> {
   await db.characters.clear();
 }
