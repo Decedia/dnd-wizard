@@ -172,7 +172,7 @@ async function callNvidiaNim(batch) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${apiKey}`,
     },
-    timeout: 110000,
+    timeout: 300000,
   });
 
   const content = response.data.choices?.[0]?.message?.content;
