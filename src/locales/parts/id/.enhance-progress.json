@@ -212,6 +212,14 @@
     "spike-growth",
     "spiritual-weapon",
     "suggestion",
-    "summon-beast"
+    "summon-beast",
+    "vortex-warp",
+    "warding-bond",
+    "warding-wind",
+    "web",
+    "zone-of-truth",
+    "animate-dead",
+    "beacon-of-hope",
+    "bestow-curse"
   ]
 }
