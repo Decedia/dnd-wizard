@@ -109,6 +109,44 @@ function slugify(str) {
     .replace(/^-|-$/g, "");
 }
 
+// SRD fields are inconsistently shaped: `school` is a string in some spells and
+// an {index,name,url} object in others. Send the model a plain readable value.
+function fieldName(value) {
+  if (!value) return "";
+  if (typeof value === "string") return value;
+  return value.name || value.index || "";
+}
+
+function describeComponents(components) {
+  if (!components || typeof components !== "object") return "";
+  const parts = [];
+  if (components.verbal) parts.push("V");
+  if (components.somatic) parts.push("S");
+  if (components.material) parts.push(`M${components.materialDesc ? ` (${components.materialDesc})` : ""}`);
+  return parts.join(", ");
+}
+
+// Reduce the nested {damage_type, damage_at_character_level} object to a short
+// readable line so the model is not parsing raw API payloads.
+function describeDamage(damage) {
+  if (!damage || typeof damage !== "object") return "";
+  const type = fieldName(damage.damage_type);
+  const scaling = damage.damage_at_character_level;
+  if (type && scaling && typeof scaling === "object") {
+    const tiers = Object.entries(scaling)
+      .map(([lvl, dice]) => `${lvl}: ${dice}`)
+      .join(", ");
+    return `${type} (${tiers})`;
+  }
+  if (type) return type;
+  if (scaling && typeof scaling === "object") {
+    return Object.entries(scaling)
+      .map(([lvl, dice]) => `${lvl}: ${dice}`)
+      .join(", ");
+  }
+  return "";
+}
+
 function loadProgress() {
   try {
     if (fs.existsSync(PROGRESS_FILE)) {
@@ -338,14 +376,14 @@ async function main() {
       payload[slug] = {
         name,
         level: original.level ?? "",
-        school: original.school ?? "",
+        school: fieldName(original.school),
         summary: entry.effectSummary || original.effectSummary || "",
         description: shielded,
         range: original.range || "",
         castingTime: original.castingTime || original.casting_time || "",
         duration: original.duration || "",
-        components: original.components || {},
-        damage: original.damage || {},
+        components: describeComponents(original.components),
+        damage: describeDamage(original.damage),
         save: original.saveType || "",
         onHit: original.onHit || "",
         upcastEffect: original.upcastEffect || "",
