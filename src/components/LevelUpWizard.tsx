@@ -1728,12 +1728,12 @@ function LevelCard({
                   >
                     <span>
                       {asiSelection?.mode === "feat" && asiSelection.feat
-                        ? `Feat: ${asiSelection.feat}`
+                        ? t("levelUp.asiFeatPrefix", "Feat: {feat}", { feat: asiSelection.feat })
                         : asiSelection?.mode === "single" && asiSelection.single
                           ? `+2 ${asiSelection.single.toUpperCase()}`
                           : asiSelection?.mode === "double" && asiSelection.d1 && asiSelection.d2
                             ? `+1 ${asiSelection.d1.toUpperCase()}, +1 ${asiSelection.d2.toUpperCase()}`
-                            : "Select ability scores…"}
+                            : t("levelUp.selectAbilityScores", "Select ability scores...")}
                     </span>
                     <CaretDown className="h-3 w-3 text-[var(--color-text-muted)]" />
                   </button>
@@ -1962,7 +1962,7 @@ function LevelCard({
                                 </button>
                               </div>
                               <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{(() => { const rawDesc = Array.isArray(fc.description) ? fc.description.join("\n") : fc.description; return infoState.descKey ? tDesc(infoState.descKey, rawDesc) : rawDesc; })()}</p>
-                              <button type="button" onClick={() => setInfoState(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">Got it</button>
+                              <button type="button" onClick={() => setInfoState(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">{t("wizard.gotIt", "Got it")}</button>
                             </div>
                           </div>
                         )}
@@ -2041,7 +2041,7 @@ function LevelCard({
                             onClick={() => { setFeatureSelections([]); setShowFeaturePopup({ ...fc, options: availableOptions, isSubclass: false, count: fc.count }); }}
                             className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
                           >
-                            <span>{currentValue || "Select an option..."}</span>
+                            <span>{currentValue || t("creator.selectOption", "Select an option...")}</span>
                             <CaretDown className="h-3 w-3 text-[var(--color-text-muted)]" />
                           </button>
                         )}
@@ -2066,7 +2066,7 @@ function LevelCard({
                   onClick={() => { setSpellMasterySelections([]); setShowSpellMasteryModal(true); }}
                   className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
                 >
-                  <span>{spellMasterySelection || "Select 2 spells..."}</span>
+                  <span>{spellMasterySelection || t("levelUp.selectSpells", "Select {count} spells...", { count: 2 })}</span>
                   <CaretDown className="h-3 w-3 text-[var(--color-text-muted)]" />
                 </button>
               </div>
@@ -2151,7 +2151,7 @@ function LevelCard({
                  <p className="text-[10px] text-[var(--color-text-muted)] mb-2">{t("spell.invocationCountHint", "Choose {count} invocation{count, plural, one {} other {s}}. Spell slots recover on short rest.", { count: invocationCount })}</p>
                 <FeatureChipSelector
                   name="Eldritch Invocations"
-                  description={`Choose ${invocationCount} invocation${invocationCount > 1 ? "s" : ""}`}
+                  description={t("spell.chooseInvocations", "Choose {count} invocation{count, plural, one {} other {s}}", { count: invocationCount })}
                    options={availableInvocations.map((i) => ({
                      name: i.name,
                      description: i.available ? t("spell.availableAtLevel", "Available at level {level}", { level: info.level }) : i.reason || t("common.notAvailable", "Not available"),
