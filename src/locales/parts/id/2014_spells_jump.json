@@ -1,5 +1,5 @@
 {
-  "2014_spells.jump.description": "Kamu menyentuh satu makhluk. Jarak lompat makhluk menjadi tiga kali lipat sampai sihir berakhir.",
-  "2014_spells.jump.effectSummary": "Ubah target: menyentuh satu makhluk",
-  "2014_spells.jump.fullDescription": "Menggunakan 1 action, kamu menyentuh satu makhluk. Jarak lompat makhluk menjadi tiga kali lipat sampai sihir berakhir. Jarak lompat makhluk menjadi tiga kali lipat sampai sihir berakhir."
+  "2014_spells.jump.description": "Menggunakan sebuah action, kamu menyentuh makhluk dalam jangkauan sentuhan. Jarak lompat makhluk tersebut menjadi tiga kali lipat hingga sihir ini berakhir setelah 1 menit. Sihir ini membutuhkan komponen verbal, somatik, dan material.",
+  "2014_spells.jump.effectSummary": "Kamu menyentuh satu makhluk untuk meningkatkan jarak lompatannya menjadi tiga kali lipat selama 1 menit, sehingga mobilitas mereka meningkat drastis.",
+  "2014_spells.jump.fullDescription": "Menggunakan sebuah action, kamu menyentuh makhluk dalam jangkauan sentuhan. Jarak lompat makhluk tersebut menjadi tiga kali lipat hingga sihir ini berakhir setelah 1 menit. Sihir ini membutuhkan komponen verbal, somatik, dan material."
 }

@@ -1,5 +1,5 @@
 {
-  "2014_spells.expeditious-retreat.description": "Spell ini memungkinkan kamu bergerak dengan kecepatan luar biasa. Saat kamu mencast spell ini, dan kemudian sebagai bonus action di setiap turnmu sampai spell berakhir, kamu bisa mengambil Dash action.",
-  "2014_spells.expeditious-retreat.effectSummary": "Pindahkan makhluk atau objek sejauh pendek",
-  "2014_spells.expeditious-retreat.fullDescription": "Menggunakan 1 bonus action, saat kamu mencast spell ini, dan kemudian sebagai bonus action di setiap turnmu sampai spell berakhir, kamu bisa mengambil Dash action. Spell ini memungkinkan kamu bergerak dengan kecepatan luar biasa. Saat kamu mencast spell ini, dan kemudian sebagai bonus action di setiap turnmu sampai spell berakhir, kamu bisa mengambil Dash action; kamu harus concentrate, dan efeknya berakhir jika concentration-mu berakhir."
+  "2014_spells.expeditious-retreat.description": "Sihir ini memungkinkan kamu bergerak dengan kecepatan yang luar biasa. Saat kamu merapal sihir ini sebagai bonus action dengan jangkauan Self, lalu menggunakan bonus action di setiap giliranmu hingga sihir berakhir (maksimal 10 menit), kamu bisa melakukan action Dash.",
+  "2014_spells.expeditious-retreat.effectSummary": "Sihir ini meningkatkan kemampuan gerakmu dengan memungkinkan kamu melakukan action Dash menggunakan bonus action di setiap giliranmu.",
+  "2014_spells.expeditious-retreat.fullDescription": "Sihir ini memungkinkan kamu bergerak dengan kecepatan yang luar biasa. Saat kamu merapal sihir ini sebagai bonus action dengan jangkauan Self, lalu menggunakan bonus action di setiap giliranmu hingga sihir berakhir (maksimal 10 menit), kamu bisa melakukan action Dash."
 }

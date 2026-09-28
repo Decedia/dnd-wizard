@@ -1,5 +1,5 @@
 {
-  "2014_spells.shield.description": "Penghalang tak terlihat dari kekuatan magis muncul dan melindungimu. Sampai awal giliran kamu berikutnya, kamu memiliki bonus +5 ke AC, termasuk terhadap attack yang memicu, dan kamu tidak menerima damage dari magic missile.",
-  "2014_spells.shield.effectSummary": "Buat makhluk tidak terlihat hingga menyerang atau mantra berakhir",
-  "2014_spells.shield.fullDescription": "Menggunakan 1 Reaction, sampai awal giliran kamu berikutnya, kamu memiliki bonus +5 ke AC, termasuk terhadap attack yang memicu, dan kamu tidak menerima damage dari magic missile. Penghalang tak terlihat dari kekuatan magis muncul dan melindungimu. Sampai awal giliran kamu berikutnya, kamu memiliki bonus +5 ke AC, termasuk terhadap attack yang memicu, dan kamu tidak menerima damage dari magic missile."
+  "2014_spells.shield.description": "Sebagai sebuah reaction, kamu menciptakan penghalang kekuatan magis tidak terlihat yang melindungimu. Hingga awal giliranmu berikutnya, kamu mendapatkan bonus +5 untuk AC, yang juga berlaku terhadap serangan yang memicu reaksi ini, dan kamu tidak menerima kerusakan apa pun dari magic missile.",
+  "2014_spells.shield.effectSummary": "Kamu menciptakan penghalang magis instan yang meningkatkan Armor Class secara signifikan dan memberikan kekebalan total terhadap kerusakan dari magic missile hingga giliranmu berikutnya.",
+  "2014_spells.shield.fullDescription": "Sebagai sebuah reaction, kamu menciptakan penghalang kekuatan magis tidak terlihat yang melindungimu. Hingga awal giliranmu berikutnya, kamu mendapatkan bonus +5 untuk AC, yang juga berlaku terhadap serangan yang memicu reaksi ini, dan kamu tidak menerima kerusakan apa pun dari magic missile."
 }

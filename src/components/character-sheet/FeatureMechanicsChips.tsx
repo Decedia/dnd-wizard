@@ -3,6 +3,7 @@
 import React from "react";
 import { SwordIcon, UserIcon, StarIcon, ClockIcon as ClockIconBase } from "@/components/icons";
 import { InfoButton } from "@/components/InfoButton";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface FeatureMechanicsSummaryProps {
   summary?: string | null;
@@ -108,6 +109,7 @@ export function FeatureMechanicsChips({
   showDescriptions = false,
   size = "sm",
 }: FeatureMechanicsSummaryProps) {
+  const { t } = useLanguage();
   const hasUses = !!uses;
   const hasRequirement = !!requirement;
   const hasDuration = !!duration;
@@ -151,8 +153,8 @@ export function FeatureMechanicsChips({
   );
 
   rows.push([
-    <Cell key="source" label="Source" value={sourceValue} />,
-    <Cell key="book" label="Book" value={bookValue} />,
+    <Cell key="source" label={t("feature.source", "Source")} value={sourceValue} />,
+    <Cell key="book" label={t("feature.book", "Book")} value={bookValue} />,
   ]);
 
   // Row 1: Type | Action
@@ -169,15 +171,15 @@ export function FeatureMechanicsChips({
   );
 
   rows.push([
-    <Cell key="type" label="Type" value={typeValue} />,
-    <Cell key="action" label="Action" value={actionValue} />,
+    <Cell key="type" label={t("feature.type", "Type")} value={typeValue} />,
+    <Cell key="action" label={t("feature.action", "Action")} value={actionValue} />,
   ]);
 
   // Row 2: Level | Uses
   const levelValue = sourceSource.type === "race" ? (
-    <span style={{ color: "var(--color-text-muted)", fontWeight: 500, fontSize: "13px" }}>Racial</span>
+    <span style={{ color: "var(--color-text-muted)", fontWeight: 500, fontSize: "13px" }}>{t("feature.racial", "Racial")}</span>
   ) : sourceSource.level != null ? (
-    <span style={{ color: "var(--color-text-primary)", fontWeight: 500, fontSize: "13px" }}>Level {sourceSource.level}</span>
+    <span style={{ color: "var(--color-text-primary)", fontWeight: 500, fontSize: "13px" }}>{t("feature.levelN", { level: sourceSource.level }, "Level {level}")}</span>
   ) : (
     <span style={{ color: "var(--color-text-muted)", fontWeight: 500, fontSize: "13px" }}>—</span>
   );
@@ -187,24 +189,24 @@ export function FeatureMechanicsChips({
       {typeof uses.total === "number" ? `${uses.total}` : (uses.total || "?")} / {uses.recharge || "?"}
     </span>
   ) : (
-    <span style={{ color: "var(--color-text-muted)", fontWeight: 500, fontSize: "13px" }}>Unlimited</span>
+    <span style={{ color: "var(--color-text-muted)", fontWeight: 500, fontSize: "13px" }}>{t("feature.unlimited", "Unlimited")}</span>
   );
 
   rows.push([
-    <Cell key="level" label="Level" value={levelValue} />,
-    <Cell key="uses" label="Uses" value={usesValue} />,
+    <Cell key="level" label={t("feature.level", "Level")} value={levelValue} />,
+    <Cell key="uses" label={t("feature.uses", "Uses")} value={usesValue} />,
   ]);
 
   // Row 3: On Use | Requires (if has onUse OR requirement)
   if (hasOnUse || hasRequirement) {
     rows.push([
       hasOnUse ? (
-        <Cell key="onUse" label="On Use" value={<span style={{ color: "var(--color-text-primary)", fontWeight: 500, fontSize: "13px" }}>{onUse}</span>} />
+        <Cell key="onUse" label={t("feature.onUse", "On Use")} value={<span style={{ color: "var(--color-text-primary)", fontWeight: 500, fontSize: "13px" }}>{onUse}</span>} />
       ) : (
         <BlankCell key="onUse-blank" />
       ),
       hasRequirement ? (
-        <Cell key="requires" label="Requires" value={<span style={{ color: "var(--color-text-primary)", fontWeight: 500, fontSize: "13px" }}>{requirement}</span>} />
+        <Cell key="requires" label={t("feature.requires", "Requires")} value={<span style={{ color: "var(--color-text-primary)", fontWeight: 500, fontSize: "13px" }}>{requirement}</span>} />
       ) : (
         <BlankCell key="requires-blank" />
       ),
@@ -215,12 +217,12 @@ export function FeatureMechanicsChips({
   if (hasDuration || hasEndsIf) {
     rows.push([
       hasDuration ? (
-        <Cell key="duration" label="Duration" value={<span style={{ color: "var(--color-text-primary)", fontWeight: 500, fontSize: "13px" }}>{duration}</span>} />
+        <Cell key="duration" label={t("feature.duration", "Duration")} value={<span style={{ color: "var(--color-text-primary)", fontWeight: 500, fontSize: "13px" }}>{duration}</span>} />
       ) : (
         <BlankCell key="duration-blank" />
       ),
       hasEndsIf ? (
-        <Cell key="endsIf" label="Ends If" value={<span style={{ color: "var(--color-info-600)", fontWeight: 500, fontSize: "13px" }}>{endsIf}</span>} />
+        <Cell key="endsIf" label={t("feature.endsIf", "Ends If")} value={<span style={{ color: "var(--color-info-600)", fontWeight: 500, fontSize: "13px" }}>{endsIf}</span>} />
       ) : (
         <BlankCell key="endsIf-blank" />
       ),
@@ -230,7 +232,7 @@ export function FeatureMechanicsChips({
   // Row 5: Scales | blank (if has scaling)
   if (hasScaling) {
     rows.push([
-      <Cell key="scales" label="Scales" value={<span style={{ color: "var(--color-accent-purple-600)", fontWeight: 500, fontSize: "13px" }}>{scaling}</span>} />,
+      <Cell key="scales" label={t("feature.scales", "Scales")} value={<span style={{ color: "var(--color-accent-purple-600)", fontWeight: 500, fontSize: "13px" }}>{scaling}</span>} />,
       <BlankCell key="scales-blank" />,
     ]);
   }
@@ -289,7 +291,7 @@ export function FeatureMechanicsChips({
             Use
           </button>
         )}
-        {description && !showDescriptions && <InfoButton title="Feature Details" description={description} />}
+        {description && !showDescriptions && <InfoButton title={t("feature.details", "Feature Details")} description={description} />}
       </div>
     </div>
   );

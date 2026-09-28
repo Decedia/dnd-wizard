@@ -1,5 +1,6 @@
 "use client";
 
+import { useLanguage } from "@/contexts/LanguageContext";
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { getStaticWeapons, getStaticEquipments, getEquipmentData } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
@@ -18,6 +19,7 @@ interface ItemSelectionModalProps {
 type ItemCategory = "weapons" | "armor" | "items";
 
 export function ItemSelectionModal({ character, onAdd, onClose }: ItemSelectionModalProps) {
+  const { t } = useLanguage();
   const [activeCategory, setActiveCategory] = useState<ItemCategory>("weapons");
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
@@ -203,7 +205,7 @@ export function ItemSelectionModal({ character, onAdd, onClose }: ItemSelectionM
   );
 
   return (
-    <BottomSheet isOpen={true} onClose={onClose} title="Add Item" footer={stickyFooter} showHeader={false}>
+    <BottomSheet isOpen={true} onClose={onClose} title={t("item.addItem", "Add Item")} footer={stickyFooter} showHeader={false}>
       <div className="flex-shrink-0 flex border-b border-[var(--color-border)]">
         {(["weapons", "armor", "items"] as ItemCategory[]).map((cat) => (
           <button

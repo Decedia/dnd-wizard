@@ -31,7 +31,7 @@ export function SubclassSelectionModal({
   character,
   characterSources,
 }: SubclassSelectionModalProps) {
-  const { tDesc, language } = useLanguage();
+  const { t, tDesc, language } = useLanguage();
   const [previewSubclass, setPreviewSubclass] = useState<string | null>(selected || null);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -93,7 +93,7 @@ export function SubclassSelectionModal({
   );
 
   return (
-    <BottomSheet isOpen={true} onClose={handleCancel} title="Choose Subclass" footer={stickyFooter} showHeader={false}>
+    <BottomSheet isOpen={true} onClose={handleCancel} title={t("creator.chooseSubclass")} footer={stickyFooter} showHeader={false}>
       <div className="px-4 pt-4 pb-2 space-y-3">
         <div className="relative mb-3">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">

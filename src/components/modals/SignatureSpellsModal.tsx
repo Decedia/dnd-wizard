@@ -1,5 +1,6 @@
 "use client";
 
+import { useLanguage } from "@/contexts/LanguageContext";
 import { useState } from "react";
 import { getWizardSpellsByLevel } from "@/lib/srd-client";
 import { XIcon as X } from "@/components/icons";
@@ -23,6 +24,7 @@ export function SignatureSpellsModal({
   onConfirm,
   characterSources = [],
 }: SignatureSpellsModalProps) {
+  const { t } = useLanguage();
   const [searchQuery, setSearchQuery] = useState("");
 
   const spells = getWizardSpellsByLevel(3, characterSources);
@@ -77,7 +79,7 @@ export function SignatureSpellsModal({
   );
 
   return (
-    <BottomSheet isOpen={isOpen} onClose={handleCancel} title="Signature Spells" footer={stickyFooter} showHeader={false}>
+    <BottomSheet isOpen={isOpen} onClose={handleCancel} title={t("spell.signatureSpells", "Signature Spells")} footer={stickyFooter} showHeader={false}>
       <div className="px-4 pt-4 pb-2 space-y-3">
         <p className="text-xs text-[var(--color-text-secondary)] mb-3">
           Choose two 3rd-level spells. They&apos;re always prepared and you can cast each once per short rest without a spell slot.

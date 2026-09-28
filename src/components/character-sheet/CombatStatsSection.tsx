@@ -284,7 +284,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
 
       {editMode && (
         <div className="grid grid-cols-2 gap-2.5 mt-3.5">
-          <Field label="Current HP">
+          <Field label={t("sheet.currentHp", "Current HP")}>
             <input
               type="number"
               value={character.currentHp}
@@ -293,7 +293,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
               className="input"
             />
           </Field>
-          <Field label="Max HP">
+          <Field label={t("sheet.maxHp", "Max HP")}>
             <input
               type="number"
               value={character.maxHp}
@@ -302,7 +302,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
               className="input"
             />
           </Field>
-          <Field label="Temp HP">
+          <Field label={t("sheet.tempHp", "Temp HP")}>
             <input
               type="number"
               value={character.temporaryHp}
@@ -311,7 +311,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
               className="input"
             />
           </Field>
-          <Field label="Speed">
+          <Field label={t("sheet.speed", "Speed")}>
             <input
               type="number"
               value={character.speed}
@@ -322,7 +322,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
           </Field>
           {isSorcerer && (
             <>
-              <Field label="Sorcery Points">
+              <Field label={t("sheet.sorceryPoints", "Sorcery Points")}>
                 <input
                   type="number"
                   value={character.sorceryPoints}
@@ -331,7 +331,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
                   className="input"
                 />
               </Field>
-              <Field label="Max Sorcery Points">
+              <Field label={t("sheet.maxSorceryPoints", "Max Sorcery Points")}>
                 <input
                   type="number"
                   value={character.maxSorceryPoints}

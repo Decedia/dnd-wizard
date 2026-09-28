@@ -23,7 +23,7 @@ export function StepAppearance({ data, onChange }: StepAppearanceProps) {
   return (
     <StepCard
       title={t("creator.finalTouches")}
-      hint="Add the finishing touches to your character - appearance, personality, and any other details that bring them to life."
+      hint={t("creator.appearanceHint", "Add the finishing touches to your character - appearance, personality, and any other details that bring them to life.")}
     >
       <div className="space-y-4">
         <div>

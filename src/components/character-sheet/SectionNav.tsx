@@ -67,7 +67,7 @@ export function SectionNav() {
   return (
     <nav
       className="fixed right-1 md:right-3 top-1/2 z-40 flex -translate-y-1/2 flex-col gap-1 md:gap-1.5 rounded-full border border-border-strong bg-paper/90 backdrop-blur-sm p-1 md:p-2"
-      aria-label="Section navigation"
+      aria-label={t("nav.sectionNavigation", "Section navigation")}
     >
       {sections.map(({ id, label, Icon }) => (
         <button

@@ -148,7 +148,7 @@ export function StepPersonality({ data, onChange }: StepPersonalityProps) {
   );
 
   return (
-    <StepCard title={t("creator.finalTouches")} hint="Define your character's personality, background, and the languages they speak. Your background provides skill proficiencies and special features.">
+    <StepCard title={t("creator.finalTouches")} hint={t("creator.personalityHint", "Define your character's personality, background, and the languages they speak. Your background provides skill proficiencies and special features.")}>
       <div className="space-y-6">
 
         <div>

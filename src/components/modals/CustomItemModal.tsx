@@ -127,7 +127,7 @@ export function CustomItemModal({ character, onAdd, onClose, editingItem }: Cust
             onChange={(e) => setName(e.target.value)}
             onBlur={() => {}}
             className="input w-full"
-            placeholder="Item name"
+            placeholder={t("item.namePlaceholder", "Item name")}
           />
         </div>
 

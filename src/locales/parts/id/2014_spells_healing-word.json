@@ -1,5 +1,5 @@
 {
-  "2014_spells.healing-word.description": "",
-  "2014_spells.healing-word.effectSummary": "",
-  "2014_spells.healing-word.fullDescription": ""
+  "2014_spells.healing-word.description": "Dengan menggunakan 1 Bonus Action, kamu bisa memilih satu makhluk yang terlihat dalam jangkauan 60 kaki untuk memulihkan hit points sebanyak **1d4** ditambah modifier kemampuan spellcasting kamu. Sihir ini memiliki durasi instan dan tidak memberikan efek apa pun pada undead atau construct.",
+  "2014_spells.healing-word.effectSummary": "Kamu menggunakan Bonus Action untuk memulihkan HP makhluk yang terlihat dari jarak jauh, namun sihir ini tidak berpengaruh pada undead atau construct.",
+  "2014_spells.healing-word.fullDescription": "Dengan menggunakan 1 Bonus Action, kamu bisa memilih satu makhluk yang terlihat dalam jangkauan 60 kaki untuk memulihkan hit points sebanyak **1d4** ditambah modifier kemampuan spellcasting kamu. Sihir ini memiliki durasi instan dan tidak memberikan efek apa pun pada undead atau construct."
 }

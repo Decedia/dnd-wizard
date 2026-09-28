@@ -21,7 +21,7 @@ export function BonusCantripModal({
   selectedCantrip,
   onCantripChange,
 }: BonusCantripModalProps) {
-  const { language } = useLanguage();
+  const { t, language } = useLanguage();
   const [searchQuery, setSearchQuery] = useState("");
   const cantrips = getStaticSpells(undefined, undefined, language).filter((s) => s.level === 0 && s.classes?.includes("Druid"));
   const filteredCantrips = cantrips.filter((sp) => {
@@ -50,7 +50,7 @@ export function BonusCantripModal({
   );
 
   return (
-    <BottomSheet isOpen={isOpen} onClose={onClose} title="Choose Bonus Cantrip" footer={stickyFooter} showHeader={false}>
+    <BottomSheet isOpen={isOpen} onClose={onClose} title={t("bonusCantrip.choose", "Choose Bonus Cantrip")} footer={stickyFooter} showHeader={false}>
       <div className="px-4 pt-4 pb-2 space-y-3">
         <p className="text-xs text-[var(--color-text-secondary)] mb-3">
           Choose one additional druid cantrip. This cantrip does not count against your cantrip limit.

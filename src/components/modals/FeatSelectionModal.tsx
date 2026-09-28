@@ -1,5 +1,6 @@
 "use client";
 
+import { useLanguage } from "@/contexts/LanguageContext";
 import { useState, useMemo } from "react";
 import { MagnifyingGlassIcon as MagnifyingGlass, CheckIcon as Check } from "@/components/icons";
 import { getStaticFeats, type SRDFeat } from "@/lib/srd-client";
@@ -16,6 +17,7 @@ interface FeatSelectionModalProps {
 }
 
 export function FeatSelectionModal({ onSelect, onClose, selectedFeat, sources, disabledFeats = [] }: FeatSelectionModalProps) {
+  const { t } = useLanguage();
   const feats = getStaticFeats(sources);
   const [search, setSearch] = useState("");
   const [pendingSelection, setPendingSelection] = useState<string | null>(selectedFeat || null);
@@ -62,7 +64,7 @@ export function FeatSelectionModal({ onSelect, onClose, selectedFeat, sources, d
   );
 
   return (
-    <BottomSheet isOpen={true} onClose={onClose} title="Select a Feat" footer={stickyFooter} showHeader={false}>
+    <BottomSheet isOpen={true} onClose={onClose} title={t("feat.selectOne", "Select a Feat")} footer={stickyFooter} showHeader={false}>
       <div className="px-4 pt-4 pb-2 space-y-3">
         <div className="relative mb-3">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">

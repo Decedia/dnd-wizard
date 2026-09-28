@@ -1,5 +1,6 @@
 "use client";
 
+import { useLanguage } from "@/contexts/LanguageContext";
 import { useState } from "react";
 import { getWizardSpellsByLevel } from "@/lib/srd-client";
 import { XIcon as X } from "@/components/icons";
@@ -23,6 +24,7 @@ export function SpellMasteryModal({
   onConfirm,
   characterSources = [],
 }: SpellMasteryModalProps) {
+  const { t } = useLanguage();
   const [searchQuery, setSearchQuery] = useState("");
   const level1Spells = getWizardSpellsByLevel(1, characterSources);
   const level2Spells = getWizardSpellsByLevel(2, characterSources);
@@ -80,7 +82,7 @@ export function SpellMasteryModal({
   );
 
   return (
-    <BottomSheet isOpen={isOpen} onClose={handleCancel} title="Spell Mastery" footer={stickyFooter} showHeader={false}>
+    <BottomSheet isOpen={isOpen} onClose={handleCancel} title={t("spell.spellMastery")} footer={stickyFooter} showHeader={false}>
       <div className="px-4 pt-4 pb-2 space-y-3">
         <p className="text-xs text-[var(--color-text-secondary)] mb-3">
           Select one 1st-level and one 2nd-level spell to cast at will without spell slots.

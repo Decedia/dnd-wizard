@@ -8,6 +8,7 @@ import type { Character } from "@/lib/storage";
 import { StarIcon as Star, ChartBarIcon as ChartBar, SparklesIcon as Sparkles, DiceIcon as Dice } from "@/components/icons";
 import { isRecommended } from "@/lib/recommendations";
 import { NewPlayerTips } from "@/components/NewPlayerTips";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface StepAbilitiesProps {
   data: Character;
@@ -47,6 +48,7 @@ const FREE_BUY_MAX = 15;
 const FREE_BUY_MIN = 0;
 
 export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
+  const { t } = useLanguage();
   const sortedAbilities = useMemo(() => {
     return [...ABILITIES].sort((a, b) => (isRecommended("stat", b.label, data.class) ? 1 : 0) - (isRecommended("stat", a.label, data.class) ? 1 : 0));
   }, [data.class]);
@@ -503,8 +505,8 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
 
   return (
     <StepCard
-      title="Ability Scores"
-      hint="Ability scores define your character's physical and mental abilities. Choose how to generate them: Standard Array (balanced), Point Buy (custom with costs), Manual Roll (direct entry), or Free Buy (homebrew, 80 free points)."
+      title={t("creator.abilityScores")}
+      hint={t("creator.abilityScoresHint", "Ability scores define your character's physical and mental abilities. Choose how to generate them: Standard Array (balanced), Point Buy (custom with costs), Manual Roll (direct entry), or Free Buy (homebrew, 80 free points).")}
     >
       <div className="space-y-4">
          <div className="flex rounded-full bg-paper-muted p-1">

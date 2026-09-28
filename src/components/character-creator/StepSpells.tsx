@@ -193,8 +193,8 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
 
   if (!classData?.spellcastingAbility) {
     return (
-      <StepCard title="Spells">
-        <p className="text-description">Your class does not have spellcasting abilities.</p>
+      <StepCard title={t("creator.spells")}>
+        <p className="text-description">{t("creator.noSpellcasting", "Your class does not have spellcasting abilities.")}</p>
       </StepCard>
     );
   }
@@ -354,7 +354,7 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
               onChange={(e) => handleTerrainChange(e.target.value)}
               className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)]"
             >
-              <option value="">Select terrain...</option>
+              <option value="">{t("creator.selectTerrain", "Select terrain...")}</option>
               {getCircleTerrainTypes().map((terrain) => (
                 <option key={terrain} value={terrain}>{terrain.charAt(0).toUpperCase() + terrain.slice(1)}</option>
               ))}
