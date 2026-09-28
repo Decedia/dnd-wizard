@@ -19,6 +19,7 @@ const ID_LOCALE_FILE = path.resolve("src/locales/parts/id/2014_spells.json");
 const ID_PARTS_DIR = path.resolve("src/locales/parts/id");
 const EN_DATA_FILE = path.resolve("src/data/en/2014_spells.json");
 const PROGRESS_FILE = path.resolve("src/locales/parts/id/.enhance-progress.json");
+const LOCK_FILE = path.resolve("src/locales/parts/id/.enhance-progress.lock");
 
 const BATCH_SIZE = Number(process.env.BATCH_SIZE || 3);
 const MAX_RETRIES = 3;
@@ -135,6 +136,36 @@ function describeDamage(damage) {
       .join(", ");
   }
   return "";
+}
+
+function acquireLock() {
+  // Two concurrent runs silently overwrite each other's progress file, so make
+  // that impossible. A stale lock (dead PID) is reclaimed automatically.
+  if (fs.existsSync(LOCK_FILE)) {
+    const pid = Number(fs.readFileSync(LOCK_FILE, "utf-8").trim());
+    if (pid && pid !== process.pid) {
+      try {
+        process.kill(pid, 0);
+        console.error(
+          `Another enhance-indonesian run is active (pid ${pid}). Stop it first, or delete ${LOCK_FILE} if you are sure it is stale.`
+        );
+        process.exit(1);
+      } catch {
+        // process.kill threw ESRCH: no such process, so the lock is stale.
+        console.warn(`Reclaiming stale lock from pid ${pid}.`);
+      }
+    }
+  }
+  fs.writeFileSync(LOCK_FILE, String(process.pid), "utf-8");
+}
+
+function releaseLock() {
+  try {
+    const pid = Number(fs.readFileSync(LOCK_FILE, "utf-8").trim());
+    if (pid === process.pid) fs.unlinkSync(LOCK_FILE);
+  } catch {
+    // Nothing to clean up.
+  }
 }
 
 function loadProgress() {
@@ -325,6 +356,15 @@ async function main() {
   const dryRun = args.includes("--dry-run");
   const limitArg = args.find((a) => a.startsWith("--limit="))?.split("=")[1];
   const limit = limitArg ? Number(limitArg) : Infinity;
+
+  acquireLock();
+  for (const signal of ["SIGINT", "SIGTERM"]) {
+    process.on(signal, () => {
+      releaseLock();
+      process.exit(130);
+    });
+  }
+  process.on("exit", releaseLock);
 
   if (reset) {
     fs.mkdirSync(path.dirname(PROGRESS_FILE), { recursive: true });

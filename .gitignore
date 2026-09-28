@@ -41,3 +41,6 @@ yarn-error.log*
 next-env.d.ts
 .env
 .env
+
+# transient run lock for scripts/enhance-indonesian.mjs
+src/locales/parts/id/.enhance-progress.lock
