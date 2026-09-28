@@ -13,15 +13,16 @@
     "srd:enhance:id": "node scripts/enhance-indonesian.mjs"
   },
   "dependencies": {
+    "@phosphor-icons/react": "^2.1.10",
     "@react-pdf/renderer": "^4.9.0",
     "@vitalets/google-translate-api": "^9.2.1",
+    "axios": "^1.6.0",
     "dexie": "^4.4.5",
     "dotenv": "^18.0.2",
     "html2canvas": "^1.4.1",
     "jspdf": "^4.2.1",
     "next": "^16.2.6",
     "openai": "^7.21.0",
-    "axios": "^1.6.0",
     "pdfjs-dist": "4.0.379",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
