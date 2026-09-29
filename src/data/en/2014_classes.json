@@ -138,7 +138,7 @@
           "features": [
             {
               "name": "Rage",
-              "description": "In battle, you fight with primal ferocity. On your turn, you can enter a rage as a bonus action. While raging, you gain the following benefits if you aren't wearing heavy armor:\n\n- You have advantage on Strength checks and Strength saving throws.\n\n- When you make a melee weapon Attack using Strength, you gain a +2 bonus to the damage roll. This bonus increases as you level.\n\n- You have Resistance to bludgeoning, piercing, and slashing damage.\n\nIf you are able to cast Spells, you can't cast them or concentrate on them while raging.\n\nYour rage lasts for 1 minute. It ends early if you are knocked Unconscious or if Your Turn ends and you haven't attacked a hostile creature since your last turn or taken damage since then. You can also end your rage on Your Turn as a Bonus Action.\n\nOnce you have raged the maximum number of times for your barbarian level, you must finish a Long Rest before you can rage again. You may rage 2 times at 1st level, 3 at 3rd, 4 at 6th, 5 at 12th, and 6 at 17th.",
+              "description": "In battle, you fight with primal ferocity. On your turn, you can enter a rage as a bonus action. While raging, you gain the following benefits if you aren't wearing heavy armor:\n\n- You have advantage on Strength checks and Strength saving throws.\n\n- When you make a melee weapon attack using Strength, you gain a **+2** bonus to the damage roll. This bonus increases as you level.\n\n- You have resistance to bludgeoning, piercing, and slashing damage.\n\nIf you are able to cast spells, you can't cast them or concentrate on them while raging.\n\nYour rage lasts for **1 minute**. It ends early if you are knocked unconscious or if your turn ends and you haven't attacked a hostile creature since your last turn or taken damage since then. You can also end your rage on your turn as a bonus action.\n\nOnce you have raged the maximum number of times for your barbarian level, you must finish a long rest before you can rage again. You may rage **2** times at 1st level, **3** at 3rd, **4** at 6th, **5** at 12th, and **6** at 17th.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Bonus Action",
@@ -152,7 +152,7 @@
               "effect": null,
               "onUse": "Advantage on STR checks and saves, bonus damage on STR melee attacks, resistance to bludgeoning/piercing/slashing damage",
               "scaling": "Rage damage +2 at levels 1-8, +3 at levels 9-15, +4 at level 16+",
-              "summary": "In battle, you fight with primal ferocity.",
+              "summary": "Enter a rage to gain advantage on Strength checks and saves, resistance to bludgeoning, piercing, and slashing damage, and a bonus to Strength-based melee damage.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -162,11 +162,12 @@
                 "name": "Barbarian",
                 "level": 1
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Unarmored Defense",
-              "description": "Beginning at 1st level, while you are wearing no armor and not wielding a shield, your AC equals 10 + your Dexterity modifier + your Wisdom modifier.",
+              "description": "Beginning at 1st level, while you are wearing no armor and not wielding a shield, your AC equals **10** + your Dexterity modifier + your Wisdom modifier.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -177,7 +178,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "While you are wearing no armor and not wielding a shield, your AC equals 10 + your Dexterity modifier + your Wisdom modifier.",
+              "summary": "While wearing no armor and not wielding a shield, your AC equals 10 + your Dexterity modifier + your Wisdom modifier.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -187,7 +188,8 @@
                 "name": "Barbarian",
                 "level": 1
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -209,7 +211,7 @@
               "effect": null,
               "onUse": "Gain advantage on all melee weapon attack rolls using STR this turn — attackers also have advantage against you until your next turn",
               "scaling": null,
-              "summary": "Throw aside all concern for defense to attack with fierce desperation.",
+              "summary": "Gain advantage on Strength-based melee weapon attack rolls this turn, but attack rolls against you have advantage until your next turn.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -219,7 +221,8 @@
                 "name": "Barbarian",
                 "level": 2
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Danger Sense",
@@ -234,7 +237,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You gain an uncanny sense of when things nearby aren't as they should be, giving you an edge when you dodge away from danger.",
+              "summary": "Gain advantage on Dexterity saving throws against effects you can see, provided you are not blinded, deafened, or incapacitated.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -244,7 +247,8 @@
                 "name": "Barbarian",
                 "level": 2
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -266,7 +270,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You choose a path that shapes the nature of your rage.",
+              "summary": "Choose a path that shapes the nature of your rage, granting features at 3rd, 6th, 10th, and 14th levels.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -276,7 +280,8 @@
                 "name": "Barbarian",
                 "level": 3
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -287,7 +292,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -298,7 +303,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1 at 4th, 8th, 12th, 16th, and 19th level.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -308,7 +313,8 @@
                 "name": "Barbarian",
                 "level": 4
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -340,11 +346,12 @@
                 "name": "Barbarian",
                 "level": 5
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Fast Movement",
-              "description": "Starting at 5th level, your speed increases by 10 feet while you aren't wearing heavy armor.",
+              "description": "Starting at 5th level, your speed increases by **10 feet** while you aren't wearing heavy armor.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -355,7 +362,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Your speed increases by 10 feet while you aren't wearing heavy armor.",
+              "summary": "Your speed increases by **10 feet** while you aren't wearing heavy armor.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -365,7 +372,8 @@
                 "name": "Barbarian",
                 "level": 5
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -387,7 +395,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You choose a path that shapes the nature of your rage.",
+              "summary": "Choose a path that shapes the nature of your rage.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -397,7 +405,8 @@
                 "name": "Barbarian",
                 "level": 6
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -419,7 +428,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "By 7th level, your instincts are so honed that you have advantage on initiative rolls.",
+              "summary": "You have advantage on initiative rolls.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -429,7 +438,8 @@
                 "name": "Barbarian",
                 "level": 7
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -440,7 +450,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -451,7 +461,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by **2** or two ability scores by **1** at specific levels.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -461,7 +471,8 @@
                 "name": "Barbarian",
                 "level": 8
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -483,7 +494,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Roll one additional weapon damage die when determining the extra damage for a critical hit with a melee attack.",
+              "summary": "Roll one additional weapon damage die when you score a critical hit with a melee attack.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -493,7 +504,8 @@
                 "name": "Barbarian",
                 "level": 9
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -515,7 +527,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You choose a path that shapes the nature of your rage.",
+              "summary": "Choose a primal path that modifies the effects of your rage.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -525,7 +537,8 @@
                 "name": "Barbarian",
                 "level": 10
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Primal Knowledge",
@@ -541,7 +554,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You have learned to use your rage to augment your skills.",
+              "summary": "Use your rage to empower ability checks made with skill or tool proficiencies.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": true,
@@ -551,7 +564,8 @@
                 "name": "Barbarian",
                 "level": 10
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -573,7 +587,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Your rage can keep you fighting despite grievous wounds.",
+              "summary": "If you drop to 0 hit points while raging, you can succeed on a DC 10 Constitution save to drop to 1 hit point instead.",
               "grantsSpells": false,
               "grantsAttack": true,
               "grantsSkills": false,
@@ -583,7 +597,8 @@
                 "name": "Barbarian",
                 "level": 11
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -605,7 +620,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -615,7 +630,8 @@
                 "name": "Barbarian",
                 "level": 12
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -637,7 +653,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Roll one additional weapon damage die when determining the extra damage for a critical hit with a melee attack.",
+              "summary": "Roll additional weapon damage dice when you score a critical hit with a melee attack.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -647,7 +663,8 @@
                 "name": "Barbarian",
                 "level": 13
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -669,7 +686,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You choose a path that shapes the nature of your rage.",
+              "summary": "Choose a primal path that modifies the effects of your rage.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -679,7 +696,8 @@
                 "name": "Barbarian",
                 "level": 14
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -701,7 +719,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Your rage is so fierce that it ends early only if you fall unconscious or if you choose to end it.",
+              "summary": "Your rage ends early only if you fall unconscious or if you choose to end it.",
               "grantsSpells": false,
               "grantsAttack": true,
               "grantsSkills": false,
@@ -711,7 +729,8 @@
                 "name": "Barbarian",
                 "level": 15
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -722,7 +741,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -733,7 +752,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by **2** or two ability scores by **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -743,7 +762,8 @@
                 "name": "Barbarian",
                 "level": 16
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -765,7 +785,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Roll one additional weapon damage die when determining the extra damage for a critical hit with a melee attack.",
+              "summary": "Roll additional weapon damage dice when determining the extra damage for a critical hit with a melee attack.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -775,7 +795,8 @@
                 "name": "Barbarian",
                 "level": 17
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -797,7 +818,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "If your total for a Strength check is less than your Strength score, you can use that score in place of the total.",
+              "summary": "If your total for a Strength check is lower than your Strength score, you can use your Strength score as the total.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -807,7 +828,8 @@
                 "name": "Barbarian",
                 "level": 18
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -818,7 +840,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -829,7 +851,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by **2** or two ability scores by **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -839,7 +861,8 @@
                 "name": "Barbarian",
                 "level": 19
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -850,7 +873,7 @@
           "features": [
             {
               "name": "Primal Champion",
-              "description": "At 20th level, you embody the power of the wilds. Your Strength and Constitution scores increase by 4. Your maximum for those scores is now 24.",
+              "description": "At 20th level, you embody the power of the wilds. Your Strength and Constitution scores increase by **4**. Your maximum for those scores is now **24**.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -861,7 +884,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You embody the power of the wilds.",
+              "summary": "Increase your Strength and Constitution scores by **4**, with a new maximum of **24**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -871,7 +894,8 @@
                 "name": "Barbarian",
                 "level": 20
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -1140,7 +1164,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You have learned to untangle and reshape the fabric of reality in harmony with your wishes and music.",
+              "summary": "You can cast spells by untangling and reshaping the fabric of reality in harmony with your music and wishes.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -1150,11 +1174,12 @@
                 "name": "Bard",
                 "level": 1
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Bardic Inspiration (d6)",
-              "description": "You can inspire others through stirring words or music. To do so, you use a bonus action on your turn to choose one creature other than yourself within 60 feet of you who can hear you. That creature gains one Bardic Inspiration die, a d6. Once within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, attack roll, or saving throw it makes. The creature can wait until after it rolls the d20 before deciding to use the Bardic Inspiration die, but must decide before the GM says whether the roll succeeds or fails. Once the Bardic Inspiration die is rolled, it is lost. A creature can have only one Bardic Inspiration die at a time.\n\nYou can use this feature a number of times equal to your Charisma modifier (a minimum of once). You regain any expended uses when you finish a long rest. \n\nYour Bardic Inspiration die changes when you reach certain levels in this class. The die becomes a d8 at 5th level, a d10 at 10th level, and a d12 at 15th level.",
+              "description": "You can inspire others through stirring words or music. To do so, you use a bonus action on your turn to choose one creature other than yourself within **60 feet** of you who can hear you. That creature gains one Bardic Inspiration die, a **d6**. Once within the next **10 minutes**, the creature can roll the die and add the number rolled to one ability check, attack roll, or saving throw it makes. The creature can wait until after it rolls the d20 before deciding to use the Bardic Inspiration die, but must decide before the GM says whether the roll succeeds or fails. Once the Bardic Inspiration die is rolled, it is lost. A creature can have only one Bardic Inspiration die at a time.\n\nYou can use this feature a number of times equal to your Charisma modifier (a minimum of once). You regain any expended uses when you finish a long rest.\n\nYour Bardic Inspiration die changes when you reach certain levels in this class. The die becomes a **d8** at 5th level, a **d10** at 10th level, and a **d12** at 15th level.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Bonus Action",
@@ -1165,7 +1190,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Inspire others through stirring words or music.",
+              "summary": "Use a bonus action to give a creature within 60 feet a d6 to add to one ability check, attack roll, or saving throw within 10 minutes.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -1175,7 +1200,8 @@
                 "name": "Bard",
                 "level": 1
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -1199,7 +1225,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Add half your proficiency bonus, rounded down, to any ability check you make that doesn't already include your proficiency bonus.",
+              "summary": "Add half your proficiency bonus (rounded down) to any ability check that doesn't already include your proficiency bonus.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -1209,11 +1235,12 @@
                 "name": "Bard",
                 "level": 2
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Song of Rest (d6)",
-              "description": "Beginning at 2nd level, you can use soothing music or oration to help revitalize your wounded allies during a short rest. If you or any friendly creatures who can hear your performance regain hit points at the end of the short rest by spending one or more Hit Dice, each of those creatures regains an extra 1d6 hit points. \n\nThe extra hit points increase when you reach certain levels in this class: to 1d8 at 9th level, to 1d10 at 13th level, and to 1d12 at 17th level.",
+              "description": "Beginning at 2nd level, you can use soothing music or oration to help revitalize your wounded allies during a short rest. If you or any friendly creatures who can hear your performance regain hit points at the end of the short rest by spending one or more Hit Dice, each of those creatures regains an extra **1d6** hit points.\n\nThe extra hit points increase when you reach certain levels in this class: to **1d8** at 9th level, to **1d10** at 13th level, and to **1d12** at 17th level.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -1224,7 +1251,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Use soothing music or oration to help revitalize your wounded allies during a short rest.",
+              "summary": "During a short rest, you and friendly creatures who spend Hit Dice to regain health regain an additional 1d6 hit points.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -1234,7 +1261,8 @@
                 "name": "Bard",
                 "level": 2
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -1247,7 +1275,7 @@
           "features": [
             {
               "name": "Expertise",
-              "description": "At 1st level, choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves' tools. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies.\n\nAt 6th level, you can choose two more of your proficiencies (in skills or with thieves' tools) to gain this benefit",
+              "description": "At 1st level, choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves' tools. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies.\n\nAt 6th level, you can choose two more of your proficiencies (in skills or with thieves' tools) to gain this benefit.",
               "type": "feature",
               "choices": {
                 "type": "skills",
@@ -1283,7 +1311,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Choose two more skills at level 6",
-              "summary": "Choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves' tools.",
+              "summary": "Double your proficiency bonus for two chosen skill proficiencies or one skill and thieves' tools.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": true,
@@ -1293,7 +1321,8 @@
                 "name": "Bard",
                 "level": 3
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Bard College",
@@ -1308,7 +1337,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You delve into the advanced techniques of a bard college of your choice, such as the College of Lore.",
+              "summary": "Choose a bard college to gain specialized features at 3rd, 6th, and 14th level.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -1318,7 +1347,8 @@
                 "name": "Bard",
                 "level": 3
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -1332,7 +1362,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you cannot increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -1343,7 +1373,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by **2** or two ability scores by **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -1353,7 +1383,8 @@
                 "name": "Bard",
                 "level": 4
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -1367,7 +1398,7 @@
           "features": [
             {
               "name": "Bardic Inspiration (d8)",
-              "description": "You can inspire others through stirring words or music. To do so, you use a bonus action on your turn to choose one creature other than yourself within 60 feet of you who can hear you. That creature gains one Bardic Inspiration die, a d6. Once within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, attack roll, or saving throw it makes. The creature can wait until after it rolls the d20 before deciding to use the Bardic Inspiration die, but must decide before the GM says whether the roll succeeds or fails. Once the Bardic Inspiration die is rolled, it is lost. A creature can have only one Bardic Inspiration die at a time.\n\nYou can use this feature a number of times equal to your Charisma modifier (a minimum of once). You regain any expended uses when you finish a long rest. \n\nYour Bardic Inspiration die changes when you reach certain levels in this class. The die becomes a d8 at 5th level, a d10 at 10th level, and a d12 at 15th level.",
+              "description": "You can inspire others through stirring words or music. To do so, you use a bonus action on your turn to choose one creature other than yourself within **60 feet** of you who can hear you. That creature gains one Bardic Inspiration die, a **d6**. Once within the next **10 minutes**, the creature can roll the die and add the number rolled to one ability check, attack roll, or saving throw it makes. The creature can wait until after it rolls the **d20** before deciding to use the Bardic Inspiration die, but must decide before the GM says whether the roll succeeds or fails. Once the Bardic Inspiration die is rolled, it is lost. A creature can have only one Bardic Inspiration die at a time.\n\nYou can use this feature a number of times equal to your Charisma modifier (a minimum of once). You regain any expended uses when you finish a long rest.\n\nYour Bardic Inspiration die changes when you reach certain levels in this class. The die becomes a **d8** at 5th level, a **d10** at 10th level, and a **d12** at 15th level.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Bonus Action",
@@ -1378,7 +1409,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Inspire others through stirring words or music.",
+              "summary": "Use a bonus action to give a creature within 60 feet a die to add to an ability check, attack roll, or saving throw.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -1388,7 +1419,8 @@
                 "name": "Bard",
                 "level": 5
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Font of Inspiration",
@@ -1403,7 +1435,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Beginning when you reach 5th level, you regain all of your expended uses of Bardic Inspiration when you finish a short or long rest.",
+              "summary": "Regain all expended uses of Bardic Inspiration on a short or long rest.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -1413,7 +1445,8 @@
                 "name": "Bard",
                 "level": 5
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -1428,7 +1461,7 @@
           "features": [
             {
               "name": "Countercharm",
-              "description": "At 6th level, you gain the ability to use musical notes or words of power to disrupt mind-influencing effects. As an action, you can start a performance that lasts until the end of your next turn. During that time, you and any friendly creatures within 30 feet of you have advantage on saving throws against being frightened or charmed. A creature must be able to hear you to gain this benefit. The performance ends early if you are incapacitated or silenced or if you voluntarily end it (no action required).",
+              "description": "At 6th level, you gain the ability to use musical notes or words of power to disrupt mind-influencing effects. As an action, you can start a performance that lasts until the end of your next turn. During that time, you and any friendly creatures within **30 feet** of you have advantage on saving throws against being frightened or charmed. A creature must be able to hear you to gain this benefit. The performance ends early if you are incapacitated or silenced, or if you voluntarily end it (no action required).",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Action",
@@ -1439,7 +1472,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Gain the ability to use musical notes or words of power to disrupt mind-influencing effects.",
+              "summary": "Use an action to grant yourself and allies within 30 feet advantage on saving throws against being frightened or charmed.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -1449,7 +1482,8 @@
                 "name": "Bard",
                 "level": 6
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Bard College feature",
@@ -1464,7 +1498,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You delve into the advanced techniques of a bard college of your choice, such as the College of Lore.",
+              "summary": "Gain specialized features from a chosen bard college at 3rd, 6th, and 14th level.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -1474,7 +1508,8 @@
                 "name": "Bard",
                 "level": 6
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -1500,7 +1535,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you cannot increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -1511,7 +1546,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by **2** or two ability scores by **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -1521,7 +1556,8 @@
                 "name": "Bard",
                 "level": 8
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -1537,7 +1573,7 @@
           "features": [
             {
               "name": "Song of Rest (d8)",
-              "description": "Beginning at 2nd level, you can use soothing music or oration to help revitalize your wounded allies during a short rest. If you or any friendly creatures who can hear your performance regain hit points at the end of the short rest by spending one or more Hit Dice, each of those creatures regains an extra 1d6 hit points. \n\nThe extra hit points increase when you reach certain levels in this class: to 1d8 at 9th level, to 1d10 at 13th level, and to 1d12 at 17th level.",
+              "description": "Beginning at 2nd level, you can use soothing music or oration to help revitalize your wounded allies during a short rest. If you or any friendly creatures who can hear your performance regain hit points at the end of the short rest by spending one or more Hit Dice, each of those creatures regains an extra **1d6** hit points.\n\nThe extra hit points increase when you reach certain levels in this class: to **1d8** at 9th level, to **1d10** at 13th level, and to **1d12** at 17th level.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -1548,7 +1584,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Use soothing music or oration to help revitalize your wounded allies during a short rest.",
+              "summary": "Grant yourself and allies who can hear you extra hit points when spending Hit Dice during a short rest.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -1558,7 +1594,8 @@
                 "name": "Bard",
                 "level": 9
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -1575,7 +1612,7 @@
           "features": [
             {
               "name": "Expertise",
-              "description": "At 1st level, choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves' tools. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies.\n\nAt 6th level, you can choose two more of your proficiencies (in skills or with thieves' tools) to gain this benefit",
+              "description": "At 1st level, choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves' tools. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies.\n\nAt 6th level, you can choose two more of your proficiencies (in skills or with thieves' tools) to gain this benefit.",
               "type": "feature",
               "choices": {
                 "type": "skills",
@@ -1611,7 +1648,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Choose two more skills at level 6",
-              "summary": "Choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves' tools.",
+              "summary": "Double your proficiency bonus for two chosen skill proficiencies or one skill and thieves' tools.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": true,
@@ -1621,11 +1658,12 @@
                 "name": "Bard",
                 "level": 10
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Bardic Inspiration (d10)",
-              "description": "You can inspire others through stirring words or music. To do so, you use a bonus action on your turn to choose one creature other than yourself within 60 feet of you who can hear you. That creature gains one Bardic Inspiration die, a d6. Once within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, attack roll, or saving throw it makes. The creature can wait until after it rolls the d20 before deciding to use the Bardic Inspiration die, but must decide before the GM says whether the roll succeeds or fails. Once the Bardic Inspiration die is rolled, it is lost. A creature can have only one Bardic Inspiration die at a time.\n\nYou can use this feature a number of times equal to your Charisma modifier (a minimum of once). You regain any expended uses when you finish a long rest. \n\nYour Bardic Inspiration die changes when you reach certain levels in this class. The die becomes a d8 at 5th level, a d10 at 10th level, and a d12 at 15th level.",
+              "description": "You can inspire others through stirring words or music. To do so, you use a bonus action on your turn to choose one creature other than yourself within **60 feet** of you who can hear you. That creature gains one Bardic Inspiration die, a **d6**. Once within the next **10 minutes**, the creature can roll the die and add the number rolled to one ability check, attack roll, or saving throw it makes. The creature can wait until after it rolls the d20 before deciding to use the Bardic Inspiration die, but must decide before the GM says whether the roll succeeds or fails. Once the Bardic Inspiration die is rolled, it is lost. A creature can have only one Bardic Inspiration die at a time.\n\nYou can use this feature a number of times equal to your Charisma modifier (a minimum of once). You regain any expended uses when you finish a long rest.\n\nYour Bardic Inspiration die changes when you reach certain levels in this class. The die becomes a **d8** at 5th level, a **d10** at 10th level, and a **d12** at 15th level.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Bonus Action",
@@ -1636,7 +1674,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Inspire others through stirring words or music.",
+              "summary": "Use a bonus action to give a creature within 60 feet a die to add to one ability check, attack roll, or saving throw.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -1646,11 +1684,12 @@
                 "name": "Bard",
                 "level": 10
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Magical Secrets",
-              "description": "By 10th level, you have plundered magical knowledge from a wide spectrum of disciplines. Choose two spells from any class, including this one. A spell you choose must be of a level you can cast, as shown on the Bard table, or a cantrip. \n\nThe chosen spells count as bard spells for you and are included in the number in the Spells Known column of the Bard table. \n\nYou learn two additional spells from any class at 14th level and again at 18th level.",
+              "description": "By 10th level, you have plundered magical knowledge from a wide spectrum of disciplines. Choose two spells from any class, including this one. A spell you choose must be of a level you can cast, as shown on the Bard table, or a cantrip.\n\nThe chosen spells count as bard spells for you and are included in the number in the Spells Known column of the Bard table.\n\nYou learn two additional spells from any class at 14th level and again at 18th level.",
               "type": "feature",
               "choices": {
                 "type": "spells",
@@ -1868,7 +1907,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "By 10th level, you have plundered magical knowledge from a wide spectrum of disciplines.",
+              "summary": "Learn two spells from any class that you can normally cast or a cantrip; these count as bard spells.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -1878,7 +1917,8 @@
                 "name": "Bard",
                 "level": 10
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -1908,7 +1948,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -1919,7 +1959,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -1929,7 +1969,8 @@
                 "name": "Bard",
                 "level": 12
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -1947,7 +1988,7 @@
           "features": [
             {
               "name": "Song of Rest (d10)",
-              "description": "Beginning at 2nd level, you can use soothing music or oration to help revitalize your wounded allies during a short rest. If you or any friendly creatures who can hear your performance regain hit points at the end of the short rest by spending one or more Hit Dice, each of those creatures regains an extra 1d6 hit points. \n\nThe extra hit points increase when you reach certain levels in this class: to 1d8 at 9th level, to 1d10 at 13th level, and to 1d12 at 17th level.",
+              "description": "Beginning at 2nd level, you can use soothing music or oration to help revitalize your wounded allies during a short rest. If you or any friendly creatures who can hear your performance regain hit points at the end of the short rest by spending one or more Hit Dice, each of those creatures regains an extra **1d6** hit points.\n\nThe extra hit points increase when you reach certain levels in this class: to **1d8** at 9th level, to **1d10** at 13th level, and to **1d12** at 17th level.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -1958,7 +1999,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Use soothing music or oration to help revitalize your wounded allies during a short rest.",
+              "summary": "Grant yourself and allies who can hear you extra hit points when spending Hit Dice during a short rest.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -1968,7 +2009,8 @@
                 "name": "Bard",
                 "level": 13
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -1987,7 +2029,7 @@
           "features": [
             {
               "name": "Magical Secrets",
-              "description": "By 10th level, you have plundered magical knowledge from a wide spectrum of disciplines. Choose two spells from any class, including this one. A spell you choose must be of a level you can cast, as shown on the Bard table, or a cantrip. \n\nThe chosen spells count as bard spells for you and are included in the number in the Spells Known column of the Bard table. \n\nYou learn two additional spells from any class at 14th level and again at 18th level.",
+              "description": "By 10th level, you have plundered magical knowledge from a wide spectrum of disciplines. Choose two spells from any class, including this one. A spell you choose must be of a level you can cast, as shown on the Bard table, or a cantrip.\n\nThe chosen spells count as bard spells for you and are included in the number in the Spells Known column of the Bard table.\n\nYou learn two additional spells from any class at 14th level and again at 18th level.",
               "type": "feature",
               "choices": {
                 "type": "spells",
@@ -2273,7 +2315,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "By 10th level, you have plundered magical knowledge from a wide spectrum of disciplines.",
+              "summary": "Learn two spells from any class list that you can cast or a cantrip.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -2283,7 +2325,8 @@
                 "name": "Bard",
                 "level": 14
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Bard College feature",
@@ -2298,7 +2341,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You delve into the advanced techniques of a bard college of your choice, such as the College of Lore.",
+              "summary": "Gain specialized features from a chosen bard college.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -2308,7 +2351,8 @@
                 "name": "Bard",
                 "level": 14
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -2327,7 +2371,7 @@
           "features": [
             {
               "name": "Bardic Inspiration (d12)",
-              "description": "You can inspire others through stirring words or music. To do so, you use a bonus action on your turn to choose one creature other than yourself within 60 feet of you who can hear you. That creature gains one Bardic Inspiration die, a d6. Once within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, attack roll, or saving throw it makes. The creature can wait until after it rolls the d20 before deciding to use the Bardic Inspiration die, but must decide before the GM says whether the roll succeeds or fails. Once the Bardic Inspiration die is rolled, it is lost. A creature can have only one Bardic Inspiration die at a time.\n\nYou can use this feature a number of times equal to your Charisma modifier (a minimum of once). You regain any expended uses when you finish a long rest. \n\nYour Bardic Inspiration die changes when you reach certain levels in this class. The die becomes a d8 at 5th level, a d10 at 10th level, and a d12 at 15th level.",
+              "description": "You can inspire others through stirring words or music. To do so, you use a bonus action on your turn to choose one creature other than yourself within 60 feet of you who can hear you. That creature gains one Bardic Inspiration die, a **d6**. Once within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, attack roll, or saving throw it makes. The creature can wait until after it rolls the d20 before deciding to use the Bardic Inspiration die, but must decide before the GM says whether the roll succeeds or fails. Once the Bardic Inspiration die is rolled, it is lost. A creature can have only one Bardic Inspiration die at a time.\n\nYou can use this feature a number of times equal to your Charisma modifier (a minimum of once). You regain any expended uses when you finish a long rest.\n\nYour Bardic Inspiration die changes when you reach certain levels in this class. The die becomes a **d8** at 5th level, a **d10** at 10th level, and a **d12** at 15th level.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Bonus Action",
@@ -2338,7 +2382,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Inspire others through stirring words or music.",
+              "summary": "Use a bonus action to give a creature within 60 feet a d12 to add to an ability check, attack roll, or saving throw.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -2348,7 +2392,8 @@
                 "name": "Bard",
                 "level": 15
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -2368,7 +2413,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above 20 using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -2379,7 +2424,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -2389,7 +2434,8 @@
                 "name": "Bard",
                 "level": 16
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -2409,7 +2455,7 @@
           "features": [
             {
               "name": "Song of Rest (d12)",
-              "description": "Beginning at 2nd level, you can use soothing music or oration to help revitalize your wounded allies during a short rest. If you or any friendly creatures who can hear your performance regain hit points at the end of the short rest by spending one or more Hit Dice, each of those creatures regains an extra 1d6 hit points. \n\nThe extra hit points increase when you reach certain levels in this class: to 1d8 at 9th level, to 1d10 at 13th level, and to 1d12 at 17th level.",
+              "description": "Beginning at 2nd level, you can use soothing music or oration to help revitalize your wounded allies during a short rest. If you or any friendly creatures who can hear your performance regain hit points at the end of the short rest by spending one or more Hit Dice, each of those creatures regains an extra **1d6** hit points.\n\nThe extra hit points increase when you reach certain levels in this class: to **1d8** at 9th level, to **1d10** at 13th level, and to **1d12** at 17th level.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -2420,7 +2466,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Use soothing music or oration to help revitalize your wounded allies during a short rest.",
+              "summary": "Friendly creatures who spend Hit Dice during a short rest regain an extra 1d12 hit points.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -2430,7 +2476,8 @@
                 "name": "Bard",
                 "level": 17
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -2451,7 +2498,7 @@
           "features": [
             {
               "name": "Magical Secrets",
-              "description": "By 10th level, you have plundered magical knowledge from a wide spectrum of disciplines. Choose two spells from any class, including this one. A spell you choose must be of a level you can cast, as shown on the Bard table, or a cantrip. \n\nThe chosen spells count as bard spells for you and are included in the number in the Spells Known column of the Bard table. \n\nYou learn two additional spells from any class at 14th level and again at 18th level.",
+              "description": "By 10th level, you have plundered magical knowledge from a wide spectrum of disciplines. Choose two spells from any class, including this one. A spell you choose must be of a level you can cast, as shown on the Bard table, or a cantrip.\n\nThe chosen spells count as bard spells for you and are included in the number in the Spells Known column of the Bard table.\n\nYou learn two additional spells from any class at 14th level and again at 18th level.",
               "type": "feature",
               "choices": {
                 "type": "spells",
@@ -2773,7 +2820,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "By 10th level, you have plundered magical knowledge from a wide spectrum of disciplines.",
+              "summary": "Learn two spells from any class list that you can cast or a cantrip.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -2783,7 +2830,8 @@
                 "name": "Bard",
                 "level": 18
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -2804,7 +2852,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you cannot increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -2815,7 +2863,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by **2** or two ability scores by **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -2825,7 +2873,8 @@
                 "name": "Bard",
                 "level": 19
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -2857,7 +2906,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "When you roll initiative and have no uses of Bardic Inspiration left, you regain one use.",
+              "summary": "Regain one use of Bardic Inspiration when you roll initiative if you have none left.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -2867,7 +2916,8 @@
                 "name": "Bard",
                 "level": 20
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -3154,7 +3204,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "As a conduit for divine power, you can cast cleric spells.",
+              "summary": "You can cast cleric spells as a conduit for divine power.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3164,7 +3214,8 @@
                 "name": "Cleric",
                 "level": 1
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Divine Domain",
@@ -3179,7 +3230,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Choose one domain related to your deity, such as Knowledge, Life, Light, Nature, Tempest, Trickery, or War.",
+              "summary": "Choose a divine domain to gain specific spells and features at various levels.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3189,11 +3240,12 @@
                 "name": "Cleric",
                 "level": 1
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Domain Spells",
-              "description": "Each domain has a list of spells--its domain spells--that you gain at the cleric levels noted in the domain description. Once you gain a domain spell, you always have it prepared, and it doesn't count against the number of spells you can prepare each day.\n\nIf you have a domain spell that doesn't appear on the cleric spell list, the spell is nonetheless a cleric spell for you.",
+              "description": "Each domain has a list of spells—its domain spells—that you gain at the cleric levels noted in the domain description. Once you gain a domain spell, you always have it prepared, and it does not count against the number of spells you can prepare each day.\n\nIf you have a domain spell that does not appear on the cleric spell list, the spell is nonetheless a cleric spell for you.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -3204,7 +3256,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Each domain has a list of spells--its domain spells--that you gain at the cleric levels noted in the domain description.",
+              "summary": "Gain specific domain spells that are always prepared and do not count against your daily limit.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3214,7 +3266,8 @@
                 "name": "Cleric",
                 "level": 1
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -3227,7 +3280,7 @@
           "features": [
             {
               "name": "Channel Divinity (1/rest)",
-              "description": "At 2nd level, you gain the ability to channel divine energy directly from your deity, using that energy to fuel magical effects. You start with two such effects: Turn Undead and an effect determined by your domain. Some domains grant you additional effects as you advance in levels, as noted in the domain description.\n\nWhen you use your Channel Divinity, you choose which effect to create. You must then finish a short or long rest to use your Channel Divinity again.\n\nSome Channel Divinity effects require saving throws. When you use such an effect from this class, the DC equals your cleric spell save DC.\n\nBeginning at 6th level, you can use your Channel Divinity twice between rests, and beginning at 18th level, you can use it three times between rests. When you finish a short or long rest, you regain your expended uses.",
+              "description": "At 2nd level, you gain the ability to channel divine energy directly from your deity, using that energy to fuel magical effects. You start with two such effects: Turn Undead and an effect determined by your domain. Some domains grant you additional effects as you advance in levels, as noted in the domain description.\n\nWhen you use your Channel Divinity, you choose which effect to create. You must then finish a short or long rest to use your Channel Divinity again.\n\nSome Channel Divinity effects require saving throws. When you use such an effect from this class, the DC equals your cleric spell save DC.\n\nBeginning at 6th level, you can use your Channel Divinity **2** times between rests, and beginning at 18th level, you can use it **3** times between rests. When you finish a short or long rest, you regain your expended uses.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -3238,7 +3291,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Gain the ability to channel divine energy directly from your deity, using that energy to fuel magical effects.",
+              "summary": "Use divine energy to fuel effects like Turn Undead; regain uses on a short or long rest.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3248,11 +3301,12 @@
                 "name": "Cleric",
                 "level": 2
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Channel Divinity: Turn Undead",
-              "description": "As an action, you present your holy symbol and speak a prayer censuring the undead. Each undead that can see or hear you within 30 feet of you must make a Wisdom saving throw. If the creature fails its saving throw, it is turned for 1 minute or until it takes any damage.\n\nA turned creature must spend its turns trying to move as far away from you as it can, and it can't willingly move to a space within 30 feet of you. It also can't take reactions. For its action, it can use only the Dash action or try to escape from an effect that prevents it from moving. If there's nowhere to move, the creature can use the Dodge action.",
+              "description": "As an action, you present your holy symbol and speak a prayer censuring the undead. Each undead that can see or hear you within **30 feet** of you must make a Wisdom saving throw. If the creature fails its saving throw, it is turned for **1 minute** or until it takes any damage.\n\nA turned creature must spend its turns trying to move as far away from you as it can, and it cannot willingly move to a space within **30 feet** of you. It also cannot take reactions. For its action, it can use only the Dash action or try to escape from an effect that prevents it from moving. If there is nowhere to move, the creature can use the Dodge action.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Reaction",
@@ -3263,7 +3317,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "As an action, you present your holy symbol and speak a prayer censuring the undead.",
+              "summary": "Use an action to force undead within 30 feet to make a Wisdom saving throw or become turned for 1 minute.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3273,7 +3327,8 @@
                 "name": "Cleric",
                 "level": 2
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Divine Domain feature",
@@ -3288,7 +3343,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Choose one domain related to your deity, such as Knowledge, Life, Light, Nature, Tempest, Trickery, or War.",
+              "summary": "Choose a divine domain to gain specific spells and features at 1st, 2nd, 6th, 8th, and 17th levels.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3298,7 +3353,8 @@
                 "name": "Cleric",
                 "level": 2
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -3311,7 +3367,7 @@
           "features": [
             {
               "name": "Domain Spells",
-              "description": "Each domain has a list of spells--its domain spells--that you gain at the cleric levels noted in the domain description. Once you gain a domain spell, you always have it prepared, and it doesn't count against the number of spells you can prepare each day.\n\nIf you have a domain spell that doesn't appear on the cleric spell list, the spell is nonetheless a cleric spell for you.",
+              "description": "Each domain has a list of spells—its domain spells—that you gain at the cleric levels noted in the domain description. Once you gain a domain spell, you always have it prepared, and it does not count against the number of spells you can prepare each day.\n\nIf you have a domain spell that does not appear on the cleric spell list, the spell is nonetheless a cleric spell for you.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -3322,7 +3378,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Each domain has a list of spells--its domain spells--that you gain at the cleric levels noted in the domain description.",
+              "summary": "Gain specific spells from your domain that are always prepared and do not count against your daily limit.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3332,7 +3388,8 @@
                 "name": "Cleric",
                 "level": 3
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -3346,7 +3403,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you cannot increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -3357,7 +3414,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1 at 4th, 8th, 12th, 16th, and 19th levels.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3367,7 +3424,8 @@
                 "name": "Cleric",
                 "level": 4
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -3381,7 +3439,7 @@
           "features": [
             {
               "name": "Domain Spells",
-              "description": "Each domain has a list of spells--its domain spells--that you gain at the cleric levels noted in the domain description. Once you gain a domain spell, you always have it prepared, and it doesn't count against the number of spells you can prepare each day.\n\nIf you have a domain spell that doesn't appear on the cleric spell list, the spell is nonetheless a cleric spell for you.",
+              "description": "Each domain has a list of spells—its domain spells—that you gain at the cleric levels noted in the domain description. Once you gain a domain spell, you always have it prepared, and it does not count against the number of spells you can prepare each day.\n\nIf you have a domain spell that does not appear on the cleric spell list, the spell is nonetheless a cleric spell for you.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -3392,7 +3450,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Each domain has a list of spells--its domain spells--that you gain at the cleric levels noted in the domain description.",
+              "summary": "Gain specific spells from your domain that are always prepared and do not count against your daily limit.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3402,7 +3460,8 @@
                 "name": "Cleric",
                 "level": 5
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Destroy Undead (CR 1/2 or below)",
@@ -3417,7 +3476,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "When an undead fails its saving throw against your Turn Undead feature, the creature is instantly destroyed if its challenge.",
+              "summary": "Instantly destroy undead that fail the saving throw against your Turn Undead if their challenge rating is low enough.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3427,7 +3486,8 @@
                 "name": "Cleric",
                 "level": 5
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -3453,7 +3513,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Use your Channel Divinity twice between rests, and beginning at 18th level, you can use it three times between rests.",
+              "summary": "Use your Channel Divinity twice between rests, increasing to three times at 18th level.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3463,7 +3523,8 @@
                 "name": "Cleric",
                 "level": 6
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Divine Domain feature",
@@ -3478,7 +3539,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Choose one domain related to your deity, such as Knowledge, Life, Light, Nature, Tempest, Trickery, or War.",
+              "summary": "Choose a domain related to your deity, such as Knowledge, Life, Light, Nature, Tempest, Trickery, or War.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3488,7 +3549,8 @@
                 "name": "Cleric",
                 "level": 6
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -3503,7 +3565,7 @@
           "features": [
             {
               "name": "Domain Spells",
-              "description": "Each domain has a list of spells--its domain spells--that you gain at the cleric levels noted in the domain description. Once you gain a domain spell, you always have it prepared, and it doesn't count against the number of spells you can prepare each day.\n\nIf you have a domain spell that doesn't appear on the cleric spell list, the spell is nonetheless a cleric spell for you.",
+              "description": "Each domain has a list of spells—its domain spells—that you gain at the cleric levels noted in the domain description. Once you gain a domain spell, you always have it prepared, and it doesn't count against the number of spells you can prepare each day.\n\nIf you have a domain spell that doesn't appear on the cleric spell list, the spell is nonetheless a cleric spell for you.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -3514,7 +3576,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Each domain has a list of spells--its domain spells--that you gain at the cleric levels noted in the domain description.",
+              "summary": "Gain specific domain spells at certain cleric levels that are always prepared and do not count against your daily limit.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3524,7 +3586,8 @@
                 "name": "Cleric",
                 "level": 7
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -3540,7 +3603,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -3551,7 +3614,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1 at 4th, 8th, 12th, 16th, and 19th level.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3561,7 +3624,8 @@
                 "name": "Cleric",
                 "level": 8
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Destroy Undead (CR 1 or below)",
@@ -3576,7 +3640,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "When an undead fails its saving throw against your Turn Undead feature, the creature is instantly destroyed if its challenge.",
+              "summary": "Instantly destroy an undead creature if it fails its saving throw against your Turn Undead feature and its challenge rating is low enough.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3586,7 +3650,8 @@
                 "name": "Cleric",
                 "level": 8
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Divine Domain feature",
@@ -3601,7 +3666,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Choose one domain related to your deity, such as Knowledge, Life, Light, Nature, Tempest, Trickery, or War.",
+              "summary": "Choose a domain related to your deity, such as Knowledge, Life, Light, Nature, Tempest, Trickery, or War.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3611,7 +3676,8 @@
                 "name": "Cleric",
                 "level": 8
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -3627,7 +3693,7 @@
           "features": [
             {
               "name": "Domain Spells",
-              "description": "Each domain has a list of spells--its domain spells--that you gain at the cleric levels noted in the domain description. Once you gain a domain spell, you always have it prepared, and it doesn't count against the number of spells you can prepare each day.\n\nIf you have a domain spell that doesn't appear on the cleric spell list, the spell is nonetheless a cleric spell for you.",
+              "description": "Each domain has a list of spells—its domain spells—that you gain at the cleric levels noted in the domain description. Once you gain a domain spell, you always have it prepared, and it doesn't count against the number of spells you can prepare each day.\n\nIf you have a domain spell that doesn't appear on the cleric spell list, the spell is nonetheless a cleric spell for you.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -3638,7 +3704,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Each domain has a list of spells--its domain spells--that you gain at the cleric levels noted in the domain description.",
+              "summary": "Gain specific spells from your chosen domain at certain cleric levels, which are always prepared and do not count against your daily limit.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3648,7 +3714,8 @@
                 "name": "Cleric",
                 "level": 9
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -3676,7 +3743,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Call on your deity to intervene on your behalf when your need is great.",
+              "summary": "Use an action to request aid from your deity; success depends on a percentile roll against your cleric level.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3686,7 +3753,8 @@
                 "name": "Cleric",
                 "level": 10
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -3714,7 +3782,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "When an undead fails its saving throw against your Turn Undead feature, the creature is instantly destroyed if its challenge.",
+              "summary": "Instantly destroy undead creatures with a challenge rating of 2 or lower when they fail their saving throw against Turn Undead.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3724,7 +3792,8 @@
                 "name": "Cleric",
                 "level": 11
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -3753,7 +3822,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1 at specific levels.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3763,7 +3832,8 @@
                 "name": "Cleric",
                 "level": 12
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -3806,7 +3876,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "When an undead fails its saving throw against your Turn Undead feature, the creature is instantly destroyed if its challenge.",
+              "summary": "Instantly destroy undead creatures with a challenge rating of 3 or lower when they fail their saving throw against Turn Undead.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3816,7 +3886,8 @@
                 "name": "Cleric",
                 "level": 14
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -3861,7 +3932,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1 at specific levels.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3871,7 +3942,8 @@
                 "name": "Cleric",
                 "level": 16
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -3902,7 +3974,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "When an undead fails its saving throw against your Turn Undead feature, the creature is instantly destroyed if its challenge.",
+              "summary": "Instantly destroy an undead creature if it fails its saving throw against your Turn Undead feature and its challenge rating is **4** or below.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3912,7 +3984,8 @@
                 "name": "Cleric",
                 "level": 17
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Divine Domain feature",
@@ -3927,7 +4000,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Choose one domain related to your deity, such as Knowledge, Life, Light, Nature, Tempest, Trickery, or War.",
+              "summary": "Choose a domain related to your deity to gain specific spells and features.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3937,7 +4010,8 @@
                 "name": "Cleric",
                 "level": 17
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -3969,7 +4043,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Use your Channel Divinity twice between rests, and beginning at 18th level, you can use it three times between rests.",
+              "summary": "Use your Channel Divinity three times between rests, regaining all expended uses after a short or long rest.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3979,7 +4053,8 @@
                 "name": "Cleric",
                 "level": 18
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -4000,7 +4075,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -4011,7 +4086,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by **2** or two ability scores by **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -4021,7 +4096,8 @@
                 "name": "Cleric",
                 "level": 19
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -4053,7 +4129,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Your call for intervention succeeds automatically, no roll required.",
+              "summary": "Your call for intervention succeeds automatically without requiring a roll.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -4063,7 +4139,8 @@
                 "name": "Cleric",
                 "level": 20
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -4321,7 +4398,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Drawing on the divine essence of nature itself, you can cast spells to shape that essence to your will.",
+              "summary": "Cast spells by drawing on the divine essence of nature to shape it to your will.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -4331,7 +4408,8 @@
                 "name": "Druid",
                 "level": 1
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Druidic",
@@ -4554,7 +4632,7 @@
           "features": [
             {
               "name": "Wild Shape (CR 1 or below)",
-              "description": "Starting at 2nd level, you can use your action to magically assume the shape of a beast that you have seen before. You can use this feature twice. You regain expended uses when you finish a short or long rest.\n\nYour druid level determines the beasts you can transform into, as shown in the Beast Shapes table. At 2nd level, for example, you can transform into any beast that has a challenge rating of 1/4 or lower that doesn't have a flying or swimming speed.\n\nYou can stay in a beast shape for a number of hours equal to half your druid level (rounded down). You then revert to your normal form unless you expend another use of this feature. You can revert to your normal form earlier by using a bonus action on your turn. You automatically revert if you fall unconscious, drop to 0 hit points, or die.\n\nWhile you are transformed, the following rules apply:\n\n- Your game statistics are replaced by the statistics of the beast, but you retain your alignment, personality, and Intelligence, Wisdom, and Charisma scores. You also retain all of your skill and saving throw proficiencies, in addition to gaining those of the creature. If the creature has the same proficiency as you and the bonus in its stat block is higher than yours, use the creature's bonus instead of yours. If the creature has any legendary or lair actions, you can't use them.\n\n- When you transform, you assume the beast's hit points and Hit Dice. When you revert to your normal form, you return to the number of hit points you had before you transformed. However, if you revert as a result of dropping to 0 hit points, any excess damage carries over to your normal form. For example, if you take 10 damage in animal form and have only 1 hit point left, you revert and take 9 damage. As long as the excess damage doesn't reduce your normal form to 0 hit points, you aren't knocked unconscious.\n\n- You can't cast spells, and your ability to speak or take any action that requires hands is limited to the capabilities of your beast form. Transforming doesn't break your concentration on a spell you've already cast, however, or prevent you from taking actions that are part of a spell, such as call lightning, that you've already cast.\n\n- You retain the benefit of any features from your class, race, or other source and can use them if the new form is physically capable of doing so. However, you can't use any of your special senses, such as darkvision, unless your new form also has that sense.\n\n- You choose whether your equipment falls to the ground in your space, merges into your new form, or is worn by it. Worn equipment functions as normal, but the GM decides whether it is practical for the new form to wear a piece of equipment, based on the creature's shape and size. Your equipment doesn't change size or shape to match the new form, and any equipment that the new form can't wear must either fall to the ground or merge with it. Equipment that merges with the form has no effect until you leave the form.",
+              "description": "Starting at 2nd level, you can use your action to magically assume the shape of a beast that you have seen before. You can use this feature **2** times. You regain expended uses when you finish a short or long rest.\n\nYour druid level determines the beasts you can transform into, as shown in the Beast Shapes table. At 2nd level, for example, you can transform into any beast that has a challenge rating of 1/4 or lower that doesn't have a flying or swimming speed.\n\nYou can stay in a beast shape for a number of hours equal to half your druid level (rounded down). You then revert to your normal form unless you expend another use of this feature. You can revert to your normal form earlier by using a bonus action on your turn. You automatically revert if you fall unconscious, drop to 0 hit points, or die.\n\nWhile you are transformed, the following rules apply:\n\n- Your game statistics are replaced by the statistics of the beast, but you retain your alignment, personality, and Intelligence, Wisdom, and Charisma scores. You also retain all of your skill and saving throw proficiencies, in addition to gaining those of the creature. If the creature has the same proficiency as you and the bonus in its stat block is higher than yours, use the creature's bonus instead of yours. If the creature has any legendary or lair actions, you can't use them.\n\n- When you transform, you assume the beast's hit points and Hit Dice. When you revert to your normal form, you return to the number of hit points you had before you transformed. However, if you revert as a result of dropping to 0 hit points, any excess damage carries over to your normal form. For example, if you take 10 damage in animal form and have only 1 hit point left, you revert and take 9 damage. As long as the excess damage doesn't reduce your normal form to 0 hit points, you aren't knocked unconscious.\n\n- You can't cast spells, and your ability to speak or take any action that requires hands is limited to the capabilities of your beast form. Transforming doesn't break your concentration on a spell you've already cast, however, or prevent you from taking actions that are part of a spell, such as call lightning, that you've already cast.\n\n- You retain the benefit of any features from your class, race, or other source and can use them if the new form is physically capable of doing so. However, you can't use any of your special senses, such as darkvision, unless your new form also has that sense.\n\n- You choose whether your equipment falls to the ground in your space, merges into your new form, or is worn by it. Worn equipment functions as normal, but the GM decides whether it is practical for the new form to wear a piece of equipment, based on the creature's shape and size. Your equipment doesn't change size or shape to match the new form, and any equipment that the new form can't wear must either fall to the ground or merge with it. Equipment that merges with the form has no effect until you leave the form.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Bonus Action",
@@ -4565,7 +4643,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Use your action to magically assume the shape of a beast that you have seen before.",
+              "summary": "Use your action to magically transform into a beast you have seen before.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -4575,11 +4653,12 @@
                 "name": "Druid",
                 "level": 8
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -4590,7 +4669,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -4600,7 +4679,8 @@
                 "name": "Druid",
                 "level": 8
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -4639,7 +4719,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You choose to identify with a circle of druids, such as the Circle of the Land.",
+              "summary": "Gain specialized features by identifying with a specific circle of druids.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -4649,7 +4729,8 @@
                 "name": "Druid",
                 "level": 10
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -4679,7 +4760,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -4690,7 +4771,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -4700,7 +4781,8 @@
                 "name": "Druid",
                 "level": 12
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -4743,7 +4825,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You choose to identify with a circle of druids, such as the Circle of the Land.",
+              "summary": "Gain specialized features by identifying with a specific circle of druids.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -4753,7 +4835,8 @@
                 "name": "Druid",
                 "level": 14
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -4787,7 +4870,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -4798,7 +4881,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -4808,7 +4891,8 @@
                 "name": "Druid",
                 "level": 16
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -4855,7 +4939,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Your ki sustains you so that you suffer none of the frailty of old age, and you can't be aged magically.",
+              "summary": "You suffer no frailty from old age, cannot be aged magically, and no longer require food or water.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -4865,7 +4949,8 @@
                 "name": "Druid",
                 "level": 18
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Beast Spells",
@@ -4880,7 +4965,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Cast many of your druid spells in any shape you assume using Wild Shape.",
+              "summary": "Cast druid spells while in a beast shape, though you cannot provide material components.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -4890,7 +4975,8 @@
                 "name": "Druid",
                 "level": 18
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -4911,7 +4997,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -4922,7 +5008,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -4932,7 +5018,8 @@
                 "name": "Druid",
                 "level": 19
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -4964,7 +5051,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Use your Wild Shape an unlimited number of times.",
+              "summary": "Use Wild Shape unlimited times and ignore most spell components in any shape.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -4974,7 +5061,8 @@
                 "name": "Druid",
                 "level": 20
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -5291,7 +5379,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You adopt a particular style of fighting as your specialty.",
+              "summary": "Choose a specialized style of fighting.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -5301,11 +5389,12 @@
                 "name": "Fighter",
                 "level": 1
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Second Wind",
-              "description": "You have a limited well of stamina that you can draw on to protect yourself from harm. On your turn, you can use a bonus action to regain hit points equal to 1d10 + your fighter level. Once you use this feature, you must finish a short or long rest before you can use it again.",
+              "description": "You have a limited well of stamina that you can draw on to protect yourself from harm. On your turn, you can use a bonus action to regain hit points equal to **1d10** + your fighter level. Once you use this feature, you must finish a short or long rest before you can use it again.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Bonus Action",
@@ -5319,7 +5408,7 @@
               "effect": null,
               "onUse": "Regain 1d10 + your Fighter level in HP",
               "scaling": null,
-              "summary": "You have a limited well of stamina that you can draw on to protect yourself from harm.",
+              "summary": "Use a bonus action to regain 1d10 + fighter level hit points.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -5329,7 +5418,8 @@
                 "name": "Fighter",
                 "level": 1
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -5351,7 +5441,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Push yourself beyond your normal limits for a moment.",
+              "summary": "Take one additional action on your turn.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -5361,7 +5451,8 @@
                 "name": "Fighter",
                 "level": 2
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -5383,7 +5474,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You choose an archetype that you strive to emulate in your combat styles and techniques, such as Champion.",
+              "summary": "Choose a combat archetype, such as Champion, to gain specialized features.",
               "grantsSpells": false,
               "grantsAttack": true,
               "grantsSkills": false,
@@ -5393,7 +5484,8 @@
                 "name": "Fighter",
                 "level": 3
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -5404,7 +5496,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -5415,7 +5507,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -5425,7 +5517,8 @@
                 "name": "Fighter",
                 "level": 4
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -5457,7 +5550,8 @@
                 "name": "Fighter",
                 "level": 5
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -5468,7 +5562,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -5479,7 +5573,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -5489,7 +5583,8 @@
                 "name": "Fighter",
                 "level": 6
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -5511,7 +5606,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You choose an archetype that you strive to emulate in your combat styles and techniques, such as Champion.",
+              "summary": "Gain features from your chosen combat archetype, such as Champion.",
               "grantsSpells": false,
               "grantsAttack": true,
               "grantsSkills": false,
@@ -5521,7 +5616,8 @@
                 "name": "Fighter",
                 "level": 7
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -5532,7 +5628,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -5543,7 +5639,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by **2** or two ability scores by **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -5553,7 +5649,8 @@
                 "name": "Fighter",
                 "level": 8
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -5564,7 +5661,7 @@
           "features": [
             {
               "name": "Indomitable (1 use)",
-              "description": "Beginning at 9th level, you can reroll a saving throw that you fail. If you do so, you must use the new roll, and you can't use this feature again until you finish a long rest. You can use this feature twice between long rests starting at 13th level and three times between long rests starting at 17th level.",
+              "description": "Beginning at 9th level, you can reroll a saving throw that you fail. If you do so, you must use the new roll, and you can't use this feature again until you finish a long rest.\n\nYou can use this feature twice between long rests starting at 13th level and three times between long rests starting at 17th level.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -5575,7 +5672,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Reroll a saving throw that you fail.",
+              "summary": "Reroll a failed saving throw.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -5585,7 +5682,8 @@
                 "name": "Fighter",
                 "level": 9
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -5607,7 +5705,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You choose an archetype that you strive to emulate in your combat styles and techniques, such as Champion.",
+              "summary": "Gain features from a chosen combat archetype, such as Champion.",
               "grantsSpells": false,
               "grantsAttack": true,
               "grantsSkills": false,
@@ -5617,7 +5715,8 @@
                 "name": "Fighter",
                 "level": 10
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -5628,7 +5727,7 @@
           "features": [
             {
               "name": "Extra Attack (2)",
-              "description": "Beginning at 5th level, you can attack twice, instead of once, whenever you take the Attack action on your turn. The number of attacks increases to three when you reach 11th level in this class and to four when you reach 20th level in this class.",
+              "description": "Beginning at 5th level, you can attack twice, instead of once, whenever you take the Attack action on your turn.\n\nThe number of attacks increases to three when you reach 11th level in this class and to four when you reach 20th level in this class.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Action",
@@ -5639,7 +5738,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Attack twice, instead of once, whenever you take the Attack action on your turn.",
+              "summary": "Attack multiple times whenever you take the Attack action on your turn.",
               "grantsSpells": false,
               "grantsAttack": true,
               "grantsSkills": false,
@@ -5649,7 +5748,8 @@
                 "name": "Fighter",
                 "level": 11
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -5660,7 +5760,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -5671,7 +5771,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by **2** or two ability scores by **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -5681,7 +5781,8 @@
                 "name": "Fighter",
                 "level": 12
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -5692,7 +5793,7 @@
           "features": [
             {
               "name": "Indomitable (2 uses)",
-              "description": "Beginning at 9th level, you can reroll a saving throw that you fail. If you do so, you must use the new roll, and you can't use this feature again until you finish a long rest. You can use this feature twice between long rests starting at 13th level and three times between long rests starting at 17th level.",
+              "description": "Beginning at 9th level, you can reroll a saving throw that you fail. If you do so, you must use the new roll, and you can't use this feature again until you finish a long rest.\n\nYou can use this feature twice between long rests starting at 13th level and three times between long rests starting at 17th level.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -5703,7 +5804,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Reroll a saving throw that you fail.",
+              "summary": "Reroll a failed saving throw.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -5713,7 +5814,8 @@
                 "name": "Fighter",
                 "level": 13
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -5724,7 +5826,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you cannot increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -5735,7 +5837,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by **2** or two ability scores by **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -5745,7 +5847,8 @@
                 "name": "Fighter",
                 "level": 14
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -5767,7 +5870,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You choose an archetype that you strive to emulate in your combat styles and techniques, such as Champion.",
+              "summary": "Choose a combat archetype, such as Champion, to gain specialized features.",
               "grantsSpells": false,
               "grantsAttack": true,
               "grantsSkills": false,
@@ -5777,7 +5880,8 @@
                 "name": "Fighter",
                 "level": 15
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -5788,7 +5892,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you cannot increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -5799,7 +5903,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by **2** or two ability scores by **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -5809,7 +5913,8 @@
                 "name": "Fighter",
                 "level": 16
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -5831,7 +5936,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Push yourself beyond your normal limits for a moment.",
+              "summary": "Take one additional action on your turn.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -5841,11 +5946,12 @@
                 "name": "Fighter",
                 "level": 17
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Indomitable (3 uses)",
-              "description": "Beginning at 9th level, you can reroll a saving throw that you fail. If you do so, you must use the new roll, and you can't use this feature again until you finish a long rest. You can use this feature twice between long rests starting at 13th level and three times between long rests starting at 17th level.",
+              "description": "Beginning at 9th level, you can reroll a saving throw that you fail. If you do so, you must use the new roll, and you cannot use this feature again until you finish a long rest. You can use this feature twice between long rests starting at 13th level and three times between long rests starting at 17th level.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -5856,7 +5962,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Reroll a saving throw that you fail.",
+              "summary": "Reroll a failed saving throw.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -5866,7 +5972,8 @@
                 "name": "Fighter",
                 "level": 17
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -5888,7 +5995,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You choose an archetype that you strive to emulate in your combat styles and techniques, such as Champion.",
+              "summary": "Choose a combat archetype, such as Champion, to gain specialized features.",
               "grantsSpells": false,
               "grantsAttack": true,
               "grantsSkills": false,
@@ -5898,7 +6005,8 @@
                 "name": "Fighter",
                 "level": 18
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -5909,7 +6017,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you cannot increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -5920,7 +6028,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1 at 4th, 8th, 12th, 16th, and 19th level.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -5930,7 +6038,8 @@
                 "name": "Fighter",
                 "level": 19
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -5952,7 +6061,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Attack twice, instead of once, whenever you take the Attack action on your turn.",
+              "summary": "Attack multiple times whenever you take the Attack action on your turn.",
               "grantsSpells": false,
               "grantsAttack": true,
               "grantsSkills": false,
@@ -5962,7 +6071,8 @@
                 "name": "Fighter",
                 "level": 20
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -6189,7 +6299,7 @@
           "features": [
             {
               "name": "Unarmored Defense",
-              "description": "Beginning at 1st level, while you are wearing no armor and not wielding a shield, your AC equals 10 + your Dexterity modifier + your Wisdom modifier.",
+              "description": "Beginning at 1st level, while you are wearing no armor and not wielding a shield, your AC equals **10** + your Dexterity modifier + your Wisdom modifier.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -6200,7 +6310,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "While you are wearing no armor and not wielding a shield, your AC equals 10 + your Dexterity modifier + your Wisdom modifier.",
+              "summary": "While wearing no armor and wielding no shield, your AC equals 10 + your Dexterity modifier + your Wisdom modifier.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -6210,11 +6320,12 @@
                 "name": "Monk",
                 "level": 1
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Martial Arts",
-              "description": "At 1st level, your practice of martial arts gives you mastery of combat styles that use unarmed strikes and monk weapons, which are shortswords and any simple melee weapons that don't have the two- handed or heavy property.\n\nYou gain the following benefits while you are unarmed or wielding only monk weapons and you aren't wearing armor or wielding a shield:\n\n- You can use Dexterity instead of Strength for the attack and damage rolls of your unarmed strikes and monk weapons.\n\n- You can roll a d4 in place of the normal damage of your unarmed strike or monk weapon. This die changes as you gain monk levels, as shown in the Martial Arts column of Table: The Monk.\n\n- When you use the Attack action with an unarmed strike or a monk weapon on your turn, you can make one unarmed strike as a bonus action. For example, if you take the Attack action and attack with a quarterstaff, you can also make an unarmed strike as a bonus action, assuming you haven't already taken a bonus action this turn.\n\nCertain monasteries use specialized forms of the monk weapons. For example, you might use a club that is two lengths of wood connected by a short chain (called a nunchaku) or a sickle with a shorter, straighter blade (called a kama). Whatever name you use for a monk weapon, you can use the game statistics provided for the weapon.",
+              "description": "At 1st level, your practice of martial arts gives you mastery of combat styles that use unarmed strikes and monk weapons, which are shortswords and any simple melee weapons that do not have the two-handed or heavy property.\n\nYou gain the following benefits while you are unarmed or wielding only monk weapons and you are not wearing armor or wielding a shield:\n\n- You can use Dexterity instead of Strength for the attack and damage rolls of your unarmed strikes and monk weapons.\n\n- You can roll a **d4** in place of the normal damage of your unarmed strike or monk weapon. This die changes as you gain monk levels, as shown in the Martial Arts column of Table: The Monk.\n\n- When you use the Attack action with an unarmed strike or a monk weapon on your turn, you can make one unarmed strike as a bonus action. For example, if you take the Attack action and attack with a quarterstaff, you can also make an unarmed strike as a bonus action, assuming you have not already taken a bonus action this turn.\n\nCertain monasteries use specialized forms of the monk weapons. For example, you might use a club that is two lengths of wood connected by a short chain (called a nunchaku) or a sickle with a shorter, straighter blade (called a kama). Whatever name you use for a monk weapon, you can use the game statistics provided for the weapon.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Bonus Action",
@@ -6225,7 +6336,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Your practice of martial arts gives you mastery of combat styles that use unarmed strikes and monk weapons, which are shortswords.",
+              "summary": "Use Dexterity for unarmed strikes and monk weapons, use a **d4** for damage, and make an unarmed strike as a bonus action after attacking.",
               "grantsSpells": false,
               "grantsAttack": true,
               "grantsSkills": false,
@@ -6235,7 +6346,8 @@
                 "name": "Monk",
                 "level": 1
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -6246,7 +6358,7 @@
           "features": [
             {
               "name": "Ki",
-              "description": "Starting at 2nd level, your training allows you to harness the mystic energy of ki. Your access to this energy is represented by a number of ki points. Your monk level determines the number of points you have, as shown in the Ki Points column of Table: The Monk.\n\nYou can spend these points to fuel various ki features. You start knowing three such features: Flurry of Blows, Patient Defense, and Step of the Wind. You learn more ki features as you gain levels in this class.\n\nWhen you spend a ki point, it is unavailable until you finish a short or long rest, at the end of which you draw all of your expended ki back into yourself. You must spend at least 30 minutes of the rest meditating to regain your ki points.\n\nSome of your ki features require your target to make a saving throw to resist the feature's effects. The saving throw DC is calculated as follows:\n\nKi save DC = 8 + your proficiency bonus + your Wisdom modifier",
+              "description": "Starting at 2nd level, your training allows you to harness the mystic energy of ki. Your access to this energy is represented by a number of ki points. Your monk level determines the number of points you have, as shown in the Ki Points column of Table: The Monk.\n\nYou can spend these points to fuel various ki features. You start knowing three such features: Flurry of Blows, Patient Defense, and Step of the Wind. You learn more ki features as you gain levels in this class.\n\nWhen you spend a ki point, it is unavailable until you finish a short or long rest, at the end of which you draw all of your expended ki back into yourself. You must spend at least **30 minutes** of the rest meditating to regain your ki points.\n\nSome of your ki features require your target to make a saving throw to resist the feature's effects. The saving throw DC is calculated as follows:\n\nKi save DC = **8** + your proficiency bonus + your Wisdom modifier",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -6257,7 +6369,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Your training allows you to harness the mystic energy of ki.",
+              "summary": "Use ki points to fuel features like Flurry of Blows, Patient Defense, and Step of the Wind; regain points after a short or long rest.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -6267,11 +6379,12 @@
                 "name": "Monk",
                 "level": 2
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Flurry of Blows",
-              "description": "Immediately after you take the Attack action on your turn, you can spend 1 ki point to make two unarmed strikes as a bonus action.",
+              "description": "Immediately after you take the Attack action on your turn, you can spend **1** ki point to make two unarmed strikes as a bonus action.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Bonus Action",
@@ -6282,7 +6395,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Immediately after you take the Attack action on your turn, you can spend 1 ki point to make two unarmed strikes as a bonus action.",
+              "summary": "Spend 1 ki point to make two unarmed strikes as a bonus action after taking the Attack action.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -6292,7 +6405,8 @@
                 "name": "Monk",
                 "level": 2
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Patient Defense",
@@ -6317,7 +6431,8 @@
                 "name": "Monk",
                 "level": 2
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Step of the Wind",
@@ -6332,7 +6447,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Spend 1 ki point to take the Disengage or Dash action as a bonus action on your turn, and your jump distance is doubled for the turn.",
+              "summary": "Spend 1 ki point to take the Disengage or Dash action as a bonus action on your turn, and double your jump distance for the turn.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -6342,7 +6457,8 @@
                 "name": "Monk",
                 "level": 2
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Unarmored Movement",
@@ -6357,7 +6473,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Your speed increases by 10 feet while you are not wearing armor or wielding a shield.",
+              "summary": "Increase your speed by 10 feet while you are not wearing armor or wielding a shield.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -6367,7 +6483,8 @@
                 "name": "Monk",
                 "level": 2
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -6389,7 +6506,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "When you reach 3rd level, you commit yourself to a monastic tradition, such as the Way of the Open Hand.",
+              "summary": "Commit yourself to a monastic tradition, such as the Way of the Open Hand, at 3rd level.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -6399,11 +6516,12 @@
                 "name": "Monk",
                 "level": 3
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Deflect Missiles",
-              "description": "Starting at 3rd level, you can use your reaction to deflect or catch the missile when you are hit by a ranged weapon attack. When you do so, the damage you take from the attack is reduced by 1d10 + your Dexterity modifier + your monk level.\n\nIf you reduce the damage to 0, you can catch the missile if it is small enough for you to hold in one hand and you have at least one hand free. If you catch a missile in this way, you can spend 1 ki point to make a ranged attack with the weapon or piece of ammunition you just caught, as part of the same reaction. You make this attack with proficiency, regardless of your weapon proficiencies, and the missile counts as a monk weapon for the attack, which has a normal range of 20 feet and a long range of 60 feet.",
+              "description": "Starting at 3rd level, you can use your reaction to deflect or catch the missile when you are hit by a ranged weapon attack. When you do so, the damage you take from the attack is reduced by **1d10** + your Dexterity modifier + your monk level.\n\nIf you reduce the damage to 0, you can catch the missile if it is small enough for you to hold in one hand and you have at least one hand free. If you catch a missile in this way, you can spend 1 ki point to make a ranged attack with the weapon or piece of ammunition you just caught, as part of the same reaction. You make this attack with proficiency, regardless of your weapon proficiencies, and the missile counts as a monk weapon for the attack, which has a normal range of 20 feet and a long range of 60 feet.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Reaction",
@@ -6414,7 +6532,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Use your reaction to deflect or catch the missile when you are hit by a ranged weapon attack.",
+              "summary": "Use your reaction to reduce damage from a ranged weapon attack, potentially catching the missile to throw it back.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -6424,7 +6542,8 @@
                 "name": "Monk",
                 "level": 3
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -6446,7 +6565,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1 at 4th, 8th, 12th, 16th, and 19th level.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -6456,11 +6575,12 @@
                 "name": "Monk",
                 "level": 4
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Slow Fall",
-              "description": "Beginning at 4th level, you can use your reaction when you fall to reduce any falling damage you take by an amount equal to five times your monk level.",
+              "description": "Beginning at 4th level, you can use your reaction when you fall to reduce any falling damage you take by an amount equal to **5** times your monk level.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Reaction",
@@ -6471,7 +6591,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Use your reaction when you fall to reduce any falling damage you take by an amount equal to five times your monk level.",
+              "summary": "Use your reaction when you fall to reduce falling damage by **5** times your monk level.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -6481,7 +6601,8 @@
                 "name": "Monk",
                 "level": 4
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -6513,11 +6634,12 @@
                 "name": "Monk",
                 "level": 5
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Stunning Strike",
-              "description": "Starting at 5th level, you can interfere with the flow of ki in an opponent's body. When you hit another creature with a melee weapon attack, you can spend 1 ki point to attempt a stunning strike. The target must succeed on a Constitution saving throw or be stunned until the end of your next turn.",
+              "description": "Starting at 5th level, you can interfere with the flow of ki in an opponent's body. When you hit another creature with a melee weapon attack, you can spend **1** ki point to attempt a stunning strike. The target must succeed on a Constitution saving throw or be stunned until the end of your next turn.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -6528,7 +6650,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Interfere with the flow of ki in an opponent's body.",
+              "summary": "Spend **1** ki point on a melee weapon hit to stun a target until the end of your next turn on a failed Constitution saving throw.",
               "grantsSpells": false,
               "grantsAttack": true,
               "grantsSkills": false,
@@ -6538,7 +6660,8 @@
                 "name": "Monk",
                 "level": 5
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -6560,7 +6683,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Your unarmed strikes count as magical for the purpose of overcoming resistance and immunity to nonmagical attacks and damage.",
+              "summary": "Your unarmed strikes count as magical for overcoming resistance and immunity to nonmagical attacks and damage.",
               "grantsSpells": false,
               "grantsAttack": true,
               "grantsSkills": false,
@@ -6570,7 +6693,8 @@
                 "name": "Monk",
                 "level": 6
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Monastic Tradition feature",
@@ -6585,7 +6709,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "When you reach 3rd level, you commit yourself to a monastic tradition, such as the Way of the Open Hand.",
+              "summary": "Choose a monastic tradition at 3rd level to gain specialized features.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -6595,7 +6719,8 @@
                 "name": "Monk",
                 "level": 6
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -6617,7 +6742,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Nimbly dodge out of the way of certain area effects, such as a red dragon's fiery breath or an ice storm spell.",
+              "summary": "Take no damage instead of half on a successful Dexterity save, and half damage instead of full on a failure.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -6627,7 +6752,8 @@
                 "name": "Monk",
                 "level": 7
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Stillness of Mind",
@@ -6652,7 +6778,8 @@
                 "name": "Monk",
                 "level": 7
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -6663,7 +6790,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -6674,7 +6801,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2, or two ability scores by 1, at 4th, 8th, 12th, 16th, and 19th level.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -6684,7 +6811,8 @@
                 "name": "Monk",
                 "level": 8
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -6695,7 +6823,7 @@
           "features": [
             {
               "name": "Unarmored Movement",
-              "description": "Starting at 2nd level, your speed increases by 10 feet while you are not wearing armor or wielding a shield. This bonus increases when you reach certain monk levels, as shown in Table: The Monk.\n\nAt 9th level, you gain the ability to move along vertical surfaces and across liquids on your turn without falling during the move.",
+              "description": "Starting at 2nd level, your speed increases by **10 feet** while you are not wearing armor or wielding a shield. This bonus increases when you reach certain monk levels, as shown in Table: The Monk.\n\nAt 9th level, you gain the ability to move along vertical surfaces and across liquids on your turn without falling during the move.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -6706,7 +6834,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Your speed increases by 10 feet while you are not wearing armor or wielding a shield.",
+              "summary": "Increase your speed by 10 feet while not wearing armor or wielding a shield; move across vertical surfaces and liquids at 9th level.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -6716,7 +6844,8 @@
                 "name": "Monk",
                 "level": 9
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -6738,7 +6867,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Your mastery of the ki flowing through you makes you immune to disease and poison.",
+              "summary": "You are immune to disease and poison.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -6748,7 +6877,8 @@
                 "name": "Monk",
                 "level": 10
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -6770,7 +6900,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "When you reach 3rd level, you commit yourself to a monastic tradition, such as the Way of the Open Hand.",
+              "summary": "Choose a monastic tradition at 3rd level to gain features at 3rd, 6th, 11th, and 17th level.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -6780,7 +6910,8 @@
                 "name": "Monk",
                 "level": 11
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -6791,7 +6922,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -6802,7 +6933,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2, or two ability scores by 1, at 4th, 8th, 12th, 16th, and 19th level.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -6812,7 +6943,8 @@
                 "name": "Monk",
                 "level": 12
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -6834,7 +6966,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You learn to touch the ki of other minds so that you understand all spoken languages.",
+              "summary": "You understand all spoken languages, and any creature that understands at least one language can understand you.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -6844,7 +6976,8 @@
                 "name": "Monk",
                 "level": 13
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -6855,7 +6988,7 @@
           "features": [
             {
               "name": "Diamond Soul",
-              "description": "Beginning at 14th level, your mastery of ki grants you proficiency in all saving throws.\n\nAdditionally, whenever you make a saving throw and fail, you can spend 1 ki point to reroll it and take the second result.",
+              "description": "Beginning at 14th level, your mastery of ki grants you proficiency in all saving throws.\n\nAdditionally, whenever you make a saving throw and fail, you can spend **1** ki point to reroll it and take the second result.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -6866,7 +6999,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Your mastery of ki grants you proficiency in all saving throws.",
+              "summary": "You gain proficiency in all saving throws and can spend 1 ki point to reroll a failed saving throw.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -6876,7 +7009,8 @@
                 "name": "Monk",
                 "level": 14
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -6898,7 +7032,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Your ki sustains you so that you suffer none of the frailty of old age, and you can't be aged magically.",
+              "summary": "You no longer need food or water, you suffer no frailty from old age, and you cannot be aged magically.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -6908,7 +7042,8 @@
                 "name": "Monk",
                 "level": 15
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -6919,7 +7054,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -6930,7 +7065,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1 at 4th, 8th, 12th, 16th, and 19th level.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -6940,7 +7075,8 @@
                 "name": "Monk",
                 "level": 16
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -6962,7 +7098,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "When you reach 3rd level, you commit yourself to a monastic tradition, such as the Way of the Open Hand.",
+              "summary": "You choose a monastic tradition at 3rd level, gaining features at 3rd, 6th, 11th, and 17th level.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -6972,7 +7108,8 @@
                 "name": "Monk",
                 "level": 17
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -6983,7 +7120,7 @@
           "features": [
             {
               "name": "Empty Body",
-              "description": "Beginning at 18th level, you can use your action to spend 4 ki points to become invisible for 1 minute. During that time, you also have resistance to all damage but force damage.\n\nAdditionally, you can spend 8 ki points to cast the astral projection spell, without needing material components. When you do so, you can't take any other creatures with you.",
+              "description": "Beginning at 18th level, you can use your action to spend **4** ki points to become invisible for **1** minute. During that time, you also have resistance to all damage but force damage.\n\nAdditionally, you can spend **8** ki points to cast the astral projection spell, without needing material components. When you do so, you can't take any other creatures with you.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Action",
@@ -6994,7 +7131,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Use your action to spend 4 ki points to become invisible for 1 minute.",
+              "summary": "Spend 4 ki points to become invisible and gain damage resistance for 1 minute, or 8 ki points to cast astral projection alone.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -7004,7 +7141,8 @@
                 "name": "Monk",
                 "level": 18
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -7015,7 +7153,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you cannot increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -7026,7 +7164,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1 at 4th, 8th, 12th, 16th, and 19th level.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -7036,7 +7174,8 @@
                 "name": "Monk",
                 "level": 19
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -7047,7 +7186,7 @@
           "features": [
             {
               "name": "Perfect Self",
-              "description": "At 20th level, when you roll for initiative and have no ki points remaining, you regain 4 ki points.",
+              "description": "At 20th level, when you roll for initiative and have no ki points remaining, you regain **4** ki points.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -7058,7 +7197,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "When you roll for initiative and have no ki points remaining, you regain 4 ki points.",
+              "summary": "Regain 4 ki points when you roll for initiative if you have no ki points remaining.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -7068,7 +7207,8 @@
                 "name": "Monk",
                 "level": 20
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -7328,7 +7468,7 @@
           "features": [
             {
               "name": "Divine Sense",
-              "description": "The presence of strong evil registers on your senses like a noxious odor, and powerful good rings like heavenly music in your ears. As an action, you can open your awareness to detect such forces. Until the end of your next turn, you know the location of any celestial, fiend, or undead within 60 feet of you that is not behind total cover. You know the type (celestial, fiend, or undead) of any being whose presence you sense, but not its identity. Within the same radius, you also detect the presence of any place or object that has been consecrated or desecrated, as with the hallow spell.\n\nYou can use this feature a number of times equal to 1 + your Charisma modifier. When you finish a long rest, you regain all expended uses.",
+              "description": "The presence of strong evil registers on your senses like a noxious odor, and powerful good rings like heavenly music in your ears. As an action, you can open your awareness to detect such forces. Until the end of your next turn, you know the location of any celestial, fiend, or undead within **60 feet** of you that is not behind total cover. You know the type (celestial, fiend, or undead) of any being whose presence you sense, but not its identity. Within the same radius, you also detect the presence of any place or object that has been consecrated or desecrated, as with the hallow spell.\n\nYou can use this feature a number of times equal to **1 + your Charisma modifier**. When you finish a long rest, you regain all expended uses.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Action",
@@ -7339,7 +7479,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "The presence of strong evil registers on your senses like a noxious odor, and powerful good rings like heavenly music in your ears.",
+              "summary": "Use an action to detect celestials, fiends, undead, and consecrated or desecrated places within 60 feet.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -7349,11 +7489,12 @@
                 "name": "Paladin",
                 "level": 1
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Lay on Hands",
-              "description": "Your blessed touch can heal wounds. You have a pool of healing power that replenishes when you take a long rest. With that pool, you can restore a total number of hit points equal to your paladin level x 5.\n\nAs an action, you can touch a creature and draw power from the pool to restore a number of hit points to that creature, up to the maximum amount remaining in your pool.\n\nAlternatively, you can expend 5 hit points from your pool of healing to cure the target of one disease or neutralize one poison affecting it. You can cure multiple diseases and neutralize multiple poisons with a single use of Lay on Hands, expending hit points separately for each one.\n\nThis feature has no effect on undead and constructs.",
+              "description": "Your blessed touch can heal wounds. You have a pool of healing power that replenishes when you take a long rest. With that pool, you can restore a total number of hit points equal to your paladin level x **5**.\n\nAs an action, you can touch a creature and draw power from the pool to restore a number of hit points to that creature, up to the maximum amount remaining in your pool.\n\nAlternatively, you can expend **5** hit points from your pool of healing to cure the target of one disease or neutralize one poison affecting it. You can cure multiple diseases and neutralize multiple poisons with a single use of Lay on Hands, expending hit points separately for each one.\n\nThis feature has no effect on undead and constructs.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Action",
@@ -7364,7 +7505,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Your blessed touch can heal wounds.",
+              "summary": "Use an action to heal a creature or cure a disease/poison using a pool of hit points equal to your paladin level x 5.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -7374,7 +7515,8 @@
                 "name": "Paladin",
                 "level": 1
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -7385,7 +7527,7 @@
           "features": [
             {
               "name": "Fighting Style",
-              "description": "At 2nd level, you adopt a particular style of fighting as your specialty. Choose one of the following options. You can't take a Fighting Style option more than once, even if you later get to choose again.",
+              "description": "At 2nd level, you adopt a particular style of fighting as your specialty. Choose one of the following options. You cannot take a Fighting Style option more than once, even if you later get to choose again.",
               "type": "feature",
               "choices": {
                 "type": "single",
@@ -7408,7 +7550,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You adopt a particular style of fighting as your specialty.",
+              "summary": "Choose a specialized fighting style; you cannot take the same style more than once.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -7418,7 +7560,8 @@
                 "name": "Paladin",
                 "level": 2
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Spellcasting: Paladin",
@@ -7433,7 +7576,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "By 2nd level, you have learned to draw on divine magic through meditation and prayer to cast spells as a cleric does.",
+              "summary": "You can cast divine spells using meditation and prayer, similar to a cleric.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -7443,7 +7586,8 @@
                 "name": "Paladin",
                 "level": 2
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Divine Smite",
