@@ -283,7 +283,7 @@ export default function GlossaryPage() {
                   <span className="text-xs font-bold text-[var(--color-accent-indigo-600)] tracking-wide uppercase">
                     {t("glossary.viewDetails", "Lihat Detail")}
                   </span>
-                  <CaretRight size={16} weight="bold" className="text-[var(--color-accent-indigo-500)]" />
+                  <CaretRight size={16} className="text-[var(--color-accent-indigo-500)]" />
                 </div>
               </div>
             );
