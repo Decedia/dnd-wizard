@@ -1,14 +1,14 @@
 {
-  "2014_subclasses.moon.flavorText": "Sirkus Druid",
-  "2014_subclasses.moon.description": "Druid dari Circle of the Moon adalah penjaguar garang dari alam liar. Mereka menjalani upacara khusus yang memungkinkan mereka mengambil bentuk beast yang lebih kuat, berubah menjadi makhluk dengan kekuatan dan keganasan yang besar.\n\nDruid ini bertemu di tempat-tempat rahasia untuk berbagi informasi dan menyampaikan peringatan. Mereka adalah master of the wild, dapat memanggil beast paling kuat untuk membantu mereka dalam tugas suci mereka melindungi alam dari yang ingin menyakitkannya.",
-  "2014_subclasses.moon.combat-wild-shape.description": "Di level 2, Anda bisa menggunakan Wild Shape sebagai Bonus Action.",
-  "2014_subclasses.moon.combat-wild-shape.summary": "Di level 2, Anda bisa menggunakan Wild Shape sebagai Bonus Action. (bonus action).",
-  "2014_subclasses.moon.circle-forms.description": "Juga di level 2, Anda bisa berubah menjadi beast yang lebih kuat.",
-  "2014_subclasses.moon.circle-forms.summary": "Juga di level 2, Anda bisa berubah menjadi beast yang lebih kuat.",
-  "2014_subclasses.moon.primal-strike.description": "Mulai dari level 6, serangan Anda dalam beast form dihitung sebagai magical.",
-  "2014_subclasses.moon.primal-strike.summary": "Mulai dari level 6, serangan Anda dalam beast form dihitung sebagai magical.",
-  "2014_subclasses.moon.elemental-wild-shape.description": "Di level 10, Anda bisa menghabiskan dua penggunaan Wild Shape untuk berubah menjadi elemental.",
-  "2014_subclasses.moon.elemental-wild-shape.summary": "Di level 10, Anda bisa menghabiskan dua penggunaan Wild Shape untuk berubah menjadi elemental. (action).",
-  "2014_subclasses.moon.thousand-forms.description": "Di level 14, Anda bisa cast spell alter self according to your will.",
-  "2014_subclasses.moon.thousand-forms.summary": "Di level 14, Anda bisa cast spell alter self according to your will."
+  "2014_subclasses.moon.flavorText": "Druid dari Circle of the Moon berperan sebagai pelindung tatanan alam yang ganas. Melalui ritual khusus, mereka memperoleh kemampuan untuk mengambil wujud binatang yang lebih kuat, bertransformasi menjadi makhluk dengan kekuatan dan keganasan yang luar biasa.\n\nPara druid ini berkumpul di lokasi rahasia untuk bertukar informasi dan saling memberi peringatan. Sebagai penguasa alam liar, mereka memanggil binatang-binatang terkuat untuk membantu tugas suci mereka: melindungi alam dari siapa pun yang mencoba merusaknya.",
+  "2014_subclasses.moon.description": "Druid dari Circle of the Moon adalah pelindung tatanan alam yang ganas. Mereka menjalani ritual khusus yang memungkinkan mereka mengambil wujud binatang yang lebih kuat, bertransformasi menjadi makhluk dengan kekuatan dan keganasan besar.\n\nPara druid ini bertemu di tempat-tempat rahasia untuk berbagi informasi dan menyampaikan peringatan. Mereka adalah penguasa alam liar, mampu memanggil binatang terkuat untuk membantu tugas suci mereka dalam melindungi alam dari mereka yang ingin mencelakainya.",
+  "2014_subclasses.moon.combat-wild-shape.description": "Mulai level 2, kamu bisa menggunakan Wild Shape hanya dengan menggunakan Bonus Action.",
+  "2014_subclasses.moon.combat-wild-shape.summary": "Menggunakan Wild Shape sebagai Bonus Action.",
+  "2014_subclasses.moon.circle-forms.description": "Pada level 2, kamu mampu bertransformasi menjadi berbagai bentuk binatang yang memiliki kekuatan lebih besar.",
+  "2014_subclasses.moon.circle-forms.summary": "Berubah menjadi bentuk binatang yang lebih kuat.",
+  "2014_subclasses.moon.primal-strike.description": "Mulai level 6, semua serangan yang kamu lakukan saat berada dalam bentuk binatang dianggap sebagai serangan magis.",
+  "2014_subclasses.moon.primal-strike.summary": "Serangan saat dalam bentuk binatang dianggap sebagai serangan magis.",
+  "2014_subclasses.moon.elemental-wild-shape.description": "Pada level 10, kamu bisa menghabiskan dua penggunaan Wild Shape sekaligus untuk bertransformasi menjadi makhluk elemental.",
+  "2014_subclasses.moon.elemental-wild-shape.summary": "Gunakan dua kali jatah Wild Shape untuk berubah menjadi elemental.",
+  "2014_subclasses.moon.thousand-forms.description": "Pada level 14, kamu bisa merapal sihir alter self kapan saja tanpa batas.",
+  "2014_subclasses.moon.thousand-forms.summary": "Merapal sihir alter self sesuka hati."
 }
