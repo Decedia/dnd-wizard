@@ -21,7 +21,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gain proficiency with alchemist's supplies. (permanent).",
+          "summary": "Gain proficiency with alchemist's supplies or another type of artisan's tools.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -31,12 +31,13 @@
             "name": "Alchemist",
             "level": 3
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Experimental Elixir",
           "level": 3,
-          "description": "Whenever you finish a long rest, you can produce a number of experimental elixirs equal to your Intelligence modifier (minimum of 1). You can use a bonus action to drink one of your elixirs or administer it to another creature. The elixir produces one of the following effects (your choice): Healing (regains 2d4 + Intelligence modifier hit points), Swiftness (speed increases by 10 feet for 1 hour), or Resilience (gain a +1 bonus to AC for 10 minutes).",
+          "description": "Whenever you finish a long rest, you can produce a number of experimental elixirs equal to your Intelligence modifier (minimum of 1). You can use a bonus action to drink one of your elixirs or administer it to another creature. The elixir produces one of the following effects (your choice):\n- Healing (regains **2d4** + Intelligence modifier hit points)\n- Swiftness (speed increases by **10 feet** for **1 hour**)\n- Resilience (gain a **+1** bonus to AC for **10 minutes**)",
           "featureType": "Active",
           "actionType": "Bonus Action",
           "uses": null,
@@ -46,7 +47,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Whenever you finish a long rest, you can produce a number of experimental elixirs equal to your Intelligence modifier (minimum of 1).",
+          "summary": "Produce a number of elixirs equal to your Intelligence modifier (minimum 1) after a long rest to grant healing, speed, or AC bonuses.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -56,7 +57,8 @@
             "name": "Alchemist",
             "level": 3
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Alchemical Savant",
@@ -71,7 +73,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can add your Intelligence modifier to one roll of acid, fire, necrotic, or poison damage. (action).",
+          "summary": "Add your Intelligence modifier to one roll of acid, fire, necrotic, or poison damage when casting a spell with alchemist's supplies.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -81,7 +83,8 @@
             "name": "Alchemist",
             "level": 5
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Restorative Reagents",
@@ -96,7 +99,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can do so a number of times equal to your Intelligence modifier (minimum of once), and you regain all expended uses when you finish a long rest. (action).",
+          "summary": "Cast lesser restoration without expending a spell slot or material components a number of times equal to your Intelligence modifier (minimum of once) per long rest.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -106,7 +109,8 @@
             "name": "Alchemist",
             "level": 9
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Chemical Mastery",
@@ -121,7 +125,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gain resistance to acid and poison damage, and you have advantage on saving throws against being poisoned.",
+          "summary": "Gain resistance to acid and poison damage and advantage on saving throws against being poisoned.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -131,11 +135,13 @@
             "name": "Alchemist",
             "level": 15
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "EGW",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "index": "armorer",
@@ -166,12 +172,13 @@
             "name": "Armorer",
             "level": 3
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Arcane Armor",
           "level": 3,
-          "description": "Your armor becomes magical. You can don or doff your armor as an action, and it can't be removed against your will. While wearing your armor, you gain the following benefits: You have a +1 bonus to AC, you can use your Intelligence modifier instead of Strength for attack and damage rolls with weapons, and you can use your armor as a spellcasting focus.",
+          "description": "Your armor becomes magical. You can don or doff your armor as an action, and it can't be removed against your will.\n\nWhile wearing your armor, you gain the following benefits:\n- You have a **+1** bonus to AC.\n- You can use your Intelligence modifier instead of Strength for attack and damage rolls with weapons.\n- You can use your armor as a spellcasting focus.",
           "featureType": "Active",
           "actionType": "Action",
           "uses": null,
@@ -181,7 +188,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can don or doff your armor as an action, and it can't be removed against your will. (action).",
+          "summary": "Don or doff armor as an action; it cannot be removed against your will. Gain +1 AC, use Intelligence for weapon attacks/damage, and use armor as a focus.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -191,12 +198,13 @@
             "name": "Armorer",
             "level": 3
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Armor Model",
           "level": 3,
-          "description": "You can customize your armor for combat or stealth. When you finish a long rest, you can change your armor model. Choose one of the following: Guardian (you have advantage on Charisma (Intimidation) checks, and when you take the Attack action on your turn, you can make an additional melee attack from the armor's thunder gauntlets) or Infiltrator (you have advantage on Charisma (Stealth) checks, and your armor's lightning launcher deals an extra 1d6 lightning damage).",
+          "description": "You can customize your armor for combat or stealth. When you finish a long rest, you can change your armor model. Choose one of the following:\n\n- Guardian: you have advantage on Charisma (Intimidation) checks, and when you take the Attack action on your turn, you can make an additional melee attack from the armor's thunder gauntlets.\n- Infiltrator: you have advantage on Charisma (Stealth) checks, and your armor's lightning launcher deals an extra **1d6** lightning damage.",
           "featureType": "Active",
           "actionType": "Action",
           "uses": null,
@@ -206,7 +214,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Choose one of the following: Guardian (you have advantage on Charisma (Intimidation) checks, and when you take the Attack action on your turn, you can make an additional melee attack.",
+          "summary": "Choose Guardian for advantage on Charisma (Intimidation) checks and an extra melee attack, or Infiltrator for advantage on Charisma (Stealth) checks and extra lightning damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -216,7 +224,8 @@
             "name": "Armorer",
             "level": 3
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Extra Attack",
@@ -231,7 +240,7 @@
           "effect": null,
           "onUse": null,
           "scaling": "Three attacks at level 11, four attacks at level 20",
-          "summary": "Can attack twice, instead of once, whenever you take the Attack action on your turn. (only when taking the attack action, permanent, scales).",
+          "summary": "You can attack twice, instead of once, whenever you take the Attack action on your turn.",
           "grantsSpells": false,
           "grantsAttack": true,
           "grantsSkills": false,
@@ -241,12 +250,13 @@
             "name": "Armorer",
             "level": 5
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Armor Modifications",
           "level": 9,
-          "description": "You learn 2 additional artificer infusions, and you can apply them to your armor. You can have up to 4 infusions active on your armor at a time.",
+          "description": "You learn **2** additional artificer infusions, and you can apply them to your armor. You can have up to **4** infusions active on your armor at a time.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -256,7 +266,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Learn 2 additional artificer infusions, and you can apply them to your armor.",
+          "summary": "Learn 2 additional artificer infusions that can be applied to your armor.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -266,12 +276,13 @@
             "name": "Armorer",
             "level": 9
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Perfected Armor",
           "level": 15,
-          "description": "Your armor's power increases. While wearing your armor, you gain the following benefits based on your armor model: Guardian (when a creature within 5 feet of you hits you with an attack, you can use your reaction to deal 1d6 thunder damage to that creature) or Infiltrator (when you hit a creature with an attack, you can deal an additional 1d6 lightning damage).",
+          "description": "Your armor's power increases. While wearing your armor, you gain the following benefits based on your armor model:\n\n- Guardian: when a creature within **5 feet** of you hits you with an attack, you can use your reaction to deal **1d6** thunder damage to that creature.\n- Infiltrator: when you hit a creature with an attack, you can deal an additional **1d6** lightning damage.",
           "featureType": "Active",
           "actionType": "Reaction",
           "uses": null,
@@ -281,7 +292,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gain the following benefits based on your armor model: Guardian.",
+          "summary": "Gain a reaction-based thunder attack as a Guardian, or additional lightning damage on hits as an Infiltrator.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -291,11 +302,13 @@
             "name": "Armorer",
             "level": 15
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "EGW",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "index": "artillerist",
@@ -316,7 +329,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gain proficiency with woodcarver's tools. (permanent).",
+          "summary": "You gain proficiency with woodcarver's tools.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -326,12 +339,13 @@
             "name": "Artillerist",
             "level": 3
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Eldritch Cannon",
           "level": 3,
-          "description": "You can use woodcarver's tools and 10 gp worth of raw materials to create a Small eldritch cannon in an unoccupied space within 5 feet of you. The cannon has AC 18 and hit points equal to five times your artificer level. You can have only one cannon at a time. As an action, you can command the cannon to move up to 15 feet. You can use a bonus action to activate the cannon, causing it to produce one of the following effects: Flamethrower (15-foot cone, 2d8 fire damage, Dexterity saving throw), Force Ballista (ranged spell attack, 2d8 force damage, push 5 feet), or Protector (10-foot radius, 1d8 + Intelligence modifier temporary hit points).",
+          "description": "You can use woodcarver's tools and 10 gp worth of raw materials to create a Small eldritch cannon in an unoccupied space within 5 feet of you. The cannon has AC 18 and hit points equal to five times your artificer level. You can have only one cannon at a time.\n\nAs an action, you can command the cannon to move up to 15 feet.\n\nYou can use a bonus action to activate the cannon, causing it to produce one of the following effects:\n- Flamethrower: Each creature in a 15-foot cone must make a Dexterity saving throw. A creature takes **2d8** fire damage on a failed save, or half as much damage on a successful one.\n- Force Ballista: The cannon makes a ranged spell attack. On a hit, the target takes **2d8** force damage and is pushed 5 feet away from the cannon.\n- Protector: Each creature of your choice within 10 feet of the cannon gains **1d8** + your Intelligence modifier temporary hit points.",
           "featureType": "Active",
           "actionType": "Bonus Action",
           "uses": null,
@@ -341,7 +355,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can use woodcarver's tools and 10 gp worth of raw materials to create a Small eldritch cannon in an unoccupied space within 5 feet of you. (bonus action).",
+          "summary": "Spend 10 gp and use woodcarver's tools to create a Small cannon within 5 feet as a bonus action.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -351,12 +365,13 @@
             "name": "Artillerist",
             "level": 3
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Arcane Firearm",
           "level": 5,
-          "description": "You can use a wand, staff, or rod as a spellcasting focus. When you cast an artificer spell through this focus, you can roll a d8 and add it to one damage roll of the spell.",
+          "description": "You can use a wand, staff, or rod as a spellcasting focus. When you cast an artificer spell through this focus, you can roll a **d8** and add it to one damage roll of the spell.",
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -366,7 +381,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can roll a d8 and add it to one damage roll of the spell. (action).",
+          "summary": "Add **1d8** to one damage roll of an artificer spell cast through a wand, staff, or rod.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -376,12 +391,13 @@
             "name": "Artillerist",
             "level": 5
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Explosive Cannon",
           "level": 9,
-          "description": "Your cannon's damage increases by 1d8. In addition, you can detonate your cannon as an action. Each creature within 20 feet of the cannon must make a Dexterity saving throw against your spell save DC, taking 3d8 force damage on a failed save, or half as much damage on a successful one.",
+          "description": "Your cannon's damage increases by **1d8**.\n\nIn addition, you can detonate your cannon as an action. Each creature within 20 feet of the cannon must make a Dexterity saving throw against your spell save DC, taking **3d8** force damage on a failed save, or half as much damage on a successful one.",
           "featureType": "Active",
           "actionType": "Action",
           "uses": null,
@@ -391,7 +407,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Each creature within 20 feet of the cannon must make a Dexterity saving throw against your spell save DC, taking 3d8 force damage on a failed save, or half.",
+          "summary": "Increase cannon damage by **1d8** and detonate it to deal **3d8** force damage to creatures within 20 feet.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -401,12 +417,13 @@
             "name": "Artillerist",
             "level": 9
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Fortified Position",
           "level": 15,
-          "description": "You and your allies have half cover while within 10 feet of your cannon. In addition, you can have two cannons at a time, and you can activate both with the same bonus action.",
+          "description": "You and your allies have half cover while within 10 feet of your cannon.\n\nIn addition, you can have two cannons at a time, and you can activate both with the same bonus action.",
           "featureType": "Active",
           "actionType": "Bonus Action",
           "uses": null,
@@ -416,7 +433,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "And your allies have half cover while within 10 feet of your cannon. (bonus action).",
+          "summary": "You and allies within 10 feet of your cannon have half cover; you can now maintain and activate two cannons.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -426,11 +443,13 @@
             "name": "Artillerist",
             "level": 15
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "EGW",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "index": "battle-smith",
@@ -451,7 +470,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gain proficiency with smith's tools and heavy armor. (permanent).",
+          "summary": "Gain proficiency with smith's tools and heavy armor.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -461,7 +480,8 @@
             "name": "Battle Smith",
             "level": 3
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Battle Ready",
@@ -476,7 +496,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can use your Intelligence modifier instead of Strength or Dexterity for the attack and damage rolls. (action).",
+          "summary": "Use your Intelligence modifier instead of Strength or Dexterity for attack and damage rolls with magic weapons.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -486,12 +506,13 @@
             "name": "Battle Smith",
             "level": 3
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Steel Defender",
           "level": 3,
-          "description": "You can use smith's tools and 10 gp worth of raw materials to create a steel defender in an unoccupied space within 5 feet of you. The defender has AC 15 + your proficiency bonus and hit points equal to 2 + your Intelligence modifier + five times your artificer level. It is friendly to you and your companions, and it obeys your commands. In combat, the defender shares your initiative count, but it takes its turn immediately after yours.",
+          "description": "You can use smith's tools and 10 gp worth of raw materials to create a steel defender in an unoccupied space within 5 feet of you. The defender has AC **15** + your proficiency bonus and hit points equal to **2** + your Intelligence modifier + five times your artificer level. It is friendly to you and your companions, and it obeys your commands. In combat, the defender shares your initiative count, but it takes its turn immediately after yours.",
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -501,7 +522,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can use smith's tools and 10 gp worth of raw materials to create a steel defender in an unoccupied space within 5 feet of you. (action).",
+          "summary": "Use smith's tools and 10 gp of materials to create a steel defender in an unoccupied space within 5 feet of you.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -511,7 +532,8 @@
             "name": "Battle Smith",
             "level": 3
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Extra Attack",
@@ -526,7 +548,7 @@
           "effect": null,
           "onUse": null,
           "scaling": "Three attacks at level 11, four attacks at level 20",
-          "summary": "Can attack twice, instead of once, whenever you take the Attack action on your turn. (only when taking the attack action, permanent, scales).",
+          "summary": "Attack twice, instead of once, whenever you take the Attack action on your turn.",
           "grantsSpells": false,
           "grantsAttack": true,
           "grantsSkills": false,
@@ -536,12 +558,13 @@
             "name": "Battle Smith",
             "level": 5
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Arcane Jolt",
           "level": 9,
-          "description": "When you hit a creature with a magic weapon, you can channel a burst of arcane energy into the target. The target takes an additional 2d6 force damage, and if the target is a construct, it takes an additional 2d6 force damage. You can use this feature a number of times equal to your Intelligence modifier (minimum of once), and you regain all expended uses when you finish a long rest.",
+          "description": "When you hit a creature with a magic weapon, you can channel a burst of arcane energy into the target. The target takes an additional **2d6** force damage, and if the target is a construct, it takes an additional **2d6** force damage. You can use this feature a number of times equal to your Intelligence modifier (minimum of once), and you regain all expended uses when you finish a long rest.",
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -551,7 +574,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "The target takes an additional 2d6 force damage, and if the target is a construct, it takes an additional 2d6 force damage. (action).",
+          "summary": "Deal an additional 2d6 force damage on a hit with a magic weapon, and an additional 2d6 force damage if the target is a construct.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -561,12 +584,13 @@
             "name": "Battle Smith",
             "level": 9
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Improved Defender",
           "level": 15,
-          "description": "Your Arcane Jolt and steel defender become more powerful. The extra damage of Arcane Jolt increases to 4d6. In addition, when your steel defender uses its Deflect Attack feature, the attacker takes force damage equal to 1d4 + your Intelligence modifier.",
+          "description": "Your Arcane Jolt and steel defender become more powerful. The extra damage of Arcane Jolt increases to **4d6**. In addition, when your steel defender uses its Deflect Attack feature, the attacker takes force damage equal to **1d4** + your Intelligence modifier.",
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -576,7 +600,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "In addition, when your steel defender uses its Deflect Attack feature, the attacker takes force damage equal to 1d4 + your Intelligence modifier. (action).",
+          "summary": "Increases Arcane Jolt damage to 4d6 and allows the steel defender to deal 1d4 + Intelligence modifier force damage when using Deflect Attack.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -586,11 +610,13 @@
             "name": "Battle Smith",
             "level": 15
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "EGW",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Barbarian",
@@ -602,7 +628,7 @@
       "features": [
         {
           "name": "Ancestral Protectors",
-          "description": "Starting when you choose this path at 3rd level, spectral warriors appear when you enter your rage. While you're raging, the first creature you hit with an attack on your turn has disadvantage on any attack target that isn't you or the warrior. Additionally, if the target tries to make an attack while within 5 feet of you, it must first make a Wisdom saving throw. On a failed save, the target must choose a different target or the attack fails. On a successful save, the target can make its attack as normal. This effect lasts until the start of your next turn.",
+          "description": "Starting when you choose this path at 3rd level, spectral warriors appear when you enter your rage. While you are raging, the first creature you hit with an attack on your turn has disadvantage on any attack target that isn't you or the warrior.\n\nAdditionally, if the target tries to make an attack while within 5 feet of you, it must first make a Wisdom saving throw. On a failed save, the target must choose a different target or the attack fails. On a successful save, the target can make its attack as normal. This effect lasts until the start of your next turn.",
           "level": 3,
           "featureType": "Active",
           "actionType": null,
@@ -613,7 +639,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Additionally, if the target tries to make an attack while within 5 feet of you, it must first make a Wisdom saving throw. (action).",
+          "summary": "While raging, the first creature you hit has disadvantage on attacks against targets other than you, and must pass a Wisdom save to attack you if within 5 feet.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -623,11 +649,12 @@
             "name": "Ancestral Guardian",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Spirit Shield",
-          "description": "Beginning at 6th level, the guardian spirits that aid you can provide protection to those you defend. If a creature you can see takes damage while within 30 feet of you, you can use your reaction to reduce that damage by 2d6. You can reduce the damage by an additional 1d6 at 10th level (3d6) and at 14th level (4d6).",
+          "description": "Beginning at 6th level, the guardian spirits that aid you can provide protection to those you defend. If a creature you can see takes damage while within 30 feet of you, you can use your reaction to reduce that damage by **2d6**.\n\nYou can reduce the damage by an additional **1d6** at 10th level (**3d6**) and at 14th level (**4d6**).",
           "level": 6,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -638,7 +665,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can use your reaction to reduce that damage by 2d6. (reaction).",
+          "summary": "Use your reaction to reduce damage taken by a creature within 30 feet by 2d6, increasing to 3d6 at 10th level and 4d6 at 14th level.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -648,7 +675,8 @@
             "name": "Ancestral Guardian",
             "level": 6
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Consult the Spirits",
@@ -663,7 +691,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 10th level, you cast the augury or clairvoyance spell, without requiring a spell slot or material components, and you regain the ability to cast it this way when you.",
+          "summary": "Cast augury or clairvoyance once per long rest without a spell slot or material components, using Wisdom as your spellcasting ability.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -673,7 +701,8 @@
             "name": "Ancestral Guardian",
             "level": 10
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Vengeful Ancestors",
@@ -688,7 +717,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "The attacker takes an amount of force damage equal to the damage your Spirit Shield prevents. (action).",
+          "summary": "When you use Spirit Shield, the attacker takes force damage equal to the amount of damage you prevented.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -698,23 +727,25 @@
             "name": "Ancestral Guardian",
             "level": 14
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "XGE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Barbarian",
       "classIndex": "barbarian",
       "index": "berserker",
       "name": "Berserker",
-      "flavorText": "Primal Path",
-      "description": "For some barbarians, rage is a means to an end--that end being violence. The Path of the Berserker is a path of untrammeled fury, slick with blood. As you enter the berserker's rage, you thrill in the chaos of battle, heedless of your own health or well-being.",
+      "flavorText": "Primal Path\n\nFor some barbarians, rage is a means to an end—that end being violence. The Path of the Berserker is a path of untrammeled fury, slick with blood. As you enter the berserker's rage, you thrill in the chaos of battle, heedless of your own health or well-being.",
+      "description": "For some barbarians, rage is a means to an end—that end being violence. The Path of the Berserker is a path of untrammeled fury, slick with blood. As you enter the berserker's rage, you thrill in the chaos of battle, heedless of your own health or well-being.",
       "features": [
         {
           "name": "Frenzy",
-          "description": "Starting when you choose this path at 3rd level, you can go into a frenzy when you rage. If you do so, for the duration of your rage you can make a single melee weapon attack as a bonus action on each of your turns after this one. When your rage ends, you suffer one level of exhaustion (as described in appendix A).",
+          "description": "Starting when you choose this path at 3rd level, you can go into a frenzy when you rage. If you do so, for the duration of your rage you can make a single melee weapon attack as a bonus action on each of your turns after this one. When your rage ends, you suffer one level of exhaustion.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -725,7 +756,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "For the duration of your rage you can make a single melee weapon attack as a bonus action on each of your turns after this one. (bonus action).",
+          "summary": "When raging, you can make one melee weapon attack as a bonus action on subsequent turns, but suffer one level of exhaustion when the rage ends.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -735,7 +766,8 @@
             "name": "Berserker",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Mindless Rage",
@@ -750,7 +782,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "The effect is suspended for the duration of the rage. (action).",
+          "summary": "You cannot be charmed or frightened while raging; existing effects of these conditions are suspended during your rage.",
           "grantsSpells": false,
           "grantsAttack": true,
           "grantsSkills": false,
@@ -760,11 +792,12 @@
             "name": "Berserker",
             "level": 6
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Intimidating Presence",
-          "description": "Beginning at 10th level, you can use your action to frighten someone with your menacing presence. When you do so, choose one creature that you can see within 30 feet of you. If the creature can see or hear you, it must succeed on a Wisdom saving throw (DC equal to 8 + your proficiency bonus + your Charisma modifier) or be frightened of you until the end of your next turn. On subsequent turns, you can use your action to extend the duration of this effect on the frightened creature until the end of your next turn. This effect ends if the creature ends its turn out of line of sight or more than 60 feet away from you.\n If the creature succeeds on its saving throw, you can't use this feature on that creature again for 24 hours.",
+          "description": "Beginning at 10th level, you can use your action to frighten someone with your menacing presence. When you do so, choose one creature that you can see within **30 feet** of you. If the creature can see or hear you, it must succeed on a Wisdom saving throw (DC equal to **8 + your proficiency bonus + your Charisma modifier**) or be frightened of you until the end of your next turn. On subsequent turns, you can use your action to extend the duration of this effect on the frightened creature until the end of your next turn. This effect ends if the creature ends its turn out of line of sight or more than **60 feet** away from you.\n\nIf the creature succeeds on its saving throw, you can't use this feature on that creature again for **24 hours**.",
           "level": 10,
           "featureType": "Active",
           "actionType": "Action",
@@ -775,7 +808,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can't use this feature on that creature again for 24 hours. (action).",
+          "summary": "Use an action to frighten a creature within 30 feet; if they succeed on the save, you cannot use this on them again for 24 hours.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -785,11 +818,12 @@
             "name": "Berserker",
             "level": 10
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Retaliation",
-          "description": "Starting at 14th level, when you take damage from a creature that is within 5 feet of you, you can use your reaction to make a melee weapon Attack against that creature.",
+          "description": "Starting at 14th level, when you take damage from a creature that is within **5 feet** of you, you can use your reaction to make a melee weapon Attack against that creature.",
           "level": 14,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -800,7 +834,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Starting at 14th level, when you take damage from a creature that is within 5 feet of you, you can use your reaction to make a melee weapon Attack against.",
+          "summary": "When you take damage from a creature within 5 feet, you can use your reaction to make a melee weapon attack against it.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -810,11 +844,13 @@
             "name": "Berserker",
             "level": 14
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "PHB",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Path of the Beast",
@@ -829,14 +865,15 @@
           "featureType": "Active",
           "actionType": "Bonus Action",
           "duration": "1 minute (Rage)",
-          "summary": "Manifest a natural weapon (Bite, Claws, or Tail) when entering rage.",
-          "description": "When you enter your rage, you can transform, revealing the bestial power within you. Until the rage ends, you manifest a natural weapon. It counts as a simple melee weapon for you, and you add your Strength modifier to the attack and damage rolls when you attack with it. You choose the weapon each time you rage: Bite (1d8 piercing, heal PB hit points once per turn when below half HP), Claws (1d6 slashing, make an additional claw attack once per turn when taking the Attack action), or Tail (1d8 piercing with reach, reaction to add 1d8 to your AC against an attack that would hit you).",
+          "summary": "Manifest a natural weapon (Bite, Claws, or Tail) that lasts for the duration of your rage.",
+          "description": "When you enter your rage, you can transform, revealing the bestial power within you. Until the rage ends, you manifest a natural weapon. It counts as a simple melee weapon for you, and you add your Strength modifier to the attack and damage rolls when you attack with it.\n\nYou choose the weapon each time you rage:\n- Bite (**1d8** piercing). Once per turn, if you are below half your hit point maximum, you can heal a number of hit points equal to your proficiency bonus.\n- Claws (**1d6** slashing). Once per turn, when you take the Attack action, you can make one additional claw attack.\n- Tail (**1d8** piercing, reach). You can use your reaction to add **1d8** to your AC against an attack that would hit you.",
           "source": {
             "type": "subclass",
             "name": "Path of the Beast",
             "level": 3
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Bestial Soul",
@@ -844,14 +881,15 @@
           "featureType": "Passive",
           "actionType": null,
           "duration": "Permanent / Short Rest",
-          "summary": "Natural weapons count as magical; adapt movement with climbing, swimming, or jumping.",
-          "description": "The feral spirit within you grows stronger, altering your physical form. The natural weapons you manifest with Form of the Beast now count as magical for the purpose of overcoming resistance and immunity to nonmagical attacks and damage. In addition, when you finish a short or long rest, you can choose one of the following benefits until your next rest: Swimming (gain swimming speed equal to walking speed and can breathe underwater), Climbing (gain climbing speed equal to walking speed and climb difficult surfaces without checks), or Jumping (extend your jump distance by rolling an Athletics check and adding the total to the distance in feet).",
+          "summary": "Your natural weapons become magical, and you gain a movement benefit (swimming, climbing, or jumping) after a rest.",
+          "description": "The feral spirit within you grows stronger, altering your physical form. The natural weapons you manifest with Form of the Beast now count as magical for the purpose of overcoming resistance and immunity to nonmagical attacks and damage.\n\nIn addition, when you finish a short or long rest, you can choose one of the following benefits until your next rest:\n- Swimming (you gain a swimming speed equal to your walking speed and can breathe underwater).\n- Climbing (you gain a climbing speed equal to your walking speed and can climb difficult surfaces without making ability checks).\n- Jumping (you extend your jump distance by rolling an Athletics check and adding the total to the distance in feet).",
           "source": {
             "type": "subclass",
             "name": "Path of the Beast",
             "level": 6
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Infectious Fury",
@@ -862,14 +900,15 @@
             "total": "Proficiency Bonus",
             "recharge": "Long Rest"
           },
-          "summary": "Curse a creature you strike with natural weapons to deal 2d12 psychic damage or strike an ally.",
-          "description": "When you hit a creature with your natural weapons while raging, the beast within you can curse your target with rabid fury. The target must succeed on a Wisdom saving throw (DC 8 + your proficiency bonus + your Constitution modifier) or suffer one of the following effects (your choice): the target must use its reaction to make a melee attack against another creature of your choice that you can see, or the target takes 2d12 psychic damage. You can use this feature a number of times equal to your proficiency bonus, regaining all uses upon finishing a long rest.",
+          "summary": "Force a creature you hit with natural weapons to take **2d12** psychic damage or make a melee attack against another creature.",
+          "description": "When you hit a creature with your natural weapons while raging, you can curse your target with rabid fury. The target must succeed on a Wisdom saving throw (DC 8 + your proficiency bonus + your Constitution modifier) or suffer one of the following effects of your choice:\n- The target must use its reaction to make a melee attack against another creature of your choice that you can see.\n- The target takes **2d12** psychic damage.\n\nYou can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
           "source": {
             "type": "subclass",
             "name": "Path of the Beast",
             "level": 10
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Call the Hunt",
@@ -880,16 +919,18 @@
             "total": "Proficiency Bonus",
             "recharge": "Long Rest"
           },
-          "summary": "Rally your pack to gain 5 temp HP per ally and grant allies +1d6 damage on attacks.",
-          "description": "The beast within you grows so powerful that you can spread its ferocity to your companions and be sustained by their presence. When you enter your rage, you can choose a number of willing creatures you can see within 30 feet of you equal to your Constitution modifier (minimum of one). You gain 5 temporary hit points for each creature that accepts this feature. Until the rage ends, the chosen creatures each gain an extra 1d6 damage on their melee weapon damage rolls once per turn. You can use this feature a number of times equal to your proficiency bonus, regaining all uses upon a long rest.",
+          "summary": "Gain 5 temporary hit points per participating ally and grant those allies an extra **1d6** damage on melee weapon attacks.",
+          "description": "The beast within you grows so powerful that you can spread its ferocity to your companions and be sustained by their presence. When you enter your rage, you can choose a number of willing creatures you can see within 30 feet of you equal to your Constitution modifier (minimum of one).\n\nYou gain 5 temporary hit points for each creature that accepts this feature. Until the rage ends, the chosen creatures each gain an extra **1d6** damage on their melee weapon damage rolls once per turn.\n\nYou can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
           "source": {
             "type": "subclass",
             "name": "Path of the Beast",
             "level": 14
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         }
-      ]
+      ],
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Path of Wild Magic",
@@ -907,14 +948,15 @@
             "total": "Proficiency Bonus",
             "recharge": "Long Rest"
           },
-          "summary": "Sense the presence of any spell or magic item within 60 feet.",
-          "description": "As an action, you can open your awareness to the presence of concentrated magic. Until the end of your next turn, you know the location of any spell or magic item within 60 feet of you that isn't behind total cover. When you sense a spell, you learn its school of magic. You can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+          "summary": "Detect the location and school of any spell or magic item within 60 feet.",
+          "description": "As an action, you can open your awareness to the presence of concentrated magic. Until the end of your next turn, you know the location of any spell or magic item within 60 feet of you that isn't behind total cover. When you sense a spell, you learn its school of magic.\n\nYou can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
           "source": {
             "type": "subclass",
             "name": "Path of Wild Magic",
             "level": 3
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Wild Magic Surge",
@@ -922,14 +964,15 @@
           "featureType": "Active",
           "actionType": "Bonus Action",
           "duration": "1 minute (Rage)",
-          "summary": "Roll a d8 on the Wild Magic table upon raging to produce a chaotic magical surge.",
-          "description": "Magical energy roils inside you. Whenever you enter your rage, roll on the Wild Magic Surge table to determine the magical effect produced: 1: Each creature of your choice within 30 feet takes 1d12 necrotic damage and you gain 1d12 temp HP. 2: Teleport up to 30 feet as a bonus action each turn. 3: Summon an intangible spirit within 30 feet that explodes for 1d6 force damage on hit. 4: A magic light infuses your weapon, dealing +1d6 force damage and gaining the light and thrown properties. 5: Retaliate against attackers with 1d6 force damage when struck. 6: Gain a +1 AC protective aura for yourself and allies within 10 feet. 7: The ground within 15 feet of you turns difficult terrain for enemies. 8: Shoot a beam of radiant light up to 30 feet blinding the target and dealing 1d6 radiant damage.",
+          "summary": "Roll a **d8** when raging to trigger a random magical effect.",
+          "description": "Magical energy roils inside you. Whenever you enter your rage, roll on the Wild Magic Surge table to determine the magical effect produced:\n- 1: Each creature of your choice within 30 feet takes **1d12** necrotic damage and you gain **1d12** temporary hit points.\n- 2: You can teleport up to 30 feet as a bonus action on each of your turns.\n- 3: You summon an intangible spirit within 30 feet that explodes for **1d6** force damage when it hits.\n- 4: Your weapon is infused with magic, dealing an extra **1d6** force damage and gaining the light and thrown properties.\n- 5: You retaliate against attackers, dealing **1d6** force damage to a creature that hits you.\n- 6: You gain a protective aura that grants a +1 bonus to AC for you and allies within 10 feet.\n- 7: The ground within 15 feet of you becomes difficult terrain for enemies.\n- 8: You shoot a beam of radiant light up to 30 feet, blinding the target and dealing **1d6** radiant damage.",
           "source": {
             "type": "subclass",
             "name": "Path of Wild Magic",
             "level": 3
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Bolstering Presence",
@@ -940,55 +983,59 @@
             "total": "Proficiency Bonus",
             "recharge": "Long Rest"
           },
-          "summary": "Bolster an ally to give +1d3 on attack rolls/ability checks or restore a 1st-3rd level spell slot.",
-          "description": "You can harness your wild magic to bolster yourself or a companion. As an action, you can touch a creature (which can be yourself) and confer one of the following benefits: For 10 minutes, the creature can add a 1d3 roll to any attack roll or ability check it makes. Or, roll a 1d3 to restore one expended spell slot to the creature of a level equal to or lower than the rolled number. Once you confer either benefit, you can't do so again until you finish a long rest, unless you expend a use of your rage to do so.",
+          "summary": "Grant a creature a **1d3** bonus to attack rolls and ability checks, or restore a spell slot of 1st, 2nd, or 3rd level.",
+          "description": "You can harness your wild magic to bolster yourself or a companion. As an action, you can touch a creature (including yourself) and confer one of the following benefits:\n- For 10 minutes, the creature can add a **1d3** roll to any attack roll or ability check it makes.\n- Roll a **1d3** to restore one expended spell slot to the creature of a level equal to or lower than the number rolled.\n\nOnce you confer either benefit, you cannot do so again until you finish a long rest, unless you expend a use of your rage to do so.",
           "source": {
             "type": "subclass",
             "name": "Path of Wild Magic",
             "level": 6
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Unstable Backlash",
           "level": 10,
           "featureType": "Active",
           "actionType": "Reaction",
-          "summary": "Reroll your Wild Magic Surge table effect when taking damage or failing a saving throw.",
+          "summary": "Use your reaction to reroll and replace your current Wild Magic Surge effect after taking damage or failing a saving throw.",
           "description": "When you are imperiled during your rage, the magic within you can lash out. Immediately after you take damage or fail a saving throw while raging, you can use your reaction to roll on the Wild Magic table and immediately produce the new effect, replacing your current surge effect.",
           "source": {
             "type": "subclass",
             "name": "Path of Wild Magic",
             "level": 10
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Controlled Surge",
           "level": 14,
           "featureType": "Passive",
-          "summary": "Roll twice on the Wild Magic Surge table and choose which effect manifests.",
+          "summary": "Roll twice on the Wild Magic Surge table and choose which effect manifests; if you roll the same number twice, choose any effect on the table.",
           "description": "Whenever you roll on the Wild Magic table, you can roll the die twice and choose which of the two effects to produce. If you roll the same number on both dice, you can ignore the number and choose any effect on the table.",
           "source": {
             "type": "subclass",
             "name": "Path of Wild Magic",
             "level": 14
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         }
-      ]
+      ],
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Barbarian",
       "classIndex": "barbarian",
       "index": "storm-herald",
       "name": "Storm Herald",
-      "flavorText": "Primal Path",
+      "flavorText": "Primal Path\n\nAll barbarians harbor a fury within. Their rage grants them superior strength, durability, and speed. Barbarians who follow the Path of the Storm Herald learn to transform that rage into a mantle of primal magic that swirls around them. When in a fury, a barbarian of this path can protect their allies and harm their foes with the power of the elements.",
       "description": "All barbarians harbor a fury within. Their rage grants them superior strength, durability, and speed. Barbarians who follow the Path of the Storm Herald learn to transform that rage into a mantle of primal magic, which swirls around them. When in a fury, a barbarian of this path can protect their allies and harm their foes with the power of the elements.",
       "features": [
         {
           "name": "Storm Aura",
-          "description": "Starting at 3rd level, you emanate a stormy, magical aura while you rage. The aura extends 10 feet from you in every direction, but not through total cover. Your aura has a different effect depending on the environment you choose when you enter your rage: Desert, Sea, or Tundra.\n\nDesert: When this effect is activated, all other creatures of your choice in your aura take 2 fire damage each. The damage increases to 3 at 5th level, 4 at 10th level, 5 at 15th level, and 6 at 20th level.\n\nSea: When this effect is activated, you can choose one other creature you can see in your aura. The target must make a Dexterity saving throw. The target takes 1d6 lightning damage on a failed save, or half as much damage on a successful one. The damage increases to 2d6 at 10th level, 3d6 at 15th level, and 4d6 at 20th level.\n\nTundra: When this effect is activated, each creature of your choice in your aura gains 2 temporary hit points, which last until your rage ends. The temporary hit points increase to 3 at 5th level, 4 at 10th level, 5 at 15th level, and 6 at 20th level.",
+          "description": "Starting at 3rd level, you emanate a stormy, magical aura while you rage. The aura extends **10 feet** from you in every direction, but not through total cover. Your aura has a different effect depending on the environment you choose when you enter your rage: Desert, Sea, or Tundra.\n\nDesert: When this effect is activated, all other creatures of your choice in your aura take **2 fire damage** each. The damage increases to **3** at 5th level, **4** at 10th level, **5** at 15th level, and **6** at 20th level.\n\nSea: When this effect is activated, you can choose one other creature you can see in your aura. The target must make a Dexterity saving throw. The target takes **1d6 lightning damage** on a failed save, or half as much damage on a successful one. The damage increases to **2d6** at 10th level, **3d6** at 15th level, and **4d6** at 20th level.\n\nTundra: When this effect is activated, each creature of your choice in your aura gains **2 temporary hit points**, which last until your rage ends. The temporary hit points increase to **3** at 5th level, **4** at 10th level, **5** at 15th level, and **6** at 20th level.",
           "level": 3,
           "featureType": "Active",
           "actionType": null,
@@ -999,7 +1046,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "The target takes 1d6 lightning damage on a failed save, or half as much damage on a successful one. (action).",
+          "summary": "While raging, you emanate a 10-foot aura that deals fire damage, deals lightning damage, or grants temporary hit points based on your chosen environment.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1009,7 +1056,8 @@
             "name": "Storm Herald",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Storm Soul",
@@ -1024,7 +1072,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gain resistance to the damage type associated with your chosen environment: fire (Desert), lightning (Sea), or cold (Tundra). (action).",
+          "summary": "Gain resistance to fire, lightning, or cold based on your environment, and cast a specific spell without material components once per long rest.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1034,7 +1082,8 @@
             "name": "Storm Herald",
             "level": 6
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Shielding Storm",
@@ -1049,7 +1098,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Each creature of your choice that you can see in your aura has advantage on saving throws against spells and other magical effects.",
+          "summary": "Creatures of your choice that you can see within your aura have advantage on saving throws against spells and other magical effects.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1059,7 +1108,8 @@
             "name": "Storm Herald",
             "level": 10
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Raging Storm",
@@ -1074,7 +1124,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "On a failed save, the creature has disadvantage on attack rolls until the start of its next turn. (reaction).",
+          "summary": "Use a reaction to impose disadvantage on attack rolls, deal lightning damage, or reduce speed to 0, depending on your aura environment.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1084,18 +1134,20 @@
             "name": "Storm Herald",
             "level": 14
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "XGE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Totem Warrior",
       "class": "Barbarian",
       "classIndex": "barbarian",
       "index": "totem",
-      "flavorText": "Primal Path",
+      "flavorText": "Primal Path\n\nThe Path of the Totem Warrior is a spiritual journey, where you accept a spirit animal as your guide, protector, and inspiration. In the heat of battle, your totem spirit imbues you with supernatural might, adding magical fuel to your barbarian rage.\n\nMost barbarian tribes view a totem animal as kin to the members of the tribe. While it is rare for an individual to bond with more than one totem animal spirit in a lifetime, exceptions do exist.",
       "description": "The Path of the Totem Warrior is a spiritual journey, as the barbarian accepts a spirit animal as guide, protector, and inspiration. In battle, your totem spirit fills you with supernatural might, adding magical fuel to your barbarian rage.\n\nMost barbarian tribes consider a totem animal to be kin to the members of the tribe. It is rare for an individual to have more than one totem animal spirit in a lifetime, though exceptions exist.",
       "features": [
         {
@@ -1111,7 +1163,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Yours is a path that seeks attunement with the natural world, granting you a kinship with beasts.",
+          "summary": "You can cast beast sense and speak with animals as rituals.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1121,11 +1173,12 @@
             "name": "Totem Warrior",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Totem Spirit",
-          "description": "At 3rd level, when you adopt this path, you choose a totem spirit and gain a totem feature. You must make or acquire a physical totem object — an amulet or similar adornment — that incorporates fur or feathers, claws, teeth, or bones of the animal you choose. At your option, you also gain minor physical attributes from your totem animal. Your choices and the associated benefits are: Bear. While raging, you have resistance to all damage except psychic damage. Eagle. While raging, other creatures have disadvantage on opportunity attacks against you, and you can use the Dash action as a bonus action on your turn. Wolf. While raging, your friends have advantage on melee attack rolls against any creature within 5 feet of you that is hostile to you.",
+          "description": "At 3rd level, when you adopt this path, you choose a totem spirit and gain a totem feature. You must make or acquire a physical totem object — an amulet or similar adornment — that incorporates fur or feathers, claws, teeth, or bones of the animal you choose. At your option, you also gain minor physical attributes from your totem animal.\n\nYour choices and the associated benefits are:\n\n- Bear: While raging, you have resistance to all damage except psychic damage.\n- Eagle: While raging, other creatures have disadvantage on opportunity attacks against you, and you can use the Dash action as a bonus action on your turn.\n- Wolf: While raging, your friends have advantage on melee attack rolls against any creature within **5 feet** of you that is hostile to you.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -1136,7 +1189,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Your friends have advantage on melee attack rolls against any creature within 5 feet of you that is hostile to you. (bonus action).",
+          "summary": "Gain a passive benefit while raging based on your chosen animal: damage resistance (Bear), mobility (Eagle), or granting allies advantage (Wolf).",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1146,11 +1199,12 @@
             "name": "Totem Warrior",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Aspect of the Beast",
-          "description": "At 6th level, you gain a magical benefit based on the totem animal you choose. You can choose the same animal you chose at 3rd level or a different one. Bear. You gain the might of a bear. Your carrying capacity (including load, lift, and push) is doubled, and you have advantage on Strength checks made to push, pull, lift, or break objects. Eagle. You gain the eyesight of an eagle. You can see up to 1 mile away with no difficulty, able to discern even fine details as though looking at something no more than 100 feet away from you. Additionally, dim light doesn't impose disadvantage on your Wisdom (Perception) checks. Wolf. You gain the hunting sensibilities of a wolf. You can track other creatures while traveling at a brisk pace, and you can move stealthily while traveling at a normal pace.",
+          "description": "At 6th level, you gain a magical benefit based on the totem animal you choose. You can choose the same animal you chose at 3rd level or a different one.\n\n- Bear: You gain the might of a bear. Your carrying capacity (including load, lift, and push) is doubled, and you have advantage on Strength checks made to push, pull, lift, or break objects.\n- Eagle: You gain the eyesight of an eagle. You can see up to **1 mile** away with no difficulty, able to discern even fine details as though looking at something no more than **100 feet** away from you. Additionally, dim light doesn't impose disadvantage on your Wisdom (Perception) checks.\n- Wolf: You gain the hunting sensibilities of a wolf. You can track other creatures while traveling at a brisk pace, and you can move stealthily while traveling at a normal pace.",
           "level": 6,
           "featureType": "Active",
           "actionType": null,
@@ -1161,7 +1215,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Your carrying capacity (including load, lift, and push) is doubled, and you have advantage on Strength checks made to push, pull, lift, or break objects. (action).",
+          "summary": "Gain a permanent magical benefit: increased carrying capacity (Bear), enhanced vision (Eagle), or improved tracking and stealth (Wolf).",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1171,7 +1225,8 @@
             "name": "Totem Warrior",
             "level": 6
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Spirit Walker",
@@ -1186,7 +1241,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "A spiritual version of one of the animals you chose for Totem Spirit or Aspect of the Beast makes itself known to you and appears somewhere on the land you.",
+          "summary": "You can cast commune with nature as a ritual, summoning a spiritual version of your chosen totem animal.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1196,11 +1251,12 @@
             "name": "Totem Warrior",
             "level": 10
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Totemic Attunement",
-          "description": "At 14th level, you gain a magical benefit based on a totem animal you choose. You can choose the same animal you chose at 3rd level or a different one. Bear. While raging, any creature within 5 feet of you that's hostile to you has disadvantage on attack rolls against targets other than you or another character with this feature. An enemy is immune to this effect if it can't see or hear you or if it can't be frightened. Eagle. While raging, you have a flying speed equal to your current speed. This benefit works only in short bursts; you fall if you end your turn in the air and nothing else is holding you aloft. Wolf. While raging, you can use a bonus action on your turn to knock a Large or smaller creature prone when you hit it with a melee weapon attack.",
+          "description": "At 14th level, you gain a magical benefit based on a totem animal you choose. You can choose the same animal you chose at 3rd level or a different one.\n\nBear. While raging, any creature within 5 feet of you that's hostile to you has disadvantage on attack rolls against targets other than you or another character with this feature. An enemy is immune to this effect if it can't see or hear you or if it can't be frightened.\n\nEagle. While raging, you have a flying speed equal to your current speed. This benefit works only in short bursts; you fall if you end your turn in the air and nothing else is holding you aloft.\n\nWolf. While raging, you can use a bonus action on your turn to knock a Large or smaller creature prone when you hit it with a melee weapon attack.",
           "level": 14,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -1211,7 +1267,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Any creature within 5 feet of you that's hostile to you has disadvantage on attack rolls against targets other than you or another character with this feature. (bonus action).",
+          "summary": "While raging, hostile creatures within 5 feet have disadvantage on attack rolls against targets other than you or another character with this feature.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1221,11 +1277,13 @@
             "name": "Totem Warrior",
             "level": 14
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "PHB",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Barbarian",
@@ -1237,7 +1295,7 @@
       "features": [
         {
           "name": "Divine Fury",
-          "description": "Starting when you choose this path at 3rd level, you can channel divine power to fuel your attacks. If you hit a creature with a melee weapon attack while raging, you can roll one additional damage die and add it to the damage of the attack. The damage is of the same type as the attack's normal damage type. At 14th level, you roll two additional damage dice instead of one.",
+          "description": "Starting when you choose this path at 3rd level, you can channel divine power to fuel your attacks. If you hit a creature with a melee weapon attack while raging, you can roll one additional damage die and add it to the damage of the attack. The damage is of the same type as the attack's normal damage type.\n\nAt 14th level, you roll two additional damage dice instead of one.",
           "level": 3,
           "featureType": "Active",
           "actionType": null,
@@ -1248,7 +1306,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "The damage is of the same type as the attack's normal damage type. (action).",
+          "summary": "Add one additional damage die to a melee weapon attack while raging; the damage type matches the attack.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1258,11 +1316,12 @@
             "name": "Zealot",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Warrior of the Gods",
-          "description": "At 6th level, the divine power that fuels your rage allows you to shrug off fatal blows. When you would drop to 0 hit points as a result of taking damage, you can make a Charisma saving throw (DC 5 + the damage taken). On a success, you drop to 1 hit point instead. After the saving throw succeeds, you can't use this feature again until you finish a long rest.",
+          "description": "At 6th level, the divine power that fuels your rage allows you to shrug off fatal blows. When you would drop to 0 hit points as a result of taking damage, you can make a Charisma saving throw (DC 5 + the damage taken). On a success, you drop to 1 hit point instead.\n\nAfter the saving throw succeeds, you can't use this feature again until you finish a long rest.",
           "level": 6,
           "featureType": "Active",
           "actionType": null,
@@ -1273,7 +1332,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can make a Charisma saving throw (DC 5 + the damage taken). (action).",
+          "summary": "When dropping to 0 hit points, make a Charisma saving throw (DC 5 + damage taken) to drop to 1 hit point instead.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1283,7 +1342,8 @@
             "name": "Zealot",
             "level": 6
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Fanatical Focus",
@@ -1298,7 +1358,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 10th level, the divine power that fuels your rage can help you push through harm. (action).",
+          "summary": "Reroll a failed saving throw once per rage; you must use the new roll.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1308,11 +1368,12 @@
             "name": "Zealot",
             "level": 10
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Zealous Presence",
-          "description": "At 14th level, you learn to channel divine power to inspire zealotry in others. As a bonus action, you unleash a battle cry infused with divine energy. Up to ten creatures of your choice within 60 feet of you that can hear you have advantage on attack rolls and saving throws until the start of your next turn. Once you use this feature, you can't use it again until you finish a long rest.",
+          "description": "At 14th level, you learn to channel divine power to inspire zealotry in others. As a bonus action, you unleash a battle cry infused with divine energy. Up to ten creatures of your choice within 60 feet of you that can hear you have advantage on attack rolls and saving throws until the start of your next turn.\n\nOnce you use this feature, you can't use it again until you finish a long rest.",
           "level": 14,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -1323,7 +1384,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Up to ten creatures of your choice within 60 feet of you that can hear you have advantage on attack rolls and saving throws until the start of your next.",
+          "summary": "Up to ten chosen creatures within 60 feet who can hear you gain advantage on attack rolls and saving throws until your next turn.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1333,11 +1394,13 @@
             "name": "Zealot",
             "level": 14
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "XGE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "College of Creation",
@@ -1350,14 +1413,15 @@
           "name": "Mote of Potential",
           "level": 3,
           "featureType": "Passive",
-          "summary": "Bardic Inspiration creates a dancing mote of potential granting extra effects on checks, attacks, and saves.",
-          "description": "Whenever you give a creature a Bardic Inspiration die, you can utter a note from the Song of Creation to create a Tiny mote of potential, which orbits the creature within 5 feet. When the creature uses the die, the mote provides an additional effect: Ability Check (roll twice and pick highest), Attack Roll (explodes with thunder damage equal to inspiration roll to target and creatures within 5 ft), or Saving Throw (gain temp HP equal to the roll plus your Charisma modifier).",
+          "summary": "Granting a Bardic Inspiration die creates a mote that provides extra benefits when the die is used on a check, attack, or save.",
+          "description": "Whenever you give a creature a Bardic Inspiration die, you can utter a note from the Song of Creation to create a Tiny mote of potential, which orbits the creature within **5 feet**. When the creature uses the die, the mote provides an additional effect based on the type of roll:\n\n- Ability Check: The creature can roll the die twice and pick the highest result.\n- Attack Roll: The mote explodes, dealing thunder damage equal to the inspiration roll to the target and all creatures within **5 feet** of it.\n- Saving Throw: The creature gains temporary hit points equal to the inspiration roll plus your Charisma modifier.",
           "source": {
             "type": "subclass",
             "name": "College of Creation",
             "level": 3
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Performance of Creation",
@@ -1368,14 +1432,15 @@
             "total": 1,
             "recharge": "Long Rest / 2nd+ spell slot"
           },
-          "summary": "Magically create one nonmagical item worth up to 20 times your bard level in gold.",
-          "description": "As an action, you can channel the magic of the Song of Creation to create one nonmagical item of your choice in an unoccupied space within 10 feet of you. The item must be of a size no larger than Medium, and its value can be no more than 20 times your bard level in gp. The item glistens faintly and lasts for a number of hours equal to your proficiency bonus. You can use this feature once per long rest, or by expending a 2nd-level or higher spell slot.",
+          "summary": "Create a nonmagical item worth up to 20 times your bard level in gold.",
+          "description": "As an action, you can channel the magic of the Song of Creation to create one nonmagical item of your choice in an unoccupied space within **10 feet** of you. The item must be a size no larger than Medium, and its value can be no more than **20 times your bard level** in gp.\n\nThe item glistens faintly and lasts for a number of hours equal to your proficiency bonus.\n\nYou can use this feature once per long rest, or you can use it again by expending a 2nd-level or higher spell slot.",
           "source": {
             "type": "subclass",
             "name": "College of Creation",
             "level": 3
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Animating Performance",
@@ -1386,29 +1451,32 @@
             "total": 1,
             "recharge": "Long Rest / 3rd+ spell slot"
           },
-          "summary": "Animate a Large or smaller nonmagical object into a friendly Dancing Item construct.",
-          "description": "As an action, you can animate one Large or smaller nonmagical item within 30 feet of you. The item uses the Dancing Item stat block, is friendly to you and your companions, and obeys your mental commands as a bonus action. It has an aura of 10 feet that increases ally movement and slows enemies. It remains animated for 1 hour, until reduced to 0 HP, or until you die. You can use this feature once per long rest, or by expending a 3rd-level or higher spell slot.",
+          "summary": "Animate a nonmagical object of Large size or smaller into a friendly Dancing Item construct.",
+          "description": "As an action, you can animate one Large or smaller nonmagical item within **30 feet** of you. The item uses the Dancing Item stat block, is friendly to you and your companions, and obeys your mental commands issued as a bonus action.\n\nThe item has an aura of **10 feet** that increases the movement of allies and slows enemies.\n\nIt remains animated for **1 hour**, until it is reduced to **0 hit points**, or until you die. You can use this feature once per long rest, or you can use it again by expending a 3rd-level or higher spell slot.",
           "source": {
             "type": "subclass",
             "name": "College of Creation",
             "level": 6
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Creative Crescendo",
           "level": 14,
           "featureType": "Passive",
-          "summary": "Create multiple items with Performance of Creation, with no gold cost limit and up to Huge size.",
-          "description": "When you use your Performance of Creation feature, you can now create more than one item at a time. The number of items equals your Charisma modifier (minimum of two). One of the items can be Huge, and the gp limit on the items' value no longer applies.",
+          "summary": "Create multiple items with Performance of Creation, removing the gold value limit and allowing one item to be Huge.",
+          "description": "When you use your Performance of Creation feature, you can now create more than one item at a time. The number of items you can create equals your Charisma modifier (minimum of **two**).\n\nOne of these items can be Huge, and the gp limit on the items' value no longer applies.",
           "source": {
             "type": "subclass",
             "name": "College of Creation",
             "level": 14
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         }
-      ]
+      ],
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "College of Eloquence",
@@ -1421,14 +1489,15 @@
           "name": "Silver Tongue",
           "level": 3,
           "featureType": "Passive",
-          "summary": "Treat any roll of 9 or lower on the d20 as a 10 for Persuasion and Deception checks.",
+          "summary": "Treat any d20 roll of 9 or lower as a 10 for Persuasion and Deception checks.",
           "description": "You are a master at saying the right thing at the right time. When you make a Charisma (Persuasion) or Charisma (Deception) check, you can treat a d20 roll of 9 or lower as a 10.",
           "source": {
             "type": "subclass",
             "name": "College of Eloquence",
             "level": 3
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Unsettling Words",
@@ -1442,20 +1511,22 @@
             "name": "College of Eloquence",
             "level": 3
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Unfailing Inspiration",
           "level": 6,
           "featureType": "Passive",
-          "summary": "A creature does not lose its Bardic Inspiration die if it fails the roll.",
+          "summary": "A creature keeps its Bardic Inspiration die if the roll it was added to fails.",
           "description": "Your inspiring words are so persuasive that others feel driven to succeed. When a creature adds one of your Bardic Inspiration dice to its ability check, attack roll, or saving throw and the roll fails, the creature can keep the Bardic Inspiration die to use again on a future roll.",
           "source": {
             "type": "subclass",
             "name": "College of Eloquence",
             "level": 6
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Universal Speech",
@@ -1466,14 +1537,15 @@
             "total": 1,
             "recharge": "Long Rest / spell slot"
           },
-          "summary": "Make your speech completely understandable to any creatures regardless of language.",
+          "summary": "Make your speech magically understandable to selected creatures regardless of language.",
           "description": "You have gained the ability to make your speech intelligible to any creature. As an action, choose one or more creatures within 60 feet of you, up to a number equal to your Charisma modifier (minimum of one). The chosen creatures can magically understand you, regardless of the language you speak, for 1 hour. You can use this feature once per long rest, or by expending a spell slot.",
           "source": {
             "type": "subclass",
             "name": "College of Eloquence",
             "level": 6
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Infectious Inspiration",
@@ -1484,28 +1556,30 @@
             "total": "Charisma modifier",
             "recharge": "Long Rest"
           },
-          "summary": "Inspire another creature without expending a die when an ally succeeds using inspiration.",
+          "summary": "Grant a Bardic Inspiration die to another creature without expending a use when an ally succeeds with inspiration.",
           "description": "When you successfully inspire someone, the power of your eloquence can spread to someone else. When a creature within 60 feet of you adds one of your Bardic Inspiration dice to its roll and the roll succeeds, you can use your reaction to grant another creature within 60 feet a Bardic Inspiration die without expending any of your Bardic Inspiration uses.",
           "source": {
             "type": "subclass",
             "name": "College of Eloquence",
             "level": 14
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         }
-      ]
+      ],
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Bard",
       "classIndex": "bard",
       "index": "glamour",
       "name": "College of Glamour",
-      "flavorText": "Bard College",
+      "flavorText": "The College of Glamour is the home of bards who mastered their craft in the vibrant realm of the Feywild or under the tutelage of someone who dwelled there. Tutored by satyrs, eladrin, and other fey creatures, these bards learn to use their magic to delight and captivate others.",
       "description": "The College of Glamour is the home of bards who mastered their craft in the vibrant realm of the Feywild or under the tutelage of someone who dwelled there. Tutored by satyrs, eladrin, and other fey creatures, these bards learn to use their magic to delight and captivate others.",
       "features": [
         {
           "name": "Mantle of Inspiration",
-          "description": "When you join the College of Glamour at 3rd level, you gain the ability to weave a song of fey magic that imbues your allies with vigor and speed. As a bonus action, you can expend one use of your Bardic Inspiration to grant yourself a wondrous appearance. When you do so, choose up to five creatures of your choice within 60 feet of you. Each target gains 5 temporary hit points and can use its reaction to move up to its speed without provoking opportunity attacks.",
+          "description": "When you join the College of Glamour at 3rd level, you gain the ability to weave a song of fey magic that imbues your allies with vigor and speed.\n\nAs a bonus action, you can expend one use of your Bardic Inspiration to grant yourself a wondrous appearance. When you do so, choose up to five creatures of your choice within 60 feet of you. Each target gains **5** temporary hit points and can use its reaction to move up to its speed without provoking opportunity attacks.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -1516,7 +1590,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gain the ability to weave a song of fey magic that imbues your allies with vigor and speed. (bonus action).",
+          "summary": "Expend one use of Bardic Inspiration to give up to five allies within 60 feet 5 temporary hit points and the ability to move using their reaction without provoking opportunity attacks.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1526,11 +1600,12 @@
             "name": "College of Glamour",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Enthralling Performance",
-          "description": "Starting at 6th level, you can use musical or oratorial performance to weave a song of fey magic that charms your listeners. If you perform for at least 1 minute, you can then choose a number of humanoids within 60 feet of you who watched or listened to your performance, up to a number equal to your Charisma modifier (minimum of one). Each target must succeed on a Wisdom saving throw against your spell save DC or be charmed by you. While charmed, the target idolates you and hinders anyone attempting to harm you, but it will not obey your orders. This effect ends on a target after 1 hour, if it takes damage, if you attack it, or if it witnesses you attacking its allies. Once you use this feature, you can't use it again until you finish a short or long rest.",
+          "description": "Starting at 6th level, you can use musical or oratorial performance to weave a song of fey magic that charms your listeners.\n\nIf you perform for at least 1 minute, you can then choose a number of humanoids within 60 feet of you who watched or listened to your performance, up to a number equal to your Charisma modifier (minimum of one). Each target must succeed on a Wisdom saving throw against your spell save DC or be charmed by you.\n\nWhile charmed, the target idolates you and hinders anyone attempting to harm you, but it will not obey your orders. This effect ends on a target after 1 hour, if it takes damage, if you attack it, or if it witnesses you attacking its allies.\n\nOnce you use this feature, you can't use it again until you finish a short or long rest.",
           "level": 6,
           "featureType": "Active",
           "actionType": null,
@@ -1541,7 +1616,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Each target must succeed on a Wisdom saving throw against your spell save DC or be charmed by you. (action).",
+          "summary": "Perform for 1 minute to charm a number of humanoids within 60 feet equal to your Charisma modifier (minimum one) upon a failed Wisdom saving throw.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1551,11 +1626,12 @@
             "name": "College of Glamour",
             "level": 6
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Mantle of Majesty",
-          "description": "At 14th level, you gain the ability to cloak yourself in a fey majesty. As a bonus action, you cast command, requiring no spell slot or material components, and you take on an appearance of unearthly beauty (as the alter self spell, but only affecting your appearance). The spell lasts for 1 minute. During that time, you can cast command as a bonus action on each of your turns, without expending a spell slot. Any creature charmed by you automatically fails its saving throw against the command spell you cast with this feature. Once you use this bonus action, you can't use it again until you finish a long rest, unless you expend a spell slot of 3rd level or higher to use it again.",
+          "description": "At 14th level, you gain the ability to cloak yourself in a fey majesty.\n\nAs a bonus action, you cast command, requiring no spell slot or material components, and you take on an appearance of unearthly beauty (as the alter self spell, but only affecting your appearance). The spell lasts for 1 minute.\n\nDuring that time, you can cast command as a bonus action on each of your turns, without expending a spell slot. Any creature charmed by you automatically fails its saving throw against the command spell you cast with this feature.\n\nOnce you use this bonus action, you can't use it again until you finish a long rest, unless you expend a spell slot of 3rd level or higher to use it again.",
           "level": 14,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -1566,7 +1642,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Any creature charmed by you automatically fails its saving throw against the command spell you cast with this feature. (bonus action).",
+          "summary": "Cast command as a bonus action for 1 minute; creatures charmed by you automatically fail their saving throws against it.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1576,11 +1652,13 @@
             "name": "College of Glamour",
             "level": 14
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "XGE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "index": "college-of-spirits",
@@ -1591,7 +1669,7 @@
         {
           "name": "Spiritual Focus",
           "level": 3,
-          "description": "You employ tools that aid you in channeling spirits, such as a candle, crystal, or totem. When you cast a bard spell that deals damage or restores hit points while holding your spiritual focus, you can roll a d6 and add it to the roll. You can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+          "description": "You employ tools that aid you in channeling spirits, such as a candle, crystal, or totem.\n\nWhen you cast a bard spell that deals damage or restores hit points while holding your spiritual focus, you can roll a **d6** and add it to the roll.\n\nYou can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -1601,7 +1679,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "When you cast a bard spell that deals damage or restores Hit Points while holding your spiritual focus, roll a d6 and add it to the damage or healing roll.",
+          "summary": "Add a **d6** to the damage or healing roll of a bard spell while holding your spiritual focus.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1611,12 +1689,13 @@
             "name": "College of Spirits",
             "level": 3
           },
-          "book": "VRGR"
+          "book": "VRGR",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Tales from Beyond",
           "level": 3,
-          "description": "You can reach out to the spirits of the dead to tell you stories. As a bonus action, you can roll a d6 and add it to your next ability check, attack roll, or saving throw. You can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+          "description": "You can reach out to the spirits of the dead to tell you stories.\n\nAs a bonus action, you can roll a **d6** and add it to your next ability check, attack roll, or saving throw.\n\nYou can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
           "featureType": "Active",
           "actionType": "Bonus Action",
           "uses": null,
@@ -1626,7 +1705,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can roll a d6 and add it to your next ability check, attack roll, or saving throw. (bonus action).",
+          "summary": "Roll a **d6** and add it to your next ability check, attack roll, or saving throw.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1636,12 +1715,13 @@
             "name": "College of Spirits",
             "level": 3
           },
-          "book": "VRGR"
+          "book": "VRGR",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Spiritual Focus (Improved)",
           "level": 6,
-          "description": "Your spiritual focus becomes more powerful. When you cast a bard spell that deals damage or restores hit points while holding your spiritual focus, you can roll a d8 instead of a d6 and add it to the roll.",
+          "description": "Your spiritual focus becomes more powerful. When you cast a bard spell that deals damage or restores hit points while holding your spiritual focus, you can roll a **d8** instead of a **d6** and add it to the roll.",
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -1651,7 +1731,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can roll a d8 instead of a d6 and add it to the roll. (action).",
+          "summary": "Roll a **d8** instead of a **d6** and add it to the roll when casting a bard spell that deals damage or restores hit points.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1661,7 +1741,8 @@
             "name": "College of Spirits",
             "level": 6
           },
-          "book": "VRGR"
+          "book": "VRGR",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Spirit Session",
@@ -1676,7 +1757,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can cast the speak with dead spell at will, without expending a spell slot. (action).",
+          "summary": "Cast speak with dead at will without expending a spell slot, and ask up to seven questions instead of five.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1686,12 +1767,13 @@
             "name": "College of Spirits",
             "level": 6
           },
-          "book": "VRGR"
+          "book": "VRGR",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Mystical Connection",
           "level": 14,
-          "description": "You can use your Tales from Beyond feature without expending a use of it. When you do so, you roll a d8 instead of a d6.",
+          "description": "You can use your Tales from Beyond feature without expending a use of it. When you do so, you roll a **d8** instead of a **d6**.",
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -1701,7 +1783,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Use Tales from Beyond without expending a use. When you do so, roll a d8 instead of a d6.",
+          "summary": "Use Tales from Beyond without expending a use, rolling a **d8** instead of a **d6**.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1711,18 +1793,20 @@
             "name": "College of Spirits",
             "level": 14
           },
-          "book": "VRGR"
+          "book": "VRGR",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "VRGR",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Bard",
       "classIndex": "bard",
       "index": "swords",
       "name": "College of Swords",
-      "flavorText": "Bard College",
+      "flavorText": "Bards of the College of Swords are known as blades. They captivate audiences through daring displays of weapon prowess, performing stunts such as sword swallowing, knife throwing, and juggling. While they use these weapons for entertainment, they are highly trained and skilled warriors.",
       "description": "Bards of the College of Swords are called blades, and they entertain through daring feats of weapon prowess. They perform stunts such as sword swallowing, knife throwing, and juggling. Though they use their weapons to entertain, they are highly trained and skilled warriors.",
       "features": [
         {
@@ -1748,7 +1832,8 @@
             "name": "College of Swords",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Fighting Style",
@@ -1867,7 +1952,8 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Bard",
