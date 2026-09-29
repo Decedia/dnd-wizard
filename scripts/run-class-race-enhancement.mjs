@@ -82,7 +82,13 @@ for (;;) {
   ]);
   console.log("committed.");
   if (PUSH) {
-    run("git", ["push"], { stdio: ["ignore", "pipe", "pipe"] });
-    console.log("pushed.");
+    // A 429 from GitHub must not kill a multi-hour run: the commit is already
+    // durable locally, and the next chunk pushes again.
+    try {
+      run("git", ["push"], { stdio: ["ignore", "pipe", "pipe"] });
+      console.log("pushed.");
+    } catch (err) {
+      console.log(`push failed (${String(err.stderr || err.message).trim().split("\n").pop()}); will retry on the next chunk.`);
+    }
   }
 }
