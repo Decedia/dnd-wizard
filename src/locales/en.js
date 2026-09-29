@@ -489,7 +489,7 @@ export const translations = {
   "form.treasure": "Treasure",
   "form.enterCharacterName": "Enter character name",
   "form.yourName": "Your name",
-  "form.classDescription": "CLASS DESCRIPTION",
+  "form.classSummary": "CLASS SUMMARY",
   "form.raceTraits": "RACE TRAITS",
   "form.e.gFolkHero": "e.g. Folk Hero",
   "form.e.g10d8": "e.g. 10d8",

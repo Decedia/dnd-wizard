@@ -213,23 +213,14 @@ export function IdentitySection({ character, onChange, editMode = true }: Identi
           </>
         )}
 
-        {(selectedClass || raceTraits.length > 0) && (
+        {(selectedClass?.flavorText || raceTraits.length > 0) && (
           <div className="mt-4 space-y-4 border-t border-[var(--color-border)] pt-4">
-            {selectedClass && (selectedClass.flavorText || selectedClass.description) && (
+            {selectedClass?.flavorText && (
               <div>
-                <span className="field-label-light">
-                  {t("form.classDescription", "CLASS DESCRIPTION")}
-                </span>
-                {selectedClass.flavorText && (
-                  <p className="mt-1.5 text-sm italic leading-relaxed text-[var(--color-text-muted)]">
-                    {selectedClass.flavorText}
-                  </p>
-                )}
-                {selectedClass.description && (
-                  <div className="mt-2 text-sm leading-relaxed text-ink">
-                    <DiceText text={selectedClass.description} />
-                  </div>
-                )}
+                <span className="field-label-light">{t("form.classSummary", "CLASS SUMMARY")}</span>
+                <p className="mt-1.5 text-sm italic leading-relaxed text-[var(--color-text-secondary)]">
+                  {selectedClass.flavorText}
+                </p>
               </div>
             )}
 

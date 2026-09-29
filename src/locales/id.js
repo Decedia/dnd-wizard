@@ -504,7 +504,7 @@ export const translations = {
   "form.treasure": "Harta Karun",
   "form.enterCharacterName": "Masukkan nama karakter",
   "form.yourName": "Namamu",
-  "form.classDescription": "DESKRIPSI KELAS",
+  "form.classSummary": "RINGKASAN KELAS",
   "form.raceTraits": "SIFAT RAS",
   "form.e.gFolkHero": "mis. Pahlawan Rakyat",
   "form.e.g10d8": "mis. 10d8",
