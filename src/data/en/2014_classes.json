@@ -11592,7 +11592,7 @@
         "wis",
         "cha"
       ],
-      "flavorText": "Warlocks quest for knowledge that lies hidden in the fabric of the multiverse, piecing together arcane secrets to bolster their own power. A wielder of magic that is derived from a bargain with an extraplanar entity. Warlocks are seekers of the arcane secrets that lie hidden in the fabric of the multiverse, making pacts with otherworldly beings to gain power.\n\nWarlocks are seekers of the arcane secrets that lie hidden in the fabric of the multiverse. By making pacts with mysterious beings of supernatural power, warlocks unlock magical effects both subtle and spectacular. Warlocks are driven by an insatiable need for knowledge and power.\n\nWarlocks forge pacts with beings of supernatural power—fey fiends, and other entities that grant them their magic. These pacts can take many forms, from a simple bargain to a complex agreement that binds the warlock to their patron's service.",
+      "flavorText": "Warlocks quest for knowledge hidden within the fabric of the multiverse, piecing together arcane secrets to bolster their own power. They wield magic derived from a bargain with an extraplanar entity, seeking forbidden truths by making pacts with otherworldly beings.\n\nDriven by an insatiable need for power and knowledge, warlocks unlock magical effects that range from the subtle to the spectacular through these pacts with mysterious beings of supernatural power.\n\nThese pacts are forged with entities such as fey, fiends, and other supernatural beings. Such agreements can vary wildly, ranging from a simple bargain to a complex contract that binds the warlock to the service of their patron.",
       "proficiencies": {
         "armor": [
           "light"
@@ -13195,7 +13195,8 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A pact-bound caster with short-rest spell slots and Eldritch Invocations. Managing invocations, spell slots, and pact magic mechanics creates a steep learning curve."
-      }
+      },
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Wizard",

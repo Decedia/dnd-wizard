@@ -4220,12 +4220,12 @@
       "class": "Cleric",
       "classIndex": "cleric",
       "index": "war",
-      "flavorText": "Divine Domain",
+      "flavorText": "Divine Domain\n\nThe War domain represents the power of battle and conflict. Its clerics are divine warriors who inspire their allies and strike down their foes with righteous fury.\n\nGods of war—including Tempus, Nike, and Tyr—embrace the glory of combat and teach that conflict can be a noble pursuit when waged for a just cause. They inspire their followers to fight with honor and courage in the face of overwhelming odds.",
       "description": "The War domain represents the power of battle and conflict. Its clerics are divine warriors who inspire their allies and strike down their foes with righteous fury.\n\nGods of war—including Tempus, Nike, and Tyr—embrace the glory of combat and teach that conflict can be a noble pursuit when waged for a just cause. They inspire their followers to fight with honor and courage in the face of overwhelming odds.",
       "features": [
         {
           "name": "Bonus Proficiencies",
-          "description": "When you join the College of Lore at 3rd level, you gain proficiency with three skills of your choice.",
+          "description": "When you join the War domain at 1st level, you gain proficiency with three skills of your choice.",
           "level": 1,
           "featureType": "Passive",
           "actionType": null,
@@ -4246,11 +4246,12 @@
             "name": "War",
             "level": 1
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "War Priest",
-          "description": "Also at 1st level, you can make a bonus action attack when you use the Attack action. When you take the Attack action on your turn, you can make one weapon attack as a bonus action. You can use this feature a number of times equal to your Wisdom modifier (minimum of once). You regain all expended uses when you finish a long rest.",
+          "description": "Also at 1st level, you can make a bonus action attack when you use the Attack action. When you take the Attack action on your turn, you can make one weapon attack as a bonus action.\n\nYou can use this feature a number of times equal to your Wisdom modifier (minimum of once). You regain all expended uses when you finish a long rest.",
           "level": 1,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -4261,7 +4262,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Regain all expended uses when you finish a long rest. (bonus action).",
+          "summary": "Make one weapon attack as a bonus action. You can use this a number of times equal to your Wisdom modifier per long rest.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4271,11 +4272,12 @@
             "name": "War",
             "level": 1
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Channel Divinity: Guided Strike",
-          "description": "Starting at 2nd level, you can use your Channel Divinity to add +10 to an attack roll.",
+          "description": "Starting at 2nd level, you can use your Channel Divinity to add **+10** to an attack roll.",
           "level": 2,
           "featureType": "Active",
           "actionType": null,
@@ -4286,7 +4288,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Starting at 2nd level, you can use your Channel Divinity to add +10 to an attack roll. (action).",
+          "summary": "Use your Channel Divinity to add +10 to an attack roll.",
           "grantsSpells": false,
           "grantsAttack": true,
           "grantsSkills": false,
@@ -4296,11 +4298,12 @@
             "name": "War",
             "level": 2
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Channel Divinity: War God's Blessing",
-          "description": "At 6th level, you can use your Channel Divinity to grant resistance to an ally. When a creature you can see within 30 feet of you makes an attack roll, you can use your reaction to grant that creature a +10 bonus to its attack roll.",
+          "description": "At 6th level, you can use your Channel Divinity to grant a bonus to an ally. When a creature you can see within **30 feet** of you makes an attack roll, you can use your reaction to grant that creature a **+10** bonus to its attack roll.",
           "level": 6,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -4311,7 +4314,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can use your reaction to grant that creature a +10 bonus to its attack roll. (reaction).",
+          "summary": "Use your reaction to grant a creature within 30 feet a +10 bonus to its attack roll.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4321,7 +4324,8 @@
             "name": "War",
             "level": 6
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Potent Spellcasting",
@@ -4336,7 +4340,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Starting at 8th level, you add your Wisdom modifier to the damage rolls of your cleric spells. (action).",
+          "summary": "Add your Wisdom modifier to the damage rolls of your cleric spells.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4346,7 +4350,8 @@
             "name": "War",
             "level": 8
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Avatar of Battle",
@@ -4361,7 +4366,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 17th level, you gain resistance to bludgeoning, piercing, and slashing damage from nonmagical weapons.",
+          "summary": "You have resistance to bludgeoning, piercing, and slashing damage from nonmagical weapons.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4371,23 +4376,25 @@
             "name": "War",
             "level": 17
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "SCAG",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Druid",
       "classIndex": "druid",
       "index": "dreams",
       "name": "Circle of Dreams",
-      "flavorText": "Druid Circle",
+      "flavorText": "You belong to a Druid Circle hailing from regions with powerful ties to the Feywild and its dreamlike realms. Your role as a guardian of the natural world makes you a natural ally of the fey.",
       "description": "Druids who are members of the Circle of Dreams hail from regions that have strong ties to the Feywild and its dreamlike realms. The druids' guardianship of the natural world makes them natural allies of the fey.",
       "features": [
         {
           "name": "Balm of the Summer Court",
-          "description": "At 2nd level, you become imbued with the blessings of the Summer Court. You gain a pool of fey energy represented by a number of d6s equal to your druid level. As a bonus action, you can choose one creature you can see within 120 feet of you and spend a number of those dice equal to half your druid level or less. Roll the spent dice and add them together. The target regains a number of hit points equal to the total. The target also gains 1 temporary hit point per die spent. You regain all expended dice when you finish a long rest.",
+          "description": "At 2nd level, you become imbued with the blessings of the Summer Court. You gain a pool of fey energy represented by a number of **d6s** equal to your druid level.\n\nAs a bonus action, you can choose one creature you can see within 120 feet of you and spend a number of those dice equal to half your druid level or less. Roll the spent dice and add them together. The target regains a number of hit points equal to the total. The target also gains **1** temporary hit point per die spent.\n\nYou regain all expended dice when you finish a long rest.",
           "level": 2,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -4398,7 +4405,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can choose one creature you can see within 120 feet of you and spend a number of those dice equal to half your druid level or less. (bonus action).",
+          "summary": "As a bonus action, spend up to half your druid level in d6s to heal a creature within 120 feet and grant them 1 temporary hit point per die spent.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4408,11 +4415,12 @@
             "name": "Circle of Dreams",
             "level": 2
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Hearth of Moonlight and Shadow",
-          "description": "At 6th level, the magic of the Feywild guards your rest. When you or a creature you can see within 30 feet of you makes a saving throw or an attack roll, you can use your reaction to grant advantage to the roll. You can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+          "description": "At 6th level, the magic of the Feywild guards your rest. When you or a creature you can see within 30 feet of you makes a saving throw or an attack roll, you can use your reaction to grant advantage to the roll.\n\nYou can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
           "level": 6,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -4423,7 +4431,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can use your reaction to grant advantage to the roll. (reaction).",
+          "summary": "Use your reaction to grant advantage on a saving throw or attack roll made by you or a creature within 30 feet.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4433,11 +4441,12 @@
             "name": "Circle of Dreams",
             "level": 6
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Hidden Paths",
-          "description": "Starting at 10th level, you can use the hidden paths that some fey use to traverse space in a blink of an eye. As a bonus action, you can teleport up to 60 feet to an unoccupied space you can see. Alternatively, you can use your action to teleport one willing creature you touch up to 30 feet to an unoccupied space you can see. You can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+          "description": "Starting at 10th level, you can use the hidden paths that some fey use to traverse space in a blink of an eye.\n\nAs a bonus action, you can teleport up to 60 feet to an unoccupied space you can see. Alternatively, you can use your action to teleport one willing creature you touch up to 30 feet to an unoccupied space you can see.\n\nYou can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
           "level": 10,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -4448,7 +4457,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can teleport up to 60 feet to an unoccupied space you can see. (bonus action).",
+          "summary": "As a bonus action, teleport yourself up to 60 feet. As an action, teleport a willing creature you touch up to 30 feet.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4458,11 +4467,12 @@
             "name": "Circle of Dreams",
             "level": 10
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Walker in Dreams",
-          "description": "At 14th level, the magic of the Feywild grants you the ability to travel mentally or physically through dreamlands. When you finish a short rest, you can cast the dream spell once without expending a spell slot. In addition, you can cast the following spells without expending a spell slot or material components: scrying (self only), teleportation circle. You can cast each of these spells once, and you regain the ability to cast them this way when you finish a long rest.",
+          "description": "At 14th level, the magic of the Feywild grants you the ability to travel mentally or physically through dreamlands.\n\nWhen you finish a short rest, you can cast the dream spell once without expending a spell slot.\n\nIn addition, you can cast the following spells without expending a spell slot or material components: scrying (self only), teleportation circle. You can cast each of these spells once, and you regain the ability to cast them this way when you finish a long rest.",
           "level": 14,
           "featureType": "Active",
           "actionType": null,
@@ -4473,7 +4483,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can cast each of these spells once, and you regain the ability to cast them this way when you finish a long rest. (action).",
+          "summary": "Cast dream after a short rest, and cast scrying (self only) and teleportation circle once each per long rest, without spell slots or material components.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4483,11 +4493,13 @@
             "name": "Circle of Dreams",
             "level": 14
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "XGE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Circle of Spores",
@@ -4500,42 +4512,45 @@
           "name": "Circle Spells",
           "level": 2,
           "featureType": "Passive",
-          "summary": "Learn Chill Touch and gain circle spells at levels 3, 5, 7, and 9.",
-          "description": "You gain the Chill Touch cantrip. At 3rd level, Blindness/Deafness, Gentle Repose; 5th: Animate Dead, Gaseous Form; 7th: Blight, Confusion; 9th: Cloudkill, Contagion.",
+          "summary": "Gain the Chill Touch cantrip and additional spells at levels 3, 5, 7, and 9.",
+          "description": "You gain the Chill Touch cantrip. At 3rd level, you gain Blindness/Deafness and Gentle Repose; at 5th level, Animate Dead and Gaseous Form; at 7th level, Blight and Confusion; and at 9th level, Cloudkill and Contagion.",
           "source": {
             "type": "subclass",
             "name": "Circle of Spores",
             "level": 2
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Halo of Spores",
           "level": 2,
           "featureType": "Active",
           "actionType": "Reaction",
-          "summary": "Reaction deal 1d4 necrotic damage to a creature starting its turn or moving within 10 feet (scales to 1d8).",
-          "description": "You are surrounded by invisible, necrotic spores. When a creature you can see starts its turn within 10 feet of you or moves there, you can use your reaction to deal 1d4 necrotic damage to that creature unless it succeeds on a Constitution saving throw. The damage increases to 1d6 at 6th, 1d8 at 10th, and 1d10 at 14th level.",
+          "summary": "Use a reaction to deal necrotic damage to a creature that starts its turn or moves within 10 feet of you.",
+          "description": "You are surrounded by invisible, necrotic spores. When a creature you can see starts its turn within 10 feet of you or moves into that area, you can use your reaction to deal **1d4** necrotic damage to that creature unless it succeeds on a Constitution saving throw. The damage increases to **1d6** at 6th level, **1d8** at 10th level, and **1d10** at 14th level.",
           "source": {
             "type": "subclass",
             "name": "Circle of Spores",
             "level": 2
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Symbiotic Entity",
           "level": 2,
           "featureType": "Active",
           "actionType": "Action",
-          "summary": "Expending Wild Shape grants 4 temp HP per druid level, doubles Halo of Spores damage, and adds 1d6 necrotic to melee hits.",
-          "description": "As an action, you can expend a use of your Wild Shape feature to awaken your spores. You gain 4 temporary hit points for each level you have in this class. While this feature is active, you roll your Halo of Spores damage die a second time, and your melee weapon attacks deal an extra 1d6 necrotic damage on a hit.",
+          "summary": "Expend a Wild Shape use to gain temporary hit points, double your Halo of Spores damage, and add necrotic damage to melee attacks.",
+          "description": "As an action, you can expend a use of your Wild Shape feature to awaken your spores. You gain **4** temporary hit points for each level you have in this class. While this feature is active, you roll your Halo of Spores damage die a second time, and your melee weapon attacks deal an extra **1d6** necrotic damage on a hit.",
           "source": {
             "type": "subclass",
             "name": "Circle of Spores",
             "level": 2
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Fungal Infestation",
@@ -4546,43 +4561,47 @@
             "total": "Wisdom modifier",
             "recharge": "Long Rest"
           },
-          "summary": "Animate a Small or Medium beast or humanoid that dies within 30 feet as a temporary zombie.",
-          "description": "Your spores gain the ability to infest a corpse and animate it. When a beast or a humanoid that is Small or Medium dies within 30 feet of you, you can use your reaction to animate that creature with 1 hit point as a zombie under your command for 1 hour.",
+          "summary": "Use a reaction to animate a Small or Medium beast or humanoid that dies within 30 feet as a zombie.",
+          "description": "Your spores gain the ability to infest a corpse and animate it. When a Small or Medium beast or humanoid dies within 30 feet of you, you can use your reaction to animate that creature with **1** hit point as a zombie under your command for 1 hour.",
           "source": {
             "type": "subclass",
             "name": "Circle of Spores",
             "level": 6
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Spreading Spores",
           "level": 10,
           "featureType": "Active",
           "actionType": "Bonus Action",
-          "summary": "Throw a 10-foot cube of spores up to 30 feet that damages creatures inside with Halo of Spores.",
+          "summary": "Use a bonus action to create a 10-foot cube of spores up to 30 feet away that deals Halo of Spores damage.",
           "description": "As a bonus action while your Symbiotic Entity feature is active, you can hurl spores up to 30 feet away, where they swirl in a 10-foot cube for 1 minute. Any creature that moves into the cube or starts its turn there takes your Halo of Spores damage.",
           "source": {
             "type": "subclass",
             "name": "Circle of Spores",
             "level": 10
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Fungal Body",
           "level": 14,
           "featureType": "Passive",
-          "summary": "Gain immunity to being blinded, deafened, frightened, or poisoned, and critical hits against you become normal hits.",
-          "description": "The fungal spores in your body alter you: you can't be blinded, deafened, frightened, or poisoned, and any critical hit against you counts as a normal hit instead, unless you're incapacitated.",
+          "summary": "You are immune to being blinded, deafened, frightened, or poisoned, and critical hits against you become normal hits.",
+          "description": "The fungal spores in your body alter you: you cannot be blinded, deafened, frightened, or poisoned. Additionally, any critical hit against you counts as a normal hit instead, unless you are incapacitated.",
           "source": {
             "type": "subclass",
             "name": "Circle of Spores",
             "level": 14
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         }
-      ]
+      ],
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Circle of Stars",
@@ -4595,28 +4614,30 @@
           "name": "Star Map",
           "level": 2,
           "featureType": "Passive",
-          "summary": "Create a star map focus, learn Guidance cantrip, and cast Guiding Bolt for free PB times per day.",
-          "description": "You've created a star chart as part of your heavenly studies. You learn the Guidance cantrip. You also have the Guiding Bolt spell prepared, which counts as a druid spell for you and can be cast without expending a spell slot a number of times equal to your proficiency bonus per long rest.",
+          "summary": "You learn the Guidance cantrip and can cast Guiding Bolt without expending a spell slot a number of times equal to your proficiency bonus per long rest.",
+          "description": "You have created a star chart as part of your heavenly studies. You learn the Guidance cantrip. You also have the Guiding Bolt spell prepared, which counts as a druid spell for you and can be cast without expending a spell slot a number of times equal to your proficiency bonus per long rest.",
           "source": {
             "type": "subclass",
             "name": "Circle of Stars",
             "level": 2
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Starry Form",
           "level": 2,
           "featureType": "Active",
           "actionType": "Bonus Action",
-          "summary": "Expending Wild Shape transforms you into a glimmering Starry Form: Archer, Chalice, or Dragon.",
-          "description": "As a bonus action, you can expend a use of your Wild Shape feature to take on a starry form for 10 minutes: Archer (bonus action ranged spell attack dealing 1d8 + Wis radiant damage), Chalice (healing a creature heals another creature for 1d8 + Wis), or Dragon (treat any roll of 9 or lower on the d20 as a 10 for Concentration saves and Intelligence/Wisdom checks).",
+          "summary": "Expend a use of Wild Shape to transform for 10 minutes into the Archer, Chalice, or Dragon form.",
+          "description": "As a bonus action, you can expend a use of your Wild Shape feature to take on a starry form for 10 minutes. You choose one of the following forms:\n\n- Archer: As a bonus action, you make a ranged spell attack dealing **1d8** + Wisdom modifier radiant damage.\n- Chalice: Whenever you restore hit points to a creature, you can heal another creature within 30 feet for **1d8** + Wisdom modifier hit points.\n- Dragon: Whenever you make a Constitution saving throw to maintain concentration or an Intelligence or Wisdom check, you can treat any roll of 9 or lower on the d20 as a 10.",
           "source": {
             "type": "subclass",
             "name": "Circle of Stars",
             "level": 2
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Cosmic Omen",
@@ -4627,49 +4648,53 @@
             "total": "Proficiency Bonus",
             "recharge": "Long Rest"
           },
-          "summary": "Consult the stars after a rest to roll d6: add 1d6 to an ally's roll (Weal) or subtract 1d6 from an enemy's roll (Woe).",
-          "description": "Whenever you finish a long rest, you can consult your Star Map for omens. Roll a d6: even is Weal (reaction add 1d6 to an ally's attack, save, or check within 30 ft), odd is Woe (reaction subtract 1d6 from a target's attack, save, or check within 30 ft). You can use this reaction a number of times equal to your proficiency bonus.",
+          "summary": "After a long rest, roll a d6 to gain either Weal (add 1d6 to a roll) or Woe (subtract 1d6 from a roll), usable as a reaction.",
+          "description": "Whenever you finish a long rest, you can consult your Star Map for omens. Roll a d6 to determine your omen:\n\n- Even (Weal): As a reaction, you can add **1d6** to an ally's attack roll, saving throw, or ability check, provided the ally is within 30 feet of you.\n- Odd (Woe): As a reaction, you can subtract **1d6** from a target's attack roll, saving throw, or ability check, provided the target is within 30 feet of you.\n\nYou can use this reaction a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
           "source": {
             "type": "subclass",
             "name": "Circle of Stars",
             "level": 6
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Twinkling Constellations",
           "level": 10,
           "featureType": "Passive",
-          "summary": "The constellations of your Starry Form improve to 2d8, and you can switch forms each turn.",
-          "description": "The constellations of your Starry Form become more potent: Archer and Chalice rolls increase to 2d8 radiant / healing, and Dragon form gives you a flying speed of 20 feet and hover. In addition, at the start of each of your turns while in Starry Form, you can switch which constellation is active.",
+          "summary": "Archer and Chalice effects increase to 2d8, Dragon form grants a 20 foot flying speed with hover, and you can switch forms at the start of your turn.",
+          "description": "The constellations of your Starry Form become more potent:\n\n- Archer and Chalice: The dice rolls for these forms increase to **2d8** radiant damage or healing.\n- Dragon: You gain a flying speed of 20 feet and the ability to hover.\n\nAdditionally, at the start of each of your turns while in Starry Form, you can switch which constellation is active.",
           "source": {
             "type": "subclass",
             "name": "Circle of Stars",
             "level": 10
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Full of Stars",
           "level": 14,
           "featureType": "Passive",
-          "summary": "While in Starry Form, you become partially incorporeal with resistance to bludgeoning, piercing, and slashing damage.",
-          "description": "While in your Starry Form, you become partially incorporeal, giving you resistance to bludgeoning, piercing, and slashing damage.",
+          "summary": "Gain resistance to bludgeoning, piercing, and slashing damage while in Starry Form.",
+          "description": "While you are in your Starry Form, you become partially incorporeal, which gives you resistance to bludgeoning, piercing, and slashing damage.",
           "source": {
             "type": "subclass",
             "name": "Circle of Stars",
             "level": 14
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         }
-      ]
+      ],
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Druid",
       "classIndex": "druid",
       "index": "circle-of-the-sea",
       "name": "Circle of the Sea",
-      "flavorText": "Circle of the Sea",
+      "flavorText": "The Circle of the Sea comprises druids who draw their power from the vast oceans and the crushing depths below. These guardians are perfectly at home in the water, commanding the shifting tides and the creatures that dwell within them.",
       "description": "The Circle of the Sea is a druid circle that draws power from the ocean and its depths. These druids are at home in the water, and they command the tides and the creatures within them.",
       "features": [
         {
@@ -4685,7 +4710,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Starting at 2nd level, you can breathe air and water, and you have a swimming speed equal to your walking speed. (permanent).",
+          "summary": "You can breathe air and water, and your swimming speed equals your walking speed.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4695,11 +4720,12 @@
             "name": "Circle of the Sea",
             "level": 2
           },
-          "book": "MPMM"
+          "book": "MPMM",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Wrath of the Sea",
-          "description": "Starting at 2nd level, you can use your action to magically summon a watery spray that lashes out at nearby creatures. Each creature within 30 feet of you that you can see must make a Dexterity saving throw against your druid spell save DC. On a failed save, a creature takes 2d6 bludgeoning damage and is pushed 10 feet away from you. On a successful save, a creature takes half as much damage and isn't pushed.",
+          "description": "Starting at 2nd level, you can use your action to magically summon a watery spray that lashes out at nearby creatures. Each creature within **30 feet** of you that you can see must make a Dexterity saving throw against your druid spell save DC.\n\nOn a failed save, a creature takes **2d6** bludgeoning damage and is pushed **10 feet** away from you. On a successful save, a creature takes half as much damage and isn't pushed.",
           "level": 2,
           "featureType": "Active",
           "actionType": null,
@@ -4710,7 +4736,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "On a failed save, a creature takes 2d6 bludgeoning damage and is pushed 10 feet away from you. (instant, action).",
+          "summary": "Use an action to deal 2d6 bludgeoning damage and push creatures 10 feet away.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4720,7 +4746,8 @@
             "name": "Circle of the Sea",
             "level": 2
           },
-          "book": "MPMM"
+          "book": "MPMM",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Elemental Wild Shape",
@@ -4735,7 +4762,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 6th level, you can expend two uses of Wild Shape instead of one to transform into a water elemental or a steamweird. (action).",
+          "summary": "Expend two uses of Wild Shape to transform into a water elemental or a steamweird.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4745,7 +4772,8 @@
             "name": "Circle of the Sea",
             "level": 6
           },
-          "book": "MPMM"
+          "book": "MPMM",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Aquatic Master",
@@ -4760,7 +4788,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Starting at 10th level, you have advantage on attack rolls against creatures that are underwater, and creatures have disadvantage on attack rolls against you while you are underwater. (permanent).",
+          "summary": "Gain advantage on attacks against underwater creatures and impose disadvantage on attacks against you while you are underwater.",
           "grantsSpells": false,
           "grantsAttack": true,
           "grantsSkills": false,
@@ -4770,7 +4798,8 @@
             "name": "Circle of the Sea",
             "level": 10
           },
-          "book": "MPMM"
+          "book": "MPMM",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Oceanic Guardian",
@@ -4785,7 +4814,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Additionally, you can breathe underwater indefinitely, and you have resistance to cold damage. (action).",
+          "summary": "Breathe underwater indefinitely, gain resistance to cold damage, and cast control water once per long rest without a spell slot.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4795,18 +4824,20 @@
             "name": "Circle of the Sea",
             "level": 14
           },
-          "book": "MPMM"
+          "book": "MPMM",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "MPMM",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Druid",
       "classIndex": "druid",
       "index": "shepherd",
       "name": "Circle of the Shepherd",
-      "flavorText": "Druid Circle",
+      "flavorText": "As a druid of the Circle of the Shepherd, you commune with the spirits of nature—particularly the spirits of beasts and the fey—and call upon them for aid. You recognize that every living thing, no matter how small, plays a vital role in the natural world.",
       "description": "Druids of the Circle of the Shepherd commune with the spirits of nature, especially the spirits of beasts and the fey, and call to them for aid. These druids recognize that all living things play a role in the natural world.",
       "features": [
         {
@@ -4822,7 +4853,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 2nd level, you gain the ability to converse with beasts and fey.",
+          "summary": "Speak, read, and write Sylvan, and communicate with beasts.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4832,11 +4863,12 @@
             "name": "Circle of the Shepherd",
             "level": 2
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Spirit Totem",
-          "description": "Starting at 2nd level, you can call forth nature spirits to aid you and your allies. As a bonus action, you can use your Wild Shape to magically summon a nature spirit to a point you can see within 60 feet of you. The spirit is a spectral form of a bear, hawk, or unicorn, and it creates an aura in a 30-foot radius around it. The spirit is intangible and doesn't take up space. When you summon the spirit, choose which aura it creates:\n\nBear: The bear spirit grants you and your allies advantage on Strength checks and Strength saving throws, and you and your allies gain temporary hit points equal to your druid level.\n\nHawk: The hawk spirit grants you and your allies advantage on attack rolls against any creature in the aura, and you and your allies can use a reaction to make an opportunity attack against a creature that moves out of the aura.\n\nUnicorn: The unicorn spirit grants you and your allies advantage on ability checks made to detect anything in the aura, and when you cast a healing spell with a spell slot, you and your allies regain hit points equal to your druid level.\n\nThe spirit remains for 1 minute, until you use this feature again, or until you die.",
+          "description": "Starting at 2nd level, you can call forth nature spirits to aid you and your allies. As a bonus action, you can use your Wild Shape to magically summon a nature spirit to a point you can see within **60 feet** of you. The spirit is a spectral form of a bear, hawk, or unicorn, and it creates an aura in a **30-foot** radius around it. The spirit is intangible and doesn't take up space. When you summon the spirit, choose which aura it creates:\n\n- Bear: The bear spirit grants you and your allies advantage on Strength checks and Strength saving throws, and you and your allies gain temporary hit points equal to your druid level.\n\n- Hawk: The hawk spirit grants you and your allies advantage on attack rolls against any creature in the aura, and you and your allies can use a reaction to make an opportunity attack against a creature that moves out of the aura.\n\n- Unicorn: The unicorn spirit grants you and your allies advantage on ability checks made to detect anything in the aura, and when you cast a healing spell with a spell slot, you and your allies regain hit points equal to your druid level.\n\nThe spirit remains for **1 minute**, until you use this feature again, or until you die.",
           "level": 2,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -4847,7 +4879,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can use your Wild Shape to magically summon a nature spirit to a point you can see within 60 feet of you. (bonus action).",
+          "summary": "Spend a use of Wild Shape to summon a nature spirit with a 30-foot aura that grants various bonuses to you and your allies.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4857,11 +4889,12 @@
             "name": "Circle of the Shepherd",
             "level": 2
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Mighty Summoner",
-          "description": "Starting at 6th level, beasts and fey that you conjure are more resilient than normal. Any beast or fey that you summon or create with a spell gains the following benefits: The creature appears with more hit points than normal: 2 extra hit points per Hit Die it has. The weapon attacks of the creature count as magical for the purpose of overcoming resistance and immunity to nonmagical attacks and damage.",
+          "description": "Starting at 6th level, beasts and fey that you conjure are more resilient than normal. Any beast or fey that you summon or create with a spell gains the following benefits:\n\n- The creature appears with more hit points than normal: **2** extra hit points per Hit Die it has.\n- The weapon attacks of the creature count as magical for the purpose of overcoming resistance and immunity to nonmagical attacks and damage.",
           "level": 6,
           "featureType": "Passive",
           "actionType": null,
@@ -4872,7 +4905,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "The weapon attacks of the creature count as magical for the purpose of overcoming resistance and immunity to nonmagical attacks and damage.",
+          "summary": "Summoned beasts and fey gain extra hit points and their weapon attacks count as magical.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4882,7 +4915,8 @@
             "name": "Circle of the Shepherd",
             "level": 6
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Guardian Spirit",
@@ -4897,7 +4931,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "When a beast or fey that you summoned or created with a spell ends its turn in your Spirit Totem aura, it regains a number of hit.",
+          "summary": "Summoned beasts and fey regain hit points equal to half your druid level when they end their turn in your Spirit Totem aura.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4907,11 +4941,12 @@
             "name": "Circle of the Shepherd",
             "level": 10
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Faithful Summons",
-          "description": "Starting at 14th level, the nature spirits you commune with protect you when you are the most vulnerable. When you are reduced to 0 hit points or are incapacitated against your will, you can use your reaction to conjure a nature spirit. The spirit appears within 60 feet of you and uses the spirit bear stat block, and it gains 40 temporary hit points. The spirit acts on its own initiative count. On each of its turns, it can take only the Attack (one weapon attack only), Dash, Disengage, Dodge, or Help action. On your turn, you can use a bonus action to command the spirit, provided you are conscious. The spirit vanishes after 1 hour, when it is reduced to 0 hit points, when you use this feature again, or when you die.",
+          "description": "Starting at 14th level, the nature spirits you commune with protect you when you are the most vulnerable. When you are reduced to 0 hit points or are incapacitated against your will, you can use your reaction to conjure a nature spirit.\n\nThe spirit appears within 60 feet of you, uses the spirit bear stat block, and gains **40** temporary hit points. The spirit acts on its own initiative count. On each of its turns, it can take only the Attack (one weapon attack only), Dash, Disengage, Dodge, or Help action.\n\nOn your turn, you can use a bonus action to command the spirit, provided you are conscious. The spirit vanishes after 1 hour, when it is reduced to 0 hit points, when you use this feature again, or when you die.",
           "level": 14,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -4922,7 +4957,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "The spirit appears within 60 feet of you and uses the spirit bear stat block, and it gains 40 temporary hit points. (bonus action).",
+          "summary": "Use a reaction to summon a spirit bear within 60 feet with 40 temporary hit points when you are reduced to 0 hit points or incapacitated.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4932,11 +4967,13 @@
             "name": "Circle of the Shepherd",
             "level": 14
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "XGE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Circle of Wildfire",
@@ -4949,41 +4986,44 @@
           "name": "Circle of Wildfire Spells",
           "level": 2,
           "featureType": "Passive",
-          "summary": "Gain wildfire spells at levels 2, 3, 5, 7, and 9.",
-          "description": "2nd: Burning Hands, Cure Wounds; 3rd: Flaming Sphere, Scorching Ray; 5th: Plant Growth, Revivify; 7th: Aura of Life, Fire Shield; 9th: Flame Strike, Mass Cure Wounds.",
+          "summary": "You learn additional spells at specific levels: 2nd, 3rd, 5th, 7th, and 9th.",
+          "description": "At 2nd level: Burning Hands, Cure Wounds;\nAt 3rd level: Flaming Sphere, Scorching Ray;\nAt 5th level: Plant Growth, Revivify;\nAt 7th level: Aura of Life, Fire Shield;\nAt 9th level: Flame Strike, Mass Cure Wounds.",
           "source": {
             "type": "subclass",
             "name": "Circle of Wildfire",
             "level": 2
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Summon Wildfire Spirit",
           "level": 2,
           "featureType": "Active",
           "actionType": "Action",
-          "summary": "Expending a Wild Shape summons a friendly Wildfire Spirit that burns foes and obeys your commands.",
-          "description": "You can summon the primal spirit bound to your soul. As an action, you can expend one use of your Wild Shape feature to summon your wildfire spirit within 30 feet. Each creature within 10 feet must succeed on a Dex save or take 2d6 fire damage. The spirit takes its turn immediately after yours, attacks with Flame Seed, and can teleport itself and willing allies with Fiery Teleportation.",
+          "summary": "Expend a use of Wild Shape to summon a Wildfire Spirit within 30 feet, dealing 2d6 fire damage to nearby creatures.",
+          "description": "You can summon the primal spirit bound to your soul. As an action, you can expend one use of your Wild Shape feature to summon your wildfire spirit within 30 feet. Each creature within 10 feet of the spirit must succeed on a Dexterity saving throw or take **2d6** fire damage.\n\nThe spirit takes its turn immediately after yours. It attacks with Flame Seed and can teleport itself and willing allies using Fiery Teleportation.",
           "source": {
             "type": "subclass",
             "name": "Circle of Wildfire",
             "level": 2
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Enhanced Bond",
           "level": 6,
           "featureType": "Passive",
-          "summary": "Add 1d8 to rolls of spells that deal fire damage or restore hit points when your spirit is present.",
-          "description": "The bond with your wildfire spirit enhances your destructive and restorative spells. Whenever you cast a spell that deals fire damage or restores hit points while your wildfire spirit is summoned, roll a 1d8 and add the number rolled to one damage or healing roll of the spell.",
+          "summary": "Add 1d8 to one damage or healing roll of a spell that deals fire damage or restores hit points while your spirit is summoned.",
+          "description": "The bond with your wildfire spirit enhances your destructive and restorative spells. Whenever you cast a spell that deals fire damage or restores hit points while your wildfire spirit is summoned, roll a **1d8** and add the number rolled to one damage or healing roll of the spell.",
           "source": {
             "type": "subclass",
             "name": "Circle of Wildfire",
             "level": 6
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Cauterizing Flames",
@@ -4994,14 +5034,15 @@
             "total": "Proficiency Bonus",
             "recharge": "Long Rest"
           },
-          "summary": "Drop spectral flames when a creature dies within 30 feet to heal or damage a creature 2d10 + Wis.",
-          "description": "You gain the ability to turn death into magical flames that can heal or incinerate. When a Small or larger creature dies within 30 feet of you or your wildfire spirit, a harmless spectral flame springs up in its space. When a creature touches it, you can use your reaction to either restore 2d10 + Wis HP to it or deal 2d10 + Wis fire damage.",
+          "summary": "Use a reaction when a creature dies within 30 feet to heal or deal 2d10 + Wisdom modifier damage to a creature touching the resulting flame.",
+          "description": "You gain the ability to turn death into magical flames that can heal or incinerate. When a Small or larger creature dies within 30 feet of you or your wildfire spirit, a harmless spectral flame springs up in its space.\n\nWhen a creature touches this flame, you can use your reaction to either restore **2d10** + Wisdom modifier hit points to it or deal **2d10** + Wisdom modifier fire damage to it.",
           "source": {
             "type": "subclass",
             "name": "Circle of Wildfire",
             "level": 10
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Blazing Revival",
@@ -5012,23 +5053,25 @@
             "total": 1,
             "recharge": "Long Rest"
           },
-          "summary": "When reduced to 0 HP, sacrifice your wildfire spirit to drop to 1 HP and regain half your max HP.",
-          "description": "If you are reduced to 0 hit points and your wildfire spirit is within 120 feet of you, you can sacrifice the spirit to cause you to drop to 1 hit point instead of 0, and each creature within 10 feet of the sacrificed spirit takes fire damage equal to 2d10 + your Wisdom modifier.",
+          "summary": "When reduced to 0 hit points, sacrifice your wildfire spirit to drop to 1 hit point instead and deal fire damage to nearby creatures.",
+          "description": "If you are reduced to 0 hit points and your wildfire spirit is within **120 feet** of you, you can use your reaction to sacrifice the spirit. When you do, you drop to **1 hit point** instead of 0, and each creature within **10 feet** of the sacrificed spirit takes fire damage equal to **2d10** + your Wisdom modifier.",
           "source": {
             "type": "subclass",
             "name": "Circle of Wildfire",
             "level": 14
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         }
-      ]
+      ],
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Druid",
       "classIndex": "druid",
       "index": "land",
       "name": "Land",
-      "flavorText": "Druid Circle",
+      "flavorText": "The Circle of the Land is composed of mystics and sages who preserve ancient rites and knowledge through a vast oral tradition. These druids gather within sacred circles of standing stones or ancient trees to whisper primal secrets in Druidic. The wisest members of the circle serve as chief priests for communities that follow the Old Faith and act as advisors to the rulers of those people. As a member of this circle, your magic is shaped by the land where you were initiated into the circle's mysterious rites.",
       "description": "The Circle of the Land is made up of mystics and sages who safeguard ancient knowledge and rites through a vast oral tradition. These druids meet within sacred circles of trees or standing stones to whisper primal secrets in Druidic. The circle's wisest members preside as the chief priests of communities that hold to the Old Faith and serve as advisors to the rulers of those folk. As a member of this circle, your magic is influenced by the land where you were initiated into the circle's mysterious rites.",
       "features": [
         {
@@ -5038,7 +5081,8 @@
           "choices": [
             {
               "name": "cantrip",
-              "description": "Choose one additional druid cantrip"
+              "description": "Choose one additional druid cantrip",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "featureType": "Active",
@@ -5050,7 +5094,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Learn one additional druid cantrip of your choice. (action).",
+          "summary": "Learn one additional druid cantrip of your choice.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5060,11 +5104,12 @@
             "name": "Land",
             "level": 2
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Natural Recovery",
-          "description": "Starting at 2nd level, you can regain some of your magical energy by sitting in meditation and communing with nature. During a short rest, you choose expended spell slots to recover. The spell slots can have a combined level that is equal to or less than half your druid level (rounded up), and none of the slots can be 6th level or higher. You can't use this feature again until you finish a long rest.\nFor example, when you are a 4th-level druid, you can recover up to two levels worth of spell slots. You can recover either a 2nd-level slot or two 1st-level slots.",
+          "description": "Starting at 2nd level, you can regain some of your magical energy by sitting in meditation and communing with nature. During a short rest, you choose expended spell slots to recover. The spell slots can have a combined level that is equal to or less than half your druid level (rounded up), and none of the slots can be 6th level or higher. You can't use this feature again until you finish a long rest.\n\nFor example, when you are a 4th-level druid, you can recover up to two levels worth of spell slots. You can recover either a 2nd-level slot or two 1st-level slots.",
           "level": 2,
           "featureType": "Active",
           "actionType": null,
@@ -5075,7 +5120,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Starting at 2nd level, you can regain some of your magical energy by sitting in meditation and communing with nature. (action).",
+          "summary": "During a short rest, recover expended spell slots with a combined level up to half your druid level (rounded up).",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5085,16 +5130,18 @@
             "name": "Land",
             "level": 2
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Circle Spells",
-          "description": "Your mystical connection to the land infuses you with the ability to cast certain spells. At 3rd, 5th, 7th, and 9th level you gain access to circle spells connected to the land where you became a druid.\nChoose that land--arctic, coast, desert, forest, grassland, mountain, or swamp--and consult the associated list of spells.\nOnce you gain access to a circle spell, you always have it prepared, and it doesn't count against the number of spells you can prepare each day. If you gain access to a spell that doesn't appear on the druid spell list, the spell is nonetheless a druid spell for you.",
+          "description": "Your mystical connection to the land infuses you with the ability to cast certain spells. At 3rd, 5th, 7th, and 9th level you gain access to circle spells connected to the land where you became a druid.\n\nChoose that land—arctic, coast, desert, forest, grassland, mountain, or swamp—and consult the associated list of spells.\n\nOnce you gain access to a circle spell, you always have it prepared, and it doesn't count against the number of spells you can prepare each day. If you gain access to a spell that doesn't appear on the druid spell list, the spell is nonetheless a druid spell for you.",
           "level": 3,
           "choices": [
             {
               "name": "terrain",
-              "description": "Choose your terrain type (arctic, coast, desert, forest, grassland, mountain, swamp, underdark)"
+              "description": "Choose your terrain type (arctic, coast, desert, forest, grassland, mountain, swamp, underdark)",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "featureType": "Active",
@@ -5106,7 +5153,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 3rd, 5th, 7th, and 9th level you gain access to circle spells connected to the land where you became a druid. (action).",
+          "summary": "Gain specific spells at 3rd, 5th, 7th, and 9th level based on your chosen land; these are always prepared.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5116,11 +5163,12 @@
             "name": "Land",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Land's Stride",
-          "description": "Starting at 6th level, moving through nonmagical difficult terrain costs you no extra movement. You can also pass through nonmagical plants without being slowed by them and without taking damage from them if they have thorns, spines, or a similar hazard.\nIn addition, you have advantage on saving throws against plants that are magically created or manipulated to impede movement, such those created by the entangle spell.",
+          "description": "Starting at 6th level, moving through nonmagical difficult terrain costs you no extra movement. You can also pass through nonmagical plants without being slowed by them and without taking damage from them if they have thorns, spines, or a similar hazard.\n\nIn addition, you have advantage on saving throws against plants that are magically created or manipulated to impede movement, such as those created by the entangle spell.",
           "level": 6,
           "featureType": "Passive",
           "actionType": null,
@@ -5131,7 +5179,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "In addition, you have advantage on saving throws against plants that are magically created or manipulated to impede movement, such those created by the entangle spell.",
+          "summary": "You ignore nonmagical difficult terrain and plant hazards, and have advantage on saving throws against plants magically created or manipulated to impede movement.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5141,7 +5189,8 @@
             "name": "Land",
             "level": 6
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Nature's Ward",
@@ -5156,7 +5205,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can't be charmed or frightened by elementals or fey, and you are immune to poison and disease.",
+          "summary": "You are immune to poison and disease, and cannot be charmed or frightened by elementals or fey.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5166,7 +5215,8 @@
             "name": "Land",
             "level": 10
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Nature's Sanctuary",
@@ -5181,7 +5231,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "That creature must make a Wisdom saving throw against your druid spell save DC. (action).",
+          "summary": "When a beast or plant attacks you, it must pass a Wisdom saving throw or miss the attack or choose a new target.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5191,18 +5241,20 @@
             "name": "Land",
             "level": 14
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "PHB",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Moon",
       "class": "Druid",
       "classIndex": "druid",
       "index": "moon",
-      "flavorText": "Druid Circle",
+      "flavorText": "Druids of the Circle of the Moon serve as fierce guardians of the natural order. Through special rituals, they gain the ability to assume more powerful beast forms, transforming into creatures of immense strength and ferocity.\n\nThese druids gather in secret locations to exchange information and share warnings. As masters of the wild, they call upon the most powerful beasts to assist them in their sacred duty: protecting nature from all who would seek to harm it.",
       "description": "Druids of the Circle of the Moon are fierce guardians of the natural order. They undergo special rituals that allow them to take on more powerful beast forms, transforming into creatures of great strength and ferocity.\n\nThese druids meet in secret places to share information and pass along warnings. They are masters of the wild, able to call upon the most powerful beasts to aid them in their sacred duty to protect nature from those who would do it harm.",
       "features": [
         {
@@ -5218,7 +5270,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 2nd level, you can use Wild Shape as a bonus action. (bonus action).",
+          "summary": "You can use Wild Shape as a bonus action.",
           "grantsSpells": false,
           "grantsAttack": true,
           "grantsSkills": false,
@@ -5228,11 +5280,12 @@
             "name": "Moon",
             "level": 2
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Circle Forms",
-          "description": "Also at 2nd level, you can transform into more powerful beasts.",
+          "description": "At 2nd level, you can transform into more powerful beasts.",
           "level": 2,
           "featureType": "Passive",
           "actionType": null,
@@ -5243,7 +5296,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Also at 2nd level, you can transform into more powerful beasts.",
+          "summary": "Transform into more powerful beasts.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5253,7 +5306,8 @@
             "name": "Moon",
             "level": 2
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Primal Strike",
@@ -5268,7 +5322,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Starting at 6th level, your attacks in beast form count as magical.",
+          "summary": "Your attacks in beast form count as magical.",
           "grantsSpells": false,
           "grantsAttack": true,
           "grantsSkills": false,
@@ -5278,7 +5332,8 @@
             "name": "Moon",
             "level": 6
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Elemental Wild Shape",
@@ -5293,7 +5348,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 10th level, you can expend two uses of Wild Shape to transform into an elemental. (action).",
+          "summary": "Expend two uses of Wild Shape to transform into an elemental.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5303,7 +5358,8 @@
             "name": "Moon",
             "level": 10
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Thousand Forms",
@@ -5318,7 +5374,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 14th level, you can cast the alter self spell at will.",
+          "summary": "Cast the alter self spell at will.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5328,11 +5384,13 @@
             "name": "Moon",
             "level": 14
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "PHB",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Fighter",
@@ -5355,7 +5413,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 3rd level, you learn magical theory or some of the secrets of nature—typically related to the force of archery and the importance of focus.",
+          "summary": "Learn a specific cantrip and study the magical theory of archery.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5365,11 +5423,12 @@
             "name": "Arcane Archer",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Arcane Shot",
-          "description": "At 3rd level, you learn to unleash special magical effects with some of your shots. When you gain this feature, you learn two Arcane Shot options of your choice. Once per turn when you fire a shortbow or longbow as part of the Attack action, you can apply one of your Arcane Shot options to the arrow. You decide to use the option after seeing the roll, but before the DM determines whether the attack hits or misses. You have two uses of this feature, and you regain all expended uses of it when you finish a short or long rest.",
+          "description": "At 3rd level, you learn to unleash special magical effects with some of your shots. When you gain this feature, you learn two Arcane Shot options of your choice.\n\nOnce per turn when you fire a shortbow or longbow as part of the Attack action, you can apply one of your Arcane Shot options to the arrow. You decide to use the option after seeing the attack roll, but before the DM determines whether the attack hits or misses.\n\nYou have **2** uses of this feature, and you regain all expended uses of it when you finish a short or long rest.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Action",
@@ -5380,7 +5439,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Learn two Arcane Shot options of your choice. (action).",
+          "summary": "Apply one of two learned magical effects to a shortbow or longbow attack once per turn.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5390,48 +5449,58 @@
             "name": "Arcane Archer",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Arcane Shot Options",
-          "description": "The following options are available to you when you use your Arcane Shot feature:\n\nBanishing Arrow: You banish the target you hit to a harmless demiplane until the end of your next turn. The target disappears, incapacitated. When the effect ends, the target reappears in the space it left or in the nearest unoccupied space.\n\nBeguiling Arrow: Your charm inflicts psychic damage and causes the target to be charmed by you.\n\nBursting Arrow: The arrow creates a burst of energy that damages the target and up to two other creatures within 10 feet of it.\n\nEnfeebling Arrow: The target must make a Constitution saving throw. On a failed save, the target deals only half damage with weapon attacks until the end of your next turn.\n\nGrasping Arrow: Vines burst from the arrow, grasping the target and up to two other creatures within 10 feet of it.\n\nMind-Scrambling Arrow: The target must make a Wisdom saving throw. On a failed save, the target can't take reactions until the start of your next turn and must roll a d6 to determine its behavior.\n\nPiercing Arrow: You make a ranged attack with the arrow as a normal ranged attack. The arrow passes through the target to another creature.\n\nSeeking Arrow: You gain magical insight on the location of the target. You make a ranged attack with the arrow as a normal ranged attack. If the attack misses, you can use a bonus action to make a new attack against the same target.\n\nShadow Arrow: You weave illusion magic into your arrow, causing the target to be blinded until the end of your next turn.",
+          "description": "The following options are available to you when you use your Arcane Shot feature:\n\nBanishing Arrow: You banish the target you hit to a harmless demiplane until the end of your next turn. The target disappears, incapacitated. When the effect ends, the target reappears in the space it left or in the nearest unoccupied space.\n\nBeguiling Arrow: Your charm inflicts psychic damage and causes the target to be charmed by you.\n\nBursting Arrow: The arrow creates a burst of energy that damages the target and up to two other creatures within **10 feet** of it.\n\nEnfeebling Arrow: The target must make a Constitution saving throw. On a failed save, the target deals only half damage with weapon attacks until the end of your next turn.\n\nGrasping Arrow: Vines burst from the arrow, grasping the target and up to two other creatures within **10 feet** of it.\n\nMind-Scrambling Arrow: The target must make a Wisdom saving throw. On a failed save, the target can't take reactions until the start of your next turn and must roll a **d6** to determine its behavior.\n\nPiercing Arrow: You make a ranged attack with the arrow as a normal ranged attack. The arrow passes through the target to another creature.\n\nSeeking Arrow: You gain magical insight on the location of the target. You make a ranged attack with the arrow as a normal ranged attack. If the attack misses, you can use a bonus action to make a new attack against the same target.\n\nShadow Arrow: You weave illusion magic into your arrow, causing the target to be blinded until the end of your next turn.",
           "level": 3,
           "choices": [
             {
               "name": "Banishing Arrow",
-              "description": "You banish the target you hit to a harmless demiplane until the end of your next turn. The target disappears, incapacitated. When the effect ends, the target reappears in the space it left or in the nearest unoccupied space."
+              "description": "You banish the target you hit to a harmless demiplane until the end of your next turn. The target disappears, incapacitated. When the effect ends, the target reappears in the space it left or in the nearest unoccupied space.",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Beguiling Arrow",
-              "description": "Your charm inflicts psychic damage and causes the target to be charmed by you."
+              "description": "Your charm inflicts psychic damage and causes the target to be charmed by you.",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Bursting Arrow",
-              "description": "The arrow creates a burst of energy that damages the target and up to two other creatures within 10 feet of it."
+              "description": "The arrow creates a burst of energy that damages the target and up to two other creatures within **10 feet** of it.",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Enfeebling Arrow",
-              "description": "The target must make a Constitution saving throw. On a failed save, the target deals only half damage with weapon attacks until the end of your next turn."
+              "description": "The target must make a Constitution saving throw. On a failed save, the target deals only half damage with weapon attacks until the end of your next turn.",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Grasping Arrow",
-              "description": "Vines burst from the arrow, grasping the target and up to two other creatures within 10 feet of it."
+              "description": "Vines burst from the arrow, grasping the target and up to **2** other creatures within **10 feet** of it.",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Mind-Scrambling Arrow",
-              "description": "The target must make a Wisdom saving throw. On a failed save, the target can't take reactions until the start of your next turn and must roll a d6 to determine its behavior."
+              "description": "The target must make a Wisdom saving throw. On a failed save, the target cannot take reactions until the start of your next turn and must roll a **d6** to determine its behavior.",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Piercing Arrow",
-              "description": "You make a ranged attack with the arrow as a normal ranged attack. The arrow passes through the target to another creature."
+              "description": "You make a ranged attack with the arrow as a normal ranged attack. The arrow passes through the target to another creature.",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Seeking Arrow",
-              "description": "You gain magical insight on the location of the target. You make a ranged attack with the arrow as a normal ranged attack. If the attack misses, you can use a bonus action to make a new attack against the same target."
+              "description": "You gain magical insight into the location of the target. You make a ranged attack with the arrow as a normal ranged attack. If the attack misses, you can use a bonus action to make a new attack against the same target.",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Shadow Arrow",
-              "description": "You weave illusion magic into your arrow, causing the target to be blinded until the end of your next turn."
+              "description": "You weave illusion magic into your arrow, causing the target to be blinded until the end of your next turn.",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "choicesCount": 2,
@@ -5444,7 +5513,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Bursting Arrow: The arrow creates a burst of energy that damages the target and up to two other creatures within 10 feet of it. (bonus action).",
+          "summary": "Choose from various magical arrow effects, such as banishing targets, charming enemies, or creating energy bursts.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5454,11 +5523,12 @@
             "name": "Arcane Archer",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Magic Arrow",
-          "description": "At 7th level, you gain the ability to infuse arrows with magic. Whenever you fire a nonmagical arrow from a shortbow or longbow, you can make it magical for the purpose of overcoming resistance and immunity to nonmagical attacks and damage. This magic fades from the arrow if it hasn't been used within 1 minute after you shoot it.",
+          "description": "At 7th level, you gain the ability to infuse arrows with magic. Whenever you fire a nonmagical arrow from a shortbow or longbow, you can make it magical for the purpose of overcoming resistance and immunity to nonmagical attacks and damage. This magic fades from the arrow if it has not been used within **1 minute** after you shoot it.",
           "level": 7,
           "featureType": "Active",
           "actionType": null,
@@ -5469,7 +5539,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Whenever you fire a nonmagical arrow from a shortbow or longbow, you can make it magical for the purpose of overcoming resistance and immunity to nonmagical attacks and damage. (action).",
+          "summary": "Make nonmagical arrows from a shortbow or longbow magical to overcome resistance and immunity to nonmagical attacks and damage.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5479,7 +5549,8 @@
             "name": "Arcane Archer",
             "level": 7
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Curving Shot",
@@ -5494,7 +5565,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can use a bonus action to reroll the attack roll against a different target within 60 feet of the original target. (bonus action).",
+          "summary": "Use a bonus action to reroll a missed magic arrow attack against a different target within 60 feet of the original target.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5504,7 +5575,8 @@
             "name": "Arcane Archer",
             "level": 7
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Ever-Ready Shot",
@@ -5519,7 +5591,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Regain all expended uses of your Arcane Shot feature when you finish a short or long rest. (action).",
+          "summary": "Regain all expended uses of your Arcane Shot feature whenever you finish a short or long rest.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5529,23 +5601,25 @@
             "name": "Arcane Archer",
             "level": 15
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "XGE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Battle Master",
       "class": "Fighter",
       "classIndex": "fighter",
       "index": "battle-master",
-      "flavorText": "Martial Archetype",
+      "flavorText": "Martial Archetype\n\nThe Battle Master is a supreme warrior who uses a variety of maneuvers to control the battlefield. Drawing on extensive combat experience and tactical knowledge, the Battle Master can turn the tide of battle with well-timed strikes and clever stratagems. Those who emulate this martial archetype combine rigorous training with physical excellence to deal devastating blows.\n\nBattle Masters study the art of war, learning to read their opponents and exploit their weaknesses with precision and cunning. They use superiority dice to fuel powerful maneuvers that can disarm, trip, or push their enemies, turning the tide of battle in their favor.",
       "description": "The Battle Master is a supreme warrior who uses a variety of maneuvers to control the battlefield. Drawing on extensive combat experience and tactical knowledge, the Battle Master can turn the tide of battle with well-timed strikes and clever stratagems. Those who emulate this martial archetype combine rigorous training with physical excellence to deal devastating blows.\n\nBattle Masters study the art of war, learning to read their opponents and exploit their weaknesses with precision and cunning. They use superiority dice to fuel powerful maneuvers that can disarm, trip, or push their enemies, turning the tide of battle in their favor.",
       "features": [
         {
           "name": "Combat Superiority",
-          "description": "You learn maneuvers fueled by superiority dice (d8s). You gain 4 superiority dice at level 3, regaining them on a short or long rest. You learn 3 maneuvers at level 3, and additional maneuvers at higher levels.",
+          "description": "You learn maneuvers fueled by superiority dice (**d8s**). You gain **4** superiority dice at level 3, regaining them on a short or long rest. You learn **3** maneuvers at level 3, and additional maneuvers at higher levels.",
           "level": 3,
           "choices": {
             "type": "maneuvers",
@@ -5653,7 +5727,8 @@
             "name": "Battle Master",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Student of War",
@@ -5830,7 +5905,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 3rd level, you gain proficiency with one type of artisan's tools of your choice.",
+          "summary": "Gain proficiency with one type of artisan's tools of your choice.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5840,11 +5915,12 @@
             "name": "Battle Master",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Know Your Enemy",
-          "description": "Starting at 7th level, if you spend at least 1 minute observing or interacting with another creature outside combat, you can learn certain information about its capabilities compared to your own. The DM tells you if the creature is your equal, superior, or inferior in regard to two of the following characteristics of your choice: Strength score, Dexterity score, Constitution score, Armor Class, Current hit points, Total class levels, Fighter class levels.",
+          "description": "Starting at 7th level, if you spend at least **1 minute** observing or interacting with another creature outside combat, you can learn certain information about its capabilities compared to your own. The DM tells you if the creature is your equal, superior, or inferior in regard to two of the following characteristics of your choice: Strength score, Dexterity score, Constitution score, Armor Class, Current hit points, Total class levels, Fighter class levels.",
           "level": 7,
           "featureType": "Active",
           "actionType": null,
@@ -5855,7 +5931,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "The DM tells you if the creature is your equal, superior, or inferior in regard to two of the following characteristics of your choice: Strength score, Dexterity score, Constitution (action).",
+          "summary": "Observe a creature for 1 minute to learn if it is your equal, superior, or inferior in two chosen characteristics.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5865,11 +5941,12 @@
             "name": "Battle Master",
             "level": 7
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Improved Combat Superiority (d10)",
-          "description": "At 10th level, your superiority dice turn into d10s.",
+          "description": "At 10th level, your superiority dice turn into **d10s**.",
           "level": 10,
           "featureType": "Passive",
           "actionType": null,
@@ -5880,7 +5957,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 10th level, your superiority dice turn into d10s.",
+          "summary": "Your superiority dice become **d10s**.",
           "grantsSpells": false,
           "grantsAttack": true,
           "grantsSkills": false,
@@ -5890,11 +5967,12 @@
             "name": "Battle Master",
             "level": 10
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Relentless",
-          "description": "Starting at 15th level, when you roll initiative and have no superiority dice remaining, you regain 1 superiority die.",
+          "description": "Starting at 15th level, when you roll initiative and have no superiority dice remaining, you regain **1** superiority die.",
           "level": 15,
           "featureType": "Active",
           "actionType": null,
@@ -5905,7 +5983,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Starting at 15th level, when you roll initiative and have no superiority dice remaining, you regain 1 superiority die. (action).",
+          "summary": "Regain 1 superiority die when you roll initiative if you have none remaining.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5915,11 +5993,12 @@
             "name": "Battle Master",
             "level": 15
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Improved Combat Superiority (d12)",
-          "description": "At 18th level, your superiority dice turn into d12s.",
+          "description": "At 18th level, your superiority dice turn into **d12s**.",
           "level": 18,
           "featureType": "Passive",
           "actionType": null,
@@ -5930,7 +6009,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 18th level, your superiority dice turn into d12s.",
+          "summary": "Your superiority dice become **d12s**.",
           "grantsSpells": false,
           "grantsAttack": true,
           "grantsSkills": false,
@@ -5940,11 +6019,13 @@
             "name": "Battle Master",
             "level": 18
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "PHB",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Fighter",
@@ -5961,27 +6042,33 @@
           "choices": [
             {
               "name": "Animal Handling",
-              "description": "Gain proficiency in Animal Handling skill."
+              "description": "Gain proficiency in the Animal Handling skill.",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "History",
-              "description": "Gain proficiency in History skill."
+              "description": "You gain proficiency in the History skill.",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Insight",
-              "description": "Gain proficiency in Insight skill."
+              "description": "You gain proficiency in the Insight skill.",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Performance",
-              "description": "Gain proficiency in Performance skill."
+              "description": "You gain proficiency in the Performance skill.",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Persuasion",
-              "description": "Gain proficiency in Persuasion skill."
+              "description": "You gain proficiency in the Persuasion skill.",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Language (choice)",
-              "description": "Learn one language of your choice."
+              "description": "You learn one language of your choice.",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "choicesCount": 1,
@@ -5994,7 +6081,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Alternatively, you learn one language of your choice. (action).",
+          "summary": "Gain proficiency in one specific skill or learn one language of your choice.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": true,
@@ -6004,11 +6091,12 @@
             "name": "Cavalier",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Born to the Saddle",
-          "description": "Starting at 3rd level, you have advantage on saving throws made to avoid falling off your mount. If you fall off your mount and land within 5 feet of it, you take no damage. Finally, mounting or dismounting a creature costs you only 5 feet of movement, rather than half your speed.",
+          "description": "Starting at 3rd level, you have advantage on saving throws made to avoid falling off your mount. If you fall off your mount and land within **5 feet** of it, you take no damage. Finally, mounting or dismounting a creature costs you only **5 feet** of movement, rather than half your speed.",
           "level": 3,
           "featureType": "Passive",
           "actionType": null,
@@ -6019,7 +6107,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Finally, mounting or dismounting a creature costs you only 5 feet of movement, rather than half your speed.",
+          "summary": "Mounting or dismounting costs only 5 feet of movement, and you have advantage on saves to avoid falling off your mount.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6029,11 +6117,12 @@
             "name": "Cavalier",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Unwavering Mark",
-          "description": "Starting at 3rd level, you can menace your foes, foiling their attacks and punishing them for harming others. When you hit a creature with a melee weapon attack, you can mark the creature until the end of your next turn. This effect ends early if you are incapacitated or die, or if someone else marks the target. While it is within 5 feet of you, a marked creature has disadvantage on any attack roll that doesn't target you. In addition, if a marked creature deals damage to anyone other than you, you can make a special melee attack against the marked creature as a bonus action on your next turn. You have advantage on the attack roll, and if it hits, your weapon deals extra damage equal to half your fighter level. Regardless of whether you use this bonus action, you can use it a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+          "description": "Starting at 3rd level, you can menace your foes, foiling their attacks and punishing them for harming others. When you hit a creature with a melee weapon attack, you can mark the creature until the end of your next turn. This effect ends early if you are incapacitated or die, or if someone else marks the target.\n\nWhile it is within 5 feet of you, a marked creature has disadvantage on any attack roll that doesn't target you. In addition, if a marked creature deals damage to anyone other than you, you can make a special melee attack against the marked creature as a bonus action on your next turn. You have advantage on the attack roll, and if it hits, your weapon deals extra damage equal to half your fighter level.\n\nRegardless of whether you use this bonus action, you can use it a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -6044,7 +6133,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "A marked creature has disadvantage on any attack roll that doesn't target you. (bonus action).",
+          "summary": "Mark a creature to give it disadvantage on attacks against others. If it harms someone else, you can use a bonus action to attack it with advantage and extra damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6054,11 +6143,12 @@
             "name": "Cavalier",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Warding Maneuver",
-          "description": "At 7th level, you learn to fend off strikes directed at you, your mount, or other creatures nearby. If you or a creature you can see within 5 feet of you takes damage, you can use your reaction to roll 1d8 and reduce the damage by that amount + your proficiency bonus. You can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+          "description": "At 7th level, you learn to fend off strikes directed at you, your mount, or other creatures nearby. If you or a creature you can see within 5 feet of you takes damage, you can use your reaction to roll **1d8** and reduce the damage by that amount + your proficiency bonus.\n\nYou can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
           "level": 7,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -6069,7 +6159,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can use your reaction to roll 1d8 and reduce the damage by that amount + your proficiency bonus. (reaction).",
+          "summary": "Use your reaction to reduce damage taken by you or a creature within 5 feet by 1d8 + your proficiency bonus.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6079,11 +6169,12 @@
             "name": "Cavalier",
             "level": 7
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Hold the Line",
-          "description": "Starting at 10th level, you become a master of locking down your enemies. Creatures provoke opportunity attacks from you when they move 5 feet or more while within your reach. In addition, if a creature within 5 feet of you makes an attack against a target other than you, you can use your reaction to make a melee weapon attack against the attacking creature.",
+          "description": "Starting at 10th level, you become a master of locking down your enemies. Creatures provoke opportunity attacks from you when they move 5 feet or more while within your reach.\n\nIn addition, if a creature within 5 feet of you makes an attack against a target other than you, you can use your reaction to make a melee weapon attack against the attacking creature.",
           "level": 10,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -6094,7 +6185,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Creatures provoke opportunity attacks from you when they move 5 feet or more while within your reach. (reaction).",
+          "summary": "Creatures provoke opportunity attacks when moving 5 feet or more within your reach. You can also react to attack a creature within 5 feet that attacks someone else.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6104,11 +6195,12 @@
             "name": "Cavalier",
             "level": 10
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Ferocious Charger",
-          "description": "Starting at 15th level, you can run down your foes, whether you're mounted or not. If you move at least 10 feet in a straight line right before attacking a creature and you hit it with a melee weapon attack, the target must succeed on a Strength saving throw (DC 8 + your proficiency bonus + your Strength modifier) or be knocked prone. You can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+          "description": "Starting at 15th level, you can run down your foes, whether you're mounted or not. If you move at least 10 feet in a straight line right before attacking a creature and you hit it with a melee weapon attack, the target must succeed on a Strength saving throw (DC 8 + your proficiency bonus + your Strength modifier) or be knocked prone.\n\nYou can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
           "level": 15,
           "featureType": "Active",
           "actionType": null,
@@ -6119,7 +6211,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "The target must succeed on a Strength saving throw (DC 8 + your proficiency bonus + your Strength modifier) or be knocked prone. (action).",
+          "summary": "After moving 10 feet in a straight line and hitting with a melee attack, force the target to make a Strength save or be knocked prone.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6129,11 +6221,12 @@
             "name": "Cavalier",
             "level": 15
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Vigilant Defender",
-          "description": "Starting at 18th level, you respond to danger with extraordinary vigilance. In combat, you gain a special reaction that you can take once on every creature's turn, except your turn. You can't use this reaction on the same turn that you take your normal reaction.",
+          "description": "Starting at 18th level, you respond to danger with extraordinary vigilance. In combat, you gain a special reaction that you can take once on every creature's turn, except your turn.\n\nYou can't use this reaction on the same turn that you take your normal reaction.",
           "level": 18,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -6144,7 +6237,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "In combat, you gain a special reaction that you can take once on every creature's turn, except your turn. (reaction).",
+          "summary": "Gain a special reaction that can be used once on every creature's turn, except your own, provided you haven't used your normal reaction that turn.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6154,11 +6247,13 @@
             "name": "Cavalier",
             "level": 18
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "XGE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Fighter",
@@ -6181,7 +6276,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Beginning when you choose this archetype at 3rd level, your weapon attacks score a critical hit on a roll of 19 or 20. (action).",
+          "summary": "Your weapon attacks score a critical hit on a roll of 19 or 20.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6191,11 +6286,12 @@
             "name": "Champion",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Remarkable Athlete",
-          "description": "Starting at 7th level, you can add half your proficiency bonus (round up) to any Strength, Dexterity, or Constitution check you make that doesn't already use your proficiency bonus. In addition, when you make a running long jump, the distance you can cover increases by a number of feet equal to your Strength modifier.",
+          "description": "Starting at 7th level, you can add half your proficiency bonus (round up) to any Strength, Dexterity, or Constitution check you make that doesn't already use your proficiency bonus.\n\nIn addition, when you make a running long jump, the distance you can cover increases by a number of feet equal to your Strength modifier.",
           "level": 7,
           "featureType": "Active",
           "actionType": null,
@@ -6206,7 +6302,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Starting at 7th level, you can add half your proficiency bonus (round up) to any Strength, Dexterity, or Constitution check you make that doesn't already use your proficiency bonus. (action).",
+          "summary": "Add half your proficiency bonus (rounded up) to Strength, Dexterity, or Constitution checks that don't already use it, and increase running long jump distance by your Strength modifier.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6216,7 +6312,8 @@
             "name": "Champion",
             "level": 7
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Additional Fighting Style",
@@ -6231,7 +6328,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 10th level, you can choose a second option from the Fighting Style class feature. (action).",
+          "summary": "You gain a second option from the Fighting Style class feature.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6241,7 +6338,8 @@
             "name": "Champion",
             "level": 10
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Superior Critical",
@@ -6256,7 +6354,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Starting at 15th level, your weapon attacks score a critical hit on a roll of 18-20. (action).",
+          "summary": "Your weapon attacks score a critical hit on a roll of 18-20.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6266,11 +6364,12 @@
             "name": "Champion",
             "level": 15
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Survivor",
-          "description": "At 18th level, you attain the pinnacle of resilience in battle. At the start of each of your turns, you regain hit points equal to 5 + your Constitution modifier if you have no more than half of your hit points left. You don't gain this benefit if you have 0 hit points.",
+          "description": "At 18th level, you attain the pinnacle of resilience in battle. At the start of each of your turns, you regain hit points equal to 5 + your Constitution modifier if you have no more than half of your hit points left.\n\nYou don't gain this benefit if you have 0 hit points.",
           "level": 18,
           "featureType": "Passive",
           "actionType": null,
@@ -6281,7 +6380,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At the start of each of your turns, you regain hit points equal to 5 + your Constitution modifier if you have no more than half of your hit points.",
+          "summary": "At the start of your turn, you regain 5 + your Constitution modifier hit points if you are at or below half your hit point maximum.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6291,11 +6390,13 @@
             "name": "Champion",
             "level": 18
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "PHB",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "index": "echo-knight",
@@ -6306,7 +6407,7 @@
         {
           "name": "Manifest Echo",
           "level": 3,
-          "description": "You can use a bonus action to magically manifest a translucent, gray image of yourself in an unoccupied space you can see within 15 feet of you. This echo lasts until it is destroyed, you dismiss it, you manifest another echo, or you're incapacitated. Your echo has AC 14 + your proficiency bonus, 1 hit point, and immunity to all conditions. If it has to make a saving throw, use your save bonus. It is the same size as you, and it occupies its space. On your turn, you can mentally command the echo to move up to 30 feet in any direction (no action required). You can use it as the origin for your attacks and you can make opportunity attacks as if you were in its space.",
+          "description": "You can use a bonus action to magically manifest a translucent, gray image of yourself in an unoccupied space you can see within **15 feet** of you. This echo lasts until it is destroyed, you dismiss it, you manifest another echo, or you are incapacitated.\n\nYour echo has AC **14 + your proficiency bonus**, **1 hit point**, and immunity to all conditions. If it must make a saving throw, use your saving throw bonus. It is the same size as you and occupies its space.\n\nOn your turn, you can mentally command the echo to move up to **30 feet** in any direction; this requires no action. You can use the echo as the origin for your attacks, and you can make opportunity attacks as if you were in its space.",
           "featureType": "Active",
           "actionType": "Bonus Action",
           "uses": null,
@@ -6316,7 +6417,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can use a bonus action to magically manifest a translucent, gray image of yourself in an unoccupied space you can see within 15 feet of you. (bonus action).",
+          "summary": "Use a bonus action to manifest a translucent image of yourself in an unoccupied space within 15 feet.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6326,12 +6427,13 @@
             "name": "Echo Knight",
             "level": 3
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Unleash Incarnation",
           "level": 3,
-          "description": "When you take the Attack action on your turn, you can make one additional melee attack from the echo's space. You can use this feature a number of times equal to your Constitution modifier (minimum of once). You regain all expended uses when you finish a long rest.",
+          "description": "When you take the Attack action on your turn, you can make one additional melee attack from the echo's space.\n\nYou can use this feature a number of times equal to your Constitution modifier (minimum of **once**). You regain all expended uses when you finish a long rest.",
           "featureType": "Active",
           "actionType": "Action",
           "uses": null,
@@ -6341,7 +6443,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Regain all expended uses when you finish a long rest. (action).",
+          "summary": "Make one additional melee attack from the echo's space when taking the Attack action.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6351,12 +6453,13 @@
             "name": "Echo Knight",
             "level": 3
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Echo Avatar",
           "level": 7,
-          "description": "As a bonus action, you can teleport, magically swapping places with your echo at a cost of 15 feet of your movement, regardless of the distance between the two of you. Immediately before you teleport, you can see through its eyes and hear through its ears until the start of your next turn, gaining the benefits of any special senses that the echo has. During this time, you are deaf and blind with regard to your own senses.",
+          "description": "As a bonus action, you can teleport, magically swapping places with your echo at a cost of **15 feet** of your movement, regardless of the distance between the two of you.\n\nImmediately before you teleport, you can see through its eyes and hear through its ears until the start of your next turn, gaining the benefits of any special senses that the echo has. During this time, you are deaf and blind with regard to your own senses.",
           "featureType": "Active",
           "actionType": "Bonus Action",
           "uses": null,
@@ -6366,7 +6469,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can teleport, magically swapping places with your echo at a cost of 15 feet of your movement, regardless of the distance between the two of you. (bonus action).",
+          "summary": "Use a bonus action to teleport and swap places with your echo at the cost of 15 feet of movement.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6376,12 +6479,13 @@
             "name": "Echo Knight",
             "level": 7
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Shadow Martyr",
           "level": 10,
-          "description": "When you take damage from a creature that is within 5 feet of your echo, you can use your reaction to teleport, causing the echo to teleport to the space you were in and become the target of the attack instead. You can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+          "description": "When you take damage from a creature that is within **5 feet** of your echo, you can use your reaction to teleport, causing the echo to teleport to the space you were in and become the target of the attack instead.\n\nYou can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
           "featureType": "Active",
           "actionType": "Reaction",
           "uses": null,
@@ -6391,7 +6495,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can use your reaction to teleport, causing the echo to teleport to the space you were in and become the target of the attack instead. (reaction).",
+          "summary": "Use your reaction to teleport and swap places with your echo, making the echo the target of an attack.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6401,12 +6505,13 @@
             "name": "Echo Knight",
             "level": 10
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Reclaim Potential",
           "level": 15,
-          "description": "When your echo is destroyed by taking damage, you can use your reaction to gain a number of temporary hit points equal to 2d6 + your Constitution modifier. If you end your turn with these temporary hit points, you lose them. You can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+          "description": "When your echo is destroyed by taking damage, you can use your reaction to gain a number of temporary hit points equal to **2d6 + your Constitution modifier**. If you end your turn with these temporary hit points, you lose them.\n\nYou can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
           "featureType": "Active",
           "actionType": "Reaction",
           "uses": null,
@@ -6416,7 +6521,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can use your reaction to gain a number of temporary hit points equal to 2d6 + your Constitution modifier. (reaction).",
+          "summary": "Use your reaction when your echo is destroyed to gain temporary hit points.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6426,12 +6531,13 @@
             "name": "Echo Knight",
             "level": 15
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Legion of One",
           "level": 18,
-          "description": "When you use Manifest Echo, you can create two echoes with it, and these echoes can coexist. When you take the Attack action on your turn, you can make one additional melee attack from the space of each echo. Moreover, when you use Unleash Incarnation, you can make the additional attack from either echo's space.",
+          "description": "When you use Manifest Echo, you can create two echoes with it, and these echoes can coexist.\n\nWhen you take the Attack action on your turn, you can make one additional melee attack from the space of each echo. Moreover, when you use Unleash Incarnation, you can make the additional attack from either echo's space.",
           "featureType": "Active",
           "actionType": "Action",
           "uses": null,
@@ -6441,7 +6547,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can create two echoes with it, and these echoes can coexist. (action).",
+          "summary": "Manifest two echoes simultaneously and make additional attacks from their spaces.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6451,18 +6557,20 @@
             "name": "Echo Knight",
             "level": 18
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "EGW",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Eldritch Knight",
       "class": "Fighter",
       "classIndex": "fighter",
       "index": "eldritch-knight",
-      "flavorText": "Martial Archetype",
+      "flavorText": "A Martial Archetype.\n\nThe Eldritch Knight blends the martial mastery of a fighter with the arcane potency of a wizard. Through years of dedicated study and practice, these warriors learn to weave spells while clad in armor and wielding heavy weaponry.\n\nVersatile combatants, Eldritch Knights adapt to any situation by combining the blade and the spell. They are frequently found on the front lines, utilizing their magical abilities to shield their allies and strike down their enemies.",
       "description": "The Eldritch Knight combines the martial prowess of a fighter with the arcane power of a wizard. Through years of study and practice, these warriors learn to cast spells while wearing armor and wielding heavy weapons.\n\nEldritch Knights are versatile combatants, able to adapt to any situation by combining sword and sorcery. They are often found on the front lines, using their magical abilities to protect their allies and smite their enemies.",
       "spellcastingAbility": "int",
       "cantripsKnown": {
@@ -6588,7 +6696,7 @@
       "features": [
         {
           "name": "Spellcasting",
-          "description": "When you reach 3rd level, you augment your martial prowess with the ability to cast spells. Cantrips. You learn two cantrips of your choice from the wizard spell list. You learn an additional wizard cantrip of your choice at 10th level. Spell Slots. The Eldritch Knight Spellcasting table shows how many spell slots you have to cast your wizard spells of 1st level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest. Spells Known of 1st Level and Higher. You know three 1st-level wizard spells of your choice, two of which you must choose from the abjuration and evocation spells on the wizard spell list. The Spells Known column of the Eldritch Knight Spellcasting table shows when you learn more wizard spells of 1st level or higher. Each of these spells must be an abjuration or evocation spell of your choice, and must be of a level for which you have spell slots. For instance, when you reach 7th level in this class, you can learn one new spell of 1st or 2nd level. The spells you learn at 8th, 14th, and 20th level can come from any school of magic. Spellcasting Ability. Intelligence is your spellcasting ability for your wizard spells, since you learn your spells through study and memorization. You use your Intelligence whenever a spell refers to your spellcasting ability. In addition, you use your Intelligence modifier when setting the saving throw DC for a wizard spell you cast and when making an attack roll with one. Spell save DC = 8 + your proficiency bonus + your Intelligence modifier Spell attack modifier = your proficiency bonus + your Intelligence modifier",
+          "description": "When you reach 3rd level, you augment your martial prowess with the ability to cast spells.\n\nCantrips. You learn two cantrips of your choice from the wizard spell list. You learn an additional wizard cantrip of your choice at 10th level.\n\nSpell Slots. The Eldritch Knight Spellcasting table shows how many spell slots you have to cast your wizard spells of 1st level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.\n\nSpells Known of 1st Level and Higher. You know three 1st-level wizard spells of your choice, two of which you must choose from the abjuration and evocation spells on the wizard spell list. The Spells Known column of the Eldritch Knight Spellcasting table shows when you learn more wizard spells of 1st level or higher. Each of these spells must be an abjuration or evocation spell of your choice, and must be of a level for which you have spell slots. For instance, when you reach 7th level in this class, you can learn one new spell of 1st or 2nd level. The spells you learn at 8th, 14th, and 20th level can come from any school of magic.\n\nSpellcasting Ability. Intelligence is your spellcasting ability for your wizard spells, since you learn your spells through study and memorization. You use your Intelligence whenever a spell refers to your spellcasting ability. In addition, you use your Intelligence modifier when setting the saving throw DC for a wizard spell you cast and when making an attack roll with one.\n\nSpell save DC = 8 + your proficiency bonus + your Intelligence modifier\nSpell attack modifier = your proficiency bonus + your Intelligence modifier",
           "level": 3,
           "featureType": "Active",
           "actionType": "Action",
@@ -6602,7 +6710,7 @@
           "effect": null,
           "onUse": "Cast a prepared spell by expending a spell slot of the appropriate level",
           "scaling": "Gain higher spell slots and more spellbook spells as you level",
-          "summary": "In addition, you use your Intelligence modifier when setting the saving throw DC for a wizard spell you cast and when making an attack roll with one.",
+          "summary": "Cast wizard spells using Intelligence for your spell attack modifier and saving throw DC.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6612,11 +6720,12 @@
             "name": "Eldritch Knight",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Weapon Bond",
-          "description": "At 3rd level, you learn a ritual that creates a magical bond between yourself and one weapon. You perform the ritual over the course of 1 hour, which can be done during a short rest. The weapon must be within your reach throughout the ritual, at the conclusion of which you touch the weapon and forge the bond. Once you have bonded a weapon to yourself, you can't be disarmed of that weapon unless you are incapacitated. If it is on the same plane of existence, you can summon that weapon as a bonus action on your turn, causing it to teleport instantly to your hand. You can have up to two bonded weapons, but can summon only one at a time with your bonus action. If you attempt to bond with a third weapon, you must break the bond with one of the other two.",
+          "description": "At 3rd level, you learn a ritual that creates a magical bond between yourself and one weapon. You perform the ritual over the course of 1 hour, which can be done during a short rest. The weapon must be within your reach throughout the ritual, at the conclusion of which you touch the weapon and forge the bond.\n\nOnce you have bonded a weapon to yourself, you can't be disarmed of that weapon unless you are incapacitated. If it is on the same plane of existence, you can summon that weapon as a bonus action on your turn, causing it to teleport instantly to your hand.\n\nYou can have up to two bonded weapons, but can summon only one at a time with your bonus action. If you attempt to bond with a third weapon, you must break the bond with one of the other two.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -6627,7 +6736,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 3rd level, you learn a ritual that creates a magical bond between yourself and one weapon. (bonus action).",
+          "summary": "Create a magical bond with a weapon to prevent being disarmed and summon it to your hand as a bonus action.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6637,7 +6746,8 @@
             "name": "Eldritch Knight",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "War Magic",
@@ -6652,7 +6762,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Beginning at 7th level, when you use your action to cast a cantrip, you can make one weapon attack as a bonus action. (bonus action).",
+          "summary": "When you use your action to cast a cantrip, you can make one weapon attack as a bonus action.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6662,7 +6772,8 @@
             "name": "Eldritch Knight",
             "level": 7
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Eldritch Strike",
@@ -6677,7 +6788,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 10th level, you learn how to make your weapon strikes undercut a creature's resistance to your spells.",
+          "summary": "Hitting a creature with a weapon attack gives it disadvantage on the next saving throw it makes against your spells before the end of your next turn.",
           "grantsSpells": false,
           "grantsAttack": true,
           "grantsSkills": false,
@@ -6687,7 +6798,8 @@
             "name": "Eldritch Knight",
             "level": 10
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Arcane Charge",
@@ -6702,7 +6814,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 15th level, you gain the ability to teleport up to 30 feet to an unoccupied space you can see when you use your Action Surge. (action).",
+          "summary": "Teleport up to 30 feet to an unoccupied space you can see when you use Action Surge.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6712,7 +6824,8 @@
             "name": "Eldritch Knight",
             "level": 15
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Improved War Magic",
@@ -6727,7 +6840,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Starting at 18th level, when you use your action to cast a spell, you can make one weapon attack as a bonus action. (bonus action).",
+          "summary": "When you use your action to cast a spell, you can make one weapon attack as a bonus action.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6737,11 +6850,13 @@
             "name": "Eldritch Knight",
             "level": 18
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "PHB",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Psi Warrior",
@@ -6754,14 +6869,15 @@
           "name": "Psionic Power",
           "level": 3,
           "featureType": "Active",
-          "summary": "Harbor Psionic Energy dice (d6s scaling to d12s) to fuel Protective Field, Psionic Strike, and Telekinetic Movement.",
-          "description": "You harbor a wellspring of psionic energy within yourself. You have a number of Psionic Energy dice equal to twice your proficiency bonus, which are d6s (scaling to d8 at 5th, d10 at 11th, and d12 at 17th level). You can use your dice for: Protective Field (reaction reduce damage to yourself or an ally within 30 ft by die roll + Int mod), Psionic Strike (deal extra force damage equal to die roll + Int mod on a weapon hit), or Telekinetic Movement (move an object or willing creature up to 30 ft as an action).",
+          "summary": "Use Psionic Energy dice to fuel Protective Field, Psionic Strike, and Telekinetic Movement.",
+          "description": "You harbor a wellspring of psionic energy within yourself. You have a number of Psionic Energy dice equal to twice your proficiency bonus. These dice are **d6s**, which increase to **d8s** at 5th level, **d10s** at 11th level, and **d12s** at 17th level.\n\nYou can use your dice for the following effects:\n- Protective Field: As a reaction, you reduce damage taken by yourself or an ally within 30 feet by the result of the die roll + your Intelligence modifier.\n- Psionic Strike: When you hit with a weapon attack, you deal extra force damage equal to the result of the die roll + your Intelligence modifier.\n- Telekinetic Movement: As an action, you move an object or a willing creature up to 30 feet.",
           "source": {
             "type": "subclass",
             "name": "Psi Warrior",
             "level": 3
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Telekinetic Leap",
@@ -6772,27 +6888,29 @@
             "total": 1,
             "recharge": "Short/Long Rest / 1 Psionic Die"
           },
-          "summary": "Gain flying speed equal to twice your walking speed until the end of your current turn.",
-          "description": "As a bonus action, you can propel your body with your mind. You gain a flying speed equal to twice your walking speed until the end of the current turn. Once you take this bonus action, you can't do so again until you finish a short or long rest, unless you expend a Psionic Energy die to take it again.",
+          "summary": "Gain a flying speed equal to twice your walking speed until the end of your current turn.",
+          "description": "As a bonus action, you can propel your body with your mind. You gain a flying speed equal to twice your walking speed until the end of the current turn.\n\nOnce you take this bonus action, you cannot do so again until you finish a short or long rest, unless you expend one Psionic Energy die to use it again.",
           "source": {
             "type": "subclass",
             "name": "Psi Warrior",
             "level": 7
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Guarded Mind",
           "level": 7,
           "featureType": "Passive",
-          "summary": "Gain resistance to psychic damage, and expend a Psionic Energy die to end charmed or frightened.",
-          "description": "The psionic energy flowing through you has bolstered your mind. You have resistance to psychic damage. Moreover, if you start your turn charmed or frightened, you can expend one Psionic Energy die and immediately end every effect on yourself subjecting you to those conditions.",
+          "summary": "Gain resistance to psychic damage and the ability to end the charmed or frightened conditions by expending a Psionic Energy die.",
+          "description": "The psionic energy flowing through you has bolstered your mind. You have resistance to psychic damage.\n\nMoreover, if you start your turn charmed or frightened, you can expend one Psionic Energy die to immediately end every effect on yourself subjecting you to those conditions.",
           "source": {
             "type": "subclass",
             "name": "Psi Warrior",
             "level": 7
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Bulwark of Force",
@@ -6830,7 +6948,8 @@
           },
           "book": "TCE"
         }
-      ]
+      ],
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Rune Knight",
