@@ -1,14 +1,14 @@
 {
-  "2014_subclasses.divination.flavorText": "Arcane Tradition",
-  "2014_subclasses.divination.description": "Diviners mempelajari seni memprediksi masa depan. Mereka bisa glimpsing moments yang belum terjadi, mendapatkan insight ke outcomes of actions dan intentions of others.\n\nStudi divination memerlukan keen intellect dan intuition. Diviners belajar membaca tanda dan portent yang dilewatkan orang lain, menggunakan pengetahuan mereka untuk membimbing sekutu dan mengalahkan musuh.",
-  "2014_subclasses.divination.divination-savant.description": "Di level 2, gold dan waktu yang kamu habiskan untuk copy divination spell ke spellbook-mu adalah dibagi dua.",
-  "2014_subclasses.divination.divination-savant.summary": "Di level 2, gold dan waktu yang kamu habiskan untuk copy divination spell ke spellbook-mu adalah dibagi dua. (action).",
-  "2014_subclasses.divination.portent.description": "Juga di level 2, kamu bisa mengganti attack roll, ability check, atau saving throw mana pun.",
+  "2014_subclasses.divination.flavorText": "Arcane Tradition\n\nPara Diviner menguasai seni meramal masa depan. Mereka mampu mengintip momen yang belum terjadi, mendapatkan wawasan tentang hasil dari berbagai actions serta memahami niat tersembunyi orang lain.\n\nKeahlian ramalan membutuhkan kecerdasan dan intuisi yang tajam. Seorang Diviner belajar membaca tanda-tanda dan pertanda yang terlewatkan oleh orang lain, lalu menggunakan pengetahuan tersebut untuk membimbing sekutu mereka dan mengakali musuh.",
+  "2014_subclasses.divination.description": "Diviner mempelajari seni meramal masa depan. Mereka dapat mengintip momen yang akan datang, sehingga mendapatkan wawasan mengenai hasil dari actions serta niat dari makhluk lain.\n\nStudi tentang ramalan membutuhkan kecerdasan dan intuisi yang tajam. Diviner belajar membaca tanda dan pertanda yang sering terabaikan, menggunakan pengetahuan tersebut untuk memandu rekan satu tim dan mengungguli lawan mereka.",
+  "2014_subclasses.divination.divination-savant.description": "Pada level 2, jumlah emas dan waktu yang kamu habiskan untuk menyalin sihir divination ke dalam spellbook milikmu berkurang setengahnya.",
+  "2014_subclasses.divination.divination-savant.summary": "Biaya emas dan waktu untuk menyalin sihir divination ke dalam spellbook menjadi setengahnya.",
+  "2014_subclasses.divination.portent.description": "Masih di level 2, kamu memiliki kemampuan untuk mengganti hasil dari attack roll, ability check, atau saving throw mana pun.",
   "2014_subclasses.divination.portent.summary": "Juga di level 2, kamu bisa mengganti attack roll, ability check, atau saving throw mana pun. (action).",
-  "2014_subclasses.divination.expert-divination.description": "Di level 6, kamu bisa regain spell slots ketika kamu cast divination spells.",
-  "2014_subclasses.divination.expert-divination.summary": "Di level 6, kamu bisa regain spell slots ketika kamu cast divination spells.",
-  "2014_subclasses.divination.third-eye.description": "Di level 10, kamu bisa mendapatkan darkvision, melihat invisible creatures, dll.",
-  "2014_subclasses.divination.third-eye.summary": "Di level 10, kamu bisa mendapatkan darkvision, melihat invisible creatures, dll.",
-  "2014_subclasses.divination.greater-portent.description": "Di level 14, kamu bisa cast foresight spell once per long rest.",
-  "2014_subclasses.divination.greater-portent.summary": "Di level 14, kamu bisa cast foresight spell once per long rest."
+  "2014_subclasses.divination.expert-divination.description": "Pada level 6, kamu dapat memulihkan spell slots ketika kamu merapalkan sihir divination.",
+  "2014_subclasses.divination.expert-divination.summary": "Kamu bisa mendapatkan kembali spell slots setelah merapalkan sihir divination.",
+  "2014_subclasses.divination.third-eye.description": "Pada level 10, kamu dapat memperoleh darkvision, kemampuan untuk melihat makhluk yang tidak terlihat, dan berbagai peningkatan sensorik lainnya.",
+  "2014_subclasses.divination.third-eye.summary": "Kamu bisa mendapatkan darkvision, kemampuan melihat makhluk tidak terlihat, dan peningkatan sensorik lainnya.",
+  "2014_subclasses.divination.greater-portent.description": "Pada level 14, kamu dapat merapalkan sihir Foresight satu kali setiap long rest.",
+  "2014_subclasses.divination.greater-portent.summary": "Kamu bisa merapalkan sihir Foresight satu kali setiap long rest."
 }

@@ -1,14 +1,14 @@
 {
-  "2014_subclasses.enchantment.flavorText": "Arcane Tradition",
-  "2014_subclasses.enchantment.description": "Enchanters specializes dalam memanipulasi pikiran orang lain. Mereka bisa charm, beguile, dan control creatures, mengubah musuh menjadi sekutu dan menundukkan orang lain ke kehendak mereka.\n\nStudi enchantment memerlukan subtlety dan finesse. Enchanters belajar menenun spells yang mempengaruhi pikiran dan emosi, menggunakan abilities mereka untuk menghindari konflik atau mendapatkan keuntungan dalam situasi sosial.",
-  "2014_subclasses.enchantment.savant.description": "Di level 2, gold dan waktu yang kamu habiskan untuk copy enchantment spell ke spellbook-mu adalah dibagi dua.",
-  "2014_subclasses.enchantment.savant.summary": "Di level 2, gold dan waktu yang kamu habiskan untuk copy enchantment spell ke spellbook-mu adalah dibagi dua. (action).",
-  "2014_subclasses.enchantment.hypnotic-gaze.description": "Juga di level 2, kamu bisa charm creature dengan pandangan.",
-  "2014_subclasses.enchantment.hypnotic-gaze.summary": "Juga di level 2, kamu bisa charm creature dengan pandangan.",
-  "2014_subclasses.enchantment.instinctive-charm.description": "Di level 6, kamu bisa mengalihkan attacks yang dilakukan terhadapmu.",
-  "2014_subclasses.enchantment.instinctive-charm.summary": "Di level 6, kamu bisa mengalihkan attacks yang dilakukan terhadapmu.",
-  "2014_subclasses.enchantment.split-enchantment.description": "Di level 10, kamu bisa menargetkan dua creatures dengan enchantment spells.",
-  "2014_subclasses.enchantment.split-enchantment.summary": "Di level 10, kamu bisa menargetkan dua creatures dengan enchantment spells.",
-  "2014_subclasses.enchantment.alter-memories.description": "Di level 14, kamu bisa mengubah memory creature.",
-  "2014_subclasses.enchantment.alter-memories.summary": "Di level 14, ketika kamu charm creature, kamu bisa mengubah memory-nya tentang kejadian itu. Creature harus berhasil pada Wisdom saving throw atau memory-nya diubah."
+  "2014_subclasses.enchantment.flavorText": "Arcane Tradition\n\nEnchanter adalah spesialis dalam seni memanipulasi pikiran makhluk lain. Mereka memiliki kekuatan untuk memikat, memperdaya, dan mengendalikan makhluk hidup, mengubah musuh menjadi sekutu dan memaksa kehendak orang lain tunduk pada keinginan mereka.\n\nKeahlian dalam bidang enchantment menuntut kehalusan dan ketelitian. Para Enchanter belajar merajut sihir yang dapat memengaruhi pikiran serta emosi, menggunakan kemampuan ini untuk menghindari konflik atau mengamankan advantage dalam situasi sosial.",
+  "2014_subclasses.enchantment.description": "Enchanter berspesialisasi dalam memanipulasi pikiran makhluk lain. Mereka mampu memikat, memperdaya, dan mengendalikan makhluk hidup, mengubah musuh menjadi sekutu dan memaksa orang lain tunduk pada kehendak mereka.\n\nStudi tentang enchantment membutuhkan kehalusan dan ketelitian. Enchanter belajar merajut sihir yang memengaruhi pikiran dan emosi, menggunakan kemampuan tersebut untuk menghindari konflik atau mendapatkan advantage dalam situasi sosial.",
+  "2014_subclasses.enchantment.savant.description": "Pada level 2, jumlah emas dan waktu yang kamu habiskan untuk menyalin sihir enchantment ke dalam spellbook kamu berkurang menjadi setengahnya.",
+  "2014_subclasses.enchantment.savant.summary": "Biaya emas dan waktu yang dibutuhkan untuk menyalin sihir enchantment ke dalam spellbook menjadi setengahnya.",
+  "2014_subclasses.enchantment.hypnotic-gaze.description": "Masih di level 2, kamu memiliki kemampuan untuk memikat makhluk hidup hanya dengan tatapan mata.",
+  "2014_subclasses.enchantment.hypnotic-gaze.summary": "Kamu bisa memikat makhluk lain hanya dengan tatapan mata.",
+  "2014_subclasses.enchantment.instinctive-charm.description": "Pada level 6, kamu dapat mengalihkan serangan yang ditujukan kepadamu kepada sasaran lain.",
+  "2014_subclasses.enchantment.instinctive-charm.summary": "Kamu bisa mengalihkan serangan yang ditujukan kepadamu.",
+  "2014_subclasses.enchantment.split-enchantment.description": "Pada level 10, kamu dapat membidik dua makhluk sekaligus saat menggunakan sihir enchantment.",
+  "2014_subclasses.enchantment.split-enchantment.summary": "Kamu bisa membidik dua makhluk sekaligus dengan sihir enchantment tertentu.",
+  "2014_subclasses.enchantment.alter-memories.description": "Pada level 14, kamu memiliki kemampuan untuk memodifikasi ingatan seorang makhluk.",
+  "2014_subclasses.enchantment.alter-memories.summary": "Saat memikat makhluk, kamu bisa memaksanya melakukan Wisdom saving throw; jika gagal, kamu dapat mengubah ingatannya tentang kejadian tersebut."
 }
