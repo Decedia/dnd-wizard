@@ -39,6 +39,18 @@ function protectTerms(text) {
   return String(text).replace(PROTECTED_REGEX, (match) => `[[${match}]]`);
 }
 
+// Terms whose loss is a style difference rather than a mistranslation.
+const SOFT_TERMS = new Set(["roll", "rolls"]);
+
+const distinctTokens = (text) =>
+  new Set((String(text).match(TOKEN_PATTERN) || []).map((token) => token.slice(2, -2).toLowerCase()));
+
+/** The distinct terms the shielding marks in a source string, lowercased. */
+const expectedTerms = (text) => distinctTokens(protectTerms(text));
+
+/** The distinct terms the model kept, lowercased. */
+const returnedTerms = (text) => distinctTokens(text);
+
 function restoreTerms(text) {
   return String(text).replace(TOKEN_PATTERN, "$1");
 }
@@ -134,12 +146,21 @@ function validate(result, unit) {
     // The model is told to keep the [[...]] brackets, so they are expected here.
     // What matters is that every protected term survived; restoreTerms strips the
     // brackets once the count checks out.
-    const expected = countTokens(protectTerms(unit.text[field]));
-    const got = countTokens(raw);
-    if (got < expected) {
-      reasons.push(`${field}: lost protected terms (${got}/${expected})`);
+    // Distinct terms, not a raw count: a rewrite may legitimately mention a term
+    // once where the source repeated it. What must never happen is a term being
+    // translated, so every distinct term in the source has to come back.
+    const expected = expectedTerms(unit.text[field]);
+    const got = returnedTerms(raw);
+    const dropped = [...expected].filter((term) => !got.has(term));
+    // "roll" is a common noun in Indonesian D&D writing ("lemparan"), and the model
+    // reaches for it reliably. Rejecting over it would leave the unit with its
+    // previous text, which is a far worse outcome than a style difference.
+    const hardDropped = dropped.filter((term) => !SOFT_TERMS.has(term));
+    if (hardDropped.length) {
+      reasons.push(`${field}: dropped protected term(s) ${hardDropped.slice(0, 4).join(", ")}`);
       continue;
     }
+    if (dropped.length) reasons.push(`${field}: softened ${dropped.join(", ")} to Indonesian`);
 
     const value = tidy(restoreTerms(raw));
     // Defensive: nothing may reach the shipped data still wrapped in brackets.

@@ -58,17 +58,28 @@ function findInArray(arr, segment) {
   );
 }
 
-function navigateToTarget(root, pathSegments) {
+function isTarget(candidate, fieldName) {
+  return !!candidate && typeof candidate === 'object' && fieldName in candidate;
+}
+
+function navigateToTarget(root, pathSegments, fieldName) {
   let current = findRootArray(root);
   if (!current) {
     throw new Error('No root array found in EN file');
   }
-  return navigateSegments(current, pathSegments, 0);
+  return navigateSegments(current, pathSegments, 0, fieldName);
 }
 
-function navigateSegments(current, pathSegments, index) {
+/**
+ * Walks the path segments to the object that owns `fieldName`. A candidate only
+ * counts as a hit if it actually carries that field, which is what lets the search
+ * backtrack out of a decoy key: a race holds `darkvision: { range: 60 }` alongside
+ * its Darkvision trait, and without this the shortcut won on the decoy and every
+ * 2014_races.<race>.darkvision.* translation was silently dropped.
+ */
+function navigateSegments(current, pathSegments, index, fieldName) {
   if (index >= pathSegments.length) {
-    return current;
+    return isTarget(current, fieldName) ? current : null;
   }
 
   const segment = pathSegments[index];
@@ -78,12 +89,13 @@ function navigateSegments(current, pathSegments, index) {
     if (!found) {
       return null;
     }
-    return navigateSegments(found, pathSegments, index + 1);
+    return navigateSegments(found, pathSegments, index + 1, fieldName);
   }
 
   if (current && typeof current === 'object') {
-    if (segment in current) {
-      const directResult = navigateSegments(current[segment], pathSegments, index + 1);
+    const direct = current[segment];
+    if (direct && typeof direct === 'object') {
+      const directResult = navigateSegments(direct, pathSegments, index + 1, fieldName);
       if (directResult !== null) {
         return directResult;
       }
@@ -94,7 +106,7 @@ function navigateSegments(current, pathSegments, index) {
       if (Array.isArray(value) && typeof value[0] === 'object') {
         const found = findInArray(value, segment);
         if (found) {
-          const result = navigateSegments(found, pathSegments, index + 1);
+          const result = navigateSegments(found, pathSegments, index + 1, fieldName);
           if (result !== null) {
             return result;
           }
@@ -140,7 +152,7 @@ function processFile(translations, locale, filename) {
       continue;
     }
     const { fieldName, pathSegments } = parsed;
-    const target = navigateToTarget(cloneData, pathSegments);
+    const target = navigateToTarget(cloneData, pathSegments, fieldName);
 
     if (target && typeof target === 'object' && fieldName in target) {
       if (translations[key] !== undefined && translations[key] !== null) {

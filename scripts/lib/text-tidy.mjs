@@ -31,7 +31,6 @@ export function tidy(text) {
 
 const NUMBER_RE = /\b\d+(?:d\d+)?\b/g;
 const LIST_RE = /^\s*[-*]\s+\S/gm;
-const PARAGRAPH_RE = /\n[ \t]*\n/g;
 
 const numbers = (text) => new Set(String(text).match(NUMBER_RE) || []);
 const countMatches = (text, re) => (String(text).match(re) || []).length;
@@ -61,15 +60,11 @@ export function structuralProblems(source, output, field) {
     problems.push(`list collapsed: ${sourceLists} bullets -> ${countMatches(output, LIST_RE)}`);
   }
 
-  // Condensing several paragraphs into one drops content the UI no longer shows.
-  // Skipped when the source is a list: the SRD separates every bullet with a blank
-  // line, so its "paragraph" count is an artefact of formatting rather than of
-  // structure, and the list check above is the meaningful one there.
-  const sourceParagraphs = countMatches(source, PARAGRAPH_RE);
-  const sourceIsList = sourceLists >= 2;
-  if (!sourceIsList && sourceParagraphs >= 3 && countMatches(output, PARAGRAPH_RE) < sourceParagraphs - 2) {
-    problems.push(`paragraphs merged: ${sourceParagraphs} -> ${countMatches(output, PARAGRAPH_RE)}`);
-  }
+  // Deliberately no paragraph-count check. The SRD hard-wraps class descriptions
+  // at one line per clause with a whitespace-only line between each, so its
+  // "paragraph" count measures line wrapping, not structure, and comparing it
+  // against a properly rewrapped rewrite rejected correct work. The number and
+  // list checks above are what actually detect lost rules.
 
   return problems;
 }
