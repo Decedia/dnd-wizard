@@ -1837,20 +1837,23 @@
         },
         {
           "name": "Fighting Style",
-          "description": "At 3rd level, you adopt a particular style of fighting as your specialty. Choose one of the following options: Dueling, Two-Weapon Fighting, or Great Weapon Fighting. You can't take a Fighting Style option more than once, even if you get to choose again.",
+          "description": "At 3rd level, you adopt a particular style of fighting as your specialty. Choose one of the following options: Dueling, Two-Weapon Fighting, or Great Weapon Fighting.\n\nYou can't take a Fighting Style option more than once, even if you get to choose again.",
           "level": 3,
           "choices": [
             {
               "name": "Dueling",
-              "description": "When you are wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon."
+              "description": "When you are wielding a melee weapon in one hand and no other weapons, you gain a **+2** bonus to damage rolls with that weapon.",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Two-Weapon Fighting",
-              "description": "When you engage in two-weapon fighting, you can add your ability modifier to the damage of the second attack."
+              "description": "When you engage in two-weapon fighting, you can add your ability modifier to the damage of the second attack.",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Great Weapon Fighting",
-              "description": "When you roll a 1 or 2 on a damage die for an attack you make with a melee weapon that you are wielding with two hands, you can reroll the die and must use the new roll."
+              "description": "When you roll a 1 or 2 on a damage die for an attack you make with a melee weapon that you are wielding with two hands, you can reroll the die and must use the new roll.",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "choicesCount": 1,
@@ -1863,7 +1866,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can't take a Fighting Style option more than once, even if you get to choose again. (permanent).",
+          "summary": "Choose a specialty fighting style. You cannot select the same Fighting Style option more than once, even if you gain the opportunity to choose again.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1873,11 +1876,12 @@
             "name": "College of Swords",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Blade Flourish",
-          "description": "At 3rd level, you learn to perform impressive displays of martial prowess and speed. Whenever you take the Attack action on your turn, you can use a bonus action to use one of the following flourishes: Defensive Flourish, Slashing Flourish, or Mobile Flourish. Defensive Flourish: You can expend one use of your Bardic Inspiration to add the number you roll to your AC until the start of your next turn. Slashing Flourish: You can expend one use of your Bardic Inspiration to deal extra damage to the target you hit and to any other creature of your choice within 5 feet of you. Mobile Flourish: You can expend one use of your Bardic Inspiration to push the target you hit up to 15 feet away from you, plus a number of feet equal to the number you roll on the Bardic Inspiration die. The target is pushed to an unoccupied space of your choice.",
+          "description": "At 3rd level, you learn to perform impressive displays of martial prowess and speed. Whenever you take the Attack action on your turn, you can use a bonus action to use one of the following flourishes:\n\n- Defensive Flourish: You can expend one use of your Bardic Inspiration to add the number you roll to your AC until the start of your next turn.\n- Slashing Flourish: You can expend one use of your Bardic Inspiration to deal extra damage to the target you hit and to any other creature of your choice within **5 feet** of you.\n- Mobile Flourish: You can expend one use of your Bardic Inspiration to push the target you hit up to **15 feet** away from you, plus a number of feet equal to the number you roll on the Bardic Inspiration die. The target is pushed to an unoccupied space of your choice.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -1888,7 +1892,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Slashing Flourish: You can expend one use of your Bardic Inspiration to deal extra damage to the target you hit and to any other creature of your choice within 5.",
+          "summary": "Expend one use of Bardic Inspiration as a bonus action during the Attack action to use a Defensive, Slashing, or Mobile flourish.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1898,7 +1902,8 @@
             "name": "College of Swords",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Extra Attack",
@@ -1913,7 +1918,7 @@
           "effect": null,
           "onUse": null,
           "scaling": "Three attacks at level 11, four attacks at level 20",
-          "summary": "Starting at 6th level, you can attack twice, instead of once, whenever you take the Attack action on your turn. (only when taking the attack action, permanent, scales).",
+          "summary": "You can attack twice instead of once whenever you take the Attack action on your turn.",
           "grantsSpells": false,
           "grantsAttack": true,
           "grantsSkills": false,
@@ -1923,11 +1928,12 @@
             "name": "College of Swords",
             "level": 6
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Master Flourish",
-          "description": "Starting at 14th level, whenever you use a Blade Flourish option, you can roll a d6 and use it instead of expending a Bardic Inspiration die.",
+          "description": "Starting at 14th level, whenever you use a Blade Flourish option, you can roll a **d6** and use it instead of expending a Bardic Inspiration die.",
           "level": 14,
           "featureType": "Active",
           "actionType": null,
@@ -1938,7 +1944,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Starting at 14th level, whenever you use a Blade Flourish option, you can roll a d6 and use it instead of expending a Bardic Inspiration die. (action).",
+          "summary": "Roll a **d6** to power a Blade Flourish instead of expending a Bardic Inspiration die.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1948,7 +1954,8 @@
             "name": "College of Swords",
             "level": 14
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "XGE",
@@ -1960,12 +1967,12 @@
       "classIndex": "bard",
       "index": "whispers",
       "name": "College of Whispers",
-      "flavorText": "Bard College",
+      "flavorText": "A college of bards who operate in the shadows.",
       "description": "Most bards share their tales with a wide audience. The bards of the College of Whispers, however, use their knowledge to uncover secrets and turn them against others through dread and fear.",
       "features": [
         {
           "name": "Psychic Blades",
-          "description": "When you join the College of Whispers at 3rd level, you learn to make your weapon attacks especially deadly. When you hit a creature with a weapon attack, you can expend one use of your Bardic Inspiration to deal an extra 2d6 psychic damage to that target. The damage increases to 3d6 at 5th level, 5d6 at 10th level, 8d6 at 15th level, and 10d6 at 20th level.",
+          "description": "When you join the College of Whispers at 3rd level, you learn to make your weapon attacks especially deadly. When you hit a creature with a weapon attack, you can expend one use of your Bardic Inspiration to deal an extra **2d6** psychic damage to that target.\n\nThe damage increases to **3d6** at 5th level, **5d6** at 10th level, **8d6** at 15th level, and **10d6** at 20th level.",
           "level": 3,
           "featureType": "Active",
           "actionType": null,
@@ -1976,7 +1983,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can expend one use of your Bardic Inspiration to deal an extra 2d6 psychic damage to that target. (action).",
+          "summary": "Expend one use of Bardic Inspiration to deal an extra **2d6** psychic damage on a weapon hit.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1986,11 +1993,12 @@
             "name": "College of Whispers",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Words of Terror",
-          "description": "At 6th level, you can weave words of dread to frighten a creature. If you speak to a humanoid alone for at least 1 minute, you can then attempt to seed paranoia in its mind. At the end of the conversation, the target must make a Wisdom saving throw against your spell save DC. On a failed save, the target is frightened of you or another creature of your choice. The frightened condition lasts for 1 hour, until the target is attacked or damaged, or until the target witnesses its allies being attacked or damaged. If the target succeeds on the saving throw, the target doesn't suspect that you tried to frighten it. Once you use this feature, you can't use it again until you finish a short or long rest.",
+          "description": "At 6th level, you can weave words of dread to frighten a creature. If you speak to a humanoid alone for at least 1 minute, you can then attempt to seed paranoia in its mind. At the end of the conversation, the target must make a Wisdom saving throw against your spell save DC.\n\nOn a failed save, the target is frightened of you or another creature of your choice. The frightened condition lasts for 1 hour, until the target is attacked or damaged, or until the target witnesses its allies being attacked or damaged. If the target succeeds on the saving throw, the target doesn't suspect that you tried to frighten it.\n\nOnce you use this feature, you can't use it again until you finish a short or long rest.",
           "level": 6,
           "featureType": "Active",
           "actionType": null,
@@ -2001,7 +2009,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At the end of the conversation, the target must make a Wisdom saving throw against your spell save DC. (action).",
+          "summary": "Speak alone with a humanoid for 1 minute to force a Wisdom saving throw or frighten them for 1 hour.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2011,11 +2019,12 @@
             "name": "College of Whispers",
             "level": 6
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Mantle of Whispers",
-          "description": "At 14th level, you gain the ability to adopt a humanoid's persona. When a humanoid dies within 30 feet of you, you can magically capture its shadow using your reaction. You retain this shadow until you use it or finish a long rest. You can use the shadow as a disguise, as the disguise self spell, but it affects only your appearance. You can also use the shadow to gain information about the creature, as the speak with dead spell, but you can only ask one question. Once you use this feature, you can't use it again until you finish a short or long rest.",
+          "description": "At 14th level, you gain the ability to adopt a humanoid's persona. When a humanoid dies within 30 feet of you, you can magically capture its shadow using your reaction. You retain this shadow until you use it or finish a long rest.\n\nYou can use the shadow as a disguise, as the disguise self spell, but it affects only your appearance. You can also use the shadow to gain information about the creature, as the speak with dead spell, but you can only ask one question.\n\nOnce you use this feature, you can't use it again until you finish a short or long rest.",
           "level": 14,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -2026,7 +2035,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can magically capture its shadow using your reaction. (reaction).",
+          "summary": "Use your reaction to capture the shadow of a humanoid that dies within 30 feet to use as a disguise or for questioning.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2036,23 +2045,25 @@
             "name": "College of Whispers",
             "level": 14
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "XGE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Bard",
       "classIndex": "bard",
       "index": "lore",
       "name": "Lore",
-      "flavorText": "Bard College",
-      "description": "Bards of the College of Lore know something about most things, collecting bits of knowledge from sources as diverse as scholarly tomes and peasant tales. Whether singing folk ballads in taverns or elaborate compositions in royal courts, these bards use their gifts to hold audiences spellbound. When the applause dies down, the audience members might find themselves questioning everything they held to be true, from their faith in the priesthood of the local temple to their loyalty to the king. The loyalty of these bards lies in the pursuit of beauty and truth, not in fealty to a monarch or following the tenets of a deity. A noble who keeps such a bard as a herald or advisor knows that the bard would rather be honest than politic. The college's members gather in libraries and sometimes in actual colleges, complete with classrooms and dormitories, to share their lore with one another. They also meet at festivals or affairs of state, where they can expose corruption, unravel lies, and poke fun at self-important figures of authority.",
+      "flavorText": "A college of bards dedicated to the pursuit of beauty and truth through the collection of vast knowledge.",
+      "description": "Bards of the College of Lore know something about most things, collecting bits of knowledge from sources as diverse as scholarly tomes and peasant tales. Whether singing folk ballads in taverns or elaborate compositions in royal courts, these bards use their gifts to hold audiences spellbound. When the applause dies down, the audience members might find themselves questioning everything they held to be true, from their faith in the priesthood of the local temple to their loyalty to the king.\n\nThe loyalty of these bards lies in the pursuit of beauty and truth, not in fealty to a monarch or following the tenets of a deity. A noble who keeps such a bard as a herald or advisor knows that the bard would rather be honest than politic.\n\nThe college's members gather in libraries and sometimes in actual colleges, complete with classrooms and dormitories, to share their lore with one another. They also meet at festivals or affairs of state, where they can expose corruption, unravel lies, and poke fun at self-important figures of authority.",
       "features": [
         {
           "name": "Bonus Proficiencies",
-          "description": "When you join the College of Lore at 3rd level, you gain proficiency with three skills of your choice.",
+          "description": "When you join the College of Lore at 3rd level, you gain proficiency in three skills of your choice.",
           "level": 3,
           "featureType": "Passive",
           "actionType": null,
@@ -2063,7 +2074,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gain proficiency with three skills of your choice.",
+          "summary": "Gain proficiency in three skills of your choice.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2073,11 +2084,12 @@
             "name": "Lore",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Cutting Words",
-          "description": "Also at 3rd level, you learn how to use your wit to distract, confuse, and otherwise sap the confidence and competence of others.\nWhen a creature that you can see within 60 feet of you makes an attack roll, an ability check, or a damage roll, you can use your reaction to expend one of your uses of Bardic Inspiration, rolling a Bardic Inspiration die and subtracting the number rolled from the creature's roll.\nYou can choose to use this feature after the creature makes its roll, but before the GM determines whether the attack roll or ability check succeeds or fails, or before the creature deals its damage. The creature is immune if it can't hear you or if it's immune to being charmed.",
+          "description": "Also at 3rd level, you learn how to use your wit to distract, confuse, and otherwise sap the confidence and competence of others.\n\nWhen a creature that you can see within 60 feet of you makes an attack roll, an ability check, or a damage roll, you can use your reaction to expend one of your uses of Bardic Inspiration, rolling a Bardic Inspiration die and subtracting the number rolled from the creature's roll.\n\nYou can choose to use this feature after the creature makes its roll, but before the GM determines whether the attack roll or ability check succeeds or fails, or before the creature deals its damage. The creature is immune if it cannot hear you or if it is immune to being charmed.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -2088,7 +2100,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "When a creature within 60 feet makes an attack roll, ability check, or damage roll, use your reaction to expend one Bardic Inspiration use and subtract the Bardic Inspiration die roll from the creature's roll. Must be used before the GM determines the outcome.",
+          "summary": "Use your reaction to expend one Bardic Inspiration use and subtract the die roll from a creature's attack roll, ability check, or damage roll within 60 feet.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2098,20 +2110,23 @@
             "name": "Lore",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Additional Magical Secrets",
-          "description": "At 6th level, you learn two spells of your choice from any class. A spell you choose must be of a level you can cast, as shown on the Bard table, or a cantrip. The chosen spells count as bard spells for you but don't count against the number of bard spells you know.",
+          "description": "At 6th level, you learn two spells of your choice from any class. A spell you choose must be a cantrip or a spell of a level you can cast, as shown on the Bard table. The chosen spells count as bard spells for you but do not count against the number of bard spells you know.",
           "level": 6,
           "choices": [
             {
               "name": "spell1",
-              "description": "Choose one spell from any class"
+              "description": "Choose one spell from any class.",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "spell2",
-              "description": "Choose another spell from any class"
+              "description": "Choose another spell from any class.",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "featureType": "Active",
@@ -2123,7 +2138,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "The chosen spells count as bard spells for you but don't count against the number of bard spells you know. (action).",
+          "summary": "Learn two spells from any class that count as bard spells for you but do not count against the number of bard spells you know.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2133,7 +2148,8 @@
             "name": "Lore",
             "level": 6
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Peerless Skill",
@@ -2148,7 +2164,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Starting at 14th level, when you make an ability check, you can expend one use of Bardic Inspiration. (action).",
+          "summary": "Expend one use of Bardic Inspiration to add the die roll to one of your own ability checks.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": true,
@@ -2158,23 +2174,25 @@
             "name": "Lore",
             "level": 14
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "PHB",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Valor",
       "class": "Bard",
       "classIndex": "bard",
       "index": "valor",
-      "flavorText": "Bard College",
+      "flavorText": "Bards of the College of Valor are daring skalds who tell tales of great heroes and perform deeds worthy of song. They wander the land to witness great events firsthand and observe the deeds of legendary heroes.\n\nAs they travel, these bards inspire others with songs and stories of past glories, stirring their audiences to greatness and spurring them to action. The members of this college gather to share their lore with one another and celebrate their common bond.",
       "description": "Bards of the College of Valor are daring skalds, telling tales of great heroes and performing deeds worthy of song. They wander the land to witness great events firsthand and see the deeds of legendary heroes.\n\nAs they travel from place to place, these bards inspire others with songs and stories of past glories, stirring their audiences to greatness and spurring them to action. The college's members gather to share their lore with one another and celebrate their common bond.",
       "features": [
         {
           "name": "Bonus Proficiencies",
-          "description": "When you join the College of Lore at 3rd level, you gain proficiency with three skills of your choice.",
+          "description": "When you join the College of Valor at 3rd level, you gain proficiency with three skills of your choice.",
           "level": 3,
           "featureType": "Passive",
           "actionType": null,
@@ -2185,7 +2203,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gain proficiency with three skills of your choice.",
+          "summary": "Gain proficiency in three skills of your choice.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2195,7 +2213,8 @@
             "name": "Valor",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Combat Inspiration",
@@ -2210,7 +2229,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Alternatively, when an attack roll is made against the creature, it can use its reaction to roll the Bardic Inspiration die and add the number rolled to its AC against.",
+          "summary": "Creatures with your Bardic Inspiration can add the roll to a weapon damage roll or use a reaction to add it to their AC against an attack.",
           "grantsSpells": false,
           "grantsAttack": true,
           "grantsSkills": false,
@@ -2220,7 +2239,8 @@
             "name": "Valor",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Extra Attack",
@@ -2235,7 +2255,7 @@
           "effect": null,
           "onUse": null,
           "scaling": "Three attacks at level 11, four attacks at level 20",
-          "summary": "Beginning at 5th level, you can attack twice, instead of once, whenever you take the Attack action on your turn. (only when taking the attack action, permanent, scales).",
+          "summary": "You can attack twice instead of once whenever you take the Attack action on your turn.",
           "grantsSpells": false,
           "grantsAttack": true,
           "grantsSkills": false,
@@ -2245,7 +2265,8 @@
             "name": "Valor",
             "level": 6
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Battle Magic",
@@ -2260,7 +2281,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can make one weapon attack as a bonus action. (bonus action).",
+          "summary": "When you use your action to cast a bard spell, you can make one weapon attack as a bonus action.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2270,11 +2291,13 @@
             "name": "Valor",
             "level": 14
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "PHB",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Arcana Domain",
@@ -2294,34 +2317,37 @@
             "name": "Arcana Domain",
             "level": 1
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Arcana Domain Spells",
           "level": 1,
           "featureType": "Passive",
-          "summary": "Gain domain spells at levels 1, 3, 5, 7, and 9.",
+          "summary": "Gain specific domain spells at levels 1, 3, 5, 7, and 9.",
           "description": "1st: Detect Magic, Magic Missile; 3rd: Magic Weapon, Nondetection; 5th: Dispel Magic, Magic Circle; 7th: Arcane Eye, Leomund's Secret Chest; 9th: Planar Binding, Teleportation Circle.",
           "source": {
             "type": "subclass",
             "name": "Arcana Domain",
             "level": 1
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Channel Divinity: Arcane Abjuration",
           "level": 2,
           "featureType": "Active",
           "actionType": "Action",
-          "summary": "Turn or banish celestial, elemental, fey, or fiend creatures within 30 feet.",
-          "description": "As an action, you present your holy symbol and one celestial, elemental, fey, or fiend within 30 feet must succeed on a Wisdom save or be turned for 1 minute. Starting at 5th level, turned creatures of low CR are banished to their home plane instead.",
+          "summary": "Turn or banish one celestial, elemental, fey, or fiend within 30 feet.",
+          "description": "As an action, you present your holy symbol and one celestial, elemental, fey, or fiend within 30 feet must succeed on a Wisdom saving throw or be turned for 1 minute.\n\nStarting at 5th level, turned creatures of low CR are banished to their home plane instead.",
           "source": {
             "type": "subclass",
             "name": "Arcana Domain",
             "level": 2
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Spell Breaker",
@@ -2334,20 +2360,22 @@
             "name": "Arcana Domain",
             "level": 6
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Potent Spellcasting",
           "level": 8,
           "featureType": "Passive",
-          "summary": "Add Wisdom modifier to cleric cantrip damage.",
+          "summary": "Add your Wisdom modifier to the damage you deal with any cleric cantrip.",
           "description": "Starting at 8th level, you add your Wisdom modifier to the damage you deal with any cleric cantrip.",
           "source": {
             "type": "subclass",
             "name": "Arcana Domain",
             "level": 8
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Arcane Mastery",
@@ -2360,9 +2388,11 @@
             "name": "Arcana Domain",
             "level": 17
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         }
-      ]
+      ],
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Death Domain",
@@ -2375,102 +2405,110 @@
           "name": "Bonus Proficiency",
           "level": 1,
           "featureType": "Passive",
-          "summary": "Gain proficiency with martial weapons.",
+          "summary": "You gain proficiency with martial weapons.",
           "description": "At 1st level, you gain proficiency with martial weapons.",
           "source": {
             "type": "subclass",
             "name": "Death Domain",
             "level": 1
           },
-          "book": "DMG"
+          "book": "DMG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Reaper",
           "level": 1,
           "featureType": "Passive",
-          "summary": "Target two adjacent creatures with necromancy cantrips that normally target one.",
-          "description": "At 1st level, when the cleric casts a necromancy cantrip that normally targets only one creature, the spell can instead target two creatures within range and within 5 feet of each other.",
+          "summary": "Target two creatures within 5 feet of each other with a necromancy cantrip that normally targets one.",
+          "description": "At 1st level, when you cast a necromancy cantrip that normally targets only one creature, the spell can instead target two creatures within range and within **5 feet** of each other.",
           "source": {
             "type": "subclass",
             "name": "Death Domain",
             "level": 1
           },
-          "book": "DMG"
+          "book": "DMG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Death Domain Spells",
           "level": 1,
           "featureType": "Passive",
-          "summary": "Gain domain spells at levels 1, 3, 5, 7, and 9.",
-          "description": "1st: False Life, Ray of Sickness; 3rd: Blindness/Deafness, Ray of Enfeeblement; 5th: Animate Dead, Vampiric Touch; 7th: Blight, Death Ward; 9th: Antilife Shell, Cloudkill.",
+          "summary": "You learn specific domain spells at 1st, 3rd, 5th, 7th, and 9th level.",
+          "description": "You gain the following domain spells:\n- 1st: False Life, Ray of Sickness\n- 3rd: Blindness/Deafness, Ray of Enfeeblement\n- 5th: Animate Dead, Vampiric Touch\n- 7th: Blight, Death Ward\n- 9th: Antilife Shell, Cloudkill",
           "source": {
             "type": "subclass",
             "name": "Death Domain",
             "level": 1
           },
-          "book": "DMG"
+          "book": "DMG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Channel Divinity: Touch of Death",
           "level": 2,
           "featureType": "Active",
           "actionType": "Free",
-          "summary": "Add 5 + (2 x cleric level) necrotic damage to a successful melee attack.",
-          "description": "Starting at 2nd level, when the cleric hits a creature with a melee attack, the cleric can use Channel Divinity to deal extra necrotic damage to the target equal to 5 + twice his or her cleric level.",
+          "summary": "Deal extra necrotic damage equal to 5 + twice your cleric level on a successful melee attack.",
+          "description": "Starting at 2nd level, when you hit a creature with a melee attack, you can use Channel Divinity to deal extra necrotic damage to the target equal to **5 + twice your cleric level**.",
           "source": {
             "type": "subclass",
             "name": "Death Domain",
             "level": 2
           },
-          "book": "DMG"
+          "book": "DMG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Inescapable Destruction",
           "level": 6,
           "featureType": "Passive",
-          "summary": "Necrotic damage dealt by your cleric spells and Channel Divinity ignores resistance to necrotic damage.",
-          "description": "Starting at 6th level, the cleric's ability to channel negative energy becomes more potent. Necrotic damage dealt by the character's cleric spells and Channel Divinity options ignores resistance to necrotic damage.",
+          "summary": "Your cleric spells and Channel Divinity options ignore resistance to necrotic damage.",
+          "description": "Starting at 6th level, your ability to channel negative energy becomes more potent. Necrotic damage dealt by your cleric spells and Channel Divinity options ignores resistance to necrotic damage.",
           "source": {
             "type": "subclass",
             "name": "Death Domain",
             "level": 6
           },
-          "book": "DMG"
+          "book": "DMG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Divine Strike",
           "level": 8,
           "featureType": "Passive",
-          "summary": "Once on each turn, deal extra 1d8 necrotic damage on a weapon hit (2d8 at 14th).",
-          "description": "At 8th level, the cleric gains the ability to infuse his or her weapon strikes with necrotic energy. Once on each of the cleric's turns when he or she hits a creature with a weapon attack, the cleric can cause the attack to deal an extra 1d8 necrotic damage. At 14th level, this increases to 2d8.",
+          "summary": "Deal an extra **1d8** necrotic damage once per turn when you hit with a weapon attack (increases to **2d8** at 14th level).",
+          "description": "At 8th level, you gain the ability to infuse your weapon strikes with necrotic energy. Once on each of your turns when you hit a creature with a weapon attack, you can cause the attack to deal an extra **1d8** necrotic damage. At 14th level, this increases to **2d8**.",
           "source": {
             "type": "subclass",
             "name": "Death Domain",
             "level": 8
           },
-          "book": "DMG"
+          "book": "DMG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Improved Reaper",
           "level": 17,
           "featureType": "Passive",
-          "summary": "Target two adjacent creatures with 1st through 5th level necromancy spells.",
-          "description": "Starting at 17th level, when the cleric casts a necromancy spell of 1st through 5th level that targets only one creature, the spell can instead target two creatures within range and within 5 feet of each other.",
+          "summary": "Target two creatures within 5 feet of each other when casting a 1st through 5th level necromancy spell that normally targets one creature.",
+          "description": "Starting at 17th level, when you cast a necromancy spell of 1st through 5th level that targets only one creature, the spell can instead target two creatures within range and within **5 feet** of each other.",
           "source": {
             "type": "subclass",
             "name": "Death Domain",
             "level": 17
           },
-          "book": "DMG"
+          "book": "DMG",
+          "lastUpdated": "2026-09-29"
         }
-      ]
+      ],
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Cleric",
       "classIndex": "cleric",
       "index": "forge",
       "name": "Forge Domain",
-      "flavorText": "Divine Domain",
+      "flavorText": "Divine Domain\n\nThe gods of the forge are patrons of artisans who work with metal, from the humble blacksmith to the elven smith who shapes mithral. These deities teach that through patience and hard work, even the most stubborn metal can be transformed from a raw lump of iron into a beautiful object. Clerics of the forge domain are the divine embodiment of the power of the forge.",
       "description": "The gods of the forge are patrons of artisans who work with metal, from a humble blacksmith to an elven smith who mithral. The gods of the forge teach that, with patience and hard work, even the most intractable metal can be transformed from a lump of iron into a beautiful object. Clerics of the forge domain are the divine embodiment of the power of the forge.",
       "features": [
         {
@@ -2486,7 +2524,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gain proficiency with heavy armor and smith's tools. (action).",
+          "summary": "Gain proficiency with heavy armor and smith's tools.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": true,
@@ -2496,11 +2534,12 @@
             "name": "Forge Domain",
             "level": 1
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Blessing of the Forge",
-          "description": "At 1st level, you gain the ability to imbue magic into a weapon or armor. At the end of a long rest, you can touch one nonmagical object that is a suit of armor or a simple or martial weapon. Until the end of your next long rest or until you die, the object becomes a magic item, granting a +1 bonus to AC (armor) or a +1 bonus to attack and damage rolls (weapon). Once you use this feature, you can't use it again until you finish a long rest.",
+          "description": "At 1st level, you gain the ability to imbue magic into a weapon or armor. At the end of a long rest, you can touch one nonmagical object that is a suit of armor or a simple or martial weapon. Until the end of your next long rest or until you die, the object becomes a magic item, granting a **+1** bonus to AC (if it is armor) or a **+1** bonus to attack and damage rolls (if it is a weapon). Once you use this feature, you can't use it again until you finish a long rest.",
           "level": 1,
           "featureType": "Active",
           "actionType": null,
@@ -2511,7 +2550,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gain the ability to imbue magic into a weapon or armor.",
+          "summary": "Imbue a nonmagical weapon or suit of armor with a **+1** bonus to attack and damage rolls or AC until your next long rest.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2521,11 +2560,12 @@
             "name": "Forge Domain",
             "level": 1
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Channel Divinity: Artisan's Blessing",
-          "description": "Starting at 2nd level, you can use your Channel Divinity to create a nonmagical item that is worth no more than 100 gp. The item must be made of metal, and you must spend 10 minutes in prayer and work to create it. The item can be a suit of armor, a weapon, a set of tools, or another object. The object appears in an unoccupied space within 5 feet of you. If you create a weapon, it is a simple or martial weapon of your choice. If you create a suit of armor, it is light, medium, or heavy armor of your choice. If you create a set of tools, they are artisan's tools of your choice.",
+          "description": "Starting at 2nd level, you can use your Channel Divinity to create a nonmagical item that is worth no more than **100 gp**. The item must be made of metal, and you must spend **10 minutes** in prayer and work to create it. The item can be a suit of armor, a weapon, a set of tools, or another object. The object appears in an unoccupied space within **5 feet** of you.\n\n- If you create a weapon, it is a simple or martial weapon of your choice.\n- If you create a suit of armor, it is light, medium, or heavy armor of your choice.\n- If you create a set of tools, they are artisan's tools of your choice.",
           "level": 2,
           "featureType": "Active",
           "actionType": null,
@@ -2536,7 +2576,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "The item must be made of metal, and you must spend 10 minutes in prayer and work to create it. (action).",
+          "summary": "Use Channel Divinity to create a nonmagical metal item worth up to 100 gp over 10 minutes.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2546,7 +2586,8 @@
             "name": "Forge Domain",
             "level": 2
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Soul of the Forge",
@@ -2625,7 +2666,8 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Cleric",
