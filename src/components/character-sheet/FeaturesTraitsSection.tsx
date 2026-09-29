@@ -11,6 +11,7 @@ import { syncBaseFeatures, getMissingFeatureChoices, resolveFeatureChoice } from
 import { saveCharacter } from "@/lib/storage";
 import type { Character } from "@/lib/storage";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { getStatBadgeStyle } from "@/lib/badge-styles";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { DiceText } from "@/components/DiceText";
 
@@ -223,17 +224,6 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
     }
   }, [visibleFeatures, character.class, character.race, character.subclass, character.sources, character.ruleset, feats, language]);
 
-  function getStatBadgeStyle(text: string) {
-  const t = text.toLowerCase();
-  if (t.includes("str") || t.includes("athletics")) return { backgroundColor: "var(--color-damage-fire-bg)", color: "var(--color-damage-fire)", borderColor: "var(--color-damage-fire)" };
-  if (t.includes("dex") || t.includes("acrobatics") || t.includes("stealth") || t.includes("sleight")) return { backgroundColor: "var(--color-damage-lightning-bg)", color: "var(--color-damage-lightning)", borderColor: "var(--color-damage-lightning)" };
-  if (t.includes("con") || t.includes("concentration")) return { backgroundColor: "var(--color-damage-radiant-bg)", color: "var(--color-damage-radiant)", borderColor: "var(--color-damage-radiant)" };
-  if (t.includes("int") || t.includes("arcana") || t.includes("history") || t.includes("investigation") || t.includes("nature") || t.includes("religion")) return { backgroundColor: "var(--color-damage-cold-bg)", color: "var(--color-damage-cold)", borderColor: "var(--color-damage-cold)" };
-  if (t.includes("wis") || t.includes("perception") || t.includes("insight") || t.includes("survival") || t.includes("medicine") || t.includes("animal")) return { backgroundColor: "var(--color-damage-acid-bg)", color: "var(--color-damage-acid)", borderColor: "var(--color-damage-acid)" };
-  if (t.includes("cha") || t.includes("deception") || t.includes("intimidation") || t.includes("performance") || t.includes("persuasion")) return { backgroundColor: "var(--color-damage-psychic-bg)", color: "var(--color-damage-psychic)", borderColor: "var(--color-damage-psychic)" };
-  return { backgroundColor: "var(--color-border-muted)", color: "var(--color-text-secondary)", borderColor: "var(--color-border)" };
-}
-
   const getBookTag = (feature: any): string | null => {
     return feature.book || null;
   };
@@ -331,118 +321,118 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
             </button>
           </div>
         )}
-{enrichedFeatures.map((feature) => {
-             const safeFeature = { ...feature, source: (feature as any).source || "class" };
-             const summaryText = (feature as any).summary || "";
-             const badges = getFeatureBadges(feature);
-             const duration = (feature as any).duration || "";
-             const level = getFeatureLevel(feature);
-             const isActive = ((feature as any).featureType || "Passive") === "Active";
-             const featureUsed = (character.featuresUsedThisTurn || []).includes(feature.id);
-             const summary = summaryText || (feature.description || "").slice(0, 180);
-             return (
-               <div
-                 key={safeFeature.id}
-                 role="button"
-                 tabIndex={0}
-                 onClick={() => setSelectedFeature(feature)}
-                 onKeyDown={(e) => {
-                   if (e.key === "Enter" || e.key === " ") {
-                     e.preventDefault();
-                     setSelectedFeature(feature);
-                   }
-                 }}
-                 className="relative block w-full text-left bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl shadow-sm cursor-pointer active:scale-[0.98] active:border-[var(--color-border-active)] transition-all duration-75 overflow-hidden mb-4 group"
-               >
-                 {/* Content Body */}
-                 <div className="p-4 pb-3">
-                   {/* Title Block */}
-                   <div className="mb-2">
-                     <h3 className="font-bold text-lg text-[var(--color-text-primary)] leading-tight">
-                       {feature.name}
-                     </h3>
-                     <span className="text-xs text-[var(--color-text-muted)] block mt-0.5">
-                       {level !== null ? `${t("feature.level", "Level")} ${level}` : isRacialFeature(feature) ? t("feature.racial", "Racial") : (feature as any).source?.name || "Feature"}
-                     </span>
-                   </div>
+        {enrichedFeatures.map((feature) => {
+          const safeFeature = { ...feature, source: (feature as any).source || "class" };
+          const summaryText = (feature as any).summary || "";
+          const badges = getFeatureBadges(feature);
+          const duration = (feature as any).duration || "";
+          const level = getFeatureLevel(feature);
+          const isActive = ((feature as any).featureType || "Passive") === "Active";
+          const featureUsed = (character.featuresUsedThisTurn || []).includes(feature.id);
+          const summary = summaryText || (feature.description || "").slice(0, 180);
+          return (
+            <div
+              key={safeFeature.id}
+              role="button"
+              tabIndex={0}
+              onClick={() => setSelectedFeature(feature)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setSelectedFeature(feature);
+                }
+              }}
+              className="relative block w-full text-left bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl shadow-sm cursor-pointer active:scale-[0.98] active:border-[var(--color-border-active)] transition-all duration-75 overflow-hidden mb-4 group"
+            >
+              {/* Content Body */}
+              <div className="p-4 pb-3">
+                {/* Title Block */}
+                <div className="mb-2">
+                  <h3 className="font-bold text-lg text-[var(--color-text-primary)] leading-tight">
+                    {feature.name}
+                  </h3>
+                  <span className="text-xs text-[var(--color-text-muted)] block mt-0.5">
+                    {level !== null ? `${t("feature.level", "Level")} ${level}` : isRacialFeature(feature) ? t("feature.racial", "Racial") : (feature as any).source?.name || "Feature"}
+                  </span>
+                </div>
 
-                   {/* Badges Row */}
-                   {badges.length > 0 && (
-                     <div className="flex flex-wrap gap-1.5 mb-3">
-                       {badges.map((badge: string, badgeIdx: number) => (
-                         <span
-                           key={badgeIdx}
-                           style={getStatBadgeStyle(badge)}
-                           className="text-[10px] font-bold px-2 py-0.5 rounded-md border shadow-sm"
-                         >
-                           {badge}
-                         </span>
-                       ))}
-                     </div>
-                   )}
+                {/* Badges Row */}
+                {badges.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5 mb-3">
+                    {badges.map((badge: string, badgeIdx: number) => (
+                      <span
+                        key={badgeIdx}
+                        style={getStatBadgeStyle(badge)}
+                        className="text-[10px] font-bold px-2 py-0.5 rounded-md border shadow-sm"
+                      >
+                        {badge}
+                      </span>
+                    ))}
+                  </div>
+                )}
 
-                   {duration && (
-                     <span className="block text-[10px] text-[var(--color-text-muted)] mb-2">⏱ {duration}</span>
-                   )}
+                {duration && (
+                  <span className="block text-[10px] text-[var(--color-text-muted)] mb-2">⏱ {duration}</span>
+                )}
 
-                   {isActive && (
-                     <span className="inline-flex items-center gap-1 rounded-full border border-[var(--color-border)] bg-[var(--color-info-50)] px-2 py-0.5 text-[10px] font-semibold text-[var(--color-info-700)] mb-2">
-                       {t("feature.active", "Active")}
-                     </span>
-                   )}
+                {isActive && (
+                  <span className="inline-flex items-center gap-1 rounded-full border border-[var(--color-border)] bg-[var(--color-info-50)] px-2 py-0.5 text-[10px] font-semibold text-[var(--color-info-700)] mb-2">
+                    {t("feature.active", "Active")}
+                  </span>
+                )}
 
-                   {(feature as any).showInSheet === false && (
-                     <span className="inline-flex items-center gap-1 text-[9px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-paper-muted)] text-[var(--color-text-muted)] border border-[var(--color-border)] mb-2">
-                       {t("sheet.referenceOnly")}
-                     </span>
-                   )}
+                {(feature as any).showInSheet === false && (
+                  <span className="inline-flex items-center gap-1 text-[9px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-paper-muted)] text-[var(--color-text-muted)] border border-[var(--color-border)] mb-2">
+                    {t("sheet.referenceOnly")}
+                  </span>
+                )}
 
-                   {/* Summary Text */}
-                   {summary && (
-                     <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed line-clamp-3">
-                       {summary}
-                     </p>
-                   )}
-                 </div>
+                {/* Summary Text */}
+                {summary && (
+                  <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed line-clamp-3">
+                    {summary}
+                  </p>
+                )}
+              </div>
 
-                 {/* Action Footer */}
-                 <div className="bg-[var(--color-bg)] border-t border-[var(--color-border)] px-4 py-2.5 flex justify-between items-center group-active:bg-[var(--color-border-muted)] transition-colors">
-                   {isActive && (
-                     <button
-                       type="button"
-                       onClick={(e) => { e.stopPropagation(); toggleFeatureUsed(feature.id); }}
-                       className={`flex items-center gap-1 px-2 py-1 text-[10px] font-bold rounded transition-colors ${
-                         featureUsed
-                           ? "bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)]"
-                           : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                       }`}
-                       title={featureUsed ? t("spells.clickToMarkUnused") : t("spells.clickToMarkUsed")}
-                     >
-                       <Sparkle className="h-4 w-4" />
-                       {featureUsed ? t("spells.used") : t("spells.use")}
-                     </button>
-                   )}
-                   <div className="flex items-center gap-2">
-                     <span className="text-xs font-bold text-[var(--color-accent-indigo-600)] tracking-wide uppercase">
-                       {t("glossary.viewDetails", "Lihat Detail")}
-                     </span>
-                     <CaretRight size={16} className="text-[var(--color-accent-indigo-500)]" />
-                   </div>
-                 </div>
-               </div>
-             );
-           })}
+              {/* Action Footer */}
+              <div className="bg-[var(--color-bg)] border-t border-[var(--color-border)] px-4 py-2.5 flex justify-between items-center group-active:bg-[var(--color-border-muted)] transition-colors">
+                {isActive && (
+                  <button
+                    type="button"
+                    onClick={(e) => { e.stopPropagation(); toggleFeatureUsed(feature.id); }}
+                    className={`flex items-center gap-1 px-2 py-1 text-[10px] font-bold rounded transition-colors ${
+                      featureUsed
+                        ? "bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)]"
+                        : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                    }`}
+                    title={featureUsed ? t("spells.clickToMarkUnused") : t("spells.clickToMarkUsed")}
+                  >
+                    <Sparkle className="h-4 w-4" />
+                    {featureUsed ? t("spells.used") : t("spells.use")}
+                  </button>
+                )}
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-bold text-[var(--color-accent-indigo-600)] tracking-wide uppercase">
+                    {t("glossary.viewDetails", "Lihat Detail")}
+                  </span>
+                  <CaretRight size={16} className="text-[var(--color-accent-indigo-500)]" />
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
       {editMode && (
-           <button
-             type="button"
-             onClick={addItem}
-             className="mt-3 btn-secondary flex items-center gap-1.5"
-           >
-             <Plus size={16} />
-             {t("button.addFeature", "Add Feature")}
-           </button>
-       )}
+        <button
+          type="button"
+          onClick={addItem}
+          className="mt-3 btn-secondary flex items-center gap-1.5"
+        >
+          <Plus size={16} />
+          {t("button.addFeature", "Add Feature")}
+        </button>
+      )}
         {popupFeat && <FeatModal feat={popupFeat} onClose={() => setPopupFeatName(null)} />}
         {selectedFeature && (() => {
           const badges = getFeatureBadges(selectedFeature);

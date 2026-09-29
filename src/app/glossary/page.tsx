@@ -8,6 +8,7 @@ import { BottomSheet } from "@/components/modals/BottomSheet";
 import { ArrowsUpDownIcon as FilterIcon } from "@/components/icons";
 import { DiceText } from "@/components/DiceText";
 import { CaretRight } from "@phosphor-icons/react";
+import { getStatBadgeStyle, getSchoolBadgeStyle } from "@/lib/badge-styles";
 
 type Category = "spells" | "feats" | "conditions" | "rules";
 
@@ -83,28 +84,6 @@ function getFullDescription(spell: any): string {
   const desc = Array.isArray(spell.description) ? spell.description.join("\n") : spell.description || "";
   return desc;
 }
-
-function getStatBadgeStyle(text: string) {
-  const t = text.toLowerCase();
-  if (t.includes("str") || t.includes("athletics")) return { backgroundColor: "var(--color-damage-fire-bg)", color: "var(--color-damage-fire)", borderColor: "var(--color-damage-fire)" };
-  if (t.includes("dex") || t.includes("acrobatics") || t.includes("stealth") || t.includes("sleight")) return { backgroundColor: "var(--color-damage-lightning-bg)", color: "var(--color-damage-lightning)", borderColor: "var(--color-damage-lightning)" };
-  if (t.includes("con") || t.includes("concentration")) return { backgroundColor: "var(--color-damage-radiant-bg)", color: "var(--color-damage-radiant)", borderColor: "var(--color-damage-radiant)" };
-  if (t.includes("int") || t.includes("arcana") || t.includes("history") || t.includes("investigation") || t.includes("nature") || t.includes("religion")) return { backgroundColor: "var(--color-damage-cold-bg)", color: "var(--color-damage-cold)", borderColor: "var(--color-damage-cold)" };
-  if (t.includes("wis") || t.includes("perception") || t.includes("insight") || t.includes("survival") || t.includes("medicine") || t.includes("animal")) return { backgroundColor: "var(--color-damage-acid-bg)", color: "var(--color-damage-acid)", borderColor: "var(--color-damage-acid)" };
-  if (t.includes("cha") || t.includes("deception") || t.includes("intimidation") || t.includes("performance") || t.includes("persuasion")) return { backgroundColor: "var(--color-damage-psychic-bg)", color: "var(--color-damage-psychic)", borderColor: "var(--color-damage-psychic)" };
-  return { backgroundColor: "var(--color-border-muted)", color: "var(--color-text-secondary)", borderColor: "var(--color-border)" };
-}
-
-const SCHOOL_COLORS: Record<string, string> = {
-  Abjuration: "bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-500/20 dark:text-blue-300 dark:border-blue-500/30",
-  Conjuration: "bg-yellow-100 text-yellow-700 border-yellow-200 dark:bg-yellow-500/20 dark:text-yellow-300 dark:border-yellow-500/30",
-  Divination: "bg-emerald-100 text-emerald-700 border-emerald-200 dark:bg-emerald-500/20 dark:text-emerald-300 dark:border-emerald-500/30",
-  Enchantment: "bg-pink-100 text-pink-700 border-pink-200 dark:bg-pink-500/20 dark:text-pink-300 dark:border-pink-500/30",
-  Evocation: "bg-orange-100 text-orange-700 border-orange-200 dark:bg-orange-500/20 dark:text-orange-300 dark:border-orange-500/30",
-  Illusion: "bg-purple-100 text-purple-700 border-purple-200 dark:bg-purple-500/20 dark:text-purple-300 dark:border-purple-500/30",
-  Necromancy: "bg-green-100 text-green-700 border-green-200 dark:bg-green-500/20 dark:text-green-300 dark:border-green-500/30",
-  Transmutation: "bg-red-100 text-red-700 border-red-200 dark:bg-red-500/20 dark:text-red-300 dark:border-red-500/30",
-};
 
 export default function GlossaryPage() {
   const { t, language } = useLanguage();
@@ -410,9 +389,12 @@ export default function GlossaryPage() {
                 {t("glossary.level", "Level")} {selectedSpell.level}
               </span>
               {selectedSpell.school && (() => {
-                const schoolColor = SCHOOL_COLORS[selectedSpell.school];
+                const schoolStyle = getSchoolBadgeStyle(selectedSpell.school);
                 return (
-                  <span className={`rounded-full border px-2.5 py-1 text-[10px] font-semibold ${schoolColor || "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border-[var(--color-border)]"}`}>
+                  <span
+                    style={schoolStyle}
+                    className={`rounded-full border px-2.5 py-1 text-[10px] font-semibold ${schoolStyle ? "" : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border-[var(--color-border)]"}`}
+                  >
                     {selectedSpell.school}
                   </span>
                 );
