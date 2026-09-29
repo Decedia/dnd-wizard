@@ -131,11 +131,9 @@ function validate(result, unit) {
       reasons.push(`${field}: not returned`);
       continue;
     }
-    if (/\[\[|\]\]/.test(raw)) {
-      reasons.push(`${field}: leftover [[ ]] markers`);
-      continue;
-    }
-
+    // The model is told to keep the [[...]] brackets, so they are expected here.
+    // What matters is that every protected term survived; restoreTerms strips the
+    // brackets once the count checks out.
     const expected = countTokens(protectTerms(unit.text[field]));
     const got = countTokens(raw);
     if (got < expected) {
@@ -144,6 +142,11 @@ function validate(result, unit) {
     }
 
     const value = tidy(restoreTerms(raw));
+    // Defensive: nothing may reach the shipped data still wrapped in brackets.
+    if (/\[\[|\]\]/.test(value)) {
+      reasons.push(`${field}: unbalanced marker after restore`);
+      continue;
+    }
     const sourceLength = unit.text[field].length;
     if (value.length < sourceLength * 0.45) {
       reasons.push(`${field}: collapsed to ${value.length}/${sourceLength} chars`);
