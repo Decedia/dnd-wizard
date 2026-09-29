@@ -61,7 +61,7 @@ export interface SRDRace {
   speed: number;
   size: string;
   darkvision: boolean | { range: number };
-  traits: { name: string; description: string; book?: string }[];
+  traits: { name: string; description: string; summary?: string; book?: string }[];
   languages: string[];
   languageDesc?: string;
   source?: string;
@@ -83,6 +83,8 @@ export interface SRDClass {
   primaryAbility: string;
   savingThrows: string[];
   flavorText: string;
+  /** Full class text, including the per-level feature summaries. */
+  description?: string;
   source?: string;
   proficiencies: {
     armor: string[];

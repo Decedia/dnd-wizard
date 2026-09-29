@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { getStaticSpells, getStaticFeats } from "@/lib/srd-client";
+import { getStaticSpells, getStaticFeats, getStaticClasses, getStaticRaces, getStaticSubclasses } from "@/lib/srd-client";
 import { AppHeader } from "@/components/AppHeader";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { ArrowsUpDownIcon as FilterIcon } from "@/components/icons";
@@ -10,10 +10,12 @@ import { DiceText } from "@/components/DiceText";
 import { CaretRight } from "@phosphor-icons/react";
 import { getStatBadgeStyle, getSchoolBadgeStyle } from "@/lib/badge-styles";
 
-type Category = "spells" | "feats" | "conditions" | "rules";
+type Category = "spells" | "classes" | "races" | "feats" | "conditions" | "rules";
 
 const CATEGORIES: { key: Category; labelKey: string }[] = [
   { key: "spells", labelKey: "glossary.categorySpells" },
+  { key: "classes", labelKey: "glossary.categoryClasses" },
+  { key: "races", labelKey: "glossary.categoryRaces" },
   { key: "feats", labelKey: "glossary.categoryFeats" },
   { key: "conditions", labelKey: "glossary.categoryConditions" },
   { key: "rules", labelKey: "glossary.categoryRules" },
@@ -57,6 +59,12 @@ function pillClass(active: boolean) {
   }`;
 }
 
+/** The opening paragraph of a long rules text, for use as a card summary. */
+function firstParagraph(text: unknown): string {
+  if (typeof text !== "string") return "";
+  return text.split(/\n\s*\n/)[0] || "";
+}
+
 function deduplicateSpells(spells: any[]): any[] {
   const map = new Map<string, any>();
   for (const spell of spells) {
@@ -97,12 +105,19 @@ export default function GlossaryPage() {
   const spells = useMemo(() => deduplicateSpells(rawSpells), [rawSpells]);
 
   const feats = useMemo(() => getStaticFeats([], undefined, language), [language]);
+  // No ruleset filter: the glossary is a reference, so it lists the full 2014 set.
+  const classes = useMemo(() => getStaticClasses([], undefined, language), [language]);
+  const races = useMemo(() => getStaticRaces([], undefined, language), [language]);
 
+  // Entries carry a `kind` so the detail sheet knows which body to render; spells
+  // and feats get one here rather than being branched on by category at render time.
   const list = useMemo(() => {
-    if (category === "feats") return feats;
+    if (category === "feats") return feats.map((f: any) => ({ ...f, kind: "feat" }));
+    if (category === "classes") return classes.map((c: any) => ({ ...c, kind: "class" }));
+    if (category === "races") return races.map((r: any) => ({ ...r, kind: "race" }));
     if (category === "conditions" || category === "rules") return [];
-    return spells;
-  }, [category, spells, feats]);
+    return spells.map((s: any) => ({ ...s, kind: "spell" }));
+  }, [category, spells, feats, classes, races]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -110,7 +125,17 @@ export default function GlossaryPage() {
 
     if (q) {
       result = result.filter((item: any) => {
-        const haystack = [item.name, item.school, item.level, item.classes?.join(" "), item.description, item.summary, item.effectSummary]
+        const haystack = [
+          item.name,
+          item.school,
+          item.level,
+          item.classes?.join(" "),
+          item.description,
+          item.summary,
+          item.effectSummary,
+          item.flavorText,
+          item.traits?.map((tr: any) => `${tr.name} ${tr.summary || ""} ${tr.description || ""}`).join(" "),
+        ]
           .filter(Boolean)
           .join(" ")
           .toLowerCase();
@@ -203,19 +228,27 @@ export default function GlossaryPage() {
         <div className="flex flex-col gap-3">
           {filtered.map((item: any, idx: number) => {
             const isSpell = category === "spells";
+            const isClass = category === "classes";
+            const isRace = category === "races";
             const name = item.name;
-            const summary = isSpell ? getSummary(item) : (item.summary || item.description || "");
+            const summary = isSpell
+              ? getSummary(item)
+              : isClass
+                ? item.flavorText || firstParagraph(item.description)
+                : isRace
+                  ? (item.traits || []).slice(0, 2).map((tr: any) => tr.summary).filter(Boolean).join(" ")
+                  : item.summary || firstParagraph(item.description);
             const level = isSpell ? item.level : undefined;
             const school = isSpell ? item.school : undefined;
             const classes = isSpell ? item.classes : [];
             const mechanicsBadges = isSpell ? (item.mechanics_badges || []) : [];
             const lastUpdated = isSpell ? item.lastUpdated : "";
-            const source = isSpell ? item.source : (item.source || "Feature");
+            const source = isSpell ? item.source : isClass ? t("glossary.categoryClasses", "Classes") : isRace ? t("glossary.categoryRaces", "Races") : (item.source || "Feature");
 
             return (
               <div
                 key={`${name}-${level ?? "feat"}-${idx}`}
-                onClick={() => isSpell && setSelectedSpell(item)}
+                onClick={() => setSelectedSpell(item)}
                 className="relative block w-full text-left bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl shadow-sm cursor-pointer active:scale-[0.98] active:border-[var(--color-border-active)] transition-all duration-75 overflow-hidden mb-4 group"
               >
                 {/* Content Body */}
@@ -365,6 +398,51 @@ export default function GlossaryPage() {
           showHeader={true}
         >
           <div className="px-4 py-4 space-y-3">
+            {selectedSpell.kind === "class" && (
+              <>
+                {selectedSpell.flavorText && (
+                  <p className="text-sm italic leading-relaxed text-[var(--color-text-muted)]">{selectedSpell.flavorText}</p>
+                )}
+                {selectedSpell.description && <DiceText text={selectedSpell.description} />}
+                {(() => {
+                  const subs = getStaticSubclasses(selectedSpell.name, undefined, undefined, language);
+                  if (!subs.length) return null;
+                  return (
+                    <div className="pt-2 space-y-4">
+                      <h4 className="text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">
+                        {t("glossary.subclasses", "Subclasses")}
+                      </h4>
+                      {subs.map((sub: any) => (
+                        <div key={sub.name}>
+                          <div className="text-sm font-semibold text-[var(--color-text-primary)]">{sub.name}</div>
+                          {sub.flavorText && (
+                            <p className="mt-0.5 text-xs italic leading-relaxed text-[var(--color-text-muted)]">{sub.flavorText}</p>
+                          )}
+                          {sub.description && <DiceText text={sub.description} />}
+                        </div>
+                      ))}
+                    </div>
+                  );
+                })()}
+              </>
+            )}
+
+            {selectedSpell.kind === "race" && (
+              <div className="space-y-4">
+                {(selectedSpell.traits || []).map((trait: any) => (
+                  <div key={trait.name}>
+                    <div className="text-sm font-semibold text-[var(--color-text-primary)]">{trait.name}</div>
+                    {trait.summary && (
+                      <p className="mt-0.5 text-xs text-[var(--color-text-muted)]">{trait.summary}</p>
+                    )}
+                    {trait.description && <DiceText text={trait.description} />}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {selectedSpell.kind === "spell" && (
+              <>
             {selectedSpell.effectSummary && (
               <p className="text-xs text-[var(--color-text-muted)] italic leading-relaxed">{selectedSpell.effectSummary}</p>
             )}
@@ -402,6 +480,8 @@ export default function GlossaryPage() {
             </div>
             {(selectedSpell.classes || []).length > 0 && (
               <p className="text-xs text-[var(--color-text-muted)]">{(selectedSpell.classes || []).join(", ")}</p>
+            )}
+              </>
             )}
           </div>
         </BottomSheet>

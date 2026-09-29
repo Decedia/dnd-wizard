@@ -3,7 +3,8 @@
 import { useCallback } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
-import { getStaticRaces, getStaticClasses } from "@/lib/srd-client";
+import { getStaticRaces, getStaticClasses, getStaticRace, getStaticClass } from "@/lib/srd-client";
+import { DiceText } from "@/components/DiceText";
 import { SourceBadge } from "../SourceBadge";
 import { languageNames } from "@/data/srd";
 import { ALIGNMENTS } from "@/lib/storage";
@@ -41,11 +42,17 @@ interface IdentitySectionProps {
 
 export function IdentitySection({ character, onChange, editMode = true }: IdentitySectionProps) {
   const { onFieldBlur } = useCharacterSheet();
-  const { t } = useLanguage();
-  const races = getStaticRaces(character.sources, character.ruleset);
+  const { t, language } = useLanguage();
+  const races = getStaticRaces(character.sources, character.ruleset, language);
   const raceNames = races.map((r) => r.name);
-  const classes = getStaticClasses([], character.ruleset);
+  const classes = getStaticClasses([], character.ruleset, language);
   const classNames = classes.map((c) => c.name);
+
+  // The selected class and race carry their own reference text. Surfaces it here so
+  // the enhanced descriptions and racial traits are reachable from the sheet.
+  const selectedRace = character.race ? getStaticRace(character.race, undefined, language) : undefined;
+  const selectedClass = character.class ? getStaticClass(character.class, character.ruleset, undefined, language) : undefined;
+  const raceTraits = (selectedRace?.traits || []).filter((trait: any) => (trait.summary || trait.description) as string);
 
   const translateRace = (name: string) => t(`race.${name}`, name);
   const translateClass = (name: string) => t(`class.${name}`, name);
@@ -204,6 +211,51 @@ export function IdentitySection({ character, onChange, editMode = true }: Identi
               );
             })()}
           </>
+        )}
+
+        {(selectedClass || raceTraits.length > 0) && (
+          <div className="mt-4 space-y-4 border-t border-[var(--color-border)] pt-4">
+            {selectedClass && (selectedClass.flavorText || selectedClass.description) && (
+              <div>
+                <span className="field-label-light">
+                  {t("form.classDescription", "CLASS DESCRIPTION")}
+                </span>
+                {selectedClass.flavorText && (
+                  <p className="mt-1.5 text-sm italic leading-relaxed text-[var(--color-text-muted)]">
+                    {selectedClass.flavorText}
+                  </p>
+                )}
+                {selectedClass.description && (
+                  <div className="mt-2 text-sm leading-relaxed text-ink">
+                    <DiceText text={selectedClass.description} />
+                  </div>
+                )}
+              </div>
+            )}
+
+            {raceTraits.length > 0 && (
+              <div>
+                <span className="field-label-light">
+                  {t("form.raceTraits", "RACE TRAITS")}
+                </span>
+                <div className="mt-1.5 space-y-2.5">
+                  {raceTraits.map((trait: any) => (
+                    <div key={trait.name}>
+                      <div className="text-sm font-semibold text-ink">{trait.name}</div>
+                      {trait.summary && (
+                        <p className="mt-0.5 text-sm text-[var(--color-text-muted)]">{trait.summary}</p>
+                      )}
+                      {trait.description && (
+                        <div className="mt-1 text-sm leading-relaxed text-ink">
+                          <DiceText text={trait.description} />
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
         )}
       </div>
     </SectionCard>
