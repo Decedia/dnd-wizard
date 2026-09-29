@@ -14394,7 +14394,7 @@
       "classIndex": "wizard",
       "index": "bladesinging",
       "name": "Bladesinging",
-      "flavorText": "Arcane Tradition",
+      "flavorText": "An Arcane Tradition of the elves, who have mastered the art of weaving swordplay together with arcane magic. These deadly warriors employ their spells to heighten their prowess in the heat of combat.",
       "description": "Bladesingers are elves who have learned to combine swordplay with arcane magic. They are deadly warriors who use their magic to enhance their combat prowess.",
       "features": [
         {
@@ -14410,7 +14410,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gain proficiency with light armor, a one-handed melee weapon of your choice, and the Performance skill if you don't already have it. (action).",
+          "summary": "Gain proficiency with light armor, one one-handed melee weapon of your choice, and the Performance skill.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": true,
@@ -14420,7 +14420,8 @@
             "name": "Bladesinging",
             "level": 2
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Training in War and Song",
@@ -14435,7 +14436,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Also gain proficiency with one musical instrument of your choice.",
+          "summary": "Gain proficiency in one chosen skill (Acrobatics, Athletics, History, or Performance) and one musical instrument.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14445,11 +14446,12 @@
             "name": "Bladesinging",
             "level": 2
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Bladesong",
-          "description": "Starting at 2nd level, you can invoke a secret elven magic called the Bladesong, provided you aren't wearing medium or heavy armor or using a shield. It graces you with supernatural speed, agility, and focus. You can use a bonus action to start the Bladesong, which lasts for 1 minute. It ends early if you are incapacitated, if you don medium or heavy armor or a shield, or if you use two hands to make an attack with a weapon. You can also dismiss the Bladesong at any time you choose (no action required). While your Bladesong is active, you gain the following benefits:\n\nYou gain a bonus to your AC equal to your Intelligence modifier (minimum of +1).\n\nYour walking speed increases by 10 feet.\n\nYou have advantage on Dexterity (Acrobatics) checks.\n\nYou gain a bonus to any Constitution saving throw you make to maintain your concentration on a spell. The bonus equals your Intelligence modifier (minimum of +1).\n\nYou can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+          "description": "Starting at 2nd level, you can invoke a secret elven magic called the Bladesong, provided you aren't wearing medium or heavy armor or using a shield. It graces you with supernatural speed, agility, and focus. You can use a bonus action to start the Bladesong, which lasts for 1 minute. It ends early if you are incapacitated, if you don medium or heavy armor or a shield, or if you use two hands to make an attack with a weapon. You can also dismiss the Bladesong at any time you choose (no action required). While your Bladesong is active, you gain the following benefits:\n\n- You gain a bonus to your AC equal to your Intelligence modifier (minimum of +1).\n\n- Your walking speed increases by 10 feet.\n\n- You have advantage on Dexterity (Acrobatics) checks.\n\n- You gain a bonus to any Constitution saving throw you make to maintain your concentration on a spell. The bonus equals your Intelligence modifier (minimum of +1).\n\nYou can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
           "level": 2,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -14460,7 +14462,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Your walking speed increases by 10 feet. (bonus action).",
+          "summary": "Use a bonus action to gain a bonus to AC and Concentration saves equal to your Intelligence modifier, +10 feet walking speed, and advantage on Dexterity (Acrobatics) checks.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14470,7 +14472,8 @@
             "name": "Bladesinging",
             "level": 2
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Extra Attack",
@@ -14485,7 +14488,7 @@
           "effect": null,
           "onUse": null,
           "scaling": "Three attacks at level 11, four attacks at level 20",
-          "summary": "Starting at 6th level, you can attack twice, instead of once, whenever you take the Attack action on your turn. (only when taking the attack action, permanent, scales).",
+          "summary": "Attack twice when you take the Attack action; you may replace one attack with a cantrip.",
           "grantsSpells": false,
           "grantsAttack": true,
           "grantsSkills": false,
@@ -14495,7 +14498,8 @@
             "name": "Bladesinging",
             "level": 6
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Song of Defense",
@@ -14510,7 +14514,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 10th level, you can direct your magic to absorb damage while your Bladesong is active. (reaction).",
+          "summary": "While Bladesong is active, use a reaction to expend a spell slot and reduce damage by 5 times the slot's level.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14520,7 +14524,8 @@
             "name": "Bladesinging",
             "level": 10
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Song of Victory",
@@ -14535,7 +14540,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 14th level, you add your Intelligence modifier to the damage of your melee weapon attacks while your Bladesong is active.",
+          "summary": "Add your Intelligence modifier to the damage of your melee weapon attacks while your Bladesong is active.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14545,23 +14550,25 @@
             "name": "Bladesinging",
             "level": 14
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "XGE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Wizard",
       "classIndex": "wizard",
       "index": "chronurgy",
       "name": "Chronurgy Magic",
-      "flavorText": "Arcane Tradition",
+      "flavorText": "An Arcane Tradition dedicated to the mastery of time.",
       "description": "Chronurgy is the study of time magic. Chronurgists learn to manipulate the flow of time, slowing it down, speeding it up, or even reversing it.",
       "features": [
         {
           "name": "Chronal Shift",
-          "description": "Starting at 2nd level, you can magically exert limited control over the flow of time around a creature. When you or a creature you can see within 30 feet of you makes an attack roll, an ability check, or a saving throw, you can use your reaction to roll a d8 and apply it to the roll. You can choose to use this feature after the roll, but before the DM determines whether the attack roll, ability check, or saving throw succeeds or fails. The d8 roll is added to the total if the roll is for an attack roll or ability check, or subtracted from the total if the roll is for a saving throw. You can use this feature twice, and you regain all expended uses when you finish a long rest.",
+          "description": "Starting at 2nd level, you can magically exert limited control over the flow of time around a creature. When you or a creature you can see within 30 feet of you makes an attack roll, an ability check, or a saving throw, you can use your reaction to roll a **d8** and apply it to the roll.\n\nYou can choose to use this feature after the roll, but before the DM determines whether the attack roll, ability check, or saving throw succeeds or fails.\n\nThe **d8** roll is added to the total if the roll is for an attack roll or ability check, or subtracted from the total if the roll is for a saving throw.\n\nYou can use this feature twice, and you regain all expended uses when you finish a long rest.",
           "level": 2,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -14572,7 +14579,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "An ability check, or a saving throw, you can use your reaction to roll a d8 and apply it to the roll. (reaction).",
+          "summary": "Use your reaction to roll a **d8** and apply it to an attack roll, ability check, or saving throw made by a creature within 30 feet.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14582,7 +14589,8 @@
             "name": "Chronurgy Magic",
             "level": 2
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Temporal Awareness",
@@ -14597,7 +14605,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Starting at 2nd level, you gain a bonus to your initiative rolls equal to your Intelligence modifier. (action).",
+          "summary": "Gain a bonus to initiative rolls equal to your Intelligence modifier and cannot be surprised while conscious.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14607,11 +14615,12 @@
             "name": "Chronurgy Magic",
             "level": 2
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Momentary Stasis",
-          "description": "Starting at 6th level, you can use your command over time to force a creature to slow down. As an action, you can choose a creature you can see within 60 feet of you. The creature must make an Intelligence saving throw. On a failed save, the creature is restrained and incapacitated until the end of your next turn. You can use this feature a number of times equal to your Intelligence modifier (minimum of once), and you regain all expended uses when you finish a long rest.",
+          "description": "Starting at 6th level, you can use your command over time to force a creature to slow down. As an action, you can choose a creature you can see within 60 feet of you. The creature must make an Intelligence saving throw.\n\nOn a failed save, the creature is restrained and incapacitated until the end of your next turn.\n\nYou can use this feature a number of times equal to your Intelligence modifier (minimum of once), and you regain all expended uses when you finish a long rest.",
           "level": 6,
           "featureType": "Active",
           "actionType": "Action",
@@ -14622,7 +14631,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can choose a creature you can see within 60 feet of you. (action).",
+          "summary": "Use an action to force a creature within 60 feet to make an Intelligence saving throw or become restrained and incapacitated until the end of your next turn.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14632,11 +14641,12 @@
             "name": "Chronurgy Magic",
             "level": 6
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Arcane Abeyance",
-          "description": "At 10th level, you can store a spell in a tiny, bead-like object. As an action, you can cast a spell of 4th level or lower into the bead, which holds the spell until it is used. The bead is a Tiny object, and it has AC 10, 1 hit point, and immunity to all damage except force damage. The bead is destroyed when the spell is cast or when you die. You can have only one bead at a time, and you can't create another until the spell in the bead is cast. The bead can be used by anyone who holds it. To use the spell, the creature holding the bead must use its action to cast the spell, using your spell save DC and spell attack bonus.",
+          "description": "At 10th level, you can store a spell in a tiny, bead-like object. As an action, you can cast a spell of 4th level or lower into the bead, which holds the spell until it is used.\n\nThe bead is a Tiny object, and it has AC 10, **1** hit point, and immunity to all damage except force damage. The bead is destroyed when the spell is cast or when you die.\n\nYou can have only one bead at a time, and you can't create another until the spell in the bead is cast.\n\nThe bead can be used by anyone who holds it. To use the spell, the creature holding the bead must use its action to cast the spell, using your spell save DC and spell attack bonus.",
           "level": 10,
           "featureType": "Active",
           "actionType": "Action",
@@ -14647,7 +14657,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "The bead is a Tiny object, and it has AC 10, 1 hit point, and immunity to all damage except force damage. (action).",
+          "summary": "Use an action to store a spell of 4th level or lower in a bead that any creature can later use as an action to cast.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14657,11 +14667,12 @@
             "name": "Chronurgy Magic",
             "level": 10
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Convergent Future",
-          "description": "Starting at 14th level, you can peer into the future and see the outcome of a course of action. When you or a creature you can see within 30 feet of you makes an attack roll, an ability check, or a saving throw, you can use your reaction to ignore the roll. Instead, you can choose the result of the roll to be the highest or lowest possible. You can use this feature a number of times equal to your Intelligence modifier (minimum of once), and you regain all expended uses when you finish a long rest.",
+          "description": "Starting at 14th level, you can peer into the future and see the outcome of a course of action. When you or a creature you can see within **30 feet** of you makes an attack roll, an ability check, or a saving throw, you can use your reaction to ignore the roll. Instead, you can choose the result of the roll to be the highest or lowest possible.\n\nYou can use this feature a number of times equal to your Intelligence modifier (minimum of **once**), and you regain all expended uses when you finish a long rest.",
           "level": 14,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -14672,7 +14683,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "An ability check, or a saving throw, you can use your reaction to ignore the roll. (reaction).",
+          "summary": "Use your reaction to ignore an attack roll, ability check, or saving throw made by you or a creature within 30 feet, choosing the result to be the highest or lowest possible.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14682,18 +14693,20 @@
             "name": "Chronurgy Magic",
             "level": 14
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "TCE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Conjuration",
       "class": "Wizard",
       "classIndex": "wizard",
       "index": "conjuration",
-      "flavorText": "Arcane Tradition",
+      "flavorText": "An Arcane Tradition.\n\nConjurers specialize in creating objects and creatures from nothing. They can summon weapons, armor, and even living creatures to aid them in battle or perform tasks.\n\nThe study of conjuration requires precision and spatial awareness. Conjurers learn to open portals to other planes, calling forth creatures and objects to serve their needs. They are versatile spellcasters who can adapt to any situation.",
       "description": "Conjurers specialize in creating objects and creatures from nothing. They can summon weapons, armor, and even living creatures to aid them in battle or perform tasks.\n\nThe study of conjuration requires precision and spatial awareness. Conjurers learn to open portals to other planes, calling forth creatures and objects to serve their needs. They are versatile spellcasters who can adapt to any situation.",
       "features": [
         {
@@ -14709,7 +14722,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 2nd level, the gold and time you spend to copy a conjuration spell into your spellbook is halved. (action).",
+          "summary": "Halve the gold and time required to copy conjuration spells into your spellbook.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14719,7 +14732,8 @@
             "name": "Conjuration",
             "level": 2
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Minor Conjuration",
@@ -14734,7 +14748,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 2nd level, you can conjure a nonmagical object in an unoccupied space within 10 feet of you. The object can be no larger than 3 feet on a side and weighs no more than 10 pounds. It disappears after 1 hour or if it takes any damage.",
+          "summary": "Conjure a nonmagical object (up to 3 feet on a side and 10 pounds) in an unoccupied space within 10 feet; it lasts for 1 hour or until it takes damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14744,7 +14758,8 @@
             "name": "Conjuration",
             "level": 2
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Benign Transportation",
@@ -14759,7 +14774,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 6th level, as a bonus action, you can teleport up to 30 feet to an unoccupied space you can see. If you teleport within 5 feet of a willing creature, you can swap places with that creature.",
+          "summary": "Use a bonus action to teleport up to 30 feet to an unoccupied space you can see, swapping places if you teleport within 5 feet of a willing creature.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14769,7 +14784,8 @@
             "name": "Conjuration",
             "level": 6
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Focused Conjuration",
@@ -14784,7 +14800,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 10th level, your concentration on conjuration spells is not broken when you take damage.",
+          "summary": "Your concentration on conjuration spells is not broken when you take damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14794,7 +14810,8 @@
             "name": "Conjuration",
             "level": 10
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Durable Summons",
@@ -14809,7 +14826,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 14th level, your summoned creatures gain temporary hit points.",
+          "summary": "Your summoned creatures gain temporary hit points.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14819,18 +14836,20 @@
             "name": "Conjuration",
             "level": 14
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "PHB",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Divination",
       "class": "Wizard",
       "classIndex": "wizard",
       "index": "divination",
-      "flavorText": "Arcane Tradition",
+      "flavorText": "Arcane Tradition\n\nDiviners master the art of predicting the future. They glimpse moments yet to come, gaining insight into the outcomes of actions and the intentions of others.\n\nThe study of divination requires keen intellect and intuition. Diviners learn to read the signs and portents that others miss, using their knowledge to guide their allies and outmaneuver their enemies.",
       "description": "Diviners study the art of predicting the future. They can glimpse moments yet to come, gaining insight into the outcomes of actions and the intentions of others.\n\nThe study of divination requires keen intellect and intuition. Diviners learn to read the signs and portents that others miss, using their knowledge to guide their allies and outmaneuver their enemies.",
       "features": [
         {
@@ -14846,7 +14865,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 2nd level, the gold and time you spend to copy a divination spell into your spellbook is halved. (action).",
+          "summary": "The gold and time required to copy divination spells into your spellbook is halved.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14856,7 +14875,8 @@
             "name": "Divination",
             "level": 2
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Portent",
@@ -14871,7 +14891,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Also at 2nd level, you can replace any attack roll, ability check, or saving throw. (action).",
+          "summary": "You can replace any attack roll, ability check, or saving throw with a predetermined roll.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14881,7 +14901,8 @@
             "name": "Divination",
             "level": 2
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Expert Divination",
@@ -14896,7 +14917,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 6th level, you can regain spell slots when you cast divination spells.",
+          "summary": "You can regain spell slots when you cast divination spells.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14906,7 +14927,8 @@
             "name": "Divination",
             "level": 6
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Third Eye",
@@ -14921,7 +14943,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 10th level, you can gain darkvision, see invisible creatures, etc.",
+          "summary": "You can gain darkvision, the ability to see invisible creatures, and other sensory enhancements.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14931,11 +14953,12 @@
             "name": "Divination",
             "level": 10
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Greater Portent",
-          "description": "At 14th level, you can cast the foresight spell once per long rest.",
+          "description": "At 14th level, you can cast the Foresight spell once per long rest.",
           "level": 14,
           "featureType": "Passive",
           "actionType": null,
@@ -14946,7 +14969,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 14th level, you can cast the foresight spell once per long rest.",
+          "summary": "You can cast the Foresight spell once per long rest.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14956,18 +14979,20 @@
             "name": "Divination",
             "level": 14
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "PHB",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Enchantment",
       "class": "Wizard",
       "classIndex": "wizard",
       "index": "enchantment",
-      "flavorText": "Arcane Tradition",
+      "flavorText": "Arcane Tradition\n\nEnchanters specialize in the art of manipulating the minds of others. They possess the power to charm, beguile, and control creatures, transforming enemies into allies and bending the will of others to their own.\n\nThe study of enchantment demands subtlety and finesse. Enchanters learn to weave spells that influence thoughts and emotions, utilizing these abilities to avoid conflict or secure an advantage in social situations.",
       "description": "Enchanters specialize in manipulating the minds of others. They can charm, beguile, and control creatures, turning enemies into allies and bending others to their will.\n\nThe study of enchantment requires subtlety and finesse. Enchanters learn to weave spells that influence thoughts and emotions, using their abilities to avoid conflict or gain advantage in social situations.",
       "features": [
         {
@@ -14983,7 +15008,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 2nd level, the gold and time you spend to copy an enchantment spell into your spellbook is halved. (action).",
+          "summary": "The gold and time required to copy enchantment spells into your spellbook is halved.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14993,7 +15018,8 @@
             "name": "Enchantment",
             "level": 2
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Hypnotic Gaze",
@@ -15008,7 +15034,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Also at 2nd level, you can charm a creature with a look.",
+          "summary": "You can charm a creature using only a look.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15018,7 +15044,8 @@
             "name": "Enchantment",
             "level": 2
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Instinctive Charm",
@@ -15033,7 +15060,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 6th level, you can divert attacks made against you.",
+          "summary": "You can divert attacks made against you.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15043,7 +15070,8 @@
             "name": "Enchantment",
             "level": 6
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Split Enchantment",
@@ -15058,7 +15086,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 10th level, you can target two creatures with enchantment spells.",
+          "summary": "You can target two creatures with certain enchantment spells.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15068,7 +15096,8 @@
             "name": "Enchantment",
             "level": 10
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Alter Memories",
@@ -15083,7 +15112,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 14th level, when you charm a creature, you can modify its memory of the event. The creature must succeed on a Wisdom saving throw or have its memory altered.",
+          "summary": "When you charm a creature, you can force it to make a Wisdom saving throw; on a failure, you modify its memory of the event.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15093,18 +15122,20 @@
             "name": "Enchantment",
             "level": 14
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "PHB",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Wizard",
       "classIndex": "wizard",
       "index": "evocation",
       "name": "Evocation",
-      "flavorText": "Arcane Tradition",
+      "flavorText": "You dedicate your studies to the art of magic that manifests as devastating elemental forces: the biting chill of frost, the searing heat of flame, the roar of thunder, the crackle of lightning, and the corrosive burn of acid. Some who master this art find their place within military ranks, acting as living artillery to shatter enemy lines from a distance. Others wield their magnificent power to shield the innocent, while some pursue their own ambitions as marauders, adventurers, or aspiring tyrants.",
       "description": "You focus your study on magic that creates powerful elemental effects such as bitter cold, searing flame, rolling thunder, crackling lightning, and burning acid. Some evokers find employment in military forces, serving as artillery to blast enemy armies from afar. Others use their spectacular power to protect the weak, while some seek their own gain as bandits, adventurers, or aspiring tyrants.",
       "features": [
         {
@@ -15120,7 +15151,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Beginning when you select this school at 2nd level, the gold and time you must spend to copy an evocation spell into your spellbook is halved. (action).",
+          "summary": "The gold cost and time required to copy an evocation spell into your spellbook is halved.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15130,11 +15161,12 @@
             "name": "Evocation",
             "level": 2
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Sculpt Spells",
-          "description": "Beginning at 2nd level, you can create pockets of relative safety within the effects of your evocation spells. When you cast an evocation spell that affects other creatures that you can see, you can choose a number of them equal to 1 + the spell's level. The chosen creatures automatically succeed on their saving throws against the spell, and they take no damage if they would normally take half damage on a successful save.",
+          "description": "Beginning at 2nd level, you can create pockets of relative safety within the effects of your evocation spells. When you cast an evocation spell that affects other creatures that you can see, you can choose a number of them equal to **1 + the spell's level**. The chosen creatures automatically succeed on their saving throws against the spell, and they take no damage if they would normally take half damage on a successful save.",
           "level": 2,
           "featureType": "Active",
           "actionType": null,
@@ -15145,7 +15177,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "The chosen creatures automatically succeed on their saving throws against the spell, and they take no damage if they would normally take half damage on a successful save. (action).",
+          "summary": "Choose a number of creatures equal to 1 + the spell's level to automatically succeed on their saving throws and take no damage from your evocation spell.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15155,7 +15187,8 @@
             "name": "Evocation",
             "level": 2
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Potent Cantrip",
@@ -15170,7 +15203,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "The creature takes half the cantrip's damage (if any) but suffers no additional effect from the cantrip.",
+          "summary": "Creatures that succeed on a saving throw against your damaging cantrips still take half of the cantrip's damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15180,7 +15213,8 @@
             "name": "Evocation",
             "level": 6
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Empowered Evocation",
@@ -15195,7 +15229,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Beginning at 10th level, you can add your Intelligence modifier to one damage roll of any wizard evocation spell you cast. (action).",
+          "summary": "Add your Intelligence modifier to one damage roll of any wizard evocation spell you cast.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15205,11 +15239,12 @@
             "name": "Evocation",
             "level": 10
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Overchannel",
-          "description": "Starting at 14th level, you can increase the power of your simpler spells. When you cast a wizard spell of 1st through 5th level that deals damage, you can deal maximum damage with that spell.\nThe first time you do so, you suffer no adverse effect. If you use this feature again before you finish a long rest, you take 2d12 necrotic damage for each level of the spell, immediately after you cast it. Each time you use this feature again before finishing a long rest, the necrotic damage per spell level increases by 1d12. This damage ignores resistance and immunity.",
+          "description": "Starting at 14th level, you can increase the power of your simpler spells. When you cast a wizard spell of 1st through 5th level that deals damage, you can deal maximum damage with that spell.\n\nThe first time you do so, you suffer no adverse effect. If you use this feature again before you finish a long rest, you take **2d12** necrotic damage for each level of the spell, immediately after you cast it. Each time you use this feature again before finishing a long rest, the necrotic damage per spell level increases by **1d12**. This damage ignores resistance and immunity.",
           "level": 14,
           "featureType": "Active",
           "actionType": null,
@@ -15220,7 +15255,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Each time you use this feature again before finishing a long rest, the necrotic damage per spell level increases by 1d12. (action).",
+          "summary": "Deal maximum damage with a 1st to 5th level wizard spell. Subsequent uses before a long rest deal increasing necrotic damage per spell level, ignoring resistance and immunity.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15230,23 +15265,25 @@
             "name": "Evocation",
             "level": 14
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "PHB",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Wizard",
       "classIndex": "wizard",
       "index": "graviturgy",
       "name": "Graviturgy Magic",
-      "flavorText": "Arcane Tradition",
+      "flavorText": "An arcane tradition dedicated to the mastery of gravity.",
       "description": "Graviturgy is the study of gravity magic. Graviturgists learn to manipulate the force of gravity, making themselves and their allies lighter or heavier, and even creating gravitational anomalies.",
       "features": [
         {
           "name": "Adjust Density",
-          "description": "Starting at 2nd level, you can use your command of gravity to alter the weight of a creature. As an action, you can choose a creature you can see within 30 feet of you. The creature must make a Strength saving throw. On a failed save, the creature's weight is halved or doubled (your choice) for 1 minute. While the creature's weight is halved, its walking speed increases by 10 feet, and it has advantage on Strength checks and Strength saving throws. While the creature's weight is doubled, its walking speed decreases by 10 feet, and it has disadvantage on Strength checks and Strength saving throws. You can use this feature a number of times equal to your Intelligence modifier (minimum of once), and you regain all expended uses when you finish a long rest.",
+          "description": "Starting at 2nd level, you can use your command of gravity to alter the weight of a creature. As an action, you can choose a creature you can see within 30 feet of you. The creature must make a Strength saving throw. On a failed save, the creature's weight is halved or doubled (your choice) for 1 minute.\n\nWhile the creature's weight is halved, its walking speed increases by 10 feet, and it has advantage on Strength checks and Strength saving throws. While the creature's weight is doubled, its walking speed decreases by 10 feet, and it has disadvantage on Strength checks and Strength saving throws.\n\nYou can use this feature a number of times equal to your Intelligence modifier (minimum of once), and you regain all expended uses when you finish a long rest.",
           "level": 2,
           "featureType": "Active",
           "actionType": "Action",
@@ -15257,7 +15294,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Its walking speed increases by 10 feet, and it has advantage on Strength checks and Strength saving throws. (action).",
+          "summary": "Force a creature within 30 feet to make a Strength save; on failure, its weight is halved or doubled for 1 minute, affecting its speed and Strength checks/saves.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15267,7 +15304,8 @@
             "name": "Graviturgy Magic",
             "level": 2
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Gravity Well",
@@ -15282,7 +15320,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "That creature is pulled 10 feet toward you, provided you can see it and it is within 60 feet of you. (action).",
+          "summary": "When a creature fails a saving throw from one of your spells, you can pull it 10 feet toward you if it is within 60 feet and visible.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15292,11 +15330,12 @@
             "name": "Graviturgy Magic",
             "level": 6
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Violent Attraction",
-          "description": "Starting at 10th level, you can use your command of gravity to increase the force of your attacks. When you hit a creature with a weapon attack, you can use a bonus action to choose one creature you can see within 30 feet of you. That creature takes force damage equal to your Intelligence modifier, and you can move it 10 feet toward you or away from you (your choice). You can use this feature a number of times equal to your Intelligence modifier (minimum of once), and you regain all expended uses when you finish a long rest.",
+          "description": "Starting at 10th level, you can use your command of gravity to increase the force of your attacks. When you hit a creature with a weapon attack, you can use a bonus action to choose one creature you can see within 30 feet of you. That creature takes force damage equal to your Intelligence modifier, and you can move it 10 feet toward you or away from you (your choice).\n\nYou can use this feature a number of times equal to your Intelligence modifier (minimum of once), and you regain all expended uses when you finish a long rest.",
           "level": 10,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -15307,7 +15346,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "That creature takes force damage equal to your Intelligence modifier, and you can move it 10 feet toward you or away from you (your choice). (bonus action).",
+          "summary": "After hitting with a weapon attack, use a bonus action to deal force damage equal to your Intelligence modifier to a creature within 30 feet and move it 10 feet toward or away from you.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15317,11 +15356,12 @@
             "name": "Graviturgy Magic",
             "level": 10
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Gravity Sinkhole",
-          "description": "At 14th level, you can create a devastating gravitational anomaly. As an action, you can choose a point you can see within 120 feet of you. Each creature in a 20-foot-radius sphere centered on that point must make a Constitution saving throw. On a failed save, a creature takes 5d10 force damage and is restrained until the start of your next turn. On a successful save, a creature takes half as much damage and isn't restrained. You can use this feature a number of times equal to your Intelligence modifier (minimum of once), and you regain all expended uses when you finish a long rest.",
+          "description": "At 14th level, you can create a devastating gravitational anomaly. As an action, you can choose a point you can see within 120 feet of you. Each creature in a 20-foot-radius sphere centered on that point must make a Constitution saving throw.\n\nOn a failed save, a creature takes **5d10** force damage and is restrained until the start of your next turn. On a successful save, a creature takes half as much damage and isn't restrained.\n\nYou can use this feature a number of times equal to your Intelligence modifier (minimum of once), and you regain all expended uses when you finish a long rest.",
           "level": 14,
           "featureType": "Active",
           "actionType": "Action",
@@ -15332,7 +15372,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "On a failed save, a creature takes 5d10 force damage and is restrained until the start of your next turn. (action).",
+          "summary": "Create a 20-foot-radius sphere within 120 feet; creatures failing a Constitution save take 5d10 force damage and are restrained until your next turn.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15342,18 +15382,20 @@
             "name": "Graviturgy Magic",
             "level": 14
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "TCE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Illusion",
       "class": "Wizard",
       "classIndex": "wizard",
       "index": "illusion",
-      "flavorText": "Arcane Tradition",
+      "flavorText": "Arcane Tradition\n\nIllusionists craft deceptive images and manipulate the perceptions of others. They possess the power to make objects appear or vanish, summon phantasmal creatures, and reshape the appearance of themselves and those around them.\n\nThe study of illusion demands immense creativity and imagination. Illusionists master the art of bending light and sound to create realistic fabrications capable of deceiving even the most perceptive observers.",
       "description": "Illusionists create false images and manipulate perceptions. They can make things appear or disappear, create phantasmal creatures, and alter the appearance of themselves and others.\n\nThe study of illusion requires creativity and imagination. Illusionists learn to bend light and sound, creating realistic illusions that can deceive even the most perceptive observers.",
       "features": [
         {
@@ -15369,7 +15411,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 2nd level, the gold and time you spend to copy an illusion spell into your spellbook is halved. (action).",
+          "summary": "Halves the gold and time required to copy illusion spells into your spellbook.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15379,7 +15421,8 @@
             "name": "Illusion",
             "level": 2
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Improved Minor Illusion",
@@ -15394,7 +15437,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Also at 2nd level, you can change the nature of your illusions.",
+          "summary": "Allows you to change the nature of your illusions.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15404,7 +15447,8 @@
             "name": "Illusion",
             "level": 2
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Illusory Self",
@@ -15419,7 +15463,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 10th level, when a creature makes an attack roll against you, you can use your reaction to create an illusory duplicate of yourself, causing the attack to miss you instead.",
+          "summary": "Use your reaction to create an illusory duplicate of yourself to cause an attack to miss.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15429,7 +15473,8 @@
             "name": "Illusion",
             "level": 6
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Illusory Self",
@@ -15444,7 +15489,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 10th level, when a creature makes an attack roll against you, you can use your reaction to create an illusory duplicate of yourself, causing the attack to miss you instead.",
+          "summary": "Use your reaction to create an illusory duplicate of yourself to cause an attack to miss.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15454,7 +15499,8 @@
             "name": "Illusion",
             "level": 10
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Illusory Reality",
@@ -15469,7 +15515,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 14th level, you can create an illusory creature.",
+          "summary": "Allows you to create an illusory creature.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15479,18 +15525,20 @@
             "name": "Illusion",
             "level": 14
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "PHB",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Necromancy",
       "class": "Wizard",
       "classIndex": "wizard",
       "index": "necromancy",
-      "flavorText": "Arcane Tradition",
+      "flavorText": "You follow an arcane tradition dedicated to the forces of life and death. You learn to animate the dead, drain the life force from living creatures, and even cheat death itself.\n\nMastering necromancy requires a strong will and a willingness to confront the darker aspects of existence. You learn to harness the power of negative energy, using it to create undead servants and protect yourself from harm.",
       "description": "Necromancers study the forces of life and death. They can animate the dead, drain life force from living creatures, and even cheat death itself.\n\nThe study of necromancy requires a strong will and a willingness to confront the darker aspects of existence. Necromancers learn to harness the power of negative energy, using it to create undead servants and protect themselves from harm.",
       "features": [
         {
@@ -15506,7 +15554,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 2nd level, the gold and time you spend to copy a necromancy spell into your spellbook is halved. (action).",
+          "summary": "Halve the gold and time required to copy necromancy spells into your spellbook.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15516,7 +15564,8 @@
             "name": "Necromancy",
             "level": 2
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Grim Harvest",
@@ -15531,7 +15580,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Also at 2nd level, you can regain hit points when you kill a creature.",
+          "summary": "Regain hit points when you kill a creature.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15541,7 +15590,8 @@
             "name": "Necromancy",
             "level": 2
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Undead Thralls",
@@ -15556,7 +15606,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 6th level, when you raise a creature as an undead, it gains additional Hit Points and your proficiency bonus to its attacks and damage rolls. You can also command it as a bonus action.",
+          "summary": "Undead you raise gain additional hit points and your proficiency bonus to their attack and damage rolls; you can command them as a bonus action.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15566,7 +15616,8 @@
             "name": "Necromancy",
             "level": 6
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Inured to Undeath",
@@ -15581,7 +15632,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 10th level, you have resistance to necrotic damage.",
+          "summary": "Gain resistance to necrotic damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15591,7 +15642,8 @@
             "name": "Necromancy",
             "level": 10
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Command Undead",
@@ -15606,7 +15658,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 14th level, you can use your action to target one undead creature within 60 feet of you. The target must make a Wisdom saving throw or be charmed by you for 1 minute. You can use this feature a number of times equal to your proficiency bonus, regaining all uses on a long rest.",
+          "summary": "Use an action to force an undead within 60 feet to make a Wisdom saving throw or be charmed for 1 minute. Uses equal your proficiency bonus per long rest.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15616,23 +15668,25 @@
             "name": "Necromancy",
             "level": 14
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "PHB",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Wizard",
       "classIndex": "wizard",
       "index": "scribes",
       "name": "Order of Scribes",
-      "flavorText": "Arcane Tradition",
+      "flavorText": "You follow an arcane tradition of wizards who believe that magic is a language. You study the written word and the arcane symbols that compose spells, using this knowledge to modify existing magic and create new spells.",
       "description": "The Order of Scribes is a tradition of wizards who believe that magic is a language. They study the written word and the arcane symbols that make up spells, and they use their knowledge to create new spells and modify existing ones.",
       "features": [
         {
           "name": "Wizardly Quill",
-          "description": "At 2nd level, you can use a special quill to write spells into your spellbook. The quill doesn't require ink. When you use the quill to copy a spell into your spellbook, you can reduce the time and cost to copy the spell by half. You can also use the quill to create a spell scroll. When you do so, you must provide the spell's components, and the scroll costs half the normal amount of gold to create.",
+          "description": "At 2nd level, you can use a special quill to write spells into your spellbook. The quill doesn't require ink. When you use the quill to copy a spell into your spellbook, you can reduce the time and cost to copy the spell by half.\n\nYou can also use the quill to create a spell scroll. When you do so, you must provide the spell's components, and the scroll costs half the normal amount of gold to create.",
           "level": 2,
           "featureType": "Active",
           "actionType": null,
@@ -15643,7 +15697,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can also use the quill to create a spell scroll. (action).",
+          "summary": "Use a special quill to copy spells at half the time and cost, or create spell scrolls at half the gold cost.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15653,11 +15707,12 @@
             "name": "Order of Scribes",
             "level": 2
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Awakened Spellbook",
-          "description": "Starting at 2nd level, you have a spellbook that has been awakened by your magic. The spellbook has the following benefits:\n\nYou can use the spellbook as a spellcasting focus for your wizard spells.\n\nWhen you cast a wizard spell with a spell slot, you can temporarily replace its damage type with the damage type of another spell in your spellbook of the same level. This replacement lasts for the duration of the spell.\n\nWhen you cast a wizard spell as a ritual, you can use the spell's normal casting time, rather than adding 10 minutes to it. Once you use this benefit, you can't do so again until you finish a long rest.\n\nIf your spellbook is lost, you can perform a special ritual to create a new one. This ritual takes 8 hours to complete, and you must have access to a wizard's spellbook to copy spells from. The new spellbook becomes your awakened spellbook.",
+          "description": "Starting at 2nd level, you have a spellbook that has been awakened by your magic. The spellbook has the following benefits:\n\n- You can use the spellbook as a spellcasting focus for your wizard spells.\n\n- When you cast a wizard spell with a spell slot, you can temporarily replace its damage type with the damage type of another spell in your spellbook of the same level. This replacement lasts for the duration of the spell.\n\n- When you cast a wizard spell as a ritual, you can use the spell's normal casting time, rather than adding 10 minutes to it. Once you use this benefit, you can't do so again until you finish a long rest.\n\n- If your spellbook is lost, you can perform a special ritual to create a new one. This ritual takes 8 hours to complete, and you must have access to a wizard's spellbook to copy spells from. The new spellbook becomes your awakened spellbook.",
           "level": 2,
           "featureType": "Active",
           "actionType": null,
@@ -15668,7 +15723,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "This ritual takes 8 hours to complete, and you must have access to a wizard's spellbook to copy spells from. (action).",
+          "summary": "Use your spellbook as a focus, swap damage types of spells, cast rituals faster, and recreate the book if lost.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15678,11 +15733,12 @@
             "name": "Order of Scribes",
             "level": 2
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Manifest Mind",
-          "description": "Starting at 6th level, you can cause your spellbook to manifest a spectral mind. As a bonus action, you can cause the mind to appear in an unoccupied space you can see within 60 feet of you. The mind is a Tiny object, and it has AC 10, 1 hit point, and immunity to all damage except force damage. The mind is invisible, and it can't be targeted by attacks or spells. The mind lasts for 1 hour, until you dismiss it as a bonus action, or until you die. While the mind is present, you can use it as a spellcasting focus for your wizard spells. In addition, you can cast spells as if you were in the mind's space, provided you can see the mind.",
+          "description": "Starting at 6th level, you can cause your spellbook to manifest a spectral mind. As a bonus action, you can cause the mind to appear in an unoccupied space you can see within 60 feet of you.\n\nThe mind is a Tiny object, and it has AC 10, 1 hit point, and immunity to all damage except force damage. The mind is invisible, and it can't be targeted by attacks or spells. The mind lasts for 1 hour, until you dismiss it as a bonus action, or until you die.\n\nWhile the mind is present, you can use it as a spellcasting focus for your wizard spells. In addition, you can cast spells as if you were in the mind's space, provided you can see the mind.",
           "level": 6,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -15693,7 +15749,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can cause the mind to appear in an unoccupied space you can see within 60 feet of you. (bonus action).",
+          "summary": "Summon an invisible spectral mind within 60 feet to use as a spellcasting focus and a point of origin for your spells.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15703,11 +15759,12 @@
             "name": "Order of Scribes",
             "level": 6
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Master Scrivian",
-          "description": "Starting at 10th level, you can create powerful scrolls. When you finish a long rest, you can create a number of spell scrolls equal to your Intelligence modifier (minimum of one). The scrolls must be for spells of 5th level or lower, and the spells must be in your spellbook. The scrolls cost half the normal amount of gold to create, and they last for 8 hours before becoming inert.",
+          "description": "Starting at 10th level, you can create powerful scrolls. When you finish a long rest, you can create a number of spell scrolls equal to your Intelligence modifier (minimum of one).\n\nThe scrolls must be for spells of 5th level or lower, and the spells must be in your spellbook. The scrolls cost half the normal amount of gold to create, and they last for 8 hours before becoming inert.",
           "level": 10,
           "featureType": "Active",
           "actionType": null,
@@ -15718,7 +15775,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "The scrolls cost half the normal amount of gold to create, and they last for 8 hours before becoming inert. (action).",
+          "summary": "Create a number of 5th-level or lower spell scrolls equal to your Intelligence modifier after a long rest at half gold cost.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15728,11 +15785,12 @@
             "name": "Order of Scribes",
             "level": 10
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "One with Words",
-          "description": "At 14th level, your mastery of the written word allows you to cast spells without speaking. When you cast a wizard spell, you can cast it without verbal components. Once you use this feature, you can't use it again until you finish a short or long rest.",
+          "description": "At 14th level, your mastery of the written word allows you to cast spells without speaking. When you cast a wizard spell, you can cast it without verbal components.\n\nOnce you use this feature, you can't use it again until you finish a short or long rest.",
           "level": 14,
           "featureType": "Active",
           "actionType": null,
@@ -15743,7 +15801,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Once you use this feature, you can't use it again until you finish a short or long rest. (action).",
+          "summary": "Cast a wizard spell without its verbal components. You can use this once per short or long rest.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15753,18 +15811,20 @@
             "name": "Order of Scribes",
             "level": 14
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "TCE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Transmutation",
       "class": "Wizard",
       "classIndex": "wizard",
       "index": "transmutation",
-      "flavorText": "Arcane Tradition",
+      "flavorText": "Arcane Tradition\n\nTransmuters manipulate the physical world. They possess the power to change the shape and properties of objects, transform one substance into another, and even alter their own physical forms.\n\nThe study of transmutation requires a deep understanding of the natural world. Transmuters learn to reshape reality at its most fundamental level, using their abilities to adapt to any situation and overcome any obstacle.",
       "description": "Transmuters manipulate the physical world. They can change the shape and properties of objects, transform one substance into another, and even alter their own bodies.\n\nThe study of transmutation requires a deep understanding of the natural world. Transmuters learn to reshape reality at a fundamental level, using their abilities to adapt to any situation and overcome any obstacle.",
       "features": [
         {
@@ -15780,7 +15840,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 2nd level, the gold and time you spend to copy a transmutation spell into your spellbook is halved. (action).",
+          "summary": "Halves the gold and time required to copy transmutation spells into your spellbook.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15790,7 +15850,8 @@
             "name": "Transmutation",
             "level": 2
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Minor Alchemy",
@@ -15805,7 +15866,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 2nd level, you can transmute one object into another material of the same size and value. The effect lasts for 1 hour or until the object takes any damage.",
+          "summary": "Transmute one object into another material of the same size and value for 1 hour or until the object takes damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15815,7 +15876,8 @@
             "name": "Transmutation",
             "level": 2
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Transmuter's Stone",
@@ -15830,7 +15892,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 6th level, you can create a stone that grants benefits.",
+          "summary": "Create a stone that grants specific benefits to the wearer or holder.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15840,7 +15902,8 @@
             "name": "Transmutation",
             "level": 6
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Shapechanger",
@@ -15855,7 +15918,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 10th level, you can cast the polymorph spell on yourself.",
+          "summary": "Cast the polymorph spell on yourself.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15865,7 +15928,8 @@
             "name": "Transmutation",
             "level": 10
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Master Transmuter",
@@ -15880,7 +15944,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 14th level, you can transmute matter at a touch.",
+          "summary": "Transmute matter instantly through a touch.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15890,23 +15954,25 @@
             "name": "Transmutation",
             "level": 14
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "PHB",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Wizard",
       "classIndex": "wizard",
       "index": "war-magic",
       "name": "War Magic",
-      "flavorText": "Arcane Tradition",
+      "flavorText": "The War Magic tradition is a school of wizardry that focuses on the practical application of magic in combat. War mages are skilled in both offensive and defensive magic, using their knowledge to survive the chaos of the battlefield.",
       "description": "The War Magic tradition is a school of wizardry that focuses on the practical application of magic in combat. War mages are skilled in both offensive and defensive magic, and they use their knowledge to survive on the battlefield.",
       "features": [
         {
           "name": "Arcane Deflection",
-          "description": "At 2nd level, you learn to weave your magic into a protective shield. When you are hit by an attack or you fail a saving throw against a spell or other magical effect, you can use your reaction to gain a +2 bonus to your AC against that attack or a +4 bonus to that saving throw. If you do so, you can't cast spells other than cantrips until the end of your next turn.",
+          "description": "At 2nd level, you learn to weave your magic into a protective shield. When you are hit by an attack or you fail a saving throw against a spell or other magical effect, you can use your reaction to gain a **+2** bonus to your AC against that attack or a **+4** bonus to that saving throw. If you do so, you can't cast spells other than cantrips until the end of your next turn.",
           "level": 2,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -15917,7 +15983,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can use your reaction to gain a +2 bonus to your AC against that attack or a +4 bonus to that saving throw. (reaction).",
+          "summary": "Use your reaction to gain a **+2** bonus to AC against an attack or a **+4** bonus to a saving throw.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15927,7 +15993,8 @@
             "name": "War Magic",
             "level": 2
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Tactical Wit",
@@ -15942,7 +16009,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Starting at 2nd level, you add your Intelligence modifier to your initiative rolls. (action).",
+          "summary": "Add your Intelligence modifier to your initiative rolls.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15952,11 +16019,12 @@
             "name": "War Magic",
             "level": 2
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Power Surge",
-          "description": "Starting at 6th level, you can store magical energy inside your body to fuel your spells. You have a pool of power surges, represented by a number of d6s equal to your wizard level. When you make an attack roll or a saving throw, you can spend one power surge to add the roll of one d6 to the total. You can use this feature only once per turn. You regain all expended power surges when you finish a long rest.",
+          "description": "Starting at 6th level, you can store magical energy inside your body to fuel your spells. You have a pool of power surges, represented by a number of **d6**s equal to your wizard level. When you make an attack roll or a saving throw, you can spend one power surge to add the roll of one **d6** to the total. You can use this feature only once per turn. You regain all expended power surges when you finish a long rest.",
           "level": 6,
           "featureType": "Active",
           "actionType": null,
@@ -15967,7 +16035,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can spend one power surge to add the roll of one d6 to the total. (action).",
+          "summary": "Spend one power surge to add the roll of one **d6** to an attack roll or saving throw.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15977,11 +16045,12 @@
             "name": "War Magic",
             "level": 6
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Durable Magic",
-          "description": "At 10th level, the spells you cast help sustain your defenses. While you are maintaining concentration on a spell, you gain a +2 bonus to AC and to all saving throws.",
+          "description": "At 10th level, the spells you cast help sustain your defenses. While you are maintaining concentration on a spell, you gain a **+2** bonus to AC and to all saving throws.",
           "level": 10,
           "featureType": "Passive",
           "actionType": null,
@@ -15992,7 +16061,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 10th level, while you are maintaining concentration on a spell, you gain a +2 bonus to AC and to all saving throws.",
+          "summary": "Gain a **+2** bonus to AC and all saving throws while maintaining concentration on a spell.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -16002,7 +16071,8 @@
             "name": "War Magic",
             "level": 10
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Deflecting Shroud",
@@ -16017,7 +16087,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can choose up to three creatures within 10 feet of you. (action).",
+          "summary": "When using Arcane Deflection, grant the same bonus to up to three creatures within 10 feet of you.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -16027,11 +16097,13 @@
             "name": "War Magic",
             "level": 14
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "XGE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     }
   ]
 }

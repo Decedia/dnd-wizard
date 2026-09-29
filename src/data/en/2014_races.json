@@ -22,7 +22,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -32,7 +32,8 @@
             "name": "Bugbear",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Long-Limbed",
@@ -46,7 +47,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "When you make a melee attack on your turn, your reach for it is 5 feet greater than normal",
+          "summary": "Your reach is 5 feet greater than normal when making a melee attack on your turn.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -56,7 +57,8 @@
             "name": "Bugbear",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Powerful Build",
@@ -70,7 +72,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift",
+          "summary": "Count as one size larger for carrying capacity and weights you can push, drag, or lift.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -80,7 +82,8 @@
             "name": "Bugbear",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Sneaky",
@@ -94,7 +97,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You are proficient in the Stealth skill",
+          "summary": "You are proficient in the Stealth skill.",
           "grantsSpells": false,
           "grantsAttack": true,
           "grantsSkills": false,
@@ -104,11 +107,12 @@
             "name": "Bugbear",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Surprise Attack",
-          "description": "If you surprise a creature and hit it with an attack on your first turn in combat, the attack deals an extra 2d6 damage to it. You can use this trait only once per combat.",
+          "description": "If you surprise a creature and hit it with an attack on your first turn in combat, the attack deals an extra **2d6** damage to it. You can use this trait only once per combat.",
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -118,7 +122,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "If you surprise a creature and hit it with an attack on your first turn in combat, the attack deals an extra 2d6 damage to the target",
+          "summary": "Deal an extra 2d6 damage if you surprise a creature and hit it on your first turn in combat.",
           "grantsSpells": false,
           "grantsAttack": true,
           "grantsSkills": false,
@@ -128,7 +132,8 @@
             "name": "Bugbear",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -167,7 +172,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have proficiency in the Deception skill",
+          "summary": "You have proficiency in the Deception skill.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -177,11 +182,12 @@
             "name": "Changeling",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Shapechanger",
-          "description": "As an action, you can change your appearance and your voice to or from any Medium humanoid you have seen, or back to your true form. However, your clothing and other equipment aren't changed by this trait. You can remain in a new form until you use an action to revert to your true form or until you die. If you are damaged while in a new form, your true form is revealed.",
+          "description": "As an action, you can change your appearance and your voice to any Medium humanoid you have seen, or back to your true form. However, your clothing and other equipment aren't changed by this trait.\n\nYou can remain in a new form until you use an action to revert to your true form or until you die. If you are damaged while in a new form, your true form is revealed.",
           "featureType": "Active",
           "actionType": "Action",
           "uses": null,
@@ -191,7 +197,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Your true form is revealed. (action)",
+          "summary": "Use an action to change your appearance and voice to any Medium humanoid you have seen or return to your true form.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -201,7 +207,8 @@
             "name": "Changeling",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -242,7 +249,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 120 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 120 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -252,7 +259,8 @@
             "name": "Deep Gnome (Svirfneblin)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Gnome Cunning",
@@ -266,7 +274,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic",
+          "summary": "Gain advantage on all Intelligence, Wisdom, and Charisma saving throws against magic.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -276,7 +284,8 @@
             "name": "Deep Gnome (Svirfneblin)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Stone Camouflage",
@@ -290,7 +299,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have advantage on Dexterity (Stealth) checks to hide in rocky terrain",
+          "summary": "Gain advantage on Dexterity (Stealth) checks to hide in rocky terrain.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -300,11 +309,12 @@
             "name": "Deep Gnome (Svirfneblin)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Svirfneblin Magic",
-          "description": "You have inherited the innate spellcasting ability of your ancestors. This ability allows you to cast nondetection on yourself at will, without needing a material component. You can also cast each of the following spells once with this ability: blindness/deafness, blur, and disguise self. You regain the ability to cast these spells with this ability when you finish a long rest. Intelligence is your spellcasting ability for these spells.",
+          "description": "You have inherited the innate spellcasting ability of your ancestors. This ability allows you to cast nondetection on yourself at will, without needing a material component.\n\nYou can also cast each of the following spells once with this ability: blindness/deafness, blur, and disguise self. You regain the ability to cast these spells with this ability when you finish a long rest.\n\nIntelligence is your spellcasting ability for these spells.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -314,7 +324,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Regain the ability to cast these spells with this ability when you finish a long rest",
+          "summary": "Cast nondetection at will, and cast blindness/deafness, blur, and disguise self once per long rest.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -324,7 +334,8 @@
             "name": "Deep Gnome (Svirfneblin)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -360,7 +371,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -370,7 +381,8 @@
             "name": "Dhampir",
             "level": null
           },
-          "book": "VRGR"
+          "book": "VRGR",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Deathless Nature",
@@ -384,7 +396,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Don't need to breathe, and you have advantage on death saving throws",
+          "summary": "You do not need to breathe and have advantage on death saving throws.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -394,7 +406,8 @@
             "name": "Dhampir",
             "level": null
           },
-          "book": "VRGR"
+          "book": "VRGR",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Spider Climb",
@@ -408,7 +421,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have a climbing speed equal to your walking speed",
+          "summary": "You have a climbing speed equal to your walking speed.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -418,11 +431,12 @@
             "name": "Dhampir",
             "level": null
           },
-          "book": "VRGR"
+          "book": "VRGR",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Vampiric Bite",
-          "description": "Your fanged bite is a natural weapon, which you can use to make unarmed strikes. If you hit with it, you deal piercing damage equal to 1d4 + your Strength modifier, instead of the bludgeoning damage normal for an unarmed strike. When you damage a creature with your bite and that creature has a humanoid shape, you can regain hit points equal to the piercing damage dealt.",
+          "description": "Your fanged bite is a natural weapon, which you can use to make unarmed strikes. If you hit with it, you deal piercing damage equal to **1d4** + your Strength modifier, instead of the bludgeoning damage normal for an unarmed strike. When you damage a creature with your bite and that creature has a humanoid shape, you can regain hit points equal to the piercing damage dealt.",
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -432,7 +446,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Deal piercing damage equal to 1d4 + your Strength modifier, instead of the bludgeoning damage normal for an unarmed strike. (action)",
+          "summary": "Deal piercing damage equal to 1d4 + your Strength modifier with an unarmed strike and potentially heal for the damage dealt.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -442,7 +456,8 @@
             "name": "Dhampir",
             "level": null
           },
-          "book": "VRGR"
+          "book": "VRGR",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -480,7 +495,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have draconic ancestry. (action)",
+          "summary": "Choose a dragon type to determine your breath weapon and damage resistance.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -490,11 +505,12 @@
             "name": "Dragonborn",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Breath Weapon",
-          "description": "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation.\nWhen you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level.\nAfter you use your breath weapon, you cannot use it again until you complete a short or long rest.",
+          "description": "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation.\n\nWhen you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes **2d6** damage on a failed save, and half as much damage on a successful one. The damage increases to **3d6** at 6th level, **4d6** at 11th level, and **5d6** at 16th level.\n\nAfter you use your breath weapon, you cannot use it again until you complete a short or long rest.",
           "featureType": "Active",
           "actionType": "Action",
           "uses": null,
@@ -504,7 +520,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. (action)",
+          "summary": "Exhale energy to deal 2d6 damage on a failed save, or half as much on a success.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -514,7 +530,8 @@
             "name": "Dragonborn",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Damage Resistance",
@@ -528,7 +545,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Have resistance to the damage type associated with your draconic ancestry",
+          "summary": "You have resistance to the damage type associated with your draconic ancestry.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -538,7 +555,8 @@
             "name": "Dragonborn",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -634,7 +652,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have draconic ancestry. (action)",
+          "summary": "Choose a dragon type to determine your breath weapon and damage resistance.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -644,11 +662,12 @@
             "name": "Dragonborn (Chromatic)",
             "level": null
           },
-          "book": "FTD"
+          "book": "FTD",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Breath Weapon",
-          "description": "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation. When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, or half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level. After you use your breath weapon, you can't use it again until you complete a short or long rest.",
+          "description": "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation.\n\nWhen you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes **2d6** damage on a failed save, or half as much damage on a successful one.\n\nThe damage increases to **3d6** at 6th level, **4d6** at 11th level, and **5d6** at 16th level.\n\nAfter you use your breath weapon, you can't use it again until you complete a short or long rest.",
           "featureType": "Active",
           "actionType": "Action",
           "uses": null,
@@ -658,7 +677,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "A creature takes 2d6 damage on a failed save, or half as much damage on a successful one. (action)",
+          "summary": "Exhale energy to deal 2d6 damage on a failed save, or half as much on a success.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -668,7 +687,8 @@
             "name": "Dragonborn (Chromatic)",
             "level": null
           },
-          "book": "FTD"
+          "book": "FTD",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Damage Resistance",
@@ -682,7 +702,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Have resistance to the damage type associated with your draconic ancestry",
+          "summary": "You have resistance to the damage type associated with your draconic ancestry.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -692,11 +712,12 @@
             "name": "Dragonborn (Chromatic)",
             "level": null
           },
-          "book": "FTD"
+          "book": "FTD",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Chromatic Breath Weapon",
-          "description": "You gain a second breath weapon. When you take the Attack action on your turn, you can replace one of your attacks with a 15-foot cone of elemental energy. Each creature in the area must make a Dexterity saving throw (DC 8 + your Constitution modifier + your proficiency bonus). On a failed save, a creature takes 2d6 damage of the type associated with your draconic ancestry. On a successful save, a creature takes half as much damage. This damage increases by 1d6 when you reach 6th level (3d6), 11th level (4d6), and 16th level (5d6). You can use this breath weapon a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+          "description": "You gain a second breath weapon. When you take the Attack action on your turn, you can replace one of your attacks with a 15-foot cone of elemental energy.\n\nEach creature in the area must make a Dexterity saving throw (DC 8 + your Constitution modifier + your proficiency bonus). On a failed save, a creature takes **2d6** damage of the type associated with your draconic ancestry. On a successful save, a creature takes half as much damage.\n\nThis damage increases by **1d6** when you reach 6th level (**3d6**), 11th level (**4d6**), and 16th level (**5d6**).\n\nYou can use this breath weapon a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
           "featureType": "Active",
           "actionType": "Action",
           "uses": null,
@@ -706,7 +727,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "On a failed save, a creature takes 2d6 damage of the type associated with your draconic ancestry. (action)",
+          "summary": "Replace one attack with a 15-foot cone dealing 2d6 damage on a failed save, or half as much on a success.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -716,7 +737,8 @@
             "name": "Dragonborn (Chromatic)",
             "level": null
           },
-          "book": "FTD"
+          "book": "FTD",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -755,7 +777,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have draconic ancestry. (action)",
+          "summary": "Choose a dragon type to determine your breath weapon and damage resistance.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -765,11 +787,12 @@
             "name": "Dragonborn (Gem)",
             "level": null
           },
-          "book": "FTD"
+          "book": "FTD",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Breath Weapon",
-          "description": "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation. When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, or half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level. After you use your breath weapon, you can't use it again until you complete a short or long rest.",
+          "description": "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation.\n\nWhen you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes **2d6** damage on a failed save, or half as much damage on a successful one.\n\nThe damage increases to **3d6** at 6th level, **4d6** at 11th level, and **5d6** at 16th level.\n\nAfter you use your breath weapon, you can't use it again until you complete a short or long rest.",
           "featureType": "Active",
           "actionType": "Action",
           "uses": null,
@@ -779,7 +802,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "A creature takes 2d6 damage on a failed save, or half as much damage on a successful one. (action)",
+          "summary": "Exhale energy to deal 2d6 damage on a failed save, or half as much on a success.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -789,7 +812,8 @@
             "name": "Dragonborn (Gem)",
             "level": null
           },
-          "book": "FTD"
+          "book": "FTD",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Damage Resistance",
@@ -803,7 +827,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Have resistance to the damage type associated with your draconic ancestry",
+          "summary": "You have resistance to the damage type associated with your draconic ancestry.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -813,11 +837,12 @@
             "name": "Dragonborn (Gem)",
             "level": null
           },
-          "book": "FTD"
+          "book": "FTD",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Psionic Mind",
-          "description": "You can send telepathic messages to any creature you can see within 30 feet of you. You don't need to share a language with the creature for it to understand your telepathy, but the creature must be able to understand at least one language or be telepathic itself.",
+          "description": "You can send telepathic messages to any creature you can see within 30 feet of you. You do not need to share a language with the creature for it to understand your telepathy, but the creature must be able to understand at least one language or be telepathic itself.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -827,7 +852,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can send telepathic messages to any creature you can see within 30 feet of you",
+          "summary": "Send telepathic messages to any creature you can see within 30 feet.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -837,11 +862,12 @@
             "name": "Dragonborn (Gem)",
             "level": null
           },
-          "book": "FTD"
+          "book": "FTD",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Gem Flight",
-          "description": "When you reach 5th level, you can use a bonus action to manifest spectral wings from your back for 1 minute. While the wings are present, you have a flying speed equal to your walking speed. Your wings look like shimmering, translucent versions of your draconic ancestry's wings. Once you use this trait, you can't use it again until you finish a long rest.",
+          "description": "When you reach 5th level, you can use a bonus action to manifest spectral wings from your back for 1 minute. While the wings are present, you have a flying speed equal to your walking speed. Your wings look like shimmering, translucent versions of your draconic ancestry's wings. Once you use this trait, you cannot use it again until you finish a long rest.",
           "featureType": "Active",
           "actionType": "Bonus Action",
           "uses": null,
@@ -851,7 +877,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Have a flying speed equal to your walking speed. (bonus action)",
+          "summary": "Use a bonus action to gain a flying speed equal to your walking speed for 1 minute.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -861,7 +887,8 @@
             "name": "Dragonborn (Gem)",
             "level": null
           },
-          "book": "FTD"
+          "book": "FTD",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -900,7 +927,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have draconic ancestry. (action)",
+          "summary": "Choose a dragon type to determine your breath weapon and damage resistance.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -910,11 +937,12 @@
             "name": "Dragonborn (Metallic)",
             "level": null
           },
-          "book": "FTD"
+          "book": "FTD",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Breath Weapon",
-          "description": "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation. When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, or half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level. After you use your breath weapon, you can't use it again until you complete a short or long rest.",
+          "description": "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation. When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes **2d6** damage on a failed save, or half as much damage on a successful one.\n\nThe damage increases to **3d6** at 6th level, **4d6** at 11th level, and **5d6** at 16th level.\n\nAfter you use your breath weapon, you cannot use it again until you complete a short or long rest.",
           "featureType": "Active",
           "actionType": "Action",
           "uses": null,
@@ -924,7 +952,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "A creature takes 2d6 damage on a failed save, or half as much damage on a successful one. (action)",
+          "summary": "Use an action to deal 2d6 damage to creatures in an area on a failed save, or half as much on a success.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -934,7 +962,8 @@
             "name": "Dragonborn (Metallic)",
             "level": null
           },
-          "book": "FTD"
+          "book": "FTD",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Damage Resistance",
@@ -948,7 +977,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Have resistance to the damage type associated with your draconic ancestry",
+          "summary": "You have resistance to the damage type associated with your draconic ancestry.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -958,11 +987,12 @@
             "name": "Dragonborn (Metallic)",
             "level": null
           },
-          "book": "FTD"
+          "book": "FTD",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Metallic Breath Weapon",
-          "description": "You gain a second breath weapon. When you take the Attack action on your turn, you can replace one of your attacks with a 15-foot cone of psychic energy. Each creature in the area must make a Wisdom saving throw (DC 8 + your Constitution modifier + your proficiency bonus). On a failed save, a creature takes 2d6 psychic damage and is frightened of you until the end of your next turn. On a successful save, a creature takes half as much damage and isn't frightened. This damage increases by 1d6 when you reach 6th level (3d6), 11th level (4d6), and 16th level (5d6). You can use this breath weapon a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+          "description": "You gain a second breath weapon. When you take the Attack action on your turn, you can replace one of your attacks with a 15-foot cone of psychic energy. Each creature in the area must make a Wisdom saving throw (DC 8 + your Constitution modifier + your proficiency bonus).\n\nOn a failed save, a creature takes **2d6** psychic damage and is frightened of you until the end of your next turn. On a successful save, a creature takes half as much damage and isn't frightened.\n\nThis damage increases by **1d6** when you reach 6th level (**3d6**), 11th level (**4d6**), and 16th level (**5d6**).\n\nYou can use this breath weapon a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
           "featureType": "Active",
           "actionType": "Action",
           "uses": null,
@@ -972,7 +1002,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "On a failed save, a creature takes 2d6 psychic damage and is frightened of you until the end of your next turn. (action)",
+          "summary": "Replace one attack with a 15-foot cone of psychic energy. On a failed save, creatures take 2d6 psychic damage and are frightened of you until the end of your next turn.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -982,7 +1012,8 @@
             "name": "Dragonborn (Metallic)",
             "level": null
           },
-          "book": "FTD"
+          "book": "FTD",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -1022,7 +1053,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1032,7 +1063,8 @@
             "name": "Dwarf",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Dwarven Resilience",
@@ -1046,7 +1078,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have advantage on saving throws against poison, and you have resistance against poison damage",
+          "summary": "Gain advantage on saving throws against poison and resistance to poison damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1056,7 +1088,8 @@
             "name": "Dwarf",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Stonecunning",
@@ -1070,7 +1103,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of the normal bonus",
+          "summary": "Gain proficiency and double your proficiency bonus on Intelligence (History) checks related to the origin of stonework.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": true,
@@ -1080,7 +1113,8 @@
             "name": "Dwarf",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Dwarven Combat Training",
@@ -1094,7 +1128,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You are proficient with the battleaxe, handaxe, light hammer, and warhammer",
+          "summary": "Gain proficiency with the battleaxe, handaxe, light hammer, and warhammer.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1104,7 +1138,8 @@
             "name": "Dwarf",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Tool Proficiency",
@@ -1118,7 +1153,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You gain proficiency with the artisan's tools of your choice: smith's tools, brewer's supplies, or mason's tools",
+          "summary": "Gain proficiency with one choice of artisan's tools: smith's tools, brewer's supplies, or mason's tools.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1128,7 +1163,8 @@
             "name": "Dwarf",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -1166,7 +1202,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1176,11 +1212,12 @@
             "name": "Hill Dwarf",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Dwarven Resilience",
-          "description": "You have advantage on saving throws against poison, and you have resistance against poison damage.",
+          "description": "You have advantage on saving throws against poison, and you have resistance to poison damage.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -1190,7 +1227,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have advantage on saving throws against poison, and you have resistance against poison damage",
+          "summary": "Gain advantage on saving throws against poison and resistance to poison damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1200,7 +1237,8 @@
             "name": "Hill Dwarf",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Dwarven Combat Training",
@@ -1214,7 +1252,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You are proficient with the battleaxe, handaxe, light hammer, and warhammer",
+          "summary": "Gain proficiency with the battleaxe, handaxe, light hammer, and warhammer.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1224,7 +1262,8 @@
             "name": "Hill Dwarf",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Tool Proficiency",
@@ -1238,7 +1277,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You gain proficiency with the artisan's tools of your choice: smith's tools, brewer's supplies, or mason's tools",
+          "summary": "Gain proficiency with one choice of artisan's tools: smith's tools, brewer's supplies, or mason's tools.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1248,7 +1287,8 @@
             "name": "Hill Dwarf",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Stonecunning",
@@ -1262,7 +1302,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of the normal bonus",
+          "summary": "Gain proficiency and double your proficiency bonus on Intelligence (History) checks regarding the origin of stonework.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": true,
@@ -1272,7 +1312,8 @@
             "name": "Hill Dwarf",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Dwarven Toughness",
@@ -1286,7 +1327,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Your hit point maximum increases by 1, and it increases by 1 every time you gain a level",
+          "summary": "Increase your hit point maximum by 1, and increase it by 1 every time you gain a level.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1296,7 +1337,8 @@
             "name": "Hill Dwarf",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -1330,7 +1372,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1340,11 +1382,12 @@
             "name": "Mountain Dwarf",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Dwarven Resilience",
-          "description": "You have advantage on saving throws against poison, and you have resistance against poison damage.",
+          "description": "You have advantage on saving throws against poison, and you have resistance to poison damage.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -1354,7 +1397,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have advantage on saving throws against poison, and you have resistance against poison damage",
+          "summary": "Gain advantage on saving throws against poison and resistance to poison damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1364,7 +1407,8 @@
             "name": "Mountain Dwarf",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Dwarven Combat Training",
@@ -1378,7 +1422,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You are proficient with the battleaxe, handaxe, light hammer, and warhammer",
+          "summary": "Gain proficiency with the battleaxe, handaxe, light hammer, and warhammer.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1388,11 +1432,12 @@
             "name": "Mountain Dwarf",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Tool Proficiency",
-          "description": "You gain proficiency with the artisan's tools of your choice: smith's tools, brewer's supplies, or mason's tools.",
+          "description": "You gain proficiency with one of the following artisan's tools of your choice: smith's tools, brewer's supplies, or mason's tools.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -1402,7 +1447,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You gain proficiency with the artisan's tools of your choice: smith's tools, brewer's supplies, or mason's tools",
+          "summary": "Gain proficiency with one choice of artisan's tools: smith's tools, brewer's supplies, or mason's tools.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1412,7 +1457,8 @@
             "name": "Mountain Dwarf",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Stonecunning",
@@ -1426,7 +1472,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of the normal bonus",
+          "summary": "Gain proficiency and double your proficiency bonus on Intelligence (History) checks regarding the origin of stonework.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": true,
@@ -1436,7 +1482,8 @@
             "name": "Mountain Dwarf",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Dwarven Armor Training",
@@ -1450,7 +1497,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have proficiency with light and medium armor",
+          "summary": "Gain proficiency with light and medium armor.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1460,7 +1507,8 @@
             "name": "Mountain Dwarf",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
