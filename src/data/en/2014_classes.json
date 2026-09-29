@@ -4413,7 +4413,7 @@
             },
             {
               "name": "Druidic",
-              "description": "You know Druidic, the secret language of druids. You can speak the language and use it to leave hidden messages. You and others who know this language automatically spot such a message. Others spot the message's presence with a successful DC 15 Wisdom (Perception) check but can't decipher it without magic.",
+              "description": "You know Druidic, the secret language of druids. You can speak the language and use it to leave hidden messages. You and others who know this language automatically spot such a message. Others spot the message's presence with a successful DC 15 Wisdom (Perception) check but cannot decipher it without magic.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -4434,7 +4434,8 @@
                 "name": "Druid",
                 "level": 1
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -4447,7 +4448,7 @@
           "features": [
             {
               "name": "Wild Shape (CR 1/4 or below, no flying or swim speed)",
-              "description": "Starting at 2nd level, you can use your action to magically assume the shape of a beast that you have seen before. You can use this feature twice. You regain expended uses when you finish a short or long rest.\n\nYour druid level determines the beasts you can transform into, as shown in the Beast Shapes table. At 2nd level, for example, you can transform into any beast that has a challenge rating of 1/4 or lower that doesn't have a flying or swimming speed.\n\nYou can stay in a beast shape for a number of hours equal to half your druid level (rounded down). You then revert to your normal form unless you expend another use of this feature. You can revert to your normal form earlier by using a bonus action on your turn. You automatically revert if you fall unconscious, drop to 0 hit points, or die.\n\nWhile you are transformed, the following rules apply:\n\n- Your game statistics are replaced by the statistics of the beast, but you retain your alignment, personality, and Intelligence, Wisdom, and Charisma scores. You also retain all of your skill and saving throw proficiencies, in addition to gaining those of the creature. If the creature has the same proficiency as you and the bonus in its stat block is higher than yours, use the creature's bonus instead of yours. If the creature has any legendary or lair actions, you can't use them.\n\n- When you transform, you assume the beast's hit points and Hit Dice. When you revert to your normal form, you return to the number of hit points you had before you transformed. However, if you revert as a result of dropping to 0 hit points, any excess damage carries over to your normal form. For example, if you take 10 damage in animal form and have only 1 hit point left, you revert and take 9 damage. As long as the excess damage doesn't reduce your normal form to 0 hit points, you aren't knocked unconscious.\n\n- You can't cast spells, and your ability to speak or take any action that requires hands is limited to the capabilities of your beast form. Transforming doesn't break your concentration on a spell you've already cast, however, or prevent you from taking actions that are part of a spell, such as call lightning, that you've already cast.\n\n- You retain the benefit of any features from your class, race, or other source and can use them if the new form is physically capable of doing so. However, you can't use any of your special senses, such as darkvision, unless your new form also has that sense.\n\n- You choose whether your equipment falls to the ground in your space, merges into your new form, or is worn by it. Worn equipment functions as normal, but the GM decides whether it is practical for the new form to wear a piece of equipment, based on the creature's shape and size. Your equipment doesn't change size or shape to match the new form, and any equipment that the new form can't wear must either fall to the ground or merge with it. Equipment that merges with the form has no effect until you leave the form.",
+              "description": "Starting at 2nd level, you can use your action to magically assume the shape of a beast that you have seen before. You can use this feature twice, and you regain expended uses when you finish a short or long rest.\n\nYour druid level determines the beasts you can transform into, as shown in the Beast Shapes table. At 2nd level, for example, you can transform into any beast that has a challenge rating of **1/4** or lower that doesn't have a flying or swimming speed.\n\nYou can stay in a beast shape for a number of hours equal to half your druid level (rounded down). You then revert to your normal form unless you expend another use of this feature. You can revert to your normal form earlier by using a bonus action on your turn. You automatically revert if you fall unconscious, drop to 0 hit points, or die.\n\nWhile you are transformed, the following rules apply:\n\n- Your game statistics are replaced by the statistics of the beast, but you retain your alignment, personality, and Intelligence, Wisdom, and Charisma scores. You also retain all of your skill and saving throw proficiencies, in addition to gaining those of the creature. If the creature has the same proficiency as you and the bonus in its stat block is higher than yours, use the creature's bonus instead of yours. If the creature has any legendary or lair actions, you cannot use them.\n\n- When you transform, you assume the beast's hit points and Hit Dice. When you revert to your normal form, you return to the number of hit points you had before you transformed. However, if you revert as a result of dropping to 0 hit points, any excess damage carries over to your normal form. For example, if you take **10** damage in animal form and have only **1** hit point left, you revert and take **9** damage. As long as the excess damage doesn't reduce your normal form to 0 hit points, you aren't knocked unconscious.\n\n- You cannot cast spells, and your ability to speak or take any action that requires hands is limited to the capabilities of your beast form. Transforming doesn't break your concentration on a spell you've already cast, nor does it prevent you from taking actions that are part of a spell, such as call lightning, that you've already cast.\n\n- You retain the benefit of any features from your class, race, or other source and can use them if the new form is physically capable of doing so. However, you cannot use any of your special senses, such as darkvision, unless your new form also has that sense.\n\n- You choose whether your equipment falls to the ground in your space, merges into your new form, or is worn by it. Worn equipment functions as normal, but the GM decides whether it is practical for the new form to wear a piece of equipment, based on the creature's shape and size. Your equipment doesn't change size or shape to match the new form, and any equipment that the new form cannot wear must either fall to the ground or merge with it. Equipment that merges with the form has no effect until you leave the form.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Bonus Action",
@@ -4458,7 +4459,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Use your action to magically assume the shape of a beast that you have seen before.",
+              "summary": "Use your action to magically transform into a beast you have seen before.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -4468,7 +4469,8 @@
                 "name": "Druid",
                 "level": 2
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Druid Circle",
@@ -4483,7 +4485,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You choose to identify with a circle of druids, such as the Circle of the Land.",
+              "summary": "Identify with a circle of druids to gain specialized features.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -4493,7 +4495,8 @@
                 "name": "Druid",
                 "level": 2
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -4515,7 +4518,7 @@
           "features": [
             {
               "name": "Wild Shape (CR 1/2 or below, no flying speed)",
-              "description": "Starting at 2nd level, you can use your action to magically assume the shape of a beast that you have seen before. You can use this feature twice. You regain expended uses when you finish a short or long rest.\n\nYour druid level determines the beasts you can transform into, as shown in the Beast Shapes table. At 2nd level, for example, you can transform into any beast that has a challenge rating of 1/4 or lower that doesn't have a flying or swimming speed.\n\nYou can stay in a beast shape for a number of hours equal to half your druid level (rounded down). You then revert to your normal form unless you expend another use of this feature. You can revert to your normal form earlier by using a bonus action on your turn. You automatically revert if you fall unconscious, drop to 0 hit points, or die.\n\nWhile you are transformed, the following rules apply:\n\n- Your game statistics are replaced by the statistics of the beast, but you retain your alignment, personality, and Intelligence, Wisdom, and Charisma scores. You also retain all of your skill and saving throw proficiencies, in addition to gaining those of the creature. If the creature has the same proficiency as you and the bonus in its stat block is higher than yours, use the creature's bonus instead of yours. If the creature has any legendary or lair actions, you can't use them.\n\n- When you transform, you assume the beast's hit points and Hit Dice. When you revert to your normal form, you return to the number of hit points you had before you transformed. However, if you revert as a result of dropping to 0 hit points, any excess damage carries over to your normal form. For example, if you take 10 damage in animal form and have only 1 hit point left, you revert and take 9 damage. As long as the excess damage doesn't reduce your normal form to 0 hit points, you aren't knocked unconscious.\n\n- You can't cast spells, and your ability to speak or take any action that requires hands is limited to the capabilities of your beast form. Transforming doesn't break your concentration on a spell you've already cast, however, or prevent you from taking actions that are part of a spell, such as call lightning, that you've already cast.\n\n- You retain the benefit of any features from your class, race, or other source and can use them if the new form is physically capable of doing so. However, you can't use any of your special senses, such as darkvision, unless your new form also has that sense.\n\n- You choose whether your equipment falls to the ground in your space, merges into your new form, or is worn by it. Worn equipment functions as normal, but the GM decides whether it is practical for the new form to wear a piece of equipment, based on the creature's shape and size. Your equipment doesn't change size or shape to match the new form, and any equipment that the new form can't wear must either fall to the ground or merge with it. Equipment that merges with the form has no effect until you leave the form.",
+              "description": "Starting at 2nd level, you can use your action to magically assume the shape of a beast that you have seen before. You can use this feature twice, and you regain expended uses when you finish a short or long rest.\n\nYour druid level determines the beasts you can transform into, as shown in the Beast Shapes table. At 2nd level, for example, you can transform into any beast that has a challenge rating of **1/4** or lower that doesn't have a flying or swimming speed.\n\nYou can stay in a beast shape for a number of hours equal to half your druid level (rounded down). You then revert to your normal form unless you expend another use of this feature. You can revert to your normal form earlier by using a bonus action on your turn. You automatically revert if you fall unconscious, drop to 0 hit points, or die.\n\nWhile you are transformed, the following rules apply:\n\n- Your game statistics are replaced by the statistics of the beast, but you retain your alignment, personality, and Intelligence, Wisdom, and Charisma scores. You also retain all of your skill and saving throw proficiencies, in addition to gaining those of the creature. If the creature has the same proficiency as you and the bonus in its stat block is higher than yours, use the creature's bonus instead of yours. If the creature has any legendary or lair actions, you cannot use them.\n\n- When you transform, you assume the beast's hit points and Hit Dice. When you revert to your normal form, you return to the number of hit points you had before you transformed. However, if you revert as a result of dropping to 0 hit points, any excess damage carries over to your normal form. For example, if you take **10** damage in animal form and have only **1** hit point left, you revert and take **9** damage. As long as the excess damage doesn't reduce your normal form to 0 hit points, you aren't knocked unconscious.\n\n- You cannot cast spells, and your ability to speak or take any action that requires hands is limited to the capabilities of your beast form. Transforming doesn't break your concentration on a spell you've already cast, nor does it prevent you from taking actions that are part of a spell, such as call lightning, that you've already cast.\n\n- You retain the benefit of any features from your class, race, or other source and can use them if the new form is physically capable of doing so. However, you cannot use any of your special senses, such as darkvision, unless your new form also has that sense.\n\n- You choose whether your equipment falls to the ground in your space, merges into your new form, or is worn by it. Worn equipment functions as normal, but the GM decides whether it is practical for the new form to wear a piece of equipment, based on the creature's shape and size. Your equipment doesn't change size or shape to match the new form, and any equipment that the new form cannot wear must either fall to the ground or merge with it. Equipment that merges with the form has no effect until you leave the form.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Bonus Action",
@@ -4526,7 +4529,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Use your action to magically assume the shape of a beast that you have seen before.",
+              "summary": "Use your action to magically transform into a beast you have seen before.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -4536,11 +4539,12 @@
                 "name": "Druid",
                 "level": 4
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you cannot increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -4561,7 +4565,8 @@
                 "name": "Druid",
                 "level": 4
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -4596,7 +4601,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You choose to identify with a circle of druids, such as the Circle of the Land.",
+              "summary": "Identify with a circle of druids to gain specialized features.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -4606,7 +4611,8 @@
                 "name": "Druid",
                 "level": 6
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -7591,7 +7597,7 @@
             },
             {
               "name": "Divine Smite",
-              "description": "Starting at 2nd level, when you hit a creature with a melee weapon attack, you can expend one spell slot to deal radiant damage to the target, in addition to the weapon's damage. The extra damage is 2d8 for a 1st-level spell slot, plus 1d8 for each spell level higher than 1st, to a maximum of 5d8. The damage increases by 1d8 if the target is an undead or a fiend.",
+              "description": "Starting at 2nd level, when you hit a creature with a melee weapon attack, you can expend one spell slot to deal radiant damage to the target in addition to the weapon's damage. The extra damage is **2d8** for a 1st-level spell slot, plus **1d8** for each spell level higher than 1st, to a maximum of **5d8**. The damage increases by **1d8** if the target is an undead or a fiend.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -7602,7 +7608,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "When you hit a creature with a melee weapon attack, you can expend one spell slot to deal radiant damage to the target.",
+              "summary": "Expend a spell slot when you hit with a melee weapon attack to deal extra radiant damage to the target.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -7612,7 +7618,8 @@
                 "name": "Paladin",
                 "level": 2
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -7646,7 +7653,8 @@
                 "name": "Paladin",
                 "level": 3
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Sacred Oath",
@@ -7661,7 +7669,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "When you reach 3rd level, you swear the oath that binds you as a paladin forever.",
+              "summary": "Choose a sacred oath that grants you specialized features and spells.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -7671,7 +7679,8 @@
                 "name": "Paladin",
                 "level": 3
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Oath Spells",
@@ -7686,7 +7695,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Each oath has a list of associated spells.",
+              "summary": "Gain access to specific spells associated with your oath that are always prepared.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -7696,7 +7705,8 @@
                 "name": "Paladin",
                 "level": 3
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Channel Divinity",
@@ -7711,7 +7721,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Your oath allows you to channel divine energy to fuel magical effects.",
+              "summary": "Use divine energy to fuel magical effects; you must finish a short or long rest to use this feature again.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -7721,7 +7731,8 @@
                 "name": "Paladin",
                 "level": 3
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -7734,7 +7745,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -7745,7 +7756,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -7755,7 +7766,8 @@
                 "name": "Paladin",
                 "level": 4
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -7789,7 +7801,8 @@
                 "name": "Paladin",
                 "level": 5
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -7814,7 +7827,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Whenever you or a friendly creature within 10 feet of you must make a saving throw, the creature gains a bonus to the saving.",
+              "summary": "You and friendly creatures within 10 feet of you gain a bonus to saving throws equal to your Charisma modifier.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -7824,7 +7837,8 @@
                 "name": "Paladin",
                 "level": 6
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -7849,7 +7863,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "When you reach 3rd level, you swear the oath that binds you as a paladin forever.",
+              "summary": "You swear a sacred oath that grants you features and spells at 3rd, 7th, 15th, and 20th level.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -7859,7 +7873,8 @@
                 "name": "Paladin",
                 "level": 7
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -7884,7 +7899,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1 at 4th, 8th, 12th, 16th, and 19th level.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -7894,7 +7909,8 @@
                 "name": "Paladin",
                 "level": 8
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -7929,7 +7945,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You and friendly creatures within 10 feet of you can't be frightened while you are conscious.",
+              "summary": "You and friendly creatures within 10 feet of you cannot be frightened while you are conscious.",
               "grantsSpells": false,
               "grantsAttack": true,
               "grantsSkills": false,
@@ -7939,7 +7955,8 @@
                 "name": "Paladin",
                 "level": 10
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -7954,7 +7971,7 @@
           "features": [
             {
               "name": "Improved Divine Smite",
-              "description": "By 11th level, you are so suffused with righteous might that all your melee weapon strikes carry divine power with them. Whenever you hit a creature with a melee weapon, the creature takes an extra 1d8 radiant damage. If you also use your Divine Smite with an attack, you add this damage to the extra damage of your Divine Smite.",
+              "description": "By 11th level, you are so suffused with righteous might that all your melee weapon strikes carry divine power with them. Whenever you hit a creature with a melee weapon, the creature takes an extra **1d8** radiant damage. If you also use your Divine Smite with an attack, you add this damage to the extra damage of your Divine Smite.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -7965,7 +7982,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "By 11th level, you are so suffused with righteous might that all your melee weapon strikes carry divine power with them.",
+              "summary": "Your melee weapon attacks deal an extra 1d8 radiant damage, which stacks with Divine Smite.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -7975,7 +7992,8 @@
                 "name": "Paladin",
                 "level": 11
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -8001,7 +8019,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -8011,7 +8029,8 @@
                 "name": "Paladin",
                 "level": 12
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -8048,7 +8067,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Use your action to end one spell on yourself or on one willing creature that you touch.",
+              "summary": "Use an action to end one spell on yourself or a touched willing creature.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -8058,7 +8077,8 @@
                 "name": "Paladin",
                 "level": 14
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -8085,7 +8105,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "When you reach 3rd level, you swear the oath that binds you as a paladin forever.",
+              "summary": "Swear a sacred oath to gain subclass features and spells.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -8095,7 +8115,8 @@
                 "name": "Paladin",
                 "level": 15
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -8122,7 +8143,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -8132,7 +8153,8 @@
                 "name": "Paladin",
                 "level": 16
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -8171,7 +8193,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "The range of your auras increase to 30 feet.",
+              "summary": "Increases the range of your auras to 30 feet.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -8181,7 +8203,8 @@
                 "name": "Paladin",
                 "level": 18
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -8209,7 +8232,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -8219,7 +8242,8 @@
                 "name": "Paladin",
                 "level": 19
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -8247,7 +8271,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "When you reach 3rd level, you swear the oath that binds you as a paladin forever.",
+              "summary": "Swear a sacred oath at 3rd level to bind yourself as a paladin and unlock subclass features.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -8257,7 +8281,8 @@
                 "name": "Paladin",
                 "level": 20
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -8505,7 +8530,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You have significant experience studying, tracking, hunting, and even talking to a certain type of enemy.",
+              "summary": "Gain advantage on Wisdom (Survival) checks to track and Intelligence checks to recall information about a specific enemy type.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -8515,7 +8540,8 @@
                 "name": "Ranger",
                 "level": 1
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Natural Explorer (1 terrain type)",
@@ -8544,7 +8570,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You are particularly familiar with one type of natural environment and are adept at traveling and surviving in such regions.",
+              "summary": "Double your proficiency bonus for certain checks in a favored terrain and gain travel benefits while in that region.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -8554,7 +8580,8 @@
                 "name": "Ranger",
                 "level": 1
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -8588,7 +8615,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You adopt a particular style of fighting as your specialty.",
+              "summary": "Choose a specialized fighting style to gain a specific combat benefit.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -8598,7 +8625,8 @@
                 "name": "Ranger",
                 "level": 2
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Spellcasting: Ranger",
@@ -8613,7 +8641,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "By the time you reach 2nd level, you have learned to use the magical essence of nature to cast spells, much as a druid does.",
+              "summary": "Use the magical essence of nature to cast spells, similar to a druid.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -8623,7 +8651,8 @@
                 "name": "Ranger",
                 "level": 2
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -8647,7 +8676,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You choose an archetype that you strive to emulate, such as the Hunter.",
+              "summary": "Choose a Ranger archetype, such as the Hunter, to gain specialized features.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -8657,11 +8686,12 @@
                 "name": "Ranger",
                 "level": 3
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Primeval Awareness",
-              "description": "Beginning at 3rd level, you can use your action and expend one ranger spell slot to focus your awareness on the region around you. For 1 minute per level of the spell slot you expend, you can sense whether the following types of creatures are present within 1 mile of you (or within up to 6 miles if you are in your favored terrain): aberrations, celestials, dragons, elementals, fey, fiends, and undead. This feature doesn't reveal the creatures' location or number.",
+              "description": "Beginning at 3rd level, you can use your action and expend one ranger spell slot to focus your awareness on the region around you. For **1 minute** per level of the spell slot you expend, you can sense whether the following types of creatures are present within **1 mile** of you (or within up to **6 miles** if you are in your favored terrain): aberrations, celestials, dragons, elementals, fey, fiends, and undead. This feature doesn't reveal the creatures' location or number.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Action",
@@ -8672,7 +8702,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Use your action and expend one ranger spell slot to focus your awareness on the region around you.",
+              "summary": "Expend one ranger spell slot and use an action to sense the presence of specific creature types within 1 mile (or 6 miles in favored terrain).",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -8682,7 +8712,8 @@
                 "name": "Ranger",
                 "level": 3
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -8695,7 +8726,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -8706,7 +8737,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -8716,7 +8747,8 @@
                 "name": "Ranger",
                 "level": 4
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -8750,7 +8782,8 @@
                 "name": "Ranger",
                 "level": 5
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -8795,7 +8828,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You have significant experience studying, tracking, hunting, and even talking to a certain type of enemy.",
+              "summary": "Gain advantage on Survival checks to track and Intelligence checks to recall info about specific enemy types, and learn one of their languages.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -8805,7 +8838,8 @@
                 "name": "Ranger",
                 "level": 6
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Natural Explorer (2 terrain types)",
@@ -8834,7 +8868,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You are particularly familiar with one type of natural environment and are adept at traveling and surviving in such regions.",
+              "summary": "Double your proficiency bonus for certain checks in a favored terrain and gain travel benefits including ignoring difficult terrain and improved foraging.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -8844,7 +8878,8 @@
                 "name": "Ranger",
                 "level": 6
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -8869,7 +8904,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You choose an archetype that you strive to emulate, such as the Hunter.",
+              "summary": "Choose a specialized archetype, such as the Hunter, to gain specific features.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -8879,7 +8914,8 @@
                 "name": "Ranger",
                 "level": 7
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -8893,7 +8929,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you cannot increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -8904,7 +8940,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by **2** or two ability scores by **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -8914,11 +8950,12 @@
                 "name": "Ranger",
                 "level": 8
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Land's Stride",
-              "description": "Starting at 8th level, moving through nonmagical difficult terrain costs you no extra movement. You can also pass through nonmagical plants without being slowed by them and without taking damage from them if they have thorns, spines, or a similar hazard.\n\nIn addition, you have advantage on saving throws against plants that are magically created or manipulated to impede movement, such those created by the entangle spell.",
+              "description": "Starting at 8th level, moving through nonmagical difficult terrain costs you no extra movement. You can also pass through nonmagical plants without being slowed by them and without taking damage from them if they have thorns, spines, or a similar hazard.\n\nIn addition, you have advantage on saving throws against plants that are magically created or manipulated to impede movement, such as those created by the entangle spell.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -8929,7 +8966,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Moving through nonmagical difficult terrain costs you no extra movement.",
+              "summary": "Move through nonmagical difficult terrain without extra cost and ignore plant-based slowing or damage.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -8939,7 +8976,8 @@
                 "name": "Ranger",
                 "level": 8
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -8963,7 +9001,7 @@
           "features": [
             {
               "name": "Natural Explorer (3 terrain types)",
-              "description": "You are particularly familiar with one type of natural environment and are adept at traveling and surviving in such regions. Choose one type of favored terrain: arctic, coast, desert, forest, grassland, mountain, or swamp. When you make an Intelligence or Wisdom check related to your favored terrain, your proficiency bonus is doubled if you are using a skill that you're proficient in.\n\nWhile traveling for an hour or more in your favored terrain, you gain the following benefits:\n\n- Difficult terrain doesn't slow your group's travel.\n\n- Your group can't become lost except by magical means.\n\n- Even when you are engaged in another activity while traveling (such as foraging, navigating, or tracking), you remain alert to danger.\n\n- If you are traveling alone, you can move stealthily at a normal pace.\n\n- When you forage, you find twice as much food as you normally would.\n\n- While tracking other creatures, you also learn their exact number, their sizes, and how long ago they passed through the area.\n\nYou choose additional favored terrain types at 6th and 10th level.",
+              "description": "You are particularly familiar with one type of natural environment and are adept at traveling and surviving in such regions. Choose one type of favored terrain: arctic, coast, desert, forest, grassland, mountain, or swamp. When you make an Intelligence or Wisdom check related to your favored terrain, your proficiency bonus is doubled if you are using a skill that you are proficient in.\n\nWhile traveling for an hour or more in your favored terrain, you gain the following benefits:\n\n- Difficult terrain does not slow your group's travel.\n\n- Your group cannot become lost except by magical means.\n\n- Even when you are engaged in another activity while traveling (such as foraging, navigating, or tracking), you remain alert to danger.\n\n- If you are traveling alone, you can move stealthily at a normal pace.\n\n- When you forage, you find twice as much food as you normally would.\n\n- While tracking other creatures, you also learn their exact number, their sizes, and how long ago they passed through the area.\n\nYou choose additional favored terrain types at 6th and 10th level.",
               "type": "feature",
               "choices": {
                 "type": "single",
@@ -8988,7 +9026,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You are particularly familiar with one type of natural environment and are adept at traveling and surviving in such regions.",
+              "summary": "Gain expertise on checks related to a favored terrain and various travel benefits while in that region.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -8998,11 +9036,12 @@
                 "name": "Ranger",
                 "level": 10
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Hide in Plain Sight",
-              "description": "Starting at 10th level, you can spend 1 minute creating camouflage for yourself. You must have access to fresh mud, dirt, plants, soot, and other naturally occurring materials with which to create your camouflage.\n\nOnce you are camouflaged in this way, you can try to hide by pressing yourself up against a solid surface, such as a tree or wall, that is at least as tall and wide as you are. You gain a +10 bonus to Dexterity (Stealth) checks as long as you remain there without moving or taking actions. Once you move or take an action or a reaction, you must camouflage yourself again to gain this benefit.",
+              "description": "Starting at 10th level, you can spend **1 minute** creating camouflage for yourself. You must have access to fresh mud, dirt, plants, soot, and other naturally occurring materials with which to create your camouflage.\n\nOnce you are camouflaged in this way, you can try to hide by pressing yourself up against a solid surface, such as a tree or wall, that is at least as tall and wide as you are. You gain a **+10** bonus to Dexterity (Stealth) checks as long as you remain there without moving or taking actions. Once you move or take an action or a reaction, you must camouflage yourself again to gain this benefit.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Reaction",
@@ -9013,7 +9052,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Spend 1 minute creating camouflage for yourself.",
+              "summary": "Spend 1 minute using natural materials to gain a +10 bonus to Dexterity (Stealth) checks while pressed against a surface.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -9023,7 +9062,8 @@
                 "name": "Ranger",
                 "level": 10
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -9049,7 +9089,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You choose an archetype that you strive to emulate, such as the Hunter.",
+              "summary": "Gain features from a chosen archetype at 3rd, 7th, 11th, and 15th level.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -9059,7 +9099,8 @@
                 "name": "Ranger",
                 "level": 11
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -9074,7 +9115,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you cannot increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -9085,7 +9126,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by **2** or two ability scores by **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -9095,7 +9136,8 @@
                 "name": "Ranger",
                 "level": 12
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -9152,7 +9194,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You have significant experience studying, tracking, hunting, and even talking to a certain type of enemy.",
+              "summary": "Gain advantage on Wisdom (Survival) checks to track and Intelligence checks to recall information about specific enemy types.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -9162,7 +9204,8 @@
                 "name": "Ranger",
                 "level": 14
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Vanish",
@@ -9177,7 +9220,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Use the Hide action as a bonus action on your turn.",
+              "summary": "Take the Hide action as a bonus action and prevent nonmagical tracking.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -9187,7 +9230,8 @@
                 "name": "Ranger",
                 "level": 14
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -9214,7 +9258,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You choose an archetype that you strive to emulate, such as the Hunter.",
+              "summary": "Gain specialized features based on your chosen Ranger archetype.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -9224,7 +9268,8 @@
                 "name": "Ranger",
                 "level": 15
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -9240,7 +9285,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -9251,7 +9296,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -9261,7 +9306,8 @@
                 "name": "Ranger",
                 "level": 16
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -9289,7 +9335,7 @@
           "features": [
             {
               "name": "Feral Senses",
-              "description": "At 18th level, you gain preternatural senses that help you fight creatures you can't see. When you attack a creature you can't see, your inability to see it doesn't impose disadvantage on your attack rolls against it.\n\nYou are also aware of the location of any invisible creature within 30 feet of you, provided that the creature isn't hidden from you and you aren't blinded or deafened.",
+              "description": "At 18th level, you gain preternatural senses that help you fight creatures you can't see. When you attack a creature you can't see, your inability to see it doesn't impose disadvantage on your attack rolls against it.\n\nYou are also aware of the location of any invisible creature within **30 feet** of you, provided that the creature isn't hidden from you and you aren't blinded or deafened.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -9300,7 +9346,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You gain preternatural senses that help you fight creatures you can't see.",
+              "summary": "Remove disadvantage when attacking unseen creatures and detect invisible creatures within 30 feet.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -9310,7 +9356,8 @@
                 "name": "Ranger",
                 "level": 18
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -9327,7 +9374,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -9338,7 +9385,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -9348,7 +9395,8 @@
                 "name": "Ranger",
                 "level": 19
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -9376,7 +9424,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You become an unparalleled hunter of your enemies.",
+              "summary": "Add your Wisdom modifier to the attack roll or damage roll of an attack against a favored enemy once per turn.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -9386,7 +9434,8 @@
                 "name": "Ranger",
                 "level": 20
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -9720,7 +9769,7 @@
           "features": [
             {
               "name": "Expertise",
-              "description": "At 1st level, choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves' tools. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies.\n\nAt 6th level, you can choose two more of your proficiencies (in skills or with thieves' tools) to gain this benefit",
+              "description": "At 1st level, choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves' tools. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies.\n\nAt 6th level, you can choose two more of your proficiencies (in skills or with thieves' tools) to gain this benefit.",
               "type": "feature",
               "choices": {
                 "type": "skills",
@@ -9750,7 +9799,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Choose two more skills at level 6",
-              "summary": "Choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves' tools.",
+              "summary": "Double your proficiency bonus for any ability check using two chosen proficient skills or thieves' tools.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": true,
@@ -9760,11 +9809,12 @@
                 "name": "Rogue",
                 "level": 1
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Sneak Attack",
-              "description": "Beginning at 1st level, you know how to strike subtly and exploit a foe's distraction. Once per turn, you can deal an extra 1d6 damage to one creature you hit with an attack if you have advantage on the attack roll. The attack must use a finesse or a ranged weapon.\n\nYou don't need advantage on the attack roll if another enemy of the target is within 5 feet of it, that enemy isn't incapacitated, and you don't have disadvantage on the attack roll.\n\nThe amount of the extra damage increases as you gain levels in this class, as shown in the Sneak Attack column of the Rogue table.",
+              "description": "Beginning at 1st level, you know how to strike subtly and exploit a foe's distraction. Once per turn, you can deal an extra **1d6** damage to one creature you hit with an attack if you have advantage on the attack roll. The attack must use a finesse or a ranged weapon.\n\nYou don't need advantage on the attack roll if another enemy of the target is within **5 feet** of it, that enemy isn't incapacitated, and you don't have disadvantage on the attack roll.\n\nThe amount of the extra damage increases as you gain levels in this class, as shown in the Sneak Attack column of the Rogue table.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -9778,7 +9828,7 @@
               "effect": null,
               "onUse": "Add Sneak Attack dice to one attack's damage this turn",
               "scaling": "1d6 at level 1, increases by 1d6 every two Rogue levels up to 10d6 at level 19",
-              "summary": "You know how to strike subtly and exploit a foe's distraction.",
+              "summary": "Deal an extra 1d6 damage once per turn to a creature hit with a finesse or ranged weapon if you have advantage or an adjacent ally.",
               "grantsSpells": false,
               "grantsAttack": true,
               "grantsSkills": false,
@@ -9788,7 +9838,8 @@
                 "name": "Rogue",
                 "level": 1
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Thieves' Cant",
@@ -9803,7 +9854,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "During your rogue training you learned thieves' cant, a secret mix of dialect, jargon, and code that allows you to hide messages.",
+              "summary": "Use a secret mix of dialect and code to hide messages in conversation and understand secret signs and symbols.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -9813,7 +9864,8 @@
                 "name": "Rogue",
                 "level": 1
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -9835,7 +9887,7 @@
               "effect": null,
               "onUse": "Take the Dash, Disengage, or Hide action as a bonus action",
               "scaling": null,
-              "summary": "Your quick thinking and agility allow you to move and act quickly.",
+              "summary": "Use a bonus action on each of your turns in combat to take the Dash, Disengage, or Hide action.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -9845,7 +9897,8 @@
                 "name": "Rogue",
                 "level": 2
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -9867,7 +9920,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You choose an archetype that you emulate in the exercise of your rogue abilities, such as Thief.",
+              "summary": "Choose a rogue archetype, such as Thief, to gain specialized features at 3rd, 9th, 13th, and 17th level.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -9877,7 +9930,8 @@
                 "name": "Rogue",
                 "level": 3
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -9888,7 +9942,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -9899,7 +9953,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by **2** or two ability scores by **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -9909,7 +9963,8 @@
                 "name": "Rogue",
                 "level": 4
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -9931,7 +9986,7 @@
               "effect": null,
               "onUse": "Halve the damage from the triggering attack",
               "scaling": null,
-              "summary": "When an attacker that you can see hits you with an attack, you can use your reaction to halve the attack's damage against you.",
+              "summary": "Use your reaction to halve the damage from an attack made by a creature you can see.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -9941,7 +9996,8 @@
                 "name": "Rogue",
                 "level": 5
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -9952,7 +10008,7 @@
           "features": [
             {
               "name": "Expertise",
-              "description": "At 1st level, choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves' tools. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies.\n\nAt 6th level, you can choose two more of your proficiencies (in skills or with thieves' tools) to gain this benefit",
+              "description": "At 1st level, choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves' tools. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies.\n\nAt 6th level, you can choose two more of your proficiencies (in skills or with thieves' tools) to gain this benefit.",
               "type": "feature",
               "choices": {
                 "type": "skills",
@@ -9982,7 +10038,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Choose two more skills at level 6",
-              "summary": "Choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves' tools.",
+              "summary": "Double your proficiency bonus for checks made with chosen skill or thieves' tool proficiencies.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": true,
@@ -9992,7 +10048,8 @@
                 "name": "Rogue",
                 "level": 6
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -10014,7 +10071,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Nimbly dodge out of the way of certain area effects, such as a red dragon's fiery breath or an ice storm spell.",
+              "summary": "Take no damage on a successful Dexterity save and half damage on a failure for effects that normally deal half damage on success.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -10024,7 +10081,8 @@
                 "name": "Rogue",
                 "level": 7
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -10035,7 +10093,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -10046,7 +10104,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by **2** or two ability scores by **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -10056,7 +10114,8 @@
                 "name": "Rogue",
                 "level": 8
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -10078,7 +10137,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You choose an archetype that you emulate in the exercise of your rogue abilities, such as Thief.",
+              "summary": "Choose a rogue archetype, such as Thief, to gain specialized features.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -10088,7 +10147,8 @@
                 "name": "Rogue",
                 "level": 9
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -10099,7 +10159,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you cannot increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -10110,7 +10170,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by **2** or two ability scores by **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -10120,7 +10180,8 @@
                 "name": "Rogue",
                 "level": 10
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -10131,7 +10192,7 @@
           "features": [
             {
               "name": "Reliable Talent",
-              "description": "By 11th level, you have refined your chosen skills until they approach perfection. Whenever you make an ability check that lets you add your proficiency bonus, you can treat a d20 roll of 9 or lower as a 10.",
+              "description": "By 11th level, you have refined your chosen skills until they approach perfection. Whenever you make an ability check that lets you add your proficiency bonus, you can treat a d20 roll of **9** or lower as a **10**.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -10142,7 +10203,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "By 11th level, you have refined your chosen skills until they approach perfection.",
+              "summary": "Treat any d20 roll of 9 or lower as a 10 for ability checks that use your proficiency bonus.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -10152,7 +10213,8 @@
                 "name": "Rogue",
                 "level": 11
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -10163,7 +10225,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you cannot increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -10174,7 +10236,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by **2** or two ability scores by **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -10184,7 +10246,8 @@
                 "name": "Rogue",
                 "level": 12
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -10206,7 +10269,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You choose an archetype that you emulate in the exercise of your rogue abilities, such as Thief.",
+              "summary": "Gain specialized features based on your chosen rogue archetype.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -10216,7 +10279,8 @@
                 "name": "Rogue",
                 "level": 13
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -10227,7 +10291,7 @@
           "features": [
             {
               "name": "Blindsense",
-              "description": "Starting at 14th level, if you are able to hear, you are aware of the location of any hidden or invisible creature within 10 feet of you.",
+              "description": "Starting at 14th level, if you are able to hear, you are aware of the location of any hidden or invisible creature within **10 feet** of you.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -10238,7 +10302,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "If you are able to hear, you are aware of the location of any hidden or invisible creature within 10 feet of you.",
+              "summary": "Sense the location of hidden or invisible creatures within 10 feet if you can hear.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -10248,7 +10312,8 @@
                 "name": "Rogue",
                 "level": 14
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -10270,7 +10335,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "By 15th level, you have acquired greater mental strength.",
+              "summary": "Gain proficiency in Wisdom saving throws.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -10280,7 +10345,8 @@
                 "name": "Rogue",
                 "level": 15
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -10291,7 +10357,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -10302,7 +10368,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by **2** or two ability scores by **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -10312,7 +10378,8 @@
                 "name": "Rogue",
                 "level": 16
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -10334,7 +10401,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You choose an archetype that you emulate in the exercise of your rogue abilities, such as Thief.",
+              "summary": "Gain features from a chosen rogue archetype at 3rd, 9th, 13th, and 17th level.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -10344,7 +10411,8 @@
                 "name": "Rogue",
                 "level": 17
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -10366,7 +10434,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You are so evasive that attackers rarely gain the upper hand against you.",
+              "summary": "Attack rolls cannot have advantage against you unless you are incapacitated.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -10376,7 +10444,8 @@
                 "name": "Rogue",
                 "level": 18
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -10387,7 +10456,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -10398,7 +10467,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by **2** or two ability scores by **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -10408,7 +10477,8 @@
                 "name": "Rogue",
                 "level": 19
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -10419,7 +10489,7 @@
           "features": [
             {
               "name": "Stroke of Luck",
-              "description": "At 20th level, you have an uncanny knack for succeeding when you need to. If your attack misses a target within range, you can turn the miss into a hit. Alternatively, if you fail an ability check, you can treat the d20 roll as a 20.\n\nOnce you use this feature, you can't use it again until you finish a short or long rest.",
+              "description": "At 20th level, you have an uncanny knack for succeeding when you need to. If your attack misses a target within range, you can turn the miss into a hit. Alternatively, if you fail an ability check, you can treat the d20 roll as a **20**.\n\nOnce you use this feature, you can't use it again until you finish a short or long rest.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -10430,7 +10500,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You have an uncanny knack for succeeding when you need to.",
+              "summary": "Turn a missed attack into a hit or a failed ability check into a natural **20**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -10440,7 +10510,8 @@
                 "name": "Rogue",
                 "level": 20
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -10804,7 +10875,8 @@
                 "name": "Sorcerer",
                 "level": 1
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Sorcerous Origin",
@@ -10819,7 +10891,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Choose a sorcerous origin, which describes the source of your innate magical power, such as Draconic Bloodline.",
+              "summary": "Choose a sorcerous origin, such as Draconic Bloodline, to define the source of your innate magical power.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -10829,7 +10901,8 @@
                 "name": "Sorcerer",
                 "level": 1
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -10842,7 +10915,7 @@
           "features": [
             {
               "name": "Font of Magic",
-              "description": "At 2nd level, you tap into a deep wellspring of magic within yourself. This wellspring is represented by sorcery points, which allow you to create a variety of magical effects.\n\nSorcery Points\n\nYou have 2 sorcery points, and you gain more as you reach higher levels, as shown in the Sorcery Points column of the Sorcerer table. You can never have more sorcery points than shown on the table for your level. You regain all spent sorcery points when you finish a long rest.",
+              "description": "At 2nd level, you tap into a deep wellspring of magic within yourself. This wellspring is represented by sorcery points, which allow you to create a variety of magical effects.\n\nSorcery Points\n\nYou have **2** sorcery points, and you gain more as you reach higher levels, as shown in the Sorcery Points column of the Sorcerer table. You can never have more sorcery points than shown on the table for your level. You regain all spent sorcery points when you finish a long rest.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -10853,7 +10926,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You tap into a deep wellspring of magic within yourself.",
+              "summary": "Use sorcery points to create various magical effects.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -10863,11 +10936,12 @@
                 "name": "Sorcerer",
                 "level": 2
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Flexible Casting: Creating Spell Slots",
-              "description": "You can transform unexpended sorcery points into one spell slot as a bonus action on your turn. The Creating Spell Slots table shows the cost of creating a spell slot of a given level. You can create spell slots no higher in level than 5th. \n\nAny spell slot you create with this feature vanishes when you finish a long rest.",
+              "description": "You can transform unexpended sorcery points into one spell slot as a bonus action on your turn. The Creating Spell Slots table shows the cost of creating a spell slot of a given level. You can create spell slots no higher in level than 5th.\n\nAny spell slot you create with this feature vanishes when you finish a long rest.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Bonus Action",
@@ -10878,7 +10952,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Transform unexpended sorcery points into one spell slot as a bonus action on your turn.",
+              "summary": "Spend sorcery points to create one spell slot of up to 5th level as a bonus action.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -10888,11 +10962,12 @@
                 "name": "Sorcerer",
                 "level": 2
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Flexible Casting: Converting Spell Slot",
-              "description": "As a bonus action on your turn, you can expend one spell slot and gain a number of sorcery points equal to the slot's level..",
+              "description": "As a bonus action on your turn, you can expend one spell slot and gain a number of sorcery points equal to the slot's level.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Bonus Action",
@@ -10903,7 +10978,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "As a bonus action on your turn, you can expend one spell slot and gain a number of sorcery points equal to the slot's level..",
+              "summary": "Expend one spell slot as a bonus action to gain sorcery points equal to that slot's level.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -10913,7 +10988,8 @@
                 "name": "Sorcerer",
                 "level": 2
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -10976,7 +11052,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Gain the ability to twist your spells to suit your needs.",
+              "summary": "Modify your spells using Metamagic options.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -10986,7 +11062,8 @@
                 "name": "Sorcerer",
                 "level": 3
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -11000,7 +11077,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -11011,7 +11088,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1 at 4th, 8th, 12th, 16th, and 19th level.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -11021,7 +11098,8 @@
                 "name": "Sorcerer",
                 "level": 4
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -11056,7 +11134,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Choose a sorcerous origin, which describes the source of your innate magical power, such as Draconic Bloodline.",
+              "summary": "Select a sorcerous origin, such as Draconic Bloodline, to define the source of your innate magic.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -11066,7 +11144,8 @@
                 "name": "Sorcerer",
                 "level": 6
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -11092,7 +11171,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -11103,7 +11182,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -11113,7 +11192,8 @@
                 "name": "Sorcerer",
                 "level": 8
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -11191,7 +11271,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Gain the ability to twist your spells to suit your needs.",
+              "summary": "Modify your spells using Metamagic options to suit your needs.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -11201,7 +11281,8 @@
                 "name": "Sorcerer",
                 "level": 10
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -11231,7 +11312,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -11242,7 +11323,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -11252,7 +11333,8 @@
                 "name": "Sorcerer",
                 "level": 12
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -11295,7 +11377,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Choose a sorcerous origin, which describes the source of your innate magical power, such as Draconic Bloodline.",
+              "summary": "Select a sorcerous origin, such as Draconic Bloodline, to define the source of your innate magic.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -11305,7 +11387,8 @@
                 "name": "Sorcerer",
                 "level": 14
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -11339,7 +11422,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -11350,7 +11433,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -11360,7 +11443,8 @@
                 "name": "Sorcerer",
                 "level": 16
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -11430,7 +11514,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Gain the ability to twist your spells to suit your needs.",
+              "summary": "Twist your spells to suit your needs using Metamagic options.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -11440,7 +11524,8 @@
                 "name": "Sorcerer",
                 "level": 17
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -11472,7 +11557,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Choose a sorcerous origin, which describes the source of your innate magical power, such as Draconic Bloodline.",
+              "summary": "Choose a source of innate magical power, such as Draconic Bloodline, to gain specific features.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -11482,7 +11567,8 @@
                 "name": "Sorcerer",
                 "level": 18
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -11503,7 +11589,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -11514,7 +11600,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -11524,7 +11610,8 @@
                 "name": "Sorcerer",
                 "level": 19
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -11545,7 +11632,7 @@
           "features": [
             {
               "name": "Sorcerous Restoration",
-              "description": "At 20th level, you regain 4 expended sorcery points whenever you finish a short rest.",
+              "description": "At 20th level, you regain **4** expended sorcery points whenever you finish a short rest.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -11556,7 +11643,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You regain 4 expended sorcery points whenever you finish a short rest.",
+              "summary": "Regain 4 expended sorcery points whenever you finish a short rest.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -11566,7 +11653,8 @@
                 "name": "Sorcerer",
                 "level": 20
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -11899,7 +11987,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You have struck a bargain with an otherworldly being of your choice, such as the Fiend.",
+              "summary": "Strike a bargain with an otherworldly being, such as the Fiend, to gain features.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -11909,7 +11997,8 @@
                 "name": "Warlock",
                 "level": 1
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Pact Magic",
@@ -11924,7 +12013,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Your arcane research and the magic bestowed on you by your patron have given you facility with spells.",
+              "summary": "Gain facility with spells through arcane research and the magic of your patron.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -11934,7 +12023,8 @@
                 "name": "Warlock",
                 "level": 1
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -12002,7 +12092,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "In your study of occult lore, you have unearthed eldritch invocations, fragments of forbidden knowledge that imbue you.",
+              "summary": "Gain fragments of forbidden knowledge that grant you permanent magical abilities.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -12012,7 +12102,8 @@
                 "name": "Warlock",
                 "level": 2
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -12054,7 +12145,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Your otherworldly patron bestows a gift upon you for your loyal service.",
+              "summary": "Choose one special gift bestowed upon you by your otherworldly patron.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -12064,7 +12155,8 @@
                 "name": "Warlock",
                 "level": 3
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -12077,7 +12169,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -12088,7 +12180,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -12098,7 +12190,8 @@
                 "name": "Warlock",
                 "level": 4
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -12179,7 +12272,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "In your study of occult lore, you have unearthed eldritch invocations, fragments of forbidden knowledge that imbue you.",
+              "summary": "Gain fragments of forbidden knowledge that grant you permanent magical abilities.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -12189,7 +12282,8 @@
                 "name": "Warlock",
                 "level": 5
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -12213,7 +12307,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You have struck a bargain with an otherworldly being of your choice, such as the Fiend.",
+              "summary": "Gain features from your bargain with an otherworldly being at specific levels.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -12223,7 +12317,8 @@
                 "name": "Warlock",
                 "level": 6
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -12304,7 +12399,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "In your study of occult lore, you have unearthed eldritch invocations, fragments of forbidden knowledge that imbue you.",
+              "summary": "Gain fragments of forbidden knowledge that grant you permanent magical abilities.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -12314,7 +12409,8 @@
                 "name": "Warlock",
                 "level": 7
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -12327,7 +12423,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you cannot increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -12338,7 +12434,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by **2** or two ability scores by **1** at 4th, 8th, 12th, 16th, and 19th level.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -12348,7 +12444,8 @@
                 "name": "Warlock",
                 "level": 8
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -12429,7 +12526,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "In your study of occult lore, you have unearthed eldritch invocations, fragments of forbidden knowledge that imbue you.",
+              "summary": "Gain fragments of forbidden knowledge that grant you permanent magical abilities.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -12439,7 +12536,8 @@
                 "name": "Warlock",
                 "level": 9
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -12463,7 +12561,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You have struck a bargain with an otherworldly being of your choice, such as the Fiend.",
+              "summary": "Gain features at 1st, 6th, 10th, and 14th level based on your chosen otherworldly patron.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -12473,7 +12571,8 @@
                 "name": "Warlock",
                 "level": 10
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -12486,7 +12585,7 @@
           "features": [
             {
               "name": "Mystic Arcanum (6th level)",
-              "description": "At 11th level, your patron bestows upon you a magical secret called an arcanum. Choose one 6th- level spell from the warlock spell list as this arcanum.\n\nYou can cast your arcanum spell once without expending a spell slot. You must finish a long rest before you can do so again.\n\nAt higher levels, you gain more warlock spells of your choice that can be cast in this way: one 7th- level spell at 13th level, one 8th-level spell at 15th level, and one 9th-level spell at 17th level. You regain all uses of your Mystic Arcanum when you finish a long rest.",
+              "description": "At 11th level, your patron bestows upon you a magical secret called an arcanum. Choose one 6th-level spell from the warlock spell list as this arcanum.\n\nYou can cast your arcanum spell once without expending a spell slot. You must finish a long rest before you can do so again.\n\nAt higher levels, you gain more warlock spells of your choice that can be cast in this way: one 7th-level spell at 13th level, one 8th-level spell at 15th level, and one 9th-level spell at 17th level. You regain all uses of your Mystic Arcanum when you finish a long rest.",
               "type": "feature",
               "choices": {
                 "type": "spells",
@@ -12511,7 +12610,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Your patron bestows upon you a magical secret called an arcanum.",
+              "summary": "Learn a 6th-level warlock spell that you can cast once per long rest without using a spell slot.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -12521,7 +12620,8 @@
                 "name": "Warlock",
                 "level": 11
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -12534,7 +12634,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you cannot increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -12545,7 +12645,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by **2** or two ability scores by **1** at 4th, 8th, 12th, 16th, and 19th level.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -12555,7 +12655,8 @@
                 "name": "Warlock",
                 "level": 12
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Eldritch Invocations",
@@ -12627,7 +12728,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "In your study of occult lore, you have unearthed eldritch invocations, fragments of forbidden knowledge that imbue you.",
+              "summary": "Gain fragments of forbidden knowledge that grant you permanent magical abilities.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -12637,7 +12738,8 @@
                 "name": "Warlock",
                 "level": 12
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -12650,7 +12752,7 @@
           "features": [
             {
               "name": "Mystic Arcanum (7th level)",
-              "description": "At 11th level, your patron bestows upon you a magical secret called an arcanum. Choose one 6th- level spell from the warlock spell list as this arcanum.\n\nYou can cast your arcanum spell once without expending a spell slot. You must finish a long rest before you can do so again.\n\nAt higher levels, you gain more warlock spells of your choice that can be cast in this way: one 7th- level spell at 13th level, one 8th-level spell at 15th level, and one 9th-level spell at 17th level. You regain all uses of your Mystic Arcanum when you finish a long rest.",
+              "description": "At 11th level, your patron bestows upon you a magical secret called an arcanum. Choose one 6th-level spell from the warlock spell list as this arcanum.\n\nYou can cast your arcanum spell once without expending a spell slot. You must finish a long rest before you can do so again.\n\nAt higher levels, you gain more warlock spells of your choice that can be cast in this way: one 7th-level spell at 13th level, one 8th-level spell at 15th level, and one 9th-level spell at 17th level. You regain all uses of your Mystic Arcanum when you finish a long rest.",
               "type": "feature",
               "choices": {
                 "type": "spells",
@@ -12672,7 +12774,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Your patron bestows upon you a magical secret called an arcanum.",
+              "summary": "You learn a 7th-level spell that you can cast once without expending a spell slot, regaining the use after a long rest.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -12682,7 +12784,8 @@
                 "name": "Warlock",
                 "level": 13
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -12706,7 +12809,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You have struck a bargain with an otherworldly being of your choice, such as the Fiend.",
+              "summary": "You gain special features at 1st, 6th, 10th, and 14th level based on your chosen otherworldly patron.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -12716,7 +12819,8 @@
                 "name": "Warlock",
                 "level": 14
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -12729,7 +12833,7 @@
           "features": [
             {
               "name": "Mystic Arcanum (8th level)",
-              "description": "At 11th level, your patron bestows upon you a magical secret called an arcanum. Choose one 6th- level spell from the warlock spell list as this arcanum.\n\nYou can cast your arcanum spell once without expending a spell slot. You must finish a long rest before you can do so again.\n\nAt higher levels, you gain more warlock spells of your choice that can be cast in this way: one 7th- level spell at 13th level, one 8th-level spell at 15th level, and one 9th-level spell at 17th level. You regain all uses of your Mystic Arcanum when you finish a long rest.",
+              "description": "At 11th level, your patron bestows upon you a magical secret called an arcanum. Choose one 6th-level spell from the warlock spell list as this arcanum.\n\nYou can cast your arcanum spell once without expending a spell slot. You must finish a long rest before you can do so again.\n\nAt higher levels, you gain more warlock spells of your choice that can be cast in this way: one 7th-level spell at 13th level, one 8th-level spell at 15th level, and one 9th-level spell at 17th level. You regain all uses of your Mystic Arcanum when you finish a long rest.",
               "type": "feature",
               "choices": {
                 "type": "spells",
@@ -12752,7 +12856,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Your patron bestows upon you a magical secret called an arcanum.",
+              "summary": "You learn an 8th-level spell that you can cast once without expending a spell slot, regaining the use after a long rest.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -12762,7 +12866,8 @@
                 "name": "Warlock",
                 "level": 15
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Eldritch Invocations",
@@ -12834,7 +12939,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "In your study of occult lore, you have unearthed eldritch invocations, fragments of forbidden knowledge that imbue you.",
+              "summary": "You gain fragments of forbidden knowledge that grant you permanent magical abilities, which you can swap when you level up.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -12844,7 +12949,8 @@
                 "name": "Warlock",
                 "level": 15
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -12857,7 +12963,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -12868,7 +12974,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1, up to a maximum of 20.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -12878,7 +12984,8 @@
                 "name": "Warlock",
                 "level": 16
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -12891,7 +12998,7 @@
           "features": [
             {
               "name": "Mystic Arcanum (9th level)",
-              "description": "At 11th level, your patron bestows upon you a magical secret called an arcanum. Choose one 6th- level spell from the warlock spell list as this arcanum.\n\nYou can cast your arcanum spell once without expending a spell slot. You must finish a long rest before you can do so again.\n\nAt higher levels, you gain more warlock spells of your choice that can be cast in this way: one 7th- level spell at 13th level, one 8th-level spell at 15th level, and one 9th-level spell at 17th level. You regain all uses of your Mystic Arcanum when you finish a long rest.",
+              "description": "At 11th level, your patron bestows upon you a magical secret called an arcanum. Choose one 6th-level spell from the warlock spell list as this arcanum.\n\nYou can cast your arcanum spell once without expending a spell slot. You must finish a long rest before you can do so again.\n\nAt higher levels, you gain more warlock spells of your choice that can be cast in this way: one 7th-level spell at 13th level, one 8th-level spell at 15th level, and one 9th-level spell at 17th level. You regain all uses of your Mystic Arcanum when you finish a long rest.",
               "type": "feature",
               "choices": {
                 "type": "spells",
@@ -12914,7 +13021,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Your patron bestows upon you a magical secret called an arcanum.",
+              "summary": "You learn a 9th-level spell that you can cast once without expending a spell slot, regaining the use after a long rest.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -12924,7 +13031,8 @@
                 "name": "Warlock",
                 "level": 17
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -12956,7 +13064,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1 at 4th, 8th, 12th, 16th, and 19th level.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -12966,7 +13074,8 @@
                 "name": "Warlock",
                 "level": 19
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -12990,7 +13099,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Draw on your inner reserve of mystical power while entreating your patron to regain expended spell slots.",
+              "summary": "Spend 1 minute entreating your patron to regain all expended Pact Magic spell slots.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -13000,7 +13109,8 @@
                 "name": "Warlock",
                 "level": 20
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Eldritch Invocations",
@@ -13072,7 +13182,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "In your study of occult lore, you have unearthed eldritch invocations, fragments of forbidden knowledge that imbue you.",
+              "summary": "Gain fragments of forbidden knowledge that grant you abiding magical abilities.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -13082,7 +13192,8 @@
                 "name": "Warlock",
                 "level": 20
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -13507,7 +13618,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "As a student of arcane magic, you have a spellbook containing spells that show the first glimmerings of your true power.",
+              "summary": "You possess a spellbook containing arcane spells that represent your growing power.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -13517,7 +13628,8 @@
                 "name": "Wizard",
                 "level": 1
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Arcane Recovery",
@@ -13535,7 +13647,7 @@
               "effect": null,
               "onUse": "Recover expended spell slots with combined level up to half your Wizard level rounded up",
               "scaling": "Recovery pool grows as your Wizard level increases",
-              "summary": "You have learned to regain some of your magical energy by studying your spellbook.",
+              "summary": "Recover expended spell slots with a combined level up to half your wizard level (rounded up) after a short rest.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -13545,7 +13657,8 @@
                 "name": "Wizard",
                 "level": 1
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -13569,7 +13682,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "When you reach 2nd level, you choose an arcane tradition, shaping your practice of magic through one of eight schools, such as Evocation.",
+              "summary": "Choose a school of magic to specialize in, granting features at 2nd, 6th, 10th, and 14th level.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -13579,7 +13692,8 @@
                 "name": "Wizard",
                 "level": 2
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -13601,7 +13715,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -13612,7 +13726,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by **2** or two ability scores by **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -13622,7 +13736,8 @@
                 "name": "Wizard",
                 "level": 4
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -13657,7 +13772,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "When you reach 2nd level, you choose an arcane tradition, shaping your practice of magic through one of eight schools, such as Evocation.",
+              "summary": "Choose an arcane tradition to gain specialized magical features.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -13667,7 +13782,8 @@
                 "name": "Wizard",
                 "level": 6
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -13693,7 +13809,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -13704,7 +13820,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by **2** or two ability scores by **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -13714,7 +13830,8 @@
                 "name": "Wizard",
                 "level": 8
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -13753,7 +13870,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "When you reach 2nd level, you choose an arcane tradition, shaping your practice of magic through one of eight schools, such as Evocation.",
+              "summary": "Choose an arcane tradition to gain specialized magical features.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -13763,7 +13880,8 @@
                 "name": "Wizard",
                 "level": 10
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -13793,7 +13911,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -13804,7 +13922,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by **2** or two ability scores by **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -13814,7 +13932,8 @@
                 "name": "Wizard",
                 "level": 12
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -13857,7 +13976,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "When you reach 2nd level, you choose an arcane tradition, shaping your practice of magic through one of eight schools, such as Evocation.",
+              "summary": "Choose an arcane tradition to gain specialized magical features.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -13867,7 +13986,8 @@
                 "name": "Wizard",
                 "level": 14
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -13901,7 +14021,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -13912,7 +14032,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by **2** or two ability scores by **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -13922,7 +14042,8 @@
                 "name": "Wizard",
                 "level": 16
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -13958,7 +14079,7 @@
           "features": [
             {
               "name": "Spell Mastery",
-              "description": "At 18th level, you have achieved such mastery over certain spells that you can cast them at will. Choose a 1st-level wizard spell and a 2nd-level wizard spell that are in your spellbook. You can cast those spells at their lowest level without expending a spell slot when you have them prepared. If you want to cast either spell at a higher level, you must expend a spell slot as normal.\n\nBy spending 8 hours in study, you can exchange one or both of the spells you chose for different spells of the same levels.",
+              "description": "At 18th level, you have achieved such mastery over certain spells that you can cast them at will. Choose a 1st-level wizard spell and a 2nd-level wizard spell that are in your spellbook. You can cast those spells at their lowest level without expending a spell slot when you have them prepared. If you want to cast either spell at a higher level, you must expend a spell slot as normal.\n\nBy spending **8 hours** in study, you can exchange one or both of the spells you chose for different spells of the same levels.",
               "type": "feature",
               "choices": {
                 "type": "spells",
@@ -14041,7 +14162,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You have achieved such mastery over certain spells that you can cast them at will.",
+              "summary": "Cast one 1st-level and one 2nd-level wizard spell from your spellbook at will without expending a spell slot.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -14051,7 +14172,8 @@
                 "name": "Wizard",
                 "level": 18
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -14072,7 +14194,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -14083,7 +14205,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by **2** or two ability scores by **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -14093,7 +14215,8 @@
                 "name": "Wizard",
                 "level": 19
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": true,
@@ -14160,7 +14283,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "When you reach 20th level, you gain mastery over two powerful spells and can cast them with little effort.",
+              "summary": "Always have two 3rd-level wizard spells prepared and cast each once per short or long rest without a spell slot.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -14170,7 +14293,8 @@
                 "name": "Wizard",
                 "level": 20
               },
-              "book": "PHB"
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -14416,7 +14540,7 @@
           "features": [
             {
               "name": "Magical Tinkering",
-              "description": "You learn how to invest a spark of magic into mundane objects. You can touch a Tiny nonmagical object as an action and give it one of the following magical properties: sheds bright light in a 5-foot radius, emits a recorded message, continuously emits an odor or sound, or displays a static visual effect. The property lasts indefinitely. You can affect a maximum number of objects equal to your Intelligence modifier.",
+              "description": "You learn how to invest a spark of magic into mundane objects. You can touch a Tiny nonmagical object as an action and give it one of the following magical properties: sheds bright light in a **5-foot** radius, emits a recorded message, continuously emits an odor or sound, or displays a static visual effect. The property lasts indefinitely. You can affect a maximum number of objects equal to your Intelligence modifier.",
               "featureType": "Active",
               "actionType": "Action",
               "uses": null,
@@ -14426,7 +14550,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You learn how to invest a spark of magic into mundane objects.",
+              "summary": "Touch a Tiny nonmagical object to give it a light, sound, smell, or visual effect.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -14436,11 +14560,12 @@
                 "name": "Artificer",
                 "level": 1
               },
-              "book": "EGW"
+              "book": "EGW",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Spellcasting",
-              "description": "You've studied the workings of magic and how to cast spells, channeling the magic through objects. You must have a spellcasting focus (thieves' tools or artisan's tools) in hand when you cast spells. You know 2 cantrips. You prepare spells equal to your Intelligence modifier + half your artificer level, rounded down (minimum of one spell).",
+              "description": "You've studied the workings of magic and how to cast spells, channeling the magic through objects. You must have a spellcasting focus (thieves' tools or artisan's tools) in hand when you cast spells. You know **2** cantrips. You prepare spells equal to your Intelligence modifier + half your artificer level, rounded down (minimum of one spell).",
               "featureType": "Active",
               "actionType": "Action",
               "uses": {
@@ -14453,7 +14578,7 @@
               "effect": null,
               "onUse": "Cast a prepared spell by expending a spell slot of the appropriate level",
               "scaling": "Gain higher spell slots and more spellbook spells as you level",
-              "summary": "You've studied the workings of magic and how to cast spells, channeling the magic through objects.",
+              "summary": "Cast spells using tools as a focus, preparing a number of spells based on your Intelligence and level.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -14463,7 +14588,8 @@
                 "name": "Artificer",
                 "level": 1
               },
-              "book": "EGW"
+              "book": "EGW",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "spellSlots": {
@@ -14476,7 +14602,7 @@
           "features": [
             {
               "name": "Infuse Item",
-              "description": "You've gained the ability to imbue mundane items with certain magical infusions. When you gain this feature, pick 4 artificer infusions to learn. Whenever you finish a long rest, you can touch a nonmagical object and imbue it with one of your artificer infusions. You can infuse a number of items shown in the Infused Items column.",
+              "description": "You have gained the ability to imbue mundane items with certain magical infusions. When you gain this feature, pick 4 artificer infusions to learn. Whenever you finish a long rest, you can touch a nonmagical object and imbue it with one of your artificer infusions. You can infuse a number of items shown in the Infused Items column.",
               "featureType": "Active",
               "actionType": null,
               "uses": null,
@@ -14486,7 +14612,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You've gained the ability to imbue mundane items with certain magical infusions.",
+              "summary": "Imbue nonmagical objects with magical infusions to grant them special properties.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -14496,7 +14622,8 @@
                 "name": "Artificer",
                 "level": 2
               },
-              "book": "EGW"
+              "book": "EGW",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "spellSlots": {
@@ -14509,7 +14636,7 @@
           "features": [
             {
               "name": "The Right Tool for the Job",
-              "description": "You've learned how to produce exactly the tool you need: with thieves' tools or artisan's tools in hand, you can magically create one set of artisan's tools in an unoccupied space within 5 feet of you. This creation requires 1 hour of uninterrupted work.",
+              "description": "You have learned how to produce exactly the tool you need. While you have thieves' tools or artisan's tools in hand, you can magically create one set of artisan's tools in an unoccupied space within 5 feet of you. This creation requires 1 hour of uninterrupted work.",
               "featureType": "Passive",
               "actionType": null,
               "uses": null,
@@ -14519,7 +14646,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You've learned how to produce exactly the tool you need: with thieves' tools or artisan's tools in hand, you can magically create.",
+              "summary": "Magically create a set of artisan's tools over the course of 1 hour.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -14529,7 +14656,8 @@
                 "name": "Artificer",
                 "level": 3
               },
-              "book": "EGW"
+              "book": "EGW",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Artificer Specialist",
@@ -14543,7 +14671,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You choose the type of specialist you are: Alchemist, Armorer, Artillerist, or Battle Smith.",
+              "summary": "Choose a specialization: Alchemist, Armorer, Artillerist, or Battle Smith.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -14553,7 +14681,8 @@
                 "name": "Artificer",
                 "level": 3
               },
-              "book": "EGW"
+              "book": "EGW",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "spellSlots": {
@@ -14566,7 +14695,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you cannot increase an ability score above 20 using this feature.",
               "featureType": "Passive",
               "actionType": null,
               "uses": null,
@@ -14576,7 +14705,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -14586,7 +14715,8 @@
                 "name": "Artificer",
                 "level": 4
               },
-              "book": "EGW"
+              "book": "EGW",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "spellSlots": {
@@ -14609,7 +14739,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You gain a feature from your Artificer Specialist.",
+              "summary": "Gain a feature based on your chosen Artificer Specialist.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -14619,7 +14749,8 @@
                 "name": "Artificer",
                 "level": 5
               },
-              "book": "EGW"
+              "book": "EGW",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "spellSlots": {
@@ -14643,7 +14774,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Your proficiency bonus is now doubled for any ability check you make that uses your proficiency with a tool.",
+              "summary": "Double your proficiency bonus for any ability check using a tool you are proficient with.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": true,
@@ -14653,7 +14784,8 @@
                 "name": "Artificer",
                 "level": 6
               },
-              "book": "EGW"
+              "book": "EGW",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "spellSlots": {
@@ -14667,7 +14799,7 @@
           "features": [
             {
               "name": "Flash of Genius",
-              "description": "When you or another creature you can see within 30 feet of you makes an ability check or a saving throw, you can use your reaction to add your Intelligence modifier to the roll. You can use this feature a number of times equal to your Intelligence modifier (minimum of once), and you regain all expended uses when you finish a long rest.",
+              "description": "When you or another creature you can see within 30 feet of you makes an ability check or a saving throw, you can use your reaction to add your Intelligence modifier to the roll.\n\nYou can use this feature a number of times equal to your Intelligence modifier (minimum of **1**), and you regain all expended uses when you finish a long rest.",
               "featureType": "Active",
               "actionType": "Reaction",
               "uses": null,
@@ -14677,7 +14809,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "When you or another creature you can see within 30 feet of you makes an ability check or a saving throw, you can use your.",
+              "summary": "Use your reaction to add your Intelligence modifier to an ability check or saving throw made by a creature you can see within 30 feet.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -14687,7 +14819,8 @@
                 "name": "Artificer",
                 "level": 7
               },
-              "book": "EGW"
+              "book": "EGW",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "spellSlots": {
@@ -14701,7 +14834,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "featureType": "Passive",
               "actionType": null,
               "uses": null,
@@ -14711,7 +14844,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -14721,7 +14854,8 @@
                 "name": "Artificer",
                 "level": 8
               },
-              "book": "EGW"
+              "book": "EGW",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "spellSlots": {
@@ -14745,7 +14879,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You gain a feature from your Artificer Specialist.",
+              "summary": "Gain a feature from your Artificer Specialist.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -14755,7 +14889,8 @@
                 "name": "Artificer",
                 "level": 9
               },
-              "book": "EGW"
+              "book": "EGW",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "spellSlots": {
@@ -14770,7 +14905,7 @@
           "features": [
             {
               "name": "Magic Item Adept",
-              "description": "You can attune to up to four magic items at once. If you craft a magic item with a rarity of common or uncommon, it takes you a quarter of the normal time, and it costs you half as much of the usual gold.",
+              "description": "You can attune to up to **4** magic items at once.\n\nIf you craft a magic item with a rarity of common or uncommon, it takes you a quarter of the normal time, and it costs you half as much of the usual gold.",
               "featureType": "Passive",
               "actionType": null,
               "uses": null,
@@ -14780,7 +14915,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Attune to up to four magic items at once.",
+              "summary": "Attune to four magic items at once and reduce the time and gold cost to craft common or uncommon items.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -14790,7 +14925,8 @@
                 "name": "Artificer",
                 "level": 10
               },
-              "book": "EGW"
+              "book": "EGW",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "spellSlots": {
@@ -14805,7 +14941,7 @@
           "features": [
             {
               "name": "Spell-Storing Item",
-              "description": "Whenever you finish a long rest, you can touch one simple or martial weapon or one item that you can use as a spellcasting focus, and you store a spell in it, choosing a 1st- or 2nd-level spell from the artificer spell list that requires 1 action to cast. While holding the object, a creature can take an action to produce the spell's effect from it, using your spellcasting ability modifier. The spell stays in the object until it's been used a number of times equal to twice your Intelligence modifier (minimum of twice).",
+              "description": "Whenever you finish a long rest, you can touch one simple or martial weapon or one item that you can use as a spellcasting focus, and you store a spell in it, choosing a **1st-** or **2nd-level** spell from the artificer spell list that requires **1** action to cast.\n\nWhile holding the object, a creature can take an action to produce the spell's effect from it, using your spellcasting ability modifier.\n\nThe spell stays in the object until it's been used a number of times equal to twice your Intelligence modifier (minimum of **2**).",
               "featureType": "Active",
               "actionType": "Action",
               "uses": null,
@@ -14815,7 +14951,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Whenever you finish a long rest, you can touch one simple or martial weapon or one item that you can use as a spellcasting focus.",
+              "summary": "Store a 1st- or 2nd-level spell in a weapon or focus for others to cast using your spellcasting modifier.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -14825,7 +14961,8 @@
                 "name": "Artificer",
                 "level": 11
               },
-              "book": "EGW"
+              "book": "EGW",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "spellSlots": {
@@ -14840,7 +14977,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "featureType": "Passive",
               "actionType": null,
               "uses": null,
@@ -14850,7 +14987,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -14860,7 +14997,8 @@
                 "name": "Artificer",
                 "level": 12
               },
-              "book": "EGW"
+              "book": "EGW",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "spellSlots": {
@@ -14886,7 +15024,7 @@
           "features": [
             {
               "name": "Magic Item Savant",
-              "description": "You can attune to up to five magic items at once. You ignore all class, race, spell and level requirements on attuning to or using a magic item.",
+              "description": "You can attune to up to **five** magic items at once. You ignore all class, race, spell and level requirements when attuning to or using a magic item.",
               "featureType": "Passive",
               "actionType": null,
               "uses": null,
@@ -14896,7 +15034,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Attune to up to five magic items at once.",
+              "summary": "Attune to up to five magic items at once and ignore all requirements to attune to or use them.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -14906,7 +15044,8 @@
                 "name": "Artificer",
                 "level": 14
               },
-              "book": "EGW"
+              "book": "EGW",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "spellSlots": {
@@ -14932,7 +15071,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You gain a feature from your Artificer Specialist.",
+              "summary": "Gain a feature from your chosen Artificer Specialist.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -14942,7 +15081,8 @@
                 "name": "Artificer",
                 "level": 15
               },
-              "book": "EGW"
+              "book": "EGW",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "spellSlots": {
@@ -14958,7 +15098,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "featureType": "Passive",
               "actionType": null,
               "uses": null,
@@ -14968,7 +15108,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -14978,7 +15118,8 @@
                 "name": "Artificer",
                 "level": 16
               },
-              "book": "EGW"
+              "book": "EGW",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "spellSlots": {
@@ -15006,7 +15147,7 @@
           "features": [
             {
               "name": "Magic Item Master",
-              "description": "You can attune up to six magic items at once.",
+              "description": "You can attune to up to **six** magic items at once.",
               "featureType": "Passive",
               "actionType": null,
               "uses": null,
@@ -15016,7 +15157,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Attune up to six magic items at once.",
+              "summary": "Attune to up to six magic items at once.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -15026,7 +15167,8 @@
                 "name": "Artificer",
                 "level": 18
               },
-              "book": "EGW"
+              "book": "EGW",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "spellSlots": {
@@ -15043,7 +15185,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+              "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
               "featureType": "Passive",
               "actionType": null,
               "uses": null,
@@ -15053,7 +15195,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2.",
+              "summary": "Increase one ability score by 2 or two ability scores by 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -15063,7 +15205,8 @@
                 "name": "Artificer",
                 "level": 19
               },
-              "book": "EGW"
+              "book": "EGW",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "spellSlots": {
@@ -15080,7 +15223,7 @@
           "features": [
             {
               "name": "Soul of Artifice",
-              "description": "You gain a +1 bonus to all saving throws per magic item you are currently attuned to. If you're reduced to 0 hit points but not killed outright, you can use your reaction to end one of your artificer infusions, causing you to drop to 1 hit point instead of 0.",
+              "description": "You gain a **+1** bonus to all saving throws for every magic item you are currently attuned to.\n\nIf you are reduced to 0 hit points but not killed outright, you can use your reaction to end one of your artificer infusions, causing you to drop to **1** hit point instead of 0.",
               "featureType": "Active",
               "actionType": "Reaction",
               "uses": null,
@@ -15090,7 +15233,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You gain a +1 bonus to all saving throws per magic item you are currently attuned to.",
+              "summary": "Gain a +1 bonus to all saving throws per attuned magic item and use a reaction to drop to 1 hit point instead of 0.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -15100,7 +15243,8 @@
                 "name": "Artificer",
                 "level": 20
               },
-              "book": "EGW"
+              "book": "EGW",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "spellSlots": {
