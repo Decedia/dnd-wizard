@@ -1,5 +1,5 @@
 {
-  "2014_spells.polar-ray.description": "Sebuah sinar biru-putih es membeku menyapu ke arah makhluk dalam range. Buat ranged spell attack terhadap target. On a hit, ia menerima 9d8 cold damage, dan speed-nya dibagi dua sampai awal turn-mu berikutnya.",
-  "2014_spells.polar-ray.effectSummary": "Berikan 9d8 cold damage ke target dalam 120 ft",
-  "2014_spells.polar-ray.fullDescription": "Menggunakan 1 Action, on a hit, ia menerima 9d8 cold damage, dan speed-nya dibagi dua sampai awal turn-mu berikutnya. Buat ranged spell attack terhadap target; Sebuah sinar biru-putih es membeku menyapu ke arah makhluk dalam range. On a hit, ia menerima 9d8 cold damage, dan speed-nya dibagi dua sampai awal turn-mu berikutnya."
+  "2014_spells.polar-ray.description": "Sebagai sebuah action, sebuah sinar es berwarna biru-putih melesat menuju seekor makhluk dalam jarak 120 kaki. Lakukan ranged spell attack terhadap sasaran tersebut. Jika kena, sasaran menerima **9d8** kerusakan dingin, dan kecepatannya berkurang setengah hingga awal giliranmu berikutnya. Efek ini terjadi seketika.",
+  "2014_spells.polar-ray.effectSummary": "Kamu menembakkan sinar pembeku ke arah makhluk dalam jarak 120 kaki untuk memberikan kerusakan dingin yang besar dan memperlambat kecepatan geraknya.",
+  "2014_spells.polar-ray.fullDescription": "Sebagai sebuah action, sebuah sinar es berwarna biru-putih melesat menuju seekor makhluk dalam jarak 120 kaki. Lakukan ranged spell attack terhadap sasaran tersebut. Jika kena, sasaran menerima **9d8** kerusakan dingin, dan kecepatannya berkurang setengah hingga awal giliranmu berikutnya. Efek ini terjadi seketika."
 }

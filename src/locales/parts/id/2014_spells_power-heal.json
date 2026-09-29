@@ -1,5 +1,5 @@
 {
-  "2014_spells.power-heal.description": "Sebuah gelombang energi penyembuhan menaungi makhluk yang bisa kamu lihat dalam range. Target mendapatkan kembali 70 hit points. Spell ini juga mengakhiri kebutaan, kehilangan pendengaran, dan penyakit yang mempengaruhi target.",
-  "2014_spells.power-heal.effectSummary": "Target mendapatkan kembali 70 hit points",
-  "2014_spells.power-heal.fullDescription": "Menggunakan 1 Action, target mendapatkan kembali 70 hit points. Sebuah gelombang energi penyembuhan menaungi makhluk yang bisa kamu lihat dalam range; Spell ini juga mengakhiri kebutaan, kehilangan pendengaran, dan penyakit yang mempengaruhi target. Spell ini juga mengakhiri kebutaan, kehilangan pendengaran, dan penyakit yang mempengaruhi target."
+  "2014_spells.power-heal.description": "Sebagai sebuah action, kamu melepaskan gelombang energi penyembuhan yang menyelimuti seekor makhluk yang bisa kamu lihat dalam jarak 60 kaki. Sasaran memulihkan 70 hit points. Selain itu, sihir ini mengakhiri kondisi Buta, Tuli, dan segala penyakit yang saat ini menyerang sasaran tersebut.",
+  "2014_spells.power-heal.effectSummary": "Sihir pemulihan kuat yang mengembalikan jumlah kesehatan yang besar kepada satu sasaran serta menyembuhkan berbagai kondisi yang melemahkan.",
+  "2014_spells.power-heal.fullDescription": "Sebagai sebuah action, kamu melepaskan gelombang energi penyembuhan yang menyelimuti seekor makhluk yang bisa kamu lihat dalam jarak 60 kaki. Sasaran memulihkan 70 hit points. Selain itu, sihir ini mengakhiri kondisi Buta, Tuli, dan segala penyakit yang saat ini menyerang sasaran tersebut."
 }
