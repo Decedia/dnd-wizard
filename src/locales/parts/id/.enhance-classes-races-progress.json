@@ -81,6 +81,17 @@
     "2014_subclasses.forge.soul-of-the-forge",
     "2014_subclasses.forge.divine-strike",
     "2014_subclasses.forge.saint-of-forge-and-fire",
-    "2014_subclasses.grave"
+    "2014_subclasses.grave",
+    "2014_subclasses.light",
+    "2014_subclasses.grave.eyes-of-the-grave",
+    "2014_subclasses.grave.path-to-the-grave",
+    "2014_subclasses.grave.divine-strike",
+    "2014_subclasses.knowledge",
+    "2014_subclasses.knowledge.blessings-of-knowledge",
+    "2014_subclasses.knowledge.visions-of-the-past",
+    "2014_subclasses.life",
+    "2014_subclasses.life.divine-strike",
+    "2014_subclasses.nature",
+    "2014_subclasses.nature.acolyte-of-nature"
   ]
 }
