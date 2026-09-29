@@ -7,6 +7,7 @@ export const translations = {
   "glossary.categoryClasses": "Classes",
   "glossary.categoryRaces": "Races",
   "glossary.subclasses": "Subclasses",
+  "glossary.prerequisites": "Prerequisites",
   "glossary.categoryFeats": "Feats",
   "glossary.categoryConditions": "Conditions",
   "glossary.categoryRules": "Rules",

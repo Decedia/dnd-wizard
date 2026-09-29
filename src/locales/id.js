@@ -7,6 +7,7 @@ export const translations = {
   "glossary.categoryClasses": "Kelas",
   "glossary.categoryRaces": "Ras",
   "glossary.subclasses": "Subkelas",
+  "glossary.prerequisites": "Prasyarat",
   "glossary.categoryFeats": "Fitur",
   "glossary.categoryConditions": "Kondisi",
   "glossary.categoryRules": "Aturan",

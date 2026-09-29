@@ -65,6 +65,22 @@ function firstParagraph(text: unknown): string {
   return text.split(/\n\s*\n/)[0] || "";
 }
 
+/**
+ * A feat granted by a race or class carries a source *reference* rather than a book
+ * code, e.g. { type: "race", name: "Halfling", level: null }. Rendering that as a
+ * React child throws and takes the page down, so it is flattened to a label here.
+ */
+function sourceLabel(source: unknown, fallback: string): string {
+  if (typeof source === "string" && source) return source;
+  if (source && typeof source === "object") {
+    const ref = source as { name?: unknown; type?: unknown };
+    if (typeof ref.name === "string" && ref.name) {
+      return typeof ref.type === "string" && ref.type ? `${ref.name} (${ref.type})` : ref.name;
+    }
+  }
+  return fallback;
+}
+
 function deduplicateSpells(spells: any[]): any[] {
   const map = new Map<string, any>();
   for (const spell of spells) {
@@ -231,19 +247,31 @@ export default function GlossaryPage() {
             const isClass = category === "classes";
             const isRace = category === "races";
             const name = item.name;
-            const summary = isSpell
-              ? getSummary(item)
-              : isClass
-                ? item.flavorText || firstParagraph(item.description)
-                : isRace
-                  ? (item.traits || []).slice(0, 2).map((tr: any) => tr.summary).filter(Boolean).join(" ")
-                  : item.summary || firstParagraph(item.description);
+            // Every value that reaches JSX is coerced to a string: this corpus is
+            // generated and the SRD is not consistent about field shapes, and an
+            // object in a child position throws and blanks the page.
+            const asText = (value: unknown): string => (typeof value === "string" ? value : "");
+            const summary = asText(
+              isSpell
+                ? getSummary(item)
+                : isClass
+                  ? item.flavorText || firstParagraph(item.description)
+                  : isRace
+                    ? (item.traits || []).slice(0, 2).map((tr: any) => tr.summary).filter(Boolean).join(" ")
+                    : item.summary || firstParagraph(item.description),
+            );
             const level = isSpell ? item.level : undefined;
             const school = isSpell ? item.school : undefined;
             const classes = isSpell ? item.classes : [];
             const mechanicsBadges = isSpell ? (item.mechanics_badges || []) : [];
             const lastUpdated = isSpell ? item.lastUpdated : "";
-            const source = isSpell ? item.source : isClass ? t("glossary.categoryClasses", "Classes") : isRace ? t("glossary.categoryRaces", "Races") : (item.source || "Feature");
+            const source = isSpell
+              ? sourceLabel(item.source, "Spell")
+              : isClass
+                ? t("glossary.categoryClasses", "Classes")
+                : isRace
+                  ? t("glossary.categoryRaces", "Races")
+                  : sourceLabel(item.source, t("glossary.categoryFeats", "Feats"));
 
             return (
               <div
@@ -256,7 +284,7 @@ export default function GlossaryPage() {
                   {/* Title Block */}
                   <div className="mb-2">
                     <h3 className="font-bold text-lg text-[var(--color-text-primary)] leading-tight">
-                      {name}
+                      {asText(name)}
                     </h3>
                     <span className="text-xs text-[var(--color-text-muted)] block mt-0.5">
                       {level !== undefined ? `${t("glossary.level", "Level")} ${level} ${school}` : source}
@@ -439,6 +467,27 @@ export default function GlossaryPage() {
                   </div>
                 ))}
               </div>
+            )}
+
+            {selectedSpell.kind === "feat" && (
+              <>
+                {selectedSpell.summary && (
+                  <p className="text-xs text-[var(--color-text-muted)] italic leading-relaxed">
+                    {selectedSpell.summary}
+                  </p>
+                )}
+                {selectedSpell.source && (
+                  <p className="text-xs text-[var(--color-text-muted)]">
+                    {sourceLabel(selectedSpell.source, "")}
+                  </p>
+                )}
+                {selectedSpell.prerequisites && (
+                  <p className="text-xs text-[var(--color-text-muted)]">
+                    {t("glossary.prerequisites", "Prerequisites")}: {selectedSpell.prerequisites}
+                  </p>
+                )}
+                {selectedSpell.description && <DiceText text={selectedSpell.description} />}
+              </>
             )}
 
             {selectedSpell.kind === "spell" && (
