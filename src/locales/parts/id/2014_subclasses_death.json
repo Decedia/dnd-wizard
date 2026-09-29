@@ -1,17 +1,17 @@
 {
-  "2014_subclasses.death.description": "Death domain concerned dengan forces yang menyebabkan kematian, serta negative energy yang powers undead creatures. Cleric of death adalah necromancers yang ditakuti dan heralds of finality.",
+  "2014_subclasses.death.description": "Death domain berfokus pada kekuatan yang menyebabkan kematian, serta energi negatif yang menghidupkan makhluk undead. Para Cleric dari domain ini adalah para necromancer yang ditakuti dan pembawa pesan akhir hayat.",
   "2014_subclasses.death.bonus-proficiency.summary": "Dapatkan proficiency dengan martial weapons.",
   "2014_subclasses.death.bonus-proficiency.description": "Di level 1, kamu mendapatkan proficiency dengan martial weapons.",
-  "2014_subclasses.death.reaper.summary": "Target dua adjacent creatures dengan necromancy cantrips yang biasanya target satu.",
-  "2014_subclasses.death.reaper.description": "Di level 1, ketika cleric cast necromancy cantrip yang biasanya hanya target satu creature, spell bisa instead target dua creatures dalam range dan dalam 5 kaki satu sama lain.",
-  "2014_subclasses.death.death-domain-spells.summary": "Dapatkan domain spells di levels 1, 3, 5, 7, dan 9.",
-  "2014_subclasses.death.death-domain-spells.description": "1st: False Life, Ray of Sickness; 3rd: Blindness/Deafness, Ray of Enfeeblement; 5th: Animate Dead, Vampiric Touch; 7th: Blight, Death Ward; 9th: Antilife Shell, Cloudkill.",
-  "2014_subclasses.death.channel-divinity-touch-of-death.summary": "Tambahkan 5 + (2 x cleric level) necrotic damage ke successful melee attack.",
+  "2014_subclasses.death.reaper.summary": "Gunakan cantrip necromancy yang biasanya hanya untuk satu sasaran untuk menyerang dua makhluk yang berjarak 5 kaki satu sama lain.",
+  "2014_subclasses.death.reaper.description": "Pada level 1, ketika kamu merapal cantrip necromancy yang biasanya hanya menyasar satu makhluk, sihir tersebut dapat menyasar dua makhluk sekaligus selama keduanya berada dalam jangkauan dan berjarak maksimal **5 kaki** satu sama lain.",
+  "2014_subclasses.death.death-domain-spells.summary": "Kamu mempelajari sihir domain khusus pada level 1, 3, 5, 7, dan 9.",
+  "2014_subclasses.death.death-domain-spells.description": "Kamu mendapatkan sihir domain berikut:\n- Level 1: False Life, Ray of Sickness\n- Level 3: Blindness/Deafness, Ray of Enfeeblement\n- Level 5: Animate Dead, Vampiric Touch\n- Level 7: Blight, Death Ward\n- Level 9: Antilife Shell, Cloudkill",
+  "2014_subclasses.death.channel-divinity-touch-of-death.summary": "Berikan tambahan kerusakan nekrotik sebesar 5 + dua kali level cleric kamu saat serangan melee berhasil.",
   "2014_subclasses.death.channel-divinity-touch-of-death.description": "Dimulai di level 2, ketika cleric hits creature dengan melee attack, cleric bisa menggunakan Channel Divinity untuk deal extra necrotic damage ke target sama dengan 5 + twice cleric level-nya.",
   "2014_subclasses.death.inescapable-destruction.summary": "Necrotic damage dealt oleh cleric spells dan Channel Divinity mengabaikan resistance ke necrotic damage.",
   "2014_subclasses.death.inescapable-destruction.description": "Dimulai di level 6, kemampuan cleric untuk channel negative energy menjadi lebih potent. Necrotic damage dealt oleh character's cleric spells dan Channel Divinity options mengabaikan resistance ke necrotic damage.",
-  "2014_subclasses.death.divine-strike.summary": "Sekali di setiap turn, deal extra 1d8 necrotic damage di weapon hit (2d8 di 14th).",
-  "2014_subclasses.death.divine-strike.description": "Di level 8, cleric mendapatkan kemampuan untuk menyuntikkan senjata strikes dengan necrotic energy. Sekali di setiap turn cleric ketika ia hits creature dengan weapon attack, cleric bisa menyebabkan attack tersebut deal extra 1d8 necrotic damage. Di level 14, ini meningkat menjadi 2d8.",
-  "2014_subclasses.death.improved-reaper.summary": "Target dua adjacent creatures dengan 1st through 5th level necromancy spells.",
-  "2014_subclasses.death.improved-reaper.description": "Dimulai di level 17, ketika cleric cast necromancy spell dari level 1 sampai 5 yang hanya target satu creature, spell bisa instead target dua creatures dalam range dan dalam 5 kaki satu sama lain."
+  "2014_subclasses.death.divine-strike.summary": "Berikan tambahan **1d8** kerusakan nekrotik sekali per giliran saat menyerang dengan senjata (meningkat menjadi **2d8** pada level 14).",
+  "2014_subclasses.death.divine-strike.description": "Pada level 8, kamu mendapatkan kemampuan untuk mengalirkan energi nekrotik ke dalam serangan senjatamu. Sekali pada setiap giliranmu, ketika kamu berhasil mengenai makhluk dengan serangan senjata, kamu bisa memberikan tambahan **1d8** kerusakan nekrotik. Pada level 14, bonus ini meningkat menjadi **2d8**.",
+  "2014_subclasses.death.improved-reaper.summary": "Sasar dua makhluk yang berjarak 5 kaki satu sama lain saat merapal sihir necromancy level 1 sampai 5 yang biasanya hanya menyasar satu makhluk.",
+  "2014_subclasses.death.improved-reaper.description": "Mulai level 17, ketika kamu merapal sihir necromancy level 1 sampai 5 yang hanya menyasar satu makhluk, sihir tersebut kini bisa menyasar dua makhluk sekaligus, asalkan keduanya berada dalam jangkauan dan berjarak maksimal **5 kaki** satu sama lain."
 }
