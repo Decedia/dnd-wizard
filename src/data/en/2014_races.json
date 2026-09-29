@@ -5622,7 +5622,7 @@
         },
         {
           "name": "Infernal Legacy (Asmodeus)",
-          "description": "You know the thaumaturgy cantrip. When you reach 3rd level, you can cast the hellish rebuke spell as a 2nd-level spell once with this trait and regain the ability to do so when you finish a long rest. When you reach 5th level, you can cast the darkness spell once with this trait and regain the ability to do so when you finish a long rest. Charisma is your spellcasting ability for these spells.",
+          "description": "You know the thaumaturgy cantrip.\n\nWhen you reach 3rd level, you can cast the hellish rebuke spell as a 2nd-level spell once with this trait and regain the ability to do so when you finish a long rest.\n\nWhen you reach 5th level, you can cast the darkness spell once with this trait and regain the ability to do so when you finish a long rest.\n\nCharisma is your spellcasting ability for these spells.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -5632,7 +5632,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can cast the hellish rebuke spell as a 2nd-level spell once with this trait and regain the ability to do so when you finish a long rest",
+          "summary": "Cast hellish rebuke as a 2nd-level spell once per long rest, and gain other spells at 3rd and 5th level.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5642,7 +5642,8 @@
             "name": "Tiefling (Asmodeus)",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -5680,7 +5681,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5690,7 +5691,8 @@
             "name": "Tiefling (Baalzebul)",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Hellish Resistance",
@@ -5704,7 +5706,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Have resistance to fire damage",
+          "summary": "You have resistance to fire damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5714,11 +5716,12 @@
             "name": "Tiefling (Baalzebul)",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Infernal Legacy (Baalzebul)",
-          "description": "You know the thaumaturgy cantrip. When you reach 3rd level, you can cast the ray of sickness spell as a 2nd-level spell once with this trait. When you reach 5th level, you can cast the crown of madness spell once with this trait. Charisma is your spellcasting ability for these spells.",
+          "description": "You know the thaumaturgy cantrip.\n\nWhen you reach 3rd level, you can cast the ray of sickness spell as a 2nd-level spell once with this trait.\n\nWhen you reach 5th level, you can cast the crown of madness spell once with this trait.\n\nCharisma is your spellcasting ability for these spells.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -5728,7 +5731,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Know the thaumaturgy cantrip",
+          "summary": "Know the thaumaturgy cantrip and gain the ability to cast specific spells at 3rd and 5th level.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5738,7 +5741,8 @@
             "name": "Tiefling (Baalzebul)",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -5776,7 +5780,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5786,7 +5790,8 @@
             "name": "Tiefling (Zariel)",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Hellish Resistance",
@@ -5800,7 +5805,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Have resistance to fire damage",
+          "summary": "You have resistance to fire damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5810,11 +5815,12 @@
             "name": "Tiefling (Zariel)",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Infernal Legacy (Zariel)",
-          "description": "You know the thaumaturgy cantrip. When you reach 3rd level, you can cast the searing smite spell as a 2nd-level spell once with this trait. When you reach 5th level, you can cast the branding smite spell once with this trait. Charisma is your spellcasting ability for these spells.",
+          "description": "You know the thaumaturgy cantrip.\n\nAt 3rd level, you can cast the searing smite spell as a **2nd-level** spell once with this trait.\n\nAt 5th level, you can cast the branding smite spell once with this trait.\n\nCharisma is your spellcasting ability for these spells.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -5824,7 +5830,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Know the thaumaturgy cantrip",
+          "summary": "You know the thaumaturgy cantrip and gain the ability to cast searing smite and branding smite.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5834,7 +5840,8 @@
             "name": "Tiefling (Zariel)",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -5862,7 +5869,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within **60 feet** of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -5872,7 +5879,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5882,7 +5889,8 @@
             "name": "Tiefling (Dispater)",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Hellish Resistance",
@@ -5896,7 +5904,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Have resistance to fire damage",
+          "summary": "You have resistance to fire damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5906,11 +5914,12 @@
             "name": "Tiefling (Dispater)",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Infernal Legacy (Dispater)",
-          "description": "You know the thaumaturgy cantrip. When you reach 3rd level, you can cast the disguise self spell once with this trait. When you reach 5th level, you can cast the detect thoughts spell once with this trait. Charisma is your spellcasting ability for these spells.",
+          "description": "You know the thaumaturgy cantrip.\n\nAt 3rd level, you can cast the disguise self spell once with this trait.\n\nAt 5th level, you can cast the detect thoughts spell once with this trait.\n\nCharisma is your spellcasting ability for these spells.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -5920,7 +5929,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Know the thaumaturgy cantrip",
+          "summary": "You know the thaumaturgy cantrip and gain the ability to cast disguise self and detect thoughts.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5930,7 +5939,8 @@
             "name": "Tiefling (Dispater)",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -5958,7 +5968,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within **60 feet** of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -5968,7 +5978,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5978,7 +5988,8 @@
             "name": "Tiefling (Fierna)",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Hellish Resistance",
@@ -5992,7 +6003,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Have resistance to fire damage",
+          "summary": "You have resistance to fire damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6002,11 +6013,12 @@
             "name": "Tiefling (Fierna)",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Infernal Legacy (Fierna)",
-          "description": "You know the friends cantrip. When you reach 3rd level, you can cast the charm person spell once with this trait. When you reach 5th level, you can cast the suggestion spell once with this trait. Charisma is your spellcasting ability for these spells.",
+          "description": "You know the friends cantrip.\n\nWhen you reach 3rd level, you can cast the charm person spell once with this trait.\n\nWhen you reach 5th level, you can cast the suggestion spell once with this trait.\n\nCharisma is your spellcasting ability for these spells.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -6016,7 +6028,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Know the friends cantrip",
+          "summary": "You know the friends cantrip and gain the ability to cast charm person and suggestion as you level up.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6026,7 +6038,8 @@
             "name": "Tiefling (Fierna)",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -6064,7 +6077,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6074,7 +6087,8 @@
             "name": "Tiefling (Glasya)",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Hellish Resistance",
@@ -6088,7 +6102,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Have resistance to fire damage",
+          "summary": "You have resistance to fire damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6098,11 +6112,12 @@
             "name": "Tiefling (Glasya)",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Infernal Legacy (Glasya)",
-          "description": "You know the minor illusion cantrip. When you reach 3rd level, you can cast the disguise self spell once with this trait. When you reach 5th level, you can cast the invisibility spell once with this trait. Charisma is your spellcasting ability for these spells.",
+          "description": "You know the minor illusion cantrip.\n\nWhen you reach 3rd level, you can cast the disguise self spell once with this trait.\n\nWhen you reach 5th level, you can cast the invisibility spell once with this trait.\n\nCharisma is your spellcasting ability for these spells.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -6112,7 +6127,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Know the minor illusion cantrip",
+          "summary": "You know the minor illusion cantrip and gain the ability to cast disguise self and invisibility as you level up.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6122,7 +6137,8 @@
             "name": "Tiefling (Glasya)",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -6160,7 +6176,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6170,7 +6186,8 @@
             "name": "Tiefling (Levistus)",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Hellish Resistance",
@@ -6184,7 +6201,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Have resistance to fire damage",
+          "summary": "You have resistance to fire damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6194,11 +6211,12 @@
             "name": "Tiefling (Levistus)",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Infernal Legacy (Levistus)",
-          "description": "You know the ray of frost cantrip. When you reach 3rd level, you can cast the armor of Agathys spell once with this trait. When you reach 5th level, you can cast the darkness spell once with this trait. Charisma is your spellcasting ability for these spells.",
+          "description": "You know the ray of frost cantrip.\n\nAt 3rd level, you can cast the armor of Agathys spell once with this trait.\n\nAt 5th level, you can cast the darkness spell once with this trait.\n\nCharisma is your spellcasting ability for these spells.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -6208,7 +6226,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Know the ray of frost cantrip",
+          "summary": "You know the ray of frost cantrip and gain the ability to cast armor of Agathys and darkness.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6218,7 +6236,8 @@
             "name": "Tiefling (Levistus)",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -6256,7 +6275,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6266,7 +6285,8 @@
             "name": "Tiefling (Mammon)",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Hellish Resistance",
@@ -6280,7 +6300,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Have resistance to fire damage",
+          "summary": "You have resistance to fire damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6290,11 +6310,12 @@
             "name": "Tiefling (Mammon)",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Infernal Legacy (Mammon)",
-          "description": "You know the mage hand cantrip. When you reach 3rd level, you can cast the Tenser's floating disk spell once with this trait. When you reach 5th level, you can cast the arcane lock spell once with this trait. Intelligence is your spellcasting ability for these spells.",
+          "description": "You know the mage hand cantrip.\n\nAt 3rd level, you can cast the Tenser's floating disk spell once with this trait.\n\nAt 5th level, you can cast the arcane lock spell once with this trait.\n\nIntelligence is your spellcasting ability for these spells.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -6304,7 +6325,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Know the mage hand cantrip",
+          "summary": "You know the mage hand cantrip and gain the ability to cast Tenser's floating disk and arcane lock.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6314,7 +6335,8 @@
             "name": "Tiefling (Mammon)",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -6352,7 +6374,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6362,7 +6384,8 @@
             "name": "Tiefling (Mephistopheles)",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Hellish Resistance",
@@ -6376,7 +6399,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Have resistance to fire damage",
+          "summary": "You have resistance to fire damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6386,11 +6409,12 @@
             "name": "Tiefling (Mephistopheles)",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Infernal Legacy (Mephistopheles)",
-          "description": "You know the mage hand cantrip. When you reach 3rd level, you can cast the burning hands spell once with this trait. When you reach 5th level, you can cast the flame blade spell once with this trait. Intelligence is your spellcasting ability for these spells.",
+          "description": "You know the mage hand cantrip.\n\nAt 3rd level, you can cast the burning hands spell once with this trait.\n\nAt 5th level, you can cast the flame blade spell once with this trait.\n\nIntelligence is your spellcasting ability for these spells.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -6400,7 +6424,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Know the mage hand cantrip",
+          "summary": "You know the mage hand cantrip and can cast burning hands and flame blade at certain levels.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6410,7 +6434,8 @@
             "name": "Tiefling (Mephistopheles)",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -6447,7 +6472,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can breathe air and water",
+          "summary": "You can breathe both air and water.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6457,11 +6482,12 @@
             "name": "Triton",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Control Air and Water",
-          "description": "A child of the sea, you can call on the magic of elemental air and water. You can cast the fog cloud spell with this trait. Starting at 3rd level, you can cast the gust of wind spell with this trait. Starting at 5th level, you can cast the water walk spell with this trait. Once you cast any of these spells with this trait, you can't cast that spell with it again until you finish a long rest. Charisma is your spellcasting ability for them.",
+          "description": "A child of the sea, you can call on the magic of elemental air and water. You can cast the fog cloud spell with this trait.\n\nAt 3rd level, you can cast the gust of wind spell with this trait.\n\nAt 5th level, you can cast the water walk spell with this trait.\n\nOnce you cast any of these spells with this trait, you cannot cast that spell with it again until you finish a long rest. Charisma is your spellcasting ability for these spells.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -6471,7 +6497,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Once you cast any of these spells with this trait, you can't cast that spell with it again until you finish a long rest",
+          "summary": "Cast fog cloud, gust of wind, and water walk once per long rest each.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6481,7 +6507,8 @@
             "name": "Triton",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Emissary of the Sea",
@@ -6495,7 +6522,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Have advantage on all Charisma checks you make to influence beasts that can breathe water",
+          "summary": "You have advantage on Charisma checks to influence beasts that can breathe water.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6505,7 +6532,8 @@
             "name": "Triton",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Guardians of the Depths",
@@ -6529,7 +6557,8 @@
             "name": "Triton",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -6568,7 +6597,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6578,7 +6607,8 @@
             "name": "Aarakocra",
             "level": null
           },
-          "book": "VGTM"
+          "book": "VGTM",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Flying Speed",
@@ -6592,7 +6622,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Have a flying speed of 50 feet. (permanent)",
+          "summary": "You have a flying speed of 50 feet.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6602,11 +6632,12 @@
             "name": "Aarakocra",
             "level": null
           },
-          "book": "VGTM"
+          "book": "VGTM",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Talons",
-          "description": "You have talons that you can use to make unarmed strikes. When you hit with them, the strike deals 1d4 slashing damage.",
+          "description": "You have talons that you can use to make unarmed strikes. When you hit with them, the strike deals **1d4** slashing damage.",
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -6616,7 +6647,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "The strike deals 1d4 slashing damage. (action)",
+          "summary": "Your unarmed strikes deal 1d4 slashing damage.",
           "grantsSpells": false,
           "grantsAttack": true,
           "grantsSkills": false,
@@ -6626,7 +6657,8 @@
             "name": "Aarakocra",
             "level": null
           },
-          "book": "VGTM"
+          "book": "VGTM",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -6665,7 +6697,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "You can see in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6675,11 +6707,12 @@
             "name": "Yuan-ti Pureblood",
             "level": null
           },
-          "book": "VGTM"
+          "book": "VGTM",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Innate Spellcasting",
-          "description": "You know the poison spray cantrip. Starting at 3rd level, you can cast suggestion once per long rest. Starting at 5th level, you can cast fear once per long rest. Your spellcasting ability for these spells is Charisma.",
+          "description": "You know the poison spray cantrip.\n\nAt 3rd level, you can cast suggestion once per long rest.\n\nAt 5th level, you can cast fear once per long rest.\n\nYour spellcasting ability for these spells is Charisma.",
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -6689,7 +6722,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Know the poison spray cantrip. (action)",
+          "summary": "You know the poison spray cantrip and can cast suggestion and fear.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6699,7 +6732,8 @@
             "name": "Yuan-ti Pureblood",
             "level": null
           },
-          "book": "VGTM"
+          "book": "VGTM",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Magic Resistance",
@@ -6713,7 +6747,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Have advantage on saving throws against spells and other magical effects. (permanent)",
+          "summary": "You have advantage on saving throws against spells and other magical effects.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6723,7 +6757,8 @@
             "name": "Yuan-ti Pureblood",
             "level": null
           },
-          "book": "VGTM"
+          "book": "VGTM",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -6763,7 +6798,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "You can see in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6773,7 +6808,8 @@
             "name": "Kobold",
             "level": null
           },
-          "book": "VGTM"
+          "book": "VGTM",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Grovel, Cower, and Beg",
@@ -6787,7 +6823,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "As a bonus action, you can cower to distract nearby foes. Until the end of your next turn, your allies have advantage on attack rolls against enemies within 10 feet of you",
+          "summary": "As a bonus action, you distract foes so that your allies have advantage on attack rolls against enemies within 10 feet of you until the end of your next turn.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6797,7 +6833,8 @@
             "name": "Kobold",
             "level": null
           },
-          "book": "VGTM"
+          "book": "VGTM",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Pack Tactics",
@@ -6811,7 +6848,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have advantage on an attack roll against a creature if at least one of your allies is within 5 feet of the creature, the ally isn't incapacitated, and you don't have disadvantage on the attack roll",
+          "summary": "You have advantage on attack rolls against a creature if at least one of your non-incapacitated allies is within 5 feet of it.",
           "grantsSpells": false,
           "grantsAttack": true,
           "grantsSkills": false,
@@ -6821,7 +6858,8 @@
             "name": "Kobold",
             "level": null
           },
-          "book": "VGTM"
+          "book": "VGTM",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -6846,7 +6884,7 @@
       "traits": [
         {
           "name": "Stone's Endurance",
-          "description": "When you take damage, you can use your reaction to reduce the damage by 1d12 + your Constitution modifier. You can use this trait a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+          "description": "When you take damage, you can use your reaction to reduce the damage by **1d12** + your Constitution modifier. You can use this trait a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -6856,7 +6894,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "When you take damage, you can use your reaction to reduce the damage by 1d12 + your Constitution modifier. Once you use this trait, you can't use it again until you finish a short or long rest",
+          "summary": "When you take damage, use your reaction to reduce it by 1d12 + your Constitution modifier. You can use this a number of times equal to your proficiency bonus per long rest.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6866,7 +6904,8 @@
             "name": "Goliath",
             "level": null
           },
-          "book": "VGTM"
+          "book": "VGTM",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Powerful Build",
@@ -6880,7 +6919,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift. (permanent)",
+          "summary": "You are treated as one size larger for the purpose of determining your carrying capacity and the weight you can push, drag, or lift.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6890,7 +6929,8 @@
             "name": "Goliath",
             "level": null
           },
-          "book": "VGTM"
+          "book": "VGTM",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -6925,7 +6965,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "You can see in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6935,7 +6975,8 @@
             "name": "Autognome",
             "level": null
           },
-          "book": "MPMM"
+          "book": "MPMM",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Gnome Cunning",
@@ -6949,7 +6990,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic",
+          "summary": "You have advantage on Intelligence, Wisdom, and Charisma saving throws.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6959,7 +7000,8 @@
             "name": "Autognome",
             "level": null
           },
-          "book": "MPMM"
+          "book": "MPMM",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -6988,7 +7030,7 @@
       "traits": [
         {
           "name": "Shape Yourself",
-          "description": "As a bonus action, you can reshape your body to change your appearance. You can't change your overall size or your basic shape, but you can alter your coloration, texture, and other superficial features.",
+          "description": "As a bonus action, you can reshape your body to change your appearance. You cannot change your overall size or your basic shape, but you can alter your coloration, texture, and other superficial features.",
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -6998,7 +7040,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can reshape your body to change your appearance. (1 hour, action)",
+          "summary": "Reshape your body as a bonus action to change your appearance.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -7008,7 +7050,8 @@
             "name": "Plasmoid",
             "level": null
           },
-          "book": "MPMM"
+          "book": "MPMM",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Plasmatic Resistance",
@@ -7022,7 +7065,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Have resistance to acid and poison damage, and you have advantage on saving throws against the poisoned condition. (permanent)",
+          "summary": "Gain resistance to acid and poison damage and advantage on saving throws against being poisoned.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -7032,7 +7075,8 @@
             "name": "Plasmoid",
             "level": null
           },
-          "book": "MPMM"
+          "book": "MPMM",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -7061,7 +7105,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "You can see in dim light within 30 feet of you as if it were bright light, and in darkness as if it were dim light.",
+          "description": "You can see in dim light within **30 feet** of you as if it were bright light, and in darkness as if it were dim light.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -7071,7 +7115,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 30 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 30 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -7081,11 +7125,12 @@
             "name": "Thri-kreen",
             "level": null
           },
-          "book": "MPMM"
+          "book": "MPMM",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Thri-kreen Psionics",
-          "description": "You can cast the mage hand cantrip, and the hand is invisible. Starting at 3rd level, you can cast detect magic once per long rest. Starting at 5th level, you can cast suggestion once per long rest. Your spellcasting ability for these spells is Wisdom.",
+          "description": "You can cast the mage hand cantrip, and the hand is invisible.\n\nStarting at 3rd level, you can cast detect magic once per long rest.\n\nStarting at 5th level, you can cast suggestion once per long rest.\n\nYour spellcasting ability for these spells is Wisdom.",
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -7095,7 +7140,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can cast the mage hand cantrip, and the hand is invisible. (action)",
+          "summary": "Cast mage hand with an invisible hand, and cast detect magic and suggestion as you level up.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -7105,7 +7150,8 @@
             "name": "Thri-kreen",
             "level": null
           },
-          "book": "MPMM"
+          "book": "MPMM",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -7130,7 +7176,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
+          "description": "You can see in dim light within **60 feet** of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -7140,7 +7186,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -7150,7 +7196,8 @@
             "name": "Aasimar",
             "level": null
           },
-          "book": "VGTM"
+          "book": "VGTM",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Celestial Resistance",
@@ -7164,7 +7211,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Have resistance to necrotic damage and radiant damage. (permanent)",
+          "summary": "Gain resistance to necrotic and radiant damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -7174,7 +7221,8 @@
             "name": "Aasimar",
             "level": null
           },
-          "book": "VGTM"
+          "book": "VGTM",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Healing Hands",
@@ -7188,7 +7236,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "As an action, you can touch a creature and cause it to regain a number of hit points equal to your level. Once you use this trait, you can't use it again until you finish a long rest",
+          "summary": "As an action, touch a creature to restore hit points equal to your level plus your Charisma modifier. This cannot be used again until you finish a long rest.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -7198,7 +7246,8 @@
             "name": "Aasimar",
             "level": null
           },
-          "book": "VGTM"
+          "book": "VGTM",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Light Bearer",
@@ -7212,7 +7261,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You know the light cantrip. Charisma is your spellcasting ability for it",
+          "summary": "You know the light cantrip, using Charisma as your spellcasting ability.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -7222,7 +7271,8 @@
             "name": "Aasimar",
             "level": null
           },
-          "book": "VGTM"
+          "book": "VGTM",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
