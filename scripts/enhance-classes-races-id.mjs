@@ -189,7 +189,7 @@ await runEnhancement({
   validate,
   options,
   apply: (enhancements) => {
-    const files = applyToLocaleParts("id", units, enhancements);
+    const files = applyToLocaleParts("id", enhancements);
     return `wrote ${files.length} locale file(s)`;
   },
 });
