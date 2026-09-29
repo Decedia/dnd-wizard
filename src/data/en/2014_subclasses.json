@@ -11761,7 +11761,7 @@
         },
         {
           "name": "Rakish Audacity",
-          "description": "Starting at 3rd level, your confidence propels you into battle. You can give yourself advantage on a Charisma (Persuasion) check if you have not yet done so this encounter. In addition, you don't need advantage on your attack roll to use your Sneak Attack against a creature if you are within 5 feet of it, no other creatures are within 5 feet of you, and you don't have disadvantage on the attack roll. All the other rules for Sneak Attack still apply to you.",
+          "description": "Starting at 3rd level, your confidence propels you into battle. You can give yourself advantage on a Charisma (Persuasion) check if you have not yet done so this encounter.\n\nIn addition, you don't need advantage on your attack roll to use your Sneak Attack against a creature if you are within **5 feet** of it, no other creatures are within **5 feet** of you, and you don't have disadvantage on the attack roll. All the other rules for Sneak Attack still apply to you.",
           "level": 3,
           "featureType": "Active",
           "actionType": null,
@@ -11772,7 +11772,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "In addition, you don't need advantage on your attack roll to use your Sneak Attack against a creature if you are within 5 feet of it, no other creatures.",
+          "summary": "Gain advantage on one Charisma (Persuasion) check per encounter and use Sneak Attack without advantage if you are within 5 feet of a target and no other creatures are within 5 feet of you.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -11782,11 +11782,12 @@
             "name": "Swashbuckler",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Panache",
-          "description": "At 9th level, your charm becomes exceedingly persuasive. As an action, you can make a Charisma (Persuasion) check contested by a creature's Charisma (Intimidation) check. The creature must be able to hear you, and you must share a language with it. If you succeed, the creature is charmed by you for 1 minute. While charmed, the creature is friendly to you and your allies. If you fail, the creature is immune to your Panache for 24 hours.",
+          "description": "At 9th level, your charm becomes exceedingly persuasive. As an action, you can make a Charisma (Persuasion) check contested by a creature's Charisma (Intimidation) check. The creature must be able to hear you, and you must share a language with it.\n\nIf you succeed, the creature is charmed by you for **1 minute**. While charmed, the creature is friendly to you and your allies. If you fail, the creature is immune to your Panache for **24 hours**.",
           "level": 9,
           "featureType": "Active",
           "actionType": "Action",
@@ -11797,7 +11798,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "The creature is immune to your Panache for 24 hours. (action).",
+          "summary": "Use an action to attempt to charm a creature for 1 minute via a contested Charisma check; failure makes the target immune for 24 hours.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -11807,7 +11808,8 @@
             "name": "Swashbuckler",
             "level": 9
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Elegant Maneuver",
@@ -11822,7 +11824,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Starting at 13th level, you can use a bonus action on your turn to gain advantage on the next Dexterity (Acrobatics) or Strength (Athletics) check you make during the same.",
+          "summary": "Use a bonus action to gain advantage on the next Dexterity (Acrobatics) or Strength (Athletics) check you make this turn.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -11832,7 +11834,8 @@
             "name": "Swashbuckler",
             "level": 13
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Duelist's Defense",
@@ -11847,7 +11850,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can use your reaction to add your proficiency bonus to your AC against that attack, potentially causing the attack to miss. (reaction).",
+          "summary": "Use your reaction when hit by a melee attack to add your proficiency bonus to your AC, potentially causing the attack to miss.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -11857,7 +11860,8 @@
             "name": "Swashbuckler",
             "level": 17
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "XGE",
@@ -11869,7 +11873,7 @@
       "classIndex": "rogue",
       "index": "thief",
       "name": "Thief",
-      "flavorText": "Roguish Archetype",
+      "flavorText": "Roguish Archetype\n\nYou hone your skills in the larcenous arts. Burglars, bandits, cutpurses, and other criminals typically follow this archetype, but so do rogues who prefer to think of themselves as professional treasure seekers, explorers, delvers, and investigators. In addition to improving your agility and stealth, you learn skills useful for delving into ancient ruins, reading unfamiliar languages, and using magic items you normally couldn't employ.",
       "description": "You hone your skills in the larcenous arts. Burglars, bandits, cutpurses, and other criminals typically follow this archetype, but so do rogues who prefer to think of themselves as professional treasure seekers, explorers, delvers, and investigators. In addition to improving your agility and stealth, you learn skills useful for delving into ancient ruins, reading unfamiliar languages, and using magic items you normally couldn't employ.",
       "features": [
         {
@@ -11885,7 +11889,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Starting at 3rd level, you can use the bonus action granted by your Cunning Action to make a Dexterity (Sleight of Hand) check, use your thieves' tools to disarm.",
+          "summary": "Use your Cunning Action bonus action to make a Dexterity (Sleight of Hand) check, use thieves' tools to disarm a trap or open a lock, or Use an Object.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -11895,11 +11899,12 @@
             "name": "Thief",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Second-Story Work",
-          "description": "When you choose this archetype at 3rd level, you gain the ability to climb faster than normal; climbing no longer costs you extra movement.\nIn addition, when you make a running jump, the distance you cover increases by a number of feet equal to your Dexterity modifier.",
+          "description": "When you choose this archetype at 3rd level, you gain the ability to climb faster than normal; climbing no longer costs you extra movement.\n\nIn addition, when you make a running jump, the distance you cover increases by a number of feet equal to your Dexterity modifier.",
           "level": 3,
           "featureType": "Active",
           "actionType": null,
@@ -11910,7 +11915,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gain the ability to climb faster than normal; climbing no longer costs you extra movement. (action).",
+          "summary": "Climbing no longer costs you extra movement, and your running jump distance increases by your Dexterity modifier.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -11920,7 +11925,8 @@
             "name": "Thief",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Supreme Sneak",
@@ -11935,7 +11941,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Starting at 9th level, you have advantage on a Dexterity (Stealth) check if you move no more than half your speed on the same turn.",
+          "summary": "You have advantage on Dexterity (Stealth) checks if you move no more than half your speed on the same turn.",
           "grantsSpells": false,
           "grantsAttack": true,
           "grantsSkills": false,
@@ -11945,7 +11951,8 @@
             "name": "Thief",
             "level": 9
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Use Magic Device",
@@ -11960,7 +11967,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Ignore all class, race, and level requirements on the use of magic items. (action).",
+          "summary": "You ignore all class, race, and level requirements when using magic items.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -11970,7 +11977,8 @@
             "name": "Thief",
             "level": 13
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Thief's Reflexes",
@@ -11985,7 +11993,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Take your first turn at your normal initiative and your second turn at your initiative minus 10. (action).",
+          "summary": "You take two turns in the first round of combat: one at your normal initiative and one at your initiative minus 10.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -11995,18 +12003,20 @@
             "name": "Thief",
             "level": 17
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "PHB",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Sorcerer",
       "classIndex": "sorcerer",
       "index": "aberrant-mind",
       "name": "Aberrant Mind",
-      "flavorText": "Sorcerous Origin",
+      "flavorText": "Sorcerous Origin\n\nAn alien influence has wrapped its tendrils around your mind, granting you psionic power. You can now project this power to alter the world around you or channel it to cast spells.",
       "description": "An alien influence has wrapped its tendrils around your mind, giving you psionic power. You can now project that power to alter the world around you. You can also use your psionic power to cast spells.",
       "features": [
         {
@@ -12022,7 +12032,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Until the effect ends, you and the creature can share words, images, sounds, and other sensory messages with one another through the link. (action).",
+          "summary": "Establish a telepathic link with a willing creature to share words, images, sounds, and sensory messages.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -12032,7 +12042,8 @@
             "name": "Aberrant Mind",
             "level": 1
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Psionic Spells",
@@ -12047,7 +12058,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Each of these spells counts as a sorcerer spell for you, but it doesn't count against your number of sorcerer spells you know.",
+          "summary": "You learn additional spells that count as sorcerer spells for you but do not count against your number of sorcerer spells known.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -12057,11 +12068,12 @@
             "name": "Aberrant Mind",
             "level": 1
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Psychic Deflection",
-          "description": "At 6th level, you can use your mind to deflect attacks. When you take damage, you can use your reaction to roll 1d4 and add it to your AC until the start of your next turn, including against the triggering attack. When you use this feature, you can also choose to either gain advantage on the next attack roll you make before the end of your next turn, or impose disadvantage on the next attack roll made against you before the end of your next turn.",
+          "description": "At 6th level, you can use your mind to deflect attacks. When you take damage, you can use your reaction to roll **1d4** and add it to your AC until the start of your next turn, including against the triggering attack. When you use this feature, you can also choose to either gain advantage on the next attack roll you make before the end of your next turn, or impose disadvantage on the next attack roll made against you before the end of your next turn.",
           "level": 6,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -12072,7 +12084,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can use your reaction to roll 1d4 and add it to your AC until the start of your next turn, including against the triggering attack. (reaction).",
+          "summary": "Use your reaction when you take damage to add 1d4 to your AC until the start of your next turn, and either gain advantage on your next attack or impose disadvantage on the next attack against you.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -12082,11 +12094,12 @@
             "name": "Aberrant Mind",
             "level": 6
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Revelation in Flesh",
-          "description": "Starting at 14th level, you can unleash the aberrant truth hidden within your flesh. As a bonus action, you can spend 1 or more sorcery points to magically transform your body for 1 minute. For each point you spend, you gain one of the following benefits of your choice, the benefits lasting until the transformation ends:\n\nYou can see any invisible creature within 60 feet of you that isn't behind total cover.\n\nYou gain a climbing speed equal to your walking speed, and you can move up, down, and across vertical surfaces and upside down along ceilings, while leaving your hands free.\n\nYou gain a swimming speed equal to your walking speed and can breathe underwater.\n\nYour eyes become a deeper color, and you can see in darkness (both dim light and darkness) to a range of 60 feet.",
+          "description": "Starting at 14th level, you can unleash the aberrant truth hidden within your flesh. As a bonus action, you can spend **1** or more sorcery points to magically transform your body for **1 minute**. For each point you spend, you gain one of the following benefits of your choice, the benefits lasting until the transformation ends:\n\n- You can see any invisible creature within **60 feet** of you that isn't behind total cover.\n\n- You gain a climbing speed equal to your walking speed, and you can move up, down, and across vertical surfaces and upside down along ceilings, while leaving your hands free.\n\n- You gain a swimming speed equal to your walking speed and can breathe underwater.\n\n- Your eyes become a deeper color, and you can see in darkness (both dim light and darkness) to a range of **60 feet**.",
           "level": 14,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -12097,7 +12110,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gain a swimming speed equal to your walking speed and can breathe underwater. (bonus action).",
+          "summary": "Spend 1 or more sorcery points as a bonus action to transform your body for 1 minute, gaining various physical and sensory enhancements.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -12107,11 +12120,12 @@
             "name": "Aberrant Mind",
             "level": 14
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Warping Implosion",
-          "description": "At 18th level, you can warp space around a creature to destroy it. As an action, you can choose a creature you can see within 120 feet of you. The creature must make a Constitution saving throw. On a failed save, the creature takes 5d10 force damage and is teleported to an unoccupied space of your choice that you can see within 30 feet of you. On a successful save, the creature takes half as much damage and isn't teleported. If this damage reduces the creature to 0 hit points, it is disintegrated. Once you use this feature, you can't use it again until you finish a long rest.",
+          "description": "At 18th level, you can warp space around a creature to destroy it. As an action, you can choose a creature you can see within **120 feet** of you. The creature must make a Constitution saving throw. On a failed save, the creature takes **5d10** force damage and is teleported to an unoccupied space of your choice that you can see within **30 feet** of you. On a successful save, the creature takes half as much damage and isn't teleported. If this damage reduces the creature to 0 hit points, it is disintegrated. Once you use this feature, you can't use it again until you finish a long rest.",
           "level": 18,
           "featureType": "Active",
           "actionType": "Action",
@@ -12122,7 +12136,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "On a failed save, the creature takes 5d10 force damage and is teleported to an unoccupied space of your choice that you can see within 30 feet of you. (action).",
+          "summary": "As an action, force a creature to make a Constitution save or take 5d10 force damage and be teleported up to 30 feet; if reduced to 0 hit points, it is disintegrated.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -12132,11 +12146,13 @@
             "name": "Aberrant Mind",
             "level": 18
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "TCE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Clockwork Soul",
@@ -12149,14 +12165,15 @@
           "name": "Clockwork Magic",
           "level": 1,
           "featureType": "Passive",
-          "summary": "Learn additional order and abjuration spells at levels 1, 3, 5, 7, and 9.",
+          "summary": "You learn a set of order and abjuration spells at 1st, 3rd, 5th, 7th, and 9th level, which you can replace with other abjuration or transmutation spells.",
           "description": "1st: Alarm, Protection from Evil and Good; 3rd: Aid, Lesser Restoration; 5th: Dispel Magic, Protection from Energy; 7th: Freedom of Movement, Summon Construct; 9th: Greater Restoration, Wall of Force. You can replace these with abjuration or transmutation spells from the sorcerer, warlock, or wizard spell lists.",
           "source": {
             "type": "subclass",
             "name": "Clockwork Soul",
             "level": 1
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Restore Balance",
@@ -12167,14 +12184,15 @@
             "total": "Proficiency Bonus",
             "recharge": "Long Rest"
           },
-          "summary": "Reaction cancel advantage or disadvantage on a d20 roll for a creature within 60 feet.",
+          "summary": "Use a reaction to cancel advantage or disadvantage on a d20 roll for a creature within 60 feet.",
           "description": "Your connection to the plane of absolute law allows you to equalize chaotic fluctuations. When a creature you can see within 60 feet of you is about to roll a d20 with advantage or disadvantage, you can use your reaction to prevent the roll from being affected by advantage and disadvantage.",
           "source": {
             "type": "subclass",
             "name": "Clockwork Soul",
             "level": 1
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Bastion of Law",
@@ -12182,13 +12200,14 @@
           "featureType": "Active",
           "actionType": "Action",
           "summary": "Spend 1 to 5 sorcery points to create a protective ward of d8s that reduces incoming damage.",
-          "description": "You can imbue a creature with a shimmering shield of order. As an action, you can expend 1 to 5 sorcery points to create a magical ward around yourself or another creature you can see within 30 feet of you. The ward has a number of d8s equal to the sorcery points spent. When the warded creature takes damage, it can expend a number of those dice, roll them, and reduce the damage taken by the total rolled.",
+          "description": "You can imbue a creature with a shimmering shield of order. As an action, you can expend **1 to 5** sorcery points to create a magical ward around yourself or another creature you can see within 30 feet of you. The ward has a number of **d8s** equal to the sorcery points spent. When the warded creature takes damage, it can expend a number of those dice, roll them, and reduce the damage taken by the total rolled.",
           "source": {
             "type": "subclass",
             "name": "Clockwork Soul",
             "level": 6
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Trance of Order",
@@ -12199,14 +12218,15 @@
             "total": 1,
             "recharge": "Long Rest / 5 Sorcery Points"
           },
-          "summary": "Enter a clockwork trance for 1 minute: attacks against you can't have advantage, and attack/check/save d20 rolls of 9 or lower count as 10.",
-          "description": "As a bonus action, you can enter a state of clockwork perfection for 1 minute. Attack rolls against you can't benefit from advantage, and whenever you make an attack roll, an ability check, or a saving throw, you can treat a roll of 9 or lower on the d20 as a 10.",
+          "summary": "Enter a clockwork trance for 1 minute: attacks against you cannot have advantage, and your attack, check, or save rolls of 9 or lower count as 10.",
+          "description": "As a bonus action, you can enter a state of clockwork perfection for 1 minute. Attack rolls against you cannot benefit from advantage, and whenever you make an attack roll, an ability check, or a saving throw, you can treat a roll of 9 or lower on the d20 as a 10.",
           "source": {
             "type": "subclass",
             "name": "Clockwork Soul",
             "level": 14
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Clockwork Cavalcade",
@@ -12217,23 +12237,25 @@
             "total": 1,
             "recharge": "Long Rest / 7 Sorcery Points"
           },
-          "summary": "Summon a 30-foot cube of clockwork spirits: restore up to 100 HP, repair broken objects, and end 6th level or lower spells.",
-          "description": "You summon a procession of spirits of order to restore balance. As an action, you summon spirits in a 30-foot cube originating from you: the spirits restore up to 100 hit points, divided as you choose among any number of creatures in the cube; damaged objects in the cube are instantly repaired; and any spells of 6th level or lower on creatures and objects in the cube end.",
+          "summary": "Summon a 30-foot cube of clockwork spirits to restore up to 100 hit points, repair broken objects, and end spells of 6th level or lower.",
+          "description": "You summon a procession of spirits of order to restore balance. As an action, you summon spirits in a 30-foot cube originating from you: the spirits restore up to **100** hit points, divided as you choose among any number of creatures in the cube; damaged objects in the cube are instantly repaired; and any spells of 6th level or lower on creatures and objects in the cube end.",
           "source": {
             "type": "subclass",
             "name": "Clockwork Soul",
             "level": 18
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         }
-      ]
+      ],
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Sorcerer",
       "classIndex": "sorcerer",
       "index": "divine-soul",
       "name": "Divine Soul",
-      "flavorText": "Sorcerous Origin",
+      "flavorText": "Sorcerous Origin\n\nA divine soul has been touched by the grace of a divine being. The magic you wield is a gift from the gods, and you serve as a conduit for their celestial power.",
       "description": "A divine soul has been touched by the grace of a divine being. The magic you wield is a gift from the gods, and you are a conduit for their power.",
       "features": [
         {
@@ -12249,7 +12271,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 1st level, you gain proficiency in the Religion skill.",
+          "summary": "You are proficient in the Religion skill.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": true,
@@ -12259,11 +12281,12 @@
             "name": "Divine Soul",
             "level": 1
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Favored by the Gods",
-          "description": "Starting at 1st level, divine power guards your destiny. If you fail a saving throw or miss with an attack roll, you can roll 2d4 and add it to the total, possibly changing the outcome. Once you use this feature, you can't use it again until you finish a short or long rest.",
+          "description": "Starting at 1st level, divine power guards your destiny. If you fail a saving throw or miss with an attack roll, you can roll **2d4** and add it to the total, possibly changing the outcome. Once you use this feature, you can't use it again until you finish a short or long rest.",
           "level": 1,
           "featureType": "Active",
           "actionType": null,
@@ -12274,7 +12297,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can roll 2d4 and add it to the total, possibly changing the outcome. (action).",
+          "summary": "Add **2d4** to a failed saving throw or missed attack roll to potentially change the outcome.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -12284,11 +12307,12 @@
             "name": "Divine Soul",
             "level": 1
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Empowered Healing",
-          "description": "Starting at 6th level, the divine energy flowing through you can empower healing spells. Whenever you or an ally within 60 feet of you rolls dice to determine the number of hit points a spell restores, you can spend 1 sorcery point to reroll any number of those dice. You can use this feature only once per turn.",
+          "description": "Starting at 6th level, the divine energy flowing through you can empower healing spells. Whenever you or an ally within 60 feet of you rolls dice to determine the number of hit points a spell restores, you can spend **1** sorcery point to reroll any number of those dice. You can use this feature only once per turn.",
           "level": 6,
           "featureType": "Active",
           "actionType": null,
@@ -12299,7 +12323,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Whenever you or an ally within 60 feet of you rolls dice to determine the number of hit points a spell restores, you can spend 1 sorcery point to reroll.",
+          "summary": "Spend 1 sorcery point to reroll any number of dice used to determine hit points restored by a spell for you or an ally within 60 feet.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -12309,11 +12333,12 @@
             "name": "Divine Soul",
             "level": 6
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Otherworldly Wings",
-          "description": "At 14th level, you can use a bonus action to manifest a pair of spectral wings from your back. While the wings are present, you have a flying speed of 30 feet. The wings last until you are incapacitated, you die, or you dismiss them as a bonus action. You can create the wings a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+          "description": "At 14th level, you can use a bonus action to manifest a pair of spectral wings from your back. While the wings are present, you have a flying speed of **30 feet**. The wings last until you are incapacitated, you die, or you dismiss them as a bonus action. You can create the wings a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
           "level": 14,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -12324,7 +12349,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "As a bonus action, manifest spectral wings. While present, you have a flying speed of 30 feet. The wings last until you are incapacitated or die.",
+          "summary": "Manifest spectral wings as a bonus action to gain a flying speed of 30 feet until you are incapacitated, die, or dismiss them.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -12334,7 +12359,8 @@
             "name": "Divine Soul",
             "level": 14
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Unnerving Defense",
@@ -12349,7 +12375,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "The attacker takes psychic damage equal to half the damage you would have taken. (reaction).",
+          "summary": "Use a reaction to reduce incoming damage; if reduced to 0, the attacker takes psychic damage equal to half the original damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -12359,64 +12385,76 @@
             "name": "Divine Soul",
             "level": 18
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "XGE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Sorcerer",
       "classIndex": "sorcerer",
       "index": "draconic",
       "name": "Draconic",
-      "flavorText": "Sorcerous Origin",
+      "flavorText": "Your innate magic is born from draconic power woven into your own blood or that of your ancestors. Many who share this origin trace their lineage back to an ancient, powerful sorcerer who struck a bargain with a dragon, or perhaps even claimed a dragon as a parent. While some of these bloodlines are well-known throughout the world, most remain obscure. You might even be the first of a brand new bloodline, created by a pact or some other extraordinary event.",
       "description": "Your innate magic comes from draconic magic that was mingled with your blood or that of your ancestors. Most often, sorcerers with this origin trace their descent back to a mighty sorcerer of ancient times who made a bargain with a dragon or who might even have claimed a dragon parent. Some of these bloodlines are well established in the world, but most are obscure. Any given sorcerer could be the first of a new bloodline, as a result of a pact or some other exceptional circumstance.",
       "features": [
         {
           "name": "Dragon Ancestor",
-          "description": "At 1st level, you choose one type of dragon as your ancestor. The damage type associated with each dragon is used by features you gain later.\nYou can speak, read, and write Draconic. Additionally, whenever you make a Charisma check when interacting with dragons, your proficiency bonus is doubled if it applies to the check.",
+          "description": "At 1st level, you choose one type of dragon as your ancestor. The damage type associated with each dragon is used by features you gain later.\n\nYou can speak, read, and write Draconic. Additionally, whenever you make a Charisma check when interacting with dragons, your proficiency bonus is doubled if it applies to the check.",
           "level": 1,
           "choices": [
             {
               "name": "Black",
-              "description": "Acid damage"
+              "description": "Acid damage",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Blue",
-              "description": "Lightning damage"
+              "description": "Lightning damage",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Brass",
-              "description": "Fire damage"
+              "description": "Fire damage",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Bronze",
-              "description": "Lightning damage"
+              "description": "Lightning damage",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Copper",
-              "description": "Acid damage"
+              "description": "Acid damage",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Gold",
-              "description": "Fire damage"
+              "description": "Fire damage",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Green",
-              "description": "Poison damage"
+              "description": "Poison damage",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Red",
-              "description": "Fire damage"
+              "description": "Fire damage",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Silver",
-              "description": "Cold damage"
+              "description": "Cold damage",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "White",
-              "description": "Cold damage"
+              "description": "Cold damage",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "featureType": "Active",
@@ -12428,7 +12466,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "The damage type associated with each dragon is used by features you gain later. (action).",
+          "summary": "Choose a dragon ancestor to determine the damage type for future features and gain proficiency bonuses for interacting with dragons.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -12438,11 +12476,12 @@
             "name": "Draconic",
             "level": 1
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Draconic Resilience",
-          "description": "As magic flows through your body, it causes physical traits of your dragon ancestors to emerge. At 1st level, your hit point maximum increases by 1 and increases by 1 again whenever you gain a level in this class.\nAdditionally, parts of your skin are covered by a thin sheen of dragon-like scales. When you aren't wearing armor, your AC equals 13 + your Dexterity modifier.",
+          "description": "As magic flows through your body, it causes physical traits of your dragon ancestors to emerge. At 1st level, your hit point maximum increases by **1** and increases by **1** again whenever you gain a level in this class.\n\nAdditionally, parts of your skin are covered by a thin sheen of dragon-like scales. When you aren't wearing armor, your AC equals **13** + your Dexterity modifier.",
           "level": 1,
           "featureType": "Active",
           "actionType": null,
@@ -12453,7 +12492,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Your AC equals 13 + your Dexterity modifier. (action).",
+          "summary": "Your AC equals 13 + your Dexterity modifier while not wearing armor, and your maximum hit points increase.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -12463,11 +12502,12 @@
             "name": "Draconic",
             "level": 1
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Elemental Affinity",
-          "description": "Starting at 6th level, when you cast a spell that deals damage of the type associated with your draconic ancestry, you can add your Charisma modifier to one damage roll of that spell. At the same time, you can spend 1 sorcery point to gain resistance to that damage type for 1 hour.",
+          "description": "Starting at 6th level, when you cast a spell that deals damage of the type associated with your draconic ancestry, you can add your Charisma modifier to one damage roll of that spell.\n\nAt the same time, you can spend **1** sorcery point to gain resistance to that damage type for **1 hour**.",
           "level": 6,
           "featureType": "Active",
           "actionType": null,
@@ -12478,7 +12518,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Starting at 6th level, when you cast a spell that deals damage of the type associated with your draconic ancestry, you can add your Charisma modifier to one damage roll.",
+          "summary": "Add your Charisma modifier to one damage roll of a spell that deals damage of your draconic ancestry type.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -12488,11 +12528,12 @@
             "name": "Draconic",
             "level": 6
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Dragon Wings",
-          "description": "At 14th level, you gain the ability to sprout a pair of dragon wings from your back, gaining a flying speed equal to your current speed. You can create these wings as a bonus action on your turn. They last until you dismiss them as a bonus action on your turn.\nYou can't manifest your wings while wearing armor unless the armor is made to accommodate them, and clothing not made to accommodate your wings might be destroyed when you manifest them.",
+          "description": "At 14th level, you gain the ability to sprout a pair of dragon wings from your back, gaining a flying speed equal to your current speed. You can create these wings as a bonus action on your turn. They last until you dismiss them as a bonus action on your turn.\n\nYou can't manifest your wings while wearing armor unless the armor is made to accommodate them, and clothing not made to accommodate your wings might be destroyed when you manifest them.",
           "level": 14,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -12503,7 +12544,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 14th level, you gain the ability to sprout a pair of dragon wings from your back, gaining a flying speed equal to your current speed. (bonus action).",
+          "summary": "Sprout dragon wings as a bonus action to gain a flying speed equal to your current speed.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -12513,11 +12554,12 @@
             "name": "Draconic",
             "level": 14
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Draconic Presence",
-          "description": "Beginning at 18th level, you can channel the dread presence of your dragon ancestor, causing those around you to become awestruck or frightened. As an action, you can spend 5 sorcery points to draw on this power and exude an aura of awe or fear (your choice) to a distance of 60 feet. For 1 minute or until you lose your concentration (as if you were casting a concentration spell), each hostile creature that starts its turn in this aura must succeed on a Wisdom saving throw or be charmed (if you chose awe) or frightened (if you chose fear) until the aura ends. A creature that succeeds on this saving throw is immune to your aura for 24 hours.",
+          "description": "Beginning at 18th level, you can channel the dread presence of your dragon ancestor, causing those around you to become awestruck or frightened. As an action, you can spend **5** sorcery points to draw on this power and exude an aura of awe or fear (your choice) to a distance of **60 feet**. For **1 minute** or until you lose your concentration (as if you were casting a concentration spell), each hostile creature that starts its turn in this aura must succeed on a Wisdom saving throw or be charmed (if you chose awe) or frightened (if you chose fear) until the aura ends. A creature that succeeds on this saving throw is immune to your aura for **24 hours**.",
           "level": 18,
           "featureType": "Active",
           "actionType": "Action",
@@ -12528,7 +12570,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "A creature that succeeds on this saving throw is immune to your aura for 24 hours. (action).",
+          "summary": "Spend 5 sorcery points as an action to exude an aura of awe or fear for 1 minute, charming or frightening hostile creatures within 60 feet.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -12538,11 +12580,13 @@
             "name": "Draconic",
             "level": 18
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "PHB",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Sorcerer",
@@ -12554,7 +12598,7 @@
       "features": [
         {
           "name": "Eyes of the Dark",
-          "description": "Starting at 1st level, you have darkvision with a range of 120 feet. When you reach 3rd level in this class, you learn the darkness spell, which doesn't count against your number of spells known. In addition, you can cast that spell by spending 2 sorcery points, and you can see through the darkness created by the spell.",
+          "description": "Starting at 1st level, you have darkvision with a range of **120 feet**. When you reach 3rd level in this class, you learn the darkness spell, which doesn't count against your number of spells known. In addition, you can cast that spell by spending **2** sorcery points, and you can see through the darkness created by the spell.",
           "level": 1,
           "featureType": "Active",
           "actionType": null,
@@ -12565,7 +12609,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Starting at 1st level, you have darkvision with a range of 120 feet. (action).",
+          "summary": "Gain darkvision with a range of 120 feet and the ability to cast darkness using sorcery points.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -12575,11 +12619,12 @@
             "name": "Shadow Magic",
             "level": 1
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Strength of the Grave",
-          "description": "Starting at 1st level, the magic of the Shadowfell wards your soul. When damage reduces you to 0 hit points, you can make a Charisma saving throw (DC 5 + the damage taken). On a success, you drop to 1 hit point instead. You can't use this feature if you are reduced to 0 hit points by radiant damage or by a critical hit. After the saving throw succeeds, you can't use this feature again until you finish a long rest.",
+          "description": "Starting at 1st level, the magic of the Shadowfell wards your soul. When damage reduces you to 0 hit points, you can make a Charisma saving throw (DC **5 + the damage taken**). On a success, you drop to **1 hit point** instead. You can't use this feature if you are reduced to 0 hit points by radiant damage or by a critical hit. After the saving throw succeeds, you can't use this feature again until you finish a long rest.",
           "level": 1,
           "featureType": "Active",
           "actionType": null,
@@ -12590,7 +12635,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can make a Charisma saving throw (DC 5 + the damage taken). (action).",
+          "summary": "When reduced to 0 hit points, make a Charisma saving throw to drop to 1 hit point instead.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -12600,11 +12645,12 @@
             "name": "Shadow Magic",
             "level": 1
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Hound of Ill Omen",
-          "description": "At 6th level, you gain the ability to call forth a howling creature of darkness to harass your foes. As a bonus action, you can spend 3 sorcery points to summon a hound of ill omen to target one creature you can see within 120 feet of you. The hound uses the dire wolf stat block, with the following changes: The hound is a fiend, not a beast. It appears with a number of temporary hit points equal to half your sorcerer level. It can move through other creatures and objects as if they were difficult terrain. It takes 5 force damage if it ends its turn inside an object. The hound disappears if it is reduced to 0 hit points, if it is more than 30 feet away from you for more than 1 minute, or if you use this feature again.\n\nOn each of your turns, you can use your bonus action to command the hound to move to a space within 5 feet of the target and make an attack roll against it. The hound can move through other creatures and objects as if they were difficult terrain. It takes 5 force damage if it ends its turn inside an object.",
+          "description": "At 6th level, you gain the ability to call forth a howling creature of darkness to harass your foes. As a bonus action, you can spend **3** sorcery points to summon a hound of ill omen to target one creature you can see within **120 feet** of you. The hound uses the dire wolf stat block, with the following changes: The hound is a fiend, not a beast. It appears with a number of temporary hit points equal to half your sorcerer level. It can move through other creatures and objects as if they were difficult terrain. It takes **5** force damage if it ends its turn inside an object. The hound disappears if it is reduced to 0 hit points, if it is more than **30 feet** away from you for more than **1 minute**, or if you use this feature again.\n\nOn each of your turns, you can use your bonus action to command the hound to move to a space within **5 feet** of the target and make an attack roll against it. The hound can move through other creatures and objects as if they were difficult terrain. It takes **5** force damage if it ends its turn inside an object.",
           "level": 6,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -12615,7 +12661,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "The hound disappears if it is reduced to 0 hit points, if it is more than 30 feet away from you for more than 1 minute, or if you use.",
+          "summary": "Spend 3 sorcery points as a bonus action to summon a fiendish hound to harass a target within 120 feet.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -12625,11 +12671,12 @@
             "name": "Shadow Magic",
             "level": 6
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Shadow Walk",
-          "description": "At 14th level, you gain the ability to step from one shadow into another. When you are in dim light or darkness, as a bonus action, you can teleport up to 120 feet to an unoccupied space you can see that is also in dim light or darkness.",
+          "description": "At 14th level, you gain the ability to step from one shadow into another. While you are in dim light or darkness, you can use a bonus action to teleport up to **120 feet** to an unoccupied space you can see that is also in dim light or darkness.",
           "level": 14,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -12640,7 +12687,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "As a bonus action, you can teleport up to 120 feet to an unoccupied space you can see that is also in dim light or darkness. (bonus action).",
+          "summary": "Teleport up to **120 feet** to an unoccupied space you can see that is in dim light or darkness.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -12650,11 +12697,12 @@
             "name": "Shadow Magic",
             "level": 14
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Umbral Form",
-          "description": "Starting at 18th level, you can use a bonus action to spend 5 sorcery points to transform your body into living shadow for 1 minute. While in this form, you have resistance to all damage except psychic and radiant damage, and you can move through other creatures and objects as if they were difficult terrain. You take 5 force damage if you end your turn inside an object. In addition, you are invisible while you are in dim light or darkness.",
+          "description": "Starting at 18th level, you can use a bonus action to spend **5** sorcery points to transform your body into living shadow for **1 minute**. While in this form, you have resistance to all damage except psychic and radiant damage, and you can move through other creatures and objects as if they were difficult terrain. You take **5** force damage if you end your turn inside an object. In addition, you are invisible while you are in dim light or darkness.",
           "level": 18,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -12665,7 +12713,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Take 5 force damage if you end your turn inside an object. (bonus action).",
+          "summary": "Spend 5 sorcery points to gain resistance to most damage, move through objects, and become invisible in dim light or darkness.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -12675,18 +12723,20 @@
             "name": "Shadow Magic",
             "level": 18
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "XGE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Sorcerer",
       "classIndex": "sorcerer",
       "index": "storm-sorcery",
       "name": "Storm Sorcery",
-      "flavorText": "Sorcerous Origin",
+      "flavorText": "Your magic springs from a connection to the elemental power of the storm. Many storm sorcerers can trace their magic to a near-death experience caused by a powerful storm, but perhaps your magic comes from a more distant source.",
       "description": "Your magic springs from a connection to the elemental power of the storm. Many storm sorcerers can trace their magic to a near-death experience caused by a powerful storm, but perhaps your magic comes from a more distant source.",
       "features": [
         {
@@ -12702,7 +12752,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "The arcane magic you command is infused with elemental air. (action).",
+          "summary": "You can speak, read, and write Primordial, including its dialects: Aquan, Auran, Ignan, and Terran.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -12712,11 +12762,12 @@
             "name": "Storm Sorcery",
             "level": 1
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Tempestuous Magic",
-          "description": "Starting at 1st level, you can use a bonus action on your turn to cause whirling gusts of elemental air to briefly surround you, immediately before or after you cast a spell of 1st level or higher. Doing so allows you to fly up to 10 feet without provoking opportunity attacks.",
+          "description": "Starting at 1st level, you can use a bonus action on your turn to cause whirling gusts of elemental air to briefly surround you, immediately before or after you cast a spell of 1st level or higher. Doing so allows you to fly up to **10 feet** without provoking opportunity attacks.",
           "level": 1,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -12727,7 +12778,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Doing so allows you to fly up to 10 feet without provoking opportunity attacks. (bonus action).",
+          "summary": "Fly up to **10 feet** without provoking opportunity attacks when casting a spell of 1st level or higher.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -12737,11 +12788,12 @@
             "name": "Storm Sorcery",
             "level": 1
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Heart of the Storm",
-          "description": "At 6th level, you gain resistance to lightning and thunder damage. In addition, whenever you start casting a spell of 1st level or higher that deals lightning or thunder damage, stormy magic erupts from you. This magic forces each creature of your choice that you can see within 10 feet of you to make a Constitution saving throw. The creature takes lightning or thunder damage (your choice) equal to half your sorcerer level on a failed save, or half as much damage on a successful one.",
+          "description": "At 6th level, you gain resistance to lightning and thunder damage. In addition, whenever you start casting a spell of 1st level or higher that deals lightning or thunder damage, stormy magic erupts from you. This magic forces each creature of your choice that you can see within **10 feet** of you to make a Constitution saving throw. The creature takes lightning or thunder damage (your choice) equal to half your sorcerer level on a failed save, or half as much damage on a successful one.",
           "level": 6,
           "featureType": "Passive",
           "actionType": null,
@@ -12752,7 +12804,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "This magic forces each creature of your choice that you can see within 10 feet of you to make a Constitution saving throw.",
+          "summary": "Gain resistance to lightning and thunder damage, and deal damage to nearby creatures when casting lightning or thunder spells.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -12762,11 +12814,12 @@
             "name": "Storm Sorcery",
             "level": 6
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Storm Guide",
-          "description": "At 6th level, you gain the ability to subtly control the weather around you. If it is raining, you can use an action to cause the rain to stop falling in a 20-foot-radius sphere centered on you. You can end this effect as a bonus action. If it is windy, you can use a bonus action on your turn to choose the direction that the wind is blowing in a 100-foot-radius sphere centered on you. The wind blows in that direction until the end of your next turn. This feature doesn't alter the speed of the wind.",
+          "description": "At 6th level, you gain the ability to subtly control the weather around you.\n\nIf it is raining, you can use an action to cause the rain to stop falling in a **20-foot-radius** sphere centered on you. You can end this effect as a bonus action.\n\nIf it is windy, you can use a bonus action on your turn to choose the direction that the wind is blowing in a **100-foot-radius** sphere centered on you. The wind blows in that direction until the end of your next turn. This feature doesn't alter the speed of the wind.",
           "level": 6,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -12777,7 +12830,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Doesn't alter the speed of the wind. (bonus action).",
+          "summary": "Stop rain in a 20-foot-radius or change wind direction in a 100-foot-radius.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -12787,11 +12840,12 @@
             "name": "Storm Sorcery",
             "level": 6
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Storm's Fury",
-          "description": "Starting at 14th level, when you are hit by a melee attack, you can use your reaction to deal lightning damage to the attacker. The damage equals your sorcerer level, and the attacker must also make a Strength saving throw. On a failed save, the attacker is pushed up to 20 feet away from you.",
+          "description": "Starting at 14th level, when you are hit by a melee attack, you can use your reaction to deal lightning damage to the attacker. The damage equals your sorcerer level, and the attacker must also make a Strength saving throw. On a failed save, the attacker is pushed up to **20 feet** away from you.",
           "level": 14,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -12802,7 +12856,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "On a failed save, the attacker is pushed up to 20 feet away from you. (reaction).",
+          "summary": "Deal lightning damage equal to your sorcerer level and push an attacker up to 20 feet away on a failed Strength save.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -12812,11 +12866,12 @@
             "name": "Storm Sorcery",
             "level": 14
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Wind Soul",
-          "description": "At 18th level, you gain immunity to lightning and thunder damage. You also gain a magical flying speed of 60 feet. As an action, you can reduce your flying speed to 30 feet for 1 hour and choose a number of creatures within 30 feet of you equal to 3 + your Charisma modifier. The chosen creatures gain a magical flying speed of 30 feet for 1 hour. Once you reduce your flying speed in this way, you can't do so again until you finish a short or long rest.",
+          "description": "At 18th level, you gain immunity to lightning and thunder damage. You also gain a magical flying speed of **60 feet**.\n\nAs an action, you can reduce your flying speed to **30 feet** for **1 hour** and choose a number of creatures within **30 feet** of you equal to **3 + your Charisma modifier**. The chosen creatures gain a magical flying speed of **30 feet** for **1 hour**. Once you reduce your flying speed in this way, you can't do so again until you finish a short or long rest.",
           "level": 18,
           "featureType": "Active",
           "actionType": "Action",
@@ -12827,7 +12882,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Also gain a magical flying speed of 60 feet. (action).",
+          "summary": "Gain immunity to lightning and thunder damage and a flying speed of 60 feet; can share flying speed with allies.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -12837,23 +12892,25 @@
             "name": "Storm Sorcery",
             "level": 18
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "XGE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Wild Magic",
       "class": "Sorcerer",
       "classIndex": "sorcerer",
       "index": "wild-magic",
-      "flavorText": "Sorcerous Origin",
+      "flavorText": "Your innate magic is born from the swirling chaos of wild magic. Raw, uncontrolled energy flows through your veins, manifesting in unpredictable ways and triggering random magical effects whenever you cast your spells.\n\nWild Magic sorcerers are born with this chaotic power surging within them. It is a double-edged sword: a blessing that grants immense strength, but a curse that carries the constant risk of catastrophic magical surges.",
       "description": "Your innate magic comes from the chaos of wild magic. The raw, uncontrolled magical energy that flows through you can manifest in unpredictable ways, creating random magical effects when you cast spells.\n\nWild Magic sorcerers are born with chaotic magic that surges within them. This power can be both a blessing and a curse, granting great strength but also carrying the risk of catastrophic magical surges.",
       "features": [
         {
           "name": "Wild Magic Surge",
-          "description": "Starting at 1st level, your spellcasting can unleash surges of untamed magic. Immediately after you cast a sorcerer spell of 1st level or higher, the DM can have you roll a d20. If you roll a 1, roll on the Wild Magic Surge table to create a random magical effect. A surge can occur once per turn. If a surge effect is a spell, it is too wild to be affected by your Metamagic. Wild Magic Surge Table (d100): 01-02: Roll on this table at the start of each of your turns for the next minute, ignoring this result on subsequent rolls. 03-04: For the next minute, you can see any invisible creature if you have line of sight to it. 05-06: A modron chosen and controlled by the DM appears in an unoccupied space within 5 feet of you, then disappears 1 minute later. 07-08: You cast Fireball as a 3rd-level spell centered on yourself. 09-10: You cast Magic Missile as a 5th-level spell. 11-12: Roll a d10. Your height changes by a number of inches equal to the roll. If the roll is odd, you shrink. If the roll is even, you grow. 13-14: You cast Confusion centered on yourself. 15-16: For the next minute, you regain 5 hit points at the start of each of your turns. 17-18: Your head grows to the size of a watermelon for the next minute. 19-20: You cast Fly on a random creature within 60 feet of you. 21-22: You become invisible for the next minute. During that time, other creatures can't hear you. The invisibility ends if you attack or cast a spell. 23-24: A spectral shield hovers near you for the next minute, granting a +2 bonus to AC and immunity to Magic Missile. 25-26: You can't speak for the next minute. Pink bubbles float out of your mouth whenever you try. 27-28: A unicorn controlled by the DM appears in a space within 5 feet of you, then disappears 1 minute later. 29-30: You cast Fog Cloud centered on yourself. 31-32: Up to three creatures you choose within 30 feet of you take 4d10 lightning damage. 33-34: You are frightened by the nearest creature until the end of your next turn. 35-36: Each creature within 30 feet of you becomes invisible for the next minute. The invisibility ends on a creature when it attacks or casts a spell. 37-38: You gain resistance to all damage for the next minute. 39-40: Your skin turns a vibrant shade of blue for 1d10 days. 41-42: A creature other than you within 30 feet of you is poisoned for 1d4 hours. 43-44: You cast Polymorph on yourself. If you fail the saving throw, you turn into a sheep for the duration. 45-46: For the next minute, any flammable object you touch that isn't being worn or carried bursts into flame. 47-48: You regain your lowest-level expended spell slot. 49-50: For the next minute, you must shout when you speak. 51-52: You cast Mirror Image on yourself. 53-54: You cast Fly on a random creature within 30 feet of you. 55-56: You become invisible for the next minute. During that time, other creatures can't hear you. The invisibility ends if you attack or cast a spell. 57-58: You cast Stinking Cloud centered on yourself. 59-60: Up to three creatures you choose within 30 feet of you take 4d10 fire damage. 61-62: You cast Speak with Dead. 63-64: You can immediately take one additional action. 65-66: You are teleported up to 60 feet to an unoccupied space of your choice that you can see. 67-68: The nearest door within 60 feet of you becomes a portal to a random plane for 1 minute. 69-70: A unicorn controlled by the DM appears in a space within 5 feet of you, then disappears 1 minute later. 71-72: You are teleported to the Astral Plane until the end of your next turn, after which time you return to the space you previously occupied or the nearest unoccupied space. 73-74: Maximize the damage of the next damaging spell you cast at a higher level. 75-76: Roll a d10. Your age changes by a number of years equal to the roll. If the roll is odd, you get younger (minimum 1 year). If the roll is even, you get older. 77-78: 1d6 flumphs controlled by the DM appear in unoccupied spaces within 60 feet of you and are frightened of you. They vanish after 1 minute. 79-80: You cast Polymorph on yourself. If you fail the saving throw, you turn into a sheep for the duration. 81-82: For the next minute, you can teleport up to 20 feet as a bonus action on each of your turns. 83-84: You cast Sunburst centered on yourself. 85-86: A mind flayer chosen and controlled by the DM appears in an unoccupied space within 5 feet of you, then disappears 1 minute later. 87-88: For the next minute, a random creature within 60 feet of you is poisoned. 89-90: You are immune to intoxication for the next 5d6 days. 91-92: Your hands become covered in sticky goo for the next minute. 93-94: You cast Greater Invisibility on yourself. 95-96: Your gender is changed for 1d10 days. 97-98: The next creature you hit with an attack takes an extra 1d6 force damage from the attack. 99-00: You regain all expended sorcery points.",
+          "description": "Starting at 1st level, your spellcasting can unleash surges of untamed magic. Immediately after you cast a sorcerer spell of 1st level or higher, the DM can have you roll a d20. If you roll a 1, roll on the Wild Magic Surge table to create a random magical effect.\n\nA surge can occur once per turn. If a surge effect is a spell, it is too wild to be affected by your Metamagic.\n\nWild Magic Surge Table (d100):\n- 01-02: Roll on this table at the start of each of your turns for the next minute, ignoring this result on subsequent rolls.\n- 03-04: For the next minute, you can see any invisible creature if you have line of sight to it.\n- 05-06: A modron chosen and controlled by the DM appears in an unoccupied space within 5 feet of you, then disappears 1 minute later.\n- 07-08: You cast Fireball as a 3rd-level spell centered on yourself.\n- 09-10: You cast Magic Missile as a 5th-level spell.\n- 11-12: Roll a d10. Your height changes by a number of inches equal to the roll. If the roll is odd, you shrink. If the roll is even, you grow.\n- 13-14: You cast Confusion centered on yourself.\n- 15-16: For the next minute, you regain 5 hit points at the start of each of your turns.\n- 17-18: Your head grows to the size of a watermelon for the next minute.\n- 19-20: You cast Fly on a random creature within 60 feet of you.\n- 21-22: You become invisible for the next minute. During that time, other creatures can't hear you. The invisibility ends if you attack or cast a spell.\n- 23-24: A spectral shield hovers near you for the next minute, granting a +2 bonus to AC and immunity to Magic Missile.\n- 25-26: You can't speak for the next minute. Pink bubbles float out of your mouth whenever you try.\n- 27-28: A unicorn controlled by the DM appears in a space within 5 feet of you, then disappears 1 minute later.\n- 29-30: You cast Fog Cloud centered on yourself.\n- 31-32: Up to three creatures you choose within 30 feet of you take **4d10** lightning damage.\n- 33-34: You are frightened by the nearest creature until the end of your next turn.\n- 35-36: Each creature within 30 feet of you becomes invisible for the next minute. The invisibility ends on a creature when it attacks or casts a spell.\n- 37-38: You gain resistance to all damage for the next minute.\n- 39-40: Your skin turns a vibrant shade of blue for **1d10** days.\n- 41-42: A creature other than you within 30 feet of you is poisoned for **1d4** hours.\n- 43-44: You cast Polymorph on yourself. If you fail the saving throw, you turn into a sheep for the duration.\n- 45-46: For the next minute, any flammable object you touch that isn't being worn or carried bursts into flame.\n- 47-48: You regain your lowest-level expended spell slot.\n- 49-50: For the next minute, you must shout when you speak.\n- 51-52: You cast Mirror Image on yourself.\n- 53-54: You cast Fly on a random creature within 30 feet of you.\n- 55-56: You become invisible for the next minute. During that time, other creatures can't hear you. The invisibility ends if you attack or cast a spell.\n- 57-58: You cast Stinking Cloud centered on yourself.\n- 59-60: Up to three creatures you choose within 30 feet of you take **4d10** fire damage.\n- 61-62: You cast Speak with Dead.\n- 63-64: You can immediately take one additional action.\n- 65-66: You are teleported up to 60 feet to an unoccupied space of your choice that you can see.\n- 67-68: The nearest door within 60 feet of you becomes a portal to a random plane for 1 minute.\n- 69-70: A unicorn controlled by the DM appears in a space within 5 feet of you, then disappears 1 minute later.\n- 71-72: You are teleported to the Astral Plane until the end of your next turn, after which time you return to the space you previously occupied or the nearest unoccupied space.\n- 73-74: Maximize the damage of the next damaging spell you cast at a higher level.\n- 75-76: Roll a d10. Your age changes by a number of years equal to the roll. If the roll is odd, you get younger (minimum 1 year). If the roll is even, you get older.\n- 77-78: **1d6** flumphs controlled by the DM appear in unoccupied spaces within 60 feet of you and are frightened of you. They vanish after 1 minute.\n- 79-80: You cast Polymorph on yourself. If you fail the saving throw, you turn into a sheep for the duration.\n- 81-82: For the next minute, you can teleport up to 20 feet as a bonus action on each of your turns.\n- 83-84: You cast Sunburst centered on yourself.\n- 85-86: A mind flayer chosen and controlled by the DM appears in an unoccupied space within 5 feet of you, then disappears 1 minute later.\n- 87-88: For the next minute, a random creature within 60 feet of you is poisoned.\n- 89-90: You are immune to intoxication for the next **5d6** days.\n- 91-92: Your hands become covered in sticky goo for the next minute.\n- 93-94: You cast Greater Invisibility on yourself.\n- 95-96: Your gender is changed for **1d10** days.\n- 97-98: The next creature you hit with an attack takes an extra **1d6** force damage from the attack.\n- 99-00: You regain all expended sorcery points.",
           "level": 1,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -12864,7 +12921,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "97-98: The next creature you hit with an attack takes an extra 1d6 force damage from the attack. (bonus action).",
+          "summary": "After casting a 1st-level or higher sorcerer spell, the DM may have you roll a d20; on a 1, you trigger a random effect from the Wild Magic Surge table.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -12874,11 +12931,12 @@
             "name": "Wild Magic",
             "level": 1
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Tides of Chaos",
-          "description": "Starting at 1st level, you can manipulate the forces of chance and chaos to gain advantage on one attack roll, ability check, or saving throw. Once you do so, you must finish a long rest before you can use this feature again. Any time before you regain the use of this feature, the DM can have you roll on the Wild Magic Surge table immediately after you cast a sorcerer spell of 1st level or higher. You then regain the use of this feature.",
+          "description": "Starting at 1st level, you can manipulate the forces of chance and chaos to gain advantage on one attack roll, ability check, or saving throw. Once you do so, you must finish a long rest before you can use this feature again.\n\nAny time before you regain the use of this feature, the DM can have you roll on the Wild Magic Surge table immediately after you cast a sorcerer spell of 1st level or higher. You then regain the use of this feature.",
           "level": 1,
           "featureType": "Active",
           "actionType": null,
@@ -12899,11 +12957,12 @@
             "name": "Wild Magic",
             "level": 1
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Bend Luck",
-          "description": "Starting at 6th level, you have the ability to twist fate using your wild magic. When another creature you can see makes an ability check or a saving throw, you can use your reaction and spend 2 sorcery points to roll 4d4 and apply the number rolled as a bonus or penalty (your choice) to the creature's ability check or saving throw. You can do so after the creature rolls but before the outcome is determined.",
+          "description": "Starting at 6th level, you have the ability to twist fate using your wild magic. When another creature you can see makes an ability check or a saving throw, you can use your reaction and spend **2** sorcery points to roll **4d4** and apply the number rolled as a bonus or penalty (your choice) to the creature's ability check or saving throw. You can do so after the creature rolls but before the outcome is determined.",
           "level": 6,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -12914,7 +12973,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have the ability to twist fate using your wild magic.",
+          "summary": "Spend 2 sorcery points to add or subtract 4d4 from another creature's ability check or saving throw.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -12924,7 +12983,8 @@
             "name": "Wild Magic",
             "level": 6
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Controlled Chaos",
@@ -12939,7 +12999,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 14th level, you gain a modicum of control over the surges of your wild magic. (action).",
+          "summary": "Roll twice on the Wild Magic Surge table and choose either result.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -12949,7 +13009,8 @@
             "name": "Wild Magic",
             "level": 14
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Spell Bombardment",
@@ -12964,7 +13025,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "When you roll damage for a spell and roll the same number on two or more dice, you can reroll one of those dice. You must use the new roll.",
+          "summary": "Reroll one damage die if two or more dice show the same number.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -12974,11 +13035,13 @@
             "name": "Wild Magic",
             "level": 18
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "PHB",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Warlock",
@@ -12989,7 +13052,7 @@
         {
           "level": 1,
           "name": "Fey Presence",
-          "description": "Starting at 1st level, your patron bestows upon you the ability to project the beguiling and fearsome presence of the fey. As an action, you can cause each creature in a 10-foot cube originating from you to make a Wisdom saving throw against your warlock spell save DC. The creatures that fail their saving throws are all charmed or frightened by you (your choice) until the end of your next turn. Once you use this feature, you can't use it again until you finish a short or long rest.",
+          "description": "Starting at 1st level, your patron bestows upon you the ability to project the beguiling and fearsome presence of the fey. As an action, you can cause each creature in a **10-foot** cube originating from you to make a Wisdom saving throw against your warlock spell save DC. The creatures that fail their saving throws are all charmed or frightened by you (your choice) until the end of your next turn. Once you use this feature, you can't use it again until you finish a short or long rest.",
           "featureType": "Active",
           "actionType": "Action",
           "uses": null,
@@ -12999,7 +13062,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "The creatures that fail their saving throws are all charmed or frightened by you (your choice) until the end of your next turn. (action).",
+          "summary": "Force creatures in a 10-foot cube to make a Wisdom save or be charmed or frightened until the end of your next turn.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13009,12 +13072,13 @@
             "name": "Archfey",
             "level": 1
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "level": 6,
           "name": "Misty Escape",
-          "description": "Starting at 6th level, you can vanish in a puff of mist in response to harm. When you take damage, you can use your reaction to turn invisible and teleport up to 60 feet to an unoccupied space you can see. You remain invisible until the start of your next turn or until you attack or cast a spell. Once you use this feature, you can't use it again until you finish a short or long rest.",
+          "description": "Starting at 6th level, you can vanish in a puff of mist in response to harm. When you take damage, you can use your reaction to turn invisible and teleport up to **60 feet** to an unoccupied space you can see. You remain invisible until the start of your next turn or until you attack or cast a spell. Once you use this feature, you can't use it again until you finish a short or long rest.",
           "featureType": "Active",
           "actionType": "Reaction",
           "uses": null,
@@ -13024,7 +13088,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can use your reaction to turn invisible and teleport up to 60 feet to an unoccupied space you can see. (reaction).",
+          "summary": "Use your reaction to turn invisible and teleport up to 60 feet to an unoccupied space you can see.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13034,12 +13098,13 @@
             "name": "Archfey",
             "level": 6
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "level": 10,
           "name": "Beguiling Defenses",
-          "description": "Beginning at 10th level, your patron teaches you how to turn the mind-affecting magic of your enemies against them. You are immune to being charmed, and when another creature attempts to charm you, you can use your reaction to attempt to turn the charm back on that creature. The creature must succeed on a Wisdom saving throw against your warlock spell save DC or be charmed by you for 1 minute or until the creature takes any damage.",
+          "description": "Beginning at 10th level, your patron teaches you how to turn the mind-affecting magic of your enemies against them. You are immune to being charmed, and when another creature attempts to charm you, you can use your reaction to attempt to turn the charm back on that creature. The creature must succeed on a Wisdom saving throw against your warlock spell save DC or be charmed by you for **1 minute** or until the creature takes any damage.",
           "featureType": "Active",
           "actionType": "Reaction",
           "uses": null,
@@ -13049,7 +13114,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "The creature must succeed on a Wisdom saving throw against your warlock spell save DC or be charmed by you for 1 minute or until the creature takes any.",
+          "summary": "You are immune to being charmed; when targeted by a charm, you can use your reaction to attempt to charm the creature instead.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13059,12 +13124,13 @@
             "name": "Archfey",
             "level": 10
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "level": 14,
           "name": "Dark Delirium",
-          "description": "Starting at 14th level, you can plunge a creature into an illusory realm. As an action, choose a creature that you can see within 60 feet of you. It must make a Wisdom saving throw against your warlock spell save DC. On a failed save, it is charmed or frightened by you (your choice) for 1 minute or until your concentration is broken (as if you are concentrating on a spell). This effect ends early if the creature takes any damage. Until this illusion ends, the creature thinks it is lost in a misty realm, the appearance of which you choose. The creature can see and hear only itself, you, and the illusion. You must finish a short or long rest before you can use this feature again.",
+          "description": "Starting at 14th level, you can plunge a creature into an illusory realm. As an action, choose a creature that you can see within **60 feet** of you. It must make a Wisdom saving throw against your warlock spell save DC. On a failed save, it is charmed or frightened by you (your choice) for **1 minute** or until your concentration is broken (as if you are concentrating on a spell). This effect ends early if the creature takes any damage. Until this illusion ends, the creature thinks it is lost in a misty realm, the appearance of which you choose. The creature can see and hear only itself, you, and the illusion. You must finish a short or long rest before you can use this feature again.",
           "featureType": "Active",
           "actionType": "Action",
           "uses": null,
@@ -13074,7 +13140,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Choose a creature that you can see within 60 feet of you. (action).",
+          "summary": "Use an action to force a creature within 60 feet to make a Wisdom save or be charmed or frightened in an illusory realm.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13084,23 +13150,25 @@
             "name": "Archfey",
             "level": 14
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "PHB",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Warlock",
       "classIndex": "warlock",
       "index": "fiend",
       "name": "Fiend",
-      "flavorText": "Otherworldly Patron",
+      "flavorText": "You have forged a pact with a fiend from the lower planes of existence, a being of inherent evil, even if you strive to oppose those dark aims. Such beings seek the corruption or destruction of all things, and eventually, they seek yours as well. Fiends powerful enough to grant such a pact include demon lords like Demogorgon, Orcus, Fraz'Urb-luu, and Baphomet; archdevils such as Asmodeus, Dispater, Mephistopheles, and Belial; exceptionally mighty pit fiends and balors; and ultroloths or other lords of the yugoloths.",
       "description": "You have made a pact with a fiend from the lower planes of existence, a being whose aims are evil, even if you strive against those aims. Such beings desire the corruption or destruction of all things, ultimately including you. Fiends powerful enough to forge a pact include demon lords such as Demogorgon, Orcus, Fraz'Urb-luu, and Baphomet; archdevils such as Asmodeus, Dispater, Mephistopheles, and Belial; pit fiends and balors that are especially mighty; and ultroloths and other lords of the yugoloths.",
       "features": [
         {
           "name": "Dark One's Blessing",
-          "description": "Starting at 1st level, when you reduce a hostile creature to 0 hit points, you gain temporary hit points equal to your Charisma modifier + your warlock level (minimum of 1).",
+          "description": "Starting at 1st level, when you reduce a hostile creature to 0 hit points, you gain temporary hit points equal to your Charisma modifier + your warlock level (minimum of **1**).",
           "level": 1,
           "featureType": "Passive",
           "actionType": null,
@@ -13121,11 +13189,12 @@
             "name": "Fiend",
             "level": 1
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Dark One's Own Luck",
-          "description": "Starting at 6th level, you can call on your patron to alter fate in your favor. When you make an ability check or a saving throw, you can use this feature to add a d10 to your roll. You can do so after seeing the initial roll but before any of the roll's effects occur.\nOnce you use this feature, you can't use it again until you finish a short or long rest.",
+          "description": "Starting at 6th level, you can call on your patron to alter fate in your favor. When you make an ability check or a saving throw, you can use this feature to add a **d10** to your roll. You can do so after seeing the initial roll but before any of the roll's effects occur.\nOnce you use this feature, you can't use it again until you finish a short or long rest.",
           "level": 6,
           "featureType": "Active",
           "actionType": null,
@@ -13136,7 +13205,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can use this feature to add a d10 to your roll. (action).",
+          "summary": "Add a d10 to an ability check or saving throw after seeing the roll but before the effects occur.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13146,11 +13215,12 @@
             "name": "Fiend",
             "level": 6
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Fiendish Resilience",
-          "description": "Starting at 10th level, you can choose one damage type when you finish a short or long rest. You gain resistance to that damage type until you choose a different one with this feature. Damage from magical weapons or silver weapons ignores this resistance.",
+          "description": "Starting at 10th level, you can choose one damage type whenever you finish a short or long rest. You gain resistance to that damage type until you choose a different one with this feature. Damage from magical weapons or silver weapons ignores this resistance.",
           "level": 10,
           "featureType": "Active",
           "actionType": null,
@@ -13161,7 +13231,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gain resistance to that damage type until you choose a different one with this feature. (action).",
+          "summary": "Gain resistance to a chosen damage type until you select a different one. This resistance is ignored by magical or silver weapons.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13171,11 +13241,12 @@
             "name": "Fiend",
             "level": 10
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Hurl Through Hell",
-          "description": "Starting at 14th level, when you hit a creature with an attack, you can use this feature to instantly transport the target through the lower planes. The creature disappears and hurtles through a nightmare landscape.\nAt the end of your next turn, the target returns to the space it previously occupied, or the nearest unoccupied space. If the target is not a fiend, it takes 10d10 psychic damage as it reels from its horrific experience.\nOnce you use this feature, you can't use it again until you finish a long rest.",
+          "description": "Starting at 14th level, when you hit a creature with an attack, you can use this feature to instantly transport the target through the lower planes. The creature disappears and hurtles through a nightmare landscape.\n\nAt the end of your next turn, the target returns to the space it previously occupied, or the nearest unoccupied space. If the target is not a fiend, it takes **10d10** psychic damage as it reels from its horrific experience.\n\nOnce you use this feature, you cannot use it again until you finish a long rest.",
           "level": 14,
           "featureType": "Active",
           "actionType": null,
@@ -13186,7 +13257,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "It takes 10d10 psychic damage as it reels from its horrific experience. (action).",
+          "summary": "Transport a creature to the lower planes; it returns at the end of your next turn and takes 10d10 psychic damage if it is not a fiend.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13196,18 +13267,20 @@
             "name": "Fiend",
             "level": 14
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "PHB",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Great Old One",
       "class": "Warlock",
       "classIndex": "warlock",
       "index": "great-old-one",
-      "flavorText": "Otherworldly Patron",
+      "flavorText": "Your patron is a being from beyond the stars, an entity of immense power and alien intelligence. The Great Old One might be a sleeping god, an ancient aberration, or a being from another plane of existence entirely.\n\nThose who make pacts with such beings often find their minds expanded, gaining access to telepathic abilities and forbidden knowledge. However, the price of such power can be high, as the Great Old One's influence can slowly drive mortals to madness.",
       "description": "Your patron is a being from beyond the stars, an entity of immense power and alien intelligence. The Great Old One might be a sleeping god, an ancient aberration, or a being from another plane of existence entirely.\n\nThose who make pacts with such beings often find their minds expanded, gaining access to telepathic abilities and forbidden knowledge. However, the price of such power can be high, as the Great Old One's influence can slowly drive mortals to madness.",
       "features": [
         {
@@ -13223,7 +13296,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 1st level, you can communicate telepathically with any creature within 30 feet of you, provided the creature understands at least one language.",
+          "summary": "Telepathically communicate with any creature within 30 feet that understands at least one language.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13233,7 +13306,8 @@
             "name": "Great Old One",
             "level": 1
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Entropic Ward",
@@ -13248,7 +13322,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 6th level, you can impose disadvantage on an attack roll against you. (action).",
+          "summary": "Impose disadvantage on an attack roll made against you.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13258,7 +13332,8 @@
             "name": "Great Old One",
             "level": 6
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Thought Shield",
@@ -13273,7 +13348,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 10th level, you have resistance to psychic damage.",
+          "summary": "Gain resistance to psychic damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13283,7 +13358,8 @@
             "name": "Great Old One",
             "level": 10
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Create Thrall",
@@ -13298,7 +13374,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 14th level, you can charm a creature within 30 feet of you. The creature must succeed on a Wisdom saving throw or be charmed by you for 1 minute. You can use this feature a number of times equal to your proficiency bonus, regaining all uses on a long rest.",
+          "summary": "Charm a creature within 30 feet for 1 minute on a failed Wisdom saving throw. You can use this a number of times equal to your proficiency bonus per long rest.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13308,11 +13384,13 @@
             "name": "Great Old One",
             "level": 14
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "PHB",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Warlock",
@@ -13323,7 +13401,7 @@
         {
           "level": 1,
           "name": "Hexblade's Curse",
-          "description": "Starting at 1st level, you gain the ability to place a bitter curse on someone. As a bonus action, choose one creature you can see within 30 feet of you. The target is cursed for 1 minute. The curse ends early if the target dies, you die, or you are incapacitated. Until the curse ends, you gain the following benefits: You gain a bonus to damage rolls against the cursed target. The bonus equals your proficiency bonus. Any attack roll you make against the cursed target is a critical hit on a roll of 19 or 20 on the d20. If the target dies, you regain hit points equal to your warlock level + your Charisma modifier (minimum of 1 hit point). You can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+          "description": "Starting at 1st level, you gain the ability to place a bitter curse on someone. As a bonus action, choose one creature you can see within 30 feet of you. The target is cursed for 1 minute.\n\nThe curse ends early if the target dies, you die, or you are incapacitated. Until the curse ends, you gain the following benefits:\n- You gain a bonus to damage rolls against the cursed target equal to your proficiency bonus.\n- Any attack roll you make against the cursed target is a critical hit on a roll of 19 or 20 on the d20.\n- If the target dies, you regain hit points equal to your warlock level + your Charisma modifier (minimum of 1 hit point).\n\nYou can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
           "featureType": "Active",
           "actionType": "Bonus Action",
           "uses": null,
@@ -13333,7 +13411,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Choose one creature you can see within 30 feet of you. (bonus action).",
+          "summary": "Curse a creature within 30 feet to gain a damage bonus equal to your proficiency bonus, critical hits on 19-20, and healing upon its death.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13343,12 +13421,13 @@
             "name": "Hexblade",
             "level": 1
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "level": 1,
           "name": "Hex Warrior",
-          "description": "At 1st level, you acquire the training necessary to effectively arm yourself for battle. You gain proficiency with medium armor, shields, and martial weapons. The influence of your patron also allows you to mystically channel your will through a particular weapon. Whenever you finish a long rest, you can touch one weapon that you are proficient with and that lacks the two-handed property. When you attack with that weapon, you can use your Charisma modifier, instead of Strength or Dexterity, for the attack and damage rolls. This benefit lasts until you finish a long rest again. If you later gain the Pact of the Blade feature, this benefit applies to any pact weapon you conjure with that feature, no matter the weapon's type.",
+          "description": "At 1st level, you acquire the training necessary to effectively arm yourself for battle. You gain proficiency with medium armor, shields, and martial weapons.\n\nThe influence of your patron also allows you to mystically channel your will through a particular weapon. Whenever you finish a long rest, you can touch one weapon that you are proficient with and that lacks the two-handed property. When you attack with that weapon, you can use your Charisma modifier, instead of Strength or Dexterity, for the attack and damage rolls. This benefit lasts until you finish a long rest again.\n\nIf you later gain the Pact of the Blade feature, this benefit applies to any pact weapon you conjure with that feature, no matter the weapon's type.",
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -13358,7 +13437,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gain proficiency with medium armor, shields, and martial weapons. (action).",
+          "summary": "Gain proficiency with medium armor, shields, and martial weapons, and the ability to use Charisma for attack and damage rolls with one weapon.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13368,12 +13447,13 @@
             "name": "Hexblade",
             "level": 1
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "level": 6,
           "name": "Accursed Specter",
-          "description": "Starting at 6th level, you can curse the soul of a slain enemy and bind it to your service. When you slay a humanoid, you can cause its spirit to rise as a specter. When the specter appears, it gains temporary hit points equal to half your warlock level. Roll initiative for the specter, which has its own turns. It obeys your verbal commands (no action required by you), and it gains a special bonus to its attack rolls equal to your Charisma modifier (minimum of +0). The specter remains in your service until the end of your next long rest, at which point it vanishes to the afterlife. Once you bind a specter with this feature, you can't use it again until you finish a long rest.",
+          "description": "Starting at 6th level, you can curse the soul of a slain enemy and bind it to your service. When you slay a humanoid, you can cause its spirit to rise as a specter.\n\nWhen the specter appears, it gains temporary hit points equal to half your warlock level. Roll initiative for the specter, which has its own turns. It obeys your verbal commands (no action required by you), and it gains a special bonus to its attack rolls equal to your Charisma modifier (minimum of +0).\n\nThe specter remains in your service until the end of your next long rest, at which point it vanishes to the afterlife. Once you bind a specter with this feature, you can't use it again until you finish a long rest.",
           "featureType": "Active",
           "actionType": "Action",
           "uses": null,
@@ -13383,7 +13463,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "It gains temporary hit points equal to half your warlock level. (action).",
+          "summary": "Bind the soul of a slain humanoid as a specter with temporary hit points and an attack bonus equal to your Charisma modifier.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13393,12 +13473,13 @@
             "name": "Hexblade",
             "level": 6
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "level": 10,
           "name": "Armor of Hexes",
-          "description": "At 10th level, your hex grows more powerful. If the target cursed by your Hexblade's Curse hits you with an attack, roll a d6. On a roll of 4 or higher, the attack instead misses you, regardless of its roll. This ability functions against attack rolls made by both creatures and objects.",
+          "description": "At 10th level, your hex grows more powerful. If the target cursed by your Hexblade's Curse hits you with an attack, roll a d6. On a roll of 4 or higher, the attack instead misses you, regardless of its roll.\n\nThis ability functions against attack rolls made by both creatures and objects.",
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -13408,7 +13489,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "This ability functions against attack rolls made by both creatures and objects. (action).",
+          "summary": "When a creature cursed by your Hexblade's Curse hits you, roll a d6; on a 4 or higher, the attack misses instead.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13418,7 +13499,8 @@
             "name": "Hexblade",
             "level": 10
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "level": 14,
@@ -13433,7 +13515,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can apply the curse to a different humanoid you can see within 30 feet of you. (action).",
+          "summary": "Apply your curse to a different humanoid you can see within 30 feet of you as an action when your current cursed target dies.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13443,18 +13525,20 @@
             "name": "Hexblade",
             "level": 14
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "XGE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Warlock",
       "classIndex": "warlock",
       "index": "celestial",
       "name": "The Celestial",
-      "flavorText": "Otherworldly Patron",
+      "flavorText": "Your otherworldly patron is a being of the Upper Planes. As a celestial warlock, you are a champion of the forces of good and light, channeling the power of your patron to heal and protect those around you.",
       "description": "A Celestial patron is a being of the Upper Planes. A celestial warlock is a champion of the forces of good and light, and they channel the power of their patron to heal and protect.",
       "features": [
         {
@@ -13470,7 +13554,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "They count as warlock cantrips for you, but they don't count against your number of cantrips known. (action).",
+          "summary": "Learn the sacred flame and light cantrips; they count as warlock cantrips but do not count against your number of cantrips known.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13480,11 +13564,12 @@
             "name": "The Celestial",
             "level": 1
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Healing Light",
-          "description": "At 1st level, you gain a pool of magical energy represented by a number of d6s equal to 1 + your warlock level. As a bonus action, you can heal one creature you can see within 60 feet of you. The maximum number of dice you can spend on a turn equals your Charisma modifier (minimum of one die). Roll the spent dice and add them together. The target regains a number of hit points equal to the total. You regain all expended dice when you finish a long rest.",
+          "description": "At 1st level, you gain a pool of magical energy represented by a number of **d6s** equal to **1 + your warlock level**. As a bonus action, you can heal one creature you can see within 60 feet of you. The maximum number of dice you can spend on a turn equals your Charisma modifier (minimum of one die). Roll the spent dice and add them together. The target regains a number of hit points equal to the total. You regain all expended dice when you finish a long rest.",
           "level": 1,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -13495,7 +13580,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can heal one creature you can see within 60 feet of you. (bonus action).",
+          "summary": "Spend a pool of d6s as a bonus action to heal a creature within 60 feet.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13505,7 +13590,8 @@
             "name": "The Celestial",
             "level": 1
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Radiant Soul",
@@ -13520,7 +13606,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Whenever you cast a spell that deals radiant or fire damage, you add your Charisma modifier to one radiant or fire damage roll of that spell against one of its.",
+          "summary": "Gain resistance to radiant damage and add your Charisma modifier to one radiant or fire damage roll of a spell you cast.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13530,7 +13616,8 @@
             "name": "The Celestial",
             "level": 6
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Celestial Resilience",
@@ -13545,7 +13632,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can use your reaction to grant resistance to that damage type until the end of the current turn. (reaction).",
+          "summary": "Use your reaction to grant resistance to a damage type to yourself or a creature within 30 feet until the end of the turn.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13555,11 +13642,12 @@
             "name": "The Celestial",
             "level": 10
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Searing Vengeance",
-          "description": "At 14th level, the radiant energy you channel allows you to overcome death's grasp. When you are reduced to 0 hit points and aren't killed outright, you can use your reaction to instead drop to 1 hit point and shed bright light in a 30-foot radius. Each of your foes within that radius takes 2d8 + your Charisma modifier radiant damage. Once you use this feature, you can't use it again until you finish a long rest.",
+          "description": "At 14th level, the radiant energy you channel allows you to overcome death's grasp. When you are reduced to 0 hit points and aren't killed outright, you can use your reaction to instead drop to 1 hit point and shed bright light in a 30-foot radius. Each of your foes within that radius takes **2d8** + your Charisma modifier radiant damage. Once you use this feature, you can't use it again until you finish a long rest.",
           "level": 14,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -13570,7 +13658,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Each of your foes within that radius takes 2d8 + your Charisma modifier radiant damage. (reaction).",
+          "summary": "Use a reaction to drop to 1 hit point instead of 0, shedding light and dealing 2d8 + Charisma modifier radiant damage to foes within 30 feet.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13580,18 +13668,20 @@
             "name": "The Celestial",
             "level": 14
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "XGE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Warlock",
       "classIndex": "warlock",
       "index": "fathomless",
       "name": "The Fathomless",
-      "flavorText": "Otherworldly Patron",
+      "flavorText": "You have entered into a pact with an entity from the crushing depths of the ocean. As a champion of the dark abyss, you channel the primordial power of your patron to command the tides and the strange creatures that dwell within the deep.",
       "description": "You have made a pact with an entity of the deep sea. A fathomless warlock is a champion of the dark depths, and they channel the power of their patron to control the waters and the creatures that dwell within them.",
       "features": [
         {
@@ -13607,7 +13697,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Each of these spells counts as a warlock spell for you, but it doesn't count against your number of warlock spells you know.",
+          "summary": "Learn additional spells at specific levels that count as warlock spells but do not count against your number of spells known.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13617,11 +13707,12 @@
             "name": "The Fathomless",
             "level": 1
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Tentacle of the Deep",
-          "description": "At 1st level, you can summon a spectral tentacle that strikes at your foes. As a bonus action, you can create a 10-foot-long tentacle at a point you can see within 60 feet of you. The tentacle lasts for 1 minute or until you use this feature to create another tentacle. When you create the tentacle, you can make a melee spell attack against one creature within 10 feet of it. On a hit, the target takes 1d8 cold damage, and its speed is reduced by 10 feet until the start of your next turn. The tentacle can attack a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest. The damage increases to 2d8 at 5th level, 3d8 at 11th level, and 4d8 at 17th level.",
+          "description": "At 1st level, you can summon a spectral tentacle that strikes at your foes. As a bonus action, you can create a 10-foot-long tentacle at a point you can see within 60 feet of you. The tentacle lasts for 1 minute or until you use this feature to create another tentacle. When you create the tentacle, you can make a melee spell attack against one creature within 10 feet of it. On a hit, the target takes **1d8** cold damage, and its speed is reduced by 10 feet until the start of your next turn.\n\nThe tentacle can attack a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.\n\nThe damage increases to **2d8** at 5th level, **3d8** at 11th level, and **4d8** at 17th level.",
           "level": 1,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -13632,7 +13723,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "On a hit, the target takes 1d8 cold damage, and its speed is reduced by 10 feet until the start of your next turn. (bonus action).",
+          "summary": "Use a bonus action to summon a tentacle that deals 1d8 cold damage and reduces target speed by 10 feet.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13642,7 +13733,8 @@
             "name": "The Fathomless",
             "level": 1
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Gift of the Sea",
@@ -13657,7 +13749,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 6th level, you gain a swimming speed of 40 feet, and you can breathe underwater.",
+          "summary": "Gain a swimming speed of 40 feet and the ability to breathe underwater.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13667,7 +13759,8 @@
             "name": "The Fathomless",
             "level": 6
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Oceanic Soul",
@@ -13682,7 +13775,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 10th level, gain resistance to cold damage. While fully submerged in water, you can communicate simple ideas with any beast that has an innate swimming speed.",
+          "summary": "Gain resistance to cold damage and the ability to communicate simple ideas to swimming beasts while submerged in water.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13692,11 +13785,12 @@
             "name": "The Fathomless",
             "level": 10
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Guardian Coil",
-          "description": "At 14th level, your tentacle can defend you and your allies. When you or a creature you can see within 30 feet of you takes damage, you can use your reaction to choose one of the creatures and reduce the damage by 1d8. If you reduce the damage to 0, you can make a melee spell attack against the attacker as part of the same reaction. On a hit, the attacker takes 1d8 + your Charisma modifier cold damage.",
+          "description": "At 14th level, your tentacle can defend you and your allies. When you or a creature you can see within 30 feet of you takes damage, you can use your reaction to choose one of the creatures and reduce the damage by **1d8**. If you reduce the damage to 0, you can make a melee spell attack against the attacker as part of the same reaction. On a hit, the attacker takes **1d8** + your Charisma modifier cold damage.",
           "level": 14,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -13707,7 +13801,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can use your reaction to choose one of the creatures and reduce the damage by 1d8. (reaction).",
+          "summary": "Use your reaction to reduce damage taken by you or a creature within 30 feet by 1d8, potentially launching a counterattack.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13717,7 +13811,8 @@
             "name": "The Fathomless",
             "level": 14
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Grasping Tentacles",
@@ -13732,7 +13827,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Once you use this feature, you can't use it again until you finish a long rest. (action).",
+          "summary": "Cast Evard's Black Tentacles without a spell slot or material components; the area becomes difficult terrain for others.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13742,18 +13837,20 @@
             "name": "The Fathomless",
             "level": 18
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "TCE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Warlock",
       "classIndex": "warlock",
       "index": "genie",
       "name": "The Genie",
-      "flavorText": "Otherworldly Patron",
+      "flavorText": "You have entered into a pact with one of the genies, the mighty elemental sovereigns of the Inner Planes. A genie patron is a being of immense power, capable of granting wishes and warping the very fabric of reality to suit its will.",
       "description": "You have made a pact with one of the genies, the mighty elemental rulers of the Inner Planes. A genie patron is a powerful being that can grant wishes and bend reality to its will.",
       "features": [
         {
@@ -13769,7 +13866,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Each of these spells counts as a warlock spell for you, but it doesn't count against your number of warlock spells you know.",
+          "summary": "Learn additional warlock spells at specific levels that do not count against your number of spells known.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13779,11 +13876,12 @@
             "name": "The Genie",
             "level": 1
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Genie's Vessel",
-          "description": "At 1st level, your patron gifts you a magical vessel that grants you a measure of the genie's power. The vessel is a Tiny object, and you choose the object's nature: an oil lamp, an ornate urn, a gilded chalice, or some other similarly shaped Tiny object. While you are touching the vessel, you can use it as a spellcasting focus for your warlock spells. The vessel's AC equals your spell save DC. It has a number of hit points equal to your warlock level + your proficiency bonus, and it is immune to poison and psychic damage.\n\nThe vessel grants you the following benefits:\n\nElemental Gift: You gain a flying speed of 30 feet, which works only while you are not wearing heavy armor.\n\nLimited Wish: Once per long rest, you can cast a spell of 6th level or lower from the warlock spell list, requiring no spell slot or material components.",
+          "description": "At 1st level, your patron gifts you a magical vessel that grants you a measure of the genie's power. The vessel is a Tiny object, and you choose the object's nature: an oil lamp, an ornate urn, a gilded chalice, or some other similarly shaped Tiny object. While you are touching the vessel, you can use it as a spellcasting focus for your warlock spells. The vessel's AC equals your spell save DC. It has a number of hit points equal to your warlock level + your proficiency bonus, and it is immune to poison and psychic damage.\n\nThe vessel grants you the following benefits:\n\n- Elemental Gift: You gain a flying speed of 30 feet, which works only while you are not wearing heavy armor.\n\n- Limited Wish: Once per long rest, you can cast a spell of 6th level or lower from the warlock spell list, requiring no spell slot or material components.",
           "level": 1,
           "featureType": "Active",
           "actionType": null,
@@ -13794,7 +13892,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "The vessel grants you the following benefits: Elemental Gift: You gain a flying speed of 30 feet, which works only while you are not wearing heavy armor. (action).",
+          "summary": "Gain a magical vessel that acts as a spellcasting focus and provides a flying speed and a free 6th-level or lower warlock spell.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13804,7 +13902,8 @@
             "name": "The Genie",
             "level": 1
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Elemental Gift",
@@ -13819,7 +13918,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Also gain a flying speed of 30 feet, which works only while you are not wearing heavy armor.",
+          "summary": "Gain resistance to a specific damage type based on your patron and a flying speed of 30 feet while not in heavy armor.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13829,11 +13928,12 @@
             "name": "The Genie",
             "level": 6
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Sanctuary Vessel",
-          "description": "At 10th level, when you or an ally within 30 feet of you takes damage, you can use your reaction to whisk the damaged creature into your vessel. The creature is transported to the vessel's extradimensional space, where it is safe from harm. The creature remains there until the end of your next turn or until you use this feature again. When the creature reappears, it appears in an unoccupied space of your choice within 30 feet of you. You can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+          "description": "At 10th level, when you or an ally within 30 feet of you takes damage, you can use your reaction to whisk the damaged creature into your vessel.\n\nThe creature is transported to the vessel's extradimensional space, where it is safe from harm. The creature remains there until the end of your next turn or until you use this feature again.\n\nWhen the creature reappears, it appears in an unoccupied space of your choice within 30 feet of you.\n\nYou can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
           "level": 10,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -13844,7 +13944,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 10th level, when you or an ally within 30 feet of you takes damage, you can use your reaction to whisk the damaged creature into your vessel. (reaction).",
+          "summary": "Use your reaction to whisk yourself or an ally within 30 feet into your vessel to protect them from harm until the end of your next turn.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13854,11 +13954,12 @@
             "name": "The Genie",
             "level": 10
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Limited Wish",
-          "description": "At 14th level, you can tap into the power of your genie patron to cast powerful spells. Once per long rest, you can cast a spell of 6th level or lower from the warlock spell list, requiring no spell slot or material components.",
+          "description": "At 14th level, you can tap into the power of your genie patron to cast powerful spells.\n\nOnce per long rest, you can cast a spell of 6th level or lower from the warlock spell list, requiring no spell slot or material components.",
           "level": 14,
           "featureType": "Passive",
           "actionType": null,
@@ -13869,7 +13970,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 14th level, you can tap into the power of your genie patron to cast powerful spells.",
+          "summary": "Cast a spell of 6th level or lower from the warlock spell list without using a spell slot or material components.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13879,11 +13980,13 @@
             "name": "The Genie",
             "level": 14
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "TCE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "index": "the-undead",
@@ -13894,7 +13997,7 @@
         {
           "name": "Form of Dread",
           "level": 1,
-          "description": "You can use a bonus action to transform into a terrifying visage of death. For 1 minute, you gain the following benefits: You gain temporary hit points equal to 1d10 + your warlock level. Once on each of your turns when you hit a creature with an attack, you can force the target to make a Wisdom saving throw against your spell save DC. On a failed save, the target is frightened of you until the end of your next turn. You can transform a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+          "description": "You can use a bonus action to transform into a terrifying visage of death. For 1 minute, you gain the following benefits:\n\n- You gain temporary hit points equal to **1d10** + your warlock level.\n- Once on each of your turns when you hit a creature with an attack, you can force the target to make a Wisdom saving throw against your spell save DC. On a failed save, the target is frightened of you until the end of your next turn.\n\nYou can transform a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
           "featureType": "Active",
           "actionType": "Bonus Action",
           "uses": null,
@@ -13904,7 +14007,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gain the following benefits: You gain temporary hit points equal to 1d10 + your warlock level. (bonus action).",
+          "summary": "Use a bonus action to gain temporary hit points equal to 1d10 + your warlock level and the ability to frighten creatures you hit.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13914,12 +14017,13 @@
             "name": "The Undead",
             "level": 1
           },
-          "book": "VRGR"
+          "book": "VRGR",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Grave Touched",
           "level": 6,
-          "description": "Your patron's power changes your body. You don't need to eat, drink, or breathe. In addition, once on each of your turns when you hit a creature with an attack, you can change the damage type of the attack to necrotic damage. While you are in your Form of Dread, you can also change the damage type of any spell you cast to necrotic damage.",
+          "description": "Your patron's power changes your body. You don't need to eat, drink, or breathe.\n\nIn addition, once on each of your turns when you hit a creature with an attack, you can change the damage type of the attack to necrotic damage.\n\nWhile you are in your Form of Dread, you can also change the damage type of any spell you cast to necrotic damage.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -13929,7 +14033,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "In addition, once on each of your turns when you hit a creature with an attack, you can change the damage type of the attack to necrotic damage.",
+          "summary": "You no longer need to eat, drink, or breathe, and you can change the damage type of one attack per turn (or any spell while in Form of Dread) to necrotic.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13939,12 +14043,13 @@
             "name": "The Undead",
             "level": 6
           },
-          "book": "VRGR"
+          "book": "VRGR",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Necrotic Husk",
           "level": 10,
-          "description": "Your body is suffused with necrotic energy. You have resistance to necrotic damage. In addition, when you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead, and each creature of your choice within 30 feet of you takes necrotic damage equal to your warlock level + your Charisma modifier. Once you use this feature, you can't use it again until you finish a long rest.",
+          "description": "Your body is suffused with necrotic energy. You have resistance to necrotic damage.\n\nIn addition, when you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead, and each creature of your choice within 30 feet of you takes necrotic damage equal to your warlock level + your Charisma modifier.\n\nOnce you use this feature, you can't use it again until you finish a long rest.",
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -13954,7 +14059,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "In addition, when you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead, and each creature of your choice within 30.",
+          "summary": "Gain resistance to necrotic damage and the ability to drop to 1 hit point instead of 0, dealing necrotic damage to nearby creatures.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13964,12 +14069,13 @@
             "name": "The Undead",
             "level": 10
           },
-          "book": "VRGR"
+          "book": "VRGR",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Spirit Projection",
           "level": 14,
-          "description": "As an action, you can project your spirit from your body. Your body is unconscious and appears dead while your spirit is projected. Your spirit resembles a spectral version of your body and has the following statistics: It has 1 hit point and immunity to all damage except force damage. It can't take actions or cast spells. It can move through creatures and objects as if they were difficult terrain. It has a flying speed of 40 feet and can hover. While projected, you can use your action to return to your body. Your body regains consciousness when your spirit returns to it. Once you use this feature, you can't use it again until you finish a long rest.",
+          "description": "As an action, you can project your spirit from your body. Your body is unconscious and appears dead while your spirit is projected.\n\nYour spirit resembles a spectral version of your body and has the following statistics:\n- It has **1** hit point and immunity to all damage except force damage.\n- It cannot take actions or cast spells.\n- It can move through creatures and objects as if they were difficult terrain.\n- It has a flying speed of **40 feet** and can hover.\n\nWhile projected, you can use your action to return to your body. Your body regains consciousness when your spirit returns to it.\n\nOnce you use this feature, you cannot use it again until you finish a long rest.",
           "featureType": "Active",
           "actionType": "Action",
           "uses": null,
@@ -13979,7 +14085,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "It has a flying speed of 40 feet and can hover. (action).",
+          "summary": "Use an action to project a spectral spirit with a flying speed of 40 feet that can hover and move through objects.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13989,18 +14095,20 @@
             "name": "The Undead",
             "level": 14
           },
-          "book": "VRGR"
+          "book": "VRGR",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "VRGR",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Undying",
       "class": "Warlock",
       "classIndex": "warlock",
       "index": "undying",
-      "flavorText": "Otherworldly Patron",
+      "flavorText": "Your Otherworldly Patron is a powerful undead being, such as a lich, vampire, or mummy lord. These entities have cheated death to gain immortality through the use of dark magic, and they share a portion of that power with their warlock servants.\n\nThe Undying patron represents those who have transcended the boundary of death. Warlocks of this patron gain abilities that reflect this connection to undeath, allowing them to resist disease, recover from grievous wounds, and even cheat death itself.",
       "description": "Your patron is a powerful undead being, such as a lich, vampire, or mummy lord. These beings have cheated death and gained immortality through dark magic, and they share some of their power with their warlock servants.\n\nThe Undying patron represents those who have transcended death, and its warlocks gain abilities that reflect this connection to undeath. They can resist disease, recover from wounds, and even cheat death itself.",
       "features": [
         {
@@ -14016,7 +14124,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 1st level, you have advantage on saving throws against being frightened.",
+          "summary": "You have advantage on saving throws against being frightened.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14026,7 +14134,8 @@
             "name": "Undying",
             "level": 1
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Undying Nature",
@@ -14041,7 +14150,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Also at 1st level, you have advantage on saving throws against disease.",
+          "summary": "You have advantage on saving throws against disease.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14051,7 +14160,8 @@
             "name": "Undying",
             "level": 1
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Beyond the Grave",
@@ -14066,7 +14176,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 6th level, you can gain temporary hit points when you finish a short rest.",
+          "summary": "You can gain temporary hit points when you finish a short rest.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14076,7 +14186,8 @@
             "name": "Undying",
             "level": 6
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Indestructible Life",
@@ -14091,7 +14202,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 10th level, you can regain hit points when you take damage.",
+          "summary": "You can regain hit points when you take damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14101,11 +14212,12 @@
             "name": "Undying",
             "level": 10
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Undying Nature",
-          "description": "At 14th level, you can't be killed by a single attack.",
+          "description": "At 14th level, you cannot be killed by a single attack.",
           "level": 14,
           "featureType": "Passive",
           "actionType": null,
@@ -14116,7 +14228,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 14th level, you can't be killed by a single attack.",
+          "summary": "You cannot be killed by a single attack.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14126,18 +14238,20 @@
             "name": "Undying",
             "level": 14
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "SCAG",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Abjuration",
       "class": "Wizard",
       "classIndex": "wizard",
       "index": "abjuration",
-      "flavorText": "Arcane Tradition",
+      "flavorText": "You follow an Arcane Tradition dedicated to the art of protection.\n\nThe abjuration specialist is a wizard who focuses on protective and defensive magic. They are masters of wards, shields, and counterspells, capable of shielding themselves and their allies from both magical and physical harm.\n\nAbjurers study the theory and practice of defensive magic, learning to create magical barriers that can absorb damage and deflect attacks. They are often found on the front lines, using their abilities to keep their companions safe.",
       "description": "The abjuration specialist is a wizard who focuses on protective and defensive magic. They are masters of wards, shields, and counterspells, able to protect themselves and their allies from magical and physical harm.\n\nAbjurers study the theory and practice of defensive magic, learning to create magical barriers that can absorb damage and deflect attacks. They are often found on the front lines, using their abilities to keep their companions safe.",
       "features": [
         {
@@ -14153,7 +14267,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 2nd level, the gold and time you spend to copy an abjuration spell into your spellbook is halved. (action).",
+          "summary": "The gold and time you spend to copy an abjuration spell into your spellbook is halved.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14163,7 +14277,8 @@
             "name": "Abjuration",
             "level": 2
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Arcane Ward",
@@ -14188,7 +14303,8 @@
             "name": "Abjuration",
             "level": 2
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Projected Ward",
@@ -14203,7 +14319,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 6th level, you can use your Arcane Ward to protect others. (action).",
+          "summary": "You can use your Arcane Ward to protect other creatures.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14213,7 +14329,8 @@
             "name": "Abjuration",
             "level": 6
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Improved Abjuration",
@@ -14228,7 +14345,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 10th level, your Arcane Ward regains hit points when you finish a short rest.",
+          "summary": "Your Arcane Ward regains hit points when you finish a short rest.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14238,7 +14355,8 @@
             "name": "Abjuration",
             "level": 10
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Spell Resistance",
@@ -14253,7 +14371,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 14th level, you have advantage on saving throws against spells.",
+          "summary": "You have advantage on saving throws against spells.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14263,11 +14381,13 @@
             "name": "Abjuration",
             "level": 14
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "PHB",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Wizard",
