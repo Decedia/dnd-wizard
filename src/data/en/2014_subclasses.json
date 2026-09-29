@@ -6921,14 +6921,15 @@
             "total": 1,
             "recharge": "Long Rest / 1 Psionic Die"
           },
-          "summary": "Shield yourself and allies within 30 feet with half cover (+2 AC and Dex saves) for 1 minute.",
+          "summary": "Grant yourself and allies within 30 feet half cover (+2 AC and Dex saves) for 1 minute.",
           "description": "As a bonus action, you can shield yourself and others with telekinetic force. You choose a number of creatures within 30 feet of you equal to your Intelligence modifier (minimum of one), including yourself. For 1 minute or until you are incapacitated, the chosen creatures have half cover. Once you use this feature, you can't do so again until you finish a long rest, unless you expend a Psionic Energy die.",
           "source": {
             "type": "subclass",
             "name": "Psi Warrior",
             "level": 10
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Telekinetic Master",
@@ -6939,14 +6940,15 @@
             "total": 1,
             "recharge": "Long Rest / 1 Psionic Die"
           },
-          "summary": "Cast Telekinesis without components, and make a weapon attack as a bonus action while concentrating on it.",
+          "summary": "Cast Telekinesis without components and make one weapon attack as a bonus action while concentrating on it.",
           "description": "Your ability to move creatures and objects with your mind is unmatched. You can cast the Telekinesis spell without components, using Intelligence as your spellcasting ability. On each turn while you concentrate on the spell, you can make one weapon attack as a bonus action. Once you cast Telekinesis with this feature, you can't do so again until you finish a long rest, unless you expend a Psionic Energy die.",
           "source": {
             "type": "subclass",
             "name": "Psi Warrior",
             "level": 15
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "lastUpdated": "2026-09-29"
@@ -6962,14 +6964,15 @@
           "name": "Bonus Proficiencies",
           "level": 3,
           "featureType": "Passive",
-          "summary": "Gain proficiency with smith's tools and learn to speak, read, and write Giant.",
+          "summary": "Gain proficiency with smith's tools and the ability to speak, read, and write Giant.",
           "description": "You gain proficiency with smith's tools, and you learn to speak, read, and write Giant.",
           "source": {
             "type": "subclass",
             "name": "Rune Knight",
             "level": 3
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Rune Carver",
@@ -6982,7 +6985,8 @@
             "name": "Rune Knight",
             "level": 3
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Giant's Might",
@@ -6993,14 +6997,15 @@
             "total": "Proficiency Bonus",
             "recharge": "Long Rest"
           },
-          "summary": "Grow to Large size, gain advantage on Strength checks and saves, and deal +1d6 damage once per turn.",
-          "description": "As a bonus action, you magically imbue yourself with the might of giants. For 1 minute: if you are smaller than Large, you become Large along with anything you are wearing; you have advantage on Strength checks and Strength saving throws; and once on each of your turns, one of your weapon attacks or unarmed strikes can deal an extra 1d6 damage to a target on a hit. You can use this feature a number of times equal to your proficiency bonus per long rest.",
+          "summary": "Become Large, gain advantage on Strength checks and saves, and deal an extra 1d6 damage once per turn.",
+          "description": "As a bonus action, you magically imbue yourself with the might of giants. For 1 minute:\n- if you are smaller than Large, you become Large along with anything you are wearing;\n- you have advantage on Strength checks and Strength saving throws;\n- once on each of your turns, one of your weapon attacks or unarmed strikes can deal an extra **1d6** damage to a target on a hit.\n\nYou can use this feature a number of times equal to your proficiency bonus per long rest.",
           "source": {
             "type": "subclass",
             "name": "Rune Knight",
             "level": 3
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Runic Shield",
@@ -7011,27 +7016,29 @@
             "total": "Proficiency Bonus",
             "recharge": "Long Rest"
           },
-          "summary": "Force an attacker within 60 feet who hits an ally to reroll the d20 and take the new roll.",
+          "summary": "Force an attacker within 60 feet who hits an ally to reroll the d20 and use the new roll.",
           "description": "You learn to invoke your runic magic to protect your allies. When another creature you can see within 60 feet of you is hit by an attack roll, you can use your reaction to force the attacker to reroll the d20 and use the new roll. You can use this feature a number of times equal to your proficiency bonus per long rest.",
           "source": {
             "type": "subclass",
             "name": "Rune Knight",
             "level": 7
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Great Stature",
           "level": 10,
           "featureType": "Passive",
           "summary": "Your height increases by 3d4 inches, and your Giant's Might damage increases to 1d8.",
-          "description": "The magic of your runes permanently alters you. When you gain this feature, roll 3d4; you grow a number of inches in height equal to the roll. Moreover, the extra damage you deal with your Giant's Might feature increases to 1d8.",
+          "description": "The magic of your runes permanently alters you. When you gain this feature, roll **3d4**; you grow a number of inches in height equal to the roll. Moreover, the extra damage you deal with your Giant's Might feature increases to **1d8**.",
           "source": {
             "type": "subclass",
             "name": "Rune Knight",
             "level": 10
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Master of Runes",
@@ -7044,29 +7051,32 @@
             "name": "Rune Knight",
             "level": 15
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Runic Juggernaut",
           "level": 18,
           "featureType": "Passive",
           "summary": "Giant's Might allows you to grow to Huge size, reach increases by 5 feet, and extra damage becomes 1d10.",
-          "description": "You learn how to amplify your rune-powered transformation. As a result, the extra damage you deal with the Giant's Might feature increases to 1d10. Moreover, when you use that feature, your size can increase to Huge, and while you are that size, your reach increases by 5 feet.",
+          "description": "You learn how to amplify your rune-powered transformation. As a result, the extra damage you deal with the Giant's Might feature increases to **1d10**. Moreover, when you use that feature, your size can increase to Huge, and while you are that size, your reach increases by 5 feet.",
           "source": {
             "type": "subclass",
             "name": "Rune Knight",
             "level": 18
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         }
-      ]
+      ],
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Fighter",
       "classIndex": "fighter",
       "index": "samurai",
       "name": "Samurai",
-      "flavorText": "Martial Archetype",
+      "flavorText": "Martial Archetype. The Samurai is a fighter who draws on an implacable fighting spirit to overcome enemies. A Samurai's resolve is nearly unbreakable, and their fighting spirit grants them strength and speed.",
       "description": "The Samurai is a fighter who draws on an implacable fighting spirit to overcome enemies. A Samurai's resolve is nearly unbreakable, and the Samurai's fighting spirit grants strength and speed.",
       "features": [
         {
@@ -7076,23 +7086,28 @@
           "choices": [
             {
               "name": "History",
-              "description": "Gain proficiency in History skill."
+              "description": "You gain proficiency in the History skill.",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Insight",
-              "description": "Gain proficiency in Insight skill."
+              "description": "You gain proficiency in the Insight skill.",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Performance",
-              "description": "Gain proficiency in Performance skill."
+              "description": "You gain proficiency in the Performance skill.",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Persuasion",
-              "description": "Gain proficiency in Persuasion skill."
+              "description": "You gain proficiency in the Persuasion skill.",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Language (choice)",
-              "description": "Learn one language of your choice."
+              "description": "You learn one language of your choice.",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "choicesCount": 1,
@@ -7105,7 +7120,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Alternatively, you learn one language of your choice. (action).",
+          "summary": "Gain proficiency in one specific skill or learn one language of your choice.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": true,
@@ -7115,11 +7130,12 @@
             "name": "Samurai",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Fighting Spirit",
-          "description": "Starting at 3rd level, your intensity in battle can shield you and help you strike true. As a bonus action on your turn, you can give yourself advantage on weapon attack rolls until the end of your current turn, gaining 5 temporary hit points. The number of temporary hit points increases to 10 at 10th level and to 15 at 15th level. You can use this feature three times, and you regain all expended uses of it when you finish a long rest.",
+          "description": "Starting at 3rd level, your intensity in battle can shield you and help you strike true. As a bonus action on your turn, you can give yourself advantage on weapon attack rolls until the end of your current turn, gaining **5** temporary hit points.\n\nThe number of temporary hit points increases to **10** at 10th level and to **15** at 15th level.\n\nYou can use this feature three times, and you regain all expended uses of it when you finish a long rest.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -7130,7 +7146,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can give yourself advantage on weapon attack rolls until the end of your current turn, gaining 5 temporary hit points. (bonus action).",
+          "summary": "As a bonus action, you gain advantage on weapon attack rolls until the end of your turn and gain 5 temporary hit points.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -7140,11 +7156,12 @@
             "name": "Samurai",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Elegant Courtier",
-          "description": "Starting at 7th level, your discipline and attention to detail allow you to excel in social situations. Whenever you make a Wisdom (Insight) check, you can treat a d20 roll of 9 or lower as a 10. In addition, you gain proficiency in Wisdom saving throws. If you already have proficiency in Wisdom saving throws, you instead gain proficiency in Intelligence or Charisma saving throws (your choice).",
+          "description": "Starting at 7th level, your discipline and attention to detail allow you to excel in social situations. Whenever you make a Wisdom (Insight) check, you can treat a d20 roll of **9** or lower as a **10**.\n\nIn addition, you gain proficiency in Wisdom saving throws. If you already have proficiency in Wisdom saving throws, you instead gain proficiency in Intelligence or Charisma saving throws (your choice).",
           "level": 7,
           "featureType": "Active",
           "actionType": null,
@@ -7155,7 +7172,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "In addition, you gain proficiency in Wisdom saving throws. (action).",
+          "summary": "Treat Wisdom (Insight) rolls of 9 or lower as 10 and gain proficiency in Wisdom, Intelligence, or Charisma saving throws.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -7165,11 +7182,12 @@
             "name": "Samurai",
             "level": 7
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Tireless Spirit",
-          "description": "Starting at 10th level, when you roll initiative and have no uses of Fighting Spirit remaining, you regain one use.",
+          "description": "Starting at 10th level, when you roll initiative and have no uses of Fighting Spirit remaining, you regain **one** use.",
           "level": 10,
           "featureType": "Active",
           "actionType": null,
@@ -7180,7 +7198,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Starting at 10th level, when you roll initiative and have no uses of Fighting Spirit remaining, you regain one use. (action).",
+          "summary": "Regain one use of Fighting Spirit when you roll initiative if you have no uses remaining.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -7190,7 +7208,8 @@
             "name": "Samurai",
             "level": 10
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Rapid Strike",
@@ -7205,7 +7224,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can forgo advantage on one of the attacks to make an additional weapon attack as a bonus action. (bonus action).",
+          "summary": "Forgo advantage on one attack to make an additional weapon attack as a bonus action.",
           "grantsSpells": false,
           "grantsAttack": true,
           "grantsSkills": false,
@@ -7215,11 +7234,12 @@
             "name": "Samurai",
             "level": 15
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Strength Before Death",
-          "description": "Starting at 18th level, your fighting spirit can delay the grasp of death. If you take damage that reduces you to 0 hit points and doesn't kill you outright, you can use your reaction to delay falling unconscious, and you can immediately take an extra turn, interrupting the current turn. While you have 0 hit points during that extra turn, taking damage causes a death saving throw failure, and three failures can kill you. When the extra turn ends, you fall unconscious if you still have 0 hit points. Once you use this feature, you can't use it again until you finish a long rest.",
+          "description": "Starting at 18th level, your fighting spirit can delay the grasp of death. If you take damage that reduces you to **0** hit points and doesn't kill you outright, you can use your reaction to delay falling unconscious, and you can immediately take an extra turn, interrupting the current turn.\n\nWhile you have **0** hit points during that extra turn, taking damage causes a death saving throw failure, and **three** failures can kill you.\n\nWhen the extra turn ends, you fall unconscious if you still have **0** hit points. Once you use this feature, you can't use it again until you finish a long rest.",
           "level": 18,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -7230,7 +7250,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Taking damage causes a death saving throw failure, and three failures can kill you. (reaction).",
+          "summary": "Use a reaction to stay conscious and take an extra turn when reduced to 0 hit points.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -7240,11 +7260,13 @@
             "name": "Samurai",
             "level": 18
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "XGE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "index": "ascendant-dragon",
@@ -7255,7 +7277,7 @@
         {
           "name": "Draconic Discipline",
           "level": 3,
-          "description": "You gain the following benefits: You learn the draconic language. You learn one cantrip of your choice from the sorcerer spell list. Wisdom is your spellcasting ability for this cantrip.",
+          "description": "You gain the following benefits:\n- You learn the draconic language.\n- You learn **one** cantrip of your choice from the sorcerer spell list. Wisdom is your spellcasting ability for this cantrip.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -7265,7 +7287,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Learn one cantrip of your choice from the sorcerer spell list.",
+          "summary": "Gain proficiency in the draconic language and learn one sorcerer cantrip using Wisdom.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -7275,12 +7297,13 @@
             "name": "Ascendant Dragon",
             "level": 3
           },
-          "book": "FTD"
+          "book": "FTD",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Breath of the Dragon",
           "level": 3,
-          "description": "You can channel draconic power into a destructive breath. As an action, you can spend 1 ki point to exhale a 15-foot cone of elemental energy. Each creature in the area must make a Dexterity saving throw (DC 8 + your proficiency bonus + your Wisdom modifier). On a failed save, a creature takes 2d6 damage of a type you choose: acid, cold, fire, lightning, or poison. On a successful save, a creature takes half as much damage. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level.",
+          "description": "You can channel draconic power into a destructive breath. As an action, you can spend **1** ki point to exhale a **15-foot** cone of elemental energy. Each creature in the area must make a Dexterity saving throw (DC 8 + your proficiency bonus + your Wisdom modifier). On a failed save, a creature takes **2d6** damage of a type you choose: acid, cold, fire, lightning, or poison. On a successful save, a creature takes half as much damage.\n\nThe damage increases to **3d6** at 6th level, **4d6** at 11th level, and **5d6** at 16th level.",
           "featureType": "Active",
           "actionType": "Action",
           "uses": null,
@@ -7290,7 +7313,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "On a failed save, a creature takes 2d6 damage of a type you choose: acid, cold, fire, lightning, or poison. (action).",
+          "summary": "Spend 1 ki point to deal 2d6 acid, cold, fire, lightning, or poison damage in a 15-foot cone. Targets take half damage on a successful Dexterity save.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -7300,7 +7323,8 @@
             "name": "Ascendant Dragon",
             "level": 3
           },
-          "book": "FTD"
+          "book": "FTD",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Wings Unfurled",
@@ -7315,7 +7339,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can unfurl spectral draconic wings, granting you a flying speed equal to your walking speed until the end of your turn. (action).",
+          "summary": "When using Step of the Wind, you gain a flying speed equal to your walking speed until the end of your turn.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -7325,12 +7349,13 @@
             "name": "Ascendant Dragon",
             "level": 6
           },
-          "book": "FTD"
+          "book": "FTD",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Aspect of the Wyrm",
           "level": 11,
-          "description": "You can channel the might of dragonkind to gain draconic traits. As a bonus action, you can spend 3 ki points to manifest these traits for 1 minute. For the duration, you have resistance to the damage type associated with your Breath of the Dragon, and your Breath of the Dragon deals an additional 2d6 damage.",
+          "description": "You can channel the might of dragonkind to gain draconic traits. As a bonus action, you can spend **3** ki points to manifest these traits for **1** minute. For the duration, you have resistance to the damage type associated with your Breath of the Dragon, and your Breath of the Dragon deals an additional **2d6** damage.",
           "featureType": "Active",
           "actionType": "Bonus Action",
           "uses": null,
@@ -7340,7 +7365,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Have resistance to the damage type associated with your Breath of the Dragon, and your Breath of the Dragon deals an additional 2d6 damage. (bonus action).",
+          "summary": "Spend 3 ki points to gain resistance to your Breath of the Dragon damage type and add 2d6 damage to your Breath of the Dragon for 1 minute.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -7350,12 +7375,13 @@
             "name": "Ascendant Dragon",
             "level": 11
           },
-          "book": "FTD"
+          "book": "FTD",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Ascendant Aspect",
           "level": 17,
-          "description": "You gain the following benefits: You can use your Breath of the Dragon without spending ki points. When you use your Breath of the Dragon, you can choose to increase its area to a 30-foot cone.",
+          "description": "You gain the following benefits:\n- You can use your Breath of the Dragon without spending ki points.\n- When you use your Breath of the Dragon, you can choose to increase its area to a **30-foot** cone.",
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -7365,7 +7391,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can choose to increase its area to a 30-foot cone. (action).",
+          "summary": "Use Breath of the Dragon without spending ki points and optionally increase its area to a 30-foot cone.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -7375,23 +7401,25 @@
             "name": "Ascendant Dragon",
             "level": 17
           },
-          "book": "FTD"
+          "book": "FTD",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "FTD",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Monk",
       "classIndex": "monk",
       "index": "open-hand",
       "name": "Open Hand",
-      "flavorText": "Monastic Tradition",
+      "flavorText": "A monastic tradition for those who seek the pinnacle of martial arts. These monks master combat whether they wield weapons or their bare hands, learning to manipulate the ki of their foes to trip and push them, while using their own inner energy to heal their bodies and enter deep meditational states that shield them from danger.",
       "description": "Monks of the Way of the Open Hand are the ultimate masters of martial arts combat, whether armed or unarmed. They learn techniques to push and trip their opponents, manipulate ki to heal damage to their bodies, and practice advanced meditation that can protect them from harm.",
       "features": [
         {
           "name": "Open Hand Technique",
-          "description": "Starting when you choose this tradition at 3rd level, you can manipulate your enemy's ki when you harness your own. Whenever you hit a creature with one of the attacks granted by your Flurry of Blows, you can impose one of the following effects on that target:\n- It must succeed on a Dexterity saving throw or be knocked prone.\n- It must make a Strength saving throw. If it fails, you can push it up to 15 feet away from you.\n- It can't take reactions until the end of your next turn.",
+          "description": "Starting when you choose this tradition at 3rd level, you can manipulate your enemy's ki when you harness your own. Whenever you hit a creature with one of the attacks granted by your Flurry of Blows, you can impose one of the following effects on that target:\n- It must succeed on a Dexterity saving throw or be knocked prone.\n- It must make a Strength saving throw. If it fails, you can push it up to **15 feet** away from you.\n- It can't take reactions until the end of your next turn.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -7402,7 +7430,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "When you hit a creature with an attack from Flurry of Blows, you can impose one of three effects: the target must make a Dexterity saving throw or be knocked prone, pushed away, or unable to take Reactions until the end of your next turn.",
+          "summary": "When hitting with a Flurry of Blows attack, you can knock the target prone (Dex save), push them 15 feet (Str save), or prevent them from taking reactions until the end of your next turn.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -7412,7 +7440,8 @@
             "name": "Open Hand",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Wholeness of Body",
@@ -7427,7 +7456,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can regain hit points equal to three times your monk level. (action).",
+          "summary": "Regain hit points equal to three times your monk level as an action.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -7437,7 +7466,8 @@
             "name": "Open Hand",
             "level": 6
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Tranquility",
@@ -7452,7 +7482,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "The saving throw DC for the spell equals 8 + your Wisdom modifier + your proficiency bonus.",
+          "summary": "Gain the effect of a sanctuary spell after a long rest, with a DC of 8 + your Wisdom modifier + your proficiency bonus.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -7462,11 +7492,12 @@
             "name": "Open Hand",
             "level": 11
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Quivering Palm",
-          "description": "At 17th level, you gain the ability to set up lethal vibrations in someone's body. When you hit a creature with an unarmed strike, you can spend 3 ki points to start these imperceptible vibrations, which last for a number of days equal to your monk level. The vibrations are harmless unless you use your action to end them. To do so, you and the target must be on the same plane of existence. When you use this action, the creature must make a Constitution saving throw. If it fails, it is reduced to 0 hit points. If it succeeds, it takes 10d10 necrotic damage.\nYou can have only one creature under the effect of this feature at a time. You can choose to end the vibrations harmlessly without using an action.",
+          "description": "At 17th level, you gain the ability to set up lethal vibrations in someone's body. When you hit a creature with an unarmed strike, you can spend 3 ki points to start these imperceptible vibrations, which last for a number of days equal to your monk level. The vibrations are harmless unless you use your action to end them. To do so, you and the target must be on the same plane of existence. When you use this action, the creature must make a Constitution saving throw. If it fails, it is reduced to 0 hit points. If it succeeds, it takes **10d10** necrotic damage.\n\nYou can have only one creature under the effect of this feature at a time. You can choose to end the vibrations harmlessly without using an action.",
           "level": 17,
           "featureType": "Active",
           "actionType": "Action",
@@ -7477,7 +7508,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "When you hit a creature with an unarmed strike, spend 3 ki points to start vibrations that last for days equal to your monk level. You can end them early as an action to deal 10d10 necrotic damage; the target must make a Constitution saving throw or drop to 0 Hit Points.",
+          "summary": "Spend 3 ki points on an unarmed strike hit to plant vibrations. End them as an action to either reduce the target to 0 hit points or deal 10d10 necrotic damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -7487,18 +7518,20 @@
             "name": "Open Hand",
             "level": 17
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "PHB",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Shadow",
       "class": "Monk",
       "classIndex": "monk",
       "index": "shadow",
-      "flavorText": "Monastic Tradition",
+      "flavorText": "Monastic Tradition\n\nMonks of the Way of Shadow walk the path of darkness and stealth. They master the use of ki to manipulate the shadows, granting them the power to vanish from sight and strike from the gloom with lethal precision.\n\nThese monks serve as spies, assassins, and infiltrators, employing their arts to move unseen and harvest secrets. They are true masters of the night, capable of blending into the deepest shadows and disappearing at will.",
       "description": "Monks of the Way of Shadow follow the path of darkness and stealth. They learn to use ki to manipulate shadows, becoming invisible and striking from the darkness with deadly precision.\n\nThese monks are spies, assassins, and infiltrators, using their abilities to move unseen and gather information. They are masters of the night, able to blend into the shadows and disappear at will.",
       "features": [
         {
@@ -7514,7 +7547,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Additionally, you gain the minor illusion cantrip if you don't already know it. (action).",
+          "summary": "Spend 2 ki points as an action to cast darkness, darkvision, pass without trace, or silence. You also know the minor illusion cantrip.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -7524,7 +7557,8 @@
             "name": "Shadow",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Shadow Step",
@@ -7539,7 +7573,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "As a bonus action you can teleport up to 60 feet to an unoccupied space you can see that is also in dim light or darkness. (bonus action).",
+          "summary": "While in dim light or darkness, teleport up to 60 feet to an unoccupied space in dim light or darkness as a bonus action and gain advantage on your next melee attack.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -7549,11 +7583,12 @@
             "name": "Shadow",
             "level": 6
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Cloak of Shadows",
-          "description": "By 11th level, you have learned to become one with the shadows. When you are in an area of dim light or darkness, you can use your action to become invisible. You remain invisible until you make an attack, cast a spell, or are in an area of bright light.",
+          "description": "By 11th level, you have learned to become one with the shadows. While you are in an area of dim light or darkness, you can use your action to become invisible. You remain invisible until you make an attack, cast a spell, or enter an area of bright light.",
           "level": 11,
           "featureType": "Active",
           "actionType": "Action",
@@ -7564,7 +7599,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Remain invisible until you make an attack, cast a spell, or are in an area of bright light. (action).",
+          "summary": "Become invisible while in dim light or darkness until you attack, cast a spell, or enter bright light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -7574,11 +7609,12 @@
             "name": "Shadow",
             "level": 11
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Opportunist",
-          "description": "At 17th level, you can exploit a creature's momentary distraction when it is hit by an attack. When a creature within 5 feet of you is hit by an attack from an attacker other than you, you can use your reaction to make a melee attack against that creature.",
+          "description": "At 17th level, you can exploit a creature's momentary distraction when it is hit by an attack. When a creature within **5 feet** of you is hit by an attack from an attacker other than you, you can use your reaction to make a melee attack against that creature.",
           "level": 17,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -7589,7 +7625,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can use your reaction to make a melee attack against that creature. (reaction).",
+          "summary": "Use your reaction to make a melee attack against a creature within 5 feet that is hit by another attacker.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -7599,11 +7635,13 @@
             "name": "Shadow",
             "level": 17
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "PHB",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Way of Mercy",
@@ -7616,67 +7654,72 @@
           "name": "Implements of Mercy",
           "level": 3,
           "featureType": "Passive",
-          "summary": "Gain proficiency in Insight, Medicine, and the herbalism kit, and craft a unique mercy mask.",
+          "summary": "Gain proficiency in Insight, Medicine, and the herbalism kit, and receive a special mask.",
           "description": "You gain proficiency in the Insight and Medicine skills, and you gain proficiency with the herbalism kit. You also gain a special mask, which you often wear when conducting your work.",
           "source": {
             "type": "subclass",
             "name": "Way of Mercy",
             "level": 3
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Hands of Healing",
           "level": 3,
           "featureType": "Active",
           "actionType": "Action",
-          "summary": "Spend 1 ki to touch a creature and heal hit points equal to your Martial Arts die + Wis modifier.",
-          "description": "Your mystical touch can mend wounds. As an action, you can spend 1 ki point to touch a creature and restore a number of hit points equal to a roll of your Martial Arts die + your Wisdom modifier. When you use your Flurry of Blows, you can replace one of the unarmed strikes with a use of this feature without spending its ki point.",
+          "summary": "Spend 1 ki to heal a creature for a roll of your Martial Arts die + Wisdom modifier.",
+          "description": "Your mystical touch can mend wounds. As an action, you can spend **1 ki point** to touch a creature and restore a number of hit points equal to a roll of your Martial Arts die + your Wisdom modifier. When you use your Flurry of Blows, you can replace one of the unarmed strikes with a use of this feature without spending its ki point.",
           "source": {
             "type": "subclass",
             "name": "Way of Mercy",
             "level": 3
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Hands of Harm",
           "level": 3,
           "featureType": "Active",
-          "summary": "Spend 1 ki when hitting with an unarmed strike to deal extra necrotic damage equal to Martial Arts die + Wis.",
-          "description": "You can use your ki to inflict wounds. When you hit a creature with an unarmed strike, you can spend 1 ki point to deal extra necrotic damage equal to one roll of your Martial Arts die + your Wisdom modifier. You can use this feature only once per turn.",
+          "summary": "Spend 1 ki when hitting with an unarmed strike to deal extra necrotic damage equal to your Martial Arts die + Wisdom modifier.",
+          "description": "You can use your ki to inflict wounds. When you hit a creature with an unarmed strike, you can spend **1 ki point** to deal extra necrotic damage equal to one roll of your Martial Arts die + your Wisdom modifier. You can use this feature only once per turn.",
           "source": {
             "type": "subclass",
             "name": "Way of Mercy",
             "level": 3
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Physician's Touch",
           "level": 6,
           "featureType": "Passive",
-          "summary": "Hands of Healing cures disease, blindness, paralysis, or poisoned; Hands of Harm poisons the target without a save.",
-          "description": "Starting at 6th level, you can administer even greater medical aid with your touch. When you use Hands of Healing, you can also end one disease or one condition afflicting the target: blinded, deafened, paralyzed, poisoned, or stunned. When you use Hands of Harm on a creature, you can subject that creature to the poisoned condition until the end of your next turn.",
+          "summary": "Hands of Healing can end the blinded, deafened, paralyzed, poisoned, or stunned conditions; Hands of Harm can apply the poisoned condition without a save.",
+          "description": "Starting at 6th level, you can administer even greater medical aid with your touch. When you use Hands of Healing, you can also end one disease or one condition afflicting the target: blinded, deafened, paralyzed, poisoned, or stunned.\n\nWhen you use Hands of Harm on a creature, you can subject that creature to the poisoned condition until the end of your next turn.",
           "source": {
             "type": "subclass",
             "name": "Way of Mercy",
             "level": 6
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Flurry of Healing and Harm",
           "level": 11,
           "featureType": "Passive",
-          "summary": "When you use Flurry of Blows, you can replace both attacks with Hands of Healing without spending extra ki.",
-          "description": "Starting at 11th level, you can now use Hands of Healing to heal a creature with both of the unarmed strikes granted by your Flurry of Blows, without spending extra ki points. In addition, when you make an unarmed strike with Flurry of Blows, you can use Hands of Harm with that strike without spending the ki point for Hands of Harm.",
+          "summary": "Replace Flurry of Blows attacks with Hands of Healing without extra ki, or use Hands of Harm with a Flurry of Blows strike without spending ki.",
+          "description": "Starting at 11th level, you can now use Hands of Healing to heal a creature with both of the unarmed strikes granted by your Flurry of Blows, without spending extra ki points.\n\nIn addition, when you make an unarmed strike with Flurry of Blows, you can use Hands of Harm with that strike without spending the ki point for Hands of Harm.",
           "source": {
             "type": "subclass",
             "name": "Way of Mercy",
             "level": 11
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Hand of Ultimate Mercy",
@@ -7687,16 +7730,18 @@
             "total": 1,
             "recharge": "Long Rest / 5 Ki"
           },
-          "summary": "Touch a creature that died within 24 hours and spend 5 ki points to return it to life with 4d10 + Wis HP.",
-          "description": "Your mastery of life energy opens the door to the ultimate mercy. As an action, you can touch the corpse of a creature that died within the past 24 hours and expend 5 ki points. The creature returns to life, regaining a number of hit points equal to 4d10 + your Wisdom modifier. If the creature died while subject to any of the following conditions, it revives with those conditions removed: blinded, deafened, paralyzed, poisoned, and stunned. Once you use this feature, you can't use it again until you finish a long rest.",
+          "summary": "Spend 5 ki to return a creature that died within 24 hours to life with 4d10 + Wisdom modifier hit points.",
+          "description": "Your mastery of life energy opens the door to the ultimate mercy. As an action, you can touch the corpse of a creature that died within the past 24 hours and expend 5 ki points. The creature returns to life, regaining a number of hit points equal to **4d10** + your Wisdom modifier.\n\nIf the creature died while subject to any of the following conditions, it revives with those conditions removed: blinded, deafened, paralyzed, poisoned, and stunned.\n\nOnce you use this feature, you can't use it again until you finish a long rest.",
           "source": {
             "type": "subclass",
             "name": "Way of Mercy",
             "level": 17
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         }
-      ]
+      ],
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Way of the Astral Self",
@@ -7710,69 +7755,74 @@
           "level": 3,
           "featureType": "Active",
           "actionType": "Bonus Action",
-          "summary": "Spend 1 ki to summon spectral astral arms dealing force damage with Wisdom for attacks/checks.",
-          "description": "Your ki allows you to manifest spectral arms. As a bonus action, you can spend 1 ki point to summon the arms of your astral self for 10 minutes. Each creature within 10 feet must succeed on a Dex save or take 2x your Martial Arts die in force damage. While active, you can use Wisdom modifier in place of Strength for checks and saves, your unarmed strike reach increases by 5 feet, and your unarmed strikes deal force damage using Wisdom.",
+          "summary": "Spend 1 ki to summon astral arms for 10 minutes, dealing force damage and allowing the use of Wisdom for attacks and checks.",
+          "description": "Your ki allows you to manifest spectral arms. As a bonus action, you can spend 1 ki point to summon the arms of your astral self for 10 minutes. Each creature within 10 feet must succeed on a Dexterity saving throw or take force damage equal to 2x your Martial Arts die.\n\nWhile active, you can use your Wisdom modifier in place of Strength for checks and saves, your unarmed strike reach increases by 5 feet, and your unarmed strikes deal force damage using your Wisdom modifier.",
           "source": {
             "type": "subclass",
             "name": "Way of the Astral Self",
             "level": 3
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Visage of the Astral Self",
           "level": 6,
           "featureType": "Active",
           "actionType": "Bonus Action",
-          "summary": "Spend 1 ki to manifest an astral mask gaining darkvision through magical darkness, Insight/Intimidation advantage, and whisper projection.",
-          "description": "You can summon the spectral visage of your astral self. As a bonus action, or as part of summoning your arms, you spend 1 ki point to manifest your visage for 10 minutes. You gain Astral Sight (see in normal and magical darkness out to 120 ft), Wisdom of the Spirit (advantage on Insight and Intimidation checks), and Word of the Astral Self (project your voice to whisper up to 600 ft or boom 3x loud).",
+          "summary": "Spend 1 ki to manifest an astral mask for 10 minutes, gaining 120 ft darkvision, advantage on Insight and Intimidation, and voice projection.",
+          "description": "You can summon the spectral visage of your astral self. As a bonus action, or as part of summoning your arms, you spend 1 ki point to manifest your visage for 10 minutes. You gain the following benefits:\n\n- Astral Sight: You can see in normal and magical darkness out to 120 feet.\n- Wisdom of the Spirit: You have advantage on Insight and Intimidation checks.\n- Word of the Astral Self: You can project your voice to whisper to a creature up to 600 feet away, or you can make your voice boom 3x louder than normal.",
           "source": {
             "type": "subclass",
             "name": "Way of the Astral Self",
             "level": 6
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Body of the Astral Self",
           "level": 11,
           "featureType": "Passive",
-          "summary": "Manifest astral armor: deflect elemental damage as a reaction, and make 3 attacks with Flurry of Blows.",
-          "description": "When you have both your astral arms and visage active, you can manifest the complete body of your astral self. You gain: Deflect Energy (reaction reduce acid, cold, fire, force, lightning, or thunder damage by 1d10 + Wis mod) and Empowered Arms (once on each of your turns when you hit with your astral arms, deal extra damage equal to your Martial Arts die).",
+          "summary": "Reduce acid, cold, fire, force, lightning, or thunder damage as a reaction, and deal extra damage once per turn when hitting with astral arms.",
+          "description": "When you have both your astral arms and visage active, you can manifest the complete body of your astral self. You gain the following benefits:\n\n- Deflect Energy: As a reaction, you can reduce acid, cold, fire, force, lightning, or thunder damage you take by **1d10** + your Wisdom modifier.\n- Empowered Arms: Once on each of your turns, when you hit a target with your astral arms, you deal extra damage equal to your Martial Arts die.",
           "source": {
             "type": "subclass",
             "name": "Way of the Astral Self",
             "level": 11
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Awakened Astral Self",
           "level": 17,
           "featureType": "Active",
           "actionType": "Bonus Action",
-          "summary": "Spend 5 ki to summon your full astral form: +2 AC, 3 attacks per Extra Attack, and crushing force.",
-          "description": "You can awaken the full power of your astral self. As a bonus action, you can spend 5 ki points to summon your arms, visage, and body simultaneously for 10 minutes. While active: you gain a +2 bonus to AC, you can make three attacks instead of two whenever you take the Attack action with your astral arms, and when you hit a target you can deal extra force damage.",
+          "summary": "Spend 5 ki to gain +2 AC, make three attacks with astral arms, and deal extra force damage for 10 minutes.",
+          "description": "You can awaken the full power of your astral self. As a bonus action, you can spend **5** ki points to summon your arms, visage, and body simultaneously for **10** minutes.\n\nWhile this form is active, you gain the following benefits:\n- You gain a **+2** bonus to AC.\n- You can make three attacks instead of two whenever you take the Attack action with your astral arms.\n- When you hit a target, you can deal extra force damage.",
           "source": {
             "type": "subclass",
             "name": "Way of the Astral Self",
             "level": 17
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         }
-      ]
+      ],
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Monk",
       "classIndex": "monk",
       "index": "drunken-master",
       "name": "Way of the Drunken Master",
-      "flavorText": "Monastic Tradition",
+      "flavorText": "The Way of the Drunken Master teaches its students to move with the jerky, unpredictable movements of a drunkard. A drunken master sways, tottering on unsteady feet, to present the image of an incompetent combatant who proves frustrating to engage. These erratic stumbles are actually a carefully executed dance of blocks, parries, advances, and attacks.",
       "description": "The Way of the Drunken Master teaches its students to move with the jerky, unpredictable movements of a drunkard. A drunken master sways, tottering on unsteady feet, to present what seems like an incompetent combatant who proves frustrating to engage. The drunken master's erratic stumbles conceal a carefully executed dance of blocks, parries, advances, and attacks.",
       "features": [
         {
           "name": "Bonus Proficiencies",
-          "description": "At 3rd level, you gain proficiency in the Performance skill if you don't already have it. Your unarmored movement speed increases by 10 feet while you are not wearing armor or wielding a shield, and you gain proficiency with brewer's supplies if you don't already have it.",
+          "description": "At 3rd level, you gain proficiency in the Performance skill if you do not already have it.\n\nYour unarmored movement speed increases by **10** feet while you are not wearing armor or wielding a shield, and you gain proficiency with brewer's supplies if you do not already have it.",
           "level": 3,
           "featureType": "Passive",
           "actionType": null,
@@ -7783,7 +7833,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Your unarmored movement speed increases by 10 feet while you are not wearing armor or wielding a shield, and you gain proficiency with brewer's supplies if you don't already have.",
+          "summary": "Gain proficiency in Performance and brewer's supplies, and increase unarmored movement speed by 10 feet.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -7793,11 +7843,12 @@
             "name": "Way of the Drunken Master",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Drunken Technique",
-          "description": "At 3rd level, you learn how to twist away from danger. When you use your Flurry of Blows, you can disengage as a bonus action, and your walking speed increases by 10 feet until the end of the current turn.",
+          "description": "At 3rd level, you learn how to twist away from danger. When you use your Flurry of Blows, you can disengage as a bonus action, and your walking speed increases by **10** feet until the end of the current turn.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -7808,7 +7859,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can disengage as a bonus action, and your walking speed increases by 10 feet until the end of the current turn. (bonus action).",
+          "summary": "When using Flurry of Blows, you can disengage as a bonus action and increase your walking speed by 10 feet until the end of the turn.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -7818,11 +7869,12 @@
             "name": "Way of the Drunken Master",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Tipsy Sway",
-          "description": "Starting at 6th level, you can dodge in unanticipated ways, seemingly moving out of harm's way at the last moment. When a creature misses you with a melee attack, you can use your reaction to spend 1 ki point to make a melee attack against the creature. If the attack hits, the creature must succeed on a Strength saving throw or be knocked prone.",
+          "description": "Starting at 6th level, you can dodge in unanticipated ways, seemingly moving out of harm's way at the last moment. When a creature misses you with a melee attack, you can use your reaction to spend **1** ki point to make a melee attack against the creature. If the attack hits, the creature must succeed on a Strength saving throw or be knocked prone.",
           "level": 6,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -7833,7 +7885,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "The creature must succeed on a Strength saving throw or be knocked prone. (reaction).",
+          "summary": "When a creature misses you with a melee attack, use a reaction and 1 ki to attack them; if you hit, they may be knocked prone.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -7843,11 +7895,12 @@
             "name": "Way of the Drunken Master",
             "level": 6
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Drunkard's Luck",
-          "description": "Starting at 11th level, you always seem to get a lucky bounce at the right moment. When you make an ability check, an attack roll, or a saving throw that has disadvantage, you can spend 2 ki points to cancel the disadvantage for that roll.",
+          "description": "Starting at 11th level, you always seem to get a lucky bounce at the right moment. When you make an ability check, an attack roll, or a saving throw that has disadvantage, you can spend **2** ki points to cancel the disadvantage for that roll.",
           "level": 11,
           "featureType": "Active",
           "actionType": null,
@@ -7858,7 +7911,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "An attack roll, or a saving throw that has disadvantage, you can spend 2 ki points to cancel the disadvantage for that roll. (action).",
+          "summary": "Spend **2** ki points to cancel disadvantage on an ability check, attack roll, or saving throw.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -7868,11 +7921,12 @@
             "name": "Way of the Drunken Master",
             "level": 11
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Intoxicated Frenzy",
-          "description": "At 17th level, you gain the ability to make a whirlwind of attacks. When you use your Flurry of Blows, you can make up to three additional attacks with it (up to a total of five attacks), provided that each attack targets a different creature.",
+          "description": "At 17th level, you gain the ability to make a whirlwind of attacks. When you use your Flurry of Blows, you can make up to **3** additional attacks with it (up to a total of **5** attacks), provided that each attack targets a different creature.",
           "level": 17,
           "featureType": "Active",
           "actionType": null,
@@ -7883,7 +7937,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 17th level, you gain the ability to make a whirlwind of attacks. (action).",
+          "summary": "When using Flurry of Blows, make up to **3** additional attacks (up to **5** total) if each targets a different creature.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -7893,11 +7947,13 @@
             "name": "Way of the Drunken Master",
             "level": 17
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "XGE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Way of the Four Elements",
@@ -7910,55 +7966,59 @@
           "name": "Disciple of the Elements",
           "level": 3,
           "featureType": "Active",
-          "summary": "Learn magical disciplines that harness earth, air, fire, and water by spending ki points.",
+          "summary": "Spend ki points to use elemental disciplines; you start with Elemental Attunement and one other choice.",
           "description": "You learn magical disciplines that harness the power of the four elements. A discipline requires you to spend ki points each time you use it. You know the Elemental Attunement discipline and one other elemental discipline of your choice. You learn one additional elemental discipline of your choice at 6th, 11th, and 17th level.",
           "source": {
             "type": "subclass",
             "name": "Way of the Four Elements",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Elemental Attunement",
           "level": 3,
           "featureType": "Active",
           "actionType": "Action",
-          "summary": "Produce minor harmless elemental effects, create sparks, cool or warm objects, or shape mist.",
-          "description": "You can use your action to briefly control elemental forces nearby: create harmless sensory effects like showers of sparks, puff of wind, or mist; light or snuff a candle or campfire; chill or warm up to 1 pound of nonliving material; or shape earth, fire, water, or mist into crude shapes for 1 minute.",
+          "summary": "Use an action to create minor sensory effects, light or snuff fires, change the temperature of small objects, or shape elements.",
+          "description": "You can use your action to briefly control elemental forces nearby: create harmless sensory effects like showers of sparks, puff of wind, or mist; light or snuff a candle or campfire; chill or warm up to **1** pound of nonliving material; or shape earth, fire, water, or mist into crude shapes for **1** minute.",
           "source": {
             "type": "subclass",
             "name": "Way of the Four Elements",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Fangs of the Fire Snake",
           "level": 3,
           "featureType": "Active",
-          "summary": "Spend 1 ki to extend unarmed strike reach by 10 ft and deal fire damage; spend extra ki for +1d10 fire.",
-          "description": "When you use the Attack action on your turn, you can spend 1 ki point to cause tendrils of flame to stretch out from your fists and feet. Your reach with your unarmed strikes increases by 10 feet for that action, as well as the rest of the turn. A hit with such an attack deals fire damage instead of bludgeoning damage, and if you spend 1 additional ki point when the attack hits, it deals an extra 1d10 fire damage.",
+          "summary": "Spend **1** ki to increase unarmed strike reach by **10** feet and deal fire damage; spend **1** more ki on hit for **1d10** extra fire damage.",
+          "description": "When you use the Attack action on your turn, you can spend **1** ki point to cause tendrils of flame to stretch out from your fists and feet. Your reach with your unarmed strikes increases by **10** feet for that action, as well as the rest of the turn. A hit with such an attack deals fire damage instead of bludgeoning damage, and if you spend **1** additional ki point when the attack hits, it deals an extra **1d10** fire damage.",
           "source": {
             "type": "subclass",
             "name": "Way of the Four Elements",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Water Whip",
           "level": 3,
           "featureType": "Active",
           "actionType": "Action",
-          "summary": "Spend 2 ki to create a water whip dealing 3d10 bludgeoning and pulling the target 25 ft or knocking prone.",
-          "description": "You can spend 2 ki points as an action to create a whip of water that shoves and pulls a creature to unbalance it. A creature that you can see that is within 30 feet of you must make a Dexterity saving throw. On a failed save, it takes 3d10 bludgeoning damage plus an extra 1d10 for each additional ki point spent, and you can either knock it prone or pull it up to 25 feet closer to you.",
+          "summary": "Spend 2 ki to deal 3d10 bludgeoning damage to a target within 30 feet, and either knock it prone or pull it 25 feet closer to you.",
+          "description": "As an action, you can spend 2 ki points to create a whip of water that shoves and pulls a creature to unbalance it. Choose a creature you can see within 30 feet of you; it must make a Dexterity saving throw. On a failed save, the creature takes **3d10** bludgeoning damage, plus an extra **1d10** for each additional ki point you spend. Additionally, you can either knock the creature prone or pull it up to 25 feet closer to you.",
           "source": {
             "type": "subclass",
             "name": "Way of the Four Elements",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Fist of Four Thunders",
@@ -7972,7 +8032,8 @@
             "name": "Way of the Four Elements",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Sweeping Cinder Strike",
@@ -7986,7 +8047,8 @@
             "name": "Way of the Four Elements",
             "level": 6
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Gong of the Summit",
@@ -8000,7 +8062,8 @@
             "name": "Way of the Four Elements",
             "level": 6
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Flames of the Phoenix",
@@ -8014,7 +8077,8 @@
             "name": "Way of the Four Elements",
             "level": 11
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Ride the Wind",
@@ -8028,7 +8092,8 @@
             "name": "Way of the Four Elements",
             "level": 11
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "River of Hungry Flame",
@@ -8042,30 +8107,34 @@
             "name": "Way of the Four Elements",
             "level": 17
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
-      ]
+      ],
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Monk",
       "classIndex": "monk",
       "index": "kensei",
       "name": "Way of the Kensei",
-      "flavorText": "Monastic Tradition",
+      "flavorText": "You follow a monastic tradition where you train relentlessly with your weapons until they become seamless extensions of your own body. While this path was founded upon the mastery of the sword, the tradition has since expanded to encompass a wide variety of weaponry.",
       "description": "Monks of the Way of the Kensei train relentlessly with their weapons, to the point where they become extensions of their body. Founded on a mastery of sword fighting, the tradition has expanded to include many different weapons.",
       "features": [
         {
           "name": "Path of the Kensei",
-          "description": "When you choose this tradition at 3rd level, you gain proficiency with martial weapons and calligrapher's supplies or painter's supplies. You also choose two types of Kensei Weapons: melee weapons or ranged weapons. You can change your choices each time you gain a level. You can use your choice of any Kensei Weapon as a monk weapon, and when you do so, you can use your Dexterity modifier instead of Strength for the attack and damage rolls of your Kensei Weapons.",
+          "description": "When you choose this tradition at 3rd level, you gain proficiency with martial weapons and calligrapher's supplies or painter's supplies.\n\nYou also choose two types of Kensei Weapons: melee weapons or ranged weapons. You can change your choices each time you gain a level.\n\nYou can use any weapon you have chosen as a Kensei Weapon as a monk weapon. When you do so, you can use your Dexterity modifier instead of Strength for the attack and damage rolls of your Kensei Weapons.",
           "level": 3,
           "choices": [
             {
               "name": "Kensei Weapons (Melee)",
-              "description": "Choose two types of melee weapons to be your kensei weapons. You can use your Dexterity modifier instead of Strength for attack and damage rolls with these weapons."
+              "description": "Choose two types of melee weapons to be your kensei weapons. You can use your Dexterity modifier instead of Strength for attack and damage rolls with these weapons.",
+              "lastUpdated": "2026-09-29"
             },
             {
               "name": "Kensei Weapons (Ranged)",
-              "description": "Choose one ranged weapon to be your kensei weapon. You can use your Dexterity modifier instead of Strength for attack and damage rolls with this weapon."
+              "description": "Choose one ranged weapon to be your kensei weapon. You can use your Dexterity modifier instead of Strength for attack and damage rolls with this weapon.",
+              "lastUpdated": "2026-09-29"
             }
           ],
           "choicesCount": 2,
@@ -8078,7 +8147,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gain proficiency with martial weapons and calligrapher's supplies or painter's supplies. (action).",
+          "summary": "Gain proficiency with martial weapons and calligrapher's or painter's supplies. Use Dexterity for Kensei Weapon attacks.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -8088,11 +8157,12 @@
             "name": "Way of the Kensei",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "One with the Blade",
-          "description": "At 6th level, you extend your ki into your kensei weapons. When you hit a creature with a kensei weapon, you can spend 1 ki point to do one of the following: add your Wisdom modifier to the damage of the attack, or the target must succeed on a Strength saving throw or be pushed 15 feet away from you.",
+          "description": "At 6th level, you extend your ki into your kensei weapons. When you hit a creature with a kensei weapon, you can spend 1 ki point to do one of the following:\n- Add your Wisdom modifier to the damage of the attack.\n- The target must succeed on a Strength saving throw or be pushed **15 feet** away from you.",
           "level": 6,
           "featureType": "Active",
           "actionType": null,
@@ -8103,7 +8173,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can spend 1 ki point to do one of the following: add your Wisdom modifier to the damage of the attack, or the target must succeed on a Strength saving.",
+          "summary": "Spend 1 ki point on a hit to add your Wisdom modifier to the damage or push the target 15 feet with a Strength saving throw.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -8113,11 +8183,12 @@
             "name": "Way of the Kensei",
             "level": 6
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Sharpen the Blade",
-          "description": "At 11th level, you gain the ability to augment your weapons with your ki. As a bonus action, you can spend up to 3 ki points to grant a kensei weapon you touch a bonus to attack and damage rolls when you attack with it. The bonus equals the number of ki points you spent. The bonus lasts for 1 minute or until you use this feature again. This feature has no effect on a magic weapon that already has a bonus to attack and damage rolls.",
+          "description": "At 11th level, you gain the ability to augment your weapons with your ki. As a bonus action, you can spend up to **3** ki points to grant a kensei weapon you touch a bonus to attack and damage rolls when you attack with it. The bonus equals the number of ki points you spent. The bonus lasts for **1 minute** or until you use this feature again. This feature has no effect on a magic weapon that already has a bonus to attack and damage rolls.",
           "level": 11,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -8128,7 +8199,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Has no effect on a magic weapon that already has a bonus to attack and damage rolls. (bonus action).",
+          "summary": "Spend up to 3 ki points as a bonus action to grant a kensei weapon a bonus to attack and damage rolls equal to the ki spent for 1 minute.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -8138,7 +8209,8 @@
             "name": "Way of the Kensei",
             "level": 11
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Unerring Accuracy",
@@ -8153,7 +8225,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can reroll the attack roll, and you must use the new roll. (action).",
+          "summary": "Reroll a missed attack roll with a monk weapon on your turn once per turn; you must use the new roll.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -8163,11 +8235,13 @@
             "name": "Way of the Kensei",
             "level": 17
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "XGE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Way of the Long Death",
@@ -8180,65 +8254,70 @@
           "name": "Touch of Death",
           "level": 3,
           "featureType": "Passive",
-          "summary": "Gain temporary hit points equal to Wisdom modifier + monk level when reducing a creature within 5 ft to 0 HP.",
-          "description": "Your study of death allows you to extract vitality from dying creatures. When you reduce a creature within 5 feet of you to 0 hit points, you gain temporary hit points equal to your Wisdom modifier + your monk level (minimum 1).",
+          "summary": "Gain temporary hit points equal to your Wisdom modifier + monk level when you reduce a creature within 5 feet to 0 hit points.",
+          "description": "Your study of death allows you to extract vitality from dying creatures. When you reduce a creature within **5 feet** of you to 0 hit points, you gain temporary hit points equal to your Wisdom modifier + your monk level (minimum **1**).",
           "source": {
             "type": "subclass",
             "name": "Way of the Long Death",
             "level": 3
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Hour of Reaping",
           "level": 6,
           "featureType": "Active",
           "actionType": "Action",
-          "summary": "Frighten all creatures within 30 feet that can see you on a failed Wisdom saving throw.",
-          "description": "As an action, you unleash the macabre presence of death. Each creature within 30 feet of you that can see you must succeed on a Wisdom saving throw or be frightened of you until the end of your next turn.",
+          "summary": "Force all creatures within 30 feet that can see you to make a Wisdom saving throw or be frightened of you until the end of your next turn.",
+          "description": "As an action, you unleash the macabre presence of death. Each creature within **30 feet** of you that can see you must succeed on a Wisdom saving throw or be frightened of you until the end of your next turn.",
           "source": {
             "type": "subclass",
             "name": "Way of the Long Death",
             "level": 6
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Mastery of Death",
           "level": 11,
           "featureType": "Active",
           "actionType": "Reaction",
-          "summary": "Spend 1 ki point when reduced to 0 hit points to drop to 1 hit point instead.",
-          "description": "Beginning at 11th level, you use your familiarity with death to escape its grasp. When you are reduced to 0 hit points, you can expend 1 ki point (no action required) to have 1 hit point instead.",
+          "summary": "When reduced to 0 hit points, spend 1 ki point to drop to 1 hit point instead.",
+          "description": "Beginning at 11th level, you use your familiarity with death to escape its grasp. When you are reduced to 0 hit points, you can expend **1** ki point (no action required) to have **1** hit point instead.",
           "source": {
             "type": "subclass",
             "name": "Way of the Long Death",
             "level": 11
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Touch of the Long Death",
           "level": 17,
           "featureType": "Active",
           "actionType": "Action",
-          "summary": "Spend 1 to 10 ki points on a touched creature to deal 2d10 necrotic damage per ki point spent.",
-          "description": "Your touch channels the pure energy of death. As an action, you touch one creature within 5 feet of you and expend 1 to 10 ki points. The target must make a Constitution saving throw, taking 2d10 necrotic damage per ki point spent on a failure, or half as much on a success.",
+          "summary": "Expend 1 to 10 ki points to deal 2d10 necrotic damage per point spent to a touched creature.",
+          "description": "Your touch channels the pure energy of death. As an action, you touch one creature within 5 feet of you and expend 1 to 10 ki points. The target must make a Constitution saving throw, taking **2d10** necrotic damage per ki point spent on a failure, or half as much on a success.",
           "source": {
             "type": "subclass",
             "name": "Way of the Long Death",
             "level": 17
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         }
-      ]
+      ],
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Monk",
       "classIndex": "monk",
       "index": "sun-soul",
       "name": "Way of the Sun Soul",
-      "flavorText": "Monastic Tradition",
+      "flavorText": "Monastic Tradition\n\nMonks of the Way of the Sun Soul learn to channel the power of the sun into devastating attacks. They teach that the soul is a spark of the sun's divine light, and that by channeling that light, they can overcome any darkness.",
       "description": "Monks of the Way of the Sun Soul learn to channel the power of the sun into devastating attacks. They teach that the soul is a spark of the sun's divine light, and that by channeling that light, they can overcome any darkness.",
       "features": [
         {
@@ -8254,7 +8333,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "The attack has a range of 30 feet and uses your Dexterity modifier for the attack roll. (bonus action).",
+          "summary": "Make a ranged spell attack with a range of 30 feet as a bonus action, dealing radiant damage equal to your Martial Arts die.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -8264,7 +8343,8 @@
             "name": "Way of the Sun Soul",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Searing Arc Strike",
@@ -8279,7 +8359,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 6th level, you gain the ability to channel your ki into a blast of radiant energy. (action).",
+          "summary": "Spend 2 ki points after taking the Attack action to cast burning hands at 3rd level.",
           "grantsSpells": false,
           "grantsAttack": true,
           "grantsSkills": false,
@@ -8289,11 +8369,12 @@
             "name": "Way of the Sun Soul",
             "level": 6
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Searing Sunburst",
-          "description": "At 11th level, you gain the ability to create a ball of light that erupts in a devastating radiant explosion. As an action, you can create a sphere centered on a point you can see within 150 feet of you. The sphere has a radius of 20 feet. Each creature in that area must make a Constitution saving throw. A creature takes 2d6 radiant damage per ki point you spend on a failed save, or half as much damage on a successful one. A creature that fails its save is also blinded until the end of your next turn.",
+          "description": "At 11th level, you gain the ability to create a ball of light that erupts in a devastating radiant explosion. As an action, you can create a sphere centered on a point you can see within 150 feet of you. The sphere has a radius of 20 feet. Each creature in that area must make a Constitution saving throw. A creature takes **2d6** radiant damage per ki point you spend on a failed save, or half as much damage on a successful one. A creature that fails its save is also blinded until the end of your next turn.",
           "level": 11,
           "featureType": "Active",
           "actionType": "Action",
@@ -8304,7 +8385,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "A creature takes 2d6 radiant damage per ki point you spend on a failed save, or half as much damage on a successful one. (action).",
+          "summary": "Create a 20-foot radius sphere within 150 feet; creatures take 2d6 radiant damage per ki point spent on a failed save and are blinded.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -8314,7 +8395,8 @@
             "name": "Way of the Sun Soul",
             "level": 11
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Sun Shield",
@@ -8329,7 +8411,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Shed bright light in a 30-foot radius and dim light for an additional 30 feet. (bonus action).",
+          "summary": "Shed bright light in a 30-foot radius and dim light for another 30 feet; deal 5 radiant damage to melee attackers as a reaction.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -8339,23 +8421,25 @@
             "name": "Way of the Sun Soul",
             "level": 17
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "XGE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Ancients",
       "class": "Paladin",
       "classIndex": "paladin",
       "index": "ancients",
-      "flavorText": "Sacred Oath",
+      "flavorText": "Sacred Oath\n\nThe Oath of the Ancients is as old as the race of elves and the rituals of the druids. Sometimes called fey knights, green knights, or horned knights, paladins who swear this oath cast their lot with the side of the light in the cosmic struggle against darkness.\n\nThese paladins love the beautiful and life-giving things of the world, not necessarily because they believe in principles of honor, courage, and justice. They adorn their armor and clothing with images of growing things—leaves, antlers, or flowers—to reflect their commitment to preserving life and light in the world.",
       "description": "The Oath of the Ancients is as old as the race of elves and the rituals of the druids. Sometimes called fey knights, green knights, or horned knights, paladins who swear this oath cast their lot with the side of the light in the cosmic struggle against darkness.\n\nThese paladins love the beautiful and life-giving things of the world, not necessarily because they believe in principles of honor, courage, and justice. They adorn their armor and clothing with images of growing things—leaves, antlers, or flowers—to reflect their commitment to preserving life and light in the world.",
       "features": [
         {
           "name": "Oath Spells",
-          "description": "Each oath has a list of associated spells. You gain access to these spells at the levels specified in the oath description. Once you gain access to an oath spell, you always have it prepared. Oath spells don't count against the number of spells you can prepare each day.\nIf you gain an oath spell that doesn't appear on the paladin spell list, the spell is nonetheless a paladin spell for you.",
+          "description": "Each oath has a list of associated spells. You gain access to these spells at the levels specified in the oath description. Once you gain access to an oath spell, you always have it prepared. Oath spells don't count against the number of spells you can prepare each day.\n\nIf you gain an oath spell that doesn't appear on the paladin spell list, the spell is nonetheless a paladin spell for you.",
           "level": 3,
           "featureType": "Passive",
           "actionType": null,
@@ -8366,7 +8450,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gain access to these spells at the levels specified in the oath description.",
+          "summary": "You always have specific oath spells prepared, which do not count against your daily limit.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -8376,11 +8460,12 @@
             "name": "Ancients",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Channel Divinity: Nature's Wrath",
-          "description": "You can use your Channel Divinity to invoke primeval forces to ensnare a foe. As an action, you can cause spectral vines to spring up and reach for a creature within 10 feet of you that you can see. The creature must succeed on a Strength or Dexterity saving throw (its choice) or be restrained. While restrained by the vines, the creature repeats the saving throw at the end of each of its turns. On a success, it frees itself and the vines vanish.",
+          "description": "You can use your Channel Divinity to invoke primeval forces to ensnare a foe. As an action, you can cause spectral vines to spring up and reach for a creature within 10 feet of you that you can see. The creature must succeed on a Strength or Dexterity saving throw (its choice) or be restrained.\n\nWhile restrained by the vines, the creature repeats the saving throw at the end of each of its turns. On a success, it frees itself and the vines vanish.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Action",
@@ -8391,7 +8476,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can cause spectral vines to spring up and reach for a creature within 10 feet of you that you can see. (action).",
+          "summary": "Use an action to attempt to restrain a creature within 10 feet with spectral vines.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -8401,11 +8486,12 @@
             "name": "Ancients",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Channel Divinity: Turn the Faithless",
-          "description": "You can use your Channel Divinity to utter ancient words that are painful for fey and fiends to hear. As an action, you present your holy symbol, and each fey or fiend within 30 feet of you that can hear you must make a Wisdom saving throw. On a failed save, the creature is turned for 1 minute or until it takes damage. A turned creature must spend its turns trying to move as far away from you as it can, and it can't willingly move to a space within 30 feet of you. It also can't take reactions. For its action, it can use only the Dash action or try to escape from an effect that prevents it from moving. If there's nowhere to move, the creature can use the Dodge action. If the creature's true form is concealed by an illusion, shapeshifting, or other effect, that form is revealed while it is turned.",
+          "description": "You can use your Channel Divinity to utter ancient words that are painful for fey and fiends to hear. As an action, you present your holy symbol, and each fey or fiend within 30 feet of you that can hear you must make a Wisdom saving throw.\n\nOn a failed save, the creature is turned for 1 minute or until it takes damage. A turned creature must spend its turns trying to move as far away from you as it can, and it can't willingly move to a space within 30 feet of you. It also can't take reactions. For its action, it can use only the Dash action or try to escape from an effect that prevents it from moving. If there's nowhere to move, the creature can use the Dodge action.\n\nIf the creature's true form is concealed by an illusion, shapeshifting, or other effect, that form is revealed while it is turned.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -8416,7 +8502,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Present your holy symbol, and each fey or fiend within 30 feet of you that can hear you must make a Wisdom saving throw. (reaction).",
+          "summary": "Use an action to force fey and fiends within 30 feet to flee from you for 1 minute.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -8426,11 +8512,12 @@
             "name": "Ancients",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Aura of Warding",
-          "description": "Beginning at 7th level, ancient magic lies so heavily upon you that it forms an eldritch ward. You and friendly creatures within 10 feet of you have resistance to damage from spells. At 18th level, the range of this aura increases to 30 feet.",
+          "description": "Beginning at 7th level, ancient magic lies so heavily upon you that it forms an eldritch ward. You and friendly creatures within 10 feet of you have resistance to damage from spells.\n\nAt 18th level, the range of this aura increases to 30 feet.",
           "level": 7,
           "featureType": "Passive",
           "actionType": null,
@@ -8441,7 +8528,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "And friendly creatures within 10 feet of you have resistance to damage from spells.",
+          "summary": "You and friendly creatures within 10 feet have resistance to damage from spells.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -8451,11 +8538,12 @@
             "name": "Ancients",
             "level": 7
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Undying Sentinel",
-          "description": "Starting at 15th level, when you are reduced to 0 hit points and are not killed outright, you can choose to drop to 1 hit point instead. Once you use this ability, you can't use it again until you finish a long rest. Additionally, you suffer none of the drawbacks of old age, and you can't be aged magically.",
+          "description": "Starting at 15th level, when you are reduced to 0 hit points and are not killed outright, you can choose to drop to 1 hit point instead. Once you use this ability, you can't use it again until you finish a long rest.\n\nAdditionally, you suffer none of the drawbacks of old age, and you can't be aged magically.",
           "level": 15,
           "featureType": "Active",
           "actionType": null,
@@ -8466,7 +8554,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Starting at 15th level, when you are reduced to 0 hit points and are not killed outright, you can choose to drop to 1 hit point instead. (action).",
+          "summary": "Drop to 1 hit point instead of 0 once per long rest, and gain immunity to magical aging.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -8476,11 +8564,12 @@
             "name": "Ancients",
             "level": 15
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Elder Champion",
-          "description": "At 20th level, you can assume the form of an ancient force of nature, taking on an appearance you choose. For example, your skin might turn green or take on a bark-like texture, your hair might become leafy or moss-like, or you might sprout antlers or a lion-like mane. Using your action, you undergo a transformation. For 1 minute, you gain the following benefits: At the start of each of your turns, you regain 10 hit points. Whenever you cast a paladin spell that has a casting time of 1 action, you can cast it using a bonus action instead. Enemy creatures within 10 feet of you have disadvantage on saving throws against your paladin spells and Channel Divinity options. Once you use this feature, you can't use it again until you finish a long rest.",
+          "description": "At 20th level, you can assume the form of an ancient force of nature, taking on an appearance you choose. For example, your skin might turn green or take on a bark-like texture, your hair might become leafy or moss-like, or you might sprout antlers or a lion-like mane.\n\nUsing your action, you undergo a transformation. For 1 minute, you gain the following benefits:\n- At the start of each of your turns, you regain **10** hit points.\n- Whenever you cast a paladin spell that has a casting time of 1 action, you can cast it using a bonus action instead.\n- Enemy creatures within **10** feet of you have disadvantage on saving throws against your paladin spells and Channel Divinity options.\n\nOnce you use this feature, you can't use it again until you finish a long rest.",
           "level": 20,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -8491,7 +8580,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Enemy creatures within 10 feet of you have disadvantage on saving throws against your paladin spells and Channel Divinity options. (bonus action).",
+          "summary": "Use a bonus action to cast paladin spells; regain 10 hit points each turn; enemies within 10 feet have disadvantage on saves against your paladin spells and Channel Divinity.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -8501,23 +8590,25 @@
             "name": "Ancients",
             "level": 20
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "PHB",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Paladin",
       "classIndex": "paladin",
       "index": "devotion",
       "name": "Devotion",
-      "flavorText": "Sacred Oath",
+      "flavorText": "The Oath of Devotion binds a paladin to the loftiest ideals of justice, virtue, and order. Sometimes called cavaliers, white knights, or holy warriors, these paladins embody the ideal of the knight in shining armor, acting with honor in pursuit of justice and the greater good. They hold themselves to the highest standards of conduct, and some, for better or worse, hold the rest of the world to those same standards.\n\nMany who swear this oath are devoted to gods of law and good, using the tenets of their deities as the measure of their devotion. They view angels—the perfect servants of good—as their ideals, often incorporating images of angelic wings into their helmets or coats of arms.",
       "description": "The Oath of Devotion binds a paladin to the loftiest ideals of justice, virtue, and order. Sometimes called cavaliers, white knights, or holy warriors, these paladins meet the ideal of the knight in shining armor, acting with honor in pursuit of justice and the greater good. They hold themselves to the highest standards of conduct, and some, for better or worse, hold the rest of the world to the same standards. Many who swear this oath are devoted to gods of law and good and use their gods' tenets as the measure of their devotion. They hold angels--the perfect servants of good--as their ideals, and incorporate images of angelic wings into their helmets or coats of arms.",
       "features": [
         {
           "name": "Oath Spells",
-          "description": "Each oath has a list of associated spells. You gain access to these spells at the levels specified in the oath description. Once you gain access to an oath spell, you always have it prepared. Oath spells don't count against the number of spells you can prepare each day.\nIf you gain an oath spell that doesn't appear on the paladin spell list, the spell is nonetheless a paladin spell for you.",
+          "description": "Each oath has a list of associated spells. You gain access to these spells at the levels specified in the oath description. Once you gain access to an oath spell, you always have it prepared. Oath spells don't count against the number of spells you can prepare each day.\n\nIf you gain an oath spell that doesn't appear on the paladin spell list, the spell is nonetheless a paladin spell for you.",
           "level": 3,
           "featureType": "Passive",
           "actionType": null,
@@ -8528,7 +8619,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gain access to these spells at the levels specified in the oath description.",
+          "summary": "You always have specific oath spells prepared, and they do not count against your daily preparation limit.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -8538,11 +8629,12 @@
             "name": "Devotion",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Channel Divinity: Sacred Weapon",
-          "description": "As an action, you can imbue one weapon that you are holding with positive energy, using your Channel Divinity. For 1 minute, you add your Charisma modifier to attack rolls made with that weapon (with a minimum bonus of +1). The weapon also emits bright light in a 20-foot radius and dim light 20 feet beyond that. If the weapon is not already magical, it becomes magical for the duration.\nYou can end this effect on your turn as part of any other action. If you are no longer holding or carrying this weapon, or if you fall unconscious, this effect ends.",
+          "description": "As an action, you can use your Channel Divinity to imbue one weapon you are holding with positive energy. For 1 minute, you add your Charisma modifier to attack rolls made with that weapon (with a minimum bonus of **+1**). The weapon also emits bright light in a **20-foot** radius and dim light **20** feet beyond that. If the weapon is not already magical, it becomes magical for the duration.\n\nYou can end this effect on your turn as part of any other action. If you are no longer holding or carrying this weapon, or if you fall unconscious, this effect ends.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Action",
@@ -8553,7 +8645,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "The weapon also emits bright light in a 20-foot radius and dim light 20 feet beyond that. (action).",
+          "summary": "Add your Charisma modifier to attack rolls with a weapon and emit light in a 20-foot radius. (action).",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -8563,11 +8655,12 @@
             "name": "Devotion",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Channel Divinity: Turn the Unholy",
-          "description": "As an action, you present your holy symbol and speak a prayer censuring fiends and undead, using your Channel Divinity. Each fiend or undead that can see or hear you within 30 feet of you must make a Wisdom saving throw. If the creature fails its saving throw, it is turned for 1 minute or until it takes damage.\nA turned creature must spend its turns trying to move as far away from you as it can, and it can't willingly move to a space within 30 feet of you. It also can't take reactions. For its action, it can use only the Dash action or try to escape from an effect that prevents it from moving. If there's nowhere to move, the creature can use the Dodge action.",
+          "description": "As an action, you present your holy symbol and speak a prayer censuring fiends and undead, using your Channel Divinity. Each fiend or undead that can see or hear you within **30** feet of you must make a Wisdom saving throw. If the creature fails its saving throw, it is turned for 1 minute or until it takes damage.\n\nA turned creature must spend its turns trying to move as far away from you as it can, and it can't willingly move to a space within **30** feet of you. It also can't take reactions. For its action, it can use only the Dash action or try to escape from an effect that prevents it from moving. If there's nowhere to move, the creature can use the Dodge action.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -8578,7 +8671,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Each fiend or undead that can see or hear you within 30 feet of you must make a Wisdom saving throw. (reaction).",
+          "summary": "Force fiends and undead within 30 feet to make a Wisdom save or be turned for 1 minute. (action).",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -8588,11 +8681,12 @@
             "name": "Devotion",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Aura of Devotion",
-          "description": "Starting at 7th level, you and friendly creatures within 10 feet of you can't be charmed while you are conscious.\nAt 18th level, the range of this aura increases to 30 feet.",
+          "description": "Starting at 7th level, you and friendly creatures within **10** feet of you can't be charmed while you are conscious.\n\nAt 18th level, the range of this aura increases to **30** feet.",
           "level": 7,
           "featureType": "Passive",
           "actionType": null,
@@ -8603,7 +8697,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 18th level, the range of this aura increases to 30 feet.",
+          "summary": "You and friendly creatures within 10 feet cannot be charmed while you are conscious; range increases to 30 feet at 18th level.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -8613,7 +8707,8 @@
             "name": "Devotion",
             "level": 7
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Purity of Spirit",
@@ -8628,7 +8723,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Beginning at 15th level, you are always under the effects of a protection from evil and good spell.",
+          "summary": "You are always under the effects of a protection from evil and good spell.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -8638,11 +8733,12 @@
             "name": "Devotion",
             "level": 15
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Holy Nimbus",
-          "description": "At 20th level, as an action, you can emanate an aura of sunlight. For 1 minute, bright light shines from you in a 30-foot radius, and dim light shines 30 feet beyond that.\nWhenever an enemy creature starts its turn in the bright light, the creature takes 10 radiant damage.\nIn addition, for the duration, you have advantage on saving throws against spells cast by fiends or undead.",
+          "description": "At 20th level, as an action, you can emanate an aura of sunlight. For 1 minute, bright light shines from you in a 30-foot radius, and dim light shines 30 feet beyond that.\n\nWhenever an enemy creature starts its turn in the bright light, the creature takes **10** radiant damage.\n\nIn addition, for the duration, you have advantage on saving throws against spells cast by fiends or undead.",
           "level": 20,
           "featureType": "Active",
           "actionType": "Action",
@@ -8653,7 +8749,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Whenever an enemy creature starts its turn in the bright light, the creature takes 10 radiant damage. (action).",
+          "summary": "Emanate an aura of sunlight that deals 10 radiant damage to enemies starting their turn in the bright light and grants you advantage on saves against fiend or undead spells.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -8663,11 +8759,13 @@
             "name": "Devotion",
             "level": 20
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "PHB",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "index": "draconic-disciple",
@@ -8688,7 +8786,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Each creature of your choice within 30 feet of you must make a Wisdom saving throw against your spell save DC. (action).",
+          "summary": "Force chosen creatures within 30 feet to make a Wisdom saving throw or be frightened of you for 1 minute.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -8698,7 +8796,8 @@
             "name": "Draconic Disciple",
             "level": 3
           },
-          "book": "FTD"
+          "book": "FTD",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Channel Divinity: Draconic Might",
@@ -8713,7 +8812,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Have advantage on Strength checks, and when you deal damage with a melee weapon, you can add your Charisma modifier to the damage roll. (bonus action).",
+          "summary": "Gain advantage on Strength checks and add your Charisma modifier to melee weapon damage rolls for 1 minute.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -8723,12 +8822,13 @@
             "name": "Draconic Disciple",
             "level": 3
           },
-          "book": "FTD"
+          "book": "FTD",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Aura of the Dragon",
           "level": 7,
-          "description": "You emanate an aura of draconic power. Whenever you or a friendly creature within 10 feet of you makes a saving throw, that creature gains a bonus to the roll equal to your Charisma modifier (minimum of +1). You must be conscious to grant this bonus.",
+          "description": "You emanate an aura of draconic power. Whenever you or a friendly creature within 10 feet of you makes a saving throw, that creature gains a bonus to the roll equal to your Charisma modifier (minimum of **+1**). You must be conscious to grant this bonus.",
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -8738,7 +8838,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You emanate an aura of draconic power.",
+          "summary": "You and friendly creatures within 10 feet gain a bonus to saving throws equal to your Charisma modifier.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -8748,7 +8848,8 @@
             "name": "Draconic Disciple",
             "level": 7
           },
-          "book": "FTD"
+          "book": "FTD",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Draconic Resilience",
@@ -8773,12 +8874,13 @@
             "name": "Draconic Disciple",
             "level": 15
           },
-          "book": "FTD"
+          "book": "FTD",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Dragon Knight",
           "level": 20,
-          "description": "As an action, you can channel the full power of dragonkind, gaining the following benefits for 1 minute: You have a flying speed equal to your walking speed. You have resistance to all damage. Once you use this feature, you can't use it again until you finish a long rest.",
+          "description": "As an action, you can channel the full power of dragonkind, gaining the following benefits for 1 minute:\n\n- You have a flying speed equal to your walking speed.\n- You have resistance to all damage.\n\nOnce you use this feature, you can't use it again until you finish a long rest.",
           "featureType": "Active",
           "actionType": "Action",
           "uses": null,
@@ -8788,7 +8890,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "As an action, channel draconic power for 1 minute: gain a flying speed equal to your walking speed, resistance to all damage, and your breath weapon deals max damage.",
+          "summary": "As an action, gain a flying speed equal to your walking speed and resistance to all damage for 1 minute.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -8798,11 +8900,13 @@
             "name": "Draconic Disciple",
             "level": 20
           },
-          "book": "FTD"
+          "book": "FTD",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "FTD",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Paladin",
@@ -8814,7 +8918,7 @@
       "features": [
         {
           "name": "Channel Divinity: Conquering Presence",
-          "description": "When you take this oath at 3rd level, you gain the following Channel Divinity options:\n\nConquering Presence: As an action, you force each creature of your choice that you can see within 30 feet of you to make a Wisdom saving throw. If a creature fails its save, it is frightened of you for 1 minute. The frightened creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a successful save.\n\nGuided Strike: When you make an attack roll, you can use your Channel Divinity to gain a +10 bonus to the attack roll. You make this choice after you see the roll, but before the DM determines whether the attack hits or misses.",
+          "description": "When you take this oath at 3rd level, you gain the following Channel Divinity options:\n\nConquering Presence: As an action, you force each creature of your choice that you can see within 30 feet of you to make a Wisdom saving throw. If a creature fails its save, it is frightened of you for 1 minute. The frightened creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a successful save.\n\nGuided Strike: When you make an attack roll, you can use your Channel Divinity to gain a **+10** bonus to the attack roll. You make this choice after you see the roll, but before the DM determines whether the attack hits or misses.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Action",
@@ -8825,7 +8929,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gain the following Channel Divinity options: Conquering Presence: As an action, you force each creature of your choice that you can see within 30 feet of you to make.",
+          "summary": "Gain Conquering Presence to frighten nearby creatures and Guided Strike to add +10 to an attack roll.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -8835,11 +8939,12 @@
             "name": "Oath of Conquest",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Aura of Conquest",
-          "description": "Starting at 7th level, you constantly emanate a menacing aura while you are not incapacitated. The aura extends 10 feet from you in every direction, but not through total cover. If a creature is frightened of you, its speed is reduced to 0 while in the aura, and that creature takes psychic damage equal to half your paladin level if it ends its turn there. At 18th level, the aura extends to 30 feet.",
+          "description": "Starting at 7th level, you constantly emanate a menacing aura while you are not incapacitated. The aura extends 10 feet from you in every direction, but not through total cover. If a creature is frightened of you, its speed is reduced to 0 while in the aura, and that creature takes psychic damage equal to half your paladin level if it ends its turn there.\n\nAt 18th level, the aura extends to 30 feet.",
           "level": 7,
           "featureType": "Passive",
           "actionType": null,
@@ -8850,7 +8955,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Its speed is reduced to 0 while in the aura, and that creature takes psychic damage equal to half your paladin level if it ends its turn there.",
+          "summary": "Frightened creatures in your aura have their speed reduced to 0 and take psychic damage equal to half your paladin level.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -8860,11 +8965,12 @@
             "name": "Oath of Conquest",
             "level": 7
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Scared Earth",
-          "description": "Starting at 15th level, you can call on the power of your oath to strike fear into your foes. As an action, you can cause the ground in a 30-foot radius around you to become difficult terrain for 1 minute. In addition, the first time each turn that a creature moves into the area or starts its turn there, it takes 3d6 psychic damage. You can use this feature a number of times equal to your Charisma modifier (minimum of once), and you regain all expended uses when you finish a long rest.",
+          "description": "Starting at 15th level, you can call on the power of your oath to strike fear into your foes. As an action, you can cause the ground in a 30-foot radius around you to become difficult terrain for 1 minute. In addition, the first time each turn that a creature moves into the area or starts its turn there, it takes **3d6** psychic damage.\n\nYou can use this feature a number of times equal to your Charisma modifier (minimum of once), and you regain all expended uses when you finish a long rest.",
           "level": 15,
           "featureType": "Active",
           "actionType": "Action",
@@ -8875,7 +8981,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "In addition, the first time each turn that a creature moves into the area or starts its turn there, it takes 3d6 psychic damage. (action).",
+          "summary": "As an action, create difficult terrain in a 30-foot radius for 1 minute; creatures entering or starting their turn there take 3d6 psychic damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -8885,11 +8991,12 @@
             "name": "Oath of Conquest",
             "level": 15
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Invincible Conqueror",
-          "description": "At 20th level, you gain the ability to harness extraordinary martial prowess. As an action, you can magically become an avatar of conquest, gaining the following benefits for 1 minute: You have resistance to all damage. When you take the Attack action on your turn, you can make one additional attack as a part of that action. Your melee weapon attacks score a critical hit on a roll of 19 or 20 on the d20. Once you use this feature, you can't use it again until you finish a long rest.",
+          "description": "At 20th level, you gain the ability to harness extraordinary martial prowess. As an action, you can magically become an avatar of conquest, gaining the following benefits for 1 minute:\n\n- You have resistance to all damage.\n- When you take the Attack action on your turn, you can make one additional attack as a part of that action.\n- Your melee weapon attacks score a critical hit on a roll of 19 or 20 on the d20.\n\nOnce you use this feature, you can't use it again until you finish a long rest.",
           "level": 20,
           "featureType": "Active",
           "actionType": "Action",
@@ -8900,7 +9007,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 20th level, you gain the ability to harness extraordinary martial prowess. (action).",
+          "summary": "Use an action to gain resistance to all damage, an additional attack per Attack action, and critical hits on 19 or 20 for 1 minute.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -8910,11 +9017,13 @@
             "name": "Oath of Conquest",
             "level": 20
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "XGE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Oath of Glory",
@@ -8927,55 +9036,59 @@
           "name": "Oath Spells",
           "level": 3,
           "featureType": "Passive",
-          "summary": "Gain oath spells at levels 3, 5, 9, 13, and 17.",
-          "description": "3rd: Guiding Bolt, Heroism; 5th: Enhance Ability, Magic Weapon; 9th: Haste, Protection from Energy; 13th: Compulsion, Freedom of Movement; 17th: Commune, Flame Strike.",
+          "summary": "You learn specific spells at 3rd, 5th, 9th, 13th, and 17th level.",
+          "description": "You gain the following oath spells at the listed levels:\n\n- 3rd: Guiding Bolt, Heroism\n- 5th: Enhance Ability, Magic Weapon\n- 9th: Haste, Protection from Energy\n- 13th: Compulsion, Freedom of Movement\n- 17th: Commune, Flame Strike",
           "source": {
             "type": "subclass",
             "name": "Oath of Glory",
             "level": 3
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Channel Divinity: Peerless Athlete",
           "level": 3,
           "featureType": "Active",
           "actionType": "Bonus Action",
-          "summary": "Gain advantage on Athletics/Acrobatics checks, double carry weight, and jump distance +10 ft for 10 minutes.",
-          "description": "As a bonus action, you can use your Channel Divinity to augment your athleticism. For 10 minutes, you have advantage on Strength (Athletics) and Dexterity (Acrobatics) checks; you can carry, push, drag, and lift twice as much weight; and your jump distance increases by 10 feet.",
+          "summary": "Gain advantage on Athletics and Acrobatics checks, double carrying capacity, and +10 feet jump distance for 10 minutes.",
+          "description": "As a bonus action, you can use your Channel Divinity to augment your athleticism. For 10 minutes, you gain the following benefits:\n\n- You have advantage on Strength (Athletics) and Dexterity (Acrobatics) checks.\n- You can carry, push, drag, and lift twice as much weight.\n- Your jump distance increases by 10 feet.",
           "source": {
             "type": "subclass",
             "name": "Oath of Glory",
             "level": 3
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Channel Divinity: Inspiring Smite",
           "level": 3,
           "featureType": "Active",
           "actionType": "Bonus Action",
-          "summary": "Distribute 2d8 + paladin level temporary hit points to allies within 30 feet after using Divine Smite.",
-          "description": "Immediately after you deal damage to a creature with your Divine Smite feature, you can use your Channel Divinity as a bonus action to distribute temporary hit points to creatures of your choice within 30 feet of you (including yourself) equal to 2d8 + your paladin level, divided among them as you choose.",
+          "summary": "After using Divine Smite, distribute a total of 2d8 + paladin level temporary hit points among allies within 30 feet.",
+          "description": "Immediately after you deal damage to a creature with your Divine Smite feature, you can use your Channel Divinity as a bonus action to distribute temporary hit points to creatures of your choice within 30 feet of you (including yourself). The total amount of temporary hit points is **2d8** + your paladin level, divided among the chosen creatures as you decide.",
           "source": {
             "type": "subclass",
             "name": "Oath of Glory",
             "level": 3
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Aura of Alacrity",
           "level": 7,
           "featureType": "Passive",
-          "summary": "Your walking speed increases by 10 feet, and allies starting their turn within 5 feet (10 ft at 18th) gain +10 ft speed.",
-          "description": "You exude an aura that fills you and your companions with vigor. Your walking speed increases by 10 feet. In addition, that of each ally within 5 feet of you increases by 10 feet until the end of their next turn. At 18th level, the range of this aura increases to 10 feet.",
+          "summary": "Increase your walking speed by 10 feet and grant allies within 5 feet (10 feet at 18th level) +10 feet speed until the end of their next turn.",
+          "description": "You exude an aura that fills you and your companions with vigor. Your walking speed increases by 10 feet.\n\nIn addition, the walking speed of each ally within 5 feet of you increases by 10 feet until the end of their next turn. At 18th level, the range of this aura increases to 10 feet.",
           "source": {
             "type": "subclass",
             "name": "Oath of Glory",
             "level": 7
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Glorious Defense",
@@ -8986,14 +9099,15 @@
             "total": "Charisma modifier",
             "recharge": "Long Rest"
           },
-          "summary": "Reaction add your Charisma modifier to an ally's AC; if attack misses, make a weapon attack against the attacker.",
-          "description": "You can turn defense into attack. When you or another creature you can see within 10 feet of you is hit by an attack roll, you can use your reaction to grant a bonus to the target's AC against that attack equal to your Charisma modifier (minimum of +1). If the attack misses, you can immediately make one weapon attack against the attacker as part of this reaction, provided the attacker is within your weapon's range.",
+          "summary": "Use your reaction to add your Charisma modifier to an ally's AC; if the attack misses, you can make a weapon attack against the attacker.",
+          "description": "You can turn defense into attack. When you or another creature you can see within **10 feet** of you is hit by an attack roll, you can use your reaction to grant a bonus to the target's AC against that attack equal to your Charisma modifier (minimum of **+1**). If the attack misses, you can immediately make one weapon attack against the attacker as part of this reaction, provided the attacker is within your weapon's range.",
           "source": {
             "type": "subclass",
             "name": "Oath of Glory",
             "level": 15
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Living Legend",
@@ -9004,16 +9118,18 @@
             "total": 1,
             "recharge": "Long Rest / 5th spell slot"
           },
-          "summary": "Transform into a legendary hero for 1 minute: advantage on Charisma checks, reroll missed attacks, reaction spell save advantage.",
-          "description": "You can empower yourself with the legends of your destiny. As a bonus action, you gain the following benefits for 1 minute: you are blessed with an otherworldly presence, gaining advantage on all Charisma checks; once on each of your turns when you make a weapon attack and miss, you can cause that attack to hit instead; and if you fail a saving throw, you can use your reaction to reroll it.",
+          "summary": "Transform for 1 minute to gain advantage on Charisma checks, turn one missed weapon attack into a hit per turn, and reroll failed saving throws as a reaction.",
+          "description": "You can empower yourself with the legends of your destiny. As a bonus action, you gain the following benefits for **1 minute**:\n\n- You are blessed with an otherworldly presence, gaining advantage on all Charisma checks.\n- Once on each of your turns, when you make a weapon attack and miss, you can cause that attack to hit instead.\n- If you fail a saving throw, you can use your reaction to reroll it.",
           "source": {
             "type": "subclass",
             "name": "Oath of Glory",
             "level": 20
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         }
-      ]
+      ],
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Paladin",
@@ -9025,7 +9141,7 @@
       "features": [
         {
           "name": "Channel Divinity: Emissary of Peace",
-          "description": "When you take this oath at 3rd level, you gain the following Channel Divinity options:\n\nEmissary of Peace: As a bonus action, you grant a creature you can see within 30 feet of you a +5 bonus to its next Charisma check. The bonus lasts for 10 minutes.\n\nRebuke the Violent: When a creature within 30 feet of you deals damage to a creature other than you, you can use your reaction to force the attacker to make a Wisdom saving throw. On a failed save, the attacker takes radiant damage equal to the damage it just dealt. On a successful save, it takes half as much damage.",
+          "description": "When you take this oath at 3rd level, you gain the following Channel Divinity options:\n\nEmissary of Peace: As a bonus action, you grant a creature you can see within **30 feet** of you a **+5** bonus to its next Charisma check. The bonus lasts for **10 minutes**.\n\nRebuke the Violent: When a creature within **30 feet** of you deals damage to a creature other than you, you can use your reaction to force the attacker to make a Wisdom saving throw. On a failed save, the attacker takes radiant damage equal to the damage it just dealt. On a successful save, it takes half as much damage.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -9036,7 +9152,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Rebuke the Violent: When a creature within 30 feet of you deals damage to a creature other than you, you can use your reaction to force the attacker to make.",
+          "summary": "Grant a +5 bonus to a creature's Charisma check, or use a reaction to reflect damage back at an attacker as radiant damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -9046,11 +9162,12 @@
             "name": "Oath of Redemption",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Aura of the Guardian",
-          "description": "Starting at 7th level, you can shield others from harm. When a creature within 10 feet of you takes damage, you can use your reaction to magically take that damage, instead of that creature taking it. This feature doesn't transfer any other effects associated with the damage, and the damage can't be reduced in any way. At 18th level, the aura extends to 30 feet.",
+          "description": "Starting at 7th level, you can shield others from harm. When a creature within **10 feet** of you takes damage, you can use your reaction to magically take that damage, instead of that creature taking it. This feature doesn't transfer any other effects associated with the damage, and the damage can't be reduced in any way.\n\nAt 18th level, the aura extends to **30 feet**.",
           "level": 7,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -9061,7 +9178,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can use your reaction to magically take that damage, instead of that creature taking it. (reaction).",
+          "summary": "Use your reaction to magically take all damage dealt to a creature within your aura instead of them taking it.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -9071,11 +9188,12 @@
             "name": "Oath of Redemption",
             "level": 7
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Protective Spirit",
-          "description": "Starting at 15th level, a protective, guardian spirit keeps you and your allies safe. If you or a creature you can see within 30 feet of you fails a saving throw, you can use your reaction to grant a +5 bonus to the saving throw, potentially turning the failure into a success. You can use this feature a number of times equal to your Charisma modifier (minimum of once), and you regain all expended uses when you finish a long rest.",
+          "description": "Starting at 15th level, a protective, guardian spirit keeps you and your allies safe. If you or a creature you can see within **30 feet** of you fails a saving throw, you can use your reaction to grant a **+5** bonus to the saving throw, potentially turning the failure into a success.\n\nYou can use this feature a number of times equal to your Charisma modifier (minimum of **once**), and you regain all expended uses when you finish a long rest.",
           "level": 15,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -9086,7 +9204,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can use your reaction to grant a +5 bonus to the saving throw, potentially turning the failure into a success. (reaction).",
+          "summary": "Use your reaction to grant a +5 bonus to a failed saving throw for yourself or an ally within 30 feet.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -9096,7 +9214,8 @@
             "name": "Oath of Redemption",
             "level": 15
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Emissary of Redemption",
@@ -9125,7 +9244,8 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Oath of the Crown",
