@@ -10,7 +10,9 @@
     "typecheck": "tsc --noEmit",
     "srd:extract": "node scripts/extract-srd-strings.mjs",
     "srd:build": "node scripts/build-srd-locale.mjs",
-    "srd:enhance:id": "node scripts/enhance-indonesian.mjs"
+    "srd:enhance:id": "node scripts/enhance-indonesian.mjs",
+    "srd:enhance:cr:en": "node scripts/enhance-classes-races-en.mjs",
+    "srd:enhance:cr:id": "node scripts/enhance-classes-races-id.mjs"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",

@@ -9,7 +9,7 @@ const OUTPUT_FILE = path.join(__dirname, '..', 'src', 'locales', 'srd-strings-id
 
 const merged = {};
 
-const files = fs.readdirSync(PARTS_ID_DIR).filter(f => f.endsWith('.json'));
+const files = fs.readdirSync(PARTS_ID_DIR).filter(f => f.endsWith('.json') && !f.startsWith('.'));
 
 for (const file of files) {
   const filePath = path.join(PARTS_ID_DIR, file);

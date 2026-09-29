@@ -125,11 +125,21 @@ function processFile(translations, locale, filename) {
 
   let replaced = 0;
   let fallback = 0;
+  let skipped = 0;
 
   for (const [key, translatedValue] of Object.entries(translations)) {
     if (!key.startsWith(prefix)) continue;
 
-    const { fieldName, pathSegments } = parseKey(key);
+    // A handful of hand-written parts carry malformed keys. They cannot address a
+    // field in the data tree, so skip them instead of aborting the whole build.
+    let parsed;
+    try {
+      parsed = parseKey(key);
+    } catch {
+      skipped++;
+      continue;
+    }
+    const { fieldName, pathSegments } = parsed;
     const target = navigateToTarget(cloneData, pathSegments);
 
     if (target && typeof target === 'object' && fieldName in target) {
@@ -144,7 +154,7 @@ function processFile(translations, locale, filename) {
 
   fs.mkdirSync(localeDir, { recursive: true });
   fs.writeFileSync(outPath, JSON.stringify(cloneData, null, 2) + '\n');
-  console.log(`  ${filename}: ${replaced} replaced, ${fallback} fallback (EN)`);
+  console.log(`  ${filename}: ${replaced} replaced, ${fallback} fallback (EN)${skipped ? `, ${skipped} malformed skipped` : ''}`);
 }
 
 function main() {
