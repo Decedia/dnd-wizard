@@ -143,8 +143,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A tall, aggressive goblinoid with reach and ambush mechanics. Fun for hit-and-run tactics, but the extra movement and surprise rules can trip up new players."
-      },
-      "_label": "Bugbear"
+      }
     },
     {
       "index": "changeling",
@@ -219,8 +218,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A shapeshifting diplomat with identity-changing abilities. High social and deceptive potential, but shapechange mechanics add a mechanical and roleplay learning curve."
-      },
-      "_label": "Changeling"
+      }
     },
     {
       "index": "deep-gnome",
@@ -338,8 +336,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A subterranean gnome with superior darkvision and stealth bonuses. Niche but flavorful, best suited for players who enjoy light-dependent exploration tactics."
-      },
-      "_label": "Deep Gnome (Svirfneblin)"
+      }
     },
     {
       "index": "dhampir",
@@ -459,8 +456,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A vampire-like undead descendant with spider climb and biting. Adds dark thematic mechanics and resource-like hunger that can overwhelm new players."
-      },
-      "_label": "Dhampir"
+      }
     },
     {
       "name": "Dragonborn",
@@ -614,8 +610,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A draconic hero with breath weapon and damage resistance. Simple racial traits, but choosing the right draconic ancestry adds a small decision layer for newer players."
-      },
-      "_label": "Dragonborn"
+      }
     },
     {
       "index": "dragonborn-chromatic",
@@ -736,8 +731,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A draconic descendant with a damaging breath weapon and damage resistance. Simple core, but ancestry choice adds a small selection step."
-      },
-      "_label": "Dragonborn (Chromatic)"
+      }
     },
     {
       "index": "dragonborn-gem",
@@ -882,8 +876,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A gem-scaled dragonborn with psionic-like breath and resistance. Adds another ancestry option layer, which can distract from core class learning."
-      },
-      "_label": "Dragonborn (Gem)"
+      }
     },
     {
       "index": "dragonborn-metallic",
@@ -1004,8 +997,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A metallic dragonborn with a stronger breath weapon and a minor transformative trait. Adds choice complexity and resource awareness."
-      },
-      "_label": "Dragonborn (Metallic)"
+      }
     },
     {
       "name": "Dwarf",
@@ -1020,7 +1012,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Anda memiliki penglihatan yang lebih baik dalam kondisi gelap dan redup. Anda dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. Anda tidak dapat membedakan warna dalam kegelapan, hanya bayangan abu-abu.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -1030,7 +1022,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "[Pasif] Lihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. (permanen)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1148,8 +1140,7 @@
       "recommendation": {
         "is_recommended": true,
         "text": "A sturdy traditional warrior with excellent durability and darkvision. Dwarven Resilience and Combat Training are easy to use, making it an ideal beginner race."
-      },
-      "_label": "Dwarf"
+      }
     },
     {
       "name": "Hill Dwarf",
@@ -1165,7 +1156,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Anda memiliki penglihatan yang lebih baik dalam kondisi gelap dan redup. Anda dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. Anda tidak dapat membedakan warna dalam kegelapan, hanya bayangan abu-abu.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -1175,7 +1166,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "[Pasif] Lihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. (permanen)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1313,8 +1304,7 @@
         "Dwarvish"
       ],
       "languageDesc": "You can speak, read, and write Common and Dwarvish.",
-      "source": "PHB",
-      "_label": "Hill Dwarf"
+      "source": "PHB"
     },
     {
       "name": "Mountain Dwarf",
@@ -1330,7 +1320,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Anda memiliki penglihatan yang lebih baik dalam kondisi gelap dan redup. Anda dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. Anda tidak dapat membedakan warna dalam kegelapan, hanya bayangan keabuan.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -1340,7 +1330,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "[Pasif] Dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. (permanen)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1478,8 +1468,7 @@
         "Dwarvish"
       ],
       "languageDesc": "You can speak, read, and write Common and Dwarvish.",
-      "source": "PHB",
-      "_label": "Mountain Dwarf"
+      "source": "PHB"
     },
     {
       "index": "eladrin",
@@ -1674,8 +1663,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A fey-touched elf with seasonal abilities that shift their playstyle. Interesting tactical variety, but the changing mechanics can confuse new players."
-      },
-      "_label": "Eladrin (Elf)"
+      }
     },
     {
       "name": "Elf",
@@ -1690,7 +1678,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Kamu memiliki penglihatan yang lebih baik dalam kondisi gelap dan redup. Kamu dapat melihat dalam cahaya redup dalam jarak 60 kaki dari kamu seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. Kamu tidak dapat membedakan warna dalam kegelapan, hanya bayangan abu-abu.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -1700,7 +1688,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "[Passive] Dapat melihat dalam cahaya redup dalam jarak 60 kaki dari kamu seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. (permanent)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1794,8 +1782,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A graceful, long-lived warrior with keen senses and fey ancestry. Strong in exploration and stealth, but the variety of elven subraces and traits adds choice complexity."
-      },
-      "_label": "Elf"
+      }
     },
     {
       "index": "firbolg",
@@ -1917,8 +1904,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A gentle giant with invisibility and nature magic. Easy to roleplay, but the subtle defensive tools require tactical timing to use well."
-      },
-      "_label": "Firbolg"
+      }
     },
     {
       "index": "githyanki",
@@ -2218,8 +2204,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A psionic warrior from the Astral Plane with innate spellcasting and teleportation. Cool concept, but managing innate spells and psionic options adds complexity."
-      },
-      "_label": "Githyanki"
+      }
     },
     {
       "index": "githzerai",
@@ -2316,8 +2301,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A disciplined monk-like race with psionic defense and meditation. The mental discipline mechanics add another layer for new players to track."
-      },
-      "_label": "Githzerai"
+      }
     },
     {
       "name": "Gnome",
@@ -2332,7 +2316,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Anda memiliki penglihatan yang lebih baik dalam kondisi gelap dan redup. Anda dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahayanya terang, dan dalam kegelapan seolah-olah cahayanya redup. Anda tidak dapat membedakan warna dalam kegelapan, hanya bayangan keabu-abuan.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -2342,7 +2326,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "[Pasif] Bisa melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahayanya terang, dan dalam kegelapan seolah-olah cahayanya redup. (permanen)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2388,8 +2372,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A small, clever inventor with innate magic resistance. Good for trickster or arcane builds, but gnomish subraces and feature interactions add mild complexity."
-      },
-      "_label": "Gnome"
+      }
     },
     {
       "name": "Forest Gnome",
@@ -2405,7 +2388,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Anda memiliki penglihatan yang lebih baik dalam kondisi gelap dan redup. Anda dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. Anda tidak dapat membedakan warna dalam kegelapan, hanya bayangan keabuan.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -2415,7 +2398,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "[Pasif] Dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. (permanen)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2505,8 +2488,7 @@
         "Gnomish"
       ],
       "languageDesc": "You can speak, read, and write Common and Gnomish.",
-      "source": "PHB",
-      "_label": "Forest Gnome"
+      "source": "PHB"
     },
     {
       "name": "Rock Gnome",
@@ -2522,7 +2504,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Anda memiliki penglihatan yang lebih baik dalam kondisi gelap dan redup. Anda dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. Anda tidak dapat membedakan warna dalam kegelapan, hanya bayangan keabuan.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -2532,7 +2514,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "[Pasif] Dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. (permanen)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2622,8 +2604,7 @@
         "Gnomish"
       ],
       "languageDesc": "You can speak, read, and write Common and Gnomish.",
-      "source": "PHB",
-      "_label": "Rock Gnome"
+      "source": "PHB"
     },
     {
       "index": "goblin",
@@ -2720,8 +2701,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A small, crafty creature with Fury of the Small and Nimble Escape. Strong tactical positioning tools, but the extra bonus-action option can be tricky for new players."
-      },
-      "_label": "Goblin"
+      }
     },
     {
       "name": "Half-Elf",
@@ -2736,7 +2716,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Anda memiliki penglihatan unggul dalam kondisi gelap dan redup. Anda dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. Anda tidak dapat membedakan warna dalam kegelapan, hanya bayangan keabuan.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -2746,7 +2726,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "[Pasif] Dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. (permanen)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2816,8 +2796,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A versatile hybrid with ability score bonuses and skill versatility. Flexible by design, which is great for concept, but the breadth of options can slow new players."
-      },
-      "_label": "Half-Elf"
+      }
     },
     {
       "name": "Half-Elf (High Elf)",
@@ -2832,7 +2811,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Anda memiliki penglihatan unggul dalam kondisi gelap dan redup. Anda dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. Anda tidak dapat membedakan warna dalam kegelapan, hanya bayangan keabuan.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -2842,7 +2821,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "[Pasif] Dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. (permanen)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2976,8 +2955,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "An elf-leaning half-elf with an extra cantrip and a skill. Adds a small spellcasting choice layer that beginners may find confusing."
-      },
-      "_label": "Half-Elf (High Elf)"
+      }
     },
     {
       "name": "Half-Elf (Wood Elf)",
@@ -2992,7 +2970,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Anda memiliki penglihatan unggul dalam kondisi gelap dan redup. Anda dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. Anda tidak dapat membedakan warna dalam kegelapan, hanya bayangan keabuan.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -3002,7 +2980,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "[Pasif] Dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. (permanen)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3096,8 +3074,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "An elf-leaning half-elf suited to wilderness exploration. Movement and mask of the wild are easy to use, but subrace selection still adds decision weight."
-      },
-      "_label": "Half-Elf (Wood Elf)"
+      }
     },
     {
       "name": "Half-Elf (Drow)",
@@ -3112,7 +3089,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Anda memiliki penglihatan yang lebih baik dalam kondisi gelap dan redup. Anda dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya itu terang, dan dalam kegelapan seolah-olah cahaya itu redup. Anda tidak dapat membedakan warna dalam kegelapan, hanya bayangan keabuan.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -3122,7 +3099,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "[Pasif] Dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya itu terang, dan dalam kegelapan seolah-olah cahaya itu redup. (permanen)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3216,8 +3193,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A dark elf-leaning half-elf with innate spellcasting and darkness control. Strong concept, but sunlight sensitivity and spell options add tactical bookkeeping."
-      },
-      "_label": "Half-Elf (Drow)"
+      }
     },
     {
       "name": "Half-Elf (Moon Elf)",
@@ -3232,7 +3208,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Anda memiliki penglihatan yang lebih baik dalam kondisi gelap dan redup. Anda dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya itu terang, dan dalam kegelapan seolah-olah cahaya itu redup. Anda tidak dapat membedakan warna dalam kegelapan, hanya bayangan keabuan.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -3242,7 +3218,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "[Pasif] Dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya itu terang, dan dalam kegelapan seolah-olah cahaya itu redup. (permanen)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3336,8 +3312,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "An elf-leaning half-elf with heightened senses and a cantrip. Adds mild spellcasting complexity to an already flexible chassis."
-      },
-      "_label": "Half-Elf (Moon Elf)"
+      }
     },
     {
       "name": "Half-Elf (Sun Elf)",
@@ -3352,7 +3327,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Anda memiliki penglihatan yang lebih baik dalam kondisi gelap dan redup. Anda dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. Anda tidak dapat membedakan warna dalam kegelapan, hanya bayangan keabuan.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -3362,7 +3337,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "[Pasif] Dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. (permanen)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3456,8 +3431,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "An elf-leaning half-elf with magic resistance and a weapon training bonus. Good for gishes, but the flexibility can distract new players."
-      },
-      "_label": "Half-Elf (Sun Elf)"
+      }
     },
     {
       "name": "Half-Elf (Sea Elf)",
@@ -3472,7 +3446,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Anda memiliki penglihatan yang lebih baik dalam kondisi gelap dan redup. Anda dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. Anda tidak dapat membedakan warna dalam kegelapan, hanya bayangan keabuan.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -3482,7 +3456,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "[Pasif] Dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. (permanen)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3576,8 +3550,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "An ocean-themed half-elf with swim speed and amphibious breathing. Niche but thematic, best when water exploration is frequent."
-      },
-      "_label": "Half-Elf (Sea Elf)"
+      }
     },
     {
       "name": "Half-Elf (Shadar-kai)",
@@ -3592,7 +3565,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Anda memiliki penglihatan yang lebih baik dalam kondisi gelap dan redup. Anda dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. Anda tidak dapat membedakan warna dalam kegelapan, hanya bayangan keabuan.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -3602,7 +3575,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "[Pasif] Dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. (permanen)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3696,8 +3669,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A shadow-touched half-elf with resistance and necrotic teleportation. Interesting tactical tool, but death-tinged mechanics may be less intuitive for beginners."
-      },
-      "_label": "Half-Elf (Shadar-kai)"
+      }
     },
     {
       "name": "Half-Elf (Eladrin)",
@@ -3712,7 +3684,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Anda memiliki penglihatan yang lebih baik dalam kondisi gelap dan redup. Anda dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahayanya terang, dan dalam kegelapan seolah-olah cahayanya redup. Anda tidak dapat membedakan warna dalam kegelapan, hanya bayangan keabuan.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -3722,7 +3694,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "[Pasif] Dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahayanya terang, dan dalam kegelapan seolah-olah cahayanya redup. (permanen)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3816,8 +3788,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A fey-touched half-elf with a season-linked teleport and charm resistance. Cool flavor, but seasonal ability swaps can confuse new players."
-      },
-      "_label": "Half-Elf (Eladrin)"
+      }
     },
     {
       "name": "Half-Orc",
@@ -3833,7 +3804,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Anda memiliki penglihatan yang lebih baik dalam kondisi gelap dan redup. Anda dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahayanya terang, dan dalam kegelapan seolah-olah cahayanya redup. Anda tidak dapat membedakan warna dalam kegelapan, hanya bayangan keabuan.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -3843,7 +3814,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "[Pasif] Dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahayanya terang, dan dalam kegelapan seolah-olah cahayanya redup. (permanen)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3937,8 +3908,7 @@
       "recommendation": {
         "is_recommended": true,
         "text": "A tough, aggressive warrior with darkvision, intimidation presence, and a second-wind style death-defying trait. Low mechanical complexity with strong combat feel."
-      },
-      "_label": "Half-Orc"
+      }
     },
     {
       "name": "Halfling",
@@ -4034,8 +4004,7 @@
       "recommendation": {
         "is_recommended": true,
         "text": "A lucky, nimble smallfolk with reroll advantages and stealth. Lucky and Brave are simple to use, making halflings a very friendly beginner race."
-      },
-      "_label": "Halfling"
+      }
     },
     {
       "name": "Lightfoot Halfling",
@@ -4156,8 +4125,7 @@
       "recommendation": {
         "is_recommended": true,
         "text": "A stealthy halfling that can hide behind larger allies. Low mechanical complexity and strong roleplay hooks."
-      },
-      "_label": "Lightfoot Halfling"
+      }
     },
     {
       "name": "Stout Halfling",
@@ -4278,8 +4246,7 @@
       "recommendation": {
         "is_recommended": true,
         "text": "A hearty halfling with poison resistance and bonus constitution. Simple durability boost that is easy to explain and use."
-      },
-      "_label": "Stout Halfling"
+      }
     },
     {
       "name": "Ghostwise Halfling",
@@ -4400,8 +4367,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A rare halfling subrace with silent speech. Unique communication mechanics, but very niche and situational."
-      },
-      "_label": "Ghostwise Halfling"
+      }
     },
     {
       "index": "hexblood",
@@ -4497,8 +4463,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A fey-touched or undead-touched lineage with a dark bargain. Adds a narrative and mechanical bargain layer that adds complexity to character creation."
-      },
-      "_label": "Hexblood"
+      }
     },
     {
       "index": "hobgoblin",
@@ -4595,8 +4560,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A disciplined warrior with tactical positioning bonuses. The Saving Face feature adds reactive decision-making that rewards experience."
-      },
-      "_label": "Hobgoblin"
+      }
     },
     {
       "name": "Human",
@@ -4649,8 +4613,7 @@
       "recommendation": {
         "is_recommended": true,
         "text": "The baseline adventurer with balanced ability increases and an extra language. Simple, flexible, and forgiving for new players who want to focus on class mechanics."
-      },
-      "_label": "Human"
+      }
     },
     {
       "index": "kenku",
@@ -4747,8 +4710,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A bird-like mimic with clever movement and mimicry. Roleplay-heavy with limited but flavorful racial abilities; easy to underestimate mechanically."
-      },
-      "_label": "Kenku"
+      }
     },
     {
       "index": "lizardfolk",
@@ -4869,8 +4831,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A reptilian survivor with natural armor and a bite attack. Simple durability, but the many optional racial traits can slow new players down."
-      },
-      "_label": "Lizardfolk"
+      }
     },
     {
       "index": "orc",
@@ -4991,8 +4952,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A powerful brute with Aggressive and darkvision. Simple combat presence, but reduced intelligence and pack tactics can confuse new tactical positioning."
-      },
-      "_label": "Orc"
+      }
     },
     {
       "index": "reborn",
@@ -5088,8 +5048,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A revenant-style race with past-life knowledge and death resilience. Flavorful, but the extra history and resilience mechanics add bookkeeping."
-      },
-      "_label": "Reborn"
+      }
     },
     {
       "index": "shifter",
@@ -5215,8 +5174,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A druidic shapeshifter with temporary shifting bonuses. Simple core loop, but Shifter type choice and temporary boost management add decision weight."
-      },
-      "_label": "Shifter"
+      }
     },
     {
       "index": "tabaxi",
@@ -5336,8 +5294,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A feline explorer with speed and climb. Fun for exploration and hit-and-run, but Feline Agility can leave new players overextended."
-      },
-      "_label": "Tabaxi"
+      }
     },
     {
       "name": "Tiefling",
@@ -5353,7 +5310,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Anda memiliki penglihatan yang lebih baik dalam kondisi gelap dan redup. Anda dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. Anda tidak dapat membedakan warna dalam kegelapan, hanya bayangan keabuan.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -5363,7 +5320,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "[Pasif] Dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. (permanen)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5433,8 +5390,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A hellish descendant with resistance and minor spellcasting. Fiendish legacy features are flavorful but can add spell-management weight for new players."
-      },
-      "_label": "Tiefling"
+      }
     },
     {
       "name": "Tiefling (Asmodeus)",
@@ -5450,7 +5406,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Anda memiliki penglihatan yang lebih baik dalam kondisi gelap dan redup. Anda dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. Anda tidak dapat membedakan warna dalam kegelapan, hanya bayangan keabuan.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -5460,7 +5416,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "[Pasif] Dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. (permanen)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5530,8 +5486,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A fire-touched tiefling with a cantrip and charisma boost. Simple offense, but managing the extra spell can distract from core class choices."
-      },
-      "_label": "Tiefling (Asmodeus)"
+      }
     },
     {
       "name": "Tiefling (Baalzebul)",
@@ -5547,7 +5502,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Anda memiliki penglihatan yang lebih baik dalam kondisi gelap dan redup. Anda dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. Anda tidak dapat membedakan warna dalam kegelapan, hanya bayangan keabuan.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -5557,7 +5512,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "[Pasif] Dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. (permanen)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5627,8 +5582,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A tiefling with a debuff cantrip and Thaumaturgy. Adds social and control options, which increases decision space for beginners."
-      },
-      "_label": "Tiefling (Baalzebul)"
+      }
     },
     {
       "name": "Tiefling (Zariel)",
@@ -5644,7 +5598,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Anda memiliki penglihatan yang lebih baik dalam kondisi gelap dan redup. Anda dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. Anda tidak dapat membedakan warna dalam kegelapan, hanya bayangan keabuan.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -5654,7 +5608,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "[Pasif] Dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. (permanen)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5724,8 +5678,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A martial tiefling with weapon bonuses and a damaging cantrip. Adds minor combat complexity, but still fairly straightforward."
-      },
-      "_label": "Tiefling (Zariel)"
+      }
     },
     {
       "name": "Tiefling (Dispater)",
@@ -5741,7 +5694,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Anda memiliki penglihatan yang lebih baik dalam kondisi gelap dan redup. Anda dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. Anda tidak dapat membedakan warna dalam kegelapan, hanya bayangan keabuan.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -5751,7 +5704,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "[Pasif] Dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. (permanen)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5821,8 +5774,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A deceptive tiefling with a detection cantrip and stealth utility. Adds exploration choices that new players may underuse."
-      },
-      "_label": "Tiefling (Dispater)"
+      }
     },
     {
       "name": "Tiefling (Fierna)",
@@ -5838,7 +5790,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Anda memiliki penglihatan yang lebih baik dalam kondisi gelap dan redup. Anda dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. Anda tidak dapat membedakan warna dalam kegelapan, hanya bayangan keabuan.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -5848,7 +5800,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "[Pasif] Dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya terang, dan dalam kegelapan seolah-olah cahaya redup. (permanen)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5918,8 +5870,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A tiefling with charm-focused cantrips and social utility. Adds roleplay and spellcasting layers that increase cognitive load."
-      },
-      "_label": "Tiefling (Fierna)"
+      }
     },
     {
       "name": "Tiefling (Glasya)",
@@ -5935,7 +5886,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Anda memiliki penglihatan yang lebih baik dalam kondisi gelap dan redup. Anda dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya itu terang, dan dalam kegelapan seolah-olah cahaya itu redup. Anda tidak dapat membedakan warna dalam kegelapan, hanya bayangan keabuan.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -5945,7 +5896,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "[Pasif] Dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya itu terang, dan dalam kegelapan seolah-olah cahaya itu redup. (permanen)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6015,8 +5966,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A trickster tiefling with illusion and deception tools. Fun conceptually, but illusions add mechanical overhead for new players."
-      },
-      "_label": "Tiefling (Glasya)"
+      }
     },
     {
       "name": "Tiefling (Levistus)",
@@ -6032,7 +5982,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Anda memiliki penglihatan yang lebih baik dalam kondisi gelap dan redup. Anda dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya itu terang, dan dalam kegelapan seolah-olah cahaya itu redup. Anda tidak dapat membedakan warna dalam kegelapan, hanya bayangan keabuan.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -6042,7 +5992,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "[Pasif] Dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya itu terang, dan dalam kegelapan seolah-olah cahaya itu redup. (permanen)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6112,8 +6062,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "An ice-themed tiefling with defensive and damaging cantrips. Adds elemental and tactical options that can overwhelm beginners."
-      },
-      "_label": "Tiefling (Levistus)"
+      }
     },
     {
       "name": "Tiefling (Mammon)",
@@ -6129,7 +6078,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Anda memiliki penglihatan yang lebih baik dalam kondisi gelap dan redup. Anda dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya itu terang, dan dalam kegelapan seolah-olah cahaya itu redup. Anda tidak dapat membedakan warna dalam kegelapan, hanya bayangan keabuan.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -6139,7 +6088,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "[Pasif] Dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya itu terang, dan dalam kegelapan seolah-olah cahaya itu redup. (permanen)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6209,8 +6158,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A wealth-themed tiefling with a utility cantrip and gold-themed flavor. Adds minor magic and social complexity."
-      },
-      "_label": "Tiefling (Mammon)"
+      }
     },
     {
       "name": "Tiefling (Mephistopheles)",
@@ -6226,7 +6174,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "Anda memiliki penglihatan yang lebih baik dalam kondisi gelap dan redup. Anda dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya itu terang, dan dalam kegelapan seolah-olah cahaya itu redup. Anda tidak dapat membedakan warna dalam kegelapan, hanya bayangan keabuan.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -6236,7 +6184,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "[Pasif] Dapat melihat dalam cahaya redup dalam jarak 60 kaki dari Anda seolah-olah cahaya itu terang, dan dalam kegelapan seolah-olah cahaya itu redup. (permanen)",
+          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6306,8 +6254,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A fire-and-flames tiefling with a damaging cantrip. Adds offensive spell management to an otherwise simple package."
-      },
-      "_label": "Tiefling (Mephistopheles)"
+      }
     },
     {
       "index": "triton",
@@ -6429,8 +6376,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "An aquatic warrior with amphibious breathing and elemental resistance. Strong in water-heavy campaigns, but situational otherwise."
-      },
-      "_label": "Triton"
+      }
     },
     {
       "index": "aarakocra",
@@ -6527,8 +6473,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A bird-like humanoid with flight and talon attacks. Flight is powerful, but managing aerial positioning and reach can be punishing for new players."
-      },
-      "_label": "Aarakocra"
+      }
     },
     {
       "index": "yuan-ti-pureblood",
@@ -6626,8 +6571,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A serpent-touched humanoid with innate spellcasting and poison immunity. Flavorful, but the extra spell list and immunity interactions add complexity."
-      },
-      "_label": "Yuan-ti Pureblood"
+      }
     },
     {
       "index": "kobold",
@@ -6720,8 +6664,7 @@
       "abilityScoreIncreases": {
         "dexterity": 2,
         "strength": -2
-      },
-      "_label": "Kobold"
+      }
     },
     {
       "index": "goliath",
@@ -6790,8 +6733,7 @@
       "abilityScoreIncreases": {
         "strength": 2,
         "constitution": 1
-      },
-      "_label": "Goliath"
+      }
     },
     {
       "index": "autognome",
@@ -6864,8 +6806,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A mechanical gnome with a built-in tool and limited flight. Fun tinker theme, but the mechanical features add small but persistent complexity."
-      },
-      "_label": "Autognome"
+      }
     },
     {
       "index": "plasmoid",
@@ -6938,8 +6879,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "An ooze-like creature with flexible anatomy and poison resistance. Niche defensive toolkit that rewards experienced positioning."
-      },
-      "_label": "Plasmoid"
+      }
     },
     {
       "index": "thri-kreen",
@@ -7008,8 +6948,7 @@
       "abilityScoreIncreases": {
         "strength": 2,
         "dexterity": 2
-      },
-      "_label": "Thri-kreen"
+      }
     },
     {
       "index": "aasimar",
@@ -7130,8 +7069,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A celestial-touched hero with resistance and a healing transformation. Easy to flavor, but the transformation mechanics add a burst-management layer."
-      },
-      "_label": "Aasimar"
+      }
     }
   ]
 }
