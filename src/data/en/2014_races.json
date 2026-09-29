@@ -1540,7 +1540,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1550,7 +1550,8 @@
             "name": "Eladrin (Elf)",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Keen Senses",
@@ -1564,7 +1565,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have proficiency in the Perception skill",
+          "summary": "You have proficiency in the Perception skill.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": true,
@@ -1574,7 +1575,8 @@
             "name": "Eladrin (Elf)",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Fey Ancestry",
@@ -1588,7 +1590,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have advantage on saving throws against being charmed, and magic can't put you to sleep",
+          "summary": "You have advantage on saving throws against being charmed, and magic cannot put you to sleep.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1598,7 +1600,8 @@
             "name": "Eladrin (Elf)",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Trance",
@@ -1612,7 +1615,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Elves don't need to sleep. Instead, they meditate deeply, remaining semiconscious, for 4 hours a day",
+          "summary": "You do not need to sleep; instead, you meditate for 4 hours a day to gain the benefits of 8 hours of sleep.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1622,7 +1625,8 @@
             "name": "Eladrin (Elf)",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Eladrin Season",
@@ -1636,7 +1640,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can also change your season as a bonus action on your turn. (bonus action)",
+          "summary": "Change your season when you finish a long rest or as a bonus action on your turn.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1646,7 +1650,8 @@
             "name": "Eladrin (Elf)",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Fey Step",
@@ -1660,7 +1665,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Your season determines the effect: Autumn: When you teleport, up to two creatures of your choice that you can see within 10 feet of you must succeed on a Wisdom",
+          "summary": "Cast misty step once per short or long rest, with an additional effect based on your current season.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1670,7 +1675,8 @@
             "name": "Eladrin (Elf)",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -1736,7 +1742,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1746,7 +1752,8 @@
             "name": "Elf",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Fey Ancestry",
@@ -1760,7 +1767,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have advantage on saving throws against being charmed, and magic can't put you to sleep",
+          "summary": "Gain advantage on saving throws against being charmed, and magic cannot put you to sleep.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1770,11 +1777,12 @@
             "name": "Elf",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Trance",
-          "description": "Elves do not need to sleep. Instead, they meditate deeply, remaining semiconscious, for 4 hours a day. (The Common word for such meditation is \"trance.\") While meditating, you can dream after a fashion; such dreams are actually mental exercises that have become reflexive through years of practice. After resting this way, you gain the same benefit that a human does from 8 hours of sleep.",
+          "description": "You do not need to sleep. Instead, you meditate deeply, remaining semiconscious, for 4 hours a day. (The Common word for such meditation is \"trance.\")\n\nWhile meditating, you can dream after a fashion; such dreams are actually mental exercises that have become reflexive through years of practice.\n\nAfter resting this way, you gain the same benefit that a human does from 8 hours of sleep.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -1784,7 +1792,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Elves don't need to sleep. Instead, they meditate deeply, remaining semiconscious, for 4 hours a day",
+          "summary": "Meditate for 4 hours a day to gain the same benefit as 8 hours of sleep instead of sleeping.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1794,7 +1802,8 @@
             "name": "Elf",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Keen Senses",
@@ -1808,7 +1817,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have proficiency in the Perception skill",
+          "summary": "You have proficiency in the Perception skill.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": true,
@@ -1818,7 +1827,8 @@
             "name": "Elf",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -1844,7 +1854,7 @@
       "traits": [
         {
           "name": "Firbolg Magic",
-          "description": "You can cast the detect magic and disguise self spells with this trait. When you use this version of disguise self, you can seem to be a humanoid of normal size. When you cast either spell with this trait, you can cast it again with this trait when you finish a long rest. Wisdom is your spellcasting ability for these spells.",
+          "description": "You can cast the detect magic and disguise self spells with this trait. When you use this version of disguise self, you can seem to be a humanoid of normal size.\n\nWhen you cast either spell with this trait, you can cast it again with this trait when you finish a long rest.\n\nWisdom is your spellcasting ability for these spells.",
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -1854,7 +1864,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can seem to be a humanoid of normal size. (action)",
+          "summary": "Cast detect magic and disguise self once per long rest each, using Wisdom as your spellcasting ability.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1864,11 +1874,12 @@
             "name": "Firbolg",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Hidden Step",
-          "description": "As a bonus action, you can magically turn invisible until the start of your next turn or until you attack, deal damage, or force someone to make a saving throw. Once you use this trait, you can't use it again until you finish a short or long rest.",
+          "description": "As a bonus action, you can magically turn invisible until the start of your next turn or until you attack, deal damage, or force someone to make a saving throw.\n\nOnce you use this trait, you can't use it again until you finish a short or long rest.",
           "featureType": "Active",
           "actionType": "Bonus Action",
           "uses": null,
@@ -1878,7 +1889,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can magically turn invisible until the start of your next turn or until you attack, deal damage, or force someone to make a saving throw. (bonus action)",
+          "summary": "Turn invisible as a bonus action until the start of your next turn or until you attack, deal damage, or force a saving throw.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1888,7 +1899,8 @@
             "name": "Firbolg",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Powerful Build",
@@ -1902,7 +1914,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift",
+          "summary": "Count as one size larger for your carrying capacity and the weight you can push, drag, or lift.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1912,7 +1924,8 @@
             "name": "Firbolg",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Speech of Beast and Leaf",
@@ -1926,7 +1939,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have the ability to communicate in a limited manner with beasts and plants. They can understand your words, though you may not understand their responses",
+          "summary": "Communicate limitedly with beasts and plants; they understand you, but you do not understand them. You have advantage on Charisma checks to influence them.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1936,7 +1949,8 @@
             "name": "Firbolg",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -1976,7 +1990,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Learn one language of your choice, and you gain proficiency with one skill or tool of your choice",
+          "summary": "Learn one language of your choice and gain proficiency with one skill or tool of your choice.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1986,7 +2000,8 @@
             "name": "Githyanki",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Psychic Resilience",
@@ -2000,7 +2015,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have resistance to psychic damage",
+          "summary": "You have resistance to psychic damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2010,11 +2025,12 @@
             "name": "Githyanki",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Githyanki Psionics",
-          "description": "You know the mage hand cantrip, and the hand is invisible when you cast it with this trait. When you reach 3rd level, you can cast the jump spell once with this trait, and you regain the ability to do so when you finish a long rest. When you reach 5th level, you can cast the misty step spell once with this trait, and you regain the ability to do so when you finish a long rest. Intelligence is your spellcasting ability for these spells. When you cast them with this trait, you don't need components.",
+          "description": "You know the mage hand cantrip, and the hand is invisible when you cast it with this trait.\n\nWhen you reach 3rd level, you can cast the jump spell once with this trait, and you regain the ability to do so when you finish a long rest.\n\nWhen you reach 5th level, you can cast the misty step spell once with this trait, and you regain the ability to do so when you finish a long rest.\n\nIntelligence is your spellcasting ability for these spells. When you cast them with this trait, you don't need components.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -2024,7 +2040,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Know the mage hand cantrip, and the hand is invisible when you cast it with this trait",
+          "summary": "Know mage hand (invisible). At 3rd level, cast jump once per long rest. At 5th level, cast misty step once per long rest. Use Intelligence for these spells.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2034,7 +2050,8 @@
             "name": "Githyanki",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -2276,7 +2293,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have advantage on saving throws against the charmed and frightened conditions",
+          "summary": "You have advantage on saving throws against the charmed and frightened conditions.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2286,7 +2303,8 @@
             "name": "Githzerai",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Psychic Resilience",
@@ -2300,7 +2318,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have resistance to psychic damage",
+          "summary": "You have resistance to psychic damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2310,11 +2328,12 @@
             "name": "Githzerai",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Githzerai Psionics",
-          "description": "You know the mage hand cantrip, and the hand is invisible when you cast it with this trait. When you reach 3rd level, you can cast the shield spell once with this trait, and you regain the ability to do so when you finish a long rest. When you reach 5th level, you can cast the detect thoughts spell once with this trait, and you regain the ability to do so when you finish a long rest. Wisdom is your spellcasting ability for these spells. When you cast them with this trait, you don't need components.",
+          "description": "You know the mage hand cantrip, and the hand is invisible when you cast it with this trait.\n\nAt 3rd level, you can cast the shield spell once with this trait, and you regain the ability to do so when you finish a long rest.\n\nAt 5th level, you can cast the detect thoughts spell once with this trait, and you regain the ability to do so when you finish a long rest.\n\nWisdom is your spellcasting ability for these spells. When you cast them with this trait, you don't need components.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -2324,7 +2343,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Know the mage hand cantrip, and the hand is invisible when you cast it with this trait",
+          "summary": "You know the mage hand cantrip, which is invisible when cast this way, and gain the ability to cast shield and detect thoughts.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2334,7 +2353,8 @@
             "name": "Githzerai",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -2374,7 +2394,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "You can see in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2384,7 +2404,8 @@
             "name": "Gnome",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Gnome Cunning",
@@ -2398,7 +2419,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic",
+          "summary": "You have advantage on Intelligence, Wisdom, and Charisma saving throws against magic.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2408,7 +2429,8 @@
             "name": "Gnome",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -2446,7 +2468,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "You can see in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2456,7 +2478,8 @@
             "name": "Forest Gnome",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Gnome Cunning",
@@ -2470,7 +2493,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic",
+          "summary": "You have advantage on Intelligence, Wisdom, and Charisma saving throws against magic.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2480,7 +2503,8 @@
             "name": "Forest Gnome",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Natural Illusionist",
@@ -2494,7 +2518,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You know the minor illusion cantrip",
+          "summary": "You know the minor illusion cantrip, using Intelligence as your spellcasting ability.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2504,7 +2528,8 @@
             "name": "Forest Gnome",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Speak with Small Beasts",
@@ -2518,7 +2543,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Through sounds and gestures, you can communicate simple ideas with Small or smaller beasts",
+          "summary": "You can communicate simple ideas with Small or smaller beasts using sounds and gestures.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2528,7 +2553,8 @@
             "name": "Forest Gnome",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -2552,7 +2578,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within **60 feet** of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -2562,7 +2588,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "You can see in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2572,7 +2598,8 @@
             "name": "Rock Gnome",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Gnome Cunning",
@@ -2586,7 +2613,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic",
+          "summary": "You have advantage on Intelligence, Wisdom, and Charisma saving throws against magic.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2596,7 +2623,8 @@
             "name": "Rock Gnome",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Artificer's Lore",
@@ -2610,7 +2638,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Whenever you make an Intelligence (History) check related to magic items, alchemical objects, or technological devices, you can add twice your proficiency bonus instead of any proficiency bonus you normally",
+          "summary": "You add twice your proficiency bonus to Intelligence (History) checks regarding magic items, alchemical objects, or technological devices.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2620,11 +2648,12 @@
             "name": "Rock Gnome",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Tinker",
-          "description": "You have proficiency with artisan's tools (tinker's tools). You can spend 1 hour and 10 gp of materials to construct a Tiny clockwork device (AC 5, 1 hp). You can have up to three such devices active at a time.",
+          "description": "You have proficiency with artisan's tools (tinker's tools). You can spend **1 hour** and **10 gp** of materials to construct a Tiny clockwork device (AC **5**, **1 hp**). You can have up to three such devices active at a time.",
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -2634,7 +2663,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have proficiency with artisan's tools (tinker's tools). Using those tools, you can spend 1 hour and 10 gp of materials to construct a Tiny clockwork device",
+          "summary": "You are proficient with tinker's tools and can spend 1 hour and 10 gp to build a Tiny clockwork device.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2644,7 +2673,8 @@
             "name": "Rock Gnome",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -2676,7 +2706,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2686,7 +2716,8 @@
             "name": "Goblin",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Fury of the Small",
@@ -2700,7 +2731,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "When you damage a creature with an attack or spell, you can deal extra damage equal to your level. Once you use this trait, you can't use it again until you finish a short or long rest",
+          "summary": "Deal extra damage equal to your level when you damage a creature with an attack or spell. Useable once per short or long rest.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2710,7 +2741,8 @@
             "name": "Goblin",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Nimble Escape",
@@ -2724,7 +2756,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You can take the Disengage or Hide action as a bonus action on each of your turns",
+          "summary": "Take the Disengage or Hide action as a bonus action on each of your turns.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2734,7 +2766,8 @@
             "name": "Goblin",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -2774,7 +2807,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2784,7 +2817,8 @@
             "name": "Half-Elf",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Fey Ancestry",
@@ -2798,7 +2832,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have advantage on saving throws against being charmed, and magic can't put you to sleep",
+          "summary": "Gain advantage on saving throws against being charmed, and magic cannot put you to sleep.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2808,7 +2842,8 @@
             "name": "Half-Elf",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Skill Versatility",
@@ -2822,7 +2857,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You gain proficiency in two skills of your choice",
+          "summary": "Gain proficiency in two skills of your choice.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": true,
@@ -2832,7 +2867,8 @@
             "name": "Half-Elf",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -2859,7 +2895,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within **60 feet** of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -2869,7 +2905,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2879,7 +2915,8 @@
             "name": "Half-Elf (High Elf)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Fey Ancestry",
@@ -2893,7 +2930,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have advantage on saving throws against being charmed, and magic can't put you to sleep",
+          "summary": "Gain advantage on saving throws against being charmed, and magic cannot put you to sleep.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2903,7 +2940,8 @@
             "name": "Half-Elf (High Elf)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Skill Versatility",
@@ -2917,7 +2955,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You gain proficiency in two skills of your choice",
+          "summary": "Gain proficiency in two skills of your choice.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": true,
@@ -2927,7 +2965,8 @@
             "name": "Half-Elf (High Elf)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "High Elf Heritage",
@@ -2941,7 +2980,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Know one cantrip of your choice from the wizard spell list",
+          "summary": "Know one cantrip of your choice from the wizard spell list.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2951,7 +2990,8 @@
             "name": "Half-Elf (High Elf)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -3018,7 +3058,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within **60 feet** of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -3028,7 +3068,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3038,7 +3078,8 @@
             "name": "Half-Elf (Wood Elf)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Fey Ancestry",
@@ -3052,7 +3093,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have advantage on saving throws against being charmed, and magic can't put you to sleep",
+          "summary": "Gain advantage on saving throws against being charmed, and magic cannot put you to sleep.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3062,7 +3103,8 @@
             "name": "Half-Elf (Wood Elf)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Skill Versatility",
@@ -3076,7 +3118,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You gain proficiency in two skills of your choice",
+          "summary": "Gain proficiency in two skills of your choice.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": true,
@@ -3086,11 +3128,12 @@
             "name": "Half-Elf (Wood Elf)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Wood Elf Heritage",
-          "description": "You have proficiency with longsword, shortsword, shortbow, and longbow. Your base walking speed increases to 35 feet.",
+          "description": "You have proficiency with longsword, shortsword, shortbow, and longbow. Your base walking speed increases to **35 feet**.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -3100,7 +3143,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Your base walking speed increases to 35 feet",
+          "summary": "Gain proficiency with specific weapons and increase walking speed to 35 feet.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3110,7 +3153,8 @@
             "name": "Half-Elf (Wood Elf)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -3137,7 +3181,7 @@
       "traits": [
         {
           "name": "Darkvision",
-          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
+          "description": "You have superior vision in dark and dim conditions. You can see in dim light within **60 feet** of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -3147,7 +3191,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3157,7 +3201,8 @@
             "name": "Half-Elf (Drow)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Fey Ancestry",
@@ -3171,7 +3216,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have advantage on saving throws against being charmed, and magic can't put you to sleep",
+          "summary": "Gain advantage on saving throws against being charmed, and magic cannot put you to sleep.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3181,7 +3226,8 @@
             "name": "Half-Elf (Drow)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Skill Versatility",
@@ -3195,7 +3241,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You gain proficiency in two skills of your choice",
+          "summary": "Gain proficiency in two skills of your choice.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": true,
@@ -3205,11 +3251,12 @@
             "name": "Half-Elf (Drow)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Drow Heritage",
-          "description": "You know the dancing lights cantrip. When you reach 3rd level, you can cast the faerie fire spell once per long rest. When you reach 5th level, you can cast the darkness spell once per long rest. Charisma is your spellcasting ability for these spells.",
+          "description": "You know the dancing lights cantrip.\n\nAt 3rd level, you can cast the faerie fire spell **1** time per long rest.\n\nAt 5th level, you can cast the darkness spell **1** time per long rest.\n\nCharisma is your spellcasting ability for these spells.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -3219,7 +3266,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You know the dancing lights cantrip",
+          "summary": "Know the dancing lights cantrip and gain the ability to cast faerie fire and darkness.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3229,7 +3276,8 @@
             "name": "Half-Elf (Drow)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -3266,7 +3314,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3276,7 +3324,8 @@
             "name": "Half-Elf (Moon Elf)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Fey Ancestry",
@@ -3290,7 +3339,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have advantage on saving throws against being charmed, and magic can't put you to sleep",
+          "summary": "Gain advantage on saving throws against being charmed, and magic cannot put you to sleep.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3300,7 +3349,8 @@
             "name": "Half-Elf (Moon Elf)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Skill Versatility",
@@ -3314,7 +3364,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You gain proficiency in two skills of your choice",
+          "summary": "Gain proficiency in two skills of your choice.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": true,
@@ -3324,11 +3374,12 @@
             "name": "Half-Elf (Moon Elf)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Moon Elf Heritage",
-          "description": "You know the minor illusion cantrip. When you reach 3rd level, you can cast the silent image spell once per long rest. When you reach 5th level, you can cast the hypnotic pattern spell once per long rest. Intelligence is your spellcasting ability for these spells.",
+          "description": "You know the minor illusion cantrip.\n\nAt 3rd level, you can cast the silent image spell once per long rest.\n\nAt 5th level, you can cast the hypnotic pattern spell once per long rest.\n\nIntelligence is your spellcasting ability for these spells.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -3338,7 +3389,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Know the minor illusion cantrip",
+          "summary": "Know the minor illusion cantrip and gain the ability to cast specific spells as you level up.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3348,7 +3399,8 @@
             "name": "Half-Elf (Moon Elf)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -3385,7 +3437,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3395,7 +3447,8 @@
             "name": "Half-Elf (Sun Elf)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Fey Ancestry",
@@ -3409,7 +3462,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have advantage on saving throws against being charmed, and magic can't put you to sleep",
+          "summary": "Gain advantage on saving throws against being charmed, and magic cannot put you to sleep.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3419,7 +3472,8 @@
             "name": "Half-Elf (Sun Elf)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Skill Versatility",
@@ -3433,7 +3487,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You gain proficiency in two skills of your choice",
+          "summary": "Gain proficiency in two skills of your choice.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": true,
@@ -3443,11 +3497,12 @@
             "name": "Half-Elf (Sun Elf)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Sun Elf Heritage",
-          "description": "You know the fire bolt cantrip. When you reach 3rd level, you can cast the burning hands spell once per long rest. When you reach 5th level, you can cast the scorching ray spell once per long rest. Intelligence is your spellcasting ability for these spells.",
+          "description": "You know the fire bolt cantrip.\n\nAt 3rd level, you can cast the burning hands spell once per long rest.\n\nAt 5th level, you can cast the scorching ray spell once per long rest.\n\nIntelligence is your spellcasting ability for these spells.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -3457,7 +3512,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Know the fire bolt cantrip",
+          "summary": "Know fire bolt and can cast burning hands and scorching ray.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3467,7 +3522,8 @@
             "name": "Half-Elf (Sun Elf)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -3504,7 +3560,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3514,7 +3570,8 @@
             "name": "Half-Elf (Sea Elf)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Fey Ancestry",
@@ -3528,7 +3585,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have advantage on saving throws against being charmed, and magic can't put you to sleep",
+          "summary": "Gain advantage on saving throws against being charmed and immunity to magic sleep.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3538,7 +3595,8 @@
             "name": "Half-Elf (Sea Elf)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Skill Versatility",
@@ -3552,7 +3610,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You gain proficiency in two skills of your choice",
+          "summary": "Gain proficiency in two skills of your choice.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": true,
@@ -3562,11 +3620,12 @@
             "name": "Half-Elf (Sea Elf)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Sea Elf Heritage",
-          "description": "You have a swimming speed of 30 feet and can breathe air and water. You know the minor illusion cantrip. When you reach 3rd level, you can cast the water walk spell once per long rest. When you reach 5th level, you can cast the control water spell once per long rest. Charisma is your spellcasting ability for these spells.",
+          "description": "You have a swimming speed of 30 feet and can breathe air and water. You know the minor illusion cantrip.\n\nAt 3rd level, you can cast the water walk spell once per long rest.\n\nAt 5th level, you can cast the control water spell once per long rest.\n\nCharisma is your spellcasting ability for these spells.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -3576,7 +3635,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Have a swimming speed of 30 feet and can breathe air and water",
+          "summary": "Gain a 30 feet swimming speed, breathe air and water, and cast specific spells.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3586,7 +3645,8 @@
             "name": "Half-Elf (Sea Elf)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -3623,7 +3683,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3633,7 +3693,8 @@
             "name": "Half-Elf (Shadar-kai)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Fey Ancestry",
@@ -3647,7 +3708,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have advantage on saving throws against being charmed, and magic can't put you to sleep",
+          "summary": "Gain advantage on saving throws against being charmed, and magic cannot put you to sleep.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3657,7 +3718,8 @@
             "name": "Half-Elf (Shadar-kai)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Skill Versatility",
@@ -3671,7 +3733,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You gain proficiency in two skills of your choice",
+          "summary": "Gain proficiency in two skills of your choice.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": true,
@@ -3681,11 +3743,12 @@
             "name": "Half-Elf (Shadar-kai)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Shadar-kai Heritage",
-          "description": "You have resistance to necrotic damage. You know the spare the dying cantrip. When you reach 3rd level, you can cast the ray of sickness spell once per long rest. When you reach 5th level, you can cast the blindness/deafness spell once per long rest. Charisma is your spellcasting ability for these spells.",
+          "description": "You have resistance to necrotic damage. You know the spare the dying cantrip.\n\nAt 3rd level, you can cast the ray of sickness spell once per long rest.\n\nAt 5th level, you can cast the blindness/deafness spell once per long rest.\n\nCharisma is your spellcasting ability for these spells.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -3695,7 +3758,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Have resistance to necrotic damage",
+          "summary": "Gain resistance to necrotic damage and the ability to cast specific spells.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3705,7 +3768,8 @@
             "name": "Half-Elf (Shadar-kai)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -3742,7 +3806,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3752,7 +3816,8 @@
             "name": "Half-Elf (Eladrin)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Fey Ancestry",
@@ -3766,7 +3831,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have advantage on saving throws against being charmed, and magic can't put you to sleep",
+          "summary": "Gain advantage on saving throws against being charmed, and magic cannot put you to sleep.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3776,7 +3841,8 @@
             "name": "Half-Elf (Eladrin)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Skill Versatility",
@@ -3790,7 +3856,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You gain proficiency in two skills of your choice",
+          "summary": "Gain proficiency in two skills of your choice.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": true,
@@ -3800,11 +3866,12 @@
             "name": "Half-Elf (Eladrin)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Eladrin Heritage",
-          "description": "You can cast the misty step spell once per long rest without expending a spell slot. Charisma is your spellcasting ability for it. Choose a season: Autumn (charm), Winter (frighten), Spring (teleport ally), Summer (fire damage).",
+          "description": "You can cast the misty step spell once per long rest without expending a spell slot. Charisma is your spellcasting ability for it.\n\nChoose a season: Autumn (charm), Winter (frighten), Spring (teleport ally), Summer (fire damage).",
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -3814,7 +3881,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Choose a season: Autumn (charm), Winter (frighten), Spring (teleport ally), Summer (fire damage). (action)",
+          "summary": "Cast misty step once per long rest using Charisma. Choose a season: Autumn (charm), Winter (frighten), Spring (teleport ally), or Summer (fire damage).",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3824,7 +3891,8 @@
             "name": "Half-Elf (Eladrin)",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -3862,7 +3930,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3872,7 +3940,8 @@
             "name": "Half-Orc",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Savage Attacks",
@@ -3886,7 +3955,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "When you score a critical hit with a melee weapon attack, you can roll one of the weapon's damage dice one additional time and add it to the extra damage of the critical hit",
+          "summary": "Roll one additional weapon damage die on a critical hit with a melee weapon attack.",
           "grantsSpells": false,
           "grantsAttack": true,
           "grantsSkills": false,
@@ -3896,11 +3965,12 @@
             "name": "Half-Orc",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Relentless Endurance",
-          "description": "When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. you cannot use this feature again until you finish a long rest.",
+          "description": "When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You cannot use this feature again until you finish a long rest.",
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -3910,7 +3980,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. Once you use this trait, you can't use it again until you finish a long rest",
+          "summary": "When reduced to 0 hit points but not killed outright, drop to 1 hit point instead (1 per long rest).",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3920,7 +3990,8 @@
             "name": "Half-Orc",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Menacing",
@@ -3934,7 +4005,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You gain proficiency in the Intimidation skill",
+          "summary": "Gain proficiency in the Intimidation skill.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3944,7 +4015,8 @@
             "name": "Half-Orc",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -3969,7 +4041,7 @@
       "traits": [
         {
           "name": "Brave",
-          "description": "You have advantage on saving throw against being frightened.",
+          "description": "You have advantage on saving throws against being frightened.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -3979,7 +4051,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Have advantage on saving throw against being frightened. (permanent)",
+          "summary": "You have advantage on saving throws against being frightened.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3989,7 +4061,8 @@
             "name": "Halfling",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Halfling Nimbleness",
@@ -4003,7 +4076,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You can move through the space of any creature that is of a size larger than yours",
+          "summary": "You can move through the space of any creature larger than you.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4013,7 +4086,8 @@
             "name": "Halfling",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Lucky",
@@ -4030,7 +4104,7 @@
           "effect": null,
           "onUse": "Reroll one attack roll, ability check, or saving throw",
           "scaling": null,
-          "summary": "When you roll a 1 on the d20 for an attack roll, ability check, or saving throw, you can reroll the die but must use the new roll",
+          "summary": "Reroll a 1 on an attack roll, ability check, or saving throw, using the new result.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4040,7 +4114,8 @@
             "name": "Halfling",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -4076,7 +4151,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Have advantage on saving throws against being frightened. (permanent)",
+          "summary": "You have advantage on saving throws against being frightened.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4086,7 +4161,8 @@
             "name": "Lightfoot Halfling",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Halfling Nimbleness",
@@ -4100,7 +4176,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You can move through the space of any creature that is of a size larger than yours",
+          "summary": "You can move through the space of any creature larger than you.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4110,7 +4186,8 @@
             "name": "Lightfoot Halfling",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Lucky",
@@ -4127,7 +4204,7 @@
           "effect": null,
           "onUse": "Reroll one attack roll, ability check, or saving throw",
           "scaling": null,
-          "summary": "When you roll a 1 on the d20 for an attack roll, ability check, or saving throw, you can reroll the die but must use the new roll",
+          "summary": "Reroll a 1 on an attack roll, ability check, or saving throw, using the new result.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4137,7 +4214,8 @@
             "name": "Lightfoot Halfling",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Naturally Stealthy",
@@ -4151,7 +4229,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You can attempt to hide even when you are obscured only by a creature that is at least one size larger than you",
+          "summary": "Attempt to hide even when you are obscured only by a creature that is at least one size larger than you.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4161,7 +4239,8 @@
             "name": "Lightfoot Halfling",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -4197,7 +4276,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Have advantage on saving throws against being frightened. (permanent)",
+          "summary": "Gain advantage on saving throws against being frightened.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4207,7 +4286,8 @@
             "name": "Stout Halfling",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Halfling Nimbleness",
@@ -4221,7 +4301,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You can move through the space of any creature that is of a size larger than yours",
+          "summary": "Move through the space of any creature that is of a size larger than yours.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4231,7 +4311,8 @@
             "name": "Stout Halfling",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Lucky",
@@ -4248,7 +4329,7 @@
           "effect": null,
           "onUse": "Reroll one attack roll, ability check, or saving throw",
           "scaling": null,
-          "summary": "When you roll a 1 on the d20 for an attack roll, ability check, or saving throw, you can reroll the die but must use the new roll",
+          "summary": "Reroll a 1 on the d20 for an attack roll, ability check, or saving throw, using the new roll.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4258,7 +4339,8 @@
             "name": "Stout Halfling",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Stout Resilience",
@@ -4272,7 +4354,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have advantage on saving throws against poison, and you have resistance against poison damage",
+          "summary": "Gain advantage on saving throws against poison and resistance to poison damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4282,7 +4364,8 @@
             "name": "Stout Halfling",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -4318,7 +4401,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Have advantage on saving throws against being frightened. (permanent)",
+          "summary": "Gain advantage on saving throws against being frightened.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4328,7 +4411,8 @@
             "name": "Ghostwise Halfling",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Halfling Nimbleness",
@@ -4342,7 +4426,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You can move through the space of any creature that is of a size larger than yours",
+          "summary": "Move through the space of any creature larger than you.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4352,7 +4436,8 @@
             "name": "Ghostwise Halfling",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Lucky",
@@ -4369,7 +4454,7 @@
           "effect": null,
           "onUse": "Reroll one attack roll, ability check, or saving throw",
           "scaling": null,
-          "summary": "When you roll a 1 on the d20 for an attack roll, ability check, or saving throw, you can reroll the die but must use the new roll",
+          "summary": "Reroll a 1 on the d20 for an attack roll, ability check, or saving throw.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4379,7 +4464,8 @@
             "name": "Ghostwise Halfling",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Silent Speech",
@@ -4393,7 +4479,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You can speak telepathically to any creature within 30 feet that shares a language with you",
+          "summary": "Speak telepathically to any creature within 30 feet that shares a language with you.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4403,7 +4489,8 @@
             "name": "Ghostwise Halfling",
             "level": null
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -4439,7 +4526,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Your creature type is Fey, rather than Humanoid",
+          "summary": "Your creature type is Fey instead of Humanoid.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4449,11 +4536,12 @@
             "name": "Hexblood",
             "level": null
           },
-          "book": "VRGR"
+          "book": "VRGR",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Hex Magic",
-          "description": "You can cast the hex spell with this trait. Starting at 3rd level, you can also cast the blindness/deafness spell with this trait. Starting at 5th level, you can also cast the ray of enfeeblement spell with this trait. Once you cast any of these spells with this trait, you can't cast that spell with it again until you finish a long rest. Charisma is your spellcasting ability for these spells.",
+          "description": "You can cast the hex spell with this trait.\n\nStarting at 3rd level, you can also cast the blindness/deafness spell with this trait.\n\nStarting at 5th level, you can also cast the ray of enfeeblement spell with this trait.\n\nOnce you cast any of these spells with this trait, you can't cast that spell with it again until you finish a long rest. Charisma is your spellcasting ability for these spells.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -4463,7 +4551,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Starting at 3rd level, you can also cast the blindness/deafness spell with this trait",
+          "summary": "Cast hex, blindness/deafness, and ray of enfeeblement once per long rest each.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4473,11 +4561,12 @@
             "name": "Hexblood",
             "level": null
           },
-          "book": "VRGR"
+          "book": "VRGR",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Eerie Token",
-          "description": "As a bonus action, you can remove a lock of hair, one of your teeth, or some other part of your body and incorporate it into a token. If your token is destroyed, you take 1d6 psychic damage. You can use the token as a spellcasting focus for your spells, and you can use the token to cast the sending spell without expending a spell slot. Once you cast sending in this way, you can't do so again until you finish a long rest.",
+          "description": "As a bonus action, you can remove a lock of hair, one of your teeth, or some other part of your body and incorporate it into a token.\n\nIf your token is destroyed, you take **1d6** psychic damage.\n\nYou can use the token as a spellcasting focus for your spells, and you can use the token to cast the sending spell without expending a spell slot. Once you cast sending in this way, you can't do so again until you finish a long rest.",
           "featureType": "Active",
           "actionType": "Bonus Action",
           "uses": null,
@@ -4487,7 +4576,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Take 1d6 psychic damage. (bonus action)",
+          "summary": "Create a token to use as a focus or to cast sending once per long rest; take 1d6 psychic damage if it is destroyed.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4497,7 +4586,8 @@
             "name": "Hexblood",
             "level": null
           },
-          "book": "VRGR"
+          "book": "VRGR",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -4535,7 +4625,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4545,7 +4635,8 @@
             "name": "Hobgoblin",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Martial Training",
@@ -4559,7 +4650,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Are proficient with two martial weapons of your choice",
+          "summary": "Gain proficiency with two martial weapons of your choice.",
           "grantsSpells": false,
           "grantsAttack": true,
           "grantsSkills": false,
@@ -4569,11 +4660,12 @@
             "name": "Hobgoblin",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Saving Face",
-          "description": "Whenever you make an ability check and miss by 4 or less, you can treat the roll as if you had missed by 5. If you do so, you gain a luck point. You can spend a luck point when you make an attack roll, ability check, or saving throw to roll an additional d6 and add it to your roll. You regain all luck points when you finish a long rest.",
+          "description": "Whenever you make an ability check and miss by 4 or less, you can treat the roll as if you had missed by 5. If you do so, you gain a luck point.\n\nYou can spend a luck point when you make an attack roll, ability check, or saving throw to roll an additional **d6** and add it to your roll. You regain all luck points when you finish a long rest.",
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -4593,7 +4685,8 @@
             "name": "Hobgoblin",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -4635,7 +4728,8 @@
           "endsIf": null,
           "effect": null,
           "onUse": null,
-          "scaling": null
+          "scaling": null,
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -4685,7 +4779,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You can duplicate other creatures' handwriting and craftwork. You have advantage on all checks made to do so",
+          "summary": "Gain advantage on checks made to duplicate the handwriting or craftwork of other creatures.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4695,7 +4789,8 @@
             "name": "Kenku",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Kenku Training",
@@ -4709,7 +4804,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You are proficient in your choice of two of the following skills: Acrobatics, Deception, Stealth, and Sleight of Hand",
+          "summary": "Gain proficiency in two skills chosen from Acrobatics, Deception, Stealth, and Sleight of Hand.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4719,7 +4814,8 @@
             "name": "Kenku",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Mimicry",
@@ -4733,7 +4829,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You can mimic sounds you have heard, including voices. A creature that hears the sounds can tell they are imitations with a successful Wisdom (Insight) check",
+          "summary": "Mimic sounds and voices you have heard; others can detect the imitation with a successful Wisdom (Insight) check.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4743,7 +4839,8 @@
             "name": "Kenku",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -4772,7 +4869,7 @@
       "traits": [
         {
           "name": "Bite",
-          "description": "Your fanged maw is a natural weapon, which you can use to make unarmed strikes. If you hit, you deal piercing damage equal to 1d6 + your Strength modifier, instead of the bludgeoning damage normal for an unarmed strike.",
+          "description": "Your fanged maw is a natural weapon, which you can use to make unarmed strikes. If you hit, you deal piercing damage equal to **1d6** + your Strength modifier, instead of the bludgeoning damage normal for an unarmed strike.",
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -4782,7 +4879,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Deal piercing damage equal to 1d6 + your Strength modifier, instead of the bludgeoning damage normal for an unarmed strike. (action)",
+          "summary": "Make unarmed strikes with your maw to deal **1d6** + Strength modifier piercing damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4792,11 +4889,12 @@
             "name": "Lizardfolk",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Cunning Artisan",
-          "description": "As part of a short rest, you can harvest bone and hide from a slain beast, construct, dragon, monstrosity, or plant creature of size Small or larger to create one of the following items: a shield, a club, a javelin, or 4d4 pieces of ammunition. To use this trait, you need a blade, such as a dagger, or appropriate artisan's tools, such as leatherworker's tools.",
+          "description": "As part of a short rest, you can harvest bone and hide from a slain beast, construct, dragon, monstrosity, or plant creature of size Small or larger to create one of the following items: a shield, a club, a javelin, or **4d4** pieces of ammunition. To use this trait, you need a blade, such as a dagger, or appropriate artisan's tools, such as leatherworker's tools.",
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -4806,7 +4904,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can harvest bone and hide from a slain beast, construct, dragon, monstrosity, or plant creature of size Small or larger to create one of the following items: a shield, a",
+          "summary": "Harvest materials from certain slain creatures during a short rest to craft a shield, club, javelin, or ammunition.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4816,7 +4914,8 @@
             "name": "Lizardfolk",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Hold Breath",
@@ -4830,7 +4929,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can hold your breath for 15 minutes at a time",
+          "summary": "Hold your breath for up to 15 minutes.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4840,7 +4939,8 @@
             "name": "Lizardfolk",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Natural Armor",
@@ -4854,7 +4954,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Your AC is 13 + your Dexterity modifier. (action)",
+          "summary": "While not wearing armor, your AC is 13 + your Dexterity modifier.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4864,7 +4964,8 @@
             "name": "Lizardfolk",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -4903,7 +5004,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4913,7 +5014,8 @@
             "name": "Orc",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Menacing",
@@ -4927,7 +5029,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You gain proficiency in the Intimidation skill",
+          "summary": "You gain proficiency in the Intimidation skill.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4937,7 +5039,8 @@
             "name": "Orc",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Powerful Build",
@@ -4951,7 +5054,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift",
+          "summary": "Count as one size larger for carrying capacity and the weight you can push, drag, or lift.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4961,7 +5064,8 @@
             "name": "Orc",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Relentless Endurance",
@@ -4975,7 +5079,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. Once you use this trait, you can't use it again until you finish a long rest",
+          "summary": "When reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. This can be used once per long rest.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4985,7 +5089,8 @@
             "name": "Orc",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -5024,7 +5129,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Have advantage on death saving throws, and you don't need to eat, drink, or breathe",
+          "summary": "You have advantage on death saving throws and do not need to eat, drink, or breathe.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5034,11 +5139,12 @@
             "name": "Reborn",
             "level": null
           },
-          "book": "VRGR"
+          "book": "VRGR",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Knowledge from a Past Life",
-          "description": "You have fragments of memories from a past life. When you make an ability check that uses a skill, you can roll a d6 and add it to your roll. You can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+          "description": "You have fragments of memories from a past life. When you make an ability check that uses a skill, you can roll a **d6** and add it to your roll. You can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -5048,7 +5154,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have fragments of memories from a past life. When you make an ability check that uses a skill, you can add a d6 to the roll. You can use this trait a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest",
+          "summary": "Add a **d6** to a skill-based ability check. You can use this a number of times equal to your proficiency bonus per long rest.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": true,
@@ -5058,7 +5164,8 @@
             "name": "Reborn",
             "level": null
           },
-          "book": "VRGR"
+          "book": "VRGR",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Reborn Resilience",
@@ -5072,7 +5179,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "In addition, you have advantage on saving throws against disease and poison",
+          "summary": "You have resistance to necrotic damage and advantage on saving throws against disease and poison.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5082,7 +5189,8 @@
             "name": "Reborn",
             "level": null
           },
-          "book": "VRGR"
+          "book": "VRGR",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -5120,7 +5228,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5130,7 +5238,8 @@
             "name": "Shifter",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Keen Senses",
@@ -5144,7 +5253,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have proficiency in the Perception skill",
+          "summary": "You have proficiency in the Perception skill.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": true,
@@ -5154,11 +5263,12 @@
             "name": "Shifter",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Shifting",
-          "description": "As a bonus action, you can assume a more bestial appearance. This transformation lasts for 1 minute, until you die, or until you revert to your bonus action. When you shift, you gain temporary hit points equal to your level + your Constitution modifier (minimum of 1 temporary hit point). You also gain additional benefits that depend on one of the following shifter options you choose: Beasthide, Longtooth, Swiftstride, or Wildhunt. Once you shift, you can't do so again until you finish a short or long rest.",
+          "description": "As a bonus action, you can assume a more bestial appearance. This transformation lasts for 1 minute, until you die, or until you revert as a bonus action.\n\nWhen you shift, you gain temporary hit points equal to your level + your Constitution modifier (minimum of 1 temporary hit point). You also gain additional benefits that depend on one of the following shifter options you choose: Beasthide, Longtooth, Swiftstride, or Wildhunt.\n\nOnce you shift, you can't do so again until you finish a short or long rest.",
           "featureType": "Active",
           "actionType": "Bonus Action",
           "uses": null,
@@ -5168,7 +5278,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gain temporary hit points equal to your level + your Constitution modifier (minimum of 1 temporary hit point). (bonus action)",
+          "summary": "As a bonus action, gain temporary hit points equal to your level + your Constitution modifier (minimum 1) and a shifter-specific benefit.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5178,7 +5288,8 @@
             "name": "Shifter",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -5246,7 +5357,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5256,7 +5367,8 @@
             "name": "Tabaxi",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Feline Agility",
@@ -5270,7 +5382,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Your reflexes and agility allow you to move with a burst of speed. When you move on your turn in combat, you can double your speed",
+          "summary": "Double your speed until the end of your turn when you move in combat. Resets after you move 0 feet on a turn.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5280,11 +5392,12 @@
             "name": "Tabaxi",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Cat's Claws",
-          "description": "Because of your retractable claws, you have a climbing speed of 20 feet. In addition, your claws are natural weapons, which you can use to make unarmed strikes. If you hit, you deal slashing damage equal to 1d4 + your Strength modifier, instead of the normal damage for an unarmed strike.",
+          "description": "Because of your retractable claws, you have a climbing speed of 20 feet. In addition, your claws are natural weapons, which you can use to make unarmed strikes. If you hit, you deal slashing damage equal to **1d4** + your Strength modifier, instead of the normal damage for an unarmed strike.",
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -5294,7 +5407,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Deal slashing damage equal to 1d4 + your Strength modifier, instead of the normal damage for an unarmed strike. (action)",
+          "summary": "Gain a climbing speed of 20 feet and unarmed strikes that deal 1d4 + Strength modifier slashing damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5304,7 +5417,8 @@
             "name": "Tabaxi",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Cat's Talent",
@@ -5318,7 +5432,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Have proficiency in the Perception and Stealth skills",
+          "summary": "Gain proficiency in the Perception and Stealth skills.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5328,7 +5442,8 @@
             "name": "Tabaxi",
             "level": null
           },
-          "book": "EGW"
+          "book": "EGW",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -5368,7 +5483,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5378,7 +5493,8 @@
             "name": "Tiefling",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Hellish Resistance",
@@ -5392,7 +5508,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Have resistance to fire damage",
+          "summary": "Gain resistance to fire damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5402,11 +5518,12 @@
             "name": "Tiefling",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Infernal Legacy",
-          "description": "You know the thaumaturgy cantrip. When you reach 3rd level, you can cast the hellish rebuke spell as a 2nd-level spell once with this trait and regain the ability to do so when you finish a long rest. When you reach 5th level, you can cast the darkness spell once with this trait and regain the ability to do so when you finish a long rest. Charisma is your spellcasting ability for these spells.",
+          "description": "You know the thaumaturgy cantrip.\n\nWhen you reach 3rd level, you can cast the hellish rebuke spell as a 2nd-level spell once with this trait and regain the ability to do so when you finish a long rest.\n\nWhen you reach 5th level, you can cast the darkness spell once with this trait and regain the ability to do so when you finish a long rest.\n\nCharisma is your spellcasting ability for these spells.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -5416,7 +5533,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You know the thaumaturgy cantrip. When you reach 3rd level, you can cast the hellish rebuke spell as a 2nd-level spell once per long rest. When you reach 5th level, you can also cast the darkness spell once per long rest. Charisma is your spellcasting ability for these spells",
+          "summary": "Know thaumaturgy. At 3rd level, cast hellish rebuke (2nd-level) once per long rest. At 5th level, cast darkness once per long rest. Use Charisma for spellcasting.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5426,7 +5543,8 @@
             "name": "Tiefling",
             "level": null
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -5464,7 +5582,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. (permanent)",
+          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5474,7 +5592,8 @@
             "name": "Tiefling (Asmodeus)",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Hellish Resistance",
@@ -5488,7 +5607,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Have resistance to fire damage",
+          "summary": "Gain resistance to fire damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5498,7 +5617,8 @@
             "name": "Tiefling (Asmodeus)",
             "level": null
           },
-          "book": "MTF"
+          "book": "MTF",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Infernal Legacy (Asmodeus)",
