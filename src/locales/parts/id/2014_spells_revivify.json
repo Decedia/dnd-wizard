@@ -1,5 +1,5 @@
 {
-  "2014_spells.revivify.description": "Kamu menyentuh makhluk yang meninggal dalam semenit terakhir. Makhluk tersebut kembali hidup dengan 1 hit point. Mantra ini tidak bisa menghidupkan makhluk yang meninggal karena usia tua, dan tidak bisa memulihkan bagian tubuh yang hilang.",
-  "2014_spells.revivify.effectSummary": "Ubah target: makhluk tersebut kembali hidup dengan 1 hit point",
-  "2014_spells.revivify.fullDescription": "Menggunakan 1 Action, kamu menyentuh makhluk yang meninggal dalam semenit terakhir. Makhluk tersebut kembali hidup dengan 1 hit point; Mantra ini tidak bisa menghidupkan makhluk yang meninggal karena usia tua, dan tidak bisa memulihkan bagian tubuh yang hilang. Efek terjadi langsung lalu berakhir."
+  "2014_spells.revivify.description": "Menggunakan sebuah Action, kamu menyentuh makhluk yang telah mati dalam satu menit terakhir untuk menghidupkannya kembali dengan 1 hit point. Perhatikan batasan berikut:\n- Sihir ini tidak bisa menghidupkan kembali makhluk yang mati karena usia tua.\n- Sihir ini tidak bisa mengembalikan bagian tubuh yang hilang.",
+  "2014_spells.revivify.effectSummary": "Sihir penyembuhan kuat yang menghidupkan kembali makhluk yang baru saja mati (dalam satu menit terakhir) dengan 1 hit point.",
+  "2014_spells.revivify.fullDescription": "Menggunakan sebuah Action, kamu menyentuh makhluk yang telah mati dalam satu menit terakhir untuk menghidupkannya kembali dengan 1 hit point. Perhatikan batasan berikut:\n- Sihir ini tidak bisa menghidupkan kembali makhluk yang mati karena usia tua.\n- Sihir ini tidak bisa mengembalikan bagian tubuh yang hilang."
 }
