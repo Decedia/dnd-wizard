@@ -39,11 +39,17 @@ function protectTerms(text) {
   return String(text).replace(PROTECTED_REGEX, (match) => `[[${match}]]`);
 }
 
-// Terms whose loss is a style difference rather than a mistranslation.
-const SOFT_TERMS = new Set(["roll", "rolls"]);
+// Terms whose loss is a style difference rather than a mistranslation. These have
+// a natural Indonesian form, unlike the D&D jargon that must stay in English.
+const SOFT_TERMS = new Set(["roll", "rolls", "level up", "level ups"]);
+
+// Terms are compared with a trailing "s" folded away: official text says "saving
+// throws" and "spell slots" where natural Indonesian writes the singular, and that
+// is a plural variation rather than a mistranslation.
+const normalizeTerm = (term) => term.toLowerCase().replace(/s$/, "");
 
 const distinctTokens = (text) =>
-  new Set((String(text).match(TOKEN_PATTERN) || []).map((token) => token.slice(2, -2).toLowerCase()));
+  new Set((String(text).match(TOKEN_PATTERN) || []).map((token) => normalizeTerm(token.slice(2, -2))));
 
 /** The distinct terms the shielding marks in a source string, lowercased. */
 const expectedTerms = (text) => distinctTokens(protectTerms(text));

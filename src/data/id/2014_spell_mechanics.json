@@ -13497,7 +13497,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "When you cast this spell using a spell slot of 5th level or higher, you can target one additional creature for each slot level above 4th.",
+        "description": "Saat Anda menyalurkan sihir ini menggunakan slot sihir tingkat 5 atau lebih tinggi, Anda dapat menargetkan satu creature tambahan untuk setiap tingkat slot di atas tingkat 4.",
         "appliesTo": "targets",
         "startsAtLevel": 6
       },

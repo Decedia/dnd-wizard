@@ -30,7 +30,7 @@
   "2014_classes.artificer.levels.17.magic-item-master.description": "Kamu dapat melakukan attunement hingga **enam** item sihir sekaligus.",
   "2014_classes.artificer.levels.18.ability-score-improvement.summary": "Naikkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1.",
   "2014_classes.artificer.levels.18.ability-score-improvement.description": "Saat kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
-  "2014_classes.artificer.levels.19.soul-of-artifice.summary": "Dapat bonus +1 untuk semua saving throws per item sihir yang ter-attune dan gunakan reaction untuk bertahan di 1 hit point saat sekarat.",
+  "2014_classes.artificer.levels.19.soul-of-artifice.summary": "Dapatkan bonus +1 untuk semua saving throws per item sihir yang ter-attune, dan gunakan reaction untuk bertahan di 1 hit point saat seharusnya jatuh ke 0.",
   "2014_classes.artificer.levels.8.artificer-specialist-feature.summary": "Mendapatkan fitur tambahan dari spesialisasi Artificer pilihanmu.",
   "2014_classes.artificer.levels.8.artificer-specialist-feature.description": "Kamu mendapatkan fitur dari Artificer Specialist yang kamu pilih.",
   "2014_classes.artificer.levels.9.magic-item-adept.summary": "Bisa melakukan attunement hingga empat item sihir sekaligus dan mempercepat serta mempermurah pembuatan item common atau uncommon.",
@@ -42,5 +42,6 @@
   "2014_classes.artificer.levels.13.magic-item-savant.summary": "Bisa melakukan attunement hingga lima item sihir sekaligus dan mengabaikan semua syarat penggunaan item tersebut.",
   "2014_classes.artificer.levels.13.magic-item-savant.description": "Kamu bisa melakukan attunement hingga **lima** item sihir sekaligus. Kamu mengabaikan semua persyaratan kelas, ras, sihir, maupun level saat melakukan attunement atau menggunakan item sihir.",
   "2014_classes.artificer.levels.14.artificer-specialist-feature.summary": "Mendapatkan fitur tambahan dari spesialisasi Artificer pilihanmu.",
-  "2014_classes.artificer.levels.14.artificer-specialist-feature.description": "Kamu mendapatkan fitur dari Artificer Specialist yang kamu pilih."
+  "2014_classes.artificer.levels.14.artificer-specialist-feature.description": "Kamu mendapatkan fitur dari Artificer Specialist yang kamu pilih.",
+  "2014_classes.artificer.levels.19.soul-of-artifice.description": "Kamu mendapatkan bonus **+1** untuk semua saving throws untuk setiap item sihir yang saat ini sedang kamu attune.\n\nJika hit points kamu berkurang hingga 0 tetapi tidak langsung terbunuh, kamu bisa menggunakan reaction untuk mengakhiri salah satu artificer infusion milikmu, sehingga hit points kamu menjadi **1** dan bukan 0."
 }

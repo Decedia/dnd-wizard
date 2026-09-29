@@ -42,27 +42,29 @@ function findInArray(arr, segment) {
     const index = Number(segment);
     return index >= 0 && index < arr.length ? arr[index] : null;
   }
+  const byId = (item, value) =>
+    item && typeof item === 'object' && (
+      String(item.index) === value ||
+      (item.name && slugify(item.name) === value)
+    );
+
+  // An exact id wins before the "name-2" disambiguation form. Features whose real
+  // name ends in a number, like "Extra Attack (2)", slug to extra-attack-2, which
+  // the disambiguation branch would otherwise read as base "extra-attack" plus
+  // occurrence 2 and fail to resolve.
+  const exact = arr.find((item) => byId(item, segment));
+  if (exact) return exact;
+
   const match = segment.match(/^(.+)-(\d+)$/);
   if (match) {
     const baseName = match[1];
     const index = parseInt(match[2], 10) - 1;
-    const candidates = arr.filter(
-      item => item && typeof item === 'object' && (
-        String(item.index) === baseName ||
-        (item.name && slugify(item.name) === baseName)
-      )
-    );
+    const candidates = arr.filter((item) => byId(item, baseName));
     if (index >= 0 && index < candidates.length) {
       return candidates[index];
     }
-    return null;
   }
-  return arr.find(
-    item => item && typeof item === 'object' && (
-      String(item.index) === segment ||
-      (item.name && slugify(item.name) === segment)
-    )
-  );
+  return null;
 }
 
 function isTarget(candidate, fieldName) {
