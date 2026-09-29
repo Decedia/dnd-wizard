@@ -49,3 +49,6 @@ src/locales/parts/id/.enhance-classes-races-progress.json
 src/locales/parts/id/.enhance-classes-races-progress.lock
 src/locales/parts/en/.enhance-classes-races-progress.json
 src/locales/parts/en/.enhance-classes-races-progress.lock
+
+# committed so a chunked enhancement run survives a workspace reset
+!src/locales/parts/en/.enhance-classes-races-progress.json
