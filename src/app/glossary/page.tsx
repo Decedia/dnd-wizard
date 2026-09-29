@@ -237,16 +237,16 @@ export default function GlossaryPage() {
               <div
                 key={`${name}-${level ?? "feat"}-${idx}`}
                 onClick={() => isSpell && setSelectedSpell(item)}
-                className="relative block w-full text-left bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm cursor-pointer active:scale-[0.98] active:border-indigo-300 dark:active:border-indigo-700 transition-all duration-75 overflow-hidden mb-4 group"
+                className="relative block w-full text-left bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl shadow-sm cursor-pointer active:scale-[0.98] active:border-[var(--color-border-active)] transition-all duration-75 overflow-hidden mb-4 group"
               >
                 {/* Content Body */}
                 <div className="p-4 pb-3">
                   {/* Title Block */}
                   <div className="mb-2">
-                    <h3 className="font-bold text-lg text-slate-900 dark:text-slate-100 leading-tight">
+                    <h3 className="font-bold text-lg text-[var(--color-text-primary)] leading-tight">
                       {name}
                     </h3>
-                    <span className="text-xs text-slate-500 block mt-0.5">
+                    <span className="text-xs text-[var(--color-text-muted)] block mt-0.5">
                       {level !== undefined ? `${t("glossary.level", "Level")} ${level} ${school}` : source}
                     </span>
                   </div>
@@ -266,23 +266,23 @@ export default function GlossaryPage() {
                   )}
 
                   {classes.length > 0 && (
-                    <p className="text-xs text-slate-500 line-clamp-1 mb-3">{classes.join(", ")}</p>
+                    <p className="text-xs text-[var(--color-text-muted)] line-clamp-1 mb-3">{classes.join(", ")}</p>
                   )}
 
                   {/* Summary Text */}
                   {summary && (
-                    <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+                    <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed line-clamp-3">
                       {summary}
                     </p>
                   )}
                 </div>
 
                 {/* Explicit Action Footer */}
-                <div className="bg-slate-50 dark:bg-slate-800/50 border-t border-slate-100 dark:border-slate-800 px-4 py-2.5 flex justify-between items-center group-active:bg-slate-100 dark:group-active:bg-slate-800 transition-colors">
-                  <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400 tracking-wide uppercase">
+                <div className="bg-[var(--color-bg)] border-t border-[var(--color-border)] px-4 py-2.5 flex justify-between items-center group-active:bg-[var(--color-border-muted)] transition-colors">
+                  <span className="text-xs font-bold text-[var(--color-accent-indigo-600)] tracking-wide uppercase">
                     {t("glossary.viewDetails", "Lihat Detail")}
                   </span>
-                  <CaretRight size={16} weight="bold" className="text-indigo-500 dark:text-indigo-400" />
+                  <CaretRight size={16} weight="bold" className="text-[var(--color-accent-indigo-500)]" />
                 </div>
               </div>
             );
