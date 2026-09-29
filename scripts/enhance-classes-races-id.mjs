@@ -2,6 +2,7 @@ import path from "path";
 import { requireApiKey } from "./lib/nim.mjs";
 import { buildUnits, applyToLocaleParts, PATHS } from "./lib/srd-text.mjs";
 import { runEnhancement, parseArgs } from "./lib/enhance-runner.mjs";
+import { tidy, structuralProblems } from "./lib/text-tidy.mjs";
 
 const options = parseArgs();
 if (!options.dryRun && !options.showPrompt) requireApiKey();
@@ -78,14 +79,26 @@ const SYSTEM_PROMPT = [
   "  It must name the concrete effect, not repeat the feature name, and must not start with the feature name.",
   "* 'description' is the full teks aturan. Keep every rule, number, example and paragraph break. Never summarise away mechanics.",
   "* 'flavorText' (class dan subclass saja) is cerita karakter yang evocatif: no mechanical numbers, no rules.",
-  "* Keep every numeric value exactly as written. Dice stay plain: 1d6 or **1d6**.",
+  "  Keep every paragraph and every idea; improve the wording, do not cut it down.",
+  "",
+  "KAMU MENULIS ULANG, BUKAN MENERJEMAHKAN HARFIK. INI ATURAN PALING PENTING.",
+  "* Hasilmu harus panjangnya mendekati input. Hasil yang jauh lebih pendek berarti ada isi yang hilang dan akan ditolak.",
+  "* Setiap angka, ekspresi dadu, jarak, durasi, dan jumlah di teks asli WAJIB ada di hasilmu.",
+  "  Jangan pernah diganti rujukan tabel. Tulis '**2d6** kerusakan', jangan 'sesuai tabel Barbarian'.",
+  "* Kalau teks asli berupa daftar berpoin, hasilmu juga harus berpoin. Jangan ubah daftar menjadi paragraf.",
+  "* Pertahankan setiap bagian scaling per level sebagai blok tersendiri, dengan urutan yang sama.",
+  "* Pertahankan setiap pemisah paragraf. Jangan gabungkan beberapa paragraf menjadi satu.",
+  "* Keep every number, dice expression and distance exactly as written. Dice stay plain: 1d6 or **1d6**.",
   "* Use standard dashes (-) for lists, never asterisks (*).",
-  "* Keep the higher-level/scaling section as a list, e.g. '- Tingkat 5: **2d6**'.",
   "* Never translate or alter a proper name: class names, subclass names, feature names and spell names stay in English.",
   "",
-  "OUTPUT:",
-  "* Output STRICT raw JSON. No markdown fences, no commentary.",
-  "* Map each input id to an object with exactly the same field names it was given.",
+  "FORMAT OUTPUT:",
+  "* Selalu kembalikan semua field yang ada di input, bahkan jika kamu hanya menyunting sedikit. Jangan pernah menghilangkan field.",
+  "* Output STRICT raw JSON, no markdown fences, no commentary.",
+  "* Hasilnya harus berupa objek JSON datar yang memetakan setiap id input ke objek yang hanya berisi teks hasil tulis ulang.",
+  "* JANGAN mengulang 'name', 'group', 'fields', 'context', atau 'source' di jawabanmu.",
+  '* Contoh bentuk yang diharapkan:',
+  '  { "2014_races.bugbear.sneaky": { "summary": "...", "description": "..." } }',
 ].join("\n");
 
 function buildUserPrompt(batch) {
@@ -103,34 +116,64 @@ function buildUserPrompt(batch) {
   );
 }
 
+// Fields are judged independently: a model that translates a description well but
+// returns nothing for flavorText should still get its description saved, and the
+// original flavorText stays. Only a unit where every field failed is discarded.
 function validate(result, unit) {
   const enhanced = result?.[unit.id];
   if (!enhanced || typeof enhanced !== "object") return { ok: false, reason: "no entry in response" };
 
   const values = {};
+  const reasons = [];
   for (const field of unit.fields) {
     const raw = typeof enhanced[field] === "string" ? enhanced[field].trim() : "";
-    if (!raw) return { ok: false, reason: `empty ${field}` };
-    if (/\[\[|\]\]/.test(raw)) return { ok: false, reason: `${field} contains leftover [[ ]] markers` };
+    if (!raw) {
+      reasons.push(`${field}: not returned`);
+      continue;
+    }
+    if (/\[\[|\]\]/.test(raw)) {
+      reasons.push(`${field}: leftover [[ ]] markers`);
+      continue;
+    }
 
     const expected = countTokens(protectTerms(unit.text[field]));
     const got = countTokens(raw);
-    if (got < expected) return { ok: false, reason: `${field} lost protected terms (${got}/${expected})` };
+    if (got < expected) {
+      reasons.push(`${field}: lost protected terms (${got}/${expected})`);
+      continue;
+    }
 
-    const value = restoreTerms(raw);
+    const value = tidy(restoreTerms(raw));
     const sourceLength = unit.text[field].length;
-    if (value.length < sourceLength * 0.45) return { ok: false, reason: `${field} collapsed to ${value.length}/${sourceLength} chars` };
-    if (value.length > sourceLength * 2.5) return { ok: false, reason: `${field} ballooned to ${value.length}/${sourceLength} chars` };
+    if (value.length < sourceLength * 0.45) {
+      reasons.push(`${field}: collapsed to ${value.length}/${sourceLength} chars`);
+      continue;
+    }
+    // Several subclasses ship a stub flavorText of one line. Growing that into real
+    // prose is the point of the pass, so summaries and flavorText get an absolute
+    // floor on their ceiling rather than a purely proportional one.
+    const absoluteCeiling = field === "summary" ? 300 : 800;
+    const ceiling =
+      field === "summary" || field === "flavorText" ? Math.max(sourceLength * 2.5, absoluteCeiling) : sourceLength * 2.5;
+    if (value.length > ceiling) {
+      reasons.push(`${field}: ballooned to ${value.length}/${ceiling} chars`);
+      continue;
+    }
+    const structural = structuralProblems(unit.text[field], value, field);
+    if (structural.length) {
+      reasons.push(`${field}: ${structural.join("; ")}`);
+      continue;
+    }
+    // Untranslated output would be worse than what is already there.
+    if (unit.text[field] && value === unit.text[field].trim()) {
+      reasons.push(`${field}: byte-identical to the English source`);
+      continue;
+    }
     values[field] = value;
   }
 
-  if (/(^|\n)\s*\*/.test(values.description || "")) return { ok: false, reason: "description uses asterisk list markers" };
-  if (/(^|\n)\s*\d+\.\s/.test(values.description || "")) return { ok: false, reason: "description uses numbered list markers" };
-  // Untranslated output would be worse than what is already there.
-  if (unit.text.description && values.description === unit.text.description.trim()) {
-    return { ok: false, reason: "description is byte-identical to the English source" };
-  }
-  return { ok: true, values };
+  if (Object.keys(values).length) return { ok: true, values, reasons };
+  return { ok: false, reason: reasons.join("; ") || "nothing usable" };
 }
 
 const { units, counts } = buildUnits();

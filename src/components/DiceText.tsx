@@ -407,8 +407,24 @@ function RichText({ text }: { text: string }) {
   );
 }
 
+/**
+ * Locale data is generated, and the SRD is inconsistent: the same field can be a
+ * string in one record and an object (or an array of strings) in another. Rendering
+ * calls .split()/.match() on this value, so anything that is not a string has to be
+ * flattened here rather than crashing a character sheet.
+ */
+function toText(value: unknown): string {
+  if (typeof value === "string") return value;
+  if (Array.isArray(value)) return value.map(toText).filter(Boolean).join("\n");
+  if (value && typeof value === "object") {
+    const named = value as { name?: unknown; text?: unknown; description?: unknown };
+    return toText(named.name ?? named.text ?? named.description ?? "");
+  }
+  return value === null || value === undefined ? "" : String(value);
+}
+
 export function DiceText({ text }: { text: string }) {
-  const blocks = useMemo(() => parseListBlocks(text || ""), [text]);
+  const blocks = useMemo(() => parseListBlocks(toText(text)), [text]);
 
   return (
     <div className="text-sm text-[var(--color-text-secondary)] leading-relaxed space-y-2">

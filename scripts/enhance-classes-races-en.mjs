@@ -2,6 +2,7 @@ import path from "path";
 import { requireApiKey } from "./lib/nim.mjs";
 import { buildUnits, applyToEnData, PATHS } from "./lib/srd-text.mjs";
 import { runEnhancement, parseArgs } from "./lib/enhance-runner.mjs";
+import { tidy, structuralProblems } from "./lib/text-tidy.mjs";
 
 const options = parseArgs();
 if (!options.dryRun && !options.showPrompt) requireApiKey();
@@ -14,12 +15,22 @@ const SYSTEM_PROMPT = [
   "* Fix awkward official phrasing and anything that reads like it was written for a spreadsheet.",
   "* Stay in second person ('you') throughout. The reader is the character.",
   "",
+  "YOU ARE REWRITING, NOT SUMMARISING. THIS IS THE MOST IMPORTANT RULE.",
+  "* Your output must be about as long as the input. A shorter result means you dropped content and will be rejected.",
+  "* Every number, dice expression, distance, duration and quantity in the source MUST appear in your output.",
+  "  Never replace a concrete value with a reference. Write '+2 to the damage roll', never 'as per the Barbarian table'.",
+  "* If the source is a bullet list, your output is a bullet list. Never turn a list into a paragraph.",
+  "* Keep every level-scaling section as its own block ('At 2nd level, you gain Reckless Attack...'), in the same order.",
+  "  Never merge them into the surrounding prose.",
+  "* Keep every paragraph break the source had. Do not condense several paragraphs into one.",
+  "",
   "FIELD RULES:",
   "* 'summary' is the short card text shown in the character sheet list. One or two sentences, at most 40 words.",
   "  It must name the concrete effect ('Rage gives advantage on Strength checks and resistance to bludgeoning, piercing and slashing damage'),",
   "  not restate the feature name. Do not start it with the feature name.",
   "* 'description' is the full rules text. Keep all paragraph breaks, sub-headings and list structure.",
   "* 'flavorText' (classes and subclasses only) is evocative character fiction: no mechanical numbers, no rules.",
+  "  Keep every paragraph and every idea; improve the wording, do not cut it down.",
   "",
   "PRECISION RULES:",
   "* Use ONLY the mechanical facts given in the input fields. Never invent a number, a distance, a duration or a condition.",
@@ -31,46 +42,69 @@ const SYSTEM_PROMPT = [
   "* Keep markdown bold around dice and key values. Do not add any other formatting.",
   "* Never translate or alter a proper name: class names, subclass names, feature names and spell names stay in English and keep their exact capitalisation.",
   "",
-  "OUTPUT:",
-  "* Return STRICT raw JSON. No markdown fences, no commentary.",
-  "* Map each input id to an object with exactly the same field names it was given.",
+  "OUTPUT FORMAT:",
+  "* Return STRICT raw JSON, no markdown fences, no commentary.",
+  "* It must be a flat object mapping each input id to an object holding only the rewritten text fields.",
+  "* Do NOT repeat 'name', 'group', 'fields', 'context' or 'source' in your answer.",
+  '* Example of the exact shape expected:',
+  '  { "2014_races.bugbear.sneaky": { "summary": "...", "description": "..." } }',
+  "* Always return every field that was in the input, even if you only lightly edited it. Never omit a field.",
 ].join("\n");
 
 function buildUserPrompt(batch) {
   return (
-    "Rewrite each entry below. Return ONLY a JSON object mapping each id to an object with the same field names it was given " +
-    "(for example id -> {summary, description} or id -> {flavorText, description}). " +
+    "Rewrite each entry below, word for word where it is already correct and only clearer where it is not. " +
+    "Do not summarise: your output must keep every number, every bullet point, every level-scaling section and every paragraph from the source. " +
+    "Return a flat JSON object mapping each id to an object containing only the rewritten text fields, " +
+    "with the same field names the input used (summary, description, flavorText). " +
+    "Do not repeat the input's name, group, fields, context or source keys. " +
     "Use only the mechanical facts supplied. Keep every number, dice expression and distance exactly as written. No commentary.\n\n" +
     JSON.stringify(batch, null, 1)
   );
 }
 
+// Fields are judged independently: a model that rewrites a description well but
+// returns nothing for flavorText should still get its description saved, and the
+// original flavorText stays. Only a unit where every field failed is discarded.
 function validate(result, unit) {
   const enhanced = result?.[unit.id];
   if (!enhanced || typeof enhanced !== "object") return { ok: false, reason: "no entry in response" };
 
   const values = {};
+  const reasons = [];
   for (const field of unit.fields) {
-    const value = typeof enhanced[field] === "string" ? enhanced[field].trim() : "";
-    if (!value) return { ok: false, reason: `empty ${field}` };
-    // A rewrite that is dramatically shorter than the source lost rules; a wildly
-    // longer one is usually the model padding or running on into the next entry.
+    const raw = typeof enhanced[field] === "string" ? enhanced[field] : "";
+    if (!raw.trim()) {
+      reasons.push(`${field}: not returned`);
+      continue;
+    }
+    const value = tidy(raw);
     const sourceLength = unit.text[field].length;
-    if (value.length < sourceLength * 0.45) return { ok: false, reason: `${field} collapsed to ${value.length}/${sourceLength} chars` };
-    if (value.length > sourceLength * 2.5) return { ok: false, reason: `${field} ballooned to ${value.length}/${sourceLength} chars` };
+    if (value.length < sourceLength * 0.45) {
+      reasons.push(`${field}: collapsed to ${value.length}/${sourceLength} chars`);
+      continue;
+    }
+    // Several subclasses ship a stub flavorText of one line. Growing that into real
+    // prose is the point of the pass, so summaries and flavorText get an absolute
+    // floor on their ceiling rather than a purely proportional one.
+    const absoluteCeiling = field === "summary" ? 300 : 800;
+    const ceiling =
+      field === "summary" || field === "flavorText" ? Math.max(sourceLength * 2.5, absoluteCeiling) : sourceLength * 2.5;
+    if (value.length > ceiling) {
+      reasons.push(`${field}: ballooned to ${value.length}/${ceiling} chars`);
+      continue;
+    }
+    const structural = structuralProblems(unit.text[field], value, field);
+    if (structural.length) {
+      reasons.push(`${field}: ${structural.join("; ")}`);
+      continue;
+    }
     values[field] = value;
   }
 
-  const all = Object.values(values).join("\n");
-  if (/\[\[|\]\]/.test(all)) return { ok: false, reason: "output contains [[ ]] markers" };
-  if (/(^|\n)\s*\*/.test(values.description || "")) return { ok: false, reason: "description uses asterisk list markers" };
-  if (/^\s*\d+\.\s/m.test(values.description || "")) return { ok: false, reason: "description uses numbered list markers" };
-  // An untranslated response is the classic failure mode: it would silently
-  // replace the English source with the same text.
-  if (unit.text.description && values.description === unit.text.description.trim()) {
-    return { ok: false, reason: "description is byte-identical to the source" };
-  }
-  return { ok: true, values };
+  if (Object.keys(values).length) return { ok: true, values, reasons };
+  if (/\[\[|\]\]/.test(JSON.stringify(enhanced))) return { ok: false, reason: "output contains [[ ]] markers" };
+  return { ok: false, reason: reasons.join("; ") || "nothing usable" };
 }
 
 const { units, counts } = buildUnits();
