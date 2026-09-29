@@ -92,6 +92,12 @@
     "2014_subclasses.life",
     "2014_subclasses.life.divine-strike",
     "2014_subclasses.nature",
-    "2014_subclasses.nature.acolyte-of-nature"
+    "2014_subclasses.nature.acolyte-of-nature",
+    "2014_subclasses.order.order-domain-spells",
+    "2014_subclasses.order.channel-divinity-order-s-demand",
+    "2014_subclasses.order.divine-strike",
+    "2014_subclasses.order.order-s-wrath",
+    "2014_subclasses.light.bonus-cantrip",
+    "2014_subclasses.order"
   ]
 }
