@@ -86,13 +86,13 @@ function getFullDescription(spell: any): string {
 
 function getStatBadgeStyle(text: string) {
   const t = text.toLowerCase();
-  if (t.includes("str") || t.includes("athletics")) return "bg-red-100 text-red-800 border-red-300 dark:bg-red-500/20 dark:text-red-300 dark:border-red-500/40";
-  if (t.includes("dex") || t.includes("acrobatics") || t.includes("stealth") || t.includes("sleight")) return "bg-emerald-100 text-emerald-800 border-emerald-300 dark:bg-emerald-500/20 dark:text-emerald-300 dark:border-emerald-500/40";
-  if (t.includes("con") || t.includes("concentration")) return "bg-amber-100 text-amber-800 border-amber-300 dark:bg-amber-500/20 dark:text-amber-300 dark:border-amber-500/40";
-  if (t.includes("int") || t.includes("arcana") || t.includes("history") || t.includes("investigation") || t.includes("nature") || t.includes("religion")) return "bg-blue-100 text-blue-800 border-blue-300 dark:bg-blue-500/20 dark:text-blue-300 dark:border-blue-500/40";
-  if (t.includes("wis") || t.includes("perception") || t.includes("insight") || t.includes("survival") || t.includes("medicine") || t.includes("animal")) return "bg-purple-100 text-purple-800 border-purple-300 dark:bg-purple-500/20 dark:text-purple-300 dark:border-purple-500/40";
-  if (t.includes("cha") || t.includes("deception") || t.includes("intimidation") || t.includes("performance") || t.includes("persuasion")) return "bg-rose-100 text-rose-800 border-rose-300 dark:bg-rose-500/20 dark:text-rose-300 dark:border-rose-500/40";
-  return "bg-slate-100 text-slate-800 border-slate-300 dark:bg-slate-800 dark:text-slate-200 dark:border-slate-700";
+  if (t.includes("str") || t.includes("athletics")) return { backgroundColor: "var(--color-damage-fire-bg)", color: "var(--color-damage-fire)", borderColor: "var(--color-damage-fire)" };
+  if (t.includes("dex") || t.includes("acrobatics") || t.includes("stealth") || t.includes("sleight")) return { backgroundColor: "var(--color-damage-lightning-bg)", color: "var(--color-damage-lightning)", borderColor: "var(--color-damage-lightning)" };
+  if (t.includes("con") || t.includes("concentration")) return { backgroundColor: "var(--color-damage-radiant-bg)", color: "var(--color-damage-radiant)", borderColor: "var(--color-damage-radiant)" };
+  if (t.includes("int") || t.includes("arcana") || t.includes("history") || t.includes("investigation") || t.includes("nature") || t.includes("religion")) return { backgroundColor: "var(--color-damage-cold-bg)", color: "var(--color-damage-cold)", borderColor: "var(--color-damage-cold)" };
+  if (t.includes("wis") || t.includes("perception") || t.includes("insight") || t.includes("survival") || t.includes("medicine") || t.includes("animal")) return { backgroundColor: "var(--color-damage-acid-bg)", color: "var(--color-damage-acid)", borderColor: "var(--color-damage-acid)" };
+  if (t.includes("cha") || t.includes("deception") || t.includes("intimidation") || t.includes("performance") || t.includes("persuasion")) return { backgroundColor: "var(--color-damage-psychic-bg)", color: "var(--color-damage-psychic)", borderColor: "var(--color-damage-psychic)" };
+  return { backgroundColor: "var(--color-border-muted)", color: "var(--color-text-secondary)", borderColor: "var(--color-border)" };
 }
 
 const SCHOOL_COLORS: Record<string, string> = {
@@ -257,7 +257,8 @@ export default function GlossaryPage() {
                       {mechanicsBadges.map((badge: string, badgeIdx: number) => (
                         <span
                           key={badgeIdx}
-                          className={`text-[10px] font-bold px-2 py-0.5 rounded-md border shadow-sm ${getStatBadgeStyle(badge)}`}
+                          style={getStatBadgeStyle(badge)}
+                          className="text-[10px] font-bold px-2 py-0.5 rounded-md border shadow-sm"
                         >
                           {badge}
                         </span>
