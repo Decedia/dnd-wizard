@@ -9219,7 +9219,7 @@
         },
         {
           "name": "Emissary of Redemption",
-          "description": "At 20th level, you become an avatar of peace, which gives you the following benefits: You have resistance to all damage dealt by other creatures (their attacks, spells, and other effects). Whenever a creature hits you with an attack, it takes radiant damage equal to half the damage you took from the attack. If you are reduced to 0 hit points by a creature and aren't killed outright, you can choose to drop to 1 hit point instead. Once you use this feature, you can't use it again until you finish a long rest.",
+          "description": "At 20th level, you become an avatar of peace, which gives you the following benefits:\n\nYou have resistance to all damage dealt by other creatures (including their attacks, spells, and other effects).\n\nWhenever a creature hits you with an attack, it takes radiant damage equal to half the damage you took from the attack.\n\nIf you are reduced to 0 hit points by a creature and aren't killed outright, you can choose to drop to 1 hit point instead. Once you use this feature, you can't use it again until you finish a long rest.",
           "level": 20,
           "featureType": "Active",
           "actionType": null,
@@ -9230,7 +9230,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Whenever a creature hits you with an attack, it takes radiant damage equal to half the damage you took from the attack. (action).",
+          "summary": "Gain resistance to all damage from other creatures, deal radiant damage to attackers equal to half the damage you took, and potentially drop to 1 hit point instead of 0.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -9240,7 +9240,8 @@
             "name": "Oath of Redemption",
             "level": 20
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "XGE",
@@ -9258,69 +9259,74 @@
           "name": "Oath Spells",
           "level": 3,
           "featureType": "Passive",
-          "summary": "Gain oath spells at levels 3, 5, 9, 13, and 17.",
-          "description": "3rd: Command, Compelled Duel; 5th: Warding Bond, Zone of Truth; 9th: Aura of Vitality, Spirit Guardians; 13th: Banishment, Guardian of Faith; 17th: Circle of Power, Geas.",
+          "summary": "You learn additional spells at specific levels: 3rd, 5th, 9th, 13th, and 17th.",
+          "description": "You gain the following oath spells at the specified levels:\n- 3rd: Command, Compelled Duel\n- 5th: Warding Bond, Zone of Truth\n- 9th: Aura of Vitality, Spirit Guardians\n- 13th: Banishment, Guardian of Faith\n- 17th: Circle of Power, Geas",
           "source": {
             "type": "subclass",
             "name": "Oath of the Crown",
             "level": 3
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Channel Divinity: Champion Challenge",
           "level": 3,
           "featureType": "Active",
           "actionType": "Bonus Action",
-          "summary": "Force hostile creatures within 30 feet to stay within 30 feet of you on a failed Wisdom saving throw.",
+          "summary": "Force chosen creatures within 30 feet to make a Wisdom saving throw or be unable to willingly move more than 30 feet away from you.",
           "description": "As a bonus action, you issue a challenge that compels other creatures to do battle with you. Each creature of your choice that you can see within 30 feet of you must make a Wisdom saving throw. On a failed save, a creature can't willingly move more than 30 feet away from you.",
           "source": {
             "type": "subclass",
             "name": "Oath of the Crown",
             "level": 3
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Channel Divinity: Turn the Tide",
           "level": 3,
           "featureType": "Active",
           "actionType": "Bonus Action",
-          "summary": "Restore 1d6 + Cha mod hit points to allies within 30 feet that have no more than half their max HP.",
-          "description": "As a bonus action, you can bolster injured creatures with your Channel Divinity. Each creature of your choice within 30 feet of you that can hear you and has no more than half its hit points regains hit points equal to 1d6 + your Charisma modifier (minimum 1).",
+          "summary": "Heal chosen creatures within 30 feet who are at or below half their hit points for 1d6 + your Charisma modifier.",
+          "description": "As a bonus action, you can bolster injured creatures with your Channel Divinity. Each creature of your choice within 30 feet of you that can hear you and has no more than half its hit points regains hit points equal to **1d6** + your Charisma modifier (minimum 1).",
           "source": {
             "type": "subclass",
             "name": "Oath of the Crown",
             "level": 3
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Divine Allegiance",
           "level": 7,
           "featureType": "Active",
           "actionType": "Reaction",
-          "summary": "When an ally within 5 feet takes damage, use your reaction to magically take that damage instead.",
+          "summary": "Use your reaction to take all damage dealt to a creature within 5 feet of you; this damage cannot be reduced or prevented.",
           "description": "Starting at 7th level, when a creature within 5 feet of you takes damage, you can use your reaction to magically substitute your own health for that of the target creature, taking that damage in its place. This damage to you cannot be reduced or prevented in any way.",
           "source": {
             "type": "subclass",
             "name": "Oath of the Crown",
             "level": 7
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Unyielding Saint",
           "level": 15,
           "featureType": "Passive",
-          "summary": "Gain advantage on saving throws to avoid being paralyzed or stunned.",
+          "summary": "You have advantage on saving throws to avoid being paralyzed or stunned.",
           "description": "Beginning at 15th level, you have advantage on saving throws to avoid becoming paralyzed or stunned.",
           "source": {
             "type": "subclass",
             "name": "Oath of the Crown",
             "level": 15
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Exalted Champion",
@@ -9331,16 +9337,18 @@
             "total": 1,
             "recharge": "Long Rest"
           },
-          "summary": "For 1 hour: resistance to nonmagical weapon damage, allies within 30 ft have advantage on death and Wisdom saves.",
-          "description": "At 20th level, your presence on the battlefield becomes an inspiration to your allies. As an action, you gain the following benefits for 1 hour: resistance to bludgeoning, piercing, and slashing damage from nonmagical weapons; your allies within 30 feet have advantage on death saving throws; and you and your allies within 30 feet have advantage on Wisdom saving throws.",
+          "summary": "For 1 hour, you gain resistance to nonmagical weapon damage, and you and allies within 30 feet have advantage on death and Wisdom saving throws.",
+          "description": "At 20th level, your presence on the battlefield becomes an inspiration to your allies. As an action, you gain the following benefits for 1 hour:\n\n- You have resistance to bludgeoning, piercing, and slashing damage from nonmagical weapons.\n- Your allies within 30 feet have advantage on death saving throws.\n- You and your allies within 30 feet have advantage on Wisdom saving throws.",
           "source": {
             "type": "subclass",
             "name": "Oath of the Crown",
             "level": 20
           },
-          "book": "SCAG"
+          "book": "SCAG",
+          "lastUpdated": "2026-09-29"
         }
-      ]
+      ],
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Paladin",
@@ -9363,7 +9371,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Abjure the Extraplanar: As an action, you force each aberration, celestial, elemental, fey, or fiend of your choice within 30 feet of you to make a Wisdom saving throw.",
+          "summary": "Grant advantage on mental saving throws for 1 minute, or force extraplanar creatures within 30 feet to make a Wisdom save or be turned.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -9373,11 +9381,12 @@
             "name": "Oath of the Watchers",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Aura of the Sentinel",
-          "description": "Starting at 7th level, you emit a 10-foot aura of alertness. If you and any creatures of your choice within the aura are sleeping, you and those creatures are not surprised when you wake up. In addition, you and creatures of your choice within the aura have advantage on Wisdom (Perception) checks. At 18th level, the aura extends to 30 feet.",
+          "description": "Starting at 7th level, you emit a 10-foot aura of alertness. If you and any creatures of your choice within the aura are sleeping, you and those creatures are not surprised when you wake up. In addition, you and creatures of your choice within the aura have advantage on Wisdom (Perception) checks.\n\nAt 18th level, the aura extends to 30 feet.",
           "level": 7,
           "featureType": "Passive",
           "actionType": null,
@@ -9388,7 +9397,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Emit a 10-foot aura. You and creatures of your choice within the aura cannot be surprised while sleeping. At 18th level, the aura extends to 30 feet.",
+          "summary": "You and chosen allies within a 10-foot aura cannot be surprised while sleeping and have advantage on Wisdom (Perception) checks. The aura grows to 30 feet at 18th level.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -9398,11 +9407,12 @@
             "name": "Oath of the Watchers",
             "level": 7
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Vigilant Rebuke",
-          "description": "Starting at 15th level, you respond to threats with divine speed. When a creature within 30 feet of you makes an attack roll while under the effect of a spell or other magical effect, you can use your reaction to force the creature to make a Wisdom saving throw. On a failed save, the creature takes 3d8 psychic damage, and it has disadvantage on the attack roll. On a successful save, the creature takes half as much damage, and it doesn't suffer disadvantage on the attack roll.",
+          "description": "Starting at 15th level, you respond to threats with divine speed. When a creature within 30 feet of you makes an attack roll while under the effect of a spell or other magical effect, you can use your reaction to force the creature to make a Wisdom saving throw.\n\nOn a failed save, the creature takes **3d8** psychic damage, and it has disadvantage on the attack roll. On a successful save, the creature takes half as much damage, and it doesn't suffer disadvantage on the attack roll.",
           "level": 15,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -9413,7 +9423,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can use your reaction to force the creature to make a Wisdom saving throw. (reaction).",
+          "summary": "Use your reaction to deal 3d8 psychic damage and impose disadvantage on an attack roll from a creature within 30 feet that is under a magical effect.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -9423,11 +9433,12 @@
             "name": "Oath of the Watchers",
             "level": 15
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Mortal Bulwark",
-          "description": "At 20th level, you channel divine power to protect the mortal realm. As a bonus action, you gain the following benefits for 1 minute: You gain truesight with a range of 30 feet. You have advantage on attack rolls against aberrations, celestials, elementals, fey, and fiends. When you hit a creature with an attack roll, you can turn the hit into a critical hit. Once you use this feature, you can't use it again until you finish a long rest.",
+          "description": "At 20th level, you channel divine power to protect the mortal realm. As a bonus action, you gain the following benefits for **1 minute**:\n- You gain truesight with a range of **30 feet**.\n- You have advantage on attack rolls against aberrations, celestials, elementals, fey, and fiends.\n- When you hit a creature with an attack roll, you can turn the hit into a critical hit.\n\nOnce you use this feature, you can't use it again until you finish a long rest.",
           "level": 20,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -9438,7 +9449,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Have advantage on attack rolls against aberrations, celestials, elementals, fey, and fiends. (bonus action).",
+          "summary": "Gain 30 feet of truesight, advantage on attacks against specific extraplanar creatures, and the ability to turn hits into critical hits for 1 minute.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -9448,11 +9459,13 @@
             "name": "Oath of the Watchers",
             "level": 20
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "XGE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Oathbreaker",
@@ -9465,68 +9478,73 @@
           "name": "Oathbreaker Spells",
           "level": 3,
           "featureType": "Passive",
-          "summary": "Gain dark oathbreaker spells at levels 3, 5, 9, 13, and 17.",
-          "description": "3rd: Hellish Rebuke, Inflict Wounds; 5th: Crown of Madness, Darkness; 9th: Animate Dead, Bestow Curse; 13th: Blight, Confusion; 17th: Contagion, Dominate Person.",
+          "summary": "Gain specific spells at levels 3, 5, 9, 13, and 17.",
+          "description": "- 3rd level: Hellish Rebuke, Inflict Wounds\n- 5th level: Crown of Madness, Darkness\n- 9th level: Animate Dead, Bestow Curse\n- 13th level: Blight, Confusion\n- 17th level: Contagion, Dominate Person",
           "source": {
             "type": "subclass",
             "name": "Oathbreaker",
             "level": 3
           },
-          "book": "DMG"
+          "book": "DMG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Channel Divinity: Control Undead",
           "level": 3,
           "featureType": "Active",
           "actionType": "Action",
-          "summary": "Take control of an undead creature within 30 feet with CR lower than your paladin level for 24 hours.",
-          "description": "As an action, you target one undead creature you can see within 30 feet. The target must make a Wisdom saving throw. On a failed save, the target must obey your commands for the next 24 hours, or until you use this Channel Divinity option again. An undead whose challenge rating is equal to or greater than your paladin level is immune.",
+          "summary": "Force an undead creature within 30 feet to obey your commands for 24 hours on a failed Wisdom saving throw.",
+          "description": "As an action, you target one undead creature you can see within **30 feet**. The target must make a Wisdom saving throw. On a failed save, the target must obey your commands for the next **24 hours**, or until you use this Channel Divinity option again. An undead whose challenge rating is equal to or greater than your paladin level is immune.",
           "source": {
             "type": "subclass",
             "name": "Oathbreaker",
             "level": 3
           },
-          "book": "DMG"
+          "book": "DMG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Channel Divinity: Dreadful Aspect",
           "level": 3,
           "featureType": "Active",
           "actionType": "Action",
-          "summary": "Frighten all hostile creatures within 30 feet for 1 minute on a failed Wisdom saving throw.",
-          "description": "As an action, the paladin channels the darkest emotions and focuses them into a burst of magical menace. Each creature of the paladin's choice within 30 feet must make a Wisdom saving throw if it can see the paladin. On a failed save, the target is frightened of the paladin for 1 minute.",
+          "summary": "Force chosen creatures within 30 feet to become frightened of you for 1 minute on a failed Wisdom saving throw.",
+          "description": "As an action, you channel the darkest emotions and focus them into a burst of magical menace. Each creature of your choice within **30 feet** must make a Wisdom saving throw if it can see you. On a failed save, the target is frightened of you for **1 minute**.",
           "source": {
             "type": "subclass",
             "name": "Oathbreaker",
             "level": 3
           },
-          "book": "DMG"
+          "book": "DMG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Aura of Hate",
           "level": 7,
           "featureType": "Passive",
-          "summary": "Add your Charisma modifier to melee weapon damage rolls for yourself and friendly fiends/undead within 10 ft.",
-          "description": "Starting at 7th level, the paladin, as well as any fiends and undead within 10 feet of the paladin, gains a bonus to melee weapon damage rolls equal to the paladin's Charisma modifier (minimum of +1). At 18th level, the range increases to 30 feet.",
+          "summary": "You and nearby fiends and undead gain a bonus to melee weapon damage rolls equal to your Charisma modifier.",
+          "description": "Starting at 7th level, you, as well as any fiends and undead within **10 feet** of you, gain a bonus to melee weapon damage rolls equal to your Charisma modifier (minimum of **+1**).\n\nAt 18th level, the range increases to **30 feet**.",
           "source": {
             "type": "subclass",
             "name": "Oathbreaker",
             "level": 7
           },
-          "book": "DMG"
+          "book": "DMG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Supernatural Resistance",
           "level": 15,
           "featureType": "Passive",
-          "summary": "Gain resistance to bludgeoning, piercing, and slashing damage from nonmagical attacks.",
-          "description": "At 15th level, the paladin gains resistance to bludgeoning, piercing, and slashing damage from nonmagical weapons.",
+          "summary": "You have resistance to bludgeoning, piercing, and slashing damage from nonmagical attacks.",
+          "description": "At 15th level, you gain resistance to bludgeoning, piercing, and slashing damage from nonmagical weapons.",
           "source": {
             "type": "subclass",
             "name": "Oathbreaker",
             "level": 15
           },
-          "book": "DMG"
+          "book": "DMG",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Dread Lord",
@@ -9537,28 +9555,30 @@
             "total": 1,
             "recharge": "Long Rest"
           },
-          "summary": "Transform into an avatar of darkness for 1 minute: 30 ft gloomy aura, 4d10 psychic damage, bonus action shadow attack.",
-          "description": "At 20th level, the paladin can surround himself or herself with an aura of gloom for 1 minute. The aura sheds dim light in a 30-foot radius. Enemies in the aura take 4d10 psychic damage at the start of their turns if frightened, and the paladin can use a bonus action to make a melee spell attack dealing 3d10 + Cha necrotic damage.",
+          "summary": "Transform for 1 minute to emit a 30-foot aura that deals 4d10 psychic damage to frightened enemies and allows a bonus action shadow attack.",
+          "description": "At 20th level, you can use an action to surround yourself with an aura of gloom for 1 minute. The aura sheds dim light in a 30-foot radius.\n\nEnemies within the aura take **4d10** psychic damage at the start of their turns if they are frightened. Additionally, you can use a bonus action to make a melee spell attack against a target, dealing **3d10** + Charisma modifier necrotic damage.",
           "source": {
             "type": "subclass",
             "name": "Oathbreaker",
             "level": 20
           },
-          "book": "DMG"
+          "book": "DMG",
+          "lastUpdated": "2026-09-29"
         }
-      ]
+      ],
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Vengeance",
       "class": "Paladin",
       "classIndex": "paladin",
       "index": "vengeance",
-      "flavorText": "Sacred Oath",
+      "flavorText": "Sacred Oath\n\nThe Oath of Vengeance represents the power of righteous fury and retribution. Paladins who swear this oath are typically driven by a personal quest for revenge against evil.\n\nThey are willing to sometimes circumvent conventional morality to defeat evil, and they do not show mercy to those who have committed evil acts. Their oath is a solemn vow to pursue and destroy the wicked, no matter the cost.",
       "description": "The Oath of Vengeance represents the power of righteous fury and retribution. Paladins who swear this oath are typically driven by a personal quest for revenge against evil.\n\nThey are willing to sometimes circumvent conventional morality to defeat evil, and they do not show mercy to those who have committed evil acts. Their oath is a solemn vow to pursue and destroy the wicked, no matter the cost.",
       "features": [
         {
           "name": "Oath Spells",
-          "description": "Each oath has a list of associated spells. You gain access to these spells at the levels specified in the oath description. Once you gain access to an oath spell, you always have it prepared. Oath spells don't count against the number of spells you can prepare each day.\nIf you gain an oath spell that doesn't appear on the paladin spell list, the spell is nonetheless a paladin spell for you.",
+          "description": "Each oath has a list of associated spells. You gain access to these spells at the levels specified in the oath description. Once you gain access to an oath spell, you always have it prepared. Oath spells don't count against the number of spells you can prepare each day.\n\nIf you gain an oath spell that doesn't appear on the paladin spell list, the spell is nonetheless a paladin spell for you.",
           "level": 3,
           "featureType": "Passive",
           "actionType": null,
@@ -9569,7 +9589,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gain access to these spells at the levels specified in the oath description.",
+          "summary": "You gain access to specific spells that are always prepared and do not count against your daily limit.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -9579,11 +9599,12 @@
             "name": "Vengeance",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Channel Divinity: Abjure Enemy",
-          "description": "As an action, you present your holy symbol and speak a prayer of denunciation, using your Channel Divinity. Choose one creature within 60 feet of you that you can see. That creature must make a Wisdom saving throw, unless it is immune to being frightened. Fiends and undead have disadvantage on this saving throw. On a failed save, the creature is frightened for 1 minute or until it takes any damage. While frightened, the creature's speed is 0, and it can't benefit from any bonus to its speed. On a successful save, the creature's speed is halved for 1 minute or until the creature takes any damage.",
+          "description": "As an action, you present your holy symbol and speak a prayer of denunciation, using your Channel Divinity. Choose one creature within 60 feet of you that you can see. That creature must make a Wisdom saving throw, unless it is immune to being frightened. Fiends and undead have disadvantage on this saving throw.\n\nOn a failed save, the creature is frightened for 1 minute or until it takes any damage. While frightened, the creature's speed is 0, and it can't benefit from any bonus to its speed.\n\nOn a successful save, the creature's speed is halved for 1 minute or until the creature takes any damage.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Action",
@@ -9594,7 +9615,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Choose one creature within 60 feet of you that you can see. (action).",
+          "summary": "Use an action to force a creature within 60 feet to make a Wisdom save or be frightened and immobilized.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -9604,7 +9625,8 @@
             "name": "Vengeance",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Channel Divinity: Vow of Enmity",
@@ -9619,7 +9641,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can utter a vow of enmity against a creature you can see within 10 feet of you, using your Channel Divinity. (bonus action).",
+          "summary": "Use a bonus action to gain advantage on attack rolls against a creature within 10 feet for 1 minute.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -9629,7 +9651,8 @@
             "name": "Vengeance",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Relentless Avenger",
@@ -9644,7 +9667,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can move up to half your speed immediately after the attack and as part of the same reaction. (reaction).",
+          "summary": "Move up to half your speed immediately after hitting a creature with an opportunity attack as part of the same reaction.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -9654,7 +9677,8 @@
             "name": "Vengeance",
             "level": 7
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Soul of Vengeance",
@@ -9669,7 +9693,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can use your reaction to make a melee weapon attack against that creature if it is within range. (reaction).",
+          "summary": "Use your reaction to make a melee weapon attack against a creature under the effect of your Vow of Enmity if it makes an attack and is within range.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -9679,11 +9703,12 @@
             "name": "Vengeance",
             "level": 15
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Avenging Angel",
-          "description": "At 20th level, you can assume the form of an angelic avenger. Using your action, you undergo a transformation. For 1 hour, you gain the following benefits: Wings sprout from your back and grant you a flying speed of 60 feet. You emanate an aura of menace in a 30-foot radius. The first time any enemy creature enters the aura or starts its turn there during a battle, the creature must succeed on a Wisdom saving throw or become frightened of you for 1 minute or until it takes any damage. Attack rolls against the frightened creature have advantage. Once you use this feature, you can't use it again until you finish a long rest.",
+          "description": "At 20th level, you can assume the form of an angelic avenger. Using your action, you undergo a transformation. For 1 hour, you gain the following benefits:\n\n- Wings sprout from your back and grant you a flying speed of **60 feet**.\n- You emanate an aura of menace in a **30-foot** radius. The first time any enemy creature enters the aura or starts its turn there during a battle, the creature must succeed on a Wisdom saving throw or become frightened of you for 1 minute or until it takes any damage. Attack rolls against the frightened creature have advantage.\n\nOnce you use this feature, you can't use it again until you finish a long rest.",
           "level": 20,
           "featureType": "Active",
           "actionType": "Action",
@@ -9694,7 +9719,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gain the following benefits: Wings sprout from your back and grant you a flying speed of 60 feet. (action).",
+          "summary": "Use an action to gain a flying speed of 60 feet and an aura of menace for 1 hour.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -9704,23 +9729,25 @@
             "name": "Vengeance",
             "level": 20
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "PHB",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Beast Master",
       "class": "Ranger",
       "classIndex": "ranger",
       "index": "beast-master",
-      "flavorText": "Ranger Archetype",
+      "flavorText": "The Beast Master archetype embodies a friendship between the civilized races and the beasts of the world. United in focus, beast and ranger work as one to fight the monstrous foes that threaten civilization and the wilderness alike.\n\nEmulating the Beast Master archetype means committing yourself to this ideal, working in partnership with an animal as its companion and friend. The bond between a Beast Master and their companion is unbreakable, forged through shared battles and mutual trust.",
       "description": "The Beast Master archetype embodies a friendship between the civilized races and the beasts of the world. United in focus, beast and ranger work as one to fight the monstrous foes that threaten civilization and the wilderness alike.\n\nEmulating the Beast Master archetype means committing yourself to this ideal, working in partnership with an animal as its companion and friend. The bond between a Beast Master and their companion is unbreakable, forged through shared battles and mutual trust.",
       "features": [
         {
           "name": "Ranger's Companion",
-          "description": "At 3rd level, you gain a beast companion that accompanies you on your adventures and is trained to fight alongside you. Choose a beast that is no larger than Medium and that has a challenge rating of 1/4 or lower. Add your proficiency bonus to the beast's AC, attack rolls, and damage rolls, as well as to any saving throws and skills it is proficient in. Its hit point maximum equals its normal maximum or four times your ranger level, whichever is higher. The beast obeys your commands as best as it can. It takes its turn on your initiative. On your turn, you can verbally command the beast where to move (no action required by you). You can use your action to verbally command it to take the Attack, Dash, Disengage, or Help action. If you don't issue a command, the beast takes the Dodge action. Once you have the Extra Attack feature, you can make one weapon attack yourself when you command the beast to take the Attack action. If you are incapacitated or absent, the beast acts on its own, focusing on protecting you and itself. The beast never requires your command to use its reaction. If the beast dies, you can obtain another one by spending 8 hours magically bonding with another beast that isn't hostile to you, either the same type of beast as before or a different one.",
+          "description": "At 3rd level, you gain a beast companion that accompanies you on your adventures and is trained to fight alongside you. Choose a beast that is no larger than Medium and that has a challenge rating of **1/4** or lower.\n\nAdd your proficiency bonus to the beast's AC, attack rolls, and damage rolls, as well as to any saving throws and skills it is proficient in. Its hit point maximum equals its normal maximum or **4** times your ranger level, whichever is higher.\n\nThe beast obeys your commands as best as it can. It takes its turn on your initiative.\n\nOn your turn, you can verbally command the beast where to move (no action required by you). You can use your action to verbally command it to take the Attack, Dash, Disengage, or Help action. If you don't issue a command, the beast takes the Dodge action.\n\nOnce you have the Extra Attack feature, you can make one weapon attack yourself when you command the beast to take the Attack action.\n\nIf you are incapacitated or absent, the beast acts on its own, focusing on protecting you and itself. The beast never requires your command to use its reaction.\n\nIf the beast dies, you can obtain another one by spending **8 hours** magically bonding with another beast that isn't hostile to you, either the same type of beast as before or a different one.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -9731,7 +9758,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Add your proficiency bonus to the beast's AC, attack rolls, and damage rolls, as well as to any saving throws and skills it is proficient in. (reaction).",
+          "summary": "Gain a beast companion. Add your proficiency bonus to its AC, attack rolls, damage rolls, saving throws, and proficient skills.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -9741,11 +9768,12 @@
             "name": "Beast Master",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Exceptional Training",
-          "description": "Beginning at 7th level, on any of your turns when your beast companion doesn't attack, you can use a bonus action to command the beast to take the Dash, Disengage, or Help action on its turn. In addition, the beast's attacks now count as magical for the purpose of overcoming resistance and immunity to nonmagical attacks and damage.",
+          "description": "Beginning at 7th level, on any of your turns when your beast companion doesn't attack, you can use a bonus action to command the beast to take the Dash, Disengage, or Help action on its turn.\n\nIn addition, the beast's attacks now count as magical for the purpose of overcoming resistance and immunity to nonmagical attacks and damage.",
           "level": 7,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -9756,7 +9784,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "In addition, the beast's attacks now count as magical for the purpose of overcoming resistance and immunity to nonmagical attacks and damage. (bonus action).",
+          "summary": "Use a bonus action to command your beast to Dash, Disengage, or Help if it doesn't attack. Its attacks count as magical.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -9766,11 +9794,12 @@
             "name": "Beast Master",
             "level": 7
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Bestial Fury",
-          "description": "Starting at 11th level, when you command your beast companion to take the Attack action, the beast can make two attacks, or it can take the Multiattack action if it has that action.",
+          "description": "At 11th level, when you command your beast companion to take the Attack action, the beast can make two attacks, or it can take the Multiattack action if it has that action.",
           "level": 11,
           "featureType": "Active",
           "actionType": "Action",
@@ -9781,7 +9810,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Starting at 11th level, when you command your beast companion to take the Attack action, the beast can make two attacks, or it can take the Multiattack action if it.",
+          "summary": "When you command your beast companion to take the Attack action, it can make two attacks or use its Multiattack action if it has one.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -9791,11 +9820,12 @@
             "name": "Beast Master",
             "level": 11
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Share Spells",
-          "description": "Beginning at 15th level, when you cast a spell targeting yourself, you can also affect your beast companion with the spell if the beast is within 30 feet of you.",
+          "description": "At 15th level, when you cast a spell targeting yourself, you can also affect your beast companion with the spell if the beast is within 30 feet of you.",
           "level": 15,
           "featureType": "Passive",
           "actionType": null,
@@ -9806,7 +9836,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Beginning at 15th level, when you cast a spell targeting yourself, you can also affect your beast companion with the spell if the beast is within 30 feet of you.",
+          "summary": "When you cast a spell targeting yourself, you can also affect your beast companion if it is within 30 feet of you.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -9816,11 +9846,13 @@
             "name": "Beast Master",
             "level": 15
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "PHB",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "index": "drake-warden",
@@ -9831,7 +9863,7 @@
         {
           "name": "Draconic Gift",
           "level": 3,
-          "description": "You gain a drake companion that accompanies you on your adventures. The drake is friendly to you and your companions, and it obeys your commands. See the Drake Companion stat block for its traits and actions. In combat, the drake shares your initiative count, but it takes its turn immediately after yours. It can move and use its reaction on its own, but the only action it can take is the Dodge action, unless you use your bonus action on your turn to command it to take an action.",
+          "description": "You gain a drake companion that accompanies you on your adventures. The drake is friendly to you and your companions, and it obeys your commands. See the Drake Companion stat block for its traits and actions.\n\nIn combat, the drake shares your initiative count, but it takes its turn immediately after yours. It can move and use its reaction on its own, but the only action it can take is the Dodge action, unless you use your bonus action on your turn to command it to take an action.",
           "featureType": "Active",
           "actionType": "Bonus Action",
           "uses": null,
@@ -9841,7 +9873,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gain a drake companion that accompanies you on your adventures. (bonus action).",
+          "summary": "Gain a drake companion that obeys your commands and takes its turn immediately after yours.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -9851,7 +9883,8 @@
             "name": "Drake Warden",
             "level": 3
           },
-          "book": "FTD"
+          "book": "FTD",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Bond of Fang and Scale",
@@ -9866,7 +9899,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "While your drake is within 30 feet of you, it has a +2 bonus to AC and saving throws.",
+          "summary": "Your drake gains a +2 bonus to AC and saving throws while it is within 30 feet of you.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -9876,12 +9909,13 @@
             "name": "Drake Warden",
             "level": 3
           },
-          "book": "FTD"
+          "book": "FTD",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Drake's Breath",
           "level": 7,
-          "description": "As an action, you can command your drake to exhale a 15-foot cone of elemental energy. Each creature in the area must make a Dexterity saving throw (DC 8 + your proficiency bonus + your Wisdom modifier). On a failed save, a creature takes 4d6 damage of the type associated with your drake. On a successful save, a creature takes half as much damage. Once you use this feature, you can't use it again until you finish a short or long rest.",
+          "description": "As an action, you can command your drake to exhale a 15-foot cone of elemental energy. Each creature in the area must make a Dexterity saving throw (DC 8 + your proficiency bonus + your Wisdom modifier). On a failed save, a creature takes **4d6** damage of the type associated with your drake. On a successful save, a creature takes half as much damage.\n\nOnce you use this feature, you can't use it again until you finish a short or long rest.",
           "featureType": "Active",
           "actionType": "Action",
           "uses": null,
@@ -9891,7 +9925,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "On a failed save, a creature takes 4d6 damage of the type associated with your drake. (action).",
+          "summary": "Command your drake to exhale a 15-foot cone, dealing 4d6 elemental damage on a failed Dexterity save.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -9901,12 +9935,13 @@
             "name": "Drake Warden",
             "level": 7
           },
-          "book": "FTD"
+          "book": "FTD",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Perfected Bond",
           "level": 11,
-          "description": "Your bond with your drake deepens. When you take damage while your drake is within 30 feet of you, you can use your reaction to have your drake take the damage instead. Additionally, when you deal damage to a creature within 30 feet of your drake, you can have your drake make a bite attack against that creature as a reaction.",
+          "description": "Your bond with your drake deepens. When you take damage while your drake is within 30 feet of you, you can use your reaction to have your drake take the damage instead.\n\nAdditionally, when you deal damage to a creature within 30 feet of your drake, you can have your drake make a bite attack against that creature as a reaction.",
           "featureType": "Active",
           "actionType": "Reaction",
           "uses": null,
@@ -9916,7 +9951,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Additionally, when you deal damage to a creature within 30 feet of your drake, you can have your drake make a bite attack against that creature as a reaction. (reaction).",
+          "summary": "Use your reaction to have your drake take damage for you if it is within 30 feet, or have it make a bite attack when you deal damage to a creature within 30 feet of it.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -9926,7 +9961,8 @@
             "name": "Drake Warden",
             "level": 11
           },
-          "book": "FTD"
+          "book": "FTD",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Reflexive Resistance",
@@ -9941,7 +9977,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can use your reaction to grant resistance to that damage type to both you and your drake for 1 minute. (reaction).",
+          "summary": "Use your reaction to grant resistance to a damage type to you and your drake for 1 minute when either of you takes that damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -9951,11 +9987,13 @@
             "name": "Drake Warden",
             "level": 15
           },
-          "book": "FTD"
+          "book": "FTD",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "FTD",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Ranger",
@@ -9967,7 +10005,7 @@
       "features": [
         {
           "name": "Dreadful Strikes",
-          "description": "At 3rd level, you can use your connection to the Feywild to mark your foes with otherworldly dread. Once per turn when you hit a creature with a weapon attack, you can deal an extra 1d4 psychic damage to the target. The damage increases to 1d6 at 11th level.",
+          "description": "At 3rd level, you can use your connection to the Feywild to mark your foes with otherworldly dread. Once per turn when you hit a creature with a weapon attack, you can deal an extra **1d4** psychic damage to the target.\n\nThe damage increases to **1d6** at 11th level.",
           "level": 3,
           "featureType": "Active",
           "actionType": null,
@@ -9978,7 +10016,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Once per turn when you hit a creature with a weapon attack, you can deal an extra 1d4 psychic damage to the target. (action).",
+          "summary": "Once per turn, deal an extra 1d4 psychic damage to a creature you hit with a weapon attack.",
           "grantsSpells": false,
           "grantsAttack": true,
           "grantsSkills": false,
@@ -9988,11 +10026,12 @@
             "name": "Fey Wanderer",
             "level": 3
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Fey Wanderer Magic",
-          "description": "At 3rd level, you learn an additional spell when you reach certain levels in this class, as shown in the Fey Wanderer Spells table. The spell counts as a ranger spell for you, but it doesn't count against the number of ranger spells you know.\n\n3rd: charm person\n5th: misty step\n9th: dispel magic\n13th: dimension door\n17th: mislead",
+          "description": "At 3rd level, you learn an additional spell when you reach certain levels in this class, as shown in the Fey Wanderer Spells table. The spell counts as a ranger spell for you, but it doesn't count against the number of ranger spells you know.\n\n- 3rd: charm person\n- 5th: misty step\n- 9th: dispel magic\n- 13th: dimension door\n- 17th: mislead",
           "level": 3,
           "featureType": "Passive",
           "actionType": null,
@@ -10003,7 +10042,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "The spell counts as a ranger spell for you, but it doesn't count against the number of ranger spells you know.",
+          "summary": "You learn additional ranger spells that do not count against your number of spells known.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -10013,11 +10052,12 @@
             "name": "Fey Wanderer",
             "level": 3
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Otherworldly Glamour",
-          "description": "At 3rd level, your fey connection allows you to project a magical glamour. When you make a Charisma check, you can expend a use of this feature to gain a bonus to the check equal to your Wisdom modifier (minimum of +1). You can also use this feature on a Charisma (Deception), Charisma (Intimidation), or Charisma (Performance) check.",
+          "description": "At 3rd level, your fey connection allows you to project a magical glamour. When you make a Charisma check, you can expend a use of this feature to gain a bonus to the check equal to your Wisdom modifier (minimum of +1).\n\nYou can also use this feature on a Charisma (Deception), Charisma (Intimidation), or Charisma (Performance) check.",
           "level": 3,
           "featureType": "Active",
           "actionType": null,
@@ -10028,7 +10068,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can expend a use of this feature to gain a bonus to the check equal to your Wisdom modifier (minimum of +1). (action).",
+          "summary": "Expend a use of this feature to add your Wisdom modifier (minimum +1) to a Charisma check.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -10038,11 +10078,12 @@
             "name": "Fey Wanderer",
             "level": 3
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Beguiling Twist",
-          "description": "Starting at 7th level, the magic of the Feywild safeguards your mind. You have advantage on saving throws against being charmed or frightened. In addition, whenever you or a creature you can see within 120 feet of you succeeds on a saving throw against being charmed or frightened, you can use your reaction to force a different creature you can see within 120 feet of you to make a Wisdom saving throw against your spell save DC. If the save fails, the target is charmed or frightened by you (your choice) until the end of your next turn.",
+          "description": "Starting at 7th level, the magic of the Feywild safeguards your mind. You have advantage on saving throws against being charmed or frightened.\n\nIn addition, whenever you or a creature you can see within 120 feet of you succeeds on a saving throw against being charmed or frightened, you can use your reaction to force a different creature you can see within 120 feet of you to make a Wisdom saving throw against your spell save DC. If the save fails, the target is charmed or frightened by you (your choice) until the end of your next turn.",
           "level": 7,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -10053,7 +10094,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "In addition, whenever you or a creature you can see within 120 feet of you succeeds on a saving throw against being charmed or frightened, you can use your reaction.",
+          "summary": "Gain advantage on saves against being charmed or frightened. When you or a seen creature within 120 feet succeeds on such a save, use a reaction to charm or frighten another creature within 120 feet.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -10063,11 +10104,12 @@
             "name": "Fey Wanderer",
             "level": 7
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Fey Reinforcements",
-          "description": "At 11th level, the royal courts of the Feywild have noticed you. Whenever you cast a spell of 1st level or higher that summons a fey or a beast, the summoned creature gains the following benefits: The creature appears with more hit points than normal: 1 extra hit point per level of the spell. The summoned creature's weapon attacks count as magical for the purpose of overcoming resistance and immunity to nonmagical attacks and damage.",
+          "description": "At 11th level, the royal courts of the Feywild have noticed you. Whenever you cast a spell of 1st level or higher that summons a fey or a beast, the summoned creature gains the following benefits:\n- The creature appears with more hit points than normal: **1** extra hit point per level of the spell.\n- The summoned creature's weapon attacks count as magical for the purpose of overcoming resistance and immunity to nonmagical attacks and damage.",
           "level": 11,
           "featureType": "Passive",
           "actionType": null,
@@ -10078,7 +10120,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "The summoned creature's weapon attacks count as magical for the purpose of overcoming resistance and immunity to nonmagical attacks and damage.",
+          "summary": "Summoned fey or beasts gain 1 extra hit point per spell level and their weapon attacks count as magical.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -10088,11 +10130,12 @@
             "name": "Fey Wanderer",
             "level": 11
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Misty Wanderer",
-          "description": "At 15th level, you can use the mystical energy of the Feywild to move between planes. Once per short rest, you can cast the misty step spell, requiring no spell slot or material components. In addition, when you use this feature, you can bring along up to two willing creatures within 5 feet of you, provided you have a way to reach them (such as a rope or chain).",
+          "description": "At 15th level, you can use the mystical energy of the Feywild to move between planes. Once per short rest, you can cast the misty step spell, requiring no spell slot or material components.\n\nIn addition, when you use this feature, you can bring along up to two willing creatures within 5 feet of you, provided you have a way to reach them (such as a rope or chain).",
           "level": 15,
           "featureType": "Active",
           "actionType": null,
@@ -10103,7 +10146,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "In addition, when you use this feature, you can bring along up to two willing creatures within 5 feet of you, provided you have a way to reach them.",
+          "summary": "Once per short rest, cast misty step without a spell slot or material components, bringing up to two willing creatures within 5 feet with you.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -10113,11 +10156,13 @@
             "name": "Fey Wanderer",
             "level": 15
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "TCE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Gloom Stalker",
@@ -10131,93 +10176,100 @@
           "level": 3,
           "featureType": "Passive",
           "summary": "Gain additional spells at levels 3, 5, 9, 13, and 17.",
-          "description": "3rd: Disguise Self; 5th: Rope Trick; 9th: Fear; 13th: Greater Invisibility; 17th: Seeming.",
+          "description": "At 3rd level: Disguise Self\nAt 5th level: Rope Trick\nAt 9th level: Fear\nAt 13th level: Greater Invisibility\nAt 17th level: Seeming",
           "source": {
             "type": "subclass",
             "name": "Gloom Stalker",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Dread Ambusher",
           "level": 3,
           "featureType": "Passive",
-          "summary": "Add Wisdom modifier to initiative, gain +10 ft speed on your first turn, and make an extra attack dealing +1d8 damage.",
-          "description": "At 3rd level, you master the art of the ambush. You can give yourself a bonus to your initiative rolls equal to your Wisdom modifier. At the start of your first turn of each combat, your walking speed increases by 10 feet, which lasts until the end of that turn. If you take the Attack action on that turn, you can make one additional weapon attack as part of that action. If that attack hits, the target takes an extra 1d8 damage of the weapon's damage type.",
+          "summary": "Add Wisdom modifier to initiative, gain +10 feet speed on your first turn, and make one extra attack dealing an extra 1d8 damage.",
+          "description": "At 3rd level, you master the art of the ambush. You can give yourself a bonus to your initiative rolls equal to your Wisdom modifier.\n\nAt the start of your first turn of each combat, your walking speed increases by **10 feet**, which lasts until the end of that turn. If you take the Attack action on that turn, you can make one additional weapon attack as part of that action. If that attack hits, the target takes an extra **1d8** damage of the weapon's damage type.",
           "source": {
             "type": "subclass",
             "name": "Gloom Stalker",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Umbral Sight",
           "level": 3,
           "featureType": "Passive",
-          "summary": "Gain 60 ft darkvision (or +30 ft), and become completely invisible to any creature relying on darkvision in darkness.",
-          "description": "At 3rd level, you gain darkvision out to a range of 60 feet. If you already have darkvision from your race, its range increases by 30 feet. You are also adept at evading creatures that rely on darkvision. While in darkness, you are invisible to any creature that relies on darkvision to see you in that darkness.",
+          "summary": "Gain 60 feet of darkvision (or increase existing darkvision by 30 feet) and remain invisible to creatures relying on darkvision while you are in darkness.",
+          "description": "At 3rd level, you gain darkvision out to a range of **60 feet**. If you already have darkvision from your race, its range increases by **30 feet**. \n\nYou are also adept at evading creatures that rely on darkvision. While in darkness, you are invisible to any creature that relies on darkvision to see you in that darkness.",
           "source": {
             "type": "subclass",
             "name": "Gloom Stalker",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Iron Mind",
           "level": 7,
           "featureType": "Passive",
-          "summary": "Gain proficiency in Wisdom saving throws (or Intelligence or Charisma if you already have it).",
+          "summary": "Gain proficiency in Wisdom saving throws, or Intelligence or Charisma saving throws if you are already proficient in Wisdom.",
           "description": "By 7th level, you have honed your ability to resist the mind-altering powers of your prey. You gain proficiency in Wisdom saving throws. If you already have this proficiency, you instead gain proficiency in Intelligence or Charisma saving throws (your choice).",
           "source": {
             "type": "subclass",
             "name": "Gloom Stalker",
             "level": 7
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Stalker's Flurry",
           "level": 11,
           "featureType": "Passive",
-          "summary": "Once on each of your turns when you miss with a weapon attack, make another weapon attack as part of the same action.",
+          "summary": "Once per turn, if you miss with a weapon attack, you can make another weapon attack as part of the same action.",
           "description": "At 11th level, you learn to attack with such rapid speed that you can turn a miss into another strike. Once on each of your turns when you miss with a weapon attack, you can make another weapon attack as part of the same action.",
           "source": {
             "type": "subclass",
             "name": "Gloom Stalker",
             "level": 11
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Shadowy Dodge",
           "level": 15,
           "featureType": "Active",
           "actionType": "Reaction",
-          "summary": "Impose disadvantage on an attack roll against you as a reaction unless the attacker has advantage.",
+          "summary": "Use your reaction to impose disadvantage on an attack roll against you, provided the attacker does not have advantage.",
           "description": "Starting at 15th level, you can dodge in unforeseen ways, with wisps of supernatural shadow around you. Whenever a creature makes an attack roll against you and doesn't have advantage on the roll, you can use your reaction to impose disadvantage on it.",
           "source": {
             "type": "subclass",
             "name": "Gloom Stalker",
             "level": 15
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         }
-      ]
+      ],
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Ranger",
       "classIndex": "ranger",
       "index": "horizon-walker",
       "name": "Horizon Walker",
-      "flavorText": "Ranger Archetype",
+      "flavorText": "Ranger Archetype\n\nRangers who walk the border between planes are known as Horizon Wanderers. They are experts at hunting creatures that cross between worlds, utilizing their deep knowledge of the planes to shield the mortal realm.",
       "description": "Rangers who walk the border between planes are known as Horizon Wanderers. They are adept at hunting creatures that cross between worlds, and they use their knowledge of the planes to protect the mortal realm.",
       "features": [
         {
           "name": "Detect Portal",
-          "description": "At 3rd level, you gain the ability to magically sense the presence of a planar portal. As an action, you can detect the distance and direction to the closest planar portal within 1 mile of you. Once you use this feature, you can't use it again until you finish a short or long rest.",
+          "description": "At 3rd level, you gain the ability to magically sense the presence of a planar portal. As an action, you can detect the distance and direction to the closest planar portal within **1 mile** of you. Once you use this feature, you can't use it again until you finish a short or long rest.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Action",
@@ -10228,7 +10280,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 3rd level, you gain the ability to magically sense the presence of a planar portal. (action).",
+          "summary": "Use an action to sense the distance and direction of the nearest planar portal within 1 mile.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -10238,11 +10290,12 @@
             "name": "Horizon Walker",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Planar Warrior",
-          "description": "At 3rd level, you learn to draw on the energy of other planes to enhance your attacks. As a bonus action, you can choose one creature you can see within 30 feet of you. The next time you hit that creature on this turn with a weapon attack, all damage dealt by the attack becomes force damage, and the target takes an extra 1d8 force damage from the attack. When you reach 11th level, the extra damage increases to 2d8.",
+          "description": "At 3rd level, you learn to draw on the energy of other planes to enhance your attacks. As a bonus action, you can choose one creature you can see within 30 feet of you. The next time you hit that creature on this turn with a weapon attack, all damage dealt by the attack becomes force damage, and the target takes an extra **1d8** force damage from the attack.\n\nWhen you reach 11th level, the extra damage increases to **2d8**.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -10253,7 +10306,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "The next time you hit that creature on this turn with a weapon attack, all damage dealt by the attack becomes force damage, and the target takes an extra 1d8.",
+          "summary": "Convert the next weapon attack this turn against a chosen target within 30 feet to force damage and deal an extra **1d8** force damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -10263,7 +10316,8 @@
             "name": "Horizon Walker",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Ethereal Step",
@@ -10278,7 +10332,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can cast the etherealness spell with this feature, without expending a spell slot, but the spell ends at the end of your current turn. (bonus action).",
+          "summary": "Cast etherealness as a bonus action without expending a spell slot; the spell ends at the end of your current turn.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -10288,7 +10342,8 @@
             "name": "Horizon Walker",
             "level": 7
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Distant Strike",
@@ -10303,7 +10358,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can teleport up to 10 feet before each attack to an unoccupied space you can see. (action).",
+          "summary": "Teleport up to 10 feet before each attack during the Attack action; make one additional attack if you target at least two different creatures.",
           "grantsSpells": false,
           "grantsAttack": true,
           "grantsSkills": false,
@@ -10313,7 +10368,8 @@
             "name": "Horizon Walker",
             "level": 11
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Spectral Defense",
@@ -10328,7 +10384,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 15th level, your ability to move between planes enables you to slip away from harm. (reaction).",
+          "summary": "Use your reaction when you take damage from an attack to gain resistance to all damage from that attack.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -10338,23 +10394,25 @@
             "name": "Horizon Walker",
             "level": 15
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "XGE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Ranger",
       "classIndex": "ranger",
       "index": "hunter",
       "name": "Hunter",
-      "flavorText": "Ranger Archetype",
+      "flavorText": "You embrace your role as the shield protecting civilization from the horrors of the wild. By following the path of the Hunter, you master specialized combat techniques designed to bring down the most dangerous threats, from rampaging ogres and orc hordes to towering giants and lethal dragons.",
       "description": "Emulating the Hunter archetype means accepting your place as a bulwark between civilization and the terrors of the wilderness. As you walk the Hunter's path, you learn specialized techniques for fighting the threats you face, from rampaging ogres and hordes of orcs to towering giants and terrifying dragons.",
       "features": [
         {
           "name": "Hunter's Prey",
-          "description": "At 3rd level, you gain one of the following features of your choice.\nColossus Slayer\nGiant Killer\nHorde Breaker",
+          "description": "At 3rd level, you gain one of the following features of your choice.\n- Colossus Slayer\n- Giant Killer\n- Horde Breaker",
           "level": 3,
           "featureType": "Passive",
           "actionType": null,
@@ -10365,7 +10423,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Choose one: Colossus Slayer (extra 1d8 damage once per turn), Giant Killer (use reaction to attack when a Large or larger creature hits you), or Horde Breaker (make an extra attack against a different creature within 5 feet of the target).",
+          "summary": "Choose one of three combat styles: Colossus Slayer for extra damage, Giant Killer to react to Large creatures, or Horde Breaker to attack multiple targets.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -10375,11 +10433,12 @@
             "name": "Hunter",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Defensive Tactics",
-          "description": "At 7th level, you gain one of the following features of your choice.\nEscape the Horde\nMultiattack Defense\nSteel Will",
+          "description": "At 7th level, you gain one of the following features of your choice.\n- Escape the Horde\n- Multiattack Defense\n- Steel Will",
           "level": 7,
           "featureType": "Passive",
           "actionType": null,
@@ -10390,7 +10449,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Choose one: Escape the Horde (opportunity attacks against you have disadvantage), Multiattack Defense (when hit by an attack, gain +4 AC against the attacker until the end of your next turn), or Steel Will (advantage on saving throws against being frightened).",
+          "summary": "Choose one: Escape the Horde (opportunity attacks against you have disadvantage), Multiattack Defense (gain +4 AC against an attacker until the end of your next turn when hit), or Steel Will (advantage on saving throws against being frightened).",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -10400,11 +10459,12 @@
             "name": "Hunter",
             "level": 7
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Multiattack",
-          "description": "At 11th level, you gain one of the following features of your choice.\nVolley\nWhirlwind Attack",
+          "description": "At 11th level, you gain one of the following features of your choice.\n- Volley\n- Whirlwind Attack",
           "level": 11,
           "featureType": "Passive",
           "actionType": null,
@@ -10415,7 +10475,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Choose one: Volley (use your action to make a ranged attack against every creature within 10 feet of a point you can see within range) or Whirlwind Attack (make a melee attack against every creature within 5 feet of you).",
+          "summary": "Choose one: Volley (use an action to make a ranged attack against every creature within 10 feet of a point you can see within range) or Whirlwind Attack (make a melee attack against every creature within 5 feet of you).",
           "grantsSpells": false,
           "grantsAttack": true,
           "grantsSkills": false,
@@ -10425,11 +10485,12 @@
             "name": "Hunter",
             "level": 11
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Superior Hunter's Defense",
-          "description": "At 15th level, you gain one of the following features of your choice.\nEvasion\nStand Against the Tide\nUncanny Dodge",
+          "description": "At 15th level, you gain one of the following features of your choice.\n- Evasion\n- Stand Against the Tide\n- Uncanny Dodge",
           "level": 15,
           "featureType": "Passive",
           "actionType": null,
@@ -10440,7 +10501,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Choose one: Evasion (take no damage on a successful Dexterity saving throw against an effect), Stand Against the Tide (use reaction to redirect a missed attack to another creature), or Uncanny Dodge (use reaction to halve the damage of an attack).",
+          "summary": "Choose one: Evasion (take no damage on a successful Dexterity saving throw against an effect), Stand Against the Tide (use a reaction to redirect a missed attack to another creature), or Uncanny Dodge (use a reaction to halve the damage of an attack).",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -10450,11 +10511,13 @@
             "name": "Hunter",
             "level": 15
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "PHB",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Ranger",
@@ -10477,7 +10540,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Choose one creature you can see within 60 feet of you. (action).",
+          "summary": "Use an action to learn the damage immunities, resistances, and vulnerabilities of one creature you can see within 60 feet.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -10487,11 +10550,12 @@
             "name": "Monster Slayer",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Slayer's Prey",
-          "description": "At 3rd level, you can target a creature for death. As a bonus action, you designate one creature you can see within 60 feet of you as your slayer's prey. The first time each turn you hit that target with a weapon attack, you deal an extra 1d6 damage to it. This benefit lasts until you finish a short or long rest. When you finish a rest, you can transfer the benefit to a different creature when you spot the creature within 60 feet of you, provided you aren't incapacitated.",
+          "description": "At 3rd level, you can target a creature for death. As a bonus action, you designate one creature you can see within 60 feet of you as your slayer's prey. The first time each turn you hit that target with a weapon attack, you deal an extra **1d6** damage to it. This benefit lasts until you finish a short or long rest. When you finish a rest, you can transfer the benefit to a different creature when you spot the creature within 60 feet of you, provided you aren't incapacitated.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -10502,7 +10566,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "The first time each turn you hit that target with a weapon attack, you deal an extra 1d6 damage to it. (bonus action).",
+          "summary": "Use a bonus action to designate a target within 60 feet; the first time each turn you hit that target with a weapon attack, you deal an extra 1d6 damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -10512,11 +10576,12 @@
             "name": "Monster Slayer",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Supernatural Defense",
-          "description": "At 7th level, you add your Wisdom modifier to any saving throw you make that doesn't already include your Wisdom modifier. In addition, you gain a +1 bonus to your AC while you are not wearing heavy armor.",
+          "description": "At 7th level, you add your Wisdom modifier to any saving throw you make that doesn't already include your Wisdom modifier. In addition, you gain a **+1** bonus to your AC while you are not wearing heavy armor.",
           "level": 7,
           "featureType": "Passive",
           "actionType": null,
@@ -10527,7 +10592,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 7th level, you add your Wisdom modifier to any saving throw you make that doesn't already include your Wisdom modifier.",
+          "summary": "Add your Wisdom modifier to any saving throw that doesn't already include it and gain +1 bonus to AC while not wearing heavy armor.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -10537,11 +10602,12 @@
             "name": "Monster Slayer",
             "level": 7
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Magic-User's Nemesis",
-          "description": "At 11th level, you gain the ability to thwart someone else's spellcasting. When you see a creature casting a spell or using a magical effect within 60 feet of you, you can use your reaction to make a Wisdom check, with a DC of 10 + the spell's level. On a success, the creature's spell fails and has no effect, and any material components used to cast the spell are wasted. Once you use this feature, you can't use it again until you finish a short or long rest.",
+          "description": "At 11th level, you gain the ability to thwart someone else's spellcasting. When you see a creature casting a spell or using a magical effect within **60 feet** of you, you can use your reaction to make a Wisdom check, with a DC of **10 + the spell's level**. On a success, the creature's spell fails and has no effect, and any material components used to cast the spell are wasted. Once you use this feature, you can't use it again until you finish a short or long rest.",
           "level": 11,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -10552,7 +10618,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can use your reaction to make a Wisdom check, with a DC of 10 + the spell's level. (reaction).",
+          "summary": "Use your reaction to make a Wisdom check (DC 10 + spell level) to cause a spell cast within 60 feet to fail.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -10562,7 +10628,8 @@
             "name": "Monster Slayer",
             "level": 11
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Slayer's Counter",
@@ -10577,7 +10644,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Make this attack immediately before making the saving throw. (reaction).",
+          "summary": "Use your reaction to attack a Slayer's Prey target before making a saving throw; if the attack hits, you make the saving throw with advantage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -10587,18 +10654,20 @@
             "name": "Monster Slayer",
             "level": 15
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "XGE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Ranger",
       "classIndex": "ranger",
       "index": "swarmkeeper",
       "name": "Swarmkeeper",
-      "flavorText": "Ranger Archetype",
+      "flavorText": "A Ranger Archetype. Swarmkeepers are rangers who have learned to call upon the power of nature's smallest creatures. They can summon a swarm of fey spirits that take the form of various creatures, and they use the swarm to aid them in battle.",
       "description": "Swarmkeepers are rangers who have learned to call upon the power of nature's smallest creatures. They can summon a swarm of fey spirits that take the form of various creatures, and they use the swarm to aid them in battle.",
       "features": [
         {
@@ -10614,7 +10683,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "The spell counts as a ranger spell for you, but it doesn't count against the number of ranger spells you know.",
+          "summary": "Learn the mage hand cantrip and additional ranger spells at specific levels that do not count against your number of spells known.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -10624,11 +10693,12 @@
             "name": "Swarmkeeper",
             "level": 3
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Gathered Swarm",
-          "description": "At 3rd level, you can call forth a swarm of fey spirits to attack your enemies. As a bonus action, you can conjure the swarm in a space you can see within 30 feet of you. The swarm is a spectral version of a Tiny beast (bats, insects, birds, or other creatures of your choice). The swarm occupies its space and doesn't provoke opportunity attacks. The swarm remains for 1 minute, until you dismiss it as a bonus action, or until you use this feature again.\n\nWhen you conjure the swarm, you can choose one of the following effects:\n\nDamage: Once per turn when you hit a creature with a weapon attack, you can have the swarm deal 1d6 piercing, slashing, or bludgeoning damage (your choice) to the target.\n\nMovement: You can use a bonus action to move the swarm up to 30 feet. If the swarm moves through a creature's space, that creature takes 1 piercing damage. You can also move a willing creature within 5 feet of the swarm up to 10 feet.\n\nProtection: When a creature you can see takes damage while within 5 feet of the swarm, you can use your reaction to reduce the damage by 1d6.\n\nThe damage increases to 2d6 at 11th level.",
+          "description": "At 3rd level, you can call forth a swarm of fey spirits to attack your enemies. As a bonus action, you can conjure the swarm in a space you can see within **30 feet** of you. The swarm is a spectral version of a Tiny beast (bats, insects, birds, or other creatures of your choice). The swarm occupies its space and doesn't provoke opportunity attacks. The swarm remains for **1 minute**, until you dismiss it as a bonus action, or until you use this feature again.\n\nWhen you conjure the swarm, you can choose one of the following effects:\n\n- Damage: Once per turn when you hit a creature with a weapon attack, you can have the swarm deal **1d6** piercing, slashing, or bludgeoning damage (your choice) to the target.\n\n- Movement: You can use a bonus action to move the swarm up to **30 feet**. If the swarm moves through a creature's space, that creature takes **1** piercing damage. You can also move a willing creature within **5 feet** of the swarm up to **10 feet**.\n\n- Protection: When a creature you can see takes damage while within **5 feet** of the swarm, you can use your reaction to reduce the damage by **1d6**.\n\nThe damage increases to **2d6** at 11th level.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -10639,7 +10709,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Protection: When a creature you can see takes damage while within 5 feet of the swarm, you can use your reaction to reduce the damage by 1d6. (bonus action).",
+          "summary": "Conjure a swarm to deal 1d6 damage (2d6 at 11th level), move creatures, or use a reaction to reduce damage by 1d6.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -10649,7 +10719,8 @@
             "name": "Swarmkeeper",
             "level": 3
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Writhing Tide",
@@ -10664,7 +10735,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "As a bonus action, gain a flying speed of 10 feet for 1 minute or until incapacitated. Usable a number of times equal to your proficiency bonus, regaining all uses on a long rest.",
+          "summary": "Spend a bonus action to gain a flying speed of 10 feet for 1 minute or until you are incapacitated. You can use this a number of times equal to your proficiency bonus, regaining all uses on a long rest.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -10674,11 +10745,12 @@
             "name": "Swarmkeeper",
             "level": 7
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Mighty Swarm",
-          "description": "At 11th level, your Gathered Swarm grows more powerful. When you use Gathered Swarm, you can choose one of the following additional benefits:\n\nDamage: The swarm's damage increases by 1d6.\n\nMovement: The swarm's movement speed increases by10 feet, and the creature moved takes 1d6 damage.\n\nProtection: The damage reduction increases by 1d6.",
+          "description": "At 11th level, your Gathered Swarm grows more powerful. When you use Gathered Swarm, you can choose one of the following additional benefits:\n\n- Damage: The swarm's damage increases by **1d6**.\n\n- Movement: The swarm's movement speed increases by **10 feet**, and the creature moved takes **1d6** damage.\n\n- Protection: The damage reduction increases by **1d6**.",
           "level": 11,
           "featureType": "Active",
           "actionType": null,
@@ -10689,7 +10761,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Movement: The swarm's movement speed increases by10 feet, and the creature moved takes 1d6 damage. (action).",
+          "summary": "When using Gathered Swarm, choose one benefit: increase swarm damage by 1d6, increase movement by 10 feet and deal 1d6 damage to the moved creature, or increase damage reduction by 1d6.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -10699,11 +10771,12 @@
             "name": "Swarmkeeper",
             "level": 11
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Swarming Dispersal",
-          "description": "At 15th level, you can call on the swarm to protect you from harm. When you take damage, you can use your reaction to give yourself resistance to that damage type until the end of the current turn. The swarm then teleports to an unoccupied space of your choice that you can see within 30 feet of you.",
+          "description": "At 15th level, you can call on the swarm to protect you from harm. When you take damage, you can use your reaction to give yourself resistance to that damage type until the end of the current turn. The swarm then teleports to an unoccupied space of your choice that you can see within **30 feet** of you.",
           "level": 15,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -10714,7 +10787,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "The swarm then teleports to an unoccupied space of your choice that you can see within 30 feet of you. (reaction).",
+          "summary": "Use a reaction when taking damage to gain resistance to that damage type until the end of the turn, then teleport the swarm to an unoccupied space you can see within 30 feet.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -10724,23 +10797,25 @@
             "name": "Swarmkeeper",
             "level": 15
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "TCE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Arcane Trickster",
       "class": "Rogue",
       "classIndex": "rogue",
       "index": "arcane-trickster",
-      "flavorText": "Roguish Archetype",
+      "flavorText": "Roguish Archetype\n\nSome rogues enhance their fine-honed skills of stealth and agility with magic, learning tricks of enchantment and illusion. These rogues include pickpockets and burglars, but also pranksters, mischief-makers, and a significant number of adventurers.\n\nYou learn to cast spells, typically spells of enchantment and illusion, to augment your existing abilities. You also learn to use your mage hand to perform tricks at range, picking pockets and disarming traps from a distance.",
       "description": "Some rogues enhance their fine-honed skills of stealth and agility with magic, learning tricks of enchantment and illusion. These rogues include pickpockets and burglars, but also pranksters, mischief-makers, and a significant number of adventurers.\n\nYou learn to cast spells, typically spells of enchantment and illusion, to augment your existing abilities. You also learn to use your mage hand to perform tricks at range, picking pockets and disarm traps from a distance.",
       "features": [
         {
           "name": "Spellcasting",
-          "description": "When you reach 3rd level, you augment your martial prowess with the ability to cast spells. Cantrips: You learn three cantrips: mage hand and two other cantrips of your choice from the wizard spell list. You learn another wizard cantrip of your choice at 10th level. Spell Slots: The Arcane Trickster Spellcasting table shows how many spell slots you have to cast your wizard spells of 1st level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest. Spells Known of 1st Level and Higher: You know three 1st-level spells of your choice from the wizard spell list. The Spells Known column of the Arcane Trickster Spellcasting table shows when you learn more wizard spells of your choice. Each of these spells must be of a level for which you have spell slots. For instance, when you reach 7th level in this class, you can learn one new spell of 1st or 2nd level. Additionally, when you gain a level in this class, you can choose one of the wizard spells you know and replace it with another spell from the wizard spell list, which also must be of a level for which you have spell slots. Spellcasting Ability: Intelligence is your spellcasting ability for your wizard spells, since you learn your spells through dedicated study and memorization. You use your Intelligence whenever a spell refers to your spellcasting ability. In addition, you use your Intelligence modifier when setting the saving throw DC for a wizard spell you cast and when making an attack roll with one. Spell save DC = 8 + your proficiency bonus + your Intelligence modifier. Spell attack modifier = your proficiency bonus + your Intelligence modifier.",
+          "description": "When you reach 3rd level, you augment your martial prowess with the ability to cast spells.\n\nCantrips: You learn three cantrips: mage hand and two other cantrips of your choice from the wizard spell list. You learn another wizard cantrip of your choice at 10th level.\n\nSpell Slots: The Arcane Trickster Spellcasting table shows how many spell slots you have to cast your wizard spells of 1st level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.\n\nSpells Known of 1st Level and Higher: You know three 1st-level spells of your choice from the wizard spell list. The Spells Known column of the Arcane Trickster Spellcasting table shows when you learn more wizard spells of your choice. Each of these spells must be of a level for which you have spell slots. For instance, when you reach 7th level in this class, you can learn one new spell of 1st or 2nd level. Additionally, when you gain a level in this class, you can choose one of the wizard spells you know and replace it with another spell from the wizard spell list, which also must be of a level for which you have spell slots.\n\nSpellcasting Ability: Intelligence is your spellcasting ability for your wizard spells, since you learn your spells through dedicated study and memorization. You use your Intelligence whenever a spell refers to your spellcasting ability. In addition, you use your Intelligence modifier when setting the saving throw DC for a wizard spell you cast and when making an attack roll with one.\n\nSpell save DC = 8 + your proficiency bonus + your Intelligence modifier.\nSpell attack modifier = your proficiency bonus + your Intelligence modifier.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Action",
@@ -10754,7 +10829,7 @@
           "effect": null,
           "onUse": "Cast a prepared spell by expending a spell slot of the appropriate level",
           "scaling": "Gain higher spell slots and more spellbook spells as you level",
-          "summary": "In addition, you use your Intelligence modifier when setting the saving throw DC for a wizard spell you cast and when making an attack roll with one.",
+          "summary": "Cast wizard spells using Intelligence. You use your Intelligence modifier for spell attack rolls and the spell save DC.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -10764,11 +10839,12 @@
             "name": "Arcane Trickster",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Mage Hand Legerdemain",
-          "description": "Starting at 3rd level, when you cast mage hand, you can make the spectral hand invisible, and you can perform the following additional tasks with it: You can stow one object the hand is holding in a container worn or carried by another creature. You can retrieve an object in a container worn or carried by another creature. You can use thieves' tools to pick locks and disarm traps at range. You can perform one of these tasks without being noticed by a creature if you succeed on a Dexterity (Sleight of Hand) check contested by the creature's Wisdom (Perception) check. In addition, you can use the bonus action granted by your Cunning Action to control the hand.",
+          "description": "Starting at 3rd level, when you cast mage hand, you can make the spectral hand invisible, and you can perform the following additional tasks with it:\n\n- You can stow one object the hand is holding in a container worn or carried by another creature.\n- You can retrieve an object in a container worn or carried by another creature.\n- You can use thieves' tools to pick locks and disarm traps at range.\n\nYou can perform one of these tasks without being noticed by a creature if you succeed on a Dexterity (Sleight of Hand) check contested by the creature's Wisdom (Perception) check. In addition, you can use the bonus action granted by your Cunning Action to control the hand.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -10779,7 +10855,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can retrieve an object in a container worn or carried by another creature. (bonus action).",
+          "summary": "Make your mage hand invisible to stow or retrieve objects from other creatures' containers, pick locks, or disarm traps. You can control the hand using a bonus action from Cunning Action.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -10789,7 +10865,8 @@
             "name": "Arcane Trickster",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Magical Ambush",
@@ -10804,7 +10881,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Starting at 9th level, if you are hidden from a creature when you cast a spell on it, the creature has disadvantage on any saving throw it makes against.",
+          "summary": "Creatures you cast spells on have disadvantage on saving throws against those spells if you are hidden from them.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -10814,7 +10891,8 @@
             "name": "Arcane Trickster",
             "level": 9
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Versatile Trickster",
@@ -10829,7 +10907,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can designate a creature within 5 feet of the spectral hand created by the spell. (bonus action).",
+          "summary": "Use a bonus action to gain advantage on attack rolls against a creature within 5 feet of your mage hand.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -10839,7 +10917,8 @@
             "name": "Arcane Trickster",
             "level": 13
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Spell Thief",
@@ -10854,7 +10933,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can use your reaction to force the spellcaster to make a Wisdom saving throw (DC equal to your spell save DC). (reaction).",
+          "summary": "Use a reaction to force a spellcaster within 60 feet to make a Wisdom save or have their spell stolen.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -10864,23 +10943,25 @@
             "name": "Arcane Trickster",
             "level": 17
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "PHB",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Assassin",
       "class": "Rogue",
       "classIndex": "rogue",
       "index": "assassin",
-      "flavorText": "Roguish Archetype",
+      "flavorText": "Roguish Archetype\n\nYou focus your training on the grim art of death. Those who follow this path are diverse: hired killers, spies, bounty hunters, and even specially anointed priests trained to exterminate the enemies of their deity.\n\nYou possess a powerful advantage when you strike from the shadows and take your foe unawares. You are a master of disguise, poison, and deception, using your skills to eliminate targets with ruthless efficiency.",
       "description": "You focus your training on the grim art of death. Those who adhere to this archetype are diverse: hired killers, spies, bounty hunters, and even specially anointed priests trained to exterminate the enemies of their deity.\n\nYou have a powerful advantage when you can strike from the shadows, taking your foe unawares. You are a master of disguise, poison, and deception, using your skills to eliminate targets with ruthless efficiency.",
       "features": [
         {
           "name": "Bonus Proficiencies",
-          "description": "When you join the College of Lore at 3rd level, you gain proficiency with three skills of your choice.",
+          "description": "When you join the Assassin archetype at 3rd level, you gain proficiency with three skills of your choice.",
           "level": 3,
           "featureType": "Passive",
           "actionType": null,
@@ -10891,7 +10972,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gain proficiency with three skills of your choice.",
+          "summary": "Gain proficiency in three skills of your choice.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -10901,7 +10982,8 @@
             "name": "Assassin",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Assassinate",
@@ -10916,7 +10998,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Have advantage on attack rolls against any creature that hasn't taken a turn in the combat yet. (action).",
+          "summary": "Gain advantage on attack rolls against creatures that haven't acted yet and score critical hits against surprised targets.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -10926,11 +11008,12 @@
             "name": "Assassin",
             "level": 3
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Infiltration Expertise",
-          "description": "Starting at 9th level, you can unfailingly create false identities for yourself. You must spend seven days and 25 gp to establish a new identity, including establishing history, contacts, and appropriate credentials. You can't establish an identity that belongs to someone else. Thereafter, other creatures believe you are that person until given an obvious reason not to.",
+          "description": "Starting at 9th level, you can unfailingly create false identities for yourself. You must spend seven days and **25 gp** to establish a new identity, including establishing history, contacts, and appropriate credentials. You cannot establish an identity that belongs to someone else. Thereafter, other creatures believe you are that person until they are given an obvious reason not to.",
           "level": 9,
           "featureType": "Active",
           "actionType": null,
@@ -10941,7 +11024,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Starting at 9th level, you can unfailingly create false identities for yourself. (action).",
+          "summary": "Create a false identity for yourself by spending seven days and 25 gp.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": true,
@@ -10951,7 +11034,8 @@
             "name": "Assassin",
             "level": 9
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Impostor",
@@ -10966,7 +11050,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You acquire the ability to unearth another creature's speech, handwriting, or both, given three hours of study.",
+          "summary": "Study a creature for three hours to mimic their speech and handwriting.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -10976,7 +11060,8 @@
             "name": "Assassin",
             "level": 13
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Death Strike",
@@ -10991,7 +11076,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "It must make a Constitution saving throw (DC 8 + your Dexterity modifier + your proficiency bonus).",
+          "summary": "Double your attack damage against a surprised creature if it fails a Constitution saving throw.",
           "grantsSpells": false,
           "grantsAttack": true,
           "grantsSkills": false,
@@ -11001,11 +11086,13 @@
             "name": "Assassin",
             "level": 17
           },
-          "book": "PHB"
+          "book": "PHB",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "PHB",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Rogue",
@@ -11017,7 +11104,7 @@
       "features": [
         {
           "name": "Ear for Deceit",
-          "description": "When you choose this archetype at 3rd level, you develop a keen ear for deception. Whenever you make a Wisdom (Insight) check to determine whether someone is lying or to get a hunch about a person's manner, you can treat a d20 roll of 7 or lower as an 8.",
+          "description": "When you choose this archetype at 3rd level, you develop a keen ear for deception. Whenever you make a Wisdom (Insight) check to determine whether someone is lying or to get a hunch about a person's manner, you can treat a d20 roll of **7** or lower as an **8**.",
           "level": 3,
           "featureType": "Active",
           "actionType": null,
@@ -11028,7 +11115,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Whenever you make a Wisdom (Insight) check to determine whether someone is lying or to get a hunch about a person's manner, you can treat a d20 roll of 7.",
+          "summary": "Treat any d20 roll of 7 or lower as an 8 when making Wisdom (Insight) checks to detect lies or hunches.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -11038,7 +11125,8 @@
             "name": "Inquisitive",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Eye for Detail",
@@ -11053,7 +11141,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Use a bonus action to make a Wisdom (Perception) check to spot a hidden object or creature, or to make an Investigation check.",
+          "summary": "Use a bonus action to make a Wisdom (Perception), Investigation, or Wisdom (Insight) check.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -11063,11 +11151,12 @@
             "name": "Inquisitive",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Insightful Fighting",
-          "description": "At 3rd level, you gain the ability to read a foe's fighting style and exploit its weaknesses. As a bonus action, you can make a Wisdom (Insight) check contested by the target's Charisma (Deception) check. If you win the contest, you can use your Sneak Attack against that target even if you don't have advantage on the attack roll, but not if you have disadvantage. This benefit lasts for 1 minute or until you use this feature against a different creature.",
+          "description": "At 3rd level, you gain the ability to read a foe's fighting style and exploit its weaknesses. As a bonus action, you can make a Wisdom (Insight) check contested by the target's Charisma (Deception) check. If you win the contest, you can use your Sneak Attack against that target even if you don't have advantage on the attack roll, but not if you have disadvantage. This benefit lasts for **1 minute** or until you use this feature against a different creature.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -11078,7 +11167,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can use your Sneak Attack against that target even if you don't have advantage on the attack roll, but not if you have disadvantage. (bonus action).",
+          "summary": "Use a bonus action to enable Sneak Attack against a target without needing advantage, provided you do not have disadvantage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -11088,7 +11177,8 @@
             "name": "Inquisitive",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Steady Eye",
@@ -11103,7 +11193,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You have advantage on any Wisdom (Perception) or Wisdom (Insight) check that relies on your sight when you, the target you.",
+          "summary": "Gain advantage on sight-based Wisdom (Perception) and Wisdom (Insight) checks under specific conditions.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -11113,11 +11203,12 @@
             "name": "Inquisitive",
             "level": 9
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Unerring Eye",
-          "description": "At 13th level, your ability to read the intentions of others becomes nearly supernatural. As an action, you can sense the presence of shapechangers and anything that isn't in its original form, and you can detect the presence of illusions and other magic that masks the true form of a creature or object within 30 feet of you. You can use this feature a number of times equal to your Wisdom modifier (minimum of once), and you regain all expended uses when you finish a long rest.",
+          "description": "At 13th level, your ability to read the intentions of others becomes nearly supernatural. As an action, you can sense the presence of shapechangers and anything that isn't in its original form, and you can detect the presence of illusions and other magic that masks the true form of a creature or object within **30 feet** of you. You can use this feature a number of times equal to your Wisdom modifier (minimum of **once**), and you regain all expended uses when you finish a long rest.",
           "level": 13,
           "featureType": "Active",
           "actionType": "Action",
@@ -11128,7 +11219,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can sense the presence of shapechangers and anything that isn't in its original form, and you can detect the presence of illusions and other magic that masks the true form.",
+          "summary": "Use an action to detect shapechangers, non-original forms, illusions, and masking magic within 30 feet.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -11138,11 +11229,12 @@
             "name": "Inquisitive",
             "level": 13
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Eye for Weakness",
-          "description": "Starting at 17th level, you learn to exploit a creature's weaknesses by studying its tactics. While your Insightful Fighting feature applies to a creature, your Sneak Attack damage against that creature increases by 3d6.",
+          "description": "Starting at 17th level, you learn to exploit a creature's weaknesses by studying its tactics. While your Insightful Fighting feature applies to a creature, your Sneak Attack damage against that creature increases by **3d6**.",
           "level": 17,
           "featureType": "Passive",
           "actionType": null,
@@ -11153,7 +11245,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Your Sneak Attack damage against that creature increases by 3d6.",
+          "summary": "Increase your Sneak Attack damage by 3d6 against a creature affected by your Insightful Fighting.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -11163,23 +11255,25 @@
             "name": "Inquisitive",
             "level": 17
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "XGE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Rogue",
       "classIndex": "rogue",
       "index": "mastermind",
       "name": "Mastermind",
-      "flavorText": "Roguish Archetype",
+      "flavorText": "Roguish Archetype\n\nMasterminds are criminal geniuses who employ their cunning and charisma to manipulate those around them. They frequently serve as the architects of criminal empires, leveraging their legal knowledge and vast networks of connections to remain one step ahead of the law.",
       "description": "Masterminds are criminal masterminds who use their cunning and charisma to manipulate others. They are often the brains behind criminal enterprises, and they use their knowledge of the law and their connections to stay one step ahead of the authorities.",
       "features": [
         {
           "name": "Master of Intrigue",
-          "description": "When you choose this archetype at 3rd level, you gain proficiency with the disguise kit, the forgery kit, and one gaming set of your choice. You also learn two languages of your choice. You can mimic the speech of another person or the sounds made by other creatures. You must have heard the person speaking, or heard the creature make the noise, for at least 1 minute. A successful Wisdom (Insight) check contested by your Charisma (Deception) check allows a listener to determine that the effect is faked.",
+          "description": "When you choose this archetype at 3rd level, you gain proficiency with the disguise kit, the forgery kit, and one gaming set of your choice. You also learn two languages of your choice. You can mimic the speech of another person or the sounds made by other creatures. You must have heard the person speaking, or heard the creature make the noise, for at least **1 minute**. A successful Wisdom (Insight) check contested by your Charisma (Deception) check allows a listener to determine that the effect is faked.",
           "level": 3,
           "featureType": "Active",
           "actionType": null,
@@ -11190,7 +11284,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gain proficiency with the disguise kit, the forgery kit, and one gaming set of your choice. (action).",
+          "summary": "Gain proficiency with the disguise kit, forgery kit, and one gaming set, and gain the ability to mimic sounds.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -11200,11 +11294,12 @@
             "name": "Mastermind",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Master of Tactics",
-          "description": "Starting at 3rd level, you can use the Help action as a bonus action. Additionally, when you use the Help action to aid an ally in attacking a creature, the target of that attack can be within 30 feet of you, rather than within 5 feet of you.",
+          "description": "Starting at 3rd level, you can use the Help action as a bonus action.\n\nAdditionally, when you use the Help action to aid an ally in attacking a creature, the target of that attack can be within **30 feet** of you, rather than within **5 feet** of you.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -11215,7 +11310,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Additionally, when you use the Help action to aid an ally in attacking a creature, the target of that attack can be within 30 feet of you, rather than within.",
+          "summary": "Use the Help action as a bonus action. When aiding an ally in attacking, the target can be within **30 feet** of you instead of **5 feet**.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -11225,11 +11320,12 @@
             "name": "Mastermind",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Insightful Manipulator",
-          "description": "Starting at 9th level, if you spend at least 1 minute observing or interacting with another creature outside combat, you can learn certain information about its capabilities compared to your own. The DM tells you if your target is your equal, superior, or inferior in regard to two of the following characteristics of your choice: Intelligence score, Wisdom score, Charisma score, Class levels (if any).",
+          "description": "Starting at 9th level, if you spend at least **1 minute** observing or interacting with another creature outside combat, you can learn certain information about its capabilities compared to your own.\n\nThe DM tells you if your target is your equal, superior, or inferior in regard to two of the following characteristics of your choice:\n- Intelligence score\n- Wisdom score\n- Charisma score\n- Class levels (if any)",
           "level": 9,
           "featureType": "Active",
           "actionType": null,
@@ -11240,7 +11336,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Starting at 9th level, if you spend at least 1 minute observing or interacting with another creature outside combat, you can learn certain information about its capabilities compared to your.",
+          "summary": "Spend **1 minute** observing a creature outside combat to learn if it is your equal, superior, or inferior in two chosen characteristics.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -11250,11 +11346,12 @@
             "name": "Mastermind",
             "level": 9
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Misdirection",
-          "description": "At 13th level, you can sometimes cause another creature to take the blow meant for you. When you are targeted by an attack while a creature within 5 feet of you is granting you cover against that attack, you can use your reaction to have the attack target that creature instead of you.",
+          "description": "At 13th level, you can sometimes cause another creature to take the blow meant for you.\n\nWhen you are targeted by an attack while a creature within **5 feet** of you is granting you cover against that attack, you can use your reaction to have the attack target that creature instead of you.",
           "level": 13,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -11265,7 +11362,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can use your reaction to have the attack target that creature instead of you. (reaction).",
+          "summary": "Use your reaction to force an attack to target a creature within **5 feet** of you that is granting you cover, instead of targeting you.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -11275,11 +11372,12 @@
             "name": "Mastermind",
             "level": 13
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Soul of Deceit",
-          "description": "Starting at 17th level, your thoughts can't be read by telepathy or other means, unless you allow it. You can present false thoughts by succeeding on a Charisma (Deception) check contested by the mind reader's Wisdom (Insight) check. Additionally, no matter what you say, magic that would determine if you are telling the truth indicates that you are being truthful, if you so choose, and you can't be compelled to tell the truth by magic.",
+          "description": "Starting at 17th level, your thoughts can't be read by telepathy or other means, unless you allow it.\n\nYou can present false thoughts by succeeding on a Charisma (Deception) check contested by the mind reader's Wisdom (Insight) check.\n\nAdditionally, no matter what you say, magic that would determine if you are telling the truth indicates that you are being truthful, if you so choose, and you can't be compelled to tell the truth by magic.",
           "level": 17,
           "featureType": "Active",
           "actionType": null,
@@ -11290,7 +11388,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Starting at 17th level, your thoughts can't be read by telepathy or other means, unless you allow it. (action).",
+          "summary": "Your thoughts cannot be read without your permission. You can project false thoughts and cannot be compelled to tell the truth by magic.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -11300,11 +11398,13 @@
             "name": "Mastermind",
             "level": 17
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "XGE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Phantom",
@@ -11317,14 +11417,15 @@
           "name": "Whispers of the Dead",
           "level": 3,
           "featureType": "Active",
-          "summary": "Echoes of the dead grant you proficiency in one skill or tool of your choice each short or long rest.",
-          "description": "Echoes of those who have died begin to cling to you. Whenever you finish a short or long rest, you can choose one skill or tool proficiency that you lack and gain it, as a ghostly presence shares its knowledge with you. You lose this proficiency when you use this feature to choose a different proficiency.",
+          "summary": "Gain proficiency in one skill or tool you lack after every short or long rest.",
+          "description": "Echoes of those who have died begin to cling to you.\n\nWhenever you finish a short or long rest, you can choose one skill or tool proficiency that you lack and gain it, as a ghostly presence shares its knowledge with you. You lose this proficiency when you use this feature to choose a different proficiency.",
           "source": {
             "type": "subclass",
             "name": "Phantom",
             "level": 3
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Wails from the Grave",
@@ -11334,65 +11435,70 @@
             "total": "Proficiency Bonus",
             "recharge": "Long Rest"
           },
-          "summary": "When you deal Sneak Attack damage, deal half your Sneak Attack dice in necrotic damage to a second creature within 30 ft.",
+          "summary": "Deal necrotic damage to a second creature within 30 feet of your Sneak Attack target equal to half your Sneak Attack dice.",
           "description": "As you nudge someone closer to the grave, you can channel the wails of departed spirits. Immediately after you deal Sneak Attack damage to a creature on your turn, you can target a second creature that you can see within 30 feet of the first creature. Roll half the number of Sneak Attack dice for your level (round up), and the second creature takes necrotic damage equal to the roll's total.",
           "source": {
             "type": "subclass",
             "name": "Phantom",
             "level": 3
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Tokens of the Departed",
           "level": 9,
           "featureType": "Active",
           "actionType": "Reaction",
-          "summary": "Snatch the soul of a dying creature within 30 ft into a Soul Trinket granting advantage on Death and Con saves.",
-          "description": "When a creature dies within 30 feet of you, you can use your reaction to capture its soul into a tiny trinket called a soul trinket (max up to your proficiency bonus). While carrying a soul trinket, you have advantage on death saving throws and Constitution saving throws. You can destroy a trinket to ask the spirit a question or use Wails from the Grave without expending a use.",
+          "summary": "Capture the soul of a creature that dies within 30 feet to gain advantage on death saving throws and Constitution saving throws.",
+          "description": "When a creature dies within 30 feet of you, you can use your reaction to capture its soul into a tiny trinket called a soul trinket. You can hold a maximum number of soul trinkets equal to your proficiency bonus.\n\nWhile carrying a soul trinket, you have advantage on death saving throws and Constitution saving throws. You can destroy a trinket to ask the spirit a question or to use Wails from the Grave without expending a use.",
           "source": {
             "type": "subclass",
             "name": "Phantom",
             "level": 9
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Ghost Walk",
           "level": 13,
           "featureType": "Active",
           "actionType": "Bonus Action",
-          "summary": "Transform into a ghostly form for 10 minutes: 10 ft flying speed, disadvantage on attacks against you, and pass through solid objects.",
-          "description": "You can phase, at least partially, into the realm of the dead. As a bonus action, you assume a spectral form for 10 minutes (or until dismissed). You gain a flying speed of 10 feet and can hover; attack rolls against you have disadvantage; and you can move through creatures and solid objects as if they were difficult terrain.",
+          "summary": "Assume a spectral form for 10 minutes, gaining a 10 foot flying speed, disadvantage on attacks against you, and the ability to pass through objects.",
+          "description": "You can phase, at least partially, into the realm of the dead. As a bonus action, you assume a spectral form for 10 minutes (or until dismissed). While in this form:\n- You gain a flying speed of 10 feet and can hover.\n- Attack rolls against you have disadvantage.\n- You can move through creatures and solid objects as if they were difficult terrain.",
           "source": {
             "type": "subclass",
             "name": "Phantom",
             "level": 13
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Death's Friend",
           "level": 17,
           "featureType": "Passive",
-          "summary": "Wails from the Grave deals damage to both targets, and gain a free soul trinket at the end of a long rest.",
-          "description": "Your association with death reaches its peak: when you use your Wails from the Grave, you can now deal the necrotic damage to both the first and the second creature. In addition, whenever you finish a long rest, a soul trinket appears in your hand if you don't already have one.",
+          "summary": "Deal Wails from the Grave damage to both targets and automatically gain one soul trinket after a long rest if you have none.",
+          "description": "Your association with death reaches its peak: when you use your Wails from the Grave, you can now deal the necrotic damage to both the first and the second creature. \n\nIn addition, whenever you finish a long rest, a soul trinket appears in your hand if you don't already have one.",
           "source": {
             "type": "subclass",
             "name": "Phantom",
             "level": 17
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         }
-      ]
+      ],
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Rogue",
       "classIndex": "rogue",
       "index": "scout",
       "name": "Scout",
-      "flavorText": "Roguish Archetype",
-      "description": "Skirmishers are skirmishers who excel at scouting ahead of the main group. They are skilled in stealth, tracking, and survival, and they use their knowledge of the wilderness to aid their allies.",
+      "flavorText": "A master of the wilds, the scout is a rogue who thrives in the untamed reaches of the world. They are the eyes and ears of their companions, blending into the landscape to track prey or evade pursuit.",
+      "description": "Skirmishers are specialists who excel at scouting ahead of the main group. They are skilled in stealth, tracking, and survival, and they use their knowledge of the wilderness to aid their allies.",
       "features": [
         {
           "name": "Skirmisher",
@@ -11407,7 +11513,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Can move up to half your speed as a reaction when an enemy ends its turn within 5 feet of you. (reaction).",
+          "summary": "Move up to half your speed without provoking opportunity attacks when an enemy ends its turn within 5 feet of you.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -11417,7 +11523,8 @@
             "name": "Scout",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Survivalist",
@@ -11432,7 +11539,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Your proficiency bonus is doubled for any ability check you make that uses either of those proficiencies. (action).",
+          "summary": "Gain proficiency in Nature and Survival, and double your proficiency bonus for any ability check using those skills.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -11442,11 +11549,12 @@
             "name": "Scout",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Superior Mobility",
-          "description": "At 9th level, your walking speed increases by 10 feet. If you are wearing medium or heavy armor, this bonus is reduced to 5 feet.",
+          "description": "At 9th level, your walking speed increases by **10 feet**. If you are wearing medium or heavy armor, this bonus is reduced to **5 feet**.",
           "level": 9,
           "featureType": "Passive",
           "actionType": null,
@@ -11457,7 +11565,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "At 9th level, your walking speed increases by 10 feet.",
+          "summary": "Increase your walking speed by 10 feet, or by 5 feet if wearing medium or heavy armor.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -11467,7 +11575,8 @@
             "name": "Scout",
             "level": 9
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Ambush Master",
@@ -11482,7 +11591,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "In addition, if you are hidden from a creature when you make an attack roll against it, you have advantage on the attack roll. (action).",
+          "summary": "Gain advantage on Dexterity (Stealth) checks when hiding in combat, and advantage on attack rolls against creatures you are hidden from.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -11492,7 +11601,8 @@
             "name": "Scout",
             "level": 13
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Sudden Strike",
@@ -11507,7 +11617,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Starting at 17th level, you can strike with deadly speed. (bonus action).",
+          "summary": "Make one additional attack as a bonus action if you took the Attack action, which can apply Sneak Attack even if already used this turn.",
           "grantsSpells": false,
           "grantsAttack": true,
           "grantsSkills": false,
@@ -11517,11 +11627,13 @@
             "name": "Scout",
             "level": 17
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         }
       ],
       "source": "XGE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "name": "Soulknife",
@@ -11534,41 +11646,44 @@
           "name": "Psionic Power",
           "level": 3,
           "featureType": "Active",
-          "summary": "Harbor Psionic Energy dice (d6s scaling to d12s) to fuel Psi-Bolstered Knack and Psychic Whispers.",
-          "description": "You harbor a wellspring of psionic energy within yourself, represented by your Psionic Energy dice (twice your proficiency bonus in d6s, scaling to d8 at 5th, d10 at 11th, and d12 at 17th level). You can use your dice for: Psi-Bolstered Knack (add the die to a failed ability check using a proficient skill; if it still fails, the die is not expended) and Psychic Whispers (telepathically connect with allies within 1 mile for hours equal to the die roll).",
+          "summary": "Use Psionic Energy dice to bolster failed ability checks or establish telepathic connections with allies.",
+          "description": "You harbor a wellspring of psionic energy within yourself, represented by your Psionic Energy dice. You have a number of these dice equal to twice your proficiency bonus. These dice are **d6s**, which scale to **d8s** at 5th level, **d10s** at 11th level, and **d12s** at 17th level.\n\nYou can use your dice for the following effects:\n\n- Psi-Bolstered Knack: When you fail an ability check using a skill you are proficient in, you can roll a Psionic Energy die and add the number rolled to the check. If the check still fails, the die is not expended.\n\n- Psychic Whispers: You can telepathically connect with allies within **1 mile** for a number of hours equal to the result of the Psionic Energy die roll.",
           "source": {
             "type": "subclass",
             "name": "Soulknife",
             "level": 3
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Psychic Blades",
           "level": 3,
           "featureType": "Active",
           "actionType": "Action / Bonus Action",
-          "summary": "Manifest shimmering blades of psychic energy dealing 1d6 psychic damage, with a 1d4 bonus action offhand strike.",
-          "description": "You can manifest your psionic power as shimmering blades of psychic energy. Whenever you take the Attack action, you can manifest a psychic blade from your free hand and make the attack with that blade. It is a simple melee weapon with the finesse and thrown properties (range 60 ft). It deals 1d6 psychic damage on a hit. If you attack with a blade, you can use a bonus action to make a second psychic blade attack with your other hand, dealing 1d4 psychic damage.",
+          "summary": "Manifest shimmering blades of psychic energy dealing **1d6** psychic damage, with a **1d4** bonus action offhand strike.",
+          "description": "You can manifest your psionic power as shimmering blades of psychic energy. Whenever you take the Attack action, you can manifest a psychic blade from your free hand and make the attack with that blade. It is a simple melee weapon with the finesse and thrown properties (range **60 ft**). It deals **1d6** psychic damage on a hit. If you attack with a blade, you can use a bonus action to make a second psychic blade attack with your other hand, dealing **1d4** psychic damage.",
           "source": {
             "type": "subclass",
             "name": "Soulknife",
             "level": 3
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Soul Blades",
           "level": 9,
           "featureType": "Active",
-          "summary": "Expend Psionic Energy dice to boost missed psychic blade attack rolls or teleport up to 10x the roll in feet.",
-          "description": "You can weave your psychic blades with your psionic power in two new ways: Homing Strikes (if you miss with a psychic blade, add a Psionic Energy die to the attack roll; die is expended only if the attack hits) and Psychic Teleportation (bonus action throw a blade up to 10 times the number rolled on a Psionic Energy die in feet and teleport to that unoccupied space).",
+          "summary": "Expend Psionic Energy dice to boost missed psychic blade attack rolls or teleport up to 10 times the roll in feet.",
+          "description": "You can weave your psychic blades with your psionic power in two new ways:\n\n- Homing Strikes: If you miss with a psychic blade, you can add a Psionic Energy die to the attack roll. The die is expended only if the attack hits.\n- Psychic Teleportation: As a bonus action, you can throw a blade up to **10** times the number rolled on a Psionic Energy die in feet and teleport to that unoccupied space.",
           "source": {
             "type": "subclass",
             "name": "Soulknife",
             "level": 9
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Psychic Veil",
@@ -11579,14 +11694,15 @@
             "total": 1,
             "recharge": "Long Rest / 1 Psionic Die"
           },
-          "summary": "Become completely invisible for 1 hour as an action; ends if you deal damage or force a saving throw.",
-          "description": "You can weave a veil of psychic static to mask your physical presence. As an action, you can magically become invisible, along with anything you are wearing or carrying, for 1 hour or until you dismiss this effect. The invisibility ends early immediately after you deal damage to a creature or you force a creature to make a saving throw. You can use this once per long rest, or by expending a Psionic Energy die.",
+          "summary": "Become completely invisible for 1 hour as an action; the effect ends if you deal damage or force a saving throw.",
+          "description": "You can weave a veil of psychic static to mask your physical presence. As an action, you can magically become invisible, along with anything you are wearing or carrying, for **1 hour** or until you dismiss this effect. The invisibility ends early immediately after you deal damage to a creature or you force a creature to make a saving throw. You can use this once per long rest, or by expending a Psionic Energy die.",
           "source": {
             "type": "subclass",
             "name": "Soulknife",
             "level": 13
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Rend Mind",
@@ -11597,22 +11713,24 @@
             "recharge": "Long Rest / 3 Psionic Dice"
           },
           "summary": "When you deal Sneak Attack damage with a psychic blade, force a Wisdom save or stun the target for 1 minute.",
-          "description": "You can sweep your psychic blade directly through a creature's mind. When you use your Psychic Blades to deal Sneak Attack damage to a creature, you can force that target to make a Wisdom saving throw (DC 8 + proficiency bonus + Dexterity modifier). If the save fails, the target is stunned for 1 minute. The stunned target can repeat the save at the end of each of its turns, ending the effect on itself on a success.",
+          "description": "You can sweep your psychic blade directly through a creature's mind. When you use your Psychic Blades to deal Sneak Attack damage to a creature, you can force that target to make a Wisdom saving throw (DC 8 + proficiency bonus + Dexterity modifier). If the save fails, the target is stunned for **1 minute**. The stunned target can repeat the save at the end of each of its turns, ending the effect on itself on a success.",
           "source": {
             "type": "subclass",
             "name": "Soulknife",
             "level": 17
           },
-          "book": "TCE"
+          "book": "TCE",
+          "lastUpdated": "2026-09-29"
         }
-      ]
+      ],
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Rogue",
       "classIndex": "rogue",
       "index": "swashbuckler",
       "name": "Swashbuckler",
-      "flavorText": "Roguish Archetype",
+      "flavorText": "A Roguish Archetype.\n\nSwashbucklers are charismatic duelists who rely on charm and wit as much as they do on their blades. They are often found in the courts of nobles, where they use their skills to navigate the treacherous waters of politics and intrigue.",
       "description": "Swashbucklers are charismatic duelists who rely on charm and wit as much as they do on their blades. They are often found in the courts of nobles, where they use their skills to navigate the treacherous waters of politics and intrigue.",
       "features": [
         {
@@ -11628,7 +11746,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "During your turn, if you make a melee attack against a creature, that creature can't make opportunity attacks against you for the rest of your turn. (action).",
+          "summary": "If you make a melee attack against a creature during your turn, that creature cannot make opportunity attacks against you for the rest of your turn.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -11638,7 +11756,8 @@
             "name": "Swashbuckler",
             "level": 3
           },
-          "book": "XGE"
+          "book": "XGE",
+          "lastUpdated": "2026-09-29"
         },
         {
           "name": "Rakish Audacity",
@@ -11742,7 +11861,8 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB"
+      "book": "PHB",
+      "lastUpdated": "2026-09-29"
     },
     {
       "class": "Rogue",
