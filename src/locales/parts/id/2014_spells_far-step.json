@@ -1,4 +1,5 @@
 {
-  "2014_spells.far-step.effectSummary": "Teleport sampai Self ke ruang yang bisa kamu lihat",
-  "2014_spells.far-step.fullDescription": "Menggunakan 1 bonus action, di setiap turnmu sebelum spell berakhir, kamu bisa menggunakan bonus action untuk teleport dengan cara ini lagi. Kamu teleport sampai 60 kaki ke ruang tak terisi yang bisa kamu lihat. Di setiap turnmu sebelum spell berakhir, kamu bisa menggunakan bonus action untuk teleport dengan cara ini lagi; kamu harus concentrate, dan efeknya berakhir jika concentration-mu berakhir."
+  "2014_spells.far-step.effectSummary": "Kamu memberikan kemampuan pada dirimu sendiri untuk teleportasi sejauh 60 kaki menggunakan bonus action pada setiap giliran selama durasi sihir.",
+  "2014_spells.far-step.fullDescription": "Menggunakan 1 bonus action, kamu teleportasi hingga 60 kaki ke ruang kosong yang bisa kamu lihat. Pada setiap giliranmu sebelum sihir berakhir, kamu bisa menggunakan bonus action untuk teleportasi dengan cara yang sama lagi. Efek ini membutuhkan konsentrasi dan bertahan hingga 1 menit, serta berakhir jika konsentrasimu terputus.",
+  "2014_spells.far-step.description": "Menggunakan 1 bonus action, kamu teleportasi hingga 60 kaki ke ruang kosong yang bisa kamu lihat. Pada setiap giliranmu sebelum sihir berakhir, kamu bisa menggunakan bonus action untuk teleportasi dengan cara yang sama lagi. Efek ini membutuhkan konsentrasi dan bertahan hingga 1 menit, serta berakhir jika konsentrasimu terputus."
 }

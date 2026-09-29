@@ -1,5 +1,5 @@
 {
-  "2014_spells.gate-seal.description": "Kamu memperkuat fabric plane dalam kubus 30 kaki berpusat di titik dalam jangkauan. Di dalam area itu, portal tertutup dan tidak bisa dibuka dengan cara apapun.",
-  "2014_spells.gate-seal.effectSummary": "Ubah target: memperkuat fabric plane dalam kubus 30 kaki berpusat di titik dalam jangkauan",
-  "2014_spells.gate-seal.fullDescription": "Menggunakan 1 menit, kamu memperkuat fabric plane dalam kubus 30 kaki berpusat di titik dalam jangkauan. Di dalam area itu, portal tertutup dan tidak bisa dibuka dengan cara apapun. Efek berlangsung selama 24 jam."
+  "2014_spells.gate-seal.description": "Kamu memperkuat struktur antar dimensi dalam area berbentuk kubus 30 kaki yang berpusat pada satu titik dalam jangkauan 60 kaki. Di dalam area tersebut, semua portal akan tertutup dan tidak dapat dibuka dengan cara apa pun selama durasi 24 jam.",
+  "2014_spells.gate-seal.effectSummary": "Memperkuat struktur antar dimensi untuk menutup semua portal dalam kubus berukuran 30 kaki, mencegah portal tersebut dibuka kembali selama 24 jam.",
+  "2014_spells.gate-seal.fullDescription": "Kamu memperkuat struktur antar dimensi dalam area berbentuk kubus 30 kaki yang berpusat pada satu titik dalam jangkauan 60 kaki. Di dalam area tersebut, semua portal akan tertutup dan tidak dapat dibuka dengan cara apa pun selama durasi 24 jam."
 }

@@ -1,5 +1,5 @@
 {
-  "2014_spells.draconic-transport.description": "Kamu men teleportasi hingga 120 kaki ke ruang yang tidak ditempati yang kamu lihat. Ketika kamu teleportasi, kamu bisa membawa hingga dua makhluk yang bersedia dalam 5 kaki darimu bersamamu.",
-  "2014_spells.draconic-transport.effectSummary": "Teleportasi hingga Self ke ruang yang kamu lihat",
-  "2014_spells.draconic-transport.fullDescription": "Menggunakan 1 aksi, kamu men teleportasi hingga 120 kaki ke ruang yang tidak ditempati yang kamu lihat. Ketika kamu teleportasi, kamu bisa membawa hingga dua makhluk yang bersedia dalam 5 kaki darimu bersamamu. Efek terjadi segera lalu berakhir."
+  "2014_spells.draconic-transport.description": "Sebagai bagian dari efek sihir ini, kamu berteleportasi hingga 120 kaki ke ruang kosong yang bisa kamu lihat. Saat berteleportasi, kamu bisa membawa hingga dua makhluk yang bersedia dalam jarak 5 kaki darimu. Efek ini terjadi seketika (instantaneous) dan memiliki jangkauan diri sendiri.",
+  "2014_spells.draconic-transport.effectSummary": "Sihir teleportasi yang memungkinkan kamu memindahkan dirimu sendiri dan hingga dua sekutu yang bersedia ke ruang kosong yang terlihat dalam jarak 120 kaki.",
+  "2014_spells.draconic-transport.fullDescription": "Sebagai bagian dari efek sihir ini, kamu berteleportasi hingga 120 kaki ke ruang kosong yang bisa kamu lihat. Saat berteleportasi, kamu bisa membawa hingga dua makhluk yang bersedia dalam jarak 5 kaki darimu. Efek ini terjadi seketika (instantaneous) dan memiliki jangkauan diri sendiri."
 }

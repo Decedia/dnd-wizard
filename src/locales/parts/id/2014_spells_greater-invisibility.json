@@ -1,5 +1,5 @@
 {
-  "2014_spells.greater-invisibility.description": "Kamu atau makhluk yang kamu sentuh menjadi invisible sampai sihir berakhir. Apa pun yang dipakai atau dibawa target menjadi invisible selama ada di atas orang target.",
-  "2014_spells.greater-invisibility.effectSummary": "Buat makhluk invisible sampai dia menyerang atau sihir berakhir",
-  "2014_spells.greater-invisibility.fullDescription": "Menggunakan 1 Action, kamu atau makhluk yang kamu sentuh menjadi invisible sampai sihir berakhir. Apa pun yang dipakai atau dibawa target menjadi invisible selama ada di atas orang target. Kamu atau makhluk yang kamu sentuh menjadi invisible sampai sihir berakhir; kamu harus berkonsentrasi, dan efeknya berakhir jika konsentrasimu berakhir."
+  "2014_spells.greater-invisibility.description": "Sebagai 1 action, kamu atau makhluk yang kamu sentuh menjadi Tidak Terlihat selama durasi hingga 1 menit. Apa pun yang dipakai atau dibawa oleh sasaran juga ikut menjadi tidak terlihat selama benda tersebut berada pada tubuh sasaran.",
+  "2014_spells.greater-invisibility.effectSummary": "Membuat dirimu sendiri atau makhluk yang kamu sentuh menjadi tidak terlihat, termasuk semua perlengkapan yang dipakai atau dibawa, selama maksimal 1 menit.",
+  "2014_spells.greater-invisibility.fullDescription": "Sebagai 1 action, kamu atau makhluk yang kamu sentuh menjadi Tidak Terlihat selama durasi hingga 1 menit. Apa pun yang dipakai atau dibawa oleh sasaran juga ikut menjadi tidak terlihat selama benda tersebut berada pada tubuh sasaran."
 }

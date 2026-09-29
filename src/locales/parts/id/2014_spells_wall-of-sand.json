@@ -1,5 +1,5 @@
 {
-  "2014_spells.wall-of-sand.description": "Anda memanggil dinding pasir yang berputar di tanah di titik yang dapat Anda lihat dalam jarak. Dinding 30 kaki panjang, 10 kaki tinggi, dan 1 kaki tebal. Ia memblokir line of sight tetapi bukan pergerakan.",
-  "2014_spells.wall-of-sand.effectSummary": "Panggil makhluk untuk melawan Anda selama durasi",
-  "2014_spells.wall-of-sand.fullDescription": "Menggunakan 1 Action, Anda memanggil dinding pasir yang berputar di tanah di titik yang dapat Anda lihat dalam jarak. Dinding 30 kaki panjang, 10 kaki tinggi, dan 1 kaki tebal; Ia memblokir line of sight tetapi bukan pergerakan. Efek berlangsung konsentrasi, sampai 10 menit."
+  "2014_spells.wall-of-sand.description": "Kamu memunculkan dinding pasir berputar di tanah pada titik yang bisa kamu lihat dalam jangkauan 90 kaki. Dinding ini memiliki panjang 30 kaki, tinggi 10 kaki, dan tebal 1 kaki. Dinding ini menghalangi garis pandang (line of sight) tetapi tidak menghalangi pergerakan. Efek ini bertahan selama kamu menjaga Konsentrasi, hingga maksimal 10 menit.",
+  "2014_spells.wall-of-sand.effectSummary": "Menciptakan dinding pasir berputar sepanjang 30 kaki yang menghalangi pandangan namun tetap bisa dilewati oleh makhluk.",
+  "2014_spells.wall-of-sand.fullDescription": "Kamu memunculkan dinding pasir berputar di tanah pada titik yang bisa kamu lihat dalam jangkauan 90 kaki. Dinding ini memiliki panjang 30 kaki, tinggi 10 kaki, dan tebal 1 kaki. Dinding ini menghalangi garis pandang (line of sight) tetapi tidak menghalangi pergerakan. Efek ini bertahan selama kamu menjaga Konsentrasi, hingga maksimal 10 menit."
 }

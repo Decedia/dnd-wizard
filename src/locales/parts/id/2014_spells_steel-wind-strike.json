@@ -1,5 +1,5 @@
 {
-  "2014_spells.steel-wind-strike.description": "Kamu menghilang untuk menyerang seperti angin. Pilih hingga lima makhluk yang kamu lihat dalam jangkauan. Lakukan melee spell attack terhadap setiap target. Jika kena, target menerima 6d10 force damage.",
-  "2014_spells.steel-wind-strike.effectSummary": "Berikan 6d10 force damage ke target dalam 30 ft",
-  "2014_spells.steel-wind-strike.fullDescription": "Menggunakan 1 Action, pilih hingga lima makhluk yang kamu lihat dalam jangkauan. Jika kena, target menerima 6d10 force damage; Lakukan melee spell attack terhadap setiap target; Ketika kamu menyalakan sihir ini menggunakan spell slot level 6 atau lebih tinggi, kamu dapat menargetkan satu makhluk tambahan untuk setiap slot level di atas 5th. Efek terjadi segera lalu berakhir."
+  "2014_spells.steel-wind-strike.description": "Kamu menghilang untuk menyerang secepat angin. Pilih hingga lima makhluk yang bisa kamu lihat dalam jangkauan 30 kaki. Lakukan sebuah melee spell attack terhadap setiap sasaran. Jika serangan kena, sasaran menerima **6d10** kerusakan kekuatan. Sihir ini memiliki durasi Instantaneous dan membutuhkan komponen somatic serta material.",
+  "2014_spells.steel-wind-strike.effectSummary": "Kamu menghilang seketika untuk menyerang hingga lima makhluk yang terlihat dalam jangkauan 30 kaki menggunakan serangan sihir jarak dekat.",
+  "2014_spells.steel-wind-strike.fullDescription": "Kamu menghilang untuk menyerang secepat angin. Pilih hingga lima makhluk yang bisa kamu lihat dalam jangkauan 30 kaki. Lakukan sebuah melee spell attack terhadap setiap sasaran. Jika serangan kena, sasaran menerima **6d10** kerusakan kekuatan. Sihir ini memiliki durasi Instantaneous dan membutuhkan komponen somatic serta material."
 }

@@ -1,5 +1,5 @@
 {
-  "2014_spells.tiny-servant.description": "Anda menyentuh satu objek Tiny yang bukan senjata atau yang dikenakan atau dipegang, dan objek itu bangkit. Objek itu tumbuhkan lengan dan kaki kecil dan menjadi seorang pelayan Tiny.",
-  "2014_spells.tiny-servant.effectSummary": "Ubah target: menyentuh satu objek Tiny yang bukan senjata atau yang dikenakan atau dipegang, dan objek itu bangkit",
-  "2014_spells.tiny-servant.fullDescription": "Menggunakan 1 menit, Anda menyentuh satu objek Tiny yang bukan senjata atau yang dikenakan atau dipegang, dan objek itu bangkit. Objek itu tumbuhkan lengan dan kaki kecil dan menjadi seorang pelayan Tiny; Ketika Anda mencast sihir ini menggunakan spell slot 4th level atau lebih tinggi, Anda dapat menyentuh dan membangkitkan satu objek Tiny tambahan untuk setiap slot level di atas 3rd. Efek berlangsung selama 8 jam."
+  "2014_spells.tiny-servant.description": "Dengan sentuhan, kamu menghidupkan satu objek Tiny yang bukan merupakan senjata, serta tidak sedang dipakai atau dipegang. Objek tersebut akan menumbuhkan lengan dan kaki kecil dan menjadi pelayan Tiny selama durasi 8 jam. Sihir ini membutuhkan komponen verbal dan somatik.",
+  "2014_spells.tiny-servant.effectSummary": "Kamu menghidupkan sebuah objek kecil non-senjata dengan menyentuhnya, memberinya anggota tubuh dan mengubahnya menjadi pelayan Tiny selama durasi tertentu.",
+  "2014_spells.tiny-servant.fullDescription": "Dengan sentuhan, kamu menghidupkan satu objek Tiny yang bukan merupakan senjata, serta tidak sedang dipakai atau dipegang. Objek tersebut akan menumbuhkan lengan dan kaki kecil dan menjadi pelayan Tiny selama durasi 8 jam. Sihir ini membutuhkan komponen verbal dan somatik."
 }
