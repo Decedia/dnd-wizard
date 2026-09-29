@@ -7,6 +7,7 @@ import { AppHeader } from "@/components/AppHeader";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { ArrowsUpDownIcon as FilterIcon } from "@/components/icons";
 import { DiceText } from "@/components/DiceText";
+import { CaretRight } from "@phosphor-icons/react";
 
 type Category = "spells" | "feats" | "conditions" | "rules";
 
@@ -230,58 +231,60 @@ export default function GlossaryPage() {
             const classes = isSpell ? item.classes : [];
             const mechanicsBadges = isSpell ? (item.mechanics_badges || []) : [];
             const lastUpdated = isSpell ? item.lastUpdated : "";
+            const source = isSpell ? item.source : (item.source || "Feature");
 
             return (
-              <button
+              <div
                 key={`${name}-${level ?? "feat"}-${idx}`}
-                type="button"
                 onClick={() => isSpell && setSelectedSpell(item)}
-                disabled={!isSpell}
-                className={`w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4 text-left transition-all ${
-                  isSpell ? "active:scale-[0.98] hover:border-[var(--color-border-active)]" : "opacity-80 cursor-default"
-                }`}
+                className="relative block w-full text-left bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm cursor-pointer active:scale-[0.98] active:border-indigo-300 dark:active:border-indigo-700 transition-all duration-75 overflow-hidden mb-4 group"
               >
-                <div className="flex items-start justify-between gap-2">
-                  <h3 className="text-sm font-bold text-[var(--color-text-primary)] leading-tight">{name}</h3>
-                  <div className="flex shrink-0 gap-1.5">
-                    {level !== undefined && (
-                      <span className="rounded-full border border-[var(--color-border)] bg-[var(--color-bg)] px-2 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)]">
-                        {t("glossary.level", "Level")} {level}
-                      </span>
-                    )}
-                    {school && (
-                      <span className={`rounded-full border px-2 py-0.5 text-[10px] font-semibold ${SCHOOL_COLORS[school] || "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border-[var(--color-border)]"}`}>
-                        {school}
-                      </span>
-                    )}
+                {/* Content Body */}
+                <div className="p-4 pb-3">
+                  {/* Title Block */}
+                  <div className="mb-2">
+                    <h3 className="font-bold text-lg text-slate-900 dark:text-slate-100 leading-tight">
+                      {name}
+                    </h3>
+                    <span className="text-xs text-slate-500 block mt-0.5">
+                      {level !== undefined ? `${t("glossary.level", "Level")} ${level} ${school}` : source}
+                    </span>
                   </div>
+
+                  {/* Mechanics Badges Row */}
+                  {mechanicsBadges.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 mb-3">
+                      {mechanicsBadges.map((badge: string, badgeIdx: number) => (
+                        <span
+                          key={badgeIdx}
+                          className={`text-[10px] font-bold px-2 py-0.5 rounded-md border shadow-sm ${getStatBadgeStyle(badge)}`}
+                        >
+                          {badge}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  {classes.length > 0 && (
+                    <p className="text-xs text-slate-500 line-clamp-1 mb-3">{classes.join(", ")}</p>
+                  )}
+
+                  {/* Summary Text */}
+                  {summary && (
+                    <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+                      {summary}
+                    </p>
+                  )}
                 </div>
 
-                {mechanicsBadges.length > 0 && (
-                  <div className="flex flex-wrap gap-1.5 my-2">
-                    {mechanicsBadges.map((badge: string, badgeIdx: number) => (
-                      <span
-                        key={badgeIdx}
-                        className="text-xs font-semibold px-2.5 py-0.5 rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text-secondary)] shadow-sm"
-                      >
-                        {badge}
-                      </span>
-                    ))}
-                  </div>
-                )}
-
-                {classes.length > 0 && (
-                  <p className="text-xs text-[var(--color-text-muted)] line-clamp-1">{classes.join(", ")}</p>
-                )}
-
-                {summary && (
-                  <p className="mt-2 text-sm text-[var(--color-text-secondary)]">{summary}</p>
-                )}
-
-                {lastUpdated && (
-                  <p className="mt-1 text-[10px] text-[var(--color-text-muted)]">{t("glossary.lastUpdated")}: {lastUpdated}</p>
-                )}
-              </button>
+                {/* Explicit Action Footer */}
+                <div className="bg-slate-50 dark:bg-slate-800/50 border-t border-slate-100 dark:border-slate-800 px-4 py-2.5 flex justify-between items-center group-active:bg-slate-100 dark:group-active:bg-slate-800 transition-colors">
+                  <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400 tracking-wide uppercase">
+                    {t("glossary.viewDetails", "Lihat Detail")}
+                  </span>
+                  <CaretRight size={16} weight="bold" className="text-indigo-500 dark:text-indigo-400" />
+                </div>
+              </div>
             );
           })}
           {filtered.length === 0 && (

@@ -25,6 +25,7 @@ export const translations = {
   "glossary.filterLevel": "Level",
   "glossary.filterSchool": "School",
   "glossary.filterClass": "Class",
+  "glossary.viewDetails": "View Details",
   "nav.myCharacters": "My Characters",
   "nav.sectionNavigation": "Section navigation",
   "common.back": "Back",

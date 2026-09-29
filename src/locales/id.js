@@ -25,6 +25,7 @@ export const translations = {
   "glossary.filterLevel": "Level",
   "glossary.filterSchool": "Sekolah",
   "glossary.filterClass": "Kelas",
+  "glossary.viewDetails": "Lihat Detail",
   "nav.myCharacters": "Karakter Saya",
   "nav.sectionNavigation": "Navigasi seksi",
   "common.back": "Kembali",
