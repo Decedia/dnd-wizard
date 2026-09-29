@@ -176,6 +176,23 @@ export function buildUnits() {
       cls.item,
     );
     addFeatureList(cls.item.features, prefix, partFile, { tree: "classes", index: cls.arrayIndex }, { class: className }, "classFeature");
+
+    // A class keeps its features twice: a short top-level `features` list and the
+    // full per-level list under `levels[].features`. The character sheet reads the
+    // levels list, and the locale key scheme cannot reach it at all - navigating
+    // 2014_classes.<slug>.<feature> finds the class's `features` array and never
+    // descends into `levels`. So these are written straight into the data files
+    // instead of through the parts.
+    (cls.item.levels || []).forEach((level, levelIndex) => {
+      addFeatureList(
+        level.features,
+        `${prefix}.levels.${levelIndex}`,
+        partFile,
+        { tree: "classes", index: cls.arrayIndex, path: [{ property: "levels", index: levelIndex }] },
+        { class: className, level: level.level },
+        "classLevelFeature",
+      );
+    });
   }
 
   for (const sub of walkList(subclasses.subclasses)) {

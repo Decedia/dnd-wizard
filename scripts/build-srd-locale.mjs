@@ -35,6 +35,13 @@ function findRootArray(obj) {
 }
 
 function findInArray(arr, segment) {
+  // A bare number is a positional index. A class keeps its full feature list under
+  // levels[N].features, and that path has to be addressable, so
+  // 2014_classes.<slug>.levels.3.rage.description can resolve.
+  if (/^\d+$/.test(segment)) {
+    const index = Number(segment);
+    return index >= 0 && index < arr.length ? arr[index] : null;
+  }
   const match = segment.match(/^(.+)-(\d+)$/);
   if (match) {
     const baseName = match[1];
