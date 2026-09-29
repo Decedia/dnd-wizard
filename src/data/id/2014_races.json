@@ -4316,7 +4316,7 @@
         },
         {
           "name": "Lucky",
-          "description": "Ketika kamu menggetar d20 dan mendapatkan angka 1 pada serangan roll, ability check, atau saving throw, kamu dapat mengulang dadu tersebut dan harus menggunakan hasil baru.",
+          "description": "Ketika kamu melempar angka 1 pada d20 untuk attack roll, ability check, atau saving throw, kamu bisa melempar ulang dadu tersebut dan wajib menggunakan hasil lemparan yang baru.",
           "featureType": "Passive",
           "actionType": null,
           "uses": {
@@ -4329,7 +4329,7 @@
           "effect": null,
           "onUse": "Reroll one attack roll, ability check, or saving throw",
           "scaling": null,
-          "summary": "[Pasif] (3 per Long Rest) Ketika kamu menggetar d20 dan mendapatkan angka 1 pada serangan roll, ability check, atau saving throw, kamu dapat mengulang dadu tersebut tetapi harus menggunakan hasil baru",
+          "summary": "Lempar ulang angka 1 pada d20 saat melakukan attack roll, ability check, atau saving throw, lalu gunakan hasil lemparan yang baru.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,

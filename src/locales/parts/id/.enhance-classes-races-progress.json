@@ -28,7 +28,6 @@
     "2014_subclasses.armorer.armor-modifications",
     "2014_subclasses.artillerist",
     "2014_classes.wizard",
-    "2014_classes.sorcerer",
     "2014_subclasses.artillerist.explosive-cannon",
     "2014_subclasses.artillerist.fortified-position",
     "2014_subclasses.battle-smith",
@@ -54,7 +53,6 @@
     "2014_subclasses.glamour",
     "2014_subclasses.college-of-spirits",
     "2014_classes.warlock.pact-magic",
-    "2014_classes.warlock",
     "2014_subclasses.swords.fighting-style",
     "2014_subclasses.swords.fighting-style.two-weapon-fighting",
     "2014_subclasses.arcana.arcana-domain-spells",
@@ -1008,6 +1006,12 @@
     "2014_races.plasmoid.plasmatic-resistance",
     "2014_races.thri-kreen.darkvision",
     "2014_races.thri-kreen.thri-kreen-psionics",
-    "2014_races.aasimar.darkvision"
+    "2014_races.aasimar.darkvision",
+    "2014_subclasses.path-of-wild-magic.controlled-surge",
+    "2014_subclasses.chronurgy.chronal-shift",
+    "2014_subclasses.war-magic.power-surge",
+    "2014_races.stout-halfling.lucky",
+    "2014_classes.sorcerer",
+    "2014_classes.warlock"
   ]
 }

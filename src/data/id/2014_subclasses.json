@@ -1012,8 +1012,8 @@
           "name": "Controlled Surge",
           "level": 14,
           "featureType": "Passive",
-          "summary": "Roll dua kali pada tabel Wild Magic Surge dan pilih efek mana yang muncul.",
-          "description": "Kapanpun Anda roll pada tabel Wild Magic, Anda bisa me-roll dadu dua kali dan memilih efek mana dari dua itu untuk dihasilkan. Jika Anda mendapatkan angka yang sama pada kedua dadu, Anda bisa mengabaikan angka itu dan memilih efek apa pun di tabel.",
+          "summary": "Lakukan roll dua kali pada tabel Wild Magic Surge dan pilih efek yang muncul; jika hasilnya sama, kamu boleh memilih efek apa pun dari tabel tersebut.",
+          "description": "Setiap kali kamu melakukan roll pada tabel Wild Magic, kamu bisa melempar dadu dua kali dan memilih salah satu dari kedua efek yang muncul. Jika kedua dadu menunjukkan angka yang sama, kamu bisa mengabaikan angka tersebut dan memilih efek apa pun yang ada di dalam tabel.",
           "source": {
             "type": "subclass",
             "name": "Path of Wild Magic",
@@ -14568,7 +14568,7 @@
       "features": [
         {
           "name": "Chronal Shift",
-          "description": "Mulai di level 2, Anda dapat secara magis mengendalikan aliran waktu di sekitar makhluk. Ketika Anda atau makhluk yang dapat Anda lihat dalam 30 feet dari Anda membuat attack roll, ability check, atau saving throw, Anda dapat menggunakan reaction untuk menggelindingkan d8 dan menerapkannya ke roll tersebut. Anda dapat memilih untuk menggunakan fitur ini setelah roll, tetapi sebelum DM menentukan apakah attack roll, ability check, atau saving throw itu berhasil atau gagal. Roll d8 ditambahkan ke total jika roll untuk attack roll atau ability check, atau dikurangi dari total jika roll untuk saving throw. Anda dapat menggunakan fitur ini dua kali, dan Anda mendapatkan kembali semua penggunaan yang dihabiskan ketika Anda menyelesaikan long rest.",
+          "description": "Mulai level 2, kamu bisa menggunakan sihir untuk mengendalikan aliran waktu di sekitar makhluk secara terbatas. Saat kamu atau makhluk yang bisa kamu lihat dalam jarak 30 kaki melakukan attack roll, ability check, atau saving throw, kamu bisa menggunakan reaction untuk melempar **d8** dan menerapkan hasilnya pada roll tersebut.\n\nKamu bisa menggunakan fitur ini setelah roll dilakukan, tetapi sebelum DM menentukan apakah attack roll, ability check, atau saving throw tersebut berhasil atau gagal.\n\nHasil lemparan **d8** ditambahkan ke total jika roll tersebut adalah attack roll atau ability check, atau dikurangi dari total jika roll tersebut adalah saving throw.\n\nKamu bisa menggunakan fitur ini sebanyak dua kali, dan semua penggunaan yang telah terpakai akan pulih kembali setelah kamu menyelesaikan long rest.",
           "level": 2,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -14579,7 +14579,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Ability check, atau saving throw, Anda dapat menggunakan reaction untuk menggelindingkan d8 dan menerapkannya ke roll tersebut. (reaction).",
+          "summary": "Gunakan reaction untuk melempar **d8** dan terapkan hasilnya pada attack roll, ability check, atau saving throw makhluk dalam jarak 30 kaki.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -16024,7 +16024,7 @@
         },
         {
           "name": "Power Surge",
-          "description": "Starting di level 6, kamu dapat menyimpan magical energy di dalam tubuhmu untuk menyalakan spells kamu. Kamu memiliki pool of power surges, diwakili oleh jumlah d6s sama dengan wizard level kamu. Ketika kamu membuat attack roll atau saving throw, kamu dapat menghabiskan satu power surge untuk menambahkan roll satu d6 ke total. Kamu dapat menggunakan fitur ini hanya sekali per turn. Kamu memperoleh kembali semua power surges yang dihabiskan ketika kamu menyelesaikan long rest.",
+          "description": "Mulai level 6, kamu bisa menyimpan energi magis di dalam tubuhmu untuk memperkuat sihirmu. Kamu memiliki kumpulan power surge, yang jumlahnya berupa **d6** sebanyak level wizard kamu. Saat kamu melakukan attack roll atau saving throw, kamu bisa menghabiskan satu power surge untuk menambahkan hasil lemparan **d6** ke totalnya. Kamu hanya bisa menggunakan fitur ini satu kali per giliran. Kamu mendapatkan kembali semua power surge yang telah terpakai setelah menyelesaikan long rest.",
           "level": 6,
           "featureType": "Active",
           "actionType": null,
@@ -16035,7 +16035,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Dapat menghabiskan satu power surge untuk menambahkan roll satu d6 ke total. (action).",
+          "summary": "Gunakan satu power surge untuk menambahkan hasil lemparan **d6** ke attack roll atau saving throw.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
