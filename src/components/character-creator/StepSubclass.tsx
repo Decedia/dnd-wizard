@@ -15,9 +15,9 @@ interface StepSubclassProps {
 }
 
 export function StepSubclass({ data, onChange }: StepSubclassProps) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const classData: SRDClass | undefined = data.class ? getStaticClass(data.class, data.ruleset) : undefined;
-  const subclasses: SRDSubclass[] = data.class ? getStaticSubclasses(data.class, data.sources, data.ruleset) : [];
+  const subclasses: SRDSubclass[] = data.class ? getStaticSubclasses(data.class, data.sources, data.ruleset, language) : [];
   const unlockLevel = classData?.subclassLevel ?? 3;
 
   const translateClass = (name: string) => t(`class.${name}`, name);

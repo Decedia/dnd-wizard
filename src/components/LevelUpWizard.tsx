@@ -54,9 +54,9 @@ function slugify(name: string): string {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
-function getSubclassFlagsByName(className: string, subclassName: string, sources?: string[]): Record<string, boolean> {
+function getSubclassFlagsByName(className: string, subclassName: string, sources: string[] | undefined, language: string): Record<string, boolean> {
   if (!subclassName) return {};
-  const subclasses = getStaticSubclasses(className, sources);
+  const subclasses = getStaticSubclasses(className, sources, undefined, language);
   const found = subclasses.find(s => s.name.toLowerCase() === subclassName.toLowerCase());
   if (!found?.index) return {};
   return getSubclassFlags(found.index);
@@ -189,7 +189,8 @@ function buildLevelInfos(
   classData: ReturnType<typeof getStaticClass>,
   subclassSelection: string,
   startLevel: number,
-  showLevelOne: boolean
+  showLevelOne: boolean,
+  language: string
 ): LevelInfo[] {
   if (!classData) return [];
 
@@ -287,7 +288,7 @@ function buildLevelInfos(
     }
 
     const unlockLevel = classData.subclassLevel ?? 3;
-    const subclasses = getStaticSubclasses(className, character.sources);
+    const subclasses = getStaticSubclasses(className, character.sources, undefined, language);
     const subclassOptions = level === unlockLevel && !character.subclass && subclasses.length > 0
       ? subclasses.map((s) => ({ name: s.name, description: s.description, hasDetails: true })).sort((a, b) => (isRecommended("subclass", b.name, className) ? 1 : 0) - (isRecommended("subclass", a.name, className) ? 1 : 0))
       : undefined;
@@ -420,7 +421,7 @@ function buildLevelInfos(
     const magicalSecretsLevels = [10, 14, 18];
     const magicalSecretsCount = isBard && magicalSecretsLevels.includes(level) ? 2 : 0;
     const canReplaceSpell = (isBard || isSorcerer) && level > 1 && (character.spells || []).length > 0;
-    const subclassFlags = getSubclassFlagsByName(className, subclassSelection || "", character.sources);
+    const subclassFlags = getSubclassFlagsByName(className, subclassSelection || "", character.sources, language);
     const isLoreBard = isBard && subclassFlags.grantsMagicalSecrets;
     const subclassSpellSelectionCount = isLoreBard && level === 6 ? 2 : 0;
 
@@ -612,8 +613,8 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   }, [targetLevel]);
 
   const levelInfos = useMemo(
-    () => buildLevelInfos(character, targetLevel, classData, subclassSelection, currentLevel, !!startFromLevelOne),
-    [character, targetLevel, classData, subclassSelection, currentLevel, startFromLevelOne]
+    () => buildLevelInfos(character, targetLevel, classData, subclassSelection, currentLevel, !!startFromLevelOne, language),
+    [character, targetLevel, classData, subclassSelection, currentLevel, startFromLevelOne, language]
   );
 
   const setHp = (level: number, value: number) => setHpValues((prev) => ({ ...prev, [level]: value }));

@@ -917,14 +917,14 @@ export type MissingFeatureChoice = {
   source: "class" | "subclass";
 };
 
-export function getMissingFeatureChoices(character: Character): MissingFeatureChoice[] {
+export function getMissingFeatureChoices(character: Character, language = "en"): MissingFeatureChoice[] {
   const missing: MissingFeatureChoice[] = [];
 
   if (character.subclass && character.class) {
     const classData = getStaticClass(character.class, character.ruleset);
     const unlockLevel = classData?.subclassLevel ?? 3;
     if (character.level >= unlockLevel) {
-      const subclasses = getStaticSubclasses(character.class, character.sources, character.ruleset);
+      const subclasses = getStaticSubclasses(character.class, character.sources, character.ruleset, language);
       const subclass = subclasses.find((s) => s.name === character.subclass);
       if (subclass) {
         for (const feature of subclass.features) {

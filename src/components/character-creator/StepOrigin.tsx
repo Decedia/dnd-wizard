@@ -162,11 +162,11 @@ interface StepOriginProps {
 }
 
 export function StepOrigin({ data, onChange }: StepOriginProps) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [classModalOpen, setClassModalOpen] = useState(false);
   const [raceModalOpen, setRaceModalOpen] = useState(false);
-  const classes: SRDClass[] = getStaticClasses(data.sources, data.ruleset);
-  const races: SRDRace[] = getStaticRaces(data.sources, data.ruleset);
+  const classes: SRDClass[] = getStaticClasses(data.sources, data.ruleset, language);
+  const races: SRDRace[] = getStaticRaces(data.sources, data.ruleset, language);
 
   const handleRaceChoiceChange = useCallback(
     (choiceId: string, value: string) => {

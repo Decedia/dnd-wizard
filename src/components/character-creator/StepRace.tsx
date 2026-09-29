@@ -14,8 +14,8 @@ interface StepRaceProps {
 }
 
 export function StepRace({ data, onChange }: StepRaceProps) {
-  const { t } = useLanguage();
-  const races: SRDRace[] = getStaticRaces(data.sources, data.ruleset);
+  const { t, language } = useLanguage();
+  const races: SRDRace[] = getStaticRaces(data.sources, data.ruleset, language);
   const [raceModalOpen, setRaceModalOpen] = useState(false);
 
   const handleRaceSelect = useCallback(

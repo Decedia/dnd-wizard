@@ -55,7 +55,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
       onChange({ features: synced.features });
       await saveCharacter({ ...character, features: synced.features });
 
-      const missing = getMissingFeatureChoices(synced);
+      const missing = getMissingFeatureChoices(synced, language);
       if (missing.length > 0) {
         setMissingChoices(missing);
         setCurrentChoiceIndex(0);
