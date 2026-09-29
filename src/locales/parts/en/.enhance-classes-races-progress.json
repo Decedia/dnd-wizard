@@ -2,6 +2,8 @@
   "completed": [
     "2014_classes.barbarian.rage",
     "2014_classes.barbarian.unarmored-defense",
-    "2014_classes.barbarian"
+    "2014_classes.barbarian",
+    "2014_classes.bard.spellcasting-bard",
+    "2014_classes.bard.bardic-inspiration-d6"
   ]
 }
