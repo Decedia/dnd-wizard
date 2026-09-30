@@ -66,8 +66,12 @@ export type ResourceKind = (typeof vocab.resourceKind)[number];
 export type TriggerEvent = (typeof vocab.triggerEvent)[number];
 
 export type TriggerAt = (typeof vocab.triggerAt)[number];
-export type TargetScope = (typeof vocab.targetScope)[number];
+
 export type RangeUnit = (typeof vocab.rangeUnit)[number];
+
+/** What a feature can be pointed at. `object` covers Magic Missile on an object,
+ * Fire Shield, Haste and spells used on a door or a chest. */
+export type TargetScope = (typeof vocab.targetScope)[number];
 export type AreaShape = (typeof vocab.shape)[number];
 export type DurationUnit = (typeof vocab.durationUnit)[number];
 export type ResolutionMode = (typeof vocab.resolutionMode)[number];

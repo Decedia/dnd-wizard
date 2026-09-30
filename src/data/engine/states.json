@@ -109,6 +109,16 @@
       "id": "wielding_two_weapons",
       "name": "Wielding Two Weapons",
       "note": "A melee weapon in each hand. Gates Fighting Style: Dueling."
+    },
+    {
+      "id": "in_favored_terrain",
+      "name": "In Favourable Terrain",
+      "note": "In terrain the ranger favours. Gates Primeval Awareness."
+    },
+    {
+      "id": "ranger_class",
+      "name": "Is a Ranger",
+      "note": "Class membership, for features that only apply to one class."
     }
   ]
 }

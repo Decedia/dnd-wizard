@@ -1,0 +1,630 @@
+{
+  "features": [
+    {
+      "id": "class.ranger.favored_enemy",
+      "name": "Favored Enemy",
+      "kind": "class",
+      "owner": "Ranger",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "choice",
+          "of": "favored_enemy_type",
+          "count": 1,
+          "atLevel": 1,
+          "note": "You have a special familiarity with a kind of creature that you choose, such as aberration, beast, celestial, construct, dragon, elemental, fey, giant, humanoid, monstrosity, ooze, plant or undead."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 6,
+          "summary": "Choose a second favored enemy"
+        },
+        {
+          "at": 14,
+          "summary": "Choose a third favored enemy"
+        }
+      ],
+      "summary": "Choose one, then two, then three creature types to specialize in",
+      "text": "You have a special familiarity with the kind of creature that you choose at 1st level, allowing you to gain insight into the capabilities and behaviors of that kind of creature. Your Favored Enemy also gives you a bonus to your Wisdom saving throws and to initiative rolls against that kind of creature.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Ranger 92"
+      }
+    },
+    {
+      "id": "class.ranger.natural_explorer",
+      "name": "Natural Explorer",
+      "kind": "class",
+      "owner": "Ranger",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "choice",
+          "of": "favored_terrain",
+          "count": 1,
+          "atLevel": 1,
+          "note": "You have a special familiarity with the kind of terrain that you choose, such as arctic, coast, desert, forest, grassland, mountain, swamp, underdark or urban."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 6,
+          "summary": "Choose a second favored terrain"
+        },
+        {
+          "at": 10,
+          "summary": "Choose a third favored terrain"
+        }
+      ],
+      "summary": "Choose one, then two, then three terrain types to specialize in",
+      "text": "You have a special familiarity with the kind of terrain that you choose at 1st level, allowing you to gain insight into the capabilities and behaviors of that kind of terrain. Your Natural Explorer also gives you a bonus to your Wisdom saving throws and to initiative rolls when you are in that terrain.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Ranger 92"
+      }
+    },
+    {
+      "id": "class.ranger.fighting_style",
+      "name": "Fighting Style",
+      "kind": "class",
+      "owner": "Ranger",
+      "unlock": 2,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "choice",
+          "of": "fighting_style",
+          "count": 1,
+          "atLevel": 2,
+          "note": "You adopt a particular style of fighting as your specialty. Choose one from Archery or Defense."
+        }
+      ],
+      "summary": "Choose Archery or Defense",
+      "text": "You adopt a particular style of fighting as your specialty. You choose one from the following list. Some of these styles change the way you use certain actions or bonus actions, and therefore interact with other features of your class.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Ranger 92"
+      }
+    },
+    {
+      "id": "class.ranger.spellcasting",
+      "name": "Spellcasting",
+      "kind": "class",
+      "owner": "Ranger",
+      "unlock": 2,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "cantrip": {
+            "known": true
+          },
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "ranger"
+              ]
+            }
+          ],
+          "note": "Your spellcasting ability is Wisdom. You prepare a number of ranger spells equal to 2 plus the number of Favored Enemy types you have, and you know a number of cantrips equal to your Wisdom modifier."
+        }
+      ],
+      "summary": "Prepare 2 + Favored Enemy types ranger spells",
+      "text": "Your spellcasting ability is Wisdom. You prepare a number of ranger spells, which are the spells in the ranger spell list. Your prepared spells can be changed after a long rest. When you finish a long rest, you choose new prepared spells. You prepare all of your ranger spells in your spellbook.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Ranger 92"
+      }
+    },
+    {
+      "id": "class.ranger.primeval_awareness",
+      "name": "Primeval Awareness",
+      "kind": "class",
+      "owner": "Ranger",
+      "unlock": 3,
+      "activation": "passive",
+      "gates": [
+        "in_favored_terrain"
+      ],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You are alert to danger in your favored terrain. If you are not surprised or incapacitated and you are focused on a single creature, you can use a bonus action to ask the GM what you can sense from your surroundings, and gain information from the GM about the presence of a particular type of creature."
+        }
+      ],
+      "summary": "Bonus action: ask what creatures sense nearby, in favoured terrain",
+      "text": "You are alert to danger in your favored terrain. If you are not surprised or incapacitated and you are focused on a single creature, you can use a bonus action to ask the GM what you can sense from your surroundings.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Ranger 92"
+      }
+    },
+    {
+      "id": "class.ranger.extra_attack",
+      "name": "Extra Attack",
+      "kind": "class",
+      "owner": "Ranger",
+      "unlock": 5,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 1,
+          "note": "You can attack twice, instead of once, whenever you take the Attack action on your turn."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 11,
+          "effects": [
+            {
+              "kind": "extra_attacks",
+              "count": 2,
+              "note": "You can attack three times, instead of once, whenever you take the Attack action on your turn."
+            }
+          ]
+        }
+      ],
+      "summary": "Two attacks with the Attack action, three at 11",
+      "text": "You can attack twice, instead of once, whenever you take the Attack action on your turn.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Ranger 93"
+      }
+    },
+    {
+      "id": "class.ranger.lands_stride",
+      "name": "Land's Stride",
+      "kind": "class",
+      "owner": "Ranger",
+      "unlock": 8,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "Your walking speed increases by 10 feet while you are in your favored terrain, or by 20 feet while moving on a road through it. Moving through the underdark, which is one of your favored terrains, always takes 3 times as long unless you are using a Climb or Swim speed."
+        }
+      ],
+      "summary": "+10 speed in favoured terrain, +20 on roads through it",
+      "text": "Your walking speed increases by 10 feet while you are in your favored terrain, or by 20 feet while moving on a road through it.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Ranger 93"
+      }
+    },
+    {
+      "id": "class.ranger.hide_in_plain_sight",
+      "name": "Hide in Plain Sight",
+      "kind": "class",
+      "owner": "Ranger",
+      "unlock": 10,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "gates": [
+        "hidden"
+      ],
+      "effects": [
+        {
+          "kind": "skill_bonus",
+          "skills": [
+            "Stealth"
+          ],
+          "amount": 10,
+          "note": "If you are hidden and don't have the incapacitated condition, you can use a bonus action on your turn to become invisible until you attack or cast a spell, or until you willingly end it. You can end the effect at any time on your turn if you are no longer hidden."
+        }
+      ],
+      "summary": "Bonus action: become invisible for a round if already hidden",
+      "text": "You can use the Hide action to hide in plain sight. You can take this action only if you are hidden and you don't have the incapacitated condition.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Ranger 93"
+      }
+    },
+    {
+      "id": "class.ranger.vanish",
+      "name": "Vanish",
+      "kind": "class",
+      "owner": "Ranger",
+      "unlock": 14,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "gates": [
+        "hidden"
+      ],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You're an elusive target that can slip away from sight. You can use a bonus action on your turn to become invisible until you attack or cast a spell, or until you willingly end it. You can end the effect at any time on your turn if you are no longer hidden, and your stealth check bonus is equal to your Wisdom modifier plus your proficiency bonus."
+        }
+      ],
+      "summary": "Bonus action: become invisible until you attack",
+      "text": "You're an elusive target that can slip away from sight. You can use a bonus action on your turn to become invisible until you attack or cast a spell, or until you willingly end it.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Ranger 94"
+      }
+    },
+    {
+      "id": "class.ranger.feral_senses",
+      "name": "Feral Senses",
+      "kind": "class",
+      "owner": "Ranger",
+      "unlock": 18,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You gain superior vision in dim light and darkness, out to 30 feet, and if you're not incapacitated or surprised, you can use your reaction to give yourself advantage on any Wisdom (Perception) check that relies on sight."
+        }
+      ],
+      "summary": "Darkvision 30 ft, and a reaction for advantage on sight checks",
+      "text": "You gain superior vision in dim light and darkness, out to 30 feet. If you're not incapacitated or surprised, you can also use your reaction to give yourself advantage on any Wisdom (Perception) check that relies on sight.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Ranger 94"
+      }
+    },
+    {
+      "id": "class.ranger.foe_slayer",
+      "name": "Foe Slayer",
+      "kind": "class",
+      "owner": "Ranger",
+      "unlock": 20,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "Your name comes from your ability to hunt down specific creatures, dragons and fey in particular. Your Ranger abilities and spellcasting do not work against creatures of the indicated type unless the ability says so. When you damage your Favored Enemy, you have advantage on your next attack roll against that creature if it is not your mount."
+        }
+      ],
+      "summary": "Hunt dragons and fey: advantage on a follow-up attack",
+      "text": "You are an even more capable hunter. Your Ranger abilities and spellcasting do not work against creatures of the indicated type unless the ability says so.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Ranger 94"
+      }
+    },
+    {
+      "id": "class.ranger.ability_score_improvement",
+      "name": "Ability Score Improvement",
+      "kind": "class",
+      "owner": "Ranger",
+      "unlock": 4,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 8
+        },
+        {
+          "at": 12
+        },
+        {
+          "at": 16
+        },
+        {
+          "at": 19
+        }
+      ],
+      "summary": "Raise one ability by 2, or two by 1",
+      "text": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Ranger 94"
+      }
+    },
+    {
+      "id": "class.rogue.expertise",
+      "name": "Expertise",
+      "kind": "class",
+      "owner": "Rogue",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "skill",
+          "skills": [
+            "two of your choice"
+          ],
+          "proficiency": "expertise"
+        }
+      ],
+      "tiers": [
+        {
+          "at": 6
+        }
+      ],
+      "summary": "Double proficiency bonus on two chosen skills",
+      "text": "Choose two skills of your choice. Your proficiency bonus is doubled for any ability check you make that uses one of those skills.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Rogue 95"
+      }
+    },
+    {
+      "id": "class.rogue.thieves_cant",
+      "name": "Thieves' Cant",
+      "kind": "class",
+      "owner": "Rogue",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "language",
+          "languages": [
+            "Thieves' Cant"
+          ]
+        },
+        {
+          "kind": "special",
+          "note": "You know the secret language of thieves, which is used to communicate with other members of your guild in a covert manner."
+        }
+      ],
+      "summary": "Speak Thieves' Cant",
+      "text": "You know the secret language of thieves, which is used to communicate with other members of your guild in a covert manner.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Rogue 95"
+      }
+    },
+    {
+      "id": "class.rogue.uncanny_dodge",
+      "name": "Uncanny Dodge",
+      "kind": "class",
+      "owner": "Rogue",
+      "unlock": 5,
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "self_damaged"
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You gain a uncanny dodge. When you are hit by an attack or targeted by a spell that deals damage, you can use your reaction to halve the damage from that attack or spell. You gain the use of this feature again after a long rest."
+        }
+      ],
+      "summary": "Reaction: halve damage from an attack or damage spell",
+      "text": "You gain a uncanny dodge. When you are hit by an attack or targeted by a spell that deals damage, you can use your reaction to halve the damage from that attack or spell. You gain the use of this feature again after a long rest.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Rogue 95"
+      }
+    },
+    {
+      "id": "class.rogue.evasion",
+      "name": "Evasion",
+      "kind": "class",
+      "owner": "Rogue",
+      "unlock": 7,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "When you are hit by an attack that would deal half damage on a successful Dexterity saving throw, you instead take no damage on a success, and only half damage on a failure, instead of none on a failure."
+        }
+      ],
+      "summary": "Half damage or none on a Dexterity save, never more",
+      "text": "When you are hit by an attack that would deal half damage on a successful Dexterity saving throw, you instead take no damage on a success, and only half damage on a failure, instead of none on a failure.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Rogue 95"
+      }
+    },
+    {
+      "id": "class.rogue.reliable_talent",
+      "name": "Reliable Talent",
+      "kind": "class",
+      "owner": "Rogue",
+      "unlock": 11,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "skill_bonus",
+          "skills": [
+            "each of your proficiencies"
+          ],
+          "amount": 0,
+          "note": "Any ability check relying on your proficiency bonus to add your proficiency is a reliable talent, and you treat a total of 9 or less as a success. It doesn't work on other creatures' saves."
+        }
+      ],
+      "summary": "A 9 or lower always succeeds on a proficiency check you rely on",
+      "text": "Any ability check relying on your proficiency bonus to add your proficiency is a reliable talent. You treat a total of 9 or less on the d20 as a success. This doesn't work on other creatures' saves.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Rogue 96"
+      }
+    },
+    {
+      "id": "class.rogue.blindsense",
+      "name": "Blindsense",
+      "kind": "class",
+      "owner": "Rogue",
+      "unlock": 14,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "senses",
+          "sense": "blindsight",
+          "range": 10
+        },
+        {
+          "kind": "special",
+          "note": "You gain superior vision in dim light and darkness, out to 10 feet, and you are not effectively incapacitated during the blinded condition. You can also use your action to attempt to stealthily pick a lock on a container within reach that is secured with it, as an alternative to using the Thieves' Tools."
+        }
+      ],
+      "summary": "Blindsight 10 ft, and locks can be picked with an action",
+      "text": "You gain superior vision in dim light and darkness, out to 10 feet, and you are not effectively incapacitated during the blinded condition.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Rogue 96"
+      }
+    },
+    {
+      "id": "class.rogue.slippery_mind",
+      "name": "Slippery Mind",
+      "kind": "class",
+      "owner": "Rogue",
+      "unlock": 15,
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "save_failed"
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have great mental control and immunity to charming effects. When you fail a saving throw that would make you charmed, you can use your reaction to succeed instead. You gain the use of this feature again after a long rest."
+        }
+      ],
+      "summary": "Reaction: succeed on a save that would charm you",
+      "text": "You have great mental control and immunity to charming effects. When you fail a saving throw that would make you charmed, you can use your reaction to succeed instead.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Rogue 96"
+      }
+    },
+    {
+      "id": "class.rogue.elusive",
+      "name": "Elusive",
+      "kind": "class",
+      "owner": "Rogue",
+      "unlock": 18,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You can take the Dodge action as a bonus action on each of your turns. This can replace your usual Dodge action, so if you have the Haste feature you can use that as well, unless the Haste spell gives you the opportunity to take the Dash or Disengage action instead."
+        }
+      ],
+      "summary": "Dodge as a bonus action each turn",
+      "text": "You can take the Dodge action as a bonus action on each of your turns.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Rogue 96"
+      }
+    },
+    {
+      "id": "class.rogue.stroke_of_luck",
+      "name": "Stroke of Luck",
+      "kind": "class",
+      "owner": "Rogue",
+      "unlock": 20,
+      "activation": "reaction",
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": {
+        "event": "save_failed"
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have luck to burn. When you fail a saving throw or an ability check, you can use your reaction to roll a d20, take the higher of your original roll or the new roll, and succeed automatically, and you gain advantage on the next attack roll against that creature before the end of your next turn."
+        }
+      ],
+      "summary": "Reaction: reroll a failed save or check and take the better",
+      "text": "When you fail a saving throw or an ability check, you can use your reaction to roll a d20, take the higher of your original roll or the new roll, and succeed automatically.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Rogue 96"
+      }
+    },
+    {
+      "id": "class.rogue.ability_score_improvement",
+      "name": "Ability Score Improvement",
+      "kind": "class",
+      "owner": "Rogue",
+      "unlock": 4,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "When you reach 4th level, and again at 8th, 10th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 8
+        },
+        {
+          "at": 10
+        },
+        {
+          "at": 12
+        },
+        {
+          "at": 16
+        },
+        {
+          "at": 19
+        }
+      ],
+      "summary": "Raise one ability by 2, or two by 1",
+      "text": "When you reach 4th level, and again at 8th, 10th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Rogue 96"
+      }
+    }
+  ]
+}

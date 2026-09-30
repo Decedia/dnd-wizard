@@ -128,7 +128,8 @@
     "area",
     "creatures_in_area",
     "enemy",
-    "any"
+    "any",
+    "object"
   ],
   "rangeUnit": [
     "ft",
@@ -421,6 +422,9 @@
     "subclass_feature",
     "metaphysical_ability",
     "arcane_ability",
-    "musical_instrument"
+    "musical_instrument",
+    "favored_enemy_type",
+    "favored_terrain",
+    "spell_list"
   ]
 }

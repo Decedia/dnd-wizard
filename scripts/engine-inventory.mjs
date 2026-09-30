@@ -44,7 +44,7 @@ const slug = (t) =>
 // "(d6)", "(1/rest)", "(1 use)", "(2 dice)", "(CR 1/4)".
 const TIER_SUFFIX = /\s*\((?:\d+[^)]*|d\d+|cr[^)]*|once per turn|see per turn|see class table)\)\s*$/i;
 // The old data labels a class's own spellcasting "Spellcasting: Bard"; the rules call it "Spellcasting".
-const CLASS_PREFIX = /^spellcasting\s*:\s*.+$/i;
+const CLASS_PREFIX = /^(?:spellcasting|flexible casting)\s*:\s*.+$/i;
 const SPELLCASTING = "Spellcasting";
 const baseName = (name) => {
   const stripped = String(name).replace(TIER_SUFFIX, "").trim();
@@ -156,6 +156,8 @@ const ALIASES = {
   // improvement as separate class rows. They are the subclass choice and a tier
   // on the auras, both of which the engine already models.
   "class.paladin.sacred_oath_feature": "the subclass choice, see Sacred Oath",
+  "class.barbarian.primal_path": "the subclass choice",
+  "class.artificer.the_right_tool_for_the_job": "authored as class.artificer.the_right_tool",
   "class.paladin.aura_improvements": "a tier on Aura of Protection and Aura of Courage at 18th level",
   "class.paladin.oath_spells": "a tier on Oath Spells",
   "class.fighter.martial_archetype_feature": "the subclass choice",
