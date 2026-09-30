@@ -51,7 +51,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
     if (!character || syncing) return;
     setSyncing(true);
     try {
-      const synced = syncBaseFeatures(character);
+      const synced = syncBaseFeatures(character, language);
       onChange({ features: synced.features });
       await saveCharacter({ ...character, features: synced.features });
 

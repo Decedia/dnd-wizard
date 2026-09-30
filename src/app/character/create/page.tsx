@@ -38,12 +38,14 @@ export default function CharacterCreate() {
     ? getValidationMessage(currentStep, character)
     : null;
 
+  const { language } = useLanguage();
+
   const update = useCallback((patch: Partial<Character>) => {
     setCharacter((prev) => {
-      const next = syncBaseFeatures({ ...prev, ...patch });
+      const next = syncBaseFeatures({ ...prev, ...patch }, language);
       return next;
     });
-  }, []);
+  }, [language]);
 
   const canProceed = useCallback((): boolean => {
     if (!currentStep) return false;

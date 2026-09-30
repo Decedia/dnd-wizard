@@ -1149,9 +1149,9 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       draft.preparedSpells = [...(character.preparedSpells || []), ...newPreparedIds];
     }
 
-    let finalChar = applySubclassFeatures(draft);
+    let finalChar = applySubclassFeatures(draft, language);
     finalChar = applySubclassSpellGrants(finalChar);
-    finalChar = syncBaseFeatures(finalChar);
+    finalChar = syncBaseFeatures(finalChar, language);
     finalChar = { ...finalChar, ...computeDerivedStats(finalChar) };
     onComplete(finalChar);
   };
