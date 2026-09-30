@@ -40,7 +40,9 @@ const slug = (t) =>
 // models as a tier on a single entry. Matching the base name avoids reporting
 // the same feature as missing three times, which would also let a genuinely
 // missing tier hide behind a written one.
-const TIER_SUFFIX = /\s*\((?:\d+|d\d+|\d+\s+die|\d+\s+dice|cr[^)]*|once per turn|see per turn|see class table)\)\s*$/i;
+// A parenthetical that starts with a digit is a tier annotation in this dataset:
+// "(d6)", "(1/rest)", "(1 use)", "(2 dice)", "(CR 1/4)".
+const TIER_SUFFIX = /\s*\((?:\d+[^)]*|d\d+|cr[^)]*|once per turn|see per turn|see class table)\)\s*$/i;
 // The old data labels a class's own spellcasting "Spellcasting: Bard"; the rules call it "Spellcasting".
 const CLASS_PREFIX = /^spellcasting\s*:\s*.+$/i;
 const SPELLCASTING = "Spellcasting";
@@ -149,6 +151,7 @@ walk(path.join(ENGINE, "features"));
 // engine name differs. Listed explicitly so a genuine omission is not hidden by
 // an alias, and so an alias cannot quietly cover a missing entry forever.
 const ALIASES = {
+  "class.cleric.divine_intervention_improvement": "a tier on Divine Intervention, at 18th level",
   "class.half_elf.darkvision": "modelled as race.half_elf.darkvision",
   "subclass.land.druid_circle_feature": "the subclass choice itself, not a feature",
 };
@@ -172,7 +175,7 @@ const RACE_ALIASES = {
 // subclass's own features are still checked individually.
 const SUBCLASS_PLACEHOLDER =
   // Either a bare placeholder ("Path feature", "Bard College") or one with a suffix ("Divine Domain feature").
-  /^(path|bard college|college|divine domain|domain|druid circle|circle|martial archetype|archetype|monastic tradition|roguish archetype|sorcerous origin|otherworldly patron|arcane tradition|artificer specialist|constitution|oath|ranger archetype)\s*(feature|features)?$/i;
+  /^(path|bard college|college|divine domain|domain|druid circle|circle|martial archetype|archetype|monastic tradition|roguish archetype|sorcerous origin|otherworldly patron|arcane tradition|artificer specialist|constitution|oath|ranger archetype|domain spells|domain)\s*(feature|features)?$/i;
 
 /**
  * Traits the old data has that do not exist in 2014 rules, deliberately dropped

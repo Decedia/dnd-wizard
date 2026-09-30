@@ -1,0 +1,452 @@
+{
+  "features": [
+    {
+      "id": "class.cleric.spellcasting",
+      "name": "Spellcasting",
+      "kind": "class",
+      "owner": "Cleric",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "cantrip": {
+            "known": true
+          },
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "cleric"
+              ]
+            }
+          ],
+          "note": "Your spellcasting ability is Wisdom. You prepare a number of cleric spells equal to your Wisdom modifier plus your cleric level, and you have a number of cantrips equal to your Wisdom modifier. The spells you prepare can be changed at the end of a long rest."
+        }
+      ],
+      "summary": "Prepare Wis mod + level cleric spells, and Wis mod cantrips",
+      "text": "Your spellcasting ability is Wisdom. You prepare a number of cleric spells, which are the spells in the cleric spell list. Your prepared spells can be changed after a long rest. When you finish a long rest, you choose new prepared spells. You prepare all of your cleric spells in your spellbook, except you always have divine domain spells prepared.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric 192"
+      }
+    },
+    {
+      "id": "class.cleric.divine_domain",
+      "name": "Divine Domain",
+      "kind": "class",
+      "owner": "Cleric",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "cleric"
+              ]
+            }
+          ],
+          "note": "You choose a domain feature and two domain spells, one from each of the two lists of your domain. Domain spells are always prepared and do not count against your number of prepared spells."
+        }
+      ],
+      "summary": "Choose a domain for its spells and feature",
+      "text": "You choose one domain from the list of cleric domains. You gain the domain feature and two domain spells, one from each of the two lists of spells of your domain. Your domain spells are always prepared and do not count against the number of cleric spells you can prepare.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric 192"
+      }
+    },
+    {
+      "id": "class.cleric.channel_divinity",
+      "name": "Channel Divinity",
+      "kind": "class",
+      "owner": "Cleric",
+      "unlock": 2,
+      "activation": "passive",
+      "cost": [
+        {
+          "resource": "channel_divinity",
+          "amount": 1
+        }
+      ],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have a pool of Channel Divinity uses equal to your cleric level, and you regain all of them when you finish a short or long rest. You can expend a use on a Channel Divinity feature, which is a spell you can cast by using your action and a spell slot that is a Channel Divinity use, and the effects are defined by the feature. A cleric's Channel Divinity feature can be used once per turn."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 6
+        },
+        {
+          "at": 18
+        }
+      ],
+      "summary": "A pool of spell-like uses, gained by level",
+      "text": "You have a pool of Channel Divinity uses equal to your cleric level, and you regain all expended uses when you finish a short or long rest. You can expend a use to use a Channel Divinity feature. A cleric's Channel Divinity feature can be used once per turn.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric 192"
+      }
+    },
+    {
+      "id": "class.cleric.destroy_undead",
+      "name": "Destroy Undead",
+      "kind": "class",
+      "owner": "Cleric",
+      "unlock": 5,
+      "activation": "action",
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 60,
+          "unit": "ft"
+        },
+        "description": "An undead creature"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "When you take this action, you present your holy symbol and can present your weapons, making a melee spell attack against a creature within 5 feet of you that is both a creature and an undead. On a hit, the target is destroyed if its challenge rating is equal to or lower than the cap for your cleric level: 1/2 at 5th, 1 at 8th, 2 at 11th, 3 at 14th and 4 at 17th. Destroying the undead ends its spell if it was concentration."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 8,
+          "summary": "Action: destroy an undead of CR 1 or lower"
+        },
+        {
+          "at": 11,
+          "summary": "Action: destroy an undead of CR 2 or lower"
+        },
+        {
+          "at": 14,
+          "summary": "Action: destroy an undead of CR 3 or lower"
+        },
+        {
+          "at": 17,
+          "summary": "Action: destroy an undead of CR 4 or lower"
+        }
+      ],
+      "summary": "Action: destroy an undead of CR 1/2 or lower",
+      "text": "When you take this action, you present your holy symbol and can present your weapons, making a melee spell attack against a creature within 5 feet of you that is both a creature and an undead. On a hit, the target is destroyed if its challenge rating is equal to or lower than the cap for your cleric level.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric 193"
+      }
+    },
+    {
+      "id": "class.cleric.divine_intervention",
+      "name": "Divine Intervention",
+      "kind": "class",
+      "owner": "Cleric",
+      "unlock": 10,
+      "activation": "action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "any"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You can use your action to make a spell of any spellcasting ability you have, which causes no material component, and which you can finish as a bonus action on your next turn. At 18th level, you can use this twice, regaining both uses on a long rest."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 18,
+          "limits": {
+            "per": "rest",
+            "max": 2
+          }
+        }
+      ],
+      "summary": "Once a long rest, a bonus-action spell with no components",
+      "text": "You can use your action to make a spell of any spellcasting ability you have. This spell ignores all material components, which have no effect, and the spell takes no components at all. In addition, the spell takes no Concentration, and you can finish a spell this way as a bonus action on your next turn. You regain the use of this feature if you finish a long rest.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric 193"
+      }
+    },
+    {
+      "id": "class.cleric.ability_score_improvement",
+      "name": "Ability Score Improvement",
+      "kind": "class",
+      "owner": "Cleric",
+      "unlock": 4,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 8
+        },
+        {
+          "at": 12
+        },
+        {
+          "at": 16
+        },
+        {
+          "at": 19
+        }
+      ],
+      "summary": "Raise one ability by 2, or two by 1",
+      "text": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric 193"
+      }
+    },
+    {
+      "id": "class.fighter.fighting_style",
+      "name": "Fighting Style",
+      "kind": "class",
+      "owner": "Fighter",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You adopt a particular style of fighting as your specialty. Choose one from Defense, Dueling, Great Weapon Fighting, Protection, Two-Weapon Fighting, or Archery. The benefit applies whenever you make an attack with that style, and you can write it into your weapon's damage at level 8."
+        }
+      ],
+      "summary": "Choose Defense, Dueling, Great Weapon, Protection, Two-Weapon or Archery",
+      "text": "You adopt a particular style of fighting as your specialty. You choose one from the following list. Some of these styles change the way you use certain actions or bonus actions, and therefore interact with other features of your class.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter 72"
+      }
+    },
+    {
+      "id": "class.fighter.second_wind",
+      "name": "Second Wind",
+      "kind": "class",
+      "owner": "Fighter",
+      "unlock": 1,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "heal",
+          "dice": {
+            "dice": "1d10",
+            "perLevel": {
+              "dice": "1d10",
+              "above": 1
+            }
+          },
+          "resolution": {
+            "mode": "auto"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You have a limited number of uses, equal to 1 plus your fighter level, and you regain expended uses when you finish a short or long rest. Regain 1d10 hit points, plus 1d10 for each fighter level above 1."
+        }
+      ],
+      "summary": "Bonus action: regain 1d10 plus 1d10 per Fighter level hit points",
+      "text": "You have a limited number of uses, equal to 1 plus your fighter level, and you regain expended uses when you finish a short or long rest. As a bonus action you can regain 1d10 hit points, plus 1d10 for each fighter level above 1. This is in addition to your Hit Dice.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter 72"
+      }
+    },
+    {
+      "id": "class.fighter.action_surge",
+      "name": "Action Surge",
+      "kind": "class",
+      "owner": "Fighter",
+      "unlock": 2,
+      "activation": "action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "extra_action",
+          "count": 1,
+          "note": "You start with 1 use, and you regain it at the end of a short or long rest. At 11th level you can take an additional action twice, regaining 2 uses at the end of a short or long rest. The extra action can be used only to take the Attack (one weapon attack only), Dash, Disengage, Hide or Use an Object action."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 11,
+          "limits": {
+            "per": "rest",
+            "max": 2
+          },
+          "effects": [
+            {
+              "kind": "extra_action",
+              "count": 1,
+              "note": "Two uses, both regained at the end of a short or long rest. The extra action can be used only to take the Attack (one weapon attack only), Dash, Disengage, Hide or Use an Object action."
+            }
+          ]
+        }
+      ],
+      "summary": "Take one additional action on your turn, once a short rest",
+      "text": "On your turn, you can take one additional action. You start with 1 use, and you regain it at the end of a short or long rest. At 11th level, you can take an additional action twice, regaining 2 uses at the end of a short or long rest. You can use this feature only once per turn.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter 72"
+      }
+    },
+    {
+      "id": "class.fighter.indomitable",
+      "name": "Indomitable",
+      "kind": "class",
+      "owner": "Fighter",
+      "unlock": 9,
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "save_failed"
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "When you fail a saving throw, you can use your reaction to automatically succeed on it instead. You have a limited number of uses, equal to 1 plus your fighter level, and you regain expended uses when you finish a short or long rest."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 13
+        },
+        {
+          "at": 17
+        }
+      ],
+      "summary": "Reaction: automatically succeed on a failed save",
+      "text": "When you fail a saving throw, you can use your reaction to automatically succeed on it instead. You have a limited number of uses, equal to 1 plus your fighter level, and you regain expended uses when you finish a short or long rest.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter 73"
+      }
+    },
+    {
+      "id": "class.fighter.extra_attack",
+      "name": "Extra Attack",
+      "kind": "class",
+      "owner": "Fighter",
+      "unlock": 5,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 1,
+          "note": "You can attack twice, instead of once, whenever you take the Attack action on your turn."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 11,
+          "effects": [
+            {
+              "kind": "extra_attacks",
+              "count": 2,
+              "note": "You can attack three times, instead of once, whenever you take the Attack action on your turn."
+            }
+          ]
+        },
+        {
+          "at": 17,
+          "effects": [
+            {
+              "kind": "extra_attacks",
+              "count": 3,
+              "note": "You can attack four times, instead of once, whenever you take the Attack action on your turn."
+            }
+          ]
+        }
+      ],
+      "summary": "Two attacks with the Attack action, three at 11, four at 17",
+      "text": "You can attack twice, instead of once, whenever you take the Attack action on your turn.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter 72"
+      }
+    },
+    {
+      "id": "class.fighter.ability_score_improvement",
+      "name": "Ability Score Improvement",
+      "kind": "class",
+      "owner": "Fighter",
+      "unlock": 4,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 6
+        },
+        {
+          "at": 8
+        },
+        {
+          "at": 12
+        },
+        {
+          "at": 14
+        },
+        {
+          "at": 16
+        },
+        {
+          "at": 19
+        }
+      ],
+      "summary": "Raise one ability by 2, or two by 1",
+      "text": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter 73"
+      }
+    }
+  ]
+}

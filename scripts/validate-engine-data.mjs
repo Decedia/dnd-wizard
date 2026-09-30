@@ -542,6 +542,15 @@ for (const { feature: f, where } of features) {
       requireString(e.dice.dice, where, `${at}.dice.dice`);
       isOneOf(e.dice.bonusFrom, [...vocab.ability, "none"], where, `${at}.dice.bonusFrom`);
       if (e.dice.flat !== undefined) requireNumber(e.dice.flat, where, `${at}.dice.flat`);
+      if (e.dice.perLevel) {
+        requireString(e.dice.perLevel.dice, where, `${at}.dice.perLevel.dice`);
+        if (e.dice.perLevel.above !== undefined) {
+          requireNumber(e.dice.perLevel.above, where, `${at}.dice.perLevel.above`);
+          if (e.dice.perLevel.above < LEVEL_MIN || e.dice.perLevel.above > LEVEL_MAX) {
+            fail(where, "level", `${at}.dice.perLevel.above ${e.dice.perLevel.above} is outside ${LEVEL_MIN}-${LEVEL_MAX}`);
+          }
+        }
+      }
     }
 
     if (e.resolution) {

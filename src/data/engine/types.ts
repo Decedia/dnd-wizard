@@ -90,6 +90,13 @@ export interface DiceSpec {
   bonusFrom?: Ability | "none";
   /** Flat bonus added after the dice. */
   flat?: number;
+  /**
+   * Extra dice that scale with character level, which is one of the most
+   * common patterns in the game: Second Wind heals 1d10 plus 1d10 per level
+   * above 1, and Eldritch Blast gains beams rather than damage. `above` is the
+   * level from which the scaling starts, so 1 means "per level above 1".
+   */
+  perLevel?: { dice: string; above?: number };
 }
 
 /**
