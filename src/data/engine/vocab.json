@@ -1,111 +1,409 @@
 {
   "note": "Single source of truth for the combat engine's closed vocabularies. types.ts declares a compile-time assertion that its unions match these arrays, and scripts/validate-engine-data.mjs rejects any value that is not listed here. Adding a value is the only supported way to extend the schema.",
-
-  "activation": ["action", "bonus_action", "reaction", "free", "passive"],
-  "featureKind": ["class", "subclass", "race", "feat", "background", "item", "monster"],
-  "ability": ["str", "dex", "con", "int", "wis", "cha"],
+  "activation": [
+    "action",
+    "bonus_action",
+    "reaction",
+    "free",
+    "passive"
+  ],
+  "featureKind": [
+    "class",
+    "subclass",
+    "race",
+    "feat",
+    "background",
+    "item",
+    "monster"
+  ],
+  "ability": [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha"
+  ],
   "condition": [
-    "blinded", "charmed", "deafened", "exhaustion", "frightened", "grappled",
-    "incapacitated", "invisible", "paralyzed", "petrified", "poisoned", "prone",
-    "restrained", "stunned", "unconscious"
+    "blinded",
+    "charmed",
+    "deafened",
+    "exhaustion",
+    "frightened",
+    "grappled",
+    "incapacitated",
+    "invisible",
+    "paralyzed",
+    "petrified",
+    "poisoned",
+    "prone",
+    "restrained",
+    "stunned",
+    "unconscious"
   ],
   "damageType": [
-    "acid", "bludgeoning", "cold", "fire", "force", "lightning", "necrotic",
-    "piercing", "poison", "psychic", "radiant", "slashing", "thunder"
+    "acid",
+    "bludgeoning",
+    "cold",
+    "fire",
+    "force",
+    "lightning",
+    "necrotic",
+    "piercing",
+    "poison",
+    "psychic",
+    "radiant",
+    "slashing",
+    "thunder"
   ],
   "stat": [
-    "str", "dex", "con", "int", "wis", "cha", "ac", "speed", "max_hp",
-    "initiative", "passive_perception", "spell_save_dc", "spell_attack",
-    "attack_bonus_melee", "attack_bonus_ranged", "damage_roll", "weapon_damage"
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha",
+    "ability_score_of_choice",
+    "ac",
+    "speed",
+    "max_hp",
+    "initiative",
+    "passive_perception",
+    "spell_save_dc",
+    "spell_attack",
+    "attack_bonus_melee",
+    "attack_bonus_ranged",
+    "damage_roll",
+    "weapon_damage"
   ],
-  "recharge": ["short_rest", "long_rest", "turn", "round", "combat", "never"],
-  "limitPer": ["turn", "round", "combat", "rest", "day"],
-  "resourceKind": ["pools", "hit_dice", "slots"],
+  "recharge": [
+    "short_rest",
+    "long_rest",
+    "turn",
+    "round",
+    "combat",
+    "never"
+  ],
+  "limitPer": [
+    "turn",
+    "round",
+    "combat",
+    "rest",
+    "day"
+  ],
+  "resourceKind": [
+    "pools",
+    "hit_dice",
+    "slots"
+  ],
   "triggerEvent": [
-    "self_damaged", "ally_damaged", "save_succeeded", "save_failed",
-    "self_hit_by_attack", "attack_missed", "attack_hit", "creature_killed",
-    "turn_start", "turn_end", "round_start", "targeted_by_spell",
-    "damaged_by_visible_source", "reduced_to_0_hp", "falling", "sight",
+    "self_damaged",
+    "ally_damaged",
+    "save_succeeded",
+    "save_failed",
+    "self_hit_by_attack",
+    "attack_missed",
+    "attack_hit",
+    "creature_killed",
+    "turn_start",
+    "turn_end",
+    "round_start",
+    "targeted_by_spell",
+    "damaged_by_visible_source",
+    "reduced_to_0_hp",
+    "falling",
+    "sight",
     "start_encounter"
   ],
-  "triggerAt": ["reduced_to_0_hp", "first_round", "before_turn_ends"],
+  "triggerAt": [
+    "reduced_to_0_hp",
+    "first_round",
+    "before_turn_ends"
+  ],
   "targetScope": [
-    "self", "creature", "ally", "allies", "area", "creatures_in_area", "enemy", "any"
+    "self",
+    "creature",
+    "ally",
+    "allies",
+    "area",
+    "creatures_in_area",
+    "enemy",
+    "any"
   ],
-  "rangeUnit": ["ft", "touch", "self", "special"],
-  "shape": ["sphere", "cube", "cone", "line", "cylinder", "radius"],
+  "rangeUnit": [
+    "ft",
+    "touch",
+    "self",
+    "special"
+  ],
+  "shape": [
+    "sphere",
+    "cube",
+    "cone",
+    "line",
+    "cylinder",
+    "radius"
+  ],
   "durationUnit": [
-    "round", "turn", "minute", "hour", "day", "permanent", "until_dispelled"
+    "round",
+    "turn",
+    "minute",
+    "hour",
+    "day",
+    "permanent",
+    "until_dispelled"
   ],
-  "resolutionMode": ["save", "attack", "auto"],
-  "onSave": ["none", "half", "negates", "null"],
-  "onFailure": ["full", "instant_death"],
-  "checkType": ["attack", "save", "ability_check"],
-  "advantageValue": ["advantage", "disadvantage"],
-  "conditionAction": ["apply", "remove"],
-  "resourceAction": ["gain", "spend", "restore"],
-  "slotAction": ["create", "convert"],
+  "resolutionMode": [
+    "save",
+    "attack",
+    "auto"
+  ],
+  "onSave": [
+    "none",
+    "half",
+    "negates",
+    "null"
+  ],
+  "onFailure": [
+    "full",
+    "instant_death"
+  ],
+  "checkType": [
+    "attack",
+    "save",
+    "ability_check"
+  ],
+  "advantageValue": [
+    "advantage",
+    "disadvantage"
+  ],
+  "conditionAction": [
+    "apply",
+    "remove"
+  ],
+  "resourceAction": [
+    "gain",
+    "spend",
+    "restore"
+  ],
+  "slotAction": [
+    "create",
+    "convert"
+  ],
   "controlAction": [
-    "push", "pull", "knock_down", "restrain", "immobilize", "paralyze", "charm"
+    "push",
+    "pull",
+    "knock_down",
+    "restrain",
+    "immobilize",
+    "paralyze",
+    "charm"
   ],
-  "coverKind": ["half", "three_quarters", "total", "half_against_ally"],
-  "senses": ["darkvision", "blindsight", "truesight"],
-  "proficiency": ["proficient", "expertise"],
-  "initiativeMode": ["self", "separate"],
-  "summonControl": ["self", "ally", "enemy"],
-  "statModifierDuration": ["while_active", "permanent"],
-  "formHitPoints": ["form"],
+  "coverKind": [
+    "half",
+    "three_quarters",
+    "total",
+    "half_against_ally"
+  ],
+  "senses": [
+    "darkvision",
+    "blindsight",
+    "truesight"
+  ],
+  "proficiency": [
+    "proficient",
+    "expertise"
+  ],
+  "initiativeMode": [
+    "self",
+    "separate"
+  ],
+  "summonControl": [
+    "self",
+    "ally",
+    "enemy"
+  ],
+  "statModifierDuration": [
+    "while_active",
+    "permanent"
+  ],
+  "formHitPoints": [
+    "form"
+  ],
   "spellModifierChange": [
-    "time", "range", "duration", "concentration", "level", "damage", "target"
+    "time",
+    "range",
+    "duration",
+    "concentration",
+    "level",
+    "damage",
+    "target"
   ],
-
   "effectKinds": [
-    "damage", "heal", "temp_hp", "heal_hit_dice", "reduce_damage",
-    "stat_modifier", "speed_modifier", "extra_attacks", "extra_action",
-    "advantage", "reactions_without_cost", "resistance", "immunity",
-    "condition_immunity", "cover", "ac_bonus", "condition", "resource", "slot",
-    "control", "teleport", "swap_places", "transform", "summon", "terrain",
-    "disguise", "senses", "language", "skill", "tool", "spell_modifier",
-    "restriction", "special"
+    "damage",
+    "heal",
+    "temp_hp",
+    "heal_hit_dice",
+    "reduce_damage",
+    "stat_modifier",
+    "speed_modifier",
+    "extra_attacks",
+    "extra_action",
+    "advantage",
+    "reactions_without_cost",
+    "resistance",
+    "immunity",
+    "condition_immunity",
+    "cover",
+    "ac_bonus",
+    "condition",
+    "resource",
+    "slot",
+    "control",
+    "teleport",
+    "swap_places",
+    "transform",
+    "summon",
+    "terrain",
+    "disguise",
+    "senses",
+    "language",
+    "skill",
+    "skill_bonus",
+    "tool",
+    "spell_modifier",
+    "spell_grant",
+    "restriction",
+    "special"
   ],
-
   "effectRequired": {
-    "damage": ["dice", "damageType", "resolution"],
-    "heal": ["dice", "resolution"],
-    "temp_hp": ["dice"],
-    "heal_hit_dice": ["pool", "amount"],
-    "reduce_damage": ["dice"],
-    "stat_modifier": ["stat", "amount", "duration"],
-    "speed_modifier": ["amount", "unit"],
-    "extra_attacks": ["count"],
-    "extra_action": ["count"],
-    "advantage": ["check", "value"],
-    "reactions_without_cost": ["count"],
-    "resistance": ["damageTypes"],
+    "damage": [
+      "dice",
+      "damageType",
+      "resolution"
+    ],
+    "heal": [
+      "dice",
+      "resolution"
+    ],
+    "temp_hp": [
+      "dice"
+    ],
+    "heal_hit_dice": [
+      "pool",
+      "amount"
+    ],
+    "reduce_damage": [
+      "dice"
+    ],
+    "stat_modifier": [
+      "stat",
+      "amount",
+      "duration"
+    ],
+    "speed_modifier": [
+      "amount",
+      "unit"
+    ],
+    "extra_attacks": [
+      "count"
+    ],
+    "extra_action": [
+      "count"
+    ],
+    "advantage": [
+      "check",
+      "value"
+    ],
+    "reactions_without_cost": [
+      "count"
+    ],
+    "resistance": [
+      "damageTypes"
+    ],
     "immunity": [],
-    "condition_immunity": ["conditions"],
-    "cover": ["cover"],
-    "ac_bonus": ["amount"],
-    "condition": ["action", "conditions"],
-    "resource": ["action", "resource", "amount"],
-    "slot": ["action", "level", "count"],
-    "control": ["action"],
+    "condition_immunity": [
+      "conditions"
+    ],
+    "cover": [
+      "cover"
+    ],
+    "ac_bonus": [
+      "amount"
+    ],
+    "condition": [
+      "action",
+      "conditions"
+    ],
+    "resource": [
+      "action",
+      "resource",
+      "amount"
+    ],
+    "slot": [
+      "action",
+      "level",
+      "count"
+    ],
+    "control": [
+      "action"
+    ],
     "teleport": [],
     "swap_places": [],
-    "transform": ["formTable"],
-    "summon": ["features", "formId"],
-    "terrain": ["terrain"],
+    "transform": [
+      "formTable"
+    ],
+    "summon": [
+      "features",
+      "formId"
+    ],
+    "terrain": [
+      "terrain"
+    ],
     "disguise": [],
-    "senses": ["sense"],
-    "language": ["languages"],
-    "skill": ["skills"],
-    "tool": ["tools"],
-    "spell_modifier": ["changes"],
-    "restriction": ["rules"],
-    "special": ["note"]
+    "senses": [
+      "sense"
+    ],
+    "language": [
+      "languages"
+    ],
+    "skill": [
+      "skills"
+    ],
+    "skill_bonus": [
+      "skills",
+      "amount"
+    ],
+    "tool": [
+      "tools"
+    ],
+    "spell_modifier": [
+      "changes"
+    ],
+    "spell_grant": [],
+    "restriction": [
+      "rules"
+    ],
+    "special": [
+      "note"
+    ]
   },
-
-  "featureRequired": ["id", "name", "kind", "owner", "activation", "effects", "summary", "text", "source"],
-  "featureBook": ["book"],
-  "levelRange": [1, 20]
+  "featureRequired": [
+    "id",
+    "name",
+    "kind",
+    "owner",
+    "activation",
+    "effects",
+    "summary",
+    "text",
+    "source"
+  ],
+  "featureBook": [
+    "book"
+  ],
+  "levelRange": [
+    1,
+    20
+  ]
 }

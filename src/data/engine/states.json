@@ -74,6 +74,31 @@
       "id": "no_armor",
       "name": "No Armor",
       "note": "Wearing no armor, whether or not a shield is held."
+    },
+    {
+      "id": "wielding_finesse_weapon",
+      "name": "Wielding a Finesse Weapon",
+      "note": "Equipment state. Gates Defensive Duelist and similar feats."
+    },
+    {
+      "id": "wielding_heavy_weapon",
+      "name": "Wielding a Heavy Weapon",
+      "note": "Equipment state. Gates Great Weapon Master's benefit."
+    },
+    {
+      "id": "wielding_shield",
+      "name": "Wielding a Shield",
+      "note": "Equipment state. Defensive Duelist's AC bonus is lost while a shield is held."
+    },
+    {
+      "id": "wearing_heavy_armor",
+      "name": "Wearing Heavy Armor",
+      "note": "Equipment state. Most Barbarian and Monk speed and defense benefits are lost while worn."
+    },
+    {
+      "id": "holding_two_weapons",
+      "name": "Holding Two Weapons",
+      "note": "Equipment state, distinct from the two_weapons combat state which requires actually attacking with both."
     }
   ]
 }

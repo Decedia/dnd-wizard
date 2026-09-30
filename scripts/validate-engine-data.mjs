@@ -25,6 +25,7 @@ const ENGINE_DIR = path.join(ROOT, "src", "data", "engine");
 const FEATURES_DIR = path.join(ENGINE_DIR, "features");
 
 const problems = [];
+const warnings = [];
 const stats = { features: 0, effects: 0, resources: 0, files: 0 };
 
 function fail(where, kind, detail) {
@@ -221,8 +222,10 @@ const EFFECT_FIELDS = {
   senses: ["sense", "range"],
   language: ["languages"],
   skill: ["skills", "proficiency"],
+  skill_bonus: ["skills", "amount"],
   tool: ["tools", "proficiency"],
   spell_modifier: ["changes", "atLeastLevel", "cost"],
+  spell_grant: ["cantrip", "spells", "atLevel"],
   restriction: ["rules"],
   special: ["note", "reference"],
 };
@@ -327,11 +330,19 @@ for (const { feature: f, where } of features) {
   }
 
   if (f.id) {
-    // <kind>.<owner>.<slug>, with <variant>.<slug> for a variant's own traits,
-    // so a race with three variants does not collide on Draconic Resilience.
+    // <kind>.<owner>.<slug>, with <variant>.<slug> for a variant's own traits, so
+    // a race with three variants does not collide on Draconic Resilience.
     // snake_case, and permanent - featuresUsedThisTurn stores these.
-    if (!/^[a-z0-9_]+\.[a-z0-9_]+\.[a-z0-9_]+$/.test(f.id) && !/^[a-z0-9_]+\.[a-z0-9_]+\.[a-z0-9_]+\.[a-z0-9_]+$/.test(f.id)) {
-      fail(where, "format", `id ${JSON.stringify(f.id)} must be "<kind>.<owner>.<slug>" or "<kind>.<owner>.<variant>.<slug>" in snake_case`);
+    //
+    // Feats are the exception: a feat has no owning entity, so its owner is the
+    // "Feat" namespace and the kind already says everything. `feat.alert`, not
+    // `feat.feat.alert`. Backgrounds and items are the same.
+    const isNamespaceKind = f.kind === "feat" || f.kind === "background";
+    const patterns = isNamespaceKind
+      ? [/^[a-z0-9_]+\.[a-z0-9_]+$/, /^[a-z0-9_]+\.[a-z0-9_]+\.[a-z0-9_]+$/]
+      : [/^[a-z0-9_]+\.[a-z0-9_]+\.[a-z0-9_]+$/, /^[a-z0-9_]+\.[a-z0-9_]+\.[a-z0-9_]+\.[a-z0-9_]+$/];
+    if (!patterns.some((re) => re.test(f.id))) {
+      fail(where, "format", `id ${JSON.stringify(f.id)} is not a valid snake_case id for a ${f.kind}`);
     }
     if (f.variant && !new RegExp(`\\.${slug(f.variant)}\\.`).test(f.id)) {
       fail(where, "format", `id ${JSON.stringify(f.id)} does not name its variant ${JSON.stringify(f.variant)}`);
@@ -400,15 +411,13 @@ for (const { feature: f, where } of features) {
     }
   }
 
-  // A feature draws on either a shared pool or its own limit, not both. A
-  // resource exists so *several* features can spend it, so a feature that both
-  // spends a pool and carries its own limit is usually one of the two modelled
-  // twice. Wild Shape spends wild_shape_uses and has no limit for that reason.
-  if (f.cost && f.limits) {
-    const costOnly = f.cost.every((c) => resourceIds.has(c.resource));
-    if (costOnly) {
-      fail(where, "structure", "a feature should carry either cost or limits, not both; a resource is shared, a limit is this feature's own");
-    }
+  // A feature draws on either a shared pool or its own limit. Carrying both is
+  // usually one of the two modelled twice, but not always: Lucky spends 3 luck
+  // points *and* is limited to once per turn, which are genuinely different.
+  // So this warns rather than fails - a hard failure on a legitimate entry is
+  // worse than a missed duplication, which is a smell and not a bug.
+  if (f.cost && f.limits && f.cost.every((c) => resourceIds.has(c.resource))) {
+    warnings.push({ where, kind: "cost+limits", detail: "carries both a resource cost and its own limit; confirm these are not the same thing modelled twice" });
   }
 
   if (f.limits) {
@@ -598,6 +607,11 @@ for (const kind of vocab.effectKinds) {
 for (const p of problems) {
   console.error(`  ${p.where}\n    [${p.kind}] ${p.detail}`);
 }
+if (warnings.length > 0) {
+  for (const w of warnings) {
+    console.warn(`  ${w.where}\n    [warn/${w.kind}] ${w.detail}`);
+  }
+}
 console.log(
   `\nengine data: ${stats.features} features, ${stats.effects} effects, ` +
     `${stats.resources} resources, ${stats.files} files`
@@ -606,4 +620,4 @@ if (problems.length > 0) {
   console.error(`\n${problems.length} problem(s). The engine dataset is invalid.`);
   process.exit(1);
 }
-console.log("valid");
+console.log(warnings.length > 0 ? `valid (${warnings.length} warning(s))` : "valid");

@@ -1,0 +1,418 @@
+{
+  "features": [
+    {
+      "id": "subclass.eldritch_knight.spellcasting",
+      "name": "Spellcasting",
+      "kind": "subclass",
+      "owner": "Eldritch Knight",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "cantrip": {
+            "known": true
+          },
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "wizard"
+              ]
+            }
+          ],
+          "note": "You learn a number of wizard spells equal to half your wizard level (rounded down). If a spell doesn't require concentration, it doesn't count against this number."
+        }
+      ],
+      "summary": "Learn wizard spells equal to half your wizard level",
+      "text": "You learn a number of wizard spells equal to half your wizard level (rounded down), none of which can be 1st-level spells. The spells you learn at 3rd level are prepared. You learn two new spells whenever you gain a level, and you can swap a spell if you learn more wizard spells than you can cast.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Eldritch Knight 3"
+      }
+    },
+    {
+      "id": "subclass.eldritch_knight.bonus_action_spell",
+      "name": "Bonus Action Spell",
+      "kind": "subclass",
+      "owner": "Eldritch Knight",
+      "unlock": 3,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": null,
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "spell_modifier",
+          "changes": [
+            "time"
+          ],
+          "atLeastLevel": 1,
+          "note": "You can cast any spell you know at 1st level or higher as a bonus action on any of your turns, instead of as an action. This can't be used on the same turn as the attack granted by your level 3 feature or a shove."
+        }
+      ],
+      "summary": "Cast any 1st-level or higher known spell as a bonus action",
+      "text": "You can cast any spell you know at 1st level or higher as a bonus action on any of your turns, instead of as an action. This can't be used on the same turn as the attack granted by your level 3 feature.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Eldritch Knight 3"
+      }
+    },
+    {
+      "id": "subclass.eldritch_knight.fighting_style",
+      "name": "Fighting Style: Great Weapon Fighting",
+      "kind": "subclass",
+      "owner": "Eldritch Knight",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "When you roll a 1 or 2 on a d20 to make an attack roll with a weapon that you are wielding with two hands, you can reroll the die and must use the new roll."
+        }
+      ],
+      "summary": "Reroll a 1 or 2 on two-handed weapon attacks",
+      "text": "When you roll a 1 or 2 on a d20 to make an attack roll with a weapon that you are wielding with two hands, you can reroll the die and must use the new roll.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Eldritch Knight 3"
+      }
+    },
+    {
+      "id": "subclass.eldritch_knight.mirror_elegant_robe",
+      "name": "Mirror: Elegant Robe",
+      "kind": "subclass",
+      "owner": "Eldritch Knight",
+      "unlock": 7,
+      "activation": "action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "ac_bonus",
+          "amount": 0,
+          "requires": "wearing a robe"
+        },
+        {
+          "kind": "special",
+          "note": "You can cast dimension door without a spell slot, and you can use it on your turn as a bonus action. While you wear a robe, your armor class equals 13 + your Dexterity modifier, ignoring all other modifiers, as long as the robe is worth at least 50 gp and is not being worn by another creature on your turn."
+        }
+      ],
+      "summary": "Cast dimension door as a bonus action; robe sets AC to 13 plus Dex",
+      "text": "You can cast dimension door without a spell slot, and you can use it on your turn as a bonus action. While you wear a robe, your armor class equals 13 + your Dexterity modifier, ignoring all other modifiers, as long as the robe is worth at least 50 gp and is not being worn by another creature on your turn.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Eldritch Knight 7"
+      }
+    },
+    {
+      "id": "subclass.moon.tusked_fury",
+      "name": "Tusked Fury",
+      "kind": "subclass",
+      "owner": "Moon",
+      "unlock": 2,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 5,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "1d6",
+            "bonusFrom": "str"
+          },
+          "damageType": "piercing",
+          "resolution": {
+            "mode": "attack",
+            "ability": "str",
+            "reaches": [
+              "5 ft melee"
+            ]
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You can make a bonus action tusk attack using your Strength modifier instead of your Dexterity modifier."
+        }
+      ],
+      "summary": "Bonus action tusk attack, 1d6 plus Str",
+      "text": "You can make a bonus action tusk attack using your Strength modifier instead of your Dexterity modifier.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Druid Circle of the Moon 2"
+      }
+    },
+    {
+      "id": "subclass.moon.spellcasting",
+      "name": "Spellcasting",
+      "kind": "subclass",
+      "owner": "Moon",
+      "unlock": 2,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "cantrip": {
+            "known": true
+          },
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "druid"
+              ]
+            }
+          ]
+        }
+      ],
+      "summary": "Bones of the Earth cantrip, and BA cast of a prepared spell",
+      "text": "Your spellcasting ability is Wisdom. You know the bones of the earth cantrip. You have a list of druid spells known to you from the druid spell list, and your known spells are the same number as in the druid class table. You can also cast any spell you have prepared without a spell slot, once per long rest, by using a bonus action on any of your turns.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Druid Circle of the Moon 2"
+      }
+    },
+    {
+      "id": "subclass.moon.rage",
+      "name": "Rage",
+      "kind": "subclass",
+      "owner": "Moon",
+      "unlock": 3,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "gates": [
+        "shapeshifted"
+      ],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "While in a beast form, you can cast spells, and a bonus action spell can be cast in the same turn. Your spellcasting ability is Wisdom, and you are limited to the beast's Wisdom score or your own, whichever is higher."
+        }
+      ],
+      "summary": "Cast spells while shapeshifted, including bonus action spells",
+      "text": "You are able to cast spells while in your beast form, and you can cast a spell as a bonus action on any turn. While transformed, your Wisdom score is the higher of your own Wisdom or the transformed form's Wisdom.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Druid Circle of the Moon 3"
+      }
+    },
+    {
+      "id": "subclass.college_of_whispers.psychic_whispers",
+      "name": "Psychic Whispers",
+      "kind": "subclass",
+      "owner": "College of Whispers",
+      "unlock": 3,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 30,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "As a bonus action, you whisper a message in a creature's ear. The target must make a Wisdom saving throw against a DC of 8 + your Charisma modifier + your proficiency bonus, or, on a failure, choose one of the following effects, until the end of your next turn: The target doesn't move. The target doesn't make an attack. The target doesn't cast a spell. The target doesn't use or speak a language."
+        }
+      ],
+      "summary": "Bonus action: forbid one thing a creature can do this turn",
+      "text": "As a bonus action, you whisper a message in a creature's ear. The target must make a Wisdom saving throw or, on a failure, choose one of the following effects, until the end of your next turn.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Bard College of Whispers 3"
+      }
+    },
+    {
+      "id": "subclass.hexblade.hex_ward",
+      "name": "Hex Ward",
+      "kind": "subclass",
+      "owner": "Hexblade",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "temp_hp",
+          "dice": {
+            "dice": "1",
+            "flat": 1
+          },
+          "note": "You have a +1 bonus to AC and your Constitution modifier to hit points per hexblade level, because your curse grants you additional durability. You can also wield medium armor and gain proficiency with it."
+        }
+      ],
+      "summary": "+1 AC, Con to HP per level, and medium armor proficiency",
+      "text": "You have a +1 bonus to AC and your Constitution modifier to hit points per hexblade level, because your curse grants you additional durability. You also gain proficiency with medium armor.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Warlock Hexblade 1"
+      }
+    },
+    {
+      "id": "subclass.hexblade.hex",
+      "name": "Hex",
+      "kind": "subclass",
+      "owner": "Hexblade",
+      "unlock": 1,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 30,
+          "unit": "ft"
+        }
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "condition",
+          "action": "apply",
+          "conditions": [
+            "charmed"
+          ],
+          "duration": {
+            "value": 1,
+            "unit": "hour"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You can use a bonus action to mark one creature, which lasts until you finish a long rest or until you use it again. When you mark a creature, you gain advantage on Charisma checks to interact with it and on your first attack roll against it after you cast. The target makes a Charisma saving throw, and on a failure is charmed by you until the duration ends or you willingly end it, and automatically fails its save to avoid being charmed. A charmed creature has disadvantage on saving throws against being charmed."
+        }
+      ],
+      "summary": "Once a long rest, charm a creature for an hour",
+      "text": "You can use a bonus action to mark one creature, which lasts until you finish a long rest or until you use it again. When you mark a creature, you gain advantage on Charisma checks to interact with it and on your first attack roll against it after you cast. The target makes a Charisma saving throw, and on a failure is charmed by you.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Warlock Hexblade 1"
+      }
+    },
+    {
+      "id": "subclass.draconic.draconic_resilience",
+      "name": "Draconic Resilience",
+      "kind": "subclass",
+      "owner": "Draconic",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "stat_modifier",
+          "stat": "max_hp",
+          "amount": 1,
+          "duration": "permanent"
+        },
+        {
+          "kind": "special",
+          "note": "Your hit point maximum increases by 1, and by 1 again whenever you gain a level. You gain resistance to the damage type of your ancestry."
+        }
+      ],
+      "summary": "An extra hit point per level, and resistance to your ancestry type",
+      "text": "Your hit point maximum increases by 1, and by 1 again whenever you gain a level. You gain resistance to the damage type of your ancestry.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Sorcerer Draconic Bloodline 1"
+      }
+    },
+    {
+      "id": "subclass.draconic.draconic_breath",
+      "name": "Draconic Breath",
+      "kind": "subclass",
+      "owner": "Draconic",
+      "unlock": 6,
+      "activation": "action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creatures_in_area",
+        "range": {
+          "value": 15,
+          "unit": "ft"
+        },
+        "shape": "cone"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "3d6",
+            "bonusFrom": "none"
+          },
+          "damageType": "fire",
+          "resolution": {
+            "mode": "save",
+            "ability": "dex",
+            "onSuccess": "half",
+            "onFailure": "full"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "Replace the damage type with the type of your dragon ancestry, and the 3d6 with 4d6 at 14th level. You can replace it with a d6 of your choice, gained at 6th level."
+        }
+      ],
+      "summary": "A 15-foot cone of your ancestry's damage, Dex save for half",
+      "text": "You can spend 1 sorcery point to gain a pool of 1d6 in your Bloodline that you can spend to deal an extra 1d6 of damage of your Bloodline's type when you cast any spell. You can also spend 1 sorcery point to cast dragon's breath, a 15-foot cone of your ancestry's damage, 3d6, which you replace with a d6 of your choice. Each time you cast it, you must make a Dexterity saving throw or take the damage yourself.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Sorcerer Draconic Bloodline 6"
+      }
+    }
+  ]
+}

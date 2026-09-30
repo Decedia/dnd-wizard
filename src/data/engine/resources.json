@@ -16,7 +16,13 @@
       "name": "Ki",
       "kind": "pools",
       "recharge": "short_rest",
-      "maxByLevel": { "2": 2, "6": 3, "10": 4, "15": 5, "20": 6 },
+      "maxByLevel": {
+        "2": 2,
+        "6": 3,
+        "10": 4,
+        "15": 5,
+        "20": 6
+      },
       "book": "PHB",
       "note": "Monk 2. A shared pool spent by Flurry of Blows, Patient Defense, Step of the Wind and Stunning Strike."
     },
@@ -25,7 +31,14 @@
       "name": "Sorcery Points",
       "kind": "pools",
       "recharge": "never",
-      "maxByLevel": { "2": 2, "6": 3, "10": 4, "14": 5, "17": 6, "20": 7 },
+      "maxByLevel": {
+        "2": 2,
+        "6": 3,
+        "10": 4,
+        "14": 5,
+        "17": 6,
+        "20": 7
+      },
       "book": "PHB",
       "note": "Sorcerer 2. Gained by casting spells, spent on Metamagic and Flexible Casting. Accumulates rather than refilling on a rest."
     },
@@ -34,7 +47,13 @@
       "name": "Bardic Inspiration",
       "kind": "pools",
       "recharge": "long_rest",
-      "maxByLevel": { "2": 0, "5": 1, "10": 2, "15": 3, "17": 4 },
+      "maxByLevel": {
+        "2": 0,
+        "5": 1,
+        "10": 2,
+        "15": 3,
+        "17": 4
+      },
       "book": "PHB",
       "note": "Bard 2. Recharges dice on a long rest rather than restoring a flat count; the die size is a feature tier, not a resource field."
     },
@@ -43,7 +62,12 @@
       "name": "Wild Shape Uses",
       "kind": "pools",
       "recharge": "short_rest",
-      "maxByLevel": { "2": 1, "6": 2, "11": 3, "17": 4 },
+      "maxByLevel": {
+        "2": 1,
+        "6": 2,
+        "11": 3,
+        "17": 4
+      },
       "book": "PHB",
       "note": "Druid 2. Limits Wild Shape itself, which is why Wild Shape does not also carry a limit."
     },
@@ -52,7 +76,13 @@
       "name": "Lay on Hands Pools",
       "kind": "pools",
       "recharge": "long_rest",
-      "maxByLevel": { "1": 5, "5": 25, "9": 40, "13": 50, "17": 65 },
+      "maxByLevel": {
+        "1": 5,
+        "5": 25,
+        "9": 40,
+        "13": 50,
+        "17": 65
+      },
       "book": "PHB",
       "note": "Paladin 1. A pool of hit points, not charges, so the amount a feature spends is chosen by the player."
     },
@@ -77,7 +107,13 @@
       "name": "Superiority Dice",
       "kind": "pools",
       "recharge": "long_rest",
-      "maxByLevel": { "3": 4, "7": 6, "11": 8, "15": 10, "19": 12 },
+      "maxByLevel": {
+        "3": 4,
+        "7": 6,
+        "11": 8,
+        "15": 10,
+        "19": 12
+      },
       "book": "PHB",
       "note": "Ranger 3. Recharges on a long rest."
     },
@@ -89,6 +125,15 @@
       "max": 10,
       "book": "TCE",
       "note": "Alchemist Artificer 3."
+    },
+    {
+      "id": "luck_points",
+      "name": "Luck Points",
+      "kind": "pools",
+      "recharge": "long_rest",
+      "max": 3,
+      "book": "PHB",
+      "note": "Not granted by a class. The Lucky feat provides it, and a character without that feat has none, so the cost resolves to 0 available."
     }
   ]
 }

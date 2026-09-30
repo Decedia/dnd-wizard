@@ -1,0 +1,371 @@
+{
+  "features": [
+    {
+      "id": "feat.great_weapon_master",
+      "name": "Great Weapon Master",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "requires": {
+        "abilities": {
+          "str": 13
+        },
+        "proficiencies": [
+          "heavy weapons"
+        ]
+      },
+      "effects": [
+        {
+          "kind": "special",
+          "note": "On your turn, when you score a critical hit with a melee weapon or reduce a creature to 0 hit points with one, you can make one melee attack with a weapon that you are proficient with as a bonus action."
+        },
+        {
+          "kind": "restriction",
+          "rules": [
+            "take_attack_action_to_use"
+          ],
+          "note": "Before you make these attacks, you can forgo your Advantage on a Strength (Athletics) check made to shove or grapple a creature and instead gain Advantage on one Strength (Athletics) check you make before the end of your next turn."
+        }
+      ],
+      "summary": "On a critical hit, bonus-action attack, and shove on strength",
+      "text": "You've learned to put the weight of a weapon to your advantage: On your turn, when you score a critical hit with a melee weapon or reduce a creature to 0 hit points with one, you can make one melee attack with a weapon that you are proficient with as a bonus action. Before you make these attacks, you can forgo your Advantage on a Strength (Athletics) check made to shove or grapple a creature and instead gain Advantage on one Strength (Athletics) check you make before the end of your next turn.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Feat 165"
+      }
+    },
+    {
+      "id": "feat.magic_initiate",
+      "name": "Magic Initiate",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "cantrip": {
+            "known": true
+          },
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "wizard",
+                "cleric",
+                "druid"
+              ]
+            }
+          ],
+          "note": "You learn two spells from the wizard, cleric, or druid spell list, and they are always prepared. You can cast them without a spell slot. Once you gain a level in a casting class, you can swap either spell for a spell of the same level from that class's list."
+        }
+      ],
+      "summary": "Learn one cantrip and one 1st-level spell, castable without slots",
+      "text": "You learn two spells from the wizard, cleric, or druid spell list, and they are always prepared. You can cast them without a spell slot. Once you gain a level in a casting class, you can swap either spell for a spell of the same level from that class's list.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Feat 166"
+      }
+    },
+    {
+      "id": "feat.alert",
+      "name": "Alert",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "requires": {
+        "abilities": {
+          "str": 13,
+          "dex": 13,
+          "cha": 13
+        }
+      },
+      "effects": [
+        {
+          "kind": "stat_modifier",
+          "stat": "initiative",
+          "amount": 5,
+          "duration": "permanent"
+        },
+        {
+          "kind": "special",
+          "note": "You always add 5 to your initiative modifier. You also can't be surprised while you are conscious."
+        }
+      ],
+      "summary": "Add 5 to initiative and can never be surprised",
+      "text": "Always add 5 to your initiative modifier. You also can't be surprised while you are conscious.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Feat 165"
+      }
+    },
+    {
+      "id": "feat.crossbow_expert",
+      "name": "Crossbow Expert",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "requires": {
+        "proficiencies": [
+          "light crossbows"
+        ]
+      },
+      "effects": [
+        {
+          "kind": "stat_modifier",
+          "stat": "attack_bonus_ranged",
+          "amount": 1,
+          "duration": "permanent"
+        },
+        {
+          "kind": "extra_action",
+          "count": 1,
+          "note": "You ignore half cover and three-quarters cover when making a ranged attack with a crossbow. Acting on your turn, you can use a bonus action to make a basic ranged attack with a crossbow weapon you are proficient with."
+        }
+      ],
+      "summary": "+1 ranged attack, ignore half and three-quarters cover, bonus bolt",
+      "text": "You gain proficiency with the heavy crossbow, the light crossbow, and hand crossbows. You ignore half cover and three-quarters cover when making a ranged attack with a crossbow. Acting on your turn, you can use a bonus action to make a basic ranged attack with a crossbow weapon that you are proficient with.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Feat 165"
+      }
+    },
+    {
+      "id": "feat.defensive_duelist",
+      "name": "Defensive Duelist",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "requires": {
+        "abilities": {
+          "dex": 13
+        }
+      },
+      "gates": [
+        "wielding_finesse_weapon"
+      ],
+      "effects": [
+        {
+          "kind": "ac_bonus",
+          "amount": 1,
+          "requires": "wielding a finesse weapon"
+        },
+        {
+          "kind": "extra_action",
+          "count": 1,
+          "note": "If you are wielding a finesse weapon that you are proficient with and you hit a creature with an opportunity attack, you can use your reaction to make a melee attack against that creature."
+        }
+      ],
+      "summary": "+1 AC with a finesse weapon, and a reaction attack when hit",
+      "text": "You're proficient with the light crossbow, the rapier, and the shortsword. If you are wielding a finesse weapon that you are proficient with and you hit a creature with an opportunity attack, you can use your reaction to make a melee attack against that creature. As long as you're wielding that weapon, your armor class gains a +1 bonus.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Feat 165"
+      }
+    },
+    {
+      "id": "feat.dual_wielder",
+      "name": "Dual Wielder",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "requires": {
+        "abilities": {
+          "str": 13
+        }
+      },
+      "gates": [
+        "two_weapons"
+      ],
+      "effects": [
+        {
+          "kind": "stat_modifier",
+          "stat": "damage_roll",
+          "amount": 1,
+          "duration": "while_active"
+        },
+        {
+          "kind": "extra_action",
+          "count": 1,
+          "note": "You gain a +1 bonus to your damage roll when you wield a melee weapon in one hand and wield a second melee weapon in the other. If you make a bonus action attack with the off-hand weapon, you can forgo that +1 and instead have it count as an attack for the purposes of the Fighting Initiate feat."
+        }
+      ],
+      "summary": "+1 damage with a weapon in each hand, taking the Attack action",
+      "text": "You gain a +1 bonus to your damage roll when you wield a melee weapon in one hand and wield a second melee weapon in the other. If you make a bonus action attack with the off-hand weapon, you can forgo that +1 and instead have it count as an attack for the purposes of the Fighting Initiate feat.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Feat 165"
+      }
+    },
+    {
+      "id": "feat.resilient",
+      "name": "Resilient",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "stat_modifier",
+          "stat": "ability_score_of_choice",
+          "amount": 1,
+          "duration": "permanent"
+        },
+        {
+          "kind": "special",
+          "note": "Choose one ability score. You gain a +1 bonus to that ability score, and you gain proficiency in saving throws using that ability."
+        }
+      ],
+      "summary": "Raise one ability by 1 and gain its saving throw proficiency",
+      "text": "Choose one ability score. You gain a +1 bonus to that ability score, and you gain proficiency in saving throws using that ability.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Feat 166"
+      }
+    },
+    {
+      "id": "feat.skulker",
+      "name": "Skulker",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "skill_bonus",
+          "skills": [
+            "Stealth"
+          ],
+          "amount": 2,
+          "note": "You gain proficiency in the Stealth skill, and your Dexterity (Stealth) checks are made with advantage in dim light or darkness. If you're invisible and a creature makes an ability check to detect you, it must use a group ability check with a DC of 5 plus your Dexterity modifier."
+        },
+        {
+          "kind": "special",
+          "note": "You gain proficiency in the Stealth skill, and your Dexterity (Stealth) checks are made with advantage in dim light or darkness. If you're invisible and a creature makes an ability check to detect you, it must use a group ability check with a DC of 5 plus your Dexterity modifier, and you can be invisible at the end of any turn."
+        }
+      ],
+      "summary": "Stealth proficiency, advantage in dim light, invisible at end of turn",
+      "text": "You gain proficiency in the Stealth skill. Your Dexterity (Stealth) checks are made with advantage in dim light or darkness. If you're invisible and a creature makes an ability check to detect you, it must use a group ability check with a DC of 5 + your Dexterity modifier.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Feat 166"
+      }
+    },
+    {
+      "id": "feat.savage_attacker",
+      "name": "Savage Attacker",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You're on the offensive when using this feat. On your turn, you can make one melee attack with a weapon that you are proficient with. You gain a +1d6 bonus to the attack's damage, and you can use your choice of Strength or Dexterity for the attack's ability modifier, and the attack doesn't have to be with Strength or Dexterity."
+        }
+      ],
+      "summary": "One melee attack per turn, +1d6 damage, Strength or Dexterity",
+      "text": "You're on the offensive when using this feat. On your turn, you can make one melee attack with a weapon that you are proficient with. You gain a +1d6 bonus to the attack's damage, and you can use your choice of Strength or Dexterity for the attack's ability modifier, and the attack doesn't have to be with Strength or Dexterity.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Feat 81"
+      }
+    },
+    {
+      "id": "feat.healer",
+      "name": "Healer",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "bonus_action",
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "ally",
+        "range": {
+          "value": 30,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "heal",
+          "dice": {
+            "dice": "1d6",
+            "flat": 4
+          },
+          "resolution": {
+            "mode": "auto"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "As a bonus action, you can heal a creature that you can see within 30 feet of you. When you do so, choose one of the following effects: The creature regains 1d6 hit points plus 4 plus its level. Or the creature regains 4 hit points plus twice its level, and you gain disadvantage on attack rolls against it until the end of your next turn."
+        }
+      ],
+      "summary": "Bonus action: heal an ally, or 4 plus twice its level with advantage",
+      "text": "As a bonus action, you can heal a creature that you can see within 30 feet of you. When you do so, choose one of the following effects: The creature regains 1d6 hit points plus 4 plus its level. Or the creature regains 4 hit points plus twice its level, and you gain disadvantage on attack rolls against it until the end of your next turn.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Feat 81"
+      }
+    },
+    {
+      "id": "feat.gift_of_alacrity",
+      "name": "Gift of Alacrity",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_modifier",
+          "changes": [
+            "time"
+          ],
+          "note": "You always have the option to take a Readied reaction, to act as though you are casting a spell with a casting time of 1 action, but the spell must have a casting time of 1 action and you must have the spell prepared. Before you cast a spell that has a casting time of 1 action, you can take a Ready action and then, before the start of your next turn, you can take a Readied reaction to act as though you were casting the spell with a casting time of 1 action, and you forgo expending any spell slot for it."
+        }
+      ],
+      "summary": "Trade a Readied reaction for any 1-action prepared spell",
+      "text": "You always have the option to take a Readied reaction, to act as though you are casting a spell with a casting time of 1 action, but the spell must have a casting time of 1 action and you must have the spell prepared. Before you cast a spell that has a casting time of 1 action, you can take a Ready action and then, before the start of your next turn, you can take a Readied reaction to act as though you were casting the spell with a casting time of 1 action, and you forgo expending any spell slot for it.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Feat 81"
+      }
+    },
+    {
+      "id": "feat.lucky",
+      "name": "Lucky",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "cost": [
+        {
+          "resource": "luck_points",
+          "amount": 3
+        }
+      ],
+      "trigger": null,
+      "targeting": {
+        "scope": "any"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have 3 luck points that you regain whenever you finish a long rest. When you have luck points, you can use a bonus action to gain 1 of them, and you can spend them to gain advantage on a d20 test of your choice. You can also spend any number of luck points, up to your maximum, to add that many to a d20 test of your choice, and then choose whether to add or subtract that many. You gain 3 luck points when you finish a long rest."
+        }
+      ],
+      "summary": "Luck points: gain advantage, or add or subtract from a d20 roll",
+      "text": "You have 3 luck points that you regain whenever you finish a long rest. When you have luck points, you can use a bonus action to gain 1 of them, and you can spend them to gain advantage on a d20 test of your choice. You can also spend any number of luck points, up to your maximum, to add that many to a d20 test of your choice, and then choose whether to add or subtract that many.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Feat 167"
+      }
+    }
+  ]
+}

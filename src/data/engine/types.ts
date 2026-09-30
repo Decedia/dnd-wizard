@@ -199,6 +199,7 @@ export type Effect =
   | { kind: "senses"; sense: SenseKind; range?: number }
   | { kind: "language"; languages: string[] }
   | { kind: "skill"; skills: string[]; proficiency?: Proficiency }
+  | { kind: "skill_bonus"; skills: string[]; amount: number; note?: string }
   | { kind: "tool"; tools: string[]; proficiency?: Proficiency }
   | {
       kind: "spell_modifier";
@@ -208,6 +209,18 @@ export type Effect =
       atLeastLevel?: number;
       /** Sorcery points, when the modifier costs a resource. */
       cost?: { resource: string; amount: number };
+      note?: string;
+    }
+  | {
+      /**
+       * Grants spell access without being a spell itself, which is what Magic
+       * Initiate does. Distinct from `spell_modifier`, which changes a spell you
+       * can already cast.
+       */
+      kind: "spell_grant";
+      cantrip?: { known: true };
+      spells?: { level: number; from: string[] }[];
+      atLevel?: number;
       note?: string;
     }
   | { kind: "restriction"; rules: string[]; note?: string }
@@ -272,6 +285,26 @@ export interface SourceRef {
  * must exist in states.json, so a typo cannot gate a feature off silently.
  */
 export type GateId = string;
+
+/**
+ * What a character must already have to take a feature. Feats are where this
+ * matters: Great Weapon Master needs Strength 13 *and* heavy weapon proficiency,
+ * Crossbow Expert needs light crossbow proficiency, and Fighting Initiate
+ * requires a martial weapon fighting style, which is itself a class feature.
+ */
+export interface RequiresSpec {
+  /** Minimum score in each listed ability. */
+  abilities?: Partial<Record<Ability, number>>;
+  /** Skill proficiencies required. */
+  skills?: string[];
+  /** Armor, weapon or tool proficiencies required. */
+  proficiencies?: string[];
+  /** Ids of other features required, such as a fighting style. */
+  features?: string[];
+  /** Minimum character level. */
+  minLevel?: number;
+  note?: string;
+}
 
 /** A playable race, from races.json. */
 export interface RaceDef {
@@ -338,6 +371,8 @@ export interface FeatureBase {
   endsIf?: string[];
   /** States the creature must be in, e.g. `raging`. */
   gates?: GateId[];
+  /** What a character must already have to take this feature. */
+  requires?: RequiresSpec;
   effects: Effect[];
   /**
    * For shape-shifting features whose only level-dependent value is the
@@ -397,6 +432,8 @@ type DeclaredKinds = keyof typeof vocab.effectRequired;
 
 const _everyKindIsDeclared: AssertSameUnion<EffectKind, DeclaredKinds> = true;
 const _everyDeclaredKindExists: Record<DeclaredKinds, true> = {
+  spell_grant: true,
+  skill_bonus: true,
   damage: true,
   heal: true,
   temp_hp: true,
