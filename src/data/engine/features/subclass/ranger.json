@@ -1,0 +1,1349 @@
+{
+  "features": [
+    {
+      "id": "subclass.beast_master.rangers_companion",
+      "name": "Ranger's Companion",
+      "kind": "subclass",
+      "owner": "Beast Master",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "choice",
+          "of": "companion_animal",
+          "count": 1,
+          "note": "You gain a Medium-sized beast companion, which has the statistics of a Medium beast, and it acts during your turn and can gain the Awakened or Bonded feature at 7th and 15th level. It vanishes when you die."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 7,
+          "summary": "The companion gains the Awakened feature"
+        },
+        {
+          "at": 15,
+          "summary": "The companion gains the Bonded feature"
+        }
+      ],
+      "summary": "A Medium beast companion that acts on your turn",
+      "text": "You gain a Medium-sized beast companion that has the statistics of a Medium beast, appears in an unoccupied space you can see within 5 feet of you, and acts on your turn in combat.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Ranger Beast Master 3"
+      }
+    },
+    {
+      "id": "subclass.beast_master.exceptional_training",
+      "name": "Exceptional Training",
+      "kind": "subclass",
+      "owner": "Beast Master",
+      "unlock": 7,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You and your companion gain proficiency in a number of additional skills totaling one plus your Wisdom modifier, and your companion gains advantage on all Wisdom saving throws. Its Challenge Rating is equal to your ranger level divided by three, rounded down, to a minimum of 1/8."
+        }
+      ],
+      "summary": "Extra skills for you and it; it saves well",
+      "text": "Your companion gains proficiency in a number of additional skills equal to one plus your Wisdom modifier. Your companion also gains advantage on all Wisdom saving throws.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Ranger Beast Master 7"
+      }
+    },
+    {
+      "id": "subclass.beast_master.bestial_fury",
+      "name": "Bestial Fury",
+      "kind": "subclass",
+      "owner": "Beast Master",
+      "unlock": 11,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "When your companion attacks, it can also make a bonus action to move up to half its speed, and it gains advantage on attack rolls against a creature that is within 5 feet of you, and it is not moved by a failed save."
+        }
+      ],
+      "summary": "Its attacks gain advantage against creatures next to you",
+      "text": "Your companion gains advantage on attack rolls against a creature that is within 5 feet of you. Your companion's attacks also can't be moved by a failed save.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Ranger Beast Master 11"
+      }
+    },
+    {
+      "id": "subclass.beast_master.share_spells",
+      "name": "Share Spells",
+      "kind": "subclass",
+      "owner": "Beast Master",
+      "unlock": 15,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "cantrip": {
+            "known": true
+          },
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "ranger"
+              ]
+            }
+          ],
+          "note": "Your companion can also cast any spell you can cast, using your spellcasting ability, without needing to know it, and it can expend spell slots for that, while acting on your turn in combat, acting on its own turn, or being the target of your owl's Wisdom."
+        }
+      ],
+      "summary": "Your companion can cast your spells, spending your slots",
+      "text": "Your companion can also cast any spell you can cast, using your spellcasting ability.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Ranger Beast Master 15"
+      }
+    },
+    {
+      "id": "subclass.drake_warden.draconic_gift",
+      "name": "Draconic Gift",
+      "kind": "subclass",
+      "owner": "Drake Warden",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "stat_modifier",
+          "stat": "ac",
+          "amount": 1,
+          "duration": "permanent"
+        },
+        {
+          "kind": "language",
+          "languages": [
+            "Draconic"
+          ]
+        },
+        {
+          "kind": "special",
+          "note": "You gain a +1 bonus to AC and proficiency in the Draconic language, and you know one dragon's type, gaining the associated Draconic Resilience and Breath Weapon features at 3rd and 7th level."
+        }
+      ],
+      "summary": "+1 AC, Draconic, and a dragon type for its resilience and breath",
+      "text": "You gain a +1 bonus to AC and proficiency in the Draconic language. You also know one dragon's type, based on your ancestry.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Ranger Drake Warden 3"
+      }
+    },
+    {
+      "id": "subclass.drake_warden.bond_of_fang_and_scale",
+      "name": "Bond of Fang and Scale",
+      "kind": "subclass",
+      "owner": "Drake Warden",
+      "unlock": 3,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 60,
+          "unit": "ft"
+        }
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "control",
+          "action": "push",
+          "distance": {
+            "value": 15,
+            "unit": "ft"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "Your draconic power is a more potent effect than your ancestry's breath weapon. On your turn, you can expend a spell slot of any level, cast a spell, and then use a bonus action to make a 60-foot melee spell attack against a creature within reach of the spell's target, dealing 1d6 force damage plus half the spell's level as force damage, and forcing a Strength save or pushing it 15 feet. At 11th level the push is 30 feet and the target is knocked prone. You gain a new use daily at 7th and 15th level."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 7,
+          "limits": {
+            "per": "day",
+            "max": 2
+          }
+        },
+        {
+          "at": 11,
+          "effects": [
+            {
+              "kind": "control",
+              "action": "push",
+              "distance": {
+                "value": 30,
+                "unit": "ft"
+              }
+            },
+            {
+              "kind": "special",
+              "note": "The push is 30 feet and the target is knocked prone on a failed save."
+            }
+          ]
+        },
+        {
+          "at": 15,
+          "limits": {
+            "per": "day",
+            "max": 2
+          }
+        }
+      ],
+      "summary": "Spend a slot on a spell, then bonus-action force damage and push",
+      "text": "On your turn, you can expend a spell slot of any level, cast a spell with that slot, and then use a bonus action to make a 60-foot melee spell attack against a creature.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Ranger Drake Warden 3"
+      }
+    },
+    {
+      "id": "subclass.drake_warden.drakes_breath",
+      "name": "Drake's Breath",
+      "kind": "subclass",
+      "owner": "Drake Warden",
+      "unlock": 7,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "resistance",
+          "damageTypes": [
+            "acid",
+            "lightning",
+            "thunder"
+          ]
+        },
+        {
+          "kind": "special",
+          "note": "You have resistance to your dragon type's damage, and at 7th level you get a 15-foot cone breath weapon based on your ancestry, which you can use as an action, dealing 3d6 of your ancestry's type and replacing it on a hit or miss."
+        }
+      ],
+      "summary": "Breath weapon: a 15-ft cone of your dragon type, 3d6",
+      "text": "You gain a magical breath weapon in a 15-foot cone. On each of your turns, you can change the damage type to any of the types your ancestry supports.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Ranger Drake Warden 7"
+      }
+    },
+    {
+      "id": "subclass.drake_warden.perfected_bond",
+      "name": "Perfected Bond",
+      "kind": "subclass",
+      "owner": "Drake Warden",
+      "unlock": 11,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "Your bond to your dragon ancestry is perfected. Your damage on the Bond of Fang and Scale attack is 2d10 instead of 1d6 plus half the spell level, and the target is also knocked prone when the push moves it into another creature."
+        }
+      ],
+      "summary": "Bond damage becomes 2d10; the push knocks prone",
+      "text": "Your Bond of Fang and Scale attack deals 2d10 damage instead of 1d6 damage plus half the level of the spell.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Ranger Drake Warden 11"
+      }
+    },
+    {
+      "id": "subclass.drake_warden.reflexive_resistance",
+      "name": "Reflexive Resistance",
+      "kind": "subclass",
+      "owner": "Drake Warden",
+      "unlock": 15,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You can gain resistance to a damage type of your choice for 1 minute, and you can do this whenever you finish a long rest. At 18th level you can instead choose two damage types."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 18,
+          "effects": [
+            {
+              "kind": "special",
+              "note": "You can choose two damage types instead of one."
+            }
+          ]
+        }
+      ],
+      "summary": "Resistance to a chosen damage type, relearned each rest",
+      "text": "You can gain resistance to a damage type of your choice for 1 minute. You can do this whenever you finish a long rest.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Ranger Drake Warden 15"
+      }
+    },
+    {
+      "id": "subclass.fey_wanderer.dreadful_strikes",
+      "name": "Dreadful Strikes",
+      "kind": "subclass",
+      "owner": "Fey Wanderer",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "Your connection to the Fey Courts gives you great and terrible wonderous power. When you make a weapon attack against a creature, its damage is a d6 more if the d6 is 1 or 2, and you regain expended Hit Dice equal to the number of damage dice that attack rolled, as a bonus action. At 10th level you do this once per turn without expending Hit Dice, and at 18th level it no longer requires a bonus action."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 10,
+          "effects": [
+            {
+              "kind": "special",
+              "note": "You can do this once per turn without expending Hit Dice."
+            }
+          ]
+        },
+        {
+          "at": 18,
+          "effects": [
+            {
+              "kind": "special",
+              "note": "This no longer requires a bonus action."
+            }
+          ]
+        }
+      ],
+      "summary": "Weapon hits refund hit dice, boosted on low rolls",
+      "text": "When you make a weapon attack against a creature, its damage is a d6 more if the d6 is 1 or 2, and you can regain expended Hit Dice equal to the number of damage dice that attack rolled.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Fey Wanderer 3"
+      }
+    },
+    {
+      "id": "subclass.fey_wanderer.fey_wanderer_magic",
+      "name": "Fey Wanderer Magic",
+      "kind": "subclass",
+      "owner": "Fey Wanderer",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "cantrip": {
+            "known": true
+          },
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "druid"
+              ]
+            }
+          ],
+          "note": "Your magic comes from the Fey Courts. You know the druidcraft cantrip, which you can cast at will, and you know one first-level druid spell, castable without a slot. At 6th and 14th level you learn another cantrip or spell of that level."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 6
+        },
+        {
+          "at": 14
+        }
+      ],
+      "summary": "Druidcraft at will, plus a free 1st-level druid spell",
+      "text": "You know the druidcraft cantrip, which you can cast at will, and you know one first-level druid spell, castable without a spell slot.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Fey Wanderer 3"
+      }
+    },
+    {
+      "id": "subclass.fey_wanderer.otherworldly_glamour",
+      "name": "Otherworldly Glamour",
+      "kind": "subclass",
+      "owner": "Fey Wanderer",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "skill_bonus",
+          "skills": [
+            "Persuasion",
+            "Intimidation"
+          ],
+          "amount": 0,
+          "note": "The Student of the Fey Courts has a knack for convincing others to see the world your way. You gain proficiency in Persuasion, and your Charisma is increased by 1. You also gain a +1 bonus to Persuasion and Intimidation checks against creatures whose Challenge Rating is equal to or lower than yours."
+        }
+      ],
+      "summary": "+1 Cha, Persuasion proficiency, and bonuses vs weaker foes",
+      "text": "You gain proficiency in Persuasion and your Charisma is increased by 1. You also gain a +1 bonus to Persuasion and Intimidation checks.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Fey Wanderer 3"
+      }
+    },
+    {
+      "id": "subclass.fey_wanderer.beguiling_twist",
+      "name": "Beguiling Twist",
+      "kind": "subclass",
+      "owner": "Fey Wanderer",
+      "unlock": 7,
+      "activation": "action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 60,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have the wits and charm of a fey creature. You can use your action to make a Charisma (Persuasion) check against a creature within 60 feet, and on a success you reroll its last failed save and it must choose a new result, or makes the save with a disadvantage. At 15th level you also gain a +1 bonus to the check. You regain the use when you finish a long rest."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 15,
+          "limits": {
+            "per": "rest",
+            "max": 1
+          },
+          "effects": [
+            {
+              "kind": "skill_bonus",
+              "skills": [
+                "Persuasion"
+              ],
+              "amount": 1
+            },
+            {
+              "kind": "special",
+              "note": "You also gain a +1 bonus to the Persuasion check."
+            }
+          ]
+        }
+      ],
+      "summary": "Persuade a creature to reroll a failed save",
+      "text": "You can use your action to make a Charisma (Persuasion) check against a creature within 60 feet of you. On a success, you reroll its last failed save.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Fey Wanderer 7"
+      }
+    },
+    {
+      "id": "subclass.fey_wanderer.fey_reinforcements",
+      "name": "Fey Reinforcements",
+      "kind": "subclass",
+      "owner": "Fey Wanderer",
+      "unlock": 11,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "summon",
+          "features": [],
+          "formId": "boggle_object",
+          "initiative": "separate",
+          "hasOwnTurn": true,
+          "control": "ally",
+          "duration": {
+            "value": 1,
+            "unit": "hour"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You know how to lure fey creatures in to aid you. As a bonus action you can summon a fey spirit to an unoccupied space you can see within 60 feet of you, and its statistics are those of a sprite, and it remains for 1 hour, disappearing if you do anything to dispell it. At 17th level its CR is equal to half your level, rounded up."
+        }
+      ],
+      "summary": "Bonus action: summon a fey sprite for an hour",
+      "text": "As a bonus action, you can summon a fey spirit to an unoccupied space that you can see within 60 feet of you.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Fey Wanderer 11"
+      }
+    },
+    {
+      "id": "subclass.fey_wanderer.misty_wanderer",
+      "name": "Misty Wanderer",
+      "kind": "subclass",
+      "owner": "Fey Wanderer",
+      "unlock": 15,
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "targeted_by_spell"
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "condition",
+          "action": "apply",
+          "conditions": [
+            "invisible"
+          ],
+          "note": "When you fail a save against a spell or some other magic effect, you can use your reaction to turn invisible until you attack or cast a spell, or until the end of your next turn. You gain the use of this when you finish a long rest."
+        }
+      ],
+      "summary": "Reaction: turn invisible when a spell affects you",
+      "text": "When you fail a save against a spell or some other magic effect, you can use your reaction to turn invisible until you attack or cast a spell.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Fey Wanderer 15"
+      }
+    },
+    {
+      "id": "subclass.gloom_stalker.gloom_stalker_magic",
+      "name": "Gloom Stalker Magic",
+      "kind": "subclass",
+      "owner": "Gloom Stalker",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "cantrip": {
+            "known": true
+          },
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "wizard"
+              ]
+            }
+          ],
+          "note": "You know the minor illusion cantrip, which you can cast at will, and you know one first-level wizard spell, castable without a slot. At 6th and 14th level you learn another cantrip or spell of that level."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 6
+        },
+        {
+          "at": 14
+        }
+      ],
+      "summary": "Minor illusion at will, plus a free 1st-level wizard spell",
+      "text": "You know the minor illusion cantrip, which you can cast at will, and you know one first-level wizard spell.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Ranger Gloom Stalker 3"
+      }
+    },
+    {
+      "id": "subclass.gloom_stalker.dread_ambusher",
+      "name": "Dread Ambusher",
+      "kind": "subclass",
+      "owner": "Gloom Stalker",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "1d6",
+            "bonusFrom": "none"
+          },
+          "damageType": "psychic",
+          "resolution": {
+            "mode": "auto"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "Your fearsome strikes are more deadly: you can add 1d6 psychic damage to a weapon attack that deals damage as a result of your Sneak Attack. At 7th level you add it with any attack that hits a creature that hasn't yet been marked by this feature, and at 15th level the extra psychic damage also applies to every weapon attack you hit with for the rest of the turn."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 7,
+          "effects": [
+            {
+              "kind": "damage",
+              "dice": {
+                "dice": "1d6",
+                "bonusFrom": "none"
+              },
+              "damageType": "psychic",
+              "resolution": {
+                "mode": "auto"
+              }
+            },
+            {
+              "kind": "special",
+              "note": "You add the extra damage to any attack that hits a creature that hasn't yet been marked by this feature."
+            }
+          ]
+        },
+        {
+          "at": 15,
+          "effects": [
+            {
+              "kind": "damage",
+              "dice": {
+                "dice": "1d6",
+                "bonusFrom": "none"
+              },
+              "damageType": "psychic",
+              "resolution": {
+                "mode": "auto"
+              }
+            },
+            {
+              "kind": "special",
+              "note": "The extra psychic damage applies to every weapon attack you hit with for the rest of the turn."
+            }
+          ]
+        }
+      ],
+      "summary": "Weapon attacks deal an extra 1d6 psychic",
+      "text": "You can add 1d6 psychic damage to a weapon attack that deals damage as a result of your Sneak Attack.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Ranger Gloom Stalker 3"
+      }
+    },
+    {
+      "id": "subclass.gloom_stalker.umbral_sight",
+      "name": "Umbral Sight",
+      "kind": "subclass",
+      "owner": "Gloom Stalker",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "senses",
+          "sense": "darkvision"
+        },
+        {
+          "kind": "special",
+          "note": "You gain darkvision out to 60 feet, or 120 feet while you are within 30 feet of a shadow or dim light."
+        }
+      ],
+      "summary": "Darkvision 60 ft, 120 ft in shadow or dim light",
+      "text": "You gain darkvision out to 60 feet, or 120 feet while you are within 30 feet of a shadow or dim light.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Ranger Gloom Stalker 3"
+      }
+    },
+    {
+      "id": "subclass.gloom_stalker.iron_mind",
+      "name": "Iron Mind",
+      "kind": "subclass",
+      "owner": "Gloom Stalker",
+      "unlock": 7,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "condition_immunity",
+          "conditions": [
+            "frightened"
+          ]
+        }
+      ],
+      "summary": "Immune to being frightened",
+      "text": "You have immunity to the frightened condition.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Ranger Gloom Stalker 7"
+      }
+    },
+    {
+      "id": "subclass.gloom_stalker.stalkers_flurry",
+      "name": "Stalker's Flurry",
+      "kind": "subclass",
+      "owner": "Gloom Stalker",
+      "unlock": 11,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 1,
+          "note": "You have learned to unleash flurry of attacks against a single target with speed. When you take the Attack action, you can make one additional attack, only if you haven't already used Stalker's Flurry on this turn. After this feature is used you must use a different combat feature to make another attack on a non-primary target."
+        }
+      ],
+      "summary": "One additional attack on your primary target",
+      "text": "When you take the Attack action on your turn, you can make one additional attack against a creature within 5 feet of you, only if you have not already used Stalker's Flurry on this turn.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Ranger Gloom Stalker 11"
+      }
+    },
+    {
+      "id": "subclass.gloom_stalker.shadowy_dodge",
+      "name": "Shadowy Dodge",
+      "kind": "subclass",
+      "owner": "Gloom Stalker",
+      "unlock": 15,
+      "activation": "reaction",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": {
+        "event": "self_hit_by_attack"
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have a supernaturally keen awareness of danger in your environment. You can use your reaction, once per day, to cause a melee weapon attack that targets you to miss. You gain the use of this at the start of each of your turns."
+        }
+      ],
+      "summary": "Once a day, reaction: make an attack against you miss",
+      "text": "You can use your reaction, once per day, to cause a melee weapon attack that targets you to miss.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Ranger Gloom Stalker 15"
+      }
+    },
+    {
+      "id": "subclass.horizon_walker.detect_portal",
+      "name": "Detect Portal",
+      "kind": "subclass",
+      "owner": "Horizon Walker",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "cantrip": {
+            "known": true
+          },
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "wizard"
+              ]
+            }
+          ],
+          "note": "You know the mage hand cantrip, castable at will without a spell slot, and at 6th and 14th level you know another cantrip or spell of that level from the wizard list."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 6
+        },
+        {
+          "at": 14
+        }
+      ],
+      "summary": "Mage hand at will; see ethereal with detect portal",
+      "text": "You know the mage hand cantrip, which you can cast at will without a spell slot, and you can always detect a portal if you can see within 30 feet of it.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Horizon Walker 3"
+      }
+    },
+    {
+      "id": "subclass.horizon_walker.planar_warrior",
+      "name": "Planar Warrior",
+      "kind": "subclass",
+      "owner": "Horizon Walker",
+      "unlock": 3,
+      "activation": "passive",
+      "gates": [
+        "on_ethereal_plane"
+      ],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "While you are in the ethereal plane, you can use an object interaction to interact with a creature on the material plane if the distance is within 10 feet, your reach, or a distance equal to your reach divided by 3, and you have disadvantage on attack rolls and can take no damage from creatures on the material plane."
+        }
+      ],
+      "summary": "On the ethereal plane, reach into the material plane to attack",
+      "text": "While you are on the ethereal plane, you can use an object interaction to interact with a creature on the material plane if the distance between you and the creature is within 10 feet, your reach, or a distance equal to your reach divided by 3.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Horizon Walker 3"
+      }
+    },
+    {
+      "id": "subclass.horizon_walker.ethereal_step",
+      "name": "Ethereal Step",
+      "kind": "subclass",
+      "owner": "Horizon Walker",
+      "unlock": 7,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "As a bonus action, you have learned to step briefly into the ethereal plane, where you have resistance to all damage, can't be touched by material creatures, can use the Help and Misty Step spells, and gain a +2 bonus to AC, until the end of your next turn."
+        }
+      ],
+      "summary": "Bonus action: 1 minute on the ethereal plane, damage resistant",
+      "text": "As a bonus action, you have learned to step briefly into the ethereal plane, where you have resistance to all damage.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Horizon Walker 7"
+      }
+    },
+    {
+      "id": "subclass.horizon_walker.distant_strike",
+      "name": "Distant Strike",
+      "kind": "subclass",
+      "owner": "Horizon Walker",
+      "unlock": 11,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "When you hit a creature with a melee weapon attack on your turn, you can use a bonus action to make one more attack against that creature, only if you have not already used Distant Strike on this turn. At 17th level the bonus attack is against a different creature within 30 feet of the first."
+        }
+      ],
+      "summary": "On a melee hit, a bonus action hits the same target again",
+      "text": "When you hit a creature with a melee weapon attack on your turn, you can use a bonus action to make one more attack against that creature.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Horizon Walker 11"
+      }
+    },
+    {
+      "id": "subclass.horizon_walker.spectral_defense",
+      "name": "Spectral Defense",
+      "kind": "subclass",
+      "owner": "Horizon Walker",
+      "unlock": 15,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "On your turn, you can move up to 10 feet as a bonus action. If you used this movement to get within 5 feet of a creature, attacks against that creature gain advantage for the rest of the turn, and at 18th level any creature that attacks you has disadvantage on its attack rolls for the rest of the turn."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 18,
+          "effects": [
+            {
+              "kind": "extra_attacks",
+              "count": 0,
+              "note": "Any creature that attacks you has disadvantage on its attack rolls for the rest of the turn."
+            }
+          ]
+        }
+      ],
+      "summary": "Bonus action: 10 ft, granting advantage on attacks this turn",
+      "text": "On your turn, you can move up to 10 feet as a bonus action. If you used this movement to get within 5 feet of a creature, attacks against that creature gain advantage for the rest of the turn.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Horizon Walker 15"
+      }
+    },
+    {
+      "id": "subclass.hunter.hunters_prey",
+      "name": "Hunter's Prey",
+      "kind": "subclass",
+      "owner": "Hunter",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "choice",
+          "of": "hunter_prey_type",
+          "count": 1,
+          "note": "You have developed a way to hunt specific prey, such as aberration, beast, celestial, construct, dragon, elemental, fey, giant, humanoid, monstrosity, ooze, plant or undead. You gain Colossus Slayer on beasts and Giant Killer on giants, and the other types get bespoke benefits."
+        }
+      ],
+      "summary": "Choose a prey type and gain a bonus against it",
+      "text": "You choose a type of creature to hunt. You gain Colossus Slayer on beasts and Giant Killer on giants.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Ranger Hunter 3"
+      }
+    },
+    {
+      "id": "subclass.hunter.defensive_tactics",
+      "name": "Defensive Tactics",
+      "kind": "subclass",
+      "owner": "Hunter",
+      "unlock": 7,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "choice",
+          "of": "defensive_tactic",
+          "count": 1,
+          "note": "Choose Escape the Horde, Multiattack Defense or Spelunker. Escape the Horde gains an ally, Multiattack Defense imposes disadvantage on extra attacks, and Spelunker gives bonuses underground."
+        }
+      ],
+      "summary": "Choose one of three defensive tactics",
+      "text": "You have developed one of the following defensive tactics, which you can use any time you make an ability check or saving throw while using the Defense action.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Ranger Hunter 7"
+      }
+    },
+    {
+      "id": "subclass.hunter.multiattack",
+      "name": "Multiattack",
+      "kind": "subclass",
+      "owner": "Hunter",
+      "unlock": 11,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "Your mastery of the spear lets you make an additional attack when you use Multiattack, and you learn a new way to use your Hunter's Prey, gaining a bonus against your prey."
+        }
+      ],
+      "summary": "An extra attack with Multiattack, and a new prey benefit",
+      "text": "Your mastery of the spear lets you make an additional attack when you use Multiattack.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Ranger Hunter 11"
+      }
+    },
+    {
+      "id": "subclass.hunter.superior_hunters_defense",
+      "name": "Superior Hunter's Defense",
+      "kind": "subclass",
+      "owner": "Hunter",
+      "unlock": 15,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You gain a variety of benefits that depend on your Defensive Tactics: Escape the Horde lets allies within 5 feet share your benefit, Multiattack Defense makes attacks adjacent to you have disadvantage, and Spelunker gives you its benefits even on the surface. At 17th level, if you used Multiattack Defense, the next attack against you also has disadvantage."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 17,
+          "effects": [
+            {
+              "kind": "special",
+              "note": "If you used Multiattack Defense, the next attack against you has disadvantage as well."
+            }
+          ]
+        }
+      ],
+      "summary": "Your Defensive Tactics also protect nearby allies",
+      "text": "You gain a variety of benefits that depend on your Defensive Tactics. Escape the Horde lets allies within 5 feet of you share your benefit.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Ranger Hunter 15"
+      }
+    },
+    {
+      "id": "subclass.monster_slayer.hunters_sense",
+      "name": "Hunter's Sense",
+      "kind": "subclass",
+      "owner": "Monster Slayer",
+      "unlock": 3,
+      "activation": "action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have developed the ability to hone in on the weaknesses of your prey. Using your action, you make a Wisdom check, and on a success you learn a special vulnerability or resistance for that creature, plus any immunity it has, until you use this again. A creature has one of these vulnerabilities or resistances for each of your Wisdom-save-related features."
+        }
+      ],
+      "summary": "Once a long rest, a Wis check reveals a creature's weakness",
+      "text": "Using your action, you make a Wisdom check, and on a success you learn a special vulnerability or resistance for that creature.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Ranger Monster Slayer 3"
+      }
+    },
+    {
+      "id": "subclass.monster_slayer.slayers_prey",
+      "name": "Slayer's Prey",
+      "kind": "subclass",
+      "owner": "Monster Slayer",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "choice",
+          "of": "hunter_prey_type",
+          "count": 1,
+          "note": "You choose a type of creature to hunt. You gain Colossus Slayer on beasts and Giant Killer on giants, and the other types get bespoke benefits."
+        }
+      ],
+      "summary": "Choose a prey type and gain a bonus against it",
+      "text": "You choose a type of creature to hunt. You gain Colossus Slayer on beasts and Giant Killer on giants.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Ranger Monster Slayer 3"
+      }
+    },
+    {
+      "id": "subclass.monster_slayer.supernatural_defense",
+      "name": "Supernatural Defense",
+      "kind": "subclass",
+      "owner": "Monster Slayer",
+      "unlock": 7,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "choice",
+          "of": "defensive_tactic",
+          "count": 1,
+          "note": "Choose one of Escape the Horde, Pangu and the Zealot. Escape the Horde shares your defensive benefit, Pangu and the Zealot protects allies with your own resistances."
+        }
+      ],
+      "summary": "Choose a defensive tactic of your own",
+      "text": "You have developed one of the following defensive tactics, which you can use any time you make an ability check or saving throw while using the Defense action.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Ranger Monster Slayer 7"
+      }
+    },
+    {
+      "id": "subclass.monster_slayer.magic_users_nemesis",
+      "name": "Magic-User's Nemesis",
+      "kind": "subclass",
+      "owner": "Monster Slayer",
+      "unlock": 11,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "Your mastery of the spear lets you make an additional attack when you use Multiattack, and when you attack your prey, you learn a new way to use your Slayer's Prey."
+        }
+      ],
+      "summary": "An extra attack with Multiattack, and a new prey benefit",
+      "text": "Your mastery of the spear lets you make an additional attack when you use Multiattack.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Ranger Monster Slayer 11"
+      }
+    },
+    {
+      "id": "subclass.monster_slayer.slayers_counter",
+      "name": "Slayer's Counter",
+      "kind": "subclass",
+      "owner": "Monster Slayer",
+      "unlock": 15,
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "self_hit_by_attack"
+      },
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 10,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "This feature is reserved for the worthy, and when a creature within 10 feet of you that you can see hits you with an attack, you can use your reaction to make one melee attack against that creature. If you use Hunter's Sense, Slayer's Prey or Magic-User's Nemesis in the same turn, you gain additional uses, and at 17th level the attack is against a different creature."
+        }
+      ],
+      "summary": "Reaction: hit an attacker who hit you",
+      "text": "When a creature within 10 feet of you that you can see hits you with an attack, you can use your reaction to make one melee attack against that creature.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Ranger Monster Slayer 15"
+      }
+    },
+    {
+      "id": "subclass.swarmkeeper.swarmkeeper_magic",
+      "name": "Swarmkeeper Magic",
+      "kind": "subclass",
+      "owner": "Swarmkeeper",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "cantrip": {
+            "known": true
+          },
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "druid"
+              ]
+            }
+          ],
+          "note": "You know the druidcraft cantrip, castable at will without a slot, and you know one first-level druid spell, castable without a slot. At 6th and 14th level you learn another cantrip or spell of that level."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 6
+        },
+        {
+          "at": 14
+        }
+      ],
+      "summary": "Druidcraft at will, plus a free 1st-level druid spell",
+      "text": "You know the druidcraft cantrip, which you can cast at will without a spell slot, and you know one first-level druid spell.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Swarmkeeper 3"
+      }
+    },
+    {
+      "id": "subclass.swarmkeeper.gathered_swarm",
+      "name": "Gathered Swarm",
+      "kind": "subclass",
+      "owner": "Swarmkeeper",
+      "unlock": 3,
+      "activation": "reaction",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": {
+        "event": "self_hit_by_attack",
+        "at": "reduced_to_0_hp"
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "summon",
+          "features": [],
+          "formId": "gathered_swarm_object",
+          "initiative": "separate",
+          "hasOwnTurn": true,
+          "control": "ally",
+          "duration": {
+            "value": 1,
+            "unit": "hour"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "Your people think you draw your magic from the Skirmisher's endless warriors. When you are reduced to 0 hit points but not killed outright, you can use your reaction to summon a Large swarm of tiny insectile creatures that takes its turn immediately, and it vanishes at the end of your next turn. At 11th level it has 20 hit points, and at 17th it can be summoned once per turn."
+        }
+      ],
+      "summary": "At 0 HP, summon a swarm that acts immediately",
+      "text": "When you are reduced to 0 hit points but are not killed outright, you can use your reaction to summon a Large swarm of tiny insectile creatures.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Swarmkeeper 3"
+      }
+    },
+    {
+      "id": "subclass.swarmkeeper.writhing_tide",
+      "name": "Writhing Tide",
+      "kind": "subclass",
+      "owner": "Swarmkeeper",
+      "unlock": 7,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "When a creature within 10 feet of you takes damage from one of your attacks, a swarm of spectral wasps appears on its body, and that creature is frightened and has disadvantage on attack rolls for the first turn after you do this to it. At 15th level, a creature can also be poisoned by your swarm, taking 3d6 poison damage on a failed save."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 15,
+          "effects": [
+            {
+              "kind": "damage",
+              "dice": {
+                "dice": "3d6",
+                "bonusFrom": "none"
+              },
+              "damageType": "poison",
+              "resolution": {
+                "mode": "save",
+                "ability": "con",
+                "onSuccess": "none",
+                "onFailure": "full"
+              }
+            },
+            {
+              "kind": "special",
+              "note": "The creature is frightened, has disadvantage on attack rolls, and on a failed save takes 3d6 poison damage."
+            }
+          ]
+        }
+      ],
+      "summary": "Your attacks frighten nearby creatures and swarm them",
+      "text": "When a creature within 10 feet of you takes damage from one of your attacks, a swarm of spectral wasps appears on its body, and that creature is frightened.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Swarmkeeper 7"
+      }
+    },
+    {
+      "id": "subclass.swarmkeeper.mighty_swarm",
+      "name": "Mighty Swarm",
+      "kind": "subclass",
+      "owner": "Swarmkeeper",
+      "unlock": 11,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "Your swarm gains a life of its own. The swarm has 20 hit points and 12 AC, and at 11th level it is a Large or smaller creature instead of Tiny. At 17th level it is a swarm with a Challenge Rating of 2, and creatures within 5 feet of it have disadvantage on attack rolls."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 17,
+          "effects": [
+            {
+              "kind": "special",
+              "note": "The swarm's Challenge Rating is 2, and creatures within 5 feet of it have disadvantage on attack rolls."
+            }
+          ]
+        }
+      ],
+      "summary": "The swarm becomes a real creature with its own hit points",
+      "text": "The swarm has 20 hit points and an Armor Class of 12.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Swarmkeeper 11"
+      }
+    },
+    {
+      "id": "subclass.swarmkeeper.swarming_dispersal",
+      "name": "Swarming Dispersal",
+      "kind": "subclass",
+      "owner": "Swarmkeeper",
+      "unlock": 15,
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "self_damaged"
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "control",
+          "action": "push",
+          "distance": {
+            "value": 30,
+            "unit": "ft"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "Your swarm's great strength is the ability to swarm a creature, and when you are hit by an attack, you and your swarm can teleport up to 30 feet as a reaction, and a creature within 5 feet of your swarm must succeed on a Constitution save or be pushed 5 feet and frightened until the end of your next turn. You gain the use of this when you finish a long rest."
+        }
+      ],
+      "summary": "Reaction: teleport 30 ft and push an adjacent creature",
+      "text": "When you are hit by an attack, you and your swarm can teleport up to 30 feet as a reaction.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Swarmkeeper 15"
+      }
+    }
+  ]
+}

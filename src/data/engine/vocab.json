@@ -426,6 +426,9 @@
     "favored_enemy_type",
     "favored_terrain",
     "spell_list",
-    "totem_type"
+    "totem_type",
+    "companion_animal",
+    "hunter_prey_type",
+    "defensive_tactic"
   ]
 }

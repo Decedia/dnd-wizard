@@ -119,6 +119,11 @@
       "id": "ranger_class",
       "name": "Is a Ranger",
       "note": "Class membership, for features that only apply to one class."
+    },
+    {
+      "id": "on_ethereal_plane",
+      "name": "On the Ethereal Plane",
+      "note": "Gates Planar Warrior and Ethereal Step."
     }
   ]
 }
