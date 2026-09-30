@@ -1,0 +1,538 @@
+{
+  "features": [
+    {
+      "id": "subclass.ancestral_guardian.ancestral_protectors",
+      "name": "Ancestral Protectors",
+      "kind": "subclass",
+      "owner": "Ancestral Guardian",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        { "kind": "summon", "features": ["subclass.ancestral_guardian.spirit_shield"], "formId": "spirit_guardian_ally", "initiative": "separate", "hasOwnTurn": true, "control": "ally", "duration": { "value": 1, "unit": "minute" } },
+        { "kind": "special", "note": "When you go into a rage, you can cause a Large spectral spirit from your ancestors' afterlife to appear as a ghostly ally within your reach. The spirit lasts for the duration of your rage, cannot be harmed, is immune to being charmed, frightened, paralyzed, or knocked unconscious, and can occupy the space of another creature you can see. At 6th level the spirit also has resistance against nonmagical weapons, and at 10th it gains its own actions." }
+      ],
+      "tiers": [
+        { "at": 6, "effects": [{ "kind": "summon", "features": ["subclass.ancestral_guardian.spirit_shield"], "formId": "spirit_guardian_ally", "initiative": "separate", "hasOwnTurn": true, "control": "ally", "duration": { "value": 1, "unit": "minute" } }, { "kind": "special", "note": "The spirit also has resistance against nonmagical weapons." }] },
+        { "at": 10, "effects": [{ "kind": "summon", "features": ["subclass.ancestral_guardian.spirit_shield"], "formId": "spirit_guardian_ally", "initiative": "separate", "hasOwnTurn": true, "control": "ally", "duration": { "value": 1, "unit": "minute" } }, { "kind": "special", "note": "The spirit gains its own actions: a spectral apparition's damage at 10th level, and it can be commanded to strike at 14th." }] }
+      ],
+      "summary": "A spectral ally appears for the duration of your rage",
+      "text": "When you go into a rage, you can cause a Large spectral spirit from your ancestors' afterlife to appear as a ghostly ally within your reach. The spirit lasts for the duration of your rage and is immune to being charmed, frightened, paralyzed, or knocked unconscious.",
+      "source": { "book": "PHB", "reference": "PHB Barbarian Ancestral Guardian 3" }
+    },
+    {
+      "id": "subclass.ancestral_guardian.spirit_shield",
+      "name": "Spirit Shield",
+      "kind": "subclass",
+      "owner": "Ancestral Guardian",
+      "unlock": 6,
+      "activation": "passive",
+      "effects": [
+        { "kind": "resistance", "damageTypes": ["bludgeoning", "piercing", "slashing"] },
+        { "kind": "special", "note": "You can use a bonus action to cause the spirit to move up to 30 feet to a space within your sight. If you do, the spirit's AC and hit points increase by 10 until you move the spirit again." }
+      ],
+      "summary": "Bonus action: move the spirit; it gains +10 AC and HP",
+      "text": "You can use a bonus action to cause the spirit to move up to 30 feet to a space within your sight. If you do, the spirit's AC and hit points increase by 10 until you move the spirit again.",
+      "source": { "book": "PHB", "reference": "PHB Barbarian Ancestral Guardian 6" }
+    },
+    {
+      "id": "subclass.ancestral_guardian.consult_the_spirits",
+      "name": "Consult the Spirits",
+      "kind": "subclass",
+      "owner": "Ancestral Guardian",
+      "unlock": 10,
+      "activation": "action",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "self" },
+      "duration": { "value": 1, "unit": "minute" },
+      "endsIf": [],
+      "effects": [
+        { "kind": "special", "note": "When you die, you can use your reaction to target an ally within 30 feet of you. Before you fall unconscious, the spirit appears in front of them, and they have advantage on all ability checks for the rest of the current turn, ending after one minute." }
+      ],
+      "summary": "When you fall, an ally gets advantage for one round",
+      "text": "When you die, you can use your reaction to target an ally within 30 feet of you. Before you fall unconscious, the spirit appears in front of them, and they have advantage on all ability checks for the rest of the current turn.",
+      "source": { "book": "PHB", "reference": "PHB Barbarian Ancestral Guardian 10" }
+    },
+    {
+      "id": "subclass.ancestral_guardian.vengeful_ancestors",
+      "name": "Vengeful Ancestors",
+      "kind": "subclass",
+      "owner": "Ancestral Guardian",
+      "unlock": 14,
+      "activation": "passive",
+      "effects": [
+        { "kind": "damage", "dice": { "dice": "2d6", "bonusFrom": "str" }, "damageType": "necrotic", "resolution": { "mode": "attack", "ability": "str", "reaches": ["melee weapon attack"] } },
+        { "kind": "condition", "action": "apply", "conditions": ["charmed"], "note": "The first time each turn that you hit a creature with a melee weapon attack while raging, you can impose disadvantage on that creature's attack rolls and deal an additional 2d6 necrotic damage." }
+      ],
+      "summary": "On a raging melee hit: 2d6 necrotic and disadvantage on its attacks",
+      "text": "The first time each turn that you hit a creature with a melee weapon attack while raging, you can impose disadvantage on that creature's attack rolls and deal an additional 2d6 necrotic damage.",
+      "source": { "book": "PHB", "reference": "PHB Barbarian Ancestral Guardian 14" }
+    },
+    {
+      "id": "subclass.berserker.frenzy",
+      "name": "Frenzy",
+      "kind": "subclass",
+      "owner": "Berserker",
+      "unlock": 3,
+      "activation": "bonus_action",
+      "trigger": { "event": "self_damaged", "note": "When you hit a creature with a melee weapon attack while raging." },
+      "targeting": { "scope": "self" },
+      "duration": null,
+      "endsIf": ["end_turn_without_attacking", "you_end_it"],
+      "gates": ["raging"],
+      "effects": [
+        { "kind": "stat_modifier", "stat": "damage_roll", "amount": 2, "duration": "while_active" },
+        { "kind": "special", "note": "When you hit a creature with a melee weapon attack while raging, you can use a bonus action for 1 minute to gain a +2 bonus to damage rolls with melee attacks that use Strength." }
+      ],
+      "summary": "While raging, +2 melee damage for a minute after hitting",
+      "text": "When you hit a creature with a melee weapon attack while raging, you can use a bonus action for 1 minute to gain a +2 bonus to damage rolls with melee attacks that use Strength.",
+      "source": { "book": "PHB", "reference": "PHB Barbarian Berserker 3" }
+    },
+    {
+      "id": "subclass.berserker.mindless_rage",
+      "name": "Mindless Rage",
+      "kind": "subclass",
+      "owner": "Berserker",
+      "unlock": 6,
+      "activation": "passive",
+      "gates": ["raging"],
+      "effects": [
+        { "kind": "condition_immunity", "conditions": ["charmed", "frightened"] }
+      ],
+      "summary": "Immune to charmed and frightened while raging",
+      "text": "You have immunity to the charmed condition while raging.",
+      "source": { "book": "PHB", "reference": "PHB Barbarian Berserker 6" }
+    },
+    {
+      "id": "subclass.berserker.intimidating_presence",
+      "name": "Intimidating Presence",
+      "kind": "subclass",
+      "owner": "Berserker",
+      "unlock": 10,
+      "activation": "bonus_action",
+      "limits": { "per": "turn", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "creature", "range": { "value": 30, "unit": "ft" } },
+      "duration": { "value": 1, "unit": "round" },
+      "endsIf": [],
+      "gates": ["raging"],
+      "effects": [
+        { "kind": "condition", "action": "apply", "conditions": ["frightened"] },
+        { "kind": "special", "note": "On your turn, you can frighten a creature that you can see within 30 feet of you by using your bonus action. On a successful check, the target is frightened until the end of your next turn." }
+      ],
+      "summary": "Bonus action: frighten a creature within 30 ft while raging",
+      "text": "On your turn, you can frighten a creature that you can see within 30 feet of you by using your bonus action. On a successful check, the target is frightened until the end of your next turn.",
+      "source": { "book": "PHB", "reference": "PHB Barbarian Berserker 10" }
+    },
+    {
+      "id": "subclass.berserker.retaliation",
+      "name": "Retaliation",
+      "kind": "subclass",
+      "owner": "Berserker",
+      "unlock": 14,
+      "activation": "reaction",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": { "event": "ally_damaged", "note": "When you or a creature you can see within 30 feet of you is hit by an attack while raging." },
+      "targeting": { "scope": "creature", "range": { "value": 5, "unit": "ft" } },
+      "duration": null,
+      "endsIf": [],
+      "gates": ["raging"],
+      "effects": [
+        { "kind": "damage", "dice": { "dice": "2d6", "bonusFrom": "str" }, "damageType": "bludgeoning", "resolution": { "mode": "attack", "ability": "str", "reaches": ["5 ft melee"] } },
+        { "kind": "special", "note": "When you or a creature you can see within 30 feet of you is hit by an attack while raging, you can use your reaction to make a melee weapon attack against the attacker. You regain the use of this after a long rest." }
+      ],
+      "summary": "Reaction: hit an attacker who hurts you or an ally, while raging",
+      "text": "When you or a creature you can see within 30 feet of you is hit by an attack while raging, you can use your reaction to make a melee weapon attack against the attacker.",
+      "source": { "book": "PHB", "reference": "PHB Barbarian Berserker 14" }
+    },
+    {
+      "id": "subclass.path_of_the_beast.form_of_the_beast",
+      "name": "Form of the Beast",
+      "kind": "subclass",
+      "owner": "Path of the Beast",
+      "unlock": 3,
+      "activation": "bonus_action",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "self" },
+      "duration": { "value": 1, "unit": "hour" },
+      "endsIf": ["incapacitated", "remove armor"],
+      "effects": [
+        { "kind": "condition", "action": "apply", "conditions": ["frightened"], "duration": { "value": 1, "unit": "round" } },
+        { "kind": "stat_modifier", "stat": "damage_roll", "amount": 0, "duration": "while_active" },
+        { "kind": "special", "note": "You can use a bonus action to assume a more bestial appearance, which lasts for 1 hour or until you are incapacitated or remove armor, and you gain a +1 bonus to Strength checks and Strength saving throws, a +2 bonus to damage rolls with melee weapon attacks, one of those attacks deals 1d6 extra psychic damage, and a creature within 5 feet that sees you is frightened until the end of your next turn." }
+      ],
+      "tiers": [
+        { "at": 6, "effects": [{ "kind": "condition", "action": "apply", "conditions": ["frightened"] }, { "kind": "special", "note": "The transformation lasts 1 hour or until you remove armor. At 6th level you can cast Detect Magic and other spells that act on a creature you can see." }] },
+        { "at": 10, "effects": [{ "kind": "condition", "action": "apply", "conditions": ["frightened"] }, { "kind": "stat_modifier", "stat": "damage_roll", "amount": 0, "duration": "while_active" }, { "kind": "special", "note": "While in this form, your weapon attacks deal an additional 1d6 necrotic damage and creatures have disadvantage on saves against your spells." }] },
+        { "at": 14, "effects": [{ "kind": "condition", "action": "apply", "conditions": ["frightened"] }, { "kind": "stat_modifier", "stat": "damage_roll", "amount": 0, "duration": "while_active" }, { "kind": "special", "note": "Your melee attacks deal an additional 2d6 necrotic damage." }] }
+      ],
+      "summary": "Bonus action, once a rest: a more bestial form for an hour",
+      "text": "You can use a bonus action to assume a more bestial appearance, which lasts for 1 hour or until you are incapacitated or remove armor.",
+      "source": { "book": "TCE", "reference": "Tasha's Cauldron Barbarian Path of the Beast 3" }
+    },
+    {
+      "id": "subclass.path_of_the_beast.bestial_soul",
+      "name": "Bestial Soul",
+      "kind": "subclass",
+      "owner": "Path of the Beast",
+      "unlock": 6,
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "While in your Form of the Beast, you can cast the Detect Magic spell without a material component. In addition, you can cast other spellcasting abilities, but they can only be cantrips whose casting time is 1 action." }
+      ],
+      "summary": "Detect Magic always; other spells as cantrips in beast form",
+      "text": "While in your Form of the Beast, you can cast the Detect Magic spell without a material component.",
+      "source": { "book": "TCE", "reference": "Tasha's Cauldron Barbarian Path of the Beast 6" }
+    },
+    {
+      "id": "subclass.path_of_the_beast.infectious_fury",
+      "name": "Infectious Fury",
+      "kind": "subclass",
+      "owner": "Path of the Beast",
+      "unlock": 10,
+      "activation": "passive",
+      "effects": [
+        { "kind": "stat_modifier", "stat": "spell_save_dc", "amount": 0, "duration": "permanent" },
+        { "kind": "special", "note": "While raging, any creature within 5 feet of you that makes a melee weapon attack against you has disadvantage on the attack roll." }
+      ],
+      "summary": "Adjacent attackers have disadvantage against you while raging",
+      "text": "While raging, any creature within 5 feet of you that makes a melee weapon attack against you has disadvantage on the attack roll.",
+      "source": { "book": "TCE", "reference": "Tasha's Cauldron Barbarian Path of the Beast 10" }
+    },
+    {
+      "id": "subclass.path_of_the_beast.call_the_hunt",
+      "name": "Call the Hunt",
+      "kind": "subclass",
+      "owner": "Path of the Beast",
+      "unlock": 14,
+      "activation": "passive",
+      "effects": [
+        { "kind": "control", "action": "push", "distance": { "value": 30, "unit": "ft" } },
+        { "kind": "special", "note": "The first time each turn that you hit a creature with a melee weapon attack while raging, you can push that creature up to 30 feet. At 17th level, you gain an additional benefit and your necrotic damage increases." }
+      ],
+      "tiers": [
+        { "at": 17, "effects": [{ "kind": "control", "action": "push", "distance": { "value": 30, "unit": "ft" } }, { "kind": "special", "note": "Your necrotic damage increases by 1d6." }] }
+      ],
+      "summary": "On a raging melee hit, push the target up to 30 ft",
+      "text": "The first time each turn that you hit a creature with a melee weapon attack while raging, you can push that creature up to 30 feet.",
+      "source": { "book": "TCE", "reference": "Tasha's Cauldron Barbarian Path of the Beast 14" }
+    },
+    {
+      "id": "subclass.path_of_wild_magic.magic_awareness",
+      "name": "Magic Awareness",
+      "kind": "subclass",
+      "owner": "Path of Wild Magic",
+      "unlock": 3,
+      "activation": "bonus_action",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": { "event": "self_damaged" },
+      "targeting": { "scope": "self" },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "special", "note": "When you are damaged by an attack, you can use your reaction to make an Arcana check, and if you succeed you know the spell and can see its area or effect. At 6th level this doesn't cost a reaction and doesn't require a check, and at 14th you can also use it for saving throws." }
+      ],
+      "tiers": [
+        { "at": 6, "effects": [{ "kind": "special", "note": "This no longer costs a reaction or requires an Arcana check." }] },
+        { "at": 14, "effects": [{ "kind": "special", "note": "You can also use this after failing a saving throw." }] }
+      ],
+      "summary": "Reaction after damage: identify the spell that hurt you",
+      "text": "When you are damaged by an attack, you can use your reaction to make an Arcana check, and if you succeed you know the spell and can see its area or effect.",
+      "source": { "book": "PHB", "reference": "PHB Barbarian Path of Wild Magic 3" }
+    },
+    {
+      "id": "subclass.path_of_wild_magic.wild_magic_surge",
+      "name": "Wild Magic Surge",
+      "kind": "subclass",
+      "owner": "Path of Wild Magic",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "Your magic is fueled by power beyond your own. When you cast a spell, you can expend a Wild Magic Surge and reroll the d20 determining the spell's effect. If the new roll is lower, it has no effect and you regain the surge." }
+      ],
+      "summary": "Reroll a spell's effect d20 at the cost of your surge",
+      "text": "Your magic is fueled by power beyond your own. When you cast a spell, you can expend a Wild Magic Surge and reroll the d20 determining the spell's effect.",
+      "source": { "book": "PHB", "reference": "PHB Barbarian Path of Wild Magic 3" }
+    },
+    {
+      "id": "subclass.path_of_wild_magic.bolstering_presence",
+      "name": "Bolstering Presence",
+      "kind": "subclass",
+      "owner": "Path of Wild Magic",
+      "unlock": 6,
+      "activation": "bonus_action",
+      "limits": { "per": "turn", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "allies", "range": { "value": 30, "unit": "ft" }, "count": 3 },
+      "duration": { "value": 1, "unit": "round" },
+      "endsIf": [],
+      "effects": [
+        { "kind": "stat_modifier", "stat": "attack_bonus_melee", "amount": 1, "duration": "while_active" },
+        { "kind": "special", "note": "On your turn, you can expend a Wild Magic Surge to give up to three willing creatures within 30 feet advantage on an attack roll of their choice. Instead of advantage, you can spend the surge to give a +3 bonus to a Charisma (Persuasion) or Charisma (Intimidation) check they make." }
+      ],
+      "summary": "Bonus action: up to three allies get advantage on a roll",
+      "text": "On your turn, you can expend a Wild Magic Surge to give up to three willing creatures within 30 feet advantage on an attack roll of their choice.",
+      "source": { "book": "PHB", "reference": "PHB Barbarian Path of Wild Magic 6" }
+    },
+    {
+      "id": "subclass.path_of_wild_magic.unstable_backlash",
+      "name": "Unstable Backlash",
+      "kind": "subclass",
+      "owner": "Path of Wild Magic",
+      "unlock": 10,
+      "activation": "passive",
+      "effects": [
+        { "kind": "damage", "dice": { "dice": "1", "flat": 1 }, "damageType": "force", "resolution": { "mode": "save", "ability": "con", "onSuccess": "none", "onFailure": "full" } },
+        { "kind": "special", "note": "When you roll a 8 or lower for a Wild Magic Surge's effect, you gain a backlash surge, which lets you reroll the triggering d20. If the new roll is also 8 or lower, you and each creature within 30 feet takes 1d10 force damage and must succeed on a Constitution save or be stunned." }
+      ],
+      "summary": "A reroll on a low surge; double failure deals 1d10 force and stuns",
+      "text": "When you roll an 8 or lower for a Wild Magic Surge's effect, you gain a backlash surge, which lets you reroll the triggering d20.",
+      "source": { "book": "PHB", "reference": "PHB Barbarian Path of Wild Magic 10" }
+    },
+    {
+      "id": "subclass.path_of_wild_magic.controlled_surge",
+      "name": "Controlled Surge",
+      "kind": "subclass",
+      "owner": "Path of Wild Magic",
+      "unlock": 14,
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "You have a number of Wild Magic Surges equal to twice your barbarian level, and you regain all expended surges when you finish a short or long rest. Unstable Backlash triggers at a 7 or lower instead of an 8 or lower." }
+      ],
+      "summary": "More surges; Backlash triggers on 7 or lower",
+      "text": "You have a number of Wild Magic Surges equal to twice your barbarian level, and you regain all expended surges when you finish a short or long rest.",
+      "source": { "book": "PHB", "reference": "PHB Barbarian Path of Wild Magic 14" }
+    },
+    {
+      "id": "subclass.storm_herald.storm_aura",
+      "name": "Storm Aura",
+      "kind": "subclass",
+      "owner": "Storm Herald",
+      "unlock": 3,
+      "activation": "bonus_action",
+      "limits": { "per": "turn", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "self" },
+      "duration": null,
+      "endsIf": [],
+      "gates": ["raging"],
+      "effects": [
+        { "kind": "resistance", "damageTypes": ["bludgeoning", "piercing", "slashing"] },
+        { "kind": "special", "note": "You have resistance to bludgeoning, piercing and slashing damage while raging. At 6th level the aura's radius is 10 feet, and at 10th level creatures in it have disadvantage on Dex saves; at 14th it deals 2d8 lightning damage once per turn to an adjacent creature." }
+      ],
+      "tiers": [
+        { "at": 6, "effects": [{ "kind": "resistance", "damageTypes": ["bludgeoning", "piercing", "slashing"] }, { "kind": "special", "note": "The aura's radius is 10 feet." }] },
+        { "at": 10, "effects": [{ "kind": "resistance", "damageTypes": ["bludgeoning", "piercing", "slashing"] }, { "kind": "special", "note": "Creatures within the aura have disadvantage on Dexterity saving throws." }] },
+        { "at": 14, "effects": [{ "kind": "resistance", "damageTypes": ["bludgeoning", "piercing", "slashing"] }, { "kind": "damage", "dice": { "dice": "2d8", "bonusFrom": "none" }, "damageType": "lightning", "resolution": { "mode": "auto" } }, { "kind": "special", "note": "You can use a bonus action to deal 2d8 lightning damage to a creature within the aura." }] }
+      ],
+      "summary": "While raging, 10-foot aura grants physical resistance",
+      "text": "You have resistance to bludgeoning, piercing, and slashing damage while raging.",
+      "source": { "book": "PHB", "reference": "PHB Barbarian Storm Herald 3" }
+    },
+    {
+      "id": "subclass.storm_herald.storm_soul",
+      "name": "Storm Soul",
+      "kind": "subclass",
+      "owner": "Storm Herald",
+      "unlock": 6,
+      "activation": "reaction",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": { "event": "save_failed" },
+      "targeting": { "scope": "self" },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "special", "note": "When you are failing a saving throw, you can use your reaction to succeed instead. You can use this reaction twice, but only before 10th level, once before 15th, and at any number of times after." }
+      ],
+      "summary": "Reaction: succeed on a save, a limited number of times",
+      "text": "When you are failing a saving throw, you can use your reaction to succeed instead. You can use this reaction twice, but only before 10th level.",
+      "source": { "book": "PHB", "reference": "PHB Barbarian Storm Herald 6" }
+    },
+    {
+      "id": "subclass.storm_herald.shielding_storm",
+      "name": "Shielding Storm",
+      "kind": "subclass",
+      "owner": "Storm Herald",
+      "unlock": 10,
+      "activation": "bonus_action",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "self" },
+      "duration": { "value": 1, "unit": "minute" },
+      "endsIf": [],
+      "effects": [
+        { "kind": "special", "note": "You can use a bonus action to surround yourself with lightning for 1 minute, adding +2 to your AC, immunity to magical ranged attacks, and resistance against all damage except lightning." }
+      ],
+      "summary": "Bonus action, once a rest: a lightning shell for a minute",
+      "text": "You can use a bonus action to surround yourself with lightning for 1 minute, adding +2 to your AC, immunity to magical ranged attacks, and resistance against all damage except lightning.",
+      "source": { "book": "PHB", "reference": "PHB Barbarian Storm Herald 10" }
+    },
+    {
+      "id": "subclass.storm_herald.raging_storm",
+      "name": "Raging Storm",
+      "kind": "subclass",
+      "owner": "Storm Herald",
+      "unlock": 14,
+      "activation": "reaction",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": { "event": "self_hit_by_attack", "note": "When you are hit by an attack while raging." },
+      "targeting": { "scope": "creature", "range": { "value": 5, "unit": "ft" } },
+      "duration": null,
+      "endsIf": [],
+      "gates": ["raging"],
+      "effects": [
+        { "kind": "damage", "dice": { "dice": "2d8", "bonusFrom": "none" }, "damageType": "lightning", "resolution": { "mode": "attack", "ability": "str", "reaches": ["5 ft melee"] } },
+        { "kind": "special", "note": "When you are hit by an attack while raging, you can use your reaction to make a melee weapon attack against the attacker, dealing 2d8 lightning damage. At 18th level, you can use this before and after taking the Attack action." }
+      ],
+      "tiers": [
+        { "at": 18, "effects": [{ "kind": "damage", "dice": { "dice": "2d8", "bonusFrom": "none" }, "damageType": "lightning", "resolution": { "mode": "attack", "ability": "str", "reaches": ["5 ft melee"] } }, { "kind": "special", "note": "You can use this before and after taking the Attack action on your turn." }] }
+      ],
+      "summary": "Reaction: lightning hit an attacker who hit you, while raging",
+      "text": "When you are hit by an attack while raging, you can use your reaction to make a melee weapon attack against the attacker, dealing 2d8 lightning damage.",
+      "source": { "book": "PHB", "reference": "PHB Barbarian Storm Herald 14" }
+    },
+    {
+      "id": "subclass.totem_warrior.spirit_seeker",
+      "name": "Spirit Seeker",
+      "kind": "subclass",
+      "owner": "Totem Warrior",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        { "kind": "spell_grant", "cantrip": { "known": true }, "spells": [{ "level": 1, "from": ["druid"] }], "note": "You learn two totems that are among your tribe's totems, and each totem is a spirit creature of your type that confers a benefit, described below. You gain proficiency with the totem's saving throw. At 6th level one totem gains an additional benefit, at 14th another does." }
+      ],
+      "summary": "Choose two totems, each granting a benefit",
+      "text": "You learn two totems that are among your tribe's totems. Each totem is a spirit creature of your type that confers a benefit.",
+      "source": { "book": "PHB", "reference": "PHB Barbarian Totem Warrior 3" }
+    },
+    {
+      "id": "subclass.totem_warrior.totem_spirit",
+      "name": "Totem Spirit",
+      "kind": "subclass",
+      "owner": "Totem Warrior",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        { "kind": "choice", "of": "totem_type", "count": 1, "note": "Your totem spirit is an animal. The bear, elk and wolf totems grant Pass the Bear, the elk totem grants elk totem benefits and the wolf totem grants wolf totem benefits." }
+      ],
+      "summary": "Choose your totem type: bear, elk or wolf",
+      "text": "Your totem spirit is an animal. Each type of totem grants a different benefit.",
+      "source": { "book": "PHB", "reference": "PHB Barbarian Totem Warrior 3" }
+    },
+    {
+      "id": "subclass.totem_warrior.aspect_of_the_beast",
+      "name": "Aspect of the Beast",
+      "kind": "subclass",
+      "owner": "Totem Warrior",
+      "unlock": 6,
+      "activation": "passive",
+      "effects": [
+        { "kind": "extra_attacks", "count": 0, "note": "You gain the benefit listed for your totem spirit. The elk totem, for example, lets you move 10 feet as a bonus action and move through the space of a creature one size larger than you." }
+      ],
+      "summary": "Your totem's benefit becomes active",
+      "text": "You gain the benefit listed for your totem spirit. The elk totem, for example, lets you move 10 feet as a bonus action.",
+      "source": { "book": "PHB", "reference": "PHB Barbarian Totem Warrior 6" }
+    },
+    {
+      "id": "subclass.totem_warrior.spirit_walker",
+      "name": "Spirit Walker",
+      "kind": "subclass",
+      "owner": "Totem Warrior",
+      "unlock": 10,
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "When you cast a spell with a casting time of 1 minute, you can cast it as a bonus action. You also have resistance to all damage except psychic damage, and your Primal Path feature works while in the Arctic, Underdark, and Water environments." }
+      ],
+      "summary": "Cast 1-minute spells as a bonus action; damage resistance",
+      "text": "When you cast a spell with a casting time of 1 minute, you can cast it as a bonus action.",
+      "source": { "book": "PHB", "reference": "PHB Barbarian Totem Warrior 10" }
+    },
+    {
+      "id": "subclass.totem_warrior.totemic_attunement",
+      "name": "Totemic Attunement",
+      "kind": "subclass",
+      "owner": "Totem Warrior",
+      "unlock": 14,
+      "activation": "passive",
+      "effects": [
+        { "kind": "skill", "skills": ["Athletics"], "proficiency": "expertise" },
+        { "kind": "special", "note": "When you cast a spell, you can spend 1 spell slot and choose your action to replace it with a Totem Spirit's action." }
+      ],
+      "summary": "Expertise in Athletics; spell slots buy totem actions",
+      "text": "Your totems grant you access to spellcasting, and you can spend spell slots to use a Totem Spirit's action.",
+      "source": { "book": "PHB", "reference": "PHB Barbarian Totem Warrior 14" }
+    },
+    {
+      "id": "subclass.zealot.divine_fury",
+      "name": "Divine Fury",
+      "kind": "subclass",
+      "owner": "Zealot",
+      "unlock": 3,
+      "activation": "bonus_action",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": { "event": "self_hit_by_attack", "note": "When you are hit by an attack while raging." },
+      "targeting": { "scope": "self" },
+      "duration": null,
+      "endsIf": [],
+      "gates": ["raging"],
+      "effects": [
+        { "kind": "temp_hp", "dice": { "dice": "2", "flat": 0 }, "note": "The first time you hit a creature with a melee weapon attack on each of your turns, you can use your bonus action to gain temporary hit points equal to your Constitution modifier plus your Charisma modifier, or 3d8 plus your Charisma modifier. At 10th level you can cast one spell of any level without material components." }
+      ],
+      "tiers": [
+        { "at": 10, "effects": [{ "kind": "temp_hp", "dice": { "dice": "3d8", "bonusFrom": "cha" }, "note": "You can cast a spell as a bonus action without material components." }] }
+      ],
+      "summary": "On a raging hit, a bonus action gives you temp HP",
+      "text": "The first time you hit a creature with a melee weapon attack on each of your turns, you can use your bonus action to gain temporary hit points equal to your Constitution modifier plus your Charisma modifier.",
+      "source": { "book": "PHB", "reference": "PHB Barbarian Zealot 3" }
+    },
+    {
+      "id": "subclass.zealot.warrior_of_the_gods",
+      "name": "Warrior of the Gods",
+      "kind": "subclass",
+      "owner": "Zealot",
+      "unlock": 6,
+      "activation": "reaction",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": { "event": "self_hit_by_attack" },
+      "targeting": { "scope": "creature", "range": { "value": 60, "unit": "ft" } },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "damage", "dice": { "dice": "2d6", "bonusFrom": "str" }, "damageType": "radiant", "resolution": { "mode": "attack", "ability": "str", "reaches": ["5 ft melee"] } },
+        { "kind": "special", "note": "When a creature you can see within 60 feet of you hit you with an attack, you can use your reaction to make a melee weapon attack against it. You regain the use of this after a long rest." }
+      ],
+      "summary": "Reaction: hit an attacker who hit you",
+      "text": "When a creature you can see within 60 feet of you hits you with an attack, you can use your reaction to make a melee weapon attack against it.",
+      "source": { "book": "PHB", "reference": "PHB Barbarian Zealot 6" }
+    },
+    {
+      "id": "subclass.zealot.fanatical_focus",
+      "name": "Fanatical Focus",
+      "kind": "subclass",
+      "owner": "Zealot",
+      "unlock": 10,
+      "activation": "passive",
+      "effects": [
+        { "kind": "spell_grant", "spells": [{ "level": 1, "from": ["cleric"] }], "note": "You can cast cleric spells without material components, and you gain a cleric cantrip that you can cast without a spell slot. You also learn an additional cleric spell at each of levels 3, 5, 7, and 9." }
+      ],
+      "summary": "Cleric cantrip and spells, no material components",
+      "text": "Your spells are inscribed on your skin, and you can cast cleric spells without material components.",
+      "source": { "book": "PHB", "reference": "PHB Barbarian Zealot 10" }
+    },
+    {
+      "id": "subclass.zealot.zealous_presence",
+      "name": "Zealous Presence",
+      "kind": "subclass",
+      "owner": "Zealot",
+      "unlock": 14,
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "When you enter rage, your allies within 30 feet that can see you gain temporary hit points equal to 1d8 plus your Charisma modifier, and it has the following effects: allies within 10 feet have advantage on saving throws against being frightened, and a creature of your choice within 60 feet regains 1d8 plus your Charisma modifier hit points and has its fear of you suppressed for 1 minute." }
+      ],
+      "summary": "On raging, allies nearby gain temp HP and resist fear",
+      "text": "When you enter rage, your allies within 30 feet that can see you gain temporary hit points equal to 1d8 plus your Charisma modifier.",
+      "source": { "book": "PHB", "reference": "PHB Barbarian Zealot 14" }
+    }
+  ]
+}

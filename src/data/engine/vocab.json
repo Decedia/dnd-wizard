@@ -425,6 +425,7 @@
     "musical_instrument",
     "favored_enemy_type",
     "favored_terrain",
-    "spell_list"
+    "spell_list",
+    "totem_type"
   ]
 }

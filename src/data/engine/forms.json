@@ -187,6 +187,42 @@
         "cha": 1
       },
       "note": "A magical construct crafted in 1 hour and 500 gp after a long rest. It acts on its own turn in combat, can make Arcane Jolt as a bonus action, is commanded by bonus action, and ends after 1 hour, three attacks, or if you take exhaustion. Tasha's Cauldron p. 49."
+    },
+    {
+      "id": "spirit_guardian_ally",
+      "name": "Ancestral Guardian Spirit",
+      "cr": "equal to your barbarian level",
+      "creatureType": "spectral creature",
+      "size": "Large",
+      "ac": "15 (plus 10 during Spirit Shield)",
+      "hp": "equal to half your barbarian level",
+      "speed": "0 ft., fly 40 ft. (hover)",
+      "conditionImmunities": [
+        "charmed",
+        "frightened",
+        "paralyzed",
+        "stunned",
+        "exhaustion",
+        "grappled",
+        "petrified",
+        "prone",
+        "restrained",
+        "unconscious"
+      ],
+      "damageImmunities": [
+        "acid",
+        "cold",
+        "fire",
+        "lightning",
+        "thunder",
+        "bludgeoning",
+        "piercing",
+        "slashing"
+      ],
+      "grantedAt": [
+        "ancestral_guardian:3"
+      ],
+      "note": "A Large spectral spirit of your ancestors' afterlife, appearing for the duration of your rage and acting on its own turn. Cannot be targeted by attacks, spells, or other means of perception or harm. PHB Barbarian Ancestral Guardian 3."
     }
   ]
 }
