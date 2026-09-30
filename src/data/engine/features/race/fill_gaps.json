@@ -1,6 +1,17 @@
 {
   "features": [
     {
+      "id": "race.autonyme.darkvision",
+      "name": "Darkvision",
+      "kind": "race",
+      "owner": "Autonyme",
+      "activation": "passive",
+      "effects": [{ "kind": "senses", "sense": "darkvision" }],
+      "summary": "See in dim light within 60 feet as if it were bright light",
+      "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
+      "source": { "book": "ERLW", "reference": "Eberron Autonyme" }
+    },
+    {
       "id": "race.orc.darkvision",
       "name": "Darkvision",
       "kind": "race",

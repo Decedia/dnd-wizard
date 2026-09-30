@@ -223,7 +223,13 @@
       "id": "autonyme",
       "name": "Autonyme",
       "book": "ERLW",
-      "page": 22
+      "page": 22,
+      "alsoCalled": [
+        "Autognom",
+        "Automne",
+        "Autognome"
+      ],
+      "note": "The app data spells this race \"Autognome\", which is not a word. The rules spell it Autonyme. Every spelling the app data has used is listed in alsoCalled so the inventory check can still resolve the old entry."
     },
     {
       "id": "plasmoid",
@@ -397,7 +403,11 @@
       "name": "Svirfneblin",
       "book": "MotM",
       "page": 17,
-      "note": "A duergar offshoot, not a gnome variant, and not a playable gnome subrace in 5e."
+      "note": "A duergar offshoot, not a gnome variant, and not a playable gnome subrace in 5e.",
+      "alsoCalled": [
+        "Deep Gnome",
+        "Deep Gnome (Svirfneblin)"
+      ]
     },
     {
       "id": "orc",

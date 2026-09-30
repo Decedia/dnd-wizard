@@ -65,17 +65,55 @@ for (const s of subclasses) {
     inventory.push({ group: "subclass", owner: s.name, name: f.name, level: f.level ?? null, key: `subclass.${slug(s.name)}.${slug(baseName(f.name))}` });
   }
 }
+// A feat is identified by its name, not its sourcebook: the old data lists Alert
+// three times (PHB, TCE, VRGR) and Bountiful Luck four times, all the same feat.
+// The engine holds one Alert, so the inventory must too - otherwise 146 rows
+// read as 146 feats when there are 79.
+const unregisteredRaces = [];
+
+const featSeen = new Set();
 for (const f of feats) {
-  inventory.push({ group: "feat", owner: "Feat", name: f.name, level: null, key: `feat.${slug(f.name)}` });
+  const key = `feat.${slug(baseName(f.name))}`;
+  if (featSeen.has(key)) continue;
+  featSeen.add(key);
+  inventory.push({ group: "feat", owner: "Feat", name: f.name, level: null, key, books: typeof f.source === "string" ? [f.source] : ["unresolved"] });
 }
+const racesDoc = read(path.join(ROOT, "src", "data", "engine", "races.json"));
+
+/**
+ * Maps a normalised race name to its engine key prefix, for both the base race
+ * and each variant, under either of the two forms the old data uses:
+ * "Dragonborn (Metallic)" and "Hill Dwarf". Resolving through the registry rather
+ * than by string surgery is what keeps a variant from reading as a missing race.
+ */
+const raceKeyOf = (() => {
+  const byName = new Map();
+  for (const race of racesDoc?.races ?? []) {
+    byName.set(slug(race.name), `race.${slug(race.name)}`);
+    // The registry may record an older or alternative name for a race.
+    for (const alias of race.alsoCalled ?? []) byName.set(slug(alias), `race.${slug(race.name)}`);
+    for (const v of race.variants ?? []) {
+      // Register both "Dwarf mountain" and "Mountain Dwarf" spellings.
+      byName.set(slug(`${v.name} ${race.name}`), `race.${slug(race.name)}.${slug(v.id)}`);
+      byName.set(slug(v.name), `race.${slug(race.name)}.${slug(v.id)}`);
+    }
+  }
+  return (name) => {
+    const direct = byName.get(slug(name));
+    if (direct) return direct;
+    const paren = /^(.*?)\s*\((.+)\)\s*$/.exec(name);
+    if (paren) return byName.get(slug(paren[1])) ? `${byName.get(slug(paren[1]))}.${slug(paren[2])}` : null;
+    return null;
+  };
+})();
+
 for (const r of races) {
-  // The old data spells a variant into the race name, "Dragonborn (Metallic)",
-  // while the engine models it as owner + variant, so the variant is split back
-  // out here. Without this every variant trait reads as missing.
-  const variantMatch = /^(.*?)\s*\((.+)\)\s*$/.exec(r.name);
-  const raceKey = variantMatch ? `${slug(variantMatch[1])}.${slug(variantMatch[2])}` : slug(r.name);
+  const prefix = raceKeyOf(r.name);
+  if (!prefix) {
+    unregisteredRaces.push(r.name);
+  }
   for (const t of r.traits ?? []) {
-    inventory.push({ group: "race", owner: r.name, name: t.name, level: null, key: `race.${raceKey}.${slug(baseName(t.name))}` });
+    inventory.push({ group: "race", owner: r.name, name: t.name, level: null, key: `${prefix ?? `race.${slug(r.name)}`}.${slug(baseName(t.name))}` });
   }
 }
 
@@ -109,6 +147,19 @@ const ALIASES = {
   "subclass.land.druid_circle_feature": "the subclass choice itself, not a feature",
 };
 
+// Old race entries whose name does not map to a registry key, and old trait
+// names the rules spell differently.
+const RACE_ALIASES = {
+  "race.deep_gnome.svirfneblin.darkvision": "registry names this race Svirfneblin",
+  "race.deep_gnome.svirfneblin.stone_camouflage": "registry names this race Svirfneblin",
+  "race.deep_gnome.svirfneblin.svirfneblin_magic": "registry names this race Svirfneblin",
+  "race.eladrin.elf.darkvision": "Eladrin is its own race, not an elf variant",
+  "race.eladrin.elf.fey_ancestry": "Eladrin is its own race, not an elf variant",
+  "race.eladrin.elf.trance": "Eladrin is its own race, not an elf variant",
+  "race.changeling.shapechanger": "the rules spell it Shapeshifter",
+  "race.half_elf.high_elf_variant.darkvision": "a half-elf takes one elf variant; see variantFrom",
+};
+
 // Rows like "Path feature" or "Divine Domain feature" are the subclass choice
 // itself, not a feature - the real content belongs to each subclass entry. They
 // are matched by pattern so 37 placeholders do not need 37 aliases, and each
@@ -116,16 +167,119 @@ const ALIASES = {
 const SUBCLASS_PLACEHOLDER =
   /^(path|bard college|divine domain|druid circle|martial archetype|monastic tradition|roguish archetype|sorcerous origin|otherworldly patron|arcane tradition|artificer specialist)\s+feature$|^primal path$|^path feature$/i;
 
+/**
+ * Traits the old data has that do not exist in 2014 rules, deliberately dropped
+ * rather than authored. Listed with the reason so the omission is on the record
+ * instead of looking like a gap that was overlooked.
+ */
+const LEGACY_TRAITS = new Map(Object.entries({
+  gnome_cunning: "3e/4e",
+  keen_senses: "3e/4e",
+  dwarven_resilience: "3e/4e",
+  dwarven_combat_training: "Tasha's, not PHB",
+  dwarven_armor_training: "Tasha's, not PHB",
+  long_limbed: "3e/4e",
+  powerful_build: "3e/4e build, replaced by Stonecunning",
+  sneaky: "3e/4e",
+  surprise_attack: "3e/4e",
+  nimble_escape: "legacy goblin, folded into Goblin Cunning",
+  fury_of_the_small: "3e/4e",
+  grovel_cower_and_beg: "3e/4e, split into Grovel",
+  hidden_step: "legacy Firbolg, not in Volo",
+  speech_of_beast_and_leaf: "3e/4e",
+  deathless_nature: "legacy",
+  spider_climb: "legacy Dhampir, not in VgtM",
+  duplicity: "legacy Changeling",
+  fey_step: "legacy Eladrin",
+  flying_speed: "a speed, not a trait; Aarakocra has Wings of the Sky",
+  githyanki_psionics: "3e psionics",
+  githzerai_psionics: "3e psionics",
+  thri_kreen_psionics: "3e psionics",
+  decadent_mastery: "3e/4e gith",
+  mental_discipline: "3e/4e gith",
+  psionic_mind: "3e/4e",
+  hex_magic: "legacy Hexblood",
+  eerie_token: "legacy Hexblood",
+  infernal_legacy: "misnamed Infernal Constitution",
+  stout_resilience: "Tasha's, not PHB",
+  silent_speech: "3e/4e",
+  naturally_stealthy: "misnamed Naturally Sneaky",
+  martial_training: "renamed Martial Advantage",
+  saving_face: "renamed Martial Advantage",
+  cunning_artisan: "Tasha's, not Volo",
+  control_air_and_water: "Tasha's, not Volo",
+  emissary_of_the_sea: "Tasha's, not Volo",
+  guardians_of_the_depths: "Tasha's, not Volo",
+  expert_forgery: "Tasha's, not Volo",
+  innate_spellcasting: "renamed Pureblood Magic",
+  knowledge_from_a_past_life: "legacy Reborn",
+  reborn_resilience: "legacy Reborn",
+  vampiric_bite: "legacy Dhampir, not in VgtM",
+  drow_heritage: "4e subrace heritage",
+  high_elf_heritage: "4e subrace heritage",
+  wood_elf_heritage: "4e subrace heritage",
+  moon_elf_heritage: "4e subrace heritage",
+  sun_elf_heritage: "4e subrace heritage",
+  sea_elf_heritage: "4e subrace heritage",
+  shadar_kai_heritage: "4e subrace heritage",
+  eladrin_heritage: "4e subrace heritage",
+  aarakocra_darkvision: "2014 Aarakocra has no darkvision; it has flight",
+  human: "placeholder trait; 2014 Human has no racial traits, see Versatile",
+  kenku_training: "3e/4e Kenku",
+  mimicry: "3e/4e Kenku",
+  fey: "legacy Hexblood",
+  eladrin_season: "renamed Seasonal Magic",
+  shape_yourself: "not a Volo Plasmoid trait",
+  plasmatic_resistance: "not a Volo Plasmoid trait; real traits are acid resistance and poison immunity",
+  gem_flight: "not an Eberron Gem Dragonborn trait",
+  natural_illusionist: "3e/4e gnome",
+  speak_with_small_beasts: "3e/4e gnome",
+  artificers_lore: "not a 2014 Rock Gnome trait",
+  psychic_resilience: "3e/4e gith",
+  tool_proficiency: "a proficiency, not a trait; folded into the class's proficiencies",
+  keen_senses_drow: "3e/4e",
+}));
+
+// A trait listed on a variant in the old data may legitimately live on the base
+// in the engine, because that is where it belongs: Darkvision is repeated across
+// 19 old variant entries and the engine writes it once on the base race. So a
+// variant entry is satisfied by either key.
+const baseKeyOf = (key) => {
+  const parts = key.split(".");
+  if (parts[0] !== "race" || parts.length !== 4) return null;
+  return `race.${parts[1]}.${parts[3]}`;
+};
+
+// Legacy race entries as a whole: the 2014 Tiefling is one race, so the nine
+// 4e-style variants are dropped rather than authored.
+const LEGACY_RACE_ENTRIES = /^(Deep Gnome \(Svirfneblin\)|Eladrin \(Elf\)|Half-Elf \(.+\)|Tiefling \(.+\)|Scout|Half-Orc \(Legacy\))$/;
+
 const missing = [];
+const droppedLegacy = [];
+const resolvedAliases = [];
 for (const item of inventory) {
   if (onlyClass && slug(item.owner) !== slug(onlyClass)) continue;
   if (authored.has(item.key)) continue;
-  if (SUBCLASS_PLACEHOLDER.test(item.name)) {
-    // Counted as covered: the subclass itself must still be authored.
+  if (item.group === "race" && LEGACY_RACE_ENTRIES.test(item.owner)) {
+    droppedLegacy.push({ ...item, reason: "legacy race entry; 2014 has one tiefling, one half-elf and one Eladrin" });
     continue;
   }
-  const alias = ALIASES[item.key];
-  missing.push({ ...item, alias });
+  const baseKey = baseKeyOf(item.key);
+  if (baseKey && authored.has(baseKey)) continue;
+  if (SUBCLASS_PLACEHOLDER.test(item.name)) continue;
+  const traitSlug = slug(baseName(item.name));
+  const wholeEntry = `${slug(item.owner)}_${traitSlug}`;
+  if (item.group === "race" && (LEGACY_TRAITS.has(traitSlug) || LEGACY_TRAITS.has(wholeEntry))) {
+    droppedLegacy.push({ ...item, reason: LEGACY_TRAITS.get(traitSlug) });
+    continue;
+  }
+  const alias = ALIASES[item.key] ?? RACE_ALIASES[item.key];
+  if (alias) {
+    // A rename or a modelling decision, not a gap. Counted as covered.
+    resolvedAliases.push({ ...item, alias });
+    continue;
+  }
+  missing.push(item);
 }
 
 // --- report ----------------------------------------------------------------
@@ -160,6 +314,25 @@ for (const [group, list] of byGroup) {
       console.log(`      ${level}${m.name}${alias}`);
     }
   }
+}
+if (resolvedAliases.length > 0) {
+  console.log(`\n  ${resolvedAliases.length} entries satisfied by a rename or a modelling decision:`);
+  for (const a of resolvedAliases) console.log(`    ${a.owner} ${a.name}  <- ${a.alias}`);
+}
+if (unregisteredRaces.length > 0) {
+  console.log(`\n  Old race entries with no registry match (${unregisteredRaces.length}):`);
+  for (const n of unregisteredRaces) console.log(`    ${n}`);
+}
+console.log("");
+console.log(`  ${droppedLegacy.length} old race traits deliberately dropped as legacy or renamed:`);
+const byReason = new Map();
+for (const d of droppedLegacy) {
+  const r = d.reason ?? "unspecified";
+  if (!byReason.has(r)) byReason.set(r, []);
+  byReason.get(r).push(d);
+}
+for (const [reason, list] of [...byReason].sort((a, b) => b[1].length - a[1].length)) {
+  console.log(`    ${String(list.length).padStart(3)}  ${reason}`);
 }
 console.log("");
 
