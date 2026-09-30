@@ -279,6 +279,14 @@ export interface FeatureBase {
   kind: FeatureKind;
   /** Class, subclass, race, feat, background or monster that grants it. */
   owner: string;
+  /**
+   * For a race variant, e.g. "Mountain" on a Dwarf feature, or "Chromatic" on a
+   * Dragonborn one. 2014 splits Dragonborn, Dwarf, Elf, Gnome and Halfling into
+   * variants, and the variants share most of their parent's traits; putting the
+   * variant here keeps the shared traits on the parent instead of duplicating
+   * darkvision across nineteen entries.
+   */
+  variant?: string;
   /** Level or other entry point. Absent for feats and backgrounds. */
   unlock?: number;
   activation: Activation;

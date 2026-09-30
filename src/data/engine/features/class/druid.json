@@ -1,7 +1,7 @@
 {
   "features": [
     {
-      "id": "druid.wild_shape",
+      "id": "class.druid.wild_shape",
       "name": "Wild Shape",
       "kind": "class",
       "owner": "Druid",
@@ -26,7 +26,7 @@
       "source": { "book": "PHB", "page": 240, "reference": "PHB Druid 31" }
     },
     {
-      "id": "druid.wildfire_spirit",
+      "id": "subclass.circle_of_land.wildfire_spirit",
       "name": "Wildfire Spirit",
       "kind": "subclass",
       "owner": "Circle of Land",
@@ -39,7 +39,7 @@
       "endsIf": ["drop_to_0_hp", "you_die"],
       "gates": [],
       "effects": [
-        { "kind": "summon", "features": ["druid.wildfire_spirit_attack", "druid.wildfire_spirit_movement"], "formId": "wildfire_spirit_ally", "initiative": "separate", "hasOwnTurn": true, "control": "ally", "duration": { "value": 1, "unit": "hour" } },
+        { "kind": "summon", "features": ["subclass.circle_of_land.wildfire_spirit_attack", "subclass.circle_of_land.wildfire_spirit_movement"], "formId": "wildfire_spirit_ally", "initiative": "separate", "hasOwnTurn": true, "control": "ally", "duration": { "value": 1, "unit": "hour" } },
         { "kind": "special", "note": "The spirit's challenge rating is equal to 2 + your druid level / 4. It is the size of your Medium form, and it is represented by a spectral flame. The spirit is your ally." }
       ],
       "summary": "Summon a spectral flame ally that fights on its own turn",
@@ -47,7 +47,7 @@
       "source": { "book": "PHB", "page": 250, "reference": "PHB Druid Circle of Land 14" }
     },
     {
-      "id": "druid.wildfire_spirit_attack",
+      "id": "subclass.circle_of_land.wildfire_spirit_attack",
       "name": "Wildfire Spirit Attack",
       "kind": "subclass",
       "owner": "Circle of Land",
@@ -67,7 +67,7 @@
       "source": { "book": "PHB", "page": 250, "reference": "PHB Druid Circle of Land 14" }
     },
     {
-      "id": "druid.wildfire_spirit_movement",
+      "id": "subclass.circle_of_land.wildfire_spirit_movement",
       "name": "Wildfire Spirit Movement",
       "kind": "subclass",
       "owner": "Circle of Land",

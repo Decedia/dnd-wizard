@@ -1,7 +1,7 @@
 {
   "features": [
     {
-      "id": "cleric.channel_divinity_turn_undead",
+      "id": "class.cleric.channel_divinity_turn_undead",
       "name": "Channel Divinity: Turn Undead",
       "kind": "class",
       "owner": "Cleric",

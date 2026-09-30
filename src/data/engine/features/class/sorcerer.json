@@ -1,7 +1,7 @@
 {
   "features": [
     {
-      "id": "sorcerer.metamagic",
+      "id": "class.sorcerer.metamagic",
       "name": "Metamagic",
       "kind": "class",
       "owner": "Sorcerer",

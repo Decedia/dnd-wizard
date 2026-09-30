@@ -17,8 +17,34 @@ correctly, and gated by a validator that refuses to pass an invalid dataset.
 
 ```bash
 npm run engine:validate   # must pass before any change here is committed
+npm run engine:coverage   # what still needs authoring
+npm run engine:worklist   # the same, per owner, for working through
 npm run typecheck         # the drift tripwires
 ```
+
+## Coverage report
+
+`scripts/engine-coverage.mjs` treats the existing `2014_*.json` files as an
+*inventory only*, never as a source. It reports what exists, what is already
+authored, which engine fields the old data could even supply, and which entries
+need a decision before they can be written. Read-only.
+
+It exists because the old data is too thin to convert: its `effect` field is
+populated in 0 of 288 class features, real charges in 5 of 288, and nothing at
+all on any of the 146 feats. Converting it would produce entries that pass
+validation while saying nothing. The gate is a floor, not a ceiling.
+
+## Id scheme
+
+`<kind>.<owner>.<slug>`, snake_case, e.g. `class.fighter.action_surge` and
+`race.dragonborn.breath_weapon`. The kind segment stops a subclass, a monster
+and an item colliding when the engine looks features up globally. Ids are
+permanent - `featuresUsedThisTurn` stores them - so the validator pins the shape.
+
+Race traits carry their variant in a `variant` field: `owner: "Dragonborn"`,
+`variant: "Chromatic"`. The old data instead spells the variant into the name
+(`Dragonborn (Chromatic)`), which the validator rejects, and which duplicates
+darkvision across nineteen entries instead of putting it on the base race once.
 
 ## The five rules
 
@@ -161,3 +187,35 @@ Not yet authored: the rest of the class and racial features, feats, backgrounds,
 monsters, and magic items with actives. Monster-only activators (`multiattack`,
 `legendary_action`, `recharge`) belong in the vocabulary before monsters are
 written.
+
+### Measured backlog
+
+`npm run engine:coverage` puts the real figure at **1253** entries, not the
+~650 estimated before the report existed:
+
+| Group | Exists | Authored | To write |
+|---|---|---|---|
+| class features | 288 | 4 | 284 |
+| subclass features | 601 | 0 | 601 |
+| racial traits | 218 | 1 | 217 |
+| feats | 146 | 0 | 146 |
+
+The earlier estimate was wrong because it read subclass features from a
+`levels` array that subclasses do not have; they sit at the top level with a
+per-feature `level`.
+
+Also flagged, and all of them need handling rather than mechanical conversion:
+
+- **35 features stored as duplicate rows** across levels, to be collapsed into
+  one entry with `tiers`.
+- **37 placeholder rows** with no content at all (`Path feature`, `Divine Domain
+  feature`, `Martial Archetype feature`, and one per class at each subclass
+  level). The real feature has to be written.
+- **2 features with the tier in the name** (`Extra Attack (2)`, `Extra Attack (3)`).
+- **Races modelled wrongly.** 9 legacy Tiefling variants (27 traits) that do not
+  exist in 2014, and 8 Half-Elf variants (32 traits) that are not a choice — a
+  2014 half-elf takes one elf variant, not all of them. Darkvision is duplicated
+  across 19 entries and belongs on the base race once.
+- **Vocabulary is only 12/33 exercised** by the nine authored features, and 3/17
+  trigger events. The rest are untested until real content uses them, which is
+  why the vocabulary should not be pruned on the strength of nine entries.

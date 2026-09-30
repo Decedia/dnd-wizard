@@ -1,7 +1,7 @@
 {
   "features": [
     {
-      "id": "dragonborn.draconic_resilience",
+      "id": "race.dragonborn.draconic_resilience",
       "name": "Draconic Resilience",
       "kind": "race",
       "owner": "Dragonborn",
@@ -22,7 +22,7 @@
       "source": { "book": "PHB", "page": 28, "reference": "PHB Dragonborn 2" }
     },
     {
-      "id": "dragonborn.breath_weapon",
+      "id": "race.dragonborn.breath_weapon",
       "name": "Breath Weapon",
       "kind": "race",
       "owner": "Dragonborn",

@@ -252,11 +252,10 @@ for (const { feature: f, where } of features) {
   }
 
   if (f.id) {
-    if (f.id !== f.id.toLowerCase() || /\s/.test(f.id)) {
-      fail(where, "format", `id ${JSON.stringify(f.id)} must be lowercase and contain no spaces`);
-    }
-    if (!f.id.includes(".")) {
-      fail(where, "format", `id ${JSON.stringify(f.id)} should be "<kind>.<owner>.<slug>"`);
+    // <kind>.<owner>.<slug>, snake_case. Ids are permanent - featuresUsedThisTurn
+    // stores them - so the shape is pinned rather than left to taste.
+    if (!/^[a-z0-9_]+\.[a-z0-9_]+\.[a-z0-9_]+$/.test(f.id)) {
+      fail(where, "format", `id ${JSON.stringify(f.id)} must be "<kind>.<owner>.<slug>" in snake_case, e.g. fighter.action_surge`);
     }
   }
 
@@ -285,6 +284,10 @@ for (const { feature: f, where } of features) {
       fail(where, "danglingRef", `cost[${i}].resource ${JSON.stringify(c.resource)} is not in resources.json`);
     }
     requireNumber(c.amount, where, `cost[${i}].amount`);
+  }
+
+  if (f.kind === "race" && f.owner.includes("(")) {
+    fail(where, "structure", `race owner ${JSON.stringify(f.owner)} embeds a variant in parentheses; use owner "Dragonborn" with variant "Chromatic"`);
   }
 
   if (f.limits) {

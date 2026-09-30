@@ -1,7 +1,7 @@
 {
   "features": [
     {
-      "id": "fighter.action_surge",
+      "id": "class.fighter.action_surge",
       "name": "Action Surge",
       "kind": "class",
       "owner": "Fighter",
