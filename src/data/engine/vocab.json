@@ -429,6 +429,7 @@
     "totem_type",
     "companion_animal",
     "hunter_prey_type",
-    "defensive_tactic"
+    "defensive_tactic",
+    "fiend_benefit"
   ]
 }

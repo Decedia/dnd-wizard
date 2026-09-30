@@ -1,0 +1,1557 @@
+{
+  "features": [
+    {
+      "id": "subclass.archfey.fey_presence",
+      "name": "Fey Presence",
+      "kind": "subclass",
+      "owner": "Archfey",
+      "unlock": 1,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "enemy",
+        "range": {
+          "value": 60,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "cantrip": {
+            "known": true
+          },
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "warlock"
+              ]
+            }
+          ],
+          "note": "Your patron grants you the magic of the fey, and your spells and patron's spells can summon fey creatures from the Feywild. You know the druidcraft cantrip, castable at will without a slot, and you know one first-level druid spell. At 6th and 14th level you learn another cantrip or spell of that level."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 6
+        },
+        {
+          "at": 14
+        }
+      ],
+      "summary": "Druidcraft at will, plus a free 1st-level druid spell",
+      "text": "You know the druidcraft cantrip, which you can cast at will without a spell slot, and you know one first-level druid spell.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Warlock Archfey 1"
+      }
+    },
+    {
+      "id": "subclass.archfey.misty_escape",
+      "name": "Misty Escape",
+      "kind": "subclass",
+      "owner": "Archfey",
+      "unlock": 6,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "teleport",
+          "distance": {
+            "value": 30,
+            "unit": "ft"
+          },
+          "mustBeUnoccupied": true
+        },
+        {
+          "kind": "special",
+          "note": "You can use a bonus action to vanish, mistily teleporting up to 30 feet to an unoccupied space that you can see. At 6th and 16th level, a creature that tries to attack you instead has advantage on the attack roll but must then target a different creature."
+        }
+      ],
+      "summary": "Bonus action: teleport 30 ft as a bonus action",
+      "text": "You can use a bonus action to vanish, mistily teleporting up to 30 feet to an unoccupied space that you can see.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Warlock Archfey 6"
+      },
+      "note": "At 6th and 16th level, a creature that tries to attack you instead has advantage on the attack roll but must then target a different creature."
+    },
+    {
+      "id": "subclass.archfey.beguiling_defenses",
+      "name": "Beguiling Defenses",
+      "kind": "subclass",
+      "owner": "Archfey",
+      "unlock": 10,
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "save_succeeded",
+        "note": "When you succeed on a saving throw against a spell cast by a creature you can see within 30 feet."
+      },
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 60,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "condition",
+          "action": "apply",
+          "conditions": [
+            "charmed"
+          ],
+          "note": "When you succeed on a saving throw against a spell cast by a creature you can see within 30 feet of you, you can use your reaction to force that creature to make a Wisdom saving throw, and on a failure it is charmed by you until the end of your next turn. You regain the use when you finish a long rest."
+        }
+      ],
+      "summary": "Reaction: charm a caster whose spell you resisted",
+      "text": "When you succeed on a saving throw against a spell cast by a creature you can see within 30 feet of you, you can use your reaction to force that creature to make a Wisdom saving throw.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Warlock Archfey 10"
+      }
+    },
+    {
+      "id": "subclass.archfey.dark_delirium",
+      "name": "Dark Delirium",
+      "kind": "subclass",
+      "owner": "Archfey",
+      "unlock": 14,
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "self_damaged"
+      },
+      "targeting": {
+        "scope": "creature"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "condition",
+          "action": "apply",
+          "conditions": [
+            "frightened"
+          ],
+          "duration": {
+            "value": 1,
+            "unit": "minute"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You have mingled the gnoll's screams with the fey family'slaughter, which can ward off those who harm you. When you are damaged, you can use your reaction to give a creature within 60 feet that you can see disadvantage on attack rolls against you for 1 minute, or you can be affected by your own feature and frightened for 1 minute instead. At 18th level, if the damage is psychic, you and the creature must each make a Wisdom save or be frightened. You regain the use when you finish a long rest."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 18,
+          "effects": [
+            {
+              "kind": "condition",
+              "action": "apply",
+              "conditions": [
+                "frightened"
+              ],
+              "duration": {
+                "value": 1,
+                "unit": "minute"
+              }
+            },
+            {
+              "kind": "special",
+              "note": "If the damage is psychic, you and the creature must each make a Wisdom saving throw or be frightened until the end of the next turn."
+            }
+          ]
+        }
+      ],
+      "summary": "Reaction when damaged: attackers get disadvantage, or you take it",
+      "text": "When you are damaged, you can use your reaction to give a creature within 60 feet of you that you can see disadvantage on attack rolls against you for 1 minute.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Warlock Archfey 14"
+      }
+    },
+    {
+      "id": "subclass.fiend.dark_ones_blessing",
+      "name": "Dark One's Blessing",
+      "kind": "subclass",
+      "owner": "Fiend",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "choice",
+          "of": "fiend_benefit",
+          "count": 1,
+          "note": "When you make a spell attack, you can add 1d6 to the damage. Choose one of three fiend benefits at 1st level, another at 6th, and another at 10th, and replace it at 10th level."
+        }
+      ],
+      "summary": "+1d6 to spell attacks, plus your fiend benefit",
+      "text": "When you make a spell attack, you can add 1d6 to the damage.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Warlock Fiend 1"
+      }
+    },
+    {
+      "id": "subclass.fiend.dark_ones_own_luck",
+      "name": "Dark One's Own Luck",
+      "kind": "subclass",
+      "owner": "Fiend",
+      "unlock": 6,
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "save_failed"
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "The fiend's own luck manifests in your darkest moments. When you fail a saving throw, you can use your reaction to reroll the die, and you must use the new roll. You regain the use of this when you finish a long rest."
+        }
+      ],
+      "summary": "Reaction: reroll a failed save",
+      "text": "When you fail a saving throw, you can use your reaction to reroll the die. You must use the new roll.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Warlock Fiend 6"
+      }
+    },
+    {
+      "id": "subclass.fiend.fiendish_resilience",
+      "name": "Fiendish Resilience",
+      "kind": "subclass",
+      "owner": "Fiend",
+      "unlock": 10,
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "save_failed"
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You gain resistance to damage from any fiend or demon you're able to see, and when you fail a saving throw, you can use your reaction to succeed instead. You can use this twice, but only once before 16th level. You regain the use when you finish a long rest."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 16,
+          "limits": {
+            "per": "rest",
+            "max": 2
+          }
+        }
+      ],
+      "summary": "Reaction: succeed on a failed save; resist fiend damage",
+      "text": "You gain resistance to damage from any fiend or demon you're able to see. When you fail a saving throw, you can use your reaction to succeed instead.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Warlock Fiend 10"
+      }
+    },
+    {
+      "id": "subclass.fiend.hurl_through_hell",
+      "name": "Hurl Through Hell",
+      "kind": "subclass",
+      "owner": "Fiend",
+      "unlock": 14,
+      "activation": "action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "control",
+          "action": "push",
+          "distance": {
+            "value": 30,
+            "unit": "ft"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "When you touch a creature, you can hurl it up to 30 feet, and it must make a Constitution saving throw or take 3d10 fire damage and be thrown up to 30 feet. If it strikes a creature, the target creature makes a Constitution saving throw or takes the same 3d10 fire damage, and if it strikes a solid object, it is stunned until the end of your next turn. At 18th level you can use this twice per long rest."
+        }
+      ],
+      "summary": "Action: hurl a creature 30 ft, dealing 3d10 on impact",
+      "text": "When you touch a creature, you can hurl it up to 30 feet. It must make a Constitution saving throw or take 3d10 fire damage and be thrown up to 30 feet.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Warlock Fiend 14"
+      }
+    },
+    {
+      "id": "subclass.great_old_one.awakened_mind",
+      "name": "Awakened Mind",
+      "kind": "subclass",
+      "owner": "Great Old One",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "cantrip": {
+            "known": true
+          },
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "warlock"
+              ]
+            }
+          ],
+          "note": "Your patron has augmented your magic with its own power, adding two spells from the warlock list to your repertoire. At 6th and 14th level you learn another warlock spell of 1st level or higher, always prepared."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 6
+        },
+        {
+          "at": 14
+        }
+      ],
+      "summary": "Two extra warlock spells, plus more at 6th and 14th",
+      "text": "Your patron has augmented your magic with its own power, adding two spells from the warlock list to your repertoire.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Warlock Great Old One 1"
+      }
+    },
+    {
+      "id": "subclass.great_old_one.entropic_ward",
+      "name": "Entropic Ward",
+      "kind": "subclass",
+      "owner": "Great Old One",
+      "unlock": 6,
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "save_failed"
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "temp_hp",
+          "dice": {
+            "dice": "1d6",
+            "bonusFrom": "none"
+          },
+          "note": "When you fail a saving throw, you can use your reaction to gain 1d6 plus your Charisma modifier in temporary hit points. You gain the use when you finish a short or long rest, and at 16th level you gain two uses."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 16,
+          "limits": {
+            "per": "rest",
+            "max": 2
+          }
+        }
+      ],
+      "summary": "Reaction: 1d6 + Cha temp HP when you fail a save",
+      "text": "When you fail a saving throw, you can use your reaction to gain 1d6 + your Charisma modifier in temporary hit points.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Warlock Great Old One 6"
+      }
+    },
+    {
+      "id": "subclass.great_old_one.thought_shield",
+      "name": "Thought Shield",
+      "kind": "subclass",
+      "owner": "Great Old One",
+      "unlock": 10,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "resistance",
+          "damageTypes": [
+            "psychic"
+          ]
+        },
+        {
+          "kind": "special",
+          "note": "You have resistance to psychic damage, and at 6th level and higher, when you are affected by a spell, you can use your reaction to cause the spell to fail against you and instead transfer its effect to a creature you can see within 60 feet of you. The spell's user rolls against a DC of 10 + your Charisma modifier plus your proficiency bonus, and it ends at the start of the next turn if it has not ended already."
+        }
+      ],
+      "summary": "Psychic resistance; redirect a spell that affects you",
+      "text": "You have resistance to psychic damage, and when you are affected by a spell, you can use your reaction to cause the spell to fail against you.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Warlock Great Old One 10"
+      }
+    },
+    {
+      "id": "subclass.great_old_one.create_thrall",
+      "name": "Create Thrall",
+      "kind": "subclass",
+      "owner": "Great Old One",
+      "unlock": 14,
+      "activation": "action",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 10,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "summon",
+          "features": [],
+          "formId": "awakened_familiar",
+          "initiative": "self",
+          "control": "ally",
+          "duration": {
+            "value": 8,
+            "unit": "hour"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You can cast the create undead spell without a material component. When you do so, choose the creature type: create a thrall from the Find Familiar spell, or take control of a humanoid or beast within 10 feet that has fewer than your Hit Dice total by shifting all its Hit Dice over to yourself."
+        }
+      ],
+      "summary": "Action, once a day: cast create undead without components",
+      "text": "You can cast the create undead spell without a material component.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Warlock Great Old One 14"
+      }
+    },
+    {
+      "id": "subclass.hexblade.hexblades_curse",
+      "name": "Hexblade's Curse",
+      "kind": "subclass",
+      "owner": "Hexblade",
+      "unlock": 1,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 30,
+          "unit": "ft"
+        }
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "condition",
+          "action": "apply",
+          "conditions": [
+            "charmed"
+          ]
+        },
+        {
+          "kind": "stat_modifier",
+          "stat": "damage_roll",
+          "amount": 1,
+          "duration": "while_active"
+        },
+        {
+          "kind": "special",
+          "note": "You can use a bonus action to curse a creature within 30 feet, which becomes charmed by you for 1 hour or until you drop to 0 hit points or die. You have advantage on attack rolls against the cursed creature, and it has disadvantage on saving throws against spells you cast, and you get a +1 bonus to all damage rolls against it. You can curse one creature at a time, and at 16th level you can use it twice per long rest."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 16,
+          "limits": {
+            "per": "rest",
+            "max": 2
+          }
+        }
+      ],
+      "summary": "Bonus action: charm a creature, then hit it harder",
+      "text": "You can use a bonus action to curse a creature within 30 feet of you. It is charmed by you for 1 hour, and you have advantage on attack rolls against it.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Warlock Hexblade 1"
+      }
+    },
+    {
+      "id": "subclass.hexblade.hex_warrior",
+      "name": "Hex Warrior",
+      "kind": "subclass",
+      "owner": "Hexblade",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "stat_modifier",
+          "stat": "max_hp",
+          "amount": 0,
+          "duration": "permanent"
+        },
+        {
+          "kind": "special",
+          "note": "You have proficiency with medium armor, and your Constitution score is increased by 1. At 3rd level and every odd level after that, you gain another increase of 1 and you gain proficiency with another type of armor or shield."
+        }
+      ],
+      "summary": "+1 Con per level, medium armor, more armor at odd levels",
+      "text": "You gain proficiency with medium armor and your Constitution score is increased by 1. At 3rd level and every odd level after that, you gain another increase of 1.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Warlock Hexblade 1"
+      }
+    },
+    {
+      "id": "subclass.hexblade.accursed_specter",
+      "name": "Accursed Specter",
+      "kind": "subclass",
+      "owner": "Hexblade",
+      "unlock": 6,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "summon",
+          "features": [],
+          "formId": "hexblade_specter",
+          "initiative": "self",
+          "control": "self",
+          "duration": {
+            "value": 1,
+            "unit": "minute"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You conjure a phantom warrior within your reach, made of translucent force, and it lasts for 1 minute or until it takes 30 damage. It doesn't require a slot, and it occupies your space and can attack anyone but you within 5 feet of it, dealing 1d6 necrotic damage on a hit."
+        }
+      ],
+      "summary": "A free spectral warrior that attacks anyone but you",
+      "text": "You conjure a phantom warrior within your reach. It lasts for 1 minute or until it takes 30 damage, and it can attack anyone but you within 5 feet of it.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Warlock Hexblade 6"
+      }
+    },
+    {
+      "id": "subclass.hexblade.armor_of_hexes",
+      "name": "Armor of Hexes",
+      "kind": "subclass",
+      "owner": "Hexblade",
+      "unlock": 10,
+      "activation": "passive",
+      "gates": [
+        "wearing_armor"
+      ],
+      "effects": [
+        {
+          "kind": "ac_bonus",
+          "amount": 1,
+          "requires": "wearing armor",
+          "note": "You gain a +1 bonus to AC while wearing armor. If you hit a creature with an attack roll, you have disadvantage on all attack rolls against that creature until the end of your next turn, and at 14th level you also impose disadvantage on its ability checks."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 14,
+          "effects": [
+            {
+              "kind": "ac_bonus",
+              "amount": 1,
+              "requires": "wearing armor"
+            },
+            {
+              "kind": "special",
+              "note": "You also impose disadvantage on the target's ability checks until the end of your next turn."
+            }
+          ]
+        }
+      ],
+      "summary": "+1 AC in armor; attacks hinder the creature you hit",
+      "text": "You gain a +1 bonus to AC while wearing armor. If you hit a creature with an attack roll, you have disadvantage on all attack rolls against that creature until the end of your next turn.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Warlock Hexblade 10"
+      }
+    },
+    {
+      "id": "subclass.hexblade.master_of_hexes",
+      "name": "Master of Hexes",
+      "kind": "subclass",
+      "owner": "Hexblade",
+      "unlock": 14,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have fallen far enough into the curse that you can curse more creatures. At 16th level, if you hit a creature with a Hexblade's Curse and it is within 60 feet of you, you can use your reaction to apply the curse to any number of creatures of your choice within 60 feet of the first, each of which must make a Wisdom save and is affected by your previous Hexblade's Curse, and at 18th level you can use your reaction to remove it from one of those creatures."
+        }
+      ],
+      "summary": "Spread the Hexblade's Curse to nearby creatures",
+      "text": "You can use your reaction to apply Hexblade's Curse to any number of creatures of your choice within 60 feet of the cursed creature.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Warlock Hexblade 14"
+      }
+    },
+    {
+      "id": "subclass.celestial.bonus_cantrips",
+      "name": "Bonus Cantrips",
+      "kind": "subclass",
+      "owner": "The Celestial",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "cantrip": {
+            "known": true
+          },
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "cleric"
+              ]
+            }
+          ],
+          "note": "Your patron's influence has brought you the power of clerics: you learn the sacred flame cantrip, castable at will without a slot, and you know three more cantrips from the cleric list. At 6th and 16th level, you gain two additional cantrips from the cleric list."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 6
+        },
+        {
+          "at": 16
+        }
+      ],
+      "summary": "Sacred flame at will, plus three more cleric cantrips",
+      "text": "Your patron's influence has brought you the power of clerics. You learn the sacred flame cantrip, which you can cast at will without a spell slot.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Warlock The Celestial 1"
+      }
+    },
+    {
+      "id": "subclass.celestial.healing_light",
+      "name": "Healing Light",
+      "kind": "subclass",
+      "owner": "The Celestial",
+      "unlock": 1,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 60,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "heal",
+          "dice": {
+            "dice": "1d8",
+            "bonusFrom": "none"
+          },
+          "resolution": {
+            "mode": "auto"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "Your patron's mercy has a tangible manifestation. As a bonus action, you can restore 1d8 hit points to a creature that you can see within 60 feet, and it ends charmed or frightened. You gain additional uses at 2nd, 6th, 10th and 14th level, regaining all on a long rest."
+        }
+      ],
+      "summary": "Bonus action: heal 1d8 and end charmed or frightened",
+      "text": "As a bonus action, you can restore 1d8 hit points to a creature that you can see within 60 feet of you, and it ends charmed or frightened.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Warlock The Celestial 1"
+      }
+    },
+    {
+      "id": "subclass.celestial.radiant_soul",
+      "name": "Radiant Soul",
+      "kind": "subclass",
+      "owner": "The Celestial",
+      "unlock": 6,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "resistance",
+          "damageTypes": [
+            "necrotic"
+          ]
+        },
+        {
+          "kind": "special",
+          "note": "You have resistance to radiant damage, and you can add 1d6 radiant damage to one attack or spell you make, and at 17th level you can use this twice per long rest, adding a second d6 each time."
+        }
+      ],
+      "summary": "Radiant resistance; add 1d6 radiant to an attack or spell",
+      "text": "You have resistance to radiant damage, and you can add 1d6 radiant damage to one attack or spell you make.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Warlock The Celestial 6"
+      }
+    },
+    {
+      "id": "subclass.celestial.celestial_resilience",
+      "name": "Celestial Resilience",
+      "kind": "subclass",
+      "owner": "The Celestial",
+      "unlock": 10,
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "save_failed"
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "heal",
+          "dice": {
+            "dice": "1d8",
+            "bonusFrom": "cha"
+          },
+          "resolution": {
+            "mode": "auto"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "When you fail a saving throw, you can use your reaction to heal 1d8 plus your Charisma modifier in hit points instead, and if you do, the damage you take is halved if it would come from that spell. You regain the use when you finish a short or long rest."
+        }
+      ],
+      "summary": "Reaction: 1d8 + Cha healing instead of a failed save",
+      "text": "When you fail a saving throw, you can use your reaction to heal 1d8 + your Charisma modifier in hit points instead.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Warlock The Celestial 10"
+      }
+    },
+    {
+      "id": "subclass.celestial.searing_vengeance",
+      "name": "Searing Vengeance",
+      "kind": "subclass",
+      "owner": "The Celestial",
+      "unlock": 14,
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "self_hit_by_attack"
+      },
+      "targeting": {
+        "scope": "creature"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "3d8",
+            "bonusFrom": "none"
+          },
+          "damageType": "radiant",
+          "resolution": {
+            "mode": "save",
+            "ability": "dex",
+            "onSuccess": "half",
+            "onFailure": "full"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "When you are hit by an attack, you can use your reaction to add 3d8 radiant damage to the attack, to be shared between you and the attacker, and it ends only at the end of your next turn. You can also use this when a creature within 60 feet that you can see is hit by an attack. You regain the use when you finish a long rest."
+        }
+      ],
+      "summary": "Reaction: split 3d8 radiant with the creature that hit you",
+      "text": "When you are hit by an attack, you can use your reaction to add 3d8 radiant damage to the attack, to be shared between you and the attacker.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Warlock The Celestial 14"
+      }
+    },
+    {
+      "id": "subclass.fathomless.bonus_spells",
+      "name": "Bonus Spells",
+      "kind": "subclass",
+      "owner": "The Fathomless",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "cantrip": {
+            "known": true
+          },
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "druid"
+              ]
+            }
+          ],
+          "note": "Your patron's influence has brought you the magic of druids: you know the druidcraft cantrip, castable at will, and you know one first-level druid spell castable without a slot. At 6th and 14th level you learn another cantrip or spell of that level."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 6
+        },
+        {
+          "at": 14
+        }
+      ],
+      "summary": "Druidcraft at will, plus a free 1st-level druid spell",
+      "text": "Your patron's influence has brought you the magic of druids. You know the druidcraft cantrip, which you can cast at will without a spell slot.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Warlock The Fathomless 1"
+      }
+    },
+    {
+      "id": "subclass.fathomless.tentacle_of_the_deep",
+      "name": "Tentacle of the Deep",
+      "kind": "subclass",
+      "owner": "The Fathomless",
+      "unlock": 1,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 10,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "1d8",
+            "bonusFrom": "cha"
+          },
+          "damageType": "bludgeoning",
+          "resolution": {
+            "mode": "save",
+            "ability": "str",
+            "onSuccess": "none",
+            "onFailure": "full"
+          }
+        },
+        {
+          "kind": "control",
+          "action": "push",
+          "distance": {
+            "value": 10,
+            "unit": "ft"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You can magically summon a grasping tentacle from a creature within 10 feet of you, and it grapples the creature if it is Medium or smaller and you succeed on a Strength check. While the creature is grappled, the tentacle can hold or crush it, and at 10th level you can use this twice per long rest."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 10,
+          "limits": {
+            "per": "rest",
+            "max": 2
+          }
+        }
+      ],
+      "summary": "Bonus action: a grasping tentacle that grapples",
+      "text": "You can magically summon a grasping tentacle from a creature within 10 feet of you.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Warlock The Fathomless 1"
+      }
+    },
+    {
+      "id": "subclass.fathomless.gift_of_the_sea",
+      "name": "Gift of the Sea",
+      "kind": "subclass",
+      "owner": "The Fathomless",
+      "unlock": 6,
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "self_damaged"
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "temp_hp",
+          "dice": {
+            "dice": "1d8",
+            "bonusFrom": "cha"
+          },
+          "note": "When you take damage, you can use your reaction to gain 1d8 plus your Charisma modifier in temporary hit points, and the taking of damage has a chance of rewarding your patron's gift with magical currents that temporarily enhance your ability. You regain the use when you finish a long rest."
+        }
+      ],
+      "summary": "Reaction: 1d8 + Cha temp HP when damaged",
+      "text": "When you take damage, you can use your reaction to gain 1d8 + your Charisma modifier in temporary hit points.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Warlock The Fathomless 6"
+      }
+    },
+    {
+      "id": "subclass.fathomless.oceanic_soul",
+      "name": "Oceanic Soul",
+      "kind": "subclass",
+      "owner": "The Fathomless",
+      "unlock": 10,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "resistance",
+          "damageTypes": [
+            "lightning"
+          ]
+        },
+        {
+          "kind": "special",
+          "note": "You gain resistance to lightning damage and your speed is increased by 10 feet while underwater, and you can swim up to your walking speed. At 7th level your swimming speed is equal to your walking speed instead of half of it."
+        }
+      ],
+      "summary": "Lightning resistance; swim at your walking speed underwater",
+      "text": "You gain resistance to lightning damage, and your speed is increased by 10 feet while underwater, and you can swim up to your walking speed.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Warlock The Fathomless 10"
+      }
+    },
+    {
+      "id": "subclass.fathomless.guardian_coil",
+      "name": "Guardian Coil",
+      "kind": "subclass",
+      "owner": "The Fathomless",
+      "unlock": 14,
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "save_failed"
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "When you fail a saving throw, you can use your reaction to gain the following benefits until the start of your next turn: your movement is not hindered by difficult terrain, you don't have disadvantage on saving throws or ability checks due to being underwater, and you have resistance to force damage. You regain the use when you finish a long rest."
+        }
+      ],
+      "summary": "Reaction: no underwater penalties after a failed save",
+      "text": "When you fail a saving throw, you can use your reaction to gain the following benefits until the start of your next turn: your movement is not hindered by difficult terrain.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Warlock The Fathomless 14"
+      }
+    },
+    {
+      "id": "subclass.fathomless.grasping_tentacles",
+      "name": "Grasping Tentacles",
+      "kind": "subclass",
+      "owner": "The Fathomless",
+      "unlock": 18,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 1,
+          "note": "Tentacles lash out, and you can add an ability modifier to the tentacles' damage: +2d6 bludgeoning on a hit or +2d6 cold on a miss, and at 18th level a creature you hit with a tentacle has disadvantage on all saving throws until the end of your next turn."
+        }
+      ],
+      "summary": "Tentacles deal 2d6 on hit or miss; +8 with your modifier",
+      "text": "You can add an ability modifier to the tentacles' damage. If you do, damage on a hit increases by 2d6 bludgeoning damage or on a miss by 2d6 cold damage.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Warlock The Fathomless 18"
+      }
+    },
+    {
+      "id": "subclass.genie.bonus_spells",
+      "name": "Bonus Spells",
+      "kind": "subclass",
+      "owner": "The Genie",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "cantrip": {
+            "known": true
+          },
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "wizard"
+              ]
+            }
+          ],
+          "note": "Your patron's influence has brought you the magic of wizards: you know the mage hand cantrip, castable at will without a slot, and you know one first-level wizard spell castable without a slot. At 6th and 14th level you learn another cantrip or spell of that level."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 6
+        },
+        {
+          "at": 14
+        }
+      ],
+      "summary": "Mage hand at will, plus a free 1st-level wizard spell",
+      "text": "Your patron's influence has brought you the magic of wizards. You know the mage hand cantrip, which you can cast at will without a spell slot.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Warlock The Genie 1"
+      }
+    },
+    {
+      "id": "subclass.genie.genies_vessel",
+      "name": "Genie's Vessel",
+      "kind": "subclass",
+      "owner": "The Genie",
+      "unlock": 1,
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "self_damaged"
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "temp_hp",
+          "dice": {
+            "dice": "1d6",
+            "bonusFrom": "cha"
+          },
+          "note": "You know the genie's trick of the wish vessel, and you can draw on the vessel's magic for a brief moment. When you take damage, you can use your reaction to gain 1d6 plus your Charisma modifier in temporary hit points. You gain the use when you finish a short or long rest, and at 10th and 16th level you gain additional uses."
+        }
+      ],
+      "summary": "Reaction: 1d6 + Cha temp HP when damaged",
+      "text": "When you take damage, you can use your reaction to gain 1d6 + your Charisma modifier in temporary hit points.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Warlock The Genie 1"
+      }
+    },
+    {
+      "id": "subclass.genie.elemental_gift",
+      "name": "Elemental Gift",
+      "kind": "subclass",
+      "owner": "The Genie",
+      "unlock": 6,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "senses",
+          "sense": "darkvision"
+        },
+        {
+          "kind": "extra_attacks",
+          "count": 1,
+          "note": "You know the genie's elemental power, and you can use an action to gain a +2 bonus to AC, +2 to attack rolls and damage rolls, resistance to nonmagical ranged attacks, and a limited number of extra attacks, all for 1 minute, and it ends if you don for it within 10 minutes."
+        }
+      ],
+      "summary": "Darkvision; an action for +2 AC and attacks for a minute",
+      "text": "You know the genie's elemental power and you gain a number of additional Limited uses of the elemental gift.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Warlock The Genie 6"
+      }
+    },
+    {
+      "id": "subclass.genie.sanctuary_vessel",
+      "name": "Sanctuary Vessel",
+      "kind": "subclass",
+      "owner": "The Genie",
+      "unlock": 10,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "The vessel is a vessel indeed, and while you are in it you have advantage on Charisma checks and saves. When you finish a short or long rest, you can regain hit points equal to 1d6 plus twice your Charisma modifier, and you can cast one wizard cantrip without a spell slot."
+        }
+      ],
+      "summary": "Advantage on Cha checks; heal 1d6 + 2x Cha on a rest",
+      "text": "The vessel is a vessel indeed, and you gain advantage on Charisma checks and saves. When you finish a short or long rest, you can regain hit points equal to 1d6 + twice your Charisma modifier.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Warlock The Genie 10"
+      }
+    },
+    {
+      "id": "subclass.genie.limited_wish",
+      "name": "Limited Wish",
+      "kind": "subclass",
+      "owner": "The Genie",
+      "unlock": 14,
+      "activation": "action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "any"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "cantrip": {
+            "known": true
+          },
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "wizard"
+              ]
+            }
+          ],
+          "note": "You have learned to make a smaller, more controlled version of the genie's magic. You can cast the wish spell without a spell slot and without material components, choosing an effect you are certain of, other than contact with a creature or object, which can be of a level equal to your warlock level or lower. You regain the use when you finish a long rest."
+        }
+      ],
+      "summary": "Action: cast wish without a slot, bounded to your level",
+      "text": "You can cast the wish spell without a spell slot and without material components.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Warlock The Genie 14"
+      }
+    },
+    {
+      "id": "subclass.the_undead.form_of_dread",
+      "name": "Form of Dread",
+      "kind": "subclass",
+      "owner": "The Undead",
+      "unlock": 1,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "condition",
+          "action": "apply",
+          "conditions": [
+            "frightened"
+          ]
+        },
+        {
+          "kind": "resistance",
+          "damageTypes": [
+            "necrotic"
+          ]
+        },
+        {
+          "kind": "special",
+          "note": "You can use a bonus action to assume a terrifying spectral form, which lasts until you dismiss it as a bonus action, or until you die. While in the form, you gain resistance to nonmagical attacks, immunity to being frightened, and creatures within 5 feet of you that can see you have disadvantage on saving throws against being charmed and frightened."
+        }
+      ],
+      "summary": "Bonus action: a terrifying form, immune to fear, nonmagical resistant",
+      "text": "You can use a bonus action to assume a terrifying spectral form, which lasts until you dismiss it as a bonus action, or until you die.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Warlock The Undead 1"
+      }
+    },
+    {
+      "id": "subclass.the_undead.grave_touched",
+      "name": "Grave Touched",
+      "kind": "subclass",
+      "owner": "The Undead",
+      "unlock": 6,
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "self_hit_by_attack"
+      },
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 5,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "1d8",
+            "bonusFrom": "cha"
+          },
+          "damageType": "necrotic",
+          "resolution": {
+            "mode": "save",
+            "ability": "con",
+            "onSuccess": "none",
+            "onFailure": "full"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "Your magic comes from the shameless dead, and you can wound the living. When a creature within 5 feet of you hits you with an attack, you can use your reaction to force a Constitution saving throw, and on a failure it takes 1d8 plus your Charisma modifier necrotic damage and can't regain hit points until the end of your next turn. At 16th level you gain a second use, and at 18th level you gain a third."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 16,
+          "limits": {
+            "per": "rest",
+            "max": 2
+          }
+        },
+        {
+          "at": 18,
+          "limits": {
+            "per": "rest",
+            "max": 3
+          }
+        }
+      ],
+      "summary": "Reaction: 1d8 + Cha necrotic and no healing, when hit",
+      "text": "When a creature within 5 feet of you hits you with an attack, you can use your reaction to force it to make a Constitution saving throw.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Warlock The Undead 6"
+      }
+    },
+    {
+      "id": "subclass.the_undead.necrotic_husk",
+      "name": "Necrotic Husk",
+      "kind": "subclass",
+      "owner": "The Undead",
+      "unlock": 10,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "The necrotic energy of your patron's power has taken a physical toll on you, and your flesh has become more like that of a revenant. At 10th level, you can keep dead creatures that die within 10 feet of you, putting them in your space as a small object that disappears when you do. You can use a bonus action to gain a +1 bonus to AC and damage rolls for 1 minute, and you regain hit points equal to half your missing hit points."
+        }
+      ],
+      "summary": "You can rise from the dead and turn corpses into objects",
+      "text": "At 10th level, you can keep dead creatures that die within 10 feet of you, putting them in your space.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Warlock The Undead 10"
+      }
+    },
+    {
+      "id": "subclass.the_undead.spirit_projection",
+      "name": "Spirit Projection",
+      "kind": "subclass",
+      "owner": "The Undead",
+      "unlock": 14,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You know a ritual that can temporarily give your spells incredible reach, and you project your spirit through your surroundings. As a bonus action, you project your spirit from your body up to 60 feet away, gaining resistance to all damage, and it vanishes if you cast a spell or use a Magic action. Your spirit can't leave the area and ends if it is in sunlight."
+        }
+      ],
+      "summary": "Bonus action: project your spirit 60 ft, resistant to all damage",
+      "text": "As a bonus action, you project your spirit from your body up to 60 feet away from you, gaining resistance to all damage.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Warlock The Undead 14"
+      }
+    },
+    {
+      "id": "subclass.undying.among_the_dead",
+      "name": "Among the Dead",
+      "kind": "subclass",
+      "owner": "Undying",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "The undying can feel the cold pull of death's door, and you learn to push back. You learn the necrotic cantrip, castable at will without a slot. When a creature within 10 feet of you that is hostile to you drops to 0 hit points, you can use your reaction to take 1d6 plus your Constitution modifier in temporary hit points."
+        }
+      ],
+      "summary": "Necrotic at will; temp HP when an enemy drops nearby",
+      "text": "You learn the necrotic cantrip, which you can cast at will without a spell slot. When a creature within 10 feet of you that is hostile to you drops to 0 hit points, you can use your reaction to take 1d6 + your Constitution modifier in temporary hit points.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Warlock Undying 1"
+      }
+    },
+    {
+      "id": "subclass.undying.undying_nature",
+      "name": "Undying Nature",
+      "kind": "subclass",
+      "owner": "Undying",
+      "unlock": 1,
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "save_failed"
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "condition",
+          "action": "remove",
+          "conditions": [
+            "poisoned"
+          ]
+        },
+        {
+          "kind": "special",
+          "note": "You have learned a few basic survivability tricks, such as the conjurer's avoidance of poisoned death and artificer's winding yourself in protective magic. When you fail a saving throw, you can use your reaction to gain 1d8 plus your Constitution modifier in temporary hit points, and the DM must reroll the save, and you gain the use of this when you finish a short or long rest."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 14,
+          "limits": {
+            "per": "rest",
+            "max": 1
+          },
+          "effects": [
+            {
+              "kind": "condition",
+              "action": "remove",
+              "conditions": [
+                "poisoned"
+              ]
+            },
+            {
+              "kind": "special",
+              "note": "The temporary hit points increase to 2d8 plus your Constitution modifier, and you gain the use when you finish a short or long rest."
+            }
+          ]
+        }
+      ],
+      "summary": "Reaction: 1d8 + Con temp HP and a reroll after a failed save",
+      "text": "When you fail a saving throw, you can use your reaction to gain 1d8 + your Constitution modifier in temporary hit points, and the DM must reroll the save.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Warlock Undying 1"
+      }
+    },
+    {
+      "id": "subclass.undying.beyond_the_grave",
+      "name": "Beyond the Grave",
+      "kind": "subclass",
+      "owner": "Undying",
+      "unlock": 6,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have learnt the curse of the broken body can be a source of power. When you are damaged, you can make a Charisma saving throw with a DC of 5 plus your Constitution modifier, and on a success you reduce the damage by half. At 18th level the DC is 10 plus your Constitution modifier instead."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 18,
+          "effects": [
+            {
+              "kind": "special",
+              "note": "The Charisma saving throw DC is 10 plus your Constitution modifier instead of 5 plus."
+            }
+          ]
+        }
+      ],
+      "summary": "A Cha save halves damage you take",
+      "text": "When you are damaged, you can make a Charisma saving throw with a DC of 5 + your Constitution modifier. On a success, you reduce the damage by half.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Warlock Undying 6"
+      }
+    },
+    {
+      "id": "subclass.undying.indestructible_life",
+      "name": "Indestructible Life",
+      "kind": "subclass",
+      "owner": "Undying",
+      "unlock": 10,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have learned a few basic survivability tricks that require magic. When you make a Death saving throw, you can choose to take 1d4 plus your Constitution modifier in temporary hit points, and if you do, you automatically succeed on the save. When you would be reduced to 0 hit points by damage that isn't psychic, you can instead drop to 1 hit point."
+        }
+      ],
+      "summary": "Death saves get 1d4 + Con temp HP; drop to 1 on non-psychic damage",
+      "text": "When you make a Death saving throw, you can choose to take 1d4 + your Constitution modifier in temporary hit points, and if you do, you automatically succeed on the save.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Warlock Undying 10"
+      }
+    }
+  ]
+}

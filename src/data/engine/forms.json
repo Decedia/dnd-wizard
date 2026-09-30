@@ -287,6 +287,42 @@
         "swarmkeeper:3"
       ],
       "note": "A Large swarm of tiny insectile creatures, summoned by Gathered Swarm when you drop to 0 hit points. Acts immediately, takes its own turns, and vanishes at the end of your next turn. Mordenkainen's Tome of Foes p. 160."
+    },
+    {
+      "id": "hexblade_specter",
+      "name": "Hexblade's Accursed Specter",
+      "cr": "0",
+      "creatureType": "spectral creature",
+      "size": "Medium",
+      "ac": 18,
+      "hp": "3 plus your warlock level",
+      "speed": "0 ft., fly 40 ft. (hover)",
+      "abilities": {
+        "str": 5,
+        "dex": 15,
+        "con": 10,
+        "int": 5,
+        "wis": 10,
+        "cha": 10
+      },
+      "grantedAt": [
+        "hexblade:6"
+      ],
+      "note": "A translucent phantom warrior conjured by the Hexblade patron's Accursed Specter. It occupies your space, requires no slot, lasts 1 minute or until it takes 30 damage, and can attack anyone but you within 5 feet for 1d6 necrotic damage. PHB Warlock Hexblade 6."
+    },
+    {
+      "id": "awakened_familiar",
+      "name": "Awakened Familiar",
+      "cr": "0",
+      "creatureType": "fey",
+      "size": "Tiny",
+      "ac": 15,
+      "hp": "a quarter of your caster's hit dice",
+      "speed": "30 ft., fly 30 ft.",
+      "grantedAt": [
+        "great_old_one:14"
+      ],
+      "note": "The thrall created by the Great Old One's Create Thrall. It is the same creature as the one created by the find familiar spell, of the same type, with the same statistics, except that it uses your spell save DC as its spell save DC and its attack bonus is equal to your spell attack modifier, and it is intangible rather than invisible. PHB Warlock Great Old One 14."
     }
   ]
 }
