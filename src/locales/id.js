@@ -468,6 +468,7 @@ export const translations = {
   "home.prevPage": "Halaman sebelumnya",
   "home.nextPage": "Halaman berikutnya",
   "home.pagination": "Halaman daftar karakter",
+  "home.goToPage": "Ke halaman {page}",
   "home.created": "Dibuat",
   "home.adminTestLab": "Lab Test Admin",
   "home.myCharacters": "Karakter Saya",

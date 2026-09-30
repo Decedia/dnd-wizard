@@ -52,6 +52,26 @@ const getClassIcon = (className = "") => {
 
 type SortKey = "opened" | "newest" | "oldest" | "name";
 const PAGE_SIZES = [5, 10, 20];
+const MAX_VISIBLE_PAGES = 5;
+const MAX_PAGE_ITEMS = MAX_VISIBLE_PAGES + 2;
+
+type PageItem = number | "gap";
+
+function buildPageItems(current: number, total: number, maxItems: number): PageItem[] {
+  if (total <= maxItems) {
+    return Array.from({ length: total }, (_, i) => i + 1);
+  }
+  const middleSlots = Math.max(1, maxItems - 4);
+  let start = Math.max(2, current - Math.floor(middleSlots / 2));
+  const end = Math.min(total - 1, start + middleSlots - 1);
+  start = Math.max(2, Math.min(start, end - middleSlots + 1));
+  const items: PageItem[] = [1];
+  if (start > 2) items.push("gap");
+  for (let n = start; n <= end; n++) items.push(n);
+  if (end < total - 1) items.push("gap");
+  items.push(total);
+  return items;
+}
 
 export default function Home() {
   const debug = useDebug();
@@ -161,6 +181,7 @@ export default function Home() {
   // Clamp so deleting a character on the last page cannot strand the user.
   const currentPage = Math.min(page, totalPages);
   const visible = sorted.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+  const pageItems = buildPageItems(currentPage, totalPages, MAX_PAGE_ITEMS);
 
   const changeSort = (next: SortKey) => {
     setSortKey(next);
@@ -272,37 +293,48 @@ export default function Home() {
               </ul>
 
               {totalPages > 1 && (
-                <nav className="mt-4 flex items-center justify-between gap-2" aria-label={t("home.pagination")}>
+                <nav className="mt-4 flex flex-wrap items-center justify-between gap-2" aria-label={t("home.pagination")}>
                   <button
                     onClick={() => setPage((p) => Math.max(1, p - 1))}
                     disabled={currentPage === 1}
-                    className="flex h-9 w-9 items-center justify-center rounded-full border border-border-muted bg-paper text-ink transition-colors hover:bg-paper-muted disabled:opacity-40"
+                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border-muted bg-paper text-ink transition-colors hover:bg-paper-muted disabled:opacity-40"
                     aria-label={t("home.prevPage")}
                   >
                     <CaretLeft size={16} />
                   </button>
 
-                  <div className="flex items-center gap-1.5">
-                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
-                      <button
-                        key={n}
-                        onClick={() => setPage(n)}
-                        aria-current={n === currentPage ? "page" : undefined}
-                        className={
-                          n === currentPage
-                            ? "flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-accent-indigo-500)] text-xs font-semibold text-white"
-                            : "flex h-8 w-8 items-center justify-center rounded-full border border-border-muted bg-paper text-xs text-ink transition-colors hover:bg-paper-muted"
-                        }
-                      >
-                        {n}
-                      </button>
-                    ))}
+                  <div className="flex min-w-0 flex-wrap items-center justify-center gap-1.5">
+                    {pageItems.map((item, i) =>
+                      item === "gap" ? (
+                        <span
+                          key={`gap-${i}`}
+                          aria-hidden="true"
+                          className="flex h-8 w-6 items-center justify-center text-xs text-muted"
+                        >
+                          &hellip;
+                        </span>
+                      ) : (
+                        <button
+                          key={item}
+                          onClick={() => setPage(item)}
+                          aria-current={item === currentPage ? "page" : undefined}
+                          aria-label={t("home.goToPage", { page: item } as any)}
+                          className={
+                            item === currentPage
+                              ? "flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-accent-indigo-500)] text-xs font-semibold text-white"
+                              : "flex h-8 w-8 items-center justify-center rounded-full border border-border-muted bg-paper text-xs text-ink transition-colors hover:bg-paper-muted"
+                          }
+                        >
+                          {item}
+                        </button>
+                      )
+                    )}
                   </div>
 
                   <button
                     onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
                     disabled={currentPage === totalPages}
-                    className="flex h-9 w-9 items-center justify-center rounded-full border border-border-muted bg-paper text-ink transition-colors hover:bg-paper-muted disabled:opacity-40"
+                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border-muted bg-paper text-ink transition-colors hover:bg-paper-muted disabled:opacity-40"
                     aria-label={t("home.nextPage")}
                   >
                     <CaretRight size={16} />

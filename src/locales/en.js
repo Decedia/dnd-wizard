@@ -455,6 +455,7 @@ export const translations = {
   "home.prevPage": "Previous page",
   "home.nextPage": "Next page",
   "home.pagination": "Character list pages",
+  "home.goToPage": "Go to page {page}",
   "home.created": "Created",
   "home.adminTestLab": "Admin Test Lab",
   "home.myCharacters": "My Characters",
