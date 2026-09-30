@@ -95,6 +95,7 @@ const statesDoc = readJson(path.join(ENGINE_DIR, "states.json"));
 const formsDoc = readJson(path.join(ENGINE_DIR, "forms.json"));
 const resourcesDoc = readJson(path.join(ENGINE_DIR, "resources.json"));
 const racesDoc = readJson(path.join(ENGINE_DIR, "races.json"));
+const classesDoc = readJson(path.join(ENGINE_DIR, "classes.json"));
 
 const stateIds = new Set((statesDoc?.states ?? []).map((s) => s.id));
 const formIds = new Set((formsDoc?.forms ?? []).map((f) => f.id));
@@ -103,7 +104,30 @@ const resourceIds = new Set();
 const raceKeys = new Set();
 /** Variants that borrow another race's list, so they hold no traits themselves. */
 const borrowedVariants = new Set();
+/** "class" and "subclass" owners, so a misspelled one fails instead of vanishing. */
+const classKeys = new Set();
 const [LEVEL_MIN, LEVEL_MAX] = vocab.levelRange;
+
+if (classesDoc) {
+  for (const [i, c] of (classesDoc.classes ?? []).entries()) {
+    const where = `classes.json[${i}] ${c?.id ?? "?"}`;
+    requireString(c.id, where, "id");
+    requireString(c.name, where, "name");
+    if (c.id && slug(c.id) !== slug(c.name)) {
+      fail(where, "format", `id ${JSON.stringify(c.id)} does not match name ${JSON.stringify(c.name)}`);
+    }
+    if (c.id) classKeys.add(c.id);
+    for (const [j, s] of (c.subclasses ?? []).entries()) {
+      const swhere = `${where}.subclasses[${j}] ${s?.id ?? "?"}`;
+      requireString(s.id, swhere, "id");
+      requireString(s.name, swhere, "name");
+      if (s.id) {
+        if (classKeys.has(s.id)) fail(swhere, "duplicate", `subclass id ${JSON.stringify(s.id)} collides with another owner`);
+        classKeys.add(s.id);
+      }
+    }
+  }
+}
 
 if (racesDoc) {
   for (const [i, race] of (racesDoc.races ?? []).entries()) {
@@ -347,6 +371,13 @@ for (const { feature: f, where } of features) {
     requireNumber(c.amount, where, `cost[${i}].amount`);
   }
 
+  if ((f.kind === "class" || f.kind === "subclass") && classesDoc) {
+    const ownerKey = slug(f.owner ?? "");
+    if (!classKeys.has(ownerKey)) {
+      fail(where, "danglingRef", `${f.kind} owner ${JSON.stringify(f.owner)} is not declared in classes.json (looked for ${JSON.stringify(ownerKey)})`);
+    }
+  }
+
   if (f.kind === "race" && f.owner.includes("(")) {
     fail(where, "structure", `race owner ${JSON.stringify(f.owner)} embeds a variant in parentheses; use owner "Dragonborn" with variant "Chromatic"`);
   }
@@ -366,6 +397,17 @@ for (const { feature: f, where } of features) {
       }
     } else if (borrowedVariants.has(raceKey)) {
       fail(where, "structure", `${raceKey} is not a race in races.json, only a borrowed variant`);
+    }
+  }
+
+  // A feature draws on either a shared pool or its own limit, not both. A
+  // resource exists so *several* features can spend it, so a feature that both
+  // spends a pool and carries its own limit is usually one of the two modelled
+  // twice. Wild Shape spends wild_shape_uses and has no limit for that reason.
+  if (f.cost && f.limits) {
+    const costOnly = f.cost.every((c) => resourceIds.has(c.resource));
+    if (costOnly) {
+      fail(where, "structure", "a feature should carry either cost or limits, not both; a resource is shared, a limit is this feature's own");
     }
   }
 

@@ -7,84 +7,213 @@
       "owner": "Druid",
       "unlock": 2,
       "activation": "bonus_action",
-      "cost": [{ "resource": "wild_shape_uses", "amount": 1 }],
+      "cost": [
+        {
+          "resource": "wild_shape_uses",
+          "amount": 1
+        }
+      ],
       "trigger": null,
-      "targeting": { "scope": "self" },
-      "duration": { "value": 1, "unit": "hour" },
-      "endsIf": ["drop_to_0_hp_in_form", "revert_on_death"],
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
+      "endsIf": [
+        "drop_to_0_hp_in_form",
+        "revert_on_death"
+      ],
       "gates": [],
       "effects": [
-        { "kind": "transform", "formTable": "forms", "hitPoints": "form", "speed": "form", "abilities": ["str", "dex", "con"], "note": "Duration is 1 hour, or half your current missing hit points, whichever is longer. Assumes a beast you have seen at least once, at the CR cap for your level." },
-        { "kind": "ac_bonus", "amount": 4 },
-        { "kind": "advantage", "check": "ability_check", "value": "advantage" },
-        { "kind": "condition_immunity", "conditions": ["exhaustion", "grappled", "paralyzed", "petrified", "prone", "restrained", "unconscious"] },
-        { "kind": "special", "note": "You retain your own class, race and other features while in the form, except those the form makes unusable. You cannot cast any spell while transformed unless the form has the speech or equivalent capability." }
+        {
+          "kind": "transform",
+          "formTable": "forms",
+          "hitPoints": "form",
+          "speed": "form",
+          "abilities": [
+            "str",
+            "dex",
+            "con"
+          ],
+          "note": "Duration is 1 hour, or half your current missing hit points, whichever is longer. Assumes a beast you have seen at least once, at the CR cap for your level."
+        },
+        {
+          "kind": "ac_bonus",
+          "amount": 4
+        },
+        {
+          "kind": "advantage",
+          "check": "ability_check",
+          "value": "advantage"
+        },
+        {
+          "kind": "condition_immunity",
+          "conditions": [
+            "exhaustion",
+            "grappled",
+            "paralyzed",
+            "petrified",
+            "prone",
+            "restrained",
+            "unconscious"
+          ]
+        },
+        {
+          "kind": "special",
+          "note": "You retain your own class, race and other features while in the form, except those the form makes unusable. You cannot cast any spell while transformed unless the form has the speech or equivalent capability."
+        }
       ],
-      "formCap": { "2": "1/4", "4": "1/2", "8": "1", "11": "2", "17": "4" },
+      "formCap": {
+        "2": "1/4",
+        "4": "1/2",
+        "8": "1",
+        "11": "2",
+        "17": "4"
+      },
       "summary": "Assume the form of a beast you have seen, gaining its stats and a +4 AC bonus",
       "text": "You can use this feature to assume the form of a beast that has a challenge rating equal to or less than the one specified in the feature, and that you have seen at least once. You magically assume the form of that beast for the duration, either for a number of hours equal to half your missing hit points or for 1 minute, whichever is longer. The form can be a new form you have seen, but you can't use this feature again until you finish a short rest. You transform into a new form. While in this form, you have a +4 bonus to armor class, you have advantage on Strength checks and Strength saving throws, and you have the following statistics of the beast. You also retain any of your own special class features and traits. When the form ends, you revert to your normal appearance. In a new form, you retain the benefit of any of your features from your class, race, other source, and also the benefit of any features from your new form that are not listed in the Known Issues appendix. If you have any class features, you can't use any of them that are marked 'not usable in a Bear Form'.",
-      "source": { "book": "PHB", "page": 240, "reference": "PHB Druid 31" }
+      "source": {
+        "book": "PHB",
+        "page": 240,
+        "reference": "PHB Druid 31"
+      }
     },
     {
-      "id": "subclass.circle_of_land.wildfire_spirit",
+      "id": "subclass.land.wildfire_spirit",
       "name": "Wildfire Spirit",
       "kind": "subclass",
-      "owner": "Circle of Land",
+      "owner": "Land",
       "unlock": 6,
       "activation": "bonus_action",
-      "limits": { "per": "rest", "max": 1 },
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "self" },
-      "duration": { "value": 1, "unit": "hour" },
-      "endsIf": ["drop_to_0_hp", "you_die"],
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
+      "endsIf": [
+        "drop_to_0_hp",
+        "you_die"
+      ],
       "gates": [],
       "effects": [
-        { "kind": "summon", "features": ["subclass.circle_of_land.wildfire_spirit_attack", "subclass.circle_of_land.wildfire_spirit_movement"], "formId": "wildfire_spirit_ally", "initiative": "separate", "hasOwnTurn": true, "control": "ally", "duration": { "value": 1, "unit": "hour" } },
-        { "kind": "special", "note": "The spirit's challenge rating is equal to 2 + your druid level / 4. It is the size of your Medium form, and it is represented by a spectral flame. The spirit is your ally." }
+        {
+          "kind": "summon",
+          "features": [
+            "subclass.land.wildfire_spirit_attack",
+            "subclass.land.wildfire_spirit_movement"
+          ],
+          "formId": "wildfire_spirit_ally",
+          "initiative": "separate",
+          "hasOwnTurn": true,
+          "control": "ally",
+          "duration": {
+            "value": 1,
+            "unit": "hour"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "The spirit's challenge rating is equal to 2 + your druid level / 4. It is the size of your Medium form, and it is represented by a spectral flame. The spirit is your ally."
+        }
       ],
       "summary": "Summon a spectral flame ally that fights on its own turn",
       "text": "You summon a spirit that embodies the fire of your druid circle. The spirit bears an emblem of a flame on its brow and appears wherever you appear, unless you are already within 10 feet of it. The spirit is the size of your Medium form, and it is your ally. The spirit's challenge rating is equal to 2 + your druid level / 4. The spirit takes the actions of its turn and reacts to your environment. When you cast a spell, the spirit can use its reaction to make a melee spell attack against a creature within 5 feet of it. The spirit is invisible. It is represented by a spectral flame. The spirit's statistics are as follows, unless it's CR 0, in which case it's a Small fey spirit.",
-      "source": { "book": "PHB", "page": 250, "reference": "PHB Druid Circle of Land 14" }
+      "source": {
+        "book": "PHB",
+        "page": 250,
+        "reference": "PHB Druid Circle of Land 14"
+      }
     },
     {
-      "id": "subclass.circle_of_land.wildfire_spirit_attack",
+      "id": "subclass.land.wildfire_spirit_attack",
       "name": "Wildfire Spirit Attack",
       "kind": "subclass",
-      "owner": "Circle of Land",
+      "owner": "Land",
       "unlock": 6,
       "activation": "free",
-      "limits": { "per": "turn", "max": 1 },
-      "trigger": { "event": "targeted_by_spell", "note": "The spirit uses its reaction when you cast a spell." },
-      "targeting": { "scope": "creature", "range": { "value": 5, "unit": "ft" } },
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": {
+        "event": "targeted_by_spell",
+        "note": "The spirit uses its reaction when you cast a spell."
+      },
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 5,
+          "unit": "ft"
+        }
+      },
       "duration": null,
       "endsIf": [],
       "gates": [],
       "effects": [
-        { "kind": "damage", "dice": { "dice": "1d6", "bonusFrom": "none" }, "damageType": "fire", "resolution": { "mode": "attack", "reaches": ["5 ft melee"], "note": "Uses your spellcasting ability modifier for the attack roll." } }
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "1d6",
+            "bonusFrom": "none"
+          },
+          "damageType": "fire",
+          "resolution": {
+            "mode": "attack",
+            "reaches": [
+              "5 ft melee"
+            ],
+            "note": "Uses your spellcasting ability modifier for the attack roll."
+          }
+        }
       ],
       "summary": "Reaction melee spell attack dealing 1d6 fire damage",
       "text": "When you cast a spell, the spirit can use its reaction to make a melee spell attack against a creature within 5 feet of it.",
-      "source": { "book": "PHB", "page": 250, "reference": "PHB Druid Circle of Land 14" }
+      "source": {
+        "book": "PHB",
+        "page": 250,
+        "reference": "PHB Druid Circle of Land 14"
+      }
     },
     {
-      "id": "subclass.circle_of_land.wildfire_spirit_movement",
+      "id": "subclass.land.wildfire_spirit_movement",
       "name": "Wildfire Spirit Movement",
       "kind": "subclass",
-      "owner": "Circle of Land",
+      "owner": "Land",
       "unlock": 6,
       "activation": "free",
       "limits": null,
-      "trigger": { "event": "turn_start", "note": "The spirit appears wherever you appear." },
-      "targeting": { "scope": "self" },
+      "trigger": {
+        "event": "turn_start",
+        "note": "The spirit appears wherever you appear."
+      },
+      "targeting": {
+        "scope": "self"
+      },
       "duration": null,
       "endsIf": [],
       "gates": [],
       "effects": [
-        { "kind": "teleport", "note": "The spirit appears wherever you appear, unless you are already within 10 feet of it." }
+        {
+          "kind": "teleport",
+          "note": "The spirit appears wherever you appear, unless you are already within 10 feet of it."
+        }
       ],
       "summary": "Appears wherever you appear",
       "text": "The spirit bears an emblem of a flame on its brow and appears wherever you appear, unless you are already within 10 feet of it.",
-      "source": { "book": "PHB", "page": 250, "reference": "PHB Druid Circle of Land 14" }
+      "source": {
+        "book": "PHB",
+        "page": 250,
+        "reference": "PHB Druid Circle of Land 14"
+      }
     }
   ]
 }

@@ -1,0 +1,847 @@
+{
+  "schemaVersion": 1,
+  "ruleset": "2014",
+  "note": "Class and subclass registry. Feature owners must resolve here, so a misspelled owner fails the gate instead of silently producing an entry nothing can reach. Sourcebook and page are the PHB/Tome of Heroes pages; subclass names follow the existing app data, which shortens a few PHB names (see alias note).",
+  "aliasNote": "The app data names the Druid circles \"Land\", \"Moon\", \"Spores\", \"Stars\", \"Shepherd\" and \"Dreams\" and the Wizard traditions \"School of\" forms. The full PHB names are Land/Moon/Spores/Stars/Shepherd/Dreams circles and Evocation/Abjuration/Conjuration/Divination/Illusion/Transmutation traditions. Ids use the app data names so the engine and the character sheet agree.",
+  "classes": [
+    {
+      "id": "barbarian",
+      "name": "Barbarian",
+      "book": "PHB",
+      "subclassLevel": 3,
+      "source": {
+        "book": "PHB"
+      },
+      "subclasses": [
+        {
+          "id": "ancestral_guardian",
+          "name": "Ancestral Guardian",
+          "book": "XGE",
+          "page": null
+        },
+        {
+          "id": "berserker",
+          "name": "Berserker",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "path_of_the_beast",
+          "name": "Path of the Beast",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "path_of_wild_magic",
+          "name": "Path of Wild Magic",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "storm_herald",
+          "name": "Storm Herald",
+          "book": "XGE",
+          "page": null
+        },
+        {
+          "id": "totem_warrior",
+          "name": "Totem Warrior",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "zealot",
+          "name": "Zealot",
+          "book": "XGE",
+          "page": null
+        }
+      ]
+    },
+    {
+      "id": "bard",
+      "name": "Bard",
+      "book": "PHB",
+      "subclassLevel": 3,
+      "source": {
+        "book": "PHB"
+      },
+      "subclasses": [
+        {
+          "id": "college_of_creation",
+          "name": "College of Creation",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "college_of_eloquence",
+          "name": "College of Eloquence",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "college_of_glamour",
+          "name": "College of Glamour",
+          "book": "XGE",
+          "page": null
+        },
+        {
+          "id": "college_of_spirits",
+          "name": "College of Spirits",
+          "book": "VRGR",
+          "page": null
+        },
+        {
+          "id": "college_of_swords",
+          "name": "College of Swords",
+          "book": "XGE",
+          "page": null
+        },
+        {
+          "id": "college_of_whispers",
+          "name": "College of Whispers",
+          "book": "XGE",
+          "page": null
+        },
+        {
+          "id": "lore",
+          "name": "Lore",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "valor",
+          "name": "Valor",
+          "book": "PHB",
+          "page": null
+        }
+      ]
+    },
+    {
+      "id": "cleric",
+      "name": "Cleric",
+      "book": "PHB",
+      "subclassLevel": 1,
+      "source": {
+        "book": "PHB"
+      },
+      "subclasses": [
+        {
+          "id": "arcana_domain",
+          "name": "Arcana Domain",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "death_domain",
+          "name": "Death Domain",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "forge_domain",
+          "name": "Forge Domain",
+          "book": "XGE",
+          "page": null
+        },
+        {
+          "id": "grave_domain",
+          "name": "Grave Domain",
+          "book": "XGE",
+          "page": null
+        },
+        {
+          "id": "knowledge",
+          "name": "Knowledge",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "life",
+          "name": "Life",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "light",
+          "name": "Light",
+          "book": "SCAG",
+          "page": null
+        },
+        {
+          "id": "nature",
+          "name": "Nature",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "order_domain",
+          "name": "Order Domain",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "peace_domain",
+          "name": "Peace Domain",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "tempest",
+          "name": "Tempest",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "trickery",
+          "name": "Trickery",
+          "book": "SCAG",
+          "page": null
+        },
+        {
+          "id": "twilight_domain",
+          "name": "Twilight Domain",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "war",
+          "name": "War",
+          "book": "SCAG",
+          "page": null
+        }
+      ]
+    },
+    {
+      "id": "druid",
+      "name": "Druid",
+      "book": "PHB",
+      "subclassLevel": 2,
+      "source": {
+        "book": "PHB"
+      },
+      "subclasses": [
+        {
+          "id": "circle_of_dreams",
+          "name": "Circle of Dreams",
+          "book": "XGE",
+          "page": null
+        },
+        {
+          "id": "circle_of_spores",
+          "name": "Circle of Spores",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "circle_of_stars",
+          "name": "Circle of Stars",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "circle_of_the_sea",
+          "name": "Circle of the Sea",
+          "book": "MPMM",
+          "page": null
+        },
+        {
+          "id": "circle_of_the_shepherd",
+          "name": "Circle of the Shepherd",
+          "book": "XGE",
+          "page": null
+        },
+        {
+          "id": "circle_of_wildfire",
+          "name": "Circle of Wildfire",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "land",
+          "name": "Land",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "moon",
+          "name": "Moon",
+          "book": "PHB",
+          "page": null
+        }
+      ]
+    },
+    {
+      "id": "fighter",
+      "name": "Fighter",
+      "book": "PHB",
+      "subclassLevel": 3,
+      "source": {
+        "book": "PHB"
+      },
+      "subclasses": [
+        {
+          "id": "arcane_archer",
+          "name": "Arcane Archer",
+          "book": "XGE",
+          "page": null
+        },
+        {
+          "id": "battle_master",
+          "name": "Battle Master",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "cavalier",
+          "name": "Cavalier",
+          "book": "XGE",
+          "page": null
+        },
+        {
+          "id": "champion",
+          "name": "Champion",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "echo_knight",
+          "name": "Echo Knight",
+          "book": "EGW",
+          "page": null
+        },
+        {
+          "id": "eldritch_knight",
+          "name": "Eldritch Knight",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "psi_warrior",
+          "name": "Psi Warrior",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "rune_knight",
+          "name": "Rune Knight",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "samurai",
+          "name": "Samurai",
+          "book": "XGE",
+          "page": null
+        }
+      ]
+    },
+    {
+      "id": "monk",
+      "name": "Monk",
+      "book": "PHB",
+      "subclassLevel": 3,
+      "source": {
+        "book": "PHB"
+      },
+      "subclasses": [
+        {
+          "id": "ascendant_dragon",
+          "name": "Ascendant Dragon",
+          "book": "FTD",
+          "page": null
+        },
+        {
+          "id": "open_hand",
+          "name": "Open Hand",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "shadow",
+          "name": "Shadow",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "way_of_mercy",
+          "name": "Way of Mercy",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "way_of_the_astral_self",
+          "name": "Way of the Astral Self",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "way_of_the_drunken_master",
+          "name": "Way of the Drunken Master",
+          "book": "XGE",
+          "page": null
+        },
+        {
+          "id": "way_of_the_four_elements",
+          "name": "Way of the Four Elements",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "way_of_the_kensei",
+          "name": "Way of the Kensei",
+          "book": "XGE",
+          "page": null
+        },
+        {
+          "id": "way_of_the_long_death",
+          "name": "Way of the Long Death",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "way_of_the_sun_soul",
+          "name": "Way of the Sun Soul",
+          "book": "XGE",
+          "page": null
+        }
+      ]
+    },
+    {
+      "id": "paladin",
+      "name": "Paladin",
+      "book": "PHB",
+      "subclassLevel": 3,
+      "source": {
+        "book": "PHB"
+      },
+      "subclasses": [
+        {
+          "id": "ancients",
+          "name": "Ancients",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "devotion",
+          "name": "Devotion",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "draconic_disciple",
+          "name": "Draconic Disciple",
+          "book": "FTD",
+          "page": null
+        },
+        {
+          "id": "oath_of_conquest",
+          "name": "Oath of Conquest",
+          "book": "XGE",
+          "page": null
+        },
+        {
+          "id": "oath_of_glory",
+          "name": "Oath of Glory",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "oath_of_redemption",
+          "name": "Oath of Redemption",
+          "book": "XGE",
+          "page": null
+        },
+        {
+          "id": "oath_of_the_crown",
+          "name": "Oath of the Crown",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "oath_of_the_watchers",
+          "name": "Oath of the Watchers",
+          "book": "XGE",
+          "page": null
+        },
+        {
+          "id": "oathbreaker",
+          "name": "Oathbreaker",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "vengeance",
+          "name": "Vengeance",
+          "book": "PHB",
+          "page": null
+        }
+      ]
+    },
+    {
+      "id": "ranger",
+      "name": "Ranger",
+      "book": "PHB",
+      "subclassLevel": 3,
+      "source": {
+        "book": "PHB"
+      },
+      "subclasses": [
+        {
+          "id": "beast_master",
+          "name": "Beast Master",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "drake_warden",
+          "name": "Drake Warden",
+          "book": "FTD",
+          "page": null
+        },
+        {
+          "id": "fey_wanderer",
+          "name": "Fey Wanderer",
+          "book": "TCE",
+          "page": null
+        },
+        {
+          "id": "gloom_stalker",
+          "name": "Gloom Stalker",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "horizon_walker",
+          "name": "Horizon Walker",
+          "book": "XGE",
+          "page": null
+        },
+        {
+          "id": "hunter",
+          "name": "Hunter",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "monster_slayer",
+          "name": "Monster Slayer",
+          "book": "XGE",
+          "page": null
+        },
+        {
+          "id": "swarmkeeper",
+          "name": "Swarmkeeper",
+          "book": "TCE",
+          "page": null
+        }
+      ]
+    },
+    {
+      "id": "rogue",
+      "name": "Rogue",
+      "book": "PHB",
+      "subclassLevel": 3,
+      "source": {
+        "book": "PHB"
+      },
+      "subclasses": [
+        {
+          "id": "arcane_trickster",
+          "name": "Arcane Trickster",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "assassin",
+          "name": "Assassin",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "inquisitive",
+          "name": "Inquisitive",
+          "book": "XGE",
+          "page": null
+        },
+        {
+          "id": "mastermind",
+          "name": "Mastermind",
+          "book": "XGE",
+          "page": null
+        },
+        {
+          "id": "phantom",
+          "name": "Phantom",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "scout",
+          "name": "Scout",
+          "book": "XGE",
+          "page": null
+        },
+        {
+          "id": "soulknife",
+          "name": "Soulknife",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "swashbuckler",
+          "name": "Swashbuckler",
+          "book": "XGE",
+          "page": null
+        },
+        {
+          "id": "thief",
+          "name": "Thief",
+          "book": "PHB",
+          "page": null
+        }
+      ]
+    },
+    {
+      "id": "sorcerer",
+      "name": "Sorcerer",
+      "book": "PHB",
+      "subclassLevel": 1,
+      "source": {
+        "book": "PHB"
+      },
+      "subclasses": [
+        {
+          "id": "aberrant_mind",
+          "name": "Aberrant Mind",
+          "book": "TCE",
+          "page": null
+        },
+        {
+          "id": "clockwork_soul",
+          "name": "Clockwork Soul",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "divine_soul",
+          "name": "Divine Soul",
+          "book": "XGE",
+          "page": null
+        },
+        {
+          "id": "draconic",
+          "name": "Draconic",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "shadow_magic",
+          "name": "Shadow Magic",
+          "book": "XGE",
+          "page": null
+        },
+        {
+          "id": "storm_sorcery",
+          "name": "Storm Sorcery",
+          "book": "XGE",
+          "page": null
+        },
+        {
+          "id": "wild_magic",
+          "name": "Wild Magic",
+          "book": "PHB",
+          "page": null
+        }
+      ]
+    },
+    {
+      "id": "warlock",
+      "name": "Warlock",
+      "book": "PHB",
+      "subclassLevel": 1,
+      "source": {
+        "book": "PHB"
+      },
+      "subclasses": [
+        {
+          "id": "archfey",
+          "name": "Archfey",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "fiend",
+          "name": "Fiend",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "great_old_one",
+          "name": "Great Old One",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "hexblade",
+          "name": "Hexblade",
+          "book": "XGE",
+          "page": null
+        },
+        {
+          "id": "the_celestial",
+          "name": "The Celestial",
+          "book": "XGE",
+          "page": null
+        },
+        {
+          "id": "the_fathomless",
+          "name": "The Fathomless",
+          "book": "TCE",
+          "page": null
+        },
+        {
+          "id": "the_genie",
+          "name": "The Genie",
+          "book": "TCE",
+          "page": null
+        },
+        {
+          "id": "the_undead",
+          "name": "The Undead",
+          "book": "VRGR",
+          "page": null
+        },
+        {
+          "id": "undying",
+          "name": "Undying",
+          "book": "SCAG",
+          "page": null
+        }
+      ]
+    },
+    {
+      "id": "wizard",
+      "name": "Wizard",
+      "book": "PHB",
+      "subclassLevel": 2,
+      "source": {
+        "book": "PHB"
+      },
+      "subclasses": [
+        {
+          "id": "abjuration",
+          "name": "Abjuration",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "bladesinging",
+          "name": "Bladesinging",
+          "book": "XGE",
+          "page": null
+        },
+        {
+          "id": "chronurgy_magic",
+          "name": "Chronurgy Magic",
+          "book": "TCE",
+          "page": null
+        },
+        {
+          "id": "conjuration",
+          "name": "Conjuration",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "divination",
+          "name": "Divination",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "enchantment",
+          "name": "Enchantment",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "evocation",
+          "name": "Evocation",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "graviturgy_magic",
+          "name": "Graviturgy Magic",
+          "book": "TCE",
+          "page": null
+        },
+        {
+          "id": "illusion",
+          "name": "Illusion",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "necromancy",
+          "name": "Necromancy",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "order_of_scribes",
+          "name": "Order of Scribes",
+          "book": "TCE",
+          "page": null
+        },
+        {
+          "id": "transmutation",
+          "name": "Transmutation",
+          "book": "PHB",
+          "page": null
+        },
+        {
+          "id": "war_magic",
+          "name": "War Magic",
+          "book": "XGE",
+          "page": null
+        }
+      ]
+    },
+    {
+      "id": "artificer",
+      "name": "Artificer",
+      "book": "PHB",
+      "subclassLevel": 3,
+      "source": {
+        "book": "PHB"
+      },
+      "subclasses": [
+        {
+          "id": "alchemist",
+          "name": "Alchemist",
+          "book": "EGW",
+          "page": null
+        },
+        {
+          "id": "armorer",
+          "name": "Armorer",
+          "book": "EGW",
+          "page": null
+        },
+        {
+          "id": "artillerist",
+          "name": "Artillerist",
+          "book": "EGW",
+          "page": null
+        },
+        {
+          "id": "battle_smith",
+          "name": "Battle Smith",
+          "book": "EGW",
+          "page": null
+        }
+      ]
+    }
+  ]
+}

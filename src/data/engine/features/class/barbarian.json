@@ -1,0 +1,837 @@
+{
+  "features": [
+    {
+      "id": "class.barbarian.rage",
+      "name": "Rage",
+      "kind": "class",
+      "owner": "Barbarian",
+      "unlock": 1,
+      "activation": "bonus_action",
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
+      "endsIf": [
+        "reduced_to_0_hit_points",
+        "end_turn_without_attacking_or_taking_damage",
+        "you_end_it"
+      ],
+      "gates": [
+        "raging"
+      ],
+      "effects": [
+        {
+          "kind": "advantage",
+          "check": "ability_check",
+          "value": "advantage",
+          "note": "Advantage on Strength checks and Strength saving throws."
+        },
+        {
+          "kind": "stat_modifier",
+          "stat": "damage_roll",
+          "amount": 2,
+          "duration": "while_active"
+        },
+        {
+          "kind": "resistance",
+          "damageTypes": [
+            "bludgeoning",
+            "piercing",
+            "slashing"
+          ],
+          "note": "Resistance to bludgeoning, piercing and slashing damage from nonmagical attacks."
+        },
+        {
+          "kind": "restriction",
+          "rules": [
+            "cannot_cast_spells",
+            "cannot_concentrate"
+          ],
+          "note": "If you are able to cast spells, you can't cast them or concentrate on them while raging."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 2,
+          "limits": {
+            "per": "rest",
+            "max": 2
+          },
+          "effects": [
+            {
+              "kind": "advantage",
+              "check": "ability_check",
+              "value": "advantage"
+            },
+            {
+              "kind": "stat_modifier",
+              "stat": "damage_roll",
+              "amount": 2,
+              "duration": "while_active"
+            },
+            {
+              "kind": "resistance",
+              "damageTypes": [
+                "bludgeoning",
+                "piercing",
+                "slashing"
+              ]
+            },
+            {
+              "kind": "restriction",
+              "rules": [
+                "cannot_cast_spells",
+                "cannot_concentration"
+              ]
+            }
+          ]
+        },
+        {
+          "at": 3,
+          "limits": {
+            "per": "rest",
+            "max": 3
+          },
+          "effects": [
+            {
+              "kind": "advantage",
+              "check": "ability_check",
+              "value": "advantage"
+            },
+            {
+              "kind": "stat_modifier",
+              "stat": "damage_roll",
+              "amount": 2,
+              "duration": "while_active"
+            },
+            {
+              "kind": "resistance",
+              "damageTypes": [
+                "bludgeoning",
+                "piercing",
+                "slashing"
+              ]
+            },
+            {
+              "kind": "restriction",
+              "rules": [
+                "cannot_cast_spells",
+                "cannot_concentration"
+              ]
+            }
+          ]
+        },
+        {
+          "at": 6,
+          "limits": {
+            "per": "rest",
+            "max": 4
+          },
+          "effects": [
+            {
+              "kind": "advantage",
+              "check": "ability_check",
+              "value": "advantage"
+            },
+            {
+              "kind": "stat_modifier",
+              "stat": "damage_roll",
+              "amount": 2,
+              "duration": "while_active"
+            },
+            {
+              "kind": "resistance",
+              "damageTypes": [
+                "bludgeoning",
+                "piercing",
+                "slashing"
+              ]
+            },
+            {
+              "kind": "restriction",
+              "rules": [
+                "cannot_cast_spells",
+                "cannot_concentration"
+              ]
+            }
+          ]
+        },
+        {
+          "at": 9,
+          "effects": [
+            {
+              "kind": "advantage",
+              "check": "ability_check",
+              "value": "advantage"
+            },
+            {
+              "kind": "stat_modifier",
+              "stat": "damage_roll",
+              "amount": 2,
+              "duration": "while_active"
+            },
+            {
+              "kind": "resistance",
+              "damageTypes": [
+                "bludgeoning",
+                "piercing",
+                "slashing"
+              ]
+            },
+            {
+              "kind": "restriction",
+              "rules": [
+                "cannot_cast_spells",
+                "cannot_concentration"
+              ]
+            }
+          ]
+        },
+        {
+          "at": 12,
+          "limits": {
+            "per": "rest",
+            "max": 5
+          },
+          "effects": [
+            {
+              "kind": "advantage",
+              "check": "ability_check",
+              "value": "advantage"
+            },
+            {
+              "kind": "stat_modifier",
+              "stat": "damage_roll",
+              "amount": 3,
+              "duration": "while_active"
+            },
+            {
+              "kind": "resistance",
+              "damageTypes": [
+                "bludgeoning",
+                "piercing",
+                "slashing"
+              ]
+            },
+            {
+              "kind": "restriction",
+              "rules": [
+                "cannot_cast_spells",
+                "cannot_concentration"
+              ]
+            }
+          ]
+        },
+        {
+          "at": 16,
+          "effects": [
+            {
+              "kind": "advantage",
+              "check": "ability_check",
+              "value": "advantage"
+            },
+            {
+              "kind": "stat_modifier",
+              "stat": "damage_roll",
+              "amount": 3,
+              "duration": "while_active"
+            },
+            {
+              "kind": "resistance",
+              "damageTypes": [
+                "bludgeoning",
+                "piercing",
+                "slashing"
+              ]
+            },
+            {
+              "kind": "restriction",
+              "rules": [
+                "cannot_cast_spells",
+                "cannot_concentration"
+              ]
+            }
+          ]
+        },
+        {
+          "at": 17,
+          "limits": {
+            "per": "rest",
+            "max": 6
+          },
+          "effects": [
+            {
+              "kind": "advantage",
+              "check": "ability_check",
+              "value": "advantage"
+            },
+            {
+              "kind": "stat_modifier",
+              "stat": "damage_roll",
+              "amount": 2,
+              "duration": "while_active"
+            },
+            {
+              "kind": "resistance",
+              "damageTypes": [
+                "bludgeoning",
+                "piercing",
+                "slashing"
+              ]
+            },
+            {
+              "kind": "restriction",
+              "rules": [
+                "cannot_cast_spells",
+                "cannot_concentration"
+              ]
+            }
+          ]
+        },
+        {
+          "at": 19,
+          "effects": [
+            {
+              "kind": "advantage",
+              "check": "ability_check",
+              "value": "advantage"
+            },
+            {
+              "kind": "stat_modifier",
+              "stat": "damage_roll",
+              "amount": 4,
+              "duration": "while_active"
+            },
+            {
+              "kind": "resistance",
+              "damageTypes": [
+                "bludgeoning",
+                "piercing",
+                "slashing"
+              ]
+            },
+            {
+              "kind": "restriction",
+              "rules": [
+                "cannot_cast_spells",
+                "cannot_concentration"
+              ]
+            }
+          ]
+        }
+      ],
+      "summary": "Advantage on Strength, +2 melee damage, and resistance to physical damage",
+      "text": "On your turn, you can enter a rage as a bonus action. While raging, you gain the following benefits if you aren't wearing heavy armor: You have advantage on Strength checks and Strength saving throws. When you make a melee weapon attack using Strength, you gain a +2 bonus to the damage roll. This bonus increases as you level. You have resistance to bludgeoning, piercing, and slashing damage. If you are able to cast spells, you can't cast them or concentrate on them while raging. Your rage lasts for 1 minute. It ends early if you are knocked unconscious, or if your turn ends and you haven't attacked a hostile creature since your last turn or taken damage since then. You can also end your rage on your turn as a bonus action. Once you have raged the maximum number of times for your barbarian level, you must finish a long rest before you can rage again. You may rage 2 times at 1st level, 3 at 3rd, 4 at 6th, 5 at 12th, and 6 at 17th.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Barbarian 31"
+      },
+      "limits": {
+        "per": "rest",
+        "max": 2
+      }
+    },
+    {
+      "id": "class.barbarian.unarmored_defense",
+      "name": "Unarmored Defense",
+      "kind": "class",
+      "owner": "Barbarian",
+      "unlock": 1,
+      "activation": "passive",
+      "gates": [
+        "unarmored"
+      ],
+      "effects": [
+        {
+          "kind": "ac_bonus",
+          "amount": 0,
+          "requires": "no armor and no shield"
+        },
+        {
+          "kind": "special",
+          "note": "While you are wearing no armor and not wielding a shield, your armor class equals 10 + your Dexterity modifier + your Constitution modifier. This is replaced if your armor class would already be higher. You lose this benefit if you are knocked unconscious or if you use a shield."
+        }
+      ],
+      "summary": "Without armor, AC becomes 10 plus Dex plus Con",
+      "text": "While you are wearing no armor and not wielding a shield, your armor class equals 10 + your Dexterity modifier + your Constitution modifier. You can use this feature if you are wearing any nonmagical armor that doesn't have a strength requirement, in which case your armor class equals 10 + your Dexterity modifier + your Constitution modifier. This feature is replaced if your armor class would already be higher. You lose this benefit if you are knocked unconscious or if you use a shield.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Barbarian 31"
+      }
+    },
+    {
+      "id": "class.barbarian.reckless_attack",
+      "name": "Reckless Attack",
+      "kind": "class",
+      "owner": "Barbarian",
+      "unlock": 2,
+      "activation": "action",
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "gates": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "On your turn, you can forgo attacking and instead use the Dash or Disengage action, or, as part of a movement, you can approach a hostile creature within 5 feet of you. Until the start of your next turn, your attack bonus is +1, and the attack bonus of any attack you make against a creature that is not your intended target has disadvantage. This is not a substitution for your attack action."
+        }
+      ],
+      "summary": "Sacrifice accuracy for +1 attack bonus, risking others' attacks",
+      "text": "On your turn, you can forgo attacking and instead use the Dash or Disengage action, or, as part of a movement, you can approach a hostile creature that is within 5 feet of you. Until the start of your next turn, your attack bonus is increased by 1 for attack rolls made with Strength on your turn, and the attack bonus of any attack you make against a creature that is not your intended target has disadvantage. This is not a substitution for your attack action and does not count as an attack.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Barbarian 33"
+      }
+    },
+    {
+      "id": "class.barbarian.danger_sense",
+      "name": "Danger Sense",
+      "kind": "class",
+      "owner": "Barbarian",
+      "unlock": 2,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "advantage",
+          "check": "ability_check",
+          "value": "advantage"
+        },
+        {
+          "kind": "special",
+          "note": "You have advantage on Dexterity (Initiative) and Strength (Perception) checks, which cover your avoiding or being noticed by hidden or moving creatures."
+        }
+      ],
+      "summary": "Advantage on Initiative and Strength-based Perception",
+      "text": "While you are not wearing heavy armor, you gain the following benefits: Your initiative bonus is increased by your Dexterity modifier. You gain advantage on Wisdom (Perception) checks that rely on your hearing or your keen senses.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Barbarian 33"
+      }
+    },
+    {
+      "id": "class.barbarian.ability_score_improvement",
+      "name": "Ability Score Improvement",
+      "kind": "class",
+      "owner": "Barbarian",
+      "unlock": 4,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature. The choice is permanent, as normal for an ability score increase."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 8
+        },
+        {
+          "at": 12
+        },
+        {
+          "at": 16
+        },
+        {
+          "at": 19
+        }
+      ],
+      "summary": "Raise one ability by 2, or two by 1",
+      "text": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Barbarian 35"
+      }
+    },
+    {
+      "id": "class.barbarian.fast_movement",
+      "name": "Fast Movement",
+      "kind": "class",
+      "owner": "Barbarian",
+      "unlock": 5,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "stat_modifier",
+          "stat": "speed",
+          "amount": 10,
+          "duration": "permanent"
+        },
+        {
+          "kind": "special",
+          "note": "Your walking speed increases by 10 feet if you aren't wearing heavy armor."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 15,
+          "effects": [
+            {
+              "kind": "stat_modifier",
+              "stat": "speed",
+              "amount": 20,
+              "duration": "permanent"
+            },
+            {
+              "kind": "special",
+              "note": "Your walking speed increases by 20 feet if you aren't wearing heavy armor."
+            }
+          ]
+        }
+      ],
+      "summary": "+10 ft walking speed without heavy armor, +20 at level 15",
+      "text": "Your walking speed increases by 10 feet if you aren't wearing heavy armor.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Barbarian 36"
+      }
+    },
+    {
+      "id": "class.barbarian.primal_protection",
+      "name": "Primal Protection",
+      "kind": "class",
+      "owner": "Barbarian",
+      "unlock": 6,
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "save_failed",
+        "note": "When you are wearing nonmagical armor and you are hit by an attack while you are raging."
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "gates": [
+        "raging"
+      ],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "If you are wearing nonmagical armor and you are hit by an attack while you are raging, you can use your reaction to reduce the damage by 1. You gain the use of this feature again after a long rest."
+        }
+      ],
+      "summary": "Reaction: reduce one hit by 1 while raging in nonmagical armor",
+      "text": "If you are wearing nonmagical armor and you are hit by an attack while you are raging, you can use your reaction to take 1 less damage from that attack. You gain the use of this feature again after a long rest.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Barbarian 36"
+      }
+    },
+    {
+      "id": "class.barbarian.frenzy",
+      "name": "Frenzy",
+      "kind": "class",
+      "owner": "Barbarian",
+      "unlock": 9,
+      "activation": "bonus_action",
+      "trigger": {
+        "event": "self_damaged",
+        "note": "When you hit a creature with a melee weapon attack while raging."
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [
+        "end_turn_without_attacking",
+        "you_end_it"
+      ],
+      "effects": [
+        {
+          "kind": "stat_modifier",
+          "stat": "damage_roll",
+          "amount": 2,
+          "duration": "while_active"
+        },
+        {
+          "kind": "special",
+          "note": "When you hit a creature with a melee weapon attack while raging, you can use a bonus action for 1 minute to gain a +2 bonus to damage rolls with melee attacks that use Strength."
+        }
+      ],
+      "summary": "While raging, +2 melee damage for a minute after hitting",
+      "text": "When you hit a creature with a melee weapon attack while raging, you can use a bonus action for 1 minute to gain a +2 bonus to damage rolls with melee attacks that use Strength.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Barbarian 36"
+      }
+    },
+    {
+      "id": "class.barbarian.extra_attack",
+      "name": "Extra Attack",
+      "kind": "class",
+      "owner": "Barbarian",
+      "unlock": 5,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 1,
+          "note": "You can attack twice, instead of once, whenever you take the Attack action on your turn."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 11,
+          "effects": [
+            {
+              "kind": "extra_attacks",
+              "count": 2,
+              "note": "You can attack three times, instead of once, whenever you take the Attack action on your turn."
+            }
+          ]
+        },
+        {
+          "at": 17,
+          "effects": [
+            {
+              "kind": "extra_attacks",
+              "count": 3,
+              "note": "You can attack four times, instead of once, whenever you take the Attack action on your turn."
+            }
+          ]
+        }
+      ],
+      "summary": "Two attacks with the Attack action, three at 11, four at 17",
+      "text": "You can attack twice, instead of once, whenever you take the Attack action on your turn.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Barbarian 36"
+      }
+    },
+    {
+      "id": "class.barbarian.mindless_rage",
+      "name": "Mindless Rage",
+      "kind": "class",
+      "owner": "Barbarian",
+      "unlock": 3,
+      "activation": "passive",
+      "gates": [
+        "raging"
+      ],
+      "effects": [
+        {
+          "kind": "condition_immunity",
+          "conditions": [
+            "charmed",
+            "frightened",
+            "incapacitated",
+            "stunned"
+          ],
+          "note": "While raging, you are immune to the charmed and frightened conditions."
+        }
+      ],
+      "summary": "Immune to charmed and frightened while raging",
+      "text": "You have immunity to the charmed condition while raging. The charmed condition has no effect on you, and your IQ and personality are unaffected by it.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Barbarian 34"
+      }
+    },
+    {
+      "id": "class.barbarian.brutal_critical",
+      "name": "Brutal Critical",
+      "kind": "class",
+      "owner": "Barbarian",
+      "unlock": 9,
+      "activation": "passive",
+      "gates": [
+        "raging"
+      ],
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 1,
+          "note": "While raging, you can roll one more weapon damage die a second time, adding it to the critical hit's damage."
+        }
+      ],
+      "summary": "An extra damage die on critical hits while raging",
+      "text": "While raging, you can roll one more weapon damage die a second time, adding it to the critical hit's damage. You can use this feature to make only one attack that uses the effect.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Barbarian 36"
+      }
+    },
+    {
+      "id": "class.barbarian.indomitable",
+      "name": "Indomitable",
+      "kind": "class",
+      "owner": "Barbarian",
+      "unlock": 14,
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "save_failed"
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "When you fail a saving throw, you can use your reaction to automatically succeed on it instead. You gain the use of this feature again after a long rest."
+        }
+      ],
+      "summary": "Reaction: automatically succeed on a failed save",
+      "text": "When you fail a saving throw, you can use your reaction to automatically succeed on it instead. You gain the use of this feature again after a long rest.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Barbarian 37"
+      }
+    },
+    {
+      "id": "class.barbarian.feral_instinct",
+      "name": "Feral Instinct",
+      "kind": "class",
+      "owner": "Barbarian",
+      "unlock": 7,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "advantage",
+          "check": "ability_check",
+          "value": "advantage"
+        }
+      ],
+      "summary": "Advantage on Intelligence checks",
+      "text": "While your rage is active, you have advantage on Intelligence checks.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Barbarian 36"
+      }
+    },
+    {
+      "id": "class.barbarian.primal_knowledge",
+      "name": "Primal Knowledge",
+      "kind": "class",
+      "owner": "Barbarian",
+      "unlock": 10,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "skill",
+          "skills": [
+            "one of your choice"
+          ],
+          "proficiency": "proficient"
+        }
+      ],
+      "summary": "Gain one skill of your choice as a barbarian skill",
+      "text": "Your number of skills is equal to your Intelligence modifier plus your level. In addition, you gain proficiency in one skill of your choice that is not already a barbarian skill.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Barbarian 36"
+      }
+    },
+    {
+      "id": "class.barbarian.relentless_rage",
+      "name": "Relentless Rage",
+      "kind": "class",
+      "owner": "Barbarian",
+      "unlock": 11,
+      "activation": "passive",
+      "gates": [
+        "raging"
+      ],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "While raging, you can concentrate on as many of the effects of the Reckless Attack feature as you like."
+        }
+      ],
+      "summary": "No longer need to concentrate on Reckless Attack while raging",
+      "text": "While raging, you can concentrate on as many of the effects of the Reckless Attack feature as you like.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Barbarian 37"
+      }
+    },
+    {
+      "id": "class.barbarian.persistent_rage",
+      "name": "Persistent Rage",
+      "kind": "class",
+      "owner": "Barbarian",
+      "unlock": 15,
+      "activation": "passive",
+      "gates": [
+        "raging"
+      ],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "Your rage doesn't end if you are knocked unconscious, but it does end if you are incapacitated (as the definition of the condition states)."
+        }
+      ],
+      "summary": "Rage no longer ends when knocked unconscious",
+      "text": "Your rage doesn't end if you are knocked unconscious, but it does end if you are incapacitated (as the definition of the condition states).",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Barbarian 37"
+      }
+    },
+    {
+      "id": "class.barbarian.indomitable_might",
+      "name": "Indomitable Might",
+      "kind": "class",
+      "owner": "Barbarian",
+      "unlock": 18,
+      "activation": "passive",
+      "gates": [
+        "raging"
+      ],
+      "effects": [
+        {
+          "kind": "stat_modifier",
+          "stat": "con",
+          "amount": 1,
+          "duration": "while_active"
+        }
+      ],
+      "summary": "+1 to Constitution saving throws while raging",
+      "text": "While raging, your saving throw bonus for Constitution saving throws is increased by 1.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Barbarian 37"
+      }
+    },
+    {
+      "id": "class.barbarian.primal_champion",
+      "name": "Primal Champion",
+      "kind": "class",
+      "owner": "Barbarian",
+      "unlock": 20,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "Your number of skills is equal to your Intelligence modifier plus your level, and you can select one feat of your choice, which you can gain at 4th, 8th, 12th, 16th, and 19th level. You gain the benefits of a second feat of your choice, which you can gain at 20th level."
+        }
+      ],
+      "summary": "Gain two feats, the second at 20th level",
+      "text": "Your number of skills is equal to your Intelligence modifier plus your level. In addition, you can select one feat of your choice, which you can gain at 4th, 8th, 12th, 16th, and 19th level. You gain the benefits of a second feat of your choice, which you can gain at 20th level.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Barbarian 37"
+      }
+    }
+  ]
+}
