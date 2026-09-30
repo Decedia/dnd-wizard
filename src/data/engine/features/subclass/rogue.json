@@ -1,0 +1,733 @@
+{
+  "features": [
+    {
+      "id": "subclass.arcane_trickster.spellcasting",
+      "name": "Spellcasting",
+      "kind": "subclass",
+      "owner": "Arcane Trickster",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        { "kind": "spell_grant", "cantrip": { "known": true }, "spells": [{ "level": 1, "from": ["sorcerer"] }], "note": "Your magic comes from research into magic involving your own self. You know a number of sorcerer spells equal to 3 plus your Intelligence modifier, and at 9th, 13th and 17th level you learn three more sorcerer spells." }
+      ],
+      "tiers": [{ "at": 9 }, { "at": 13 }, { "at": 17 }],
+      "summary": "Know 3 + Int mod sorcerer spells, more at 9/13/17",
+      "text": "Your magic comes from cutting-edge research on magic involving your own self. You know a number of sorcerer spells equal to 3 plus your Intelligence modifier.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Arcane Trickster 3" }
+    },
+    {
+      "id": "subclass.arcane_trickster.mage_hand_legerdemain",
+      "name": "Mage Hand Legerdemain",
+      "kind": "subclass",
+      "owner": "Arcane Trickster",
+      "unlock": 3,
+      "activation": "bonus_action",
+      "limits": { "per": "turn", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "any", "range": { "value": 30, "unit": "ft" } },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "spell_grant", "cantrip": { "known": true }, "spells": [{ "level": 1, "from": ["wizard"] }], "note": "You have perfected the use of your magical hand. You can cast mage hand as a bonus action instead of an action, giving yourself a +2 bonus to its spell attack roll, and the hand is invisible, and you can take the Disengage or Hide action as part of the same bonus action." }
+      ],
+      "summary": "Bonus action: mage hand, plus Disengage or Hide",
+      "text": "You can cast mage hand as a bonus action instead of an action, giving yourself a +2 bonus to its spell attack roll.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Arcane Trickster 3" }
+    },
+    {
+      "id": "subclass.arcane_trickster.magical_ambush",
+      "name": "Magical Ambush",
+      "kind": "subclass",
+      "owner": "Arcane Trickster",
+      "unlock": 9,
+      "activation": "passive",
+      "effects": [
+        { "kind": "spell_modifier", "changes": ["time", "target"], "atLeastLevel": 1, "note": "When you cast a spell that targets only you, you can instead target it at a creature within 5 feet of you, and as a bonus action you can teleport up to 30 feet to an unoccupied space, and the spell takes effect as if you had cast it on yourself and then teleported." }
+      ],
+      "summary": "Self-targets also hit an adjacent creature; BA teleport",
+      "text": "When you cast a spell that targets only you, you can instead cast it with a target of a creature that is within 5 feet of you.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Arcane Trickster 9" }
+    },
+    {
+      "id": "subclass.arcane_trickster.versatile_trickster",
+      "name": "Versatile Trickster",
+      "kind": "subclass",
+      "owner": "Arcane Trickster",
+      "unlock": 13,
+      "activation": "passive",
+      "effects": [
+        { "kind": "spell_grant", "cantrip": { "known": true }, "spells": [{ "level": 1, "from": ["wizard"] }], "note": "You have learned the essential lessons of every school of magic, so you learn one more sorcerer spell of a level you can cast, and at 17th level another." }
+      ],
+      "summary": "One more sorcerer spell at 13th, another at 17th",
+      "text": "You have learned the essential lessons of every school of magic. You learn one more sorcerer spell of a level you can cast.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Arcane Trickster 13" }
+    },
+    {
+      "id": "subclass.arcane_trickster.spell_thief",
+      "name": "Spell Thief",
+      "kind": "subclass",
+      "owner": "Arcane Trickster",
+      "unlock": 17,
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "You can now steal the spell magic of others. As a bonus action, you can touch a creature within 30 feet and at the end of your next turn gain access to a spell of your choice from any class, which you can cast, but only once, and you can't cast it again until you finish a long rest. If you touch a creature that is concentrating on a spell and you have advantage on the save against it, the concentration ends." }
+      ],
+      "summary": "BA: steal one spell from a touched creature until your next turn",
+      "text": "As a bonus action, you can touch a creature within 30 feet of you and at the end of your next turn gain access to a spell of your choice from any class, which you can cast.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Arcane Trickster 17" }
+    },
+    {
+      "id": "subclass.assassin.bonus_proficiencies",
+      "name": "Bonus Proficiencies",
+      "kind": "subclass",
+      "owner": "Assassin",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        { "kind": "tool", "tools": ["disguise kit", "forgery kit", "poisoner's kit", "thieves' tools"], "proficiency": "proficient" },
+        { "kind": "special", "note": "You gain proficiency with three additional areas of expertise: the disguise kit, forgery kit, poisoner's kit and thieves' tools." }
+      ],
+      "summary": "Proficiency with three of four kits",
+      "text": "You gain proficiency with three areas of expertise: the disguise kit, forgery kit, poisoner's kit, and thieves' tools.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Assassin 3" }
+    },
+    {
+      "id": "subclass.assassin.assassinate",
+      "name": "Assassinate",
+      "kind": "subclass",
+      "owner": "Assassin",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        { "kind": "stat_modifier", "stat": "attack_bonus_melee", "amount": 0, "duration": "while_active" },
+        { "kind": "extra_attacks", "count": 0, "note": "You have acquired a repertoire of lethal techniques. If you roll a 20 on a d20 when you make an attack roll with any weapon, you deal an additional 7d6 damage to the target, and your attack roll has advantage against a creature that has 0 hit points. At 9th level you gain a bonus of 7d6 instead if the target is surprised." }
+      ],
+      "summary": "A natural 20 deals 7d6 extra; advantage on 0 HP targets",
+      "text": "If you roll a 20 on a d20 when you make an attack roll with any weapon, you deal an additional 7d6 damage to the target.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Assassin 3" }
+    },
+    {
+      "id": "subclass.assassin.infiltration_expertise",
+      "name": "Infiltration Expertise",
+      "kind": "subclass",
+      "owner": "Assassin",
+      "unlock": 9,
+      "activation": "passive",
+      "effects": [
+        { "kind": "skill", "skills": ["Stealth"], "proficiency": "expertise" },
+        { "kind": "special", "note": "You have unsurpassed skill in infiltration, so you gain proficiency with the Stealth skill, and you can take the Disguise and Hide actions as a bonus action, each a number of times equal to your Dexterity modifier, split between them however you choose, and all regain on a short or long rest." }
+      ],
+      "summary": "Stealth expertise; Disguise and Hide as bonus actions",
+      "text": "You gain proficiency in the Stealth skill, and you can take the Disguise and Hide actions as a bonus action.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Assassin 9" }
+    },
+    {
+      "id": "subclass.assassin.impostor",
+      "name": "Impostor",
+      "kind": "subclass",
+      "owner": "Assassin",
+      "unlock": 13,
+      "activation": "passive",
+      "effects": [
+        { "kind": "skill", "skills": ["Deception", "Persuasion"], "proficiency": "expertise" },
+        { "kind": "special", "note": "You have developed the ability to be anyone. Each time you complete a long rest, you can durably adopt a new persona, and the new persona has a different name, personality, ideal, bond, flaw and trait, and you gain proficiency in another two languages, and until you die you are indistinguishable from that person under all circumstances." }
+      ],
+      "summary": "Deception and Persuasion expertise, plus a second identity",
+      "text": "Each time you complete a long rest, you can durably adopt a new persona. The new persona has a different name, personality, ideal, bond, flaw, and trait.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Assassin 13" }
+    },
+    {
+      "id": "subclass.assassin.death_strike",
+      "name": "Death Strike",
+      "kind": "subclass",
+      "owner": "Assassin",
+      "unlock": 17,
+      "activation": "passive",
+      "effects": [
+        { "kind": "damage", "dice": { "dice": "1d12", "bonusFrom": "none" }, "damageType": "necrotic", "resolution": { "mode": "auto" } },
+        { "kind": "special", "note": "You have learned to make a wound of almost supernatural severity. Whenever you make an attack with a finesse weapon and kill a creature with that attack, you can use your reaction to make a second attack against a creature within 60 feet of you, and that creature makes a Constitution saving throw, taking 1d12 necrotic damage on a failure or half as much on a success." }
+      ],
+      "summary": "Reaction after a kill: 1d12 necrotic at range",
+      "text": "Whenever you make an attack with a finesse weapon and kill a creature with that attack, you can use your reaction to make a second attack against a creature within 60 feet of you.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Assassin 17" }
+    },
+    {
+      "id": "subclass.inquisitive.ear_for_deceit",
+      "name": "Ear for Deceit",
+      "kind": "subclass",
+      "owner": "Inquisitive",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        { "kind": "skill_bonus", "skills": ["Deception"], "amount": 0, "note": "You have keen eyes and ears for details. Your proficiency bonus is doubled for any Wisdom (Insight) check to determine a creature's intentions, and you have advantage on a Charisma (Persuasion) check against a creature that has a passive Deception of 13 or higher." }
+      ],
+      "summary": "Double proficiency on Insight into intentions",
+      "text": "Your proficiency bonus is doubled for any Wisdom (Insight) check to determine a creature's intentions.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Inquisitive 3" }
+    },
+    {
+      "id": "subclass.inquisitive.eye_for_detail",
+      "name": "Eye for Detail",
+      "kind": "subclass",
+      "owner": "Inquisitive",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        { "kind": "skill_bonus", "skills": ["Investigation", "Perception"], "amount": 0, "note": "You have sharp eyes for detail. You have proficiency in Investigation, your proficiency bonus is doubled for ability checks that rely on your keen sight, and you have advantage on a Wisdom (Perception) check that relies on your keen sight." }
+      ],
+      "summary": "Investigation proficiency, doubled and with advantage on sight",
+      "text": "You have proficiency in Investigation, and your proficiency bonus is doubled for ability checks that rely on your keen sight.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Inquisitive 3" }
+    },
+    {
+      "id": "subclass.inquisitive.insightful_fighting",
+      "name": "Insightful Fighting",
+      "kind": "subclass",
+      "owner": "Inquisitive",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        { "kind": "skill_bonus", "skills": ["Wisdom (Insight)"], "amount": 0, "note": "You have strong intuitions and, through long practice, unerring aim. Whenever you make an attack roll against a creature, you can use your action to make a Wisdom (Insight) check with a DC of 8 + your Intelligence modifier + your proficiency bonus, and on a success you gain advantage on that attack roll and it deals an additional 1d6 damage." }
+      ],
+      "summary": "Action: Insight check for advantage and 1d6 extra damage",
+      "text": "Whenever you make an attack roll against a creature, you can use your action to make a Wisdom (Insight) check. On a success you gain advantage on that attack roll and it deals an additional 1d6 damage.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Inquisitive 3" }
+    },
+    {
+      "id": "subclass.inquisitive.steady_eye",
+      "name": "Steady Eye",
+      "kind": "subclass",
+      "owner": "Inquisitive",
+      "unlock": 9,
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "You have mastery of the ranging shot. Your marksman's instinct serves you well, and you have a +1 bonus to attack rolls with any ranged weapon, and you ignore half and three-quarters cover when you do so, and if you miss, you can reroll the attack roll using your action, and the roll must replace the old one." }
+      ],
+      "summary": "+1 ranged attacks, ignore half cover, reroll a miss",
+      "text": "You have a +1 bonus to attack rolls with any ranged weapon, and you ignore half and three-quarters cover when you do so.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Inquisitive 9" }
+    },
+    {
+      "id": "subclass.inquisitive.unerring_eye",
+      "name": "Unerring Eye",
+      "kind": "subclass",
+      "owner": "Inquisitive",
+      "unlock": 13,
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "You have learned to give immeasurable attention to a target, so you add your Intelligence modifier to a single attack roll you make, and if it hits, you can focus your attack to acquire a new range of vision out to 120 feet for 1 minute, and at 17th level you can also do this once per long rest to acquire a new range of vision out to 60 feet." }
+      ],
+      "summary": "Add Int to one attack; acquire 120 ft vision",
+      "text": "You can add your Intelligence modifier to a single attack roll you make.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Inquisitive 13" }
+    },
+    {
+      "id": "subclass.inquisitive.eye_for_weakness",
+      "name": "Eye for Weakness",
+      "kind": "subclass",
+      "owner": "Inquisitive",
+      "unlock": 17,
+      "activation": "passive",
+      "effects": [
+        { "kind": "advantage", "check": "attack", "value": "advantage" },
+        { "kind": "special", "note": "You have nothing left to learn about spotting weaknesses in others' defenses, so after you make an attack against a creature, you can make your action a Wisdom (Insight) check, and on a success all attacks against that creature have advantage until the end of your turn." }
+      ],
+      "summary": "Action after an attack: Insight check to advantage all attacks",
+      "text": "After you make an attack against a creature, you can make your action a Wisdom (Insight) check. On a success, all attacks against that creature have advantage until the end of your turn.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Inquisitive 17" }
+    },
+    {
+      "id": "subclass.mastermind.master_of_intrigue",
+      "name": "Master of Intrigue",
+      "kind": "subclass",
+      "owner": "Mastermind",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        { "kind": "skill", "skills": ["Deception", "Insight", "Persuasion", "Sleight of Hand"], "proficiency": "proficient" },
+        { "kind": "special", "note": "You have mastered the art of manipulation, gaining proficiency in Deception, Insight, Persuasion and Sleight of Hand, and your proficiency bonus is doubled for any of those skills." }
+      ],
+      "summary": "Four skills at proficiency, doubled",
+      "text": "You gain proficiency in Deception, Insight, Persuasion, and Sleight of Hand.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Mastermind 3" }
+    },
+    {
+      "id": "subclass.mastermind.master_of_tactics",
+      "name": "Master of Tactics",
+      "kind": "subclass",
+      "owner": "Mastermind",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        { "kind": "skill_bonus", "skills": ["Persuasion"], "amount": 1 },
+        { "kind": "special", "note": "Your sharpest weapon is your mind, and you always have a way to play a long game. Your proficiency bonus is doubled for any ability check that relies on your Charisma and for saving throws against effects that another creature can target only with an ability check or a saving throw, and you add 1d6 to any ability check you make at the end of a turn that is at least 1 minute after a rest." }
+      ],
+      "summary": "Doubled Charisma checks; 1d6 if 1+ minute since a rest",
+      "text": "Your proficiency bonus is doubled for any ability check that relies on your Charisma and for saving throws against effects that another creature can target only with an ability check or a saving throw.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Mastermind 3" }
+    },
+    {
+      "id": "subclass.mastermind.insightful_manipulator",
+      "name": "Insightful Manipulator",
+      "kind": "subclass",
+      "owner": "Mastermind",
+      "unlock": 9,
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "Your insight has its uses, and you can throw a creature's guard off with it. When you fail on an attack roll, ability check, or saving throw against a creature, you can use your reaction to cause it to fail instead, and you must use the new roll, and it has disadvantage against you and can't move for 1 minute, and you gain the use when you finish a long rest." }
+      ],
+      "summary": "Reaction: turn a failure against you into a failure for the creature",
+      "text": "When you fail on an attack roll, ability check, or saving throw against a creature, you can use your reaction to cause it to fail instead.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Mastermind 9" }
+    },
+    {
+      "id": "subclass.mastermind.misdirection",
+      "name": "Misdirection",
+      "kind": "subclass",
+      "owner": "Mastermind",
+      "unlock": 13,
+      "activation": "passive",
+      "effects": [
+        { "kind": "advantage", "check": "save", "value": "advantage" },
+        { "kind": "special", "note": "You are dangerous to enemies when you work to turn them against one another. Whenever you use your action or your reaction on a turn, you can choose one creature that you can see within 30 feet of you and give it disadvantage on its next attack roll or saving throw." }
+      ],
+      "summary": "Each turn, make one nearby creature disadvantage its next roll",
+      "text": "Whenever you use your action or your reaction on a turn, you can choose one creature that you can see within 30 feet of you and give it disadvantage on its next attack roll or saving throw.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Mastermind 13" }
+    },
+    {
+      "id": "subclass.mastermind.soul_of_deceit",
+      "name": "Soul of Deceit",
+      "kind": "subclass",
+      "owner": "Mastermind",
+      "unlock": 17,
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "You have perfected the art of manipulation, so when you fail on an attack, check or save, you can use your reaction to reroll it, and at 19th level you gain this twice per long rest and it works against any creature whose passive Perception is less than 20 plus your Charisma modifier." }
+      ],
+      "summary": "Reaction: reroll any failure against you",
+      "text": "When you fail on an attack roll, ability check, or saving throw, you can use your reaction to reroll the die.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Mastermind 17" }
+    },
+    {
+      "id": "subclass.phantom.whispers_of_the_dead",
+      "name": "Whispers of the Dead",
+      "kind": "subclass",
+      "owner": "Phantom",
+      "unlock": 3,
+      "activation": "bonus_action",
+      "limits": { "per": "turn", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "self" },
+      "duration": { "value": 1, "unit": "round" },
+      "endsIf": [],
+      "effects": [
+        { "kind": "special", "note": "The whispers of the dead are real, and they are always present. As a bonus action, you focus your mind on the nearest spirit within 30 feet of you that died within the last 10 minutes. For 1 round, if it attacks another creature, you can use your reaction to add +1 to the attack roll, if it fails, the DC increases by 1, and if it has advantage you add a +1d6 damage roll." }
+      ],
+      "summary": "Bonus action: a recent spirit attacks with your help",
+      "text": "As a bonus action, you focus your mind on the nearest spirit within 30 feet of you that died within the last 10 minutes.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Phantom 3" }
+    },
+    {
+      "id": "subclass.phantom.wails_from_the_grave",
+      "name": "Wails from the Grave",
+      "kind": "subclass",
+      "owner": "Phantom",
+      "unlock": 3,
+      "activation": "bonus_action",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": { "event": "self_damaged" },
+      "targeting": { "scope": "creature", "range": { "value": 30, "unit": "ft" } },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "condition", "action": "apply", "conditions": ["frightened"] },
+        { "kind": "special", "note": "When you are damaged, you can use your reaction to emit a terrible wail heard within 30 feet of you, and each creature of your choice within that area must succeed on a Wisdom saving throw or be frightened until the start of your next turn. You gain the use when you finish a short or long rest." }
+      ],
+      "summary": "Reaction when damaged: frighten creatures within 30 ft",
+      "text": "When you are damaged, you can use your reaction to emit a terrible wail heard within 30 feet of you.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Phantom 3" }
+    },
+    {
+      "id": "subclass.phantom.tokens_of_the_departed",
+      "name": "Tokens of the Departed",
+      "kind": "subclass",
+      "owner": "Phantom",
+      "unlock": 9,
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "You are now medium, not small, and your living allies and you share a bond that permits you to give each other lasting advantage in the form of a shared hush when you are concentrating, and if an ally within 30 feet is hit by an attack while you are concentrating, you can use your reaction to give them cover against the attack." }
+      ],
+      "summary": "Medium size; allies near you gain cover when hit",
+      "text": "You are now medium, not small, and your living allies and you share a bond that permits you to give each other lasting advantage in the form of a shared hush.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Phantom 9" }
+    },
+    {
+      "id": "subclass.phantom.ghost_walk",
+      "name": "Ghost Walk",
+      "kind": "subclass",
+      "owner": "Phantom",
+      "unlock": 13,
+      "activation": "action",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "self" },
+      "duration": { "value": 1, "unit": "hour" },
+      "endsIf": [],
+      "effects": [
+        { "kind": "special", "note": "As a bonus action, you can vanish, mistily teleporting up to 30 feet to an unoccupied space that you can see. The effect lasts for 1 hour or until you cast a spell, and while in this state you can move through nonmagical creatures, their spaces can be occupied by you and theirs by them, without difficulty, and at 17th level you can also move 10 feet upward or downward through nonmagical terrain." }
+      ],
+      "summary": "Bonus action: 1 hour of misty movement through creatures",
+      "text": "As a bonus action, you can vanish, mistily teleporting up to 30 feet to an unoccupied space that you can see.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Phantom 13" }
+    },
+    {
+      "id": "subclass.phantom.deaths_friend",
+      "name": "Death's Friend",
+      "kind": "subclass",
+      "owner": "Phantom",
+      "unlock": 17,
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "You have learned to recruit the spirits of the dead to aid your quest, and can cast a wraith or a wight without material components, and each has full hit points rather than the Undead's usual reduced number." }
+      ],
+      "summary": "Cast wraith or Wight at full hit points",
+      "text": "You can cast the wraith or the wight spell without material components, and each of these creatures has full hit points.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Phantom 17" }
+    },
+    {
+      "id": "subclass.scout.skirmisher",
+      "name": "Skirmisher",
+      "kind": "subclass",
+      "owner": "Scout",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        { "kind": "skill_bonus", "skills": ["Athletics"], "amount": 0, "note": "You have skirmishing speed and can run fast. You gain a bonus to your speed equal to your Dexterity modifier times your level if you're wearing light or no armor and your weapon has the Finesse or Light property, and your proficiency bonus is doubled for any ability check that relies on your agility and for saving throws against effects that another creature can target only with an ability check or a saving throw." }
+      ],
+      "summary": "Dex-modifier-based speed bonus with light armor",
+      "text": "Your proficiency bonus is doubled for any ability check that relies on your agility and for saving throws against effects that another creature can target only with an ability check or a saving throw.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Scout 3" }
+    },
+    {
+      "id": "subclass.scout.survivalist",
+      "name": "Survivalist",
+      "kind": "subclass",
+      "owner": "Scout",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        { "kind": "skill_bonus", "skills": ["Nature", "Survival"], "amount": 0, "note": "You have master over a number of skills. The DM has you choose from Perception, Investigation, Medicine or Survival, and your proficiency bonus is doubled for it, and at 6th level you can choose two more." }
+      ],
+      "tiers": [
+        { "at": 6, "summary": "Choose two more skills from the list" }
+      ],
+      "summary": "Doubled proficiency in one or more tracking skills",
+      "text": "Your proficiency bonus is doubled for any ability check that relies on one of your chosen skills.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Scout 3" }
+    },
+    {
+      "id": "subclass.scout.superior_mobility",
+      "name": "Superior Mobility",
+      "kind": "subclass",
+      "owner": "Scout",
+      "unlock": 9,
+      "activation": "passive",
+      "effects": [
+        { "kind": "stat_modifier", "stat": "speed", "amount": 10, "duration": "permanent" },
+        { "kind": "special", "note": "Your keen eyes and athletic ability have grown into something remarkable, so you always have advantage on initiative and your walking speed increases by 10 feet, and you can jump up to three times your walking distance in a single jump." }
+      ],
+      "summary": "Advantage on initiative; +10 speed; 3x jump distance",
+      "text": "You always have advantage on initiative, and your walking speed increases by 10 feet.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Scout 9" }
+    },
+    {
+      "id": "subclass.scout.ambush_master",
+      "name": "Ambush Master",
+      "kind": "subclass",
+      "owner": "Scout",
+      "unlock": 13,
+      "activation": "passive",
+      "effects": [
+        { "kind": "damage", "dice": { "dice": "1", "flat": 0 }, "damageType": "weapon_damage", "resolution": { "mode": "auto" } },
+        { "kind": "special", "note": "You have learned to turn a single action into a devastating ambush. If you take the Attack action on your turn and have advantage on an attack roll against a creature, you can expend an advantage die to deal an extra 1d6 damage. You regain expended advantage dice when you finish a short or long rest, and the effect increases by 1d6 at 17th level." }
+      ],
+      "tiers": [
+        { "at": 17, "effects": [{ "kind": "damage", "dice": { "dice": "3d6", "bonusFrom": "none" }, "resolution": { "mode": "auto" } }, { "kind": "special", "note": "You expend an advantage die to deal an extra 3d6 damage instead of 1d6." }] }
+      ],
+      "summary": "Attack with advantage: spend an advantage die for 1d6 more",
+      "text": "If you take the Attack action on your turn and you have advantage on an attack roll against a creature, you can expend an advantage die to deal an extra 1d6 damage.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Scout 13" }
+    },
+    {
+      "id": "subclass.scout.sudden_strike",
+      "name": "Sudden Strike",
+      "kind": "subclass",
+      "owner": "Scout",
+      "unlock": 17,
+      "activation": "passive",
+      "effects": [
+        { "kind": "extra_attacks", "count": 1, "note": "Your attack on your turn deals an additional 2d6 damage to one creature and is not prevented by cover, and you can make this additional attack against only the original target. It also lets you take the Attack action as a bonus action on each of your turns." }
+      ],
+      "summary": "First attack deals 2d6 through cover; Attack as a bonus action",
+      "text": "Whenever you take the Attack action on your turn, the first time you attack that turn, you deal an additional 2d6 damage to one creature of your choice.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Scout 17" }
+    },
+    {
+      "id": "subclass.soulknife.psionic_power",
+      "name": "Psionic Power",
+      "kind": "subclass",
+      "owner": "Soulknife",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "You have honed your ability to use your own life force as a weapon, so your hit point maximum is increased by your psionic energy dice, which equal your Soulknife level plus your Charisma modifier, and you regain all of them when you finish a short rest." }
+      ],
+      "summary": "Hit points equal to Soulknife level plus Cha mod",
+      "text": "Your hit point maximum is increased by your psionic energy dice, which equal your Soulknife level plus your Charisma modifier.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Soulknife 3" }
+    },
+    {
+      "id": "subclass.soulknife.psychic_blades",
+      "name": "Psychic Blades",
+      "kind": "subclass",
+      "owner": "Soulknife",
+      "unlock": 3,
+      "activation": "action",
+      "limits": { "per": "turn", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "creature" },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "special", "note": "You can use your action to create a tangible psionic weapon in your hand, which lasts until you use your action again or until you are hit, and it makes a melee spell attack that uses your spellcasting ability modifier, and it deals 1d6 psychic damage with no material component needed." }
+      ],
+      "summary": "Action: a psychic weapon dealing 1d6 psychic",
+      "text": "You can use your action to create a tangible psionic weapon in your hand. The weapon lasts until you use your action again or until you are hit.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Soulknife 3" }
+    },
+    {
+      "id": "subclass.soulknife.soul_blades",
+      "name": "Soul Blades",
+      "kind": "subclass",
+      "owner": "Soulknife",
+      "unlock": 9,
+      "activation": "action",
+      "limits": { "per": "turn", "max": 2 },
+      "trigger": null,
+      "targeting": { "scope": "creature" },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "extra_attacks", "count": 1, "note": "You can use your action to magically create a weapon in an unoccupied space within 5 feet of you, which lasts until you use your action again or until 1 minute has passed, and it uses your spellcasting ability modifier for the attack roll and deals 1d6 plus your Spell Blades damage, one or two times per turn and with a bonus action." }
+      ],
+      "summary": "Action or bonus action: throw a psychic blade from any range",
+      "text": "You can use your action to magically create a weapon in an unoccupied space within 5 feet of you. The weapon lasts until you use your action again.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Soulknife 9" }
+    },
+    {
+      "id": "subclass.soulknife.psychic_veil",
+      "name": "Psychic Veil",
+      "kind": "subclass",
+      "owner": "Soulknife",
+      "unlock": 13,
+      "activation": "bonus_action",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "self" },
+      "duration": { "value": 1, "unit": "minute" },
+      "endsIf": ["attack_roll_a_10_or_higher"],
+      "effects": [
+        { "kind": "special", "note": "As a bonus action, you can weave a psychic veil to help you hide, shimmering your form so that light passes around you for 1 minute or until you make an attack roll that you score a 10 or higher on, and while the veil is in place, you have total cover against the attacks of others and can teleport up to 10 feet as a bonus action." }
+      ],
+      "summary": "Bonus action: total cover and a 10-ft blink, for a minute",
+      "text": "As a bonus action, you can weave a psychological veil that gives you total cover against the attacks of others.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Soulknife 13" }
+    },
+    {
+      "id": "subclass.soulknife.rend_mind",
+      "name": "Rend Mind",
+      "kind": "subclass",
+      "owner": "Soulknife",
+      "unlock": 17,
+      "activation": "action",
+      "limits": { "per": "day", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "creature", "range": { "value": 30, "unit": "ft" } },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "damage", "dice": { "dice": "2d8", "bonusFrom": "none" }, "damageType": "psychic", "resolution": { "mode": "save", "ability": "int", "onSuccess": "none", "onFailure": "full" } },
+        { "kind": "special", "note": "Your weapon of psionic energy can reach into a creature's mind. As an action, you can touch a creature within 30 feet and make a melee spell attack against it, and on a hit the target makes an Intelligence saving throw, taking 2d8 psychic damage and failing all saving throws against magical effects for 1 minute, or half as much and not failing on a success." }
+      ],
+      "summary": "Action: 2d8 psychic and magical saves fail for a minute",
+      "text": "As an action, you can touch a creature within 30 feet of you and make a melee spell attack against it.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Soulknife 17" }
+    },
+    {
+      "id": "subclass.swashbuckler.fancy_footwork",
+      "name": "Fancy Footwork",
+      "kind": "subclass",
+      "owner": "Swashbuckler",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        { "kind": "skill", "skills": ["Acrobatics", "Athletics"], "proficiency": "proficient" },
+        { "kind": "special", "note": "You have a knack for stylish movement, gaining proficiency in Acrobatics and Athletics, and whenever you make a Dexterity check or a Dexterity saving throw, you can add your proficiency bonus twice." }
+      ],
+      "summary": "Acrobatics and Athletics proficiency; Dex checks doubled",
+      "text": "You gain proficiency in Acrobatics and Athletics, and whenever you make a Dexterity check or a Dexterity saving throw, you can add your proficiency bonus twice.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Swashbuckler 3" }
+    },
+    {
+      "id": "subclass.swashbuckler.rakish_audacity",
+      "name": "Rakish Audacity",
+      "kind": "subclass",
+      "owner": "Swashbuckler",
+      "unlock": 3,
+      "activation": "bonus_action",
+      "limits": { "per": "day", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "self" },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "extra_attacks", "count": 0, "note": "When you make a melee weapon attack on a turn, you can spend your bonus action once per turn to have advantage on all melee weapon attacks against a creature within 5 feet of you, and this cannot be used until you finish a short or long rest." }
+      ],
+      "summary": "Once a long rest: advantage on melee attacks within 5 ft",
+      "text": "When you make a melee weapon attack on a turn, you can use your bonus action once per turn to have advantage on all melee weapon attacks against a creature within 5 feet of you.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Swashbuckler 3" }
+    },
+    {
+      "id": "subclass.swashbuckler.panache",
+      "name": "Panache",
+      "kind": "subclass",
+      "owner": "Swashbuckler",
+      "unlock": 9,
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "Your swagger has a point to it, and you can use a bonus action to make a Charisma (Persuasion) check against a creature within 60 feet, and if it succeeds the creature is frightened of you until the end of your next turn, and at 13th level you gain the same benefit as Rakish Audacity." }
+      ],
+      "summary": "Bonus action: Persuade a creature into being frightened",
+      "text": "You can use your bonus action to make a Charisma (Persuasion) check against a creature within 60 feet of you.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Swashbuckler 9" }
+    },
+    {
+      "id": "subclass.swashbuckler.elegant_maneuver",
+      "name": "Elegant Maneuver",
+      "kind": "subclass",
+      "owner": "Swashbuckler",
+      "unlock": 13,
+      "activation": "bonus_action",
+      "limits": { "per": "turn", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "self" },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "cover", "cover": "half_against_ally" },
+        { "kind": "skill_bonus", "skills": ["Acrobatics"], "amount": 0, "note": "When you hit a creature with a melee weapon attack, you can use your bonus action to add your proficiency bonus to any ability check another creature makes to grab you or grapple you or you can use it to shove it, and the grabber or shover is moved 5 feet, and if you shove it also knocks it prone." }
+      ],
+      "summary": "On a melee hit, BA: push an attacker off you",
+      "text": "When you hit a creature with a melee weapon attack, you can use your bonus action to add your proficiency bonus to any ability check another creature makes to grab you or grapple you.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Swashbuckler 13" }
+    },
+    {
+      "id": "subclass.swashbuckler.duelists_defense",
+      "name": "Duelist's Defense",
+      "kind": "subclass",
+      "owner": "Swashbuckler",
+      "unlock": 17,
+      "activation": "reaction",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": { "event": "save_failed" },
+      "targeting": { "scope": "self" },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "temp_hp", "dice": { "dice": "1d10", "bonusFrom": "cha" }, "note": "When you fail a saving throw, you can use your reaction to gain 1d10 plus your Charisma modifier in temporary hit points. You regain the use of this when you finish a short or long rest." }
+      ],
+      "summary": "Reaction: 1d10 + Cha temp HP after a failed save",
+      "text": "When you fail a saving throw, you can use your reaction to gain 1d10 + your Charisma modifier in temporary hit points.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Swashbuckler 17" }
+    },
+    {
+      "id": "subclass.thief.fast_hands",
+      "name": "Fast Hands",
+      "kind": "subclass",
+      "owner": "Thief",
+      "unlock": 3,
+      "activation": "bonus_action",
+      "limits": { "per": "turn", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "any" },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "special", "note": "You have a reputation for being remarkably light on your feet and quick with your hands, so you can use a bonus action once per turn to take the Use an Object or Interact action, and at 17th level you can use it twice." }
+      ],
+      "tiers": [
+        { "at": 17, "limits": { "per": "turn", "max": 2 } }
+      ],
+      "summary": "Bonus action: Use an Object or Interact",
+      "text": "You can use a bonus action once per turn to take the Use an Object or Interact action.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Thief 3" }
+    },
+    {
+      "id": "subclass.thief.second_story_work",
+      "name": "Second-Story Work",
+      "kind": "subclass",
+      "owner": "Thief",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        { "kind": "skill_bonus", "skills": ["Athletics", "Sleight of Hand", "Stealth"], "amount": 0, "note": "Your steady hands and climbing skills have grown more skillful. You gain proficiency in two of the following: Acrobatics, Athletics, Sleight of Hand, Stealth, and your proficiency bonus is doubled for any ability check that relies on your chosen proficiencies." }
+      ],
+      "summary": "Doubled proficiency in two of four physical skills",
+      "text": "You gain proficiency in two of the following skills: Acrobatics, Athletics, Sleight of Hand, Stealth.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Thief 3" }
+    },
+    {
+      "id": "subclass.thief.supreme_sneak",
+      "name": "Supreme Sneak",
+      "kind": "subclass",
+      "owner": "Thief",
+      "unlock": 9,
+      "activation": "passive",
+      "effects": [
+        { "kind": "extra_attacks", "count": 0, "note": "You have learned a fairer, cleaner way to perform the classic hallmark of the Thief, so your Sneak Attack deals 1d8 damage at 9th level, 2d8 at 13th and 3d8 at 17th, and you can also gain Sneak Attack on a ranged attack with a Finesse weapon as normal." }
+      ],
+      "summary": "Sneak Attack scales to 3d8, and works with ranged finesse",
+      "text": "Your Sneak Attack damage increases to 1d8 at 9th level, 2d8 at 13th level, and 3d8 at 17th level.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Thief 9" }
+    },
+    {
+      "id": "subclass.thief.use_magic_device",
+      "name": "Use Magic Device",
+      "kind": "subclass",
+      "owner": "Thief",
+      "unlock": 13,
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "You have learned to use magic items that others can't, so you gain proficiency with thieves' tools, and you can use any magic item without a spell slot, and if you do so, you can use an action to take the Use an Object action on the item, and it ends at the end of your next turn, and at 17th level you gain a second such use per turn." }
+      ],
+      "summary": "Use any magic item without a slot, once per turn",
+      "text": "You gain proficiency with thieves' tools, and you can also use any magic item without a spell slot.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Thief 13" }
+    },
+    {
+      "id": "subclass.thief.thiefs_reflexes",
+      "name": "Thief's Reflexes",
+      "kind": "subclass",
+      "owner": "Thief",
+      "unlock": 17,
+      "activation": "passive",
+      "effects": [
+        { "kind": "extra_attacks", "count": 0, "note": "You have learned to react with speed, so if you succeed on a Dexterity saving throw, you can take the Dodge or Disengage action as a bonus action, or after reacting to something else you can use a reaction to make one melee attack, and if you succeeded on a saving throw you gain 3d6 in extra movement to spend on your turn, and you can also take the Dash action as a bonus action each turn." }
+      ],
+      "summary": "Reactions also give a bonus action; Dash as a bonus action",
+      "text": "If you succeed on a Dexterity saving throw, you can take the Dodge or Disengage action as a bonus action.",
+      "source": { "book": "PHB", "reference": "PHB Rogue Thief 17" }
+    }
+  ]
+}
