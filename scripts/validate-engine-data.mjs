@@ -578,6 +578,21 @@ for (const kind of vocab.effectKinds) {
   if (!EFFECT_FIELDS[kind]) fail("vocab.json", "drift", `effectKinds declares ${kind} with no field list`);
 }
 
+// Every race in the registry must actually have traits. Registering a race and
+// never writing it is the same omission as skipping a trait, and it survived a
+// whole pass before this check existed.
+{
+  const raceOwnersWithTraits = new Set();
+  for (const { feature: f } of features) {
+    if (f?.kind === "race" && typeof f.owner === "string") raceOwnersWithTraits.add(slug(f.owner));
+  }
+  for (const race of racesDoc?.races ?? []) {
+    if (!raceOwnersWithTraits.has(slug(race.name))) {
+      fail("races.json", "missing", `race ${JSON.stringify(race.name)} is registered but has no traits in features/race/`);
+    }
+  }
+}
+
 // --- report ----------------------------------------------------------------
 
 for (const p of problems) {

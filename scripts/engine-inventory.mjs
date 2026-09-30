@@ -69,8 +69,13 @@ for (const f of feats) {
   inventory.push({ group: "feat", owner: "Feat", name: f.name, level: null, key: `feat.${slug(f.name)}` });
 }
 for (const r of races) {
+  // The old data spells a variant into the race name, "Dragonborn (Metallic)",
+  // while the engine models it as owner + variant, so the variant is split back
+  // out here. Without this every variant trait reads as missing.
+  const variantMatch = /^(.*?)\s*\((.+)\)\s*$/.exec(r.name);
+  const raceKey = variantMatch ? `${slug(variantMatch[1])}.${slug(variantMatch[2])}` : slug(r.name);
   for (const t of r.traits ?? []) {
-    inventory.push({ group: "race", owner: r.name, name: t.name, level: null, key: `race.${slug(r.name)}.${slug(t.name)}` });
+    inventory.push({ group: "race", owner: r.name, name: t.name, level: null, key: `race.${raceKey}.${slug(baseName(t.name))}` });
   }
 }
 

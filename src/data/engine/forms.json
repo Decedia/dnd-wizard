@@ -39,6 +39,14 @@
       "note": "PHB Wild Shape, Druid level 17."
     },
     {
+      "id": "changeling_duplicate",
+      "name": "Any Humanoid of Your Level",
+      "cr": "equal to the changeling's own level",
+      "creatureType": "humanoid",
+      "grantedAt": ["changeling:1"],
+      "note": "Changeling Duplicate Form replaces the changeling's game statistics with those of another humanoid of the same level, keeping their own Wisdom, Charisma and Intelligence, and keeps their own size, speed, languages and ability scores. The humanoid stat block itself is chosen at the table and is not fixed data. Volo's Guide to Allies p. 41."
+    },
+    {
       "id": "shifter_animal_form",
       "name": "Any Beast CR Equal to or Below Yours",
       "cr": "equal to the shifter's own CR, or lower",

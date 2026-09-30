@@ -398,6 +398,31 @@
       "book": "MotM",
       "page": 17,
       "note": "A duergar offshoot, not a gnome variant, and not a playable gnome subrace in 5e."
+    },
+    {
+      "id": "orc",
+      "name": "Orc",
+      "book": "VGC",
+      "page": 182,
+      "note": "Darkvision, Menacing, Relentless Endurance and Savage Attacks. The app data omitted this race entirely."
+    },
+    {
+      "id": "goliath",
+      "name": "Goliath",
+      "book": "VGC",
+      "page": 166
+    },
+    {
+      "id": "kenku",
+      "name": "Kenku",
+      "book": "ERLW",
+      "page": 29
+    },
+    {
+      "id": "changeling",
+      "name": "Changeling",
+      "book": "VGC",
+      "page": 41
     }
   ]
 }
