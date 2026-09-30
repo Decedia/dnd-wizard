@@ -47,15 +47,12 @@
       "name": "Bardic Inspiration",
       "kind": "pools",
       "recharge": "long_rest",
-      "maxByLevel": {
-        "2": 0,
-        "5": 1,
-        "10": 2,
-        "15": 3,
-        "17": 4
-      },
       "book": "PHB",
-      "note": "Bard 2. Recharges dice on a long rest rather than restoring a flat count; the die size is a feature tier, not a resource field."
+      "note": "Recharges dice on a long rest. The number of dice is your Charisma modifier, minimum 1, which is why the maximum is an ability modifier rather than a number. The die size is a tier on the Bardic Inspiration feature, not a property of the resource: d6, d8 at 5th, d10 at 10th, d12 at 15th.",
+      "maxFromAbility": {
+        "ability": "cha",
+        "minimum": 1
+      }
     },
     {
       "id": "wild_shape_uses",
@@ -92,7 +89,8 @@
       "kind": "hit_dice",
       "recharge": "short_rest",
       "book": "PHB",
-      "note": "One per character level. Spent by Short Rest recovery and regained on a long rest."
+      "note": "One per character level. Spent by Short Rest recovery and regained on a long rest.",
+      "maxFrom": "level"
     },
     {
       "id": "spell_slots",
@@ -100,7 +98,8 @@
       "kind": "slots",
       "recharge": "long_rest",
       "book": "PHB",
-      "note": "Tracked per spell level on the character sheet. Created by Arcane Recovery and by Sorcery Point conversion."
+      "note": "Tracked per spell level on the character sheet. Created by Arcane Recovery and by Sorcery Point conversion.",
+      "maxFrom": "class_table"
     },
     {
       "id": "expertise_dice",

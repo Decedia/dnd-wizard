@@ -245,6 +245,18 @@ export interface ResourceDef {
    * rejects levels above 20.
    */
   maxByLevel?: Record<string, number>;
+  /**
+   * A maximum that comes from an ability modifier rather than a number, which is
+   * what Bardic Inspiration (Charisma modifier) and Lay on Hands (Charisma
+   * modifier times level) need. Mutually exclusive with max and maxByLevel.
+   */
+  maxFromAbility?: { ability: Ability; perLevel?: number; minimum?: number };
+  /**
+   * Where the maximum comes from when it is neither a number nor an ability
+   * modifier. Hit Dice are one per character level, and spell slots come from
+   * the casting class's table, so neither can be written as a number here.
+   */
+  maxFrom?: "level" | "class_table";
   book: string;
   note?: string;
 }

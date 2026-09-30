@@ -262,8 +262,16 @@ if (resourcesDoc) {
     }
     const hasMax = typeof r.max === "number";
     const hasTable = r.maxByLevel && typeof r.maxByLevel === "object";
-    if (hasMax === hasTable) {
-      fail(where, "structure", "resource must set exactly one of max or maxByLevel");
+    const hasAbility = r.maxFromAbility && typeof r.maxFromAbility === "object";
+    const hasFrom = typeof r.maxFrom === "string";
+    const maxima = [hasMax, hasTable, hasAbility, hasFrom].filter(Boolean).length;
+    if (maxima !== 1) {
+      fail(where, "structure", "resource must set exactly one of max, maxByLevel, maxFromAbility or maxFrom");
+    }
+    isOneOf(r.maxFrom, ["level", "class_table"], where, "maxFrom");
+    if (hasAbility) {
+      isOneOf(r.maxFromAbility.ability, vocab.ability, where, "maxFromAbility.ability");
+      requireNumber(r.maxFromAbility.perLevel ?? 0, where, "maxFromAbility.perLevel");
     }
     if (hasTable) {
       let previous = 0;

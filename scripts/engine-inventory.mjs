@@ -40,8 +40,14 @@ const slug = (t) =>
 // models as a tier on a single entry. Matching the base name avoids reporting
 // the same feature as missing three times, which would also let a genuinely
 // missing tier hide behind a written one.
-const TIER_SUFFIX = /\s*\((?:\d+|\d+\s+die|\d+\s+dice|cr[^)]*|once per turn|see class table)\)\s*$/i;
-const baseName = (name) => String(name).replace(TIER_SUFFIX, "").trim();
+const TIER_SUFFIX = /\s*\((?:\d+|d\d+|\d+\s+die|\d+\s+dice|cr[^)]*|once per turn|see per turn|see class table)\)\s*$/i;
+// The old data labels a class's own spellcasting "Spellcasting: Bard"; the rules call it "Spellcasting".
+const CLASS_PREFIX = /^spellcasting\s*:\s*.+$/i;
+const SPELLCASTING = "Spellcasting";
+const baseName = (name) => {
+  const stripped = String(name).replace(TIER_SUFFIX, "").trim();
+  return CLASS_PREFIX.test(stripped) ? SPELLCASTING : stripped;
+};
 
 // --- inventory -------------------------------------------------------------
 
@@ -165,7 +171,8 @@ const RACE_ALIASES = {
 // are matched by pattern so 37 placeholders do not need 37 aliases, and each
 // subclass's own features are still checked individually.
 const SUBCLASS_PLACEHOLDER =
-  /^(path|bard college|divine domain|druid circle|martial archetype|monastic tradition|roguish archetype|sorcerous origin|otherworldly patron|arcane tradition|artificer specialist)\s+feature$|^primal path$|^path feature$/i;
+  // Either a bare placeholder ("Path feature", "Bard College") or one with a suffix ("Divine Domain feature").
+  /^(path|bard college|college|divine domain|domain|druid circle|circle|martial archetype|archetype|monastic tradition|roguish archetype|sorcerous origin|otherworldly patron|arcane tradition|artificer specialist|constitution|oath|ranger archetype)\s*(feature|features)?$/i;
 
 /**
  * Traits the old data has that do not exist in 2014 rules, deliberately dropped
