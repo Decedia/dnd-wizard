@@ -340,32 +340,6 @@
       }
     },
     {
-      "id": "subclass.draconic.draconic_resilience",
-      "name": "Draconic Resilience",
-      "kind": "subclass",
-      "owner": "Draconic",
-      "unlock": 1,
-      "activation": "passive",
-      "effects": [
-        {
-          "kind": "stat_modifier",
-          "stat": "max_hp",
-          "amount": 1,
-          "duration": "permanent"
-        },
-        {
-          "kind": "special",
-          "note": "Your hit point maximum increases by 1, and by 1 again whenever you gain a level. You gain resistance to the damage type of your ancestry."
-        }
-      ],
-      "summary": "An extra hit point per level, and resistance to your ancestry type",
-      "text": "Your hit point maximum increases by 1, and by 1 again whenever you gain a level. You gain resistance to the damage type of your ancestry.",
-      "source": {
-        "book": "PHB",
-        "reference": "PHB Sorcerer Draconic Bloodline 1"
-      }
-    },
-    {
       "id": "subclass.draconic.draconic_breath",
       "name": "Draconic Breath",
       "kind": "subclass",

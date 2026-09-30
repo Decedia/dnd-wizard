@@ -7,24 +7,137 @@
       "owner": "Paladin",
       "unlock": 1,
       "activation": "action",
-      "cost": [{ "resource": "lay_on_hands", "amount": 1 }],
+      "cost": [
+        {
+          "resource": "lay_on_hands",
+          "amount": 1
+        }
+      ],
       "trigger": null,
-      "targeting": { "scope": "creature", "range": { "value": 5, "unit": "touch" } },
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 5,
+          "unit": "touch"
+        }
+      },
       "duration": null,
       "endsIf": [],
       "effects": [
-        { "kind": "heal", "dice": { "dice": "5", "perLevel": { "dice": "5", "above": 1 } }, "resolution": { "mode": "auto" } },
-        { "kind": "special", "note": "Your touch has a healing gift. Your spellcasting ability is Charisma. Choose a creature within 5 feet of you that is not an undead. You regain a number of hit points equal to 5 times your paladin level. This ends at the end of your turn, and you must finish a long rest before using it again. You can expend any number of the pool's hit points, not all of them, and the amount is chosen when you cast." }
+        {
+          "kind": "heal",
+          "dice": {
+            "dice": "5",
+            "perLevel": {
+              "dice": "5",
+              "above": 1
+            }
+          },
+          "resolution": {
+            "mode": "auto"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "Your touch has a healing gift. Your spellcasting ability is Charisma. Choose a creature within 5 feet of you that is not an undead. You regain a number of hit points equal to 5 times your paladin level. This ends at the end of your turn, and you must finish a long rest before using it again. You can expend any number of the pool's hit points, not all of them, and the amount is chosen when you cast."
+        }
       ],
       "tiers": [
-        { "at": 5, "effects": [{ "kind": "heal", "dice": { "dice": "25", "perLevel": { "dice": "5", "above": 5 } }, "resolution": { "mode": "auto" } }, { "kind": "special", "note": "25 hit points, then 5 per level above 5." }] },
-        { "at": 9, "effects": [{ "kind": "heal", "dice": { "dice": "40", "perLevel": { "dice": "5", "above": 9 } }, "resolution": { "mode": "auto" } }, { "kind": "special", "note": "40 hit points, then 5 per level above 9." }] },
-        { "at": 13, "effects": [{ "kind": "heal", "dice": { "dice": "50", "perLevel": { "dice": "5", "above": 13 } }, "resolution": { "mode": "auto" } }, { "kind": "special", "note": "50 hit points, then 5 per level above 13." }] },
-        { "at": 17, "effects": [{ "kind": "heal", "dice": { "dice": "65", "perLevel": { "dice": "5", "above": 17 } }, "resolution": { "mode": "auto" } }, { "kind": "special", "note": "65 hit points, then 5 per level above 17." }] }
+        {
+          "at": 5,
+          "effects": [
+            {
+              "kind": "heal",
+              "dice": {
+                "dice": "25",
+                "perLevel": {
+                  "dice": "5",
+                  "above": 5
+                }
+              },
+              "resolution": {
+                "mode": "auto"
+              }
+            },
+            {
+              "kind": "special",
+              "note": "25 hit points, then 5 per level above 5."
+            }
+          ]
+        },
+        {
+          "at": 9,
+          "effects": [
+            {
+              "kind": "heal",
+              "dice": {
+                "dice": "40",
+                "perLevel": {
+                  "dice": "5",
+                  "above": 9
+                }
+              },
+              "resolution": {
+                "mode": "auto"
+              }
+            },
+            {
+              "kind": "special",
+              "note": "40 hit points, then 5 per level above 9."
+            }
+          ]
+        },
+        {
+          "at": 13,
+          "effects": [
+            {
+              "kind": "heal",
+              "dice": {
+                "dice": "50",
+                "perLevel": {
+                  "dice": "5",
+                  "above": 13
+                }
+              },
+              "resolution": {
+                "mode": "auto"
+              }
+            },
+            {
+              "kind": "special",
+              "note": "50 hit points, then 5 per level above 13."
+            }
+          ]
+        },
+        {
+          "at": 17,
+          "effects": [
+            {
+              "kind": "heal",
+              "dice": {
+                "dice": "65",
+                "perLevel": {
+                  "dice": "5",
+                  "above": 17
+                }
+              },
+              "resolution": {
+                "mode": "auto"
+              }
+            },
+            {
+              "kind": "special",
+              "note": "65 hit points, then 5 per level above 17."
+            }
+          ]
+        }
       ],
       "summary": "Spend a pool of hit points to heal a creature you touch",
       "text": "Your touch has a healing gift. Your spellcasting ability is Charisma. Choose a creature within 5 feet of you that is not an undead. You regain a number of hit points equal to 5 times your paladin level. This ends at the end of your turn, and you must finish a long rest before using it again. You can expend any number of the pool's hit points, not all of them.",
-      "source": { "book": "PHB", "reference": "PHB Paladin 67" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Paladin 67"
+      }
     },
     {
       "id": "class.paladin.divine_smite",
@@ -33,22 +146,102 @@
       "owner": "Paladin",
       "unlock": 2,
       "activation": "bonus_action",
-      "limits": { "per": "turn", "max": 1 },
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "self" },
+      "targeting": {
+        "scope": "self"
+      },
       "duration": null,
       "endsIf": [],
       "effects": [
-        { "kind": "damage", "dice": { "dice": "2d8", "perLevel": { "dice": "1d8", "above": 2 } }, "damageType": "radiant", "resolution": { "mode": "attack", "ability": "cha", "reaches": ["melee weapon attack"] } },
-        { "kind": "special", "note": "When you hit a creature with a melee weapon attack, you can use your bonus action to expend a spell slot and cause radiant damage to the target, in addition to the weapon's damage. The spell must be of a level equal to or higher than the target's armor class, and the radiant damage is 2d8 plus 1d8 for each slot level above 2." }
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "2d8",
+            "perLevel": {
+              "dice": "1d8",
+              "above": 2
+            }
+          },
+          "damageType": "radiant",
+          "resolution": {
+            "mode": "attack",
+            "ability": "cha",
+            "reaches": [
+              "melee weapon attack"
+            ]
+          }
+        },
+        {
+          "kind": "special",
+          "note": "When you hit a creature with a melee weapon attack, you can use your bonus action to expend a spell slot and cause radiant damage to the target, in addition to the weapon's damage. The spell must be of a level equal to or higher than the target's armor class, and the radiant damage is 2d8 plus 1d8 for each slot level above 2."
+        }
       ],
       "tiers": [
-        { "at": 15, "effects": [{ "kind": "damage", "dice": { "dice": "2d8", "perLevel": { "dice": "1d8", "above": 2 } }, "damageType": "radiant", "resolution": { "mode": "attack", "ability": "cha", "reaches": ["melee weapon attack"] } }, { "kind": "special", "note": "Expending a spell slot of 2nd level or higher. At 15th level, expending a slot of 5th level or higher adds one extra weapon damage die, once, when you hit with the attack that uses this feature." }] },
-        { "at": 20, "effects": [{ "kind": "damage", "dice": { "dice": "2d8", "perLevel": { "dice": "1d8", "above": 2 } }, "damageType": "radiant", "resolution": { "mode": "attack", "ability": "cha", "reaches": ["melee weapon attack"] } }, { "kind": "special", "note": "At 20th level, the radiant damage increases by 1d8 whenever you expend a spell slot of 5th level or higher." }] }
+        {
+          "at": 15,
+          "effects": [
+            {
+              "kind": "damage",
+              "dice": {
+                "dice": "2d8",
+                "perLevel": {
+                  "dice": "1d8",
+                  "above": 2
+                }
+              },
+              "damageType": "radiant",
+              "resolution": {
+                "mode": "attack",
+                "ability": "cha",
+                "reaches": [
+                  "melee weapon attack"
+                ]
+              }
+            },
+            {
+              "kind": "special",
+              "note": "Expending a spell slot of 2nd level or higher. At 15th level, expending a slot of 5th level or higher adds one extra weapon damage die, once, when you hit with the attack that uses this feature."
+            }
+          ]
+        },
+        {
+          "at": 20,
+          "effects": [
+            {
+              "kind": "damage",
+              "dice": {
+                "dice": "2d8",
+                "perLevel": {
+                  "dice": "1d8",
+                  "above": 2
+                }
+              },
+              "damageType": "radiant",
+              "resolution": {
+                "mode": "attack",
+                "ability": "cha",
+                "reaches": [
+                  "melee weapon attack"
+                ]
+              }
+            },
+            {
+              "kind": "special",
+              "note": "At 20th level, the radiant damage increases by 1d8 whenever you expend a spell slot of 5th level or higher."
+            }
+          ]
+        }
       ],
       "summary": "Bonus action on a hit: spend a spell slot for radiant damage",
       "text": "When you hit a creature with a melee weapon attack, you can use your bonus action to expend a spell slot and cause radiant damage to the target, in addition to the weapon's damage. The spell must be of a level equal to or higher than the target's armor class, and the radiant damage is 2d8 plus 1d8 for each slot level above 2.",
-      "source": { "book": "PHB", "reference": "PHB Paladin 67" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Paladin 67"
+      }
     },
     {
       "id": "class.warlock.eldritch_blast",
@@ -58,17 +251,68 @@
       "unlock": 1,
       "activation": "action",
       "trigger": null,
-      "targeting": { "scope": "creature", "range": { "value": 120, "unit": "ft" } },
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 120,
+          "unit": "ft"
+        }
+      },
       "duration": null,
       "endsIf": [],
       "effects": [
-        { "kind": "damage", "dice": { "dice": "1d10", "bonusFrom": "cha" }, "damageType": "force", "resolution": { "mode": "attack", "ability": "cha", "reaches": ["120 ft ranged spell attack"] } },
-        { "kind": "special", "note": "You create a beam of crackling energy toward a creature within range. Make a ranged spell attack. On a hit, the target takes 1d10 force damage. At 17th level, the spell creates three beams, and you roll attack and damage separately for each." }
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "1d10",
+            "bonusFrom": "cha"
+          },
+          "damageType": "force",
+          "resolution": {
+            "mode": "attack",
+            "ability": "cha",
+            "reaches": [
+              "120 ft ranged spell attack"
+            ]
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You create a beam of crackling energy toward a creature within range. Make a ranged spell attack. On a hit, the target takes 1d10 force damage. At 17th level, the spell creates three beams, and you roll attack and damage separately for each."
+        }
       ],
-      "tiers": [{ "at": 17, "effects": [{ "kind": "damage", "dice": { "dice": "3d10", "bonusFrom": "cha" }, "damageType": "force", "resolution": { "mode": "attack", "ability": "cha", "reaches": ["120 ft ranged spell attack"] } }, { "kind": "special", "note": "Three beams at 17th level. You roll attack and damage separately for each beam, and the beams are simultaneous." }] }],
+      "tiers": [
+        {
+          "at": 17,
+          "effects": [
+            {
+              "kind": "damage",
+              "dice": {
+                "dice": "3d10",
+                "bonusFrom": "cha"
+              },
+              "damageType": "force",
+              "resolution": {
+                "mode": "attack",
+                "ability": "cha",
+                "reaches": [
+                  "120 ft ranged spell attack"
+                ]
+              }
+            },
+            {
+              "kind": "special",
+              "note": "Three beams at 17th level. You roll attack and damage separately for each beam, and the beams are simultaneous."
+            }
+          ]
+        }
+      ],
       "summary": "A beam of force damage, three beams at 17th level",
       "text": "You create a beam of crackling energy toward a creature within range. Make a ranged spell attack against the creature. On a hit, the target takes 1d10 force damage. At 17th level, this spell creates three beams. You can attack three times with this spell, one for each beam, and each attack is made separately.",
-      "source": { "book": "PHB", "reference": "PHB Warlock 64" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Warlock 64"
+      }
     },
     {
       "id": "class.fighter.fighting_style_defense",
@@ -77,13 +321,22 @@
       "owner": "Fighter",
       "unlock": 1,
       "activation": "passive",
-      "gates": ["wearing_armor"],
+      "gates": [
+        "wearing_armor"
+      ],
       "effects": [
-        { "kind": "ac_bonus", "amount": 1, "requires": "wearing armor" }
+        {
+          "kind": "ac_bonus",
+          "amount": 1,
+          "requires": "wearing armor"
+        }
       ],
       "summary": "+1 AC while wearing armor",
       "text": "If you are wearing armor, you gain a +1 bonus to AC.",
-      "source": { "book": "PHB", "reference": "PHB Fighter 72" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter 72"
+      }
     },
     {
       "id": "class.fighter.fighting_style_dueling",
@@ -92,15 +345,34 @@
       "owner": "Fighter",
       "unlock": 1,
       "activation": "passive",
-      "gates": ["wielding_two_weapons"],
+      "gates": [
+        "wielding_two_weapons"
+      ],
       "effects": [
-        { "kind": "stat_modifier", "stat": "damage_roll", "amount": 2, "duration": "while_active" },
-        { "kind": "skill", "skills": ["Persuasion"], "proficiency": "proficient" },
-        { "kind": "special", "note": "When you are wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon, and you gain proficiency with the Persuasion skill. While wielding a melee weapon in one hand and no other weapons, you also gain a +2 bonus to damage rolls with any weapon you wield with a bonus action." }
+        {
+          "kind": "stat_modifier",
+          "stat": "damage_roll",
+          "amount": 2,
+          "duration": "while_active"
+        },
+        {
+          "kind": "skill",
+          "skills": [
+            "Persuasion"
+          ],
+          "proficiency": "proficient"
+        },
+        {
+          "kind": "special",
+          "note": "When you are wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon, and you gain proficiency with the Persuasion skill. While wielding a melee weapon in one hand and no other weapons, you also gain a +2 bonus to damage rolls with any weapon you wield with a bonus action."
+        }
       ],
       "summary": "+2 damage one-handed, and proficiency with Persuasion",
       "text": "When you are wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon, and you gain proficiency with the Persuasion skill.",
-      "source": { "book": "PHB", "reference": "PHB Fighter 72" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter 72"
+      }
     },
     {
       "id": "class.rogue.sneak_attack",
@@ -109,23 +381,116 @@
       "owner": "Rogue",
       "unlock": 1,
       "activation": "free",
-      "limits": { "per": "turn", "max": 1 },
-      "trigger": { "event": "attack_hit", "note": "When you hit a creature with an attack that is part of the Attack action on your turn." },
-      "targeting": { "scope": "creature" },
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": {
+        "event": "attack_hit",
+        "note": "When you hit a creature with an attack that is part of the Attack action on your turn."
+      },
+      "targeting": {
+        "scope": "creature"
+      },
       "duration": null,
       "endsIf": [],
       "effects": [
-        { "kind": "damage", "dice": { "dice": "1d6", "perLevel": { "dice": "1d6", "above": 1 } }, "damageType": "piercing", "resolution": { "mode": "auto" } },
-        { "kind": "special", "note": "You know how to strike subtly and with deadly effect once you get the upper hand. You have advantage on an attack roll against a creature if you are within 5 feet of it, ally or not, the creature is incapacitated, or you are hidden from it. You also gain a +1d6 to the damage roll, and the number of dice increases by 1d6 at every odd rogue level above 1: 2d6, 3d6, 4d6 and so on." }
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "1d6",
+            "perLevel": {
+              "dice": "1d6",
+              "above": 1
+            }
+          },
+          "damageType": "piercing",
+          "resolution": {
+            "mode": "auto"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You know how to strike subtly and with deadly effect once you get the upper hand. You have advantage on an attack roll against a creature if you are within 5 feet of it, ally or not, the creature is incapacitated, or you are hidden from it. You also gain a +1d6 to the damage roll, and the number of dice increases by 1d6 at every odd rogue level above 1: 2d6, 3d6, 4d6 and so on."
+        }
       ],
       "tiers": [
-        { "at": 5, "effects": [{ "kind": "damage", "dice": { "dice": "3d6", "perLevel": { "dice": "1d6", "above": 5 } }, "damageType": "piercing", "resolution": { "mode": "auto" } }, { "kind": "special", "note": "3d6 at 5th level, increasing by 1d6 every odd level above 5." }] },
-        { "at": 11, "effects": [{ "kind": "damage", "dice": { "dice": "7d6", "perLevel": { "dice": "1d6", "above": 11 } }, "damageType": "piercing", "resolution": { "mode": "auto" } }, { "kind": "special", "note": "7d6 at 11th level." }] },
-        { "at": 17, "effects": [{ "kind": "damage", "dice": { "dice": "11d6", "perLevel": { "dice": "1d6", "above": 17 } }, "damageType": "piercing", "resolution": { "mode": "auto" } }, { "kind": "special", "note": "11d6 at 17th level." }] }
+        {
+          "at": 5,
+          "effects": [
+            {
+              "kind": "damage",
+              "dice": {
+                "dice": "3d6",
+                "perLevel": {
+                  "dice": "1d6",
+                  "above": 5
+                }
+              },
+              "damageType": "piercing",
+              "resolution": {
+                "mode": "auto"
+              }
+            },
+            {
+              "kind": "special",
+              "note": "3d6 at 5th level, increasing by 1d6 every odd level above 5."
+            }
+          ]
+        },
+        {
+          "at": 11,
+          "effects": [
+            {
+              "kind": "damage",
+              "dice": {
+                "dice": "7d6",
+                "perLevel": {
+                  "dice": "1d6",
+                  "above": 11
+                }
+              },
+              "damageType": "piercing",
+              "resolution": {
+                "mode": "auto"
+              }
+            },
+            {
+              "kind": "special",
+              "note": "7d6 at 11th level."
+            }
+          ]
+        },
+        {
+          "at": 17,
+          "effects": [
+            {
+              "kind": "damage",
+              "dice": {
+                "dice": "11d6",
+                "perLevel": {
+                  "dice": "1d6",
+                  "above": 17
+                }
+              },
+              "damageType": "piercing",
+              "resolution": {
+                "mode": "auto"
+              }
+            },
+            {
+              "kind": "special",
+              "note": "11d6 at 17th level."
+            }
+          ]
+        }
       ],
       "summary": "Once a turn, bonus dice on a hit while you have the advantage",
       "text": "You know how to strike subtly and with deadly effect once you get the upper hand. When you hit a creature with an attack that is part of the Attack action on your turn, you can deal an extra 1d6 damage to the target. This feature increases in effect as you gain levels, allowing you to seamlessly incorporate a more expert form of martial arts.",
-      "source": { "book": "PHB", "reference": "PHB Rogue 95" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Rogue 95"
+      }
     },
     {
       "id": "class.ranger.hunters_mark",
@@ -134,22 +499,89 @@
       "owner": "Ranger",
       "unlock": 3,
       "activation": "bonus_action",
-      "limits": { "per": "turn", "max": 1 },
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "creature", "range": { "value": 90, "unit": "ft" } },
-      "duration": { "value": 1, "unit": "hour" },
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 90,
+          "unit": "ft"
+        }
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
       "endsIf": [],
       "effects": [
-        { "kind": "damage", "dice": { "dice": "1d6", "perLevel": { "dice": "1d6", "above": 3 } }, "damageType": "piercing", "resolution": { "mode": "auto" } },
-        { "kind": "special", "note": "When you cast this spell and a creature is a target of the spell, the target is marked for the duration. Until the spell ends, you gain a bonus to attack rolls and your weapon damage rolls against the target, and the target has disadvantage on Wisdom saving throws. The mark also makes the target easier to track, and the extra damage is 1d6 at 3rd level, 2d6 at 9th, 3d6 at 17th." }
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "1d6",
+            "perLevel": {
+              "dice": "1d6",
+              "above": 3
+            }
+          },
+          "damageType": "piercing",
+          "resolution": {
+            "mode": "auto"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "When you cast this spell and a creature is a target of the spell, the target is marked for the duration. Until the spell ends, you gain a bonus to attack rolls and your weapon damage rolls against the target, and the target has disadvantage on Wisdom saving throws. The mark also makes the target easier to track, and the extra damage is 1d6 at 3rd level, 2d6 at 9th, 3d6 at 17th."
+        }
       ],
       "tiers": [
-        { "at": 9, "effects": [{ "kind": "damage", "dice": { "dice": "2d6" }, "damageType": "piercing", "resolution": { "mode": "auto" } }, { "kind": "special", "note": "2d6 at 9th level." }] },
-        { "at": 17, "effects": [{ "kind": "damage", "dice": { "dice": "3d6" }, "damageType": "piercing", "resolution": { "mode": "auto" } }, { "kind": "special", "note": "3d6 at 17th level. When the target takes damage from any source other than an attack roll or spell, you can use your reaction to make a melee weapon attack against it, dealing an additional 1d6 slashing damage." }] }
+        {
+          "at": 9,
+          "effects": [
+            {
+              "kind": "damage",
+              "dice": {
+                "dice": "2d6"
+              },
+              "damageType": "piercing",
+              "resolution": {
+                "mode": "auto"
+              }
+            },
+            {
+              "kind": "special",
+              "note": "2d6 at 9th level."
+            }
+          ]
+        },
+        {
+          "at": 17,
+          "effects": [
+            {
+              "kind": "damage",
+              "dice": {
+                "dice": "3d6"
+              },
+              "damageType": "piercing",
+              "resolution": {
+                "mode": "auto"
+              }
+            },
+            {
+              "kind": "special",
+              "note": "3d6 at 17th level. When the target takes damage from any source other than an attack roll or spell, you can use your reaction to make a melee weapon attack against it, dealing an additional 1d6 slashing damage."
+            }
+          ]
+        }
       ],
       "summary": "Bonus action to mark a creature for extra damage on attacks",
       "text": "When you cast this spell and a creature is a target of the spell, the target is marked for the duration. Until the spell ends, you gain a bonus to attack rolls and your weapon damage rolls against the target, and the target has disadvantage on Wisdom saving throws. The mark also makes the target easier for you to track.",
-      "source": { "book": "PHB", "reference": "PHB Ranger 92" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Ranger 92"
+      }
     },
     {
       "id": "class.rogue.cunning_action",
@@ -158,17 +590,28 @@
       "owner": "Rogue",
       "unlock": 1,
       "activation": "bonus_action",
-      "limits": { "per": "turn", "max": 1 },
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "self" },
+      "targeting": {
+        "scope": "self"
+      },
       "duration": null,
       "endsIf": [],
       "effects": [
-        { "kind": "special", "note": "You can take one of the following actions as a bonus action on each of your turns. This is in addition to the normal action, and you choose the bonus action on your turn. Dash (at least twice as much movement), Disengage, Hide, or Use an Object action." }
+        {
+          "kind": "special",
+          "note": "You can take one of the following actions as a bonus action on each of your turns. This is in addition to the normal action, and you choose the bonus action on your turn. Dash (at least twice as much movement), Disengage, Hide, or Use an Object action."
+        }
       ],
       "summary": "Bonus action: Dash, Disengage, Hide or Use an Object",
       "text": "You can take one of the following actions as a bonus action on each of your turns. This is in addition to the normal action, and you choose the bonus action on your turn. Dash (at least twice as much movement as normal), Disengage (out of the reach of a creature), Hide, or Use an Object action.",
-      "source": { "book": "PHB", "reference": "PHB Rogue 95" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Rogue 95"
+      }
     },
     {
       "id": "class.monk.patient_defense",
@@ -177,18 +620,34 @@
       "owner": "Monk",
       "unlock": 2,
       "activation": "bonus_action",
-      "cost": [{ "resource": "ki", "amount": 1 }],
-      "limits": { "per": "turn", "max": 1 },
+      "cost": [
+        {
+          "resource": "ki",
+          "amount": 1
+        }
+      ],
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "self" },
+      "targeting": {
+        "scope": "self"
+      },
       "duration": null,
       "endsIf": [],
       "effects": [
-        { "kind": "special", "note": "When you take a bonus action, you can instead choose to use the Dodge action, which gives you advantage on Dex saving throws for attacks made against you until the start of your next turn." }
+        {
+          "kind": "special",
+          "note": "When you take a bonus action, you can instead choose to use the Dodge action, which gives you advantage on Dex saving throws for attacks made against you until the start of your next turn."
+        }
       ],
       "summary": "Spend 1 Ki as a bonus action for the Dodge action",
       "text": "When you take a bonus action, you can instead choose to use the Dodge action, which gives you advantage on Dex saving throws for attacks made against you until the start of your next turn.",
-      "source": { "book": "PHB", "reference": "PHB Monk 36" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk 36"
+      }
     },
     {
       "id": "class.monk.flurry_of_blows",
@@ -197,19 +656,43 @@
       "owner": "Monk",
       "unlock": 2,
       "activation": "bonus_action",
-      "cost": [{ "resource": "ki", "amount": 1 }],
-      "limits": { "per": "turn", "max": 1 },
+      "cost": [
+        {
+          "resource": "ki",
+          "amount": 1
+        }
+      ],
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "creature", "range": { "value": 5, "unit": "ft" } },
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 5,
+          "unit": "ft"
+        }
+      },
       "duration": null,
       "endsIf": [],
       "effects": [
-        { "kind": "extra_attacks", "count": 2, "note": "When you take the Attack action on your turn, you can spend 1 ki point to make two melee weapon attacks instead of one." },
-        { "kind": "special", "note": "You may use this feature only once per turn, and only if you haven't already taken the Dodge, Disengage or Patient Defense action this turn. After you take this action, the second attack is also a bonus action." }
+        {
+          "kind": "extra_attacks",
+          "count": 2,
+          "note": "When you take the Attack action on your turn, you can spend 1 ki point to make two melee weapon attacks instead of one."
+        },
+        {
+          "kind": "special",
+          "note": "You may use this feature only once per turn, and only if you haven't already taken the Dodge, Disengage or Patient Defense action this turn. After you take this action, the second attack is also a bonus action."
+        }
       ],
       "summary": "Spend 1 Ki: a second melee attack, and a bonus-action one",
       "text": "When you take the Attack action on your turn, you can spend 1 ki point to make two melee weapon attacks instead of one. This feature can be used only once per turn, and only if you haven't already taken the Dodge, Disengage, or Patient Defense action this turn. After you take this action, the second attack is also a bonus action.",
-      "source": { "book": "PHB", "reference": "PHB Monk 36" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk 36"
+      }
     }
   ]
 }
