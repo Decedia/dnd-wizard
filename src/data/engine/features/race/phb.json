@@ -1,0 +1,452 @@
+{
+  "features": [
+    {
+      "id": "race.human.versatile",
+      "name": "Versatile",
+      "kind": "race",
+      "owner": "Human",
+      "activation": "passive",
+      "effects": [
+        { "kind": "stat_modifier", "stat": "str", "amount": 1, "duration": "permanent" },
+        { "kind": "stat_modifier", "stat": "dex", "amount": 1, "duration": "permanent" },
+        { "kind": "stat_modifier", "stat": "con", "amount": 1, "duration": "permanent" },
+        { "kind": "stat_modifier", "stat": "int", "amount": 1, "duration": "permanent" },
+        { "kind": "stat_modifier", "stat": "wis", "amount": 1, "duration": "permanent" },
+        { "kind": "stat_modifier", "stat": "cha", "amount": 1, "duration": "permanent" },
+        { "kind": "skill", "skills": ["any"], "proficiency": "proficient" },
+        { "kind": "special", "note": "Humans have no racial traits. They instead gain one point in every ability score, one extra skill proficiency, and a bonus feat at character creation. The only humanoid race able to do this." }
+      ],
+      "summary": "Gain 1 in every ability, one extra skill, and a bonus feat",
+      "text": "Ability Score Increase. Humans are the most adaptable and opportunistic of all the races. While any race can become what they need to be, humans are exceptionally capable of adapting to any sort of challenge, from scaling a wall of ice to slaying a frost giant with little more than mild sarcasm. Humans are the most widespread and adaptable of all the races. They are said to have short lives, but they leave behind a legacy that lasts forever. While humans have short lives, they have a remarkable ability to achieve great things in the time they have. Humans are the only race that can increase every one of their six ability scores by one point. They also gain an extra skill proficiency and a bonus feat at character creation.",
+      "source": { "book": "PHB", "page": 38, "reference": "PHB Human" }
+    },
+    {
+      "id": "race.half_elf.darkvision",
+      "name": "Darkvision",
+      "kind": "race",
+      "owner": "Half-Elf",
+      "activation": "passive",
+      "effects": [{ "kind": "senses", "sense": "darkvision" }],
+      "summary": "See in dim light within 60 feet as if it were bright light",
+      "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
+      "source": { "book": "PHB", "page": 32, "reference": "PHB Half-Elf" }
+    },
+    {
+      "id": "race.half_elf.fey_ancestry",
+      "name": "Fey Ancestry",
+      "kind": "race",
+      "owner": "Half-Elf",
+      "activation": "passive",
+      "effects": [{ "kind": "advantage", "check": "save", "value": "advantage" }],
+      "summary": "Advantage on saving throws against being charmed",
+      "text": "You have advantage on saving throws against being charmed. Magic has no effect on you.",
+      "source": { "book": "PHB", "page": 32, "reference": "PHB Half-Elf" }
+    },
+    {
+      "id": "race.half_elf.skill_versatility",
+      "name": "Skill Versatility",
+      "kind": "race",
+      "owner": "Half-Elf",
+      "activation": "passive",
+      "effects": [{ "kind": "skill", "skills": ["two of your choice"], "proficiency": "proficient" }],
+      "summary": "Proficiency in two skills of your choice",
+      "text": "You gain proficiency in two skills of your choice.",
+      "source": { "book": "PHB", "page": 32, "reference": "PHB Half-Elf" }
+    },
+    {
+      "id": "race.dwarf.darkvision",
+      "name": "Darkvision",
+      "kind": "race",
+      "owner": "Dwarf",
+      "activation": "passive",
+      "effects": [{ "kind": "senses", "sense": "darkvision" }],
+      "summary": "See in dim light within 60 feet as if it were bright light",
+      "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
+      "source": { "book": "PHB", "page": 18, "reference": "PHB Dwarf" }
+    },
+    {
+      "id": "race.dwarf.stonecunning",
+      "name": "Stonecunning",
+      "kind": "race",
+      "owner": "Dwarf",
+      "activation": "passive",
+      "effects": [
+        { "kind": "stat_modifier", "stat": "max_hp", "amount": 1, "duration": "permanent" },
+        { "kind": "special", "note": "You have advantage on Wisdom (Perception) checks made to perceive the natural terrain of stone and earth, and advantage on an ability check to recall lore about stone and earth, such as searching for a secret door or finding an underground room. If you make an Intelligence check related to the lore of stonework, you add twice your proficiency bonus to that check." }
+      ],
+      "summary": "Add 1 per level to max HP; advantage on checks about stone and earth",
+      "text": "Whenever you make an Intelligence (History) check related to the lore of stonework, you add twice your proficiency bonus to your result. You have advantage on Wisdom (Perception) checks made to perceive the natural terrain of stone and earth, and advantage on an ability check to recall lore about stone and earth, such as searching for a secret door or finding an underground room.",
+      "source": { "book": "PHB", "page": 18, "reference": "PHB Dwarf" }
+    },
+    {
+      "id": "race.dwarf.hill.dwarven_toughness",
+      "name": "Dwarven Toughness",
+      "kind": "race",
+      "owner": "Dwarf",
+      "variant": "Hill",
+      "activation": "passive",
+      "effects": [{ "kind": "stat_modifier", "stat": "max_hp", "amount": 1, "duration": "permanent" }],
+      "summary": "Add 1 to your hit point maximum at every level",
+      "text": "Your hit point maximum increases by 1, and it increases by 1 again whenever you gain a level.",
+      "source": { "book": "PHB", "page": 18, "reference": "PHB Hill Dwarf" }
+    },
+    {
+      "id": "race.dwarf.mountain.dwarven_arsenal",
+      "name": "Dwarven Arsenal",
+      "kind": "race",
+      "owner": "Dwarf",
+      "variant": "Mountain",
+      "activation": "passive",
+      "effects": [
+        { "kind": "stat_modifier", "stat": "max_hp", "amount": 1, "duration": "permanent" },
+        { "kind": "special", "note": "You gain proficiency with the heavy armor, the greataxe and the light crossbow, and you can speak, read, and write Common, Dwarvish, and one other language of your choice." }
+      ],
+      "summary": "Add 1 to hit points per level; proficiency with heavy armor and greataxes",
+      "text": "You gain proficiency with the heavy armor, the greataxe, and the light crossbow, and you can speak, read, and write Common, Dwarvish, and one other language of your choice.",
+      "source": { "book": "PHB", "page": 18, "reference": "PHB Mountain Dwarf" }
+    },
+    {
+      "id": "race.elf.darkvision",
+      "name": "Darkvision",
+      "kind": "race",
+      "owner": "Elf",
+      "activation": "passive",
+      "effects": [{ "kind": "senses", "sense": "darkvision" }],
+      "summary": "See in dim light within 60 feet as if it were bright light",
+      "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
+      "source": { "book": "PHB", "page": 21, "reference": "PHB Elf" }
+    },
+    {
+      "id": "race.elf.fey_ancestry",
+      "name": "Fey Ancestry",
+      "kind": "race",
+      "owner": "Elf",
+      "activation": "passive",
+      "effects": [{ "kind": "advantage", "check": "save", "value": "advantage" }],
+      "summary": "Advantage on saving throws against being charmed",
+      "text": "You have advantage on saving throws against being charmed. Magic has no effect on you.",
+      "source": { "book": "PHB", "page": 21, "reference": "PHB Elf" }
+    },
+    {
+      "id": "race.elf.trance",
+      "name": "Trance",
+      "kind": "race",
+      "owner": "Elf",
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "Elves don't need to sleep. Instead, they meditate deeply for 4 hours a day. This meditation replaces the need for sleep, and you can meditate in any conscious state, including while watching or listening for danger. You are immune to the poisoned condition and to disease, and you finish a long rest in 4 hours instead of 8." }
+      ],
+      "summary": "Meditate 4 hours instead of sleeping; immune to disease and poison",
+      "text": "Elves don't need to sleep. Instead, they meditate deeply for 4 hours a day. This meditation replaces the need for sleep, and you can meditate in any conscious state, including while watching or listening for danger.",
+      "source": { "book": "PHB", "page": 21, "reference": "PHB Elf" }
+    },
+    {
+      "id": "race.elf.high.cantrip",
+      "name": "Cantrip",
+      "kind": "race",
+      "owner": "Elf",
+      "variant": "High",
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "You know the prestidigitation cantrip. At 3rd level you can cast the minor illusion cantrip, and at 5th level you can cast the major image cantrip." }
+      ],
+      "summary": "Know the prestidigitation cantrip, upgrading at levels 3 and 5",
+      "text": "You know the prestidigitation cantrip. At 3rd level you can cast the minor illusion cantrip, and at 5th level you can cast the major image cantrip.",
+      "source": { "book": "PHB", "page": 22, "reference": "PHB High Elf" }
+    },
+    {
+      "id": "race.elf.wood.fleet_of_foot",
+      "name": "Fleet of Foot",
+      "kind": "race",
+      "owner": "Elf",
+      "variant": "Wood",
+      "activation": "passive",
+      "effects": [
+        { "kind": "stat_modifier", "stat": "speed", "amount": 35, "duration": "permanent" },
+        { "kind": "skill", "skills": ["Perception"], "proficiency": "proficient" },
+        { "kind": "special", "note": "You can take the Hide action even when you are obscured by a creature, if you are also within 5 feet of an allied creature. When you take the Hide action, you can move up to 10 feet without triggering the noticed condition on any creature that is not a passive creature (a creature with no meaningful interest in what you are doing). You must remain within 5 feet of an allied creature to benefit from this trait." }
+      ],
+      "summary": "35 ft speed, Hide skill, and slip past allies without being noticed",
+      "text": "You can take the Hide action even when you are obscured by a creature, if you are also within 5 feet of an allied creature. When you take the Hide action, you can move up to 10 feet without triggering the noticed condition on any creature that is not a passive creature (a creature with no meaningful interest in what you are doing). You must remain within 5 feet of an allied creature to benefit from this trait.",
+      "source": { "book": "PHB", "page": 23, "reference": "PHB Wood Elf" }
+    },
+    {
+      "id": "race.elf.wood.mask_of_the_wild",
+      "name": "Mask of the Wild",
+      "kind": "race",
+      "owner": "Elf",
+      "variant": "Wood",
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "You have advantage on Wisdom (Perception) checks that rely on sight when you are in a woodland creature's habitat and you have the Hide action available, and also when you are within 30 feet of a creature that is disguised as a woodland creature." }
+      ],
+      "summary": "Advantage on perception in woodland habitats while you can Hide",
+      "text": "You have advantage on Wisdom (Perception) checks that rely on sight when you are in a woodland creature's habitat and you have the Hide action available, and also when you are within 30 feet of a creature that is disguised as a woodland creature.",
+      "source": { "book": "PHB", "page": 23, "reference": "PHB Wood Elf" }
+    },
+    {
+      "id": "race.elf.drow.superior_darkvision",
+      "name": "Superior Darkvision",
+      "kind": "race",
+      "owner": "Elf",
+      "variant": "Drow",
+      "activation": "passive",
+      "effects": [{ "kind": "senses", "sense": "darkvision", "range": 120 }],
+      "summary": "Darkvision out to 120 feet",
+      "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
+      "source": { "book": "PHB", "page": 25, "reference": "PHB Dark Elf (Drow)" }
+    },
+    {
+      "id": "race.elf.drow.dancing_lights",
+      "name": "Dancing Lights",
+      "kind": "race",
+      "owner": "Elf",
+      "variant": "Drow",
+      "activation": "bonus_action",
+      "limits": { "per": "turn", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "any", "range": { "value": 120, "unit": "ft" } },
+      "duration": { "value": 1, "unit": "minute" },
+      "endsIf": [],
+      "effects": [
+        { "kind": "special", "note": "You conjure up to four torch-sized lights that hover at a chosen point within range and emit bright light in a 10-foot radius and dim light for an additional 10 feet. You can move the lights up to 40 feet each time you use the feature again, to a point you can see. When you cast any spell of 2nd level or higher, the lights merge into one light that changes colour to match the spell. When the feature ends, the lights disappear if they have not already been dismissed." }
+      ],
+      "summary": "Bonus action: summon up to four moving lights that take a spell's colour",
+      "text": "You conjure up to four torch-sized lights that hover at a chosen point within range and emit bright light in a 10-foot radius and dim light for an additional 10 feet. You can move the lights up to 40 feet each time you use the feature again, to a point you can see. When you cast any spell of 2nd level or higher, the lights merge into one light that changes colour to match the spell. When the feature ends, the lights disappear if they have not already been dismissed.",
+      "source": { "book": "PHB", "page": 25, "reference": "PHB Dark Elf (Drow)" }
+    },
+    {
+      "id": "race.elf.drow.shadow_blade",
+      "name": "Shadow Blade",
+      "kind": "race",
+      "owner": "Elf",
+      "variant": "Drow",
+      "activation": "bonus_action",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "self" },
+      "duration": { "value": 1, "unit": "minute" },
+      "endsIf": [],
+      "effects": [
+        { "kind": "special", "note": "You can use this bonus action to make a melee spell attack with a 120-foot range. On a hit, the target is briefly surrounded by shadowy flames and must make a Constitution saving throw or take 1d8 necrotic damage and the creature must discard one of its nonmagic items. You regain expended uses after you finish a long rest." }
+      ],
+      "summary": "Once a long rest, a 120-foot shadow blade dealing 1d8 necrotic",
+      "text": "You can use this bonus action to make a melee spell attack with a 120-foot range. On a hit, the target is briefly surrounded by shadowy flames and must make a Constitution saving throw or take 1d8 necrotic damage and the creature must discard one of its nonmagic items. You regain expended uses after you finish a long rest.",
+      "source": { "book": "PHB", "page": 25, "reference": "PHB Dark Elf (Drow)" }
+    },
+    {
+      "id": "race.gnome.darkvision",
+      "name": "Darkvision",
+      "kind": "race",
+      "owner": "Gnome",
+      "activation": "passive",
+      "effects": [{ "kind": "senses", "sense": "darkvision" }],
+      "summary": "See in dim light within 60 feet as if it were bright light",
+      "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
+      "source": { "book": "PHB", "page": 27, "reference": "PHB Gnome" }
+    },
+    {
+      "id": "race.gnome.forest.gnomish_magic",
+      "name": "Gnomish Magic",
+      "kind": "race",
+      "owner": "Gnome",
+      "variant": "Forest",
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "You know the minor illusion cantrip. You can cast it at any level, without a spell slot, once per long rest when you finish a short rest." }
+      ],
+      "summary": "Know minor illusion, castable once per long rest without a slot",
+      "text": "You know the minor illusion cantrip. You can cast it at any level, without a spell slot, once per long rest when you finish a short rest.",
+      "source": { "book": "PHB", "page": 29, "reference": "PHB Forest Gnome" }
+    },
+    {
+      "id": "race.gnome.rock.tinker",
+      "name": "Tinker",
+      "kind": "race",
+      "owner": "Gnome",
+      "variant": "Rock",
+      "activation": "bonus_action",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "self" },
+      "duration": { "value": 1, "unit": "hour" },
+      "endsIf": [],
+      "effects": [
+        { "kind": "special", "note": "You know the mending cantrip and can cast it at any level, without a spell slot, once per long rest when you finish a short rest. You also know the rules for crafting and operating a simple mechanical device, so you can spend time and raw materials to improvise a simple device. The device must be in a category that you have knowledge of and it must be no larger than 1 foot in any dimension. You decide what it does if you are the first to craft it, and the GM has the same right. The device has no moving parts and is obviously magical to anyone who handles it. It is a temporary use, lasting for 1 hour." }
+      ],
+      "summary": "Know mending, and craft a small magical device lasting an hour",
+      "text": "You know the mending cantrip and can cast it at any level, without a spell slot, once per long rest when you finish a short rest. You also know the rules for crafting and operating a simple mechanical device, so you can spend time and raw materials to improvise a simple device.",
+      "source": { "book": "PHB", "page": 30, "reference": "PHB Rock Gnome" }
+    },
+    {
+      "id": "race.halfling.brave",
+      "name": "Brave",
+      "kind": "race",
+      "owner": "Halfling",
+      "activation": "passive",
+      "effects": [{ "kind": "advantage", "check": "save", "value": "advantage" }],
+      "summary": "Advantage on saving throws against being frightened",
+      "text": "You have advantage on saving throws against being frightened.",
+      "source": { "book": "PHB", "page": 36, "reference": "PHB Halfling" }
+    },
+    {
+      "id": "race.halfling.halfling_nimbleness",
+      "name": "Halfling Nimbleness",
+      "kind": "race",
+      "owner": "Halfling",
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "You can move through the space of any creature larger than you, and your speed is not reduced to 0 by grappled or restrained conditions." }
+      ],
+      "summary": "Move through the space of larger creatures; ignore grappled and restrained",
+      "text": "You can move through the space of any creature larger than you, and your speed is not reduced to 0 by grappled or restrained conditions.",
+      "source": { "book": "PHB", "page": 36, "reference": "PHB Halfling" }
+    },
+    {
+      "id": "race.halfling.lucky",
+      "name": "Lucky",
+      "kind": "race",
+      "owner": "Halfling",
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "When you roll a 1 on the d20 for an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll." }
+      ],
+      "summary": "Reroll a natural 1 on attack rolls, checks and saves",
+      "text": "When you roll a 1 on the d20 for an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll.",
+      "source": { "book": "PHB", "page": 36, "reference": "PHB Halfling" }
+    },
+    {
+      "id": "race.halfling.lightfoot.naturally_sneaky",
+      "name": "Naturally Sneaky",
+      "kind": "race",
+      "owner": "Halfling",
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "You can take the Hide action even when you're obscured by a creature, if you're within 5 feet of an allied creature. When you take the Hide action, you can move up to 10 feet without triggering the noticed condition on any creature that isn't a passive creature." }
+      ],
+      "summary": "Hide behind an ally without being noticed, moving up to 10 feet",
+      "text": "You can take the Hide action even when you're obscured by a creature, if you're within 5 feet of an allied creature. When you take the Hide action, you can move up to 10 feet without triggering the noticed condition on any creature that isn't a passive creature.",
+      "source": { "book": "PHB", "page": 36, "reference": "PHB Lightfoot Halfling" }
+    },
+    {
+      "id": "race.halfling.stout.brave_heart",
+      "name": "Brave Heart",
+      "kind": "race",
+      "owner": "Halfling",
+      "variant": "Stout",
+      "activation": "passive",
+      "effects": [
+        { "kind": "stat_modifier", "stat": "wis", "amount": 1, "duration": "permanent" },
+        { "kind": "special", "note": "You have advantage on saving throws against being charmed." }
+      ],
+      "summary": "Advantage on saves against being charmed",
+      "text": "You have advantage on saving throws against being charmed.",
+      "source": { "book": "PHB", "page": 37, "reference": "PHB Stout Halfling" }
+    },
+    {
+      "id": "race.halfling.ghostwise.night_hunter",
+      "name": "Night Hunter",
+      "kind": "race",
+      "owner": "Halfling",
+      "variant": "Ghostwise",
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "You have advantage on Wisdom (Perception) checks that rely on sight when you are in dim light or darkness. If you gain the alert feat, your proficiency bonus on Wisdom (Perception) checks is doubled for the rest of the adventure." }
+      ],
+      "summary": "Advantage on sight-based perception in dim light or darkness",
+      "text": "You have advantage on Wisdom (Perception) checks that rely on sight when you are in dim light or darkness. If you gain the alert feat, your proficiency bonus on Wisdom (Perception) checks is doubled for the rest of the adventure.",
+      "source": { "book": "PHB", "page": 37, "reference": "PHB Ghostwise Halfling" }
+    },
+    {
+      "id": "race.half_orc.darkvision",
+      "name": "Darkvision",
+      "kind": "race",
+      "owner": "Half-Orc",
+      "activation": "passive",
+      "effects": [{ "kind": "senses", "sense": "darkvision" }],
+      "summary": "See in dim light within 60 feet as if it were bright light",
+      "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
+      "source": { "book": "PHB", "page": 34, "reference": "PHB Half-Orc" }
+    },
+    {
+      "id": "race.half_orc.menacing",
+      "name": "Menacing",
+      "kind": "race",
+      "owner": "Half-Orc",
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "When you take the Intimidation action, you can move up to 30 feet toward a creature within your line of sight. On a successful check, the target is frightened until the end of your next turn." }
+      ],
+      "summary": "Intimidate from up to 30 feet further away",
+      "text": "When you take the Intimidation action, you can move up to 30 feet toward a creature within your line of sight. On a successful check, the target is frightened until the end of your next turn.",
+      "source": { "book": "PHB", "page": 34, "reference": "PHB Half-Orc" }
+    },
+    {
+      "id": "race.half_orc.relentless_endurance",
+      "name": "Relentless Endurance",
+      "kind": "race",
+      "owner": "Half-Orc",
+      "activation": "reaction",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": { "event": "reduced_to_0_hp" },
+      "targeting": { "scope": "self" },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "temp_hp", "dice": { "dice": "1", "flat": 1 }, "note": "When you have 0 hit points but are not killed outright, you can use your reaction to drop to 1 hit point instead. You regain the use of this after a long rest." }
+      ],
+      "summary": "Reaction: drop to 1 HP instead of dying outright",
+      "text": "When you have 0 hit points but are not killed outright, you can use your reaction to drop to 1 hit point instead. You regain the use of this after a long rest.",
+      "source": { "book": "PHB", "page": 34, "reference": "PHB Half-Orc" }
+    },
+    {
+      "id": "race.half_orc.savage_attacks",
+      "name": "Savage Attacks",
+      "kind": "race",
+      "owner": "Half-Orc",
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "When you crit with a melee weapon attack, roll one more weapon damage die a second time, adding it to the critical hit's damage. You can use this feature to make only one attack that uses the effect." }
+      ],
+      "summary": "An extra damage die when you land a critical melee hit",
+      "text": "When you crit with a melee weapon attack, you roll one more weapon damage die a second time, adding it to the critical hit's damage. You can use this feature to make only one attack that uses the effect.",
+      "source": { "book": "PHB", "page": 34, "reference": "PHB Half-Orc" }
+    },
+    {
+      "id": "race.tiefling.darkvision",
+      "name": "Darkvision",
+      "kind": "race",
+      "owner": "Tiefling",
+      "activation": "passive",
+      "effects": [{ "kind": "senses", "sense": "darkvision" }],
+      "summary": "See in dim light within 60 feet as if it were bright light",
+      "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
+      "source": { "book": "PHB", "page": 40, "reference": "PHB Tiefling" }
+    },
+    {
+      "id": "race.tiefling.hellish_resistance",
+      "name": "Hellish Resistance",
+      "kind": "race",
+      "owner": "Tiefling",
+      "activation": "passive",
+      "effects": [{ "kind": "resistance", "damageTypes": ["fire"] }],
+      "summary": "Resistance to fire damage",
+      "text": "You have resistance to fire damage.",
+      "source": { "book": "PHB", "page": 40, "reference": "PHB Tiefling" }
+    },
+    {
+      "id": "race.tiefling.infernal_constitution",
+      "name": "Infernal Constitution",
+      "kind": "race",
+      "owner": "Tiefling",
+      "activation": "passive",
+      "effects": [
+        { "kind": "resistance", "damageTypes": ["cold"] },
+        { "kind": "special", "note": "Tiefling magic comes from the fiendish realm of the Nine Hells. You have resistance to cold damage. Instead of one legacy background, you may choose any of the nine legacy backgrounds, which replace this trait." }
+      ],
+      "summary": "Resistance to cold damage; replaced by any legacy background",
+      "text": "Tiefling magic comes from the fiendish realm of the Nine Hells. You have resistance to cold damage.",
+      "source": { "book": "PHB", "page": 40, "reference": "PHB Tiefling" }
+    }
+  ]
+}

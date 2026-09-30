@@ -1,0 +1,906 @@
+{
+  "features": [
+    {
+      "id": "race.dragonborn.damage_resistance",
+      "name": "Damage Resistance",
+      "kind": "race",
+      "owner": "Dragonborn",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "resistance",
+          "damageTypes": [
+            "acid",
+            "lightning",
+            "thunder"
+          ]
+        }
+      ],
+      "summary": "Resistance to your ancestry's damage type",
+      "text": "You have resistance to the damage type of your ancestry. The ancestry, the damage type and the breath weapon you gain are tied to your variant.",
+      "source": {
+        "book": "ERLW",
+        "page": 36,
+        "reference": "Eberron Dragonborn"
+      }
+    },
+    {
+      "id": "race.dragonborn.draconic_ancestry",
+      "name": "Draconic Ancestry",
+      "kind": "race",
+      "owner": "Dragonborn",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "Your draconic ancestry gives you the ability to breathe elemental energy. Your breath weapon's damage type and your damage resistance come from your variant, not from a separate choice."
+        }
+      ],
+      "summary": "Breathe elemental energy; the damage type comes from your variant",
+      "text": "Your draconic ancestry comes from the dragon type of your parent or parents. The elemental energy of your ancestry gives you the ability to breathe elemental energy.",
+      "source": {
+        "book": "ERLW",
+        "page": 36,
+        "reference": "Eberron Dragonborn"
+      }
+    },
+    {
+      "id": "race.dragonborn.chromatic.draconic_resilience",
+      "name": "Draconic Resilience",
+      "kind": "race",
+      "owner": "Dragonborn",
+      "variant": "Chromatic",
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "reduced_to_0_hp"
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "temp_hp",
+          "dice": {
+            "dice": "1",
+            "flat": 1
+          },
+          "note": "When you have 0 hit points but are not killed outright, you can use your reaction to drop to 1 hit point instead. Chromatic Dragonborn gain the use of this once per long rest, as with the other variants."
+        }
+      ],
+      "summary": "Reaction: drop to 1 HP instead of dying outright",
+      "text": "When you have 0 hit points but are not killed outright, you can use your reaction to drop to 1 hit point instead. You gain the use of this after a long rest.",
+      "source": {
+        "book": "ERLW",
+        "page": 36,
+        "reference": "Eberron Chromatic Dragonborn"
+      }
+    },
+    {
+      "id": "race.dragonborn.chromatic.chromatic_breath_weapon",
+      "name": "Chromatic Breath Weapon",
+      "kind": "race",
+      "owner": "Dragonborn",
+      "variant": "Chromatic",
+      "activation": "action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creatures_in_area",
+        "range": {
+          "value": 15,
+          "unit": "ft"
+        },
+        "shape": "cone"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "2d6",
+            "bonusFrom": "con"
+          },
+          "damageType": "acid",
+          "resolution": {
+            "mode": "save",
+            "ability": "dex",
+            "onSuccess": "half",
+            "onFailure": "full"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "Replace the damage type above with the acid type of your chosen chromatic ancestry: black is acid, blue is lightning, brass is fire, bronze is acid, copper is acid, gold is fire, green is poison, red is fire, silver is cold, or white is cold. Your uses are tracked by exhaustion: using the breath weapon a number of times equal to your Constitution modifier in one day leaves you exhausted."
+        }
+      ],
+      "summary": "15-foot cone, 2d6 plus Con, Dex save for half, type from your ancestry",
+      "text": "You can use this action to exhale a blast of elemental energy. The energy originates from you and replaces your normal breath, but doesn't require you to breathe first. You use your Constitution modifier to determine the damage. You can use this feature a number of times equal to your Constitution modifier, regaining all expended uses after you finish a short or long rest.",
+      "source": {
+        "book": "ERLW",
+        "page": 36,
+        "reference": "Eberron Chromatic Dragonborn"
+      }
+    },
+    {
+      "id": "race.dragonborn.gem.draconic_resilience",
+      "name": "Draconic Resilience",
+      "kind": "race",
+      "owner": "Dragonborn",
+      "variant": "Gem",
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "reduced_to_0_hp"
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "temp_hp",
+          "dice": {
+            "dice": "1",
+            "flat": 1
+          },
+          "note": "When you have 0 hit points but are not killed outright, you can use your reaction to drop to 1 hit point instead. Gem Dragonborn gain the use of this once per long rest, as with the other variants."
+        }
+      ],
+      "summary": "Reaction: drop to 1 HP instead of dying outright",
+      "text": "When you have 0 hit points but are not killed outright, you can use your reaction to drop to 1 hit point instead. You gain the use of this after a long rest.",
+      "source": {
+        "book": "ERLW",
+        "page": 37,
+        "reference": "Eberron Gem Dragonborn"
+      }
+    },
+    {
+      "id": "race.dragonborn.gem.gem_breath_weapon",
+      "name": "Gem Breath Weapon",
+      "kind": "race",
+      "owner": "Dragonborn",
+      "variant": "Gem",
+      "activation": "action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creatures_in_area",
+        "range": {
+          "value": 15,
+          "unit": "ft"
+        },
+        "shape": "cone"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "2d6",
+            "bonusFrom": "con"
+          },
+          "damageType": "radiant",
+          "resolution": {
+            "mode": "save",
+            "ability": "dex",
+            "onSuccess": "half",
+            "onFailure": "full"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "Replace the damage type above with the radiant type of your chosen gem ancestry: amber is lightning, banded agate is lightning, blue sapphire is frost, citrine is lightning, emerald is poison, pearl is radiant, and ruby is fire. Your uses are tracked by exhaustion."
+        }
+      ],
+      "summary": "15-foot cone, 2d6 plus Con, Dex save for half, type from your gem",
+      "text": "You can use this action to exhale a blast of elemental energy. The energy originates from you and replaces your normal breath, but doesn't require you to breathe first. You use your Constitution modifier to determine the damage. You can use this feature a number of times equal to your Constitution modifier, regaining all expended uses after you finish a short or long rest.",
+      "source": {
+        "book": "ERLW",
+        "page": 37,
+        "reference": "Eberron Gem Dragonborn"
+      }
+    },
+    {
+      "id": "race.dragonborn.metallic.draconic_resilience",
+      "name": "Draconic Resilience",
+      "kind": "race",
+      "owner": "Dragonborn",
+      "variant": "Metallic",
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "reduced_to_0_hp"
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "temp_hp",
+          "dice": {
+            "dice": "1",
+            "flat": 1
+          },
+          "note": "When you have 0 hit points but are not killed outright, you can use your reaction to drop to 1 hit point instead. Metallic Dragonborn gain the use of this once per long rest, as with the other variants."
+        }
+      ],
+      "summary": "Reaction: drop to 1 HP instead of dying outright",
+      "text": "When you have 0 hit points but are not killed outright, you can use your reaction to drop to 1 hit point instead. You gain the use of this after a long rest.",
+      "source": {
+        "book": "ERLW",
+        "page": 37,
+        "reference": "Eberron Metallic Dragonborn"
+      }
+    },
+    {
+      "id": "race.dragonborn.metallic.metallic_breath_weapon",
+      "name": "Metallic Breath Weapon",
+      "kind": "race",
+      "owner": "Dragonborn",
+      "variant": "Metallic",
+      "activation": "action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creatures_in_area",
+        "range": {
+          "value": 15,
+          "unit": "ft"
+        },
+        "shape": "cone"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "2d6",
+            "bonusFrom": "con"
+          },
+          "damageType": "lightning",
+          "resolution": {
+            "mode": "save",
+            "ability": "dex",
+            "onSuccess": "half",
+            "onFailure": "full"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "Replace the damage type above with the type of your chosen metallic ancestry: bronze is fire, brass is fire, copper is acid, gold is fire, iron is cold, or silver is cold. Your uses are tracked by exhaustion."
+        }
+      ],
+      "summary": "15-foot cone, 2d6 plus Con, Dex save for half, type from your metal",
+      "text": "You can use this action to exhale a blast of elemental energy. The energy originates from you and replaces your normal breath, but doesn't require you to breathe first. You use your Constitution modifier to determine the damage. You can use this feature a number of times equal to your Constitution modifier, regaining all expended uses after you finish a short or long rest.",
+      "source": {
+        "book": "ERLW",
+        "page": 37,
+        "reference": "Eberron Metallic Dragonborn"
+      }
+    },
+    {
+      "id": "race.kalashtar.darkvision",
+      "name": "Darkvision",
+      "kind": "race",
+      "owner": "Kalashtar",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "senses",
+          "sense": "darkvision"
+        }
+      ],
+      "summary": "See in dim light within 60 feet as if it were bright light",
+      "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
+      "source": {
+        "book": "ERLW",
+        "page": 28,
+        "reference": "Eberron Kalashtar"
+      }
+    },
+    {
+      "id": "race.kalashtar.telepathy",
+      "name": "Telepathy",
+      "kind": "race",
+      "owner": "Kalashtar",
+      "activation": "action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 60,
+          "unit": "ft"
+        }
+      },
+      "duration": {
+        "value": 10,
+        "unit": "minute"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You can communicate telepathically with any creature you can see within 60 feet of you. You do not need to share a language, but you must be able to understand the creature's thoughts. After using this feature, you can use it again after a long rest, and you regain the use after 8 hours."
+        }
+      ],
+      "summary": "Speak telepathically with any visible creature within 60 feet",
+      "text": "You can communicate telepathically with any creature you can see within 60 feet of you. You do not need to share a language, but you must be able to understand the creature's thoughts. After using this feature, you can use it again after a long rest, and you regain the use after 8 hours.",
+      "source": {
+        "book": "ERLW",
+        "page": 28,
+        "reference": "Eberron Kalashtar"
+      }
+    },
+    {
+      "id": "race.kalashtar.spirit_of_passage",
+      "name": "Spirit of Passage",
+      "kind": "race",
+      "owner": "Kalashtar",
+      "activation": "action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You can cast the telekinesis spell, without a spell slot and without components, but only on yourself. When you cast it in this way, you can take the bonus action to move the creature 5 feet, and a creature's Strength and Dexterity saving throws have advantage against the spell. You gain the use of this after a long rest."
+        }
+      ],
+      "summary": "Once per long rest, telekinesis on yourself only",
+      "text": "You can cast the telekinesis spell, without a spell slot and without components, but only on yourself. When you cast it in this way, you can take the bonus action to move the creature 5 feet, and a creature's Strength and Dexterity saving throws have advantage against the spell. You gain the use of this after a long rest.",
+      "source": {
+        "book": "ERLW",
+        "page": 28,
+        "reference": "Eberron Kalashtar"
+      }
+    },
+    {
+      "id": "race.thri_kreen.darkvision",
+      "name": "Darkvision",
+      "kind": "race",
+      "owner": "Thri-kreen",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "senses",
+          "sense": "darkvision"
+        }
+      ],
+      "summary": "See in dim light within 60 feet as if it were bright light",
+      "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
+      "source": {
+        "book": "ERLW",
+        "page": 32,
+        "reference": "Eberron Thri-kreen"
+      }
+    },
+    {
+      "id": "race.thri_kreen.telepathy",
+      "name": "Telepathy",
+      "kind": "race",
+      "owner": "Thri-kreen",
+      "activation": "action",
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 30,
+          "unit": "ft"
+        }
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You can communicate telepathically with any creature you can see within 30 feet of you. The creature doesn't need to share a language, but must be intelligent. This telepathy doesn't let you sense a creature's intentions, and it ends if you're incapacitated or killed."
+        }
+      ],
+      "summary": "Sense and communicate with the thoughts of one creature within 30 feet",
+      "text": "You can communicate telepathically with any creature you can see within 30 feet of you. The creature doesn't need to share a language, but must be intelligent. This telepathy doesn't let you sense a creature's intentions, and it ends if you're incapacitated or killed.",
+      "source": {
+        "book": "ERLW",
+        "page": 32,
+        "reference": "Eberron Thri-kreen"
+      }
+    },
+    {
+      "id": "race.thri_kreen.faction_language",
+      "name": "Faction Language",
+      "kind": "race",
+      "owner": "Thri-kreen",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "language",
+          "languages": [
+            "Deep Speech",
+            "one language of your choice"
+          ]
+        },
+        {
+          "kind": "special",
+          "note": "You gain an additional language, and you gain a +1 bonus to Persuasion when you use the Telephy trait to influence a creature with a language you share."
+        }
+      ],
+      "summary": "Speak Deep Speech and one language of your choice",
+      "text": "You gain an additional language, and you gain a +1 bonus to Persuasion when you use the Telephy trait to influence a creature with a language you share.",
+      "source": {
+        "book": "ERLW",
+        "page": 32,
+        "reference": "Eberron Thri-kreen"
+      }
+    },
+    {
+      "id": "race.autonyme.constructed",
+      "name": "Constructed",
+      "kind": "race",
+      "owner": "Autonyme",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "condition_immunity",
+          "conditions": [
+            "poisoned"
+          ]
+        },
+        {
+          "kind": "condition_immunity",
+          "conditions": [
+            "exhaustion"
+          ]
+        },
+        {
+          "kind": "special",
+          "note": "You gain resistance to poison damage and immunity to the poisoned condition. You also gain immunity to the exhausted condition, but not exhaustion, which you gain when you spend more than 8 hours without a rest."
+        }
+      ],
+      "summary": "Immune to poison and exhaustion",
+      "text": "You are immune to the poisoned condition and to the exhausted condition, and you gain resistance to poison damage. You also have advantage on saving throws against the exhausted condition.",
+      "source": {
+        "book": "ERLW",
+        "page": 22,
+        "reference": "Eberron Autonyme"
+      }
+    },
+    {
+      "id": "race.autonyme.mechanical",
+      "name": "Mechanical",
+      "kind": "race",
+      "owner": "Autonyme",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have a +5 bonus to AC, an +5 bonus to Constitution saving throws, advantage on Constitution saving throws, and a +5 bonus to hit points at 1st level, and a +5 bonus to hit points whenever you gain a level thereafter. You also gain a +5 bonus to one physical ability score of your choice."
+        }
+      ],
+      "summary": "+5 AC, +5 to Constitution saves and HP at 1st level and each level after",
+      "text": "You have a +5 bonus to AC, an +5 bonus to Constitution saving throws, advantage on Constitution saving throws, and a +5 bonus to hit points at 1st level, and a +5 bonus to hit points whenever you gain a level thereafter.",
+      "source": {
+        "book": "ERLW",
+        "page": 22,
+        "reference": "Eberron Autonyme"
+      }
+    },
+    {
+      "id": "race.autonyme.duplicate",
+      "name": "Duplicate",
+      "kind": "race",
+      "owner": "Autonyme",
+      "activation": "action",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "summon",
+          "features": [],
+          "formId": "automne_duplicate",
+          "initiative": "self",
+          "control": "self",
+          "duration": {
+            "value": 1,
+            "unit": "hour"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You can cast the mirror image spell at will, without a spell slot. If the spell ends, you can use this trait again after a long rest, and you regain the use after 8 hours. A duplicate shares your game statistics, but is nonmagical, has no equipment, and is 10% of your hit points, rounded up."
+        }
+      ],
+      "summary": "Mirror image at will, no spell slot",
+      "text": "You can cast the mirror image spell at will, without a spell slot. If the spell ends, you can use this trait again after a long rest, and you regain the use after 8 hours.",
+      "source": {
+        "book": "ERLW",
+        "page": 22,
+        "reference": "Eberron Autonyme"
+      }
+    },
+    {
+      "id": "race.plasmoid.darkvision",
+      "name": "Darkvision",
+      "kind": "race",
+      "owner": "Plasmoid",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "senses",
+          "sense": "darkvision"
+        }
+      ],
+      "summary": "See in dim light within 60 feet as if it were bright light",
+      "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
+      "source": {
+        "book": "ERLW",
+        "page": 28,
+        "reference": "Eberron Plasmoid"
+      }
+    },
+    {
+      "id": "race.plasmoid.immune_to_poison",
+      "name": "Immune to Poison",
+      "kind": "race",
+      "owner": "Plasmoid",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "condition_immunity",
+          "conditions": [
+            "poisoned"
+          ]
+        },
+        {
+          "kind": "special",
+          "note": "You are immune to the poisoned condition. You have resistance to poison damage."
+        }
+      ],
+      "summary": "Immune to the poisoned condition, resistant to poison damage",
+      "text": "You are immune to the poisoned condition. You have resistance to poison damage.",
+      "source": {
+        "book": "ERLW",
+        "page": 28,
+        "reference": "Eberron Plasmoid"
+      }
+    },
+    {
+      "id": "race.plasmoid.water_suspended",
+      "name": "Water Suspended",
+      "kind": "race",
+      "owner": "Plasmoid",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You can hover in mid-air by using your arms to slosh about your gaseous form, which gives you a fly speed equal to your walking speed. If you end this benefit, you fall, and you must be within 5 feet of a solid object to do so."
+        }
+      ],
+      "summary": "A flight speed equal to your walking speed",
+      "text": "You can hover in mid-air by using your arms to slosh about your gaseous form, which gives you a fly speed equal to your walking speed. If you end this benefit, you fall, and you must be within 5 feet of a solid object to do so.",
+      "source": {
+        "book": "ERLW",
+        "page": 28,
+        "reference": "Eberron Plasmoid"
+      }
+    },
+    {
+      "id": "race.plasmoid.water_walking",
+      "name": "Water Walking",
+      "kind": "race",
+      "owner": "Plasmoid",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You can move across and stand on liquid water as if it was solid ground. However, if you immerse yourself in a body of water, you are in an area of effect of a 10-foot cube of water, after which the water surrounding you might be frozen in place."
+        }
+      ],
+      "summary": "Walk and stand on water as if it were solid ground",
+      "text": "You can move across and stand on liquid water as if it was solid ground. However, if you immerse yourself in a body of water, you are in an area of effect of a 10-foot cube of water, after which the water surrounding you might be frozen in place.",
+      "source": {
+        "book": "ERLW",
+        "page": 28,
+        "reference": "Eberron Plasmoid"
+      }
+    },
+    {
+      "id": "race.warforged.constructed",
+      "name": "Constructed",
+      "kind": "race",
+      "owner": "Warforged",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "condition_immunity",
+          "conditions": [
+            "poisoned"
+          ]
+        },
+        {
+          "kind": "special",
+          "note": "You gain resistance to poison damage and immunity to the poisoned condition, and you don't need to eat or drink."
+        }
+      ],
+      "summary": "Immune to poison, and you need neither food nor drink",
+      "text": "You are immune to the poisoned condition and have resistance to poison damage, and you don't need to eat or drink.",
+      "source": {
+        "book": "ERLW",
+        "page": 40,
+        "reference": "Eberron Warforged"
+      }
+    },
+    {
+      "id": "race.warforged.sentrys_rest",
+      "name": "Sentry's Rest",
+      "kind": "race",
+      "owner": "Warforged",
+      "activation": "action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 8,
+        "unit": "hour"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You can go into a trance that lasts for 1 hour, once per long rest, during which you are conscious, and you finish a long rest if you sleep or take a Short Rest inside the trance."
+        }
+      ],
+      "summary": "Once per long rest, an 8-hour trance you are conscious through",
+      "text": "You can go into a trance that lasts for 1 hour, once per long rest, during which you are conscious, and you finish a long rest if you sleep or take a Short Rest inside the trance.",
+      "source": {
+        "book": "ERLW",
+        "page": 40,
+        "reference": "Eberron Warforged"
+      }
+    },
+    {
+      "id": "race.warforged.iron_fortitude",
+      "name": "Iron Fortitude",
+      "kind": "race",
+      "owner": "Warforged",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have advantage on saving throws to avoid or end the poisoned condition, and immunity to the Frightened condition. If you are ever reduced to 0 hit points, you have advantage on the saving throw to avoid dropping to 0, and if you do drop to 0 hit points, you have advantage on the saving throw to be put back to 1 hit point."
+        }
+      ],
+      "summary": "Advantage against poison, immune to frightened, advantage at death saves",
+      "text": "You have advantage on saving throws to avoid or end the poisoned condition, and immunity to the Frightened condition. If you are ever reduced to 0 hit points, you have advantage on the saving throw to avoid dropping to 0, and if you do drop to 0 hit points, you have advantage on the saving throw to be put back to 1 hit point.",
+      "source": {
+        "book": "ERLW",
+        "page": 40,
+        "reference": "Eberron Warforged"
+      }
+    },
+    {
+      "id": "race.eladrin.darkvision",
+      "name": "Darkvision",
+      "kind": "race",
+      "owner": "Eladrin",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "senses",
+          "sense": "darkvision"
+        }
+      ],
+      "summary": "See in dim light within 60 feet as if it were bright light",
+      "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
+      "source": {
+        "book": "ERLW",
+        "page": 24,
+        "reference": "Eberron Eladrin"
+      }
+    },
+    {
+      "id": "race.eladrin.fey_ancestry",
+      "name": "Fey Ancestry",
+      "kind": "race",
+      "owner": "Eladrin",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "advantage",
+          "check": "save",
+          "value": "advantage"
+        }
+      ],
+      "summary": "Advantage on saving throws against being charmed",
+      "text": "You have advantage on saving throws against being charmed. Magic has no effect on you.",
+      "source": {
+        "book": "ERLW",
+        "page": 24,
+        "reference": "Eberron Eladrin"
+      }
+    },
+    {
+      "id": "race.eladrin.trance",
+      "name": "Trance",
+      "kind": "race",
+      "owner": "Eladrin",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "Eladrin don't need to sleep. Instead, they meditate deeply for 4 hours a day. This meditation replaces the need for sleep, and you can meditate in any conscious state. You finish a long rest in 4 hours instead of 8."
+        }
+      ],
+      "summary": "Meditate 4 hours instead of sleeping; long rest in 4 hours",
+      "text": "Eladrin don't need to sleep. Instead, they meditate deeply for 4 hours a day. This meditation replaces the need for sleep, and you can meditate in any conscious state, including while watching or listening for danger.",
+      "source": {
+        "book": "ERLW",
+        "page": 24,
+        "reference": "Eberron Eladrin"
+      }
+    },
+    {
+      "id": "race.eladrin.season.seasonal_magic",
+      "name": "Seasonal Magic",
+      "kind": "race",
+      "owner": "Eladrin",
+      "variant": "Season",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have one extra magic item slot of each sorcery level (0 through 5), which can be used only on nonmagical, Common items. You can also cast a spell of each season once, without a spell slot and without components, and the GM chooses the day on which you cast it. Each casting is permanent until you cast a different seasonal spell. Spring is detect magic, summer is minor illusion, autumn is silence, and winter is mage hand. You can also cast teleport without a spell slot, once per day, and can choose any point you have been to."
+        }
+      ],
+      "summary": "Extra common-item slots, plus one free seasonal spell per day",
+      "text": "You have one extra magic item slot of each sorcery level (0 through 5), which can be used only on nonmagical, Common items. You can also cast a spell of each season once, without a spell slot and without components, and the GM chooses the day on which you cast it.",
+      "source": {
+        "book": "ERLW",
+        "page": 24,
+        "reference": "Eberron Eladrin"
+      }
+    },
+    {
+      "id": "race.astral_elven.darkvision",
+      "name": "Darkvision",
+      "kind": "race",
+      "owner": "Astral Elf",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "senses",
+          "sense": "darkvision"
+        }
+      ],
+      "summary": "See in dim light within 60 feet as if it were bright light",
+      "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
+      "source": {
+        "book": "ERLW",
+        "page": 25,
+        "reference": "Eberron Astral Elf"
+      }
+    },
+    {
+      "id": "race.astral_elven.light_step",
+      "name": "Light Step",
+      "kind": "race",
+      "owner": "Astral Elf",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have resistance to damage from any spell and effect created by a celestial."
+        }
+      ],
+      "summary": "Resistance to damage from any spell or effect created by a celestial",
+      "text": "You have resistance to damage from any spell and effect created by a celestial.",
+      "source": {
+        "book": "ERLW",
+        "page": 25,
+        "reference": "Eberron Astral Elf"
+      }
+    },
+    {
+      "id": "race.astral_elven.astral_trance",
+      "name": "Astral Trance",
+      "kind": "race",
+      "owner": "Astral Elf",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You don't need to sleep. Instead, you can meditate for 4 hours a day. This meditation replaces the need for sleep, and you finish a long rest in 4 hours instead of 8."
+        }
+      ],
+      "summary": "Meditate 4 hours instead of sleeping",
+      "text": "You don't need to sleep. Instead, you can meditate for 4 hours a day. This meditation replaces the need for sleep, and you finish a long rest in 4 hours instead of 8.",
+      "source": {
+        "book": "ERLW",
+        "page": 25,
+        "reference": "Eberron Astral Elf"
+      }
+    },
+    {
+      "id": "race.astral_elven.starborn",
+      "name": "Starborn",
+      "kind": "race",
+      "owner": "Astral Elf",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You know the light cantrip. At 3rd level you can cast the fire bolt cantrip, and at 5th level you can cast the shocking ray cantrip. The spells don't require a spell slot."
+        }
+      ],
+      "summary": "Know light, upgrading to fire bolt at 3 and shocking ray at 5",
+      "text": "You know the light cantrip. At 3rd level you can cast the fire bolt cantrip, and at 5th level you can cast the shocking ray cantrip. The spells don't require a spell slot.",
+      "source": {
+        "book": "ERLW",
+        "page": 25,
+        "reference": "Eberron Astral Elf"
+      }
+    }
+  ]
+}

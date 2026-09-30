@@ -1,46 +1,54 @@
 {
   "features": [
     {
-      "id": "race.dragonborn.draconic_resilience",
-      "name": "Draconic Resilience",
-      "kind": "race",
-      "owner": "Dragonborn",
-      "unlock": 2,
-      "activation": "reaction",
-      "limits": { "per": "rest", "max": 1 },
-      "trigger": { "event": "self_damaged", "at": "reduced_to_0_hp" },
-      "targeting": { "scope": "self" },
-      "duration": null,
-      "endsIf": [],
-      "gates": [],
-      "effects": [
-        { "kind": "reduce_damage", "dice": { "dice": "1d10", "bonusFrom": "con" }, "note": "Triggered when damage would reduce you to 0 hit points. The reduction is applied first, so a hit that would leave you at 0 leaves you at the reduced total." },
-        { "kind": "special", "note": "The reduction is fixed at the moment of use and does not grow." }
-      ],
-      "summary": "Reaction: reduce one instance of damage by 1d10 + Con",
-      "text": "The elemental force of your dragon blood grants you the ability to ward yourself against magical or elemental attacks. When you take damage from any source, you can use your reaction to reduce that damage by 1d10 + your Constitution modifier. You can use this feature once per long rest.",
-      "source": { "book": "PHB", "page": 28, "reference": "PHB Dragonborn 2" }
-    },
-    {
       "id": "race.dragonborn.breath_weapon",
       "name": "Breath Weapon",
       "kind": "race",
       "owner": "Dragonborn",
-      "unlock": 1,
       "activation": "action",
-      "limits": { "per": "rest", "max": 1 },
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "creatures_in_area", "range": { "value": 15, "unit": "ft" }, "shape": "cone" },
+      "targeting": {
+        "scope": "creatures_in_area",
+        "range": {
+          "value": 15,
+          "unit": "ft"
+        },
+        "shape": "cone"
+      },
       "duration": null,
       "endsIf": [],
       "gates": [],
       "effects": [
-        { "kind": "damage", "dice": { "dice": "2d6", "bonusFrom": "con" }, "damageType": "fire", "resolution": { "mode": "save", "ability": "dex", "onSuccess": "half", "onFailure": "full" } },
-        { "kind": "special", "note": "Exchanges are used to track uses. Your breath weapon is tied to a spell slot, and you regain uses by taking a short or long rest. Using it a number of times equal to your Constitution modifier in one day exhausts you to level 1 exhaustion until a long rest." }
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "2d6",
+            "bonusFrom": "con"
+          },
+          "damageType": "fire",
+          "resolution": {
+            "mode": "save",
+            "ability": "dex",
+            "onSuccess": "half",
+            "onFailure": "full"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "Exchanges are used to track uses. Your breath weapon is tied to a spell slot, and you regain uses by taking a short or long rest. Using it a number of times equal to your Constitution modifier in one day exhausts you to level 1 exhaustion until a long rest."
+        }
       ],
       "summary": "Exhale a 15-foot cone of fire, 2d6 + Con, Dex save for half",
       "text": "You can use this feature to exhale a blast of elemental energy. The energy originates from you and replaces your normal breath, but doesn't require you to breathe first. You use your Constitution modifier to determine the damage. You can use this feature a number of times equal to your Constitution modifier, regaining all expended uses after you finish a short or long rest.",
-      "source": { "book": "PHB", "page": 28, "reference": "PHB Dragonborn 2" }
+      "source": {
+        "book": "PHB",
+        "page": 28,
+        "reference": "PHB Dragonborn 2"
+      }
     }
   ]
 }

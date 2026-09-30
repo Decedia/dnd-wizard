@@ -11,6 +11,7 @@
     "engine:validate": "node scripts/validate-engine-data.mjs",
     "engine:coverage": "node scripts/engine-coverage.mjs",
     "engine:worklist": "node scripts/engine-coverage.mjs --worklist",
+    "engine:racecheck": "node scripts/race-crosscheck.mjs",
     "srd:extract": "node scripts/extract-srd-strings.mjs",
     "srd:build": "node scripts/build-srd-locale.mjs",
     "srd:enhance:id": "node scripts/enhance-indonesian.mjs",

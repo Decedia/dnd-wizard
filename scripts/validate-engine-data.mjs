@@ -74,6 +74,15 @@ function requireNumber(value, where, field) {
   return true;
 }
 
+/** The same normalisation the id scheme uses, so "Dragonborn" matches "dragonborn". */
+function slug(text) {
+  return String(text)
+    .toLowerCase()
+    .replace(/['’]/g, "")
+    .replace(/[^a-z0-9]+/g, "_")
+    .replace(/^_|_$/g, "");
+}
+
 // --- load ------------------------------------------------------------------
 
 const vocab = readJson(path.join(ENGINE_DIR, "vocab.json"));
@@ -85,11 +94,53 @@ if (!vocab) {
 const statesDoc = readJson(path.join(ENGINE_DIR, "states.json"));
 const formsDoc = readJson(path.join(ENGINE_DIR, "forms.json"));
 const resourcesDoc = readJson(path.join(ENGINE_DIR, "resources.json"));
+const racesDoc = readJson(path.join(ENGINE_DIR, "races.json"));
 
 const stateIds = new Set((statesDoc?.states ?? []).map((s) => s.id));
 const formIds = new Set((formsDoc?.forms ?? []).map((f) => f.id));
 const resourceIds = new Set();
+/** "<raceId>" and "<raceId>.<variantId>" for every declared race and variant. */
+const raceKeys = new Set();
+/** Variants that borrow another race's list, so they hold no traits themselves. */
+const borrowedVariants = new Set();
 const [LEVEL_MIN, LEVEL_MAX] = vocab.levelRange;
+
+if (racesDoc) {
+  for (const [i, race] of (racesDoc.races ?? []).entries()) {
+    const where = `races.json[${i}] ${race?.id ?? "?"}`;
+    requireString(race.id, where, "id");
+    requireString(race.name, where, "name");
+    // A name/id pair that has drifted apart silently breaks every feature that
+    // references the race, so pin them together.
+    if (race.id && race.name && slug(race.id) !== slug(race.name)) {
+      fail(where, "format", `id ${JSON.stringify(race.id)} does not match name ${JSON.stringify(race.name)}`);
+    }
+    if (!(racesDoc.books ?? {})[race.book]) {
+      fail(where, "enum", `book ${JSON.stringify(race.book)} is not declared in races.json books (${Object.keys(racesDoc.books ?? {}).join(", ")})`);
+    }
+    raceKeys.add(race.id);
+    for (const [j, v] of (race.variants ?? []).entries()) {
+      const vwhere = `${where}.variants[${j}] ${v?.id ?? "?"}`;
+      requireString(v.id, vwhere, "id");
+      requireString(v.name, vwhere, "name");
+      if (v.id && v.id === race.id) fail(vwhere, "duplicate", "a variant cannot reuse its parent's id");
+      raceKeys.add(`${race.id}.${v.id}`);
+      if (v.variantFrom) {
+        if (v.variantFrom === race.id) fail(vwhere, "structure", "variantFrom cannot point at its own race");
+        borrowedVariants.add(`${race.id}.${v.id}`);
+      }
+    }
+  }
+  // A variantFrom must name a race that actually exists, checked after the
+  // loop so a forward reference within the file is fine.
+  for (const race of racesDoc.races ?? []) {
+    for (const v of race.variants ?? []) {
+      if (v.variantFrom && !raceKeys.has(v.variantFrom)) {
+        fail(`races.json ${race.id}.${v.id}`, "danglingRef", `variantFrom ${JSON.stringify(v.variantFrom)} is not a declared race`);
+      }
+    }
+  }
+}
 
 if (statesDoc) {
   for (const [i, s] of (statesDoc.states ?? []).entries()) {
@@ -252,10 +303,14 @@ for (const { feature: f, where } of features) {
   }
 
   if (f.id) {
-    // <kind>.<owner>.<slug>, snake_case. Ids are permanent - featuresUsedThisTurn
-    // stores them - so the shape is pinned rather than left to taste.
-    if (!/^[a-z0-9_]+\.[a-z0-9_]+\.[a-z0-9_]+$/.test(f.id)) {
-      fail(where, "format", `id ${JSON.stringify(f.id)} must be "<kind>.<owner>.<slug>" in snake_case, e.g. fighter.action_surge`);
+    // <kind>.<owner>.<slug>, with <variant>.<slug> for a variant's own traits,
+    // so a race with three variants does not collide on Draconic Resilience.
+    // snake_case, and permanent - featuresUsedThisTurn stores these.
+    if (!/^[a-z0-9_]+\.[a-z0-9_]+\.[a-z0-9_]+$/.test(f.id) && !/^[a-z0-9_]+\.[a-z0-9_]+\.[a-z0-9_]+\.[a-z0-9_]+$/.test(f.id)) {
+      fail(where, "format", `id ${JSON.stringify(f.id)} must be "<kind>.<owner>.<slug>" or "<kind>.<owner>.<variant>.<slug>" in snake_case`);
+    }
+    if (f.variant && !new RegExp(`\\.${slug(f.variant)}\\.`).test(f.id)) {
+      fail(where, "format", `id ${JSON.stringify(f.id)} does not name its variant ${JSON.stringify(f.variant)}`);
     }
   }
 
@@ -266,7 +321,13 @@ for (const { feature: f, where } of features) {
     if (!Number.isInteger(f.unlock) || f.unlock < LEVEL_MIN || f.unlock > LEVEL_MAX) {
       fail(where, "level", `unlock ${JSON.stringify(f.unlock)} is outside ${LEVEL_MIN}-${LEVEL_MAX}`);
     }
-  } else if (f.kind === "class" || f.kind === "subclass" || f.kind === "race" || f.kind === "monster") {
+    // Races, feats and backgrounds are granted by choice, not by levelling, so
+    // an unlock on one of them is a mistake - as it was for Dragonborn, whose
+    // traits had no level in the first place.
+    if (f.kind === "race" || f.kind === "feat" || f.kind === "background") {
+      fail(where, "structure", `a ${f.kind} is granted by choice and must not carry unlock ${f.unlock}`);
+    }
+  } else if (f.kind === "class" || f.kind === "subclass" || f.kind === "monster") {
     fail(where, "missing", `a ${f.kind} feature needs an unlock level`);
   }
 
@@ -288,6 +349,24 @@ for (const { feature: f, where } of features) {
 
   if (f.kind === "race" && f.owner.includes("(")) {
     fail(where, "structure", `race owner ${JSON.stringify(f.owner)} embeds a variant in parentheses; use owner "Dragonborn" with variant "Chromatic"`);
+  }
+  if (f.kind === "race" && racesDoc) {
+    // `owner` stays human-readable ("Dragonborn") while races.json keys on the
+    // snake_case id, so compare through the same slug the id scheme uses.
+    const raceKey = slug(f.owner ?? "");
+    if (!raceKeys.has(raceKey)) {
+      fail(where, "danglingRef", `race ${JSON.stringify(f.owner)} is not declared in races.json (looked for ${JSON.stringify(raceKey)})`);
+    } else if (f.variant) {
+      const key = `${raceKey}.${slug(f.variant)}`;
+      if (!raceKeys.has(key)) {
+        fail(where, "danglingRef", `variant ${JSON.stringify(f.variant)} is not declared on ${f.owner} in races.json`);
+      }
+      if (borrowedVariants.has(key)) {
+        fail(where, "structure", `${key} borrows another race's variants, so it must not hold traits of its own`);
+      }
+    } else if (borrowedVariants.has(raceKey)) {
+      fail(where, "structure", `${raceKey} is not a race in races.json, only a borrowed variant`);
+    }
   }
 
   if (f.limits) {
@@ -344,8 +423,16 @@ for (const { feature: f, where } of features) {
     if (f.summary.trim().length === 0) fail(where, "summary", "summary is blank");
     if (/[.]$/.test(f.summary.trim())) fail(where, "summary", "summary should not end with a period");
   }
-  if (typeof f.text === "string" && f.text.trim().length < 40) {
-    fail(where, "text", "text looks truncated; keep the verbatim rules text for proofreading");
+  // Truncation, not brevity, is the failure worth catching: some real rules text
+  // is one short sentence ("You have resistance to fire damage."). A rules
+  // paragraph that stops mid-clause is the actual signal.
+  if (typeof f.text === "string") {
+    const trimmed = f.text.trim();
+    if (trimmed.length < 20) {
+      fail(where, "text", `text is only ${trimmed.length} chars; keep the verbatim rules text for proofreading`);
+    } else if (!/[.?!)\]]$/.test(trimmed)) {
+      fail(where, "text", "text does not end in terminal punctuation, so it looks truncated");
+    }
   }
   if (f.source) requireString(f.source.book, where, "source.book");
 

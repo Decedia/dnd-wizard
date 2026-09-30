@@ -1,0 +1,54 @@
+{
+  "features": [
+    {
+      "id": "race.tabaxi.darkvision",
+      "name": "Darkvision",
+      "kind": "race",
+      "owner": "Tabaxi",
+      "activation": "passive",
+      "effects": [{ "kind": "senses", "sense": "darkvision" }],
+      "summary": "See in dim light within 60 feet as if it were bright light",
+      "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
+      "source": { "book": "PHB", "page": 48, "reference": "PHB Tabaxi" }
+    },
+    {
+      "id": "race.plasmoid.acid_resistance",
+      "name": "Acid Resistance",
+      "kind": "race",
+      "owner": "Plasmoid",
+      "activation": "passive",
+      "effects": [{ "kind": "resistance", "damageTypes": ["acid"] }],
+      "summary": "Resistance to acid damage",
+      "text": "You have resistance to acid damage.",
+      "source": { "book": "VGC", "reference": "Volo's Guide to Allies Plasmoid" }
+    },
+    {
+      "id": "race.hexblood.night_life",
+      "name": "Night Life",
+      "kind": "race",
+      "owner": "Hexblood",
+      "activation": "passive",
+      "effects": [
+        { "kind": "advantage", "check": "ability_check", "value": "advantage" },
+        { "kind": "special", "note": "You have advantage on Charisma checks and Charisma saving throws at night or in dim light. If you are a 13th-level necromancer, you gain the ability to cast the vampiric bite spell on yourself, without a spell slot and without material components. Once you cast the spell in this way, you must finish a long rest before you can cast it on yourself again." }
+      ],
+      "summary": "Advantage on Charisma checks and saves at night or in dim light",
+      "text": "You have advantage on Charisma checks and Charisma saving throws at night or in dim light. If you are a 13th-level necromancer, you gain the ability to cast the vampiric bite spell on yourself, without a spell slot and without material components. Once you cast the spell in this way, you must finish a long rest before you can cast it on yourself again.",
+      "source": { "book": "VgtM", "reference": "Vampire's Guide to Ravenloft Hexblood" }
+    },
+    {
+      "id": "race.lizardfolk.bite",
+      "name": "Bite",
+      "kind": "race",
+      "owner": "Lizardfolk",
+      "activation": "passive",
+      "effects": [
+        { "kind": "damage", "dice": { "dice": "1d6", "bonusFrom": "str" }, "damageType": "piercing", "resolution": { "mode": "attack", "ability": "str", "reaches": ["5 ft melee"] } },
+        { "kind": "special", "note": "You can make a bite attack that is a natural melee weapon. On a hit, you deal 1d6 piercing damage plus your Strength modifier. You can't use this attack if you already used your tail on the same turn." }
+      ],
+      "summary": "Natural weapon bite, 1d6 piercing plus Str",
+      "text": "You can make a bite attack that is a natural melee weapon. On a hit, you deal 1d6 piercing damage plus your Strength modifier. You can't use this attack if you already used your tail on the same turn.",
+      "source": { "book": "VGC", "reference": "Volo's Guide to Allies Lizardfolk" }
+    }
+  ]
+}

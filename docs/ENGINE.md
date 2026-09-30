@@ -12,14 +12,18 @@ correctly, and gated by a validator that refuses to pass an invalid dataset.
 | `src/data/engine/resources.json` | Counters shared across features (Ki, Channel Divinity, spell slots). |
 | `src/data/engine/states.json` | Named states a feature can be gated on (`raging`, `unarmored`). |
 | `src/data/engine/forms.json` | Creature definitions referenced by `transform` and `summon`. |
+| `src/data/engine/races.json` | Race registry: base races, their variants, and which book each came from. |
 | `src/data/engine/features/<kind>/<owner>.json` | The features. One file per class, race, feat category. |
 | `scripts/validate-engine-data.mjs` | The gate. Exits non-zero on any problem. |
+| `scripts/engine-coverage.mjs` | What still needs authoring. |
+| `scripts/race-crosscheck.mjs` | Authored race traits vs the old race data. |
 
 ```bash
-npm run engine:validate   # must pass before any change here is committed
-npm run engine:coverage   # what still needs authoring
-npm run engine:worklist   # the same, per owner, for working through
-npm run typecheck         # the drift tripwires
+npm run engine:validate    # must pass before any change here is committed
+npm run engine:coverage    # what still needs authoring
+npm run engine:worklist    # the same, per owner, for working through
+npm run engine:racecheck   # differences against the old race data
+npm run typecheck          # the drift tripwires
 ```
 
 ## Coverage report
@@ -45,6 +49,31 @@ Race traits carry their variant in a `variant` field: `owner: "Dragonborn"`,
 `variant: "Chromatic"`. The old data instead spells the variant into the name
 (`Dragonborn (Chromatic)`), which the validator rejects, and which duplicates
 darkvision across nineteen entries instead of putting it on the base race once.
+
+## Races
+
+A race is a **base entry plus optional variants**, declared in `races.json`. Base
+traits live on the base, and only what a variant adds or changes lives on the
+variant. That is what keeps Darkvision on the base Elf once instead of repeating
+it across nineteen entries.
+
+```jsonc
+"race.dwarf.darkvision",           // owner "Dwarf",  no variant
+"race.dwarf.mountain.dwarven_arsenal"  // owner "Dwarf", variant "Mountain"
+```
+
+A variant whose id starts `race.half_elf.any_elf_variant` has no traits of its
+own. It carries `variantFrom: "elf"` in the registry, because a 2014 half-elf
+takes *one* elf variant rather than all of them. The validator rejects a trait
+attached to a borrowed variant, so that case cannot be encoded by accident.
+
+Variant traits carry the variant in the id as a fourth segment, so a race with
+three variants does not collide on Draconic Resilience.
+
+The roster spans PHB, Volo's Guide to Allies, Eberron, the Vampire's Guide to
+Ravenloft and Mordenkainen's Tome of Foes. Every race and variant names its
+book, and the validator rejects a race owner whose id has drifted from its name
+(which is how "Autonyme" was caught being spelled two ways).
 
 ## The five rules
 

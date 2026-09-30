@@ -1,0 +1,2006 @@
+{
+  "features": [
+    {
+      "id": "race.shifter.darkvision",
+      "name": "Darkvision",
+      "kind": "race",
+      "owner": "Shifter",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "senses",
+          "sense": "darkvision"
+        }
+      ],
+      "summary": "See in dim light within 60 feet as if it were bright light",
+      "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
+      "source": {
+        "book": "ERLW",
+        "reference": "Eberron Shifter"
+      }
+    },
+    {
+      "id": "race.shifter.shifting",
+      "name": "Shifting",
+      "kind": "race",
+      "owner": "Shifter",
+      "activation": "bonus_action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
+      "endsIf": [],
+      "gates": [],
+      "effects": [
+        {
+          "kind": "transform",
+          "formId": "shifter_animal_form",
+          "formTable": "forms",
+          "abilities": [
+            "str",
+            "dex",
+            "con"
+          ],
+          "note": "You can use a bonus action to magically assume a hybrid humanoid form for 1 minute. Your game statistics are replaced by the statistics of a Medium-sized beast whose challenge rating equals or is less than yours, and you keep your Intelligence, Wisdom and Charisma scores, along with your other racial features. You can end the transformation early as a bonus action. Once per short or long rest, you can shift when you take a turn, either before or after taking the turn, but not both."
+        }
+      ],
+      "summary": "Once a rest, a bonus-action shift into a hybrid beast form",
+      "text": "As a bonus action, you can assume a hybrid humanoid form for 1 minute. Your game statistics are replaced by the statistics of one beast, although you retain your Intelligence, Wisdom, and Charisma scores. You also retain all of your racial and class features. You can end the transformation early, as a bonus action. You can shift when you take a turn, either before or after taking the turn, but not both. You gain the use of this feature again after a short or long rest.",
+      "source": {
+        "book": "ERLW",
+        "reference": "Eberron Shifter"
+      }
+    },
+    {
+      "id": "race.shifter.beast.wildshape",
+      "name": "Wildshape",
+      "kind": "race",
+      "owner": "Shifter",
+      "variant": "Beast",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You can use the Shifting trait to assume the form of a beast with a challenge rating of 1/2 or lower. You can't assume a form that has no flying or swimming speed, unless you have a flying or swimming speed, and you revert to your normal form if you end the transformation while in a space that is too small for your normal form."
+        }
+      ],
+      "summary": "Shift into any beast of CR 1/2 or lower",
+      "text": "You can use the Shifting trait to assume the form of a beast with a challenge rating of 1/2 or lower. You can't assume a form that has no flying or swimming speed, unless you have a flying or swimming speed. You revert to your normal form if you end the transformation while in a space that is too small for your normal form.",
+      "source": {
+        "book": "ERLW",
+        "reference": "Eberron Beast Shifter"
+      }
+    },
+    {
+      "id": "race.shifter.blade.armors",
+      "name": "Armors",
+      "kind": "race",
+      "owner": "Shifter",
+      "variant": "Blade",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You gain proficiency with light armor and light weapons, and you gain proficiency with two martial weapons of your choice."
+        }
+      ],
+      "summary": "Proficiency with light armor, light weapons, and two martial weapons",
+      "text": "You gain proficiency with light armor and light weapons, and you gain proficiency with two martial weapons of your choice.",
+      "source": {
+        "book": "ERLW",
+        "reference": "Eberron Blade Shifter"
+      }
+    },
+    {
+      "id": "race.shifter.blade.blade_shift",
+      "name": "Blade Shift",
+      "kind": "race",
+      "owner": "Shifter",
+      "variant": "Blade",
+      "activation": "bonus_action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 5,
+          "unit": "ft"
+        }
+      },
+      "duration": {
+        "value": 1,
+        "unit": "turn"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "1d6",
+            "bonusFrom": "str"
+          },
+          "damageType": "slashing",
+          "resolution": {
+            "mode": "attack",
+            "ability": "str",
+            "reaches": [
+              "5 ft melee"
+            ]
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You can use a bonus action to make one melee spell attack against a creature within 5 feet of you, dealing 1d6 slashing damage plus your Strength modifier. The attack is magical, and the effect lasts 1 turn, ending if you are incapacitated or killed. You gain the use of this again after a short or long rest."
+        }
+      ],
+      "summary": "Once a rest, a bonus-action magical slash for 1d6 plus Str",
+      "text": "You can use a bonus action to make one melee spell attack against a creature within 5 feet of you, dealing 1d6 slashing damage plus your Strength modifier. The attack is magical, and the effect lasts 1 turn, ending if you are incapacitated or killed. You gain the use of this again after a short or long rest.",
+      "source": {
+        "book": "ERLW",
+        "reference": "Eberron Blade Shifter"
+      }
+    },
+    {
+      "id": "race.shifter.totem.gifted_mind",
+      "name": "Gifted Mind",
+      "kind": "race",
+      "owner": "Shifter",
+      "variant": "Totem",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You gain an additional 1d6 hit dice, and you gain proficiency in the Wisdom saving throw. Your totems grant the benefits described in the Shifter source, and the spirit totem you choose determines one additional benefit."
+        }
+      ],
+      "summary": "Extra hit dice, proficiency in Wisdom saves, and a spirit totem",
+      "text": "You gain an additional 1d6 hit dice, and you gain proficiency in the Wisdom saving throw. You gain access to the totems of the spirit totem.",
+      "source": {
+        "book": "ERLW",
+        "reference": "Eberron Totem Shifter"
+      }
+    },
+    {
+      "id": "race.aasimar.darkvision",
+      "name": "Darkvision",
+      "kind": "race",
+      "owner": "Aasimar",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "senses",
+          "sense": "darkvision"
+        }
+      ],
+      "summary": "See in dim light within 60 feet as if it were bright light",
+      "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Aasimar"
+      }
+    },
+    {
+      "id": "race.aasimar.celestial_resistance",
+      "name": "Celestial Resistance",
+      "kind": "race",
+      "owner": "Aasimar",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "resistance",
+          "damageTypes": [
+            "radiant"
+          ]
+        }
+      ],
+      "summary": "Resistance to radiant damage",
+      "text": "You have resistance to radiant damage.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Aasimar"
+      }
+    },
+    {
+      "id": "race.aasimar.necrotic_resistance",
+      "name": "Necrotic Resistance",
+      "kind": "race",
+      "owner": "Aasimar",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "resistance",
+          "damageTypes": [
+            "necrotic"
+          ]
+        }
+      ],
+      "summary": "Resistance to necrotic damage",
+      "text": "You have resistance to necrotic damage.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Aasimar"
+      }
+    },
+    {
+      "id": "race.aasimar.healing_hands",
+      "name": "Healing Hands",
+      "kind": "race",
+      "owner": "Aasimar",
+      "activation": "action",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 30,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "heal",
+          "dice": {
+            "dice": "1d4",
+            "bonusFrom": "cha"
+          },
+          "resolution": {
+            "mode": "auto"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You can touch one creature, and you cast the healing hands spell on it without a spell slot. You regain the use of this trait after a long rest."
+        }
+      ],
+      "summary": "Once a long rest, heal a touched creature for 1d4 plus Cha",
+      "text": "You can touch one creature, and you cast the healing hands spell on it without a spell slot. You regain the use of this trait after a long rest.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Aasimar"
+      }
+    },
+    {
+      "id": "race.aasimar.light_bearer",
+      "name": "Light Bearer",
+      "kind": "race",
+      "owner": "Aasimar",
+      "activation": "action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You can cast the light cantrip without a spell slot. You regain the use of this trait after a long rest."
+        }
+      ],
+      "summary": "Cast light without a spell slot, once per long rest",
+      "text": "You can cast the light cantrip without a spell slot. You regain the use of this trait after a long rest.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Aasimar"
+      }
+    },
+    {
+      "id": "race.aasimar.protector.radiant_resistance",
+      "name": "Radiant Resistance",
+      "kind": "race",
+      "owner": "Aasimar",
+      "variant": "Protector",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "Protector Aasimar keep the base healing hands, and gain resistance to radiant damage plus an extra hit point per character level."
+        }
+      ],
+      "summary": "Resistance to radiant damage and an extra hit point per level",
+      "text": "Protector Aasimar have resistance to radiant damage and gain 1 extra hit point whenever they gain a level.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Protector Aasimar"
+      }
+    },
+    {
+      "id": "race.aasimar.scourge.hold_person",
+      "name": "Hold Person",
+      "kind": "race",
+      "owner": "Aasimar",
+      "variant": "Scourge",
+      "activation": "action",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 30,
+          "unit": "ft"
+        }
+      },
+      "duration": {
+        "value": 1,
+        "unit": "round"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "condition",
+          "action": "apply",
+          "conditions": [
+            "paralyzed"
+          ],
+          "duration": {
+            "value": 1,
+            "unit": "round"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You can cast the hold person spell without a spell slot. From 5th level you can instead cast it on yourself without a spell slot. You regain the use of this trait after a long rest."
+        }
+      ],
+      "summary": "Once a long rest, cast hold person without a slot",
+      "text": "You can cast the hold person spell without a spell slot. From 5th level you can instead cast it on yourself without a spell slot. You regain the use of this trait after a long rest.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Scourge Aasimar"
+      }
+    },
+    {
+      "id": "race.bugbear.darkvision",
+      "name": "Darkvision",
+      "kind": "race",
+      "owner": "Bugbear",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "senses",
+          "sense": "darkvision"
+        }
+      ],
+      "summary": "See in dim light within 60 feet as if it were bright light",
+      "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Bugbear"
+      }
+    },
+    {
+      "id": "race.bugbear.brute",
+      "name": "Brute",
+      "kind": "race",
+      "owner": "Bugbear",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "skill",
+          "skills": [
+            "Survival"
+          ],
+          "proficiency": "proficient"
+        },
+        {
+          "kind": "special",
+          "note": "You have proficiency in the Survival skill."
+        }
+      ],
+      "summary": "Proficiency in the Survival skill",
+      "text": "You have proficiency in the Survival skill.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Bugbear"
+      }
+    },
+    {
+      "id": "race.bugbear.rush",
+      "name": "Rush",
+      "kind": "race",
+      "owner": "Bugbear",
+      "activation": "bonus_action",
+      "limits": {
+        "per": "day",
+        "max": 3
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 30,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "1d6",
+            "bonusFrom": "str"
+          },
+          "damageType": "bludgeoning",
+          "resolution": {
+            "mode": "attack",
+            "ability": "str",
+            "reaches": [
+              "30 ft charge"
+            ]
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You can use a bonus action to move up to 30 feet in a straight line toward a target and then make one melee attack against it. On a hit, the target takes 1d6 bludgeoning damage plus your Strength modifier, plus an additional 1d6 for every 10 feet you moved. You can also use your reaction to make a melee attack when you move within 10 feet of a creature, ignoring the general rule on opportunity attacks."
+        }
+      ],
+      "summary": "Three times a day, charge 30 feet and hit hard",
+      "text": "You can use a bonus action to move up to 30 feet in a straight line toward a target and then make one melee attack against it. On a hit, the target takes 1d6 bludgeoning damage plus your Strength modifier, plus an additional 1d6 for every 10 feet you moved. You can also use your reaction to make a melee attack when you move within 10 feet of a creature, ignoring the general rule on opportunity attacks.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Bugbear"
+      }
+    },
+    {
+      "id": "race.centaur.charge",
+      "name": "Charge",
+      "kind": "race",
+      "owner": "Centaur",
+      "activation": "bonus_action",
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 30,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "1d6",
+            "bonusFrom": "str"
+          },
+          "damageType": "piercing",
+          "resolution": {
+            "mode": "attack",
+            "ability": "str",
+            "reaches": [
+              "30 ft charge"
+            ]
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You can use a bonus action to move up to 30 feet in a straight line toward a target and then make one melee attack against it. On a hit, the target takes 1d6 piercing damage plus your Strength modifier, plus an additional 1d6 for every 10 feet you moved, but only if you moved along your creature's natural path, and the target is knocked prone if you moved at least 20 feet straight toward it."
+        }
+      ],
+      "summary": "Bonus-action charge, extra damage for distance, prone at 20 feet",
+      "text": "You can use a bonus action to move up to 30 feet in a straight line toward a target and then make one melee attack against it. On a hit, the target takes 1d6 piercing damage plus your Strength modifier, plus an additional 1d6 for every 10 feet you moved, but only if you moved along your creature's natural path, and the target is knocked prone if you moved at least 20 feet straight toward it.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Centaur"
+      }
+    },
+    {
+      "id": "race.firbolg.firbolg_magic",
+      "name": "Firbolg Magic",
+      "kind": "race",
+      "owner": "Firbolg",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You know the detect magic cantrip, which you can cast at will without a spell slot. You can also cast phantasmal force once per long rest without a spell slot, and muffle sound once per long rest without a spell slot."
+        }
+      ],
+      "summary": "Detect magic at will, phantasmal force and muffle sound once per rest",
+      "text": "You know the detect magic cantrip, which you can cast at will without a spell slot. You can also cast phantasmal force once per long rest without a spell slot, and muffle sound once per long rest without a spell slot.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Firbolg"
+      }
+    },
+    {
+      "id": "race.firbolg.calm_down",
+      "name": "Calm Down",
+      "kind": "race",
+      "owner": "Firbolg",
+      "activation": "bonus_action",
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 30,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "condition",
+          "action": "remove",
+          "conditions": [
+            "frightened"
+          ]
+        },
+        {
+          "kind": "special",
+          "note": "You can use a bonus action to speak to a creature within 30 feet of you that is frightened of you, ending the frightened condition. If you do, the creature can't become frightened of you again until 24 hours have passed."
+        }
+      ],
+      "summary": "Talk a frightened creature out of it for 24 hours",
+      "text": "You can use a bonus action to speak to a creature within 30 feet of you that is frightened of you, ending the frightened condition. If you do, the creature can't become frightened of you again until 24 hours have passed.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Firbolg"
+      }
+    },
+    {
+      "id": "race.firbolg.magic_rescue",
+      "name": "Magic Rescue",
+      "kind": "race",
+      "owner": "Firbolg",
+      "activation": "bonus_action",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "ally",
+        "range": {
+          "value": 30,
+          "unit": "ft"
+        }
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "condition",
+          "action": "remove",
+          "conditions": [
+            "frightened",
+            "charmed",
+            "stunned",
+            "paralyzed",
+            "blinded",
+            "deafened"
+          ]
+        },
+        {
+          "kind": "special",
+          "note": "You can use a bonus action to touch one willing creature within 30 feet of you, ending one of the conditions below affecting it: charmed, frightened, paralyzed, petrified, blinded, deafened, or stunned. An affected creature makes a Wisdom saving throw with a DC of 5 plus your proficiency bonus plus your Wisdom modifier. On a failed save, the condition ends. If the creature is immune to the condition, the feature has no effect on it. You gain the use of this trait after a long rest."
+        }
+      ],
+      "summary": "Once a day, a Wisdom-saved check to end a condition on an ally",
+      "text": "You can use a bonus action to touch one willing creature within 30 feet of you, ending one of the conditions below affecting it: charmed, frightened, paralyzed, petrified, blinded, deafened, or stunned. An affected creature makes a Wisdom saving throw with a DC of 5 plus your proficiency bonus plus your Wisdom modifier. You gain the use of this trait after a long rest.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Firbolg"
+      }
+    },
+    {
+      "id": "race.goblin.darkvision",
+      "name": "Darkvision",
+      "kind": "race",
+      "owner": "Goblin",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "senses",
+          "sense": "darkvision"
+        }
+      ],
+      "summary": "See in dim light within 60 feet as if it were bright light",
+      "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Goblin"
+      }
+    },
+    {
+      "id": "race.goblin.goblin_cunning",
+      "name": "Goblin Cunning",
+      "kind": "race",
+      "owner": "Goblin",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You can take the Disengage or Hide action as a bonus action on each of your turns, and you can move 10 feet in a straight line without provoking an opportunity attack when you take the Disengage action. Your walking speed increases by 10 feet if you move through a space occupied by another goblin."
+        }
+      ],
+      "summary": "Disengage and Hide as bonus actions; +10 ft past another goblin",
+      "text": "You can take the Disengage or Hide action as a bonus action on each of your turns. Your walking speed increases by 10 feet if you move through a space occupied by another goblin.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Goblin"
+      }
+    },
+    {
+      "id": "race.goblin.surge_of_surge",
+      "name": "Surge of Surge",
+      "kind": "race",
+      "owner": "Goblin",
+      "activation": "bonus_action",
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "When you take the Dash action on your turn, you can use your walking speed twice."
+        }
+      ],
+      "summary": "Dash lets you move twice your walking speed",
+      "text": "When you take the Dash action on your turn, you can use your walking speed twice.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Goblin"
+      }
+    },
+    {
+      "id": "race.hobgoblin.darkvision",
+      "name": "Darkvision",
+      "kind": "race",
+      "owner": "Hobgoblin",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "senses",
+          "sense": "darkvision"
+        }
+      ],
+      "summary": "See in dim light within 60 feet as if it were bright light",
+      "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Hobgoblin"
+      }
+    },
+    {
+      "id": "race.hobgoblin.martial_advantage",
+      "name": "Martial Advantage",
+      "kind": "race",
+      "owner": "Hobgoblin",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "skill",
+          "skills": [
+            "Survival",
+            "Stealth"
+          ],
+          "proficiency": "proficient"
+        },
+        {
+          "kind": "special",
+          "note": "You have proficiency in the Stealth and Survival skills. You also gain proficiency with light armor, shields, light weapons, longbows and long swords."
+        }
+      ],
+      "summary": "Proficiency in Stealth, Survival, light armor, shields and weapons",
+      "text": "You have proficiency in the Stealth and Survival skills. You also gain proficiency with light armor, shields, light weapons, longbows and long swords.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Hobgoblin"
+      }
+    },
+    {
+      "id": "race.hobgoblin.help",
+      "name": "Help",
+      "kind": "race",
+      "owner": "Hobgoblin",
+      "activation": "bonus_action",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "ally",
+        "range": {
+          "value": 30,
+          "unit": "ft"
+        }
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "stat_modifier",
+          "stat": "attack_bonus_melee",
+          "amount": 1,
+          "duration": "while_active"
+        },
+        {
+          "kind": "special",
+          "note": "You can use a bonus action to help one ally you can see within 30 feet of you, granting them a +1 bonus to one attack roll or a +1d6 bonus to one damage roll for 1 minute. You gain the use of this trait after a long rest."
+        }
+      ],
+      "summary": "Once a day, give an ally +1 to a roll for a minute",
+      "text": "You can use a bonus action to help one ally you can see within 30 feet of you, granting them a +1 bonus to one attack roll or a +1d6 bonus to one damage roll for 1 minute. You gain the use of this trait after a long rest.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Hobgoblin"
+      }
+    },
+    {
+      "id": "race.kobold.darkvision",
+      "name": "Darkvision",
+      "kind": "race",
+      "owner": "Kobold",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "senses",
+          "sense": "darkvision"
+        }
+      ],
+      "summary": "See in dim light within 60 feet as if it were bright light",
+      "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Kobold"
+      }
+    },
+    {
+      "id": "race.kobold.pack_tactics",
+      "name": "Pack Tactics",
+      "kind": "race",
+      "owner": "Kobold",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "advantage",
+          "check": "attack",
+          "value": "advantage"
+        },
+        {
+          "kind": "special",
+          "note": "You have advantage on an attack roll against a creature if at least one of your allies is within 5 feet of the creature and the ally isn't incapacitated. You have disadvantage on any ability check or saving throw to maintain concentration on an effect if another creature that you can see is within 5 feet of you."
+        }
+      ],
+      "summary": "Advantage on attacks beside an ally; concentration is fragile",
+      "text": "You have advantage on an attack roll against a creature if at least one of your allies is within 5 feet of the creature and the ally isn't incapacitated. You have disadvantage on any ability check or saving throw to maintain concentration on an effect if another creature that you can see is within 5 feet of you.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Kobold"
+      }
+    },
+    {
+      "id": "race.kobold.sunlight_sensitivity",
+      "name": "Sunlight Sensitivity",
+      "kind": "race",
+      "owner": "Kobold",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "advantage",
+          "check": "ability_check",
+          "value": "disadvantage",
+          "note": "You have disadvantage on Wisdom (Perception) checks that rely on sight when you are within 30 feet of direct sunlight and aren't in shadow."
+        }
+      ],
+      "summary": "Disadvantage on sight-based perception in direct sunlight",
+      "text": "You have disadvantage on Wisdom (Perception) checks that rely on sight when you are within 30 feet of direct sunlight and aren't in shadow.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Kobold"
+      }
+    },
+    {
+      "id": "race.kobold.grovel",
+      "name": "Grovel",
+      "kind": "race",
+      "owner": "Kobold",
+      "activation": "bonus_action",
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 5,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "advantage",
+          "check": "attack",
+          "value": "disadvantage"
+        },
+        {
+          "kind": "special",
+          "note": "You can use a bonus action to move 10 feet toward a hostile creature that you can see and, if you end your movement within 5 feet of it, apply disadvantage to its attack rolls until the start of your next turn, unless the target can see through the grovel."
+        }
+      ],
+      "summary": "Scare an adjacent hostile creature into disadvantage",
+      "text": "You can use a bonus action to move 10 feet toward a hostile creature that you can see and, if you end your movement within 5 feet of it, apply disadvantage to its attack rolls until the start of your next turn, unless the target can see through the grovel.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Kobold"
+      }
+    },
+    {
+      "id": "race.lizardfolk.hold_breath",
+      "name": "Hold Breath",
+      "kind": "race",
+      "owner": "Lizardfolk",
+      "activation": "bonus_action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You can use a bonus action to hold your breath for 1 minute. The effect ends if you do take damage. You gain the use of this trait after a short or long rest."
+        }
+      ],
+      "summary": "Hold your breath for a minute, ending if you take damage",
+      "text": "You can use a bonus action to hold your breath for 1 minute. The effect ends if you do take damage. You gain the use of this trait after a short or long rest.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Lizardfolk"
+      }
+    },
+    {
+      "id": "race.lizardfolk.natural_armor",
+      "name": "Natural Armor",
+      "kind": "race",
+      "owner": "Lizardfolk",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "ac_bonus",
+          "amount": 4,
+          "requires": "no armor"
+        },
+        {
+          "kind": "special",
+          "note": "Your armor class equals 15 plus your Dexterity modifier when you aren't wearing armor. You can take the Hide action as a bonus action, and you can move up to 10 feet when you take the Hide action without provoking an opportunity attack."
+        }
+      ],
+      "summary": "AC 15 plus Dex without armor; Hide as a bonus action",
+      "text": "Your armor class equals 15 plus your Dexterity modifier when you aren't wearing armor. You can take the Hide action as a bonus action, and you can move up to 10 feet when you take the Hide action without provoking an opportunity attack.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Lizardfolk"
+      }
+    },
+    {
+      "id": "race.lizardfolk.tail",
+      "name": "Tail",
+      "kind": "race",
+      "owner": "Lizardfolk",
+      "activation": "reaction",
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": {
+        "event": "creature_killed"
+      },
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 5,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "1d4",
+            "bonusFrom": "str"
+          },
+          "damageType": "piercing",
+          "resolution": {
+            "mode": "attack",
+            "ability": "str",
+            "reaches": [
+              "5 ft melee"
+            ]
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You can make a tail attack that deals 1d4 piercing damage plus your Strength modifier, plus your proficiency bonus, against a creature within 5 feet of you. You can't make this attack more than once per turn, and you can't use it if you already used your bite on the same turn."
+        }
+      ],
+      "summary": "Reaction tail attack for 1d4 plus Str and proficiency",
+      "text": "You can make a tail attack that deals 1d4 piercing damage plus your Strength modifier, plus your proficiency bonus, against a creature within 5 feet of you. You can't make this attack more than once per turn, and you can't use it if you already used your bite on the same turn.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Lizardfolk"
+      }
+    },
+    {
+      "id": "race.loxodon.natural_grace",
+      "name": "Natural Grace",
+      "kind": "race",
+      "owner": "Loxodon",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "skill",
+          "skills": [
+            "Survival"
+          ],
+          "proficiency": "proficient"
+        },
+        {
+          "kind": "special",
+          "note": "You have proficiency in the Survival skill. If you make an ability check to gain a benefit, you can choose to use your Strength instead of your Dexterity."
+        }
+      ],
+      "summary": "Survival proficiency, and may use Strength for checks needing a benefit",
+      "text": "You have proficiency in the Survival skill. If you make an ability check to gain a benefit, you can choose to use your Strength instead of your Dexterity.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Loxodon"
+      }
+    },
+    {
+      "id": "race.loxodon.truncheon",
+      "name": "Truncheon",
+      "kind": "race",
+      "owner": "Loxodon",
+      "activation": "free",
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 5,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "1d6",
+            "bonusFrom": "str"
+          },
+          "damageType": "bludgeoning",
+          "resolution": {
+            "mode": "attack",
+            "ability": "str",
+            "reaches": [
+              "5 ft melee"
+            ]
+          }
+        },
+        {
+          "kind": "control",
+          "action": "push",
+          "distance": {
+            "value": 5,
+            "unit": "ft"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "When you hit a creature with your trunk, you can force the target to make a Strength saving throw or be pushed 5 feet away. With a bonus action, you can make a second attack against the same creature within 5 feet, dealing 1d6 bludgeoning damage plus your Strength modifier."
+        }
+      ],
+      "summary": "Trunk strike, 1d6 plus Str, and push on a failed save",
+      "text": "When you hit a creature with your trunk, you can force the target to make a Strength saving throw or be pushed 5 feet away. With a bonus action, you can make a second attack against the same creature within 5 feet, dealing 1d6 bludgeoning damage plus your Strength modifier.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Loxodon"
+      }
+    },
+    {
+      "id": "race.minotaur.horns",
+      "name": "Horns",
+      "kind": "race",
+      "owner": "Minotaur",
+      "activation": "free",
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 5,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "1d6",
+            "bonusFrom": "str"
+          },
+          "damageType": "piercing",
+          "resolution": {
+            "mode": "attack",
+            "ability": "str",
+            "reaches": [
+              "5 ft melee"
+            ]
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You can gore a creature with your horns, dealing 1d6 piercing damage plus your Strength modifier, plus an extra 1d6 if you used the Reckless Charge trait to move at least 20 feet straight toward the target. You can use an opportunity attack to gore a target that moves out of your reach, but you can only use an opportunity attack to use this trait once, and you can't use it if you already moved on your turn."
+        }
+      ],
+      "summary": "Gore for 1d6 plus Str, extra 1d6 when charging",
+      "text": "You can gore a creature with your horns, dealing 1d6 piercing damage plus your Strength modifier, plus an extra 1d6 if you used the Reckless Charge trait to move at least 20 feet straight toward the target. You can use an opportunity attack to gore a target that moves out of your reach, but you can only use an opportunity attack to use this trait once, and you can't use it if you already moved on your turn.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Minotaur"
+      }
+    },
+    {
+      "id": "race.minotaur.reckless_charge",
+      "name": "Reckless Charge",
+      "kind": "race",
+      "owner": "Minotaur",
+      "activation": "action",
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 40,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You can move 40 feet in a straight line toward a target, attacking every creature you pass over. Creatures you pass over must make a Dexterity saving throw, taking 1d10 damage on a failed save or none on a success, and are pushed 5 feet if they fail. Creatures that succeed on the save are not moved. You can use this only when you already have a bonus action available, such as when you are using Extra Attack, and you must stop if you are blocked by a creature, object, or difficult terrain. Creatures in the area are not moved if they succeed on the save."
+        }
+      ],
+      "summary": "Charge 40 feet, hitting everything you pass for 1d10",
+      "text": "You can move 40 feet in a straight line toward a target, attacking every creature you pass over. Creatures you pass over must make a Dexterity saving throw, taking 1d10 damage on a failed save or none on a success, and are pushed 5 feet if they fail. You can use this only when you already have a bonus action available.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Minotaur"
+      }
+    },
+    {
+      "id": "race.satyr.magic_resistance",
+      "name": "Magic Resistance",
+      "kind": "race",
+      "owner": "Satyr",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have advantage on saving throws against spells."
+        }
+      ],
+      "summary": "Advantage on saving throws against spells",
+      "text": "You have advantage on saving throws against spells.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Satyr"
+      }
+    },
+    {
+      "id": "race.satyr.ram",
+      "name": "Ram",
+      "kind": "race",
+      "owner": "Satyr",
+      "activation": "free",
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 5,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "1d4",
+            "bonusFrom": "str"
+          },
+          "damageType": "bludgeoning",
+          "resolution": {
+            "mode": "attack",
+            "ability": "str",
+            "reaches": [
+              "5 ft melee"
+            ]
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You can ram a creature with your horns, dealing 1d4 bludgeoning damage plus your Strength modifier. With a bonus action, you can make a second attack against the same creature within 5 feet, dealing 2d4 bludgeoning damage plus your Strength modifier."
+        }
+      ],
+      "summary": "Ram for 1d4 plus Str, with a bonus-action follow-up",
+      "text": "You can ram a creature with your horns, dealing 1d4 bludgeoning damage plus your Strength modifier. With a bonus action, you can make a second attack against the same creature within 5 feet, dealing 2d4 bludgeoning damage plus your Strength modifier.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Satyr"
+      }
+    },
+    {
+      "id": "race.simic_hybrid.amphibious",
+      "name": "Amphibious",
+      "kind": "race",
+      "owner": "Simic Hybrid",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You can breathe air and water."
+        }
+      ],
+      "summary": "Breathe both air and water",
+      "text": "You can breathe air and water.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Simic Hybrid"
+      }
+    },
+    {
+      "id": "race.simic_hybrid.animal_friendship",
+      "name": "Animal Friendship",
+      "kind": "race",
+      "owner": "Simic Hybrid",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You gain a +1 bonus to an ability check of your choice, and you gain a +1 bonus to a saving throw of your choice, other than Constitution. You also have proficiency with improvised tools, and once per long rest, when you fail a Wisdom saving throw, you can choose to succeed instead."
+        }
+      ],
+      "summary": "Bonus to a check and a save, and one free Wisdom save per long rest",
+      "text": "You gain a +1 bonus to an ability check of your choice, and you gain a +1 bonus to a saving throw of your choice, other than Constitution. You also have proficiency with improvised tools, and once per long rest, when you fail a Wisdom saving throw, you can choose to succeed instead.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Simic Hybrid"
+      }
+    },
+    {
+      "id": "race.simic_hybrid.poison_resilience",
+      "name": "Poison Resilience",
+      "kind": "race",
+      "owner": "Simic Hybrid",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "resistance",
+          "damageTypes": [
+            "poison"
+          ]
+        }
+      ],
+      "summary": "Resistance to poison damage",
+      "text": "You have resistance to poison damage.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Simic Hybrid"
+      }
+    },
+    {
+      "id": "race.tortle.shell_defense",
+      "name": "Shell Defense",
+      "kind": "race",
+      "owner": "Tortle",
+      "activation": "reaction",
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": {
+        "event": "self_damaged"
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "immunity",
+          "note": "You gain a +5 bonus to AC while you do so. You can use your reaction to gain immunity to nonmagical attacks against you until the start of your next turn. You can't use this if you're already immune to nonmagical attacks."
+        }
+      ],
+      "summary": "Reaction: immunity to nonmagical attacks until your next turn",
+      "text": "You gain a +5 bonus to AC while you do so. You can use your reaction to gain immunity to nonmagical attacks against you until the start of your next turn. You can't use this if you're already immune to nonmagical attacks.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Tortle"
+      }
+    },
+    {
+      "id": "race.tortle.shell_dome",
+      "name": "Shell Dome",
+      "kind": "race",
+      "owner": "Tortle",
+      "activation": "bonus_action",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "temp_hp",
+          "dice": {
+            "dice": "2",
+            "flat": 10
+          },
+          "note": "You withdraw your limbs and head into your shell until the duration ends, or until you use a bonus action to extend the duration by 10 minutes. While in your shell, you gain a +5 bonus to AC, you have resistance to all damage except force damage, and you can use the Interact action to retrieve one item lying within 5 feet of you that is in your possession, a material component, or a small object."
+        }
+      ],
+      "summary": "Retract into your shell: +5 AC, half damage, 1 minute",
+      "text": "You withdraw your limbs and head into your shell until the duration ends, or until you use a bonus action to extend the duration by 10 minutes. While in your shell, you gain a +5 bonus to AC, you have resistance to all damage except force damage, and you can use the Interact action to retrieve one item lying within 5 feet of you that is in your possession, a material component, or a small object.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Tortle"
+      }
+    },
+    {
+      "id": "race.triton.amphibious",
+      "name": "Amphibious",
+      "kind": "race",
+      "owner": "Triton",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You can breathe air and water."
+        }
+      ],
+      "summary": "Breathe both air and water",
+      "text": "You can breathe air and water.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Triton"
+      }
+    },
+    {
+      "id": "race.triton.immunity_to_poison",
+      "name": "Immunity to Poison",
+      "kind": "race",
+      "owner": "Triton",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "condition_immunity",
+          "conditions": [
+            "poisoned"
+          ]
+        }
+      ],
+      "summary": "Immune to the poisoned condition",
+      "text": "You are immune to the poisoned condition.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Triton"
+      }
+    },
+    {
+      "id": "race.triton.acid_resistance",
+      "name": "Acid Resistance",
+      "kind": "race",
+      "owner": "Triton",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "resistance",
+          "damageTypes": [
+            "acid"
+          ]
+        }
+      ],
+      "summary": "Resistance to acid damage",
+      "text": "You have resistance to acid damage.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Triton"
+      }
+    },
+    {
+      "id": "race.triton.misty_step",
+      "name": "Misty Step",
+      "kind": "race",
+      "owner": "Triton",
+      "activation": "bonus_action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "teleport",
+          "distance": {
+            "value": 30,
+            "unit": "ft"
+          },
+          "mustBeUnoccupied": true
+        },
+        {
+          "kind": "special",
+          "note": "As a bonus action, you teleport, along with anything you are carrying, up to 30 feet to an unoccupied space that you can see. You gain the use of this trait after a long rest."
+        }
+      ],
+      "summary": "Once a long rest, teleport up to 30 feet as a bonus action",
+      "text": "As a bonus action, you teleport, along with anything you are carrying, up to 30 feet to an unoccupied space that you can see. You gain the use of this trait after a long rest.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Triton"
+      }
+    },
+    {
+      "id": "race.verdan.far_sight",
+      "name": "Far Sight",
+      "kind": "race",
+      "owner": "Verdan",
+      "activation": "action",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "any",
+        "range": {
+          "value": 60,
+          "unit": "ft"
+        }
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You gain truesight out to 60 feet for 1 minute. You gain the use of this trait after a long rest."
+        }
+      ],
+      "summary": "Once a day, truesight out to 60 feet for a minute",
+      "text": "You gain truesight out to 60 feet for 1 minute. You gain the use of this trait after a long rest.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Verdan"
+      }
+    },
+    {
+      "id": "race.verdan.root_symbiosis",
+      "name": "Root Symbiosis",
+      "kind": "race",
+      "owner": "Verdan",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "skill",
+          "skills": [
+            "Survival"
+          ],
+          "proficiency": "proficient"
+        },
+        {
+          "kind": "special",
+          "note": "You gain proficiency in the Survival skill. You gain a +4 bonus to checks to recall lore about plants and fungi. If you move within 10 feet of a plant or fungus, you can spend 1 hour of labor and 10 gallons of water to make the ground within 10 feet fertile, as the druid fertility ritual, or move a Large or smaller plant or fungus within 30 feet by 30 feet to any area within your reach."
+        }
+      ],
+      "summary": "Survival proficiency, plant lore bonus, and minor plant manipulation",
+      "text": "You gain proficiency in the Survival skill. You gain a +4 bonus to checks to recall lore about plants and fungi. If you move within 10 feet of a plant or fungus, you can spend 1 hour of labor and 10 gallons of water to make the ground within 10 feet fertile, as the druid fertility ritual.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Verdan"
+      }
+    },
+    {
+      "id": "race.verdan.verdant_durability",
+      "name": "Verdant Durability",
+      "kind": "race",
+      "owner": "Verdan",
+      "activation": "bonus_action",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "temp_hp",
+          "dice": {
+            "dice": "1",
+            "flat": 10
+          },
+          "note": "As a bonus action, you can transform yourself into a form resembling your original for 1 hour. While in this form, you gain 10 temporary hit points. Once you use this trait, you must finish a long rest before you can use it again."
+        }
+      ],
+      "summary": "Once a day, 10 temporary hit points for an hour",
+      "text": "As a bonus action, you can transform yourself into a form resembling your original for 1 hour. While in this form, you gain 10 temporary hit points. Once you use this trait, you must finish a long rest before you can use it again.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Verdan"
+      }
+    },
+    {
+      "id": "race.yuan_ti_pureblood.darkvision",
+      "name": "Darkvision",
+      "kind": "race",
+      "owner": "Yuan-Ti Pureblood",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "senses",
+          "sense": "darkvision"
+        }
+      ],
+      "summary": "See in dim light within 60 feet as if it were bright light",
+      "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Yuan-Ti Pureblood"
+      }
+    },
+    {
+      "id": "race.yuan_ti_pureblood.magic_resistance",
+      "name": "Magic Resistance",
+      "kind": "race",
+      "owner": "Yuan-Ti Pureblood",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have advantage on saving throws against spells."
+        }
+      ],
+      "summary": "Advantage on saving throws against spells",
+      "text": "You have advantage on saving throws against spells.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Yuan-Ti Pureblood"
+      }
+    },
+    {
+      "id": "race.yuan_ti_pureblood.poison_resilience",
+      "name": "Poison Resilience",
+      "kind": "race",
+      "owner": "Yuan-Ti Pureblood",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "resistance",
+          "damageTypes": [
+            "poison"
+          ]
+        },
+        {
+          "kind": "condition_immunity",
+          "conditions": [
+            "poisoned"
+          ]
+        }
+      ],
+      "summary": "Immune to poison, and resistant to poison damage",
+      "text": "You are immune to the poisoned condition, and you have resistance to poison damage.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Yuan-Ti Pureblood"
+      }
+    },
+    {
+      "id": "race.yuan_ti_pureblood.pureblood_magic",
+      "name": "Pureblood Magic",
+      "kind": "race",
+      "owner": "Yuan-Ti Pureblood",
+      "activation": "action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "any"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You can cast the detect poison and thicken blood spells, and the alter self spell, once each per long rest, without a spell slot. You can cast alter self at a higher level, with no additional effect."
+        }
+      ],
+      "summary": "Three innate spells per long rest, no slots needed",
+      "text": "You can cast the detect poison and thicken blood spells, and the alter self spell, once each per long rest, without a spell slot. You can cast alter self at a higher level, with no additional effect.",
+      "source": {
+        "book": "VGC",
+        "reference": "Volo's Guide to Allies Yuan-Ti Pureblood"
+      }
+    },
+    {
+      "id": "race.dhampir.darkvision",
+      "name": "Darkvision",
+      "kind": "race",
+      "owner": "Dhampir",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "senses",
+          "sense": "darkvision"
+        }
+      ],
+      "summary": "See in dim light within 60 feet as if it were bright light",
+      "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
+      "source": {
+        "book": "VgtM",
+        "reference": "Vampire's Guide to Ravenloft Dhampir"
+      }
+    },
+    {
+      "id": "race.dhampir.bloodsight",
+      "name": "Bloodsight",
+      "kind": "race",
+      "owner": "Dhampir",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "senses",
+          "sense": "blindsight",
+          "range": 30
+        },
+        {
+          "kind": "special",
+          "note": "You have blindsight out to 30 feet."
+        }
+      ],
+      "summary": "Blindsight out to 30 feet",
+      "text": "You have blindsight out to 30 feet.",
+      "source": {
+        "book": "VgtM",
+        "reference": "Vampire's Guide to Ravenloft Dhampir"
+      }
+    },
+    {
+      "id": "race.dhampir.call_the_reaper",
+      "name": "Call the Reaper",
+      "kind": "race",
+      "owner": "Dhampir",
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "reduced_to_0_hp",
+        "at": "before_turn_ends"
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "transform",
+          "formId": "wisp_form",
+          "formTable": "forms",
+          "note": "When you have 5 or fewer hit points and aren't killed outright, you can use your reaction to become a wisp for 1 minute. You reappear where you fell, and you then lose 1 day of your life, which reduces the maximum age you can reach by 1 year. If you lose the last day of your life, you die."
+        }
+      ],
+      "summary": "At 5 or fewer HP, become a wisp for a minute, losing a day of life",
+      "text": "When you have 5 or fewer hit points and aren't killed outright, you can use your reaction to become a wisp for 1 minute. You reappear where you fell, and you then lose 1 day of your life, which reduces the maximum age you can reach by 1 year. If you lose the last day of your life, you die.",
+      "source": {
+        "book": "VgtM",
+        "reference": "Vampire's Guide to Ravenloft Dhampir"
+      }
+    },
+    {
+      "id": "race.hexblood.darkvision",
+      "name": "Darkvision",
+      "kind": "race",
+      "owner": "Hexblood",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "senses",
+          "sense": "darkvision"
+        }
+      ],
+      "summary": "See in dim light within 60 feet as if it were bright light",
+      "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
+      "source": {
+        "book": "VgtM",
+        "reference": "Vampire's Guide to Ravenloft Hexblood"
+      }
+    },
+    {
+      "id": "race.hexblood.magic_resistance",
+      "name": "Magic Resistance",
+      "kind": "race",
+      "owner": "Hexblood",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have advantage on saving throws against spells."
+        }
+      ],
+      "summary": "Advantage on saving throws against spells",
+      "text": "You have advantage on saving throws against spells.",
+      "source": {
+        "book": "VgtM",
+        "reference": "Vampire's Guide to Ravenloft Hexblood"
+      }
+    },
+    {
+      "id": "race.hexblood.dark_blessing",
+      "name": "Dark Blessing",
+      "kind": "race",
+      "owner": "Hexblood",
+      "activation": "bonus_action",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You can use a bonus action to transfer the curse of lycanthropy from yourself to a willing creature of your choice within 30 feet of you. The cursed creature must make a Wisdom saving throw, with a DC of 5 plus your proficiency bonus plus your Charisma modifier, becoming cursed for 1 hour or until you remove the curse. You can use this trait again after a long rest."
+        }
+      ],
+      "summary": "Once a day, transfer your curse to a willing creature",
+      "text": "You can use a bonus action to transfer the curse of lycanthropy from yourself to a willing creature of your choice within 30 feet of you. The cursed creature must make a Wisdom saving throw, with a DC of 5 plus your proficiency bonus plus your Charisma modifier, becoming cursed for 1 hour or until you remove the curse. You can use this trait again after a long rest.",
+      "source": {
+        "book": "VgtM",
+        "reference": "Vampire's Guide to Ravenloft Hexblood"
+      }
+    },
+    {
+      "id": "race.hexblood.blood_smother",
+      "name": "Blood Smolder",
+      "kind": "race",
+      "owner": "Hexblood",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have resistance to fire damage."
+        }
+      ],
+      "summary": "Resistance to fire damage",
+      "text": "You have resistance to fire damage.",
+      "source": {
+        "book": "VgtM",
+        "reference": "Vampire's Guide to Ravenloft Hexblood"
+      }
+    },
+    {
+      "id": "race.reborn.darkvision",
+      "name": "Darkvision",
+      "kind": "race",
+      "owner": "Reborn",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "senses",
+          "sense": "darkvision"
+        }
+      ],
+      "summary": "See in dim light within 60 feet as if it were bright light",
+      "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
+      "source": {
+        "book": "VgtM",
+        "reference": "Vampire's Guide to Ravenloft Reborn"
+      }
+    },
+    {
+      "id": "race.reborn.rejuvenation",
+      "name": "Rejuvenation",
+      "kind": "race",
+      "owner": "Reborn",
+      "activation": "action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "condition",
+          "action": "apply",
+          "conditions": [
+            "unconscious"
+          ],
+          "duration": {
+            "value": 1,
+            "unit": "hour"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "As an action, you can give a creature you touch a number of hit points equal to 1d4 plus your Charisma modifier plus your proficiency bonus. A creature you give hit points this way regains any lost hit points. You can use this trait on a creature only once, and you can't use it on yourself. You regain the use of this trait after a long rest."
+        }
+      ],
+      "summary": "Once a long rest, give a creature 1d4 plus Cha and proficiency back",
+      "text": "As an action, you can give a creature you touch a number of hit points equal to 1d4 plus your Charisma modifier plus your proficiency bonus. You regain the use of this trait after a long rest.",
+      "source": {
+        "book": "VgtM",
+        "reference": "Vampire's Guide to Ravenloft Reborn"
+      }
+    },
+    {
+      "id": "race.reborn.shady_deal",
+      "name": "Shady Deal",
+      "kind": "race",
+      "owner": "Reborn",
+      "activation": "action",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "condition",
+          "action": "apply",
+          "conditions": [
+            "frightened"
+          ],
+          "duration": {
+            "value": 1,
+            "unit": "hour"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "When you use this feature, you can spend 2 hit dice to cause one creature of your choice to become frightened of you until the spell ends, or until you decide to end the effect. A creature can be a target of this feature only once every 24 hours."
+        }
+      ],
+      "summary": "Spend 2 hit dice a day to frighten a creature for an hour",
+      "text": "When you use this feature, you can spend 2 hit dice to cause one creature of your choice to become frightened of you until the spell ends, or until you decide to end the effect. A creature can be a target of this feature only once every 24 hours.",
+      "source": {
+        "book": "VgtM",
+        "reference": "Vampire's Guide to Ravenloft Reborn"
+      }
+    },
+    {
+      "id": "race.svirfneblin.darkvision",
+      "name": "Darkvision",
+      "kind": "race",
+      "owner": "Svirfneblin",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "senses",
+          "sense": "darkvision"
+        }
+      ],
+      "summary": "See in dim light within 60 feet as if it were bright light",
+      "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
+      "source": {
+        "book": "MotM",
+        "reference": "Mordenkainen's Tome of Foes Svirfneblin"
+      }
+    },
+    {
+      "id": "race.svirfneblin.stone_camouflage",
+      "name": "Stone Camouflage",
+      "kind": "race",
+      "owner": "Svirfneblin",
+      "activation": "bonus_action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You can use a bonus action to assume a perfectly still and immobile form resembling a pile of loose stones, 1 foot in diameter, that you can pass your perception check on to see. You gain cover against any attack that isn't from an adjacent creature. While in that form, your Armor Class is 15. You aren't affected by any spell or other effect that targets an incapacitated creature, and you can end the effect as a bonus action."
+        }
+      ],
+      "summary": "Become a pile of stones for an hour, gaining cover",
+      "text": "You can use a bonus action to assume a perfectly still and immobile form resembling a pile of loose stones, 1 foot in diameter, that you can pass your perception check on to see. You gain cover against any attack that isn't from an adjacent creature. While in that form, your Armor Class is 15. You aren't affected by any spell or other effect that targets an incapacitated creature, and you can end the effect as a bonus action.",
+      "source": {
+        "book": "MotM",
+        "reference": "Mordenkainen's Tome of Foes Svirfneblin"
+      }
+    },
+    {
+      "id": "race.svirfneblin.svirfneblin_magic",
+      "name": "Svirfneblin Magic",
+      "kind": "race",
+      "owner": "Svirfneblin",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have disadvantage on Wisdom checks when you're in direct sunlight. You also have disadvantage on Wisdom saving throws when you're within 10 feet of a creature that has darkvision. You know the detect magic cantrip, which you can cast at will, and you can cast the blindness or deafness spell once per long rest without a spell slot."
+        }
+      ],
+      "summary": "Disadvantage in sunlight; detect magic plus blindness or deafness per rest",
+      "text": "You have disadvantage on Wisdom checks when you're in direct sunlight. You also have disadvantage on Wisdom saving throws when you're within 10 feet of a creature that has darkvision. You know the detect magic cantrip, which you can cast at will, and you can cast the blindness or deafness spell once per long rest without a spell slot.",
+      "source": {
+        "book": "MotM",
+        "reference": "Mordenkainen's Tome of Foes Svirfneblin"
+      }
+    },
+    {
+      "id": "race.svirfneblin.stealth_in_dim_light",
+      "name": "Stealth in Dim Light",
+      "kind": "race",
+      "owner": "Svirfneblin",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "skill",
+          "skills": [
+            "Stealth"
+          ],
+          "proficiency": "proficient"
+        },
+        {
+          "kind": "special",
+          "note": "You have proficiency in the Stealth skill, and you can take the Hide action even when you're obscured by a creature, if you're within 5 feet of an allied creature. When you take the Hide action, you can move up to 10 feet without triggering the noticed condition on any creature that isn't a passive creature."
+        }
+      ],
+      "summary": "Stealth proficiency, and Hide behind an ally in dim light",
+      "text": "You have proficiency in the Stealth skill, and you can take the Hide action even when you're obscured by a creature, if you're within 5 feet of an allied creature. and you can move up to 10 feet when you take the Hide action without triggering the noticed condition.",
+      "source": {
+        "book": "MotM",
+        "reference": "Mordenkainen's Tome of Foes Svirfneblin"
+      }
+    }
+  ]
+}

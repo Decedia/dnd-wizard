@@ -39,6 +39,37 @@
       "note": "PHB Wild Shape, Druid level 17."
     },
     {
+      "id": "shifter_animal_form",
+      "name": "Any Beast CR Equal to or Below Yours",
+      "cr": "equal to the shifter's own CR, or lower",
+      "creatureType": "beast",
+      "grantedAt": ["shifter:1"],
+      "note": "The Shifting trait takes the statistics of a Medium beast whose challenge rating is equal to or lower than the shifter's, while the shifter keeps Intelligence, Wisdom, Charisma and all other racial and class features. Authored per-beast in creatures.json."
+    },
+    {
+      "id": "wisp_form",
+      "name": "Wisp",
+      "cr": "1",
+      "creatureType": "undead",
+      "size": "Tiny",
+      "ac": 19,
+      "hp": 22,
+      "speed": "0 ft., fly 50 ft. (hover)",
+      "abilities": { "str": 1, "dex": 14, "con": 11, "int": 10, "wis": 10, "cha": 11 },
+      "damageResistances": ["acid", "cold", "fire", "lightning", "thunder"],
+      "damageImmunities": ["poison"],
+      "conditionImmunities": ["exhaustion", "frightened", "incapacitated", "paralyzed", "petrified", "prone", "restrained", "stunned", "unconscious"],
+      "grantedAt": ["dhampir:1"],
+      "note": "A translucent spectral form with no audible presence, in which the Dhampir is blinded and deafened and can't interact with objects. A creature can attack a wisp only if it can see the wisp, within 5 feet, and succeeds on a Constitution saving throw, taking 1d4 radiant damage and falling to 0 hit points if it fails. If the Dhampir is reduced to 0 hit points while a wisp, they revert to their normal form and are immune to the wisp's damage for 24 hours. VgtM Dhampir."
+    },
+    {
+      "id": "automne_duplicate",
+      "name": "Autonyme Duplicate",
+      "cr": "0",
+      "creatureType": "construct",
+      "note": "A nonmagical copy created by the Autonyme Duplicate trait. It shares the automne's game statistics but has no equipment, and has 10% of the automne's hit points, rounded up. It is 10 feet tall and weighs 300 pounds. PHB mirror image, Eberron p. 22."
+    },
+    {
       "id": "wildfire_spirit_ally",
       "name": "Wildfire Spirit",
       "cr": "2 + druid level / 4",

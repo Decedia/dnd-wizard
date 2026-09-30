@@ -273,6 +273,38 @@ export interface SourceRef {
  */
 export type GateId = string;
 
+/** A playable race, from races.json. */
+export interface RaceDef {
+  id: string;
+  name: string;
+  book: string;
+  page?: number;
+  note?: string;
+  variants?: RaceVariant[];
+}
+
+/**
+ * A race variant. A variant with `variantFrom` carries no traits of its own; it
+ * borrows another race's variant list, which is how a 2014 half-elf takes
+ * exactly one elf variant instead of all of them.
+ */
+export interface RaceVariant {
+  id: string;
+  name: string;
+  book?: string;
+  page?: number;
+  variantFrom?: string;
+  note?: string;
+}
+
+export interface RaceRegistry {
+  schemaVersion: number;
+  ruleset: "2014";
+  books: Record<string, string>;
+  races: RaceDef[];
+  note?: string;
+}
+
 export interface FeatureBase {
   id: string;
   name: string;
