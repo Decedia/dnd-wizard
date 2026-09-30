@@ -199,16 +199,16 @@ const EFFECT_FIELDS = {
   heal_hit_dice: ["pool", "amount"],
   reduce_damage: ["dice"],
   stat_modifier: ["stat", "amount", "duration"],
-  speed_modifier: ["amount", "unit"],
-  extra_attacks: ["count"],
-  extra_action: ["count"],
-  advantage: ["check", "value"],
+  speed_modifier: ["amount", "unit", "duration"],
+  extra_attacks: ["count", "duration"],
+  extra_action: ["count", "duration"],
+  advantage: ["check", "value", "duration"],
   reactions_without_cost: ["count"],
-  resistance: ["damageTypes"],
-  immunity: ["damageTypes", "conditions"],
-  condition_immunity: ["conditions"],
+  resistance: ["damageTypes", "duration"],
+  immunity: ["damageTypes", "conditions", "duration"],
+  condition_immunity: ["conditions", "duration"],
   cover: ["cover"],
-  ac_bonus: ["amount", "requires"],
+  ac_bonus: ["amount", "requires", "duration"],
   condition: ["action", "conditions", "duration"],
   resource: ["action", "resource", "amount"],
   slot: ["action", "level", "count"],
@@ -226,9 +226,16 @@ const EFFECT_FIELDS = {
   tool: ["tools", "proficiency"],
   spell_modifier: ["changes", "atLeastLevel", "cost"],
   spell_grant: ["cantrip", "spells", "atLevel"],
+  choice: ["of", "count", "atLevel", "from"],
   restriction: ["rules"],
   special: ["note", "reference"],
 };
+
+/** Effects whose `duration` is the while_active/permanent enum, not a DurationSpec. */
+const TRANSIENT_DURATION_KINDS = new Set([
+  "stat_modifier", "speed_modifier", "extra_attacks", "extra_action",
+  "advantage", "resistance", "immunity", "condition_immunity", "ac_bonus",
+]);
 
 function isDeclaredField(kind, field) {
   return (EFFECT_FIELDS[kind] ?? []).includes(field);
@@ -530,10 +537,18 @@ for (const { feature: f, where } of features) {
     isOneOf(e.initiative, vocab.initiativeMode, where, `${at}.initiative`);
     isOneOf(e.control, vocab.summonControl, where, `${at}.control`);
     isOneOf(e.hitPoints, vocab.formHitPoints, where, `${at}.hitPoints`);
+    isOneOf(e.of, vocab.choiceList, where, `${at}.of`);
+    if (e.duration !== undefined) {
+      if (TRANSIENT_DURATION_KINDS.has(e.kind)) {
+        isOneOf(e.duration, vocab.statModifierDuration, where, `${at}.duration`);
+      } else if (typeof e.duration === "object") {
+        isOneOf(e.duration.unit, vocab.durationUnit, where, `${at}.duration.unit`);
+      } else {
+        fail(where, "unknownField", `${at} (${e.kind}).duration must be a duration object, not ${JSON.stringify(e.duration)}`);
+      }
+    }
     // `duration` means different things per effect kind: a stat modifier's
     // persistence, but a full duration object on a condition or summon.
-    if (e.kind === "stat_modifier") isOneOf(e.duration, vocab.statModifierDuration, where, `${at}.duration`);
-    else if (e.duration) isOneOf(e.duration.unit, vocab.durationUnit, where, `${at}.duration.unit`);
 
     for (const change of e.changes ?? []) isOneOf(change, vocab.spellModifierChange, where, `${at}.changes`);
     for (const ability of e.abilities ?? []) isOneOf(ability, vocab.ability, where, `${at}.abilities`);

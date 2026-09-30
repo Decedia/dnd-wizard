@@ -131,6 +131,16 @@ export interface TargetSpec {
   description?: string;
 }
 
+/**
+ * Fields every modifier-style effect shares. `duration` is written explicitly
+ * rather than inferred from the activation, because "while the effect is active"
+ * and "forever" are both meaningful and a reader should not have to reason about
+ * whether the feature is passive to know which one applies.
+ */
+export interface TransientEffect {
+  duration?: (typeof vocab.statModifierDuration)[number];
+}
+
 export interface DurationSpec {
   value: number;
   unit: DurationUnit;
@@ -154,16 +164,16 @@ export type Effect =
       amount: number | string;
       duration: (typeof vocab.statModifierDuration)[number];
     }
-  | { kind: "speed_modifier"; amount: number; unit: "ft" }
-  | { kind: "extra_attacks"; count: number; note?: string }
-  | { kind: "extra_action"; count: number; note?: string }
-  | { kind: "advantage"; check: Ability | CheckType; value: (typeof vocab.advantageValue)[number] }
+  | ({ kind: "speed_modifier"; amount: number; unit: "ft" } & TransientEffect)
+  | ({ kind: "extra_attacks"; count: number; note?: string } & TransientEffect)
+  | ({ kind: "extra_action"; count: number; note?: string } & TransientEffect)
+  | ({ kind: "advantage"; check: Ability | CheckType; value: (typeof vocab.advantageValue)[number] } & TransientEffect)
   | { kind: "reactions_without_cost"; count: number; note?: string }
-  | { kind: "resistance"; damageTypes: DamageType[]; note?: string }
-  | { kind: "immunity"; damageTypes?: DamageType[]; conditions?: Condition[]; note?: string }
-  | { kind: "condition_immunity"; conditions: Condition[] }
+  | ({ kind: "resistance"; damageTypes: DamageType[]; note?: string } & TransientEffect)
+  | ({ kind: "immunity"; damageTypes?: DamageType[]; conditions?: Condition[]; note?: string } & TransientEffect)
+  | ({ kind: "condition_immunity"; conditions: Condition[] } & TransientEffect)
   | { kind: "cover"; cover: CoverKind }
-  | { kind: "ac_bonus"; amount: number; requires?: string }
+  | ({ kind: "ac_bonus"; amount: number; requires?: string } & TransientEffect)
   | { kind: "condition"; action: (typeof vocab.conditionAction)[number]; conditions: Condition[]; duration?: DurationSpec }
   | { kind: "resource"; action: (typeof vocab.resourceAction)[number]; resource: string; amount: number }
   | { kind: "slot"; action: (typeof vocab.slotAction)[number]; level: number; count: number; note?: string }
@@ -228,6 +238,24 @@ export type Effect =
       cantrip?: { known: true };
       spells?: { level: number; from: string[] }[];
       atLevel?: number;
+      note?: string;
+    }
+  | {
+      /**
+       * A choice the player makes: "choose N from a named list". Fighting Style,
+       * Divine Domain, Eldritch Invocations, Sorcerer abilities, Metamagic
+       * options and Mechanic are all this, and each was previously being written
+       * as prose because the construct had no name.
+       */
+      kind: "choice";
+      /** The list chosen from; must be one of vocab.choiceList. */
+      of: (typeof vocab.choiceList)[number];
+      /** How many entries are chosen. */
+      count: number;
+      /** Level at which the choice becomes available, when it is not immediate. */
+      atLevel?: number;
+      /** Explicit options, for a short list that does not warrant its own file. */
+      from?: string[];
       note?: string;
     }
   | { kind: "restriction"; rules: string[]; note?: string }
@@ -452,6 +480,7 @@ type DeclaredKinds = keyof typeof vocab.effectRequired;
 const _everyKindIsDeclared: AssertSameUnion<EffectKind, DeclaredKinds> = true;
 const _everyDeclaredKindExists: Record<DeclaredKinds, true> = {
   spell_grant: true,
+  choice: true,
   skill_bonus: true,
   damage: true,
   heal: true,

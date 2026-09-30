@@ -1,0 +1,308 @@
+{
+  "features": [
+    {
+      "id": "class.warlock.eldritch_invocations",
+      "name": "Eldritch Invocations",
+      "kind": "class",
+      "owner": "Warlock",
+      "unlock": 2,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "choice",
+          "count": 1,
+          "of": "eldritch_invocation",
+          "atLevel": 2,
+          "note": "You learn a number of magical invocations, a number equal to half your warlock level, rounded down, and you can swap an invocation whenever you finish a long rest. Agonizing, Armor of Shadows, Dark One's Blessing, Devil's Sight, Fiendish Vigor, Hex, Lifespan, Minimize Harm, Rebuke the Violent, Stand by Me and Thief's Cant are available at 2nd level."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 5,
+          "summary": "Choose 2 invocations; +1 per warlock level after 5"
+        },
+        {
+          "at": 7,
+          "summary": "The higher levels add more invocations"
+        },
+        {
+          "at": 9,
+          "summary": "The higher levels add more invocations"
+        },
+        {
+          "at": 12,
+          "summary": "The higher levels add more invocations"
+        },
+        {
+          "at": 15,
+          "summary": "The higher levels add more invocations"
+        },
+        {
+          "at": 18,
+          "summary": "The higher levels add more invocations"
+        },
+        {
+          "at": 20,
+          "summary": "The higher levels add more invocations"
+        }
+      ],
+      "summary": "Choose invocations, gaining one per two Warlock levels",
+      "text": "You have learned a number of magical invocations, a number equal to half your warlock level, rounded down. The invocations you learn are drawn from the following list. When you finish a long rest, you can replace an invocation you know with a different invocation. You can also replace an invocation in the middle of a rest, and you know an invocation permanently once you learn it.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Warlock 66"
+      }
+    },
+    {
+      "id": "class.warlock.agathys",
+      "name": "Armor of Agathys",
+      "kind": "class",
+      "owner": "Warlock",
+      "unlock": 1,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
+      "endsIf": [
+        "expended_by_taking_damage"
+      ],
+      "effects": [
+        {
+          "kind": "temp_hp",
+          "dice": {
+            "dice": "5",
+            "perLevel": {
+              "dice": "5",
+              "above": 1
+            }
+          },
+          "note": "Your spirit surrounds you in a mantle of force that provides you with a +5 bonus to AC, includes your warlock level times 5 in temporary hit points, and retaliates on melee attackers."
+        },
+        {
+          "kind": "ac_bonus",
+          "amount": 5,
+          "duration": "while_active"
+        },
+        {
+          "kind": "special",
+          "note": "When a creature hits you with a melee attack while you have these hit points, the creature takes 5 cold damage, equal to the temporary hit points you have, and the temporary hit points disappear. Your warlock level is a number of times 5 rather than 5, and the damage is 5 per warlock level."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 9,
+          "effects": [
+            {
+              "kind": "temp_hp",
+              "dice": {
+                "dice": "25",
+                "perLevel": {
+                  "dice": "5",
+                  "above": 9
+                }
+              }
+            },
+            {
+              "kind": "ac_bonus",
+              "amount": 5,
+              "duration": "while_active"
+            },
+            {
+              "kind": "special",
+              "note": "25 temporary hit points at 9th level, then 5 per level above 9."
+            }
+          ]
+        },
+        {
+          "at": 17,
+          "effects": [
+            {
+              "kind": "temp_hp",
+              "dice": {
+                "dice": "40",
+                "perLevel": {
+                  "dice": "5",
+                  "above": 17
+                }
+              }
+            },
+            {
+              "kind": "ac_bonus",
+              "amount": 5,
+              "duration": "while_active"
+            },
+            {
+              "kind": "special",
+              "note": "40 temporary hit points at 17th level."
+            }
+          ]
+        }
+      ],
+      "summary": "Bonus action: +5 AC and a pool of temp HP that retaliates once",
+      "text": "Your spirit surrounds you in a mantle of force that provides you with a +5 bonus to armor class, includes your warlock level times 5 in temporary hit points, and retaliates on melee attackers. When a creature hits you with a melee attack while you have these hit points, the creature takes 5 cold damage, equal to the temporary hit points you have, and the temporary hit points disappear.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Warlock 65"
+      }
+    },
+    {
+      "id": "class.sorcerer.empowered_evocation",
+      "name": "Empowered Evocation",
+      "kind": "class",
+      "owner": "Sorcerer",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "choice",
+          "count": 1,
+          "of": "sorcerer_ability",
+          "atLevel": 1,
+          "note": "Choose one ability: Empowered Evocation, Sculpt Spells, Subtle Spell, or Innate Sorcery. You gain the chosen ability."
+        }
+      ],
+      "summary": "Choose one of your Sorcerer abilities",
+      "text": "When you create your character, you choose one of the abilities in the list below. If you have the Sculpt Spells ability, you know two cantrips from the sorcerer spell list.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Sorcerer 100"
+      }
+    },
+    {
+      "id": "class.monk.stunning_strike",
+      "name": "Stunning Strike",
+      "kind": "class",
+      "owner": "Monk",
+      "unlock": 5,
+      "activation": "bonus_action",
+      "cost": [
+        {
+          "resource": "ki",
+          "amount": 1
+        }
+      ],
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 5,
+          "unit": "ft"
+        }
+      },
+      "duration": {
+        "value": 1,
+        "unit": "round"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "condition",
+          "action": "apply",
+          "conditions": [
+            "stunned"
+          ],
+          "duration": {
+            "value": 1,
+            "unit": "round"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "When you hit a creature with a melee attack, you can spend 1 ki point to make the target stunned. A stunned creature fails its Constitution saving throw, and the target must succeed on a Constitution saving throw or be stunned for 1 minute, at 5th level, and a stunned creature also has disadvantage on melee attacks against you."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 15,
+          "effects": [
+            {
+              "kind": "condition",
+              "action": "apply",
+              "conditions": [
+                "stunned"
+              ]
+            },
+            {
+              "kind": "special",
+              "note": "Target is stunned for 1 minute. When you make a melee attack against a stunned target, you can use your reaction to make one melee weapon attack against it."
+            }
+          ]
+        }
+      ],
+      "summary": "Spend 1 Ki on a hit: the target must save or be stunned",
+      "text": "When you hit a creature with a melee attack, you can spend 1 ki point to make the target stunned. A stunned creature fails its Constitution saving throw, and the target must succeed on a Constitution saving throw or be stunned for 1 minute.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk 37"
+      }
+    },
+    {
+      "id": "class.druid.wild_shape_pack_tactics",
+      "name": "Pack Tactics (beast form)",
+      "kind": "class",
+      "owner": "Druid",
+      "unlock": 2,
+      "activation": "passive",
+      "gates": [
+        "shapeshifted"
+      ],
+      "effects": [
+        {
+          "kind": "advantage",
+          "check": "attack",
+          "value": "advantage"
+        },
+        {
+          "kind": "special",
+          "note": "While in a beast form, you and allies gain advantage on melee attacks against any creature within 5 feet of you, and allies gain advantage on saving throws against being frightened while within 10 feet of you."
+        }
+      ],
+      "summary": "While shifted, allies get advantage attacking your target",
+      "text": "While in a beast form, you and allies gain advantage on melee attacks against any creature within 5 feet of you, and allies gain advantage on saving throws against being frightened while within 10 feet of you.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Druid Wild Shape"
+      }
+    },
+    {
+      "id": "feat.mounted_combatant",
+      "name": "Mounted Combatant",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "gates": [
+        "mounted"
+      ],
+      "effects": [
+        {
+          "kind": "advantage",
+          "check": "save",
+          "value": "advantage"
+        },
+        {
+          "kind": "special",
+          "note": "You have advantage on saving throws against being dismounted. If an attacker moves adjacent to you while mounted, they have disadvantage on the attack roll, and you can use your reaction to make one melee attack against them. Only the second benefit applies to a creature you can see."
+        }
+      ],
+      "summary": "Advantage against being dismounted, and strike adjacent attackers",
+      "text": "You have advantage on saving throws against being dismounted. If an attacker moves adjacent to you while mounted, they have disadvantage on the attack roll, and you can use your reaction to make one melee weapon attack against them.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Feat 167"
+      }
+    }
+  ]
+}

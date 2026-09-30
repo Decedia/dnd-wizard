@@ -99,6 +99,16 @@
       "id": "holding_two_weapons",
       "name": "Holding Two Weapons",
       "note": "Equipment state, distinct from the two_weapons combat state which requires actually attacking with both."
+    },
+    {
+      "id": "wearing_armor",
+      "name": "Wearing Armor",
+      "note": "Any armor. Gates Fighting Style: Defense."
+    },
+    {
+      "id": "wielding_two_weapons",
+      "name": "Wielding Two Weapons",
+      "note": "A melee weapon in each hand. Gates Fighting Style: Dueling."
     }
   ]
 }

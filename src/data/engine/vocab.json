@@ -274,6 +274,7 @@
     "spell_modifier",
     "spell_grant",
     "restriction",
+    "choice",
     "special"
   ],
   "effectRequired": {
@@ -384,6 +385,10 @@
     "restriction": [
       "rules"
     ],
+    "choice": [
+      "of",
+      "count"
+    ],
     "special": [
       "note"
     ]
@@ -405,5 +410,17 @@
   "levelRange": [
     1,
     20
+  ],
+  "choiceList": [
+    "fighting_style",
+    "sorcerer_ability",
+    "eldritch_invocation",
+    "divine_domain",
+    "draconic_ancestry",
+    "metamagic_option",
+    "subclass_feature",
+    "metaphysical_ability",
+    "arcane_ability",
+    "musical_instrument"
   ]
 }
