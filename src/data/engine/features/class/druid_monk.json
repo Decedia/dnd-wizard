@@ -1,0 +1,830 @@
+{
+  "features": [
+    {
+      "id": "class.druid.spellcasting",
+      "name": "Spellcasting",
+      "kind": "class",
+      "owner": "Druid",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "cantrip": {
+            "known": true
+          },
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "druid"
+              ]
+            }
+          ],
+          "note": "Your spellcasting ability is Wisdom. You prepare a number of druid spells equal to your Wisdom modifier plus your druid level, and you know a number of cantrips equal to your Wisdom modifier."
+        }
+      ],
+      "summary": "Prepare Wis mod + level druid spells",
+      "text": "Your spellcasting ability is Wisdom. You prepare a number of druid spells, which are the spells in the druid spell list. Your prepared spells can be changed after a long rest. When you finish a long rest, you choose new prepared spells. You prepare all of your druid spells in your spellbook.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Druid 66"
+      }
+    },
+    {
+      "id": "class.druid.druidic",
+      "name": "Druidic",
+      "kind": "class",
+      "owner": "Druid",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You know Druidic, the secret language of druids, and you can leave hidden messages in it for others. You also gain the Channel Divinity option and can use the Healing Word and thaumaturgy cantrips as a bonus action instead of an action."
+        }
+      ],
+      "summary": "Speak Druidic, plus Channel Divinity and two bonus-action cantrips",
+      "text": "You know Druidic, the secret language of druids, and you can leave hidden messages in it for others to discover. You also gain the Channel Divinity option, and you can use the healing word and thaumaturgy cantrips as a bonus action instead of an action.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Druid 66"
+      }
+    },
+    {
+      "id": "class.druid.timeless_body",
+      "name": "Timeless Body",
+      "kind": "class",
+      "owner": "Druid",
+      "unlock": 18,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You no longer need to eat or drink. In addition, you suffer no effects of starvation or dehydration, and the harsh weather of your environment doesn't affect you. Your spells and class features that require you to be living still function, and you can still be affected by disease and poison, which is one of the ways the 2014 and 2024 rules differ."
+        }
+      ],
+      "summary": "You no longer need to eat or drink",
+      "text": "You no longer need to eat or drink. In addition, you suffer no effects of starvation or dehydration, and the harsh weather of your environment doesn't affect you.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Druid 67"
+      }
+    },
+    {
+      "id": "class.druid.beast_spells",
+      "name": "Beast Spells",
+      "kind": "class",
+      "owner": "Druid",
+      "unlock": 18,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You can cast any spell you have prepared but that is not a druid spell by expending a spell slot, and you do not need to be a beast to do so. From 18th level you can also cast any cantrip you have prepared that is not a druid cantrip."
+        }
+      ],
+      "summary": "Cast prepared druid spells even while shapeshifted",
+      "text": "You can cast any spell you have prepared but that is not a druid spell, expending a spell slot. During this, you don't need to be a beast for any of your druid or subclass features.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Druid 67"
+      }
+    },
+    {
+      "id": "class.druid.archdruid",
+      "name": "Archdruid",
+      "kind": "class",
+      "owner": "Druid",
+      "unlock": 20,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "skill",
+          "skills": [
+            "any"
+          ],
+          "proficiency": "proficient"
+        },
+        {
+          "kind": "special",
+          "note": "You gain proficiency in any combination of three skills or tools of your choice. You can also retune any of your Circle of the Land or Circle of Stars druid spells, and you can use the Wild Shape feature to cast any spell you have prepared that has a duration of 1 hour or less."
+        }
+      ],
+      "summary": "Proficiency in three skills or tools, plus retuned and longer Wild Shape",
+      "text": "You gain proficiency in any combination of three skills or tools of your choice. You can also retune any of your Circle of the Land or Circle of Stars druid spells, and you can use the Wild Shape feature to cast any spell you have prepared that has a duration of 1 hour or less.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Druid 67"
+      }
+    },
+    {
+      "id": "class.druid.ability_score_improvement",
+      "name": "Ability Score Improvement",
+      "kind": "class",
+      "owner": "Druid",
+      "unlock": 4,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 8
+        },
+        {
+          "at": 12
+        },
+        {
+          "at": 16
+        },
+        {
+          "at": 19
+        }
+      ],
+      "summary": "Raise one ability by 2, or two by 1",
+      "text": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Druid 67"
+      }
+    },
+    {
+      "id": "class.monk.unarmored_defense",
+      "name": "Unarmored Defense",
+      "kind": "class",
+      "owner": "Monk",
+      "unlock": 1,
+      "activation": "passive",
+      "gates": [
+        "unarmored"
+      ],
+      "effects": [
+        {
+          "kind": "ac_bonus",
+          "amount": 0,
+          "requires": "no armor and no shield"
+        },
+        {
+          "kind": "special",
+          "note": "While you are wearing no armor and not wielding a shield, your armor class equals 10 + your Dexterity modifier + your Wisdom modifier. You can use this feature if you are wearing any nonmagical armor that doesn't have a strength requirement. This is replaced if your armor class would already be higher. You lose this benefit if you are knocked unconscious or if you use a shield."
+        }
+      ],
+      "summary": "Without armor, AC becomes 10 plus Dex plus Wis",
+      "text": "While you are wearing no armor and not wielding a shield, your armor class equals 10 + your Dexterity modifier + your Wisdom modifier. You can use this feature if you are wearing any nonmagical armor that doesn't have a strength requirement, in which case your armor class equals 10 + your Dexterity modifier + your Wisdom modifier. This feature is replaced if your armor class would already be higher. You lose this benefit if you are knocked unconscious or if you use a shield.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk 36"
+      }
+    },
+    {
+      "id": "class.monk.martial_arts",
+      "name": "Martial Arts",
+      "kind": "class",
+      "owner": "Monk",
+      "unlock": 1,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 5,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "1d4",
+            "bonusFrom": "str",
+            "flat": 0
+          },
+          "damageType": "bludgeoning",
+          "resolution": {
+            "mode": "attack",
+            "ability": "str",
+            "reaches": [
+              "5 ft melee"
+            ]
+          }
+        },
+        {
+          "kind": "stat_modifier",
+          "stat": "speed",
+          "amount": 10,
+          "duration": "permanent"
+        },
+        {
+          "kind": "special",
+          "note": "Your attack roll with your unarmed strike can use your Strength or Dexterity modifier, whichever you choose, and you do not need the second Attack feature to make this attack. While you are not wearing heavy armor, you gain a +10 bonus to your walking speed, and your Speed can equal your Strength score or Dexterity score, whichever is greater. If you hit with an unarmed strike, you can use your bonus action on your next turn, before the end of that next turn, to strike again."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 6,
+          "effects": [
+            {
+              "kind": "damage",
+              "dice": {
+                "dice": "1d6",
+                "bonusFrom": "str"
+              },
+              "damageType": "bludgeoning",
+              "resolution": {
+                "mode": "attack",
+                "ability": "str",
+                "reaches": [
+                  "5 ft melee"
+                ]
+              }
+            },
+            {
+              "kind": "stat_modifier",
+              "stat": "speed",
+              "amount": 10,
+              "duration": "permanent"
+            },
+            {
+              "kind": "special",
+              "note": "At 6th level, an unarmed strike deals 1d6 instead of 1d4, and it counts as a martial weapon."
+            }
+          ]
+        },
+        {
+          "at": 17,
+          "effects": [
+            {
+              "kind": "damage",
+              "dice": {
+                "dice": "1d8",
+                "bonusFrom": "str"
+              },
+              "damageType": "bludgeoning",
+              "resolution": {
+                "mode": "attack",
+                "ability": "str",
+                "reaches": [
+                  "5 ft melee"
+                ]
+              }
+            },
+            {
+              "kind": "stat_modifier",
+              "stat": "speed",
+              "amount": 10,
+              "duration": "permanent"
+            },
+            {
+              "kind": "special",
+              "note": "At 17th level, an unarmed strike deals 1d8 instead of 1d4."
+            }
+          ]
+        }
+      ],
+      "summary": "Unarmed strike as a bonus action, and +10 walking speed",
+      "text": "Your attack roll with your unarmed strike can use your Strength or Dexterity modifier, whichever you choose. While you are not wearing heavy armor, you gain a +10 bonus to your walking speed, and your Speed can equal your Strength score or Dexterity score, whichever is greater. If you hit with an unarmed strike, you can use your bonus action on your next turn, before the end of that next turn, to strike again.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk 36"
+      }
+    },
+    {
+      "id": "class.monk.ki",
+      "name": "Ki",
+      "kind": "class",
+      "owner": "Monk",
+      "unlock": 2,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You spend ki to fuel your martial arts features, and you have a limited number of ki points equal to your monk level or twice your Wisdom modifier, whichever is greater. You regain all expended ki when you finish a short or long rest."
+        }
+      ],
+      "summary": "A pool equal to your level or twice Wis mod, refilled on rest",
+      "text": "You spend ki to fuel your martial arts features, and you have a limited number of ki points equal to your monk level or twice your Wisdom modifier, whichever is greater. You can regain all expended ki by finishing a short or long rest.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk 36"
+      }
+    },
+    {
+      "id": "class.monk.step_of_the_wind",
+      "name": "Step of the Wind",
+      "kind": "class",
+      "owner": "Monk",
+      "unlock": 2,
+      "activation": "bonus_action",
+      "cost": [
+        {
+          "resource": "ki",
+          "amount": 1
+        }
+      ],
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "When you take a bonus action, you can instead choose to use the Dodge or Disengage action. Using this feature costs 1 ki point. You can take this action only when you have the Unarmored Defense class feature, and you can use this feature only once per turn."
+        }
+      ],
+      "summary": "Spend 1 Ki as a bonus action for Dodge or Disengage",
+      "text": "When you take a bonus action, you can instead choose to use the Dodge or Disengage action. Using this feature costs 1 ki point. You can take this action only when you have the Unarmored Defense class feature.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk 36"
+      }
+    },
+    {
+      "id": "class.monk.unarmored_movement",
+      "name": "Unarmored Movement",
+      "kind": "class",
+      "owner": "Monk",
+      "unlock": 2,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "stat_modifier",
+          "stat": "speed",
+          "amount": 10,
+          "duration": "permanent"
+        },
+        {
+          "kind": "special",
+          "note": "Your speed increases by 10 feet while you are wearing no armor and not wielding a shield. At 18th level, you gain a climbing speed equal to your walking speed and your speed increases by 30 feet."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 9,
+          "effects": [
+            {
+              "kind": "stat_modifier",
+              "stat": "speed",
+              "amount": 10,
+              "duration": "permanent"
+            },
+            {
+              "kind": "special",
+              "note": "Your speed increases by 10 feet while you are wearing no armor and not wielding a shield. You gain proficiency in Athletics."
+            }
+          ]
+        },
+        {
+          "at": 18,
+          "effects": [
+            {
+              "kind": "stat_modifier",
+              "stat": "speed",
+              "amount": 30,
+              "duration": "permanent"
+            },
+            {
+              "kind": "special",
+              "note": "Your speed increases by 30 feet while you are wearing no armor and not wielding a shield. At 18th level, you gain a climbing speed equal to your walking speed."
+            }
+          ]
+        }
+      ],
+      "summary": "+10 walking speed unarmored, climbing at 18",
+      "text": "Your speed increases by 10 feet while you are wearing no armor and not wielding a shield.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk 36"
+      }
+    },
+    {
+      "id": "class.monk.deflect_missiles",
+      "name": "Deflect Missiles",
+      "kind": "class",
+      "owner": "Monk",
+      "unlock": 3,
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "self_hit_by_attack",
+        "fromDamageType": [
+          "piercing"
+        ]
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "reduce_damage",
+          "dice": {
+            "dice": "1d10",
+            "bonusFrom": "dex",
+            "perLevel": {
+              "dice": "1",
+              "above": 0
+            }
+          },
+          "note": "When you are hit by an attack that uses a projectile as part of the attack, you can use your reaction to reduce the damage by 1d10 plus your monk level plus your Dexterity modifier. You gain the use of this feature again after a long rest."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 6,
+          "limits": {
+            "per": "rest",
+            "max": 1
+          },
+          "effects": [
+            {
+              "kind": "reduce_damage",
+              "dice": {
+                "dice": "1d10",
+                "bonusFrom": "dex",
+                "perLevel": {
+                  "dice": "1",
+                  "above": 0
+                }
+              }
+            },
+            {
+              "kind": "special",
+              "note": "You can spend 1 ki point to deflect the missile instead."
+            }
+          ]
+        }
+      ],
+      "summary": "Reaction: reduce a projectile hit by 1d10 plus level and Dex",
+      "text": "When you are hit by an attack that uses a projectile as part of the attack, you can use your reaction to reduce the damage by 1d10 plus your monk level plus your Dexterity modifier. You gain the use of this feature again after a long rest.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk 37"
+      }
+    },
+    {
+      "id": "class.monk.slow_fall",
+      "name": "Slow Fall",
+      "kind": "class",
+      "owner": "Monk",
+      "unlock": 4,
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "falling"
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "When you fall, you can use your reaction to take 1 ki point and halve the damage you take from the fall, and at 6th level you take no damage at all from a fall of 30 feet or less. You gain the use of this feature again after a long rest."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 6,
+          "effects": [
+            {
+              "kind": "special",
+              "note": "You can take no damage at all from a fall of 30 feet or less, and at 18th level you always take no damage from a fall."
+            }
+          ]
+        }
+      ],
+      "summary": "Reaction: halve falling damage for 1 Ki, or none at 30 ft",
+      "text": "When you fall, you can use your reaction to take 1 ki point and halve the damage you take from the fall. You gain the use of this feature again after a long rest.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk 37"
+      }
+    },
+    {
+      "id": "class.monk.extra_attack",
+      "name": "Extra Attack",
+      "kind": "class",
+      "owner": "Monk",
+      "unlock": 5,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 1,
+          "note": "You can attack twice with the Attack action on your turn instead of once."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 11,
+          "effects": [
+            {
+              "kind": "extra_attacks",
+              "count": 2,
+              "note": "You can attack three times with the Attack action on your turn instead of once."
+            }
+          ]
+        }
+      ],
+      "summary": "Two attacks with the Attack action, three at 11",
+      "text": "You can attack twice, instead of once, whenever you take the Attack action on your turn.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk 37"
+      }
+    },
+    {
+      "id": "class.monk.ki_empowered_strikes",
+      "name": "Ki-empowered Strikes",
+      "kind": "class",
+      "owner": "Monk",
+      "unlock": 6,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You can spend 1 ki point as part of an action you use to attack, and you choose one of the following effects for this attack: your attack roll is treated as a critical hit, or the damage is rolled twice and one result is used."
+        }
+      ],
+      "summary": "Spend 1 Ki to make an attack a crit or roll its damage twice",
+      "text": "You can spend 1 ki point as part of an action you use to attack, and you choose one of the following effects for this attack: your attack roll is treated as a critical hit, or the damage is rolled twice and one result is used.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk 37"
+      }
+    },
+    {
+      "id": "class.monk.evasion",
+      "name": "Evasion",
+      "kind": "class",
+      "owner": "Monk",
+      "unlock": 7,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "When you are hit by an attack that would deal half damage on a successful Dexterity saving throw, you instead take no damage on a success, and only half damage on a failure, instead of none on a failure."
+        }
+      ],
+      "summary": "Half damage or none on a Dexterity save, never more",
+      "text": "When you are hit by an attack that would deal half damage on a successful Dexterity saving throw, you instead take no damage on a success, and only half damage on a failure, instead of none on a failure.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk 37"
+      }
+    },
+    {
+      "id": "class.monk.stillness_of_mind",
+      "name": "Stillness of Mind",
+      "kind": "class",
+      "owner": "Monk",
+      "unlock": 7,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "If you are charmed or frightened, you can use your bonus action to end the charmed or frightened condition on yourself. You can use this feature only if you are wearing no armor and not wielding a shield."
+        }
+      ],
+      "summary": "Bonus action: end charmed or frightened on yourself",
+      "text": "If you are charmed or frightened, you can use your bonus action to end the charmed or frightened condition on yourself. You can use this feature only if you are wearing no armor and not wielding a shield.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk 37"
+      }
+    },
+    {
+      "id": "class.monk.purity_of_body",
+      "name": "Purity of Body",
+      "kind": "class",
+      "owner": "Monk",
+      "unlock": 10,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You are immune to disease and the poisoned condition."
+        }
+      ],
+      "summary": "Immune to disease and the poisoned condition",
+      "text": "You are immune to disease and the poisoned condition.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk 38"
+      }
+    },
+    {
+      "id": "class.monk.tongue_of_the_sun_and_moon",
+      "name": "Tongue of the Sun and Moon",
+      "kind": "class",
+      "owner": "Monk",
+      "unlock": 13,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "language",
+          "languages": [
+            "any two of your choice"
+          ]
+        },
+        {
+          "kind": "special",
+          "note": "You learn two languages of your choice that you can read, write, and speak. You gain proficiency in those languages."
+        }
+      ],
+      "summary": "Speak, read and write any two extra languages",
+      "text": "You learn two languages of your choice that you can read, write, and speak. You gain proficiency in those languages.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk 38"
+      }
+    },
+    {
+      "id": "class.monk.diamond_soul",
+      "name": "Diamond Soul",
+      "kind": "class",
+      "owner": "Monk",
+      "unlock": 14,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "resistance",
+          "damageTypes": [
+            "force",
+            "psychic"
+          ]
+        },
+        {
+          "kind": "special",
+          "note": "The diamond form of your ki body gives you resistance to force damage and psychic damage. At 15th level, you can also use your action to spend 2 ki points to become diamond, gaining temporary hit points equal to your monk level times 5 plus a +5 bonus to AC until the start of your next turn, or spending 4 ki points to become diamond until the end of the next turn."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 15,
+          "effects": [
+            {
+              "kind": "resistance",
+              "damageTypes": [
+                "force",
+                "psychic"
+              ]
+            },
+            {
+              "kind": "special",
+              "note": "Action, 2 ki: diamond form for one turn, or 4 ki for until the end of your next turn."
+            }
+          ]
+        }
+      ],
+      "summary": "Resistance to force and psychic damage",
+      "text": "The diamond form of your ki body gives you resistance to force damage and psychic damage.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk 38"
+      }
+    },
+    {
+      "id": "class.monk.timeless_body",
+      "name": "Timeless Body",
+      "kind": "class",
+      "owner": "Monk",
+      "unlock": 15,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You no longer need to eat or drink. In addition, you suffer no effects of starvation or dehydration."
+        }
+      ],
+      "summary": "You no longer need to eat or drink",
+      "text": "You no longer need to eat or drink. In addition, you suffer no effects of starvation or dehydration.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk 38"
+      }
+    },
+    {
+      "id": "class.monk.ability_score_improvement",
+      "name": "Ability Score Improvement",
+      "kind": "class",
+      "owner": "Monk",
+      "unlock": 4,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 8
+        },
+        {
+          "at": 12
+        },
+        {
+          "at": 16
+        },
+        {
+          "at": 19
+        }
+      ],
+      "summary": "Raise one ability by 2, or two by 1",
+      "text": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk 39"
+      }
+    },
+    {
+      "id": "class.monk.empty_body",
+      "name": "Empty Body",
+      "kind": "class",
+      "owner": "Monk",
+      "unlock": 18,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "condition",
+          "action": "apply",
+          "conditions": [
+            "petrified"
+          ],
+          "duration": {
+            "value": 1,
+            "unit": "minute"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "Your spirit detaches from your body and your body becomes Incapacitated. You have resistance to all damage except psychic, and you are immune to the charmed and frightened conditions. You regain this after a long rest."
+        }
+      ],
+      "summary": "Your body is Incapacitated; you resist all but psychic damage",
+      "text": "Your spirit detaches from your body as it takes on a shimmering, translucent form. You have resistance to all damage except psychic damage. Any equipment attached to or being worn by you is also unaffected. While in this form, you have advantage on Dexterity (Acrobatics) and Strength (Athletics) checks. The conditions charmed and frightened have no effect on you.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk 39"
+      }
+    },
+    {
+      "id": "class.monk.perfect_self",
+      "name": "Perfect Self",
+      "kind": "class",
+      "owner": "Monk",
+      "unlock": 20,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have advantage on saving throws and ability checks that rely on Strength, Dexterity, or Constitution. If you take damage, you can use your reaction to regain ki points equal to twice the damage taken, and you must finish a long rest before using this again."
+        }
+      ],
+      "summary": "Advantage on Str, Dex and Con checks; regain 2 ki per damage taken",
+      "text": "Your body becomes the embodiment of your discipline: you have advantage on saving throws and ability checks that rely on your Strength, Dexterity, or Constitution. If you take damage, you can use your reaction to regain ki points equal to twice the damage taken.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk 39"
+      }
+    }
+  ]
+}

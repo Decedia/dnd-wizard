@@ -1,0 +1,498 @@
+{
+  "features": [
+    {
+      "id": "class.paladin.divine_sense",
+      "name": "Divine Sense",
+      "kind": "class",
+      "owner": "Paladin",
+      "unlock": 1,
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "targeted_by_spell"
+      },
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 60,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You can use your reaction to sense the magic of a creature within 60 feet of you that you can see, if any. The creature needn't be hostile for you to sense its magic. Your spellcasting ability is Charisma. You gain the ability to sense whether any creatures have failed their saves against your spells or effects."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 18,
+          "limits": {
+            "per": "turn",
+            "max": 1
+          },
+          "effects": [
+            {
+              "kind": "special",
+              "note": "You gain an extra use, and you can use the reaction on each of your turns. You can also use this feature to learn the number of creatures affected by a spell you cast."
+            }
+          ]
+        }
+      ],
+      "summary": "Reaction: sense a creature's magic or failed saves",
+      "text": "You can use your reaction to sense the magic of a creature within 60 feet of you that you can see, if any. The creature needn't be hostile for you to sense its magic. Your spellcasting ability is Charisma.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Paladin 67"
+      }
+    },
+    {
+      "id": "class.paladin.spellcasting",
+      "name": "Spellcasting",
+      "kind": "class",
+      "owner": "Paladin",
+      "unlock": 2,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "cantrip": {
+            "known": true
+          },
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "paladin"
+              ]
+            }
+          ],
+          "note": "Your spellcasting ability is Charisma. You prepare a number of paladin spells equal to half your paladin level plus your Charisma modifier, and you know a number of cantrips equal to your Charisma modifier."
+        }
+      ],
+      "summary": "Prepare half your level plus Cha mod paladin spells",
+      "text": "Your spellcasting ability is Charisma. You prepare a number of paladin spells, which are the spells in the paladin spell list. Your prepared spells can be changed after a long rest. Your spell slots are the paladin table, but you always have the same number of spell slots as a fighter of your level, and you cannot use multiclassing to obtain any more spell slots.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Paladin 67"
+      }
+    },
+    {
+      "id": "class.paladin.fighting_style",
+      "name": "Fighting Style",
+      "kind": "class",
+      "owner": "Paladin",
+      "unlock": 2,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "choice",
+          "of": "fighting_style",
+          "count": 1,
+          "atLevel": 2,
+          "note": "You adopt a particular style of fighting as your specialty. Choose one from Defense, Dueling, Great Weapon Fighting, Protection, or Blessed."
+        }
+      ],
+      "summary": "Choose Defense, Dueling, Great Weapon, Protection or Blessed",
+      "text": "You adopt a particular style of fighting as your specialty. You choose one from Defense, Dueling, Great Weapon Fighting, Protection, or Blessed.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Paladin 67"
+      }
+    },
+    {
+      "id": "class.paladin.divine_health",
+      "name": "Divine Health",
+      "kind": "class",
+      "owner": "Paladin",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "Divine health is a mark of your extraordinary resilience during illness. You have a +4 bonus to hit points and immunity to disease. When you finish a long rest, you regain any hit points lost as a result of disease."
+        }
+      ],
+      "summary": "+4 hit points per level, and immunity to disease",
+      "text": "Divine health is a mark of your extraordinary resilience during illness, giving you great resistance to disease. You have a +4 bonus to hit points at 1st level. Whenever a creature attacks you with its own natural weapons, you can gain a +4 bonus to your AC and HP maximum.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Paladin 67"
+      }
+    },
+    {
+      "id": "class.paladin.sacred_oath",
+      "name": "Sacred Oath",
+      "kind": "class",
+      "owner": "Paladin",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "choice",
+          "of": "subclass_feature",
+          "count": 1,
+          "atLevel": 3,
+          "note": "You swear the Oath of Devotion, the Oath of the Ancients, or the Oath of the Watchers. Your oath grants you a list of spells and a set of oath features, and your oath spells are always prepared and do not count against your number of prepared spells."
+        }
+      ],
+      "summary": "Choose Devotion, Ancients or Watchers",
+      "text": "You commit to the path of a holy order. The options for your oath and the spells and features each oath grants are listed here. You can also choose a new oath whenever you finish a long rest.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Paladin 67"
+      }
+    },
+    {
+      "id": "class.paladin.oath_spells",
+      "name": "Oath Spells",
+      "kind": "class",
+      "owner": "Paladin",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "paladin"
+              ]
+            },
+            {
+              "level": 2,
+              "from": [
+                "paladin"
+              ]
+            },
+            {
+              "level": 3,
+              "from": [
+                "paladin"
+              ]
+            }
+          ],
+          "note": "Your oath spells are always prepared and do not count against your number of prepared spells. They are in addition to your prepared paladin spells, and you get more at levels 7, 11, 15 and 19."
+        }
+      ],
+      "summary": "Oath spells, always prepared, extra to your normal spells",
+      "text": "Your oath spells are in addition to the spells you prepare as a paladin. Your oath spells are always prepared and do not count against your number of prepared spells.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Paladin 67"
+      }
+    },
+    {
+      "id": "class.paladin.channel_divinity",
+      "name": "Channel Divinity",
+      "kind": "class",
+      "owner": "Paladin",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have a pool of Channel Divinity uses equal to half your paladin level, and you regain all of them when you finish a short or long rest. You can expend a use to use a Channel Divinity feature, and your Channel Divinity feature can be used once per turn. A cleric's Channel Divinity feature can be used once per turn."
+        }
+      ],
+      "summary": "A pool of spell-like uses, equal to half your level",
+      "text": "Your Channel Divinity feature provides the magical energy you need to drive your divine abilities. You have a pool of Channel Divinity uses equal to half your paladin level, and you regain all expended uses when you finish a short or long rest.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Paladin 68"
+      }
+    },
+    {
+      "id": "class.paladin.aura_of_protection",
+      "name": "Aura of Protection",
+      "kind": "class",
+      "owner": "Paladin",
+      "unlock": 6,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "ac_bonus",
+          "amount": 0,
+          "requires": "you are wearing heavy armor"
+        },
+        {
+          "kind": "special",
+          "note": "You and friendly creatures within 10 feet of you must succeed on a Charisma saving throw or take 10 radiant damage on a failed save, or take half as much damage on a successful one. Each target of this aura can add your Charisma modifier (maximum +5) to its saving throw."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 18,
+          "summary": "+5 to the aura's saving throw, and allies move through it"
+        }
+      ],
+      "summary": "You and allies within 10 ft take 10 radiant damage on a failed Cha save",
+      "text": "You and friendly creatures within 10 feet of you must succeed on a Charisma saving throw or take 10 radiant damage on a failed save, or take half as much damage on a successful one. Each target of this aura can add your Charisma modifier to its saving throw.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Paladin 68"
+      }
+    },
+    {
+      "id": "class.paladin.aura_of_courage",
+      "name": "Aura of Courage",
+      "kind": "class",
+      "owner": "Paladin",
+      "unlock": 10,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You and friendly creatures within 10 feet of you are not frightened while you are conscious. When you or an ally frightened by your aura makes a saving throw, they can add your Charisma modifier (maximum +5) to it."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 18,
+          "summary": "+5 to the aura's saves, and allies move through it"
+        }
+      ],
+      "summary": "You and allies within 10 ft are not frightened",
+      "text": "You and friendly creatures within 10 feet of you are not frightened while you are conscious. When you or an ally frightened by your aura makes a saving throw, they can add your Charisma modifier (maximum +5) to it.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Paladin 69"
+      }
+    },
+    {
+      "id": "class.paladin.cleansing_touch",
+      "name": "Cleansing Touch",
+      "kind": "class",
+      "owner": "Paladin",
+      "unlock": 14,
+      "activation": "action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 5,
+          "unit": "touch"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "condition",
+          "action": "remove",
+          "conditions": [
+            "blinded",
+            "deafened",
+            "frightened",
+            "paralyzed",
+            "poisoned"
+          ]
+        },
+        {
+          "kind": "special",
+          "note": "When you cast a spell of 1st level or higher, you can use your action to touch a creature within 5 feet of you, which ends one of the following conditions affecting it: blinded, deafened, frightened, paralyzed, or poisoned. You gain the use of this feature again after a long rest."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 18,
+          "effects": [
+            {
+              "kind": "condition",
+              "action": "remove",
+              "conditions": [
+                "blinded",
+                "deafened",
+                "frightened",
+                "paralyzed",
+                "poisoned"
+              ]
+            },
+            {
+              "kind": "special",
+              "note": "From 18th level, you can use this feature more than once on the same turn, and you can also end the charmed condition."
+            }
+          ]
+        }
+      ],
+      "summary": "When you cast a spell, end a condition on a creature you touch",
+      "text": "When you cast a spell of 1st level or higher, you can use your action to touch a creature within 5 feet of you, which ends one of the following conditions affecting it: blinded, deafened, frightened, paralyzed, or poisoned.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Paladin 69"
+      }
+    },
+    {
+      "id": "class.paladin.extra_attack",
+      "name": "Extra Attack",
+      "kind": "class",
+      "owner": "Paladin",
+      "unlock": 5,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 1,
+          "note": "You can attack twice, instead of once, whenever you take the Attack action on your turn."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 11,
+          "effects": [
+            {
+              "kind": "extra_attacks",
+              "count": 2,
+              "note": "You can attack three times, instead of once, whenever you take the Attack action on your turn."
+            }
+          ]
+        },
+        {
+          "at": 17,
+          "effects": [
+            {
+              "kind": "extra_attacks",
+              "count": 3,
+              "note": "You can attack four times, instead of once, whenever you take the Attack action on your turn."
+            }
+          ]
+        }
+      ],
+      "summary": "Two attacks with the Attack action, three at 11, four at 17",
+      "text": "You can attack twice, instead of once, whenever you take the Attack action on your turn.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Paladin 68"
+      }
+    },
+    {
+      "id": "class.paladin.ability_score_improvement",
+      "name": "Ability Score Improvement",
+      "kind": "class",
+      "owner": "Paladin",
+      "unlock": 4,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 8
+        },
+        {
+          "at": 12
+        },
+        {
+          "at": 16
+        },
+        {
+          "at": 19
+        }
+      ],
+      "summary": "Raise one ability by 2, or two by 1",
+      "text": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Paladin 69"
+      }
+    },
+    {
+      "id": "class.paladin.improved_divine_smite",
+      "name": "Improved Divine Smite",
+      "kind": "class",
+      "owner": "Paladin",
+      "unlock": 11,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 5,
+          "unit": "ft"
+        }
+      },
+      "duration": {
+        "value": 1,
+        "unit": "round"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "1d8",
+            "perLevel": {
+              "dice": "1d8",
+              "above": 11
+            }
+          },
+          "damageType": "radiant",
+          "resolution": {
+            "mode": "attack",
+            "ability": "cha",
+            "reaches": [
+              "melee weapon attack"
+            ]
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You can use your bonus action to make a melee weapon attack against a creature within 5 feet of you, dealing an additional 2d8 radiant damage on a hit. The radiant damage increases by 1d8 whenever you reach a level that is a multiple of 4, and the effect can be used on each of your turns. You gain the use of this at 11th level."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 16,
+          "summary": "1d8 at 11th, 2d8 at 16th, 3d8 at 20th",
+          "effects": [
+            {
+              "kind": "damage",
+              "dice": {
+                "dice": "2d8",
+                "perLevel": {
+                  "dice": "1d8",
+                  "above": 16
+                }
+              },
+              "damageType": "radiant",
+              "resolution": {
+                "mode": "attack",
+                "ability": "cha",
+                "reaches": [
+                  "melee weapon attack"
+                ]
+              }
+            },
+            {
+              "kind": "special",
+              "note": "2d8 at 16th level, increasing by 1d8 for every level of paladin you have thereafter, so 3d8 at 20th."
+            }
+          ]
+        }
+      ],
+      "summary": "Bonus action on a hit: 1d8 extra radiant damage",
+      "text": "You can use your bonus action to make a melee weapon attack against a creature within 5 feet of you, dealing an additional 2d8 radiant damage on a hit. The radiant damage increases by 1d8 whenever you reach a level that is a multiple of 4.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Paladin 69"
+      }
+    }
+  ]
+}

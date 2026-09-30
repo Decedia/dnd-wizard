@@ -561,8 +561,9 @@ for (const { feature: f, where } of features) {
         requireString(e.dice.perLevel.dice, where, `${at}.dice.perLevel.dice`);
         if (e.dice.perLevel.above !== undefined) {
           requireNumber(e.dice.perLevel.above, where, `${at}.dice.perLevel.above`);
-          if (e.dice.perLevel.above < LEVEL_MIN || e.dice.perLevel.above > LEVEL_MAX) {
-            fail(where, "level", `${at}.dice.perLevel.above ${e.dice.perLevel.above} is outside ${LEVEL_MIN}-${LEVEL_MAX}`);
+          // 0 means the scaling equals your character level from 1st up.
+          if (e.dice.perLevel.above < 0 || e.dice.perLevel.above > LEVEL_MAX) {
+            fail(where, "level", `${at}.dice.perLevel.above ${e.dice.perLevel.above} is outside 0-${LEVEL_MAX}`);
           }
         }
       }

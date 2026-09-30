@@ -152,8 +152,18 @@ walk(path.join(ENGINE, "features"));
 // an alias, and so an alias cannot quietly cover a missing entry forever.
 const ALIASES = {
   "class.cleric.divine_intervention_improvement": "a tier on Divine Intervention, at 18th level",
-  "class.half_elf.darkvision": "modelled as race.half_elf.darkvision",
-  "subclass.land.druid_circle_feature": "the subclass choice itself, not a feature",
+  // The old data marks the oath's 7/15/20-level features and the 18th-level aura
+  // improvement as separate class rows. They are the subclass choice and a tier
+  // on the auras, both of which the engine already models.
+  "class.paladin.sacred_oath_feature": "the subclass choice, see Sacred Oath",
+  "class.paladin.aura_improvements": "a tier on Aura of Protection and Aura of Courage at 18th level",
+  "class.paladin.oath_spells": "a tier on Oath Spells",
+  "class.fighter.martial_archetype_feature": "the subclass choice",
+  "class.monk.monastic_tradition_feature": "the subclass choice",
+  "class.ranger.ranger_archetype_feature": "the subclass choice",
+  "class.warlock.otherworldly_patron_feature": "the subclass choice",
+  "class.wizard.arcane_tradition_feature": "the subclass choice",
+  "class.artificer.artificer_specialist_feature": "the subclass choice",
 };
 
 // Old race entries whose name does not map to a registry key, and old trait
@@ -175,7 +185,7 @@ const RACE_ALIASES = {
 // subclass's own features are still checked individually.
 const SUBCLASS_PLACEHOLDER =
   // Either a bare placeholder ("Path feature", "Bard College") or one with a suffix ("Divine Domain feature").
-  /^(path|bard college|college|divine domain|domain|druid circle|circle|martial archetype|archetype|monastic tradition|roguish archetype|sorcerous origin|otherworldly patron|arcane tradition|artificer specialist|constitution|oath|ranger archetype|domain spells|domain)\s*(feature|features)?$/i;
+  /^(path|bard college|college|divine domain|domain|druid circle|circle|martial archetype|archetype|monastic tradition|roguish archetype|sorcerous origin|otherworldly patron|arcane tradition|artificer specialist|constitution|oath|ranger archetype|domain spells|domain|devotion|ancients|watchers|life)\s*(feature|features)?$/i;
 
 /**
  * Traits the old data has that do not exist in 2014 rules, deliberately dropped
