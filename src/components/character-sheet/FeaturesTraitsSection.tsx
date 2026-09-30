@@ -166,7 +166,11 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
         
         const srdSource = (srdFeature as any)?.source ? { type: (srdFeature as any).source.type || existing.source, name: (srdFeature as any).source.name || feature.name, level: (srdFeature as any).source.level ?? derivedSource?.level ?? null } : derivedSource;
 
-        const description = feature.description || "";
+        // Resolve the description from the SRD first. Deriving the fallback summary
+        // from the stored text instead pinned English onto every feature whose SRD
+        // entry has no summary of its own, because the stored text is whatever
+        // language the character was created in.
+        const resolvedDescription = srdFeature?.description ?? existing.description ?? "";
         const actionType = (feature as any).actionType;
         const uses = (feature as any).uses;
         const requirement = (feature as any).requirement;
@@ -191,7 +195,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
         const mechanismStr = mechanismParts.length > 0 ? ` (${mechanismParts.join(", ")})` : "";
 
         const fallbackSummary = (() => {
-          const firstSentence = description.split(/[.\n]/)[0].trim();
+          const firstSentence = resolvedDescription.split(/[.\n]/)[0].trim();
           let s = firstSentence + mechanismStr;
           const words = s.split(/\s+/);
           if (words.length > 30) s = words.slice(0, 30).join(" ");
@@ -200,7 +204,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
 
         return {
           ...feature,
-          description: srdFeature?.description ?? existing.description ?? "",
+          description: resolvedDescription,
           summary: srdFeature?.summary ?? existing.summary ?? (fallbackSummary || null),
           featureType: srdFeature?.featureType ?? existing.featureType ?? null,
           actionType: srdFeature?.actionType ?? existing.actionType ?? null,
