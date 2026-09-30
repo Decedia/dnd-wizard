@@ -323,6 +323,34 @@
         "great_old_one:14"
       ],
       "note": "The thrall created by the Great Old One's Create Thrall. It is the same creature as the one created by the find familiar spell, of the same type, with the same statistics, except that it uses your spell save DC as its spell save DC and its attack bonus is equal to your spell attack modifier, and it is intangible rather than invisible. PHB Warlock Great Old One 14."
+    },
+    {
+      "id": "starry_form_object",
+      "name": "Starry Form",
+      "cr": "0",
+      "creatureType": "astral",
+      "size": "Medium",
+      "ac": "15",
+      "hp": "4d6 temporary hit points",
+      "speed": "30 ft.",
+      "grantedAt": [
+        "circle_of_stars:2"
+      ],
+      "note": "The astral form a Circle of Stars druid assumes with Starry Form. Grants a +2 bonus to spell attack rolls and spell save DC, any spell cast in it ignores half cover, and the form lasts 1 hour. Tasha's Cauldron p. 44."
+    },
+    {
+      "id": "mighty_nature_spirit",
+      "name": "Mighty Nature Spirit",
+      "cr": "equal to your spirit totem's creature",
+      "creatureType": "fey beast",
+      "size": "as summoned",
+      "ac": "14 plus your spellcasting modifier",
+      "hp": "as summoned",
+      "speed": "40 ft.",
+      "grantedAt": [
+        "circle_of_the_shepherd:6"
+      ],
+      "note": "A spirit summoned by Mighty Summoner. It has its own initiative and turns, acts immediately on its turn, and can take reactions. At 14th level the druid may summon a Large or smaller creature from any spirit totem type. PHB Druid Circle of the Shepherd 6."
     }
   ]
 }
