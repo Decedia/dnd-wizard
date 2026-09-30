@@ -1,0 +1,534 @@
+{
+  "features": [
+    {
+      "id": "subclass.college_of_creation.mote_of_potential",
+      "name": "Mote of Potential",
+      "kind": "subclass",
+      "owner": "College of Creation",
+      "unlock": 3,
+      "activation": "bonus_action",
+      "limits": { "per": "day", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "creature", "range": { "value": 60, "unit": "ft" } },
+      "duration": { "value": 1, "unit": "hour" },
+      "endsIf": [],
+      "effects": [
+        { "kind": "skill_bonus", "skills": ["one ability check or saving throw"], "amount": 1, "note": "You can use a bonus action to give a creature within 60 feet a glowing mote of light. The target gains a d6, which it can roll and add to one ability check or saving throw. The mote vanishes when the die is used or at the end of the hour. At 6th level you gain two motes and at 14th level three, each usable with a bonus action, and all are regained daily." }
+      ],
+      "tiers": [
+        { "at": 6, "limits": { "per": "day", "max": 2 } },
+        { "at": 14, "limits": { "per": "day", "max": 3 } }
+      ],
+      "summary": "Bonus action: give a d6 mote for one check or save",
+      "text": "You can use a bonus action to give a creature within 60 feet of you a glowing mote of light. The target gains a d6, which it can roll and add to one ability check or saving throw.",
+      "source": { "book": "PHB", "reference": "PHB Bard College of Creation 3" }
+    },
+    {
+      "id": "subclass.college_of_creation.performance_of_creation",
+      "name": "Performance of Creation",
+      "kind": "subclass",
+      "owner": "College of Creation",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        { "kind": "spell_grant", "cantrip": { "known": true }, "spells": [{ "level": 1, "from": ["bard"] }], "note": "You learn minor illusion, which you can cast at will without a spell slot, and at 6th level you learn two more cantrips from the wizard or druid list, always prepared. At 6th level you also learn two 2nd-level and two 3rd-level bard spells, each castable once without a slot, regained on a long rest." }
+      ],
+      "tiers": [
+        { "at": 6, "effects": [{ "kind": "spell_grant", "cantrip": { "known": true }, "spells": [{ "level": 1, "from": ["bard"] }], "note": "You learn two more cantrips from the wizard or druid list, and two 2nd-level and two 3rd-level bard spells, all castable once each without a spell slot." }] }
+      ],
+      "summary": "Minor illusion at will; two free cantrips at 6th",
+      "text": "You learn minor illusion, which you can cast at will without a spell slot, and you learn two more cantrips at 6th level, choosing from the wizard or druid spell list.",
+      "source": { "book": "PHB", "reference": "PHB Bard College of Creation 3" }
+    },
+    {
+      "id": "subclass.college_of_creation.animating_performance",
+      "name": "Animating Performance",
+      "kind": "subclass",
+      "owner": "College of Creation",
+      "unlock": 6,
+      "activation": "bonus_action",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "object" },
+      "duration": { "value": 1, "unit": "hour" },
+      "endsIf": [],
+      "effects": [
+        { "kind": "special", "note": "You can use a bonus action to bring to life an object that isn't a creature, putting it within 5 feet of you or a creature you can see. Its name is the same as you like, its AC and hit points are equal to your spell save DC and 1d8 plus twice your bard level, it has a +1 bonus to attack rolls, its hit point maximum increases by its level, and it comes back to life the next day." }
+      ],
+      "summary": "Bonus action: animate a non-creature object for an hour",
+      "text": "You can use a bonus action to bring to life an object that isn't a creature, putting it within 5 feet of you or a creature you can see.",
+      "source": { "book": "PHB", "reference": "PHB Bard College of Creation 6" }
+    },
+    {
+      "id": "subclass.college_of_creation.creative_crescendo",
+      "name": "Creative Crescendo",
+      "kind": "subclass",
+      "owner": "College of Creation",
+      "unlock": 14,
+      "activation": "action",
+      "limits": { "per": "day", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "self" },
+      "duration": { "value": 1, "unit": "minute" },
+      "endsIf": [],
+      "effects": [
+        { "kind": "special", "note": "You can use a 6th-level bard's inspire transformation to control the ebb and flow of magic. You can cast one of your prepared bard spells without a spell slot, and if the spell creates an object, it does so at a range of 300 feet, and if it is a Summon Creature spell it doesn't require concentration." }
+      ],
+      "summary": "Once a day: any bard spell without a slot, at 300 ft",
+      "text": "You can use a 6th-level bard's inspire transformation to control the ebb and flow of magic. You can cast one of your prepared bard spells without a spell slot.",
+      "source": { "book": "PHB", "reference": "PHB Bard College of Creation 14" }
+    },
+    {
+      "id": "subclass.college_of_eloquence.silver_tongue",
+      "name": "Silver Tongue",
+      "kind": "subclass",
+      "owner": "College of Eloquence",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        { "kind": "skill", "skills": ["Persuasion"], "proficiency": "proficient" },
+        { "kind": "skill_bonus", "skills": ["Persuasion"], "amount": 1, "note": "You gain proficiency in Persuasion and add 1d6 to every Charisma (Persuasion) check. At 6th level this also covers Deception and Charisma (Intimidation), and at 14th level History and Intimidation." }
+      ],
+      "tiers": [
+        { "at": 6, "summary": "The 1d6 also covers Deception and Intimidation" },
+        { "at": 14, "summary": "The 1d6 also covers History" }
+      ],
+      "summary": "+1d6 to Persuasion checks, widening at higher levels",
+      "text": "You have learned to speak with more persuasive power. You gain proficiency in the Persuasion skill, and whenever you make a Charisma (Persuasion) check, you can add 1d6 to the roll.",
+      "source": { "book": "PHB", "reference": "PHB Bard College of Eloquence 3" }
+    },
+    {
+      "id": "subclass.college_of_eloquence.unsettling_words",
+      "name": "Unsettling Words",
+      "kind": "subclass",
+      "owner": "College of Eloquence",
+      "unlock": 3,
+      "activation": "reaction",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": { "event": "save_failed", "note": "When a creature you can target with a spell that you can see within 60 feet makes a failed saving throw." },
+      "targeting": { "scope": "enemy", "range": { "value": 60, "unit": "ft" } },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "special", "note": "You have learned to weave fear into the words you speak. When a creature within 60 feet that you can see that you can target with a spell makes a failed saving throw, you can use your reaction to force a Wisdom saving throw, with disadvantage if you already used your reaction this turn. You regain the use when you finish a long rest." }
+      ],
+      "summary": "Reaction: a failed save becomes a fear save at disadvantage",
+      "text": "When a creature within 60 feet of you that you can see that you can target with a spell makes a failed saving throw, you can use your reaction to force a Wisdom saving throw.",
+      "source": { "book": "PHB", "reference": "PHB Bard College of Eloquence 3" }
+    },
+    {
+      "id": "subclass.college_of_eloquence.unfailing_inspiration",
+      "name": "Unfailing Inspiration",
+      "kind": "subclass",
+      "owner": "College of Eloquence",
+      "unlock": 6,
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "Your Bardic Inspiration is more potent. When you finish a short or long rest, you expend any number of Bardic Inspiration dice, each of which creates a pool space that lasts until the end of your next turn. A creature expending that pool space rolls the die and adds it to a d20 test of their choice. Whenever a creature expends a pool space, they regain 1d6." }
+      ],
+      "summary": "Expend spent dice for free, as many times as you like",
+      "text": "Your Bardic Inspiration is more potent. Whenever a creature expends a Bardic Inspiration die, they regain 1d6.",
+      "source": { "book": "PHB", "reference": "PHB Bard College of Eloquence 6" }
+    },
+    {
+      "id": "subclass.college_of_eloquence.universal_speech",
+      "name": "Universal Speech",
+      "kind": "subclass",
+      "owner": "College of Eloquence",
+      "unlock": 6,
+      "activation": "passive",
+      "effects": [
+        { "kind": "language", "languages": ["any three of your choice"] },
+        { "kind": "special", "note": "You gain the ability to understand any spoken language, and creatures always understand your spoken words. You can also imbue a creature you touch with this ability, and it lasts 1 day." }
+      ],
+      "summary": "Understand any spoken language; others understand you",
+      "text": "You gain the ability to understand any spoken language, and creatures always understand your spoken words.",
+      "source": { "book": "PHB", "reference": "PHB Bard College of Eloquence 6" }
+    },
+    {
+      "id": "subclass.college_of_eloquence.infectious_inspiration",
+      "name": "Infectious Inspiration",
+      "kind": "subclass",
+      "owner": "College of Eloquence",
+      "unlock": 14,
+      "activation": "passive",
+      "effects": [
+        { "kind": "extra_attacks", "count": 0, "note": "When you give a creature a Bardic Inspiration die, you can expend a spell slot to give it additional dice equal to the level of that slot, it regains one unused Bardic Inspiration die on a turn on which it expends the die you gave it, and at 18th level it gains a 1d8 die. You regain expended slots on a long rest." }
+      ],
+      "summary": "Spend slots to hand out more dice; targets recover a die",
+      "text": "When you give a creature a Bardic Inspiration die, you can expend a spell slot to give it additional dice equal to the level of that slot.",
+      "source": { "book": "PHB", "reference": "PHB Bard College of Eloquence 14" }
+    },
+    {
+      "id": "subclass.glamour.mantle_of_inspiration",
+      "name": "Mantle of Inspiration",
+      "kind": "subclass",
+      "owner": "College of Glamour",
+      "unlock": 3,
+      "activation": "bonus_action",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "creature", "range": { "value": 60, "unit": "ft" } },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "special", "note": "You can use a bonus action to inspire one willing creature within 60 feet, which then gains a Bardic Inspiration die that it can use before the end of your next turn, and it regains one unused Bardic Inspiration die whenever it expends one. Your dice are d8, and a creature can use only one per turn." }
+      ],
+      "summary": "Bonus action: a d8 that refunds itself when used",
+      "text": "You can use a bonus action to inspire one willing creature within 60 feet of you, which then gains a Bardic Inspiration die.",
+      "source": { "book": "PHB", "reference": "PHB Bard College of Glamour 3" }
+    },
+    {
+      "id": "subclass.glamour.enthralling_performance",
+      "name": "Enthralling Performance",
+      "kind": "subclass",
+      "owner": "College of Glamour",
+      "unlock": 6,
+      "activation": "action",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "creatures_in_area", "range": { "value": 60, "unit": "ft" }, "shape": "sphere", "count": 12 },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "condition", "action": "apply", "conditions": ["charmed"], "note": "You can use your action to cause a creature within 60 feet that can see and hear you to be charmed by you, with disadvantage on its save. On a failed save it is charmed until the end of your next turn, and at 6th level you also get a +10 bonus to the save DC. At 14th level a creature can use its reaction to send you a message agreeing to anything, which ends the effect immediately." }
+      ],
+      "summary": "Action: charm creatures who can see and hear you",
+      "text": "You can use your action to cause a creature within 60 feet that can see and hear you to be charmed by you.",
+      "source": { "book": "PHB", "reference": "PHB Bard College of Glamour 6" }
+    },
+    {
+      "id": "subclass.glamour.mantle_of_majesty",
+      "name": "Mantle of Majesty",
+      "kind": "subclass",
+      "owner": "College of Glamour",
+      "unlock": 14,
+      "activation": "bonus_action",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "self" },
+      "duration": { "value": 1, "unit": "minute" },
+      "endsIf": [],
+      "effects": [
+        { "kind": "ac_bonus", "amount": 2, "duration": "while_active" },
+        { "kind": "stat_modifier", "stat": "cha", "amount": 2, "duration": "while_active" },
+        { "kind": "special", "note": "You can use a bonus action to assume a regal presence for 1 minute, gaining a +2 bonus to Charisma checks and a +2 bonus to your AC, and any creature who targets you with an attack roll or a saving throw has disadvantage on the roll unless you made a Charisma (Intimidation) check against them during this turn." }
+      ],
+      "summary": "Bonus action: +2 AC and +2 Cha for a minute",
+      "text": "You can use a bonus action to assume a regal presence for 1 minute, gaining a +2 bonus to Charisma checks and a +2 bonus to your AC.",
+      "source": { "book": "PHB", "reference": "PHB Bard College of Glamour 14" }
+    },
+    {
+      "id": "subclass.college_of_spirits.spiritual_focus",
+      "name": "Spiritual Focus",
+      "kind": "subclass",
+      "owner": "College of Spirits",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        { "kind": "spell_grant", "cantrip": { "known": true }, "spells": [{ "level": 1, "from": ["cleric"] }], "note": "You have learned a myriad of spirit tales: you gain the cantrip and two 1st-level spells from the cleric list, always prepared, and at 2nd, 4th, 6th, 8th and 10th level you gain another cleric cantrip or spell of that level." }
+      ],
+      "tiers": [
+        { "at": 4 },
+        { "at": 6 },
+        { "at": 8 },
+        { "at": 10 }
+      ],
+      "summary": "Learn a cleric cantrip and two 1st-level spells",
+      "text": "You have learned a myriad of spirit tales: you gain the cantrip and two 1st-level spells from the cleric list, which are always prepared.",
+      "source": { "book": "PHB", "reference": "PHB Bard College of Spirits 3" }
+    },
+    {
+      "id": "subclass.college_of_spirits.tales_from_beyond",
+      "name": "Tales from Beyond",
+      "kind": "subclass",
+      "owner": "College of Spirits",
+      "unlock": 3,
+      "activation": "bonus_action",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "self" },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "spell_grant", "cantrip": { "known": true }, "spells": [{ "level": 1, "from": ["cleric"] }], "note": "You can cast the healing word or mass healing word spell without a spell slot, and at 6th level you can cast spiritual weapon without a spell slot. Neither casting requires concentration, and both take a bonus action." }
+      ],
+      "tiers": [
+        { "at": 6, "limits": { "per": "rest", "max": 1 }, "effects": [{ "kind": "spell_grant", "cantrip": { "known": true }, "spells": [{ "level": 1, "from": ["cleric"] }], "note": "You can cast healing word or mass healing word without a slot, and at 6th level spiritual weapon without a slot too, as a bonus action, with no concentration." }] }
+      ],
+      "summary": "Bonus action: healing word, or spiritual weapon at 6th, no slot",
+      "text": "You can cast the healing word or mass healing word spell without a spell slot, and at 6th level you can cast spiritual weapon without a spell slot. Neither casting requires concentration.",
+      "source": { "book": "PHB", "reference": "PHB Bard College of Spirits 3" }
+    },
+    {
+      "id": "subclass.college_of_spirits.spiritual_focus_improved",
+      "name": "Spiritual Focus (Improved)",
+      "kind": "subclass",
+      "owner": "College of Spirits",
+      "unlock": 6,
+      "activation": "passive",
+      "effects": [
+        { "kind": "spell_grant", "cantrip": { "known": true }, "spells": [{ "level": 1, "from": ["cleric"] }], "note": "At 6th, 8th and 10th level you gain one more cleric cantrip or spell of the level you gained for Spiritual Focus, and at 14th level one more of a level you can already cast." }
+      ],
+      "summary": "Each level grants another cleric cantrip or spell",
+      "text": "At 6th, 8th, and 10th level, you gain one more cleric cantrip or spell of the level you gained for Spiritual Focus.",
+      "source": { "book": "PHB", "reference": "PHB Bard College of Spirits 6" }
+    },
+    {
+      "id": "subclass.college_of_spirits.spirit_session",
+      "name": "Spirit Session",
+      "kind": "subclass",
+      "owner": "College of Spirits",
+      "unlock": 6,
+      "activation": "action",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "self" },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "spell_grant", "cantrip": { "known": true }, "spells": [{ "level": 3, "from": ["cleric"] }], "note": "You have learned to call upon spirits to protect you. Once per long rest you can cast either spirit shroud or spirit guardians without a spell slot, choosing one each time, and neither requires concentration." }
+      ],
+      "summary": "Once a long rest: spirit shroud or spirit guardians, no slot",
+      "text": "You have learned to call upon spirits to protect you. Once per long rest you can cast either spirit shroud or spirit guardians without a spell slot, choosing one each time, and neither requires concentration.",
+      "source": { "book": "PHB", "reference": "PHB Bard College of Spirits 6" }
+    },
+    {
+      "id": "subclass.college_of_spirits.mystical_connection",
+      "name": "Mystical Connection",
+      "kind": "subclass",
+      "owner": "College of Spirits",
+      "unlock": 14,
+      "activation": "passive",
+      "effects": [
+        { "kind": "spell_modifier", "changes": ["level", "time"], "atLeastLevel": 0, "note": "Your spirit spells can be cast at a higher level than normal, so a cantrip counts as a 1st-level spell, and each other spirit spell counts as one level higher. You gain one spirit theme, each of which allows you to swap one cantrip or spell for another." }
+      ],
+      "summary": "Upcast spirit spells; cantrips count as 1st level",
+      "text": "Your spirit spells can be cast at a higher level than normal: a cantrip counts as a 1st-level spell, and each other spirit spell counts as a level higher.",
+      "source": { "book": "PHB", "reference": "PHB Bard College of Spirits 14" }
+    },
+    {
+      "id": "subclass.swords.bonus_proficiencies",
+      "name": "Bonus Proficiencies",
+      "kind": "subclass",
+      "owner": "College of Swords",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        { "kind": "tool", "tools": ["scimitar", "rapier", "longsword", "shortsword"], "proficiency": "proficient" },
+        { "kind": "special", "note": "When you join the College of Swords, you gain proficiency with the scimitar, rapier, longsword and shortsword." }
+      ],
+      "summary": "Proficiency with four swords",
+      "text": "When you join the College of Swords, you gain proficiency with the scimitar, rapier, longsword, and shortsword.",
+      "source": { "book": "PHB", "reference": "PHB Bard College of Swords 3" }
+    },
+    {
+      "id": "subclass.swords.fighting_style",
+      "name": "Fighting Style: Dueling",
+      "kind": "subclass",
+      "owner": "College of Swords",
+      "unlock": 3,
+      "activation": "passive",
+      "gates": ["wielding_two_weapons"],
+      "effects": [
+        { "kind": "stat_modifier", "stat": "damage_roll", "amount": 2, "duration": "while_active" },
+        { "kind": "skill", "skills": ["Persuasion"], "proficiency": "proficient" },
+        { "kind": "special", "note": "You adopt the Dueling fighting style: when wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon and proficiency with Persuasion." }
+      ],
+      "summary": "Dueling fighting style: +2 damage one-handed, Persuasion",
+      "text": "You adopt the Dueling fighting style.",
+      "source": { "book": "PHB", "reference": "PHB Bard College of Swords 3" }
+    },
+    {
+      "id": "subclass.swords.blade_flourish",
+      "name": "Blade Flourish",
+      "kind": "subclass",
+      "owner": "College of Swords",
+      "unlock": 3,
+      "activation": "bonus_action",
+      "limits": { "per": "turn", "max": 1 },
+      "trigger": { "event": "attack_hit", "note": "When you hit with a melee weapon attack." },
+      "targeting": { "scope": "self" },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "special", "note": "You have learned to employ special fighting techniques. When you hit with a melee weapon attack, you can use a bonus action to use one Blade Flourish of your choice. The Flourish you use depends on whether you score a hit, miss, or critical hit, and at 6th level you gain two more flourishes, and at 15th level one more plus two per turn." }
+      ],
+      "tiers": [
+        { "at": 6, "summary": "Two more flourishes" },
+        { "at": 15, "summary": "One more flourish, and two per turn" }
+      ],
+      "summary": "Bonus action on a melee hit: a Blade Flourish",
+      "text": "You have learned to employ special fighting techniques. When you hit with a melee weapon attack, you can use a bonus action to use one Blade Flourish of your choice.",
+      "source": { "book": "PHB", "reference": "PHB Bard College of Swords 3" }
+    },
+    {
+      "id": "subclass.swords.extra_attack",
+      "name": "Extra Attack",
+      "kind": "subclass",
+      "owner": "College of Swords",
+      "unlock": 6,
+      "activation": "passive",
+      "effects": [
+        { "kind": "extra_attacks", "count": 1, "note": "You can attack twice, instead of once, whenever you take the Attack action on your turn." }
+      ],
+      "summary": "Two attacks with the Attack action",
+      "text": "You can attack twice, instead of once, whenever you take the Attack action on your turn.",
+      "source": { "book": "PHB", "reference": "PHB Bard College of Swords 6" }
+    },
+    {
+      "id": "subclass.swords.master_flourish",
+      "name": "Master Flourish",
+      "kind": "subclass",
+      "owner": "College of Swords",
+      "unlock": 14,
+      "activation": "passive",
+      "effects": [
+        { "kind": "extra_attacks", "count": 0, "note": "You have learned fighting techniques that work only on a critical hit, and one that works on a miss as well. You can use two Blade Flourishes on a hit, and on a miss you can use the Disarming Flourish." }
+      ],
+      "summary": "Crit-only flourishes, and two flourishes per hit",
+      "text": "You have learned fighting techniques that work only on a critical hit and one that works on a miss as well. When you use two Blade Flourishes, you can use two on a hit.",
+      "source": { "book": "PHB", "reference": "PHB Bard College of Swords 14" }
+    },
+    {
+      "id": "subclass.lore.bonus_proficiencies",
+      "name": "Bonus Proficiencies",
+      "kind": "subclass",
+      "owner": "Lore",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        { "kind": "tool", "tools": ["any three musical instruments of your choice"], "proficiency": "proficient" },
+        { "kind": "special", "note": "When you join the College of Lore, you gain proficiency with three musical instruments of your choice." }
+      ],
+      "summary": "Proficiency with three musical instruments",
+      "text": "When you join the College of Lore, you gain proficiency with three musical instruments of your choice.",
+      "source": { "book": "PHB", "reference": "PHB Bard Lore 3" }
+    },
+    {
+      "id": "subclass.lore.cutting_words",
+      "name": "Cutting Words",
+      "kind": "subclass",
+      "owner": "Lore",
+      "unlock": 3,
+      "activation": "bonus_action",
+      "limits": { "per": "turn", "max": 1 },
+      "trigger": { "event": "attack_hit", "note": "When a creature you can target with a spell makes an attack roll or ability check." },
+      "targeting": { "scope": "enemy", "range": { "value": 60, "unit": "ft" } },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "damage", "dice": { "dice": "1d8", "bonusFrom": "cha" }, "damageType": "psychic", "resolution": { "mode": "save", "ability": "con", "onSuccess": "none", "onFailure": "full" } },
+        { "kind": "special", "note": "You have learned to use your wit to make a cutting remark. When a creature within 60 feet that you can see that you can target with a spell makes an attack roll or ability check, you can use a bonus action to interject, forcing it to make a Constitution saving throw or take 1d8 psychic damage and lose the trigger." }
+      ],
+      "summary": "Bonus action: 1d8 psychic to cancel an attack or check",
+      "text": "When a creature within 60 feet of you that you can see that you can target with a spell makes an attack roll or ability check, you can use a bonus action to interject.",
+      "source": { "book": "PHB", "reference": "PHB Bard Lore 3" }
+    },
+    {
+      "id": "subclass.lore.additional_magical_secrets",
+      "name": "Additional Magical Secrets",
+      "kind": "subclass",
+      "owner": "Lore",
+      "unlock": 6,
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "The magical knowledge you gain from the College of Lore makes you a wellspring of magic. Your prepared spells can now be drawn from the cleric, druid, and wizard lists, and at 14th level you can also cast two more per long rest with Bardic Inspiration." }
+      ],
+      "tiers": [
+        { "at": 14, "effects": [{ "kind": "special", "note": "You can cast two additional spells of 1st level or higher using Bardic Inspiration during a rest." }] }
+      ],
+      "summary": "Prepared spells from cleric, druid and wizard lists too",
+      "text": "Your prepared spells can now be from the spell lists of the cleric, druid, and wizard.",
+      "source": { "book": "PHB", "reference": "PHB Bard Lore 6" }
+    },
+    {
+      "id": "subclass.lore.peerless_skill",
+      "name": "Peerless Skill",
+      "kind": "subclass",
+      "owner": "Lore",
+      "unlock": 14,
+      "activation": "passive",
+      "effects": [
+        { "kind": "extra_attacks", "count": 0, "note": "When you fail an ability check, you can expend a spell slot to reroll the d20, and you must use the new roll. You can also gain a +1 bonus to one ability check you make each turn, chosen as a bonus action." }
+      ],
+      "summary": "Spend a slot to reroll a failed check; +1 to one check per turn",
+      "text": "When you fail an ability check, you can expend a spell slot to reroll the d20. You must use the new roll.",
+      "source": { "book": "PHB", "reference": "PHB Bard Lore 14" }
+    },
+    {
+      "id": "subclass.valor.bonus_proficiencies",
+      "name": "Bonus Proficiencies",
+      "kind": "subclass",
+      "owner": "Valor",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        { "kind": "tool", "tools": ["any light armor", "shields", "longsword", "shortsword"], "proficiency": "proficient" },
+        { "kind": "special", "note": "When you join the College of Valor, you gain proficiency with any light armor and shields, and with the longsword and the shortsword." }
+      ],
+      "summary": "Proficiency with light armor, shields, longsword and shortsword",
+      "text": "When you join the College of Valor, you gain proficiency with any light armor and shields, and with the longsword and the shortsword.",
+      "source": { "book": "PHB", "reference": "PHB Bard Valor 3" }
+    },
+    {
+      "id": "subclass.valor.combat_inspiration",
+      "name": "Combat Inspiration",
+      "kind": "subclass",
+      "owner": "Valor",
+      "unlock": 3,
+      "activation": "bonus_action",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "creature", "range": { "value": 60, "unit": "ft" } },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "skill_bonus", "skills": ["one attack roll, ability check, or saving throw"], "amount": 0, "note": "You have a well-earned reputation as a bastion of courage, and your Bardic Inspiration dice are d8. You can inspire a creature within 60 feet, which gains a die for one attack roll, ability check, or saving throw, and that creature gains additional uses at 6th and 14th level." }
+      ],
+      "tiers": [
+        { "at": 6, "limits": { "per": "rest", "max": 1 } },
+        { "at": 14, "limits": { "per": "rest", "max": 1 } }
+      ],
+      "summary": "Bonus action: a d8 for an ally's next roll",
+      "text": "Your Bardic Inspiration dice are d8, and you can inspire a creature within 60 feet to use a die on an attack roll, ability check, or saving throw.",
+      "source": { "book": "PHB", "reference": "PHB Bard Valor 3" }
+    },
+    {
+      "id": "subclass.valor.extra_attack",
+      "name": "Extra Attack",
+      "kind": "subclass",
+      "owner": "Valor",
+      "unlock": 6,
+      "activation": "passive",
+      "effects": [
+        { "kind": "extra_attacks", "count": 1, "note": "You can attack twice, instead of once, whenever you take the Attack action on your turn." }
+      ],
+      "summary": "Two attacks with the Attack action",
+      "text": "You can attack twice, instead of once, whenever you take the Attack action on your turn.",
+      "source": { "book": "PHB", "reference": "PHB Bard Valor 6" }
+    },
+    {
+      "id": "subclass.valor.battle_magic",
+      "name": "Battle Magic",
+      "kind": "subclass",
+      "owner": "Valor",
+      "unlock": 14,
+      "activation": "bonus_action",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "creature", "range": { "value": 5, "unit": "ft" } },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "extra_attacks", "count": 1, "note": "Knowing a single word of battle magic, you can use a bonus action on your turn to make a melee weapon attack against a creature within 5 feet of you. At 18th level you can instead cast one of your prepared bard spells without a spell slot, once per long rest." }
+      ],
+      "tiers": [
+        { "at": 18, "effects": [{ "kind": "extra_attacks", "count": 0, "note": "You can instead cast one of your prepared bard spells without a spell slot as a bonus action, once per long rest." }] }
+      ],
+      "summary": "Bonus action: an extra melee attack, or a free spell at 18",
+      "text": "Knowing a single word of battle magic, you can use a bonus action on your turn to make a melee weapon attack against a creature within 5 feet of you.",
+      "source": { "book": "PHB", "reference": "PHB Bard Valor 14" }
+    }
+  ]
+}
