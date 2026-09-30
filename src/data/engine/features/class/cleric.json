@@ -1,0 +1,27 @@
+{
+  "features": [
+    {
+      "id": "cleric.channel_divinity_turn_undead",
+      "name": "Channel Divinity: Turn Undead",
+      "kind": "class",
+      "owner": "Cleric",
+      "unlock": 2,
+      "activation": "action",
+      "cost": [{ "resource": "channel_divinity", "amount": 1 }],
+      "limits": null,
+      "trigger": null,
+      "targeting": { "scope": "creature", "range": { "value": 60, "unit": "ft" }, "description": "An undead creature" },
+      "duration": { "value": 1, "unit": "minute" },
+      "endsIf": ["you_tell_it_to", "completes_a_turn_without_seeing_you"],
+      "gates": [],
+      "effects": [
+        { "kind": "condition", "action": "apply", "conditions": ["frightened"], "duration": { "value": 1, "unit": "minute" } },
+        { "kind": "condition", "action": "apply", "conditions": ["paralyzed"], "duration": { "value": 1, "unit": "minute" } },
+        { "kind": "special", "note": "The target makes a Charisma saving throw, is turned immediately, and stops concentrating on any spell it is concentrating on. It can repeat the save at the end of each of its turns, ending the effect on a success." }
+      ],
+      "summary": "Turn an undead with a Charisma save, frightening and paralyzing it",
+      "text": "You can use your channel divinity to turn undead. On your turn, you can expend your channel divinity to force a target creature within 60 feet of you to make a Charisma saving throw. If the creature fails the save, it turns for 1 minute or until you tell it to do so, and is frightened. If it succeeds, the creature isn't affected. A creature targeted by this feature turns immediately and stops concentrating on any spell it's concentrating on. Any creature that completes a turn without being commanded by you or seeing you is cured of the effect.",
+      "source": { "book": "PHB", "page": 193, "reference": "PHB Cleric 24" }
+    }
+  ]
+}

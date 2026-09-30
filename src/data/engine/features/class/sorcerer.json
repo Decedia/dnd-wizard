@@ -1,0 +1,34 @@
+{
+  "features": [
+    {
+      "id": "sorcerer.metamagic",
+      "name": "Metamagic",
+      "kind": "class",
+      "owner": "Sorcerer",
+      "unlock": 3,
+      "activation": "passive",
+      "limits": null,
+      "trigger": null,
+      "targeting": null,
+      "duration": null,
+      "endsIf": [],
+      "gates": [],
+      "effects": [
+        {
+          "kind": "spell_modifier",
+          "changes": ["time", "range", "duration", "concentration", "level", "damage", "target"],
+          "atLeastLevel": 1,
+          "cost": { "resource": "sorcery_points", "amount": 1 },
+          "note": "Replace any spell you cast with one of the Metamagic options, spending sorcery points equal to that option's cost. Sorcery points are not refunded if the spell fails, and you must be able to see the spell's target to use Quickened, Heightened, Twins, Distant or Seeking."
+        },
+        { "kind": "special", "note": "Options at 1 sorcery point: Careful, Distant, Empowered, Extended, Seeking, Subtle, Transmuted, Twinned. At 2: Heightened, Quickened. At 3 and up, the cost of Quickened and Heightened drops by 1 for each spell level above 2." }
+      ],
+      "tiers": [
+        { "at": 10, "effects": [{ "kind": "spell_modifier", "changes": ["time", "range", "duration", "concentration", "level", "damage", "target"], "atLeastLevel": 1, "cost": { "resource": "sorcery_points", "amount": 1 }, "note": "Replace any spell you cast with one of the Metamagic options, spending sorcery points equal to that option's cost. Sorcery points are not refunded if the spell fails, and you must be able to see the spell's target to use Quickened, Heightened, Twins, Distant or Seeking." }, { "kind": "special", "note": "Metamagic options costing 1 or 2 sorcery points now also apply to spells you cast with a slot of 3rd level or higher." }] }
+      ],
+      "summary": "Modify a spell as you cast it by spending sorcery points",
+      "text": "You have learned to magically manipulate your spells. You can replace any spell you cast with one of the following options from the Metamagic table, spending sorcery points equal to the cost of the option. If you cast a spell using a slot equal to or higher than the spell's level, the sorcery points are not refunded even if the spell fails.",
+      "source": { "book": "PHB", "page": 107, "reference": "PHB Sorcerer 30" }
+    }
+  ]
+}

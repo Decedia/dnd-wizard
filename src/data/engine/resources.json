@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "ruleset": "2014",
+  "resources": [
+    {
+      "id": "channel_divinity",
+      "name": "Channel Divinity",
+      "kind": "pools",
+      "recharge": "short_rest",
+      "max": 1,
+      "book": "PHB",
+      "note": "Cleric 2, Paladin 3. A shared pool: Turn Undead, Turn Undead (Paladin) and Preserve Life all spend it. Paladin uses a spell slot instead, so the cost entry is a cost alternative rather than this pool."
+    },
+    {
+      "id": "ki",
+      "name": "Ki",
+      "kind": "pools",
+      "recharge": "short_rest",
+      "maxByLevel": { "2": 2, "6": 3, "10": 4, "15": 5, "20": 6 },
+      "book": "PHB",
+      "note": "Monk 2. A shared pool spent by Flurry of Blows, Patient Defense, Step of the Wind and Stunning Strike."
+    },
+    {
+      "id": "sorcery_points",
+      "name": "Sorcery Points",
+      "kind": "pools",
+      "recharge": "never",
+      "maxByLevel": { "2": 2, "6": 3, "10": 4, "14": 5, "17": 6, "20": 7 },
+      "book": "PHB",
+      "note": "Sorcerer 2. Gained by casting spells, spent on Metamagic and Flexible Casting. Accumulates rather than refilling on a rest."
+    },
+    {
+      "id": "bardic_inspiration",
+      "name": "Bardic Inspiration",
+      "kind": "pools",
+      "recharge": "long_rest",
+      "maxByLevel": { "2": 0, "5": 1, "10": 2, "15": 3, "17": 4 },
+      "book": "PHB",
+      "note": "Bard 2. Recharges dice on a long rest rather than restoring a flat count; the die size is a feature tier, not a resource field."
+    },
+    {
+      "id": "wild_shape_uses",
+      "name": "Wild Shape Uses",
+      "kind": "pools",
+      "recharge": "short_rest",
+      "maxByLevel": { "2": 1, "6": 2, "11": 3, "17": 4 },
+      "book": "PHB",
+      "note": "Druid 2. Limits Wild Shape itself, which is why Wild Shape does not also carry a limit."
+    },
+    {
+      "id": "lay_on_hands",
+      "name": "Lay on Hands Pools",
+      "kind": "pools",
+      "recharge": "long_rest",
+      "maxByLevel": { "1": 5, "5": 25, "9": 40, "13": 50, "17": 65 },
+      "book": "PHB",
+      "note": "Paladin 1. A pool of hit points, not charges, so the amount a feature spends is chosen by the player."
+    },
+    {
+      "id": "hit_dice",
+      "name": "Hit Dice",
+      "kind": "hit_dice",
+      "recharge": "short_rest",
+      "book": "PHB",
+      "note": "One per character level. Spent by Short Rest recovery and regained on a long rest."
+    },
+    {
+      "id": "spell_slots",
+      "name": "Spell Slots",
+      "kind": "slots",
+      "recharge": "long_rest",
+      "book": "PHB",
+      "note": "Tracked per spell level on the character sheet. Created by Arcane Recovery and by Sorcery Point conversion."
+    },
+    {
+      "id": "expertise_dice",
+      "name": "Superiority Dice",
+      "kind": "pools",
+      "recharge": "long_rest",
+      "maxByLevel": { "3": 4, "7": 6, "11": 8, "15": 10, "19": 12 },
+      "book": "PHB",
+      "note": "Ranger 3. Recharges on a long rest."
+    },
+    {
+      "id": "arcane_pool",
+      "name": "Arcane Pool",
+      "kind": "pools",
+      "recharge": "long_rest",
+      "max": 10,
+      "book": "TCE",
+      "note": "Alchemist Artificer 3."
+    }
+  ]
+}

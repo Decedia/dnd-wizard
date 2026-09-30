@@ -1,0 +1,25 @@
+{
+  "features": [
+    {
+      "id": "fighter.action_surge",
+      "name": "Action Surge",
+      "kind": "class",
+      "owner": "Fighter",
+      "unlock": 2,
+      "activation": "action",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "self" },
+      "duration": null,
+      "endsIf": [],
+      "gates": [],
+      "effects": [
+        { "kind": "extra_action", "count": 1, "note": "The extra action can be used only to take the Attack (one weapon attack only), Dash, Disengage, Hide or Use an Object action." }
+      ],
+      "tiers": [{ "at": 11, "limits": { "per": "rest", "max": 2 } }],
+      "summary": "Take one additional action on your turn",
+      "text": "On your turn, you can take one additional action. You start with 1 use, and you regain it at the end of a short or long rest. At 11th level, you can take an additional action twice, regaining 2 uses at the end of a short or long rest. You can use this feature only once per turn.",
+      "source": { "book": "PHB", "page": 72, "reference": "PHB Fighter 16" }
+    }
+  ]
+}

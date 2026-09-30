@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "ruleset": "2014",
+  "note": "Creature definitions referenced by a transform or a summon. A shape-shifting feature references a form slot by id; a summon references a companion by id. The individual monster and beast stat blocks live in creatures.json and are authored in a later phase. A form slot only needs the CR cap, because a caster chooses any creature at or below it.",
+  "forms": [
+    {
+      "id": "cr_1_4_or_below",
+      "name": "Any Beast CR 1/4 or Lower",
+      "cr": "1/4",
+      "grantedAt": ["druid:2"],
+      "note": "Must have no flying or swimming speed. PHB Wild Shape, Druid level 2."
+    },
+    {
+      "id": "cr_1_2_or_below",
+      "name": "Any Beast CR 1/2 or Lower",
+      "cr": "1/2",
+      "grantedAt": ["druid:4"],
+      "note": "Must have no flying speed. PHB Wild Shape, Druid level 4."
+    },
+    {
+      "id": "cr_1_or_below",
+      "name": "Any Beast CR 1 or Lower",
+      "cr": "1",
+      "grantedAt": ["druid:8"],
+      "note": "PHB Wild Shape, Druid level 8."
+    },
+    {
+      "id": "cr_2_or_below",
+      "name": "Any Beast CR 2 or Lower",
+      "cr": "2",
+      "grantedAt": ["druid:11"],
+      "note": "PHB Wild Shape, Druid level 11."
+    },
+    {
+      "id": "cr_4_or_below",
+      "name": "Any Beast CR 4 or Lower",
+      "cr": "4",
+      "grantedAt": ["druid:17"],
+      "note": "PHB Wild Shape, Druid level 17."
+    },
+    {
+      "id": "wildfire_spirit_ally",
+      "name": "Wildfire Spirit",
+      "cr": "2 + druid level / 4",
+      "size": "the size of your Medium form",
+      "creatureType": "elemental",
+      "ac": 14,
+      "hp": "22 + 5 per druid level",
+      "speed": "40 ft",
+      "abilities": { "str": 10, "dex": 14, "con": 10, "int": 10, "wis": 10, "cha": 11 },
+      "damageResistances": ["fire"],
+      "damageImmunities": ["fire"],
+      "conditionImmunities": ["exhaustion", "grappled", "paralyzed", "petrified", "prone", "restrained", "unconscious"],
+      "skills": ["Perception"],
+      "grantedAt": ["druid:6"],
+      "note": "Invisible and represented by a spectral flame. Takes actions on its own turn, and can use its reaction when you cast a spell. If the druid is level 4 or lower the spirit is CR 0 and a Small fey spirit. PHB Druid Circle of Land 14."
+    }
+  ]
+}

@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
+    "engine:validate": "node scripts/validate-engine-data.mjs",
     "srd:extract": "node scripts/extract-srd-strings.mjs",
     "srd:build": "node scripts/build-srd-locale.mjs",
     "srd:enhance:id": "node scripts/enhance-indonesian.mjs",

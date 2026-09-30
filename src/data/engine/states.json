@@ -1,0 +1,79 @@
+{
+  "states": [
+    {
+      "id": "raging",
+      "name": "Raging",
+      "note": "Set by Barbarian Rage. Gates the rage damage bonus and advantage."
+    },
+    {
+      "id": "unarmored",
+      "name": "Unarmored",
+      "note": "Wearing no armor and no shield. Gates Unarmored Defense and Monk speed."
+    },
+    {
+      "id": "two_weapons",
+      "name": "Two Weapons",
+      "note": "Attacking or fighting with two separate weapons in the Attack action."
+    },
+    {
+      "id": "concentrating",
+      "name": "Concentrating",
+      "note": "Maintaining a concentration effect."
+    },
+    {
+      "id": "hidden",
+      "name": "Hidden",
+      "note": "Unseen by enemies. Gates Vanish and similar stealth features."
+    },
+    {
+      "id": "mounted",
+      "name": "Mounted",
+      "note": "On a mount."
+    },
+    {
+      "id": "half_cover",
+      "name": "Half Cover",
+      "note": "Already tracked by Character.activeStates."
+    },
+    {
+      "id": "three_quarters_cover",
+      "name": "Three-Quarters Cover",
+      "note": "Already tracked by Character.activeStates."
+    },
+    {
+      "id": "total_cover",
+      "name": "Total Cover",
+      "note": "Already tracked by Character.activeStates."
+    },
+    {
+      "id": "difficulty_terrain",
+      "name": "Difficult Terrain",
+      "note": "Already tracked by Character.activeStates."
+    },
+    {
+      "id": "shapeshifted",
+      "name": "Shapeshifted",
+      "note": "Currently in an alternate form, e.g. via Wild Shape."
+    },
+    {
+      "id": "transformed",
+      "name": "Transformed",
+      "note": "Currently altered by a transform effect such as Alter Self."
+    },
+    {
+      "id": "bloodied",
+      "name": "Bloodied",
+      "note": "At or below half hit points, no greater than 0. Gates Bloodied feats."
+    },
+    {
+      "id": "unarmed",
+      "name": "Unarmed",
+      "note": "Not wielding a weapon."
+    },
+    {
+      "id": "no_armor",
+      "name": "No Armor",
+      "note": "Wearing no armor, whether or not a shield is held."
+    }
+  ]
+}
