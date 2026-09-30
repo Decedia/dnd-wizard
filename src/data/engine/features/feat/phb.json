@@ -1,0 +1,305 @@
+{
+  "features": [
+    {
+      "id": "feat.actor",
+      "name": "Actor",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        { "kind": "skill_bonus", "skills": ["Deception", "Performance"], "amount": 1 },
+        { "kind": "special", "note": "You gain proficiency in Deception or Performance, and you gain a +5 bonus to whichever you choose. You also gain advantage on Charisma (Performance) checks when you are trying to impress a crowd." }
+      ],
+      "summary": "+5 to Deception or Performance, and advantage impressing a crowd",
+      "text": "You gain proficiency in Deception or Performance, and you gain a +5 bonus to whichever you choose. You also gain advantage on Charisma (Performance) checks when you are trying to impress a crowd.",
+      "source": { "book": "PHB", "reference": "PHB Feat 165" }
+    },
+    {
+      "id": "feat.athlete",
+      "name": "Athlete",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        { "kind": "skill", "skills": ["Athletics"], "proficiency": "proficient" },
+        { "kind": "special", "note": "You gain proficiency in Athletics. Your long jump can be up to a number of feet equal to 3 times your Strength score, and your jump distance is multiplied by your long jump distance. From 18th level, you gain proficiency in climbing and swimming." }
+      ],
+      "summary": "Proficiency in Athletics; long jump scales with Strength",
+      "text": "You gain proficiency in Athletics. Your long jump can be up to a number of feet equal to 3 times your Strength score, and you gain proficiency in climbing and swimming.",
+      "source": { "book": "PHB", "reference": "PHB Feat 165" }
+    },
+    {
+      "id": "feat.heavily_armored",
+      "name": "Heavily Armored",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "gates": ["wearing_heavy_armor"],
+      "effects": [
+        { "kind": "stat_modifier", "stat": "speed", "amount": 0, "duration": "while_active" },
+        { "kind": "special", "note": "You gain proficiency with heavy armor. While you are wearing heavy armor, your speed is reduced by 10 feet." }
+      ],
+      "summary": "Proficiency with heavy armor, at 10 ft less speed while worn",
+      "text": "You gain proficiency with heavy armor. While you are wearing heavy armor, your speed is reduced by 10 feet.",
+      "source": { "book": "PHB", "reference": "PHB Feat 165" }
+    },
+    {
+      "id": "feat.lightly_armored",
+      "name": "Lightly Armored",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "gates": ["wearing_armor"],
+      "effects": [
+        { "kind": "stat_modifier", "stat": "speed", "amount": 0, "duration": "while_active" },
+        { "kind": "special", "note": "You gain proficiency with light armor and medium armor. While you are wearing light armor or medium armor, your speed is reduced by 5 feet." }
+      ],
+      "summary": "Proficiency with light and medium armor, at 5 ft less speed",
+      "text": "You gain proficiency with light armor and medium armor. While you are wearing light armor or medium armor, your speed is reduced by 5 feet.",
+      "source": { "book": "PHB", "reference": "PHB Feat 165" }
+    },
+    {
+      "id": "feat.moderately_armored",
+      "name": "Moderately Armored",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "gates": ["wearing_armor"],
+      "effects": [
+        { "kind": "special", "note": "You gain proficiency with light armor and medium armor. When you gain proficiency with armor, you gain proficiency with shields." }
+      ],
+      "summary": "Proficiency with light and medium armor, and with shields",
+      "text": "You gain proficiency with light armor and medium armor, and with shields.",
+      "source": { "book": "PHB", "reference": "PHB Feat 165" }
+    },
+    {
+      "id": "feat.heavy_armor_master",
+      "name": "Heavy Armor Master",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "gates": ["wearing_heavy_armor"],
+      "effects": [
+        { "kind": "extra_attacks", "count": 0, "note": "While you are wearing heavy armor, you gain the following benefits: If you move more than 5 feet and then hit a creature with a melee attack on the same turn, you can make one additional attack. That attack is made at a disadvantage unless you already have the Grave or Slasher feat." }
+      ],
+      "summary": "Hit after moving 5+ ft: a second attack at disadvantage",
+      "text": "While you are wearing heavy armor, if you move more than 5 feet and then hit a creature with a melee attack on the same turn, you can make one additional attack. That attack is made at a disadvantage.",
+      "source": { "book": "PHB", "reference": "PHB Feat 165" }
+    },
+    {
+      "id": "feat.medium_armor_master",
+      "name": "Medium Armor Master",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "gates": ["wearing_armor"],
+      "effects": [
+        { "kind": "extra_attacks", "count": 0, "note": "While you are wearing medium armor, if you move more than 5 feet and then hit a creature with a melee attack on the same turn, you can make one additional attack, at a disadvantage unless you have the Grave or Slasher feat." }
+      ],
+      "summary": "In medium armor: move 5+ ft then hit, extra attack at disadvantage",
+      "text": "While you are wearing medium armor, if you move more than 5 feet and then hit a creature with a melee attack on the same turn, you can make one additional attack, at a disadvantage unless you have the Grave or Slasher feat.",
+      "source": { "book": "PHB", "reference": "PHB Feat 165" }
+    },
+    {
+      "id": "feat.observant",
+      "name": "Observant",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        { "kind": "skill_bonus", "skills": ["Investigation", "Perception"], "amount": 1 },
+        { "kind": "stat_modifier", "stat": "passive_perception", "amount": 0, "duration": "permanent" },
+        { "kind": "special", "note": "Your passive Wisdom (Perception) score is increased by 5." }
+      ],
+      "summary": "+1 to Investigation and Perception; passive Perception up 5",
+      "text": "Your passive Wisdom (Perception) score is increased by 5.",
+      "source": { "book": "PHB", "reference": "PHB Feat 165" }
+    },
+    {
+      "id": "feat.inspiring_leader",
+      "name": "Inspiring Leader",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "bonus_action",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "allies", "count": 5, "range": { "value": 30, "unit": "ft" } },
+      "duration": { "value": 1, "unit": "hour" },
+      "endsIf": [],
+      "effects": [
+        { "kind": "skill_bonus", "skills": ["chosen by you each time"], "amount": 0, "note": "You can take a bonus action to inspire up to five willing creatures within 30 feet of you, each of whom gains temporary hit points equal to 1d8 plus your Charisma modifier. A creature can be inspired only once, and the effect ends when you finish a long rest or when you use this again." }
+      ],
+      "summary": "Bonus action: give five allies 1d8 + Cha temp HP",
+      "text": "You can take a bonus action to inspire up to five willing creatures within 30 feet of you, each of whom gains temporary hit points equal to 1d8 plus your Charisma modifier.",
+      "source": { "book": "PHB", "reference": "PHB Feat 165" }
+    },
+    {
+      "id": "feat.mage_slayer",
+      "name": "Mage Slayer",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "reaction",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": { "event": "self_damaged" },
+      "targeting": { "scope": "creature" },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "special", "note": "When you damage a creature with a melee attack, if it is concentrating on a spell, you can use your reaction to force it to make a Constitution saving throw. It takes half damage on a success and concentration on a failure. At 17th level you can also do this when a creature within 30 feet of you that you can see damages you." }
+      ],
+      "tiers": [
+        { "at": 17, "effects": [{ "kind": "special", "note": "When a creature within 30 feet of you that you can see damages you, you can use your reaction to force it to make a Constitution saving throw; half damage on a success and concentration on a failure." }] }
+      ],
+      "summary": "Reaction: break a caster's concentration when you melee it",
+      "text": "When you damage a creature with a melee attack, if it is concentrating on a spell, you can use your reaction to force it to make a Constitution saving throw. It takes half damage on a success and concentration on a failure.",
+      "source": { "book": "PHB", "reference": "PHB Feat 165" }
+    },
+    {
+      "id": "feat.polearm_master",
+      "name": "Polearm Master",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "bonus_action",
+      "limits": { "per": "turn", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "creature", "range": { "value": 5, "unit": "ft" } },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "control", "action": "push", "distance": { "value": 5, "unit": "ft" } },
+        { "kind": "extra_attacks", "count": 1, "note": "When you take the Attack action on your turn, you can make one melee weapon attack using a quarterstaff, a spear, or a short/long glaive as a bonus action. That attack can be used only to make one of the following, and it must be made before or after your regular attack: a shove, or a grapple attempt. If you hit with it, you can instead make an attack with a quarterstaff, a spear or a glaive as a bonus action." }
+      ],
+      "summary": "Bonus action: shove, or an extra glaive or spear attack",
+      "text": "When you take the Attack action on your turn, you can make one melee weapon attack using a quarterstaff, a spear, or a short or long glaive as a bonus action. You can use this bonus action only to make one of the following: a shove attempt, or a grapple attempt. If you hit a creature with this attack, you can instead make one attack with a quarterstaff, a spear or a glaive as a bonus action on your next turn.",
+      "source": { "book": "PHB", "reference": "PHB Feat 165" }
+    },
+    {
+      "id": "feat.sentinel",
+      "name": "Sentinel",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        { "kind": "reactions_without_cost", "count": 1, "note": "You gain the following benefits when you hit a creature with an attack: If the creature is hit by an attack by another creature, you can use your reaction to make a melee weapon attack against that creature. Creatures within your reach have disadvantage on opportunity attack rolls against you, and you can use a reaction to make an opportunity attack when a creature moves out of your reach." }
+      ],
+      "summary": "Attack a second creature that attacked your target; allies don't provoke you",
+      "text": "You gain the following benefits when you hit a creature with an attack. If the creature is hit by an attack by another creature, you can use your reaction to make a melee weapon attack against that creature. Creatures within your reach have disadvantage on opportunity attack rolls against you.",
+      "source": { "book": "PHB", "reference": "PHB Feat 165" }
+    },
+    {
+      "id": "feat.skilled",
+      "name": "Skilled",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        { "kind": "skill", "skills": ["any three of your choice"], "proficiency": "proficient" }
+      ],
+      "summary": "Proficiency in three skills of your choice",
+      "text": "You gain proficiency in any combination of three skills or tools of your choice.",
+      "source": { "book": "PHB", "reference": "PHB Feat 165" }
+    },
+    {
+      "id": "feat.slasher",
+      "name": "Slasher",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        { "kind": "condition", "action": "apply", "conditions": ["prone"] },
+        { "kind": "special", "note": "When you hit a creature with a slashing weapon, you can give either yourself or the creature disadvantage on all ability checks until the start of your next turn, and you can also make an additional attack using a bonus action on your next turn." }
+      ],
+      "summary": "On a slashing hit: something gains disadvantage; bonus attack next turn",
+      "text": "When you hit a creature with a slashing weapon, you can give either yourself or the creature disadvantage on all ability checks until the start of your next turn. You can also make an additional attack using a bonus action on your next turn.",
+      "source": { "book": "PHB", "reference": "PHB Feat 165" }
+    },
+    {
+      "id": "feat.tough",
+      "name": "Tough",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        { "kind": "stat_modifier", "stat": "max_hp", "amount": 2, "duration": "permanent" }
+      ],
+      "summary": "Hit point maximum increases by twice your character level",
+      "text": "Your hit point maximum increases by 2 at 1st level, and by 2 more every level after that, so at 20th level you gain 40 hit points.",
+      "source": { "book": "PHB", "reference": "PHB Feat 165" }
+    },
+    {
+      "id": "feat.spell_sniper",
+      "name": "Spell Sniper",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        { "kind": "stat_modifier", "stat": "attack_bonus_ranged", "amount": 1, "duration": "permanent" },
+        { "kind": "special", "note": "When you make an attack roll for a ranged spell, you ignore half cover and three-quarters cover, and if you hit, you can add your Charisma modifier, Intelligence modifier or Wisdom modifier to the damage. You also gain the benefits of the Archery fighting style." }
+      ],
+      "summary": "+1 ranged spell attack, ignore half cover, and a stat to damage",
+      "text": "When you make an attack roll for a ranged spell, you ignore half cover and three-quarters cover, and if you hit, you can add your Charisma modifier, Intelligence modifier or Wisdom modifier to the damage. You also gain the benefits of the Archery fighting style.",
+      "source": { "book": "PHB", "reference": "PHB Feat 165" }
+    },
+    {
+      "id": "feat.squat_nimbleness",
+      "name": "Squat Nimbleness",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        { "kind": "stat_modifier", "stat": "speed", "amount": 0, "duration": "while_active" },
+        { "kind": "special", "note": "You can move at your normal speed through a space occupied by a creature of your size or smaller whose movement is reduced to 0 by difficult terrain, without having difficulty on movement or triggering its opportunity attack." }
+      ],
+      "summary": "Move through difficult terrain without difficulty",
+      "text": "You can move at your normal speed through a space occupied by a creature of your size or smaller whose movement is reduced to 0 by difficult terrain, without having difficulty on movement or triggering its opportunity attack.",
+      "source": { "book": "PHB", "reference": "PHB Feat 165" }
+    },
+    {
+      "id": "feat.mobile",
+      "name": "Mobile",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        { "kind": "stat_modifier", "stat": "speed", "amount": 10, "duration": "permanent" },
+        { "kind": "special", "note": "When you hit a creature with a melee weapon attack, you can move up to 10 feet, without provoking opportunity attacks, whether or not the creature is hit. You also gain the benefits of the Two-Weapon Fighting fighting style." }
+      ],
+      "summary": "+10 speed; move after a melee hit without provoking attacks",
+      "text": "When you hit a creature with a melee weapon attack, you can move up to 10 feet, without provoking opportunity attacks, whether or not the creature is hit. You also gain the benefits of the Two-Weapon Fighting fighting style.",
+      "source": { "book": "PHB", "reference": "PHB Feat 166" }
+    },
+    {
+      "id": "feat.tavern_brawler",
+      "name": "Tavern Brawler",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "bonus_action",
+      "limits": { "per": "turn", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "creature", "range": { "value": 5, "unit": "ft" } },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "damage", "dice": { "dice": "1d4", "bonusFrom": "str" }, "damageType": "bludgeoning", "resolution": { "mode": "attack", "ability": "str", "reaches": ["5 ft melee"] } },
+        { "kind": "special", "note": "You have learned to fight in a tavern brawl: you gain proficiency with improvised weapons. When you hit a creature with an improvised weapon, you can use a bonus action to attempt to redirect the creature's attack, as a reaction, by making an attack roll against the creature's AC; on a hit, the creature must use a different target for its attack." }
+      ],
+      "summary": "Proficiency with improvised weapons; BA attack and redirect",
+      "text": "You have learned to fight in a tavern brawl: you gain proficiency with improvised weapons. When you hit a creature with an improvised weapon, you can use a bonus action to attempt to redirect the creature's attack, as a reaction, by making an attack roll against the creature's AC.",
+      "source": { "book": "PHB", "reference": "PHB Feat 166" }
+    },
+    {
+      "id": "feat.war_caster",
+      "name": "War Caster",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        { "kind": "stat_modifier", "stat": "spell_save_dc", "amount": 1, "duration": "permanent" },
+        { "kind": "special", "note": "You have learned to make a spell attack in the middle of a melee fight. You gain the following benefits: your spell save DC is increased by 1, you can cast a spell with one hand without somatic or material components, and you can use a reaction to cast a spell when a creature moves within 10 feet of you that would leave its reach." }
+      ],
+      "summary": "+1 spell save DC; component-free casting; reaction on movement",
+      "text": "You gain the following benefits: your spell save DC is increased by 1, you can cast a spell with one hand without somatic or material components, and you can use a reaction to cast a spell when a creature moves within 10 feet of you that would leave its reach.",
+      "source": { "book": "PHB", "reference": "PHB Feat 166" }
+    }
+  ]
+}

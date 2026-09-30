@@ -1,0 +1,628 @@
+{
+  "features": [
+    {
+      "id": "feat.sharpshooter",
+      "name": "Sharpshooter",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "Ignore long and half cover and three-quarters cover when making a ranged attack, and your ranged weapon attacks ignore the 50/150 feet distance limits. When you take the Attack action on your turn, you can make an additional attack, using a ranged weapon, at a cost of 2 movement per 5 feet of distance travelled, and the attack has disadvantage. You also gain proficiency with the heavy crossbow and light crossbow."
+        }
+      ],
+      "summary": "Ignore long and three-quarters cover; extra ranged attack at 2 speed/5 ft",
+      "text": "Ignore long and half cover and three-quarters cover when making a ranged attack. Your ranged weapon attacks ignore the 50/150 feet distance limits. When you take the Attack action on your turn, you can make an additional attack, using a ranged weapon, at a cost of 2 movement per 5 feet of distance travelled.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Feat 85"
+      }
+    },
+    {
+      "id": "feat.shield_master",
+      "name": "Shield Master",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "gates": [
+        "wielding_shield"
+      ],
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "When you take the Attack action on your turn, you can move as part of the attack, up to your speed, and you can move through a creature's space if its size is Medium or smaller. Whenever you take the Dodge action, you gain a +5 bonus to AC until the start of your next turn, including after you use the Dodge action as a reaction. You also gain proficiency with shields."
+        }
+      ],
+      "summary": "Move when attacking; +5 AC on Dodge, including as a reaction",
+      "text": "When you take the Attack action on your turn, you can move as part of the attack, up to your speed, and you can move through a creature's space if its size is Medium or smaller. Whenever you take the Dodge action, you gain a +5 bonus to AC until the start of your next turn.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Feat 166"
+      }
+    },
+    {
+      "id": "feat.charger",
+      "name": "Charger",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "When you take the Dash action on your turn, you can use a bonus action to make one melee weapon attack, only if you move at least 20 feet toward the target, or at least 40 feet away from it. You have advantage on that attack roll and its damage rolls. You also have advantage on Strength (Athletics) checks against creatures within 5 feet of you."
+        }
+      ],
+      "summary": "Dash 20+ ft: bonus melee attack with advantage",
+      "text": "When you take the Dash action on your turn, you can use a bonus action to make one melee weapon attack, only if you move at least 20 feet toward the target, or at least 40 feet away from it.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Feat 165"
+      }
+    },
+    {
+      "id": "feat.weapon_master",
+      "name": "Weapon Master",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "When you take the Attack action on your turn, you can use a bonus action to make one melee weapon attack, only if you have no attack yet this turn, and you use Strength for the attack. You must use a weapon you are proficient with, and the attack is at a disadvantage if you moved more than 10 feet."
+        }
+      ],
+      "summary": "Bonus melee attack using Strength, at disadvantage if you moved",
+      "text": "When you take the Attack action on your turn, you can use a bonus action to make one melee weapon attack, only if you have no attack yet this turn, and you use Strength for the attack.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Feat 85"
+      }
+    },
+    {
+      "id": "feat.blade_master",
+      "name": "Blade Master",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have learned to reattribute your finesse weapon's damage roll, and to hedge against a missed attack. Your critical hit dice for the attack increase by 1d8, and at 7th, 14th and 17th level you gain the ability to add 1d6 to the attack roll, 1d6 to the damage roll, or reroll a 1 or 2 on a damage die and use either roll."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 7,
+          "summary": "+1d6 to a missable attack roll"
+        },
+        {
+          "at": 14,
+          "summary": "+1d6 to a missable damage roll"
+        },
+        {
+          "at": 17,
+          "summary": "Reroll a 1 or 2 on damage"
+        }
+      ],
+      "summary": "Finesse weapon crits gain 1d8; +1d6 to rolls at 7 and 14",
+      "text": "Your critical hit dice for the attack increase by 1d8. At 7th level, you can add 1d6 to an attack roll that misses, and at 14th level you can add 1d6 to a damage roll.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Blade Master"
+      }
+    },
+    {
+      "id": "feat.critter",
+      "name": "Critter",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "skill_bonus",
+          "skills": [
+            "Perception",
+            "Animal Handling"
+          ],
+          "amount": 0,
+          "note": "You have advantage on Wisdom (Perception) and Wisdom (Survival) checks to perceive or track a creature, and on Charisma checks when interacting with a beast, a creature with the Beast type, or a magical creature whose type would be Beast."
+        }
+      ],
+      "summary": "Advantage on perception and survival checks about creatures",
+      "text": "You have advantage on Wisdom (Perception) and Wisdom (Survival) checks to perceive or track a creature, and on Charisma checks when interacting with a beast.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Critter"
+      }
+    },
+    {
+      "id": "feat.dungeon_delver",
+      "name": "Dungeon Delver",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "skill_bonus",
+          "skills": [
+            "History"
+          ],
+          "amount": 1
+        },
+        {
+          "kind": "stat_modifier",
+          "stat": "max_hp",
+          "amount": 0,
+          "duration": "permanent"
+        },
+        {
+          "kind": "special",
+          "note": "Your maximum hit points are increased by your Intelligence modifier, and you have advantage on Intelligence (History) checks, and proficiency with thieves' tools. The bonuses increase by 1 at 6th, 12th and 17th level."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 6,
+          "summary": "Bonus scales with level"
+        },
+        {
+          "at": 12,
+          "summary": "Bonus scales with level"
+        },
+        {
+          "at": 17,
+          "summary": "Bonus scales with level"
+        }
+      ],
+      "summary": "Int to hit points, +1 to History, thieves' tools",
+      "text": "Your maximum hit points are increased by your Intelligence modifier, and you have advantage on Intelligence (History) checks.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Dungeon Delver"
+      }
+    },
+    {
+      "id": "feat.elven_accuracy",
+      "name": "Elven Accuracy",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "senses",
+          "sense": "darkvision"
+        },
+        {
+          "kind": "special",
+          "note": "You have darkvision out to 60 feet. You also gain proficiency with light crossbows and longbows and their ammunition, and you ignore disadvantage on all Wisdom (Perception) checks that rely on sight, including those against visible hidden creatures. At 17th level, you can reroll a 1 or 2 on a d20 ability check."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 17,
+          "effects": [
+            {
+              "kind": "senses",
+              "sense": "darkvision"
+            },
+            {
+              "kind": "special",
+              "note": "At 17th level, you can reroll a 1 or 2 on a d20 ability check and use either roll."
+            }
+          ]
+        }
+      ],
+      "summary": "Darkvision, bows, and no sight-based disadvantage",
+      "text": "You have darkvision out to 60 feet. You gain proficiency with light crossbows and longbows and their ammunition, and you ignore disadvantage on all Wisdom (Perception) checks that rely on sight.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Elven Accuracy"
+      }
+    },
+    {
+      "id": "feat.orcish_fury",
+      "name": "Orcish Fury",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "condition",
+          "action": "apply",
+          "conditions": [
+            "frightened"
+          ]
+        },
+        {
+          "kind": "special",
+          "note": "When you become frightened, you can use your reaction to make one melee weapon attack against a creature of your choice. At 10th level, you gain temporary hit points equal to 1 plus your Charisma modifier plus your proficiency bonus, and they last until you finish a short rest. At 17th level, when you become frightened, you can also make your number of attacks equal to your level, instead of one."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 10,
+          "effects": [
+            {
+              "kind": "condition",
+              "action": "apply",
+              "conditions": [
+                "frightened"
+              ]
+            },
+            {
+              "kind": "special",
+              "note": "You gain temporary hit points equal to 1 plus your Charisma modifier plus your proficiency bonus."
+            }
+          ]
+        },
+        {
+          "at": 17,
+          "effects": [
+            {
+              "kind": "condition",
+              "action": "apply",
+              "conditions": [
+                "frightened"
+              ]
+            },
+            {
+              "kind": "special",
+              "note": "When you become frightened, you can also make your number of attacks equal to your level."
+            }
+          ]
+        }
+      ],
+      "summary": "When frightened, react with a melee attack",
+      "text": "When you become frightened, you can use your reaction to make one melee weapon attack against a creature of your choice.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Orcish Fury"
+      }
+    },
+    {
+      "id": "feat.infernal_constitution",
+      "name": "Infernal Constitution",
+      "kind": "feat",
+      "owner": "Feat",
+      "requires": {
+        "abilities": {
+          "con": 13
+        }
+      },
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "resistance",
+          "damageTypes": [
+            "cold"
+          ]
+        },
+        {
+          "kind": "special",
+          "note": "You have resistance to cold damage and you have advantage on saving throws against being charmed. At 17th level, you gain a Fiendish Resilience: once per long rest, when you make a saving throw with disadvantage, you can choose to succeed instead."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 17,
+          "effects": [
+            {
+              "kind": "resistance",
+              "damageTypes": [
+                "cold"
+              ]
+            },
+            {
+              "kind": "special",
+              "note": "You also have advantage on saving throws against being charmed, and once per long rest, when you make a saving throw with disadvantage, you can choose to succeed instead."
+            }
+          ]
+        }
+      ],
+      "summary": "Cold resistance; advantage against charm; 17: succeed on a disadvantage save",
+      "text": "You have resistance to cold damage and you have advantage on saving throws against being charmed.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Infernal Constitution"
+      }
+    },
+    {
+      "id": "feat.keen_mind",
+      "name": "Keen Mind",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "requires": {
+        "abilities": {
+          "int": 13
+        }
+      },
+      "effects": [
+        {
+          "kind": "skill",
+          "skills": [
+            "any one of your choice"
+          ],
+          "proficiency": "proficient"
+        },
+        {
+          "kind": "spell_grant",
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "wizard"
+              ]
+            }
+          ],
+          "note": "You gain proficiency in a skill of your choice and know the detect thoughts spell, castable without a spell slot once per long rest, and 17th-level Wizard and Sorcerer spells are always prepared."
+        }
+      ],
+      "summary": "One skill, plus detect thoughts and always-prepared high-level spells",
+      "text": "You gain proficiency in a skill of your choice, and you know the detect thoughts spell.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Keen Mind"
+      }
+    },
+    {
+      "id": "feat.aberrant_dragonmark",
+      "name": "Aberrant Dragonmark",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "stat_modifier",
+          "stat": "con",
+          "amount": 1,
+          "duration": "permanent"
+        },
+        {
+          "kind": "spell_grant",
+          "cantrip": {
+            "known": true
+          },
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "sorcerer"
+              ]
+            }
+          ],
+          "note": "Your Constitution score is increased by 1. You learn the aberration cantrip, which you can cast at will, and you learn to cast two wizard spells of your choice that are cantrips, which you can cast at will. At 5th level, your Constitution increases by 1 again, and you gain a +2 bonus to spell attack rolls."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 5,
+          "effects": [
+            {
+              "kind": "stat_modifier",
+              "stat": "con",
+              "amount": 1,
+              "duration": "permanent"
+            },
+            {
+              "kind": "spell_grant",
+              "cantrip": {
+                "known": true
+              },
+              "spells": [
+                {
+                  "level": 1,
+                  "from": [
+                    "sorcerer"
+                  ]
+                }
+              ],
+              "note": "Your Constitution score is increased by 1 again, and you gain a +2 bonus to spell attack rolls."
+            }
+          ]
+        }
+      ],
+      "summary": "+1 Con, and cast two wizard cantrips at will",
+      "text": "Your Constitution score is increased by 1. You learn to cast two wizard spells of your choice that are cantrips, which you can cast at will.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Aberrant Dragonmark"
+      }
+    },
+    {
+      "id": "feat.gift_of_the_chromatic_dragon",
+      "name": "Gift of the Chromatic Dragon",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "stat_modifier",
+          "stat": "str",
+          "amount": 2,
+          "duration": "permanent"
+        },
+        {
+          "kind": "special",
+          "note": "Increase your Strength by 2. Gain a +1 bonus to AC and saving throws while wearing no armor, and the ability to see in dim light and darkness out to 120 feet. You also gain resistance to one damage type of your choice, and can throw a rock with a range of 40, 120 and 160 feet."
+        }
+      ],
+      "summary": "+2 Str; darkvision 120; +1 AC unarmored; one damage resistance",
+      "text": "Increase your Strength by 2, and you can see in dim light and darkness out to 120 feet. You gain a +1 bonus to AC and saving throws while wearing no armor.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Gift of the Chromatic Dragon"
+      }
+    },
+    {
+      "id": "feat.gift_of_the_metallic_dragon",
+      "name": "Gift of the Metallic Dragon",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "stat_modifier",
+          "stat": "con",
+          "amount": 2,
+          "duration": "permanent"
+        },
+        {
+          "kind": "special",
+          "note": "Increase your Constitution by 2. You gain a +1 bonus to AC while wearing armor, immunity to critical hits against you, and additional damage equal to 2 to critical hits you make, and you can replace one of your attacks with a breath attack."
+        }
+      ],
+      "summary": "+2 Con; +1 AC in armor; crit immunity; +2 crit damage",
+      "text": "Increase your Constitution by 2. You gain a +1 bonus to AC while wearing armor, and immunity to critical hits against you.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Gift of the Metallic Dragon"
+      }
+    },
+    {
+      "id": "feat.gift_of_the_dragon_champion",
+      "name": "Gift of the Dragon Champion",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have a magic gift from a dragon. You gain a +2 bonus to AC and saving throws while not wearing armor, your damage rolls against creatures with a +2 bonus, and you gain 10 hit points. At 5th, 10th, and 15th level your hit points increase by 5 and your Strength or Dexterity increases by 1, and at 5th level you can cast the detect magic spell once per long rest without a slot."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 5,
+          "summary": "+5 HP and +1 Str or Dex; detect magic once per rest"
+        },
+        {
+          "at": 10,
+          "summary": "+5 HP and +1 Str or Dex"
+        },
+        {
+          "at": 15,
+          "summary": "+5 HP and +1 Str or Dex"
+        }
+      ],
+      "summary": "+2 AC unarmored, +2 damage, 10 extra hit points",
+      "text": "You have a magic gift from a dragon. You gain a +2 bonus to AC and saving throws while not wearing armor, and your damage rolls against creatures have a +2 bonus.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Gift of the Dragon Champion"
+      }
+    },
+    {
+      "id": "feat.favored_by_the_gods",
+      "name": "Favored by the Gods",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "stat_modifier",
+          "stat": "ability_score_of_choice",
+          "amount": 1,
+          "duration": "permanent"
+        },
+        {
+          "kind": "special",
+          "note": "Increase one ability score of your choice by 1, and gain proficiency in a skill or tool of your choice. Choose a god and gain their Bolt Domain, Blessing, or Restoration property."
+        }
+      ],
+      "summary": "+1 to an ability, one skill or tool, and a deity's benefit",
+      "text": "Increase one ability score of your choice by 1, and you gain proficiency in a skill or tool of your choice.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Favored by the Gods"
+      }
+    },
+    {
+      "id": "feat.divinely_favored",
+      "name": "Divinely Favored",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "This feat is tied to the divine and the fearsome. You gain a +1 bonus to AC and saving throws, and you gain a +1 bonus to all attack rolls you make with weapons or spells, and a +1 bonus to one saving throw of your choice. At 5th, 10th and 15th level the bonuses increase by 1."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 5,
+          "summary": "Bonuses scale with level"
+        },
+        {
+          "at": 10,
+          "summary": "Bonuses scale with level"
+        },
+        {
+          "at": 15,
+          "summary": "Bonuses scale with level"
+        }
+      ],
+      "summary": "+1 to AC, saves, and attacks, and to one chosen save",
+      "text": "You gain a +1 bonus to AC and saving throws. You also gain a +1 bonus to all attack rolls you make with weapons or spells.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Divinely Favored"
+      }
+    },
+    {
+      "id": "feat.diplomat",
+      "name": "Diplomat",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You gain proficiency in the Insight, Persuasion and Relocation skills, and you gain the benefits of the innate magical trait of your choice: Mimicry, Photomemory or Read Thoughts."
+        }
+      ],
+      "summary": "Three social skills plus an innate magical trait",
+      "text": "You gain proficiency in Insight, Persuasion and Relocation.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Diplomat"
+      }
+    },
+    {
+      "id": "feat.everybodys_friend",
+      "name": "Everybody's Friend",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You gain proficiency in Sleight of Hand and Stealth, and you gain the benefits of the innate magical trait of your choice: Charm, Detect Thoughts, or Illusory Reality. At 5th level you gain a second of these traits."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 5,
+          "effects": [
+            {
+              "kind": "special",
+              "note": "You gain a second innate magical trait of your choice."
+            }
+          ]
+        }
+      ],
+      "summary": "Sleight of Hand and Stealth, plus an innate magical trait",
+      "text": "You gain proficiency in Sleight of Hand and Stealth.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Everybody's Friend"
+      }
+    }
+  ]
+}

@@ -1,0 +1,953 @@
+{
+  "features": [
+    {
+      "id": "feat.bountiful_luck",
+      "name": "Bountiful Luck",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "requires": {
+        "abilities": {
+          "cha": 13
+        }
+      },
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have a few lucky charms. When you make an ability check, a saving throw or an attack roll, you can reroll the die and use either roll. At 5th level, you can also reroll a d20 result for a death saving throw, and at 13th level, you gain a benefit of your choice."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 5,
+          "summary": "Also reroll a death save"
+        },
+        {
+          "at": 13,
+          "summary": "Also reroll any d20"
+        }
+      ],
+      "summary": "Reroll any ability check, save or attack roll",
+      "text": "You have a few lucky charms. When you make an ability check, a saving throw, or an attack roll, you can reroll the die and use either roll.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Feat 81"
+      }
+    },
+    {
+      "id": "feat.crusher",
+      "name": "Crusher",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "condition",
+          "action": "apply",
+          "conditions": [
+            "prone"
+          ]
+        },
+        {
+          "kind": "control",
+          "action": "push",
+          "distance": {
+            "value": 5,
+            "unit": "ft"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "When you hit a creature with an attack, you can choose to deal an additional 1d10 bludgeoning damage, or choose to force the target to succeed on a Strength saving throw or be knocked prone, or choose to force the target to succeed on a Strength saving throw or be pushed 5 feet away. You can use this bonus only once per turn, after you hit or crit."
+        }
+      ],
+      "summary": "On a hit: 1d10, or knock prone, or push 5 ft",
+      "text": "When you hit a creature with an attack, you can choose to deal an additional 1d10 bludgeoning damage, or choose to force the target to succeed on a Strength saving throw or be knocked prone, or choose to force the target to succeed on a Strength saving throw or be pushed 5 feet away.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Feat 81"
+      }
+    },
+    {
+      "id": "feat.dragon_fear",
+      "name": "Dragon Fear",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "As a bonus action you can expend a spell slot and grow temporary hit points equal to 1d4 per spell level for 1 minute. Any dragon within 30 feet of you has disadvantage on saving throws against your spells and special effects while you have these hit points, and it takes half damage from them."
+        }
+      ],
+      "summary": "BA: temp HP from a slot; dragons fear you while they last",
+      "text": "As a bonus action you can expend a spell slot and grow temporary hit points equal to 1d4 per spell level for 1 minute. Any dragon within 30 feet of you has disadvantage on saving throws against your spells and special effects while you have these hit points, and it takes half damage from them.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Feat 82"
+      }
+    },
+    {
+      "id": "feat.dragon_hide",
+      "name": "Dragon Hide",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "While you have your Draconic Resilience trait, your dragonborn ancestry effect includes both resistances. When you take damage, you can use your reaction to reduce the damage by 1d10 plus your proficiency bonus, and the reduced amount of damage is then temporarily reduced by 1 for each hit, so you can never have this reaction reduced to 0."
+        }
+      ],
+      "summary": "Reduce damage by 1d10 plus proficiency, stacking per hit",
+      "text": "When you take damage, you can use your reaction to reduce the damage by 1d10 plus your proficiency bonus. The reduced amount of damage is then temporarily reduced by 1 for each hit, so you can never have this reaction reduced to 0.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Feat 82"
+      }
+    },
+    {
+      "id": "feat.drow_high_magic",
+      "name": "Drow High Magic",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "cantrip": {
+            "known": true
+          },
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "wizard"
+              ]
+            }
+          ],
+          "note": "You know the detect magic cantrip, which you can cast at will, and the darkness and faerie fire spells, each of which you can cast once per long rest without a spell slot. At 17th level, one of these spells is replaced."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 17,
+          "effects": [
+            {
+              "kind": "spell_grant",
+              "cantrip": {
+                "known": true
+              },
+              "spells": [
+                {
+                  "level": 1,
+                  "from": [
+                    "wizard"
+                  ]
+                }
+              ],
+              "note": "At 17th level, one of the two spells is replaced by a spell of your choice from the wizard list, castable once per long rest without a spell slot."
+            }
+          ]
+        }
+      ],
+      "summary": "Detect magic at will; darkness and faerie fire per long rest",
+      "text": "You know the detect magic cantrip, which you can cast at will, and the darkness and faerie fire spells, each of which you can cast once per long rest without a spell slot.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Feat 82"
+      }
+    },
+    {
+      "id": "feat.durable",
+      "name": "Durable",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "stat_modifier",
+          "stat": "con",
+          "amount": 1,
+          "duration": "permanent"
+        },
+        {
+          "kind": "stat_modifier",
+          "stat": "max_hp",
+          "amount": 1,
+          "duration": "permanent"
+        }
+      ],
+      "summary": "+1 Constitution and +1 hit point at every level",
+      "text": "You gain a +1 bonus to Constitution, and your hit point maximum increases by 1, and by 1 again whenever you gain a level.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Feat 82"
+      }
+    },
+    {
+      "id": "feat.dwarven_fortitude",
+      "name": "Dwarven Fortitude",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "requires": {
+        "abilities": {
+          "con": 13
+        }
+      },
+      "effects": [
+        {
+          "kind": "temp_hp",
+          "dice": {
+            "dice": "1",
+            "flat": 1
+          },
+          "note": "You have advantage on saving throws against being poisoned, and resistance to poison damage, and you have advantage on death saving throws. You also have dwarven resilience: resistance to poison damage and immunity to the poisoned condition."
+        }
+      ],
+      "summary": "Advantage against poison and on death saves",
+      "text": "You have advantage on saving throws against being poisoned, and you have dwarven resilience: resistance to poison damage and immunity to the poisoned condition. You also gain advantage on death saving throws.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Feat 82"
+      }
+    },
+    {
+      "id": "feat.eldritch_adept",
+      "name": "Eldritch Adept",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "cantrip": {
+            "known": true
+          },
+          "note": "You learn the thaumaturgy cantrip, which you can cast at will, and you have temporary hit points equal to 1d4 plus your Intelligence modifier equal to your proficiency bonus, which refresh at the start of a long rest."
+        }
+      ],
+      "summary": "Thaumaturgy at will, and temp HP equal to your proficiency bonus",
+      "text": "You learn the thaumaturgy cantrip, which you can cast at will, and you have temporary hit points equal to 1d4 plus your Intelligence modifier equal to your proficiency bonus.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Feat 82"
+      }
+    },
+    {
+      "id": "feat.elemental_adept",
+      "name": "Elemental Adept",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "Choose a damage type: acid, cold, fire, lightning or thunder. When you damage a creature with that type with a spell, you can make the creature's saving throw against the spell as a disadvantage. At 17th level, you gain the same benefit for a second damage type."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 17,
+          "effects": [
+            {
+              "kind": "special",
+              "note": "You gain the same benefit for a second damage type of your choice."
+            }
+          ]
+        }
+      ],
+      "summary": "Chosen damage type forces disadvantage on its saves",
+      "text": "When you damage a creature with a spell of a damage type you have chosen, the creature's saving throw against that spell is at a disadvantage.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Feat 83"
+      }
+    },
+    {
+      "id": "feat.fade_away",
+      "name": "Fade Away",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "bonus_action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "When you take damage, you can use your reaction to become invisible until the end of your next turn, and any creature within 30 feet of you that can see you also has disadvantage on attack rolls against you until the end of your next turn. The invisibility ends if you attack or cast a spell."
+        }
+      ],
+      "summary": "Reaction: turn invisible and give nearby attackers disadvantage",
+      "text": "When you take damage, you can use your reaction to become invisible until the end of your next turn, and any creature within 30 feet of you that can see you also has disadvantage on attack rolls against you until the end of your next turn.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Feat 83"
+      }
+    },
+    {
+      "id": "feat.fell_thrower",
+      "name": "Fell Thrower",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "save_failed"
+      },
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 30,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "1d6",
+            "bonusFrom": "str"
+          },
+          "damageType": "bludgeoning",
+          "resolution": {
+            "mode": "attack",
+            "ability": "str",
+            "reaches": [
+              "30 ft melee"
+            ]
+          }
+        },
+        {
+          "kind": "special",
+          "note": "When a creature within 30 feet of you drops to 0 hit points or fails a saving throw to avoid being thrown, you can use your reaction to make a melee weapon attack against it. On a hit, it takes bludgeoning damage equal to 1d6 plus your Strength modifier."
+        }
+      ],
+      "summary": "Reaction: a bonus attack on something that drops or fails a save",
+      "text": "When a creature within 30 feet of you drops to 0 hit points, or fails a saving throw to avoid being thrown, you can use your reaction to make a melee weapon attack against it.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Feat 83"
+      }
+    },
+    {
+      "id": "feat.fey_teleportation",
+      "name": "Fey Teleportation",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "bonus_action",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "teleport",
+          "distance": {
+            "value": 30,
+            "unit": "ft"
+          },
+          "mustBeUnoccupied": true
+        },
+        {
+          "kind": "special",
+          "note": "As a bonus action you can teleport yourself up to 30 feet to an unoccupied space that you can see. At 17th level, you can bring one willing creature within 10 feet of you with you. You gain the use of this once per day and regain it at dawn."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 17,
+          "effects": [
+            {
+              "kind": "teleport",
+              "distance": {
+                "value": 30,
+                "unit": "ft"
+              },
+              "mustBeUnoccupied": true
+            },
+            {
+              "kind": "special",
+              "note": "You can bring one willing creature within 10 feet of you with you."
+            }
+          ]
+        }
+      ],
+      "summary": "Once a day, teleport 30 ft; bring a willing creature at 17",
+      "text": "As a bonus action you can teleport yourself up to 30 feet to an unoccupied space that you can see. You gain the use of this once per day.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Feat 83"
+      }
+    },
+    {
+      "id": "feat.fey_touched",
+      "name": "Fey Touched",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "cantrip": {
+            "known": true
+          },
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "wizard"
+              ]
+            },
+            {
+              "level": 1,
+              "from": [
+                "wizard"
+              ]
+            }
+          ],
+          "note": "You know the druidcraft cantrip, which you can cast at will, and two spells of your choice from the druid, fae, or wizard list. They are always prepared and castable without a slot. At 17th level, one of them is replaced."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 17,
+          "effects": [
+            {
+              "kind": "spell_grant",
+              "cantrip": {
+                "known": true
+              },
+              "spells": [
+                {
+                  "level": 1,
+                  "from": [
+                    "wizard"
+                  ]
+                },
+                {
+                  "level": 1,
+                  "from": [
+                    "wizard"
+                  ]
+                }
+              ],
+              "note": "At 17th level, one of the two spells is replaced by any other spell of a level you can cast from the same list."
+            }
+          ]
+        }
+      ],
+      "summary": "Druidcraft at will, plus two free always-prepared spells",
+      "text": "You know the druidcraft cantrip, which you can cast at will, and two spells of your choice from the druid, fae, or wizard list.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Feat 83"
+      }
+    },
+    {
+      "id": "feat.fighting_initiate",
+      "name": "Fighting Initiate",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "requires": {
+        "features": [
+          "class.fighter.fighting_style"
+        ]
+      },
+      "effects": [
+        {
+          "kind": "choice",
+          "of": "fighting_style",
+          "count": 1,
+          "note": "You gain a benefit from your choice of fighting style: Defense, Dueling, Great Weapon Fighting, Protection, Two-Weapon Fighting, Archery, Blessed, or Twilight."
+        }
+      ],
+      "summary": "Gain a fighting style you do not already have",
+      "text": "You gain a benefit from your choice of fighting style: Defense, Dueling, Great Weapon Fighting, Protection, Two-Weapon Fighting, Archery, Blessed, or Twilight.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Feat 84"
+      }
+    },
+    {
+      "id": "feat.flames_of_phlegethos",
+      "name": "Flames of Phlegethos",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "2d6",
+            "bonusFrom": "str"
+          },
+          "damageType": "fire",
+          "resolution": {
+            "mode": "save",
+            "ability": "dex",
+            "onSuccess": "half",
+            "onFailure": "full"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "When you hit a creature with a melee attack, you can impose burning on it. The target must make a Constitution saving throw, taking 2d6 fire damage and 1d6 of it again at the end of each of its turns on a failure, or half as much on a success. The target can end the burning by making a Dexterity saving throw or by being struck by a wind-based spell."
+        }
+      ],
+      "summary": "On a melee hit: 2d6 fire and 1d6 each turn until it stops",
+      "text": "When you hit a creature with a melee attack, you can impose burning on it. The target must make a Constitution saving throw, taking 2d6 fire damage and 1d6 of it again at the end of each of its turns.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Feat 84"
+      }
+    },
+    {
+      "id": "feat.grappler",
+      "name": "Grappler",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "When you hit a creature with a melee attack, you can use a bonus action to grapple a creature that is next to you, even if the creature is two sizes larger than you, and you have advantage on attack rolls against a creature that is grappled by you or is being grappled by one of your allies."
+        }
+      ],
+      "summary": "Grapple as a bonus action; advantage on grappled targets",
+      "text": "When you hit a creature with a melee attack, you can use a bonus action to grapple a creature that is next to you, even if the creature is two sizes larger than you. You have advantage on attack rolls against a creature that is grappled by you.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Feat 84"
+      }
+    },
+    {
+      "id": "feat.linguist",
+      "name": "Linguist",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "language",
+          "languages": [
+            "four of your choice"
+          ]
+        },
+        {
+          "kind": "special",
+          "note": "You gain proficiency in four languages of your choice. You can also use the spell to inspire allies, translating for them as you speak."
+        }
+      ],
+      "summary": "Proficiency in four languages of your choice",
+      "text": "You gain proficiency in four languages of your choice.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Feat 84"
+      }
+    },
+    {
+      "id": "feat.martial_adept",
+      "name": "Martial Adept",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "Your Dexterity modifier is increased by 1, and you gain proficiency in the Unarmored Defense fighting style, which gives you +1 AC while wearing no armor and not wielding a shield. You also gain a ba Attack action and can spend 1 ki point to make a Shove attack, a grapple, or take the Dodge action."
+        }
+      ],
+      "summary": "+1 Dex; Unarmored Defense; a ki-powered BA action",
+      "text": "You gain a +1 bonus to Dexterity, and you gain proficiency in the Unarmored Defense fighting style.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Feat 84"
+      }
+    },
+    {
+      "id": "feat.metamagic_adept",
+      "name": "Metamagic Adept",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "choice",
+          "of": "metamagic_option",
+          "count": 1,
+          "note": "You have learned a single metamagic option: Careful, Distant, Empowered, Extended, Heightened, Quickened, Seeking, Subtle, Transmuted or Twinned. You spend sorcery points equal to the option's cost."
+        }
+      ],
+      "summary": "Learn one Metamagic option",
+      "text": "You have learned a single metamagic option: Careful, Distant, Empowered, Extended, Heightened, Quickened, Seeking, Subtle, Transmuted, or Twinned.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Feat 84"
+      }
+    },
+    {
+      "id": "feat.piercer",
+      "name": "Piercer",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "1",
+            "flat": 1
+          },
+          "damageType": "piercing",
+          "resolution": {
+            "mode": "auto"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "When you hit a creature with a piercing weapon, you can give yourself a +1 bonus to damage rolls against that creature until the end of your next turn. At 13th level, the damage increases to 2 instead of 1, or you can reroll a 1 or 2 on the damage die and use either roll."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 13,
+          "effects": [
+            {
+              "kind": "damage",
+              "dice": {
+                "dice": "2",
+                "flat": 0
+              },
+              "damageType": "piercing",
+              "resolution": {
+                "mode": "auto"
+              }
+            },
+            {
+              "kind": "special",
+              "note": "2 bonus damage instead of 1, or reroll a 1 or 2 on the damage die and use either roll."
+            }
+          ]
+        }
+      ],
+      "summary": "On a piercing hit: +1 damage against that creature",
+      "text": "When you hit a creature with a piercing weapon, you can give yourself a +1 bonus to damage rolls against that creature until the end of your next turn.",
+      "source": {
+        "book": "TCE",
+        "reference": "PHB Feat 85"
+      }
+    },
+    {
+      "id": "feat.prodigy",
+      "name": "Prodigy",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 1,
+          "note": "You get one extra attack of any kind you make with a simple or martial weapon. This can be used only once per turn, and it is in addition to your normal number of attacks, whether from Extra Attack or otherwise."
+        }
+      ],
+      "summary": "One extra attack of any kind, once per turn",
+      "text": "You get one extra attack of any kind you make with a simple or martial weapon. This can be used only once per turn.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Feat 85"
+      }
+    },
+    {
+      "id": "feat.ritual_caster",
+      "name": "Ritual Caster",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "wizard"
+              ]
+            }
+          ],
+          "note": "You learn ritual casting as your spellcasting ability. You know the detect magic and find familiar cantrips, castable at will, and any spell of 1st level or higher with the ritual tag."
+        }
+      ],
+      "summary": "Learn ritual casting, detect magic and find familiar",
+      "text": "You learn ritual casting and can cast any spell with the ritual tag. You know the detect magic and find familiar cantrips, which you can cast at will.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Feat 85"
+      }
+    },
+    {
+      "id": "feat.second_chance",
+      "name": "Second Chance",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "save_failed"
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "When you fail a saving throw, you can use your reaction to force a reroll of the same die, and you must use the new roll. You gain the use of this after a long rest."
+        }
+      ],
+      "summary": "Reaction: reroll a failed save",
+      "text": "When you fail a saving throw, you can use your reaction to force a reroll of the same die. You must use the new roll.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Feat 85"
+      }
+    },
+    {
+      "id": "feat.shadow_touched",
+      "name": "Shadow Touched",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "cantrip": {
+            "known": true
+          },
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "wizard"
+              ]
+            },
+            {
+              "level": 1,
+              "from": [
+                "wizard"
+              ]
+            }
+          ],
+          "note": "You know the shadow blade cantrip, which you can cast at will, and two spells of your choice from the necromancy or wizard list. They are always prepared and castable without a slot."
+        }
+      ],
+      "summary": "Shadow blade at will, plus two free necromancy or wizard spells",
+      "text": "You know the shadow blade cantrip, which you can cast at will, and two spells of your choice from the necromancy or wizard list.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Feat 85"
+      }
+    },
+    {
+      "id": "feat.telekinetic",
+      "name": "Telekinetic",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 60,
+          "unit": "ft"
+        }
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "control",
+          "action": "push",
+          "distance": {
+            "value": 30,
+            "unit": "ft"
+          }
+        },
+        {
+          "kind": "spell_grant",
+          "spells": [
+            {
+              "level": 5,
+              "from": [
+                "wizard"
+              ]
+            }
+          ],
+          "note": "You learn the telekinesis spell, castable without a spell slot once per long rest. A creature you choose must succeed on a Strength saving throw or be moved up to 30 feet in any direction."
+        }
+      ],
+      "summary": "Telekinesis once a long rest; move a creature 30 ft",
+      "text": "You learn the telekinesis spell, which you can cast without a spell slot once per long rest. A creature you choose must succeed on a Strength saving throw or be moved up to 30 feet in any direction.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Feat 85"
+      }
+    },
+    {
+      "id": "feat.skill_expert",
+      "name": "Skill Expert",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "skill",
+          "skills": [
+            "three of your choice"
+          ],
+          "proficiency": "expertise"
+        },
+        {
+          "kind": "special",
+          "note": "You gain proficiency in any combination of three skills or tools of your choice, and your proficiency bonus is doubled for any ability check you make that uses one of those skills or tools."
+        }
+      ],
+      "summary": "Double proficiency on three skills or tools of your choice",
+      "text": "You gain proficiency in any combination of three skills or tools of your choice, and your proficiency bonus is doubled for any ability check you make that uses one of those skills or tools.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Feat 85"
+      }
+    },
+    {
+      "id": "feat.wood_elf_magic",
+      "name": "Wood Elf Magic",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "cantrip": {
+            "known": true
+          },
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "druid"
+              ]
+            }
+          ],
+          "note": "You know the druidcraft cantrip, which you can cast at will, and the longstrider and pass without trace spells, each of which you can cast once per long rest without a spell slot."
+        }
+      ],
+      "summary": "Druidcraft at will; longstrider and pass without trace per rest",
+      "text": "You know the druidcraft cantrip, which you can cast at will, and the longstrider and pass without trace spells, each of which you can cast once per long rest without a spell slot.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Feat 85"
+      }
+    },
+    {
+      "id": "feat.svirfneblin_magic",
+      "name": "Svirfneblin Magic",
+      "kind": "feat",
+      "owner": "Feat",
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "cantrip": {
+            "known": true
+          },
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "wizard"
+              ]
+            },
+            {
+              "level": 1,
+              "from": [
+                "wizard"
+              ]
+            }
+          ],
+          "note": "You know the detect magic cantrip, which you can cast at will, and the blindness and deafness spells, each of which you can cast once per long rest without a spell slot. At 17th level, one of these spells is replaced."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 17,
+          "effects": [
+            {
+              "kind": "spell_grant",
+              "cantrip": {
+                "known": true
+              },
+              "spells": [
+                {
+                  "level": 1,
+                  "from": [
+                    "wizard"
+                  ]
+                },
+                {
+                  "level": 1,
+                  "from": [
+                    "wizard"
+                  ]
+                }
+              ],
+              "note": "At 17th level, one of the two spells is replaced by a spell of your choice from the wizard list."
+            }
+          ]
+        }
+      ],
+      "summary": "Detect magic at will; blindness and deafness per long rest",
+      "text": "You know the detect magic cantrip, which you can cast at will, and the blindness and deafness spells, each of which you can cast once per long rest without a spell slot.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Feat 85"
+      }
+    }
+  ]
+}
