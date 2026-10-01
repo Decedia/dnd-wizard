@@ -1,0 +1,1939 @@
+{
+  "features": [
+    {
+      "id": "subclass.abjuration.abjuration_savant",
+      "name": "Abjuration Savant",
+      "kind": "subclass",
+      "owner": "Abjuration",
+      "unlock": 2,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "abjuration"
+              ]
+            }
+          ],
+          "note": "Your abilities are shaped by your wizard tradition. You know the abjuration spells and gain more at 6th, 10th and 14th level, and you can also cast one of your prepared spells without a slot per long rest."
+        }
+      ],
+      "summary": "Learn the abjuration spells, more at three levels",
+      "text": "Your abilities are shaped by your wizard tradition. You know the abjuration spells.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Abjuration 2"
+      }
+    },
+    {
+      "id": "subclass.abjuration.arcane_ward",
+      "name": "Arcane Ward",
+      "kind": "subclass",
+      "owner": "Abjuration",
+      "unlock": 2,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "temp_hp",
+          "dice": {
+            "dice": "2",
+            "flat": 0
+          },
+          "note": "You learn a ward that protects against magic, so as an action you can gain 2 plus your wizard level in temporary hit points, and you can use it again after you finish a long rest, and at 6th level it becomes 4 plus your wizard level."
+        }
+      ],
+      "summary": "Action: 2 + Wizard level temp HP, once per long rest",
+      "text": "As an action, you can gain 2 + your wizard level in temporary hit points.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Abjuration 2"
+      }
+    },
+    {
+      "id": "subclass.abjuration.projected_ward",
+      "name": "Projected Ward",
+      "kind": "subclass",
+      "owner": "Abjuration",
+      "unlock": 6,
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "self_hit_by_attack"
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "temp_hp",
+          "dice": {
+            "dice": "0",
+            "flat": 0
+          },
+          "note": "You can extend your ward to another creature, so when you are hit by an attack or targeted by a spell, you can use your reaction to transfer the ward to a creature within 60 feet of you, up to 8 plus your wizard level in temporary hit points, and you regain the use when you finish a long rest."
+        }
+      ],
+      "summary": "Reaction: give your ward to an ally instead",
+      "text": "When you are hit by an attack or targeted by a spell, you can use your reaction to transfer the ward to another creature within 60 feet of you.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Abjuration 6"
+      }
+    },
+    {
+      "id": "subclass.abjuration.improved_abjuration",
+      "name": "Improved Abjuration",
+      "kind": "subclass",
+      "owner": "Abjuration",
+      "unlock": 10,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_modifier",
+          "changes": [
+            "range",
+            "duration"
+          ],
+          "atLeastLevel": 1,
+          "note": "Your abjuration spells come to you enhanced, so any spell that you cast from your abjuration list ignores any distance restriction on range, can be used at a range 10 feet farther than normal, and lasts 1 round longer than normal if its duration is 1 round or longer."
+        }
+      ],
+      "summary": "Abjuration spells reach 10 ft further and last a round longer",
+      "text": "Any spell that you cast from your abjuration list ignores any distance restriction on range.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Abjuration 10"
+      }
+    },
+    {
+      "id": "subclass.abjuration.spell_resistance",
+      "name": "Spell Resistance",
+      "kind": "subclass",
+      "owner": "Abjuration",
+      "unlock": 14,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have learned to avoid the blast of magic entirely. You have advantage on saving throws against spells, and at 18th level, when you take damage from a spell you can use your reaction to gain resistance to that damage."
+        }
+      ],
+      "summary": "Advantage on saves against spells; resistance at 18",
+      "text": "You have advantage on saving throws against spells.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Abjuration 14"
+      }
+    },
+    {
+      "id": "subclass.bladesinging.bonus_proficiency",
+      "name": "Bonus Proficiency",
+      "kind": "subclass",
+      "owner": "Bladesinging",
+      "unlock": 2,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "tool",
+          "tools": [
+            "a musical instrument of your choice"
+          ],
+          "proficiency": "proficient"
+        },
+        {
+          "kind": "special",
+          "note": "You gain proficiency with a scimitar and with a musical instrument of your choice, and you speak, read and write one of the Celestial languages."
+        }
+      ],
+      "summary": "Proficiency with a scimitar and a musical instrument",
+      "text": "You gain proficiency with a scimitar and with a musical instrument of your choice.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Bladesinging 2"
+      }
+    },
+    {
+      "id": "subclass.bladesinging.training_in_war_and_song",
+      "name": "Training in War and Song",
+      "kind": "subclass",
+      "owner": "Bladesinging",
+      "unlock": 2,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "You learn to fight in time with your music, so you add your Charisma modifier to the damage roll of any attack you make with a scimitar, and if you use your Bladesong feature, the weapon counts as one with the Finesse property for that attack, and at 11th level you can use this with shortswords and longbows."
+        }
+      ],
+      "summary": "Charisma modifier adds to scimitar damage",
+      "text": "You add your Charisma modifier to the damage roll of any attack you make with a scimitar.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Bladesinging 2"
+      }
+    },
+    {
+      "id": "subclass.bladesinging.bladesong",
+      "name": "Bladesong",
+      "kind": "subclass",
+      "owner": "Bladesinging",
+      "unlock": 2,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
+      "endsIf": [
+        "10_minutes_of_inactivity",
+        "heavy_armor"
+      ],
+      "effects": [
+        {
+          "kind": "skill",
+          "skills": [
+            "Performance"
+          ],
+          "proficiency": "expertise"
+        },
+        {
+          "kind": "special",
+          "note": "You have learned to sing your foes into a bladesong, so as a bonus action, you gain proficiency in Performance and your weapon attacks score a critical hit on a roll of 18 or higher. At 10th level you can cast blade barrier and magic weapon on your bonus action."
+        }
+      ],
+      "summary": "Bonus action: crit on 18+, expert Performance",
+      "text": "As a bonus action, you gain proficiency in Performance and your weapon attacks score a critical hit on a roll of 18 or higher.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Bladesinging 2"
+      }
+    },
+    {
+      "id": "subclass.bladesinging.extra_attack",
+      "name": "Extra Attack",
+      "kind": "subclass",
+      "owner": "Bladesinging",
+      "unlock": 6,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 1,
+          "note": "You can attack twice, instead of once, whenever you take the Attack action on your turn."
+        }
+      ],
+      "summary": "Two attacks with the Attack action",
+      "text": "You can attack twice, instead of once, whenever you take the Attack action on your turn.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Bladesinging 6"
+      }
+    },
+    {
+      "id": "subclass.bladesinging.song_of_defense",
+      "name": "Song of Defense",
+      "kind": "subclass",
+      "owner": "Bladesinging",
+      "unlock": 10,
+      "activation": "reaction",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": {
+        "event": "save_failed"
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "round"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "advantage",
+          "check": "save",
+          "value": "advantage"
+        },
+        {
+          "kind": "special",
+          "note": "While you are singing, a failed save affects allies too, so as a reaction you can reroll the saving throw, and allies within 10 feet of you that hear your song can also reroll the saving throw, with advantage, and you gain this after a short or long rest."
+        }
+      ],
+      "summary": "Reaction: reroll a failed save, allies too with advantage",
+      "text": "As a reaction, you can reroll a saving throw that you fail.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Bladesinging 10"
+      }
+    },
+    {
+      "id": "subclass.bladesinging.song_of_victory",
+      "name": "Song of Victory",
+      "kind": "subclass",
+      "owner": "Bladesinging",
+      "unlock": 14,
+      "activation": "action",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "any"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "You have a song that grants your allies bonus attacks. As an action, you must be singing and choose up to 10 willing creatures within 60 feet of you, each of which can use a reaction to make one attack, with a +5 bonus to attack and damage rolls, and at 18th level the number increases to 30."
+        }
+      ],
+      "summary": "Action: up to ten allies each get a +5 bonus reaction attack",
+      "text": "As an action, you must be singing to choose up to 10 willing creatures within 60 feet of you.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Bladesinging 14"
+      }
+    },
+    {
+      "id": "subclass.chronurgy.chronal_shift",
+      "name": "Chronal Shift",
+      "kind": "subclass",
+      "owner": "Chronurgy Magic",
+      "unlock": 2,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "You have learned to add a moment to a creature's life. As a bonus action, you grant a creature within reach a re-roll, and the target can use it before or after making an attack roll, a saving throw or an ability check, and the target adds 1d10 to that roll, and the feature is gone after the re-roll or at dawn."
+        }
+      ],
+      "summary": "Bonus action: a creature rerolls a d20 and adds 1d10",
+      "text": "As a bonus action, you grant a creature within your reach a re-roll. Before or after making an attack roll, saving throw, or ability check, the target can reroll the d20 and add 1d10.",
+      "source": {
+        "book": "SCAG",
+        "reference": "Chronurgy Magic 6"
+      }
+    },
+    {
+      "id": "subclass.chronurgy.temporal_awareness",
+      "name": "Temporal Awareness",
+      "kind": "subclass",
+      "owner": "Chronurgy Magic",
+      "unlock": 2,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have an awareness of the flow of time, so you have advantage on initiative rolls, and if a creature makes an attack roll or saving throw against you, you can use your reaction to force the creature to reroll, using the new roll, and you can force it to reroll twice if it succeeds or fails on the original."
+        }
+      ],
+      "summary": "Advantage on initiative; reaction forces a reroll",
+      "text": "You have advantage on initiative rolls.",
+      "source": {
+        "book": "SCAG",
+        "reference": "Chronurgy Magic 6"
+      }
+    },
+    {
+      "id": "subclass.chronurgy.momentary_stasis",
+      "name": "Momentary Stasis",
+      "kind": "subclass",
+      "owner": "Chronurgy Magic",
+      "unlock": 6,
+      "activation": "action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "You have learned to catch a moment in a moment. As an action, you can take total and precise control of a creature within your reach, and if the creature is affected by an effect that it can see or hear, you can prevent its application, and at 11th level it can make a Wisdom save to be immune to the charm."
+        }
+      ],
+      "summary": "Action: negate a single effect on a creature you can see or hear",
+      "text": "As an action, you can take total and precise control of a creature within your reach.",
+      "source": {
+        "book": "SCAG",
+        "reference": "Chronurgy Magic 6"
+      }
+    },
+    {
+      "id": "subclass.chronurgy.arcane_abeyance",
+      "name": "Arcane Abeyance",
+      "kind": "subclass",
+      "owner": "Chronurgy Magic",
+      "unlock": 10,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "You have a deeper understanding of chronal magic, so you can act as though you had taken the Ready action on your turn, using a reaction before another creature acts to take a precise, predetermined action, and you gain this after a short or long rest."
+        }
+      ],
+      "summary": "A Ready-like reaction instead of your usual reaction",
+      "text": "You can use your reaction to act as though you had taken the Ready action on your turn.",
+      "source": {
+        "book": "SCAG",
+        "reference": "Chronurgy Magic 6"
+      }
+    },
+    {
+      "id": "subclass.chronurgy.convergent_future",
+      "name": "Convergent Future",
+      "kind": "subclass",
+      "owner": "Chronurgy Magic",
+      "unlock": 14,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "any"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "You have learned to make the moments fold, so as a bonus action, you make an attack roll with a ranged weapon against a target within 90 feet, and on a hit the target must make a Dexterity save or one ability check of your choice has disadvantage for 1 minute, and if you miss you can spend another point of your Temporality for a new target within 30 feet."
+        }
+      ],
+      "summary": "Bonus action: a d20 reroll; a hit makes its next check hard",
+      "text": "As a bonus action, you make an attack roll with a ranged weapon against a target within 90 feet of you.",
+      "source": {
+        "book": "SCAG",
+        "reference": "Chronurgy Magic 6"
+      }
+    },
+    {
+      "id": "subclass.conjuration.conjuration_savant",
+      "name": "Conjuration Savant",
+      "kind": "subclass",
+      "owner": "Conjuration",
+      "unlock": 2,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "conjuration"
+              ]
+            }
+          ],
+          "note": "Your abilities are shaped by your wizard tradition. You know the conjuration spells and gain more at 6th, 10th and 14th level, and you can also cast one of your prepared spells without a slot per long rest."
+        }
+      ],
+      "summary": "Learn the conjuration spells, more at three levels",
+      "text": "Your abilities are shaped by your wizard tradition. You know the conjuration spells.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Conjuration 2"
+      }
+    },
+    {
+      "id": "subclass.conjuration.minor_conjunction",
+      "name": "Minor Conjuration",
+      "kind": "subclass",
+      "owner": "Conjuration",
+      "unlock": 2,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_modifier",
+          "changes": [
+            "range",
+            "duration"
+          ],
+          "atLeastLevel": 1,
+          "note": "Your conjuration spells come to you enhanced, so any spell that you cast from your conjuration list ignores any distance restriction on range, can be used at a range 10 feet farther than normal, and lasts 1 round longer if its duration is 1 round or longer."
+        }
+      ],
+      "summary": "Conjuration spells reach 10 ft further and last a round longer",
+      "text": "Any spell that you cast from your conjuration list ignores any distance restriction on range.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Conjuration 2"
+      }
+    },
+    {
+      "id": "subclass.conjuration.benign_transportation",
+      "name": "Benign Transportation",
+      "kind": "subclass",
+      "owner": "Conjuration",
+      "unlock": 6,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "teleport",
+          "distance": {
+            "value": 30,
+            "unit": "ft"
+          },
+          "mustBeUnoccupied": true
+        },
+        {
+          "kind": "special",
+          "note": "You can cross distances with benevolent intent, so as a bonus action, you and one willing creature within 10 feet of you can teleport, and the creature must be within 10 feet of you, and it takes no damage and has no effects of the transportation."
+        }
+      ],
+      "summary": "Bonus action: teleport yourself and an ally 30 ft, harmlessly",
+      "text": "As a bonus action, you teleport yourself and one willing creature within 10 feet of you.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Conjuration 6"
+      }
+    },
+    {
+      "id": "subclass.conjuration.focused_conjunction",
+      "name": "Focused Conjuration",
+      "kind": "subclass",
+      "owner": "Conjuration",
+      "unlock": 10,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "You have learned to use spells to summon foes to you, so when you cast a spell that summons one or more creatures, the creatures are always within 60 feet of you rather than 10 feet away, and if you summon them within your reach, they have disadvantage on any attack roll against anyone other than you, and you gain this after a short or long rest."
+        }
+      ],
+      "summary": "Summoned creatures appear within 60 ft, near enough to be hindered",
+      "text": "When you cast a spell that summons one or more creatures, the creatures are always within 60 feet of you.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Conjuration 10"
+      }
+    },
+    {
+      "id": "subclass.conjuration.durable_summons",
+      "name": "Durable Summons",
+      "kind": "subclass",
+      "owner": "Conjuration",
+      "unlock": 14,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have learned to make your conjuration spells last, so casting find familiar or an animate dead spell, if it returns a creature, it lasts 1 hour without concentration, and at 18th level you can cast them twice without concentration in a day, and creatures you summon cannot be frightened by your spells or abilities."
+        }
+      ],
+      "summary": "Find familiar and animate dead last an hour without concentration",
+      "text": "When you cast find familiar or an animate dead spell, if it returns a creature, it lasts 1 hour without concentration.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Conjuration 14"
+      }
+    },
+    {
+      "id": "subclass.divination.divination_savant",
+      "name": "Divination Savant",
+      "kind": "subclass",
+      "owner": "Divination",
+      "unlock": 2,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "divination"
+              ]
+            }
+          ],
+          "note": "Your abilities are shaped by your wizard tradition. You know the divination spells and gain more at 6th, 10th and 14th level, and you can also cast one of your prepared spells without a slot per long rest."
+        }
+      ],
+      "summary": "Learn the divination spells, more at three levels",
+      "text": "Your abilities are shaped by your wizard tradition. You know the divination spells.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Divination 2"
+      }
+    },
+    {
+      "id": "subclass.divination.portent",
+      "name": "Portent",
+      "kind": "subclass",
+      "owner": "Divination",
+      "unlock": 2,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "Your magic can foreshadow the future, so each morning you can roll two d20 and record the results, and any creature that can see you can reroll a d20 for a d20 test it makes by spending a Portent, and you gain more at 6th, 12th and 16th level."
+        }
+      ],
+      "summary": "Two foretold d20s a day that allies can spend",
+      "text": "Each morning, you can roll two d20 and record the results on a piece of nonmagical parchment.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Divination 2"
+      }
+    },
+    {
+      "id": "subclass.divination.expert_divination",
+      "name": "Expert Divination",
+      "kind": "subclass",
+      "owner": "Divination",
+      "unlock": 6,
+      "activation": "action",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "any"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "spell_modifier",
+          "changes": [
+            "range",
+            "duration",
+            "level"
+          ],
+          "atLeastLevel": 1,
+          "note": "You can cast divination spells as they were before, so each spell that you cast from your divination list ignores any distance restriction on range, can be used at a range 10 feet farther than normal, and lasts 1 round longer if its duration is 1 round or longer."
+        }
+      ],
+      "summary": "Divination spells reach further, last longer, upcast at will",
+      "text": "You can cast your spells as divination spells, ignoring any distance restriction on range.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Divination 6"
+      }
+    },
+    {
+      "id": "subclass.divination.third_eye",
+      "name": "Third Eye",
+      "kind": "subclass",
+      "owner": "Divination",
+      "unlock": 10,
+      "activation": "action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "Your thoughts can view things at distance, so as an action you can gain truesight out to 30 feet for 1 minute, which also lets you see creatures and objects that are invisible, and you gain this after a long rest, and at 18th level the range is 60 feet."
+        }
+      ],
+      "summary": "Action: truesight 30 ft for a minute",
+      "text": "As an action, you can gain truesight out to 30 feet for 1 minute.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Divination 10"
+      }
+    },
+    {
+      "id": "subclass.divination.greater_portent",
+      "name": "Greater Portent",
+      "kind": "subclass",
+      "owner": "Divination",
+      "unlock": 14,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "You have perfected your foresight, so you have 4 Portents each morning, and a creature that can see you can cast a spell using a Portent, and at 16th level a Portent can be used twice by the same creature or on two creatures."
+        }
+      ],
+      "summary": "Four Portents a day, and they can cast a spell with one",
+      "text": "You have 4 Portents each morning, and you can cast a spell using a Portent.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Divination 14"
+      }
+    },
+    {
+      "id": "subclass.enchantment.savant",
+      "name": "Savant",
+      "kind": "subclass",
+      "owner": "Enchantment",
+      "unlock": 2,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "enchantment"
+              ]
+            }
+          ],
+          "note": "Your abilities are shaped by your wizard tradition. You know the enchantment spells and gain more at 6th, 10th and 14th level, and you can also cast one of your prepared spells without a slot per long rest."
+        }
+      ],
+      "summary": "Learn the enchantment spells, more at three levels",
+      "text": "Your abilities are shaped by your wizard tradition. You know the enchantment spells.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Enchantment 2"
+      }
+    },
+    {
+      "id": "subclass.enchantment.hypnotic_gaze",
+      "name": "Hypnotic Gaze",
+      "kind": "subclass",
+      "owner": "Enchantment",
+      "unlock": 2,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_modifier",
+          "changes": [
+            "range",
+            "duration"
+          ],
+          "atLeastLevel": 1,
+          "note": "Your gaze can hold a creature's attention, so when you cast a spell that creates a magical effect that requires concentration, you can force a creature within 60 feet of you to make a Constitution saving throw, and on a failure its concentration is broken, and any spell that you cast from your enchantment list ignores range restrictions."
+        }
+      ],
+      "summary": "Concentration spells in your school break an enemy's concentration",
+      "text": "When you cast a spell that requires concentration, you can force a creature to make a Constitution saving throw.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Enchantment 2"
+      }
+    },
+    {
+      "id": "subclass.enchantment.instinctive_charm",
+      "name": "Instinctive Charm",
+      "kind": "subclass",
+      "owner": "Enchantment",
+      "unlock": 6,
+      "activation": "action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "condition",
+          "action": "apply",
+          "conditions": [
+            "charmed"
+          ],
+          "note": "You have a gift for subtle manipulation. As an action, you can touch a creature and make a Charisma (Persuasion) check against its Wisdom save, and on a success it is charmed by you until the end of your next turn, and at 16th level the check is instead a spell save with the creature's Wisdom saving throw."
+        }
+      ],
+      "summary": "Action: a Persuasion check charms a touched creature",
+      "text": "As an action, you can touch a creature and make a Charisma (Persuasion) check.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Enchantment 6"
+      }
+    },
+    {
+      "id": "subclass.enchantment.split_enchantment",
+      "name": "Split Enchantment",
+      "kind": "subclass",
+      "owner": "Enchantment",
+      "unlock": 10,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_modifier",
+          "changes": [
+            "target"
+          ],
+          "atLeastLevel": 1,
+          "note": "You can split your enchantments between creatures. When you cast a spell that targets one creature, you can instead cast it so that it targets up to three creatures within 60 feet of each other, any of which can be the spell's original target, and you gain this after a short or long rest, and at 16th level the range increases to 120 feet."
+        }
+      ],
+      "summary": "Single-target enchantment spells hit three creatures",
+      "text": "When you cast a spell that targets one creature, you can instead cast it so that it targets up to three creatures.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Enchantment 10"
+      }
+    },
+    {
+      "id": "subclass.enchantment.alter_memories",
+      "name": "Alter Memories",
+      "kind": "subclass",
+      "owner": "Enchantment",
+      "unlock": 14,
+      "activation": "action",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 30,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You can weave enchantments into a creature's past, so as an action you can modify a creature's memories of a single event, the creature makes a Wisdom save, and on a failure you alter its memory so that it thinks things went differently, and you regain the use at dawn, and at 18th level if it succeeds you can try again."
+        }
+      ],
+      "summary": "Action, once a day: rewrite a creature's memory of one event",
+      "text": "As an action, you can modify a creature's memories of a single event.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Enchantment 14"
+      }
+    },
+    {
+      "id": "subclass.evocation.evocation_savant",
+      "name": "Evocation Savant",
+      "kind": "subclass",
+      "owner": "Evocation",
+      "unlock": 2,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "evocation"
+              ]
+            }
+          ],
+          "note": "Your abilities are shaped by your wizard tradition. You know the evocation spells and gain more at 6th, 10th and 14th level, and you can also cast one of your prepared spells without a slot per long rest."
+        }
+      ],
+      "summary": "Learn the evocation spells, more at three levels",
+      "text": "Your abilities are shaped by your wizard tradition. You know the evocation spells.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Evocation 2"
+      }
+    },
+    {
+      "id": "subclass.evocation.sculpt_spells",
+      "name": "Sculpt Spells",
+      "kind": "subclass",
+      "owner": "Evocation",
+      "unlock": 2,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "You have learned to create pockets of relative safety within your evocation effects, so when you cast a spell from your evocation list that creates an explosion or other effect, you can choose creatures to be automatically unaffected, and if you cast at a higher level, the number increases."
+        }
+      ],
+      "summary": "Choose creatures to be safe from your own evocation blasts",
+      "text": "When you cast a spell that creates an explosion or other effect, you can choose a number of creatures to be automatically unaffected by it.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Evocation 2"
+      }
+    },
+    {
+      "id": "subclass.evocation.potent_cantrip",
+      "name": "Potent Cantrip",
+      "kind": "subclass",
+      "owner": "Evocation",
+      "unlock": 6,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "stat_modifier",
+          "stat": "damage_roll",
+          "amount": 0,
+          "duration": "while_active"
+        },
+        {
+          "kind": "special",
+          "note": "Your cantrips carry more force, so the damage of a cantrip increases by 1d8 at 17th level and by 1d8 more at 10th, so it starts at 2d8 and ends at 4d8, and your cantrips count as 1st-level spells for effects like Sculpt Spells."
+        }
+      ],
+      "summary": "Cantrip damage scales: 2d8, then 3d8, then 4d8",
+      "text": "The damage of your cantrip increases by 1d8 at 4th level and by 1d8 again at 10th and 16th level.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Evocation 6"
+      }
+    },
+    {
+      "id": "subclass.evocation.empowered_evocation",
+      "name": "Empowered Evocation",
+      "kind": "subclass",
+      "owner": "Evocation",
+      "unlock": 10,
+      "activation": "action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "stat_modifier",
+          "stat": "damage_roll",
+          "amount": 0,
+          "duration": "while_active"
+        },
+        {
+          "kind": "special",
+          "note": "You can add 2d8 to one damage roll of a spell you cast, and the damage is increased by a number of d8s equal to 1 plus the level of the spell slot used, and at 18th level you gain this twice per long rest."
+        }
+      ],
+      "summary": "Action: add 2d8 plus the slot level to a spell's damage",
+      "text": "As an action, you can add 2d8 to one damage roll of a spell you cast.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Evocation 10"
+      }
+    },
+    {
+      "id": "subclass.evocation.overchannel",
+      "name": "Overchannel",
+      "kind": "subclass",
+      "owner": "Evocation",
+      "unlock": 14,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have learned to unleash your magic without reservation. When you cast a spell at 8th level or higher, you can expend a number of d8s equal to 2 plus twice the spell's level above 8th, and deal an extra amount of damage with the spell, and at 16th level you can add 1d8 to the damage of any spell."
+        }
+      ],
+      "summary": "Expend d8s for extra damage on 8th-level and higher spells",
+      "text": "When you cast a spell at 8th level or higher, you can expend a number of d8s to deal an extra amount of damage with the spell.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Evocation 14"
+      }
+    },
+    {
+      "id": "subclass.graviturgy.adjust_density",
+      "name": "Adjust Density",
+      "kind": "subclass",
+      "owner": "Graviturgy Magic",
+      "unlock": 2,
+      "activation": "action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 60,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "control",
+          "action": "push",
+          "distance": {
+            "value": 30,
+            "unit": "ft"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You can change the density of a creature or object, so as an action you can target a Large or smaller creature or object within 60 feet, and if it fails a Constitution save, you can move it up to 30 feet in any direction, and if it's an object it's moved the same distance, and you gain this after a short or long rest."
+        }
+      ],
+      "summary": "Spend Temporality: move a creature or object 30 ft",
+      "text": "As an action, you can target a Large or smaller creature or object within 60 feet of you.",
+      "source": {
+        "book": "SCAG",
+        "reference": "Graviturgy Magic 6"
+      }
+    },
+    {
+      "id": "subclass.graviturgy.gravity_well",
+      "name": "Gravity Well",
+      "kind": "subclass",
+      "owner": "Graviturgy Magic",
+      "unlock": 6,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creatures_in_area",
+        "range": {
+          "value": 30,
+          "unit": "ft"
+        },
+        "shape": "sphere"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
+      "endsIf": [
+        "area_moves_more_than_10_feet"
+      ],
+      "effects": [
+        {
+          "kind": "control",
+          "action": "push",
+          "distance": {
+            "value": 15,
+            "unit": "ft"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You can create a gravity field, so as a bonus action you cast a 30-foot radius sphere centered on a point within range that lasts 1 minute and can't be moved more than 10 feet, and each creature in the sphere when it appears makes a Strength save, taking 2d6 falling damage and landing prone on a failure, or half damage and no prone on a success, and you gain this after a long rest."
+        }
+      ],
+      "summary": "Bonus action: a 30-ft gravity field, 2d6 falling damage",
+      "text": "As a bonus action, you cast a 30-foot radius sphere of gravity centered on a point within range.",
+      "source": {
+        "book": "SCAG",
+        "reference": "Graviturgy Magic 6"
+      }
+    },
+    {
+      "id": "subclass.graviturgy.violent_attraction",
+      "name": "Violent Attraction",
+      "kind": "subclass",
+      "owner": "Graviturgy Magic",
+      "unlock": 10,
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "self_hit_by_attack"
+      },
+      "targeting": {
+        "scope": "creature"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "control",
+          "action": "push",
+          "distance": {
+            "value": 30,
+            "unit": "ft"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "When a creature within 30 feet of you hits you with an attack, you can use your reaction to add 1d8 to the AC of the attacker for the attack and knock it prone, and you gain this after a long rest."
+        }
+      ],
+      "summary": "Reaction: +1d8 AC and knockdown against an attacker",
+      "text": "When a creature within 30 feet of you hits you with an attack, you can use your reaction to add 1d8 to the AC of the attacker.",
+      "source": {
+        "book": "SCAG",
+        "reference": "Graviturgy Magic 6"
+      }
+    },
+    {
+      "id": "subclass.graviturgy.gravity_sinkhole",
+      "name": "Gravity Sinkhole",
+      "kind": "subclass",
+      "owner": "Graviturgy Magic",
+      "unlock": 14,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creatures_in_area",
+        "range": {
+          "value": 30,
+          "unit": "ft"
+        },
+        "shape": "sphere"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
+      "endsIf": [
+        "area_moves_more_than_10_feet"
+      ],
+      "effects": [
+        {
+          "kind": "condition",
+          "action": "apply",
+          "conditions": [
+            "restrained"
+          ]
+        },
+        {
+          "kind": "special",
+          "note": "You can pull everything inward, so as a bonus action you cast a 30-foot radius sphere within range that lasts 1 minute and can't be moved more than 10 feet, and each creature in the sphere makes a Constitution save, taking 2d6 falling damage and being restrained and knocked prone on a failure, and at 18th level creatures in the area at the start of their turn make a Constitution save or take 4d6 damage."
+        }
+      ],
+      "summary": "Bonus action: a sinkhole restrains and damages creatures",
+      "text": "As a bonus action, you cast a 30-foot radius sphere centered on a point within range.",
+      "source": {
+        "book": "SCAG",
+        "reference": "Graviturgy Magic 6"
+      }
+    },
+    {
+      "id": "subclass.illusion.illusion_savant",
+      "name": "Illusion Savant",
+      "kind": "subclass",
+      "owner": "Illusion",
+      "unlock": 2,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "illusion"
+              ]
+            }
+          ],
+          "note": "Your abilities are shaped by your wizard tradition. You know the illusion spells and gain more at 6th, 10th and 14th level, and you can also cast one of your prepared spells without a slot per long rest."
+        }
+      ],
+      "summary": "Learn the illusion spells, more at three levels",
+      "text": "Your abilities are shaped by your wizard tradition. You know the illusion spells.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Illusion 2"
+      }
+    },
+    {
+      "id": "subclass.illusion.improved_minor_illusion",
+      "name": "Improved Minor Illusion",
+      "kind": "subclass",
+      "owner": "Illusion",
+      "unlock": 2,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_modifier",
+          "changes": [
+            "target",
+            "duration"
+          ],
+          "atLeastLevel": 1,
+          "note": "Your minor illusions are stronger, so the sound and movement of your spell creates no perceptible sound and is too subtle for anyone under a foot tall to notice, and the spell lasts 1 minute longer, and you can cast it without a slot, and at 6th level you gain a free silent image, and at 14th a phantasmal force that lasts longer."
+        }
+      ],
+      "summary": "Minor illusion lasts a minute longer and costs no slot",
+      "text": "The spell creates no perceptible sound and the movement it creates is too subtle for anyone shorter than a foot to notice.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Illusion 2"
+      }
+    },
+    {
+      "id": "subclass.illusion.illusory_self",
+      "name": "Illusory Self",
+      "kind": "subclass",
+      "owner": "Illusion",
+      "unlock": 6,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You can make yourself harder to pin down. As a bonus action, you become invisible to any creature that can't see you, even if it's blinded, and the effect ends when you attack or cast a spell. You gain this after a short or long rest, and at 12th level, if you move more than 10 feet from where you used this, the effect ends."
+        }
+      ],
+      "summary": "Bonus action: invisibility even to blinded creatures",
+      "text": "As a bonus action, you become invisible to any creature that can't see you, even if it's blinded.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Illusion 6"
+      }
+    },
+    {
+      "id": "subclass.illusion.illusory_reality",
+      "name": "Illusory Reality",
+      "kind": "subclass",
+      "owner": "Illusion",
+      "unlock": 14,
+      "activation": "action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creatures_in_area",
+        "range": {
+          "value": 60,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You can make something real at the crucial moment. As an action, you can choose a creature within 60 feet and re-roll a failed saving throw it makes, and on a success it fails instead, and you gain this after a long rest, and at 18th level you gain it twice."
+        }
+      ],
+      "summary": "Action: reroll a creature's failed save, forcing a failure",
+      "text": "As an action, you can choose a creature within 60 feet of you and re-roll a failed saving throw it makes.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Illusion 14"
+      }
+    },
+    {
+      "id": "subclass.necromancy.savant",
+      "name": "Savant",
+      "kind": "subclass",
+      "owner": "Necromancy",
+      "unlock": 2,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "necromancy"
+              ]
+            }
+          ],
+          "note": "Your abilities are shaped by your wizard tradition. You know the necromancy spells and gain more at 6th, 10th and 14th level, and you can also cast one of your prepared spells without a slot per long rest."
+        }
+      ],
+      "summary": "Learn the necromancy spells, more at three levels",
+      "text": "Your abilities are shaped by your wizard tradition. You know the necromancy spells.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Necromancy 2"
+      }
+    },
+    {
+      "id": "subclass.necromancy.grim_harvest",
+      "name": "Grim Harvest",
+      "kind": "subclass",
+      "owner": "Necromancy",
+      "unlock": 2,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_modifier",
+          "changes": [
+            "range",
+            "duration"
+          ],
+          "atLeastLevel": 1,
+          "note": "Your necromancy spells drain life, so any spell that you cast from your necromancy list that reduces a creature to 0 hit points heals you by 3d8, and any spell ignores range restrictions, and at 10th level this healing increases by 3d8 for each level above 10th, and at 18th level it increases by another 3d8."
+        }
+      ],
+      "summary": "Killing with a necromancy spell heals you 3d8",
+      "text": "Any spell that you cast from your necromancy list that reduces a creature to 0 hit points heals you by 3d8.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Necromancy 2"
+      }
+    },
+    {
+      "id": "subclass.necromancy.undead_thralls",
+      "name": "Undead Thralls",
+      "kind": "subclass",
+      "owner": "Necromancy",
+      "unlock": 6,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "summon",
+          "features": [],
+          "formId": "necromancy_spell_construct",
+          "initiative": "self",
+          "control": "ally",
+          "duration": {
+            "value": 1,
+            "unit": "hour"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You can raise your own minions. As an action, you can animate corpses in your presence as tiny undead, and at any time you can end the effect to kill any undead you created with it, and the animated corpses rise to the end of your next turn."
+        }
+      ],
+      "summary": "Action: raise corpses as tiny undead",
+      "text": "As an action, you can animate corpses in your presence as tiny undead.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Necromancy 6"
+      }
+    },
+    {
+      "id": "subclass.necromancy.inured_to_undeath",
+      "name": "Inured to Undeath",
+      "kind": "subclass",
+      "owner": "Necromancy",
+      "unlock": 10,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "resistance",
+          "damageTypes": [
+            "necrotic"
+          ]
+        },
+        {
+          "kind": "special",
+          "note": "You have resistance to necrotic damage and immunity to all disease, and you can lean on undeath to survive, so any necrotic damage you take reduces your hit point maximum by the same amount, and this maximum reduction can't be removed except by a short or long rest, and you can also concentrate on spells while incapacitated by exhaustion."
+        }
+      ],
+      "summary": "Necrotic resistance and disease immunity; exhaustion costs you max HP instead",
+      "text": "You have resistance to necrotic damage and immunity to all disease.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Necromancy 10"
+      }
+    },
+    {
+      "id": "subclass.necromancy.command_undead",
+      "name": "Command Undead",
+      "kind": "subclass",
+      "owner": "Necromancy",
+      "unlock": 14,
+      "activation": "action",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 60,
+          "unit": "ft"
+        },
+        "description": "An undead creature"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You can extend your mastery over the dead. As an action, you can target an undead creature, and it makes a Wisdom save, and on a failure it temporarily obeys your commands for 1 minute, and at any time you can end the effect early, and at 18th level you gain this twice per day and it lasts 24 hours."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 18,
+          "limits": {
+            "per": "day",
+            "max": 2
+          },
+          "effects": [
+            {
+              "kind": "special",
+              "note": "The creature temporarily obeys your commands for 24 hours, and you can use this twice per day."
+            }
+          ]
+        }
+      ],
+      "summary": "Action, once a day: command an undead for a minute",
+      "text": "As an action, you can target an undead creature within 60 feet of you.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Necromancy 14"
+      }
+    },
+    {
+      "id": "subclass.scribes.wizardly_quill",
+      "name": "Wizardly Quill",
+      "kind": "subclass",
+      "owner": "Order of Scribes",
+      "unlock": 2,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "Your insight can capture the essence of others' spells, so you gain the benefits of the Research Intelligencer and note-taking features, and you can copy a spell from another wizard's spellbook, after studying it for at least 1 hour and at 6th level in only 10 minutes."
+        }
+      ],
+      "summary": "Copy spells from other wizards' spellbooks",
+      "text": "You gain the benefits of the Research Intelligencer and note-taking features.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Wizard Order of Scribes 2"
+      }
+    },
+    {
+      "id": "subclass.scribes.awakened_spellbook",
+      "name": "Awakened Spellbook",
+      "kind": "subclass",
+      "owner": "Order of Scribes",
+      "unlock": 2,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "wizard"
+              ]
+            }
+          ],
+          "note": "Your spellbook can think, so as a bonus action you can submit to the intelligence of your spellbook to gain a benefit, and you gain a wizardly quill feature that lets you copy spells faster, and the book can speak in languages you know and reveal information."
+        }
+      ],
+      "summary": "A sentient spellbook that copies spells and answers questions",
+      "text": "Your spellbook gains a limited intelligence, semisentience, and speaks a language you know.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Wizard Order of Scribes 2"
+      }
+    },
+    {
+      "id": "subclass.scribes.manifest_mind",
+      "name": "Manifest Mind",
+      "kind": "subclass",
+      "owner": "Order of Scribes",
+      "unlock": 6,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "Your mind can project your spells through any surface, so when you cast a spell that has a range of self that requires concentration, it lasts until you end concentration or until it ends, and at 10th level, once per long rest, you can cast one spell of 5th level or lower without concentrating on it."
+        }
+      ],
+      "summary": "Concentration-free self-range spells; one free 5th-level per rest",
+      "text": "When you cast a spell that has a range of self that requires concentration, it lasts until you end concentration.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Wizard Order of Scribes 6"
+      }
+    },
+    {
+      "id": "subclass.scribes.master_scrivian",
+      "name": "Master Scrivian",
+      "kind": "subclass",
+      "owner": "Order of Scribes",
+      "unlock": 10,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "skill",
+          "skills": [
+            "Arcana",
+            "History",
+            "Investigation",
+            "Religion"
+          ],
+          "proficiency": "proficient"
+        },
+        {
+          "kind": "special",
+          "note": "You are a scholar par excellence, so you gain proficiency in Arcana, History, Investigation and Religion, and your intelligence checks can include your proficiency bonus with any tool and you have access to a library nearby."
+        }
+      ],
+      "summary": "Proficiency in four knowledge skills; tools count for Intelligence",
+      "text": "You gain proficiency in the Arcana, History, Investigation, and Religion skills.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Wizard Order of Scribes 10"
+      }
+    },
+    {
+      "id": "subclass.scribes.one_with_words",
+      "name": "One with Words",
+      "kind": "subclass",
+      "owner": "Order of Scribes",
+      "unlock": 14,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have achieved a oneness with your spellbook. While you are concentration on a spell, your spellbook confers no benefit from any other feature of yours, but your Intelligence modifier is increased by your wizard level, and at 18th level you also gain 30 extra hit points."
+        }
+      ],
+      "summary": "Intelligence modifier is increased by your wizard level",
+      "text": "Your Intelligence modifier is increased by your wizard level.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Wizard Order of Scribes 14"
+      }
+    },
+    {
+      "id": "subclass.transmutation.savant",
+      "name": "Savant",
+      "kind": "subclass",
+      "owner": "Transmutation",
+      "unlock": 2,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "transmutation"
+              ]
+            }
+          ],
+          "note": "Your abilities are shaped by your wizard tradition. You know the transmutation spells and gain more at 6th, 10th and 14th level, and you can also cast one of your prepared spells without a slot per long rest."
+        }
+      ],
+      "summary": "Learn the transmutation spells, more at three levels",
+      "text": "Your abilities are shaped by your wizard tradition. You know the transmutation spells.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Transmutation 2"
+      }
+    },
+    {
+      "id": "subclass.transmutation.minor_alchemy",
+      "name": "Minor Alchemy",
+      "kind": "subclass",
+      "owner": "Transmutation",
+      "unlock": 2,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_modifier",
+          "changes": [
+            "range",
+            "duration",
+            "level"
+          ],
+          "atLeastLevel": 1,
+          "note": "Your transmutation spells come to you enhanced, so any spell that you cast from your transmutation list ignores range restrictions, can be used at a range 10 feet farther, lasts 1 round longer, and you can cast at a higher level than normal without a higher-level slot, and you gain this after a long rest."
+        }
+      ],
+      "summary": "Transmutation spells upcast freely, reach further, last longer",
+      "text": "You can cast at a higher level than normal without a higher-level spell slot.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Transmutation 2"
+      }
+    },
+    {
+      "id": "subclass.transmutation.transmuters_stone",
+      "name": "Transmuter's Stone",
+      "kind": "subclass",
+      "owner": "Transmutation",
+      "unlock": 6,
+      "activation": "action",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "As an action, you can touch a nonmagical object of 5 feet or less in any dimension, and a translucent wave of energy spreads over it, briefly giving it a magical quality. At the end of 1 hour, the object permanently gains one property, chosen by you."
+        }
+      ],
+      "summary": "Action, once a day: give a small object one magical property",
+      "text": "As an action, you can touch a nonmagical object of 5 feet or less in any dimension.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Transmutation 6"
+      }
+    },
+    {
+      "id": "subclass.transmutation.shapechanger",
+      "name": "Shapechanger",
+      "kind": "subclass",
+      "owner": "Transmutation",
+      "unlock": 10,
+      "activation": "action",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "any",
+        "range": {
+          "value": 90,
+          "unit": "ft"
+        },
+        "description": "A Small or Medium creature of another race"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
+      "endsIf": [
+        "become_incapacitated_or_0_hit_points",
+        "dIE"
+      ],
+      "effects": [
+        {
+          "kind": "transform",
+          "formId": "any_small_or_medium_creature",
+          "formTable": "forms",
+          "abilities": [
+            "str",
+            "dex",
+            "con",
+            "int",
+            "wis",
+            "cha"
+          ],
+          "note": "As an action, you assume the form of any creature with a challenge rating equal to or less than yours that you have seen, and you keep your own alignment, hit points, Hit Dice, ability to speak, proficiencies, Legendary Resistance and resistances, and Intelligence, Wisdom and Charisma, and at 16th level you can use this twice per day."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 16,
+          "limits": {
+            "per": "day",
+            "max": 2
+          },
+          "effects": [
+            {
+              "kind": "transform",
+              "formId": "any_small_or_medium_creature",
+              "formTable": "forms",
+              "abilities": [
+                "str",
+                "dex",
+                "con",
+                "int",
+                "wis",
+                "cha"
+              ],
+              "note": "You can use this twice per day."
+            }
+          ]
+        }
+      ],
+      "summary": "Action: assume the form of any CR-or-lower creature you've seen",
+      "text": "As an action, you assume the form of any creature with a challenge rating equal to or less than yours that you have seen.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Transmutation 10"
+      }
+    },
+    {
+      "id": "subclass.transmutation.master_transmuter",
+      "name": "Master Transmuter",
+      "kind": "subclass",
+      "owner": "Transmutation",
+      "unlock": 14,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "stat_modifier",
+          "stat": "con",
+          "amount": 2,
+          "duration": "permanent"
+        },
+        {
+          "kind": "special",
+          "note": "You can alter yourself fundamentally, so you gain 2 additional points and 1 point in three ability scores, and you can Shapechange into a beast with a challenge rating 2 higher than your own if you have seen that beast."
+        }
+      ],
+      "summary": "+2 to three ability scores; Shapechanger reaches CR 2 higher",
+      "text": "You gain 2 additional points to distribute among your ability scores.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard Transmutation 14"
+      }
+    },
+    {
+      "id": "subclass.war_magic.arcane_deflection",
+      "name": "Arcane Deflection",
+      "kind": "subclass",
+      "owner": "War Magic",
+      "unlock": 2,
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "self_damaged"
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "When you are hit by a projectile from a visible creature, you can use your reaction to add 1 to your AC for that attack, including against the triggering one, and you regain the use of this when you finish a short or long rest, and at 16th level you can use this twice per long rest."
+        }
+      ],
+      "summary": "Reaction: +1 AC against a projectile",
+      "text": "When you are hit by a projectile from a visible creature, you can use your reaction to add 1 to your AC for that attack.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard War Magic 2"
+      }
+    },
+    {
+      "id": "subclass.war_magic.tactical_wit",
+      "name": "Tactical Wit",
+      "kind": "subclass",
+      "owner": "War Magic",
+      "unlock": 2,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have developed a mind for tactics. You can use your reaction when a creature you can see starts its turn to move 10 feet as a free action, and if you can see its eyes, you gain a +2 bonus to that creature's first attack roll, which you can choose to give to that creature instead, or to another creature within 30 feet of you that it attacks."
+        }
+      ],
+      "summary": "Reaction: move and hand out a +2 to an enemy's first attack",
+      "text": "When a creature you can see starts its turn, you can use your reaction to move 10 feet as a free action.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard War Magic 2"
+      }
+    },
+    {
+      "id": "subclass.war_magic.power_surge",
+      "name": "Power Surge",
+      "kind": "subclass",
+      "owner": "War Magic",
+      "unlock": 6,
+      "activation": "action",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "stat_modifier",
+          "stat": "spell_attack",
+          "amount": 2,
+          "duration": "while_active"
+        },
+        {
+          "kind": "spell_modifier",
+          "changes": [
+            "level",
+            "duration"
+          ],
+          "atLeastLevel": 1,
+          "note": "As an action, you can cast any spell that you have prepared without a spell slot, and the spell does an extra amount of damage equal to 1d8 times the level of the spell slot you would have used. You gain this after a long rest, and at 16th level you gain it twice per long rest."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 16,
+          "limits": {
+            "per": "day",
+            "max": 2
+          },
+          "effects": [
+            {
+              "kind": "spell_modifier",
+              "changes": [
+                "level",
+                "duration"
+              ],
+              "atLeastLevel": 1,
+              "note": "You can use this twice per long rest."
+            }
+          ]
+        }
+      ],
+      "summary": "Action, once a day: a free spell with +1d8 per slot level",
+      "text": "As an action, you can cast any spell that you have prepared without a spell slot.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard War Magic 6"
+      }
+    },
+    {
+      "id": "subclass.war_magic.durable_magic",
+      "name": "Durable Magic",
+      "kind": "subclass",
+      "owner": "War Magic",
+      "unlock": 10,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have learned to make your magic endure. When you cast an instant spell, it has no effect on creatures that are cursed, and it ignores any resistance or immunity to spells of the appropriate type, and you can cast one spell during your last turn of the initiative order without concentration."
+        }
+      ],
+      "summary": "Instant spells ignore immunities; last-turn spell is concentration-free",
+      "text": "When you cast an instant spell, it ignores any resistance or immunity to spells of the appropriate type.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard War Magic 10"
+      }
+    },
+    {
+      "id": "subclass.war_magic.deflecting_shroud",
+      "name": "Deflecting Shroud",
+      "kind": "subclass",
+      "owner": "War Magic",
+      "unlock": 14,
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "self_damaged"
+      },
+      "targeting": {
+        "scope": "ally",
+        "range": {
+          "value": 60,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "When you or a creature you can see within 60 feet is hit by an attack, you can use your reaction to increase the target's AC by 5, including against the triggering attack, and it lasts until the end of the next turn, and you regain the use of this when you finish a short or long rest."
+        }
+      ],
+      "summary": "Reaction: +5 AC for you or a nearby ally until next turn",
+      "text": "When you or a creature you can see within 60 feet of you is hit by an attack, you can use your reaction to increase the target's AC by 5.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Wizard War Magic 14"
+      }
+    }
+  ]
+}

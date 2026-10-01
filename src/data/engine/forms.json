@@ -379,6 +379,42 @@
         "echo_knight:3"
       ],
       "note": "A magical echo of the fighter, created with Manifest Echo or Unleash Incarnation. Intangible, makes attack rolls as the fighter does, can take reactions and use their features, and is destroyed at 0 hit points or by a Dispel Evil or similar. Tasha's Cauldron p. 73."
+    },
+    {
+      "id": "necromancy_spell_construct",
+      "name": "Necromancy Spell Construct",
+      "cr": "1/4",
+      "creatureType": "undead",
+      "size": "Tiny",
+      "ac": "12 plus your Intelligence modifier",
+      "hp": "4 plus your wizard level",
+      "speed": "30 ft.",
+      "abilities": {
+        "str": 1,
+        "dex": 14,
+        "con": 10,
+        "int": 10,
+        "wis": 10,
+        "cha": 7
+      },
+      "grantedAt": [
+        "necromancy:6"
+      ],
+      "note": "A tiny undead animated by a necromancy wizard with the Undead Thralls feature, made from corpses in the wizard's presence. Rises at the end of the wizard's next turn and can be dismissed at will. PHB Wizard Necromancy 6."
+    },
+    {
+      "id": "any_small_or_medium_creature",
+      "name": "Any Beast or Creature with a Lower CR",
+      "cr": "equal to or less than your own",
+      "creatureType": "any",
+      "size": "Small or Medium",
+      "ac": "as the creature",
+      "hp": "as the creature",
+      "speed": "as the creature",
+      "grantedAt": [
+        "transmutation:10"
+      ],
+      "note": "The form slot used by the Transmuter's Shapechanger feature: any creature of a challenge rating equal to or lower than the wizard's that they have seen. The individual stat block is chosen at the table and is not fixed data. PHB Wizard Transmutation 10."
     }
   ]
 }
