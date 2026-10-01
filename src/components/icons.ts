@@ -37,6 +37,7 @@ export {
   HiClipboardDocument as ClipboardTextIcon,
   HiBookOpen as BookIcon,
   HiArrowsRightLeft as SwapIcon,
+  HiArrowPath as RefreshIcon,
   HiSpeakerWave as EarIcon,
   HiFire as FireIcon,
   HiFolder as FolderIcon,

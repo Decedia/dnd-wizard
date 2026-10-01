@@ -1202,3 +1202,102 @@ export async function finalizeCreation(character: Character): Promise<Character>
   await saveCharacter(finalCharacter);
   return finalCharacter;
 }
+
+/**
+ * Rebuilds everything that can be derived from a character's identity, leaving
+ * anything the player chose or anything in play alone.
+ *
+ * Deliberately NOT finalizeCreation. That runs once at the end of character
+ * creation and is not safe to repeat: it re-applies the Variant Human ability
+ * bonus (so a second run would add +1 to two ability scores again), and it
+ * resets spell slots and hit dice to full. This function is idempotent, so the
+ * rebuild button can be pressed any number of times, including mid-combat.
+ *
+ * Derived: features, subclass spell grants, the spell slot table, and every
+ * stat computed from class, race and level.
+ * Preserved: hit points, temporary hit points, spent slots and dice, per-turn
+ * usage, death saves, exhaustion, resource pools, active states and buffs, and
+ * every player choice - ability scores, skills, languages, ASIs, feats,
+ * inventory, appearance and notes.
+ */
+export function rebuildDerived(character: Character, language = "en"): Character {
+  // Everything below is in-play or chosen state, captured before any derivation
+  // runs so the derived pass cannot overwrite it.
+  const preserved: Partial<Character> = {
+    currentHp: character.currentHp,
+    temporaryHp: character.temporaryHp,
+    hitDiceRemaining: character.hitDiceRemaining,
+    spellSlotsExpended: character.spellSlotsExpended,
+    featuresUsedThisTurn: character.featuresUsedThisTurn,
+    spellsUsedThisTurn: character.spellsUsedThisTurn,
+    deathSaveSuccesses: character.deathSaveSuccesses,
+    deathSaveFailures: character.deathSaveFailures,
+    exhaustionLevel: character.exhaustionLevel,
+    rages: character.rages,
+    sorceryPoints: character.sorceryPoints,
+    bardicInspirationUses: character.bardicInspirationUses,
+    activeStates: character.activeStates,
+    activeBuffs: character.activeBuffs,
+    inspiration: character.inspiration,
+    // Ability scores carry applied Variant Human and ASI choices; re-deriving
+    // them would wipe those, and the variant bonus is deliberately not re-added.
+    str: character.str,
+    dex: character.dex,
+    con: character.con,
+    int: character.int,
+    wis: character.wis,
+    cha: character.cha,
+    skills: character.skills,
+    languages: character.languages,
+    toolProficiencies: character.toolProficiencies,
+    expertise: character.expertise,
+    otherProficiencies: character.otherProficiencies,
+    featureSelections: character.featureSelections,
+    raceChoices: character.raceChoices,
+    variantHumanAbilities: character.variantHumanAbilities,
+    variantHumanSkill: character.variantHumanSkill,
+    appliedAsi: character.appliedAsi,
+    inventory: character.inventory,
+    spells: character.spells,
+    preparedSpells: character.preparedSpells,
+    costumeSpells: character.costumeSpells,
+  };
+
+  let next = applySubclassFeatures(character, language);
+  next = applySubclassSpellGrants(next);
+  next = syncBaseFeatures(next, language);
+
+  const derived = computeDerivedStats(next);
+  next = { ...next, ...derived };
+
+  // The slot table itself is derived, but what is spent from it is not.
+  const classData = getStaticClass(character.class, character.ruleset, undefined, language);
+  const levelData = classData?.levels?.[(character.level || 1) - 1];
+  const slotTable = levelData?.spellSlots || {};
+  if (Object.keys(slotTable).length > 0) {
+    next = {
+      ...next,
+      spellSlots: slotTable,
+      // Keep spent slots for levels the table still has, drop any it no longer does.
+      spellSlotsExpended: Object.fromEntries(
+        Object.keys(slotTable)
+          .map(Number)
+          .filter((level) => (character.spellSlotsExpended ?? {})[level] !== undefined)
+          .map((level) => [level, character.spellSlotsExpended[level]])
+      ),
+    };
+  }
+
+  const rebuilt: Character = { ...next, ...preserved };
+
+  // A stat rebuild can raise the maximum; keep the character at full if they
+  // were at full, and never leave them over the new maximum.
+  if (rebuilt.maxHp > 0) {
+    rebuilt.currentHp = Math.min(rebuilt.currentHp, rebuilt.maxHp);
+    if (character.currentHp >= character.maxHp && character.maxHp > 0) {
+      rebuilt.currentHp = rebuilt.maxHp;
+    }
+  }
+
+  return rebuilt;
+}

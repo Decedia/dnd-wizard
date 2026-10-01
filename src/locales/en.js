@@ -721,6 +721,8 @@ export const translations = {
   "features.showDefaultOnly": "Show default only",
   "features.showAllShort": "Show all",
   "features.syncing": "Syncing...",
+  "appearance.rebuild": "Rebuild from class, race and level",
+  "appearance.rebuildHint": "Re-derives features, spells and stats. Keeps your choices, hit points, spent slots and active effects.",
   "features.syncWithSrd": "Sync with SRD",
   "spells.prepared": "Prepared",
   "spells.prepare": "Prepare",

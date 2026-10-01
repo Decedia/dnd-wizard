@@ -723,6 +723,8 @@ export const translations = {
   "features.showDefaultOnly": "Tampilkan default saja",
   "features.showAllShort": "Tampilkan semua",
   "features.syncing": "Menyinkronkan...",
+  "appearance.rebuild": "Membangun ulang dari kelas, ras, dan level",
+  "appearance.rebuildHint": "Menghitung ulang fitur, sihir, dan statistik. Mempertahankan pilihan Anda, poin darah, slot yang terpakai, dan efek aktif.",
   "features.syncWithSrd": "Sinkronkan dengan SRD",
   "spells.prepared": "Disiapkan",
   "spells.prepare": "Siapkan",

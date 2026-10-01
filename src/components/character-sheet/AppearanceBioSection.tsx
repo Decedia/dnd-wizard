@@ -1,11 +1,15 @@
 "use client";
 
+import { useState } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { DescriptionText } from "./DescriptionText";
 import { SunIcon as Sun } from "@/components/icons";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
+import { rebuildDerived } from "@/lib/character-creation";
+import { saveCharacter } from "@/lib/storage";
+import { RefreshIcon as Refresh } from "@/components/icons";
 
 interface AppearanceBioSectionProps {
   character: Character & {
@@ -29,6 +33,25 @@ interface AppearanceBioSectionProps {
 }
 
 export function AppearanceBioSection({ character, onChange, editMode = true }: AppearanceBioSectionProps) {
+  const [rebuilding, setRebuilding] = useState(false);
+
+  /**
+   * Re-derives everything that follows from class, race, subclass and level, and
+   * saves it. Player choices and anything in play are preserved, so this is safe
+   * to press mid-combat and safe to press twice.
+   */
+  const handleRebuild = async () => {
+    if (rebuilding) return;
+    setRebuilding(true);
+    try {
+      const rebuilt = rebuildDerived(character);
+      onChange(rebuilt);
+      await saveCharacter(rebuilt);
+    } finally {
+      setRebuilding(false);
+    }
+  };
+
   const { onFieldBlur } = useCharacterSheet();
   const { t } = useLanguage();
   const updateField = (field: keyof Character["appearance"], value: string) => {
@@ -202,6 +225,26 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
           </div>
         </>
       )}
+
+      {/* Rebuild sits under everything else: it is a maintenance action, not
+          part of the character. */}
+      <div className="mt-4 border-t border-[var(--color-border)] pt-3">
+        <button
+          type="button"
+          onClick={handleRebuild}
+          disabled={rebuilding}
+          className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-1.5 text-xs font-semibold text-[var(--color-text-secondary)] transition-colors hover:border-[var(--color-border-active)] hover:text-[var(--color-text-primary)] disabled:opacity-60"
+        >
+          <Refresh className="h-3.5 w-3.5" />
+          {rebuilding ? t("features.syncing") : t("appearance.rebuild", "Rebuild from class, race and level")}
+        </button>
+        <p className="mt-1.5 text-[10px] leading-snug text-[var(--color-text-muted)]">
+          {t(
+            "appearance.rebuildHint",
+            "Re-derives features, spells and stats. Keeps your choices, hit points, spent slots and active effects."
+          )}
+        </p>
+      </div>
     </SectionCard>
   );
 }
