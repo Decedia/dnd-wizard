@@ -66,8 +66,22 @@ export type BadgeTone =
   | "requirement";
 
 export interface Badge {
-  label: string;
+  /**
+   * A translation key, not a rendered string. The engine holds no locale and no
+   * language, so it must not bake English into anything a player reads; the
+   * sheet renders these through t(). `values` fills the placeholders.
+   */
+  key: string;
+  values?: Record<string, string | number>;
   tone: BadgeTone;
+}
+
+/** Human-readable English, for contexts with no locale available. */
+function renderBadge(badge: Badge): string {
+  if (!badge.values) return badge.key;
+  return badge.key.replace(/\{(\w+)\}/g, (_, k) =>
+    badge.values?.[k] !== undefined ? String(badge.values[k]) : `{${k}}`
+  );
 }
 
 export interface ResolvedFeature {
@@ -237,24 +251,38 @@ export function badgesFor(resolved: {
           : resolved.activation === "reaction"
             ? "reaction"
             : "free";
-    badges.push({ label: slotLabel(resolved.activation), tone });
+    badges.push({ key: `engine.badge.${resolved.activation}`, tone });
   }
   if (resolved.uses) {
     badges.push({
-      label: `${resolved.uses.current}/${resolved.uses.max}`,
+      key: "engine.badge.charge",
+      values: {
+        current: resolved.uses.current,
+        max: resolved.uses.max,
+        per: resolved.uses.per,
+      },
       tone: "charge",
     });
   }
   for (const pool of resolved.resources) {
-    badges.push({ label: `${pool.id.replace(/_/g, " ")} ${pool.available}`, tone: "charge" });
+    badges.push({
+      key: "engine.badge.resource",
+      values: { resource: pool.id, available: pool.available },
+      tone: "charge",
+    });
   }
   if (resolved.duration) {
-    badges.push({ label: `${resolved.duration.value} ${resolved.duration.unit}`, tone: "duration" });
+    badges.push({
+      key: "engine.badge.duration",
+      values: { value: resolved.duration.value, unit: resolved.duration.unit },
+      tone: "duration",
+    });
   }
   if (resolved.gatesUnmet.length > 0) {
-    badges.push({ label: "Gated", tone: "gated" });
+    badges.push({ key: "engine.badge.gated", tone: "gated" });
   }
-  badges.push({ label: resolved.source.book, tone: "book" });
+  // The sourcebook is a proper noun in every locale.
+  badges.push({ key: "engine.badge.book", values: { book: resolved.source.book }, tone: "book" });
   return badges;
 }
 
@@ -451,4 +479,4 @@ export function engineIdFor(
   return findEngineFeature(owner, name)?.id;
 }
 
-export { buildDataset, findEngineFeature, normaliseName, type BuiltDataset };
+export { buildDataset, findEngineFeature, normaliseName, renderBadge, type BuiltDataset };

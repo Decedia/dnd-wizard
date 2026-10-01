@@ -318,7 +318,19 @@ console.log("\nsheet reads the engine, not the stored mechanical fields\n");
     [/\(feature as any\)\.(actionType|uses|requirement|endsIf|onUse|scaling|featureType)/, "(feature as any).<mechanical field>"],
   ];
   for (const [re, label] of reads) check(`the sheet does not read ${label}`, !re.test(sheet), "still present");
-  check("badges come from resolved.badges only", /resolvedFor\(feature\.id\)\?\.badges\.map/.test(sheet));
+  check("badges come from resolved.badges only", /resolvedFor\(feature\.id\)\?\.badges/.test(sheet));
+  check("badges are rendered through the locale", /t\(badge\.key, values, renderBadge\(badge\)\)/.test(sheet));
+  check("badge period, unit and resource are themselves translated", /engine\.per\./.test(sheet) && /engine\.unit\./.test(sheet) && /engine\.resource\./.test(sheet));
+
+  // The engine must not bake prose into a badge, or an Indonesian character
+  // sees English. Every badge key must exist in both locales.
+  const engineSrc = readFileSync(path.join(ROOT, "src", "lib", "feature-engine.ts"), "utf8");
+  check("the engine emits badge keys, not labels", /key: "engine\.badge\./.test(engineSrc) && !/label: slotLabel/.test(engineSrc));
+  const en = readFileSync(path.join(ROOT, "src", "locales", "en.js"), "utf8");
+  const idLoc = readFileSync(path.join(ROOT, "src", "locales", "id.js"), "utf8");
+  const keys = [...new Set([...engineSrc.matchAll(/"(engine\.[\w.]+)"/g)].map((m) => m[1]))];
+  const absent = keys.filter((k) => !en.includes(`"${k}"`) || !idLoc.includes(`"${k}"`));
+  check(`all ${keys.length} engine keys exist in en and id`, absent.length === 0, absent.join(", "));
   check("the popup shows the action slot, not Active/Passive", /slotLabel\(selectedResolved\.activation\)/.test(sheet));
   check("no mechanism text is appended to summaries", !/mechanismStr|mechanismParts/.test(sheet));
 }

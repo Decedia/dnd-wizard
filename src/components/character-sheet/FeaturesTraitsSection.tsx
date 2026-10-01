@@ -12,7 +12,7 @@ import { saveCharacter } from "@/lib/storage";
 import type { Character } from "@/lib/storage";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getStatBadgeStyle } from "@/lib/badge-styles";
-import { buildDataset, findEngineFeature, resolve, slotLabel, triggerLabel, type BuiltDataset, type ResolveContext, type ResolvedFeature } from "@/lib/feature-engine";
+import { buildDataset, findEngineFeature, renderBadge, resolve, slotLabel, triggerLabel, type BuiltDataset, type ResolveContext, type ResolvedFeature } from "@/lib/feature-engine";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { DiceText } from "@/components/DiceText";
 
@@ -374,7 +374,23 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
    * homebrew, now shows no mechanic badge, which is the honest answer rather
    * than an invented one.
    */
-  const getFeatureBadges = (feature: any): string[] => resolvedFor(feature.id)?.badges.map((b) => b.label) ?? [];
+  /**
+   * Badge values are keys, not text: the engine holds no locale, so it must not
+   * bake English into anything a player reads. The period inside a charge, the
+   * unit inside a duration and the resource name are themselves keys.
+   */
+  const getFeatureBadges = (feature: any): string[] => {
+    const badges = resolvedFor(feature.id)?.badges ?? [];
+    return badges.map((badge) => {
+      const values = { ...(badge.values ?? {}) };
+      if (typeof values.per === "string") values.per = t(`engine.per.${values.per}`, values.per);
+      if (typeof values.unit === "string") values.unit = t(`engine.unit.${values.unit}`, values.unit);
+      if (typeof values.resource === "string") {
+        values.resource = t(`engine.resource.${values.resource}`, values.resource.replace(/_/g, " "));
+      }
+      return t(badge.key, values, renderBadge(badge));
+    });
+  };
 
   const getFeatureLevel = (feature: any): number | null => {
     const source = feature.source;
@@ -411,7 +427,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
       push("feature.trigger", "Triggers on", triggerLabel(resolved.trigger) ?? resolved.trigger.event.replace(/_/g, " "));
     }
     if (resolved.duration) {
-      push("feature.duration", "Duration", `${resolved.duration.value} ${resolved.duration.unit}`);
+      push("feature.duration", "Duration", `${resolved.duration.value} ${t(`engine.unit.${resolved.duration.unit}`, resolved.duration.unit)}`);
     }
     if (resolved.effects.some((e) => e.kind === "restriction")) {
       const rules = resolved.effects.filter((e) => e.kind === "restriction").flatMap((e) => (e as any).rules as string[]);
@@ -668,7 +684,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                         Action" and "Reaction" are the useful facts and both
                         used to collapse into "Active". */}
                     {selectedResolved
-                      ? slotLabel(selectedResolved.activation)
+                      ? t(`engine.badge.${selectedResolved.activation}`, slotLabel(selectedResolved.activation))
                       : sheetIsActive
                         ? t("feature.active", "Active")
                         : t("feature.passive", "Passive")}
