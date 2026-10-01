@@ -351,6 +351,20 @@
         "circle_of_the_shepherd:6"
       ],
       "note": "A spirit summoned by Mighty Summoner. It has its own initiative and turns, acts immediately on its turn, and can take reactions. At 14th level the druid may summon a Large or smaller creature from any spirit totem type. PHB Druid Circle of the Shepherd 6."
+    },
+    {
+      "id": "phoenix_form_object",
+      "name": "Flames of the Phoenix",
+      "cr": "0",
+      "creatureType": "elemental",
+      "size": "Medium",
+      "ac": "14 plus 2",
+      "hp": "equal to your monk hit points",
+      "speed": "30 ft.",
+      "grantedAt": [
+        "four_elements:11"
+      ],
+      "note": "The flame form a Way of the Four Elements monk assumes with Flames of the Phoenix. Grants a +2 bonus to AC, resistance to all damage except psychic, and its melee attacks deal an extra 1d6 fire damage. Tasha's Cauldron p. 88."
     }
   ]
 }

@@ -124,6 +124,11 @@
       "id": "on_ethereal_plane",
       "name": "On the Ethereal Plane",
       "note": "Gates Planar Warrior and Ethereal Step."
+    },
+    {
+      "id": "dim_light",
+      "name": "In Dim Light or Darkness",
+      "note": "Gates Shadow Step, which works in dim light or darkness."
     }
   ]
 }

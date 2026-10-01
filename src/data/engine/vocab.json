@@ -430,6 +430,7 @@
     "companion_animal",
     "hunter_prey_type",
     "defensive_tactic",
-    "fiend_benefit"
+    "fiend_benefit",
+    "elemental_technique"
   ]
 }
