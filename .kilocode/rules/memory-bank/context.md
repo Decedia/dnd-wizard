@@ -64,7 +64,7 @@ D&D 5e Character Manager — a mobile-first PWA built with Next.js 16 + React 19
 - **ESLint 9.39.1** (flat config), strict TypeScript
 
 ## Currently Working On
-- Combat engine subclass authoring, one file per class in `src/data/engine/features/subclass/`, committing and pushing each class. **Done: Artificer, Barbarian, Bard, Ranger, Sorcerer.** Remaining in order: Druid (41), Warlock (42), Rogue (46), Monk (50), Paladin (53), Fighter (54), Wizard (65), Cleric (89). After each class run `node scripts/validate-engine-data.mjs` then `bun typecheck`, then commit and push. Nothing in the UI is to be touched.
+- Combat engine subclass authoring, one file per class in `src/data/engine/features/subclass/`, committing and pushing each class. **Done: Artificer, Barbarian, Bard, Druid, Fighter, Monk, Paladin, Ranger, Rogue, Sorcerer, Warlock** (885/1186 covered). Remaining: **Wizard (65), Cleric (89)** - Cleric is the last and largest. After each class run `node scripts/validate-engine-data.mjs` then `bun typecheck`, then commit and push. Nothing in the UI is to be touched.
 
 ## Recently Completed
 - [x] **Irregular-content stress test — the risk retirement, and it paid.** Authored the 12 hardest feats in the game (Great Weapon Master, Magic Initiate, Alert, Crossbow Expert, Defensive Duelist, Dual Wielder, Resilient, Skulker, Savage Attacker, Healer, Gift of Alacrity, Lucky) and 12 hard subclass features (Eldritch Knight x4, Circle of the Moon x3, College of Whispers, Hexblade x2, Draconic Bloodline x2). **Found 6 real schema gaps, all additive:**
