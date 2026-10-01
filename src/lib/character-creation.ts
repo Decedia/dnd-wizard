@@ -712,6 +712,29 @@ function extractFeatureFields(f: any): Record<string, any> {
   };
 }
 
+/**
+ * Whether a stored feature row is a placeholder rather than a feature.
+ *
+ * The data marks a choice with a stub row: "Martial Archetype feature",
+ * "Divine Domain feature", "Sorcerous Origin feature", and a bare "Path
+ * feature". Those stand for something the player picks, not something they have,
+ * and they were rendering as empty rows on the sheet.
+ */
+// Matched against the 30 stub names the data actually contains: "Martial
+// Archetype", "Divine Domain feature", "Bard College", "Path feature",
+// "Primal Path" and so on, with or without the trailing "feature".
+const PLACEHOLDER_FEATURE =
+  /^(?:[a-z]+\s+)*(?:feature|features|college|domain|circle|archetype|tradition|origin|patron|specialist|path|primal path|sacred oath)$/i;
+
+/** "Action Surge (1 use)" encodes a level tier in the name; the engine has tiers. */
+const TIER_SUFFIX = /\s*\((?:\d+\s*use[^)]*|\d+\s*\/\s*rest)\)\s*$/i;
+
+function isPlaceholderFeature(name: string | undefined): boolean {
+  const value = String(name ?? "").trim();
+  if (!value) return true;
+  return PLACEHOLDER_FEATURE.test(value);
+}
+
 function getClassFeaturesAtLevel(character: Character, language: string): any[] {
   const classData = character.class ? getStaticClass(character.class, character.ruleset, undefined, language) : null;
 
@@ -719,8 +742,9 @@ function getClassFeaturesAtLevel(character: Character, language: string): any[] 
   classData?.levels.forEach((level, index) => {
     if (index + 1 > character.level) return;
     (level.features || []).forEach((f: any) => {
+      if (isPlaceholderFeature(f?.name)) return;
       features.push({
-        name: f.name,
+        name: String(f.name).replace(TIER_SUFFIX, "").trim(),
         description: normalizeDescription(f.description),
         ...extractFeatureFields(f),
       });
@@ -738,7 +762,9 @@ function getRaceTraits(character: Character, language: string): any[] {
   // increase, skill and feat benefit are handled elsewhere and should not
   // produce a row. Filtered here so a future data edit cannot reintroduce it.
   const meaningful = (race.traits || []).filter(
-    (t: any) => String(t?.name ?? "").trim().toLowerCase() !== String(race.name).trim().toLowerCase()
+    (t: any) =>
+      String(t?.name ?? "").trim().toLowerCase() !== String(race.name).trim().toLowerCase() &&
+      !isPlaceholderFeature(t?.name)
   );
   const traits = meaningful.map((t: any) => ({
     name: t.name,
@@ -872,13 +898,18 @@ export function applySubclassFeatures(character: Character, language = "en"): Ch
   const subclass = subclasses.find((s) => s.name === character.subclass);
   if (!subclass) return character;
 
-  const earnedFeatures = getEarnedSubclassFeatures(subclass, character.level, unlockLevel);
+  const earnedFeatures = getEarnedSubclassFeatures(subclass, character.level, unlockLevel).filter(
+    (f: any) => !isPlaceholderFeature(f?.name)
+  );
 
   const newFeatures: Character["features"] = [];
   for (const feature of earnedFeatures) {
     if (feature.choices && feature.choices.length > 0) {
       const key = feature.level != null ? `subclass-feature-${feature.level}-${feature.name}` : `subclass-feature-${feature.name}`;
       const selected = (character as any).featureSelections?.[key];
+      // models tiers properly, so the suffix is dropped.
+      // "Action Surge (1 use)" encodes a level tier in the name; the engine
+      const cleanName = String(feature.name).replace(/\s*\((?:\d+\s*use[^)]*|\d+\s*\/\s*rest)\)\s*$/i, "").trim();
       if (!newFeatures.some((f) => f.name === feature.name)) {
         newFeatures.push({
           id: `subclass-${feature.name}`.replace(/\s+/g, "-"),
@@ -908,6 +939,9 @@ export function applySubclassFeatures(character: Character, language = "en"): Ch
         }
       }
     } else {
+      // models tiers properly, so the suffix is dropped.
+      // "Action Surge (1 use)" encodes a level tier in the name; the engine
+      const cleanName = String(feature.name).replace(/\s*\((?:\d+\s*use[^)]*|\d+\s*\/\s*rest)\)\s*$/i, "").trim();
       if (!newFeatures.some((f) => f.name === feature.name)) {
         newFeatures.push({
           id: `subclass-${feature.name}`.replace(/\s+/g, "-"),
@@ -1420,6 +1454,31 @@ export function recreateCharacter(character: Character, language = "en"): Charac
   };
 
   let next: Character = { ...fresh, ...kept } as Character;
+
+  // Player-added features - feats taken at level up, anything homebrew - are not
+  // produced by any of the derive passes below, so without this they were simply
+  // dropped by the recreate. They are choices, so they are kept, but their text
+  // is refreshed from the localised data so a save written in English is corrected
+  // rather than preserved.
+  const carriedFeatures = (character.features ?? []).filter((f) => {
+    const kind = typeof f.source === "string" ? f.source : (f.source as any)?.type;
+    return kind === "custom" || kind === "feat" || !kind;
+  });
+  const rebuiltFeatures = carriedFeatures.map((f) => {
+    const localised = getStaticFeat(f.name, character.ruleset, language);
+    if (!localised) return f; // genuinely homebrew: leave it exactly as written
+    return {
+      ...f,
+      name: localised.name,
+      description: normalizeDescription(localised.description),
+      summary: localised.summary ?? null,
+      engineId: engineIdFor("feat", "Feat", localised.name) ?? f.engineId,
+    };
+  });
+
+  // Carried features go on before the derive passes, which keep rather than
+  // replace anything whose source they do not own.
+  next = { ...next, features: rebuiltFeatures };
 
   // Now derive everything that was thrown away.
   next = applySubclassFeatures(next, language);

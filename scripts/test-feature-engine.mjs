@@ -375,5 +375,29 @@ console.log("\nsheet text is looked up in the sheet's language\n");
   check("every Indonesian feat summary differs from English", untranslated.length === 0, untranslated.slice(0, 3).map((f) => f.name).join(", "));
 }
 
+// --- recreate must not lose or mistranslate player-added features -----------
+console.log("\nrecreate keeps player features and drops stub rows\n");
+{
+  const src = readFileSync(path.join(ROOT, "src", "lib", "character-creation.ts"), "utf8");
+  const recreateBody = src.slice(src.indexOf("export function recreateCharacter"));
+  check("recreateCharacter carries custom and feat sources forward", /kind === "custom" \|\| kind === "feat" \|\| !kind/.test(recreateBody));
+  check("carried features are refreshed from the localised data", /getStaticFeat\(f\.name, character\.ruleset, language\)/.test(recreateBody));
+  check("carried features get an engine id", /engineIdFor\("feat", "Feat", localised\.name\)/.test(recreateBody));
+  check("genuinely homebrew features are left untouched", /if \(!localised\) return f;/.test(recreateBody));
+  check("stub feature rows are filtered", /isPlaceholderFeature/.test(src) && /PLACEHOLDER_FEATURE/.test(src));
+  check("class features drop stub rows", /if \(isPlaceholderFeature\(f\?\.name\)\) return;/.test(src));
+  check("subclass features drop stub rows", /!isPlaceholderFeature\(f\?\.name\)/.test(src));
+  check("tier suffixes are stripped from names", /TIER_SUFFIX/.test(src));
+
+  // Data-level: the stub names the filter targets must all match.
+  const cls = JSON.parse(readFileSync(path.join(ROOT, "src", "data", "en", "2014_classes.json"), "utf8")).classes;
+  const sub = JSON.parse(readFileSync(path.join(ROOT, "src", "data", "en", "2014_subclasses.json"), "utf8")).subclasses;
+  const names = new Set();
+  for (const c of cls) for (const l of c.levels || []) for (const f of l.features || []) names.add(String(f.name || "").trim());
+  for (const s of sub) for (const f of s.features || []) names.add(String(f.name || "").trim());
+  const stub = [...names].filter((n) => /^(?:[a-z]+\s+)*(?:feature|features|college|domain|circle|archetype|tradition|origin|patron|specialist|path|primal path|sacred oath)$/i.test(n));
+  check(`all ${stub.length} stub names are recognised`, stub.every((n) => /^(?:[a-z]+\s+)*(?:feature|features|college|domain|circle|archetype|tradition|origin|patron|specialist|path|primal path|sacred oath)$/i.test(n)));
+}
+
 console.log(`\n${failures.length === 0 ? "all checks passed" : `${failures.length} FAILED: ${failures.join(", ")}`}\n`);
 if (failures.length > 0) process.exit(1);
