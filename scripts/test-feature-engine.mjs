@@ -336,5 +336,44 @@ console.log("\nsource kind is read in both stored forms\n");
   check("no branch compares the source to a bare string", !/existing\.source === "/.test(sheet));
 }
 
+// --- localisation of the sheet's text ---------------------------------------
+// Two real misses: the race branch searched traits only, and Variant Human is a
+// choice option; and feats were baked with English at level-up because
+// getStaticFeat was called without a locale.
+console.log("\nsheet text is looked up in the sheet's language\n");
+{
+  const sheet = readFileSync(path.join(ROOT, "src", "components", "character-sheet", "FeaturesTraitsSection.tsx"), "utf8");
+  check("the race branch also searches race choices", /ch\.options \?\? \[\]/.test(sheet) || /choices \?\? \[\]\)\.flatMap/.test(sheet));
+  check("a dedicated feat branch exists", /kind === "feat"/.test(sheet));
+  // Every SRD read in the sheet must carry a locale, or the lookup silently
+  // returns English while the sheet is set to Indonesian.
+  const lookups = [...sheet.matchAll(/getStatic(?:Races|Race|Feats|Feat|Subclasses|Class)\(([^)]*)\)/g)].map((m) => m[1]);
+  const withoutLocale = lookups.filter((args) => !/\blanguage\b/.test(args));
+  check(`all ${lookups.length} SRD lookups in the sheet pass language`, withoutLocale.length === 0, withoutLocale.length + " without: " + withoutLocale.join(" | "));
+
+  const cc = readFileSync(path.join(ROOT, "src", "lib", "character-creation.ts"), "utf8");
+  check("finalizeCreation takes a language", /finalizeCreation\(character: Character, language = "en"\)/.test(cc));
+  check("finalizeCreation localises its feature passes", /applySubclassFeatures\(character, language\)/.test(cc) && /syncBaseFeatures\(final, language\)/.test(cc));
+  check("Variant Human text comes from the race choice data", /variantChoice\?\.description/.test(cc));
+
+  const lu = readFileSync(path.join(ROOT, "src", "components", "LevelUpWizard.tsx"), "utf8");
+  check("level-up feats are created with a locale", /getStaticFeat\(st\.feat, character\.ruleset, language\)/.test(lu));
+
+  // Data-level: the entries the user reported must differ between locales.
+  const idRaces = JSON.parse(readFileSync(path.join(ROOT, "src", "data", "id", "2014_races.json"), "utf8")).races;
+  const enRaces = JSON.parse(readFileSync(path.join(ROOT, "src", "data", "en", "2014_races.json"), "utf8")).races;
+  const idVariant = idRaces.find((r) => r.name === "Human")?.choices?.flatMap((c) => c.options ?? []).find((o) => /variant/i.test(o.name ?? ""));
+  const enVariant = enRaces.find((r) => r.name === "Human")?.choices?.flatMap((c) => c.options ?? []).find((o) => /variant/i.test(o.name ?? ""));
+  check("the Variant Human choice is translated", Boolean(idVariant) && idVariant.description !== enVariant?.description, idVariant?.description);
+
+  const idFeats = JSON.parse(readFileSync(path.join(ROOT, "src", "data", "id", "2014_feats.json"), "utf8")).feats;
+  const enFeats = JSON.parse(readFileSync(path.join(ROOT, "src", "data", "en", "2014_feats.json"), "utf8")).feats;
+  const untranslated = idFeats.filter((f) => {
+    const e = enFeats.find((x) => x.name === f.name);
+    return e && (f.summary ?? "") === (e.summary ?? "") && /[a-z]{4,}/i.test(f.summary ?? "");
+  });
+  check("every Indonesian feat summary differs from English", untranslated.length === 0, untranslated.slice(0, 3).map((f) => f.name).join(", "));
+}
+
 console.log(`\n${failures.length === 0 ? "all checks passed" : `${failures.length} FAILED: ${failures.join(", ")}`}\n`);
 if (failures.length > 0) process.exit(1);

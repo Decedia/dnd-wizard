@@ -25,7 +25,7 @@ import {
 
 export default function CharacterCreate() {
   const router = useRouter();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [character, setCharacter] = useState<Character>(initializeCharacter);
   const [step, setStep] = useState(0);
 
@@ -38,7 +38,6 @@ export default function CharacterCreate() {
     ? getValidationMessage(currentStep, character)
     : null;
 
-  const { language } = useLanguage();
 
   const update = useCallback((patch: Partial<Character>) => {
     setCharacter((prev) => {
@@ -56,12 +55,12 @@ export default function CharacterCreate() {
   const handleNext = useCallback(async () => {
     if (!canProceed()) return;
     if (isLastStep) {
-      const final = await finalizeCreation(character);
+      const final = await finalizeCreation(character, language);
       router.replace(`/character/${final.id}`);
     } else {
       setStep((s) => s + 1);
     }
-  }, [canProceed, isLastStep, character, router]);
+  }, [canProceed, isLastStep, character, router, language]);
 
   const handleBack = useCallback(() => {
     if (step > 0) {
@@ -99,7 +98,7 @@ export default function CharacterCreate() {
         character={character}
         onCancel={() => setStep((s) => Math.max(0, s - 1))}
         onComplete={async (updated) => {
-          const final = await finalizeCreation(updated);
+          const final = await finalizeCreation(updated, language);
           router.replace(`/character/${final.id}`);
         }}
         minLevel={1}

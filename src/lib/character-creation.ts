@@ -1151,10 +1151,12 @@ export function isSubclassStepComplete(character: Character): boolean {
   return true;
 }
 
-export async function finalizeCreation(character: Character): Promise<Character> {
-  let final = applySubclassFeatures(character);
+export async function finalizeCreation(character: Character, language = "en"): Promise<Character> {
+  // Localised throughout: these three build the feature list a character is
+  // saved with, so passing no language here is what baked English into saves.
+  let final = applySubclassFeatures(character, language);
   final = applySubclassSpellGrants(final);
-  final = syncBaseFeatures(final);
+  final = syncBaseFeatures(final, language);
 
   if (final.race === "Human" && final.raceVariant === "variant") {
     const abilities = final.variantHumanAbilities || [];
