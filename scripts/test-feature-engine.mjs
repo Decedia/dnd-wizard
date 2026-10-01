@@ -482,5 +482,31 @@ console.log("\ndice-bearing text goes through DiceText\n");
   check("the inventory grid keeps plain text for its tight rows", !inv.includes("DiceText"));
 }
 
+// --- the sheet must read real pools, not fabricated zeros ---------------------
+console.log("\npools come from the character, not a hardcoded list\n");
+{
+  const sheet = readFileSync(path.join(ROOT, "src", "components", "character-sheet", "FeaturesTraitsSection.tsx"), "utf8");
+  check("the sheet uses characterPools", /pools: characterPools\(character\)/.test(sheet));
+  check("the hardcoded buildPools is gone", !/function buildPools/.test(sheet));
+  check("the hardcoded totalSpellSlots is gone", !/function totalSpellSlots/.test(sheet));
+  check("no pool is hardcoded to zero", !/id: "(ki|channel_divinity|lay_on_hands|wild_shape_uses|superiority_dice)", available: 0/.test(sheet));
+
+  const engine = readFileSync(path.join(ROOT, "src", "lib", "feature-engine.ts"), "utf8");
+  check("characterPools reads the character's own counters", /CHARACTER_POOL_FIELDS/.test(engine));
+  check("resourceMaximum understands maxFromLevel", /maxFromLevel/.test(engine));
+  check("a slot tier checks for a slot, not a count", /hasSlotAtLeast/.test(engine));
+  check("an untracked pool does not report 'not enough'", /!r\.ok && r\.tracked/.test(engine));
+  check("an untracked pool earns no badge", /pool\.tracked === false\) continue/.test(engine));
+
+  // Data: the two Channel Divinity ceilings must differ, since the rules differ.
+  const res = JSON.parse(readFileSync(path.join(ROOT, "src", "data", "engine", "resources.json"), "utf8")).resources;
+  const cleric = res.find((r) => r.id === "channel_divinity");
+  const paladin = res.find((r) => r.id === "channel_divinity_paladin");
+  check("a cleric's Channel Divinity is their level", cleric?.maxFromLevel?.times === 1, JSON.stringify(cleric?.maxFromLevel));
+  check("a paladin's is half", paladin?.maxFromLevel?.times === 0.5, JSON.stringify(paladin?.maxFromLevel));
+  const loh = res.find((r) => r.id === "lay_on_hands");
+  check("Lay on Hands is five times level", loh?.maxFromLevel?.times === 5, JSON.stringify(loh?.maxFromLevel));
+}
+
 console.log(`\n${failures.length === 0 ? "all checks passed" : `${failures.length} FAILED: ${failures.join(", ")}`}\n`);
 if (failures.length > 0) process.exit(1);

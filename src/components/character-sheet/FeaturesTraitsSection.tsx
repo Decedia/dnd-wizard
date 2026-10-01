@@ -12,7 +12,7 @@ import { saveCharacter } from "@/lib/storage";
 import type { Character } from "@/lib/storage";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getStatBadgeStyle } from "@/lib/badge-styles";
-import { buildDataset, findEngineFeature, renderBadge, resolve, slotLabel, triggerLabel, type BuiltDataset, type ResolveContext, type ResolvedFeature } from "@/lib/feature-engine";
+import { buildDataset, characterPools, findEngineFeature, renderBadge, resolve, slotLabel, triggerLabel, type BuiltDataset, type ResolveContext, type ResolvedFeature } from "@/lib/feature-engine";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { DiceText } from "@/components/DiceText";
 
@@ -76,34 +76,6 @@ function ownerFor(character: Character, feature: Character["features"][number]):
   return undefined;
 }
 
-/**
- * The character sheet already tracks a handful of pools by name. Anything the
- * engine asks for that is not here reports zero, which is the honest answer:
- * the sheet does not yet track it.
- */
-function buildPools(character: Character): { id: string; available: number }[] {
-  return [
-    { id: "rages", available: Math.max(0, (character.rages ?? 0)) },
-    { id: "sorcery_points", available: Math.max(0, (character.sorceryPoints ?? 0)) },
-    { id: "bardic_inspiration", available: Math.max(0, (character.bardicInspirationUses ?? 0)) },
-    { id: "superiority_dice", available: 0 },
-    { id: "ki", available: 0 },
-    { id: "channel_divinity", available: 0 },
-    { id: "spell_slots", available: totalSpellSlots(character) },
-    { id: "hit_dice", available: Math.max(0, character.hitDiceRemaining ?? 0) },
-    { id: "wild_shape_uses", available: 0 },
-    { id: "lay_on_hands", available: 0 },
-  ];
-}
-
-function totalSpellSlots(character: Character): number {
-  const remaining = character.spellSlots ?? {};
-  const spent = character.spellSlotsExpended ?? {};
-  return Object.keys(remaining).reduce((sum, key) => {
-    const level = Number(key);
-    return sum + Math.max(0, (remaining[level] ?? 0) - (spent[level] ?? 0));
-  }, 0);
-}
 
 interface FeaturesTraitsSectionProps {
   character: Character;
@@ -341,7 +313,8 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
   const resolveContext = useMemo<ResolveContext>(
     () => ({
       level: character.level || 1,
-      pools: buildPools(character),
+      character,
+      pools: characterPools(character),
       usedThisTurn: usedEngineIds,
       activeStates: character.activeStates || [],
     }),

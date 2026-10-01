@@ -16,7 +16,9 @@
  * It deliberately does not resolve dice or apply effects. The player rolls
  * real dice; `effects` is carried through for display.
  */
+import type { Character } from "@/lib/storage";
 import type {
+  Ability,
   Activation,
   Effect,
   FeatureBase,
@@ -40,6 +42,8 @@ export interface ResourcePool {
 export interface ResolveContext {
   /** Character level, used to pick the tier a feature has reached. */
   level: number;
+  /** The character itself, for checks that need a field the pools do not carry. */
+  character: Character;
   /** Resources the character currently holds, keyed by resource id. */
   pools: ResourcePool[];
   /** Engine ids already used this turn. */
@@ -105,7 +109,7 @@ export interface ResolvedFeature {
   /** Uses remaining under the feature's own limit, or null if unlimited. */
   uses: { current: number; max: number; per: LimitSpec["per"] } | null;
   /** Resources this spends, and whether the character has them. */
-  resources: { id: string; required: number; available: number; ok: boolean }[];
+  resources: { id: string; required: number; available: number; tracked: boolean; ok: boolean }[];
   targeting: TargetSpec | null;
   trigger: TriggerSpec | null;
   /** Duration as a value, which the sheet can render without parsing prose. */
@@ -180,6 +184,10 @@ export function resourceMaximum(resource: ResourceDef, level: number, abilityMod
     }
     return result;
   }
+  if (resource.maxFromLevel) {
+    const { times, above = 0 } = resource.maxFromLevel;
+    return Math.floor(times * Math.max(0, level - above));
+  }
   if (resource.maxFromAbility) {
     const { ability, perLevel = 0, minimum = 0 } = resource.maxFromAbility;
     // "Fighter level or twice your Charisma modifier, whichever is greater" is
@@ -236,7 +244,7 @@ export function slotLabel(activation: Activation): string {
 export function badgesFor(resolved: {
   activation: Activation;
   uses: { current: number; max: number; per: LimitSpec["per"] } | null;
-  resources: { id: string; required: number; available: number; ok: boolean }[];
+  resources: { id: string; required: number; available: number; tracked: boolean; ok: boolean }[];
   duration: { value: number; unit: string } | null;
   source: { book: string };
   gatesUnmet: GateId[];
@@ -264,7 +272,10 @@ export function badgesFor(resolved: {
       tone: "charge",
     });
   }
-  for (const pool of resolved.resources) {
+  for (const pool of resolved.resources ?? []) {
+    // Only a pool the character actually tracks earns a badge. Printing "Ki: 0"
+    // on a character whose sheet has no Ki field says something untrue.
+    if (pool.tracked === false) continue;
     badges.push({
       key: "engine.badge.resource",
       values: { resource: pool.id, available: pool.available },
@@ -298,12 +309,27 @@ export function resolve(input: FeatureBase, ctx: ResolveContext): ResolvedFeatur
   const gatesUnmet = gates.filter((g) => !ctx.activeStates.includes(g));
 
   const resources = (feature.cost ?? []).map((cost) => {
-    const resource = dataset.resources.find((r) => r.id === cost.resource);
-    const held = ctx.pools.find((p) => p.id === cost.resource)?.available ?? 0;
+    const pool = ctx.pools.find((p) => p.id === cost.resource);
+    // A pool the character does not track at all is not the same as an empty
+    // one, and reporting "not enough" for the first is a lie.
+    const tracked = pool !== undefined;
+    const held = pool?.available ?? 0;
+    // "A slot of 2nd level or higher" is satisfied by any unspent slot at or
+    // above that level, not by a count of slots.
+    if (cost.chooseTier) {
+      return {
+        id: cost.resource,
+        required: cost.amount,
+        available: held,
+        tracked,
+        ok: hasSlotAtLeast(ctx.character, cost.chooseTier.minLevel),
+      };
+    }
     return {
       id: cost.resource,
       required: cost.amount,
       available: held,
+      tracked,
       ok: held >= cost.amount,
     };
   });
@@ -321,8 +347,8 @@ export function resolve(input: FeatureBase, ctx: ResolveContext): ResolvedFeatur
   let blockedBy: string | null = null;
   if (feature.unlock !== undefined && ctx.level < feature.unlock) {
     blockedBy = `Unlocks at level ${feature.unlock}`;
-  } else if (resources.some((r) => !r.ok)) {
-    const missing = resources.find((r) => !r.ok)!;
+  } else if (resources.some((r) => !r.ok && r.tracked)) {
+    const missing = resources.find((r) => !r.ok && r.tracked)!;
     blockedBy = `Not enough ${missing.id.replace(/_/g, " ")}`;
   } else if (uses && uses.current <= 0) {
     blockedBy = "No uses remaining";
@@ -480,3 +506,91 @@ export function engineIdFor(
 }
 
 export { buildDataset, findEngineFeature, normaliseName, renderBadge, type BuiltDataset };
+
+/* ------------------------------------------------------------------ *
+ * Character pools
+ * ------------------------------------------------------------------ */
+
+/**
+ * The character's remaining resources, as the resolver reads them.
+ *
+ * The sheet used to hardcode most of these to zero, so a badge said "Rages: 0"
+ * on a barbarian with four rages banked, and Lay on Hands - a pool the character
+ * has always tracked - was not shown at all. Each entry names the character field
+ * that holds it, so a pool the sheet does not track yet is simply absent rather
+ * than falsely zero.
+ */
+const CHARACTER_POOL_FIELDS: Record<string, keyof Character> = {
+  rages: "rages",
+  ki: "kiPoints",
+  channel_divinity: "channelDivinityUses",
+  channel_divinity_paladin: "channelDivinityUses",
+  sorcery_points: "sorceryPoints",
+  bardic_inspiration: "bardicInspirationUses",
+  lay_on_hands: "layOnHandsPool",
+  wild_shape_uses: "wildShapeUses",
+  action_surge: "actionSurgeUses",
+  indomitable: "indomitableUses",
+  hit_dice: "hitDiceRemaining",
+  arcane_pool: "arcanePool" as keyof Character,
+};
+
+/**
+ * Read the pools off a character. A pool the sheet does not track is omitted,
+ * which the badge renders as "0" only if the feature actually costs it - the
+ * alternative, reporting a fabricated zero, is what this replaces.
+ */
+export function characterPools(character: Character, dataset: BuiltDataset = buildDataset()): ResourcePool[] {
+  const pools: ResourcePool[] = [];
+  for (const resource of dataset.resources) {
+    const field = CHARACTER_POOL_FIELDS[resource.id];
+    if (!field) continue;
+    // Spell slots are tracked per level, not as one number.
+    if (resource.id === "spell_slots") continue;
+    const value = character[field];
+    if (typeof value !== "number") continue;
+    pools.push({ id: resource.id, available: Math.max(0, value) });
+  }
+  pools.push({ id: "spell_slots", available: remainingSpellSlots(character) });
+  return pools;
+}
+
+/** Spell slots left across every level. */
+function remainingSpellSlots(character: Character): number {
+  const remaining = character.spellSlots ?? {};
+  const spent = character.spellSlotsExpended ?? {};
+  return Object.keys(remaining).reduce(
+    (sum, key) => sum + Math.max(0, (remaining[Number(key)] ?? 0) - (spent[Number(key)] ?? 0)),
+    0
+  );
+}
+
+/** Whether a slot of at least `minLevel` is still unspent. */
+export function hasSlotAtLeast(character: Character, minLevel: number): boolean {
+  const remaining = character.spellSlots ?? {};
+  const spent = character.spellSlotsExpended ?? {};
+  return Object.keys(remaining).some((key) => {
+    const level = Number(key);
+    return level >= minLevel && (remaining[level] ?? 0) - (spent[level] ?? 0) > 0;
+  });
+}
+
+/**
+ * The ceiling for a pool at this character's level, from the engine's tables.
+ * Returns null when the ceiling lives on the character instead, as hit dice
+ * and spell slots do.
+ */
+export function poolCeiling(
+  resourceId: string,
+  character: Pick<Character, "level" | "int" | "wis" | "cha">,
+  dataset: BuiltDataset = buildDataset()
+): number | null {
+  const resource = dataset.resources.find((r) => r.id === resourceId);
+  if (!resource) return null;
+  if (resource.kind === "slots" || resource.maxFrom === "level") return null;
+  // An ability modifier is only meaningful where one is named.
+  const ability = resource.maxFromAbility?.ability as Ability | undefined;
+  const score = ability ? (character as Record<string, number | undefined>)[ability] : undefined;
+  const modifier = typeof score === "number" ? Math.floor((score - 10) / 2) : 0;
+  return resourceMaximum(resource, character.level || 1, modifier);
+}
