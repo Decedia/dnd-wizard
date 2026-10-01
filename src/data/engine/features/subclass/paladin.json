@@ -1,0 +1,893 @@
+{
+  "features": [
+    {
+      "id": "subclass.ancients.oath_spells",
+      "name": "Oath Spells",
+      "kind": "subclass",
+      "owner": "Ancients",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        { "kind": "spell_grant", "spells": [{ "level": 1, "from": ["druid"] }, { "level": 1, "from": ["druid"] }], "note": "You are in tune with the spirits of nature. You learn two cleric spells, and three druid spells, always prepared, with more at 7th, 11th, 15th and 19th level." }
+      ],
+      "summary": "Two cleric and three druid spells, always prepared",
+      "text": "You learn cleric and druid spells in addition to your paladin spells. They are always prepared and do not count against your number of prepared spells.",
+      "source": { "book": "PHB", "reference": "PHB Paladin Ancients 3" }
+    },
+    {
+      "id": "subclass.ancients.natures_wrath",
+      "name": "Channel Divinity: Nature's Wrath",
+      "kind": "subclass",
+      "owner": "Ancients",
+      "unlock": 3,
+      "activation": "action",
+      "cost": [{ "resource": "channel_divinity", "amount": 1 }],
+      "limits": { "per": "turn", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "creature", "range": { "value": 60, "unit": "ft" } },
+      "duration": { "value": 1, "unit": "round" },
+      "endsIf": [],
+      "effects": [
+        { "kind": "special", "note": "You can use your channel divinity option to seize the unbounded and searing essence of the wilderness. On your turn, you can use an action to lash nearby vegetation and vines in a 20-foot radius to lash one creature within it, and it makes a Strength saving throw, taking bludgeoning damage equal to your Charisma modifier plus your paladin level, or half as much and being restrained on a success." }
+      ],
+      "summary": "Spend CD: 20-ft vines lash a creature for Cha mod + level",
+      "text": "On your turn, you can use an action to lash nearby vegetation and vines in a 20-foot radius to lash one creature within that area.",
+      "source": { "book": "PHB", "reference": "PHB Paladin Ancients 3" }
+    },
+    {
+      "id": "subclass.ancients.turn_the_faithless",
+      "name": "Channel Divinity: Turn the Faithless",
+      "kind": "subclass",
+      "owner": "Ancients",
+      "unlock": 3,
+      "activation": "action",
+      "cost": [{ "resource": "channel_divinity", "amount": 1 }],
+      "limits": { "per": "turn", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "creature", "range": { "value": 60, "unit": "ft" } },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "condition", "action": "apply", "conditions": ["frightened"] },
+        { "kind": "special", "note": "You have magic to turn the fey and the fiend. On your turn, you can present your holy symbol and force a creature within 60 feet that has a Challenge Rating equal to or lower than yours to make a Wisdom saving throw, and on a failure it is frightened for 1 minute or until you tell it to stop, and it automatically fails saves against being charmed." }
+      ],
+      "summary": "Spend CD: frighten a creature of your CR or lower",
+      "text": "On your turn, you can present your holy symbol and force a creature to make a Wisdom saving throw.",
+      "source": { "book": "PHB", "reference": "PHB Paladin Ancients 3" }
+    },
+    {
+      "id": "subclass.ancients.aura_of_warding",
+      "name": "Aura of Warding",
+      "kind": "subclass",
+      "owner": "Ancients",
+      "unlock": 7,
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "Warding forces emanate from you and your allies. If a creature within 10 feet of you is hit by an attack, you can use your reaction to add 1d8 to the target's AC for that attack, whether or not the attack hits, and you have advantage on saving throws against effects you create, and at 18th level allies within 10 feet have it whenever a creature hostile to them is within 10 feet of you." }
+      ],
+      "summary": "Reaction: +1d8 to an ally's AC against one attack",
+      "text": "If a creature within 10 feet of you is hit by an attack, you can use your reaction to add 1d8 to the target's AC for that attack.",
+      "source": { "book": "PHB", "reference": "PHB Paladin Ancients 7" }
+    },
+    {
+      "id": "subclass.ancients.undying_sentinel",
+      "name": "Undying Sentinel",
+      "kind": "subclass",
+      "owner": "Ancients",
+      "unlock": 15,
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "You have learned to keep your soul tethered to the material world, so once per long rest, when you are reduced to 0 hit points, you can drop to 1 instead, and if you are reduced to 0 this way, any creature that attacks you while you are at 1 hit point is pushed 20 feet away as a reaction. At 18th level this works twice per long rest." }
+      ],
+      "summary": "Once per long rest, survive death and shove the attacker",
+      "text": "Once per long rest, when you are reduced to 0 hit points, you can drop to 1 hit point instead.",
+      "source": { "book": "PHB", "reference": "PHB Paladin Ancients 15" }
+    },
+    {
+      "id": "subclass.ancients.elder_champion",
+      "name": "Elder Champion",
+      "kind": "subclass",
+      "owner": "Ancients",
+      "unlock": 20,
+      "activation": "passive",
+      "effects": [
+        { "kind": "damage", "dice": { "dice": "8", "flat": 0 }, "damageType": "weapon_damage", "resolution": { "mode": "auto" } },
+        { "kind": "special", "note": "You can feel the presence of divine beings, so you gain the ability to cast spells, adding your Charisma modifier to the damage and healing, and at 18th level your Aura of Warding can be used twice per round and allies can use it themselves." }
+      ],
+      "summary": "Charisma modifier counts twice on spells; auras work more often",
+      "text": "You gain the ability to cast spells with your divine power, and your Charisma modifier counts twice.",
+      "source": { "book": "PHB", "reference": "PHB Paladin Ancients 20" }
+    },
+    {
+      "id": "subclass.devotion.oath_spells",
+      "name": "Oath Spells",
+      "kind": "subclass",
+      "owner": "Devotion",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        { "kind": "spell_grant", "spells": [{ "level": 1, "from": ["cleric"] }, { "level": 1, "from": ["cleric"] }], "note": "Your oath grants you cleric spells, always prepared, with more at 7th, 11th, 15th and 19th level." }
+      ],
+      "summary": "Two cleric spells, always prepared",
+      "text": "You learn cleric spells in addition to your paladin spells. They are always prepared.",
+      "source": { "book": "PHB", "reference": "PHB Paladin Devotion 3" }
+    },
+    {
+      "id": "subclass.devotion.sacred_weapon",
+      "name": "Channel Divinity: Sacred Weapon",
+      "kind": "subclass",
+      "owner": "Devotion",
+      "unlock": 3,
+      "activation": "bonus_action",
+      "cost": [{ "resource": "channel_divinity", "amount": 1 }],
+      "limits": { "per": "turn", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "creature" },
+      "duration": { "value": 1, "unit": "round" },
+      "endsIf": [],
+      "effects": [
+        { "kind": "stat_modifier", "stat": "damage_roll", "amount": 0, "duration": "while_active" },
+        { "kind": "special", "note": "As a bonus action on your turn, you can present your holy symbol and make a melee spell attack against a creature within 5 feet, and it makes a Constitution saving throw, taking radiant damage equal to your Charisma modifier plus your paladin level on a failure, or half as much on a success, and if you hit, it also has disadvantage on its next attack roll before the end of your next turn." }
+      ],
+      "summary": "Spend CD: a bonus-action radiant hit for Cha mod + level",
+      "text": "As a bonus action on your turn, you can present your holy symbol and make a melee spell attack against a creature within 5 feet of you.",
+      "source": { "book": "PHB", "reference": "PHB Paladin Devotion 3" }
+    },
+    {
+      "id": "subclass.devotion.turn_the_unholy",
+      "name": "Channel Divinity: Turn the Unholy",
+      "kind": "subclass",
+      "owner": "Devotion",
+      "unlock": 3,
+      "activation": "action",
+      "cost": [{ "resource": "channel_divinity", "amount": 1 }],
+      "limits": { "per": "turn", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "creature", "range": { "value": 60, "unit": "ft" }, "description": "A fiend or undead" },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "condition", "action": "apply", "conditions": ["frightened"] },
+        { "kind": "special", "note": "You have learned a prayer that turns the faithless. On your turn, you can force a fiend or undead within 60 feet to make a Wisdom saving throw, and on a failure it turns for 1 minute or until you tell it to stop, and it automatically fails saves against being charmed." }
+      ],
+      "summary": "Spend CD: turn a fiend or undead",
+      "text": "On your turn, you can present your holy symbol and force a fiend or undead to make a Wisdom saving throw.",
+      "source": { "book": "PHB", "reference": "PHB Paladin Devotion 3" }
+    },
+    {
+      "id": "subclass.devotion.aura_of_devotion",
+      "name": "Aura of Devotion",
+      "kind": "subclass",
+      "owner": "Devotion",
+      "unlock": 7,
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "You and friendly creatures within 10 feet of you gain +4 to saving throws against all effects, and you have advantage on saving throws against all effects, and at 18th level allies within 10 feet of you also gain this whenever a creature hostile to them is within 10 feet of you." }
+      ],
+      "summary": "+4 to allies' saves against all effects within 10 ft",
+      "text": "You and friendly creatures within 10 feet of you gain a +4 bonus to saving throws against all effects.",
+      "source": { "book": "PHB", "reference": "PHB Paladin Devotion 7" }
+    },
+    {
+      "id": "subclass.devotion.purity_of_spirit",
+      "name": "Purity of Spirit",
+      "kind": "subclass",
+      "owner": "Devotion",
+      "unlock": 15,
+      "activation": "passive",
+      "effects": [
+        { "kind": "condition_immunity", "conditions": ["charmed"] },
+        { "kind": "special", "note": "Your devotion to your oath protects you from any corruption of the body, so you are immune to being charmed, and at 18th level you are also immune to being frightened, and you gain advantage on saving throws against being charmed, with a long rest as immunity." }
+      ],
+      "summary": "Immune to charmed; immune to frightened at 18",
+      "text": "You are immune to being charmed.",
+      "source": { "book": "PHB", "reference": "PHB Paladin Devotion 15" }
+    },
+    {
+      "id": "subclass.devotion.holy_nimbus",
+      "name": "Holy Nimbus",
+      "kind": "subclass",
+      "owner": "Devotion",
+      "unlock": 20,
+      "activation": "action",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "self" },
+      "duration": { "value": 1, "unit": "minute" },
+      "endsIf": [],
+      "effects": [
+        { "kind": "damage", "dice": { "dice": "10", "flat": 0 }, "damageType": "radiant", "resolution": { "mode": "save", "ability": "con", "onSuccess": "none", "onFailure": "full" } },
+        { "kind": "special", "note": "Your faith shines out, so as an action you emanate bright light in a 30-foot radius for 1 minute, and each enemy of yours in it makes a Constitution save, taking 10 radiant damage on a failure, and at the end of each of your turns it makes another save taking 10 radiant on a failure. Creatures that succeed cover their eyes and have disadvantage on attacks for the rest of the turn." }
+      ],
+      "summary": "Action: a 30-ft nimbus dealing 10 radiant per round",
+      "text": "As an action, you emanate bright light in a 30-foot radius for 1 minute.",
+      "source": { "book": "PHB", "reference": "PHB Paladin Devotion 20" }
+    },
+    {
+      "id": "subclass.draconic_disciple.draconic_presence",
+      "name": "Channel Divinity: Draconic Presence",
+      "kind": "subclass",
+      "owner": "Draconic Disciple",
+      "unlock": 3,
+      "activation": "action",
+      "cost": [{ "resource": "channel_divinity", "amount": 1 }],
+      "limits": { "per": "turn", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "self" },
+      "duration": { "value": 1, "unit": "round" },
+      "endsIf": [],
+      "effects": [
+        { "kind": "special", "note": "The draconic blood in your blood gives you a presence. On your turn, you can use an action to speak your dragon's true name and have every creature of your ancestry within 30 feet that can hear you have disadvantage on attack rolls against you until the end of your next turn, and at 18th level this also ends charmed conditions on them." }
+      ],
+      "summary": "Spend CD: allies of your ancestry are disadvantaged against you",
+      "text": "On your turn, you can use an action to speak your dragon's true name.",
+      "source": { "book": "MTF", "reference": "Mordenkainen's Tome of Foes Draconic Disciple 3" }
+    },
+    {
+      "id": "subclass.draconic_disciple.draconic_might",
+      "name": "Channel Divinity: Draconic Might",
+      "kind": "subclass",
+      "owner": "Draconic Disciple",
+      "unlock": 3,
+      "activation": "action",
+      "cost": [{ "resource": "channel_divinity", "amount": 1 }],
+      "limits": { "per": "turn", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "creature", "range": { "value": 60, "unit": "ft" } },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "condition", "action": "apply", "conditions": ["prone"] },
+        { "kind": "special", "note": "You have learned to unleash your draconic power on command. On your turn, you can use an action to force a creature within 60 feet to make a Wisdom saving throw, and on a failure it is knocked prone and pushed 15 feet, and at 18th level you can also target one additional creature." }
+      ],
+      "summary": "Spend CD: knock prone and push a creature 15 ft",
+      "text": "On your turn, you can use an action to force a creature to make a Wisdom saving throw.",
+      "source": { "book": "MTF", "reference": "Mordenkainen's Tome of Foes Draconic Disciple 3" }
+    },
+    {
+      "id": "subclass.draconic_disciple.aura_of_the_dragon",
+      "name": "Aura of the Dragon",
+      "kind": "subclass",
+      "owner": "Draconic Disciple",
+      "unlock": 7,
+      "activation": "passive",
+      "effects": [
+        { "kind": "resistance", "damageTypes": ["fire"], "note": "You have resistance to fire damage. At 6th and 18th level you can spend one or more ki points as a bonus action, each of which gives you a bonus action that turns a failed save into a success, or ends one charmed, frightened or paralyzed condition on you." }
+      ],
+      "summary": "Fire resistance; ki buys an extra reaction",
+      "text": "You have resistance to fire damage. At 6th and 18th level, you can spend 1 ki point as a bonus action on your turn to take the Disengage, Dash or Hide action.",
+      "source": { "book": "MTF", "reference": "Mordenkainen's Tome of Foes Draconic Disciple 7" }
+    },
+    {
+      "id": "subclass.draconic_disciple.draconic_resilience",
+      "name": "Draconic Resilience",
+      "kind": "subclass",
+      "owner": "Draconic Disciple",
+      "unlock": 15,
+      "activation": "reaction",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": { "event": "reduced_to_0_hp" },
+      "targeting": { "scope": "self" },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "temp_hp", "dice": { "dice": "1", "flat": 1 }, "note": "The draconic blood in you protects you, so when you have 0 hit points but are not killed outright, you can use your reaction to drop to 1 hit point instead. You regain the use of this when you finish a long rest, and at 18th level the drop is to a number of hit points equal to your paladin level instead." }
+      ],
+      "summary": "Reaction: drop to 1 HP instead of dying",
+      "text": "When you have 0 hit points but are not killed outright, you can use your reaction to drop to 1 hit point instead.",
+      "source": { "book": "MTF", "reference": "Mordenkainen's Tome of Foes Draconic Disciple 15" }
+    },
+    {
+      "id": "subclass.draconic_disciple.dragon_knight",
+      "name": "Dragon Knight",
+      "kind": "subclass",
+      "owner": "Draconic Disciple",
+      "unlock": 20,
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "Your connection to the dragon of your ancestry is deep, so whenever you take a rest, you gain a draconic blessing of a type of your choice, and at 18th level you gain two of these and can change them at any rest." }
+      ],
+      "summary": "A draconic blessing of your choice from every rest",
+      "text": "Whenever you finish a long rest, you gain a draconic blessing of a type of your choice.",
+      "source": { "book": "MTF", "reference": "Mordenkainen's Tome of Foes Draconic Disciple 20" }
+    },
+    {
+      "id": "subclass.conquest.conquering_presence",
+      "name": "Channel Divinity: Conquering Presence",
+      "kind": "subclass",
+      "owner": "Oath of Conquest",
+      "unlock": 3,
+      "activation": "action",
+      "cost": [{ "resource": "channel_divinity", "amount": 1 }],
+      "limits": { "per": "turn", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "enemy", "range": { "value": 60, "unit": "ft" } },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "special", "note": "You have learned to project your conquering presence. On your turn, you can use an action to frighten a creature that you can see within 60 feet of you, and it makes a Wisdom saving throw, being frightened on a failure and not on a success, and frightened this way ends at the end of your next turn." }
+      ],
+      "summary": "Spend CD: frighten a creature you can see",
+      "text": "On your turn, you can use an action to frighten a creature that you can see within 60 feet of you.",
+      "source": { "book": "TCE", "reference": "Tasha's Cauldron Paladin Oath of Conquest 3" }
+    },
+    {
+      "id": "subclass.conquest.aura_of_conquest",
+      "name": "Aura of Conquest",
+      "kind": "subclass",
+      "owner": "Oath of Conquest",
+      "unlock": 7,
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "Your presence is felt by all. If you are surrounded by at least two creature enemies within 10 feet of you, the first time you enter a creature's reach on a turn, it must succeed on a Wisdom saving throw or be frightened until the end of your next turn, and at 18th level allies within 10 feet of you have this benefit whenever they are." }
+      ],
+      "summary": "Two enemies nearby: they are frightened when you arrive",
+      "text": "If you are surrounded by at least two creature enemies within 10 feet of you, the first time you enter a creature's reach on a turn, it must succeed on a Wisdom saving throw.",
+      "source": { "book": "TCE", "reference": "Tasha's Cauldron Paladin Oath of Conquest 7" }
+    },
+    {
+      "id": "subclass.conquest.sacred_earth",
+      "name": "Scarred Earth",
+      "kind": "subclass",
+      "owner": "Oath of Conquest",
+      "unlock": 15,
+      "activation": "passive",
+      "effects": [
+        { "kind": "extra_attacks", "count": 0, "note": "You have learned to strike fear with a scaring blow. Whenever you hit a creature with a melee attack, you can make it frightened until the end of your next turn, and at 18th level, if a creature is frightened of you, your weapon attacks ignore its cover." }
+      ],
+      "summary": "On a melee hit: frighten the target",
+      "text": "Whenever you hit a creature with a melee attack, you can make it frightened until the end of your next turn.",
+      "source": { "book": "TCE", "reference": "Tasha's Cauldron Paladin Oath of Conquest 15" }
+    },
+    {
+      "id": "subclass.conquest.invincible_conqueror",
+      "name": "Invincible Conqueror",
+      "kind": "subclass",
+      "owner": "Oath of Conquest",
+      "unlock": 20,
+      "activation": "passive",
+      "effects": [
+        { "kind": "extra_attacks", "count": 1, "note": "You have learned to conquer fear itself. If you are frightened, you can use your reaction to accept the frightened condition and gain advantage on all attack rolls instead, and at 18th level the same works for being paralyzed, but you can also use this once per long rest." }
+      ],
+      "summary": "Reaction: turn being frightened into advantage on all attacks",
+      "text": "If you are frightened, you can use your reaction to accept the frightened condition and gain advantage on all attack rolls instead.",
+      "source": { "book": "TCE", "reference": "Tasha's Cauldron Paladin Oath of Conquest 20" }
+    },
+    {
+      "id": "subclass.glory.oath_spells",
+      "name": "Oath Spells",
+      "kind": "subclass",
+      "owner": "Oath of Glory",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        { "kind": "spell_grant", "spells": [{ "level": 1, "from": ["wizard"] }, { "level": 1, "from": ["wizard"] }], "note": "Your oath grants you wizard spells, always prepared, with more at 7th, 11th, 15th and 19th level." }
+      ],
+      "summary": "Two wizard spells, always prepared",
+      "text": "You learn wizard spells in addition to your paladin spells. They are always prepared.",
+      "source": { "book": "PHB", "reference": "PHB Paladin Oath of Glory 3" }
+    },
+    {
+      "id": "subclass.glory.peerless_athlete",
+      "name": "Channel Divinity: Peerless Athlete",
+      "kind": "subclass",
+      "owner": "Oath of Glory",
+      "unlock": 3,
+      "activation": "bonus_action",
+      "cost": [{ "resource": "channel_divinity", "amount": 1 }],
+      "limits": { "per": "turn", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "self" },
+      "duration": { "value": 1, "unit": "minute" },
+      "endsIf": [],
+      "effects": [
+        { "kind": "special", "note": "You have learned to excel at any sport, so on your turn you can use a bonus action to gain advantage on Strength (Athletics) and Dexterity (Acrobatics) checks, and your jump distances increase by a factor of 2, and at 18th level this no longer uses a bonus action." }
+      ],
+      "summary": "Spend CD: advantage on athletic checks, double jumps",
+      "text": "On your turn, you can use a bonus action to gain advantage on Strength (Athletics) and Dexterity (Acrobatics) checks.",
+      "source": { "book": "PHB", "reference": "PHB Paladin Oath of Glory 3" }
+    },
+    {
+      "id": "subclass.glory.inspiring_smite",
+      "name": "Channel Divinity: Inspiring Smite",
+      "kind": "subclass",
+      "owner": "Oath of Glory",
+      "unlock": 3,
+      "activation": "bonus_action",
+      "cost": [{ "resource": "channel_divinity", "amount": 1 }],
+      "limits": { "per": "turn", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "creature" },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "stat_modifier", "stat": "damage_roll", "amount": 0, "duration": "while_active" },
+        { "kind": "special", "note": "When you hit a creature with a melee weapon attack, you can use a bonus action to cause radiant damage to the target, and it and creatures within 10 feet of it make a Charisma saving throw, taking 4d8 radiant damage on a failure or half on a success, and at 18th level the creature also has disadvantage on its next attack roll." }
+      ],
+      "summary": "Spend CD: a smite dealing 4d8 radiant to the target and its neighbours",
+      "text": "When you hit a creature with a melee weapon attack, you can use a bonus action to cause radiant damage to the target.",
+      "source": { "book": "PHB", "reference": "PHB Paladin Oath of Glory 3" }
+    },
+    {
+      "id": "subclass.glory.aura_of_alacrity",
+      "name": "Aura of Alacrity",
+      "kind": "subclass",
+      "owner": "Oath of Glory",
+      "unlock": 7,
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "When an ally of yours within 10 feet of you misses an attack, you can use your reaction to grant that ally advantage on all attacks against the same target for the rest of that turn, and at 18th level allies within 10 feet of you gain this whenever they miss an attack against a creature within 10 feet of you." }
+      ],
+      "summary": "Reaction: an ally's miss becomes advantage for that turn",
+      "text": "When an ally of yours within 10 feet of you misses an attack, you can use your reaction to grant that ally advantage on all attacks against the same target for the rest of that turn.",
+      "source": { "book": "PHB", "reference": "PHB Paladin Oath of Glory 7" }
+    },
+    {
+      "id": "subclass.glory.glorious_defense",
+      "name": "Glorious Defense",
+      "kind": "subclass",
+      "owner": "Oath of Glory",
+      "unlock": 15,
+      "activation": "reaction",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": { "event": "ally_damaged", "note": "When a creature within 5 feet of you is hit by an attack." },
+      "targeting": { "scope": "creature", "range": { "value": 30, "unit": "ft" } },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "special", "note": "When a creature within 5 feet of you is hit by an attack, you can use your reaction to impose disadvantage on the attack roll, and at 18th level the attacker also has disadvantage on any other attack rolls it makes for the rest of its turn." }
+      ],
+      "summary": "Reaction: disadvantage on an attack against a nearby creature",
+      "text": "When a creature within 5 feet of you is hit by an attack, you can use your reaction to impose disadvantage on the attack roll.",
+      "source": { "book": "PHB", "reference": "PHB Paladin Oath of Glory 15" }
+    },
+    {
+      "id": "subclass.glory.living_legend",
+      "name": "Living Legend",
+      "kind": "subclass",
+      "owner": "Oath of Glory",
+      "unlock": 20,
+      "activation": "passive",
+      "effects": [
+        { "kind": "extra_attacks", "count": 1, "note": "You have begun to attain a form of legend, so you gain two additional attack rolls whenever you attack on your turn, and you can make a Charisma (Persuasion) check with a bonus action once per turn against a creature that can see and hear you." }
+      ],
+      "summary": "Two extra attack rolls; Persuasion as a bonus action",
+      "text": "You gain two additional attack rolls whenever you attack on your turn.",
+      "source": { "book": "PHB", "reference": "PHB Paladin Oath of Glory 20" }
+    },
+    {
+      "id": "subclass.redemption.emissary_of_peace",
+      "name": "Channel Divinity: Emissary of Peace",
+      "kind": "subclass",
+      "owner": "Oath of Redemption",
+      "unlock": 3,
+      "activation": "bonus_action",
+      "cost": [{ "resource": "channel_divinity", "amount": 1 }],
+      "limits": { "per": "turn", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "creature" },
+      "duration": { "value": 1, "unit": "round" },
+      "endsIf": [],
+      "effects": [
+        { "kind": "advantage", "check": "save", "value": "advantage" },
+        { "kind": "special", "note": "Your dedication to peace lends itself to moments of calm. On your turn, you can use a bonus action to cause a creature within 30 feet to make a Charisma saving throw, and on a failure it is charmed and frightened until the end of your next turn, and it automatically fails saves against being charmed or frightened." }
+      ],
+      "summary": "Spend CD: charm and frighten a creature for a round",
+      "text": "On your turn, you can use a bonus action to cause a creature within 30 feet of you to make a Charisma saving throw.",
+      "source": { "book": "TCE", "reference": "Tasha's Cauldron Paladin Oath of Redemption 3" }
+    },
+    {
+      "id": "subclass.redemption.aura_of_the_guardian",
+      "name": "Aura of the Guardian",
+      "kind": "subclass",
+      "owner": "Oath of Redemption",
+      "unlock": 7,
+      "activation": "passive",
+      "effects": [
+        { "kind": "extra_attacks", "count": 0, "note": "Any creature hostile to you that is within 10 feet of you can't attack anyone else except creatures you designate, and at 18th level allies within 10 feet of you have this whenever a creature hostile to them is within 10 feet of you." }
+      ],
+      "summary": "Nearby enemies may only attack you or your designates",
+      "text": "While you are conscious, no creature hostile to you can attack anyone else except creatures you designate.",
+      "source": { "book": "TCE", "reference": "Tasha's Cauldron Paladin Oath of Redemption 7" }
+    },
+    {
+      "id": "subclass.redemption.protective_spirit",
+      "name": "Protective Spirit",
+      "kind": "subclass",
+      "owner": "Oath of Redemption",
+      "unlock": 15,
+      "activation": "reaction",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": { "event": "ally_damaged" },
+      "targeting": { "scope": "self" },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "special", "note": "Your adherence to the path of the guardian leads you to protect others, so when a creature within 10 feet of you is hit by an attack and you can see the attacker, you can use your reaction to take the attack's damage yourself, and at 18th level you also gain resistance to that damage and it doesn't also hit you." }
+      ],
+      "summary": "Reaction: take the damage meant for an ally nearby",
+      "text": "When a creature within 10 feet of you is hit by an attack, you can use your reaction to take the attack's damage yourself.",
+      "source": { "book": "TCE", "reference": "Tasha's Cauldron Paladin Oath of Redemption 15" }
+    },
+    {
+      "id": "subclass.redemption.emissary_of_redemption",
+      "name": "Emissary of Redemption",
+      "kind": "subclass",
+      "owner": "Oath of Redemption",
+      "unlock": 20,
+      "activation": "passive",
+      "effects": [
+        { "kind": "skill_bonus", "skills": ["Persuasion"], "amount": 0, "note": "At 20th level, an emissary of redemption can use the Emissary of Peace aura once per turn without spending channel divinity, and it also ends the frightened condition on you and your allies within 10 feet of you at the start of your turn." }
+      ],
+      "summary": "Your Emissary of Peace aura works without a Channel Divinity",
+      "text": "An emissary of redemption can use the Emissary of Peace aura without expending channel divinity points.",
+      "source": { "book": "TCE", "reference": "Tasha's Cauldron Paladin Oath of Redemption 20" }
+    },
+    {
+      "id": "subclass.crown.oath_spells",
+      "name": "Oath Spells",
+      "kind": "subclass",
+      "owner": "Oath of the Crown",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        { "kind": "spell_grant", "spells": [{ "level": 1, "from": ["cleric"] }, { "level": 1, "from": ["cleric"] }], "note": "Your oath grants you cleric spells, always prepared, with more at 7th, 11th, 15th and 19th level." }
+      ],
+      "summary": "Two cleric spells, always prepared",
+      "text": "You learn cleric spells in addition to your paladin spells. They are always prepared.",
+      "source": { "book": "PHB", "reference": "PHB Paladin Oath of the Crown 3" }
+    },
+    {
+      "id": "subclass.crown.champion_challenge",
+      "name": "Channel Divinity: Champion's Challenge",
+      "kind": "subclass",
+      "owner": "Oath of the Crown",
+      "unlock": 3,
+      "activation": "action",
+      "cost": [{ "resource": "channel_divinity", "amount": 1 }],
+      "limits": { "per": "turn", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "creature", "range": { "value": 30, "unit": "ft" } },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "condition", "action": "apply", "conditions": ["charmed"], "duration": { "value": 1, "unit": "hour" } },
+        { "kind": "special", "note": "You have learned to challenge foes, and to invite them to yield. On your turn, you can use an action to target a creature within 30 feet and force it to make a Charisma saving throw, and on a failure it is charmed by you for 1 hour or until you tell it to stop, and it automatically fails saves against being charmed." }
+      ],
+      "summary": "Spend CD: charm a creature for an hour",
+      "text": "On your turn, you can use an action to target a creature within 30 feet of you and force it to make a Charisma saving throw.",
+      "source": { "book": "PHB", "reference": "PHB Paladin Oath of the Crown 3" }
+    },
+    {
+      "id": "subclass.crown.turn_the_tide",
+      "name": "Channel Divinity: Turn the Tide",
+      "kind": "subclass",
+      "owner": "Oath of the Crown",
+      "unlock": 3,
+      "activation": "action",
+      "cost": [{ "resource": "channel_divinity", "amount": 1 }],
+      "limits": { "per": "turn", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "creatures_in_area", "range": { "value": 10, "unit": "ft" }, "shape": "sphere", "count": 3 },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "condition", "action": "apply", "conditions": ["frightened"] },
+        { "kind": "special", "note": "You have a profound determination to enact vengeance on your oppressors. On your turn, you can use an action to force each of up to three creatures within 10 feet of you to make a Wisdom saving throw, and on a failure it is frightened for 1 minute or until you tell it to stop, and it automatically fails saves against being charmed." }
+      ],
+      "summary": "Spend CD: frighten up to three creatures within 10 ft",
+      "text": "On your turn, you can use an action to force each of up to three creatures within 10 feet of you to make a Wisdom saving throw.",
+      "source": { "book": "PHB", "reference": "PHB Paladin Oath of the Crown 3" }
+    },
+    {
+      "id": "subclass.crown.divine_allegiance",
+      "name": "Divine Allegiance",
+      "kind": "subclass",
+      "owner": "Oath of the Crown",
+      "unlock": 7,
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "You have developed the ability to inspire your allies. If an ally within 5 feet of you is hit by an attack and can see and hear you, you can use your reaction to let them use their reaction, if they have one, to move to an unoccupied space of your choice that is adjacent to them and is safer." }
+      ],
+      "summary": "Reaction: move a struck ally somewhere safer",
+      "text": "If an ally within 5 feet of you is hit by an attack and can see and hear you, you can use your reaction to let them use their reaction, if they have one, to move to an unoccupied space.",
+      "source": { "book": "PHB", "reference": "PHB Paladin Oath of the Crown 7" }
+    },
+    {
+      "id": "subclass.crown.unyielding_saint",
+      "name": "Unyielding Saint",
+      "kind": "subclass",
+      "owner": "Oath of the Crown",
+      "unlock": 15,
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "You have a strong sense of duty, so your Charisma modifier counts twice in any charisma-based check, and at 18th level when you have fewer than half your hit points remaining, your Charisma modifier counts thrice instead." }
+      ],
+      "summary": "Charisma modifier counts twice on Charisma checks",
+      "text": "Your Charisma modifier counts twice in any charisma-based check.",
+      "source": { "book": "PHB", "reference": "PHB Paladin Oath of the Crown 15" }
+    },
+    {
+      "id": "subclass.crown.exalted_champion",
+      "name": "Exalted Champion",
+      "kind": "subclass",
+      "owner": "Oath of the Crown",
+      "unlock": 20,
+      "activation": "passive",
+      "effects": [
+        { "kind": "skill", "skills": ["Persuasion"], "proficiency": "expertise" },
+        { "kind": "extra_attacks", "count": 0, "note": "You are a champion of the crown, so you gain proficiency in Persuasion and can make a Charisma (Persuasion) check with a bonus action, and at 18th level if an enemy within 5 feet of you moves to a place you can see and hear and doesn't move out of your reach within 1 second, it must succeed on a Wisdom save or be frightened." }
+      ],
+      "summary": "Persuasion expertise; enemies must flee your reach",
+      "text": "You gain proficiency in Persuasion and can take the Persuasion action as a bonus action.",
+      "source": { "book": "PHB", "reference": "PHB Paladin Oath of the Crown 20" }
+    },
+    {
+      "id": "subclass.watchers.watchers_will",
+      "name": "Channel Divinity: Watcher's Will",
+      "kind": "subclass",
+      "owner": "Oath of the Watchers",
+      "unlock": 3,
+      "activation": "action",
+      "cost": [{ "resource": "channel_divinity", "amount": 1 }],
+      "limits": { "per": "turn", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "creature", "range": { "value": 30, "unit": "ft" } },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "advantage", "check": "save", "value": "advantage" },
+        { "kind": "special", "note": "You have a long-standing distrust of watchers and their ilk, so on your turn, as an action, you can choose a creature that you can see within 30 feet of you, and it makes a Wisdom saving throw, and on a failure its attacks and spells have disadvantage for the next round." }
+      ],
+      "summary": "Spend CD: a creature's attacks and spells are disadvantaged",
+      "text": "On your turn, as an action, you can choose a creature that you can see within 30 feet of you and force it to make a Wisdom saving throw.",
+      "source": { "book": "TCE", "reference": "Tasha's Cauldron Paladin Oath of the Watchers 3" }
+    },
+    {
+      "id": "subclass.watchers.aura_of_the_sentinel",
+      "name": "Aura of the Sentinel",
+      "kind": "subclass",
+      "owner": "Oath of the Watchers",
+      "unlock": 7,
+      "activation": "passive",
+      "effects": [
+        { "kind": "extra_attacks", "count": 0, "note": "While you are conscious, any invisible hostile creature within 10 feet of you moves into the space you occupy, and at 18th level allies within 10 feet of you have this whenever a creature hostile to them moves into the space you occupy or ends its turn there." }
+      ],
+      "summary": "Invisible enemies that come within 10 ft are revealed",
+      "text": "While you are conscious, any invisible hostile creature that moves into the space you occupy becomes visible.",
+      "source": { "book": "TCE", "reference": "Tasha's Cauldron Paladin Oath of the Watchers 7" }
+    },
+    {
+      "id": "subclass.watchers.vigilant_rebuke",
+      "name": "Vigilant Rebuke",
+      "kind": "subclass",
+      "owner": "Oath of the Watchers",
+      "unlock": 15,
+      "activation": "reaction",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": { "event": "self_hit_by_attack" },
+      "targeting": { "scope": "creature" },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "damage", "dice": { "dice": "4d8", "bonusFrom": "none" }, "damageType": "radiant", "resolution": { "mode": "save", "ability": "dex", "onSuccess": "none", "onFailure": "full" } },
+        { "kind": "special", "note": "Your vigilance protects you, so when a creature that you can see hits you with an attack, you can use your reaction to make the creature take 4d8 radiant damage, and it makes a Dexterity saving throw, taking half as much on a success, and at 18th level the damage increases to 5d8 and creatures that attack anyone within 30 feet of you can trigger this." }
+      ],
+      "summary": "Reaction: 4d8 radiant to a creature that hits you",
+      "text": "When a creature that you can see hits you with an attack, you can use your reaction to make the creature take 4d8 radiant damage.",
+      "source": { "book": "TCE", "reference": "Tasha's Cauldron Paladin Oath of the Watchers 15" }
+    },
+    {
+      "id": "subclass.watchers.mortal_bulwark",
+      "name": "Mortal Bulwark",
+      "kind": "subclass",
+      "owner": "Oath of the Watchers",
+      "unlock": 20,
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "You have learned to meld the influence of your patron within yourself, so your Charisma modifier is increased by your level, and at 18th level you also use this modifier on Constitution saves to avoid or end the paralyzed condition." }
+      ],
+      "summary": "Charisma modifier is increased by your level",
+      "text": "Your Charisma modifier is increased by your paladin level.",
+      "source": { "book": "TCE", "reference": "Tasha's Cauldron Paladin Oath of the Watchers 20" }
+    },
+    {
+      "id": "subclass.oathbreaker.oathbreaker_spells",
+      "name": "Oathbreaker Spells",
+      "kind": "subclass",
+      "owner": "Oathbreaker",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        { "kind": "spell_grant", "spells": [{ "level": 1, "from": ["cleric"] }, { "level": 1, "from": ["warlock"] }], "note": "You have added the darkness, phantasmal force, polymorph and thunderwave spells to your spell list from any class, and you gain more warlock and cleric spells as you level, always prepared." }
+      ],
+      "summary": "Darkness, phantasmal force, polymorph, thunderwave, plus others",
+      "text": "You have added the darkness, phantasmal force, polymorph, and thunderwave spells to your spell list from any class.",
+      "source": { "book": "MTF", "reference": "Mordenkainen's Tome of Foes Oathbreaker 3" }
+    },
+    {
+      "id": "subclass.oathbreaker.control_undead",
+      "name": "Channel Divinity: Control Undead",
+      "kind": "subclass",
+      "owner": "Oathbreaker",
+      "unlock": 3,
+      "activation": "action",
+      "cost": [{ "resource": "channel_divinity", "amount": 1 }],
+      "limits": { "per": "turn", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "creature", "range": { "value": 30, "unit": "ft" }, "description": "An undead creature" },
+      "duration": { "value": 1, "unit": "hour" },
+      "endsIf": [],
+      "effects": [
+        { "kind": "special", "note": "You have learned to bind the servitude of others. On your turn, you can use an action to force an undead to make a Wisdom saving throw, and on a failure you control it for 1 hour or until it takes damage, and it automatically fails saves against being charmed or frightened." }
+      ],
+      "summary": "Spend CD: command an undead for an hour",
+      "text": "On your turn, you can use an action to force a creature to make a Wisdom saving throw.",
+      "source": { "book": "MTF", "reference": "Mordenkainen's Tome of Foes Oathbreaker 3" }
+    },
+    {
+      "id": "subclass.oathbreaker.dreadful_aspect",
+      "name": "Channel Divinity: Dreadful Aspect",
+      "kind": "subclass",
+      "owner": "Oathbreaker",
+      "unlock": 3,
+      "activation": "action",
+      "cost": [{ "resource": "channel_divinity", "amount": 1 }],
+      "limits": { "per": "turn", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "self" },
+      "duration": { "value": 1, "unit": "round" },
+      "endsIf": [],
+      "effects": [
+        { "kind": "condition", "action": "apply", "conditions": ["frightened"], "note": "You have an unholy aspect, and when you present your holy symbol as an action, every creature within 60 feet that can see you makes a Wisdom saving throw, and on a failure it is frightened until the end of your next turn, and at 18th level you can instead use it on one creature of your choice." }
+      ],
+      "summary": "Spend CD: frighten everything within 60 ft",
+      "text": "Present your holy symbol as an action, and every creature within 60 feet that can see you must make a Wisdom saving throw.",
+      "source": { "book": "MTF", "reference": "Mordenkainen's Tome of Foes Oathbreaker 3" }
+    },
+    {
+      "id": "subclass.oathbreaker.aura_of_hate",
+      "name": "Aura of Hate",
+      "kind": "subclass",
+      "owner": "Oathbreaker",
+      "unlock": 7,
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "You have developed a cruel aspect, so a creature that is frightened of you has disadvantage on attacks against allies of yours within 30 feet of it, and at 18th level allies within 30 feet of a frightened creature also gain this." }
+      ],
+      "summary": "Frightened enemies attack your allies at disadvantage",
+      "text": "While this aura is active, a creature that is frightened of you has disadvantage on attacks against allies of yours within 30 feet of it.",
+      "source": { "book": "MTF", "reference": "Mordenkainen's Tome of Foes Oathbreaker 7" }
+    },
+    {
+      "id": "subclass.oathbreaker.supernatural_resistance",
+      "name": "Supernatural Resistance",
+      "kind": "subclass",
+      "owner": "Oathbreaker",
+      "unlock": 15,
+      "activation": "passive",
+      "effects": [
+        { "kind": "advantage", "check": "save", "value": "advantage" },
+        { "kind": "special", "note": "You have a strong supernatural presence, so when you fail a Wisdom saving throw, you can use your reaction to succeed instead, and you regain the use of this when you finish a short or long rest, and at 18th level you also have advantage on failure saves against being paralyzed or stunned." }
+      ],
+      "summary": "Reaction: succeed on a failed Wisdom save",
+      "text": "When you fail a Wisdom saving throw, you can use your reaction to succeed instead.",
+      "source": { "book": "MTF", "reference": "Mordenkainen's Tome of Foes Oathbreaker 15" }
+    },
+    {
+      "id": "subclass.oathbreaker.dread_lord",
+      "name": "Dread Lord",
+      "kind": "subclass",
+      "owner": "Oathbreaker",
+      "unlock": 20,
+      "activation": "passive",
+      "effects": [
+        { "kind": "extra_attacks", "count": 0, "note": "You have a reputation for cruelty, so the Radiant Rebuke and Aura of Protection effects cast on you or allies within 30 feet of you have their normal effect plus your Charisma modifier, and at 18th level allies within 10 feet of you can also use the Aura of Protection on themselves." }
+      ],
+      "summary": "Your defensive auras add your Charisma modifier as healing",
+      "text": "You have a reputation for cruelty, so the effects of Radiant Rebuke and Aura of Protection have their normal effect plus your Charisma modifier.",
+      "source": { "book": "MTF", "reference": "Mordenkainen's Tome of Foes Oathbreaker 20" }
+    },
+    {
+      "id": "subclass.vengeance.oath_spells",
+      "name": "Oath Spells",
+      "kind": "subclass",
+      "owner": "Vengeance",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        { "kind": "spell_grant", "spells": [{ "level": 1, "from": ["cleric"] }, { "level": 1, "from": ["cleric"] }], "note": "Your oath grants you cleric spells, always prepared, with more at 7th, 11th, 15th and 19th level." }
+      ],
+      "summary": "Two cleric spells, always prepared",
+      "text": "You learn cleric spells in addition to your paladin spells. They are always prepared.",
+      "source": { "book": "PHB", "reference": "PHB Paladin Vengeance 3" }
+    },
+    {
+      "id": "subclass.vengeance.abjure_enemy",
+      "name": "Channel Divinity: Abjure Enemy",
+      "kind": "subclass",
+      "owner": "Vengeance",
+      "unlock": 3,
+      "activation": "action",
+      "cost": [{ "resource": "channel_divinity", "amount": 1 }],
+      "limits": { "per": "turn", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "creature", "range": { "value": 60, "unit": "ft" } },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "special", "note": "You have a profound dedication to vengeance, so on your turn, you can use an action to force a creature to make a Wisdom saving throw, and on a failure its attacks have disadvantage against you until the end of your next turn, and at 18th level the target also has disadvantage on attacks against any other creature within 30 feet of you." }
+      ],
+      "summary": "Spend CD: a creature's attacks are disadvantaged against you",
+      "text": "On your turn, you can use an action to force a creature to make a Wisdom saving throw.",
+      "source": { "book": "PHB", "reference": "PHB Paladin Vengeance 3" }
+    },
+    {
+      "id": "subclass.vengeance.vow_of_enmity",
+      "name": "Channel Divinity: Vow of Enmity",
+      "kind": "subclass",
+      "owner": "Vengeance",
+      "unlock": 3,
+      "activation": "bonus_action",
+      "cost": [{ "resource": "channel_divinity", "amount": 1 }],
+      "limits": { "per": "turn", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "creature" },
+      "duration": { "value": 1, "unit": "minute" },
+      "endsIf": [],
+      "effects": [
+        { "kind": "damage", "dice": { "dice": "10", "flat": 0 }, "damageType": "necrotic", "resolution": { "mode": "auto" } },
+        { "kind": "special", "note": "As a bonus action on your turn, you can mark a creature within your reach, and while the mark lasts, it has disadvantage on attack rolls against you, and at the end of each of its turns, if it isn't immune to being frightened, it makes a Wisdom save or takes 10 necrotic damage from you." }
+      ],
+      "summary": "Spend CD: mark a creature, 10 necrotic per turn",
+      "text": "As a bonus action on your turn, you can mark a creature that is within your reach.",
+      "source": { "book": "PHB", "reference": "PHB Paladin Vengeance 3" }
+    },
+    {
+      "id": "subclass.vengeance.relentless_avenger",
+      "name": "Relentless Avenger",
+      "kind": "subclass",
+      "owner": "Vengeance",
+      "unlock": 7,
+      "activation": "passive",
+      "effects": [
+        { "kind": "extra_attacks", "count": 0, "note": "You have vengeance in your blood. Whenever you make a melee weapon attack against a creature and miss, you can use 1 ki point to attack it again, and the attack counts as though it hit, and at 18th level the ki cost is 0." }
+      ],
+      "tiers": [
+        { "at": 18, "effects": [{ "kind": "extra_attacks", "count": 0, "note": "Retaliating strike costs no ki points." }] }
+      ],
+      "summary": "A missed melee attack can be rerolled as a hit for 1 ki",
+      "text": "Whenever you make a melee weapon attack against a creature and miss, you can use 1 ki point to attack it again.",
+      "source": { "book": "PHB", "reference": "PHB Paladin Vengeance 7" }
+    },
+    {
+      "id": "subclass.vengeance.soul_of_vengeance",
+      "name": "Soul of Vengeance",
+      "kind": "subclass",
+      "owner": "Vengeance",
+      "unlock": 15,
+      "activation": "passive",
+      "effects": [
+        { "kind": "reactions_without_cost", "count": 1, "note": "You have developed a righteous fury, so whenever you take damage, you have resistance to that damage, and at 18th level whenever a creature within 30 feet of you is hit, you and allies within 10 feet of it gain resistance to that damage." }
+      ],
+      "summary": "Resistance to damage you take, extended to allies at 18",
+      "text": "Whenever you take damage, you have resistance to that damage.",
+      "source": { "book": "PHB", "reference": "PHB Paladin Vengeance 15" }
+    },
+    {
+      "id": "subclass.vengeance.avenging_angel",
+      "name": "Avenging Angel",
+      "kind": "subclass",
+      "owner": "Vengeance",
+      "unlock": 20,
+      "activation": "passive",
+      "effects": [
+        { "kind": "control", "action": "push", "distance": { "value": 30, "unit": "ft" } },
+        { "kind": "special", "note": "You have a powerful ability to leap into the fray, so your fly speed equals your walking speed, and at 18th level you can use your reaction and teleport up to 30 feet to an unoccupied space visible to you whenever a creature you can see within 5 feet of an ally of yours is hit by an attack." }
+      ],
+      "summary": "A flying speed, and teleport to an ally's side at 18",
+      "text": "You have a fly speed equal to your walking speed.",
+      "source": { "book": "PHB", "reference": "PHB Paladin Vengeance 20" }
+    }
+  ]
+}
