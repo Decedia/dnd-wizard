@@ -290,5 +290,27 @@ console.log("\nrebuild resilience (read from the source, since character-creatio
   check("the rebuild handler passes the sheet language", /rebuildDerived\(character, language\)/.test(sheet));
 }
 
+// --- the sheet must not read the stored mechanical fields for display -------
+// These carried "see class table" as a charge count and repeated a feature's
+// own name as its type, so nothing may render from them again.
+console.log("\nsheet reads the engine, not the stored mechanical fields\n");
+{
+  const sheet = readFileSync(path.join(ROOT, "src", "components", "character-sheet", "FeaturesTraitsSection.tsx"), "utf8");
+  const reads = [
+    [/feature\.actionType/, "feature.actionType"],
+    [/feature\.uses/, "feature.uses"],
+    [/feature\.requirement/, "feature.requirement"],
+    [/feature\.endsIf/, "feature.endsIf"],
+    [/feature\.onUse/, "feature.onUse"],
+    [/feature\.scaling/, "feature.scaling"],
+    [/feature\.featureType/, "feature.featureType"],
+    [/\(feature as any\)\.(actionType|uses|requirement|endsIf|onUse|scaling|featureType)/, "(feature as any).<mechanical field>"],
+  ];
+  for (const [re, label] of reads) check(`the sheet does not read ${label}`, !re.test(sheet), "still present");
+  check("badges come from resolved.badges only", /resolvedFor\(feature\.id\)\?\.badges\.map/.test(sheet));
+  check("the popup shows the action slot, not Active/Passive", /slotLabel\(selectedResolved\.activation\)/.test(sheet));
+  check("no mechanism text is appended to summaries", !/mechanismStr|mechanismParts/.test(sheet));
+}
+
 console.log(`\n${failures.length === 0 ? "all checks passed" : `${failures.length} FAILED: ${failures.join(", ")}`}\n`);
 if (failures.length > 0) process.exit(1);

@@ -380,7 +380,7 @@ const SLOT_LABELS: Record<TriggerSpec["event"] | string, string> = {
   start_encounter: "When a fight begins",
 };
 
-function waitingLabel(trigger: TriggerSpec | null): string | null {
+export function triggerLabel(trigger: TriggerSpec | null): string | null {
   if (!trigger) return null;
   return SLOT_LABELS[trigger.event] ?? trigger.event.replace(/_/g, " ");
 }
@@ -398,7 +398,7 @@ export function buildTurnMenu(features: FeatureBase[], ctx: ResolveContext): Tur
       menu.passive.push(resolved);
       continue;
     }
-    const option: TurnOption = { ...resolved, waitingFor: waitingLabel(resolved.trigger) };
+    const option: TurnOption = { ...resolved, waitingFor: triggerLabel(resolved.trigger) };
     menu[resolved.activation as TurnSlot].push(option);
   }
   return menu;

@@ -12,7 +12,7 @@ import { saveCharacter } from "@/lib/storage";
 import type { Character } from "@/lib/storage";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getStatBadgeStyle } from "@/lib/badge-styles";
-import { buildDataset, findEngineFeature, resolve, type ResolveContext, type ResolvedFeature } from "@/lib/feature-engine";
+import { buildDataset, findEngineFeature, resolve, slotLabel, triggerLabel, type BuiltDataset, type ResolveContext, type ResolvedFeature } from "@/lib/feature-engine";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { DiceText } from "@/components/DiceText";
 
@@ -29,6 +29,22 @@ const POOL_COUNTERS: Record<string, { field: keyof Character; label: string }> =
   sorcery_points: { field: "sorceryPoints", label: "Sorcery Points" },
   bardic_inspiration: { field: "bardicInspirationUses", label: "Bardic Inspiration" },
 };
+
+/**
+ * The engine entry behind a stored character feature, or null if it has none.
+ * Used for values the resolver does not carry, such as the sourcebook.
+ */
+function engineFeatureFor(
+  character: Character,
+  feature: Character["features"][number],
+  dataset: BuiltDataset
+) {
+  return (
+    (feature.engineId && dataset.byId.get(feature.engineId)) ||
+    findEngineFeature(ownerFor(character, feature), feature.name, dataset) ||
+    null
+  );
+}
 
 /**
  * Which class, subclass or race owns a stored feature, so the engine lookup can
@@ -166,6 +182,8 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
   }, [character.features]);
 
   const enrichedFeatures = useMemo(() => {
+    const engineDataset = buildDataset();
+
     try {
       return visibleFeatures.map((feature) => {
         const existing = feature as any;
@@ -228,62 +246,40 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
         // entry has no summary of its own, because the stored text is whatever
         // language the character was created in.
         const resolvedDescription = srdFeature?.description ?? existing.description ?? "";
-        const actionType = (feature as any).actionType;
-        const uses = (feature as any).uses;
-        const requirement = (feature as any).requirement;
-        const duration = (feature as any).duration;
-        const featureType = (feature as any).featureType || "Passive";
-        const onUse = (feature as any).onUse;
-        const scaling = (feature as any).scaling;
 
-        const mechanismParts: string[] = [];
-        if (actionType && actionType !== "passive") mechanismParts.push(actionType.toLowerCase());
-        if (uses) {
-          const total = typeof uses.total === "number" ? uses.total : uses.total;
-          const recharge = uses.recharge;
-          mechanismParts.push(`${total}/${recharge}`);
-        }
-        if (requirement) mechanismParts.push(requirement.toLowerCase());
-        if (duration && duration !== "Instantaneous") mechanismParts.push(duration.toLowerCase());
-        if (featureType === "Active" && !actionType) mechanismParts.push("action");
-        if (onUse) mechanismParts.push(onUse.toLowerCase());
-        if (scaling) mechanismParts.push("scales");
-
-        const mechanismStr = mechanismParts.length > 0 ? ` (${mechanismParts.join(", ")})` : "";
-
+        // No mechanic text is appended to the summary. It used to be built here
+        // from the stored fields, which duplicated the badge row and mixed two
+        // sources: the badge row is the engine's, this was not.
         const fallbackSummary = (() => {
           const firstSentence = resolvedDescription.split(/[.\n]/)[0].trim();
-          let s = firstSentence + mechanismStr;
-          const words = s.split(/\s+/);
-          if (words.length > 30) s = words.slice(0, 30).join(" ");
-          return s;
+          const words = firstSentence.split(/\s+/);
+          return words.length > 30 ? words.slice(0, 30).join(" ") : firstSentence;
         })();
 
         return {
           ...feature,
           description: resolvedDescription,
           summary: srdFeature?.summary ?? existing.summary ?? (fallbackSummary || null),
-          featureType: srdFeature?.featureType ?? existing.featureType ?? null,
-          actionType: srdFeature?.actionType ?? existing.actionType ?? null,
-          uses: srdFeature?.uses ?? existing.uses ?? null,
-          requirement: srdFeature?.requirement ?? existing.requirement ?? null,
-          duration: srdFeature?.duration ?? existing.duration ?? null,
-          endsIf: srdFeature?.endsIf ?? existing.endsIf ?? null,
-          onUse: srdFeature?.onUse ?? existing.onUse ?? null,
-          scaling: srdFeature?.scaling ?? existing.scaling ?? null,
-          grantsSpells: srdFeature?.grantsSpells ?? existing.grantsSpells ?? false,
+          // The stored mechanical fields are deliberately not re-derived or
+          // re-attached. Nothing reads them for display any more, and copying
+          // them forward would keep the wrong values alive in the object that
+          // gets saved back.
           grantsAttack: srdFeature?.grantsAttack ?? existing.grantsAttack ?? false,
           grantsSkills: srdFeature?.grantsSkills ?? existing.grantsSkills ?? false,
           grantsProficiency: srdFeature?.grantsProficiency ?? existing.grantsProficiency ?? false,
           showInSheet: srdFeature?.showInSheet ?? existing.showInSheet ?? true,
           source: srdSource ?? existing.source ?? derivedSource ?? null,
-          book: book ?? (existing as any).book ?? null,
+          // The engine's sourcebook wins: it is per-entry and verified, whereas
+          // this lookup falls back to "PHB" whenever the SRD entry has no source.
+          // The engine's sourcebook wins: it is per-entry and verified, whereas
+          // this lookup falls back to "PHB" whenever the SRD entry has no source.
+          book: engineFeatureFor(character, feature, engineDataset)?.source?.book ?? book ?? (existing as any).book ?? null,
         };
       });
     } catch {
       return visibleFeatures;
     }
-  }, [visibleFeatures, character.class, character.race, character.subclass, character.sources, character.ruleset, feats, language]);
+  }, [visibleFeatures, character, feats, language]);
 
   /**
    * The combat engine resolved once per render, keyed by the character feature's
@@ -334,36 +330,20 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
 
   const resolvedFor = (storedId: string): ResolvedFeature | undefined => resolvedByStoredId.get(storedId);
 
-  const getBookTag = (feature: any): string | null => {
-    return feature.book || null;
-  };
+
 
   /**
-   * Badges come from the combat engine when the feature has an entry there,
-   * and from the sheet's own data otherwise. The engine path is preferred
-   * because it knows the character's level, so a Barbarian's Rage badge reads
-   * "3 / rest" rather than repeating whatever the raw record says.
+   * Badges come from the combat engine and nowhere else.
+   *
+   * There used to be a fallback that rebuilt badges from the stored
+   * actionType / uses / requirement / scaling / book fields. That was the wrong
+   * data - "see class table" as a charge count, a feature's own name repeated as
+   * its type - and mixing it with engine badges meant a feature could show both
+   * a correct number and a wrong one. A feature with no engine entry, such as
+   * homebrew, now shows no mechanic badge, which is the honest answer rather
+   * than an invented one.
    */
-  const getFeatureBadges = (feature: any): string[] => {
-    const engine = resolvedFor(feature.id);
-    if (engine) return engine.badges.map((b) => b.label);
-    const badges: string[] = [];
-    const actionType = feature.actionType;
-    if (actionType && String(actionType).toLowerCase() !== "passive") badges.push(String(actionType));
-    const uses = feature.uses;
-    if (uses) {
-      const total = typeof uses.total === "number" ? String(uses.total) : "";
-      const recharge = uses.recharge || "";
-      const badge = total && recharge ? `${total} / ${recharge}` : total || recharge;
-      if (badge) badges.push(badge);
-    }
-    const requirement = feature.requirement;
-    if (requirement && String(requirement).length <= 48) badges.push(String(requirement));
-    if (feature.scaling) badges.push(t("feature.scales", "Scales"));
-    const book = getBookTag(feature);
-    if (book) badges.push(book);
-    return badges;
-  };
+  const getFeatureBadges = (feature: any): string[] => resolvedFor(feature.id)?.badges.map((b) => b.label) ?? [];
 
   const getFeatureLevel = (feature: any): number | null => {
     const source = feature.source;
@@ -376,15 +356,41 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
     return !!source && typeof source === "object" && source.type === "race";
   };
 
+  /**
+   * The detail rows a popup shows, built from the engine's typed data: what the
+   * feature requires, what ends it, and what it does. These were the stored
+   * prose fields before, which is where "see class table" surfaced to a player.
+   */
   const getFeatureDetailRows = (feature: any): { label: string; value: string }[] => {
+    const resolved = resolvedFor(feature.id);
+    if (!resolved) return [];
     const rows: { label: string; value: string }[] = [];
     const push = (key: string, fallback: string, value: unknown) => {
       if (value) rows.push({ label: t(key, fallback), value: String(value) });
     };
-    push("feature.requires", "Requires", feature.requirement);
-    push("feature.onUse", "On Use", feature.onUse);
-    push("feature.endsIf", "Ends If", feature.endsIf);
-    push("feature.scales", "Scales", feature.scaling);
+
+    if (resolved.gates.length > 0) {
+      push("feature.requires", "Requires", resolved.gatesUnmet.length > 0 ? resolved.gatesUnmet.join(", ") : resolved.gates.join(", "));
+    }
+    if (resolved.targeting) {
+      const range = resolved.targeting.range ? `${resolved.targeting.range.value} ${resolved.targeting.range.unit}` : null;
+      push("feature.range", "Range", [range, resolved.targeting.shape, resolved.targeting.description].filter(Boolean).join(", "));
+    }
+    if (resolved.trigger) {
+      push("feature.trigger", "Triggers on", triggerLabel(resolved.trigger) ?? resolved.trigger.event.replace(/_/g, " "));
+    }
+    if (resolved.duration) {
+      push("feature.duration", "Duration", `${resolved.duration.value} ${resolved.duration.unit}`);
+    }
+    if (resolved.effects.some((e) => e.kind === "restriction")) {
+      const rules = resolved.effects.filter((e) => e.kind === "restriction").flatMap((e) => (e as any).rules as string[]);
+      push("feature.restrictions", "Restrictions", rules.join(", "));
+    }
+    const damagers = resolved.effects.filter((e) => e.kind === "resistance" || e.kind === "immunity");
+    if (damagers.length > 0) {
+      push("feature.resistances", "Resists", damagers.map((e) => ((e as any).damageTypes ?? []) .join(", ")).join("; "));
+    }
+    push("feature.source", "Source", `${resolved.owner}${resolved.variant ? ` (${resolved.variant})` : ""} - ${resolved.effects.length} effect(s)`);
     return rows;
   };
 
@@ -463,7 +469,11 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
           const duration =
             resolved?.duration ? `${resolved.duration.value} ${resolved.duration.unit}` : (feature as any).duration || "";;
           const level = getFeatureLevel(feature);
-          const isActive = ((feature as any).featureType || "Passive") === "Active";
+          // "Active" came from the stored featureType string, which the engine
+          // does not use. The engine's activation is the same fact with five
+          // values instead of two, so a bonus action or reaction feature stops
+          // reading as plain "Active" and loses its slot.
+          const isActive = resolved !== undefined && resolved.activation !== "passive";
           const featureUsed = (character.featuresUsedThisTurn || []).includes(feature.id);
           const summary = summaryText || (feature.description || "").slice(0, 180);
           return (
@@ -583,8 +593,11 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
           const detailRows = getFeatureDetailRows(selectedFeature);
           const sheetLevel = getFeatureLevel(selectedFeature);
           const source = selectedFeature.source && typeof selectedFeature.source === "object" ? selectedFeature.source : null;
-          const sheetIsActive = (selectedFeature.featureType || "Passive") === "Active";
-          const sheetDuration = selectedFeature.duration || (sheetIsActive ? "Instantaneous" : "");
+          const selectedResolved = resolvedFor(selectedFeature.id);
+          const sheetIsActive = selectedResolved !== undefined && selectedResolved.activation !== "passive";
+          const sheetDuration =
+            (selectedResolved?.duration ? `${selectedResolved.duration.value} ${selectedResolved.duration.unit}` : null) ||
+            (sheetIsActive ? "Instantaneous" : "");
           return (
             <BottomSheet
               isOpen={!!selectedFeature}
@@ -620,7 +633,14 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                     </span>
                   )}
                   <span className="rounded-full border border-[var(--color-border)] bg-[var(--color-bg)] px-2.5 py-1 text-[10px] font-semibold text-[var(--color-text-secondary)]">
-                    {sheetIsActive ? t("feature.active", "Active") : t("feature.passive", "Passive")}
+                    {/* The slot, not a two-way Active/Passive split. "Bonus
+                        Action" and "Reaction" are the useful facts and both
+                        used to collapse into "Active". */}
+                    {selectedResolved
+                      ? slotLabel(selectedResolved.activation)
+                      : sheetIsActive
+                        ? t("feature.active", "Active")
+                        : t("feature.passive", "Passive")}
                   </span>
                   {sheetDuration && (
                     <span className="rounded-full border border-[var(--color-border)] bg-[var(--color-bg)] px-2.5 py-1 text-[10px] font-semibold text-[var(--color-text-secondary)]">
