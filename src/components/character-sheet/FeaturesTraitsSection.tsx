@@ -590,9 +590,9 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
 
                 {/* Summary Text */}
                 {summary && (
-                  <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed line-clamp-3">
-                    {summary}
-                  </p>
+                  <div className="text-sm text-[var(--color-text-secondary)] leading-relaxed line-clamp-3 [&>p]:line-clamp-3">
+                    <DiceText text={summary} />
+                  </div>
                 )}
               </div>
 
@@ -654,7 +654,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
             >
               <div className="px-4 py-4 space-y-3">
                 {(selectedFeature.summary || "") && (
-                  <p className="text-xs text-[var(--color-text-muted)] italic leading-relaxed">{selectedFeature.summary}</p>
+                  <div className="text-xs text-[var(--color-text-muted)] italic leading-relaxed"><DiceText text={selectedFeature.summary} /></div>
                 )}
                 {badges.length > 0 && (
                   <div className="flex flex-wrap gap-1.5">
@@ -703,7 +703,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                     {detailRows.map((row) => (
                       <div key={row.label}>
                         <span className="block text-[10px] font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">{row.label}</span>
-                        <span className="block text-sm text-[var(--color-text-primary)] leading-relaxed">{row.value}</span>
+                        <div className="text-sm text-[var(--color-text-primary)] leading-relaxed"><DiceText text={row.value} /></div>
                       </div>
                     ))}
                   </div>

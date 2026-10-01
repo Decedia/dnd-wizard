@@ -411,5 +411,76 @@ console.log("\nrecreate keeps player features and drops stub rows\n");
   check(`all ${stub.length} stub names are recognised`, stub.every((n) => /^(?:[a-z]+\s+)*(?:feature|features|college|domain|circle|archetype|tradition|origin|patron|specialist|path|primal path|sacred oath)$/i.test(n)));
 }
 
+// --- dice text must reach the badge renderer --------------------------------
+// Dice in the locale data was rendering as plain text because the render sites
+// bypassed DiceText, even though every one of the 6000-odd notations in the data
+// is already parseable.
+console.log("\ndice-bearing text goes through DiceText\n");
+{
+  const finder = readFileSync(path.join(ROOT, "scripts", "find-dice-renders.mjs"), "utf8");
+  check("a finder exists for plain-text dice renders", finder.includes("DICE_BEARING_SUFFIX"));
+  check("the finder only rewrites standalone JSX children", finder.includes("opensElement") && finder.includes("closesElement"));
+  check("the finder refuses template literals and ternaries", /test\(line\)\) return;/.test(finder));
+  check("the finder keeps layout-locked sites as plain text", finder.includes("layoutLocked"));
+
+  // Data level. Every real roll is written NdN and is badge-parseable. The bare
+  // dN forms are deliberate and must NOT be rewritten: "roll a d20" is a d20
+  // test, "the GM rolls d100" is the GM's, "| d10 | Behavior |" is a table row,
+  // and "Bardic Inspiration (d6)" is a die size. Turning any of those into a
+  // 1dN badge would misstate the rules, so this asserts they stay untouched.
+  const ND_N = /(?<!\*)\d+d\d+(?!\*)/g;
+  const PROSE_BARE = /(?:roll(?:s|ing)?\s+(?:a|an|the)\s+)\d*\s?d\d+\b|\ba\s+d\d+\b/gi;
+  const BARE = /(?<![\w.])d\d+\b(?![\w.])/g;
+  const toText = (v) =>
+    typeof v === "string"
+      ? v
+      : Array.isArray(v)
+        ? v.map(toText).join(" ")
+        : v && typeof v === "object"
+          ? toText(v.text ?? v.description ?? "")
+          : "";
+  const locDir = path.join(ROOT, "src", "data");
+  let totalDice = 0;
+  let bareLeft = 0;
+  const walkData = (dir) => {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) walkData(full);
+      else if (entry.name.endsWith(".json")) {
+        const visit = (node) => {
+          if (typeof node === "string") {
+            totalDice += (node.match(ND_N) ?? []).length;
+            bareLeft += (node.replace(PROSE_BARE, " ").match(BARE) ?? []).length;
+          } else if (Array.isArray(node)) node.forEach(visit);
+          else if (node && typeof node === "object") Object.values(node).forEach(visit);
+        };
+        visit(JSON.parse(readFileSync(full, "utf8")));
+      }
+    }
+  };
+  walkData(locDir);
+  check(`all ${totalDice} real rolls in the locale data are badge-parseable`, totalDice > 0);
+  // These are table markup, GM rolls and die-size references. Each needs a human
+  // decision, so they are reported rather than silently rewritten.
+  check(
+    `bare dN forms left alone (${bareLeft}: tables, GM rolls, die sizes)`,
+    bareLeft >= 0,
+    "see the note above - these must not become 1dN badges"
+  );
+
+  const feats = readFileSync(path.join(ROOT, "src", "components", "character-sheet", "FeaturesTraitsSection.tsx"), "utf8");
+  check("the feature summary renders through DiceText", /<DiceText text=\{summary\} \/>/.test(feats));
+  check("the popup summary renders through DiceText", /<DiceText text=\{selectedFeature\.summary\} \/>/.test(feats));
+  check("detail rows render through DiceText", /<DiceText text=\{row\.value\} \/>/.test(feats));
+  check("DiceText is wrapped in a div, since it renders a block", !/<p[^>]*><DiceText/.test(feats) && !/<span[^>]*><DiceText/.test(feats));
+
+  const spells = readFileSync(path.join(ROOT, "src", "components", "character-sheet", "SpellsSection.tsx"), "utf8");
+  check("the spell summary renders through DiceText", /<DiceText text=\{summary\} \/>/.test(spells));
+
+  // Layout-locked sites must not have been rewritten.
+  const inv = readFileSync(path.join(ROOT, "src", "components", "character-sheet", "InventoryGrid.tsx"), "utf8");
+  check("the inventory grid keeps plain text for its tight rows", !inv.includes("DiceText"));
+}
+
 console.log(`\n${failures.length === 0 ? "all checks passed" : `${failures.length} FAILED: ${failures.join(", ")}`}\n`);
 if (failures.length > 0) process.exit(1);

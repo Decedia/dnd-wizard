@@ -329,9 +329,9 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
 
                 {/* Summary Text */}
                 {summary && (
-                  <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed line-clamp-3">
-                    {summary}
-                  </p>
+                  <div className="text-sm text-[var(--color-text-secondary)] leading-relaxed line-clamp-3 [&>p]:line-clamp-3">
+                    <DiceText text={summary} />
+                  </div>
                 )}
               </div>
 
