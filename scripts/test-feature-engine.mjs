@@ -516,7 +516,7 @@ console.log("\na player-sized cost is offered in the popup\n");
   check("the ceiling comes from the pool, not the base amount", /max: Math\.max\(1, chosenCost\.available\)/.test(sheet));
   check("the floor comes from the rules", /min: Math\.max\(1, chosenCost\.spendMin \?\? 1\)/.test(sheet));
   check("the step grows for a large pool", /max > 20 \? 5 : 1/.test(sheet));
-  check("applying the spend decrements the pool", /held - spendAmount/.test(sheet));
+  check("applying the spend goes through spendFromPool", /spendFromPool\(character, spendableCost\.resource, spendAmount\)/.test(sheet));
   check("opening another feature resets the amount", /setSpendAmount\(1\)/.test(sheet));
 
   const engine = readFileSync(path.join(ROOT, "src", "lib", "feature-engine.ts"), "utf8");
@@ -528,6 +528,41 @@ console.log("\na player-sized cost is offered in the popup\n");
   for (const key of ["feature.spend", "feature.ofAvailable", "feature.spendHeals", "feature.spendApply"]) {
     check(`${key} exists in en and id`, en.includes(`"${key}"`) && idLoc.includes(`"${key}"`));
   }
+}
+
+// --- spending a pool must actually do something ------------------------------
+// The Use control returned early and silently did nothing, because the component
+// kept its own pool-to-field map covering three pools and the feature spent a
+// fourth. The mapping now lives in the engine and the gate checks it.
+console.log("\nspending a pool is wired end to end\n");
+{
+  const sheet = readFileSync(path.join(ROOT, "src", "components", "character-sheet", "FeaturesTraitsSection.tsx"), "utf8");
+  check("the component has no pool map of its own", !/POOL_COUNTERS/.test(sheet));
+  check("the stepper spends through the engine", /spendFromPool\(character, spendableCost\.resource, spendAmount\)/.test(sheet));
+  check("the mark-used toggle spends through the engine", /poolFieldFor\(cost\.id\)/.test(sheet));
+  check("a sized cost is not spent twice", /if \(cost\.sized\) continue;/.test(sheet));
+
+  const engine = readFileSync(path.join(ROOT, "src", "lib", "feature-engine.ts"), "utf8");
+  check("the engine exposes the pool field", /export function poolFieldFor/.test(engine));
+  check("the engine exposes a spend helper", /export function spendFromPool/.test(engine));
+
+  const store = readFileSync(path.join(ROOT, "src", "lib", "storage.ts"), "utf8");
+  check("the character tracks luck points", /luckPoints\?: number/.test(store));
+  check("the character tracks superiority dice", /superiorityDice\?: number/.test(store));
+  check("luck points are initialised for the feat", /hasFeat\(character, "feat\.luck(y)?"\)/.test(store));
+  check("superiority dice are initialised for the archetype", /hasFeat\(character, "feat\.battle_master"\)/.test(store));
+
+  // Data: every pool the features spend must now be spendable.
+  const walkData = (dir) => readdirSync(dir, { withFileTypes: true }).flatMap((e) => e.isDirectory() ? walkData(dir + "/" + e.name) : e.name.endsWith(".json") ? [dir + "/" + e.name] : []);
+  const all = walkData(path.join(ROOT, "src", "data", "engine", "features")).flatMap((f) => JSON.parse(readFileSync(f, "utf8")).features ?? []);
+  const spent = new Set();
+  for (const f of all) for (const c of f.cost ?? []) spent.add(c.resource);
+  const res = JSON.parse(readFileSync(path.join(ROOT, "src", "data", "engine", "resources.json"), "utf8")).resources;
+  const block = /const CHARACTER_POOL_FIELDS[\s\S]*?\n\};/.exec(engine);
+  const mapped = new Set([...block[0].matchAll(/(\w+):\s*"(\w+)"/g)].map((m) => m[1]));
+  mapped.add("spell_slots");
+  const unspendable = [...spent].filter((id) => !mapped.has(id));
+  check(`all ${spent.size} spendable pools are mapped to a character field`, unspendable.length === 0, unspendable.join(", "));
 }
 
 console.log(`\n${failures.length === 0 ? "all checks passed" : `${failures.length} FAILED: ${failures.join(", ")}`}\n`);

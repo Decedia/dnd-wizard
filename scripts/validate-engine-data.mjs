@@ -316,6 +316,11 @@ for (const file of featureFiles) {
   for (const f of doc.features) features.push({ feature: f, where: `${rel}#${f?.id ?? "?"}` });
 }
 
+// Every resource id a feature spends, so the character pool mapping can be
+// checked against what the data needs rather than what it happens to list.
+const poolsSpending = new Set();
+for (const { feature: f } of features) for (const c of f.cost ?? []) poolsSpending.add(c.resource);
+
 const featureIds = new Set();
 const seenIds = new Set();
 // First pass: collect every id, so a summon may reference a feature authored
@@ -649,6 +654,37 @@ for (const kind of vocab.effectKinds) {
     }
   }
 }
+
+// --- character pool mapping -----------------------------------------------
+//
+// A pool the features spend must map to a field the Character actually has.
+// This was wrong once and the Use button silently did nothing, because the
+// lookup missed and the handler returned without a word.
+
+{
+  const engineSrc = readJson.length ? fs.readFileSync(path.join(ROOT, "src", "lib", "feature-engine.ts"), "utf8") : "";
+  const block = /const CHARACTER_POOL_FIELDS[\s\S]*?\n\};/.exec(engineSrc);
+  if (!block) {
+    fail("src/lib/feature-engine.ts", "missing", "CHARACTER_POOL_FIELDS not found, so pool values cannot be read from a character");
+  } else {
+    const pairs = [...block[0].matchAll(/(\w+):\s*"(\w+)"/g)].map((m) => [m[1], m[2]]);
+    const store = fs.readFileSync(path.join(ROOT, "src", "lib", "storage.ts"), "utf8");
+    for (const [pool, field] of pairs) {
+      if (!new RegExp(`^\\s+${field}\\??:`, "m").test(store)) {
+        fail("src/lib/feature-engine.ts", "danglingRef", `CHARACTER_POOL_FIELDS maps ${pool} to "${field}", which is not a field on Character`);
+      }
+    }
+    // spell_slots is counted across levels by characterPools, not read from a field.
+    const special = new Set(["spell_slots"]);
+    for (const id of poolsSpending) {
+      if (special.has(id)) continue;
+      if (!pairs.some(([pool]) => pool === id)) {
+        fail("src/lib/feature-engine.ts", "missing", `${id} is spent by features but has no CHARACTER_POOL_FIELDS entry, so its badge and its Use control will read zero`);
+      }
+    }
+  }
+}
+
 
 // --- report ----------------------------------------------------------------
 

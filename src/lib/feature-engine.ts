@@ -543,11 +543,32 @@ const CHARACTER_POOL_FIELDS: Record<string, keyof Character> = {
   bardic_inspiration: "bardicInspirationUses",
   lay_on_hands: "layOnHandsPool",
   wild_shape_uses: "wildShapeUses",
+  luck_points: "luckPoints",
+  superiority_dice: "superiorityDice",
+  arcane_pool: "arcanePool",
   action_surge: "actionSurgeUses",
   indomitable: "indomitableUses",
   hit_dice: "hitDiceRemaining",
-  arcane_pool: "arcanePool" as keyof Character,
 };
+
+/** The character field holding a pool, or null when the sheet does not track it. */
+export function poolFieldFor(resourceId: string): keyof Character | null {
+  return CHARACTER_POOL_FIELDS[resourceId] ?? null;
+}
+
+/**
+ * Take `amount` from a pool and return the patch that records it.
+ *
+ * The pool-to-field mapping lives here so there is one of them. The component
+ * kept its own, covered three pools, and therefore silently did nothing for
+ * Lay on Hands when the player pressed Use.
+ */
+export function spendFromPool(character: Character, resourceId: string, amount: number): Partial<Character> | null {
+  const field = poolFieldFor(resourceId);
+  if (!field) return null;
+  const held = (character[field] as number | undefined) ?? 0;
+  return { [field]: Math.max(0, held - amount) } as Partial<Character>;
+}
 
 /**
  * Read the pools off a character. A pool the sheet does not track is omitted,

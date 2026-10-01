@@ -12,7 +12,20 @@ import { saveCharacter } from "@/lib/storage";
 import type { Character } from "@/lib/storage";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getStatBadgeStyle } from "@/lib/badge-styles";
-import { buildDataset, characterPools, findEngineFeature, renderBadge, resolve, slotLabel, triggerLabel, type BuiltDataset, type ResolveContext, type ResolvedFeature } from "@/lib/feature-engine";
+import {
+  buildDataset,
+  characterPools,
+  findEngineFeature,
+  poolFieldFor,
+  renderBadge,
+  resolve,
+  slotLabel,
+  spendFromPool,
+  triggerLabel,
+  type BuiltDataset,
+  type ResolveContext,
+  type ResolvedFeature,
+} from "@/lib/feature-engine";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { DiceText } from "@/components/DiceText";
 
@@ -24,12 +37,6 @@ import { DiceText } from "@/components/DiceText";
  * Pools the sheet does not yet track (ki, Channel Divinity, superiority dice)
  * are deliberately absent rather than faked at zero-and-stuck.
  */
-const POOL_COUNTERS: Record<string, { field: keyof Character; label: string }> = {
-  rages: { field: "rages", label: "Rages" },
-  sorcery_points: { field: "sorceryPoints", label: "Sorcery Points" },
-  bardic_inspiration: { field: "bardicInspirationUses", label: "Bardic Inspiration" },
-};
-
 /**
  * The engine entry behind a stored character feature, or null if it has none.
  * Used for values the resolver does not carry, such as the sourcebook.
@@ -430,10 +437,12 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
     };
     const delta = used ? 1 : -1;
     for (const cost of resolved?.resources ?? []) {
-      const counter = POOL_COUNTERS[cost.id];
-      if (!counter) continue;
-      const held = (character[counter.field] as number | undefined) ?? 0;
-      (patch as Record<string, unknown>)[counter.field] = Math.max(0, held + delta * cost.required);
+      // A cost the player sizes is spent through the stepper, not the toggle.
+      if (cost.sized) continue;
+      const field = poolFieldFor(cost.id);
+      if (!field) continue;
+      const held = (character[field] as number | undefined) ?? 0;
+      (patch as Record<string, unknown>)[field] = Math.max(0, held + delta * cost.required);
     }
     onChange(patch);
   };
@@ -738,10 +747,9 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                     <button
                       type="button"
                       onClick={() => {
-                        const field = POOL_COUNTERS[spendableCost.resource]?.field;
-                        if (!field) return;
-                        const held = (character[field] as number | undefined) ?? 0;
-                        onChange({ [field]: Math.max(0, held - spendAmount) } as Partial<Character>);
+                        const patch = spendFromPool(character, spendableCost.resource, spendAmount);
+                        if (!patch) return;
+                        onChange(patch);
                       }}
                       className="mt-2 w-full rounded-full bg-[var(--color-accent-indigo-500)] px-3 py-1.5 text-xs font-semibold text-white transition-opacity hover:opacity-90"
                     >

@@ -123,6 +123,13 @@ export interface Character {
   layOnHandsPool?: number;
   maxLayOnHandsPool?: number;
   wildShapeUses?: number;
+  /** Lucky feat: luck points, regained on a long rest. */
+  luckPoints?: number;
+  /** Battle Master: superiority dice, regained on a short rest. */
+  superiorityDice?: number;
+  maxSuperiorityDice?: number;
+  /** Artificer Arcane Pool (Tasha's Cauldron). */
+  arcanePool?: number;
   maxWildShapeUses?: number;
   invocationsKnown?: number;
   maxInvocationsKnown?: number;
@@ -474,6 +481,9 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
     layOnHandsPool: 0,
     maxLayOnHandsPool: 0,
     wildShapeUses: 0,
+    luckPoints: 0,
+    superiorityDice: 0,
+    arcanePool: 0,
     maxWildShapeUses: 0,
     invocationsKnown: 0,
     maxInvocationsKnown: 0,
@@ -831,6 +841,27 @@ function getClassResourceValue(classData: any, resourceName: string, level: numb
   return typeof val === "number" ? val : 0;
 }
 
+/**
+ * Whether the character has a feat, matched by its engine id first and its
+ * display name second, since older saves have no engineId stamped.
+ */
+function hasFeat(character: Character, engineId: string): boolean {
+  const name = engineId.replace(/^feat\./, "").replace(/_/g, " ");
+  return (character.features ?? []).some((f) => {
+    if (f.engineId === engineId) return true;
+    return normaliseFeatureName(f.name) === normaliseFeatureName(name);
+  });
+}
+
+/** "Heavy Armor Master" and "heavy_armor_master" are the same feat. */
+function normaliseFeatureName(name: string | undefined): string {
+  return String(name ?? "")
+    .toLowerCase()
+    .replace(/['’]/g, "")
+    .replace(/[^a-z0-9]+/g, "_")
+    .replace(/^_|_$/g, "");
+}
+
 export function computeDerivedStats(character: Character): Partial<Character> {
   // Clamp ability scores to max 20
   const clampedAbilities: Partial<Character> = {};
@@ -919,6 +950,16 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   let bardicInspirationDie = "d6";
   let bardicInspirationUses = 0;
   let maxBardicInspirationUses = 0;
+  let superiorityDice = 0;
+  let maxSuperiorityDice = 0;
+  let luckPoints = 0;
+
+  // Pools the engine owns rather than a class table: luck points come from the
+  // Lucky feat, and superiority dice from the Battle Master archetype.
+  {
+    const level = character.level;
+    if (hasFeat(character, "feat.lucky")) luckPoints = 3;
+  }
 
   if (classData) {
     const level = character.level;
@@ -979,6 +1020,12 @@ export function computeDerivedStats(character: Character): Partial<Character> {
     if (classData.name === "Paladin") {
       maxLayOnHandsPool = level * 5;
       layOnHandsPool = maxLayOnHandsPool;
+    }
+
+    // Fighter: Battle Master superiority dice
+    if (hasFeat(character, "feat.battle_master")) {
+      maxSuperiorityDice = getClassResourceValue(classData, "superiorityDice", level) as number;
+      superiorityDice = maxSuperiorityDice;
     }
 
     // Bard
@@ -1232,6 +1279,9 @@ export function computeDerivedStats(character: Character): Partial<Character> {
     maxLayOnHandsPool,
     wildShapeUses,
     maxWildShapeUses,
+    luckPoints,
+    superiorityDice,
+    maxSuperiorityDice,
     sorceryPoints,
     maxSorceryPoints,
     invocationsKnown,
