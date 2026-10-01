@@ -59,9 +59,24 @@ const byId = new Map(all.map((f) => [f.id, f]));
 const byName = new Map();
 for (const f of all) {
   const bare = slug(f.name);
-  for (const key of [bare, `subclass.${bare}`, `class.${bare}`, `feat.${bare}`, `race.${bare}`]) {
-    if (!byName.has(key)) byName.set(key, f);
+  const owner = slug(f.owner);
+  const stem = f.variant ? `${owner}.${slug(f.variant)}.${bare}` : `${owner}.${bare}`;
+  const keys = [stem, f.kind === "subclass" ? `subclass.${stem}` : `${f.kind}.${stem}`, bare, `${f.kind}.${bare}`];
+  for (const key of keys) if (!byName.has(key)) byName.set(key, f);
+}
+
+/** Mirror of findEngineFeature in src/data/engine/index.ts. */
+function findEngineFeature(owner, name) {
+  if (byId.has(name)) return byId.get(name);
+  const bare = slug(name);
+  if (owner) {
+    const ownerKey = slug(owner);
+    for (const prefix of ["", "subclass.", "class.", "feat.", "race."]) {
+      const hit = byName.get(`${ownerKey}.${prefix}${bare}`);
+      if (hit) return hit;
+    }
   }
+  return byName.get(bare) ?? null;
 }
 
 /** Mirror of applyTier in feature-engine.ts. */
@@ -92,6 +107,62 @@ if (rage) {
   check("Rage damage is +2 at 1, +3 at 12, +4 at 17", dmg(1) === 2 && dmg(12) === 3 && dmg(17) === 4, `${dmg(1)}/${dmg(12)}/${dmg(17)}`);
   check("uses never decrease with level", [1, 3, 6, 12, 17].every((lv, i, arr) => i === 0 || applyTier(rage, lv).limits.max >= applyTier(rage, arr[i - 1]).limits.max));
 }
+
+// A tier that lowers a value which only grows with level is a data bug, and it
+// is silent - the feature still renders, it just renders wrong. Compare
+// against the previously effective value, inheriting across tiers that do not
+// mention the field.
+function effectiveMonotonic(feature) {
+  let limits = feature.limits?.max ?? null;
+  let effects = new Map();
+  const collect = (list) => {
+    const out = new Map();
+    for (const e of list ?? []) {
+      if (e.kind === "stat_modifier" && typeof e.amount === "number") out.set(`stat:${e.stat}`, e.amount);
+      if (e.kind === "extra_attacks") out.set("count:extra_attacks", e.count ?? 0);
+      if (e.kind === "extra_action") out.set("count:extra_action", e.count ?? 0);
+      if (e.kind === "reactions_without_cost") out.set("count:reactions", e.count ?? 0);
+    }
+    return out;
+  };
+  effects = collect(feature.effects);
+  const problems = [];
+  let activation = feature.activation;
+  for (const tier of feature.tiers ?? []) {
+    // A tier that moves the feature to a different action slot is a redesign -
+    // Paladin Battle Magic stops being a bonus action at 18th - so its values
+    // are not expected to continue the previous tier's.
+    const redesigned = tier.activation !== undefined && tier.activation !== activation;
+    if (redesigned) {
+      activation = tier.activation;
+      limits = tier.limits?.max ?? limits;
+      effects = tier.effects ? collect(tier.effects) : effects;
+      continue;
+    }
+    if (tier.limits) {
+      if (limits !== null && tier.limits.max < limits) {
+        problems.push(`@${tier.at} limits.max ${limits} -> ${tier.limits.max}`);
+      }
+      limits = tier.limits.max;
+    }
+    if (!tier.effects) continue;
+    const next = collect(tier.effects);
+    for (const [key, value] of next) {
+      const previous = effects.get(key);
+      if (previous !== undefined && value < previous) {
+        problems.push(`@${tier.at} ${key} ${previous} -> ${value}`);
+      }
+    }
+    effects = next;
+  }
+  return problems;
+}
+
+const regressions = [];
+for (const f of all) {
+  for (const p of effectiveMonotonic(f)) regressions.push(`${f['id']}: ${p}`);
+}
+check("tiers never lower a growing value", regressions.length === 0, regressions.slice(0, 4).join("; "));
 
 let tierProblems = [];
 for (const f of all) {
@@ -135,9 +206,16 @@ check("summons reference authored features", badSummons.length === 0, badSummons
 
 // 6. name lookup, which is how a stored character feature reaches the engine
 check("bare name finds Wild Shape", byName.get("wild_shape")?.id === "class.druid.wild_shape", byName.get("wild_shape")?.id);
-check("owner scopes resolve", byName.get("barbarian.rage")?.id === "class.barbarian.rage");
-check("an ambiguous name resolves per owner", byName.get("fighter.rage")?.id === "class.fighter.rage");
-check("a second class's Rage is a different entry", byName.get("cleric.rage")?.id === "class.cleric.rage");
+check("owner lookup finds Wild Shape", findEngineFeature("Druid", "Wild Shape")?.id === "class.druid.wild_shape", findEngineFeature("Druid", "Wild Shape")?.id);
+check("owner-scoped lookup resolves", findEngineFeature("Barbarian", "Rage")?.id === "class.barbarian.rage", findEngineFeature("Barbarian", "Rage")?.id);
+check("a different class resolves to its own", findEngineFeature("Fighter", "Second Wind")?.id === "class.fighter.second_wind", findEngineFeature("Fighter", "Second Wind")?.id);
+check("extra attack resolves per class", findEngineFeature("Barbarian", "Extra Attack")?.id === "class.barbarian.extra_attack", findEngineFeature("Barbarian", "Extra Attack")?.id);
+check("extra attack resolves per subclass too", findEngineFeature("College of Swords", "Extra Attack")?.id === "subclass.college_of_swords.extra_attack", findEngineFeature("College of Swords", "Extra Attack")?.id);
+check("subclass feature resolves", findEngineFeature("Berserker", "Frenzy")?.id === "subclass.berserker.frenzy", findEngineFeature("Berserker", "Frenzy")?.id);
+check("feat lookup resolves", findEngineFeature("Feat", "Alert")?.id === "feat.alert", findEngineFeature("Feat", "Alert")?.id);
+check("ability score improvement resolves per class", findEngineFeature("Bard", "Ability Score Improvement")?.id === "class.bard.ability_score_improvement", findEngineFeature("Bard", "Ability Score Improvement")?.id);
+check("race trait lookup resolves", findEngineFeature("Dragonborn", "Breath Weapon")?.id === "race.dragonborn.breath_weapon", findEngineFeature("Dragonborn", "Breath Weapon")?.id);
+check("an unknown name returns null", findEngineFeature("Barbarian", "Not A Feature") === null);
 check("every feature is reachable by its own id", all.every((f) => byId.get(f.id) === f));
 
 // 7. what a modal row needs

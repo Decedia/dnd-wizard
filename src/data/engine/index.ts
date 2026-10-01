@@ -131,10 +131,23 @@ function indexName(feature: FeatureBase): string {
     : `${normaliseName(feature.owner)}.${normaliseName(feature.name)}`;
 }
 
-/** Alias keys, so a lookup can succeed without knowing the exact wording. */
+/**
+ * Alias keys for one feature. The owner-scoped keys are the important ones:
+ * "Rage" belongs to a barbarian, a cleric and a fighter with different
+ * mechanics, so a bare name is ambiguous and the lookup has to be told the
+ * owner. Both "barbarian.rage" and the kind-prefixed forms resolve.
+ */
 function nameAliases(feature: FeatureBase): string[] {
   const bare = normaliseName(feature.name);
-  return [bare, `subclass.${bare}`, `class.${bare}`, `feat.${bare}`, `race.${bare}`];
+  const owner = normaliseName(feature.owner);
+  const variant = feature.variant ? normaliseName(feature.variant) : null;
+  const stem = variant ? `${owner}.${variant}.${bare}` : `${owner}.${bare}`;
+  return [
+    stem,
+    feature.kind === "subclass" ? `subclass.${stem}` : `${feature.kind}.${stem}`,
+    bare,
+    `${feature.kind}.${bare}`,
+  ];
 }
 
 export function buildDataset(): BuiltDataset {
@@ -172,12 +185,19 @@ export function findEngineFeature(
   dataset: BuiltDataset = buildDataset()
 ): FeatureBase | null {
   if (dataset.byId.has(name)) return dataset.byId.get(name)!;
-  const ownerKey = normaliseName(owner ?? "");
   const bare = normaliseName(name);
-  for (const prefix of ["subclass.", "class.", "feat.", "race.", ""]) {
-    const hit = dataset.byName.get(`${ownerKey}.${prefix}${bare}`);
-    if (hit) return hit;
+  if (owner) {
+    const ownerKey = normaliseName(owner);
+    // Try the owner-scoped key, then the kind-prefixed form of it.
+    for (const prefix of ["", "subclass.", "class.", "feat.", "race."]) {
+      const hit = dataset.byName.get(`${ownerKey}.${prefix}${bare}`);
+      if (hit) return hit;
+      const variant = dataset.byName.get(`${ownerKey}.${prefix}${bare}`);
+      if (variant) return variant;
+    }
   }
+  // Only fall back to the bare name once the owner has failed to match, so an
+  // ambiguous name still resolves to something rather than nothing.
   return dataset.byName.get(bare) ?? null;
 }
 

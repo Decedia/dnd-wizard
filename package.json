@@ -13,6 +13,7 @@
     "engine:worklist": "node scripts/engine-coverage.mjs --worklist",
     "engine:racecheck": "node scripts/race-crosscheck.mjs",
     "engine:inventory": "node scripts/engine-inventory.mjs",
+    "engine:test": "node scripts/test-feature-engine.mjs",
     "srd:extract": "node scripts/extract-srd-strings.mjs",
     "srd:build": "node scripts/build-srd-locale.mjs",
     "srd:enhance:id": "node scripts/enhance-indonesian.mjs",

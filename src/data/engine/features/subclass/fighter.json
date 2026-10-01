@@ -404,11 +404,6 @@
               "kind": "ac_bonus",
               "amount": 1,
               "duration": "permanent"
-            },
-            {
-              "kind": "extra_attacks",
-              "count": 0,
-              "note": "You also gain a +1 bonus to AC and saving throws, in addition to the Interact benefits."
             }
           ]
         }
@@ -878,13 +873,7 @@
       "tiers": [
         {
           "at": 18,
-          "effects": [
-            {
-              "kind": "extra_attacks",
-              "count": 0,
-              "note": "You can use your reaction to cast a spell instead of making an opportunity attack."
-            }
-          ]
+          "effects": []
         }
       ],
       "summary": "Charge 30 ft then hit, and cast a spell as part of it",
@@ -971,13 +960,7 @@
       "tiers": [
         {
           "at": 15,
-          "effects": [
-            {
-              "kind": "extra_attacks",
-              "count": 0,
-              "note": "The extra psychic damage is 2d6 instead of 1d6."
-            }
-          ]
+          "effects": []
         }
       ],
       "summary": "Bonus action: 30-ft leap and a melee hit for 1d6 psychic",

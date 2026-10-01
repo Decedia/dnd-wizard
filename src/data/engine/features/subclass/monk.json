@@ -17,13 +17,7 @@
       "tiers": [
         {
           "at": 17,
-          "effects": [
-            {
-              "kind": "extra_attacks",
-              "count": 0,
-              "note": "You can react to impose disadvantage and make the attack even if the attack misses."
-            }
-          ]
+          "effects": []
         }
       ],
       "summary": "Reaction: disadvantage on an adjacent attack, then hit back",
@@ -749,13 +743,7 @@
       "tiers": [
         {
           "at": 11,
-          "effects": [
-            {
-              "kind": "extra_attacks",
-              "count": 0,
-              "note": "The spectral hand damage increases to 2d6."
-            }
-          ]
+          "effects": []
         }
       ],
       "summary": "Bonus action: a spectral hand for 1d6 force, sharing ki with Flurry",
@@ -825,11 +813,6 @@
               "stat": "damage_roll",
               "amount": 1,
               "duration": "while_active"
-            },
-            {
-              "kind": "extra_attacks",
-              "count": 0,
-              "note": "Your arms deal 2d6 force damage, and you can move 10 feet as a bonus action."
             }
           ]
         }

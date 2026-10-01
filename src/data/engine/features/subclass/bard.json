@@ -1065,13 +1065,7 @@
       "tiers": [
         {
           "at": 18,
-          "effects": [
-            {
-              "kind": "extra_attacks",
-              "count": 0,
-              "note": "You can instead cast one of your prepared bard spells without a spell slot as a bonus action, once per long rest."
-            }
-          ]
+          "effects": []
         }
       ],
       "summary": "Bonus action: an extra melee attack, or a free spell at 18",

@@ -1658,13 +1658,7 @@
       "tiers": [
         {
           "at": 18,
-          "effects": [
-            {
-              "kind": "extra_attacks",
-              "count": 0,
-              "note": "Retaliating strike costs no ki points."
-            }
-          ]
+          "effects": []
         }
       ],
       "summary": "A missed melee attack can be rerolled as a hit for 1 ki",

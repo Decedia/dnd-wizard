@@ -56,140 +56,18 @@
       ],
       "tiers": [
         {
-          "at": 2,
-          "limits": {
-            "per": "rest",
-            "max": 2
-          },
-          "effects": [
-            {
-              "kind": "advantage",
-              "check": "ability_check",
-              "value": "advantage"
-            },
-            {
-              "kind": "stat_modifier",
-              "stat": "damage_roll",
-              "amount": 2,
-              "duration": "while_active"
-            },
-            {
-              "kind": "resistance",
-              "damageTypes": [
-                "bludgeoning",
-                "piercing",
-                "slashing"
-              ]
-            },
-            {
-              "kind": "restriction",
-              "rules": [
-                "cannot_cast_spells",
-                "cannot_concentration"
-              ]
-            }
-          ]
-        },
-        {
           "at": 3,
           "limits": {
             "per": "rest",
             "max": 3
-          },
-          "effects": [
-            {
-              "kind": "advantage",
-              "check": "ability_check",
-              "value": "advantage"
-            },
-            {
-              "kind": "stat_modifier",
-              "stat": "damage_roll",
-              "amount": 2,
-              "duration": "while_active"
-            },
-            {
-              "kind": "resistance",
-              "damageTypes": [
-                "bludgeoning",
-                "piercing",
-                "slashing"
-              ]
-            },
-            {
-              "kind": "restriction",
-              "rules": [
-                "cannot_cast_spells",
-                "cannot_concentration"
-              ]
-            }
-          ]
+          }
         },
         {
           "at": 6,
           "limits": {
             "per": "rest",
             "max": 4
-          },
-          "effects": [
-            {
-              "kind": "advantage",
-              "check": "ability_check",
-              "value": "advantage"
-            },
-            {
-              "kind": "stat_modifier",
-              "stat": "damage_roll",
-              "amount": 2,
-              "duration": "while_active"
-            },
-            {
-              "kind": "resistance",
-              "damageTypes": [
-                "bludgeoning",
-                "piercing",
-                "slashing"
-              ]
-            },
-            {
-              "kind": "restriction",
-              "rules": [
-                "cannot_cast_spells",
-                "cannot_concentration"
-              ]
-            }
-          ]
-        },
-        {
-          "at": 9,
-          "effects": [
-            {
-              "kind": "advantage",
-              "check": "ability_check",
-              "value": "advantage"
-            },
-            {
-              "kind": "stat_modifier",
-              "stat": "damage_roll",
-              "amount": 2,
-              "duration": "while_active"
-            },
-            {
-              "kind": "resistance",
-              "damageTypes": [
-                "bludgeoning",
-                "piercing",
-                "slashing"
-              ]
-            },
-            {
-              "kind": "restriction",
-              "rules": [
-                "cannot_cast_spells",
-                "cannot_concentration"
-              ]
-            }
-          ]
+          }
         },
         {
           "at": 12,
@@ -199,15 +77,16 @@
           },
           "effects": [
             {
-              "kind": "advantage",
-              "check": "ability_check",
-              "value": "advantage"
-            },
-            {
               "kind": "stat_modifier",
               "stat": "damage_roll",
               "amount": 3,
               "duration": "while_active"
+            },
+            {
+              "kind": "advantage",
+              "check": "ability_check",
+              "value": "advantage",
+              "note": "Advantage on Strength checks and Strength saving throws."
             },
             {
               "kind": "resistance",
@@ -215,45 +94,16 @@
                 "bludgeoning",
                 "piercing",
                 "slashing"
-              ]
+              ],
+              "note": "Resistance to bludgeoning, piercing and slashing damage from nonmagical attacks."
             },
             {
               "kind": "restriction",
               "rules": [
                 "cannot_cast_spells",
-                "cannot_concentration"
-              ]
-            }
-          ]
-        },
-        {
-          "at": 16,
-          "effects": [
-            {
-              "kind": "advantage",
-              "check": "ability_check",
-              "value": "advantage"
-            },
-            {
-              "kind": "stat_modifier",
-              "stat": "damage_roll",
-              "amount": 3,
-              "duration": "while_active"
-            },
-            {
-              "kind": "resistance",
-              "damageTypes": [
-                "bludgeoning",
-                "piercing",
-                "slashing"
-              ]
-            },
-            {
-              "kind": "restriction",
-              "rules": [
-                "cannot_cast_spells",
-                "cannot_concentration"
-              ]
+                "cannot_concentrate"
+              ],
+              "note": "If you are able to cast spells, you can't cast them or concentrate on them while raging."
             }
           ]
         },
@@ -265,61 +115,33 @@
           },
           "effects": [
             {
-              "kind": "advantage",
-              "check": "ability_check",
-              "value": "advantage"
-            },
-            {
-              "kind": "stat_modifier",
-              "stat": "damage_roll",
-              "amount": 2,
-              "duration": "while_active"
-            },
-            {
-              "kind": "resistance",
-              "damageTypes": [
-                "bludgeoning",
-                "piercing",
-                "slashing"
-              ]
-            },
-            {
-              "kind": "restriction",
-              "rules": [
-                "cannot_cast_spells",
-                "cannot_concentration"
-              ]
-            }
-          ]
-        },
-        {
-          "at": 19,
-          "effects": [
-            {
-              "kind": "advantage",
-              "check": "ability_check",
-              "value": "advantage"
-            },
-            {
               "kind": "stat_modifier",
               "stat": "damage_roll",
               "amount": 4,
               "duration": "while_active"
             },
             {
+              "kind": "advantage",
+              "check": "ability_check",
+              "value": "advantage",
+              "note": "Advantage on Strength checks and Strength saving throws."
+            },
+            {
               "kind": "resistance",
               "damageTypes": [
                 "bludgeoning",
                 "piercing",
                 "slashing"
-              ]
+              ],
+              "note": "Resistance to bludgeoning, piercing and slashing damage from nonmagical attacks."
             },
             {
               "kind": "restriction",
               "rules": [
                 "cannot_cast_spells",
-                "cannot_concentration"
-              ]
+                "cannot_concentrate"
+              ],
+              "note": "If you are able to cast spells, you can't cast them or concentrate on them while raging."
             }
           ]
         }
