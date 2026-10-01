@@ -725,6 +725,8 @@ export const translations = {
   "features.syncing": "Menyinkronkan...",
   "appearance.rebuild": "Membangun ulang dari kelas, ras, dan level",
   "appearance.rebuildHint": "Menghitung ulang fitur, sihir, dan statistik. Mempertahankan pilihan Anda, poin darah, slot yang terpakai, dan efek aktif.",
+  "appearance.rebuildDone": "Dibangun ulang dari kelas, ras, dan level.",
+  "appearance.rebuildFailed": "Gagal membangun ulang. Lihat detail di konsol.",
   "features.syncWithSrd": "Sinkronkan dengan SRD",
   "spells.prepared": "Disiapkan",
   "spells.prepare": "Siapkan",

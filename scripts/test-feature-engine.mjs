@@ -260,5 +260,35 @@ if (secondWind) {
   check("Second Wind has 21 uses at 20th level", limitMaxAt(secondWind.limits, 20) === 21, `got ${limitMaxAt(secondWind.limits, 20)}`);
 }
 
+// --- rebuild path ---------------------------------------------------------
+// The rebuild button failed silently on an old save because rebuildDerived
+// threw when `features` was absent, and the handler had a bare finally. These
+// shapes are the ones a pre-engine save can actually have.
+console.log("\nrebuild resilience (read from the source, since character-creation is TS)\n");
+{
+  const src = readFileSync(path.join(ROOT, "src", "lib", "character-creation.ts"), "utf8");
+  const body = src.slice(src.indexOf("export function rebuildDerived"));
+  const syncBody = src.slice(src.indexOf("export function syncBaseFeatures"), src.indexOf("export function applySubclassFeatures"));
+
+  check("rebuildDerived normalises a missing features array", /features: Array\.isArray\(character\.features\) \? character\.features : \[\]/.test(body));
+  check("syncBaseFeatures tolerates a missing features array", /character\.features \?\? \[\]/.test(syncBody));
+  check("rebuildDerived never re-applies the Variant Human bonus", !/abilities\) \+ 1/.test(body));
+  check("rebuildDerived restores currentHp after deriving", /Math\.min\(rebuilt\.currentHp, rebuilt\.maxHp\)/.test(body));
+
+  const keep = [
+    "currentHp","temporaryHp","hitDiceRemaining","spellSlotsExpended","featuresUsedThisTurn",
+    "spellsUsedThisTurn","deathSaveSuccesses","deathSaveFailures","exhaustionLevel","rages",
+    "sorceryPoints","bardicInspirationUses","activeStates","activeBuffs","str","cha","skills",
+    "languages","toolProficiencies","expertise","inventory","spells","preparedSpells",
+    "featureSelections","raceChoices","variantHumanAbilities","variantHumanSkill","appliedAsi",
+  ];
+  const notKept = keep.filter((k) => !body.includes(`${k}: character.${k}`));
+  check("rebuildDerived preserves every in-play and chosen field", notKept.length === 0, notKept.join(", "));
+
+  const sheet = readFileSync(path.join(ROOT, "src", "components", "character-sheet", "AppearanceBioSection.tsx"), "utf8");
+  check("the rebuild handler catches failures instead of swallowing them", /catch \(error\)/.test(sheet));
+  check("the rebuild handler passes the sheet language", /rebuildDerived\(character, language\)/.test(sheet));
+}
+
 console.log(`\n${failures.length === 0 ? "all checks passed" : `${failures.length} FAILED: ${failures.join(", ")}`}\n`);
 if (failures.length > 0) process.exit(1);

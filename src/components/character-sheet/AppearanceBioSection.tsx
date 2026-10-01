@@ -34,6 +34,7 @@ interface AppearanceBioSectionProps {
 
 export function AppearanceBioSection({ character, onChange, editMode = true }: AppearanceBioSectionProps) {
   const [rebuilding, setRebuilding] = useState(false);
+  const [rebuildStatus, setRebuildStatus] = useState<"idle" | "done" | "failed">("idle");
 
   /**
    * Re-derives everything that follows from class, race, subclass and level, and
@@ -44,16 +45,23 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
     if (rebuilding) return;
     setRebuilding(true);
     try {
-      const rebuilt = rebuildDerived(character);
+      // The sheet's own language, so rebuilt feature text is not English on an
+      // Indonesian character.
+      const rebuilt = rebuildDerived(character, language);
       onChange(rebuilt);
       await saveCharacter(rebuilt);
+      setRebuildStatus("done");
+    } catch (error) {
+      // Previously a bare finally, so a throw looked exactly like a no-op.
+      setRebuildStatus("failed");
+      console.error("rebuild failed", error);
     } finally {
       setRebuilding(false);
     }
   };
 
   const { onFieldBlur } = useCharacterSheet();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const updateField = (field: keyof Character["appearance"], value: string) => {
     onChange({
       appearance: { ...character.appearance, [field]: value },
@@ -231,18 +239,30 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
       <div className="mt-4 border-t border-[var(--color-border)] pt-3">
         <button
           type="button"
-          onClick={handleRebuild}
+          onClick={() => { setRebuildStatus("idle"); void handleRebuild(); }}
           disabled={rebuilding}
           className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-1.5 text-xs font-semibold text-[var(--color-text-secondary)] transition-colors hover:border-[var(--color-border-active)] hover:text-[var(--color-text-primary)] disabled:opacity-60"
         >
           <Refresh className="h-3.5 w-3.5" />
           {rebuilding ? t("features.syncing") : t("appearance.rebuild", "Rebuild from class, race and level")}
         </button>
-        <p className="mt-1.5 text-[10px] leading-snug text-[var(--color-text-muted)]">
-          {t(
-            "appearance.rebuildHint",
-            "Re-derives features, spells and stats. Keeps your choices, hit points, spent slots and active effects."
-          )}
+        <p
+          className={`mt-1.5 text-[10px] leading-snug ${
+            rebuildStatus === "failed"
+              ? "text-[var(--color-danger-600)]"
+              : rebuildStatus === "done"
+                ? "text-[var(--color-success-600)]"
+                : "text-[var(--color-text-muted)]"
+          }`}
+        >
+          {rebuildStatus === "failed"
+            ? t("appearance.rebuildFailed", "Rebuild failed. See the console for details.")
+            : rebuildStatus === "done"
+              ? t("appearance.rebuildDone", "Rebuilt from class, race and level.")
+              : t(
+                  "appearance.rebuildHint",
+                  "Re-derives features, spells and stats. Keeps your choices, hit points, spent slots and active effects."
+                )}
         </p>
       </div>
     </SectionCard>

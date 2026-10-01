@@ -797,7 +797,9 @@ export function syncBaseFeatures(character: Character, language = "en"): Charact
   const unlockLevel = getStaticClass(character.class, character.ruleset, undefined, language)?.subclassLevel ?? 3;
   const subclassStillValid = !!character.subclass && character.level >= unlockLevel;
 
-  const kept = character.features.filter(
+  // An old save, or one imported from JSON, may have no features array at all.
+  // Without this the whole rebuild throws and the button appears to do nothing.
+  const kept = (character.features ?? []).filter(
     (f) =>
       !f.source ||
       f.source === "custom" ||
@@ -1263,7 +1265,17 @@ export function rebuildDerived(character: Character, language = "en"): Character
     costumeSpells: character.costumeSpells,
   };
 
-  let next = applySubclassFeatures(character, language);
+  // Normalise first: a character saved before the features field existed, or
+  // imported from JSON without it, would otherwise throw on the first access.
+  const safe: Character = {
+    ...character,
+    features: Array.isArray(character.features) ? character.features : [],
+    featureSelections: character.featureSelections ?? {},
+    skills: character.skills ?? ({} as Character["skills"]),
+    languages: character.languages ?? [],
+  };
+
+  let next = applySubclassFeatures(safe, language);
   next = applySubclassSpellGrants(next);
   next = syncBaseFeatures(next, language);
 
@@ -1288,7 +1300,7 @@ export function rebuildDerived(character: Character, language = "en"): Character
     };
   }
 
-  const rebuilt: Character = { ...next, ...preserved };
+  const rebuilt: Character = { ...next, ...preserved, features: next.features ?? [] };
 
   // A stat rebuild can raise the maximum; keep the character at full if they
   // were at full, and never leave them over the new maximum.
