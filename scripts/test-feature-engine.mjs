@@ -312,5 +312,18 @@ console.log("\nsheet reads the engine, not the stored mechanical fields\n");
   check("no mechanism text is appended to summaries", !/mechanismStr|mechanismParts/.test(sheet));
 }
 
+// --- the sheet must read a stored feature's source in both forms ------------
+// An old save stores source as {type: "race", ...} and today as the string
+// "race". Gating the SRD lookup on the string form alone meant an old
+// character found no translation and fell through to the engine's English.
+console.log("\nsource kind is read in both stored forms\n");
+{
+  const sheet = readFileSync(path.join(ROOT, "src", "components", "character-sheet", "FeaturesTraitsSection.tsx"), "utf8");
+  check("the sheet normalises the stored source kind", /function sourceKind/.test(sheet));
+  check("sourceKind accepts the object form", /typeof source\.type === "string"/.test(sheet));
+  check("owner resolution uses sourceKind", /const kind = sourceKind\(feature\)/.test(sheet));
+  check("no branch compares the source to a bare string", !/existing\.source === "/.test(sheet));
+}
+
 console.log(`\n${failures.length === 0 ? "all checks passed" : `${failures.length} FAILED: ${failures.join(", ")}`}\n`);
 if (failures.length > 0) process.exit(1);

@@ -47,15 +47,32 @@ function engineFeatureFor(
 }
 
 /**
+ * The kind of a stored feature's source, accepting both the string form written
+ * today ("race") and the object form older saves carry ({type: "race"}). The
+ * SRD lookups below are gated on this, and an old character's object source
+ * failed every comparison, so no translation was found and the summary fell
+ * through to the engine's English.
+ */
+function sourceKind(feature: any): string | null {
+  const source = feature?.source;
+  if (typeof source === "string") return source;
+  if (source && typeof source === "object" && typeof source.type === "string") return source.type;
+  return null;
+}
+
+/**
  * Which class, subclass or race owns a stored feature, so the engine lookup can
  * disambiguate a name like "Extra Attack" that six different classes have.
  * The owner lives on the character rather than on each feature, because every
  * feature of a source shares it.
  */
 function ownerFor(character: Character, feature: Character["features"][number]): string | undefined {
-  if (feature.source === "subclass") return character.subclass;
-  if (feature.source === "race") return character.race;
-  if (feature.source === "class") return character.class;
+  // sourceKind, because an old save's object source would otherwise resolve the
+  // owner to undefined and every engine lookup would fall back to a bare name.
+  const kind = sourceKind(feature);
+  if (kind === "subclass") return character.subclass;
+  if (kind === "race") return character.race;
+  if (kind === "class") return character.class;
   return undefined;
 }
 
@@ -193,7 +210,8 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
         let book: string | null = null;
         
         try {
-          if (existing.source === "class" && character.class) {
+          const kind = sourceKind(existing);
+          if (kind === "class" && character.class) {
             const classData = getStaticClass(character.class, character.ruleset, undefined, language);
             if (classData) {
               for (const level of classData.levels || []) {
@@ -212,14 +230,14 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                 }
               }
             }
-          } else if (existing.source === "race" && character.race) {
+          } else if (kind === "race" && character.race) {
             const race = getStaticRace(character.race, undefined, language);
             srdFeature = (race?.traits || []).find((t: any) => t.name === feature.name);
             if (srdFeature) {
               derivedSource = { type: "race", name: character.race, level: null };
               book = srdFeature.book || race?.source || "PHB";
             }
-          } else if (existing.source === "subclass" && character.class && character.subclass) {
+          } else if (kind === "subclass" && character.class && character.subclass) {
             const subclasses = getStaticSubclasses(character.class, character.sources, character.ruleset, language);
             const sub = subclasses.find((s) => s.name === character.subclass);
             srdFeature = (sub?.features || []).find((f: any) => f.name === feature.name);
@@ -227,7 +245,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
               derivedSource = { type: "subclass", name: character.subclass, level: (srdFeature as any).level ?? null };
               book = srdFeature.book || sub?.source || "PHB";
             }
-          } else if (existing.source === "custom" || !existing.source) {
+          } else if (kind === "custom" || !kind) {
             const matchedFeat = feats.find((f) => f.name === feature.name);
             if (matchedFeat) {
               srdFeature = matchedFeat as any;
