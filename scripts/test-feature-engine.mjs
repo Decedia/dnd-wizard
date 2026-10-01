@@ -508,5 +508,27 @@ console.log("\npools come from the character, not a hardcoded list\n");
   check("Lay on Hands is five times level", loh?.maxFromLevel?.times === 5, JSON.stringify(loh?.maxFromLevel));
 }
 
+// --- a sized cost must be spendable in the UI -------------------------------
+console.log("\na player-sized cost is offered in the popup\n");
+{
+  const sheet = readFileSync(path.join(ROOT, "src", "components", "character-sheet", "FeaturesTraitsSection.tsx"), "utf8");
+  check("the popup looks for a sized cost", /resources\.find\(\(r\) => r\.sized === true\)/.test(sheet));
+  check("the ceiling comes from the pool, not the base amount", /max: Math\.max\(1, chosenCost\.available\)/.test(sheet));
+  check("the floor comes from the rules", /min: Math\.max\(1, chosenCost\.spendMin \?\? 1\)/.test(sheet));
+  check("the step grows for a large pool", /max > 20 \? 5 : 1/.test(sheet));
+  check("applying the spend decrements the pool", /held - spendAmount/.test(sheet));
+  check("opening another feature resets the amount", /setSpendAmount\(1\)/.test(sheet));
+
+  const engine = readFileSync(path.join(ROOT, "src", "lib", "feature-engine.ts"), "utf8");
+  check("the resolver reports a sized cost", /sized: cost\.choose !== undefined/.test(engine));
+  check("the resolver reports the floor", /spendMin: cost\.choose\?\.min/.test(engine));
+
+  const en = readFileSync(path.join(ROOT, "src", "locales", "en.js"), "utf8");
+  const idLoc = readFileSync(path.join(ROOT, "src", "locales", "id.js"), "utf8");
+  for (const key of ["feature.spend", "feature.ofAvailable", "feature.spendHeals", "feature.spendApply"]) {
+    check(`${key} exists in en and id`, en.includes(`"${key}"`) && idLoc.includes(`"${key}"`));
+  }
+}
+
 console.log(`\n${failures.length === 0 ? "all checks passed" : `${failures.length} FAILED: ${failures.join(", ")}`}\n`);
 if (failures.length > 0) process.exit(1);

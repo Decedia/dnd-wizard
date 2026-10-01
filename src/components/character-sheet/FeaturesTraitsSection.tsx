@@ -90,6 +90,8 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
   const [selectedFeature, setSelectedFeature] = useState<any | null>(null);
   const [syncing, setSyncing] = useState(false);
   const [missingChoices, setMissingChoices] = useState<ReturnType<typeof getMissingFeatureChoices>>([]);
+  // The amount chosen for a cost the player sizes, reset when the popup changes.
+  const [spendAmount, setSpendAmount] = useState(1);
   const [currentChoiceIndex, setCurrentChoiceIndex] = useState(0);
   const feats = useMemo(() => getStaticFeats([], character.ruleset, language), [character.ruleset, language]);
   const popupFeat = feats.find((f) => f.name === popupFeatName) || null;
@@ -501,11 +503,15 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
               key={safeFeature.id}
               role="button"
               tabIndex={0}
-              onClick={() => setSelectedFeature(feature)}
+              onClick={() => {
+                setSpendAmount(1);
+                setSelectedFeature(feature);
+              }}
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
                   e.preventDefault();
                   setSelectedFeature(feature);
+                  setSpendAmount(1);
                 }
               }}
               className="relative block w-full text-left bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl shadow-sm cursor-pointer active:scale-[0.98] active:border-[var(--color-border-active)] transition-all duration-75 overflow-hidden mb-4 group"
@@ -611,9 +617,27 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
         {selectedFeature && (() => {
           const badges = getFeatureBadges(selectedFeature);
           const detailRows = getFeatureDetailRows(selectedFeature);
+
           const sheetLevel = getFeatureLevel(selectedFeature);
           const source = selectedFeature.source && typeof selectedFeature.source === "object" ? selectedFeature.source : null;
           const selectedResolved = resolvedFor(selectedFeature.id);
+
+          /**
+           * A cost the player sizes, resolved against the pool the character
+           * actually holds. `min` is the floor the rules set, and `max` is what
+           * is left, because you cannot spend what you do not have.
+           */
+          const chosenCost = selectedResolved?.resources.find((r) => r.sized === true);
+          const spendableCost = chosenCost
+            ? {
+                resource: chosenCost.id,
+                min: Math.max(1, chosenCost.spendMin ?? 1),
+                max: Math.max(1, chosenCost.available),
+                pool: chosenCost.available,
+              }
+            : null;
+          // A hit-point pool runs to 65, so a step of one would need 65 clicks.
+          const spendStep = spendableCost && spendableCost.max > 20 ? 5 : 1;
           const sheetIsActive = selectedResolved !== undefined && selectedResolved.activation !== "passive";
           const sheetDuration =
             (selectedResolved?.duration ? `${selectedResolved.duration.value} ${selectedResolved.duration.unit}` : null) ||
@@ -671,6 +695,61 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                 {source?.name && (
                   <p className="text-xs text-[var(--color-text-muted)]">{source.name}</p>
                 )}
+                {/* A cost the player sizes. Lay on Hands spends any number of its
+                    pool and the target regains exactly that many, so the ceiling,
+                    the remainder and the effect all come from the same number. */}
+                {spendableCost && (
+                  <div className="mb-2 rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)] p-2.5">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">
+                        {t("feature.spend", "Spend")}
+                      </span>
+                      <span className="text-[10px] text-[var(--color-text-muted)]">
+                        {t("feature.ofAvailable", { available: spendableCost.pool }, "{available} available")}
+                      </span>
+                    </div>
+                    <div className="mt-2 flex items-center gap-2">
+                      <button
+                        type="button"
+                        aria-label={t("feature.spendLess", "Spend less")}
+                        onClick={() => setSpendAmount((n) => Math.max(spendableCost.min, n - spendStep))}
+                        disabled={spendAmount <= spendableCost.min}
+                        className="h-7 w-7 shrink-0 rounded-full border border-[var(--color-border)] text-sm font-bold text-[var(--color-text-secondary)] transition-colors hover:border-[var(--color-border-active)] disabled:opacity-40"
+                      >
+                        −
+                      </button>
+                      <div className="flex-1 text-center">
+                        <span className="text-lg font-bold text-[var(--color-text-primary)]">{spendAmount}</span>
+                        <span className="ml-1 text-[10px] text-[var(--color-text-muted)]">/ {spendableCost.max}</span>
+                      </div>
+                      <button
+                        type="button"
+                        aria-label={t("feature.spendMore", "Spend more")}
+                        onClick={() => setSpendAmount((n) => Math.min(spendableCost.max, n + spendStep))}
+                        disabled={spendAmount >= spendableCost.max}
+                        className="h-7 w-7 shrink-0 rounded-full border border-[var(--color-border)] text-sm font-bold text-[var(--color-text-secondary)] transition-colors hover:border-[var(--color-border-active)] disabled:opacity-40"
+                      >
+                        +
+                      </button>
+                    </div>
+                    <p className="mt-1.5 text-center text-[10px] text-[var(--color-text-muted)]">
+                      {t("feature.spendHeals", { amount: spendAmount }, "Target regains {amount} hit point(s)")}
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const field = POOL_COUNTERS[spendableCost.resource]?.field;
+                        if (!field) return;
+                        const held = (character[field] as number | undefined) ?? 0;
+                        onChange({ [field]: Math.max(0, held - spendAmount) } as Partial<Character>);
+                      }}
+                      className="mt-2 w-full rounded-full bg-[var(--color-accent-indigo-500)] px-3 py-1.5 text-xs font-semibold text-white transition-opacity hover:opacity-90"
+                    >
+                      {t("feature.spendApply", "Use it")}
+                    </button>
+                  </div>
+                )}
+
                 {detailRows.length > 0 && (
                   <div className="space-y-2 border-t border-[var(--color-border-muted)] pt-2">
                     {detailRows.map((row) => (

@@ -109,7 +109,17 @@ export interface ResolvedFeature {
   /** Uses remaining under the feature's own limit, or null if unlimited. */
   uses: { current: number; max: number; per: LimitSpec["per"] } | null;
   /** Resources this spends, and whether the character has them. */
-  resources: { id: string; required: number; available: number; tracked: boolean; ok: boolean }[];
+  resources: {
+    id: string;
+    required: number;
+    available: number;
+    tracked: boolean;
+    ok: boolean;
+    /** True when the player sizes the spend, as with Lay on Hands. */
+    sized?: boolean;
+    /** The floor the rules set on that spend. */
+    spendMin?: number;
+  }[];
   targeting: TargetSpec | null;
   trigger: TriggerSpec | null;
   /** Duration as a value, which the sheet can render without parsing prose. */
@@ -331,6 +341,10 @@ export function resolve(input: FeatureBase, ctx: ResolveContext): ResolvedFeatur
       available: held,
       tracked,
       ok: held >= cost.amount,
+      // A sized cost is usable while the pool holds anything at or above the
+      // floor, not while it holds the full base amount.
+      sized: cost.choose !== undefined,
+      spendMin: cost.choose?.min,
     };
   });
 
