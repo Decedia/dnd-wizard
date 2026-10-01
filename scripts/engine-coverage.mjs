@@ -84,6 +84,42 @@ for (const f of feats) {
 
 const done = authoredIds();
 
+// Race entries the app data names one way and the engine registry another.
+const RACE_OWNER_ALIASES = {
+  "Deep Gnome (Svirfneblin)": "svirfneblin",
+  "Eladrin (Elf)": "eladrin",
+};
+
+// 2014 has one tiefling and one half-elf, so the 4e-style variants are not features.
+const LEGACY_RACE_OWNERS = new Set([
+  "Tiefling (Asmodeus)", "Tiefling (Baalzebul)", "Tiefling (Dispater)", "Tiefling (Fierna)",
+  "Tiefling (Glasya)", "Tiefling (Levistus)", "Tiefling (Mammon)", "Tiefling (Mephistopheles)",
+  "Tiefling (Zariel)",
+  "Half-Elf (High Elf)", "Half-Elf (Wood Elf)", "Half-Elf (Drow)", "Half-Elf (Moon Elf)",
+  "Half-Elf (Sun Elf)", "Half-Elf (Sea Elf)", "Half-Elf (Shadar-kai)", "Half-Elf (Eladrin)",
+]);
+
+// 3e/4e traits the engine deliberately does not carry, by slug.
+const LEGACY_TRAITS = new Set([
+  "gnome_cunning", "keen_senses", "dwarven_resilience", "dwarven_combat_training",
+  "dwarven_armor_training", "long_limbed", "powerful_build", "sneaky", "surprise_attack",
+  "nimble_escape", "fury_of_the_small", "grovel_cower_and_beg", "hidden_step",
+  "speech_of_beast_and_leaf", "deathless_nature", "spider_climb", "duplicity", "fey_step",
+  "flying_speed", "githyanki_psionics", "githzerai_psionics", "thri_kreen_psionics",
+  "decadent_mastery", "mental_discipline", "psionic_mind", "hex_magic", "eerie_token",
+  "stout_resilience", "silent_speech", "naturally_stealthy", "martial_training",
+  "saving_face", "plasmatic_resistance", "shape_yourself", "gem_flight", "emissary_of_the_sea",
+  "guardians_of_the_depths", "control_air_and_water", "cunning_artisan", "expert_forgery",
+  "innate_spellcasting", "knowledge_from_a_past_life", "reborn_resilience", "vampiric_bite",
+  "fey", "psychic_resilience", "tool_proficiency", "eladrin_season", "artificers_lore",
+  "natural_illusionist", "speak_with_small_beasts",
+]);
+
+// Stub rows the data uses to mark a choice, e.g. "Path feature". Mirrors
+// character-creation.ts, which filters them when building the feature list.
+const PLACEHOLDER_FEATURE =
+  /^(?:[a-z]+\s+)*(?:feature|features|(?:college|domain|circle|archetype|tradition|origin|patron|specialist|path)(?:\s+feature)?|primal path|sacred oath(?:\s+feature)?)$/i;
+
 // --- 1. inventory ----------------------------------------------------------
 
 console.log("=".repeat(78));
@@ -96,9 +132,14 @@ let totalEntries = 0;
 let totalDone = 0;
 console.log("  GROUP                  EXISTS   AUTHORED      TO WRITE");
 for (const g of inventory) {
-  const authored = g.entries.filter((e) => done.has(engineId(e))).length;
+  const seen = new Set();
+  const counts = { authored: 0, duplicate: 0, dropped: 0, todo: 0 };
+  for (const e of g.entries) counts[classify(e, seen)]++;
+  const authored = counts.authored;
+  const skipped = counts.duplicate + counts.dropped;
   totalEntries += g.entries.length;
-  totalDone += authored;
+  totalDone += authored + skipped;
+  const remaining = g.entries.length - authored - skipped;
   console.log(
     `  ${g.group.padEnd(20)} ${String(g.entries.length).padStart(6)} ${String(authored).padStart(10)} ${String(g.entries.length - authored).padStart(13)}`
   );
@@ -110,8 +151,58 @@ console.log(`  ${"TOTAL".padEnd(20)} ${String(totalEntries).padStart(6)} ${Strin
  * segment keeps a subclass, a monster and an item from colliding when the
  * engine looks features up globally.
  */
-function engineId(entry) {
-  return `${entry.kind}.${slug(entry.owner)}.${slug(entry.name)}`;
+
+/**
+ * Whether the engine already carries this entry.
+ *
+ * Tries the name as written, then with any trailing parenthetical removed, then
+ * with a leading "Something: " stripped. The app data encodes level tiers in the
+ * name in shapes too varied to enumerate - "Favored Enemy (1 type)", "Mystic
+ * Arcanum (6th level)", "Extra Attack (2)", "Flexible Casting: Creating Spell
+ * Slots" - and the engine collapses each into one entry with tiers, so the
+ * simplified form is the one that matches.
+ */
+function isAuthored(entry, done) {
+  const tryName = (name) => {
+    // A feat has no owning entity: its owner is the "Feat" namespace, so the id
+    // is feat.<name>, not feat.Feat.<name>.
+    if (entry.kind === "feat") return done.has(`feat.${slug(name)}`);
+    if (entry.kind === "race") {
+      const variant = /^([A-Za-z ]+?)\s*\((.+)\)\s*$/.exec(String(entry.owner));
+      const owner = slug(variant ? (RACE_OWNER_ALIASES[variant[1]] ?? variant[1]) : (RACE_OWNER_ALIASES[entry.owner] ?? entry.owner));
+      const key = variant ? `race.${owner}.${slug(variant[2])}.${slug(name)}` : `race.${owner}.${slug(name)}`;
+      return done.has(key);
+    }
+    return done.has(`${entry.kind}.${slug(entry.owner)}.${slug(name)}`);
+  };
+  if (tryName(entry.name)) return true;
+  const withoutParens = String(entry.name).replace(/\s*\([^)]*\)\s*$/, "").trim();
+  if (withoutParens && withoutParens !== entry.name && tryName(withoutParens)) return true;
+  const afterColon = String(entry.name).replace(/^[^:]+:\s*/, "").trim();
+  if (afterColon && afterColon !== entry.name && tryName(afterColon)) return true;
+  // The app labels a class's own spellcasting "Spellcasting: Bard".
+  if (/^spellcasting\s*:\s*\S+$/i.test(String(entry.name).trim())) {
+    if (tryName("Spellcasting")) return true;
+  }
+  return false;
+}
+
+/**
+ * One verdict per entry, so the summary and the worklist cannot disagree.
+ *   authored  - the engine has it
+ *   duplicate - a level copy of a feature already counted (the engine uses tiers)
+ *   dropped   - legacy, a stub row, or a known rename
+ *   todo      - genuinely unwritten
+ */
+function classify(entry, seen) {
+  if (isAuthored(entry, done)) return "authored";
+  const key = `${entry.owner}|${entry.name}`;
+  if (seen.has(key)) return "duplicate";
+  seen.add(key);
+  if (LEGACY_RACE_OWNERS.has(entry.owner)) return "dropped";
+  if (LEGACY_TRAITS.has(slug(entry.name))) return "dropped";
+  if (PLACEHOLDER_FEATURE.test(String(entry.name || "").trim())) return "dropped";
+  return "todo";
 }
 function slug(text) {
   return String(text)
@@ -170,7 +261,8 @@ if (args.has("--worklist")) {
     }
   }
   for (const [owner, list] of byOwner) {
-    const remaining = list.filter((e) => !done.has(engineId(e)));
+    const seen = new Set();
+    const remaining = list.filter((e) => classify(e, seen) === "todo");
     if (remaining.length === 0) continue;
     console.log(`\n  ${owner}  (${remaining.length} of ${list.length})`);
     for (const e of remaining) {
