@@ -1,71 +1,127 @@
 {
   "features": [
     {
-      "id": "subclass.dreams.balm_of_the_summer_court",
+      "id": "subclass.circle_of_dreams.balm_of_the_summer_court",
       "name": "Balm of the Summer Court",
       "kind": "subclass",
       "owner": "Circle of Dreams",
       "unlock": 2,
       "activation": "passive",
       "effects": [
-        { "kind": "spell_grant", "cantrip": { "known": true }, "spells": [{ "level": 1, "from": ["druid"] }], "note": "You have a suite of Dreams and Dreams Spells, and you learn an extra druid cantrip at 4th, 8th, 12th and 16th level. The effect of your spells that lasts only a duration of 1 round lasts 1 minute instead, and can be ended early on a spell by an action." }
+        {
+          "kind": "spell_grant",
+          "cantrip": {
+            "known": true
+          },
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "druid"
+              ]
+            }
+          ],
+          "note": "You have a suite of Dreams and Dreams Spells, and you learn an extra druid cantrip at 4th, 8th, 12th and 16th level. The effect of your spells that lasts only a duration of 1 round lasts 1 minute instead, and can be ended early on a spell by an action."
+        }
       ],
       "tiers": [
-        { "at": 4 },
-        { "at": 8 },
-        { "at": 12 },
-        { "at": 16 }
+        {
+          "at": 4
+        },
+        {
+          "at": 8
+        },
+        {
+          "at": 12
+        },
+        {
+          "at": 16
+        }
       ],
       "summary": "Spells lasting a round instead last a minute",
       "text": "You have a suite of Dreams and Dreams Spells, and the effect of your spells that would last only a duration of 1 round lasts 1 minute instead.",
-      "source": { "book": "PHB", "reference": "PHB Druid Circle of Dreams 2" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Druid Circle of Dreams 2"
+      }
     },
     {
-      "id": "subclass.dreams.hearth_of_moonlight_and_shadow",
+      "id": "subclass.circle_of_dreams.hearth_of_moonlight_and_shadow",
       "name": "Hearth of Moonlight and Shadow",
       "kind": "subclass",
       "owner": "Circle of Dreams",
       "unlock": 6,
       "activation": "passive",
       "effects": [
-        { "kind": "special", "note": "The hearth of the Summer Court is yours to call upon, so you can use an action to bathe a creature that you can see within 60 feet in moonlight or shadow with magical warmth, and its d6 healing dice increase by 1d6 and can be used to restore hit points, and at 10th level you gain a +1 bonus to spell save DCs, and at 14th you can heal up to eight creatures at once." }
+        {
+          "kind": "special",
+          "note": "The hearth of the Summer Court is yours to call upon, so you can use an action to bathe a creature that you can see within 60 feet in moonlight or shadow with magical warmth, and its d6 healing dice increase by 1d6 and can be used to restore hit points, and at 10th level you gain a +1 bonus to spell save DCs, and at 14th you can heal up to eight creatures at once."
+        }
       ],
       "tiers": [
-        { "at": 10, "summary": "+1 bonus to spell save DC" },
-        { "at": 14, "summary": "Can heal eight creatures at once" }
+        {
+          "at": 10,
+          "summary": "+1 bonus to spell save DC"
+        },
+        {
+          "at": 14,
+          "summary": "Can heal eight creatures at once"
+        }
       ],
       "summary": "Action: a creature's healing dice become d12",
       "text": "You can use an action to bathe a creature that you can see within 60 feet of you in moonlight or shadow with magical warmth.",
-      "source": { "book": "PHB", "reference": "PHB Druid Circle of Dreams 6" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Druid Circle of Dreams 6"
+      }
     },
     {
-      "id": "subclass.dreams.hidden_paths",
+      "id": "subclass.circle_of_dreams.hidden_paths",
       "name": "Hidden Paths",
       "kind": "subclass",
       "owner": "Circle of Dreams",
       "unlock": 10,
       "activation": "passive",
       "effects": [
-        { "kind": "skill", "skills": ["Arcana", "Religion"], "proficiency": "proficient" },
-        { "kind": "special", "note": "You have a whimsical, ethereal grasp on the workings of fate. You gain proficiency in Arcana and Religion, and if you roll a 9 or lower on a d20 for one of your checks, you can reroll it and use the new roll." }
+        {
+          "kind": "skill",
+          "skills": [
+            "Arcana",
+            "Religion"
+          ],
+          "proficiency": "proficient"
+        },
+        {
+          "kind": "special",
+          "note": "You have a whimsical, ethereal grasp on the workings of fate. You gain proficiency in Arcana and Religion, and if you roll a 9 or lower on a d20 for one of your checks, you can reroll it and use the new roll."
+        }
       ],
       "summary": "Arcana and Religion proficiency; reroll a 9 or lower",
       "text": "You gain proficiency in the Arcana and Religion skills.",
-      "source": { "book": "PHB", "reference": "PHB Druid Circle of Dreams 10" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Druid Circle of Dreams 10"
+      }
     },
     {
-      "id": "subclass.dreams.walker_in_dreams",
+      "id": "subclass.circle_of_dreams.walker_in_dreams",
       "name": "Walker in Dreams",
       "kind": "subclass",
       "owner": "Circle of Dreams",
       "unlock": 14,
       "activation": "passive",
       "effects": [
-        { "kind": "special", "note": "Your affinity with the Dream means you have learned to walk in dreams, so you have darkvision out to 60 feet. When you finish a long rest, you can choose a creature and gain advantage on death saving throws until you finish another long rest. While you are unconscious, creatures within 10 feet of you get advantage on Wisdom saving throws." }
+        {
+          "kind": "special",
+          "note": "Your affinity with the Dream means you have learned to walk in dreams, so you have darkvision out to 60 feet. When you finish a long rest, you can choose a creature and gain advantage on death saving throws until you finish another long rest. While you are unconscious, creatures within 10 feet of you get advantage on Wisdom saving throws."
+        }
       ],
       "summary": "Darkvision 60; a chosen creature's death saves",
       "text": "You have darkvision out to 60 feet, and when you finish a long rest, you can choose a creature within 30 feet of you and gain advantage on death saving throws for that creature until you finish another long rest.",
-      "source": { "book": "PHB", "reference": "PHB Druid Circle of Dreams 14" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Druid Circle of Dreams 14"
+      }
     },
     {
       "id": "subclass.circle_of_spores.circle_spells",
@@ -75,11 +131,31 @@
       "unlock": 2,
       "activation": "passive",
       "effects": [
-        { "kind": "spell_grant", "spells": [{ "level": 1, "from": ["druid"] }, { "level": 1, "from": ["druid"] }], "note": "Your bonding with the spores gives you additional magic, and you learn two additional druid spells, always prepared and not counting against your prepared spells. You gain more at 4th, 6th, 8th, 10th, 12th and 14th level." }
+        {
+          "kind": "spell_grant",
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "druid"
+              ]
+            },
+            {
+              "level": 1,
+              "from": [
+                "druid"
+              ]
+            }
+          ],
+          "note": "Your bonding with the spores gives you additional magic, and you learn two additional druid spells, always prepared and not counting against your prepared spells. You gain more at 4th, 6th, 8th, 10th, 12th and 14th level."
+        }
       ],
       "summary": "Two extra druid spells, more at nearly every level",
       "text": "Your bonding with the spores gives you additional magic. You gain two additional druid spells, which are always prepared and do not count against the number of druid spells you can prepare.",
-      "source": { "book": "PHB", "reference": "PHB Druid Circle of Spores 2" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Druid Circle of Spores 2"
+      }
     },
     {
       "id": "subclass.circle_of_spores.halo_of_spores",
@@ -88,17 +164,31 @@
       "owner": "Circle of Spores",
       "unlock": 2,
       "activation": "action",
-      "limits": { "per": "rest", "max": 1 },
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "self" },
-      "duration": { "value": 1, "unit": "minute" },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
       "endsIf": [],
       "effects": [
-        { "kind": "special", "note": "You have learned to harness the power of your spores to stave off harm. As an action, you can emanate a 10-foot spherical aura of multicolored spores that lasts for 1 minute. If a creature in the aura makes a saving throw, it must reroll it, and it must use the new roll, and any saving throw it makes at a disadvantage becomes a success instead. You gain this a number of times equal to your Wisdom modifier." }
+        {
+          "kind": "special",
+          "note": "You have learned to harness the power of your spores to stave off harm. As an action, you can emanate a 10-foot spherical aura of multicolored spores that lasts for 1 minute. If a creature in the aura makes a saving throw, it must reroll it, and it must use the new roll, and any saving throw it makes at a disadvantage becomes a success instead. You gain this a number of times equal to your Wisdom modifier."
+        }
       ],
       "summary": "Action: an aura that turns failed saves into successes",
       "text": "As an action, you can emanate a 10-foot spherical aura of multicolored spores that lasts for 1 minute.",
-      "source": { "book": "PHB", "reference": "PHB Druid Circle of Spores 2" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Druid Circle of Spores 2"
+      }
     },
     {
       "id": "subclass.circle_of_spores.symbiotic_entity",
@@ -107,20 +197,41 @@
       "owner": "Circle of Spores",
       "unlock": 2,
       "activation": "action",
-      "limits": { "per": "day", "max": 1 },
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "self" },
-      "duration": { "value": 1, "unit": "minute" },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
       "endsIf": [],
       "effects": [
-        { "kind": "temp_hp", "dice": { "dice": "0", "flat": 0 }, "note": "You have learned to nurture a symbiotic entity within your body, a mass of spores 2 feet in diameter in your space, which you can use an action to create, and it lasts for 1 minute or until you dismiss it as a bonus action. While it is in existence, you gain 4d8 plus your Wisdom modifier in temporary hit points, and the entity can be moved 30 feet at a time by your bonus actions, and at 6th level its temporary hit points increase to 6d8." }
+        {
+          "kind": "temp_hp",
+          "dice": {
+            "dice": "0",
+            "flat": 0
+          },
+          "note": "You have learned to nurture a symbiotic entity within your body, a mass of spores 2 feet in diameter in your space, which you can use an action to create, and it lasts for 1 minute or until you dismiss it as a bonus action. While it is in existence, you gain 4d8 plus your Wisdom modifier in temporary hit points, and the entity can be moved 30 feet at a time by your bonus actions, and at 6th level its temporary hit points increase to 6d8."
+        }
       ],
       "tiers": [
-        { "at": 6, "summary": "The entity's temporary hit points become 6d8" }
+        {
+          "at": 6,
+          "summary": "The entity's temporary hit points become 6d8"
+        }
       ],
       "summary": "Action: a spore mass granting 4d8 + Wis temp HP",
       "text": "You can use an action to create a symbiotic entity within your body, a mass of spores 2 feet in diameter.",
-      "source": { "book": "PHB", "reference": "PHB Druid Circle of Spores 2" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Druid Circle of Spores 2"
+      }
     },
     {
       "id": "subclass.circle_of_spores.fungal_infestation",
@@ -129,18 +240,49 @@
       "owner": "Circle of Spores",
       "unlock": 6,
       "activation": "action",
-      "limits": { "per": "rest", "max": 1 },
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "creature", "range": { "value": 90, "unit": "ft" } },
-      "duration": { "value": 1, "unit": "hour" },
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 90,
+          "unit": "ft"
+        }
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
       "endsIf": [],
       "effects": [
-        { "kind": "damage", "dice": { "dice": "4d8", "bonusFrom": "none" }, "damageType": "necrotic", "resolution": { "mode": "save", "ability": "dex", "onSuccess": "none", "onFailure": "full" } },
-        { "kind": "special", "note": "You have developed the ability to infest a creature with fungal spores. As an action, you can touch a creature within 90 feet of you and inflict 4d8 necrotic damage if it fails a Dexterity save. It must then succeed on a Constitution save or take 4d8 necrotic damage and become infected with a disease that deals 4d8 necrotic damage to the creature after 1 minute." }
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "4d8",
+            "bonusFrom": "none"
+          },
+          "damageType": "necrotic",
+          "resolution": {
+            "mode": "save",
+            "ability": "dex",
+            "onSuccess": "none",
+            "onFailure": "full"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You have developed the ability to infest a creature with fungal spores. As an action, you can touch a creature within 90 feet of you and inflict 4d8 necrotic damage if it fails a Dexterity save. It must then succeed on a Constitution save or take 4d8 necrotic damage and become infected with a disease that deals 4d8 necrotic damage to the creature after 1 minute."
+        }
       ],
       "summary": "Action: infect a creature with a necrotic fungal disease",
       "text": "As an action, you can touch a creature within 90 feet of you and inflict 4d8 necrotic damage if it fails a Dexterity saving throw.",
-      "source": { "book": "PHB", "reference": "PHB Druid Circle of Spores 6" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Druid Circle of Spores 6"
+      }
     },
     {
       "id": "subclass.circle_of_spores.spreading_spores",
@@ -150,12 +292,28 @@
       "unlock": 10,
       "activation": "passive",
       "effects": [
-        { "kind": "damage", "dice": { "dice": "2d8", "bonusFrom": "none" }, "damageType": "necrotic", "resolution": { "mode": "auto" } },
-        { "kind": "special", "note": "Your symbiotic entities and Fungal Infestation have learned to spread. When you create a symbiotic entity, the entity's spores spread to each creature within 10 feet of it that fails a Constitution save, and those creatures' spores spread to creatures within 10 feet of them." }
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "2d8",
+            "bonusFrom": "none"
+          },
+          "damageType": "necrotic",
+          "resolution": {
+            "mode": "auto"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "Your symbiotic entities and Fungal Infestation have learned to spread. When you create a symbiotic entity, the entity's spores spread to each creature within 10 feet of it that fails a Constitution save, and those creatures' spores spread to creatures within 10 feet of them."
+        }
       ],
       "summary": "Your spores jump to creatures within 10 ft",
       "text": "When you create a symbiotic entity, the entity's spores spread to each creature within 10 feet of it.",
-      "source": { "book": "PHB", "reference": "PHB Druid Circle of Spores 10" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Druid Circle of Spores 10"
+      }
     },
     {
       "id": "subclass.circle_of_spores.fungal_body",
@@ -165,372 +323,830 @@
       "unlock": 14,
       "activation": "passive",
       "effects": [
-        { "kind": "advantage", "check": "save", "value": "advantage" },
-        { "kind": "special", "note": "The spores within you are persistent and potent, so your body is a refuge for them. Advantage on Charisma saving throws, and if a creature moves within 5 feet of you it must succeed on a Constitution save or take 1d8 necrotic damage. At 17th level the spores have become fully mature, your Constitution is 1 higher, and this damage increases to 2d8." }
+        {
+          "kind": "advantage",
+          "check": "save",
+          "value": "advantage"
+        },
+        {
+          "kind": "special",
+          "note": "The spores within you are persistent and potent, so your body is a refuge for them. Advantage on Charisma saving throws, and if a creature moves within 5 feet of you it must succeed on a Constitution save or take 1d8 necrotic damage. At 17th level the spores have become fully mature, your Constitution is 1 higher, and this damage increases to 2d8."
+        }
       ],
       "tiers": [
-        { "at": 17, "effects": [{ "kind": "advantage", "check": "save", "value": "advantage" }, { "kind": "damage", "dice": { "dice": "2d8", "bonusFrom": "none" }, "damageType": "necrotic", "resolution": { "mode": "save", "ability": "con", "onSuccess": "none", "onFailure": "full" } }, { "kind": "special", "note": "Your Constitution score is 1 higher, and the damage is 2d8." }] }
+        {
+          "at": 17,
+          "effects": [
+            {
+              "kind": "advantage",
+              "check": "save",
+              "value": "advantage"
+            },
+            {
+              "kind": "damage",
+              "dice": {
+                "dice": "2d8",
+                "bonusFrom": "none"
+              },
+              "damageType": "necrotic",
+              "resolution": {
+                "mode": "save",
+                "ability": "con",
+                "onSuccess": "none",
+                "onFailure": "full"
+              }
+            },
+            {
+              "kind": "special",
+              "note": "Your Constitution score is 1 higher, and the damage is 2d8."
+            }
+          ]
+        }
       ],
       "summary": "Advantage on Cha saves; adjacent creatures take necrotic damage",
       "text": "You have advantage on Charisma saving throws, and if a creature moves within 5 feet of you it must succeed on a Constitution saving throw or take 1d8 necrotic damage.",
-      "source": { "book": "PHB", "reference": "PHB Druid Circle of Spores 14" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Druid Circle of Spores 14"
+      }
     },
     {
-      "id": "subclass.stars.star_map",
+      "id": "subclass.circle_of_stars.star_map",
       "name": "Star Map",
       "kind": "subclass",
       "owner": "Circle of Stars",
       "unlock": 2,
       "activation": "passive",
       "effects": [
-        { "kind": "spell_grant", "spells": [{ "level": 1, "from": ["druid"] }, { "level": 1, "from": ["druid"] }], "note": "You have learned a handful of cosmic spells through your patron, the Star Loom, and you learn two additional druid spells, always prepared and not counting against your prepared spells. You gain more at 4th, 6th, 8th, 10th, 12th and 14th level." }
+        {
+          "kind": "spell_grant",
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "druid"
+              ]
+            },
+            {
+              "level": 1,
+              "from": [
+                "druid"
+              ]
+            }
+          ],
+          "note": "You have learned a handful of cosmic spells through your patron, the Star Loom, and you learn two additional druid spells, always prepared and not counting against your prepared spells. You gain more at 4th, 6th, 8th, 10th, 12th and 14th level."
+        }
       ],
       "summary": "Two extra druid spells, more at nearly every level",
       "text": "Your patron, the Star Loom, teaches you star magic. You gain two additional druid spells, which are always prepared.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Druid Circle of Stars 2" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Druid Circle of Stars 2"
+      }
     },
     {
-      "id": "subclass.stars.starry_form",
+      "id": "subclass.circle_of_stars.starry_form",
       "name": "Starry Form",
       "kind": "subclass",
       "owner": "Circle of Stars",
       "unlock": 2,
       "activation": "bonus_action",
-      "limits": { "per": "rest", "max": 1 },
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "self" },
-      "duration": { "value": 10, "unit": "minute" },
-      "endsIf": ["assume_your_spellcasting_form"],
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 10,
+        "unit": "minute"
+      },
+      "endsIf": [
+        "assume_your_spellcasting_form"
+      ],
       "effects": [
-        { "kind": "transform", "formId": "starry_form_object", "formTable": "forms", "abilities": ["wis"], "note": "You have learned to shed your humanoid form and take on an astral form. As a bonus action, you assume a starry form for 1 hour, gaining 4d6 temporary hit points that you regain when you revert. While in this form you gain a +2 bonus to spell attack rolls and spell save DC, and any spell you cast ignores half cover. At 10th level the starry form's bonus increases to +3." }
+        {
+          "kind": "transform",
+          "formId": "starry_form_object",
+          "formTable": "forms",
+          "abilities": [
+            "wis"
+          ],
+          "note": "You have learned to shed your humanoid form and take on an astral form. As a bonus action, you assume a starry form for 1 hour, gaining 4d6 temporary hit points that you regain when you revert. While in this form you gain a +2 bonus to spell attack rolls and spell save DC, and any spell you cast ignores half cover. At 10th level the starry form's bonus increases to +3."
+        }
       ],
       "tiers": [
-        { "at": 10, "effects": [{ "kind": "transform", "formId": "starry_form_object", "formTable": "forms", "abilities": ["wis"], "note": "The bonus to spell attack rolls and spell save DC is +3 instead of +2." }] }
+        {
+          "at": 10,
+          "effects": [
+            {
+              "kind": "transform",
+              "formId": "starry_form_object",
+              "formTable": "forms",
+              "abilities": [
+                "wis"
+              ],
+              "note": "The bonus to spell attack rolls and spell save DC is +3 instead of +2."
+            }
+          ]
+        }
       ],
       "summary": "Bonus action: an astral form with +2 spell attacks, 4d6 HP",
       "text": "As a bonus action, you assume a starry form for 1 hour, gaining 4d6 temporary hit points.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Druid Circle of Stars 2" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Druid Circle of Stars 2"
+      }
     },
     {
-      "id": "subclass.stars.cosmic_omen",
+      "id": "subclass.circle_of_stars.cosmic_omen",
       "name": "Cosmic Omen",
       "kind": "subclass",
       "owner": "Circle of Stars",
       "unlock": 6,
       "activation": "reaction",
-      "limits": { "per": "day", "max": 1 },
-      "trigger": { "event": "save_failed", "note": "When you or a creature within 30 feet of you fails a save." },
-      "targeting": { "scope": "creature", "range": { "value": 30, "unit": "ft" } },
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": {
+        "event": "save_failed",
+        "note": "When you or a creature within 30 feet of you fails a save."
+      },
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 30,
+          "unit": "ft"
+        }
+      },
       "duration": null,
       "endsIf": [],
       "effects": [
-        { "kind": "special", "note": "The Star Loom guides you in the grand design of the universe, and when you cast a spell you can reroll a d20 for it. You can use your reaction after a creature within 30 feet of you fails a saving throw, and after doing so, you can reroll a d20 for a spell that you cast before the end of your next turn, and if the new roll is lower, it has no effect." }
+        {
+          "kind": "special",
+          "note": "The Star Loom guides you in the grand design of the universe, and when you cast a spell you can reroll a d20 for it. You can use your reaction after a creature within 30 feet of you fails a saving throw, and after doing so, you can reroll a d20 for a spell that you cast before the end of your next turn, and if the new roll is lower, it has no effect."
+        }
       ],
       "summary": "Reaction: reroll a spell's d20 after an ally fails a save",
       "text": "You can use your reaction after a creature within 30 feet of you fails a saving throw, and after doing so, you can reroll a d20 for a spell that you cast before the end of your next turn.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Druid Circle of Stars 6" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Druid Circle of Stars 6"
+      }
     },
     {
-      "id": "subclass.stars.twinkling_constellations",
+      "id": "subclass.circle_of_stars.twinkling_constellations",
       "name": "Twinkling Constellations",
       "kind": "subclass",
       "owner": "Circle of Stars",
       "unlock": 10,
       "activation": "passive",
       "effects": [
-        { "kind": "special", "note": "You know how to weave the stars together, and you can use a bonus action to touch a creature and give it 1d6 plus your Wisdom modifier in temporary hit points. You can use this bonus action a number of times equal to your Wisdom modifier, and you regain them all on a long rest, and at 17th level they become 2d6 plus your Wisdom modifier." }
+        {
+          "kind": "special",
+          "note": "You know how to weave the stars together, and you can use a bonus action to touch a creature and give it 1d6 plus your Wisdom modifier in temporary hit points. You can use this bonus action a number of times equal to your Wisdom modifier, and you regain them all on a long rest, and at 17th level they become 2d6 plus your Wisdom modifier."
+        }
       ],
       "summary": "Bonus action: hand out 1d6 + Wis temp HP",
       "text": "You know how to weave the stars together. As a bonus action, you can touch a creature and give it 1d6 + your Wisdom modifier in temporary hit points.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Druid Circle of Stars 10" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Druid Circle of Stars 10"
+      }
     },
     {
-      "id": "subclass.stars.full_of_stars",
+      "id": "subclass.circle_of_stars.full_of_stars",
       "name": "Full of Stars",
       "kind": "subclass",
       "owner": "Circle of Stars",
       "unlock": 14,
       "activation": "passive",
       "effects": [
-        { "kind": "condition", "action": "apply", "conditions": ["blinded"] },
-        { "kind": "special", "note": "The constellation that wends through your hair has reached its full potential, scattering your enemy's judgment. You have advantage on Charisma saving throws. When a creature within 30 feet of you that can see you attacks, you can use your reaction to impose disadvantage on the attack roll, and it must then target a new creature within 30 feet of you that it can see, or its turn ends." }
+        {
+          "kind": "condition",
+          "action": "apply",
+          "conditions": [
+            "blinded"
+          ]
+        },
+        {
+          "kind": "special",
+          "note": "The constellation that wends through your hair has reached its full potential, scattering your enemy's judgment. You have advantage on Charisma saving throws. When a creature within 30 feet of you that can see you attacks, you can use your reaction to impose disadvantage on the attack roll, and it must then target a new creature within 30 feet of you that it can see, or its turn ends."
+        }
       ],
       "summary": "Advantage on Cha saves; reaction to redirect attacks",
       "text": "You have advantage on Charisma saving throws, and when a creature within 30 feet of you that can see you attacks, you can use your reaction to impose disadvantage on the attack roll.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Druid Circle of Stars 14" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Druid Circle of Stars 14"
+      }
     },
     {
-      "id": "subclass.sea.oceanic_resilience",
+      "id": "subclass.circle_of_the_sea.oceanic_resilience",
       "name": "Oceanic Resilience",
       "kind": "subclass",
       "owner": "Circle of the Sea",
       "unlock": 2,
       "activation": "passive",
       "effects": [
-        { "kind": "resistance", "damageTypes": ["lightning", "thunder"] },
-        { "kind": "special", "note": "You are resistant to lightning and thunder damage, and you can breathe air and water, and have a swimming speed equal to your walking speed. If you fall into water while unconscious, an aquatic creature of your choice within 60 feet can react and make you swim to the surface." }
+        {
+          "kind": "resistance",
+          "damageTypes": [
+            "lightning",
+            "thunder"
+          ]
+        },
+        {
+          "kind": "special",
+          "note": "You are resistant to lightning and thunder damage, and you can breathe air and water, and have a swimming speed equal to your walking speed. If you fall into water while unconscious, an aquatic creature of your choice within 60 feet can react and make you swim to the surface."
+        }
       ],
       "summary": "Lightning and thunder resistance; breathe and swim",
       "text": "You have resistance to lightning and thunder damage. You can breathe air and water, and you have a swimming speed equal to your walking speed.",
-      "source": { "book": "PHB", "reference": "PHB Druid Circle of the Sea 2" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Druid Circle of the Sea 2"
+      }
     },
     {
-      "id": "subclass.sea.wrath_of_the_sea",
+      "id": "subclass.circle_of_the_sea.wrath_of_the_sea",
       "name": "Wrath of the Sea",
       "kind": "subclass",
       "owner": "Circle of the Sea",
       "unlock": 2,
       "activation": "reaction",
-      "limits": { "per": "rest", "max": 1 },
-      "trigger": { "event": "save_failed" },
-      "targeting": { "scope": "creature", "range": { "value": 60, "unit": "ft" } },
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "save_failed"
+      },
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 60,
+          "unit": "ft"
+        }
+      },
       "duration": null,
       "endsIf": [],
       "effects": [
-        { "kind": "special", "note": "When a creature within 60 feet of you fails a saving throw, you can use your reaction to lash out with a wave of force that sends it hurtling away from you. It must make a Strength saving throw or be pushed 10 feet, and if it strikes an object or creature, it takes 1d6 damage." }
+        {
+          "kind": "special",
+          "note": "When a creature within 60 feet of you fails a saving throw, you can use your reaction to lash out with a wave of force that sends it hurtling away from you. It must make a Strength saving throw or be pushed 10 feet, and if it strikes an object or creature, it takes 1d6 damage."
+        }
       ],
       "summary": "Reaction: push a creature that failed a save",
       "text": "When a creature within 60 feet of you fails a saving throw, you can use your reaction to lash out with a wave of force that sends it hurtling away from you.",
-      "source": { "book": "PHB", "reference": "PHB Druid Circle of the Sea 2" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Druid Circle of the Sea 2"
+      }
     },
     {
-      "id": "subclass.sea.elemental_wild_shape",
+      "id": "subclass.circle_of_the_sea.elemental_wild_shape",
       "name": "Elemental Wild Shape",
       "kind": "subclass",
       "owner": "Circle of the Sea",
       "unlock": 6,
       "activation": "passive",
       "effects": [
-        { "kind": "condition_immunity", "conditions": ["exhaustion", "grappled", "paralyzed", "petrified", "prone", "restrained", "stunned", "unconscious"] },
-        { "kind": "special", "note": "Your bond with water is strong, and your spirit can link to that of any elemental creature of any size within 60 feet of you for 1 hour, while taking on that creature's game statistics, challenging rating and Resistance structure, though you retain your own alignment, Int, Wis, Cha, skill and saving throw proficiencies, and your own movement and senses, attack and save values and best defense value." }
+        {
+          "kind": "condition_immunity",
+          "conditions": [
+            "exhaustion",
+            "grappled",
+            "paralyzed",
+            "petrified",
+            "prone",
+            "restrained",
+            "stunned",
+            "unconscious"
+          ]
+        },
+        {
+          "kind": "special",
+          "note": "Your bond with water is strong, and your spirit can link to that of any elemental creature of any size within 60 feet of you for 1 hour, while taking on that creature's game statistics, challenging rating and Resistance structure, though you retain your own alignment, Int, Wis, Cha, skill and saving throw proficiencies, and your own movement and senses, attack and save values and best defense value."
+        }
       ],
       "summary": "Your Wild Shape can take the form of any elemental, any size",
       "text": "You can link your spirit to the spirit of any elemental creature of any size within 60 feet of you for 1 hour.",
-      "source": { "book": "PHB", "reference": "PHB Druid Circle of the Sea 6" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Druid Circle of the Sea 6"
+      }
     },
     {
-      "id": "subclass.sea.aquatic_master",
+      "id": "subclass.circle_of_the_sea.aquatic_master",
       "name": "Aquatic Master",
       "kind": "subclass",
       "owner": "Circle of the Sea",
       "unlock": 10,
       "activation": "passive",
       "effects": [
-        { "kind": "resistance", "damageTypes": ["acid", "fire", "lightning", "thunder"] },
-        { "kind": "special", "note": "You have mastery over water, adding fire, acid, lightning and thunder to your damage resistances, and at 16th level you can also cast the lightning lure, tsunami and wall of stone spells once per long rest without a spell slot, needing only a water source or the cast." }
+        {
+          "kind": "resistance",
+          "damageTypes": [
+            "acid",
+            "fire",
+            "lightning",
+            "thunder"
+          ]
+        },
+        {
+          "kind": "special",
+          "note": "You have mastery over water, adding fire, acid, lightning and thunder to your damage resistances, and at 16th level you can also cast the lightning lure, tsunami and wall of stone spells once per long rest without a spell slot, needing only a water source or the cast."
+        }
       ],
       "summary": "Resistance to acid, fire, lightning and thunder",
       "text": "You gain resistance to acid, fire, lightning, and thunder damage.",
-      "source": { "book": "PHB", "reference": "PHB Druid Circle of the Sea 10" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Druid Circle of the Sea 10"
+      }
     },
     {
-      "id": "subclass.sea.oceanic_guardian",
+      "id": "subclass.circle_of_the_sea.oceanic_guardian",
       "name": "Oceanic Guardian",
       "kind": "subclass",
       "owner": "Circle of the Sea",
       "unlock": 14,
       "activation": "passive",
       "effects": [
-        { "kind": "condition_immunity", "conditions": ["restrained"] },
-        { "kind": "special", "note": "You have learned to call the oceans' fury. As a reaction when you or a creature you can see within 60 feet of you takes damage, you can make the water surge up around you. The creature must make a Strength saving throw or be restrained until the end of your next turn, and at 18th level, if you are swimming or within 60 feet of water, you gain resistance to damage." }
+        {
+          "kind": "condition_immunity",
+          "conditions": [
+            "restrained"
+          ]
+        },
+        {
+          "kind": "special",
+          "note": "You have learned to call the oceans' fury. As a reaction when you or a creature you can see within 60 feet of you takes damage, you can make the water surge up around you. The creature must make a Strength saving throw or be restrained until the end of your next turn, and at 18th level, if you are swimming or within 60 feet of water, you gain resistance to damage."
+        }
       ],
       "summary": "Reaction: restrain a creature that takes damage nearby",
       "text": "As a reaction when you or a creature you can see within 60 feet of you takes damage, you can make the water surge up around you.",
-      "source": { "book": "PHB", "reference": "PHB Druid Circle of the Sea 14" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Druid Circle of the Sea 14"
+      }
     },
     {
-      "id": "subclass.shepherd.speech_of_the_woods",
+      "id": "subclass.circle_of_the_shepherd.speech_of_the_woods",
       "name": "Speech of the Woods",
       "kind": "subclass",
       "owner": "Circle of the Shepherd",
       "unlock": 2,
       "activation": "passive",
       "effects": [
-        { "kind": "spell_grant", "cantrip": { "known": true }, "spells": [{ "level": 1, "from": ["druid"] }], "note": "Your bonding with nature and the ability to speak with it, such as via the message spell, lets you learn druidic, and you know the shillelagh cantrip, castable at will without a slot, and one cantrip from the druid list. At 6th and 14th level you learn another cantrip or spell of that level." }
+        {
+          "kind": "spell_grant",
+          "cantrip": {
+            "known": true
+          },
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "druid"
+              ]
+            }
+          ],
+          "note": "Your bonding with nature and the ability to speak with it, such as via the message spell, lets you learn druidic, and you know the shillelagh cantrip, castable at will without a slot, and one cantrip from the druid list. At 6th and 14th level you learn another cantrip or spell of that level."
+        }
       ],
       "tiers": [
-        { "at": 6 },
-        { "at": 14 }
+        {
+          "at": 6
+        },
+        {
+          "at": 14
+        }
       ],
       "summary": "Druidic, and shillelagh plus one druid cantrip",
       "text": "You know druidic, the secret language of druids, and you can leave hidden messages for others to discover.",
-      "source": { "book": "PHB", "reference": "PHB Druid Circle of the Shepherd 2" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Druid Circle of the Shepherd 2"
+      }
     },
     {
-      "id": "subclass.shepherd.spirit_totem",
+      "id": "subclass.circle_of_the_shepherd.spirit_totem",
       "name": "Spirit Totem",
       "kind": "subclass",
       "owner": "Circle of the Shepherd",
       "unlock": 2,
       "activation": "passive",
       "effects": [
-        { "kind": "choice", "of": "totem_type", "count": 1, "note": "Your bond with nature's spirits lets you gain the spirit of one totem, a good-aligned, neutral or evil creature, which conveys your spirit's benefit." }
+        {
+          "kind": "choice",
+          "of": "totem_type",
+          "count": 1,
+          "note": "Your bond with nature's spirits lets you gain the spirit of one totem, a good-aligned, neutral or evil creature, which conveys your spirit's benefit."
+        }
       ],
       "summary": "Choose an animal spirit totem for its benefit",
       "text": "The spirit of your totem teaches you to guide and protect the faithful. You gain the spirit of one other totem, of the same type as yours or a different one.",
-      "source": { "book": "PHB", "reference": "PHB Druid Circle of the Shepherd 2" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Druid Circle of the Shepherd 2"
+      }
     },
     {
-      "id": "subclass.shepherd.mighty_summoner",
+      "id": "subclass.circle_of_the_shepherd.mighty_summoner",
       "name": "Mighty Summoner",
       "kind": "subclass",
       "owner": "Circle of the Shepherd",
       "unlock": 6,
       "activation": "passive",
       "effects": [
-        { "kind": "summon", "features": [], "formId": "mighty_nature_spirit", "initiative": "separate", "hasOwnTurn": true, "control": "ally", "duration": { "value": 1, "unit": "hour" } },
-        { "kind": "special", "note": "Your ability to summon nature spirits has grown more potent. If you cast a spell that summons a creature of your spirit totem's type, it has its own initiative and its own turns, acts immediately on its turn, and can take reactions. At 14th level you can summon a Large or smaller creature from any spirit totem type you have." }
+        {
+          "kind": "summon",
+          "features": [],
+          "formId": "mighty_nature_spirit",
+          "initiative": "separate",
+          "hasOwnTurn": true,
+          "control": "ally",
+          "duration": {
+            "value": 1,
+            "unit": "hour"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "Your ability to summon nature spirits has grown more potent. If you cast a spell that summons a creature of your spirit totem's type, it has its own initiative and its own turns, acts immediately on its turn, and can take reactions. At 14th level you can summon a Large or smaller creature from any spirit totem type you have."
+        }
       ],
       "tiers": [
-        { "at": 14, "effects": [{ "kind": "summon", "features": [], "formId": "mighty_nature_spirit", "initiative": "separate", "hasOwnTurn": true, "control": "ally", "duration": { "value": 1, "unit": "hour" } }, { "kind": "special", "note": "You can summon a Large or smaller creature from any spirit totem type you have." }] }
+        {
+          "at": 14,
+          "effects": [
+            {
+              "kind": "summon",
+              "features": [],
+              "formId": "mighty_nature_spirit",
+              "initiative": "separate",
+              "hasOwnTurn": true,
+              "control": "ally",
+              "duration": {
+                "value": 1,
+                "unit": "hour"
+              }
+            },
+            {
+              "kind": "special",
+              "note": "You can summon a Large or smaller creature from any spirit totem type you have."
+            }
+          ]
+        }
       ],
       "summary": "Your spirit totem summons get their own turns and reactions",
       "text": "If you cast a spell that summons a creature of your spirit totem's type, it has its own initiative and its own turns.",
-      "source": { "book": "PHB", "reference": "PHB Druid Circle of the Shepherd 6" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Druid Circle of the Shepherd 6"
+      }
     },
     {
-      "id": "subclass.shepherd.guardian_spirit",
+      "id": "subclass.circle_of_the_shepherd.guardian_spirit",
       "name": "Guardian Spirit",
       "kind": "subclass",
       "owner": "Circle of the Shepherd",
       "unlock": 10,
       "activation": "passive",
       "effects": [
-        { "kind": "spell_grant", "spells": [{ "level": 2, "from": ["druid"] }, { "level": 2, "from": ["druid"] }], "note": "Your spirit totem's guidance grants you the ability to cast two spells from the cleric list of 2nd level or lower, which are always prepared, never counting against your prepared spells, and can be cast with them. You gain more at 14th level. At 17th level, whenever you cast a prepared spell of 3rd level or higher, you can also cast any prepared cantrip." }
+        {
+          "kind": "spell_grant",
+          "spells": [
+            {
+              "level": 2,
+              "from": [
+                "druid"
+              ]
+            },
+            {
+              "level": 2,
+              "from": [
+                "druid"
+              ]
+            }
+          ],
+          "note": "Your spirit totem's guidance grants you the ability to cast two spells from the cleric list of 2nd level or lower, which are always prepared, never counting against your prepared spells, and can be cast with them. You gain more at 14th level. At 17th level, whenever you cast a prepared spell of 3rd level or higher, you can also cast any prepared cantrip."
+        }
       ],
       "tiers": [
-        { "at": 14 },
-        { "at": 17 }
+        {
+          "at": 14
+        },
+        {
+          "at": 17
+        }
       ],
       "summary": "Two cleric cantrips, plus cantrips alongside higher spells",
       "text": "You always have access to two cleric cantrips in addition to your druid cantrips, and they always count as prepared.",
-      "source": { "book": "PHB", "reference": "PHB Druid Circle of the Shepherd 10" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Druid Circle of the Shepherd 10"
+      }
     },
     {
-      "id": "subclass.shepherd.faithful_summons",
+      "id": "subclass.circle_of_the_shepherd.faithful_summons",
       "name": "Faithful Summons",
       "kind": "subclass",
       "owner": "Circle of the Shepherd",
       "unlock": 14,
       "activation": "passive",
       "effects": [
-        { "kind": "special", "note": "When you cast a summoning spell, you can summon creatures as an action instead. Those you summon take the highest possible Hit Dice from the tables, and when a creature you summon dies, you gain resistance to all damage until your next turn." }
+        {
+          "kind": "special",
+          "note": "When you cast a summoning spell, you can summon creatures as an action instead. Those you summon take the highest possible Hit Dice from the tables, and when a creature you summon dies, you gain resistance to all damage until your next turn."
+        }
       ],
       "summary": "Summon as an action, with maximum hit dice",
       "text": "When you cast a summoning spell, you can summon creatures as an action instead of that spell's casting time.",
-      "source": { "book": "PHB", "reference": "PHB Druid Circle of the Shepherd 14" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Druid Circle of the Shepherd 14"
+      }
     },
     {
-      "id": "subclass.wildfire.circle_of_wildfire_spells",
+      "id": "subclass.circle_of_wildfire.circle_of_wildfire_spells",
       "name": "Circle of Wildfire Spells",
       "kind": "subclass",
       "owner": "Circle of Wildfire",
       "unlock": 2,
       "activation": "passive",
       "effects": [
-        { "kind": "spell_grant", "spells": [{ "level": 1, "from": ["druid"] }, { "level": 1, "from": ["druid"] }], "note": "Your bonding with fire gives you additional magic, and you learn two additional druid spells, always prepared and not counting against your prepared spells. You gain more at 4th, 6th, 8th, 10th, 12th and 14th level." }
+        {
+          "kind": "spell_grant",
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "druid"
+              ]
+            },
+            {
+              "level": 1,
+              "from": [
+                "druid"
+              ]
+            }
+          ],
+          "note": "Your bonding with fire gives you additional magic, and you learn two additional druid spells, always prepared and not counting against your prepared spells. You gain more at 4th, 6th, 8th, 10th, 12th and 14th level."
+        }
       ],
       "summary": "Two extra druid spells, more at nearly every level",
       "text": "Your bonding with fire gives you additional magic. You gain two additional druid spells, which are always prepared.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Druid Circle of Wildfire 2" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Druid Circle of Wildfire 2"
+      }
     },
     {
-      "id": "subclass.wildfire.summon_wildfire_spirit",
+      "id": "subclass.circle_of_wildfire.summon_wildfire_spirit",
       "name": "Summon Wildfire Spirit",
       "kind": "subclass",
       "owner": "Circle of Wildfire",
       "unlock": 2,
       "activation": "action",
-      "limits": { "per": "day", "max": 1 },
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "self" },
-      "duration": { "value": 1, "unit": "hour" },
-      "endsIf": ["exhaustion", "you_die"],
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
+      "endsIf": [
+        "exhaustion",
+        "you_die"
+      ],
       "effects": [
-        { "kind": "summon", "features": ["subclass.wildfire_spirit.attack"], "formId": "wildfire_spirit_ally", "initiative": "separate", "hasOwnTurn": true, "control": "ally", "duration": { "value": 1, "unit": "hour" } },
-        { "kind": "special", "note": "You summon a spirit of wildfire that manifests as a floating flame, giving it a CR of 2, and it is a Large or smaller creature. It lasts for the duration, cannot be dismissed by effects, and is immune to being frightened, charmed, paralyzed, petrified, and unconscious, and it doesn't require concentration." }
+        {
+          "kind": "summon",
+          "features": [
+            "subclass.circle_of_wildfire.wildfire_spirit_attack"
+          ],
+          "formId": "wildfire_spirit_ally",
+          "initiative": "separate",
+          "hasOwnTurn": true,
+          "control": "ally",
+          "duration": {
+            "value": 1,
+            "unit": "hour"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You summon a spirit of wildfire that manifests as a floating flame, giving it a CR of 2, and it is a Large or smaller creature. It lasts for the duration, cannot be dismissed by effects, and is immune to being frightened, charmed, paralyzed, petrified, and unconscious, and it doesn't require concentration."
+        }
       ],
       "summary": "Action, once a day: summon a CR 2 wildfire spirit",
       "text": "You summon a spirit of wildfire that manifests as a floating flame.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Druid Circle of Wildfire 2" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Druid Circle of Wildfire 2"
+      }
     },
     {
-      "id": "subclass.wildfire_spirit.attack",
+      "id": "subclass.circle_of_wildfire.wildfire_spirit_attack",
       "name": "Wildfire Spirit Attack",
       "kind": "subclass",
       "owner": "Circle of Wildfire",
       "unlock": 2,
       "activation": "reaction",
-      "limits": { "per": "turn", "max": 1 },
-      "trigger": { "event": "targeted_by_spell", "note": "When you cast a spell and the target is within 5 feet of the spirit." },
-      "targeting": { "scope": "creature", "range": { "value": 5, "unit": "ft" } },
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": {
+        "event": "targeted_by_spell",
+        "note": "When you cast a spell and the target is within 5 feet of the spirit."
+      },
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 5,
+          "unit": "ft"
+        }
+      },
       "duration": null,
       "endsIf": [],
       "effects": [
-        { "kind": "damage", "dice": { "dice": "1d8", "bonusFrom": "wis" }, "damageType": "fire", "resolution": { "mode": "attack", "ability": "wis", "reaches": ["5 ft melee spell attack"] } },
-        { "kind": "special", "note": "When you cast a spell, the spirit can use its reaction to make a melee spell attack against a target of the spell within 5 feet of it, dealing 1d8 plus your Wisdom modifier fire damage on a hit, using your spellcasting ability modifier." }
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "1d8",
+            "bonusFrom": "wis"
+          },
+          "damageType": "fire",
+          "resolution": {
+            "mode": "attack",
+            "ability": "wis",
+            "reaches": [
+              "5 ft melee spell attack"
+            ]
+          }
+        },
+        {
+          "kind": "special",
+          "note": "When you cast a spell, the spirit can use its reaction to make a melee spell attack against a target of the spell within 5 feet of it, dealing 1d8 plus your Wisdom modifier fire damage on a hit, using your spellcasting ability modifier."
+        }
       ],
       "summary": "Reaction: a 1d8 + Wis fire hit when you cast a spell",
       "text": "When you cast a spell, the spirit can use its reaction to make a melee spell attack against a target of the spell within 5 feet of it.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Druid Circle of Wildfire 2" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Druid Circle of Wildfire 2"
+      }
     },
     {
-      "id": "subclass.wildfire.enhanced_bond",
+      "id": "subclass.circle_of_wildfire.enhanced_bond",
       "name": "Enhanced Bond",
       "kind": "subclass",
       "owner": "Circle of Wildfire",
       "unlock": 6,
       "activation": "passive",
       "effects": [
-        { "kind": "stat_modifier", "stat": "damage_roll", "amount": 1, "duration": "while_active" },
-        { "kind": "special", "note": "Your bond with the spirit is stronger, and it doesn't disappear when you dismiss it, and if you cast any spell that deals fire damage, the spirit's attacks deal an extra 1d8 fire damage, and at 14th level you can summon it twice per day and it has an additional 2d8 damage." }
+        {
+          "kind": "stat_modifier",
+          "stat": "damage_roll",
+          "amount": 1,
+          "duration": "while_active"
+        },
+        {
+          "kind": "special",
+          "note": "Your bond with the spirit is stronger, and it doesn't disappear when you dismiss it, and if you cast any spell that deals fire damage, the spirit's attacks deal an extra 1d8 fire damage, and at 14th level you can summon it twice per day and it has an additional 2d8 damage."
+        }
       ],
       "summary": "Your spirit hits for 1d8 more when you cast fire damage",
       "text": "Your bond with the spirit is stronger, and it doesn't disappear when you dismiss it.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Druid Circle of Wildfire 6" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Druid Circle of Wildfire 6"
+      }
     },
     {
-      "id": "subclass.wildfire.cauterizing_flames",
+      "id": "subclass.circle_of_wildfire.cauterizing_flames",
       "name": "Cauterizing Flames",
       "kind": "subclass",
       "owner": "Circle of Wildfire",
       "unlock": 10,
       "activation": "bonus_action",
-      "limits": { "per": "rest", "max": 1 },
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "creature", "range": { "value": 60, "unit": "ft" } },
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 60,
+          "unit": "ft"
+        }
+      },
       "duration": null,
       "endsIf": [],
       "effects": [
-        { "kind": "heal", "dice": { "dice": "2d8", "bonusFrom": "wis" }, "resolution": { "mode": "auto" } },
-        { "kind": "special", "note": "As a bonus action, you can touch one creature that you can see within 60 feet of you and cause flames to flare around it within 10 feet, healing it 2d8 plus your Wisdom modifier and ending frightened and frightened conditions. At 17th level the healing becomes 3d8 plus your Wisdom modifier." }
+        {
+          "kind": "heal",
+          "dice": {
+            "dice": "2d8",
+            "bonusFrom": "wis"
+          },
+          "resolution": {
+            "mode": "auto"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "As a bonus action, you can touch one creature that you can see within 60 feet of you and cause flames to flare around it within 10 feet, healing it 2d8 plus your Wisdom modifier and ending frightened and frightened conditions. At 17th level the healing becomes 3d8 plus your Wisdom modifier."
+        }
       ],
       "tiers": [
-        { "at": 17, "effects": [{ "kind": "heal", "dice": { "dice": "3d8", "bonusFrom": "wis" }, "resolution": { "mode": "auto" } }, { "kind": "special", "note": "The healing is 3d8 plus your Wisdom modifier." }] }
+        {
+          "at": 17,
+          "effects": [
+            {
+              "kind": "heal",
+              "dice": {
+                "dice": "3d8",
+                "bonusFrom": "wis"
+              },
+              "resolution": {
+                "mode": "auto"
+              }
+            },
+            {
+              "kind": "special",
+              "note": "The healing is 3d8 plus your Wisdom modifier."
+            }
+          ]
+        }
       ],
       "summary": "Bonus action: heal 2d8 + Wis and end frightened",
       "text": "As a bonus action, you can touch one creature that you can see within 60 feet of you and cause flames to flare around it within 10 feet.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Druid Circle of Wildfire 10" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Druid Circle of Wildfire 10"
+      }
     },
     {
-      "id": "subclass.wildfire.blazing_revival",
+      "id": "subclass.circle_of_wildfire.blazing_revival",
       "name": "Blazing Revival",
       "kind": "subclass",
       "owner": "Circle of Wildfire",
       "unlock": 14,
       "activation": "bonus_action",
-      "limits": { "per": "rest", "max": 1 },
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "creature", "range": { "value": 60, "unit": "ft" } },
-      "duration": { "value": 1, "unit": "hour" },
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 60,
+          "unit": "ft"
+        }
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
       "endsIf": [],
       "effects": [
-        { "kind": "condition", "action": "apply", "conditions": ["unconscious"], "duration": { "value": 1, "unit": "hour" } },
-        { "kind": "special", "note": "The flames you bring back to life, when you cast a healing spell on a creature that is 0 hit points, it regains hit points equal to 1d4 plus your Wisdom modifier, and any of them blinded while within 10 feet of the creature, until the end of your next turn." }
+        {
+          "kind": "condition",
+          "action": "apply",
+          "conditions": [
+            "unconscious"
+          ],
+          "duration": {
+            "value": 1,
+            "unit": "hour"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "The flames you bring back to life, when you cast a healing spell on a creature that is 0 hit points, it regains hit points equal to 1d4 plus your Wisdom modifier, and any of them blinded while within 10 feet of the creature, until the end of your next turn."
+        }
       ],
       "summary": "Bonus action: a healing spell brings a creature back",
       "text": "When you cast a healing spell on a creature that is at 0 hit points, it regains hit points equal to 1d4 + your Wisdom modifier.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Druid Circle of Wildfire 14" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Druid Circle of Wildfire 14"
+      }
     },
     {
       "id": "subclass.land.bonus_cantrip",
@@ -540,11 +1156,28 @@
       "unlock": 2,
       "activation": "passive",
       "effects": [
-        { "kind": "spell_grant", "cantrip": { "known": true }, "spells": [{ "level": 1, "from": ["druid"] }], "note": "You are a student of nature magic and your patron has brought you the power of the cleric: you learn the sacred flame cantrip, castable at will without a slot, and you know one cantrip from the cleric spell list, and you gain another cleric cantrip at 6th, 12th and 18th level." }
+        {
+          "kind": "spell_grant",
+          "cantrip": {
+            "known": true
+          },
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "druid"
+              ]
+            }
+          ],
+          "note": "You are a student of nature magic and your patron has brought you the power of the cleric: you learn the sacred flame cantrip, castable at will without a slot, and you know one cantrip from the cleric spell list, and you gain another cleric cantrip at 6th, 12th and 18th level."
+        }
       ],
       "summary": "Sacred flame at will, plus one cleric cantrip",
       "text": "You learn the sacred flame cantrip, which you can cast at will without a spell slot, and you know one cantrip from the cleric spell list.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Druid Land 2" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Druid Land 2"
+      }
     },
     {
       "id": "subclass.land.natural_recovery",
@@ -553,17 +1186,31 @@
       "owner": "Land",
       "unlock": 2,
       "activation": "bonus_action",
-      "limits": { "per": "rest", "max": 1 },
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "self" },
+      "targeting": {
+        "scope": "self"
+      },
       "duration": null,
       "endsIf": [],
       "effects": [
-        { "kind": "resource", "action": "restore", "resource": "hit_dice", "amount": 1, "note": "You have learned to use nature magic to draw on the vitality of the land. You can spend some of your Hit Dice to regain spell slots. At the end of a short rest, you can choose expended spell slots to recover, spending hit dice equal to half the levels to regain one." }
+        {
+          "kind": "resource",
+          "action": "restore",
+          "resource": "hit_dice",
+          "amount": 1,
+          "note": "You have learned to use nature magic to draw on the vitality of the land. You can spend some of your Hit Dice to regain spell slots. At the end of a short rest, you can choose expended spell slots to recover, spending hit dice equal to half the levels to regain one."
+        }
       ],
       "summary": "At a short rest, spend hit dice to regain spell slots",
       "text": "You can spend some of your Hit Dice to regain spell slots. At the end of a short rest, you can choose expended spell slots to recover.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Druid Land 2" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Druid Land 2"
+      }
     },
     {
       "id": "subclass.land.circle_spells",
@@ -573,11 +1220,31 @@
       "unlock": 3,
       "activation": "passive",
       "effects": [
-        { "kind": "spell_grant", "spells": [{ "level": 1, "from": ["druid"] }, { "level": 1, "from": ["druid"] }], "note": "Your bonding with nature gives you additional magic, and you learn two additional druid spells, always prepared and not counting against your prepared spells. You gain more at 4th, 5th, 7th, 9th, 11th, 13th, 15th and 17th level." }
+        {
+          "kind": "spell_grant",
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "druid"
+              ]
+            },
+            {
+              "level": 1,
+              "from": [
+                "druid"
+              ]
+            }
+          ],
+          "note": "Your bonding with nature gives you additional magic, and you learn two additional druid spells, always prepared and not counting against your prepared spells. You gain more at 4th, 5th, 7th, 9th, 11th, 13th, 15th and 17th level."
+        }
       ],
       "summary": "Two extra druid spells, plus more at eight levels",
       "text": "Your bonding with nature gives you additional magic. You gain two additional druid spells, which are always prepared.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Druid Land 3" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Druid Land 3"
+      }
     },
     {
       "id": "subclass.land.lands_stride",
@@ -587,12 +1254,23 @@
       "unlock": 6,
       "activation": "passive",
       "effects": [
-        { "kind": "stat_modifier", "stat": "speed", "amount": 10, "duration": "permanent" },
-        { "kind": "special", "note": "You have learned to move with the land, and your walking speed is increased by 10 feet if you are touching a creature of your race or a creature's spirit, or if you are surrounded by natural terrain." }
+        {
+          "kind": "stat_modifier",
+          "stat": "speed",
+          "amount": 10,
+          "duration": "permanent"
+        },
+        {
+          "kind": "special",
+          "note": "You have learned to move with the land, and your walking speed is increased by 10 feet if you are touching a creature of your race or a creature's spirit, or if you are surrounded by natural terrain."
+        }
       ],
       "summary": "+10 walking speed through natural terrain",
       "text": "Your walking speed is increased by 10 feet if you are touching a creature of your race or a creature's spirit.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Druid Land 6" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Druid Land 6"
+      }
     },
     {
       "id": "subclass.land.natures_ward",
@@ -602,14 +1280,28 @@
       "unlock": 10,
       "activation": "passive",
       "effects": [
-        { "kind": "special", "note": "When you are wearing medium or heavier armor and are hit by a creature within 5 feet, you can use your reaction to make it take 1d6 damage, and at 18th level you can use this even against creatures more than 5 feet away." }
+        {
+          "kind": "special",
+          "note": "When you are wearing medium or heavier armor and are hit by a creature within 5 feet, you can use your reaction to make it take 1d6 damage, and at 18th level you can use this even against creatures more than 5 feet away."
+        }
       ],
       "tiers": [
-        { "at": 18, "effects": [{ "kind": "special", "note": "You can use this even against creatures more than 5 feet away from you." }] }
+        {
+          "at": 18,
+          "effects": [
+            {
+              "kind": "special",
+              "note": "You can use this even against creatures more than 5 feet away from you."
+            }
+          ]
+        }
       ],
       "summary": "Reaction: 1d6 to an adjacent attacker while armored",
       "text": "When you are wearing medium or heavier armor and are hit by a creature within 5 feet, you can use your reaction to make it take 1d6 damage.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Druid Land 10" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Druid Land 10"
+      }
     },
     {
       "id": "subclass.land.natures_sanctuary",
@@ -619,11 +1311,17 @@
       "unlock": 14,
       "activation": "passive",
       "effects": [
-        { "kind": "special", "note": "The magic of your patron infuses you, and while you are concentrating on a spell, the first creature you target with a spell or weapon attack gains a +1 bonus to AC, and you can move 10 feet without provoking opportunity attacks if the target moves within 30 feet of you." }
+        {
+          "kind": "special",
+          "note": "The magic of your patron infuses you, and while you are concentrating on a spell, the first creature you target with a spell or weapon attack gains a +1 bonus to AC, and you can move 10 feet without provoking opportunity attacks if the target moves within 30 feet of you."
+        }
       ],
       "summary": "Your first target each turn gets +1 AC while you concentrate",
       "text": "While you are concentrating on a spell, the first creature you target with a spell or weapon attack gains a +1 bonus to AC.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Druid Land 14" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Druid Land 14"
+      }
     }
   ]
 }

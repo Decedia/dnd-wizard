@@ -46,9 +46,15 @@ const TIER_SUFFIX = /\s*\((?:\d+[^)]*|d\d+|cr[^)]*|once per turn|see per turn|se
 // The old data labels a class's own spellcasting "Spellcasting: Bard"; the rules call it "Spellcasting".
 const CLASS_PREFIX = /^(?:spellcasting|flexible casting)\s*:\s*.+$/i;
 const SPELLCASTING = "Spellcasting";
+const CHANNEL_DIVINITY_PREFIX = /^channel\s+divinity\s*:\s*/i;
 const baseName = (name) => {
   const stripped = String(name).replace(TIER_SUFFIX, "").trim();
-  return CLASS_PREFIX.test(stripped) ? SPELLCASTING : stripped;
+  if (CLASS_PREFIX.test(stripped)) return SPELLCASTING;
+  // Only strip when something survives: the class-level feature is literally
+  // named "Channel Divinity", and an unconditional strip empties its key.
+  if (!CHANNEL_DIVINITY_PREFIX.test(stripped)) return stripped;
+  const withoutPrefix = stripped.replace(CHANNEL_DIVINITY_PREFIX, "").trim();
+  return withoutPrefix.length > 0 ? withoutPrefix : stripped;
 };
 
 // --- inventory -------------------------------------------------------------
@@ -152,6 +158,10 @@ walk(path.join(ENGINE, "features"));
 // an alias, and so an alias cannot quietly cover a missing entry forever.
 const ALIASES = {
   "class.cleric.divine_intervention_improvement": "a tier on Divine Intervention, at 18th level",
+  // The old data drops the possessive; the rules spell it "Champion's Challenge".
+  "subclass.oath_of_the_crown.champion_challenge": "the rules spell it Champion's Challenge",
+  // The old data's spelling; the rules call it Scarred Earth.
+  "subclass.oath_of_conquest.scared_earth": "the rules call it Scarred Earth, authored as sacred_earth",
   // The old data marks the oath's 7/15/20-level features and the 18th-level aura
   // improvement as separate class rows. They are the subclass choice and a tier
   // on the auras, both of which the engine already models.

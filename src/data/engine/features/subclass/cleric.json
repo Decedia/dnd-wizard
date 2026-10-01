@@ -1,0 +1,2763 @@
+{
+  "features": [
+    {
+      "id": "subclass.arcana_domain.arcane_initiate",
+      "name": "Arcane Initiate",
+      "kind": "subclass",
+      "owner": "Arcana Domain",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "tool",
+          "tools": [
+            "two tools of your choice"
+          ],
+          "proficiency": "expertise"
+        },
+        {
+          "kind": "language",
+          "languages": [
+            "two of your choice"
+          ]
+        },
+        {
+          "kind": "special",
+          "note": "You have studied the arcane and learned a broader understanding of it, so you gain proficiency with two tools of your choice and languages, plus Arcane Recovery, which lets you regain spell slots by spending hit dice at a short rest."
+        }
+      ],
+      "summary": "Proficiency with two tools, two languages, and Arcane Recovery",
+      "text": "You gain proficiency with two tools of your choice and with two languages of your choice.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Cleric Arcana 1"
+      }
+    },
+    {
+      "id": "subclass.arcana_domain.arcana_domain_spells",
+      "name": "Arcana Domain Spells",
+      "kind": "subclass",
+      "owner": "Arcana Domain",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "abjuration"
+              ]
+            },
+            {
+              "level": 1,
+              "from": [
+                "abjuration"
+              ]
+            }
+          ],
+          "note": "You learn two abjuration wizard spells, always prepared and not counting against your prepared spells, with more at 3rd, 5th, 7th, 9th, 13th and 17th level."
+        }
+      ],
+      "summary": "Two abjuration spells, always prepared",
+      "text": "You learn abjuration spells from the wizard list. These spells are always prepared and do not count against your number of prepared spells.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Cleric Arcana 1"
+      }
+    },
+    {
+      "id": "subclass.arcana_domain.arcane_abjuration",
+      "name": "Channel Divinity: Arcane Abjuration",
+      "kind": "subclass",
+      "owner": "Arcana Domain",
+      "unlock": 2,
+      "activation": "action",
+      "cost": [
+        {
+          "resource": "channel_divinity",
+          "amount": 1
+        }
+      ],
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "As a magic action, you can spend channel divinity to grant a creature within 120 feet resistance to an acid, cold, fire, lightning or thunder damage of your choice for 1 hour, and the creature ends the effect early or if it is incapacitated, and at 18th level the resistance is to all of them."
+        }
+      ],
+      "summary": "Spend CD: 1 hour of one damage type's resistance",
+      "text": "As a magic action, you can spend channel divinity to grant a creature resistance to an acid, cold, fire, lightning, or thunder damage for 1 hour.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Cleric Arcana 2"
+      }
+    },
+    {
+      "id": "subclass.arcana_domain.spell_breaker",
+      "name": "Spell Breaker",
+      "kind": "subclass",
+      "owner": "Arcana Domain",
+      "unlock": 6,
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "targeted_by_spell"
+      },
+      "targeting": {
+        "scope": "creature"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You can disrupt the weave of a spell. As a reaction, when you see a creature casting a spell or using a magical item, you can use your reaction to add 2 to the DC of that spell or item, forcing a creature to make a Constitution saving throw or expend any spell slots to complete the action, rolling a d20 and using the total if it equals or exceeds the spell's DC, and the effect lasts 1 minute, and at 18th level you can use this twice per long rest."
+        }
+      ],
+      "summary": "Reaction: +2 to an enemy's spell DC, forcing extra cost",
+      "text": "As a reaction, when you see a creature casting a spell or using a magical item, you can use your reaction to cause the spell or item to have an increased DC for that creature.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Cleric Arcana 6"
+      }
+    },
+    {
+      "id": "subclass.arcana_domain.potent_spellcasting",
+      "name": "Potent Spellcasting",
+      "kind": "subclass",
+      "owner": "Arcana Domain",
+      "unlock": 8,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "Your spells run stronger than usual, so when you cast any spell with a healing or necrotic theme, the spell deals an extra 2d8 of that damage type when a creature is damaged by it, and the damage increases at 17th level by 1d8, and at 11th level necrotic healing also heals you."
+        }
+      ],
+      "summary": "Healing and necrotic spells deal extra 2d8 of their type",
+      "text": "When you cast any spell with a healing or necrotic theme, the spell deals an extra 2d8 of that damage type when a creature is damaged by it.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Cleric Arcana 8"
+      }
+    },
+    {
+      "id": "subclass.arcana_domain.arcane_mastery",
+      "name": "Arcane Mastery",
+      "kind": "subclass",
+      "owner": "Arcana Domain",
+      "unlock": 17,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have learned to see the truth of things. As a bonus action, you can learn the name and level of the last spell you cast, and at 18th level you also learn its school of magic."
+        }
+      ],
+      "summary": "Bonus action: learn the name of your last spell",
+      "text": "As a bonus action, you can learn the name and level of the last spell you cast.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Cleric Arcana 17"
+      }
+    },
+    {
+      "id": "subclass.death_domain.bonus_proficiency",
+      "name": "Bonus Proficiency",
+      "kind": "subclass",
+      "owner": "Death Domain",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "tool",
+          "tools": [
+            "any type of gaming set"
+          ],
+          "proficiency": "proficient"
+        },
+        {
+          "kind": "special",
+          "note": "You gain proficiency with two additional areas of expertise, any of the following: heavy armor, medium armor, shields, or any simple weapon."
+        }
+      ],
+      "summary": "Proficiency with a gaming set and two more areas",
+      "text": "You gain proficiency with two additional areas of expertise: heavy armor, medium armor, shields, or any simple weapon.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Death 1"
+      }
+    },
+    {
+      "id": "subclass.death_domain.reaper",
+      "name": "Reaper",
+      "kind": "subclass",
+      "owner": "Death Domain",
+      "unlock": 1,
+      "activation": "action",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 60,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "2d10",
+            "perLevel": {
+              "dice": "1d10",
+              "above": 1
+            }
+          },
+          "damageType": "necrotic",
+          "resolution": {
+            "mode": "attack",
+            "ability": "wis",
+            "reaches": [
+              "60 ft melee spell attack"
+            ]
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You have learned to reap the souls of the dying, so as an action you can make a melee spell attack with a 60 foot range to cause 2d10 necrotic damage plus your Wisdom modifier, plus 1d10 for each cleric level above 1, and if the target dies, you regain hit points equal to 2d10 plus your cleric level, and at 17th level this becomes 4d10 and 4d10 healing."
+        }
+      ],
+      "summary": "Once a day: necrotic damage; killing it heals you",
+      "text": "As an action, you can make a melee spell attack with a range of 60 feet to cause 2d10 necrotic damage plus your Wisdom modifier, plus 1d10 for each cleric level above 1.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Death 1"
+      }
+    },
+    {
+      "id": "subclass.death_domain.death_domain_spells",
+      "name": "Death Domain Spells",
+      "kind": "subclass",
+      "owner": "Death Domain",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "necromancy"
+              ]
+            },
+            {
+              "level": 1,
+              "from": [
+                "necromancy"
+              ]
+            }
+          ],
+          "note": "You learn two necromancy wizard spells, always prepared and not counting against your prepared spells, with more at 3rd, 5th, 7th, 9th, 13th and 17th level."
+        }
+      ],
+      "summary": "Two necromancy spells, always prepared",
+      "text": "You learn necromancy spells from the wizard list.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Death 1"
+      }
+    },
+    {
+      "id": "subclass.death_domain.touch_of_death",
+      "name": "Channel Divinity: Touch of Death",
+      "kind": "subclass",
+      "owner": "Death Domain",
+      "unlock": 2,
+      "activation": "bonus_action",
+      "cost": [
+        {
+          "resource": "channel_divinity",
+          "amount": 1
+        }
+      ],
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 5,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "10",
+            "flat": 0
+          },
+          "damageType": "necrotic",
+          "resolution": {
+            "mode": "attack",
+            "ability": "wis",
+            "reaches": [
+              "5 ft melee spell attack"
+            ]
+          }
+        },
+        {
+          "kind": "special",
+          "note": "As a bonus action, you can channel divinity and make a melee spell attack with a range of 5 feet, and on a hit it makes a Constitution saving throw, taking 10 necrotic damage plus your Wisdom modifier on a failure or half on a success, and if it fails, it can't regain hit points, and at 17th level the damage increases to 18."
+        }
+      ],
+      "summary": "Spend CD: 10 necrotic, which blocks healing",
+      "text": "As a bonus action, you can channel divinity and make a melee spell attack with a range of 5 feet.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Death 2"
+      }
+    },
+    {
+      "id": "subclass.death_domain.inescapable_destruction",
+      "name": "Inescapable Destruction",
+      "kind": "subclass",
+      "owner": "Death Domain",
+      "unlock": 6,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "skill_bonus",
+          "skills": [
+            "any saving throw"
+          ],
+          "amount": 0,
+          "note": "You have learned to make death certain. You have disadvantage on saving throws against necrotic damage, and at 18th level your Reaper and Touch of Death additionally deal damage equal to 1d8 plus your cleric level to a creature that can't see you, and this damage is in addition to your damage."
+        }
+      ],
+      "summary": "Disadvantage on saves against necrotic damage",
+      "text": "You have disadvantage on saving throws against necrotic damage.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Death 6"
+      }
+    },
+    {
+      "id": "subclass.death_domain.divine_strike",
+      "name": "Divine Strike",
+      "kind": "subclass",
+      "owner": "Death Domain",
+      "unlock": 8,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "4d8",
+            "bonusFrom": "wis"
+          },
+          "damageType": "necrotic",
+          "resolution": {
+            "mode": "auto"
+          }
+        },
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "Your weapon strikes true, so as an action you can make a melee weapon attack, and on a hit you can channel divinity and deal an additional 4d8 necrotic damage plus your Wisdom modifier on a critical hit or half as much on a hit, and at 18th level it works with a bonus action too."
+        }
+      ],
+      "summary": "After a melee hit: 4d8 + Wis necrotic on a critical",
+      "text": "As an action, you can make a melee weapon attack. On a hit, you can use your bonus action to channel divinity and deal an additional 4d8 necrotic damage.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Death 8"
+      }
+    },
+    {
+      "id": "subclass.death_domain.improved_reaper",
+      "name": "Improved Reaper",
+      "kind": "subclass",
+      "owner": "Death Domain",
+      "unlock": 17,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "4d10",
+            "perLevel": {
+              "dice": "1d10",
+              "above": 1
+            }
+          },
+          "damageType": "necrotic",
+          "resolution": {
+            "mode": "attack",
+            "ability": "wis",
+            "reaches": [
+              "60 ft melee spell attack"
+            ]
+          }
+        },
+        {
+          "kind": "special",
+          "note": "Your Reaper can be used twice without taking a short or long rest, and its damage and healing are 4d10 rather than 2d10, and you can use it as a bonus action."
+        }
+      ],
+      "summary": "Reaper works twice per rest and as a bonus action",
+      "text": "You can cast Reaper twice without taking a short or long rest.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Death 17"
+      }
+    },
+    {
+      "id": "subclass.forge_domain.bonus_proficiency",
+      "name": "Bonus Proficiency",
+      "kind": "subclass",
+      "owner": "Forge Domain",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "tool",
+          "tools": [
+            "smith's tools",
+            "any type of artisan's tools"
+          ],
+          "proficiency": "proficient"
+        },
+        {
+          "kind": "special",
+          "note": "You gain proficiency with smith's tools and one type of artisan's tools."
+        }
+      ],
+      "summary": "Proficiency with smith's tools and an artisan's tool",
+      "text": "You gain proficiency with smith's tools and one type of artisan's tools.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Forge 1"
+      }
+    },
+    {
+      "id": "subclass.forge_domain.blessing_of_the_forge",
+      "name": "Blessing of the Forge",
+      "kind": "subclass",
+      "owner": "Forge Domain",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "ac_bonus",
+          "amount": 1,
+          "duration": "while_active"
+        },
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "You have learned to imbue a weapon you are proficient with with a blessing, so as an action on a turn when you hit a creature with a melee attack with that weapon, you can imbue it with a blessing of your choice for 1 minute, and while the weapon is blessed you have a +1 bonus to attack and damage rolls with it, and at 17th level the blessing lasts 10 minutes instead."
+        }
+      ],
+      "summary": "Bless a weapon for +1 attack and damage",
+      "text": "As an action on a turn when you hit a creature with a melee attack using a weapon, you can imbue the weapon with a blessing of your choice for 1 minute.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Forge 1"
+      }
+    },
+    {
+      "id": "subclass.forge_domain.artisans_blessing",
+      "name": "Channel Divinity: Artisan's Blessing",
+      "kind": "subclass",
+      "owner": "Forge Domain",
+      "unlock": 2,
+      "activation": "bonus_action",
+      "cost": [
+        {
+          "resource": "channel_divinity",
+          "amount": 1
+        }
+      ],
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "As a bonus action, you can channel divinity and choose a creature within 60 feet, and it gains a 10-sided die it can roll to add to one ability check or saving throw, and it can be used before or after the roll, and the die is gone after, and at 17th level it is 12d10 and the target can use it twice."
+        }
+      ],
+      "summary": "Spend CD: hand out a d10 to add to one roll",
+      "text": "As a bonus action, you can channel divinity and choose a creature within 60 feet of you.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Forge 2"
+      }
+    },
+    {
+      "id": "subclass.forge_domain.soul_of_the_forge",
+      "name": "Soul of the Forge",
+      "kind": "subclass",
+      "owner": "Forge Domain",
+      "unlock": 6,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "You know your soul is linked to your forge, so the bonus damage from Divine Strike is 2d8 at 6th level and 3d8 at 11th, rather than 1d8, and you also gain resistance to radiant damage, and you are immune to being blinded."
+        }
+      ],
+      "summary": "Divine Strike scales faster; radiant resistance and blind immunity",
+      "text": "You have resistance to radiant damage, and you are immune to being blinded.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Forge 6"
+      }
+    },
+    {
+      "id": "subclass.forge_domain.divine_strike",
+      "name": "Divine Strike",
+      "kind": "subclass",
+      "owner": "Forge Domain",
+      "unlock": 8,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "4d8",
+            "bonusFrom": "wis"
+          },
+          "damageType": "radiant",
+          "resolution": {
+            "mode": "auto"
+          }
+        },
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "As an action, you can make a melee weapon attack, and on a hit you can use your bonus action to channel divinity and deal an additional 4d8 radiant damage plus your Wisdom modifier on a critical hit or half as much on a hit, and at 18th level it works with a bonus action too."
+        }
+      ],
+      "summary": "After a melee hit: 4d8 + Wis radiant on a critical",
+      "text": "As an action, you can make a melee weapon attack. On a hit, you can use your bonus action to channel divinity and deal an additional 4d8 radiant damage.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Forge 8"
+      }
+    },
+    {
+      "id": "subclass.forge_domain.saint_of_forge_and_fire",
+      "name": "Saint of Forge and Fire",
+      "kind": "subclass",
+      "owner": "Forge Domain",
+      "unlock": 17,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You embody the divine fire, so the bonus damage from Divine Strike increases to 4d8, you gain immunity to fire damage, and at 18th level you also gain immunity to being charmed."
+        }
+      ],
+      "summary": "Divine Strike deals 4d8; immunity to fire",
+      "text": "The bonus damage from your Divine Strike feature increases to 4d8.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Forge 17"
+      }
+    },
+    {
+      "id": "subclass.grave_domain.bonus_proficiency",
+      "name": "Bonus Proficiency",
+      "kind": "subclass",
+      "owner": "Grave Domain",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "tool",
+          "tools": [
+            "any type of gaming set"
+          ],
+          "proficiency": "proficient"
+        },
+        {
+          "kind": "special",
+          "note": "You gain proficiency with two additional areas of expertise: any type of gaming set and medium armor."
+        }
+      ],
+      "summary": "Proficiency with a gaming set and medium armor",
+      "text": "You gain proficiency with two additional areas of expertise: any type of gaming set and medium armor.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Grave 1"
+      }
+    },
+    {
+      "id": "subclass.grave_domain.circle_of_mortality",
+      "name": "Circle of Mortality",
+      "kind": "subclass",
+      "owner": "Grave Domain",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "skill",
+          "skills": [
+            "Medicine",
+            "Religion"
+          ],
+          "proficiency": "proficient"
+        },
+        {
+          "kind": "special",
+          "note": "You have mastered the circle of life and death, so you gain proficiency in Medicine and Religion, and you can cast the aid and sanctuary spells as cleric cantrips cast with your spellcasting ability, and at 17th level you also gain prepare the dead, which lets you cast animate dead."
+        }
+      ],
+      "summary": "Medicine and Religion proficiency; aid and sanctuary as cantrips",
+      "text": "You gain proficiency in the Medicine and Religion skills. You learn the sanctuary cantrip.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Grave 1"
+      }
+    },
+    {
+      "id": "subclass.grave_domain.eyes_of_the_grave",
+      "name": "Eyes of the Grave",
+      "kind": "subclass",
+      "owner": "Grave Domain",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You can see death, so at will you can detect the presence of any creature within 30 feet that has 1 hit point or fewer, whether it's living, dead, dying or undead, and you have advantage on Wisdom (Survival) checks to track undead."
+        }
+      ],
+      "summary": "Sense creatures at 1 HP or fewer within 30 ft",
+      "text": "At will, you can detect the presence of any creature within 30 feet of you that has 1 hit point or fewer.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Grave 1"
+      }
+    },
+    {
+      "id": "subclass.grave_domain.path_to_the_grave",
+      "name": "Path to the Grave",
+      "kind": "subclass",
+      "owner": "Grave Domain",
+      "unlock": 2,
+      "activation": "action",
+      "cost": [
+        {
+          "resource": "channel_divinity",
+          "amount": 1
+        }
+      ],
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 30,
+          "unit": "ft"
+        }
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "As an action, you can channel divinity and cause one creature within 30 feet to make a Wisdom saving throw, and on a failure its speed is halved to a minimum of 1 and it has disadvantage on attack rolls and ability checks until the end of your next turn, and at 17th level the speed reduction can't go below 5."
+        }
+      ],
+      "summary": "Spend CD: halve a creature's speed and hinder it",
+      "text": "As an action, you can channel divinity and cause one creature within 30 feet of you to make a Wisdom saving throw.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Grave 2"
+      }
+    },
+    {
+      "id": "subclass.grave_domain.sentinel_at_deaths_door",
+      "name": "Sentinel at Death's Door",
+      "kind": "subclass",
+      "owner": "Grave Domain",
+      "unlock": 6,
+      "activation": "action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "ally",
+        "range": {
+          "value": 10,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "condition",
+          "action": "apply",
+          "conditions": [
+            "unconscious"
+          ]
+        },
+        {
+          "kind": "special",
+          "note": "As an action, you can touch one creature within 10 feet of you that is at 0 hit points and is your ally, and it becomes stable, and at 6th level you can instead use this on yourself and regain 1d8 plus your cleric level, and at 18th level it is 2d8."
+        }
+      ],
+      "summary": "Action: stabilise a dying ally",
+      "text": "As an action, you can touch one creature that is within 10 feet of you and that has 0 hit points.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Grave 6"
+      }
+    },
+    {
+      "id": "subclass.grave_domain.divine_strike",
+      "name": "Divine Strike",
+      "kind": "subclass",
+      "owner": "Grave Domain",
+      "unlock": 8,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "4d8",
+            "bonusFrom": "wis"
+          },
+          "damageType": "necrotic",
+          "resolution": {
+            "mode": "auto"
+          }
+        },
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "As an action, you can make a melee weapon attack, and on a hit you can use your bonus action to channel divinity and deal an additional 4d8 necrotic damage plus your Wisdom modifier on a critical hit or half as much on a hit, and at 18th level it works with a bonus action too."
+        }
+      ],
+      "summary": "After a melee hit: 4d8 + Wis necrotic on a critical",
+      "text": "As an action, you can make a melee weapon attack. On a hit, you can use your bonus action to channel divinity and deal an additional 4d8 necrotic damage.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Grave 8"
+      }
+    },
+    {
+      "id": "subclass.grave_domain.keeper_of_souls",
+      "name": "Keeper of Souls",
+      "kind": "subclass",
+      "owner": "Grave Domain",
+      "unlock": 17,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "6d8",
+            "bonusFrom": "wis"
+          },
+          "damageType": "necrotic",
+          "resolution": {
+            "mode": "auto"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You can feel death's advance, so the bonus damage from Divine Strike increases to 6d8 at 6th level and 8d8 at 16th, and when you reduce a creature other than an undead to 0 hit points with this feature, you have advantage on saving throws against the living dead for the next minute, and at 18th level your Reaper kills restore your full hit points."
+        }
+      ],
+      "summary": "Divine Strike deals 6d8 then 8d8 necrotic",
+      "text": "The bonus damage from your Divine Strike feature increases to 6d8 at 6th level and 8d8 at 16th level.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Grave 17"
+      }
+    },
+    {
+      "id": "subclass.knowledge.blessings_of_knowledge",
+      "name": "Blessings of Knowledge",
+      "kind": "subclass",
+      "owner": "Knowledge",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "tool",
+          "tools": [
+            "any two of Calligrapher's supplies or Scribing supplies"
+          ],
+          "proficiency": "expertise"
+        },
+        {
+          "kind": "special",
+          "note": "You have studied a breadth of knowledge, so you gain proficiency in two tools of your choice, either Calligrapher's supplies or Scribing supplies, and you gain two languages of your choice, and you can replace any wizard spell you prepared for a ritual spell of the same level."
+        }
+      ],
+      "summary": "Two scribe tools, two languages, and ritual spells",
+      "text": "You gain proficiency with two tools of your choice, either Calligrapher's supplies or Scribing supplies.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Knowledge 1"
+      }
+    },
+    {
+      "id": "subclass.knowledge.knowledge_of_the_ages",
+      "name": "Channel Divinity: Knowledge of the Ages",
+      "kind": "subclass",
+      "owner": "Knowledge",
+      "unlock": 2,
+      "activation": "action",
+      "cost": [
+        {
+          "resource": "channel_divinity",
+          "amount": 1
+        }
+      ],
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "any"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "As an action, you can channel divinity to grant a creature within 60 feet temporary proficiency in a language you know and the ability to read any script you can see for 1 hour, and at 17th level the target can also translate mundane speech."
+        }
+      ],
+      "summary": "Spend CD: 1 hour of language and script comprehension",
+      "text": "As an action, you can channel divinity to grant a creature proficiency in any language you know.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Knowledge 2"
+      }
+    },
+    {
+      "id": "subclass.knowledge.read_thoughts",
+      "name": "Channel Divinity: Read Thoughts",
+      "kind": "subclass",
+      "owner": "Knowledge",
+      "unlock": 6,
+      "activation": "action",
+      "cost": [
+        {
+          "resource": "channel_divinity",
+          "amount": 1
+        }
+      ],
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "As an action, you can channel divinity to read the thoughts of any creature within 30 feet of you that is within your line of sight, and on a failed Wisdom save the creature is spell-affected, unable to hide its thoughts from you and disadvantage on Charisma checks against you for 1 minute."
+        }
+      ],
+      "summary": "Spend CD: read a creature's thoughts",
+      "text": "As an action, you can channel divinity and target one creature within 30 feet of you.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Knowledge 6"
+      }
+    },
+    {
+      "id": "subclass.knowledge.potent_spellcasting",
+      "name": "Potent Spellcasting",
+      "kind": "subclass",
+      "owner": "Knowledge",
+      "unlock": 8,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "Your knowledge empowers your magic, so when you cast a spell that deals psychic or thunder damage, it deals an extra 2d8 of that damage type when a creature is damaged by it, and the damage increases by 1d8 at 17th level."
+        }
+      ],
+      "summary": "Psychic and thunder spells deal extra 2d8",
+      "text": "When you cast any spell with a psychic or thunder theme, the spell deals an extra 2d8 of that damage type.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Knowledge 8"
+      }
+    },
+    {
+      "id": "subclass.knowledge.visions_of_the_past",
+      "name": "Visions of the Past",
+      "kind": "subclass",
+      "owner": "Knowledge",
+      "unlock": 17,
+      "activation": "action",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "object"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have peered too deeply into knowledge, so as an action you can take total and precise control of one object within 30 feet that is unattended and not being worn or carried, and until the end of your next turn the GM has disadvantage on any check to perceive the object's true nature, and at 18th level the property is permanent until you cast it again."
+        }
+      ],
+      "summary": "Action: mask an object's true nature from perception",
+      "text": "As an action, you can take total and precise control of one object within 30 feet of you.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Knowledge 17"
+      }
+    },
+    {
+      "id": "subclass.life.bonus_proficiency",
+      "name": "Bonus Proficiency",
+      "kind": "subclass",
+      "owner": "Life",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "tool",
+          "tools": [
+            "any type of gaming set"
+          ],
+          "proficiency": "proficient"
+        },
+        {
+          "kind": "special",
+          "note": "You gain proficiency with two additional areas of expertise: any type of heavy armor and the Medicine skill."
+        }
+      ],
+      "summary": "Proficiency with a gaming set, heavy armor and Medicine",
+      "text": "You gain proficiency with two additional areas of expertise: any type of heavy armor and the Medicine skill.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Life 1"
+      }
+    },
+    {
+      "id": "subclass.life.disciple_of_life",
+      "name": "Disciple of Life",
+      "kind": "subclass",
+      "owner": "Life",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You show mercy and promote vitality, so you know the cure wounds cantrip, which you can cast at will without a spell slot, and you also learn a domain spell of the Life domain at 3rd, 7th, 11th, 15th and 18th level, and you can cast the bless and cure wounds spells as cantrips."
+        }
+      ],
+      "summary": "Cure wounds at will; bless and cure wounds as cantrips",
+      "text": "You learn the cure wounds cantrip, which you can cast at will without a spell slot.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Life 1"
+      }
+    },
+    {
+      "id": "subclass.life.preserve_life",
+      "name": "Channel Divinity: Preserve Life",
+      "kind": "subclass",
+      "owner": "Life",
+      "unlock": 2,
+      "activation": "action",
+      "cost": [
+        {
+          "resource": "channel_divinity",
+          "amount": 1
+        }
+      ],
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 30,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "heal",
+          "dice": {
+            "dice": "10",
+            "flat": 0
+          },
+          "resolution": {
+            "mode": "save",
+            "ability": "con",
+            "onSuccess": "none",
+            "onFailure": "full"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "As an action, you can channel divinity and distribute healing to a number of creatures within 30 feet of you, and the total healing divides among them, and if you choose a creature at 0 hit points it is stabilized, and at 17th level the healing increases to 25."
+        }
+      ],
+      "summary": "Spend CD: distribute healing among creatures you choose",
+      "text": "As an action, you can channel divinity and distribute healing among any number of creatures within 30 feet of you.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Life 2"
+      }
+    },
+    {
+      "id": "subclass.life.blessed_healer",
+      "name": "Blessed Healer",
+      "kind": "subclass",
+      "owner": "Life",
+      "unlock": 6,
+      "activation": "reaction",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": {
+        "event": "ally_damaged"
+      },
+      "targeting": {
+        "scope": "ally",
+        "range": {
+          "value": 30,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "temp_hp",
+          "dice": {
+            "dice": "1",
+            "flat": 0
+          },
+          "note": "You have a vocation of tending the maimed, so as a reaction when a creature you can see within 30 feet regains hit points from any source but itself, you can give that creature 1d8 plus your Wisdom modifier in temporary hit points, and the target is immune to the frightened condition until the end of your next turn."
+        }
+      ],
+      "summary": "Reaction: a healed ally gets 1d8 + Wis temp HP",
+      "text": "When a creature you can see within 30 feet of you regains hit points from any source but itself, you can use your reaction to give that creature 1d8 + your Wisdom modifier temporary hit points.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Life 6"
+      }
+    },
+    {
+      "id": "subclass.life.divine_strike",
+      "name": "Divine Strike",
+      "kind": "subclass",
+      "owner": "Life",
+      "unlock": 8,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "4d8",
+            "bonusFrom": "wis"
+          },
+          "damageType": "radiant",
+          "resolution": {
+            "mode": "auto"
+          }
+        },
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "As an action, you can make a melee weapon attack, and on a hit you can use your bonus action to channel divinity and deal an additional 4d8 radiant damage plus your Wisdom modifier on a critical hit or half as much on a hit, and at 18th level it works with a bonus action too."
+        }
+      ],
+      "summary": "After a melee hit: 4d8 + Wis radiant on a critical",
+      "text": "As an action, you can make a melee weapon attack. On a hit, you can use your bonus action to channel divinity and deal an additional 4d8 radiant damage.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Life 8"
+      }
+    },
+    {
+      "id": "subclass.life.supreme_healing",
+      "name": "Supreme Healing",
+      "kind": "subclass",
+      "owner": "Life",
+      "unlock": 17,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "heal",
+          "dice": {
+            "dice": "2d8",
+            "perLevel": {
+              "dice": "1d8",
+              "above": 1
+            }
+          },
+          "resolution": {
+            "mode": "auto"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You have mastered the greatest healings, so once on your turn or when you end concentration on bless, you can regain 2d8 plus your cleric level in hit points, and the cleric level increases by 1 for each Cleric level after 17th, and at 18th level Disciple of Life also works on your allies."
+        }
+      ],
+      "summary": "Free action: 2d8 + Cleric level healing, once a turn",
+      "text": "Once on your turn, or when you end concentration on bless, you can regain 2d8 + your cleric level in hit points.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Life 17"
+      }
+    },
+    {
+      "id": "subclass.light.bonus_cantrip",
+      "name": "Bonus Cantrip",
+      "kind": "subclass",
+      "owner": "Light",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "cantrip": {
+            "known": true
+          },
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "evocation"
+              ]
+            }
+          ],
+          "note": "You know the sacred flame cantrip, castable at will without a slot, and an extra light domain spell at 4th, 8th, 12th, 16th and 18th level, and you can cast the burning hands and scorching rays spells as cantrips."
+        }
+      ],
+      "summary": "Sacred flame at will; burning hands and scorching ray as cantrips",
+      "text": "You know the sacred flame cantrip, which you can cast at will without a spell slot.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Light 1"
+      }
+    },
+    {
+      "id": "subclass.light.warding_flare",
+      "name": "Warding Flare",
+      "kind": "subclass",
+      "owner": "Light",
+      "unlock": 1,
+      "activation": "reaction",
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": {
+        "event": "self_damaged"
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "1d4",
+            "bonusFrom": "cha"
+          },
+          "damageType": "radiant",
+          "resolution": {
+            "mode": "save",
+            "ability": "dex",
+            "onSuccess": "half",
+            "onFailure": "full"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "When you are hit by an attack, you can use your reaction to make the attacker take 1d4 radiant damage plus your Charisma modifier, which they must make a Dexterity save against, and at 6th level the damage is 1d8."
+        }
+      ],
+      "summary": "Reaction: 1d4 + Cha radiant against your attacker",
+      "text": "When you are hit by an attack, you can use your reaction to make the attacker take 1d4 radiant damage plus your Charisma modifier.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Light 1"
+      }
+    },
+    {
+      "id": "subclass.light.radiance_of_the_dawn",
+      "name": "Channel Divinity: Radiance of the Dawn",
+      "kind": "subclass",
+      "owner": "Light",
+      "unlock": 2,
+      "activation": "action",
+      "cost": [
+        {
+          "resource": "channel_divinity",
+          "amount": 1
+        }
+      ],
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "any"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "As a magic action, you can channel divinity and present your holy symbol, and if you do, the creature of your choice within 30 feet that can see you makes a Constitution saving throw, and on a failure it is blinded and any attack it has disadvantage on until the end of your next turn, and at 18th level it is also deafened."
+        }
+      ],
+      "summary": "Spend CD: daylight blinds a creature and sows its attacks",
+      "text": "As a magic action, you can channel divinity and present your holy symbol.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Light 2"
+      }
+    },
+    {
+      "id": "subclass.light.improved_flare",
+      "name": "Improved Flare",
+      "kind": "subclass",
+      "owner": "Light",
+      "unlock": 6,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "1d8",
+            "bonusFrom": "cha"
+          },
+          "damageType": "radiant",
+          "resolution": {
+            "mode": "auto"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "Your Warding Flare burns brighter, so when you use it the attacker takes 1d8 radiant damage plus your Charisma modifier instead of 1d4, and at 18th level Warding Flare also blinds the creature if it can see you and fails a Constitution save."
+        }
+      ],
+      "summary": "Warding Flare deals 1d8 instead of 1d4",
+      "text": "Your Warding Flare feature deals 1d8 radiant damage plus your Charisma modifier.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Light 6"
+      }
+    },
+    {
+      "id": "subclass.light.potent_spellcasting",
+      "name": "Potent Spellcasting",
+      "kind": "subclass",
+      "owner": "Light",
+      "unlock": 8,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "Your light burns hotter, so when you cast a spell with a radiant theme, it deals an extra 2d8 radiant damage when a creature is damaged by it, and the damage increases by 1d8 at 17th level, and at 18th level radiant healing also heals you."
+        }
+      ],
+      "summary": "Radiant spells deal extra 2d8",
+      "text": "When you cast any spell with a radiant theme, the spell deals an extra 2d8 radiant damage.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Light 8"
+      }
+    },
+    {
+      "id": "subclass.light.corona_of_light",
+      "name": "Corona of Light",
+      "kind": "subclass",
+      "owner": "Light",
+      "unlock": 17,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
+      "endsIf": [
+        "attack_or_cast_spell"
+      ],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "As a bonus action, you can emanate a 40-foot radius sphere of bright light for 1 minute, and any creature that starts its turn in the light must succeed on a Constitution save or be blinded until the start of its next turn, and at 18th level you can move 10 feet toward a creature of your choice within the light whenever you use this."
+        }
+      ],
+      "summary": "Bonus action: a 40-ft light that blinds creatures in it",
+      "text": "As a bonus action, you can emanate bright light in a 40-foot-radius sphere around yourself for 1 minute.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Light 17"
+      }
+    },
+    {
+      "id": "subclass.nature.acolyte_of_nature",
+      "name": "Acolyte of Nature",
+      "kind": "subclass",
+      "owner": "Nature",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "cantrip": {
+            "known": true
+          },
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "druid"
+              ]
+            }
+          ],
+          "note": "You are a servant of nature, so you learn the druidcraft cantrip, castable at will without a slot, and learn a druid spell you can cast as a cleric cantrip, and can cast shillelagh, and you can learn two more druid spells at 4th, 8th, 12th, 16th and 18th level."
+        }
+      ],
+      "summary": "Druidcraft at will, and druid spells cast as cantrips",
+      "text": "You learn the druidcraft cantrip, which you can cast at will without a spell slot.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Nature 1"
+      }
+    },
+    {
+      "id": "subclass.nature.charm_animals_and_plants",
+      "name": "Charm Animals and Plants",
+      "kind": "subclass",
+      "owner": "Nature",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "skill",
+          "skills": [
+            "Animal Handling",
+            "Nature",
+            "Survival"
+          ],
+          "proficiency": "proficient"
+        },
+        {
+          "kind": "special",
+          "note": "You have learned to befriend creatures, so you gain proficiency in the Animal Handling, Nature and Survival skills, and you can charm a Beast or Plant within 30 feet of you with a Wisdom save, and it is charmed by you for 8 hours or until you or an ally kills it."
+        }
+      ],
+      "summary": "Three skill proficiencies; charm a Beast or Plant for eight hours",
+      "text": "You gain proficiency in the Animal Handling, Nature, and Survival skills.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Nature 1"
+      }
+    },
+    {
+      "id": "subclass.nature.dampen_elements",
+      "name": "Dampen Elements",
+      "kind": "subclass",
+      "owner": "Nature",
+      "unlock": 6,
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "self_damaged"
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "round"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "1",
+            "flat": 0
+          },
+          "damageType": "fire_damage_or_cold_damage",
+          "resolution": {
+            "mode": "auto"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "As a reaction when you take acid, cold, fire, lightning or thunder damage, you can take no damage and gain temporary hit points equal to 2 plus your Wisdom modifier, and the trigger ends, and at 18th level this works twice per long rest."
+        }
+      ],
+      "summary": "Reaction: negate one elemental hit and gain temp HP",
+      "text": "As a reaction when you take acid, cold, fire, lightning, or thunder damage, you can take no damage.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Nature 6"
+      }
+    },
+    {
+      "id": "subclass.nature.potent_spellcasting",
+      "name": "Potent Spellcasting",
+      "kind": "subclass",
+      "owner": "Nature",
+      "unlock": 8,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "Your nature magic surges, so when you cast a spell with a healing or thunder theme, it deals an extra 2d8 of that damage type when a creature is damaged by it, and the damage increases by 1d8 at 17th level, and at 18th level thunder healing also heals you."
+        }
+      ],
+      "summary": "Healing and thunder spells deal extra 2d8",
+      "text": "When you cast any spell with a healing or thunder theme, the spell deals an extra 2d8 of that damage type.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Nature 8"
+      }
+    },
+    {
+      "id": "subclass.nature.master_of_nature",
+      "name": "Master of Nature",
+      "kind": "subclass",
+      "owner": "Nature",
+      "unlock": 17,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 60,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "condition",
+          "action": "apply",
+          "conditions": [
+            "charmed"
+          ]
+        },
+        {
+          "kind": "special",
+          "note": "As a bonus action, you can cast shillelagh without a material component and then charm a creature within 60 feet, and at 17th level you gain a second use of this feature, and when you use it you also gain the ability to move 10 feet."
+        }
+      ],
+      "summary": "Bonus action: shillelagh and charm a creature",
+      "text": "As a bonus action, you can cast shillelagh without a material component.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Nature 17"
+      }
+    },
+    {
+      "id": "subclass.order_domain.bonus_proficiencies",
+      "name": "Bonus Proficiencies",
+      "kind": "subclass",
+      "owner": "Order Domain",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "tool",
+          "tools": [
+            "any type of gaming set"
+          ],
+          "proficiency": "proficient"
+        },
+        {
+          "kind": "special",
+          "note": "You gain proficiency with two additional areas of expertise: any type of gaming set and heavy armor."
+        }
+      ],
+      "summary": "Proficiency with a gaming set and heavy armor",
+      "text": "You gain proficiency with two additional areas of expertise: any type of gaming set and heavy armor.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Order 1"
+      }
+    },
+    {
+      "id": "subclass.order_domain.voice_of_authority",
+      "name": "Voice of Authority",
+      "kind": "subclass",
+      "owner": "Order Domain",
+      "unlock": 1,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 30,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "Your voice carries authority, so as a bonus action you can speak a command to a creature within 30 feet of you, and if it hears you it must make a Wisdom save, and on a failure it moves to a place you choose within 30 feet and doesn't attack on its turn, and at 18th level its speed can't be reduced to 0 while affected."
+        }
+      ],
+      "summary": "Bonus action: command a creature to move and stand down",
+      "text": "As a bonus action, you can speak a command in a strong voice.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Order 1"
+      }
+    },
+    {
+      "id": "subclass.order_domain.order_domain_spells",
+      "name": "Order Domain Spells",
+      "kind": "subclass",
+      "owner": "Order Domain",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "abjuration"
+              ]
+            },
+            {
+              "level": 1,
+              "from": [
+                "abjuration"
+              ]
+            }
+          ],
+          "note": "You learn two abjuration wizard spells, always prepared and not counting against your prepared spells, with more at 3rd, 5th, 7th, 9th, 13th and 17th level."
+        }
+      ],
+      "summary": "Two abjuration spells, always prepared",
+      "text": "You learn abjuration spells from the wizard list.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Order 1"
+      }
+    },
+    {
+      "id": "subclass.order_domain.orders_demand",
+      "name": "Channel Divinity: Order's Demand",
+      "kind": "subclass",
+      "owner": "Order Domain",
+      "unlock": 2,
+      "activation": "action",
+      "cost": [
+        {
+          "resource": "channel_divinity",
+          "amount": 1
+        }
+      ],
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "condition",
+          "action": "apply",
+          "conditions": [
+            "frightened"
+          ]
+        },
+        {
+          "kind": "special",
+          "note": "As an action, you can channel divinity and present your holy symbol, forcing a creature within 60 feet to make a Wisdom save, and on a failure it is frightened for 1 minute or until you tell it to stop, and it automatically fails saves against being charmed."
+        }
+      ],
+      "summary": "Spend CD: frighten a creature for a minute",
+      "text": "As an action, you can channel divinity and present your holy symbol.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Order 2"
+      }
+    },
+    {
+      "id": "subclass.order_domain.embodiment_of_the_law",
+      "name": "Embodiment of the Law",
+      "kind": "subclass",
+      "owner": "Order Domain",
+      "unlock": 6,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You know the laws of the land, so you have advantage on saving throws against being charmed, and you also have immunity to being charmed, and at 18th level you can use your Voice of Authority on a creature as a reaction rather than a bonus action."
+        }
+      ],
+      "summary": "Immune to charmed; Voice of Authority as a reaction at 18",
+      "text": "You have advantage on saving throws against being charmed.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Order 6"
+      }
+    },
+    {
+      "id": "subclass.order_domain.divine_strike",
+      "name": "Divine Strike",
+      "kind": "subclass",
+      "owner": "Order Domain",
+      "unlock": 8,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "4d8",
+            "bonusFrom": "wis"
+          },
+          "damageType": "radiant",
+          "resolution": {
+            "mode": "auto"
+          }
+        },
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "As an action, you can make a melee weapon attack, and on a hit you can use your bonus action to channel divinity and deal an additional 4d8 radiant damage plus your Wisdom modifier on a critical hit or half as much on a hit, and at 18th level it works with a bonus action too."
+        }
+      ],
+      "summary": "After a melee hit: 4d8 + Wis radiant on a critical",
+      "text": "As an action, you can make a melee weapon attack. On a hit, you can use your bonus action to channel divinity and deal an additional 4d8 radiant damage.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Order 8"
+      }
+    },
+    {
+      "id": "subclass.order_domain.orders_wrath",
+      "name": "Order's Wrath",
+      "kind": "subclass",
+      "owner": "Order Domain",
+      "unlock": 17,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "6d8",
+            "bonusFrom": "wis"
+          },
+          "damageType": "radiant",
+          "resolution": {
+            "mode": "auto"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You exude an aura of lawful authority, so the bonus damage from Divine Strike increases to 6d8 at 6th level and 8d8 at 16th, and while you have this feature, if you make a melee attack against a creature and hit, you can use a reaction to force it to make a Strength save, and on a failure it is frightened until the end of your next turn."
+        }
+      ],
+      "summary": "Divine Strike deals 6d8 then 8d8; hits can frighten",
+      "text": "The bonus damage from your Divine Strike feature increases to 6d8 at 6th level and 8d8 at 16th level.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Order 17"
+      }
+    },
+    {
+      "id": "subclass.peace_domain.implement_of_peace",
+      "name": "Implement of Peace",
+      "kind": "subclass",
+      "owner": "Peace Domain",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "You make peace through a shield or a simple weapon, so you can add your Charisma modifier to attack or damage rolls with a shield or simple weapon, and at 6th level you gain proficiency with shields and light armor."
+        }
+      ],
+      "summary": "Charisma modifier adds to shield and simple weapon rolls",
+      "text": "You can add your Charisma modifier to attack or damage rolls when you make an attack with a shield or a simple weapon.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Peace 1"
+      }
+    },
+    {
+      "id": "subclass.peace_domain.emboldening_bond",
+      "name": "Emboldening Bond",
+      "kind": "subclass",
+      "owner": "Peace Domain",
+      "unlock": 1,
+      "activation": "action",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "allies",
+        "range": {
+          "value": 30,
+          "unit": "ft"
+        },
+        "count": 3
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "You can strengthen your allies, so as an action you can forge a bond between up to three willing creatures within 30 feet of you, and each can add 1d4 to an attack roll or saving throw while it's within 60 feet of you or another bonded creature, and the bond ends at the end of your next turn if a creature goes to 0 hit points or 30 feet away from all bonded creatures, and at 6th level the bonus increases to 1d6 and you can use it twice per day."
+        }
+      ],
+      "summary": "Action: up to three allies add 1d4 to rolls for a minute",
+      "text": "As an action, you can forge a bond between up to 3 willing creatures within 30 feet of you.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Peace 1"
+      }
+    },
+    {
+      "id": "subclass.peace_domain.peace_domain_spells",
+      "name": "Peace Domain Spells",
+      "kind": "subclass",
+      "owner": "Peace Domain",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "enchantment"
+              ]
+            },
+            {
+              "level": 1,
+              "from": [
+                "enchantment"
+              ]
+            }
+          ],
+          "note": "You learn two enchantment wizard spells, always prepared and not counting against your prepared spells, with more at 3rd, 5th, 7th, 9th, 13th and 17th level."
+        }
+      ],
+      "summary": "Two enchantment spells, always prepared",
+      "text": "You learn enchantment spells from the wizard list.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Peace 1"
+      }
+    },
+    {
+      "id": "subclass.peace_domain.balm_of_peace",
+      "name": "Channel Divinity: Balm of Peace",
+      "kind": "subclass",
+      "owner": "Peace Domain",
+      "unlock": 2,
+      "activation": "action",
+      "cost": [
+        {
+          "resource": "channel_divinity",
+          "amount": 1
+        }
+      ],
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 30,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "As an action, you can channel divinity and spread a soothing calm, and any creature within 30 feet of you makes a Constitution save, and on a failure it has advantage on all saving throws against magical or magical effects until the end of your next turn, and at 17th level the duration is 1 hour."
+        }
+      ],
+      "summary": "Spend CD: allies gain advantage on magical saves",
+      "text": "As an action, you can channel divinity and spread a soothing calm.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Peace 2"
+      }
+    },
+    {
+      "id": "subclass.peace_domain.protective_bond",
+      "name": "Protective Bond",
+      "kind": "subclass",
+      "owner": "Peace Domain",
+      "unlock": 6,
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "ally_damaged"
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "Your bond shields allies, so when a creature within 30 feet of you that is affected by your Emboldening Bond takes damage, you can use your reaction to take the damage instead, and you gain the use of this when you finish a long rest, and at 18th level it works twice per long rest."
+        }
+      ],
+      "summary": "Reaction: take the damage meant for a bonded ally",
+      "text": "When a creature within 30 feet of you that is affected by your Emboldening Bond takes damage, you can use your reaction to take the damage instead.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Peace 6"
+      }
+    },
+    {
+      "id": "subclass.peace_domain.potent_spellcasting",
+      "name": "Potent Spellcasting",
+      "kind": "subclass",
+      "owner": "Peace Domain",
+      "unlock": 8,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "Your magic soothes, so when you cast a spell with a healing or enchantment theme, it deals an extra 2d8 of that damage type when a creature is damaged by it, and the damage increases by 1d8 at 17th level, and at 18th level enchantment healing also heals you."
+        }
+      ],
+      "summary": "Healing and enchantment spells deal extra 2d8",
+      "text": "When you cast any spell with a healing or enchantment theme, the spell deals an extra 2d8 of that damage type.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Peace 8"
+      }
+    },
+    {
+      "id": "subclass.peace_domain.expansive_bond",
+      "name": "Expansive Bond",
+      "kind": "subclass",
+      "owner": "Peace Domain",
+      "unlock": 17,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "Your bond reaches further, so Emboldening Bond's bonus is 1d6 and you can forge it with up to six creatures, and creatures can add 1d6 to an attack roll or saving throw while within 60 feet of any other creature that you have bonded with, and you can use it twice per long rest, and at 18th level it can also add 1d6 to an ability check."
+        }
+      ],
+      "summary": "Emboldening Bond: six allies, 1d6, longer reach",
+      "text": "The bonus granted by Emboldening Bond increases to 1d6, and you can forge the bond between up to 6 willing creatures.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Peace 17"
+      }
+    },
+    {
+      "id": "subclass.tempest.bonus_proficiencies",
+      "name": "Bonus Proficiencies",
+      "kind": "subclass",
+      "owner": "Tempest",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "tool",
+          "tools": [
+            "any type of gaming set"
+          ],
+          "proficiency": "proficient"
+        },
+        {
+          "kind": "special",
+          "note": "You gain proficiency with any type of heavy armor, medium armor, shields and simple weapons."
+        }
+      ],
+      "summary": "Heavy armor, shields and simple weapon proficiency",
+      "text": "You gain proficiency with any type of heavy armor, medium armor, shields, and simple weapons.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Tempest 1"
+      }
+    },
+    {
+      "id": "subclass.tempest.wrath_of_the_storm",
+      "name": "Wrath of the Storm",
+      "kind": "subclass",
+      "owner": "Tempest",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "Your power flows from storms, so you have resistance to lightning damage, and at 6th level, when you cast a spell of 3rd level or higher that deals lightning damage, it deals an extra 1d8 lightning damage, and at 17th level you also have resistance to thunder damage."
+        }
+      ],
+      "summary": "Lightning resistance; 3rd-level spells add 1d8 lightning",
+      "text": "You have resistance to lightning damage.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Tempest 1"
+      }
+    },
+    {
+      "id": "subclass.tempest.destructive_wrath",
+      "name": "Channel Divinity: Destructive Wrath",
+      "kind": "subclass",
+      "owner": "Tempest",
+      "unlock": 2,
+      "activation": "bonus_action",
+      "cost": [
+        {
+          "resource": "channel_divinity",
+          "amount": 1
+        }
+      ],
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 30,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "2d10",
+            "bonusFrom": "cha"
+          },
+          "damageType": "lightning",
+          "resolution": {
+            "mode": "save",
+            "ability": "str",
+            "onSuccess": "half",
+            "onFailure": "full"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "When you deal lightning damage to a creature from a spell of 3rd level or higher, you can use a bonus action to deal an additional 2d10 lightning damage to the target, which makes a Strength save, taking half as much on a success, and at 18th level the damage increases to 3d10."
+        }
+      ],
+      "summary": "Spend CD: 2d10 extra lightning on a big spell",
+      "text": "When you deal lightning damage to a creature from a spell of 3rd level or higher, you can use your bonus action to deal an additional 2d10 lightning damage.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Tempest 2"
+      }
+    },
+    {
+      "id": "subclass.tempest.thunderbolt_strike",
+      "name": "Thunderbolt Strike",
+      "kind": "subclass",
+      "owner": "Tempest",
+      "unlock": 6,
+      "activation": "reaction",
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": {
+        "event": "attack_hit"
+      },
+      "targeting": {
+        "scope": "creature"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "2d8",
+            "bonusFrom": "cha"
+          },
+          "damageType": "thunder",
+          "resolution": {
+            "mode": "save",
+            "ability": "str",
+            "onSuccess": "half",
+            "onFailure": "full"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "When you hit a creature with a melee attack, you can use your reaction to deal an additional 2d8 thunder damage to it, making a Strength save, and at 18th level you can instead push it 10 feet away and knock it prone."
+        }
+      ],
+      "summary": "Reaction: 2d8 + Cha thunder on a melee hit",
+      "text": "When you hit a creature with a melee attack, you can use your reaction to deal an additional 2d8 thunder damage.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Tempest 6"
+      }
+    },
+    {
+      "id": "subclass.tempest.potent_spellcasting",
+      "name": "Potent Spellcasting",
+      "kind": "subclass",
+      "owner": "Tempest",
+      "unlock": 8,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "Your spells storm, so when you cast a spell with a lightning or thunder theme, it deals an extra 2d8 of that damage type when a creature is damaged by it, and the damage increases by 1d8 at 17th level."
+        }
+      ],
+      "summary": "Lightning and thunder spells deal extra 2d8",
+      "text": "When you cast any spell with a lightning or thunder theme, the spell deals an extra 2d8 of that damage type.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Tempest 8"
+      }
+    },
+    {
+      "id": "subclass.tempest.stormborn",
+      "name": "Stormborn",
+      "kind": "subclass",
+      "owner": "Tempest",
+      "unlock": 17,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You are the storm itself, so the bonus damage from Wrath of the Storm increases to 2d10 at 6th and 3d10 at 16th, your Destructive Wrath damage increases to 3d10, and you have resistance to thunder damage, and at 18th level you also have resistance to bludgeoning, piercing and slashing from nonmagical attacks."
+        }
+      ],
+      "summary": "Thunder resistance and bigger storm damage",
+      "text": "The bonus damage from your Wrath of the Storm feature increases to 2d10 at 6th level and 3d10 at 16th level.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Tempest 17"
+      }
+    },
+    {
+      "id": "subclass.trickery.blessing_of_the_trickster",
+      "name": "Blessing of the Trickster",
+      "kind": "subclass",
+      "owner": "Trickery",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You bless those who deceive, so you learn the charm person cantrip, castable at will without a slot, and you know one illusion domain spell, plus three more at 2nd, 6th, 10th, 14th and 18th level, and you can cast disguise self and silent image as cantrips."
+        }
+      ],
+      "summary": "Charm person at will; disguise self and silent image as cantrips",
+      "text": "You learn the charm person cantrip, which you can cast at will without a spell slot.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Trickery 1"
+      }
+    },
+    {
+      "id": "subclass.trickery.invoke_duplicity",
+      "name": "Channel Divinity: Invoke Duplicity",
+      "kind": "subclass",
+      "owner": "Trickery",
+      "unlock": 2,
+      "activation": "action",
+      "cost": [
+        {
+          "resource": "channel_divinity",
+          "amount": 1
+        }
+      ],
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 120,
+          "unit": "ft"
+        }
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You weave deception, so as an action you can magically create a sound within 120 feet, and choose a creature within range to hear it and the GM chooses whether the target believes it, and on a success it makes a Charisma (Deception) check against your spell save DC, and a failure leaves it marked and everything it says is untrue."
+        }
+      ],
+      "summary": "Spend CD: an illusionary sound that marks a creature's lies",
+      "text": "As an action, you can magically create a sound within range.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Trickery 2"
+      }
+    },
+    {
+      "id": "subclass.trickery.cloak_of_shadows",
+      "name": "Channel Divinity: Cloak of Shadows",
+      "kind": "subclass",
+      "owner": "Trickery",
+      "unlock": 6,
+      "activation": "action",
+      "cost": [
+        {
+          "resource": "channel_divinity",
+          "amount": 1
+        }
+      ],
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You step between worlds, so as an action you can step up to 10 feet to a place you can see and become invisible, and the effect ends if you attack or cast a spell, and at 17th level you can use this twice per day, and invisible creatures still make noise when they move."
+        }
+      ],
+      "summary": "Spend CD: vanish for an hour",
+      "text": "As an action, you can become invisible.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Trickery 6"
+      }
+    },
+    {
+      "id": "subclass.trickery.potent_spellcasting",
+      "name": "Potent Spellcasting",
+      "kind": "subclass",
+      "owner": "Trickery",
+      "unlock": 8,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "Your deceptions bite, so when you cast a spell with an illusion or psychic theme, it deals an extra 2d8 of that damage type when a creature is damaged by it, and the damage increases by 1d8 at 17th level, and at 18th level psychic healing also heals you."
+        }
+      ],
+      "summary": "Illusion and psychic spells deal extra 2d8",
+      "text": "When you cast any spell with an illusion or psychic theme, the spell deals an extra 2d8 of that damage type.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Trickery 8"
+      }
+    },
+    {
+      "id": "subclass.trickery.divine_strike",
+      "name": "Divine Strike",
+      "kind": "subclass",
+      "owner": "Trickery",
+      "unlock": 8,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "4d8",
+            "bonusFrom": "wis"
+          },
+          "damageType": "psychic",
+          "resolution": {
+            "mode": "auto"
+          }
+        },
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "As an action, you can make a melee weapon attack, and on a hit you can use your bonus action to channel divinity and deal an additional 4d8 psychic damage plus your Wisdom modifier on a critical hit or half as much on a hit, and at 18th level it works with a bonus action too."
+        }
+      ],
+      "summary": "After a melee hit: 4d8 + Wis psychic on a critical",
+      "text": "As an action, you can make a melee weapon attack. On a hit, you can use your bonus action to channel divinity and deal an additional 4d8 psychic damage.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Trickery 8"
+      }
+    },
+    {
+      "id": "subclass.trickery.improved_duplicity",
+      "name": "Improved Duplicity",
+      "kind": "subclass",
+      "owner": "Trickery",
+      "unlock": 17,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "Your deceptions are hard to see through, so a marked creature's Charisma checks to deceive you have disadvantage, and its first attack roll after you or another creature deceives it has disadvantage, and at 18th level, as a bonus action you can dim the light around yourself within 30 feet to create a dim area for 1 minute and hide in it."
+        }
+      ],
+      "summary": "Marked creatures are disadvantaged against deception",
+      "text": "A creature marked by your Invoke Duplicity has disadvantage on Charisma checks to deceive you.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric Trickery 17"
+      }
+    },
+    {
+      "id": "subclass.twilight_domain.bonus_proficiencies",
+      "name": "Bonus Proficiencies",
+      "kind": "subclass",
+      "owner": "Twilight Domain",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "tool",
+          "tools": [
+            "any type of gaming set"
+          ],
+          "proficiency": "proficient"
+        },
+        {
+          "kind": "special",
+          "note": "You gain proficiency with any type of heavy armor, medium armor, shields and simple weapons."
+        }
+      ],
+      "summary": "Armor, shield and simple weapon proficiency",
+      "text": "You gain proficiency with any type of heavy armor, medium armor, shields, and simple weapons.",
+      "source": {
+        "book": "VGTM",
+        "reference": "Vampire's Guide to Ravenloft Twilight Cleric 1"
+      }
+    },
+    {
+      "id": "subclass.twilight_domain.eyes_of_night",
+      "name": "Eyes of Night",
+      "kind": "subclass",
+      "owner": "Twilight Domain",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "senses",
+          "sense": "darkvision"
+        },
+        {
+          "kind": "special",
+          "note": "You have learned to see in darkness, so you have darkvision out to 60 feet, and if a creature within 5 feet of you makes an attack roll against you, you can use your reaction to impose disadvantage on it, and at 17th level your Twilight Sanctuary also ends the frightened condition on creatures in it."
+        }
+      ],
+      "summary": "Darkvision 60 ft; reaction to disadvantage adjacent attacks",
+      "text": "You have darkvision out to 60 feet, and if a creature within 5 feet of you makes an attack roll against you, you can use your reaction to impose disadvantage on the attack roll.",
+      "source": {
+        "book": "VGTM",
+        "reference": "Vampire's Guide to Ravenloft Twilight Cleric 1"
+      }
+    },
+    {
+      "id": "subclass.twilight_domain.vigilant_blessing",
+      "name": "Vigilant Blessing",
+      "kind": "subclass",
+      "owner": "Twilight Domain",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You are ever watchful, so the blessed creature or your ally's Twilight Sanctuary also ends the frightened condition on creatures in it, and at 11th level creatures in the sanctuary also have disadvantage on attacks against creatures other than the caster, and at 17th level it also ends the charmed condition."
+        }
+      ],
+      "summary": "Twilight Sanctuary also ends frightened",
+      "text": "Your Twilight Sanctuary ends the frightened condition for creatures in it.",
+      "source": {
+        "book": "VGTM",
+        "reference": "Vampire's Guide to Ravenloft Twilight Cleric 1"
+      }
+    },
+    {
+      "id": "subclass.twilight_domain.twilight_domain_spells",
+      "name": "Twilight Domain Spells",
+      "kind": "subclass",
+      "owner": "Twilight Domain",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "necromancy"
+              ]
+            },
+            {
+              "level": 1,
+              "from": [
+                "necromancy"
+              ]
+            }
+          ],
+          "note": "You learn two necromancy wizard spells, always prepared and not counting against your prepared spells, with more at 3rd, 5th, 7th, 9th, 13th and 17th level."
+        }
+      ],
+      "summary": "Two necromancy spells, always prepared",
+      "text": "You learn necromancy spells from the wizard list.",
+      "source": {
+        "book": "VGTM",
+        "reference": "Vampire's Guide to Ravenloft Twilight Cleric 1"
+      }
+    },
+    {
+      "id": "subclass.twilight_domain.twilight_sanctuary",
+      "name": "Channel Divinity: Twilight Sanctuary",
+      "kind": "subclass",
+      "owner": "Twilight Domain",
+      "unlock": 2,
+      "activation": "action",
+      "cost": [
+        {
+          "resource": "channel_divinity",
+          "amount": 1
+        }
+      ],
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "area",
+        "range": {
+          "value": 30,
+          "unit": "ft"
+        },
+        "shape": "sphere"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You call forth dim twilight, so as an action you can create a 30-foot radius sphere of dim light within 60 feet of you, and creatures in it that can see you make a Charisma save, and on a failure they are frightened until the end of your next turn, and at 17th level you can use this twice per long rest."
+        }
+      ],
+      "summary": "Spend CD: a 30-ft sphere that frightens creatures in it",
+      "text": "As an action, you can create a 30-foot radius sphere of dim light within 60 feet of you.",
+      "source": {
+        "book": "VGTM",
+        "reference": "Vampire's Guide to Ravenloft Twilight Cleric 2"
+      }
+    },
+    {
+      "id": "subclass.twilight_domain.steps_of_night",
+      "name": "Steps of Night",
+      "kind": "subclass",
+      "owner": "Twilight Domain",
+      "unlock": 6,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
+      "endsIf": [
+        "attack_or_cast_spell",
+        "take_damage"
+      ],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You move as the shadows do, so as a bonus action, you become invisible and gain resistance to all damage, and the effect lasts until you attack or cast a spell, or take damage, or at the end of your next turn, and at 18th level when you use it you can teleport up to 30 feet to an unoccupied space."
+        }
+      ],
+      "summary": "Bonus action: 1 minute of shadow and resistance",
+      "text": "As a bonus action, you become invisible and gain resistance to all damage.",
+      "source": {
+        "book": "VGTM",
+        "reference": "Vampire's Guide to Ravenloft Twilight Cleric 6"
+      }
+    },
+    {
+      "id": "subclass.twilight_domain.divine_strike",
+      "name": "Divine Strike",
+      "kind": "subclass",
+      "owner": "Twilight Domain",
+      "unlock": 8,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "4d8",
+            "bonusFrom": "wis"
+          },
+          "damageType": "necrotic",
+          "resolution": {
+            "mode": "auto"
+          }
+        },
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "As an action, you can make a melee weapon attack, and on a hit you can use your bonus action to channel divinity and deal an additional 4d8 necrotic damage plus your Wisdom modifier on a critical hit or half as much on a hit, and at 18th level it works with a bonus action too."
+        }
+      ],
+      "summary": "After a melee hit: 4d8 + Wis necrotic on a critical",
+      "text": "As an action, you can make a melee weapon attack. On a hit, you can use your bonus action to channel divinity and deal an additional 4d8 necrotic damage.",
+      "source": {
+        "book": "VGTM",
+        "reference": "Vampire's Guide to Ravenloft Twilight Cleric 8"
+      }
+    },
+    {
+      "id": "subclass.twilight_domain.twilight_shroud",
+      "name": "Twilight Shroud",
+      "kind": "subclass",
+      "owner": "Twilight Domain",
+      "unlock": 17,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "6d8",
+            "bonusFrom": "wis"
+          },
+          "damageType": "necrotic",
+          "resolution": {
+            "mode": "auto"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You are wrapped in twilight, so the bonus damage from Divine Strike increases to 6d8 at 6th level and 8d8 at 16th, your Twilight Sanctuary is unaffected by any light sources and creatures in it don't see you, and at 18th level you can end the frightened condition on creatures within 30 feet of you."
+        }
+      ],
+      "summary": "Divine Strike deals 6d8 then 8d8 necrotic",
+      "text": "The bonus damage from your Divine Strike feature increases to 6d8 at 6th level and 8d8 at 16th level.",
+      "source": {
+        "book": "VGTM",
+        "reference": "Vampire's Guide to Ravenloft Twilight Cleric 17"
+      }
+    },
+    {
+      "id": "subclass.war.bonus_proficiencies",
+      "name": "Bonus Proficiencies",
+      "kind": "subclass",
+      "owner": "War",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "tool",
+          "tools": [
+            "any type of gaming set"
+          ],
+          "proficiency": "proficient"
+        },
+        {
+          "kind": "special",
+          "note": "You gain proficiency with any type of heavy armor, medium armor, shields and simple weapons."
+        }
+      ],
+      "summary": "Armor, shield and simple weapon proficiency",
+      "text": "You gain proficiency with any type of heavy armor, medium armor, shields, and simple weapons.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric War 1"
+      }
+    },
+    {
+      "id": "subclass.war.war_priest",
+      "name": "War Priest",
+      "kind": "subclass",
+      "owner": "War",
+      "unlock": 1,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "Your god favors the swift and strong, so you have a +1 bonus to Strength and Constitution saving throws, and you learn the divine favor spell, which you can cast as a bonus action on yourself or an ally within 30 feet, giving them 1d4 temporary hit points, and at 17th level it deals 1d4 radiant damage instead."
+        }
+      ],
+      "summary": "+1 Str and Con saves; divine favor as a bonus action",
+      "text": "You have a +1 bonus to Strength and Constitution saving throws, and you learn the divine favor spell.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric War 1"
+      }
+    },
+    {
+      "id": "subclass.war.guided_strike",
+      "name": "Channel Divinity: Guided Strike",
+      "kind": "subclass",
+      "owner": "War",
+      "unlock": 2,
+      "activation": "action",
+      "cost": [
+        {
+          "resource": "channel_divinity",
+          "amount": 1
+        }
+      ],
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You can lend a fraction of your might to another, so as an action, you can make a melee weapon attack against a creature within 5 feet of you, and on a hit you can use a bonus action to make one melee weapon attack using that weapon against the same creature, and at 17th level you can use Guided Strike twice per long rest."
+        }
+      ],
+      "summary": "Spend CD: a free extra melee attack",
+      "text": "As an action, you can make a melee weapon attack against a creature within 5 feet of you.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric War 2"
+      }
+    },
+    {
+      "id": "subclass.war.war_gods_blessing",
+      "name": "Channel Divinity: War God's Blessing",
+      "kind": "subclass",
+      "owner": "War",
+      "unlock": 6,
+      "activation": "bonus_action",
+      "cost": [
+        {
+          "resource": "channel_divinity",
+          "amount": 1
+        }
+      ],
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "When you hit a creature with a melee attack, you can use a bonus action to make your number of attacks equal to your Wisdom modifier, and at 18th level a creature has disadvantage on its first attack roll against you after this is used, and it can use this twice per long rest."
+        }
+      ],
+      "summary": "Spend CD on a hit: attacks equal to your Wis modifier",
+      "text": "When you hit a creature with a melee attack, you can use your bonus action to make your number of attacks equal to your Wisdom modifier.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric War 6"
+      }
+    },
+    {
+      "id": "subclass.war.potent_spellcasting",
+      "name": "Potent Spellcasting",
+      "kind": "subclass",
+      "owner": "War",
+      "unlock": 8,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "Your magic strikes as your weapon does, so when you cast a spell with a divine theme, it deals an extra 2d8 of that damage type when a creature is damaged by it, and the damage increases by 1d8 at 17th level, and at 18th level divine healing also heals you."
+        }
+      ],
+      "summary": "Divine spells deal extra 2d8",
+      "text": "When you cast any spell with a divine theme, the spell deals an extra 2d8 of that damage type.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric War 8"
+      }
+    },
+    {
+      "id": "subclass.war.avatar_of_battle",
+      "name": "Avatar of Battle",
+      "kind": "subclass",
+      "owner": "War",
+      "unlock": 17,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "You embody your god's might, so the bonus damage from Divine Strike increases to 5d8, your Channel Divinity: War God's Blessing also grants an additional +1 damage, and at 18th level if you end concentration on a spell, you can use your reaction to make a melee spell attack."
+        }
+      ],
+      "summary": "Divine Strike deals 5d8; an attack when concentration ends",
+      "text": "The bonus damage from your Divine Strike feature increases to 5d8.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Cleric War 17"
+      }
+    }
+  ]
+}

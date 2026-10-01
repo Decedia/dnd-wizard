@@ -317,7 +317,7 @@
       }
     },
     {
-      "id": "subclass.chronurgy.chronal_shift",
+      "id": "subclass.chronurgy_magic.chronal_shift",
       "name": "Chronal Shift",
       "kind": "subclass",
       "owner": "Chronurgy Magic",
@@ -348,7 +348,7 @@
       }
     },
     {
-      "id": "subclass.chronurgy.temporal_awareness",
+      "id": "subclass.chronurgy_magic.temporal_awareness",
       "name": "Temporal Awareness",
       "kind": "subclass",
       "owner": "Chronurgy Magic",
@@ -368,7 +368,7 @@
       }
     },
     {
-      "id": "subclass.chronurgy.momentary_stasis",
+      "id": "subclass.chronurgy_magic.momentary_stasis",
       "name": "Momentary Stasis",
       "kind": "subclass",
       "owner": "Chronurgy Magic",
@@ -399,7 +399,7 @@
       }
     },
     {
-      "id": "subclass.chronurgy.arcane_abeyance",
+      "id": "subclass.chronurgy_magic.arcane_abeyance",
       "name": "Arcane Abeyance",
       "kind": "subclass",
       "owner": "Chronurgy Magic",
@@ -420,7 +420,7 @@
       }
     },
     {
-      "id": "subclass.chronurgy.convergent_future",
+      "id": "subclass.chronurgy_magic.convergent_future",
       "name": "Convergent Future",
       "kind": "subclass",
       "owner": "Chronurgy Magic",
@@ -479,7 +479,7 @@
       }
     },
     {
-      "id": "subclass.conjuration.minor_conjunction",
+      "id": "subclass.conjuration.minor_conjuration",
       "name": "Minor Conjuration",
       "kind": "subclass",
       "owner": "Conjuration",
@@ -542,7 +542,7 @@
       }
     },
     {
-      "id": "subclass.conjuration.focused_conjunction",
+      "id": "subclass.conjuration.focused_conjuration",
       "name": "Focused Conjuration",
       "kind": "subclass",
       "owner": "Conjuration",
@@ -1002,7 +1002,7 @@
       }
     },
     {
-      "id": "subclass.graviturgy.adjust_density",
+      "id": "subclass.graviturgy_magic.adjust_density",
       "name": "Adjust Density",
       "kind": "subclass",
       "owner": "Graviturgy Magic",
@@ -1044,7 +1044,7 @@
       }
     },
     {
-      "id": "subclass.graviturgy.gravity_well",
+      "id": "subclass.graviturgy_magic.gravity_well",
       "name": "Gravity Well",
       "kind": "subclass",
       "owner": "Graviturgy Magic",
@@ -1092,7 +1092,7 @@
       }
     },
     {
-      "id": "subclass.graviturgy.violent_attraction",
+      "id": "subclass.graviturgy_magic.violent_attraction",
       "name": "Violent Attraction",
       "kind": "subclass",
       "owner": "Graviturgy Magic",
@@ -1132,7 +1132,7 @@
       }
     },
     {
-      "id": "subclass.graviturgy.gravity_sinkhole",
+      "id": "subclass.graviturgy_magic.gravity_sinkhole",
       "name": "Gravity Sinkhole",
       "kind": "subclass",
       "owner": "Graviturgy Magic",
@@ -1459,7 +1459,7 @@
       }
     },
     {
-      "id": "subclass.scribes.wizardly_quill",
+      "id": "subclass.order_of_scribes.wizardly_quill",
       "name": "Wizardly Quill",
       "kind": "subclass",
       "owner": "Order of Scribes",
@@ -1480,7 +1480,7 @@
       }
     },
     {
-      "id": "subclass.scribes.awakened_spellbook",
+      "id": "subclass.order_of_scribes.awakened_spellbook",
       "name": "Awakened Spellbook",
       "kind": "subclass",
       "owner": "Order of Scribes",
@@ -1508,7 +1508,7 @@
       }
     },
     {
-      "id": "subclass.scribes.manifest_mind",
+      "id": "subclass.order_of_scribes.manifest_mind",
       "name": "Manifest Mind",
       "kind": "subclass",
       "owner": "Order of Scribes",
@@ -1528,7 +1528,7 @@
       }
     },
     {
-      "id": "subclass.scribes.master_scrivian",
+      "id": "subclass.order_of_scribes.master_scrivian",
       "name": "Master Scrivian",
       "kind": "subclass",
       "owner": "Order of Scribes",
@@ -1558,7 +1558,7 @@
       }
     },
     {
-      "id": "subclass.scribes.one_with_words",
+      "id": "subclass.order_of_scribes.one_with_words",
       "name": "One with Words",
       "kind": "subclass",
       "owner": "Order of Scribes",

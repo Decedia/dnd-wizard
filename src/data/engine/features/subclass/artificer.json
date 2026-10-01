@@ -1,218 +1,433 @@
 {
   "features": [
     {
-      "id": "subclass.artificer.tool_proficiency",
+      "id": "subclass.alchemist.tool_proficiency",
       "name": "Tool Proficiency",
       "kind": "subclass",
       "owner": "Alchemist",
       "unlock": 3,
       "activation": "passive",
       "effects": [
-        { "kind": "tool", "tools": ["alchemist's supplies"], "proficiency": "expertise" },
-        { "kind": "special", "note": "You gain proficiency with the alchemist's supplies and with any other kind of smith's tools or Brewer's tools. The tools count as a single tool for your Intelligence checks." }
+        {
+          "kind": "tool",
+          "tools": [
+            "alchemist's supplies"
+          ],
+          "proficiency": "expertise"
+        },
+        {
+          "kind": "special",
+          "note": "You gain proficiency with the alchemist's supplies and with any other kind of smith's tools or Brewer's tools. The tools count as a single tool for your Intelligence checks."
+        }
       ],
       "summary": "Expert proficiency with alchemist's supplies and smith's or brewer's tools",
       "text": "You gain proficiency with the alchemist's supplies and with any other kind of smith's tools or brewer's tools.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Artificer 46" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Artificer 46"
+      }
     },
     {
-      "id": "subclass.artificer.experimental_elixir",
+      "id": "subclass.alchemist.experimental_elixir",
       "name": "Experimental Elixir",
       "kind": "subclass",
       "owner": "Alchemist",
       "unlock": 3,
       "activation": "bonus_action",
-      "limits": { "per": "rest", "max": 1 },
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "self" },
-      "duration": { "value": 1, "unit": "minute" },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
       "endsIf": [],
       "effects": [
-        { "kind": "special", "note": "You can use a bonus action to drink a potion you have crafted with your Alchemist feature, as an action, and its effects are doubled. If the potion has a duration, it lasts until the end of that minute. At 6th level you gain a second use, at 10th a third, and at 14th a fourth, all regained on a long rest." }
+        {
+          "kind": "special",
+          "note": "You can use a bonus action to drink a potion you have crafted with your Alchemist feature, as an action, and its effects are doubled. If the potion has a duration, it lasts until the end of that minute. At 6th level you gain a second use, at 10th a third, and at 14th a fourth, all regained on a long rest."
+        }
       ],
       "tiers": [
-        { "at": 6, "limits": { "per": "rest", "max": 2 } },
-        { "at": 10, "limits": { "per": "rest", "max": 3 } },
-        { "at": 14, "limits": { "per": "rest", "max": 4 } }
+        {
+          "at": 6,
+          "limits": {
+            "per": "rest",
+            "max": 2
+          }
+        },
+        {
+          "at": 10,
+          "limits": {
+            "per": "rest",
+            "max": 3
+          }
+        },
+        {
+          "at": 14,
+          "limits": {
+            "per": "rest",
+            "max": 4
+          }
+        }
       ],
       "summary": "Bonus action: drink a potion and double its effects",
       "text": "You can use a bonus action to drink a potion you have crafted with your Alchemist feature as an action, and its effects are doubled.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Artificer 46" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Artificer 46"
+      }
     },
     {
-      "id": "subclass.artificer.alchemical_savant",
+      "id": "subclass.alchemist.alchemical_savant",
       "name": "Alchemical Savant",
       "kind": "subclass",
       "owner": "Alchemist",
       "unlock": 6,
       "activation": "passive",
       "effects": [
-        { "kind": "special", "note": "Your elixirs are more potent than other artificer's. When you finish a long rest, you can prepare one elixir that lasts for 1 hour and doubles its effects, without spending a slot on it. The elixir is an elixir of any type you can make." }
+        {
+          "kind": "special",
+          "note": "Your elixirs are more potent than other artificer's. When you finish a long rest, you can prepare one elixir that lasts for 1 hour and doubles its effects, without spending a slot on it. The elixir is an elixir of any type you can make."
+        }
       ],
       "summary": "One free doubled elixir per long rest",
       "text": "Your elixirs are more potent than other artificer's. When you finish a long rest, you can prepare one elixir that lasts for 1 hour and doubles its effects.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Artificer 46" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Artificer 46"
+      }
     },
     {
-      "id": "subclass.artificer.restorative_reagents",
+      "id": "subclass.alchemist.restorative_reagents",
       "name": "Restorative Reagents",
       "kind": "subclass",
       "owner": "Alchemist",
       "unlock": 6,
       "activation": "action",
-      "limits": { "per": "rest", "max": 2 },
+      "limits": {
+        "per": "rest",
+        "max": 2
+      },
       "trigger": null,
-      "targeting": { "scope": "creature", "range": { "value": 30, "unit": "ft" } },
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 30,
+          "unit": "ft"
+        }
+      },
       "duration": null,
       "endsIf": [],
       "effects": [
-        { "kind": "heal", "dice": { "dice": "1d8", "bonusFrom": "int" }, "resolution": { "mode": "save", "ability": "con", "onSuccess": "none", "onFailure": "full" } },
-        { "kind": "special", "note": "As an action you can give a creature within reach a dose of your healing draught. You choose whether to create an elixir or an oil of healing. On a failed save, the target regains 1d8 plus your Intelligence modifier hit points, and at 10th level you can instead restore one of the creature's hit dice with 1d8 plus your Intelligence modifier." }
+        {
+          "kind": "heal",
+          "dice": {
+            "dice": "1d8",
+            "bonusFrom": "int"
+          },
+          "resolution": {
+            "mode": "save",
+            "ability": "con",
+            "onSuccess": "none",
+            "onFailure": "full"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "As an action you can give a creature within reach a dose of your healing draught. You choose whether to create an elixir or an oil of healing. On a failed save, the target regains 1d8 plus your Intelligence modifier hit points, and at 10th level you can instead restore one of the creature's hit dice with 1d8 plus your Intelligence modifier."
+        }
       ],
       "tiers": [
-        { "at": 10, "limits": { "per": "rest", "max": 2 }, "effects": [{ "kind": "heal", "dice": { "dice": "1d8", "bonusFrom": "int" }, "resolution": { "mode": "save", "ability": "con", "onSuccess": "none", "onFailure": "full" } }, { "kind": "special", "note": "Instead of healing hit points, you can restore one of the creature's hit dice with 1d8 plus your Intelligence modifier." }] }
+        {
+          "at": 10,
+          "limits": {
+            "per": "rest",
+            "max": 2
+          },
+          "effects": [
+            {
+              "kind": "heal",
+              "dice": {
+                "dice": "1d8",
+                "bonusFrom": "int"
+              },
+              "resolution": {
+                "mode": "save",
+                "ability": "con",
+                "onSuccess": "none",
+                "onFailure": "full"
+              }
+            },
+            {
+              "kind": "special",
+              "note": "Instead of healing hit points, you can restore one of the creature's hit dice with 1d8 plus your Intelligence modifier."
+            }
+          ]
+        }
       ],
       "summary": "Twice a long rest, heal an ally 1d8 + Int on a failed save",
       "text": "As an action you can give a creature within reach a dose of your healing draught. On a failed save, the target regains 1d8 plus your Intelligence modifier hit points.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Artificer 46" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Artificer 46"
+      }
     },
     {
-      "id": "subclass.artificer.chemical_mastery",
+      "id": "subclass.alchemist.chemical_mastery",
       "name": "Chemical Mastery",
       "kind": "subclass",
       "owner": "Alchemist",
       "unlock": 10,
       "activation": "passive",
       "effects": [
-        { "kind": "special", "note": "The elixir you are carrying, and any creatures that drink it with you, do not provide a Constitution saving throw. The save only happens when you drink it yourself as a bonus action." }
+        {
+          "kind": "special",
+          "note": "The elixir you are carrying, and any creatures that drink it with you, do not provide a Constitution saving throw. The save only happens when you drink it yourself as a bonus action."
+        }
       ],
       "summary": "Companions drinking your elixir skip the Con save",
       "text": "The elixir you are carrying, and any creatures that drink it with you, do not provide a Constitution saving throw.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Artificer 46" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Artificer 46"
+      }
     },
     {
-      "id": "subclass.artificer.tools_of_the_trade",
+      "id": "subclass.armorer.tools_of_the_trade",
       "name": "Tools of the Trade",
       "kind": "subclass",
       "owner": "Armorer",
       "unlock": 3,
       "activation": "passive",
       "effects": [
-        { "kind": "tool", "tools": ["armorer's tools", "any two other smith's or brewer's tools"], "proficiency": "expertise" },
-        { "kind": "special", "note": "You gain proficiency with the armor's tools and with any two other kinds of smith's tools or brewer's tools. At 6th level you gain one more kind, and at 10th level another." }
+        {
+          "kind": "tool",
+          "tools": [
+            "armorer's tools",
+            "any two other smith's or brewer's tools"
+          ],
+          "proficiency": "expertise"
+        },
+        {
+          "kind": "special",
+          "note": "You gain proficiency with the armor's tools and with any two other kinds of smith's tools or brewer's tools. At 6th level you gain one more kind, and at 10th level another."
+        }
       ],
       "summary": "Expert proficiency with armorer's tools plus two others",
       "text": "You gain proficiency with the armor's tools and with any two other kinds of smith's tools or brewer's tools.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Artificer 46" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Artificer 46"
+      }
     },
     {
-      "id": "subclass.artificer.arcane_armor",
+      "id": "subclass.armorer.arcane_armor",
       "name": "Arcane Armor",
       "kind": "subclass",
       "owner": "Armorer",
       "unlock": 3,
       "activation": "passive",
       "effects": [
-        { "kind": "ac_bonus", "amount": 1, "duration": "permanent" },
-        { "kind": "special", "note": "You gain proficiency with heavy armor. When you finish a long rest, you can make a suit of armor in 1 hour and get a +1 bonus to its AC, and at 10th level you get another +1. At 18th level you gain proficiency with shields." }
+        {
+          "kind": "ac_bonus",
+          "amount": 1,
+          "duration": "permanent"
+        },
+        {
+          "kind": "special",
+          "note": "You gain proficiency with heavy armor. When you finish a long rest, you can make a suit of armor in 1 hour and get a +1 bonus to its AC, and at 10th level you get another +1. At 18th level you gain proficiency with shields."
+        }
       ],
       "tiers": [
-        { "at": 10, "summary": "The bonus armor you make is +2 AC" },
-        { "at": 18, "summary": "Proficiency with shields" }
+        {
+          "at": 10,
+          "summary": "The bonus armor you make is +2 AC"
+        },
+        {
+          "at": 18,
+          "summary": "Proficiency with shields"
+        }
       ],
       "summary": "Heavy armor proficiency, and +1 AC to armor you forge",
       "text": "You gain proficiency with heavy armor. When you finish a long rest, you can make a suit of armor in 1 hour and get a +1 bonus to its AC.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Artificer 46" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Artificer 46"
+      }
     },
     {
-      "id": "subclass.artificer.armor_model",
+      "id": "subclass.armorer.armor_model",
       "name": "Armor Model",
       "kind": "subclass",
       "owner": "Armorer",
       "unlock": 5,
       "activation": "action",
-      "limits": { "per": "rest", "max": 1 },
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "self" },
+      "targeting": {
+        "scope": "self"
+      },
       "duration": null,
       "endsIf": [],
       "effects": [
-        { "kind": "special", "note": "You can use an action to craft a magical armor model within reach from nonmagical materials. Any creature who wears the model gains +1 to AC and can see invisible creatures within 30 feet. The model lasts until you finish a long rest, and at 10th level its AC bonus is 2. At 18th level the model has a +2 AC bonus and lets a wearer see invisible creatures." }
+        {
+          "kind": "special",
+          "note": "You can use an action to craft a magical armor model within reach from nonmagical materials. Any creature who wears the model gains +1 to AC and can see invisible creatures within 30 feet. The model lasts until you finish a long rest, and at 10th level its AC bonus is 2. At 18th level the model has a +2 AC bonus and lets a wearer see invisible creatures."
+        }
       ],
       "tiers": [
-        { "at": 10, "summary": "The model's AC bonus is 2" },
-        { "at": 18, "summary": "The model's AC bonus is 2, and it works without the wearer" }
+        {
+          "at": 10,
+          "summary": "The model's AC bonus is 2"
+        },
+        {
+          "at": 18,
+          "summary": "The model's AC bonus is 2, and it works without the wearer"
+        }
       ],
       "summary": "Once a long rest, a +1 AC model that sees invisible creatures",
       "text": "You can use an action to craft a magical armor model within reach from nonmagical materials. Any creature who wears the model gains +1 to AC and can see invisible creatures within 30 feet.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Artificer 47" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Artificer 47"
+      }
     },
     {
-      "id": "subclass.artificer.extra_attack",
+      "id": "subclass.armorer.extra_attack",
       "name": "Extra Attack",
       "kind": "subclass",
       "owner": "Armorer",
       "unlock": 5,
       "activation": "passive",
       "effects": [
-        { "kind": "extra_attacks", "count": 1, "note": "You can attack twice, instead of once, whenever you take the Attack action on your turn." }
+        {
+          "kind": "extra_attacks",
+          "count": 1,
+          "note": "You can attack twice, instead of once, whenever you take the Attack action on your turn."
+        }
       ],
       "summary": "Two attacks with the Attack action",
       "text": "You can attack twice, instead of once, whenever you take the Attack action on your turn.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Artificer 47" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Artificer 47"
+      }
     },
     {
-      "id": "subclass.artificer.armor_modifications",
+      "id": "subclass.armorer.armor_modifications",
       "name": "Armor Modifications",
       "kind": "subclass",
       "owner": "Armorer",
       "unlock": 9,
       "activation": "passive",
       "effects": [
-        { "kind": "ac_bonus", "amount": 0, "requires": "wearing your armor" },
-        { "kind": "special", "note": "When you finish a long rest, you can modify a suit of armor or a shield that you are wearing, giving it a magical bonus of your choice: a +1 bonus to AC, a +1 bonus to attack and damage rolls, or a +1 bonus to saving throws against a damage type. Each time you gain a level, you can modify a suit or shield once." }
+        {
+          "kind": "ac_bonus",
+          "amount": 0,
+          "requires": "wearing your armor"
+        },
+        {
+          "kind": "special",
+          "note": "When you finish a long rest, you can modify a suit of armor or a shield that you are wearing, giving it a magical bonus of your choice: a +1 bonus to AC, a +1 bonus to attack and damage rolls, or a +1 bonus to saving throws against a damage type. Each time you gain a level, you can modify a suit or shield once."
+        }
       ],
       "tiers": [
-        { "at": 14, "summary": "One more modification per level, plus a +1 bonus to AC and saving throws" },
-        { "at": 18, "summary": "You no longer have disadvantage for Str (Dex) saves while adjacent to an ally" }
+        {
+          "at": 14,
+          "summary": "One more modification per level, plus a +1 bonus to AC and saving throws"
+        },
+        {
+          "at": 18,
+          "summary": "You no longer have disadvantage for Str (Dex) saves while adjacent to an ally"
+        }
       ],
       "summary": "Once a level, add a +1 bonus to armor or a shield you own",
       "text": "When you finish a long rest, you can modify a suit of armor or a shield that you are wearing, giving it a magical bonus of your choice: a +1 bonus to AC, a +1 bonus to attack and damage rolls, or a +1 bonus to saving throws.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Artificer 47" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Artificer 47"
+      }
     },
     {
-      "id": "subclass.artificer.perfected_armor",
+      "id": "subclass.armorer.perfected_armor",
       "name": "Perfected Armor",
       "kind": "subclass",
       "owner": "Armorer",
       "unlock": 18,
       "activation": "passive",
       "effects": [
-        { "kind": "special", "note": "When you finish a long rest, you can modify a suit of armor or a shield that you are wearing, giving it a magical bonus of your choice: a +1 bonus to AC, a +1 bonus to attack and damage rolls, or a +1 bonus to saving throws. Any suit or shield you create this way gains a second benefit of your choice, and you also gain the following: no disadvantage on Strength or Dexterity saves while you are next to an ally." }
+        {
+          "kind": "special",
+          "note": "When you finish a long rest, you can modify a suit of armor or a shield that you are wearing, giving it a magical bonus of your choice: a +1 bonus to AC, a +1 bonus to attack and damage rolls, or a +1 bonus to saving throws. Any suit or shield you create this way gains a second benefit of your choice, and you also gain the following: no disadvantage on Strength or Dexterity saves while you are next to an ally."
+        }
       ],
       "summary": "At 18th level, modified armor gains a second bonus",
       "text": "When you finish a long rest, you can modify a suit of armor or a shield that you are wearing, giving it a magical bonus of your choice. Any suit or shield you create this way gains a second benefit of your choice.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Artificer 48" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Artificer 48"
+      }
     },
     {
-      "id": "subclass.artificer.eldritch_cannon",
+      "id": "subclass.artillerist.eldritch_cannon",
       "name": "Eldritch Cannon",
       "kind": "subclass",
       "owner": "Artillerist",
       "unlock": 3,
       "activation": "bonus_action",
-      "limits": { "per": "rest", "max": 1 },
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "self" },
-      "duration": { "value": 1, "unit": "hour" },
-      "endsIf": ["exhaustion", "wield a different object", "fire your elixir cannon twice"],
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
+      "endsIf": [
+        "exhaustion",
+        "wield a different object",
+        "fire your elixir cannon twice"
+      ],
       "effects": [
-        { "kind": "summon", "features": ["subclass.artillerist.arcane_firearm", "subclass.artillerist.explosive_cannon", "subclass.artillerist.fortified_position"], "formId": "eldritch_cannon_object", "initiative": "self", "control": "ally", "duration": { "value": 1, "unit": "hour" } },
-        { "kind": "special", "note": "You learn to make a magical cannon. When you finish a long rest, you can craft a Small wooden cannon in 1 hour and 25 gp. The cannon has 40 hit points, 15 of which are temporary, and you can use it to create various effects." }
+        {
+          "kind": "summon",
+          "features": [
+            "subclass.artillerist.arcane_firearm",
+            "subclass.artillerist.explosive_cannon",
+            "subclass.artillerist.fortified_position"
+          ],
+          "formId": "eldritch_cannon_object",
+          "initiative": "self",
+          "control": "ally",
+          "duration": {
+            "value": 1,
+            "unit": "hour"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You learn to make a magical cannon. When you finish a long rest, you can craft a Small wooden cannon in 1 hour and 25 gp. The cannon has 40 hit points, 15 of which are temporary, and you can use it to create various effects."
+        }
       ],
       "summary": "Once a long rest, build a cannon with three abilities",
       "text": "You learn to make a magical cannon. When you finish a long rest, you can craft a Small wooden cannon in 1 hour and 25 gp.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Artificer 48" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Artificer 48"
+      }
     },
     {
       "id": "subclass.artillerist.arcane_firearm",
@@ -222,15 +437,27 @@
       "unlock": 3,
       "activation": "action",
       "trigger": null,
-      "targeting": { "scope": "any", "range": { "value": 90, "unit": "ft" } },
+      "targeting": {
+        "scope": "any",
+        "range": {
+          "value": 90,
+          "unit": "ft"
+        }
+      },
       "duration": null,
       "endsIf": [],
       "effects": [
-        { "kind": "special", "note": "Your elixir cannon creates a spell effect of your choice instead of dealing damage, as if by casting a spell with your Artificer Spellcasting features. You gain access to your artificer prepared spells and can cast one with an action, treating the cannon as an artifact. The damage type is fixed to acid if you choose acid, or you can use any of acid, fire, lightning or cold." }
+        {
+          "kind": "special",
+          "note": "Your elixir cannon creates a spell effect of your choice instead of dealing damage, as if by casting a spell with your Artificer Spellcasting features. You gain access to your artificer prepared spells and can cast one with an action, treating the cannon as an artifact. The damage type is fixed to acid if you choose acid, or you can use any of acid, fire, lightning or cold."
+        }
       ],
       "summary": "Cast an artificer spell through your cannon",
       "text": "Your elixir cannon creates a spell effect of your choice instead of dealing damage, as if by casting a spell with your Artificer Spellcasting features.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Artificer 48" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Artificer 48"
+      }
     },
     {
       "id": "subclass.artillerist.explosive_cannon",
@@ -239,21 +466,71 @@
       "owner": "Artillerist",
       "unlock": 9,
       "activation": "bonus_action",
-      "limits": { "per": "turn", "max": 1 },
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "creature", "range": { "value": 60, "unit": "ft" } },
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 60,
+          "unit": "ft"
+        }
+      },
       "duration": null,
       "endsIf": [],
       "effects": [
-        { "kind": "damage", "dice": { "dice": "3d8", "bonusFrom": "int" }, "damageType": "fire", "resolution": { "mode": "save", "ability": "dex", "onSuccess": "half", "onFailure": "full" } },
-        { "kind": "special", "note": "If you loaded your elixir cannon with ammunition, you can use a bonus action to fire the cannon, dealing 3d8 fire damage plus your Intelligence modifier on a hit, or half as much on a save. At 15th level the damage is 3d10 plus your Intelligence modifier, and the creature is pushed 15 feet and must succeed on a Strength save or be knocked prone." }
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "3d8",
+            "bonusFrom": "int"
+          },
+          "damageType": "fire",
+          "resolution": {
+            "mode": "save",
+            "ability": "dex",
+            "onSuccess": "half",
+            "onFailure": "full"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "If you loaded your elixir cannon with ammunition, you can use a bonus action to fire the cannon, dealing 3d8 fire damage plus your Intelligence modifier on a hit, or half as much on a save. At 15th level the damage is 3d10 plus your Intelligence modifier, and the creature is pushed 15 feet and must succeed on a Strength save or be knocked prone."
+        }
       ],
       "tiers": [
-        { "at": 15, "effects": [{ "kind": "damage", "dice": { "dice": "3d10", "bonusFrom": "int" }, "damageType": "fire", "resolution": { "mode": "save", "ability": "dex", "onSuccess": "half", "onFailure": "full" } }, { "kind": "special", "note": "3d10 plus your Intelligence modifier, and the creature is pushed 15 feet and must succeed on a Strength saving throw or be knocked prone." }] }
+        {
+          "at": 15,
+          "effects": [
+            {
+              "kind": "damage",
+              "dice": {
+                "dice": "3d10",
+                "bonusFrom": "int"
+              },
+              "damageType": "fire",
+              "resolution": {
+                "mode": "save",
+                "ability": "dex",
+                "onSuccess": "half",
+                "onFailure": "full"
+              }
+            },
+            {
+              "kind": "special",
+              "note": "3d10 plus your Intelligence modifier, and the creature is pushed 15 feet and must succeed on a Strength saving throw or be knocked prone."
+            }
+          ]
+        }
       ],
       "summary": "Bonus action: fire the cannon for 3d8 + Int",
       "text": "If you loaded your elixir cannon with ammunition, you can use a bonus action to fire the cannon, dealing 3d8 fire damage plus your Intelligence modifier.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Artificer 49" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Artificer 49"
+      }
     },
     {
       "id": "subclass.artillerist.fortified_position",
@@ -262,61 +539,152 @@
       "owner": "Artillerist",
       "unlock": 15,
       "activation": "passive",
-      "gates": ["half_cover", "three_quarters_cover"],
+      "gates": [
+        "half_cover",
+        "three_quarters_cover"
+      ],
       "effects": [
-        { "kind": "ac_bonus", "amount": 1, "requires": "you have half or three-quarters cover" },
-        { "kind": "special", "note": "While you have half cover or three-quarters cover, you gain a +1 bonus to AC, and when you finish a long rest you can give your cannon the benefits of a half plate or +1 shield. At 18th level the bonus is +2 instead of +1." }
+        {
+          "kind": "ac_bonus",
+          "amount": 1,
+          "requires": "you have half or three-quarters cover"
+        },
+        {
+          "kind": "special",
+          "note": "While you have half cover or three-quarters cover, you gain a +1 bonus to AC, and when you finish a long rest you can give your cannon the benefits of a half plate or +1 shield. At 18th level the bonus is +2 instead of +1."
+        }
       ],
       "tiers": [
-        { "at": 18, "effects": [{ "kind": "ac_bonus", "amount": 2, "requires": "you have half or three-quarters cover" }, { "kind": "special", "note": "The AC bonus is +2 instead of +1." }] }
+        {
+          "at": 18,
+          "effects": [
+            {
+              "kind": "ac_bonus",
+              "amount": 2,
+              "requires": "you have half or three-quarters cover"
+            },
+            {
+              "kind": "special",
+              "note": "The AC bonus is +2 instead of +1."
+            }
+          ]
+        }
       ],
       "summary": "+1 AC while you have half or three-quarters cover",
       "text": "While you have half cover or three-quarters cover, you gain a +1 bonus to AC.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Artificer 49" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Artificer 49"
+      }
     },
     {
-      "id": "subclass.artificer.battle_ready",
+      "id": "subclass.battle_smith.battle_ready",
       "name": "Battle Ready",
       "kind": "subclass",
       "owner": "Battle Smith",
       "unlock": 3,
       "activation": "reaction",
-      "limits": { "per": "rest", "max": 1 },
-      "trigger": { "event": "targeted_by_spell" },
-      "targeting": { "scope": "self" },
-      "duration": { "value": 1, "unit": "round" },
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "targeted_by_spell"
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "round"
+      },
       "endsIf": [],
       "effects": [
-        { "kind": "ac_bonus", "amount": 0, "requires": "wearing armor" },
-        { "kind": "special", "note": "When you are attacked or targeted by a spell, you can use your reaction to gain a +2 bonus to AC until the start of your next turn, including against the triggering attack. At 6th level you can use this twice per long rest, and at 11th level three times." }
+        {
+          "kind": "ac_bonus",
+          "amount": 0,
+          "requires": "wearing armor"
+        },
+        {
+          "kind": "special",
+          "note": "When you are attacked or targeted by a spell, you can use your reaction to gain a +2 bonus to AC until the start of your next turn, including against the triggering attack. At 6th level you can use this twice per long rest, and at 11th level three times."
+        }
       ],
       "tiers": [
-        { "at": 6, "limits": { "per": "rest", "max": 2 } },
-        { "at": 11, "limits": { "per": "rest", "max": 3 } }
+        {
+          "at": 6,
+          "limits": {
+            "per": "rest",
+            "max": 2
+          }
+        },
+        {
+          "at": 11,
+          "limits": {
+            "per": "rest",
+            "max": 3
+          }
+        }
       ],
       "summary": "Reaction: +2 AC until your next turn when attacked",
       "text": "When you are attacked or targeted by a spell, you can use your reaction to gain a +2 bonus to AC until the start of your next turn.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Artificer 49" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Artificer 49"
+      }
     },
     {
-      "id": "subclass.artificer.steel_defender",
+      "id": "subclass.battle_smith.steel_defender",
       "name": "Steel Defender",
       "kind": "subclass",
       "owner": "Battle Smith",
       "unlock": 3,
       "activation": "bonus_action",
-      "limits": { "per": "rest", "max": 1 },
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "self" },
-      "duration": { "value": 1, "unit": "hour" },
-      "endsIf": ["exhaustion", "attack or cast a spell", "bonus action", "three times per combat"],
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "hour"
+      },
+      "endsIf": [
+        "exhaustion",
+        "attack or cast a spell",
+        "bonus action",
+        "three times per combat"
+      ],
       "effects": [
-        { "kind": "summon", "features": ["subclass.battle_smith.arcane_jolt", "subclass.battle_smith.improved_defender"], "formId": "steel_defender_object", "initiative": "separate", "hasOwnTurn": true, "control": "ally", "duration": { "value": 1, "unit": "hour" } },
-        { "kind": "special", "note": "When you finish a long rest, you can craft a steel defender in 1 hour and 500 gp. The defender is Small, has a AC of 17, 20 hit points, a speed of 40 ft, a +6 to hit, 1d8 + 4 piercing damage, and the ability to occupy a space you can see and within 5 feet of you or a creature you designate." }
+        {
+          "kind": "summon",
+          "features": [
+            "subclass.battle_smith.arcane_jolt",
+            "subclass.battle_smith.improved_defender"
+          ],
+          "formId": "steel_defender_object",
+          "initiative": "separate",
+          "hasOwnTurn": true,
+          "control": "ally",
+          "duration": {
+            "value": 1,
+            "unit": "hour"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "When you finish a long rest, you can craft a steel defender in 1 hour and 500 gp. The defender is Small, has a AC of 17, 20 hit points, a speed of 40 ft, a +6 to hit, 1d8 + 4 piercing damage, and the ability to occupy a space you can see and within 5 feet of you or a creature you designate."
+        }
       ],
       "summary": "Once a long rest, build a construct that fights on its own turn",
       "text": "When you finish a long rest, you can craft a steel defender in 1 hour and 500 gp. The defender is Small, has a +6 to hit, and 1d8 + 4 piercing damage.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Artificer 49" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Artificer 49"
+      }
     },
     {
       "id": "subclass.battle_smith.arcane_jolt",
@@ -325,22 +693,89 @@
       "owner": "Battle Smith",
       "unlock": 9,
       "activation": "action",
-      "limits": { "per": "turn", "max": 1 },
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "creature", "range": { "value": 5, "unit": "ft" } },
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 5,
+          "unit": "ft"
+        }
+      },
       "duration": null,
       "endsIf": [],
       "effects": [
-        { "kind": "damage", "dice": { "dice": "2d6", "bonusFrom": "int" }, "damageType": "thunder", "resolution": { "mode": "attack", "ability": "int", "reaches": ["5 ft melee"] } },
-        { "kind": "control", "action": "push", "distance": { "value": 10, "unit": "ft" } },
-        { "kind": "special", "note": "The steel defender can, as a bonus action, teleport to a space within 5 feet of a creature you can see, and then make a thunder damage attack against it, dealing 2d6 thunder damage plus your Intelligence modifier and forcing a Strength save or being pushed 10 feet. At 15th level it deals 2d8 instead." }
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "2d6",
+            "bonusFrom": "int"
+          },
+          "damageType": "thunder",
+          "resolution": {
+            "mode": "attack",
+            "ability": "int",
+            "reaches": [
+              "5 ft melee"
+            ]
+          }
+        },
+        {
+          "kind": "control",
+          "action": "push",
+          "distance": {
+            "value": 10,
+            "unit": "ft"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "The steel defender can, as a bonus action, teleport to a space within 5 feet of a creature you can see, and then make a thunder damage attack against it, dealing 2d6 thunder damage plus your Intelligence modifier and forcing a Strength save or being pushed 10 feet. At 15th level it deals 2d8 instead."
+        }
       ],
       "tiers": [
-        { "at": 15, "effects": [{ "kind": "damage", "dice": { "dice": "2d8", "bonusFrom": "int" }, "damageType": "thunder", "resolution": { "mode": "attack", "ability": "int", "reaches": ["5 ft melee"] } }, { "kind": "control", "action": "push", "distance": { "value": 10, "unit": "ft" } }, { "kind": "special", "note": "2d8 thunder damage instead of 2d6." }] }
+        {
+          "at": 15,
+          "effects": [
+            {
+              "kind": "damage",
+              "dice": {
+                "dice": "2d8",
+                "bonusFrom": "int"
+              },
+              "damageType": "thunder",
+              "resolution": {
+                "mode": "attack",
+                "ability": "int",
+                "reaches": [
+                  "5 ft melee"
+                ]
+              }
+            },
+            {
+              "kind": "control",
+              "action": "push",
+              "distance": {
+                "value": 10,
+                "unit": "ft"
+              }
+            },
+            {
+              "kind": "special",
+              "note": "2d8 thunder damage instead of 2d6."
+            }
+          ]
+        }
       ],
       "summary": "Defender BA: blink to a target and hit it for 2d6 + Int",
       "text": "The steel defender can, as a bonus action, teleport to a space within 5 feet of a creature you can see, and then make a thunder damage attack against it.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Artificer 50" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Artificer 50"
+      }
     },
     {
       "id": "subclass.battle_smith.improved_defender",
@@ -350,11 +785,18 @@
       "unlock": 15,
       "activation": "passive",
       "effects": [
-        { "kind": "extra_attacks", "count": 0, "note": "The steel defender's Jolt feature deals 1d8 thunder damage plus its proficiency bonus in radiant damage, and the steel defender's hit points increase by 10, and its Arcane Jolt feature gains 1 extra use per long rest, and it can no longer be forced to take the stunned condition." }
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "The steel defender's Jolt feature deals 1d8 thunder damage plus its proficiency bonus in radiant damage, and the steel defender's hit points increase by 10, and its Arcane Jolt feature gains 1 extra use per long rest, and it can no longer be forced to take the stunned condition."
+        }
       ],
       "summary": "Jolt adds radiant damage and more uses; more hit points",
       "text": "The steel defender's Jolt feature deals 1d8 thunder damage plus its proficiency bonus in radiant damage, and the steel defender's hit points increase by 10.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Artificer 50" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Artificer 50"
+      }
     }
   ]
 }

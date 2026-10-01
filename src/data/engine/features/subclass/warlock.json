@@ -667,7 +667,7 @@
       }
     },
     {
-      "id": "subclass.celestial.bonus_cantrips",
+      "id": "subclass.the_celestial.bonus_cantrips",
       "name": "Bonus Cantrips",
       "kind": "subclass",
       "owner": "The Celestial",
@@ -706,7 +706,7 @@
       }
     },
     {
-      "id": "subclass.celestial.healing_light",
+      "id": "subclass.the_celestial.healing_light",
       "name": "Healing Light",
       "kind": "subclass",
       "owner": "The Celestial",
@@ -750,7 +750,7 @@
       }
     },
     {
-      "id": "subclass.celestial.radiant_soul",
+      "id": "subclass.the_celestial.radiant_soul",
       "name": "Radiant Soul",
       "kind": "subclass",
       "owner": "The Celestial",
@@ -776,7 +776,7 @@
       }
     },
     {
-      "id": "subclass.celestial.celestial_resilience",
+      "id": "subclass.the_celestial.celestial_resilience",
       "name": "Celestial Resilience",
       "kind": "subclass",
       "owner": "The Celestial",
@@ -818,7 +818,7 @@
       }
     },
     {
-      "id": "subclass.celestial.searing_vengeance",
+      "id": "subclass.the_celestial.searing_vengeance",
       "name": "Searing Vengeance",
       "kind": "subclass",
       "owner": "The Celestial",
@@ -864,7 +864,7 @@
       }
     },
     {
-      "id": "subclass.fathomless.bonus_spells",
+      "id": "subclass.the_fathomless.bonus_spells",
       "name": "Bonus Spells",
       "kind": "subclass",
       "owner": "The Fathomless",
@@ -903,7 +903,7 @@
       }
     },
     {
-      "id": "subclass.fathomless.tentacle_of_the_deep",
+      "id": "subclass.the_fathomless.tentacle_of_the_deep",
       "name": "Tentacle of the Deep",
       "kind": "subclass",
       "owner": "The Fathomless",
@@ -968,7 +968,7 @@
       }
     },
     {
-      "id": "subclass.fathomless.gift_of_the_sea",
+      "id": "subclass.the_fathomless.gift_of_the_sea",
       "name": "Gift of the Sea",
       "kind": "subclass",
       "owner": "The Fathomless",
@@ -1007,7 +1007,7 @@
       }
     },
     {
-      "id": "subclass.fathomless.oceanic_soul",
+      "id": "subclass.the_fathomless.oceanic_soul",
       "name": "Oceanic Soul",
       "kind": "subclass",
       "owner": "The Fathomless",
@@ -1033,7 +1033,7 @@
       }
     },
     {
-      "id": "subclass.fathomless.guardian_coil",
+      "id": "subclass.the_fathomless.guardian_coil",
       "name": "Guardian Coil",
       "kind": "subclass",
       "owner": "The Fathomless",
@@ -1068,7 +1068,7 @@
       }
     },
     {
-      "id": "subclass.fathomless.grasping_tentacles",
+      "id": "subclass.the_fathomless.grasping_tentacles",
       "name": "Grasping Tentacles",
       "kind": "subclass",
       "owner": "The Fathomless",
@@ -1089,7 +1089,7 @@
       }
     },
     {
-      "id": "subclass.genie.bonus_spells",
+      "id": "subclass.the_genie.bonus_spells",
       "name": "Bonus Spells",
       "kind": "subclass",
       "owner": "The Genie",
@@ -1128,7 +1128,7 @@
       }
     },
     {
-      "id": "subclass.genie.genies_vessel",
+      "id": "subclass.the_genie.genies_vessel",
       "name": "Genie's Vessel",
       "kind": "subclass",
       "owner": "The Genie",
@@ -1167,7 +1167,7 @@
       }
     },
     {
-      "id": "subclass.genie.elemental_gift",
+      "id": "subclass.the_genie.elemental_gift",
       "name": "Elemental Gift",
       "kind": "subclass",
       "owner": "The Genie",
@@ -1192,7 +1192,7 @@
       }
     },
     {
-      "id": "subclass.genie.sanctuary_vessel",
+      "id": "subclass.the_genie.sanctuary_vessel",
       "name": "Sanctuary Vessel",
       "kind": "subclass",
       "owner": "The Genie",
@@ -1212,7 +1212,7 @@
       }
     },
     {
-      "id": "subclass.genie.limited_wish",
+      "id": "subclass.the_genie.limited_wish",
       "name": "Limited Wish",
       "kind": "subclass",
       "owner": "The Genie",

@@ -1,0 +1,268 @@
+{
+  "features": [
+    {
+      "id": "class.cleric.turn_undead",
+      "name": "Channel Divinity: Turn Undead",
+      "kind": "class",
+      "owner": "Cleric",
+      "unlock": 2,
+      "activation": "action",
+      "cost": [{ "resource": "channel_divinity", "amount": 1 }],
+      "limits": { "per": "turn", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "creature", "range": { "value": 60, "unit": "ft" }, "description": "An undead creature" },
+      "duration": { "value": 1, "unit": "minute" },
+      "endsIf": ["you_tell_it_to", "completes_a_turn_without_seeing_you"],
+      "effects": [
+        { "kind": "condition", "action": "apply", "conditions": ["frightened"], "duration": { "value": 1, "unit": "minute" } },
+        { "kind": "condition", "action": "apply", "conditions": ["paralyzed"], "duration": { "value": 1, "unit": "minute" } },
+        { "kind": "special", "note": "On your turn, you can expend your channel divinity to force a target creature within 60 feet to make a Charisma saving throw. If it fails, it turns for 1 minute or until you tell it to do so, and is frightened. If it succeeds, the creature isn't affected. A creature targeted by this feature turns immediately and stops concentrating on any spell it's concentrating on. Any creature that completes a turn without being commanded by you or seeing you is cured of the effect." }
+      ],
+      "summary": "Spend CD: turn an undead, which frightens it",
+      "text": "On your turn, you can expend your channel divinity to force a target creature within 60 feet of you to make a Charisma saving throw. If the creature fails the save, it turns for 1 minute or until you tell it to do so, and is frightened.",
+      "source": { "book": "PHB", "reference": "PHB Cleric 192" }
+    },
+    {
+      "id": "subclass.moon.combat_wild_shape",
+      "name": "Combat Wild Shape",
+      "kind": "subclass",
+      "owner": "Moon",
+      "unlock": 2,
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "You can fight in your Wild Shape form, so you know the tusk attack and can make it as a bonus action on each of your turns, using your Strength modifier, and it deals 1d6 piercing damage. You also have resistance to damage from whatever creature you assumed." }
+      ],
+      "summary": "Your tusk attack becomes a bonus action, 1d6 piercing",
+      "text": "You can make a tusk attack as a bonus action on each of your turns using your Strength modifier, dealing 1d6 piercing damage.",
+      "source": { "book": "PHB", "reference": "PHB Druid Circle of the Moon 2" }
+    },
+    {
+      "id": "subclass.moon.circle_forms",
+      "name": "Circle Forms",
+      "kind": "subclass",
+      "owner": "Moon",
+      "unlock": 2,
+      "activation": "action",
+      "limits": { "per": "day", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "self" },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "special", "note": "You have a robust constitution that can survive the wild, so you can spend ki and your Circle forms instead of dropping to 0 hit points, and the excess damage converts to healing, and at 6th level you can also use it to reduce exhaustion, and you gain more ki per level, and at 17th level you can cast circle forms without ki or exhaustion." }
+      ],
+      "tiers": [
+        { "at": 6 },
+        { "at": 17 }
+      ],
+      "summary": "Spend ki instead of dropping to 0 HP; excess becomes healing",
+      "text": "You have a robust constitution that can survive the wild. You can expend ki and Circle forms instead of dropping to 0 hit points.",
+      "source": { "book": "PHB", "reference": "PHB Druid Circle of the Moon 2" }
+    },
+    {
+      "id": "subclass.moon.primal_strike",
+      "name": "Primal Strike",
+      "kind": "subclass",
+      "owner": "Moon",
+      "unlock": 6,
+      "activation": "passive",
+      "effects": [
+        { "kind": "damage", "dice": { "dice": "1", "flat": 0 }, "damageType": "weapon_damage", "resolution": { "mode": "auto" } },
+        { "kind": "special", "note": "You are dangerous when you want to be, so you can use your action to make one melee attack with a weapon that you are proficient with, ignoring whether you have it, and if you hit you deal an extra 1d6 of the attack's damage type, and at 17th level you also add your Charisma modifier to that damage." }
+      ],
+      "summary": "Action: an improvised attack for 1d6 extra",
+      "text": "You can use your action to make one melee attack with a weapon that you are proficient with, ignoring whether you have it.",
+      "source": { "book": "PHB", "reference": "PHB Druid Circle of the Moon 6" }
+    },
+    {
+      "id": "subclass.moon.elemental_wild_shape",
+      "name": "Elemental Wild Shape",
+      "kind": "subclass",
+      "owner": "Moon",
+      "unlock": 10,
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "You can shift into any elemental spirit you desire, and at 18th level it can be any creature whose challenge ratio is equal to or less than yours, and at 11th level the tusk attack damage increases to 1d8 and your Strength score increases by 2 while in a form." }
+      ],
+      "summary": "Shift into any elemental; tusks grow to 1d8",
+      "text": "You can shift into any elemental spirit you desire.",
+      "source": { "book": "PHB", "reference": "PHB Druid Circle of the Moon 10" }
+    },
+    {
+      "id": "subclass.moon.thousand_forms",
+      "name": "Thousand Forms",
+      "kind": "subclass",
+      "owner": "Moon",
+      "unlock": 14,
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "You have mastered your forms, so you can use Wild Shape to take the form of a creature with a challenge rating equal to or less than yours, and you can use Wild Shape twice per long rest and regain expended ki equal to twice your level, and at 17th level you can also assume the form of a celestial." }
+      ],
+      "summary": "Wild Shape twice per long rest, refunding 2x ki",
+      "text": "You can use Wild Shape twice per long rest, regaining expended ki points equal to twice your druid level.",
+      "source": { "book": "PHB", "reference": "PHB Druid Circle of the Moon 14" }
+    },
+    {
+      "id": "subclass.college_of_whispers.psychic_blades",
+      "name": "Psychic Blades",
+      "kind": "subclass",
+      "owner": "College of Whispers",
+      "unlock": 3,
+      "activation": "action",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "creature", "range": { "value": 60, "unit": "ft" } },
+      "duration": { "value": 1, "unit": "minute" },
+      "endsIf": [],
+      "effects": [
+        { "kind": "stat_modifier", "stat": "damage_roll", "amount": 0, "duration": "while_active" },
+        { "kind": "extra_attacks", "count": 0, "note": "Your words cut, so when you make a melee spell attack against a creature, you can use your action to hurl a mote of psychic energy at it within 60 feet, and on a hit you deal 1d8 plus your Charisma modifier psychic damage, and it can't concentrate on its own spells, and you gain the use when you finish a long rest." }
+      ],
+      "summary": "Action: a psychic mote for 1d8 + Cha and no concentration",
+      "text": "When you make a melee spell attack against a creature, you can use your action to hurl a mote of psychic energy at it within 60 feet of you.",
+      "source": { "book": "PHB", "reference": "PHB Bard College of Whispers 3" }
+    },
+    {
+      "id": "subclass.college_of_whispers.words_of_terror",
+      "name": "Words of Terror",
+      "kind": "subclass",
+      "owner": "College of Whispers",
+      "unlock": 6,
+      "activation": "bonus_action",
+      "limits": { "per": "turn", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "creature", "range": { "value": 60, "unit": "ft" } },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        { "kind": "damage", "dice": { "dice": "3d8", "bonusFrom": "cha" }, "damageType": "psychic", "resolution": { "mode": "save", "ability": "wis", "onSuccess": "half", "onFailure": "full" } },
+        { "kind": "special", "note": "You speak terrible words, so as a bonus action on your turn, one creature of your choice within 60 feet must make a Wisdom saving throw, taking 3d8 psychic damage plus your Charisma modifier on a failure or half on a success, and it can't move or take reactions for 1 minute, and at 14th level you can use this on a creature that is charmed." }
+      ],
+      "summary": "Bonus action: 3d8 + Cha psychic that roots it",
+      "text": "As a bonus action on your turn, one creature of your choice within 60 feet of you must make a Wisdom saving throw.",
+      "source": { "book": "PHB", "reference": "PHB Bard College of Whispers 6" }
+    },
+    {
+      "id": "subclass.college_of_whispers.mantle_of_whispers",
+      "name": "Mantle of Whispers",
+      "kind": "subclass",
+      "owner": "College of Whispers",
+      "unlock": 14,
+      "activation": "action",
+      "limits": { "per": "rest", "max": 1 },
+      "trigger": null,
+      "targeting": { "scope": "self" },
+      "duration": { "value": 1, "unit": "minute" },
+      "endsIf": [],
+      "effects": [
+        { "kind": "special", "note": "You weave a mantle of shadow and sound, so as an action you create a sphere of whispering silence 30 feet in radius centered on you, which moves with you and lasts 1 minute, and you and creatures in it have advantage on Stealth checks and can hear any creature in it within 30 feet, and at 18th level the sphere also ends charmed and frightened conditions on creatures in it." }
+      ],
+      "summary": "Action: a sphere of stealth and shared hearing",
+      "text": "As an action, you create a sphere of whispering silence 30 feet in radius centered on you.",
+      "source": { "book": "PHB", "reference": "PHB Bard College of Whispers 14" }
+    },
+    {
+      "id": "subclass.battle_master.improved_combat_superiority",
+      "name": "Improved Combat Superiority",
+      "kind": "subclass",
+      "owner": "Battle Master",
+      "unlock": 10,
+      "activation": "passive",
+      "effects": [
+        { "kind": "special", "note": "You have refined your battlefield awareness, so your superiority dice are d10 from 10th level and d12 from 18th, and you gain two more maneuvers at 15th level, and at 18th level your Maneuver Stop Reaction becomes Pause." }
+      ],
+      "tiers": [
+        { "at": 18, "summary": "The dice become d12, and Stop Reaction becomes Pause" }
+      ],
+      "summary": "Superiority dice grow to d10 at 10 and d12 at 18",
+      "text": "Your superiority dice are d10 at 10th level and d12 at 18th level.",
+      "source": { "book": "PHB", "reference": "PHB Fighter Battle Master 10" }
+    },
+    {
+      "id": "subclass.eldritch_knight.improved_war_magic",
+      "name": "Improved War Magic",
+      "kind": "subclass",
+      "owner": "Eldritch Knight",
+      "unlock": 18,
+      "activation": "passive",
+      "effects": [
+        { "kind": "extra_attacks", "count": 0, "note": "You have mastered war magic, so you can cast a spell and a bonus action spell in the same turn, and if a spell you cast with this feature deals damage, you can make a melee weapon attack as a bonus action, and at 20th level you can also do this with the Attack action instead." }
+      ],
+      "summary": "Cast a spell, a bonus-action spell, and attack in one turn",
+      "text": "You have learned to unleash your magic with deadly effect. You can cast a spell and a bonus action spell in the same turn.",
+      "source": { "book": "PHB", "reference": "PHB Fighter Eldritch Knight 18" }
+    },
+    {
+      "id": "subclass.artillerist.tool_proficiency",
+      "name": "Tool Proficiency",
+      "kind": "subclass",
+      "owner": "Artillerist",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        { "kind": "tool", "tools": ["any type of gaming set", "veggiscutter"], "proficiency": "proficient" },
+        { "kind": "special", "note": "You gain proficiency with any type of gaming set and with the specialized tools of your trade: a gunner's pack, alchemist's supplies or artisan's tools." }
+      ],
+      "summary": "Proficiency with a gaming set and your trade's tools",
+      "text": "You gain proficiency with any type of gaming set, and with the specialized tools of your trade.",
+      "source": { "book": "TCE", "reference": "Tasha's Cauldron Artificer 48" }
+    },
+    {
+      "id": "subclass.battle_smith.tool_proficiency",
+      "name": "Tool Proficiency",
+      "kind": "subclass",
+      "owner": "Battle Smith",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        { "kind": "tool", "tools": ["any type of gaming set", "weaponsmith's tools or armorer's tools"], "proficiency": "proficient" },
+        { "kind": "special", "note": "You gain proficiency with any type of gaming set and with weaponsmith's tools or armorer's tools." }
+      ],
+      "summary": "Proficiency with a gaming set and smith's or armorer's tools",
+      "text": "You gain proficiency with any type of gaming set and with weaponsmith's tools or armorer's tools.",
+      "source": { "book": "TCE", "reference": "Tasha's Cauldron Artificer 49" }
+    },
+    {
+      "id": "subclass.battle_smith.extra_attack",
+      "name": "Extra Attack",
+      "kind": "subclass",
+      "owner": "Battle Smith",
+      "unlock": 5,
+      "activation": "passive",
+      "effects": [
+        { "kind": "extra_attacks", "count": 1, "note": "You can attack twice, instead of once, whenever you take the Attack action on your turn." }
+      ],
+      "summary": "Two attacks with the Attack action",
+      "text": "You can attack twice, instead of once, whenever you take the Attack action on your turn.",
+      "source": { "book": "TCE", "reference": "Tasha's Cauldron Artificer 49" }
+    },
+    {
+      "id": "subclass.college_of_swords.fighting_style",
+      "name": "Fighting Style",
+      "kind": "subclass",
+      "owner": "College of Swords",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        { "kind": "choice", "of": "fighting_style", "count": 1, "note": "You adopt the Dueling fighting style, which you gain for free without the normal two-weapon limitation." }
+      ],
+      "summary": "The Dueling fighting style, with no two-weapon limit",
+      "text": "You adopt the Dueling fighting style without its usual two-weapon limitation.",
+      "source": { "book": "PHB", "reference": "PHB Bard College of Swords 3" }
+    },
+    {
+      "id": "subclass.arcane_archer.arcane_shot_options",
+      "name": "Arcane Shot Options",
+      "kind": "subclass",
+      "owner": "Arcane Archer",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        { "kind": "choice", "of": "arcane_shot_option", "count": 1, "note": "Each time you take Arcane Shot, you can choose one option: Buster deals an additional 1d6 to the target and to a second creature within 10 feet of it, Pucker deals an additional 1d6 and restrains the target, and Piercer causes the attack to pierce all but the target's heaviest armor." }
+      ],
+      "summary": "Choose Buster, Pucker or Piercer each time you Arcane Shot",
+      "text": "Each time you take Arcane Shot, you can choose one option: Buster, Pucker, or Piercer.",
+      "source": { "book": "TCE", "reference": "Tasha's Cauldron Fighter Arcane Archer 3" }
+    }
+  ]
+}

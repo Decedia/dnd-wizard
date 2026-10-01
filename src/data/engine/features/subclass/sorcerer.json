@@ -732,7 +732,7 @@
       }
     },
     {
-      "id": "subclass.shadow.eyes_of_the_dark",
+      "id": "subclass.shadow_magic.eyes_of_the_dark",
       "name": "Eyes of the Dark",
       "kind": "subclass",
       "owner": "Shadow Magic",
@@ -770,7 +770,7 @@
       }
     },
     {
-      "id": "subclass.shadow.strength_of_the_grave",
+      "id": "subclass.shadow_magic.strength_of_the_grave",
       "name": "Strength of the Grave",
       "kind": "subclass",
       "owner": "Shadow Magic",
@@ -843,7 +843,7 @@
       }
     },
     {
-      "id": "subclass.shadow.hound_of_ill_omen",
+      "id": "subclass.shadow_magic.hound_of_ill_omen",
       "name": "Hound of Ill Omen",
       "kind": "subclass",
       "owner": "Shadow Magic",
@@ -892,7 +892,7 @@
       }
     },
     {
-      "id": "subclass.shadow.shadow_walk",
+      "id": "subclass.shadow_magic.shadow_walk",
       "name": "Shadow Walk",
       "kind": "subclass",
       "owner": "Shadow Magic",
@@ -928,7 +928,7 @@
       }
     },
     {
-      "id": "subclass.shadow.umbral_form",
+      "id": "subclass.shadow_magic.umbral_form",
       "name": "Umbral Form",
       "kind": "subclass",
       "owner": "Shadow Magic",

@@ -8,14 +8,30 @@
       "unlock": 3,
       "activation": "passive",
       "effects": [
-        { "kind": "extra_attacks", "count": 0, "note": "Whenever a creature within 5 feet of you that you can see hits you with an attack, you can use your reaction to impose disadvantage on the attack roll. If the attack hits, you can make a melee spell attack against that creature, and at 17th level you can do this even if the attack misses." }
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "Whenever a creature within 5 feet of you that you can see hits you with an attack, you can use your reaction to impose disadvantage on the attack roll. If the attack hits, you can make a melee spell attack against that creature, and at 17th level you can do this even if the attack misses."
+        }
       ],
       "tiers": [
-        { "at": 17, "effects": [{ "kind": "extra_attacks", "count": 0, "note": "You can react to impose disadvantage and make the attack even if the attack misses." }] }
+        {
+          "at": 17,
+          "effects": [
+            {
+              "kind": "extra_attacks",
+              "count": 0,
+              "note": "You can react to impose disadvantage and make the attack even if the attack misses."
+            }
+          ]
+        }
       ],
       "summary": "Reaction: disadvantage on an adjacent attack, then hit back",
       "text": "Whenever a creature within 5 feet of you that you can see hits you with an attack, you can use your reaction to impose disadvantage on the attack roll. If the attack hits, you can make a melee spell attack against that creature.",
-      "source": { "book": "MTF", "reference": "Mordenkainen's Tome of Foes Ascendant Dragon 3" }
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Ascendant Dragon 3"
+      }
     },
     {
       "id": "subclass.ascendant_dragon.breath_of_the_dragon",
@@ -24,21 +40,53 @@
       "owner": "Ascendant Dragon",
       "unlock": 3,
       "activation": "bonus_action",
-      "limits": { "per": "day", "max": 1 },
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "creatures_in_area", "range": { "value": 15, "unit": "ft" }, "shape": "cone" },
+      "targeting": {
+        "scope": "creatures_in_area",
+        "range": {
+          "value": 15,
+          "unit": "ft"
+        },
+        "shape": "cone"
+      },
       "duration": null,
       "endsIf": [],
       "effects": [
-        { "kind": "special", "note": "You have a draconic ancestor and can tap into its power. As a bonus action, you exhale a 15-foot cone of elemental energy, and each creature in the area makes a Constitution saving throw, taking 3d6 damage of your ancestry's type on a failure and half as much on a success. At 6th level the damage increases to 4d6, and at 17th to 5d6." }
+        {
+          "kind": "special",
+          "note": "You have a draconic ancestor and can tap into its power. As a bonus action, you exhale a 15-foot cone of elemental energy, and each creature in the area makes a Constitution saving throw, taking 3d6 damage of your ancestry's type on a failure and half as much on a success. At 6th level the damage increases to 4d6, and at 17th to 5d6."
+        }
       ],
       "tiers": [
-        { "at": 6, "effects": [{ "kind": "special", "note": "The breath deals 4d6 damage." }] },
-        { "at": 17, "effects": [{ "kind": "special", "note": "The breath deals 5d6 damage." }] }
+        {
+          "at": 6,
+          "effects": [
+            {
+              "kind": "special",
+              "note": "The breath deals 4d6 damage."
+            }
+          ]
+        },
+        {
+          "at": 17,
+          "effects": [
+            {
+              "kind": "special",
+              "note": "The breath deals 5d6 damage."
+            }
+          ]
+        }
       ],
       "summary": "Once a day, a bonus-action 15-ft cone of your ancestry's damage",
       "text": "As a bonus action, you exhale a 15-foot cone of elemental energy, and each creature in the area makes a Constitution saving throw.",
-      "source": { "book": "MTF", "reference": "Mordenkainen's Tome of Foes Ascendant Dragon 3" }
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Ascendant Dragon 3"
+      }
     },
     {
       "id": "subclass.ascendant_dragon.wings_unfurled",
@@ -47,17 +95,31 @@
       "owner": "Ascendant Dragon",
       "unlock": 6,
       "activation": "bonus_action",
-      "limits": { "per": "rest", "max": 1 },
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "self" },
-      "duration": { "value": 1, "unit": "minute" },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
       "endsIf": [],
       "effects": [
-        { "kind": "special", "note": "You have magic in your wings. As a bonus action, you magically grow a pair of wings with a flying speed equal to your walking speed for 1 minute, and you gain proficiency with two tools of your choice, and at 17th level the wings let you hover and use Shove and Grapple as bonus actions instead of attacks." }
+        {
+          "kind": "special",
+          "note": "You have magic in your wings. As a bonus action, you magically grow a pair of wings with a flying speed equal to your walking speed for 1 minute, and you gain proficiency with two tools of your choice, and at 17th level the wings let you hover and use Shove and Grapple as bonus actions instead of attacks."
+        }
       ],
       "summary": "Bonus action: flight for a minute, once per long rest",
       "text": "As a bonus action, you magically grow a pair of wings with a flying speed equal to your walking speed for 1 minute.",
-      "source": { "book": "MTF", "reference": "Mordenkainen's Tome of Foes Ascendant Dragon 6" }
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Ascendant Dragon 6"
+      }
     },
     {
       "id": "subclass.ascendant_dragon.aspect_of_the_wyrm",
@@ -67,11 +129,17 @@
       "unlock": 11,
       "activation": "passive",
       "effects": [
-        { "kind": "special", "note": "Your draconic aspects grow more potent. At 11th level, your Draconic Discipline reaction also imposes disadvantage on the creature's ability checks, and your Breath of the Dragon cone is 30 feet, and you have advantage on saving throws against being charmed by dragons, and at 17th level your flight also grants a fly speed of 60 feet." }
+        {
+          "kind": "special",
+          "note": "Your draconic aspects grow more potent. At 11th level, your Draconic Discipline reaction also imposes disadvantage on the creature's ability checks, and your Breath of the Dragon cone is 30 feet, and you have advantage on saving throws against being charmed by dragons, and at 17th level your flight also grants a fly speed of 60 feet."
+        }
       ],
       "summary": "Draconic Discipline also hinders checks; breath reaches 30 ft",
       "text": "At 11th level, your Draconic Discipline reaction also imposes disadvantage on the creature's ability checks.",
-      "source": { "book": "MTF", "reference": "Mordenkainen's Tome of Foes Ascendant Dragon 11" }
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Ascendant Dragon 11"
+      }
     },
     {
       "id": "subclass.ascendant_dragon.ascendant_aspect",
@@ -81,11 +149,18 @@
       "unlock": 17,
       "activation": "passive",
       "effects": [
-        { "kind": "extra_attacks", "count": 0, "note": "You have mastered your draconic aspects. You can replace your Draconic Discipline or Aspect of the Wyrm with the aspect of another dragon ancestry, gaining its features, and your Breath of the Dragon deals 6d6." }
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "You have mastered your draconic aspects. You can replace your Draconic Discipline or Aspect of the Wyrm with the aspect of another dragon ancestry, gaining its features, and your Breath of the Dragon deals 6d6."
+        }
       ],
       "summary": "Swap to another dragon ancestry's aspect",
       "text": "You can replace your Draconic Discipline with the Aspect of another dragon ancestry, gaining its features.",
-      "source": { "book": "MTF", "reference": "Mordenkainen's Tome of Foes Ascendant Dragon 17" }
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Ascendant Dragon 17"
+      }
     },
     {
       "id": "subclass.open_hand.open_hand_technique",
@@ -94,17 +169,28 @@
       "owner": "Open Hand",
       "unlock": 3,
       "activation": "bonus_action",
-      "limits": { "per": "turn", "max": 1 },
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "creature" },
+      "targeting": {
+        "scope": "creature"
+      },
       "duration": null,
       "endsIf": [],
       "effects": [
-        { "kind": "special", "note": "You know the Open Hand combat technique, and can use a bonus action on your turn to strike with your open hand an additional time. This can be one of the Open Hand techniques: a shove that knocks a creature prone if it fails a Strength save, a grapple, or a Weapon Master technique you learn at 11th level." }
+        {
+          "kind": "special",
+          "note": "You know the Open Hand combat technique, and can use a bonus action on your turn to strike with your open hand an additional time. This can be one of the Open Hand techniques: a shove that knocks a creature prone if it fails a Strength save, a grapple, or a Weapon Master technique you learn at 11th level."
+        }
       ],
       "summary": "Bonus action: an extra open-hand strike, shove or grapple",
       "text": "You can use a bonus action on your turn to strike with your open hand an additional time.",
-      "source": { "book": "PHB", "reference": "PHB Monk Open Hand 3" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk Open Hand 3"
+      }
     },
     {
       "id": "subclass.open_hand.wholeness_of_body",
@@ -113,18 +199,38 @@
       "owner": "Open Hand",
       "unlock": 6,
       "activation": "action",
-      "limits": { "per": "rest", "max": 1 },
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "self" },
+      "targeting": {
+        "scope": "self"
+      },
       "duration": null,
       "endsIf": [],
       "effects": [
-        { "kind": "heal", "dice": { "dice": "2", "flat": 0 }, "resolution": { "mode": "auto" } },
-        { "kind": "special", "note": "Your body knows unity, so you can use an action to regain 2d8 plus your monk level in hit points, or a number of ki points equal to that many, whichever you choose, and you regain the use of this when you finish a short or long rest, and at 17th level you can use it twice per long rest." }
+        {
+          "kind": "heal",
+          "dice": {
+            "dice": "2",
+            "flat": 0
+          },
+          "resolution": {
+            "mode": "auto"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "Your body knows unity, so you can use an action to regain 2d8 plus your monk level in hit points, or a number of ki points equal to that many, whichever you choose, and you regain the use of this when you finish a short or long rest, and at 17th level you can use it twice per long rest."
+        }
       ],
       "summary": "Action: 2d8 + Monk level in hit points or ki",
       "text": "You can use an action to regain 2d8 + your monk level in hit points, or a number of ki points equal to that many.",
-      "source": { "book": "PHB", "reference": "PHB Monk Open Hand 6" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk Open Hand 6"
+      }
     },
     {
       "id": "subclass.open_hand.tranquility",
@@ -133,17 +239,31 @@
       "owner": "Open Hand",
       "unlock": 11,
       "activation": "action",
-      "limits": { "per": "rest", "max": 1 },
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "self" },
-      "duration": { "value": 1, "unit": "minute" },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
       "endsIf": [],
       "effects": [
-        { "kind": "special", "note": "You have reached into your center to find calm. As an action, you can enter a trance of serenity that lasts for 1 minute, and while you are in it you are blinded and deafened, and whenever you take damage the effect ends, and your current ki points increase by your level if you have none, and you regain the use when you finish a short or long rest." }
+        {
+          "kind": "special",
+          "note": "You have reached into your center to find calm. As an action, you can enter a trance of serenity that lasts for 1 minute, and while you are in it you are blinded and deafened, and whenever you take damage the effect ends, and your current ki points increase by your level if you have none, and you regain the use when you finish a short or long rest."
+        }
       ],
       "summary": "Action: a minute of serenity that restores ki if empty",
       "text": "As an action, you can enter a trance of serenity that lasts for 1 minute.",
-      "source": { "book": "PHB", "reference": "PHB Monk Open Hand 11" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk Open Hand 11"
+      }
     },
     {
       "id": "subclass.open_hand.quivering_palm",
@@ -152,18 +272,46 @@
       "owner": "Open Hand",
       "unlock": 17,
       "activation": "reaction",
-      "limits": { "per": "rest", "max": 1 },
-      "trigger": { "event": "save_failed", "note": "When a creature within 5 feet of you that you can see fails a saving throw." },
-      "targeting": { "scope": "creature", "range": { "value": 5, "unit": "ft" } },
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "save_failed",
+        "note": "When a creature within 5 feet of you that you can see fails a saving throw."
+      },
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 5,
+          "unit": "ft"
+        }
+      },
       "duration": null,
       "endsIf": [],
       "effects": [
-        { "kind": "condition", "action": "apply", "conditions": ["frightened"], "duration": { "value": 1, "unit": "minute" } },
-        { "kind": "special", "note": "You have a powerful manipulation on the energy of the body. When a creature within 5 feet of you that you can see fails a saving throw, you can use your reaction to automatically succeed instead, and it is frightened until the end of your next turn. You regain the use when you finish a long rest." }
+        {
+          "kind": "condition",
+          "action": "apply",
+          "conditions": [
+            "frightened"
+          ],
+          "duration": {
+            "value": 1,
+            "unit": "minute"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You have a powerful manipulation on the energy of the body. When a creature within 5 feet of you that you can see fails a saving throw, you can use your reaction to automatically succeed instead, and it is frightened until the end of your next turn. You regain the use when you finish a long rest."
+        }
       ],
       "summary": "Reaction: an adjacent creature's failed save becomes a fear",
       "text": "When a creature within 5 feet of you that you can see fails a saving throw, you can use your reaction to automatically succeed instead.",
-      "source": { "book": "PHB", "reference": "PHB Monk Open Hand 17" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk Open Hand 17"
+      }
     },
     {
       "id": "subclass.shadow.shadow_arts",
@@ -173,12 +321,24 @@
       "unlock": 3,
       "activation": "passive",
       "effects": [
-        { "kind": "skill", "skills": ["Stealth"], "proficiency": "proficient" },
-        { "kind": "special", "note": "You have studied the dark, so you gain proficiency in Stealth, and you learn minor illusion, which you can cast at will without a spell slot, and at 8th level you learn one 1st-level shadow sorcery, cleric or warlock spell, castable without a slot, and you can learn another at 12th and 16th." }
+        {
+          "kind": "skill",
+          "skills": [
+            "Stealth"
+          ],
+          "proficiency": "proficient"
+        },
+        {
+          "kind": "special",
+          "note": "You have studied the dark, so you gain proficiency in Stealth, and you learn minor illusion, which you can cast at will without a spell slot, and at 8th level you learn one 1st-level shadow sorcery, cleric or warlock spell, castable without a slot, and you can learn another at 12th and 16th."
+        }
       ],
       "summary": "Stealth proficiency; minor illusion at will, plus shadow spells",
       "text": "You gain proficiency in Stealth. You learn the minor illusion cantrip, which you can cast at will without a spell slot.",
-      "source": { "book": "PHB", "reference": "PHB Monk Shadow 3" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk Shadow 3"
+      }
     },
     {
       "id": "subclass.shadow.shadow_step",
@@ -187,19 +347,39 @@
       "owner": "Shadow",
       "unlock": 6,
       "activation": "bonus_action",
-      "limits": { "per": "turn", "max": 1 },
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "self" },
+      "targeting": {
+        "scope": "self"
+      },
       "duration": null,
       "endsIf": [],
-      "gates": ["dim_light"],
+      "gates": [
+        "dim_light"
+      ],
       "effects": [
-        { "kind": "teleport", "distance": { "value": 60, "unit": "ft" }, "mustBeUnoccupied": true },
-        { "kind": "special", "note": "You have learned to move through darkness. In dim light or darkness, you can teleport up to 60 feet to an unoccupied space that you can see, and you gain the ability to move through nonmagical creatures, their spaces can be occupied by you and theirs by them, without difficulty." }
+        {
+          "kind": "teleport",
+          "distance": {
+            "value": 60,
+            "unit": "ft"
+          },
+          "mustBeUnoccupied": true
+        },
+        {
+          "kind": "special",
+          "note": "You have learned to move through darkness. In dim light or darkness, you can teleport up to 60 feet to an unoccupied space that you can see, and you gain the ability to move through nonmagical creatures, their spaces can be occupied by you and theirs by them, without difficulty."
+        }
       ],
       "summary": "Bonus action: 60-ft blink in dim light or darkness",
       "text": "In dim light or darkness, you can teleport up to 60 feet to an unoccupied space that you can see.",
-      "source": { "book": "PHB", "reference": "PHB Monk Shadow 6" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk Shadow 6"
+      }
     },
     {
       "id": "subclass.shadow.cloak_of_shadows",
@@ -209,12 +389,24 @@
       "unlock": 11,
       "activation": "passive",
       "effects": [
-        { "kind": "skill", "skills": ["Stealth"], "proficiency": "expertise" },
-        { "kind": "special", "note": "You have almost mastered the shadow arts, and your proficiency bonus for Stealth is doubled, and you gain the ability to pass through nonmagical creatures, and at 17th level Shadow Step has no distance limit and you gain darkvision." }
+        {
+          "kind": "skill",
+          "skills": [
+            "Stealth"
+          ],
+          "proficiency": "expertise"
+        },
+        {
+          "kind": "special",
+          "note": "You have almost mastered the shadow arts, and your proficiency bonus for Stealth is doubled, and you gain the ability to pass through nonmagical creatures, and at 17th level Shadow Step has no distance limit and you gain darkvision."
+        }
       ],
       "summary": "Stealth expertise; unlimited Shadow Step and darkvision at 17",
       "text": "Your proficiency bonus for your Stealth checks is doubled.",
-      "source": { "book": "PHB", "reference": "PHB Monk Shadow 11" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk Shadow 11"
+      }
     },
     {
       "id": "subclass.shadow.opportunist",
@@ -224,11 +416,18 @@
       "unlock": 17,
       "activation": "passive",
       "effects": [
-        { "kind": "extra_attacks", "count": 0, "note": "You have learned to exploit a foe's momentary distraction. When a creature within 5 feet of you that you can see is hit by an attack by anyone other than you, you can use your reaction to make a melee attack against that creature." }
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "You have learned to exploit a foe's momentary distraction. When a creature within 5 feet of you that you can see is hit by an attack by anyone other than you, you can use your reaction to make a melee attack against that creature."
+        }
       ],
       "summary": "Reaction: hit a creature that someone else just attacked",
       "text": "Whenever a creature within 5 feet of you that you can see is hit by an attack by anyone other than you, you can use your reaction to make a melee attack against that creature.",
-      "source": { "book": "PHB", "reference": "PHB Monk Shadow 17" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk Shadow 17"
+      }
     },
     {
       "id": "subclass.way_of_mercy.implements_of_mercy",
@@ -238,11 +437,28 @@
       "unlock": 3,
       "activation": "passive",
       "effects": [
-        { "kind": "spell_grant", "cantrip": { "known": true }, "spells": [{ "level": 1, "from": ["cleric"] }], "note": "Your training ensures you learn a broad range of holy magic, so you know the sanctuary cantrip, castable at will without a slot, and you know one 1st-level cleric spell castable without a slot, and you gain another at 8th, 14th and 17th level." }
+        {
+          "kind": "spell_grant",
+          "cantrip": {
+            "known": true
+          },
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "cleric"
+              ]
+            }
+          ],
+          "note": "Your training ensures you learn a broad range of holy magic, so you know the sanctuary cantrip, castable at will without a slot, and you know one 1st-level cleric spell castable without a slot, and you gain another at 8th, 14th and 17th level."
+        }
       ],
       "summary": "Sanctuary at will, plus cleric spells without slots",
       "text": "You know the sanctuary cantrip, which you can cast at will without a spell slot.",
-      "source": { "book": "MTF", "reference": "Mordenkainen's Tome of Foes Way of Mercy 3" }
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Way of Mercy 3"
+      }
     },
     {
       "id": "subclass.way_of_mercy.hands_of_healing",
@@ -251,23 +467,88 @@
       "owner": "Way of Mercy",
       "unlock": 3,
       "activation": "bonus_action",
-      "cost": [{ "resource": "ki", "amount": 1 }],
-      "limits": { "per": "turn", "max": 1 },
+      "cost": [
+        {
+          "resource": "ki",
+          "amount": 1
+        }
+      ],
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "creature", "range": { "value": 30, "unit": "ft" } },
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 30,
+          "unit": "ft"
+        }
+      },
       "duration": null,
       "endsIf": [],
       "effects": [
-        { "kind": "heal", "dice": { "dice": "1d8", "bonusFrom": "wis" }, "resolution": { "mode": "auto" } },
-        { "kind": "special", "note": "Your techniques can mend flesh and mend spirit. As a bonus action, you can touch a creature that is within 30 feet of you and spend 1 ki point, restoring it with 1d8 plus your Wisdom modifier in hit points, and at 9th level the damage increases to 2d8 and at 17th to 3d8." }
+        {
+          "kind": "heal",
+          "dice": {
+            "dice": "1d8",
+            "bonusFrom": "wis"
+          },
+          "resolution": {
+            "mode": "auto"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "Your techniques can mend flesh and mend spirit. As a bonus action, you can touch a creature that is within 30 feet of you and spend 1 ki point, restoring it with 1d8 plus your Wisdom modifier in hit points, and at 9th level the damage increases to 2d8 and at 17th to 3d8."
+        }
       ],
       "tiers": [
-        { "at": 9, "effects": [{ "kind": "heal", "dice": { "dice": "2d8", "bonusFrom": "wis" }, "resolution": { "mode": "auto" } }, { "kind": "special", "note": "The healing is 2d8 plus your Wisdom modifier." }] },
-        { "at": 17, "effects": [{ "kind": "heal", "dice": { "dice": "3d8", "bonusFrom": "wis" }, "resolution": { "mode": "auto" } }, { "kind": "special", "note": "The healing is 3d8 plus your Wisdom modifier." }] }
+        {
+          "at": 9,
+          "effects": [
+            {
+              "kind": "heal",
+              "dice": {
+                "dice": "2d8",
+                "bonusFrom": "wis"
+              },
+              "resolution": {
+                "mode": "auto"
+              }
+            },
+            {
+              "kind": "special",
+              "note": "The healing is 2d8 plus your Wisdom modifier."
+            }
+          ]
+        },
+        {
+          "at": 17,
+          "effects": [
+            {
+              "kind": "heal",
+              "dice": {
+                "dice": "3d8",
+                "bonusFrom": "wis"
+              },
+              "resolution": {
+                "mode": "auto"
+              }
+            },
+            {
+              "kind": "special",
+              "note": "The healing is 3d8 plus your Wisdom modifier."
+            }
+          ]
+        }
       ],
       "summary": "Bonus action: spend 1 Ki to heal 1d8 + Wis",
       "text": "As a bonus action, you can touch a creature that is within 30 feet of you and spend 1 ki point, restoring it with 1d8 + your Wisdom modifier in hit points.",
-      "source": { "book": "MTF", "reference": "Mordenkainen's Tome of Foes Way of Mercy 3" }
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Way of Mercy 3"
+      }
     },
     {
       "id": "subclass.way_of_mercy.hands_of_harm",
@@ -276,23 +557,100 @@
       "owner": "Way of Mercy",
       "unlock": 3,
       "activation": "bonus_action",
-      "cost": [{ "resource": "ki", "amount": 1 }],
-      "limits": { "per": "turn", "max": 1 },
+      "cost": [
+        {
+          "resource": "ki",
+          "amount": 1
+        }
+      ],
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "creature", "range": { "value": 30, "unit": "ft" } },
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 30,
+          "unit": "ft"
+        }
+      },
       "duration": null,
       "endsIf": [],
       "effects": [
-        { "kind": "damage", "dice": { "dice": "1d6", "bonusFrom": "wis" }, "damageType": "necrotic", "resolution": { "mode": "save", "ability": "wis", "onSuccess": "none", "onFailure": "full" } },
-        { "kind": "special", "note": "Your mercy is balanced with harm. As a bonus action, you can touch a creature within 30 feet of you and spend 1 ki point, and it makes a Wisdom saving throw, taking 1d6 necrotic damage plus your Wisdom modifier on a failure, or half as much on a success, and at 9th level the damage increases to 2d6 and at 17th to 3d6." }
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "1d6",
+            "bonusFrom": "wis"
+          },
+          "damageType": "necrotic",
+          "resolution": {
+            "mode": "save",
+            "ability": "wis",
+            "onSuccess": "none",
+            "onFailure": "full"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "Your mercy is balanced with harm. As a bonus action, you can touch a creature within 30 feet of you and spend 1 ki point, and it makes a Wisdom saving throw, taking 1d6 necrotic damage plus your Wisdom modifier on a failure, or half as much on a success, and at 9th level the damage increases to 2d6 and at 17th to 3d6."
+        }
       ],
       "tiers": [
-        { "at": 9, "effects": [{ "kind": "damage", "dice": { "dice": "2d6", "bonusFrom": "wis" }, "damageType": "necrotic", "resolution": { "mode": "save", "ability": "wis", "onSuccess": "half", "onFailure": "full" } }, { "kind": "special", "note": "The damage is 2d6 plus your Wisdom modifier." }] },
-        { "at": 17, "effects": [{ "kind": "damage", "dice": { "dice": "3d6", "bonusFrom": "wis" }, "damageType": "necrotic", "resolution": { "mode": "save", "ability": "wis", "onSuccess": "half", "onFailure": "full" } }, { "kind": "special", "note": "The damage is 3d6 plus your Wisdom modifier." }] }
+        {
+          "at": 9,
+          "effects": [
+            {
+              "kind": "damage",
+              "dice": {
+                "dice": "2d6",
+                "bonusFrom": "wis"
+              },
+              "damageType": "necrotic",
+              "resolution": {
+                "mode": "save",
+                "ability": "wis",
+                "onSuccess": "half",
+                "onFailure": "full"
+              }
+            },
+            {
+              "kind": "special",
+              "note": "The damage is 2d6 plus your Wisdom modifier."
+            }
+          ]
+        },
+        {
+          "at": 17,
+          "effects": [
+            {
+              "kind": "damage",
+              "dice": {
+                "dice": "3d6",
+                "bonusFrom": "wis"
+              },
+              "damageType": "necrotic",
+              "resolution": {
+                "mode": "save",
+                "ability": "wis",
+                "onSuccess": "half",
+                "onFailure": "full"
+              }
+            },
+            {
+              "kind": "special",
+              "note": "The damage is 3d6 plus your Wisdom modifier."
+            }
+          ]
+        }
       ],
       "summary": "Bonus action: spend 1 Ki for 1d6 + Wis necrotic",
       "text": "As a bonus action, you can touch a creature that is within 30 feet of you and spend 1 ki point, causing it to make a Wisdom saving throw.",
-      "source": { "book": "MTF", "reference": "Mordenkainen's Tome of Foes Way of Mercy 3" }
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Way of Mercy 3"
+      }
     },
     {
       "id": "subclass.way_of_mercy.physicians_touch",
@@ -302,11 +660,17 @@
       "unlock": 6,
       "activation": "passive",
       "effects": [
-        { "kind": "special", "note": "You have unlimited access to the divine healing of your patron. When you use Hands of Healing, you can expend additional ki points equal to 1d8 plus your Wisdom modifier, and the target regains that many extra hit points." }
+        {
+          "kind": "special",
+          "note": "You have unlimited access to the divine healing of your patron. When you use Hands of Healing, you can expend additional ki points equal to 1d8 plus your Wisdom modifier, and the target regains that many extra hit points."
+        }
       ],
       "summary": "Healing can be scaled up by spending more ki",
       "text": "When you use Hands of Healing, you can expend additional ki points equal to 1d8 + your Wisdom modifier, and the target regains that many additional hit points.",
-      "source": { "book": "MTF", "reference": "Mordenkainen's Tome of Foes Way of Mercy 6" }
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Way of Mercy 6"
+      }
     },
     {
       "id": "subclass.way_of_mercy.flurry_of_healing_and_harm",
@@ -316,12 +680,27 @@
       "unlock": 11,
       "activation": "passive",
       "effects": [
-        { "kind": "heal", "dice": { "dice": "1", "flat": 0 }, "resolution": { "mode": "auto" } },
-        { "kind": "special", "note": "When you use Flurry of Healing and Harm, make a flurry of up to three healing or harming Hand attacks, each of which is a bonus action on your turn, and you spend 1 ki point for each attack after the first. The target of a healing attack regains 1d8 plus your Wisdom modifier, and a harming target takes 1d6 plus your Wisdom modifier necrotic damage on a failed save." }
+        {
+          "kind": "heal",
+          "dice": {
+            "dice": "1",
+            "flat": 0
+          },
+          "resolution": {
+            "mode": "auto"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "When you use Flurry of Healing and Harm, make a flurry of up to three healing or harming Hand attacks, each of which is a bonus action on your turn, and you spend 1 ki point for each attack after the first. The target of a healing attack regains 1d8 plus your Wisdom modifier, and a harming target takes 1d6 plus your Wisdom modifier necrotic damage on a failed save."
+        }
       ],
       "summary": "A flurry of up to three healing or harming bonus actions",
       "text": "When you use Flurry of Healing and Harm, make a flurry of up to three healing or harming Hand attacks.",
-      "source": { "book": "MTF", "reference": "Mordenkainen's Tome of Foes Way of Mercy 11" }
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Way of Mercy 11"
+      }
     },
     {
       "id": "subclass.way_of_mercy.hand_of_ultimate_mercy",
@@ -331,575 +710,1303 @@
       "unlock": 17,
       "activation": "passive",
       "effects": [
-        { "kind": "special", "note": "You have learned to extend mercy beyond its limits. When you use Hands of Healing, you can also end the blinded or deafened condition on the target, and when you use Hands of Harm, you can also impose disadvantage on the target's next attack roll." }
+        {
+          "kind": "special",
+          "note": "You have learned to extend mercy beyond its limits. When you use Hands of Healing, you can also end the blinded or deafened condition on the target, and when you use Hands of Harm, you can also impose disadvantage on the target's next attack roll."
+        }
       ],
       "summary": "Healing also cures deafness; harm also hinders attacks",
       "text": "When you use Hands of Healing, you can also end the blinded or deafened condition on the target.",
-      "source": { "book": "MTF", "reference": "Mordenkainen's Tome of Foes Way of Mercy 17" }
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Way of Mercy 17"
+      }
     },
     {
-      "id": "subclass.astral_self.arms_of_the_astral_self",
+      "id": "subclass.way_of_the_astral_self.arms_of_the_astral_self",
       "name": "Arms of the Astral Self",
       "kind": "subclass",
       "owner": "Way of the Astral Self",
       "unlock": 3,
       "activation": "bonus_action",
-      "limits": { "per": "turn", "max": 1 },
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "creature" },
+      "targeting": {
+        "scope": "creature"
+      },
       "duration": null,
       "endsIf": [],
       "effects": [
-        { "kind": "extra_attacks", "count": 0, "note": "You have learned to tap into the powers of your astral body. As a bonus action, you can create spectral force in one of your hands, which can strike a creature within 5 feet for 1d6 force damage, and you can use it a number of times equal to your Wisdom modifier a turn, splitting them however you choose between Flurry of Blows and this, and at 11th level the damage increases to 2d6." }
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "You have learned to tap into the powers of your astral body. As a bonus action, you can create spectral force in one of your hands, which can strike a creature within 5 feet for 1d6 force damage, and you can use it a number of times equal to your Wisdom modifier a turn, splitting them however you choose between Flurry of Blows and this, and at 11th level the damage increases to 2d6."
+        }
       ],
       "tiers": [
-        { "at": 11, "effects": [{ "kind": "extra_attacks", "count": 0, "note": "The spectral hand damage increases to 2d6." }] }
+        {
+          "at": 11,
+          "effects": [
+            {
+              "kind": "extra_attacks",
+              "count": 0,
+              "note": "The spectral hand damage increases to 2d6."
+            }
+          ]
+        }
       ],
       "summary": "Bonus action: a spectral hand for 1d6 force, sharing ki with Flurry",
       "text": "As a bonus action, you can create spectral force in one of your hands. The force can strike a creature within 5 feet of you, dealing 1d6 force damage.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Monk Astral Self 3" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Monk Astral Self 3"
+      }
     },
     {
-      "id": "subclass.astral_self.visage_of_the_astral_self",
+      "id": "subclass.way_of_the_astral_self.visage_of_the_astral_self",
       "name": "Visage of the Astral Self",
       "kind": "subclass",
       "owner": "Way of the Astral Self",
       "unlock": 6,
       "activation": "passive",
       "effects": [
-        { "kind": "spell_grant", "cantrip": { "known": true }, "spells": [{ "level": 1, "from": ["wizard"] }], "note": "You can use your astral body's power to project a visage, so you learn minor illusion, castable at will without a slot, and you gain the Darkvision at 6th level, seeing in dim light and darkness out to 60 feet as if it were bright light." }
+        {
+          "kind": "spell_grant",
+          "cantrip": {
+            "known": true
+          },
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "wizard"
+              ]
+            }
+          ],
+          "note": "You can use your astral body's power to project a visage, so you learn minor illusion, castable at will without a slot, and you gain the Darkvision at 6th level, seeing in dim light and darkness out to 60 feet as if it were bright light."
+        }
       ],
       "summary": "Minor illusion at will; darkvision 60 ft",
       "text": "You learn the minor illusion cantrip, which you can cast at will without a spell slot.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Monk Astral Self 6" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Monk Astral Self 6"
+      }
     },
     {
-      "id": "subclass.astral_self.body_of_the_astral_self",
+      "id": "subclass.way_of_the_astral_self.body_of_the_astral_self",
       "name": "Body of the Astral Self",
       "kind": "subclass",
       "owner": "Way of the Astral Self",
       "unlock": 11,
       "activation": "passive",
       "effects": [
-        { "kind": "stat_modifier", "stat": "damage_roll", "amount": 1, "duration": "while_active" },
-        { "kind": "extra_attacks", "count": 0, "note": "You can withdraw your vital force from your body to straddle the boundary between the material and astral planes, so you have +1 to your AC and saving throws, and at 17th level your arms deal 2d6 force damage and your Body of the Astral Self can move you 10 feet as a bonus action." }
+        {
+          "kind": "stat_modifier",
+          "stat": "damage_roll",
+          "amount": 1,
+          "duration": "while_active"
+        },
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "You can withdraw your vital force from your body to straddle the boundary between the material and astral planes, so you have +1 to your AC and saving throws, and at 17th level your arms deal 2d6 force damage and your Body of the Astral Self can move you 10 feet as a bonus action."
+        }
       ],
       "tiers": [
-        { "at": 17, "effects": [{ "kind": "stat_modifier", "stat": "damage_roll", "amount": 1, "duration": "while_active" }, { "kind": "extra_attacks", "count": 0, "note": "Your arms deal 2d6 force damage, and you can move 10 feet as a bonus action." }] }
+        {
+          "at": 17,
+          "effects": [
+            {
+              "kind": "stat_modifier",
+              "stat": "damage_roll",
+              "amount": 1,
+              "duration": "while_active"
+            },
+            {
+              "kind": "extra_attacks",
+              "count": 0,
+              "note": "Your arms deal 2d6 force damage, and you can move 10 feet as a bonus action."
+            }
+          ]
+        }
       ],
       "summary": "+1 AC and saves; arms deal 2d6 force at 17",
       "text": "You have a +1 bonus to AC and saving throws, and at 17th level your arms deal 2d6 force damage.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Monk Astral Self 11" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Monk Astral Self 11"
+      }
     },
     {
-      "id": "subclass.astral_self.awakened_astral_self",
+      "id": "subclass.way_of_the_astral_self.awakened_astral_self",
       "name": "Awakened Astral Self",
       "kind": "subclass",
       "owner": "Way of the Astral Self",
       "unlock": 17,
       "activation": "passive",
       "effects": [
-        { "kind": "special", "note": "You have attuned your astral self to a higher state of awareness. Your Visage of the Astral Self Darkvision is out to 120 feet, and your Arms of the Astral Self force attacks ignore half cover, and at 17th level you can move up to 10 feet as a bonus action, and you gain an additional spectral hand strike each turn." }
+        {
+          "kind": "special",
+          "note": "You have attuned your astral self to a higher state of awareness. Your Visage of the Astral Self Darkvision is out to 120 feet, and your Arms of the Astral Self force attacks ignore half cover, and at 17th level you can move up to 10 feet as a bonus action, and you gain an additional spectral hand strike each turn."
+        }
       ],
       "summary": "Darkvision 120; spectral attacks ignore half cover",
       "text": "Your Visage of the Astral Self Darkvision is out to 120 feet.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Monk Astral Self 17" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Monk Astral Self 17"
+      }
     },
     {
-      "id": "subclass.drunken_master.bonus_proficiencies",
+      "id": "subclass.way_of_the_drunken_master.bonus_proficiencies",
       "name": "Bonus Proficiencies",
       "kind": "subclass",
       "owner": "Way of the Drunken Master",
       "unlock": 3,
       "activation": "passive",
       "effects": [
-        { "kind": "tool", "tools": ["one type of musical instrument", "any improvised weapon"], "proficiency": "proficient" },
-        { "kind": "special", "note": "You gain proficiency with one type of musical instrument or one other improvised weapon, and your ki fueled ability is Drunken Technique, and you gain the Drunkard's Luck benefit at 3rd level." }
+        {
+          "kind": "tool",
+          "tools": [
+            "one type of musical instrument",
+            "any improvised weapon"
+          ],
+          "proficiency": "proficient"
+        },
+        {
+          "kind": "special",
+          "note": "You gain proficiency with one type of musical instrument or one other improvised weapon, and your ki fueled ability is Drunken Technique, and you gain the Drunkard's Luck benefit at 3rd level."
+        }
       ],
       "summary": "Proficiency with an instrument or improvised weapon",
       "text": "You gain proficiency with one type of musical instrument or one other improvised weapon.",
-      "source": { "book": "PHB", "reference": "PHB Monk Way of the Drunken Master 3" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk Way of the Drunken Master 3"
+      }
     },
     {
-      "id": "subclass.drunken_master.drunken_technique",
+      "id": "subclass.way_of_the_drunken_master.drunken_technique",
       "name": "Drunken Technique",
       "kind": "subclass",
       "owner": "Way of the Drunken Master",
       "unlock": 3,
       "activation": "passive",
       "effects": [
-        { "kind": "skill", "skills": ["Perception"], "proficiency": "proficient" },
-        { "kind": "special", "note": "You gain proficiency in the Performance skill, and at 5th level your ki fueled ability can be used as a bonus action, taking the Disengage or Dodge action, or to make an unarmed strike that adds 1d8 to the damage, and the strike counts as a single attack even if you take the Attack action." }
+        {
+          "kind": "skill",
+          "skills": [
+            "Perception"
+          ],
+          "proficiency": "proficient"
+        },
+        {
+          "kind": "special",
+          "note": "You gain proficiency in the Performance skill, and at 5th level your ki fueled ability can be used as a bonus action, taking the Disengage or Dodge action, or to make an unarmed strike that adds 1d8 to the damage, and the strike counts as a single attack even if you take the Attack action."
+        }
       ],
       "summary": "Ki as a bonus action: Dodge, Disengage or a 1d8 extra strike",
       "text": "At 5th level, your ki fueled ability can be used as a bonus action.",
-      "source": { "book": "PHB", "reference": "PHB Monk Way of the Drunken Master 3" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk Way of the Drunken Master 3"
+      }
     },
     {
-      "id": "subclass.drunken_master.tipsy_sway",
+      "id": "subclass.way_of_the_drunken_master.tipsy_sway",
       "name": "Tipsy Sway",
       "kind": "subclass",
       "owner": "Way of the Drunken Master",
       "unlock": 6,
       "activation": "passive",
       "effects": [
-        { "kind": "stat_modifier", "stat": "speed", "amount": 10, "duration": "while_active" },
-        { "kind": "extra_attacks", "count": 0, "note": "You know how to move with a drunken grace. While you are intoxicated, your walking speed increases by 10 feet, and at 10th level you gain a +1 bonus to AC, and at 15th level you can move a distance equal to half your speed while a Grappled, Restrained or Paralyzed creature is within 5 feet of you." }
+        {
+          "kind": "stat_modifier",
+          "stat": "speed",
+          "amount": 10,
+          "duration": "while_active"
+        },
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "You know how to move with a drunken grace. While you are intoxicated, your walking speed increases by 10 feet, and at 10th level you gain a +1 bonus to AC, and at 15th level you can move a distance equal to half your speed while a Grappled, Restrained or Paralyzed creature is within 5 feet of you."
+        }
       ],
       "tiers": [
-        { "at": 10, "summary": "+1 AC while intoxicated" },
-        { "at": 15, "summary": "Drag a grappled creature with you at half speed" }
+        {
+          "at": 10,
+          "summary": "+1 AC while intoxicated"
+        },
+        {
+          "at": 15,
+          "summary": "Drag a grappled creature with you at half speed"
+        }
       ],
       "summary": "Being drunk adds +10 speed; later, +1 AC and dragging",
       "text": "While you are intoxicated, your walking speed increases by 10 feet.",
-      "source": { "book": "PHB", "reference": "PHB Monk Way of the Drunken Master 6" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk Way of the Drunken Master 6"
+      }
     },
     {
-      "id": "subclass.drunken_master.drunks_luck",
+      "id": "subclass.way_of_the_drunken_master.drunkards_luck",
       "name": "Drunkard's Luck",
       "kind": "subclass",
       "owner": "Way of the Drunken Master",
       "unlock": 11,
       "activation": "reaction",
-      "limits": { "per": "rest", "max": 1 },
-      "trigger": { "event": "self_hit_by_attack", "note": "When you have advantage on an attack roll, you can spend ki to succeed." },
-      "targeting": { "scope": "self" },
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "self_hit_by_attack",
+        "note": "When you have advantage on an attack roll, you can spend ki to succeed."
+      },
+      "targeting": {
+        "scope": "self"
+      },
       "duration": null,
       "endsIf": [],
       "effects": [
-        { "kind": "temp_hp", "dice": { "dice": "1", "flat": 0 }, "note": "You have your own precise sense of what your body can withstand. When you have advantage on an attack roll, you can spend 1 ki point to instead succeed automatically, gaining 1 temporary hit point and reducing the damage by 1d8. At 17th level you need no advantage and regain the use when you finish a short or long rest." }
+        {
+          "kind": "temp_hp",
+          "dice": {
+            "dice": "1",
+            "flat": 0
+          },
+          "note": "You have your own precise sense of what your body can withstand. When you have advantage on an attack roll, you can spend 1 ki point to instead succeed automatically, gaining 1 temporary hit point and reducing the damage by 1d8. At 17th level you need no advantage and regain the use when you finish a short or long rest."
+        }
       ],
       "tiers": [
-        { "at": 17, "limits": { "per": "rest", "max": 1 }, "effects": [{ "kind": "temp_hp", "dice": { "dice": "1", "flat": 0 }, "note": "You can use this without advantage, and you regain the use when you finish a short or long rest." }] }
+        {
+          "at": 17,
+          "limits": {
+            "per": "rest",
+            "max": 1
+          },
+          "effects": [
+            {
+              "kind": "temp_hp",
+              "dice": {
+                "dice": "1",
+                "flat": 0
+              },
+              "note": "You can use this without advantage, and you regain the use when you finish a short or long rest."
+            }
+          ]
+        }
       ],
       "summary": "Reaction with advantage: succeed, take 1 HP, cut 1d8",
       "text": "When you have advantage on an attack roll, you can spend 1 ki point to instead succeed automatically.",
-      "source": { "book": "PHB", "reference": "PHB Monk Way of the Drunken Master 11" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk Way of the Drunken Master 11"
+      }
     },
     {
-      "id": "subclass.drunken_master.intoxicated_frenzy",
+      "id": "subclass.way_of_the_drunken_master.intoxicated_frenzy",
       "name": "Intoxicated Frenzy",
       "kind": "subclass",
       "owner": "Way of the Drunken Master",
       "unlock": 17,
       "activation": "passive",
       "effects": [
-        { "kind": "special", "note": "When you are drunk, you gain more ki-fueled benefits, so your Drunken Technique also allows it as a bonus action for the Drunkard's Luck, and at 17th level your Drunken Technique unarmed strike damage increases to 1d10 and your Drunkard's Luck reduces damage by a d8 of your choice. At 19th level, you get one extra ki-fueled benefit a turn and your drunk strike can also be a free object attack." }
+        {
+          "kind": "special",
+          "note": "When you are drunk, you gain more ki-fueled benefits, so your Drunken Technique also allows it as a bonus action for the Drunkard's Luck, and at 17th level your Drunken Technique unarmed strike damage increases to 1d10 and your Drunkard's Luck reduces damage by a d8 of your choice. At 19th level, you get one extra ki-fueled benefit a turn and your drunk strike can also be a free object attack."
+        }
       ],
       "summary": "Drunken Technique improves; drunk strike deals 1d10 at 17",
       "text": "When you are drunk, you gain more ki-fueled benefits.",
-      "source": { "book": "PHB", "reference": "PHB Monk Way of the Drunken Master 17" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk Way of the Drunken Master 17"
+      }
     },
     {
-      "id": "subclass.four_elements.disciple_of_the_elements",
+      "id": "subclass.way_of_the_four_elements.disciple_of_the_elements",
       "name": "Disciple of the Elements",
       "kind": "subclass",
       "owner": "Way of the Four Elements",
       "unlock": 3,
       "activation": "passive",
       "effects": [
-        { "kind": "special", "note": "Your magic comes from the Four Elements, so you learn two spells from the druid, cleric or wizard spell lists. At 3rd level, 6th, 11th, 14th, 17th and 19th level you learn another, and at 6th level you know two of them at 3rd level, so you gain Elemental Attunement and can learn any elemental technique at 3rd level." }
+        {
+          "kind": "special",
+          "note": "Your magic comes from the Four Elements, so you learn two spells from the druid, cleric or wizard spell lists. At 3rd level, 6th, 11th, 14th, 17th and 19th level you learn another, and at 6th level you know two of them at 3rd level, so you gain Elemental Attunement and can learn any elemental technique at 3rd level."
+        }
       ],
       "summary": "Learn elemental spells and gain an elemental technique",
       "text": "Your magic comes from the Four Elements: air, earth, fire and water.",
-      "source": { "book": "PHB", "reference": "PHB Monk Way of the Four Elements 3" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk Way of the Four Elements 3"
+      }
     },
     {
-      "id": "subclass.four_elements.elemental_attunement",
+      "id": "subclass.way_of_the_four_elements.elemental_attunement",
       "name": "Elemental Attunement",
       "kind": "subclass",
       "owner": "Way of the Four Elements",
       "unlock": 3,
       "activation": "passive",
       "effects": [
-        { "kind": "choice", "of": "elemental_technique", "count": 1, "note": "You learn an elemental technique you can use, once, whenever you spend ki to take the Attack action, and you know two at 6th, three at 11th, four at 14th, five at 17th and six at 19th level, and replacing one does not cost ki." }
+        {
+          "kind": "choice",
+          "of": "elemental_technique",
+          "count": 1,
+          "note": "You learn an elemental technique you can use, once, whenever you spend ki to take the Attack action, and you know two at 6th, three at 11th, four at 14th, five at 17th and six at 19th level, and replacing one does not cost ki."
+        }
       ],
       "tiers": [
-        { "at": 6 },
-        { "at": 11 },
-        { "at": 14 },
-        { "at": 17 },
-        { "at": 19 }
+        {
+          "at": 6
+        },
+        {
+          "at": 11
+        },
+        {
+          "at": 14
+        },
+        {
+          "at": 17
+        },
+        {
+          "at": 19
+        }
       ],
       "summary": "Learn elemental techniques usable when spending ki to attack",
       "text": "You learn an elemental technique that you can use once whenever you spend ki points to take the Attack action on your turn.",
-      "source": { "book": "PHB", "reference": "PHB Monk Way of the Four Elements 3" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk Way of the Four Elements 3"
+      }
     },
     {
-      "id": "subclass.four_elements.fangs_of_the_fire_snake",
+      "id": "subclass.way_of_the_four_elements.fangs_of_the_fire_snake",
       "name": "Fangs of the Fire Snake",
       "kind": "subclass",
       "owner": "Way of the Four Elements",
       "unlock": 3,
       "activation": "action",
-      "limits": { "per": "turn", "max": 1 },
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "creature", "range": { "value": 5, "unit": "ft" } },
-      "duration": { "value": 1, "unit": "minute" },
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 5,
+          "unit": "ft"
+        }
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
       "endsIf": [],
       "effects": [
-        { "kind": "damage", "dice": { "dice": "3d8", "bonusFrom": "none" }, "damageType": "fire", "resolution": { "mode": "attack", "ability": "str", "reaches": ["5 ft melee"] } },
-        { "kind": "special", "note": "You can shape fire into a serpent. Create a fiery serpent in an unoccupied space you can see within 60 feet, and at the end of each of your turns you can move it 10 feet toward a creature within 5 feet of it, making a melee spell attack against it with your spellcasting ability modifier, dealing 2d6 fire damage on a hit, or half on a save. If no creature is within reach it moves to be closest to one, and it ends if it reaches 0 HP." }
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "3d8",
+            "bonusFrom": "none"
+          },
+          "damageType": "fire",
+          "resolution": {
+            "mode": "attack",
+            "ability": "str",
+            "reaches": [
+              "5 ft melee"
+            ]
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You can shape fire into a serpent. Create a fiery serpent in an unoccupied space you can see within 60 feet, and at the end of each of your turns you can move it 10 feet toward a creature within 5 feet of it, making a melee spell attack against it with your spellcasting ability modifier, dealing 2d6 fire damage on a hit, or half on a save. If no creature is within reach it moves to be closest to one, and it ends if it reaches 0 HP."
+        }
       ],
       "summary": "A fiery serpent that attacks each end of your turn",
       "text": "Create a fiery serpent in an unoccupied space that you can see within 60 feet of you.",
-      "source": { "book": "PHB", "reference": "PHB Monk Way of the Four Elements 3" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk Way of the Four Elements 3"
+      }
     },
     {
-      "id": "subclass.four_elements.water_whip",
+      "id": "subclass.way_of_the_four_elements.water_whip",
       "name": "Water Whip",
       "kind": "subclass",
       "owner": "Way of the Four Elements",
       "unlock": 3,
       "activation": "action",
-      "limits": { "per": "turn", "max": 1 },
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "creature", "range": { "value": 15, "unit": "ft" } },
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 15,
+          "unit": "ft"
+        }
+      },
       "duration": null,
       "endsIf": [],
       "effects": [
-        { "kind": "control", "action": "push", "distance": { "value": 15, "unit": "ft" } },
-        { "kind": "damage", "dice": { "dice": "3", "flat": 0 }, "damageType": "bludgeoning", "resolution": { "mode": "save", "ability": "str", "onSuccess": "none", "onFailure": "full" } },
-        { "kind": "special", "note": "You can condense water into a whip. As an action, you can create a 10-foot long whip of water in an unoccupied space you can see within 60 feet, and at the end of each of your turns you can make a melee spell attack against a creature within 3 feet of it, dealing 1d6 bludgeoning damage and forcing a Strength save or pushing it 10 feet. If no creature is within reach it moves to be closest to one." }
+        {
+          "kind": "control",
+          "action": "push",
+          "distance": {
+            "value": 15,
+            "unit": "ft"
+          }
+        },
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "3",
+            "flat": 0
+          },
+          "damageType": "bludgeoning",
+          "resolution": {
+            "mode": "save",
+            "ability": "str",
+            "onSuccess": "none",
+            "onFailure": "full"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You can condense water into a whip. As an action, you can create a 10-foot long whip of water in an unoccupied space you can see within 60 feet, and at the end of each of your turns you can make a melee spell attack against a creature within 3 feet of it, dealing 1d6 bludgeoning damage and forcing a Strength save or pushing it 10 feet. If no creature is within reach it moves to be closest to one."
+        }
       ],
       "summary": "A water whip that pushes, moving each end of your turn",
       "text": "As an action, you can create a 10-foot long whip of water in an unoccupied space that you can see within 60 feet of you.",
-      "source": { "book": "PHB", "reference": "PHB Monk Way of the Four Elements 3" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk Way of the Four Elements 3"
+      }
     },
     {
-      "id": "subclass.four_elements.fist_of_four_thunders",
+      "id": "subclass.way_of_the_four_elements.fist_of_four_thunders",
       "name": "Fist of Four Thunders",
       "kind": "subclass",
       "owner": "Way of the Four Elements",
       "unlock": 3,
       "activation": "action",
-      "limits": { "per": "turn", "max": 1 },
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "creature", "range": { "value": 30, "unit": "ft" } },
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 30,
+          "unit": "ft"
+        }
+      },
       "duration": null,
       "endsIf": [],
       "effects": [
-        { "kind": "damage", "dice": { "dice": "3d6", "bonusFrom": "none" }, "damageType": "thunder", "resolution": { "mode": "save", "ability": "dex", "onSuccess": "none", "onFailure": "full" } },
-        { "kind": "control", "action": "push", "distance": { "value": 15, "unit": "ft" } },
-        { "kind": "special", "note": "You can condense the power of four into a thunderous blow. You can spend 2 ki points and then use the Attack action to make a thunderclap attack against a target within 30 feet, and it must make a Dexterity saving throw, taking 3d6 thunder damage and being pushed 10 feet on a failure, and no damage on a success." }
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "3d6",
+            "bonusFrom": "none"
+          },
+          "damageType": "thunder",
+          "resolution": {
+            "mode": "save",
+            "ability": "dex",
+            "onSuccess": "none",
+            "onFailure": "full"
+          }
+        },
+        {
+          "kind": "control",
+          "action": "push",
+          "distance": {
+            "value": 15,
+            "unit": "ft"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You can condense the power of four into a thunderous blow. You can spend 2 ki points and then use the Attack action to make a thunderclap attack against a target within 30 feet, and it must make a Dexterity saving throw, taking 3d6 thunder damage and being pushed 10 feet on a failure, and no damage on a success."
+        }
       ],
       "summary": "Spend 2 Ki to thunder-push a creature 30 ft away",
       "text": "You can spend 2 ki points and then use the Attack action to make a thunderclap attack against a target within 30 feet of you.",
-      "source": { "book": "PHB", "reference": "PHB Monk Way of the Four Elements 3" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk Way of the Four Elements 3"
+      }
     },
     {
-      "id": "subclass.four_elements.sweeping_cinder_strike",
+      "id": "subclass.way_of_the_four_elements.sweeping_cinder_strike",
       "name": "Sweeping Cinder Strike",
       "kind": "subclass",
       "owner": "Way of the Four Elements",
       "unlock": 6,
       "activation": "action",
-      "limits": { "per": "turn", "max": 1 },
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "creatures_in_area", "range": { "value": 5, "unit": "ft" }, "shape": "sphere" },
+      "targeting": {
+        "scope": "creatures_in_area",
+        "range": {
+          "value": 5,
+          "unit": "ft"
+        },
+        "shape": "sphere"
+      },
       "duration": null,
       "endsIf": [],
       "effects": [
-        { "kind": "damage", "dice": { "dice": "3d6", "bonusFrom": "none" }, "damageType": "fire", "resolution": { "mode": "save", "ability": "dex", "onSuccess": "none", "onFailure": "full" } },
-        { "kind": "special", "note": "You can sweep a 5-foot radius around you with cinders, as an action you can deal 3d6 fire damage to a creature in the area, and at 17th level the damage increases to 5d6 and you can also push the target 5 feet." }
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "3d6",
+            "bonusFrom": "none"
+          },
+          "damageType": "fire",
+          "resolution": {
+            "mode": "save",
+            "ability": "dex",
+            "onSuccess": "none",
+            "onFailure": "full"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You can sweep a 5-foot radius around you with cinders, as an action you can deal 3d6 fire damage to a creature in the area, and at 17th level the damage increases to 5d6 and you can also push the target 5 feet."
+        }
       ],
       "tiers": [
-        { "at": 17, "effects": [{ "kind": "damage", "dice": { "dice": "5d6", "bonusFrom": "none" }, "damageType": "fire", "resolution": { "mode": "save", "ability": "dex", "onSuccess": "none", "onFailure": "full" } }, { "kind": "special", "note": "The damage is 5d6 and you can also push the target 5 feet." }] }
+        {
+          "at": 17,
+          "effects": [
+            {
+              "kind": "damage",
+              "dice": {
+                "dice": "5d6",
+                "bonusFrom": "none"
+              },
+              "damageType": "fire",
+              "resolution": {
+                "mode": "save",
+                "ability": "dex",
+                "onSuccess": "none",
+                "onFailure": "full"
+              }
+            },
+            {
+              "kind": "special",
+              "note": "The damage is 5d6 and you can also push the target 5 feet."
+            }
+          ]
+        }
       ],
       "summary": "Action: 3d6 fire to a creature within 5 ft",
       "text": "As an action, you can deal 3d6 fire damage to a creature within 5 feet of you.",
-      "source": { "book": "PHB", "reference": "PHB Monk Way of the Four Elements 6" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk Way of the Four Elements 6"
+      }
     },
     {
-      "id": "subclass.four_elements.gong_of_the_summit",
+      "id": "subclass.way_of_the_four_elements.gong_of_the_summit",
       "name": "Gong of the Summit",
       "kind": "subclass",
       "owner": "Way of the Four Elements",
       "unlock": 6,
       "activation": "action",
-      "limits": { "per": "day", "max": 1 },
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "creatures_in_area", "range": { "value": 30, "unit": "ft" }, "shape": "sphere" },
+      "targeting": {
+        "scope": "creatures_in_area",
+        "range": {
+          "value": 30,
+          "unit": "ft"
+        },
+        "shape": "sphere"
+      },
       "duration": null,
       "endsIf": [],
       "effects": [
-        { "kind": "damage", "dice": { "dice": "5d6", "bonusFrom": "none" }, "damageType": "thunder", "resolution": { "mode": "save", "ability": "con", "onSuccess": "none", "onFailure": "full" } },
-        { "kind": "special", "note": "You have a ringing gong that you can sound. As an action, you can sound a booming gong in a 30-foot radius, and each creature in it makes a Constitution saving throw, taking 5d6 thunder damage and falling prone on a failure, or half damage on a success. At 17th level the damage is 7d6 and stunned rather than prone." }
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "5d6",
+            "bonusFrom": "none"
+          },
+          "damageType": "thunder",
+          "resolution": {
+            "mode": "save",
+            "ability": "con",
+            "onSuccess": "none",
+            "onFailure": "full"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You have a ringing gong that you can sound. As an action, you can sound a booming gong in a 30-foot radius, and each creature in it makes a Constitution saving throw, taking 5d6 thunder damage and falling prone on a failure, or half damage on a success. At 17th level the damage is 7d6 and stunned rather than prone."
+        }
       ],
       "tiers": [
-        { "at": 17, "effects": [{ "kind": "damage", "dice": { "dice": "7d6", "bonusFrom": "none" }, "damageType": "thunder", "resolution": { "mode": "save", "ability": "con", "onSuccess": "none", "onFailure": "full" } }, { "kind": "special", "note": "The damage is 7d6 and a failed save leaves the creature stunned rather than prone." }] }
+        {
+          "at": 17,
+          "effects": [
+            {
+              "kind": "damage",
+              "dice": {
+                "dice": "7d6",
+                "bonusFrom": "none"
+              },
+              "damageType": "thunder",
+              "resolution": {
+                "mode": "save",
+                "ability": "con",
+                "onSuccess": "none",
+                "onFailure": "full"
+              }
+            },
+            {
+              "kind": "special",
+              "note": "The damage is 7d6 and a failed save leaves the creature stunned rather than prone."
+            }
+          ]
+        }
       ],
       "summary": "Action, once a day: a 30-ft gong that knocks prone",
       "text": "As an action, you can sound a booming gong in a 30-foot radius.",
-      "source": { "book": "PHB", "reference": "PHB Monk Way of the Four Elements 6" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk Way of the Four Elements 6"
+      }
     },
     {
-      "id": "subclass.four_elements.flames_of_the_phoenix",
+      "id": "subclass.way_of_the_four_elements.flames_of_the_phoenix",
       "name": "Flames of the Phoenix",
       "kind": "subclass",
       "owner": "Way of the Four Elements",
       "unlock": 11,
       "activation": "action",
-      "limits": { "per": "rest", "max": 1 },
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "self" },
-      "duration": { "value": 1, "unit": "minute" },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
       "endsIf": [],
       "effects": [
-        { "kind": "transform", "formId": "phoenix_form_object", "formTable": "forms", "abilities": ["con"], "note": "You can shed your body as flames and rise anew. As an action, you can turn into a flame for 1 minute, gaining a +2 bonus to AC, resistance to all damage except psychic, and your melee attacks deal an extra 1d6 fire damage, and at 17th level the bonus is +3 and you regain this once per day." }
+        {
+          "kind": "transform",
+          "formId": "phoenix_form_object",
+          "formTable": "forms",
+          "abilities": [
+            "con"
+          ],
+          "note": "You can shed your body as flames and rise anew. As an action, you can turn into a flame for 1 minute, gaining a +2 bonus to AC, resistance to all damage except psychic, and your melee attacks deal an extra 1d6 fire damage, and at 17th level the bonus is +3 and you regain this once per day."
+        }
       ],
       "tiers": [
-        { "at": 17, "effects": [{ "kind": "transform", "formId": "phoenix_form_object", "formTable": "forms", "abilities": ["con"], "note": "The AC bonus is +3, and you can use this once per day instead of once per long rest." }] }
+        {
+          "at": 17,
+          "effects": [
+            {
+              "kind": "transform",
+              "formId": "phoenix_form_object",
+              "formTable": "forms",
+              "abilities": [
+                "con"
+              ],
+              "note": "The AC bonus is +3, and you can use this once per day instead of once per long rest."
+            }
+          ]
+        }
       ],
       "summary": "Action: a flame form with +2 AC and fire-on-hit",
       "text": "As an action, you can turn into a flame for 1 minute, gaining a +2 bonus to AC and resistance to all damage except psychic.",
-      "source": { "book": "PHB", "reference": "PHB Monk Way of the Four Elements 11" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk Way of the Four Elements 11"
+      }
     },
     {
-      "id": "subclass.four_elements.ride_the_wind",
+      "id": "subclass.way_of_the_four_elements.ride_the_wind",
       "name": "Ride the Wind",
       "kind": "subclass",
       "owner": "Way of the Four Elements",
       "unlock": 11,
       "activation": "passive",
       "effects": [
-        { "kind": "special", "note": "You can use the air to carry you, so at 11th level you gain a flying speed of 60 feet while you aren't wearing heavy armor, and at 17th level you don't need to spend ki points on Flurry of Blows while flying." }
+        {
+          "kind": "special",
+          "note": "You can use the air to carry you, so at 11th level you gain a flying speed of 60 feet while you aren't wearing heavy armor, and at 17th level you don't need to spend ki points on Flurry of Blows while flying."
+        }
       ],
       "summary": "A 60-ft flying speed without heavy armor",
       "text": "At 11th level, you gain a flying speed of 60 feet while you aren't wearing heavy armor.",
-      "source": { "book": "PHB", "reference": "PHB Monk Way of the Four Elements 11" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk Way of the Four Elements 11"
+      }
     },
     {
-      "id": "subclass.four_elements.river_of_hungry_flame",
+      "id": "subclass.way_of_the_four_elements.river_of_hungry_flame",
       "name": "River of Hungry Flame",
       "kind": "subclass",
       "owner": "Way of the Four Elements",
       "unlock": 17,
       "activation": "action",
-      "limits": { "per": "rest", "max": 1 },
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "creatures_in_area", "range": { "value": 60, "unit": "ft" }, "shape": "sphere" },
+      "targeting": {
+        "scope": "creatures_in_area",
+        "range": {
+          "value": 60,
+          "unit": "ft"
+        },
+        "shape": "sphere"
+      },
       "duration": null,
       "endsIf": [],
       "effects": [
-        { "kind": "damage", "dice": { "dice": "10d10", "bonusFrom": "none" }, "damageType": "fire", "resolution": { "mode": "save", "ability": "dex", "onSuccess": "half", "onFailure": "full" } },
-        { "kind": "special", "note": "You can flood a 60-foot sphere with flame. As an action, each creature in the area makes a Dexterity saving throw, taking 10d10 fire damage on a failure or half as much on a success. The fire spreads around corners and ignites flammable objects in the area that aren't worn or carried." }
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "10d10",
+            "bonusFrom": "none"
+          },
+          "damageType": "fire",
+          "resolution": {
+            "mode": "save",
+            "ability": "dex",
+            "onSuccess": "half",
+            "onFailure": "full"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You can flood a 60-foot sphere with flame. As an action, each creature in the area makes a Dexterity saving throw, taking 10d10 fire damage on a failure or half as much on a success. The fire spreads around corners and ignites flammable objects in the area that aren't worn or carried."
+        }
       ],
       "summary": "Action: a 60-ft sphere of flame, 10d10 fire",
       "text": "As an action, you can flood a 60-foot sphere centered on a point you choose within range.",
-      "source": { "book": "PHB", "reference": "PHB Monk Way of the Four Elements 17" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk Way of the Four Elements 17"
+      }
     },
     {
-      "id": "subclass.kensei.path_of_the_kensei",
+      "id": "subclass.way_of_the_kensei.path_of_the_kensei",
       "name": "Path of the Kensei",
       "kind": "subclass",
       "owner": "Way of the Kensei",
       "unlock": 3,
       "activation": "passive",
       "effects": [
-        { "kind": "tool", "tools": ["one type of artisan's tools or one musical instrument"], "proficiency": "proficient" },
-        { "kind": "special", "note": "You learn martial arts drawing on a focus on the interplay between weapon and body, so you gain proficiency with one type of artisan's tools or one musical instrument, and you always have proficiency with longswords and shortswords even if another class gives you proficiency with them, and your focus means the weapon you use for kama is also a monk weapon." }
+        {
+          "kind": "tool",
+          "tools": [
+            "one type of artisan's tools or one musical instrument"
+          ],
+          "proficiency": "proficient"
+        },
+        {
+          "kind": "special",
+          "note": "You learn martial arts drawing on a focus on the interplay between weapon and body, so you gain proficiency with one type of artisan's tools or one musical instrument, and you always have proficiency with longswords and shortswords even if another class gives you proficiency with them, and your focus means the weapon you use for kama is also a monk weapon."
+        }
       ],
       "summary": "Longsword and shortsword proficiency regardless of class",
       "text": "You gain proficiency with longswords and shortswords even if another class gives you proficiency with them.",
-      "source": { "book": "PHB", "reference": "PHB Monk Way of the Kensei 3" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk Way of the Kensei 3"
+      }
     },
     {
-      "id": "subclass.kensei.one_with_the_blade",
+      "id": "subclass.way_of_the_kensei.one_with_the_blade",
       "name": "One with the Blade",
       "kind": "subclass",
       "owner": "Way of the Kensei",
       "unlock": 6,
       "activation": "passive",
       "effects": [
-        { "kind": "skill_bonus", "skills": ["Acrobatics", "Athletics"], "amount": 0, "note": "You have learned to incorporate the weapon into your body, so your proficiency bonus is doubled for any ability check that relies on the use of a sword, and you have advantage on Dexterity (Acrobatics) and Strength (Athletics) checks, and at 16th level you can use the deflect missiles feature on a ranged attack within 5 feet of you." }
+        {
+          "kind": "skill_bonus",
+          "skills": [
+            "Acrobatics",
+            "Athletics"
+          ],
+          "amount": 0,
+          "note": "You have learned to incorporate the weapon into your body, so your proficiency bonus is doubled for any ability check that relies on the use of a sword, and you have advantage on Dexterity (Acrobatics) and Strength (Athletics) checks, and at 16th level you can use the deflect missiles feature on a ranged attack within 5 feet of you."
+        }
       ],
       "summary": "Doubled checks with swords, advantage on Acrobatics and Athletics",
       "text": "Your proficiency bonus is doubled for any ability check that relies on the use of a sword.",
-      "source": { "book": "PHB", "reference": "PHB Monk Way of the Kensei 6" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk Way of the Kensei 6"
+      }
     },
     {
-      "id": "subclass.kensei.sharpen_the_blade",
+      "id": "subclass.way_of_the_kensei.sharpen_the_blade",
       "name": "Sharpen the Blade",
       "kind": "subclass",
       "owner": "Way of the Kensei",
       "unlock": 11,
       "activation": "passive",
       "effects": [
-        { "kind": "extra_attacks", "count": 0, "note": "You have studied your weapon and learned how to make it do more. As a bonus action on your turn, you can draw a weapon you are proficient with, and if it hits, your damage increases by 1d10, and at 17th level you can make this attack against a second creature within 5 feet of the first, and you must finish a short or long rest before you can do it again." }
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "You have studied your weapon and learned how to make it do more. As a bonus action on your turn, you can draw a weapon you are proficient with, and if it hits, your damage increases by 1d10, and at 17th level you can make this attack against a second creature within 5 feet of the first, and you must finish a short or long rest before you can do it again."
+        }
       ],
       "summary": "BA: an extra attack for 1d10 damage",
       "text": "As a bonus action on your turn, you can draw a weapon that you are proficient with and make a melee attack with it.",
-      "source": { "book": "PHB", "reference": "PHB Monk Way of the Kensei 11" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk Way of the Kensei 11"
+      }
     },
     {
-      "id": "subclass.kensei.unerring_accuracy",
+      "id": "subclass.way_of_the_kensei.unerring_accuracy",
       "name": "Unerring Accuracy",
       "kind": "subclass",
       "owner": "Way of the Kensei",
       "unlock": 17,
       "activation": "passive",
       "effects": [
-        { "kind": "special", "note": "You have internalized the sword so thoroughly that you can turn a miss into a hit, so your attacks with a sword ignore half and three-quarters cover, and you can reroll a 1 on a d20 attack roll, and must use the new roll, and if it is still 1 you do not reroll again." }
+        {
+          "kind": "special",
+          "note": "You have internalized the sword so thoroughly that you can turn a miss into a hit, so your attacks with a sword ignore half and three-quarters cover, and you can reroll a 1 on a d20 attack roll, and must use the new roll, and if it is still 1 you do not reroll again."
+        }
       ],
       "summary": "Sword attacks ignore cover; reroll a natural 1",
       "text": "Your attacks with a sword ignore half and three-quarters cover.",
-      "source": { "book": "PHB", "reference": "PHB Monk Way of the Kensei 17" }
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Monk Way of the Kensei 17"
+      }
     },
     {
-      "id": "subclass.long_death.touch_of_death",
+      "id": "subclass.way_of_the_long_death.touch_of_death",
       "name": "Touch of Death",
       "kind": "subclass",
       "owner": "Way of the Long Death",
       "unlock": 3,
       "activation": "action",
-      "limits": { "per": "turn", "max": 1 },
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "creature", "range": { "value": 5, "unit": "ft" } },
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 5,
+          "unit": "ft"
+        }
+      },
       "duration": null,
       "endsIf": [],
       "effects": [
-        { "kind": "condition", "action": "apply", "conditions": ["poisoned"] },
-        { "kind": "special", "note": "Your touch can ward death and then curse it. As an action, you can touch a creature and give it disadvantage on death saving throws, and at 6th level you can poison a creature within 5 feet of you, and it makes a Constitution save or is poisoned for 24 hours, repeating at the end of each of its turns." }
+        {
+          "kind": "condition",
+          "action": "apply",
+          "conditions": [
+            "poisoned"
+          ]
+        },
+        {
+          "kind": "special",
+          "note": "Your touch can ward death and then curse it. As an action, you can touch a creature and give it disadvantage on death saving throws, and at 6th level you can poison a creature within 5 feet of you, and it makes a Constitution save or is poisoned for 24 hours, repeating at the end of each of its turns."
+        }
       ],
       "summary": "Action: ward death, or poison a creature within 5 ft",
       "text": "As an action, you can touch a creature and give it disadvantage on death saving throws.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Monk Way of the Long Death 3" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Monk Way of the Long Death 3"
+      }
     },
     {
-      "id": "subclass.long_death.hour_of_reaping",
+      "id": "subclass.way_of_the_long_death.hour_of_reaping",
       "name": "Hour of Reaping",
       "kind": "subclass",
       "owner": "Way of the Long Death",
       "unlock": 6,
       "activation": "action",
-      "limits": { "per": "rest", "max": 1 },
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "creature", "range": { "value": 5, "unit": "ft" } },
-      "duration": { "value": 1, "unit": "minute" },
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 5,
+          "unit": "ft"
+        }
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
       "endsIf": [],
       "effects": [
-        { "kind": "condition", "action": "apply", "conditions": ["frightened"], "note": "As an action, you can brand a creature within 5 feet of you, and it is frightened until the end of your next turn, and you have advantage on saving throws and checks against it. Each time it takes damage while branded it becomes 1d4 farther from you, and at 11th level it starts 1d4 farther away immediately." }
+        {
+          "kind": "condition",
+          "action": "apply",
+          "conditions": [
+            "frightened"
+          ],
+          "note": "As an action, you can brand a creature within 5 feet of you, and it is frightened until the end of your next turn, and you have advantage on saving throws and checks against it. Each time it takes damage while branded it becomes 1d4 farther from you, and at 11th level it starts 1d4 farther away immediately."
+        }
       ],
       "summary": "Action: brand a creature, which flees from you",
       "text": "As an action, you can brand a creature within 5 feet of you. The target is frightened until the end of your next turn.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Monk Way of the Long Death 6" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Monk Way of the Long Death 6"
+      }
     },
     {
-      "id": "subclass.long_death.mastery_of_death",
+      "id": "subclass.way_of_the_long_death.mastery_of_death",
       "name": "Mastery of Death",
       "kind": "subclass",
       "owner": "Way of the Long Death",
       "unlock": 11,
       "activation": "passive",
       "effects": [
-        { "kind": "special", "note": "Your study of death leads you to a grim understanding, so you can always reroll the last death saving throw you make as a monk, and at 17th level you can also spend ki to replace another creature's failed save with a success, or prevent them from dying, once per long rest, spending up to 5 ki." }
+        {
+          "kind": "special",
+          "note": "Your study of death leads you to a grim understanding, so you can always reroll the last death saving throw you make as a monk, and at 17th level you can also spend ki to replace another creature's failed save with a success, or prevent them from dying, once per long rest, spending up to 5 ki."
+        }
       ],
       "summary": "Reroll your last failed death save; spend ki to save another",
       "text": "You always have the option to reroll the last death saving throw you make as a monk.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Monk Way of the Long Death 11" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Monk Way of the Long Death 11"
+      }
     },
     {
-      "id": "subclass.long_death.touch_of_the_long_death",
+      "id": "subclass.way_of_the_long_death.touch_of_the_long_death",
       "name": "Touch of the Long Death",
       "kind": "subclass",
       "owner": "Way of the Long Death",
       "unlock": 17,
       "activation": "passive",
       "effects": [
-        { "kind": "damage", "dice": { "dice": "3d8", "bonusFrom": "none" }, "damageType": "necrotic", "resolution": { "mode": "auto" } },
-        { "kind": "special", "note": "Your touch has become a death sentence. Your Touch of Death can now reduce a creature to 0 hit points, and if you do, you can spend ki equal to your monk level to restore its hit points to 1, and a creature reduced to 0 this way has disadvantage on Constitution saves and saving throws against disease and poison, and if you spend 1 ki, it is also stunned until the start of your next turn." }
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "3d8",
+            "bonusFrom": "none"
+          },
+          "damageType": "necrotic",
+          "resolution": {
+            "mode": "auto"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "Your touch has become a death sentence. Your Touch of Death can now reduce a creature to 0 hit points, and if you do, you can spend ki equal to your monk level to restore its hit points to 1, and a creature reduced to 0 this way has disadvantage on Constitution saves and saving throws against disease and poison, and if you spend 1 ki, it is also stunned until the start of your next turn."
+        }
       ],
       "summary": "Touch of Death can reduce to 0 HP, then spend ki to revive",
       "text": "Your Touch of Death can now reduce a creature to 0 hit points.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Monk Way of the Long Death 17" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Monk Way of the Long Death 17"
+      }
     },
     {
-      "id": "subclass.sun_soul.radiant_sun_bolt",
+      "id": "subclass.way_of_the_sun_soul.radiant_sun_bolt",
       "name": "Radiant Sun Bolt",
       "kind": "subclass",
       "owner": "Way of the Sun Soul",
       "unlock": 3,
       "activation": "bonus_action",
-      "limits": { "per": "turn", "max": 1 },
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "creature", "range": { "value": 30, "unit": "ft" } },
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 30,
+          "unit": "ft"
+        }
+      },
       "duration": null,
       "endsIf": [],
       "effects": [
-        { "kind": "damage", "dice": { "dice": "2d6", "bonusFrom": "wis" }, "damageType": "radiant", "resolution": { "mode": "attack", "ability": "wis", "reaches": ["30 ft ranged spell attack"] } },
-        { "kind": "special", "note": "You have learned to unleash a bolt of radiance. As a bonus action, you can hurl a mote of sunlight, causing a ranged spell attack with a range of 30 feet, and it deals 2d6 radiant damage plus your Wisdom modifier on a hit, and at 6th level the damage increases to 4d6 and at 17th to 6d6." }
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "2d6",
+            "bonusFrom": "wis"
+          },
+          "damageType": "radiant",
+          "resolution": {
+            "mode": "attack",
+            "ability": "wis",
+            "reaches": [
+              "30 ft ranged spell attack"
+            ]
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You have learned to unleash a bolt of radiance. As a bonus action, you can hurl a mote of sunlight, causing a ranged spell attack with a range of 30 feet, and it deals 2d6 radiant damage plus your Wisdom modifier on a hit, and at 6th level the damage increases to 4d6 and at 17th to 6d6."
+        }
       ],
       "tiers": [
-        { "at": 6, "effects": [{ "kind": "damage", "dice": { "dice": "4d6", "bonusFrom": "wis" }, "damageType": "radiant", "resolution": { "mode": "attack", "ability": "wis", "reaches": ["30 ft ranged spell attack"] } }, { "kind": "special", "note": "The bolt deals 4d6 radiant damage plus your Wisdom modifier." }] },
-        { "at": 17, "effects": [{ "kind": "damage", "dice": { "dice": "6d6", "bonusFrom": "wis" }, "damageType": "radiant", "resolution": { "mode": "attack", "ability": "wis", "reaches": ["30 ft ranged spell attack"] } }, { "kind": "special", "note": "The bolt deals 6d6 radiant damage plus your Wisdom modifier." }] }
+        {
+          "at": 6,
+          "effects": [
+            {
+              "kind": "damage",
+              "dice": {
+                "dice": "4d6",
+                "bonusFrom": "wis"
+              },
+              "damageType": "radiant",
+              "resolution": {
+                "mode": "attack",
+                "ability": "wis",
+                "reaches": [
+                  "30 ft ranged spell attack"
+                ]
+              }
+            },
+            {
+              "kind": "special",
+              "note": "The bolt deals 4d6 radiant damage plus your Wisdom modifier."
+            }
+          ]
+        },
+        {
+          "at": 17,
+          "effects": [
+            {
+              "kind": "damage",
+              "dice": {
+                "dice": "6d6",
+                "bonusFrom": "wis"
+              },
+              "damageType": "radiant",
+              "resolution": {
+                "mode": "attack",
+                "ability": "wis",
+                "reaches": [
+                  "30 ft ranged spell attack"
+                ]
+              }
+            },
+            {
+              "kind": "special",
+              "note": "The bolt deals 6d6 radiant damage plus your Wisdom modifier."
+            }
+          ]
+        }
       ],
       "summary": "Bonus action: a 30-ft sun bolt for 2d6 + Wis radiant",
       "text": "As a bonus action, you can hurl a mote of sunlight, causing a ranged spell attack with a range of 30 feet.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Monk Way of the Sun Soul 3" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Monk Way of the Sun Soul 3"
+      }
     },
     {
-      "id": "subclass.sun_soul.searing_arc_strike",
+      "id": "subclass.way_of_the_sun_soul.searing_arc_strike",
       "name": "Searing Arc Strike",
       "kind": "subclass",
       "owner": "Way of the Sun Soul",
       "unlock": 6,
       "activation": "bonus_action",
-      "limits": { "per": "turn", "max": 1 },
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "creature", "range": { "value": 30, "unit": "ft" } },
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 30,
+          "unit": "ft"
+        }
+      },
       "duration": null,
       "endsIf": [],
       "effects": [
-        { "kind": "damage", "dice": { "dice": "4d6", "bonusFrom": "wis" }, "damageType": "radiant", "resolution": { "mode": "save", "ability": "dex", "onSuccess": "half", "onFailure": "full" } },
-        { "kind": "special", "note": "You can arc a bolt of sunlight into an enemy's torso. As a bonus action, you can hurl a mote of sunlight in an arc that strikes up to two creatures within 30 feet of each other, and each must make a Dexterity save, taking 4d6 radiant damage on a failure and half as much on a success, and at 17th level a third creature is affected and the damage becomes 6d6." }
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "4d6",
+            "bonusFrom": "wis"
+          },
+          "damageType": "radiant",
+          "resolution": {
+            "mode": "save",
+            "ability": "dex",
+            "onSuccess": "half",
+            "onFailure": "full"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You can arc a bolt of sunlight into an enemy's torso. As a bonus action, you can hurl a mote of sunlight in an arc that strikes up to two creatures within 30 feet of each other, and each must make a Dexterity save, taking 4d6 radiant damage on a failure and half as much on a success, and at 17th level a third creature is affected and the damage becomes 6d6."
+        }
       ],
       "tiers": [
-        { "at": 17, "effects": [{ "kind": "damage", "dice": { "dice": "6d6", "bonusFrom": "none" }, "damageType": "radiant", "resolution": { "mode": "save", "ability": "dex", "onSuccess": "half", "onFailure": "full" } }, { "kind": "special", "note": "The arc can strike a third creature and the damage is 6d6." }] }
+        {
+          "at": 17,
+          "effects": [
+            {
+              "kind": "damage",
+              "dice": {
+                "dice": "6d6",
+                "bonusFrom": "none"
+              },
+              "damageType": "radiant",
+              "resolution": {
+                "mode": "save",
+                "ability": "dex",
+                "onSuccess": "half",
+                "onFailure": "full"
+              }
+            },
+            {
+              "kind": "special",
+              "note": "The arc can strike a third creature and the damage is 6d6."
+            }
+          ]
+        }
       ],
       "summary": "Bonus action: one sun bolt hitting two creatures",
       "text": "As a bonus action, you can hurl a mote of sunlight in an arc that strikes up to two creatures within 30 feet of each other.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Monk Way of the Sun Soul 6" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Monk Way of the Sun Soul 6"
+      }
     },
     {
-      "id": "subclass.sun_soul.searing_sunburst",
+      "id": "subclass.way_of_the_sun_soul.searing_sunburst",
       "name": "Searing Sunburst",
       "kind": "subclass",
       "owner": "Way of the Sun Soul",
       "unlock": 11,
       "activation": "action",
-      "limits": { "per": "rest", "max": 1 },
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "creatures_in_area", "range": { "value": 60, "unit": "ft" }, "shape": "sphere" },
+      "targeting": {
+        "scope": "creatures_in_area",
+        "range": {
+          "value": 60,
+          "unit": "ft"
+        },
+        "shape": "sphere"
+      },
       "duration": null,
       "endsIf": [],
       "effects": [
-        { "kind": "damage", "dice": { "dice": "12d6", "bonusFrom": "none" }, "damageType": "radiant", "resolution": { "mode": "save", "ability": "dex", "onSuccess": "half", "onFailure": "full" } },
-        { "kind": "special", "note": "You have learned to erupt with solar energy. As an action, you can choose a point within 60 feet of you, and a 30-foot-radius sphere of light radiates from it, and each creature in the sphere makes a Dexterity saving throw, taking 12d6 radiant damage on a failure or half as much on a success." }
+        {
+          "kind": "damage",
+          "dice": {
+            "dice": "12d6",
+            "bonusFrom": "none"
+          },
+          "damageType": "radiant",
+          "resolution": {
+            "mode": "save",
+            "ability": "dex",
+            "onSuccess": "half",
+            "onFailure": "full"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You have learned to erupt with solar energy. As an action, you can choose a point within 60 feet of you, and a 30-foot-radius sphere of light radiates from it, and each creature in the sphere makes a Dexterity saving throw, taking 12d6 radiant damage on a failure or half as much on a success."
+        }
       ],
       "summary": "Action: a 30-ft sunburst dealing 12d6 radiant",
       "text": "As an action, you can choose a point within 60 feet of you. A 30-foot-radius sphere of light radiates from it.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Monk Way of the Sun Soul 11" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Monk Way of the Sun Soul 11"
+      }
     },
     {
-      "id": "subclass.sun_soul.sun_shield",
+      "id": "subclass.way_of_the_sun_soul.sun_shield",
       "name": "Sun Shield",
       "kind": "subclass",
       "owner": "Way of the Sun Soul",
       "unlock": 17,
       "activation": "bonus_action",
-      "limits": { "per": "rest", "max": 1 },
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
       "trigger": null,
-      "targeting": { "scope": "self" },
-      "duration": { "value": 10, "unit": "minute" },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 10,
+        "unit": "minute"
+      },
       "endsIf": [],
       "effects": [
-        { "kind": "ac_bonus", "amount": 2, "duration": "while_active" },
-        { "kind": "special", "note": "You have learned a whole new way to use your radiance. As a bonus action, you have a +2 bonus to AC and all your saving throws, and you have advantage on all Wisdom saving throws, and at the end of each of your turns you can cause a creature within 10 feet to make a Dexterity saving throw, taking radiant damage equal to your Wisdom modifier, or none on a success." }
+        {
+          "kind": "ac_bonus",
+          "amount": 2,
+          "duration": "while_active"
+        },
+        {
+          "kind": "special",
+          "note": "You have learned a whole new way to use your radiance. As a bonus action, you have a +2 bonus to AC and all your saving throws, and you have advantage on all Wisdom saving throws, and at the end of each of your turns you can cause a creature within 10 feet to make a Dexterity saving throw, taking radiant damage equal to your Wisdom modifier, or none on a success."
+        }
       ],
       "summary": "Bonus action: +2 AC and saves, 10 minutes",
       "text": "As a bonus action, you gain a +2 bonus to AC and all your saving throws, and you have advantage on all Wisdom saving throws for 10 minutes.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Monk Way of the Sun Soul 17" }
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Monk Way of the Sun Soul 17"
+      }
     }
   ]
 }

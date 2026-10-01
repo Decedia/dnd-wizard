@@ -432,6 +432,7 @@
     "defensive_tactic",
     "fiend_benefit",
     "elemental_technique",
-    "rune"
+    "rune",
+    "arcane_shot_option"
   ]
 }
