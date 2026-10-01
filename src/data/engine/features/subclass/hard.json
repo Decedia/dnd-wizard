@@ -1,37 +1,6 @@
 {
   "features": [
     {
-      "id": "subclass.eldritch_knight.spellcasting",
-      "name": "Spellcasting",
-      "kind": "subclass",
-      "owner": "Eldritch Knight",
-      "unlock": 3,
-      "activation": "passive",
-      "effects": [
-        {
-          "kind": "spell_grant",
-          "cantrip": {
-            "known": true
-          },
-          "spells": [
-            {
-              "level": 1,
-              "from": [
-                "wizard"
-              ]
-            }
-          ],
-          "note": "You learn a number of wizard spells equal to half your wizard level (rounded down). If a spell doesn't require concentration, it doesn't count against this number."
-        }
-      ],
-      "summary": "Learn wizard spells equal to half your wizard level",
-      "text": "You learn a number of wizard spells equal to half your wizard level (rounded down), none of which can be 1st-level spells. The spells you learn at 3rd level are prepared. You learn two new spells whenever you gain a level, and you can swap a spell if you learn more wizard spells than you can cast.",
-      "source": {
-        "book": "PHB",
-        "reference": "PHB Fighter Eldritch Knight 3"
-      }
-    },
-    {
       "id": "subclass.eldritch_knight.bonus_action_spell",
       "name": "Bonus Action Spell",
       "kind": "subclass",

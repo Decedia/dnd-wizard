@@ -431,6 +431,7 @@
     "hunter_prey_type",
     "defensive_tactic",
     "fiend_benefit",
-    "elemental_technique"
+    "elemental_technique",
+    "rune"
   ]
 }

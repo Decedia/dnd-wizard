@@ -365,6 +365,20 @@
         "four_elements:11"
       ],
       "note": "The flame form a Way of the Four Elements monk assumes with Flames of the Phoenix. Grants a +2 bonus to AC, resistance to all damage except psychic, and its melee attacks deal an extra 1d6 fire damage. Tasha's Cauldron p. 88."
+    },
+    {
+      "id": "echo_ally",
+      "name": "Echo Knight Echo",
+      "cr": "equal to your own",
+      "creatureType": "spectral creature",
+      "size": "Medium",
+      "ac": "half your AC, plus 2 at 7th and your Charisma modifier at 18th",
+      "hp": "half your maximum hit points, plus your fighter level times 5 at 18th",
+      "speed": "30 ft., teleports to you when it takes damage, taking 5d10 psychic",
+      "grantedAt": [
+        "echo_knight:3"
+      ],
+      "note": "A magical echo of the fighter, created with Manifest Echo or Unleash Incarnation. Intangible, makes attack rolls as the fighter does, can take reactions and use their features, and is destroyed at 0 hit points or by a Dispel Evil or similar. Tasha's Cauldron p. 73."
     }
   ]
 }

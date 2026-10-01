@@ -133,6 +133,19 @@
       "max": 3,
       "book": "PHB",
       "note": "Not granted by a class. The Lucky feat provides it, and a character without that feat has none, so the cost resolves to 0 available."
+    },
+    {
+      "id": "superiority_dice",
+      "name": "Superiority Dice",
+      "kind": "pools",
+      "recharge": "short_rest",
+      "maxFromAbility": {
+        "ability": "cha",
+        "perLevel": 1,
+        "minimum": 0
+      },
+      "book": "PHB",
+      "note": "Battle Master's Combat Superiority. The maximum is your fighter level or twice your Charisma modifier, whichever is greater - a single formula cannot express that, so it is approximated by the level-based formula and stated here. Note this is distinct from the Ranger's Superiority Dice resource, which shares the name but not the formula."
     }
   ]
 }

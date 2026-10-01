@@ -1,0 +1,1469 @@
+{
+  "features": [
+    {
+      "id": "subclass.arcane_archer.arcane_archer_lore",
+      "name": "Arcane Archer Lore",
+      "kind": "subclass",
+      "owner": "Arcane Archer",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "Your understanding of battle magic lets you weave magic through your arrow attacks, so you learn two spells of 1st level, which you can cast without a spell slot, and at 7th, 14th and 17th level you learn two more, and you can also cast one at a higher level."
+        }
+      ],
+      "summary": "Learn arcane archer spells, castable without slots",
+      "text": "When you gain this feature, you learn two spells of 1st level that you can cast without a spell slot.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Fighter Arcane Archer 3"
+      }
+    },
+    {
+      "id": "subclass.arcane_archer.arcane_shot",
+      "name": "Arcane Shot",
+      "kind": "subclass",
+      "owner": "Arcane Archer",
+      "unlock": 3,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "When you take the Attack action on your turn, you can make one attack with a weapon that you are proficient with, using a bonus action, and it counts as one attack, and if you use your bonus action this way, you gain no benefit to it, and it can be a ranged weapon attack, and at 7th level you gain a second use and at 18th a third."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 7,
+          "limits": {
+            "per": "turn",
+            "max": 2
+          }
+        },
+        {
+          "at": 18,
+          "limits": {
+            "per": "turn",
+            "max": 3
+          }
+        }
+      ],
+      "summary": "Bonus action: an extra weapon attack",
+      "text": "When you take the Attack action on your turn, you can make one attack with a weapon that you are proficient with as a bonus action.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Fighter Arcane Archer 3"
+      }
+    },
+    {
+      "id": "subclass.arcane_archer.magic_arrow",
+      "name": "Magic Arrow",
+      "kind": "subclass",
+      "owner": "Arcane Archer",
+      "unlock": 7,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "stat_modifier",
+          "stat": "damage_roll",
+          "amount": 0,
+          "duration": "while_active"
+        },
+        {
+          "kind": "special",
+          "note": "You have learned to imbue your arrows with magic, so when you use a weapon that you are proficient with to attack on your turn, you can spend 1 ki point to deal an extra 1d6 force damage, and the attack counts as a magical weapon attack, and at 17th level this becomes 1d8 instead of 1d6."
+        }
+      ],
+      "summary": "Spend 1 Ki per attack: extra 1d6 force, counts as magical",
+      "text": "When you use a weapon that you are proficient with to attack on your turn, you can spend 1 ki point to deal an extra 1d6 force damage.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Fighter Arcane Archer 7"
+      }
+    },
+    {
+      "id": "subclass.arcane_archer.curving_shot",
+      "name": "Curving Shot",
+      "kind": "subclass",
+      "owner": "Arcane Archer",
+      "unlock": 7,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "You have learned to curve your arrow around a barrier, so when you use Curving Shot to make a melee attack against a creature, your ranged attacks against that creature have advantage until the end of your next turn, and at 18th level the melee attack does not provoke an opportunity attack."
+        }
+      ],
+      "summary": "A melee Arcane Shot grants your ranged attacks advantage",
+      "text": "When you use Curving Shot to make a melee attack against a creature, your ranged attacks against that creature have advantage until the end of your next turn.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Fighter Arcane Archer 7"
+      }
+    },
+    {
+      "id": "subclass.arcane_archer.ever_ready_shot",
+      "name": "Ever-Ready Shot",
+      "kind": "subclass",
+      "owner": "Arcane Archer",
+      "unlock": 15,
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "turn_start"
+      },
+      "targeting": {
+        "scope": "creature"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "Your aim is never off, so when you fail an attack with a weapon that you are proficient with, you can use your reaction to make a new attack against the same target using the weapon, and it counts as though it hit, and you don't add Arcane Shot or its damage, and you gain the use of this at the start of each of your turns."
+        }
+      ],
+      "summary": "Reaction: a failed attack is rerolled as a hit",
+      "text": "When you fail an attack with a weapon that you are proficient with, you can use your reaction to make a new attack against the same target using the weapon.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Fighter Arcane Archer 15"
+      }
+    },
+    {
+      "id": "subclass.battle_master.combat_superiority",
+      "name": "Combat Superiority",
+      "kind": "subclass",
+      "owner": "Battle Master",
+      "unlock": 3,
+      "activation": "bonus_action",
+      "cost": [
+        {
+          "resource": "superiority_dice",
+          "amount": 1
+        }
+      ],
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "You have learned to react to your foes with unusual precision, so on your turn, when you take the Attack action, you can spend 1 superiority die to take a maneuver, and you gain superiority dice equal to your fighter level or twice your Charisma modifier, whichever is greater, which recharge on a short or long rest."
+        }
+      ],
+      "summary": "BA: spend a superiority die on a battle maneuver",
+      "text": "On your turn, when you take the Attack action, you can spend 1 superiority die to take a maneuver.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Battle Master 3"
+      }
+    },
+    {
+      "id": "subclass.battle_master.student_of_war",
+      "name": "Student of War",
+      "kind": "subclass",
+      "owner": "Battle Master",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "skill",
+          "skills": [
+            "Athletics",
+            "History",
+            "Insight",
+            "Intimidation",
+            "Persuasion"
+          ],
+          "proficiency": "proficient"
+        },
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "You have studied the art of war, so you gain proficiency in four of the skills Athletics, History, Insight, Intimidation and Persuasion, and when you gain the Student of War feature you also learn four maneuvers of your choice from the Battle Master options."
+        }
+      ],
+      "summary": "Proficiency in four skills, plus four extra maneuvers",
+      "text": "You gain proficiency in four of the following skills: Athletics, History, Insight, Intimidation, Persuasion.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Battle Master 3"
+      }
+    },
+    {
+      "id": "subclass.battle_master.know_your_enemy",
+      "name": "Know Your Enemy",
+      "kind": "subclass",
+      "owner": "Battle Master",
+      "unlock": 7,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have intimate knowledge of the viewing technique, so when you make an ability check to learn a creature's strengths, weaknesses or quirks, you can add your Charisma modifier to the roll, and at 11th level you can also use a bonus action to swap one maneuver you know for another known maneuver, regaining 2 superiority dice when you do."
+        }
+      ],
+      "summary": "Charisma modifier counts on creature-knowledge checks",
+      "text": "When you make an ability check to learn a creature's strengths, weaknesses, or quirks, you can add your Charisma modifier to the roll.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Battle Master 7"
+      }
+    },
+    {
+      "id": "subclass.battle_master.relentless",
+      "name": "Relentless",
+      "kind": "subclass",
+      "owner": "Battle Master",
+      "unlock": 15,
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "creature_killed"
+      },
+      "targeting": {
+        "scope": "creature"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "When you are reduced to 0 hit points but not killed outright, you can use your reaction to take a single melee weapon attack against a creature within reach, and if you hit it, you can spend 1 ki point to drop to 1 hit point instead. You regain the use of this when you finish a long rest."
+        }
+      ],
+      "summary": "At 0 HP, react with an attack and spend ki to survive",
+      "text": "When you are reduced to 0 hit points but are not killed outright, you can use your reaction to take a single melee weapon attack against a creature within reach.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Battle Master 15"
+      }
+    },
+    {
+      "id": "subclass.cavalier.bonus_proficiency",
+      "name": "Bonus Proficiency",
+      "kind": "subclass",
+      "owner": "Cavalier",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "tool",
+          "tools": [
+            "any type of vehicle"
+          ],
+          "proficiency": "proficient"
+        },
+        {
+          "kind": "special",
+          "note": "You gain proficiency with any type of vehicle: land, water or air, and in 11th and 18th level you gain proficiency with two more types of vehicle."
+        }
+      ],
+      "summary": "Proficiency with one vehicle type, more at 11 and 18",
+      "text": "You gain proficiency with any type of vehicle: land, water, or air.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Cavalier 3"
+      }
+    },
+    {
+      "id": "subclass.cavalier.born_to_the_saddle",
+      "name": "Born to the Saddle",
+      "kind": "subclass",
+      "owner": "Cavalier",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have great mobility on horseback, so while you are mounted, you gain advantage on saving throws made to dismount you and your mount, you can reroll a failed saving throw to mount or dismount, and if you fall off your mount you land on your feet and take no falling damage, and at 10th level your mount doesn't fall prone when you make a melee attack against it while mounted."
+        }
+      ],
+      "summary": "Advantage on dismount saves; safe dismounts",
+      "text": "While you are mounted, you have advantage on saving throws made to dismount you.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Cavalier 3"
+      }
+    },
+    {
+      "id": "subclass.cavalier.unwavering_mark",
+      "name": "Unwavering Mark",
+      "kind": "subclass",
+      "owner": "Cavalier",
+      "unlock": 3,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "When you hit a creature with a melee attack, you can use a bonus action to mark it, and when you are within 5 feet of a creature that is marked, it has disadvantage on attacks against anyone other than you, and if it is hit by an attack by anyone other than you and you are within 5 feet of it, you can use your reaction to make a melee attack against it."
+        }
+      ],
+      "summary": "On a melee hit: mark the creature, protecting allies",
+      "text": "When you hit a creature with a melee attack, you can use a bonus action to mark it.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Cavalier 3"
+      }
+    },
+    {
+      "id": "subclass.cavalier.warding_maneuver",
+      "name": "Warding Maneuver",
+      "kind": "subclass",
+      "owner": "Cavalier",
+      "unlock": 7,
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "ally_damaged",
+        "note": "When you or a creature within 5 feet of you is hit by an attack."
+      },
+      "targeting": {
+        "scope": "creature"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "When you or a creature within 5 feet of you is hit by an attack, you can use your reaction to move up to 15 feet without provoking opportunity attacks and make a melee weapon attack against the attacking creature. You regain the use of this when you finish a short or long rest, and at 15th level you can use it twice."
+        }
+      ],
+      "summary": "Reaction: intercept and hit an attacker",
+      "text": "When you or a creature within 5 feet of you is hit by an attack, you can use your reaction to move up to 15 feet without provoking opportunity attacks.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Cavalier 7"
+      }
+    },
+    {
+      "id": "subclass.cavalier.hold_the_line",
+      "name": "Hold the Line",
+      "kind": "subclass",
+      "owner": "Cavalier",
+      "unlock": 10,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "Your allies will not break rank, so when a creature that you can see attacks anyone other than you while you are within 5 feet of that creature, you can use your reaction to use your Interact action to provide one of the following benefits, and at 18th level you also gain a +1 bonus to AC and saving throws."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 18,
+          "effects": [
+            {
+              "kind": "ac_bonus",
+              "amount": 1,
+              "duration": "permanent"
+            },
+            {
+              "kind": "extra_attacks",
+              "count": 0,
+              "note": "You also gain a +1 bonus to AC and saving throws, in addition to the Interact benefits."
+            }
+          ]
+        }
+      ],
+      "summary": "Reaction: cover an ally struck by an adjacent enemy",
+      "text": "When a creature that you can see attacks anyone other than you while you are within 5 feet of that creature, you can use your reaction to use your Interact action.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Cavalier 10"
+      }
+    },
+    {
+      "id": "subclass.cavalier.ferocious_charger",
+      "name": "Ferocious Charger",
+      "kind": "subclass",
+      "owner": "Cavalier",
+      "unlock": 15,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "You have learned to charge with savagery, so if you move at least 30 feet toward a hostile creature and then hit it with a melee attack on the same turn, the target takes an additional 1d8 damage and is frightened until the start of your next turn."
+        }
+      ],
+      "summary": "Charge 30 ft then hit: extra 1d8 and frightened",
+      "text": "If you move at least 30 feet toward a hostile creature and then hit it with a melee attack on the same turn, the target takes an additional 1d8 damage.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Cavalier 15"
+      }
+    },
+    {
+      "id": "subclass.cavalier.vigilant_defender",
+      "name": "Vigilant Defender",
+      "kind": "subclass",
+      "owner": "Cavalier",
+      "unlock": 18,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "reactions_without_cost",
+          "count": 1,
+          "note": "You are ever watchful, so when you are hit by an attack, you can use your reaction, whether or not you have it, to add your Charisma modifier to the AC against that attack, and at 20th level you can also add your proficiency bonus to AC against attacks made by other creatures while you have a reaction."
+        }
+      ],
+      "summary": "Use a reaction to add Charisma modifier to AC",
+      "text": "When you are hit by an attack, you can use your reaction, whether or not you have it, to add your Charisma modifier to the AC against that attack.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Cavalier 18"
+      }
+    },
+    {
+      "id": "subclass.champion.improved_critical",
+      "name": "Improved Critical",
+      "kind": "subclass",
+      "owner": "Champion",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "Your weapon strikes true, so your attack roll numbers count as 10 higher for the purpose of determining whether you hit with an attack, and at 18th level your weapon attacks deal an additional 1d8 damage on a critical hit, which increases by 1d8 at 20th."
+        }
+      ],
+      "summary": "Treat attack rolls as 10 higher; extra crit damage at 18",
+      "text": "Your attack roll numbers count as 10 higher for the purpose of determining whether you hit with an attack.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Champion 3"
+      }
+    },
+    {
+      "id": "subclass.champion.remarkable_athlete",
+      "name": "Remarkable Athlete",
+      "kind": "subclass",
+      "owner": "Champion",
+      "unlock": 7,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "skill",
+          "skills": [
+            "Acrobatics",
+            "Athletics",
+            "History",
+            "Insight",
+            "Intimidation",
+            "Persuasion"
+          ],
+          "proficiency": "proficient"
+        },
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "You have developed remarkable athletic skills, so you gain proficiency in three of the skills Acrobatics, Athletics, History, Insight, Intimidation and Persuasion, and if you fail a DC 15 Strength (Athletics) check, you can reroll it."
+        }
+      ],
+      "summary": "Proficiency in three skills; reroll a DC 15 Athletics failure",
+      "text": "You gain proficiency in three of the following skills: Acrobatics, Athletics, History, Insight, Intimidation, Persuasion.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Champion 7"
+      }
+    },
+    {
+      "id": "subclass.champion.additional_fighting_style",
+      "name": "Additional Fighting Style",
+      "kind": "subclass",
+      "owner": "Champion",
+      "unlock": 10,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "choice",
+          "of": "fighting_style",
+          "count": 1,
+          "note": "You learn a second fighting style of your choice from the same list as your first, and at 18th level you learn a third."
+        }
+      ],
+      "summary": "Learn a second fighting style",
+      "text": "You learn a second fighting style of your choice from the same list as your first.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Champion 10"
+      }
+    },
+    {
+      "id": "subclass.champion.superior_critical",
+      "name": "Superior Critical",
+      "kind": "subclass",
+      "owner": "Champion",
+      "unlock": 15,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "Your critical hits are devastating, so your weapon attacks score critical hits on a roll of 19 or 20, and at 18th level and at 20th level your weapon attacks score a critical hit on a roll of 18 or higher."
+        }
+      ],
+      "summary": "Critical hits on 19+ instead of 20",
+      "text": "Your weapon attacks score a critical hit on a roll of 19 or 20.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Champion 15"
+      }
+    },
+    {
+      "id": "subclass.champion.survivor",
+      "name": "Survivor",
+      "kind": "subclass",
+      "owner": "Champion",
+      "unlock": 18,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have learned to keep fighting. At the start of your turn, you regain 10 hit points if you are at 0 hit points, and you gain a +1 bonus to attack and damage rolls with all weapons, and at 20th level, the first time you are reduced to 0 hit points each combat, you drop to 1 instead, and this feature has no effect on death saves."
+        }
+      ],
+      "summary": "Regain 10 HP at the start of a turn while at 0",
+      "text": "At the start of your turn, you regain 10 hit points if you are at 0 hit points.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Champion 18"
+      }
+    },
+    {
+      "id": "subclass.echo_knight.manifest_echo",
+      "name": "Manifest Echo",
+      "kind": "subclass",
+      "owner": "Echo Knight",
+      "unlock": 3,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "summon",
+          "features": [],
+          "formId": "echo_ally",
+          "initiative": "self",
+          "control": "ally",
+          "duration": {
+            "value": 10,
+            "unit": "minute"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You have learned to harness your own life force, so as a bonus action you can create an echo of yourself within 60 feet of your unoccupied space, which lasts for 1 minute or until you dismiss it as a bonus action, and it is intangible, 10 ft away or more from you, has your statistics and AC and HP equal to half yours, makes attack rolls as if it were you, and can take reactions and use your features."
+        }
+      ],
+      "summary": "Bonus action: summon a half-stat echo of yourself",
+      "text": "As a bonus action, you can create an echo of yourself within 60 feet of your unoccupied space.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Fighter Echo Knight 3"
+      }
+    },
+    {
+      "id": "subclass.echo_knight.unleash_incarnation",
+      "name": "Unleash Incarnation",
+      "kind": "subclass",
+      "owner": "Echo Knight",
+      "unlock": 3,
+      "activation": "action",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "summon",
+          "features": [],
+          "formId": "echo_ally",
+          "initiative": "self",
+          "control": "ally",
+          "duration": {
+            "value": 10,
+            "unit": "minute"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You have reached a higher understanding of your life energy, so you can take the Unleash Incarnation action to spawn an echo of yourself within 60 feet of your unoccupied space, lasting 1 minute or until dismissed, and it can be 5 ft away, has your HP and AC equal to half, and can teleport to you when it takes damage, taking 5d10 psychic."
+        }
+      ],
+      "summary": "Action: an echo that teleports to you when hurt",
+      "text": "As an action, you can create an echo of yourself within 60 feet of your unoccupied space.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Fighter Echo Knight 3"
+      }
+    },
+    {
+      "id": "subclass.echo_knight.echo_avatar",
+      "name": "Echo Avatar",
+      "kind": "subclass",
+      "owner": "Echo Knight",
+      "unlock": 7,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "Your echoes have become more potent, so when you create one, it gains a +2 bonus to attack rolls and damage rolls, and at 14th level it gains a +2 bonus to AC, and at 18th level an echo's health and AC increase by your Charisma modifier."
+        }
+      ],
+      "summary": "Echoes gain +2 to attacks and damage",
+      "text": "When you create an echo using this feature, it has +2 bonus to attack rolls and damage rolls.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Fighter Echo Knight 7"
+      }
+    },
+    {
+      "id": "subclass.echo_knight.shadow_martyr",
+      "name": "Shadow Martyr",
+      "kind": "subclass",
+      "owner": "Echo Knight",
+      "unlock": 10,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have learned to trade your own vitality for an echo's, so at the start of your turn, if an echo within 10 feet of you has 0 hit points, you deal 15 necrotic damage to a creature within 5 feet of you or the echo and the echo's hit points increase by that amount, and you take half that damage."
+        }
+      ],
+      "summary": "At turn start, a fallen echo is revived and drains life",
+      "text": "At the start of your turn, if an echo within 10 feet of you has 0 hit points, you deal 15 necrotic damage to a creature within 5 feet of you or the echo, and the echo's hit points increase by that amount.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Fighter Echo Knight 10"
+      }
+    },
+    {
+      "id": "subclass.echo_knight.reclaim_potential",
+      "name": "Reclaim Potential",
+      "kind": "subclass",
+      "owner": "Echo Knight",
+      "unlock": 15,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have developed a way to restore your vitality through your echo, so at the start of your turn, if an echo within 10 feet of you has 0 hit points, you can spend ki equal to its max HP, regaining that many hit points, and you can use this twice per long rest, and at 18th level an echo has additional HP equal to your level times five."
+        }
+      ],
+      "summary": "Spend ki equal to a dead echo's HP to heal that much",
+      "text": "At the start of your turn, if an echo within 10 feet of you has 0 hit points, you can spend ki points equal to its maximum hit points to regain that many hit points.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Fighter Echo Knight 15"
+      }
+    },
+    {
+      "id": "subclass.echo_knight.legion_of_one",
+      "name": "Legion of One",
+      "kind": "subclass",
+      "owner": "Echo Knight",
+      "unlock": 18,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "summon",
+          "features": [],
+          "formId": "echo_ally",
+          "initiative": "self",
+          "control": "ally",
+          "duration": {
+            "value": 10,
+            "unit": "minute"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "Your echoes multiply, so when you finish a short or long rest you can summon an echo, which lasts until you end that rest, and at 20th level you have a third echo that lasts 1 hour and your echoes no longer have a limit on how far they can be from you."
+        }
+      ],
+      "summary": "You can now keep an echo between rests",
+      "text": "When you finish a short or long rest, you can summon an echo that lasts until you end that rest.",
+      "source": {
+        "book": "TCE",
+        "reference": "Tasha's Cauldron Fighter Echo Knight 18"
+      }
+    },
+    {
+      "id": "subclass.eldritch_knight.spellcasting",
+      "name": "Spellcasting",
+      "kind": "subclass",
+      "owner": "Eldritch Knight",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "spell_grant",
+          "cantrip": {
+            "known": true
+          },
+          "spells": [
+            {
+              "level": 1,
+              "from": [
+                "wizard"
+              ]
+            }
+          ],
+          "note": "Your magic comes from your will, so you know a number of wizard spells equal to half your fighter level rounded down, none of which can be 1st level, and you cast them as part of the same action, and at 4th, 6th, 8th, 10th, 12th, 14th, 16th and 18th level you learn more."
+        }
+      ],
+      "summary": "Half your level in wizard spells, cast with your attack",
+      "text": "You learn a number of wizard spells that are equal to half your fighter level, rounded down. None of these spells can be 1st level.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Eldritch Knight 3"
+      }
+    },
+    {
+      "id": "subclass.eldritch_knight.weapon_bond",
+      "name": "Weapon Bond",
+      "kind": "subclass",
+      "owner": "Eldritch Knight",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have invested your soul in a weapon, so you gain a +1 bonus to attack and damage rolls made using that weapon, which is one you are proficient with, and at 6th and 14th level this improves to +2 and +3, and at 11th level you can bond a second weapon."
+        }
+      ],
+      "summary": "A bonded weapon gains +1 to attack and damage",
+      "text": "You gain a +1 bonus to attack and damage rolls made using this weapon, which you are proficient with.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Eldritch Knight 3"
+      }
+    },
+    {
+      "id": "subclass.eldritch_knight.war_magic",
+      "name": "War Magic",
+      "kind": "subclass",
+      "owner": "Eldritch Knight",
+      "unlock": 7,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "You have learned to blend swordplay with sorcery, so you can cast a spell in place of a weapon attack during the Attack action, and at 9th, 13th and 15th level you gain more: cast two, cast at higher level, and cast two and gain a bonus action."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 9
+        },
+        {
+          "at": 13
+        },
+        {
+          "at": 15
+        }
+      ],
+      "summary": "Cast a spell in place of an attack in the Attack action",
+      "text": "When you take the Attack action, you can cast a spell instead of making a weapon attack.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Eldritch Knight 7"
+      }
+    },
+    {
+      "id": "subclass.eldritch_knight.eldritch_strike",
+      "name": "Eldritch Strike",
+      "kind": "subclass",
+      "owner": "Eldritch Knight",
+      "unlock": 10,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "stat_modifier",
+          "stat": "damage_roll",
+          "amount": 1,
+          "duration": "while_active"
+        },
+        {
+          "kind": "special",
+          "note": "Your weapon strikes with arcane force, so when you cast a spell that deals damage, you can add your Intelligence modifier to the damage of a noncantrip spell as a bonus, and you gain 1d10 force damage as a bonus on a successful attack."
+        }
+      ],
+      "summary": "+1 damage on spells and weapon attacks",
+      "text": "When you cast a spell that deals damage, you can add your Intelligence modifier to the damage of a noncantrip spell as a bonus.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Eldritch Knight 10"
+      }
+    },
+    {
+      "id": "subclass.eldritch_knight.arcane_charge",
+      "name": "Arcane Charge",
+      "kind": "subclass",
+      "owner": "Eldritch Knight",
+      "unlock": 15,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "You have learned to charge with magic. When you move at least 30 feet toward a hostile creature and then hit it with a melee attack, you can cast any spell of your action as part of that attack, and it does not count as your first spell, and at 18th level you can instead use your reaction to cast a spell instead of an opportunity attack."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 18,
+          "effects": [
+            {
+              "kind": "extra_attacks",
+              "count": 0,
+              "note": "You can use your reaction to cast a spell instead of making an opportunity attack."
+            }
+          ]
+        }
+      ],
+      "summary": "Charge 30 ft then hit, and cast a spell as part of it",
+      "text": "When you move at least 30 feet toward a hostile creature and then hit it with a melee attack, you can cast any spell as part of that attack.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Eldritch Knight 15"
+      }
+    },
+    {
+      "id": "subclass.psi_warrior.psionic_power",
+      "name": "Psionic Power",
+      "kind": "subclass",
+      "owner": "Psi Warrior",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "stat_modifier",
+          "stat": "max_hp",
+          "amount": 1,
+          "duration": "permanent"
+        },
+        {
+          "kind": "special",
+          "note": "Your psi energy has grown, so your hit point maximum is increased by your psi energy dice, which equal your Psi Warrior level plus your Intelligence modifier, and you regain all of them when you finish a short rest."
+        }
+      ],
+      "summary": "Hit points equal to Psi Warrior level plus Int mod",
+      "text": "Your hit point maximum is increased by your psi energy dice, which equal your Psi Warrior level plus your Intelligence modifier.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Psi Warrior 3"
+      }
+    },
+    {
+      "id": "subclass.psi_warrior.guarded_mind",
+      "name": "Guarded Mind",
+      "kind": "subclass",
+      "owner": "Psi Warrior",
+      "unlock": 7,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have learned to open your mind to psi energy, so you gain resistance to psychic damage, and at 15th level you also gain resistance to psychic damage from creatures within 30 feet of you."
+        }
+      ],
+      "summary": "Resistance to psychic damage",
+      "text": "You have resistance to psychic damage.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Psi Warrior 7"
+      }
+    },
+    {
+      "id": "subclass.psi_warrior.telekinetic_leap",
+      "name": "Telekinetic Leap",
+      "kind": "subclass",
+      "owner": "Psi Warrior",
+      "unlock": 7,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature",
+        "range": {
+          "value": 30,
+          "unit": "ft"
+        }
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "As a bonus action, you can teleport up to 30 feet to an unoccupied space you can see and make one melee attack, and if you hit you deal 1d6 extra psychic damage, and at 15th level this becomes 2d6 extra psychic damage."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 15,
+          "effects": [
+            {
+              "kind": "extra_attacks",
+              "count": 0,
+              "note": "The extra psychic damage is 2d6 instead of 1d6."
+            }
+          ]
+        }
+      ],
+      "summary": "Bonus action: 30-ft leap and a melee hit for 1d6 psychic",
+      "text": "As a bonus action, you can teleport up to 30 feet to an unoccupied space that you can see and make one melee attack.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Psi Warrior 7"
+      }
+    },
+    {
+      "id": "subclass.psi_warrior.bulwark_of_force",
+      "name": "Bulwark of Force",
+      "kind": "subclass",
+      "owner": "Psi Warrior",
+      "unlock": 10,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "temp_hp",
+          "dice": {
+            "dice": "3d8",
+            "bonusFrom": "int"
+          },
+          "note": "You have learned to shield your mind with psi energy. As a bonus action, you gain psi energy, and each time you do, you can expend it as a reaction to reduce damage by 1 plus the psi energy expended, which can be spent more than once but not before the start of your next turn, and if you don't, the remaining energy is lost at the end of your turn."
+        }
+      ],
+      "summary": "Bonus action: 3d8 + Int psi, spendable to cut damage",
+      "text": "As a bonus action, you can gain psi energy equal to 3d8 + your Intelligence modifier.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Psi Warrior 10"
+      }
+    },
+    {
+      "id": "subclass.psi_warrior.telekinetic_master",
+      "name": "Telekinetic Master",
+      "kind": "subclass",
+      "owner": "Psi Warrior",
+      "unlock": 15,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "control",
+          "action": "push",
+          "distance": {
+            "value": 30,
+            "unit": "ft"
+          }
+        },
+        {
+          "kind": "special",
+          "note": "You have learned to employ a telekinetic grip, so you can use Telekinetic Leap as a bonus action on each of your turns, and if you hit with it you can push the creature up to 10 feet away or 30 feet into the air, and at 18th level the creature is instead knocked prone."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 18,
+          "effects": [
+            {
+              "kind": "control",
+              "action": "push",
+              "distance": {
+                "value": 30,
+                "unit": "ft"
+              }
+            },
+            {
+              "kind": "special",
+              "note": "The creature is knocked prone rather than just pushed."
+            }
+          ]
+        }
+      ],
+      "summary": "Telekinetic Leap every turn, and it pushes",
+      "text": "When you use Telekinetic Leap, if you hit the creature, you can push it up to 10 feet away or up to 30 feet into the air.",
+      "source": {
+        "book": "MTF",
+        "reference": "Mordenkainen's Tome of Foes Psi Warrior 15"
+      }
+    },
+    {
+      "id": "subclass.rune_knight.bonus_proficiencies",
+      "name": "Bonus Proficiencies",
+      "kind": "subclass",
+      "owner": "Rune Knight",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "tool",
+          "tools": [
+            "smith's tools"
+          ],
+          "proficiency": "proficient"
+        },
+        {
+          "kind": "special",
+          "note": "You gain proficiency with smith's tools, and you learn two languages of your choice from the dwarven, common and gnomish list, and you can gain two more at 15th and 18th level."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 15
+        },
+        {
+          "at": 18
+        }
+      ],
+      "summary": "Smith's tools and two extra languages",
+      "text": "You gain proficiency with smith's tools and learn two languages of your choice from the dwarven, common, and gnomish list.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Rune Knight 3"
+      }
+    },
+    {
+      "id": "subclass.rune_knight.rune_carver",
+      "name": "Rune Carver",
+      "kind": "subclass",
+      "owner": "Rune Knight",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "choice",
+          "of": "rune",
+          "count": 2,
+          "note": "You gain access to two runes of your choice from the rune list, and you can gain access to a third rune of your choice at 7th and 15th level. Runes are passive, so they modify other features rather than being invoked."
+        }
+      ],
+      "summary": "You learn two runes from the rune list, and a third at 7 and 15",
+      "text": "You gain access to two runes of your choice from the rune list below. You can gain access to a third rune of your choice at 7th and 15th level.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Rune Knight 3"
+      }
+    },
+    {
+      "id": "subclass.rune_knight.giants_might",
+      "name": "Giant's Might",
+      "kind": "subclass",
+      "owner": "Rune Knight",
+      "unlock": 3,
+      "activation": "action",
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
+      "endsIf": [
+        "unconscious"
+      ],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have learned to emulate the strength of a giant. As an action, you can magically grow by 10 to 15 feet in height and length for 1 minute, gaining advantage on checks to grapple creatures one size larger, and a +10 bonus to reach and your carrying capacity is multiplied by your size."
+        }
+      ],
+      "summary": "Action: grow a size for a minute",
+      "text": "As an action, you can magically grow in size from 10 to 15 feet in height and length for 1 minute.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Rune Knight 3"
+      }
+    },
+    {
+      "id": "subclass.rune_knight.runic_shield",
+      "name": "Runic Shield",
+      "kind": "subclass",
+      "owner": "Rune Knight",
+      "unlock": 7,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "day",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "ac_bonus",
+          "amount": 2,
+          "duration": "while_active"
+        },
+        {
+          "kind": "special",
+          "note": "You have learned to invoke your runes to draw on protective magic, so as a bonus action you gain a +2 bonus to AC for 10 minutes or until you are incapacitated, and at 18th level you gain a +2 bonus to saving throws against the triggering attack."
+        }
+      ],
+      "summary": "Bonus action: +2 AC for ten minutes",
+      "text": "As a bonus action, you can gain a +2 bonus to AC for 10 minutes or until you are incapacitated.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Rune Knight 7"
+      }
+    },
+    {
+      "id": "subclass.rune_knight.great_stature",
+      "name": "Great Stature",
+      "kind": "subclass",
+      "owner": "Rune Knight",
+      "unlock": 10,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "Your runes have made you more powerful, so when you finish a short or long rest, you can increase your height and reach by 10 feet, and at 18th level, if a creature that can see you is reduced to 0 hit points by a source other than you, you can use your reaction to make a melee attack against it."
+        }
+      ],
+      "summary": "Grow another 10 ft per rest; strike the dying at 18",
+      "text": "When you finish a short or long rest, you can increase your height and reach by 10 feet.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Rune Knight 10"
+      }
+    },
+    {
+      "id": "subclass.rune_knight.master_of_runes",
+      "name": "Master of Runes",
+      "kind": "subclass",
+      "owner": "Rune Knight",
+      "unlock": 15,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "You have thoroughly studied your runes, so you gain a bonus rune of your choice that you can use, and you can swap out one rune whenever you finish a short or long rest, and at 18th level you learn two runes of your choice that are not set on a creature."
+        }
+      ],
+      "summary": "A bonus rune you can swap between rests",
+      "text": "You gain a bonus rune of your choice from the rune list.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Rune Knight 15"
+      }
+    },
+    {
+      "id": "subclass.rune_knight.runic_juggernaut",
+      "name": "Runic Juggernaut",
+      "kind": "subclass",
+      "owner": "Rune Knight",
+      "unlock": 18,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have fully embraced your runes, so when you finish a long rest, you can carve two additional runes into your flesh, which last until you die, and you can use them without spending a ki point, and at 20th level you have a +2 bonus to AC and saving throws while wearing no armor."
+        }
+      ],
+      "summary": "Two extra runes for life, usable without ki",
+      "text": "When you finish a long rest, you can carve two additional runes into your flesh.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Rune Knight 18"
+      }
+    },
+    {
+      "id": "subclass.samurai.bonus_proficiency",
+      "name": "Bonus Proficiency",
+      "kind": "subclass",
+      "owner": "Samurai",
+      "unlock": 3,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "tool",
+          "tools": [
+            "one type of artisan's tools",
+            "one musical instrument"
+          ],
+          "proficiency": "proficient"
+        },
+        {
+          "kind": "special",
+          "note": "You gain proficiency with one type of artisan's tools or one musical instrument, and your Fighting Style feature gains the Unarmed Fighting and TWF options, and at 10th and 18th level you gain proficiency with two more of each."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 10
+        },
+        {
+          "at": 18
+        }
+      ],
+      "summary": "An artisan's tool or instrument, plus Unarmed Fighting",
+      "text": "You gain proficiency with one type of artisan's tools or one musical instrument.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Samurai 3"
+      }
+    },
+    {
+      "id": "subclass.samurai.fighting_spirit",
+      "name": "Fighting Spirit",
+      "kind": "subclass",
+      "owner": "Samurai",
+      "unlock": 3,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": {
+        "value": 1,
+        "unit": "minute"
+      },
+      "endsIf": [
+        "unconscious"
+      ],
+      "effects": [
+        {
+          "kind": "special",
+          "note": "You have a warrior's fighting spirit, so you can use a bonus action to gain temporary hit points equal to 1 plus your fighter level, and if you end the effect you gain another number of temporary hit points equal to half that, and they last until you finish a short or long rest."
+        }
+      ],
+      "summary": "Bonus action: temp HP equal to 1 plus Fighter level",
+      "text": "You can use a bonus action to gain temporary hit points equal to 1 + your fighter level.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Samurai 3"
+      }
+    },
+    {
+      "id": "subclass.samurai.elegant_courtier",
+      "name": "Elegant Courtier",
+      "kind": "subclass",
+      "owner": "Samurai",
+      "unlock": 7,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "skill",
+          "skills": [
+            "any three of your choice"
+          ],
+          "proficiency": "proficient"
+        },
+        {
+          "kind": "extra_attacks",
+          "count": 0,
+          "note": "You have a precise command of courtly etiquette, so you gain proficiency in three skills of your choice, and at 17th level you can use your Intelligence modifier instead of your Charisma modifier on a Charisma save, and at 18th level you gain a bonus action to move 10 feet."
+        }
+      ],
+      "summary": "Proficiency in three skills; elegant evasion at 17",
+      "text": "You gain proficiency in three skills of your choice.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Samurai 7"
+      }
+    },
+    {
+      "id": "subclass.samurai.tireless_spirit",
+      "name": "Tireless Spirit",
+      "kind": "subclass",
+      "owner": "Samurai",
+      "unlock": 10,
+      "activation": "passive",
+      "effects": [
+        {
+          "kind": "reactions_without_cost",
+          "count": 0,
+          "note": "Your discipline is inexhaustible, so when you finish a short or long rest, you can choose to regain ki points equal to half your fighter level, and at 18th level, when you use your reaction, you can also choose to regain 1 ki point, and you always have at least 1 ki point as long as you are wearing heavy armor."
+        }
+      ],
+      "summary": "Regain half your level in ki every rest",
+      "text": "When you finish a short or long rest, you can choose to regain ki points equal to half your fighter level.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Samurai 10"
+      }
+    },
+    {
+      "id": "subclass.samurai.rapid_strike",
+      "name": "Rapid Strike",
+      "kind": "subclass",
+      "owner": "Samurai",
+      "unlock": 15,
+      "activation": "bonus_action",
+      "limits": {
+        "per": "turn",
+        "max": 1
+      },
+      "trigger": null,
+      "targeting": {
+        "scope": "creature"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "extra_attacks",
+          "count": 1,
+          "note": "You have learned to strike in a single motion. As a bonus action, you can make one melee weapon attack using a weapon that you are proficient with, and if you hit, you deal 1d8 extra damage, and at 18th level you can use this after taking the Attack action."
+        }
+      ],
+      "tiers": [
+        {
+          "at": 18,
+          "effects": [
+            {
+              "kind": "extra_attacks",
+              "count": 1,
+              "note": "You can use Rapid Strike after taking the Attack action as well as before."
+            }
+          ]
+        }
+      ],
+      "summary": "Bonus action: a melee hit for 1d8 extra damage",
+      "text": "As a bonus action, you can make one melee weapon attack using a weapon that you are proficient with.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Samurai 15"
+      }
+    },
+    {
+      "id": "subclass.samurai.strength_before_death",
+      "name": "Strength Before Death",
+      "kind": "subclass",
+      "owner": "Samurai",
+      "unlock": 18,
+      "activation": "reaction",
+      "limits": {
+        "per": "rest",
+        "max": 1
+      },
+      "trigger": {
+        "event": "reduced_to_0_hp"
+      },
+      "targeting": {
+        "scope": "self"
+      },
+      "duration": null,
+      "endsIf": [],
+      "effects": [
+        {
+          "kind": "temp_hp",
+          "dice": {
+            "dice": "1",
+            "flat": 0
+          },
+          "note": "Your fighting spirit carries you through the brink, so when you are reduced to 0 hit points but not killed outright, you can use your reaction to drop to 1 hit point instead, and you regain the use when you finish a short or long rest."
+        }
+      ],
+      "summary": "Reaction: drop to 1 HP instead of dying",
+      "text": "When you are reduced to 0 hit points but are not killed outright, you can use your reaction to drop to 1 hit point instead.",
+      "source": {
+        "book": "PHB",
+        "reference": "PHB Fighter Samurai 18"
+      }
+    }
+  ]
+}
