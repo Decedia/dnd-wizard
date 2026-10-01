@@ -4716,22 +4716,7 @@
       "speed": 30,
       "size": "Medium",
       "darkvision": false,
-      "traits": [
-        {
-          "name": "Human",
-          "description": "Serba bisa dan mudah beradaptasi, manusia adalah ras yang paling beragam di dunia. Mereka unggul dalam berbagai kelas dan peran, menjadikan mereka pilihan yang sangat tepat bagi petualang mana pun.",
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "lastUpdated": "2026-09-29"
-        }
-      ],
+      "traits": [],
       "languages": [
         "Common"
       ],

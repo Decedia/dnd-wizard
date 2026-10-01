@@ -84,6 +84,8 @@ export interface ResolvedFeature {
   level: number;
   /** False when the feature cannot be used right now; see `blockedBy`. */
   available: boolean;
+  /** True when the character has already used this feature this turn. */
+  used: boolean;
   /** Human-readable reason the feature is unavailable, or null. */
   blockedBy: string | null;
   /** Uses remaining under the feature's own limit, or null if unlimited. */
@@ -284,16 +286,20 @@ export function resolve(input: FeatureBase, ctx: ResolveContext): ResolvedFeatur
     ? { current: Math.max(0, limitMax - ctx.usedThisTurn.filter((id) => id === feature.id).length), max: limitMax, per: limit.per }
     : null;
 
+  // Order matters, because only one reason is shown. A missing resource or a
+  // spent charge is the actionable problem; a gate on a self-granted state is a
+  // consequence of not having done the thing yet. Barbarian Rage gated on
+  // "raging" reported "Requires raging" while the real problem was no rages left.
   let blockedBy: string | null = null;
   if (feature.unlock !== undefined && ctx.level < feature.unlock) {
     blockedBy = `Unlocks at level ${feature.unlock}`;
-  } else if (gatesUnmet.length > 0) {
-    blockedBy = `Requires ${gatesUnmet.join(", ")}`;
   } else if (resources.some((r) => !r.ok)) {
     const missing = resources.find((r) => !r.ok)!;
     blockedBy = `Not enough ${missing.id.replace(/_/g, " ")}`;
   } else if (uses && uses.current <= 0) {
     blockedBy = "No uses remaining";
+  } else if (gatesUnmet.length > 0) {
+    blockedBy = `Requires ${gatesUnmet.join(", ")}`;
   } else if (usedHere && feature.activation !== "passive" && feature.activation !== "free") {
     blockedBy = `Already used this ${limit?.per === "round" ? "round" : "turn"}`;
   } else if (slotSpent(feature, ctx)) {
@@ -311,6 +317,7 @@ export function resolve(input: FeatureBase, ctx: ResolveContext): ResolvedFeatur
     text: feature.text,
     level: feature.unlock ?? 0,
     available: blockedBy === null,
+    used: usedHere,
     blockedBy,
     uses,
     resources,

@@ -732,7 +732,15 @@ function getClassFeaturesAtLevel(character: Character, language: string): any[] 
 function getRaceTraits(character: Character, language: string): any[] {
   const race = character.race ? getStaticRace(character.race, undefined, language) : null;
   if (!race) return [];
-  const traits = (race.traits || []).map((t: any) => ({
+  // A trait whose name just repeats the race is data noise, not a feature: the
+  // sheet showed a row called "Human" on every human character because the race
+  // entry listed one. 2014 humans have no racial traits, so the ability score
+  // increase, skill and feat benefit are handled elsewhere and should not
+  // produce a row. Filtered here so a future data edit cannot reintroduce it.
+  const meaningful = (race.traits || []).filter(
+    (t: any) => String(t?.name ?? "").trim().toLowerCase() !== String(race.name).trim().toLowerCase()
+  );
+  const traits = meaningful.map((t: any) => ({
     name: t.name,
     description: normalizeDescription(t.description),
     ...extractFeatureFields(t),

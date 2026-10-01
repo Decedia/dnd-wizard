@@ -17,6 +17,20 @@ import { BottomSheet } from "@/components/modals/BottomSheet";
 import { DiceText } from "@/components/DiceText";
 
 /**
+ * The character sheet tracks a few resource pools by name. A feature whose cost
+ * names one of these spends it when used, so a "3 / rest" style badge actually
+ * counts down instead of sitting at its maximum.
+ *
+ * Pools the sheet does not yet track (ki, Channel Divinity, superiority dice)
+ * are deliberately absent rather than faked at zero-and-stuck.
+ */
+const POOL_COUNTERS: Record<string, { field: keyof Character; label: string }> = {
+  rages: { field: "rages", label: "Rages" },
+  sorcery_points: { field: "sorceryPoints", label: "Sorcery Points" },
+  bardic_inspiration: { field: "bardicInspirationUses", label: "Bardic Inspiration" },
+};
+
+/**
  * Which class, subclass or race owns a stored feature, so the engine lookup can
  * disambiguate a name like "Extra Attack" that six different classes have.
  * The owner lives on the character rather than on each feature, because every
@@ -374,12 +388,26 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
     return rows;
   };
 
+  /**
+   * Marking a feature used also spends whatever it costs, so the pool the badge
+   * reads from reflects the spend. Un-marking gives it back, because the toggle
+   * is a correction as much as an action.
+   */
   const toggleFeatureUsed = (featureId: string) => {
     const current = character.featuresUsedThisTurn || [];
     const used = current.includes(featureId);
-    onChange({
-      featuresUsedThisTurn: used ? current.filter(id => id !== featureId) : [...current, featureId],
-    });
+    const resolved = resolvedFor(featureId);
+    const patch: Partial<Character> = {
+      featuresUsedThisTurn: used ? current.filter((id) => id !== featureId) : [...current, featureId],
+    };
+    const delta = used ? 1 : -1;
+    for (const cost of resolved?.resources ?? []) {
+      const counter = POOL_COUNTERS[cost.id];
+      if (!counter) continue;
+      const held = (character[counter.field] as number | undefined) ?? 0;
+      (patch as Record<string, unknown>)[counter.field] = Math.max(0, held + delta * cost.required);
+    }
+    onChange(patch);
   };
 
   return (
@@ -481,6 +509,14 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
 
                 {duration && (
                   <span className="block text-[10px] text-[var(--color-text-muted)] mb-2">⏱ {duration}</span>
+                )}
+
+                {/* Why this cannot be used right now. The resolver computes it;
+                    without it a feature that cannot be taken looks simply dim. */}
+                {resolved && !resolved.available && resolved.blockedBy && !resolved.used && (
+                  <span className="inline-flex items-center gap-1 rounded-full border border-[var(--color-border)] bg-[var(--color-paper-muted)] px-2 py-0.5 text-[10px] font-semibold text-[var(--color-text-muted)] mb-2">
+                    {resolved.blockedBy}
+                  </span>
                 )}
 
                 {isActive && (
