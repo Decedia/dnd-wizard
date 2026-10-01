@@ -186,7 +186,16 @@
       "source": {
         "book": "MTF",
         "reference": "Mordenkainen's Tome of Foes Aberrant Mind 14"
-      }
+      },
+      "cost": [
+        {
+          "resource": "spell_slots",
+          "amount": 1,
+          "chooseTier": {
+            "minLevel": 1
+          }
+        }
+      ]
     },
     {
       "id": "subclass.aberrant_mind.warping_implosion",
@@ -376,7 +385,16 @@
       "source": {
         "book": "MTF",
         "reference": "Mordenkainen's Tome of Foes Clockwork Soul 18"
-      }
+      },
+      "cost": [
+        {
+          "resource": "spell_slots",
+          "amount": 1,
+          "chooseTier": {
+            "minLevel": 1
+          }
+        }
+      ]
     },
     {
       "id": "subclass.divine_soul.bonus_proficiency",

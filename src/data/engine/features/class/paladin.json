@@ -197,11 +197,14 @@
       "activation": "passive",
       "effects": [
         {
-          "kind": "special",
-          "note": "You have a pool of Channel Divinity uses equal to half your paladin level, and you regain all of them when you finish a short or long rest. You can expend a use to use a Channel Divinity feature, and your Channel Divinity feature can be used once per turn. A cleric's Channel Divinity feature can be used once per turn."
+          "kind": "resource",
+          "action": "gain",
+          "resource": "channel_divinity_paladin",
+          "amount": 1,
+          "note": "You have a pool of Channel Divinity uses equal to half your paladin level, rounded down, and you regain all expended uses when you finish a short or long rest. A cleric's pool is their full level, so this is a separate resource: one pool cannot carry two ceilings."
         }
       ],
-      "summary": "A pool of spell-like uses, equal to half your level",
+      "summary": "A pool of Channel Divinity uses equal to half your paladin level",
       "text": "Your Channel Divinity feature provides the magical energy you need to drive your divine abilities. You have a pool of Channel Divinity uses equal to half your paladin level, and you regain all expended uses when you finish a short or long rest.",
       "source": {
         "book": "PHB",
@@ -330,7 +333,16 @@
       "source": {
         "book": "PHB",
         "reference": "PHB Paladin 69"
-      }
+      },
+      "cost": [
+        {
+          "resource": "spell_slots",
+          "amount": 1,
+          "chooseTier": {
+            "minLevel": 3
+          }
+        }
+      ]
     },
     {
       "id": "class.paladin.extra_attack",

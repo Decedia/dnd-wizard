@@ -43,7 +43,7 @@
       "activation": "action",
       "cost": [
         {
-          "resource": "channel_divinity",
+          "resource": "channel_divinity_paladin",
           "amount": 1
         }
       ],
@@ -86,7 +86,7 @@
       "activation": "action",
       "cost": [
         {
-          "resource": "channel_divinity",
+          "resource": "channel_divinity_paladin",
           "amount": 1
         }
       ],
@@ -238,7 +238,7 @@
       "activation": "bonus_action",
       "cost": [
         {
-          "resource": "channel_divinity",
+          "resource": "channel_divinity_paladin",
           "amount": 1
         }
       ],
@@ -283,7 +283,7 @@
       "activation": "action",
       "cost": [
         {
-          "resource": "channel_divinity",
+          "resource": "channel_divinity_paladin",
           "amount": 1
         }
       ],
@@ -424,7 +424,7 @@
       "activation": "action",
       "cost": [
         {
-          "resource": "channel_divinity",
+          "resource": "channel_divinity_paladin",
           "amount": 1
         }
       ],
@@ -463,7 +463,7 @@
       "activation": "action",
       "cost": [
         {
-          "resource": "channel_divinity",
+          "resource": "channel_divinity_paladin",
           "amount": 1
         }
       ],
@@ -589,7 +589,7 @@
       "activation": "action",
       "cost": [
         {
-          "resource": "channel_divinity",
+          "resource": "channel_divinity_paladin",
           "amount": 1
         }
       ],
@@ -725,7 +725,7 @@
       "activation": "bonus_action",
       "cost": [
         {
-          "resource": "channel_divinity",
+          "resource": "channel_divinity_paladin",
           "amount": 1
         }
       ],
@@ -764,7 +764,7 @@
       "activation": "bonus_action",
       "cost": [
         {
-          "resource": "channel_divinity",
+          "resource": "channel_divinity_paladin",
           "amount": 1
         }
       ],
@@ -884,7 +884,7 @@
       "activation": "bonus_action",
       "cost": [
         {
-          "resource": "channel_divinity",
+          "resource": "channel_divinity_paladin",
           "amount": 1
         }
       ],
@@ -1039,7 +1039,7 @@
       "activation": "action",
       "cost": [
         {
-          "resource": "channel_divinity",
+          "resource": "channel_divinity_paladin",
           "amount": 1
         }
       ],
@@ -1090,7 +1090,7 @@
       "activation": "action",
       "cost": [
         {
-          "resource": "channel_divinity",
+          "resource": "channel_divinity_paladin",
           "amount": 1
         }
       ],
@@ -1207,7 +1207,7 @@
       "activation": "action",
       "cost": [
         {
-          "resource": "channel_divinity",
+          "resource": "channel_divinity_paladin",
           "amount": 1
         }
       ],
@@ -1373,7 +1373,7 @@
       "activation": "action",
       "cost": [
         {
-          "resource": "channel_divinity",
+          "resource": "channel_divinity_paladin",
           "amount": 1
         }
       ],
@@ -1417,7 +1417,7 @@
       "activation": "action",
       "cost": [
         {
-          "resource": "channel_divinity",
+          "resource": "channel_divinity_paladin",
           "amount": 1
         }
       ],
@@ -1560,7 +1560,7 @@
       "activation": "action",
       "cost": [
         {
-          "resource": "channel_divinity",
+          "resource": "channel_divinity_paladin",
           "amount": 1
         }
       ],
@@ -1600,7 +1600,7 @@
       "activation": "bonus_action",
       "cost": [
         {
-          "resource": "channel_divinity",
+          "resource": "channel_divinity_paladin",
           "amount": 1
         }
       ],

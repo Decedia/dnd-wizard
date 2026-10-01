@@ -7,9 +7,11 @@
       "name": "Channel Divinity",
       "kind": "pools",
       "recharge": "short_rest",
-      "max": 1,
       "book": "PHB",
-      "note": "Cleric 2, Paladin 3. A shared pool: Turn Undead, Turn Undead (Paladin) and Preserve Life all spend it. Paladin uses a spell slot instead, so the cost entry is a cost alternative rather than this pool."
+      "note": "Cleric 2. A shared pool: Turn Undead, Turn Undead (Paladin) and Preserve Life all spend it. A cleric gets one use per level, so a paladin uses channel_divinity_paladin instead, which is half a level.",
+      "maxFromLevel": {
+        "times": 1
+      }
     },
     {
       "id": "ki",
@@ -73,15 +75,11 @@
       "name": "Lay on Hands Pools",
       "kind": "pools",
       "recharge": "long_rest",
-      "maxByLevel": {
-        "1": 5,
-        "5": 25,
-        "9": 40,
-        "13": 50,
-        "17": 65
-      },
       "book": "PHB",
-      "note": "Paladin 1. A pool of hit points, not charges, so the amount a feature spends is chosen by the player."
+      "note": "Paladin 1. A pool of hit points, not charges, so the amount a feature spends is chosen by the player and the target regains exactly that many. The pool is 5 times your paladin level, so 5 at 1st, 25 at 5th, 45 at 9th, 65 at 13th and 85 at 17th.",
+      "maxFromLevel": {
+        "times": 5
+      }
     },
     {
       "id": "hit_dice",
@@ -146,6 +144,17 @@
       },
       "book": "PHB",
       "note": "Battle Master's Combat Superiority. The maximum is your fighter level or twice your Charisma modifier, whichever is greater - a single formula cannot express that, so it is approximated by the level-based formula and stated here. Note this is distinct from the Ranger's Superiority Dice resource, which shares the name but not the formula."
+    },
+    {
+      "id": "channel_divinity_paladin",
+      "name": "Channel Divinity (Paladin)",
+      "kind": "pools",
+      "recharge": "short_rest",
+      "maxFromLevel": {
+        "times": 0.5
+      },
+      "book": "PHB",
+      "note": "Paladin 3. Half a use per level, rounded down. A separate resource from the cleric's because the formula differs, and one resource cannot carry two ceilings."
     }
   ]
 }

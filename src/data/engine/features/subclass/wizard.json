@@ -999,7 +999,16 @@
       "source": {
         "book": "PHB",
         "reference": "PHB Wizard Evocation 14"
-      }
+      },
+      "cost": [
+        {
+          "resource": "spell_slots",
+          "amount": 1,
+          "chooseTier": {
+            "minLevel": 8
+          }
+        }
+      ]
     },
     {
       "id": "subclass.graviturgy_magic.adjust_density",

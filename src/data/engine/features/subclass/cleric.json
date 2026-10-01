@@ -76,7 +76,7 @@
       "activation": "action",
       "cost": [
         {
-          "resource": "channel_divinity",
+          "resource": "channel_divinity_paladin",
           "amount": 1
         }
       ],
@@ -2030,7 +2030,16 @@
       "source": {
         "book": "PHB",
         "reference": "PHB Cleric Tempest 1"
-      }
+      },
+      "cost": [
+        {
+          "resource": "spell_slots",
+          "amount": 1,
+          "chooseTier": {
+            "minLevel": 1
+          }
+        }
+      ]
     },
     {
       "id": "subclass.tempest.destructive_wrath",
@@ -2462,7 +2471,7 @@
       "activation": "action",
       "cost": [
         {
-          "resource": "channel_divinity",
+          "resource": "channel_divinity_paladin",
           "amount": 1
         }
       ],

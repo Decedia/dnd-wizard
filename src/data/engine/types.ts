@@ -158,7 +158,18 @@ export interface DurationSpec {
  */
 export type Effect =
   | { kind: "damage"; dice: DiceSpec; damageType: DamageType; resolution: Resolution }
-  | { kind: "heal"; dice: DiceSpec; resolution: Resolution }
+  | {
+      kind: "heal";
+      dice: DiceSpec;
+      resolution: Resolution;
+      /**
+       * The magnitude is whatever the player spent, not `dice`. Lay on Hands
+       * heals exactly as many hit points as the pool points expended, so the two
+       * must be linked or the feature states two independent numbers that can
+       * disagree.
+       */
+      fromCost?: boolean;
+    }
   | { kind: "temp_hp"; dice: DiceSpec; note?: string }
   | { kind: "heal_hit_dice"; pool: string; amount: string; note?: string }
   | { kind: "reduce_damage"; dice: DiceSpec; note?: string }
@@ -291,6 +302,12 @@ export interface ResourceDef {
    */
   maxFromAbility?: { ability: Ability; perLevel?: number; minimum?: number };
   /**
+   * A ceiling that is a multiple of character level: Channel Divinity is your
+   * cleric level, Lay on Hands is 5 times your paladin level. Distinct from
+   * maxFromAbility because no ability is involved.
+   */
+  maxFromLevel?: { times: number; above?: number };
+  /**
    * Where the maximum comes from when it is neither a number nor an ability
    * modifier. Hit Dice are one per character level, and spell slots come from
    * the casting class's table, so neither can be written as a number here.
@@ -327,7 +344,28 @@ export interface LimitSpec {
 
 export interface CostSpec {
   resource: string;
+  /** How much one use costs. Interpreted against `amount` or `choose`. */
   amount: number;
+  /**
+   * The player sizes the spend instead of it being fixed, which is what Lay on
+   * Hands does: the pool *is* the hit points, so you expend any number of them
+   * and heal that many. Without this the cost is always `amount`.
+   */
+  choose?: {
+    /** Smallest amount that may be spent. */
+    min: number;
+    /**
+     * True when the ceiling is whatever the pool currently holds, rather than a
+     * number written here.
+     */
+    fromPool?: boolean;
+  };
+  /**
+   * The player picks which tier of a resource, as with "a slot of 2nd level or
+   * higher" on Divine Smite, Hex and Spiritual Weapon. Tiers at or above
+   * `minLevel` are legal; `maxLevel` caps it when the rules cap it.
+   */
+  chooseTier?: { minLevel: number; maxLevel?: number };
 }
 
 export interface SourceRef {

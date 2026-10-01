@@ -75,7 +75,13 @@
       "source": {
         "book": "PHB",
         "reference": "PHB Bard 43"
-      }
+      },
+      "cost": [
+        {
+          "resource": "bardic_inspiration",
+          "amount": 1
+        }
+      ]
     },
     {
       "id": "class.bard.jack_of_all_trades",

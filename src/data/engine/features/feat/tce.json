@@ -708,7 +708,16 @@
       "source": {
         "book": "TCE",
         "reference": "Tasha's Cauldron Feat 85"
-      }
+      },
+      "cost": [
+        {
+          "resource": "spell_slots",
+          "amount": 1,
+          "chooseTier": {
+            "minLevel": 1
+          }
+        }
+      ]
     },
     {
       "id": "feat.second_chance",

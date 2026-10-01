@@ -271,10 +271,12 @@ if (resourcesDoc) {
     const hasTable = r.maxByLevel && typeof r.maxByLevel === "object";
     const hasAbility = r.maxFromAbility && typeof r.maxFromAbility === "object";
     const hasFrom = typeof r.maxFrom === "string";
-    const maxima = [hasMax, hasTable, hasAbility, hasFrom].filter(Boolean).length;
+    const hasLevel = r.maxFromLevel && typeof r.maxFromLevel === "object";
+    const maxima = [hasMax, hasTable, hasAbility, hasFrom, hasLevel].filter(Boolean).length;
     if (maxima !== 1) {
-      fail(where, "structure", "resource must set exactly one of max, maxByLevel, maxFromAbility or maxFrom");
+      fail(where, "structure", "resource must set exactly one of max, maxByLevel, maxFromAbility, maxFrom or maxFromLevel");
     }
+    if (hasLevel) requireNumber(r.maxFromLevel.times, where, "maxFromLevel.times");
     isOneOf(r.maxFrom, ["level", "class_table"], where, "maxFrom");
     if (hasAbility) {
       isOneOf(r.maxFromAbility.ability, vocab.ability, where, "maxFromAbility.ability");
@@ -395,6 +397,19 @@ for (const { feature: f, where } of features) {
       fail(where, "danglingRef", `cost[${i}].resource ${JSON.stringify(c.resource)} is not in resources.json`);
     }
     requireNumber(c.amount, where, `cost[${i}].amount`);
+    if (c.choose) {
+      requireNumber(c.choose.min, where, `cost[${i}].choose.min`);
+      if (c.choose.fromPool === true && (f.effects ?? []).length > 0) {
+        // A variable spend that nothing reads is a number that does nothing.
+        if (!(f.effects ?? []).some((e) => e.fromCost === true)) {
+          fail(where, "structure", `cost[${i}].choose is set but no effect declares fromCost, so the amount spent does nothing`);
+        }
+      }
+    }
+    if (c.chooseTier) {
+      requireNumber(c.chooseTier.minLevel, where, `cost[${i}].chooseTier.minLevel`);
+      if (c.chooseTier.maxLevel !== undefined) requireNumber(c.chooseTier.maxLevel, where, `cost[${i}].chooseTier.maxLevel`);
+    }
   }
 
   if ((f.kind === "class" || f.kind === "subclass") && classesDoc) {

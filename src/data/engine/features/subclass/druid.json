@@ -851,7 +851,16 @@
       "source": {
         "book": "PHB",
         "reference": "PHB Druid Circle of the Shepherd 10"
-      }
+      },
+      "cost": [
+        {
+          "resource": "spell_slots",
+          "amount": 1,
+          "chooseTier": {
+            "minLevel": 1
+          }
+        }
+      ]
     },
     {
       "id": "subclass.circle_of_the_shepherd.faithful_summons",

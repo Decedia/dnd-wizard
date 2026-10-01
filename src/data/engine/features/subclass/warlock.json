@@ -371,7 +371,16 @@
       "source": {
         "book": "PHB",
         "reference": "PHB Warlock Great Old One 1"
-      }
+      },
+      "cost": [
+        {
+          "resource": "spell_slots",
+          "amount": 1,
+          "chooseTier": {
+            "minLevel": 1
+          }
+        }
+      ]
     },
     {
       "id": "subclass.great_old_one.entropic_ward",
