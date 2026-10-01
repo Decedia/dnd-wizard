@@ -232,7 +232,13 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
             }
           } else if (kind === "race" && character.race) {
             const race = getStaticRace(character.race, undefined, language);
-            srdFeature = (race?.traits || []).find((t: any) => t.name === feature.name);
+            // Choices as well as traits: Variant Human is a choice option, not a
+            // trait, so searching traits alone never found it and it fell through
+            // to the English stored text.
+            const chosen = (race?.choices ?? []).flatMap((ch: any) => ch.options ?? []);
+            srdFeature =
+              (race?.traits || []).find((t: any) => t.name === feature.name) ||
+              chosen.find((o: any) => o.name === feature.name);
             if (srdFeature) {
               derivedSource = { type: "race", name: character.race, level: null };
               book = srdFeature.book || race?.source || "PHB";
@@ -244,6 +250,13 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
             if (srdFeature) {
               derivedSource = { type: "subclass", name: character.subclass, level: (srdFeature as any).level ?? null };
               book = srdFeature.book || sub?.source || "PHB";
+            }
+          } else if (kind === "feat") {
+            const matchedFeat = feats.find((f) => f.name === feature.name);
+            if (matchedFeat) {
+              srdFeature = matchedFeat as any;
+              derivedSource = { type: "feat", name: (matchedFeat as any).source || "Feat", level: null };
+              book = (matchedFeat as any).book || (matchedFeat as any).source || "PHB";
             }
           } else if (kind === "custom" || !kind) {
             const matchedFeat = feats.find((f) => f.name === feature.name);

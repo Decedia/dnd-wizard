@@ -761,11 +761,16 @@ function getRaceTraits(character: Character, language: string): any[] {
     }
   }
   if (character.race === "Human" && character.raceVariant === "variant") {
+    // Taken from the race's own choice data so the text is localised, rather
+    // than written here in English and stored.
+    const variantChoice = (getStaticRace("Human", undefined, language)?.choices ?? [])
+      .flatMap((ch: any) => ch.options ?? [])
+      .find((o: any) => /variant/i.test(o.name ?? ""));
     traits.push({
-      name: "Variant Human",
-      description: "You gain +1 to two different ability scores of your choice, proficiency in one skill of your choice, and one feat of your choice.",
+      name: variantChoice?.name ?? "Variant Human",
+      description: variantChoice?.description ?? "You gain +1 to two different ability scores of your choice, proficiency in one skill of your choice, and one feat of your choice.",
       ...extractFeatureFields({}),
-      summary: "+1 to two abilities, one skill proficiency, and one feat",
+      summary: variantChoice?.description ?? null,
     } as any);
     const featName = character.featureSelections?.["variant-human-feat"]?.[0];
     if (featName) {

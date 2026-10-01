@@ -840,7 +840,9 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       if (!st || !st.mode) continue;
       if (st.mode === "feat" && st.feat) {
         draft = { ...draft, appliedAsi: [...(draft.appliedAsi || []), lvl] };
-        const featData = getStaticFeat(st.feat);
+        // The sheet language, or the feat's English text is baked into the save
+        // at level-up and no later lookup can tell it from a translation.
+        const featData = getStaticFeat(st.feat, character.ruleset, language);
         if (featData && !draft.features.some((f) => f.name === featData.name)) {
           draft = {
             ...draft,
