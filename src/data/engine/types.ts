@@ -316,6 +316,13 @@ export interface TriggerSpec {
 export interface LimitSpec {
   per: LimitPer;
   max: number;
+  /**
+   * Added to the maximum per character level, because "a number of uses equal
+   * to 1 plus your fighter level" is a common 5e formula that a fixed max
+   * cannot express. `max` stays the base and this scales it, so
+   * `{max: 1, perLevel: {plus: 1}}` is 2 uses at 1st level and 6 at 5th.
+   */
+  perLevel?: { plus: number; round?: "up" | "down" };
 }
 
 export interface CostSpec {

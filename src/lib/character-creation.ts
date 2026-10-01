@@ -1,4 +1,5 @@
 import { createEmptyCharacter, saveCharacter, computeDerivedStats, generateId, getFeatureValue, type Character } from "./storage";
+import { engineIdFor } from "@/lib/feature-engine";
 import { getStaticClass, getStaticRace, getStaticSubclasses, getStaticEquipments, getStaticWeapons, getStaticArmors, getStaticItems, getStaticFeat, getStaticSpells, getSubclassSpellGrants as getJsonSubclassSpellGrants } from "./srd-client";
 import { determineDefaultVisibility } from "./feature-filters";
 import type { CreationStep } from "./creation-types";
@@ -802,6 +803,7 @@ export function syncBaseFeatures(character: Character, language = "en"): Charact
       name: f.name,
       description: f.description,
       source: f.source,
+      engineId: engineIdFor(f.source as "class" | "race", character.class, f.name),
       locked: true,
       value: featureValue,
       summary: f.summary ?? null,
@@ -868,6 +870,7 @@ export function applySubclassFeatures(character: Character, language = "en"): Ch
           name: feature.name,
           description: normalizeDescription(feature.description),
           source: "subclass" as const,
+          engineId: engineIdFor("subclass", subclass.name, feature.name),
           locked: true,
           ...extractFeatureFields(feature),
         });
@@ -881,6 +884,7 @@ export function applySubclassFeatures(character: Character, language = "en"): Ch
               name: opt.name,
               description: normalizeDescription(opt.description),
               source: "subclass" as const,
+              engineId: engineIdFor("subclass", subclass.name, opt.name),
               locked: true,
               ...extractFeatureFields(feature),
               showInSheet: true,
@@ -895,6 +899,7 @@ export function applySubclassFeatures(character: Character, language = "en"): Ch
           name: feature.name,
           description: normalizeDescription(feature.description),
           source: "subclass" as const,
+          engineId: engineIdFor("subclass", subclass.name, feature.name),
           locked: true,
           ...extractFeatureFields(feature),
         });
@@ -1161,6 +1166,7 @@ export async function finalizeCreation(character: Character): Promise<Character>
             ...final.features,
             {
               id: `feat-${featName}`.replace(/\s+/g, "-"),
+              engineId: engineIdFor("feat", "Feat", featName),
               name: featData.name,
               description: featData.description,
               summary: featData.summary || null,

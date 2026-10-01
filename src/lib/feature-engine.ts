@@ -92,6 +92,8 @@ export interface ResolvedFeature {
   resources: { id: string; required: number; available: number; ok: boolean }[];
   targeting: TargetSpec | null;
   trigger: TriggerSpec | null;
+  /** Duration as a value, which the sheet can render without parsing prose. */
+  duration: FeatureBase["duration"] | null;
   effects: Effect[];
   /** Gates this feature requires, and which of them are not currently met. */
   gates: GateId[];
@@ -127,6 +129,13 @@ export function applyTier(feature: FeatureBase, level: number): FeatureBase {
 /* ------------------------------------------------------------------ *
  * Limits and pools
  * ------------------------------------------------------------------ */
+
+/** The maximum a limit allows at a given character level. */
+export function limitMaxAt(limit: LimitSpec, level: number): number {
+  if (!limit.perLevel) return limit.max;
+  const scaled = limit.max + limit.perLevel.plus * level;
+  return limit.perLevel.round === "down" ? Math.floor(scaled) : scaled;
+}
 
 /** How many uses a limit allows at this level, after tiers. */
 export function limitAt(feature: FeatureBase, level: number): LimitSpec | null {
@@ -270,8 +279,9 @@ export function resolve(input: FeatureBase, ctx: ResolveContext): ResolvedFeatur
   });
 
   const usedHere = ctx.usedThisTurn.includes(feature.id);
+  const limitMax = limit ? limitMaxAt(limit, ctx.level) : 0;
   const uses = limit
-    ? { current: Math.max(0, limit.max - (ctx.usedThisTurn.filter((id) => id === feature.id).length)), max: limit.max, per: limit.per }
+    ? { current: Math.max(0, limitMax - ctx.usedThisTurn.filter((id) => id === feature.id).length), max: limitMax, per: limit.per }
     : null;
 
   let blockedBy: string | null = null;
@@ -306,6 +316,7 @@ export function resolve(input: FeatureBase, ctx: ResolveContext): ResolvedFeatur
     resources,
     targeting: feature.targeting ?? null,
     trigger: feature.trigger ?? null,
+    duration: feature.duration ?? null,
     effects: feature.effects ?? [],
     gates,
     gatesUnmet,
@@ -412,6 +423,25 @@ export function resolveCharacterFeatures(
 function guessOwner(name: string, ctx: Omit<ResolveContext, "dataset"> & { className?: string; subclassName?: string }): string | undefined {
   if (ctx.subclassName) return ctx.subclassName;
   return ctx.className;
+}
+
+/**
+ * Stamps the combat engine id onto a character feature at creation time.
+ *
+ * The app's own feature ids are derived from display names ("subclass-Rage"),
+ * which collide across subclasses and break if a name is ever reworded. The
+ * engine id is stable, so it is recorded once here rather than matched by name
+ * every time the sheet renders.
+ *
+ * A feature with no engine counterpart - a homebrew or custom feature - is left
+ * unstamped, and the sheet falls back to its own data for those.
+ */
+export function engineIdFor(
+  kind: "class" | "subclass" | "race" | "feat",
+  owner: string | undefined,
+  name: string
+): string | undefined {
+  return findEngineFeature(owner, name)?.id;
 }
 
 export { buildDataset, findEngineFeature, normaliseName, type BuiltDataset };

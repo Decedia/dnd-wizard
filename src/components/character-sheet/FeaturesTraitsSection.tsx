@@ -12,8 +12,51 @@ import { saveCharacter } from "@/lib/storage";
 import type { Character } from "@/lib/storage";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getStatBadgeStyle } from "@/lib/badge-styles";
+import { buildDataset, findEngineFeature, resolve, type ResolveContext, type ResolvedFeature } from "@/lib/feature-engine";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { DiceText } from "@/components/DiceText";
+
+/**
+ * Which class, subclass or race owns a stored feature, so the engine lookup can
+ * disambiguate a name like "Extra Attack" that six different classes have.
+ * The owner lives on the character rather than on each feature, because every
+ * feature of a source shares it.
+ */
+function ownerFor(character: Character, feature: Character["features"][number]): string | undefined {
+  if (feature.source === "subclass") return character.subclass;
+  if (feature.source === "race") return character.race;
+  if (feature.source === "class") return character.class;
+  return undefined;
+}
+
+/**
+ * The character sheet already tracks a handful of pools by name. Anything the
+ * engine asks for that is not here reports zero, which is the honest answer:
+ * the sheet does not yet track it.
+ */
+function buildPools(character: Character): { id: string; available: number }[] {
+  return [
+    { id: "rages", available: Math.max(0, (character.rages ?? 0)) },
+    { id: "sorcery_points", available: Math.max(0, (character.sorceryPoints ?? 0)) },
+    { id: "bardic_inspiration", available: Math.max(0, (character.bardicInspirationUses ?? 0)) },
+    { id: "superiority_dice", available: 0 },
+    { id: "ki", available: 0 },
+    { id: "channel_divinity", available: 0 },
+    { id: "spell_slots", available: totalSpellSlots(character) },
+    { id: "hit_dice", available: Math.max(0, character.hitDiceRemaining ?? 0) },
+    { id: "wild_shape_uses", available: 0 },
+    { id: "lay_on_hands", available: 0 },
+  ];
+}
+
+function totalSpellSlots(character: Character): number {
+  const remaining = character.spellSlots ?? {};
+  const spent = character.spellSlotsExpended ?? {};
+  return Object.keys(remaining).reduce((sum, key) => {
+    const level = Number(key);
+    return sum + Math.max(0, (remaining[level] ?? 0) - (spent[level] ?? 0));
+  }, 0);
+}
 
 interface FeaturesTraitsSectionProps {
   character: Character;
@@ -228,22 +271,68 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
     }
   }, [visibleFeatures, character.class, character.race, character.subclass, character.sources, character.ruleset, feats, language]);
 
+  /**
+   * The combat engine resolved once per render, keyed by the character feature's
+   * own id. A feature is matched through its stamped engineId, so a Barbarian's
+   * Rage and a Cleric's Rage resolve to different entries with different
+   * numbers.
+   */
+  const engineDataset = useMemo(() => buildDataset(), []);
+
+  /**
+   * featuresUsedThisTurn stores the sheet's own feature ids, but resolve()
+   * compares engine ids, so the list is translated. Without this every feature
+   * reads as unused and no charge ever decrements.
+   */
+  const usedEngineIds = useMemo(() => {
+    const byStored = new Map<string, string>();
+    for (const feature of character.features || []) {
+      const engineFeature =
+        (feature.engineId && engineDataset.byId.get(feature.engineId)) ||
+        findEngineFeature(ownerFor(character, feature), feature.name, engineDataset);
+      if (engineFeature) byStored.set(feature.id, engineFeature.id);
+    }
+    return (character.featuresUsedThisTurn || [])
+      .map((storedId) => byStored.get(storedId))
+      .filter((id): id is string => Boolean(id));
+  }, [character, engineDataset]);
+
+  const resolveContext = useMemo<ResolveContext>(
+    () => ({
+      level: character.level || 1,
+      pools: buildPools(character),
+      usedThisTurn: usedEngineIds,
+      activeStates: character.activeStates || [],
+    }),
+    [character, usedEngineIds]
+  );
+
+  const resolvedByStoredId = useMemo(() => {
+    const out = new Map<string, ResolvedFeature>();
+    for (const feature of character.features || []) {
+      const engineFeature =
+        (feature.engineId && engineDataset.byId.get(feature.engineId)) ||
+        findEngineFeature(ownerFor(character, feature), feature.name, engineDataset);
+      if (engineFeature) out.set(feature.id, resolve(engineFeature, resolveContext));
+    }
+    return out;
+  }, [character, resolveContext, engineDataset]);
+
+  const resolvedFor = (storedId: string): ResolvedFeature | undefined => resolvedByStoredId.get(storedId);
+
   const getBookTag = (feature: any): string | null => {
     return feature.book || null;
   };
 
-  const getFeatureLevel = (feature: any): number | null => {
-    const source = feature.source;
-    if (source && typeof source === "object" && typeof source.level === "number") return source.level;
-    return null;
-  };
-
-  const isRacialFeature = (feature: any): boolean => {
-    const source = feature.source;
-    return !!source && typeof source === "object" && source.type === "race";
-  };
-
+  /**
+   * Badges come from the combat engine when the feature has an entry there,
+   * and from the sheet's own data otherwise. The engine path is preferred
+   * because it knows the character's level, so a Barbarian's Rage badge reads
+   * "3 / rest" rather than repeating whatever the raw record says.
+   */
   const getFeatureBadges = (feature: any): string[] => {
+    const engine = resolvedFor(feature.id);
+    if (engine) return engine.badges.map((b) => b.label);
     const badges: string[] = [];
     const actionType = feature.actionType;
     if (actionType && String(actionType).toLowerCase() !== "passive") badges.push(String(actionType));
@@ -260,6 +349,17 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
     const book = getBookTag(feature);
     if (book) badges.push(book);
     return badges;
+  };
+
+  const getFeatureLevel = (feature: any): number | null => {
+    const source = feature.source;
+    if (source && typeof source === "object" && typeof source.level === "number") return source.level;
+    return null;
+  };
+
+  const isRacialFeature = (feature: any): boolean => {
+    const source = feature.source;
+    return !!source && typeof source === "object" && source.type === "race";
   };
 
   const getFeatureDetailRows = (feature: any): { label: string; value: string }[] => {
@@ -327,9 +427,13 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
         )}
         {enrichedFeatures.map((feature) => {
           const safeFeature = { ...feature, source: (feature as any).source || "class" };
-          const summaryText = (feature as any).summary || "";
+          const resolved = resolvedFor(feature.id);
+          const summaryText = (feature as any).summary || resolved?.summary || "";
           const badges = getFeatureBadges(feature);
-          const duration = (feature as any).duration || "";
+          // The engine knows the duration as a value, which beats the sheet's
+          // prose when both exist.
+          const duration =
+            resolved?.duration ? `${resolved.duration.value} ${resolved.duration.unit}` : (feature as any).duration || "";;
           const level = getFeatureLevel(feature);
           const isActive = ((feature as any).featureType || "Passive") === "Active";
           const featureUsed = (character.featuresUsedThisTurn || []).includes(feature.id);

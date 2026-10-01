@@ -237,5 +237,28 @@ const orphanSubclass = all.filter((f) => f.kind === "subclass" && !subclassOwner
 check("class owners are registered", orphanClass.length === 0, orphanClass.map((f) => `${f.id} (${f.owner})`).slice(0, 3).join(", "));
 check("subclass owners are registered", orphanSubclass.length === 0, orphanSubclass.map((f) => `${f.id} (${f.owner})`).slice(0, 3).join(", "));
 
+// A badge that shows a fixed 1 while the rules scale the count with level is
+// worse than no badge: it is confidently wrong. Second Wind shipped that way
+// because "1 plus your fighter level" had nowhere to go.
+const PROSE_SCALES =
+  /(?:number of uses|limited number of uses|uses?,? equal to|equal to)\s+(?:1 plus your|your)\s+\w*level/i;
+const proseScaled = all.filter(
+  (f) =>
+    f.limits &&
+    !f.limits.perLevel &&
+    !f.tiers &&
+    (PROSE_SCALES.test(f.text ?? "") ||
+      (f.effects ?? []).some((e) => PROSE_SCALES.test(e.note ?? "")))
+);
+check("no feature pins a level-scaled count at a fixed max", proseScaled.length === 0, proseScaled.map((f) => f.id).join(", "));
+
+const limitMaxAt = (lim, level) => (!lim.perLevel ? lim.max : lim.max + lim.perLevel.plus * level);
+const secondWind = byId.get("class.fighter.second_wind");
+if (secondWind) {
+  check("Second Wind has 2 uses at 1st level", limitMaxAt(secondWind.limits, 1) === 2, `got ${limitMaxAt(secondWind.limits, 1)}`);
+  check("Second Wind has 6 uses at 5th level", limitMaxAt(secondWind.limits, 5) === 6, `got ${limitMaxAt(secondWind.limits, 5)}`);
+  check("Second Wind has 21 uses at 20th level", limitMaxAt(secondWind.limits, 20) === 21, `got ${limitMaxAt(secondWind.limits, 20)}`);
+}
+
 console.log(`\n${failures.length === 0 ? "all checks passed" : `${failures.length} FAILED: ${failures.join(", ")}`}\n`);
 if (failures.length > 0) process.exit(1);
