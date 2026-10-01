@@ -7,7 +7,7 @@ import { DescriptionText } from "./DescriptionText";
 import { SunIcon as Sun } from "@/components/icons";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
-import { rebuildDerived } from "@/lib/character-creation";
+import { recreateCharacter } from "@/lib/character-creation";
 import { saveCharacter } from "@/lib/storage";
 import { RefreshIcon as Refresh } from "@/components/icons";
 
@@ -37,9 +37,14 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
   const [rebuildStatus, setRebuildStatus] = useState<"idle" | "done" | "failed">("idle");
 
   /**
-   * Re-derives everything that follows from class, race, subclass and level, and
-   * saves it. Player choices and anything in play are preserved, so this is safe
-   * to press mid-combat and safe to press twice.
+   * Recreates the character from its own configuration: identity, the ability
+   * scores the player set, and every choice they made. Everything derived is
+   * thrown away and recomputed, so data that drifted is genuinely put right.
+   *
+   * Player choices survive - spells, skills, inventory, ASIs, appearance. Derived
+   * state does not, which includes anything mid-combat: hit points, spent slots,
+   * used features, exhaustion and active effects all return to their starting
+   * value. That is the trade a recreate makes.
    */
   const handleRebuild = async () => {
     if (rebuilding) return;
@@ -47,7 +52,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
     try {
       // The sheet's own language, so rebuilt feature text is not English on an
       // Indonesian character.
-      const rebuilt = rebuildDerived(character, language);
+      const rebuilt = recreateCharacter(character, language);
       onChange(rebuilt);
       await saveCharacter(rebuilt);
       setRebuildStatus("done");
@@ -244,7 +249,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
           className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-1.5 text-xs font-semibold text-[var(--color-text-secondary)] transition-colors hover:border-[var(--color-border-active)] hover:text-[var(--color-text-primary)] disabled:opacity-60"
         >
           <Refresh className="h-3.5 w-3.5" />
-          {rebuilding ? t("features.syncing") : t("appearance.rebuild", "Rebuild from class, race and level")}
+          {rebuilding ? t("features.syncing") : t("appearance.rebuild", "Recreate character")}
         </button>
         <p
           className={`mt-1.5 text-[10px] leading-snug ${
@@ -261,7 +266,7 @@ export function AppearanceBioSection({ character, onChange, editMode = true }: A
               ? t("appearance.rebuildDone", "Rebuilt from class, race and level.")
               : t(
                   "appearance.rebuildHint",
-                  "Re-derives features, spells and stats. Keeps your choices, hit points, spent slots and active effects."
+                  "Rebuilds from class, race, level and your choices. Resets hit points, spent slots, active effects and exhaustion."
                 )}
         </p>
       </div>

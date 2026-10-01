@@ -268,6 +268,7 @@ console.log("\nrebuild resilience (read from the source, since character-creatio
 {
   const src = readFileSync(path.join(ROOT, "src", "lib", "character-creation.ts"), "utf8");
   const body = src.slice(src.indexOf("export function rebuildDerived"));
+  const recreate = src.slice(src.indexOf("export function recreateCharacter"));
   const syncBody = src.slice(src.indexOf("export function syncBaseFeatures"), src.indexOf("export function applySubclassFeatures"));
 
   check("rebuildDerived normalises a missing features array", /features: Array\.isArray\(character\.features\) \? character\.features : \[\]/.test(body));
@@ -285,9 +286,19 @@ console.log("\nrebuild resilience (read from the source, since character-creatio
   const notKept = keep.filter((k) => !body.includes(`${k}: character.${k}`));
   check("rebuildDerived preserves every in-play and chosen field", notKept.length === 0, notKept.join(", "));
 
+  check("recreateCharacter derives hit points", /getMaxHpFromLevelHp\(levelHp\)/.test(recreate));
+  check("recreateCharacter keeps the player's per-level hit dice", /kept\.levelHp/.test(recreate));
+  // The bonus must be carried as a choice but never added to the scores again:
+  // the ability scores the player set already include it.
+  check("recreateCharacter carries variantHumanAbilities as a choice", /variantHumanAbilities: character\.variantHumanAbilities/.test(recreate));
+  check("recreateCharacter never adds to the Variant Human abilities", !/abilities\)\s*\+\s*1/.test(recreate));
+  check("recreateCharacter filters saving throws out of tool proficiencies", /saving throw/i.test(recreate));
+  check("recreateCharacter resets in-play state", /exhaustionLevel: 0/.test(recreate) && /spellSlotsExpended: Object\.fromEntries/.test(recreate));
+  check("recreateCharacter unions race languages rather than replacing them", /grantedLanguages/.test(recreate) && /chosenLanguages/.test(recreate));
+
   const sheet = readFileSync(path.join(ROOT, "src", "components", "character-sheet", "AppearanceBioSection.tsx"), "utf8");
-  check("the rebuild handler catches failures instead of swallowing them", /catch \(error\)/.test(sheet));
-  check("the rebuild handler passes the sheet language", /rebuildDerived\(character, language\)/.test(sheet));
+  check("the recreate handler catches failures instead of swallowing them", /catch \(error\)/.test(sheet));
+  check("the recreate handler passes the sheet language", /recreateCharacter\(character, language\)/.test(sheet));
 }
 
 // --- the sheet must not read the stored mechanical fields for display -------

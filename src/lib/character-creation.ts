@@ -1,4 +1,4 @@
-import { createEmptyCharacter, saveCharacter, computeDerivedStats, generateId, getFeatureValue, type Character } from "./storage";
+import { createEmptyCharacter, saveCharacter, computeDerivedStats, generateId, getFeatureValue, getMaxHpFromLevelHp, type Character } from "./storage";
 import { engineIdFor } from "@/lib/feature-engine";
 import { getStaticClass, getStaticRace, getStaticSubclasses, getStaticEquipments, getStaticWeapons, getStaticArmors, getStaticItems, getStaticFeat, getStaticSpells, getSubclassSpellGrants as getJsonSubclassSpellGrants } from "./srd-client";
 import { determineDefaultVisibility } from "./feature-filters";
@@ -1312,4 +1312,161 @@ export function rebuildDerived(character: Character, language = "en"): Character
   }
 
   return rebuilt;
+}
+
+/**
+ * Rebuilds a character from scratch using the configuration and choices it
+ * already holds: the identity fields, the ability scores the player set, and
+ * every choice they made. Everything derived is discarded and recomputed, and
+ * all in-play state returns to its starting value.
+ *
+ * The distinction from rebuildDerived: that function preserves a long list of
+ * fields to stay safe mid-combat, which means a stale value written by an older
+ * version of the app survives it. This one keeps only what the player chose, so
+ * a character whose derived data drifted is genuinely put right.
+ *
+ * Kept, because the player chose them: name, class, race and variant, subclass,
+ * background, alignment, level and XP, ability scores, skills and expertise,
+ * languages and proficiencies they added, ASI applications, feat and feature
+ * selections, known spells, cantrips, inventory, appearance, notes, currency.
+ *
+ * Derived, so recomputed: features for every source, the subclass spell grants,
+ * the spell slot table, hit dice and every computed stat, and the languages and
+ * tool proficiencies the race and class grant.
+ */
+export function recreateCharacter(character: Character, language = "en"): Character {
+  const fresh = createEmptyCharacter();
+
+  // Languages and tools the race and class grant, unioned with whatever the
+  // player added. Preserving only the player's list would drop the ones the
+  // source grants; taking only the granted list would drop theirs.
+  const raceData = character.race ? getStaticRace(character.race, character.ruleset, language) : undefined;
+  const classData = character.class ? getStaticClass(character.class, character.ruleset, undefined, language) : undefined;
+
+  const grantedLanguages = new Set<string>([...(raceData?.languages ?? [])]);
+  const chosenLanguages = new Set<string>([...(character.languages ?? [])]);
+  const languages = [...new Set([...grantedLanguages, ...chosenLanguages])];
+
+  // The class proficiencies table lists saving throws alongside tools, and this
+  // field is tools only. Pulling them through produced entries like
+  // "Saving Throw: INT" in the tool proficiencies.
+  const grantedTools = new Set<string>(
+    (((classData as any)?.proficiencies?.tools ?? []) as string[]).filter(
+      (t) => !/^saving throw/i.test(t)
+    )
+  );
+  const chosenTools = new Set<string>([...(character.toolProficiencies ?? [])]);
+  const toolProficiencies = [...new Set([...grantedTools, ...chosenTools])];
+
+  // Everything the player decided, and nothing derived.
+  // Loosely typed on purpose: this is a field-by-field copy of a character, and
+  // Partial<Character> would flag every optional field the template owns.
+  const kept: Record<string, unknown> = {
+    id: character.id,
+    name: character.name,
+    class: character.class,
+    race: character.race,
+    raceVariant: character.raceVariant,
+    subclass: character.subclass,
+    subclassIndex: character.subclassIndex,
+    background: character.background,
+    alignment: character.alignment,
+    level: character.level,
+    ruleset: character.ruleset,
+    sources: character.sources,
+
+    // Ability scores as set, which already include the Variant Human bonus and
+    // any ASI. That is why the bonus is not re-applied here: doing so would add
+    // it a second time.
+    str: character.str,
+    dex: character.dex,
+    con: character.con,
+    int: character.int,
+    wis: character.wis,
+    cha: character.cha,
+
+    // Choices.
+    // Per-level hit points: level 1 is fixed by the class and Constitution, but
+    // the player can roll the rest, so an existing record is a choice and is
+    // kept. Without this the recreated character has 0 maximum hit points,
+    // because computeDerivedStats does not derive HP.
+    levelHp: { ...(character.levelHp ?? {}) },
+
+    skills: { ...(character.skills ?? {}) },
+    expertise: [...(character.expertise ?? [])],
+    languages,
+    toolProficiencies,
+    otherProficiencies: character.otherProficiencies,
+    featureSelections: { ...(character.featureSelections ?? {}) },
+    raceChoices: { ...(character.raceChoices ?? {}) },
+    variantHumanAbilities: character.variantHumanAbilities,
+    variantHumanSkill: character.variantHumanSkill,
+    appliedAsi: [...(character.appliedAsi ?? [])],
+    spells: [...(character.spells ?? [])],
+    cantrips: [...(character.cantrips ?? [])],
+    preparedSpells: [...(character.preparedSpells ?? [])],
+    costumeSpells: [...(character.costumeSpells ?? [])],
+    inventory: [...(character.inventory ?? [])],
+    appearance: { ...(fresh.appearance ?? {}), ...(character.appearance ?? {}) },
+    currency: { ...fresh.currency, ...(character.currency ?? {}) },
+    inspiration: character.inspiration ?? false,
+  };
+
+  let next: Character = { ...fresh, ...kept } as Character;
+
+  // Now derive everything that was thrown away.
+  next = applySubclassFeatures(next, language);
+  next = applySubclassSpellGrants(next);
+  next = syncBaseFeatures(next, language);
+  next = { ...next, ...computeDerivedStats(next) };
+
+  // Spell slots come from the class table for the level.
+  const levelData = classData?.levels?.[(character.level || 1) - 1];
+  const slotTable = levelData?.spellSlots || {};
+  if (Object.keys(slotTable).length > 0) {
+    next = {
+      ...next,
+      spellSlots: slotTable,
+      spellSlotsExpended: Object.fromEntries(Object.keys(slotTable).map((k) => [Number(k), 0])),
+    };
+  }
+
+  // Hit points are not in computeDerivedStats, so they are derived here: level 1
+  // is the class hit die plus Constitution, and later levels take the class
+  // average unless the player rolled them.
+  const hitDie = classData?.hitDie ?? 8;
+  const conMod = Math.floor(((next.con ?? 10) - 10) / 2);
+  const perLevel = (classData as any)?.hpPerLevel ?? Math.floor(hitDie / 2) + 1;
+  const existingLevelHp = { ...(kept.levelHp as Record<number, number> | undefined) };
+  const levelHp: Record<number, number> = {};
+  for (let level = 1; level <= (character.level || 1); level++) {
+    levelHp[level] =
+      existingLevelHp[level] ?? (level === 1 ? hitDie + conMod : perLevel + conMod);
+  }
+  const maxHp = getMaxHpFromLevelHp(levelHp);
+
+  // A recreated character starts fresh, which is the point of recreating one.
+  next = {
+    ...next,
+    levelHp,
+    maxHp,
+    currentHp: maxHp,
+    temporaryHp: 0,
+    hitDiceRemaining: character.level,
+    deathSaveSuccesses: 0,
+    deathSaveFailures: 0,
+    actionUsed: false,
+    bonusActionUsed: false,
+    reactionUsed: false,
+    exhaustionLevel: 0,
+    activeStates: [],
+    activeBuffs: [],
+    featuresUsedThisTurn: [],
+    spellsUsedThisTurn: [],
+    rages: 0,
+    sorceryPoints: 0,
+    bardicInspirationUses: 0,
+  };
+
+  return next;
 }
