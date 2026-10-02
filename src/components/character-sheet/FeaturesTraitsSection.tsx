@@ -99,6 +99,12 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
   const [missingChoices, setMissingChoices] = useState<ReturnType<typeof getMissingFeatureChoices>>([]);
   // The amount chosen for a cost the player sizes, reset when the popup changes.
   const [spendAmount, setSpendAmount] = useState(1);
+  // The spend modal: which feature, aimed at whom, and what it did last time.
+  const [spendTargetIsSelf, setSpendTargetIsSelf] = useState(true);
+  const [spendTargetName, setSpendTargetName] = useState("");
+  const [spendReceipt, setSpendReceipt] = useState<string | null>(null);
+  // Which feature the spend sheet is open for, if any.
+  const [spendModalFeature, setSpendModalFeature] = useState<any | null>(null);
   const [currentChoiceIndex, setCurrentChoiceIndex] = useState(0);
   const feats = useMemo(() => getStaticFeats([], character.ruleset, language), [character.ruleset, language]);
   const popupFeat = feats.find((f) => f.name === popupFeatName) || null;
@@ -361,6 +367,24 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
    * bake English into anything a player reads. The period inside a charge, the
    * unit inside a duration and the resource name are themselves keys.
    */
+  /**
+   * A cost the player sizes, resolved against the pool the character actually
+   * holds. `min` is the floor the rules set and `max` is what is left, because
+   * you cannot spend what you do not have.
+   */
+  const spendModalResolved = spendModalFeature ? resolvedFor(spendModalFeature.id) : undefined;
+  const chosenCost = spendModalResolved?.resources.find((r) => r.sized === true);
+  const spendableCost = chosenCost
+    ? {
+        resource: chosenCost.id,
+        min: Math.max(1, chosenCost.spendMin ?? 1),
+        max: Math.max(1, chosenCost.available),
+        pool: chosenCost.available,
+      }
+    : null;
+  // A hit-point pool runs to 65, so a step of one would need 65 clicks.
+  const spendStep = spendableCost && spendableCost.max > 20 ? 5 : 1;
+
   const getFeatureBadges = (feature: any): string[] => {
     const badges = resolvedFor(feature.id)?.badges ?? [];
     return badges.map((badge) => {
@@ -622,6 +646,130 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
           {t("button.addFeature", "Add Feature")}
         </button>
       )}
+        {/* Spending a pool: amount and target, then a receipt. The sheet has no
+            party, so a target is either the character or a name the player types
+            - inventing a party model here would be a larger change than this
+            feature is asking for. */}
+        {spendModalFeature && spendableCost && (
+          <BottomSheet
+            isOpen={!!spendModalFeature}
+            onClose={() => setSpendModalFeature(null)}
+            title={spendModalFeature.name}
+            showHeader={true}
+          >
+            <div className="space-y-3 px-4 py-4">
+              <div className="rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)] p-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">
+                    {t("feature.spend", "Spend")}
+                  </span>
+                  <span className="text-[10px] text-[var(--color-text-muted)]">
+                    {t("feature.ofAvailable", { available: spendableCost.pool }, "{available} available")}
+                  </span>
+                </div>
+                <div className="mt-2 flex items-center gap-2">
+                  <button
+                    type="button"
+                    aria-label={t("feature.spendLess", "Spend less")}
+                    onClick={() => setSpendAmount((n) => Math.max(spendableCost.min, n - spendStep))}
+                    disabled={spendAmount <= spendableCost.min}
+                    className="h-8 w-8 shrink-0 rounded-full border border-[var(--color-border)] text-base font-bold text-[var(--color-text-secondary)] transition-colors hover:border-[var(--color-border-active)] disabled:opacity-40"
+                  >
+                    −
+                  </button>
+                  <div className="flex-1 text-center">
+                    <span className="text-2xl font-bold text-[var(--color-text-primary)]">{spendAmount}</span>
+                    <span className="ml-1 text-[10px] text-[var(--color-text-muted)]">/ {spendableCost.max}</span>
+                  </div>
+                  <button
+                    type="button"
+                    aria-label={t("feature.spendMore", "Spend more")}
+                    onClick={() => setSpendAmount((n) => Math.min(spendableCost.max, n + spendStep))}
+                    disabled={spendAmount >= spendableCost.max}
+                    className="h-8 w-8 shrink-0 rounded-full border border-[var(--color-border)] text-base font-bold text-[var(--color-text-secondary)] transition-colors hover:border-[var(--color-border-active)] disabled:opacity-40"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
+              <div className="rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)] p-3">
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">
+                  {t("feature.spendTarget", "Target")}
+                </span>
+                <div className="mt-2 flex gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setSpendTargetIsSelf(true)}
+                    className={`flex-1 rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors ${
+                      spendTargetIsSelf
+                        ? "border-[var(--color-accent-indigo-500)] text-[var(--color-text-primary)]"
+                        : "border-[var(--color-border)] text-[var(--color-text-muted)]"
+                    }`}
+                  >
+                    {t("feature.spendSelf", character.name || "Self")}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setSpendTargetIsSelf(false)}
+                    className={`flex-1 rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors ${
+                      !spendTargetIsSelf
+                        ? "border-[var(--color-accent-indigo-500)] text-[var(--color-text-primary)]"
+                        : "border-[var(--color-border)] text-[var(--color-text-muted)]"
+                    }`}
+                  >
+                    {t("feature.spendOther", "Someone else")}
+                  </button>
+                </div>
+                {!spendTargetIsSelf && (
+                  <input
+                    type="text"
+                    value={spendTargetName}
+                    onChange={(e) => setSpendTargetName(e.target.value)}
+                    placeholder={t("feature.spendTargetName", "Name")}
+                    className="mt-2 w-full rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-paper)] px-2.5 py-1.5 text-sm text-[var(--color-text-primary)] outline-none focus:border-[var(--color-accent-indigo-500)]"
+                  />
+                )}
+              </div>
+
+              {spendReceipt && (
+                <p className="rounded-[var(--radius-sm)] border border-[var(--color-success-600)] bg-[var(--color-bg)] px-3 py-2 text-xs text-[var(--color-text-primary)]">
+                  {spendReceipt}
+                </p>
+              )}
+
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={() => setSpendModalFeature(null)}
+                  className="flex-1 rounded-full border border-[var(--color-border)] px-3 py-2 text-xs font-semibold text-[var(--color-text-secondary)] transition-colors hover:border-[var(--color-border-active)]"
+                >
+                  {t("common.cancel", "Cancel")}
+                </button>
+                <button
+                  type="button"
+                  disabled={!spendTargetIsSelf && spendTargetName.trim().length === 0}
+                  onClick={() => {
+                    const patch = spendFromPool(character, spendableCost.resource, spendAmount);
+                    if (!patch) return;
+                    onChange(patch);
+                    const who = spendTargetIsSelf ? character.name || t("feature.spendSelf", "Self") : spendTargetName.trim();
+                    setSpendReceipt(
+                      t(
+                        "feature.spendDone",
+                        { name: spendModalFeature.name, amount: spendAmount, pool: spendableCost.pool, target: who },
+                        "{name}: spent {amount} of {pool} on {target}"
+                      )
+                    );
+                  }}
+                  className="flex-1 rounded-full bg-[var(--color-accent-indigo-500)] px-3 py-2 text-xs font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-40"
+                >
+                  {t("feature.spendApply", "Use it")}
+                </button>
+              </div>
+            </div>
+          </BottomSheet>
+        )}
         {popupFeat && <FeatModal feat={popupFeat} onClose={() => setPopupFeatName(null)} />}
         {selectedFeature && (() => {
           const badges = getFeatureBadges(selectedFeature);
@@ -631,22 +779,16 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
           const source = selectedFeature.source && typeof selectedFeature.source === "object" ? selectedFeature.source : null;
           const selectedResolved = resolvedFor(selectedFeature.id);
 
-          /**
-           * A cost the player sizes, resolved against the pool the character
-           * actually holds. `min` is the floor the rules set, and `max` is what
-           * is left, because you cannot spend what you do not have.
-           */
-          const chosenCost = selectedResolved?.resources.find((r) => r.sized === true);
-          const spendableCost = chosenCost
+          // The card's own view of a sized cost, from the feature in this popup.
+          const sized = selectedResolved?.resources.find((r) => r.sized === true);
+          const popupSizedCost = sized
             ? {
-                resource: chosenCost.id,
-                min: Math.max(1, chosenCost.spendMin ?? 1),
-                max: Math.max(1, chosenCost.available),
-                pool: chosenCost.available,
+                resource: sized.id,
+                min: Math.max(1, sized.spendMin ?? 1),
+                max: Math.max(1, sized.available),
+                pool: sized.available,
               }
             : null;
-          // A hit-point pool runs to 65, so a step of one would need 65 clicks.
-          const spendStep = spendableCost && spendableCost.max > 20 ? 5 : 1;
           const sheetIsActive = selectedResolved !== undefined && selectedResolved.activation !== "passive";
           const sheetDuration =
             (selectedResolved?.duration ? `${selectedResolved.duration.value} ${selectedResolved.duration.unit}` : null) ||
@@ -704,58 +846,29 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                 {source?.name && (
                   <p className="text-xs text-[var(--color-text-muted)]">{source.name}</p>
                 )}
-                {/* A cost the player sizes. Lay on Hands spends any number of its
-                    pool and the target regains exactly that many, so the ceiling,
-                    the remainder and the effect all come from the same number. */}
-                {spendableCost && (
-                  <div className="mb-2 rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-bg)] p-2.5">
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">
-                        {t("feature.spend", "Spend")}
-                      </span>
-                      <span className="text-[10px] text-[var(--color-text-muted)]">
-                        {t("feature.ofAvailable", { available: spendableCost.pool }, "{available} available")}
-                      </span>
-                    </div>
-                    <div className="mt-2 flex items-center gap-2">
-                      <button
-                        type="button"
-                        aria-label={t("feature.spendLess", "Spend less")}
-                        onClick={() => setSpendAmount((n) => Math.max(spendableCost.min, n - spendStep))}
-                        disabled={spendAmount <= spendableCost.min}
-                        className="h-7 w-7 shrink-0 rounded-full border border-[var(--color-border)] text-sm font-bold text-[var(--color-text-secondary)] transition-colors hover:border-[var(--color-border-active)] disabled:opacity-40"
-                      >
-                        −
-                      </button>
-                      <div className="flex-1 text-center">
-                        <span className="text-lg font-bold text-[var(--color-text-primary)]">{spendAmount}</span>
-                        <span className="ml-1 text-[10px] text-[var(--color-text-muted)]">/ {spendableCost.max}</span>
-                      </div>
-                      <button
-                        type="button"
-                        aria-label={t("feature.spendMore", "Spend more")}
-                        onClick={() => setSpendAmount((n) => Math.min(spendableCost.max, n + spendStep))}
-                        disabled={spendAmount >= spendableCost.max}
-                        className="h-7 w-7 shrink-0 rounded-full border border-[var(--color-border)] text-sm font-bold text-[var(--color-text-secondary)] transition-colors hover:border-[var(--color-border-active)] disabled:opacity-40"
-                      >
-                        +
-                      </button>
-                    </div>
-                    <p className="mt-1.5 text-center text-[10px] text-[var(--color-text-muted)]">
-                      {t("feature.spendHeals", { amount: spendAmount }, "Target regains {amount} hit point(s)")}
-                    </p>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        const patch = spendFromPool(character, spendableCost.resource, spendAmount);
-                        if (!patch) return;
-                        onChange(patch);
-                      }}
-                      className="mt-2 w-full rounded-full bg-[var(--color-accent-indigo-500)] px-3 py-1.5 text-xs font-semibold text-white transition-opacity hover:opacity-90"
-                    >
-                      {t("feature.spendApply", "Use it")}
-                    </button>
-                  </div>
+                {/* A cost the player sizes - Lay on Hands spends any number of its
+                    pool and the target regains exactly that many. Pressing opens
+                    a sheet to set the amount and the target, rather than applying
+                    a guess straight from a card. */}
+                {popupSizedCost && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSpendTargetIsSelf(true);
+                      setSpendTargetName("");
+                      setSpendReceipt(null);
+                      setSpendModalFeature(selectedFeature);
+                      setSpendAmount(Math.max(popupSizedCost.min, Math.min(popupSizedCost.max, spendAmount)));
+                    }}
+                    className="mb-2 flex w-full items-center justify-between gap-2 rounded-full border border-[var(--color-accent-indigo-500)] bg-[var(--color-bg)] px-3 py-2 text-left transition-colors hover:bg-[var(--color-paper-muted)]"
+                  >
+                    <span className="text-xs font-semibold text-[var(--color-text-primary)]">
+                      {t("feature.spendFrom", { available: popupSizedCost.pool }, "{available} available")}
+                    </span>
+                    <span className="text-[10px] font-semibold text-[var(--color-text-secondary)]">
+                      {t("feature.spendChoose", "Choose an amount")}
+                    </span>
+                  </button>
                 )}
 
                 {detailRows.length > 0 && (

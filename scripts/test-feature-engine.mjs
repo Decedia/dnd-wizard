@@ -565,5 +565,25 @@ console.log("\nspending a pool is wired end to end\n");
   check(`all ${spent.size} spendable pools are mapped to a character field`, unspendable.length === 0, unspendable.join(", "));
 }
 
+// --- spending a pool opens a sheet, it does not guess ------------------------
+console.log("\na sized spend goes through a sheet with a target\n");
+{
+  const sheet = readFileSync(path.join(ROOT, "src", "components", "character-sheet", "FeaturesTraitsSection.tsx"), "utf8");
+  check("the card offers a sized cost", /popupSizedCost &&/.test(sheet));
+  check("the card opens the spend sheet", /setSpendModalFeature\(selectedFeature\)/.test(sheet));
+  check("the sheet is rendered", /spendModalFeature && spendableCost &&/.test(sheet));
+  check("the sheet steps the amount", /setSpendAmount\(\(n\) => Math\.min\(spendableCost\.max, n \+ spendStep\)/.test(sheet) && /setSpendAmount\(\(n\) => Math\.max\(spendableCost\.min, n - spendStep\)/.test(sheet));
+  check("the sheet asks for a target", /feature\.spendTarget/.test(sheet));
+  check("a target can be someone other than the character", /setSpendTargetName/.test(sheet));
+  check("confirming spends through the engine", /spendFromPool\(character, spendableCost\.resource, spendAmount\)/.test(sheet));
+  check("confirming reports what it did", /setSpendReceipt/.test(sheet));
+  check("the target name is required for another target", /!spendTargetIsSelf && spendTargetName\.trim\(\)\.length === 0/.test(sheet));
+  for (const key of ["feature.spendTarget", "feature.spendOther", "feature.spendDone"]) {
+    const en = readFileSync(path.join(ROOT, "src", "locales", "en.js"), "utf8");
+    const idLoc = readFileSync(path.join(ROOT, "src", "locales", "id.js"), "utf8");
+    check(`${key} exists in en and id`, en.includes(`"${key}"`) && idLoc.includes(`"${key}"`));
+  }
+}
+
 console.log(`\n${failures.length === 0 ? "all checks passed" : `${failures.length} FAILED: ${failures.join(", ")}`}\n`);
 if (failures.length > 0) process.exit(1);
