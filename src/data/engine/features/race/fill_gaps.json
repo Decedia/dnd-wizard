@@ -1,208 +1,427 @@
 {
-  "features": [
+ "features": [
+  {
+   "id": "race.autonyme.darkvision",
+   "name": "Darkvision",
+   "kind": "race",
+   "owner": "Autonyme",
+   "activation": "passive",
+   "effects": [
     {
-      "id": "race.autonyme.darkvision",
-      "name": "Darkvision",
-      "kind": "race",
-      "owner": "Autonyme",
-      "activation": "passive",
-      "effects": [{ "kind": "senses", "sense": "darkvision" }],
-      "summary": "See in dim light within 60 feet as if it were bright light",
-      "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
-      "source": { "book": "ERLW", "reference": "Eberron Autonyme" }
-    },
-    {
-      "id": "race.orc.darkvision",
-      "name": "Darkvision",
-      "kind": "race",
-      "owner": "Orc",
-      "activation": "passive",
-      "effects": [{ "kind": "senses", "sense": "darkvision" }],
-      "summary": "See in dim light within 60 feet as if it were bright light",
-      "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
-      "source": { "book": "VGC", "reference": "Volo's Guide to Allies Orc" }
-    },
-    {
-      "id": "race.orc.menacing",
-      "name": "Menacing",
-      "kind": "race",
-      "owner": "Orc",
-      "activation": "passive",
-      "effects": [
-        { "kind": "special", "note": "When you take the Intimidation action, you can move up to 30 feet toward a creature within your line of sight. On a successful check, the target is frightened until the end of your next turn." }
-      ],
-      "summary": "Intimidate from up to 30 feet further away",
-      "text": "When you take the Intimidation action, you can move up to 30 feet toward a creature within your line of sight. On a successful check, the target is frightened until the end of your next turn.",
-      "source": { "book": "VGC", "reference": "Volo's Guide to Allies Orc" }
-    },
-    {
-      "id": "race.orc.relentless_endurance",
-      "name": "Relentless Endurance",
-      "kind": "race",
-      "owner": "Orc",
-      "activation": "reaction",
-      "limits": { "per": "rest", "max": 1 },
-      "trigger": { "event": "reduced_to_0_hp" },
-      "targeting": { "scope": "self" },
-      "duration": null,
-      "endsIf": [],
-      "effects": [
-        { "kind": "temp_hp", "dice": { "dice": "1", "flat": 1 }, "note": "When you have 0 hit points but are not killed outright, you can use your reaction to drop to 1 hit point instead. You regain the use of this after a long rest." }
-      ],
-      "summary": "Reaction: drop to 1 HP instead of dying outright",
-      "text": "When you have 0 hit points but are not killed outright, you can use your reaction to drop to 1 hit point instead. You regain the use of this after a long rest.",
-      "source": { "book": "VGC", "reference": "Volo's Guide to Allies Orc" }
-    },
-    {
-      "id": "race.orc.savage_attacks",
-      "name": "Savage Attacks",
-      "kind": "race",
-      "owner": "Orc",
-      "activation": "passive",
-      "effects": [
-        { "kind": "special", "note": "When you crit with a melee weapon attack, you roll one more weapon damage die a second time, adding it to the critical hit's damage. You can use this feature to make only one attack that uses the effect." }
-      ],
-      "summary": "An extra damage die when you land a critical melee hit",
-      "text": "When you crit with a melee weapon attack, you roll one more weapon damage die a second time, adding it to the critical hit's damage. You can use this feature to make only one attack that uses the effect.",
-      "source": { "book": "VGC", "reference": "Volo's Guide to Allies Orc" }
-    },
-    {
-      "id": "race.goliath.stones_endurance",
-      "name": "Stone's Endurance",
-      "kind": "race",
-      "owner": "Goliath",
-      "activation": "reaction",
-      "limits": { "per": "rest", "max": 1 },
-      "trigger": { "event": "self_damaged" },
-      "targeting": { "scope": "self" },
-      "duration": null,
-      "endsIf": [],
-      "effects": [
-        { "kind": "temp_hp", "dice": { "dice": "1", "flat": 1 }, "note": "You can use your reaction to reduce the damage you take by 1d12 plus your Constitution modifier. You gain the use of this after a short or long rest." }
-      ],
-      "summary": "Reaction: reduce damage taken by 1d12 plus Con",
-      "text": "You can use your reaction to reduce the damage you take by 1d12 plus your Constitution modifier. You gain the use of this after a short or long rest.",
-      "source": { "book": "VGC", "reference": "Volo's Guide to Allies Goliath" }
-    },
-    {
-      "id": "race.goliath.powerful_build",
-      "name": "Powerful Build",
-      "kind": "race",
-      "owner": "Goliath",
-      "activation": "passive",
-      "effects": [
-        { "kind": "special", "note": "You have proficiency with the heavy armor, medium armor, and greataxes. Your capacity to carry heavy equipment is increased by 25 percent, and you have advantage on checks to determine or carry your load capacity, and you can use the normal or long jump as a stride much faster than usual. When you make a melee weapon attack using a heavy weapon that you are proficient with, your damage roll is increased by 1." }
-      ],
-      "summary": "Proficiency with heavy and medium armor and greataxes; +1 heavy damage",
-      "text": "You have proficiency with the heavy armor, medium armor, and greataxes. Your capacity to carry heavy equipment is increased by 25 percent, and you have advantage on checks to determine or carry your load capacity, and you can use the normal or long jump as a stride much faster than usual. When you make a melee weapon attack using a heavy weapon that you are proficient with, your damage roll is increased by 1.",
-      "source": { "book": "VGC", "reference": "Volo's Guide to Allies Goliath" }
-    },
-    {
-      "id": "race.goliath.mountains_wisdom",
-      "name": "Mountain's Wisdom",
-      "kind": "race",
-      "owner": "Goliath",
-      "activation": "passive",
-      "effects": [
-        { "kind": "special", "note": "During downtime, you can spend 4 hours to gain temporary proficiency in a tool of your choice." }
-      ],
-      "summary": "Spend 4 hours of downtime to learn a tool",
-      "text": "During downtime, you can spend 4 hours to gain temporary proficiency in a tool of your choice.",
-      "source": { "book": "VGC", "reference": "Volo's Guide to Allies Goliath" }
-    },
-    {
-      "id": "race.kenku.fearless",
-      "name": "Fearless",
-      "kind": "race",
-      "owner": "Kenku",
-      "activation": "passive",
-      "effects": [
-        { "kind": "special", "note": "While you are frightened, you have advantage on Wisdom saving throws and your speed isn't reduced." }
-      ],
-      "summary": "Advantage on Wisdom saves and no speed loss while frightened",
-      "text": "While you are frightened, you have advantage on Wisdom saving throws and your speed isn't reduced.",
-      "source": { "book": "ERLW", "reference": "Eberron Kenku" }
-    },
-    {
-      "id": "race.kenku.falsely_shaped",
-      "name": "Falsely Shaped",
-      "kind": "race",
-      "owner": "Kenku",
-      "activation": "passive",
-      "effects": [
-        { "kind": "skill", "skills": ["Deception"], "proficiency": "proficient" },
-        { "kind": "special", "note": "You can take the Disguise action. Your voice is a hollow flute sound, and your feathers are rusty brown. You have proficiency in the Deception skill, and you can read and write Common, Auran, and Celestial." }
-      ],
-      "summary": "Disguise as an action, plus Deception proficiency",
-      "text": "You can take the Disguise action. Your voice is a hollow flute sound, and your feathers are rusty brown. You have proficiency in the Deception skill, and you can read and write Common, Auran, and Celestial.",
-      "source": { "book": "ERLW", "reference": "Eberron Kenku" }
-    },
-    {
-      "id": "race.kenku.skillful",
-      "name": "Skillful",
-      "kind": "race",
-      "owner": "Kenku",
-      "activation": "passive",
-      "effects": [
-        { "kind": "special", "note": "You gain proficiency in the Sleight of Hand and Stealth skills, and your flying speed is equal to your walking speed. You can take the Dodge or Disengage action as a bonus action on each of your turns." }
-      ],
-      "summary": "Sleight of Hand and Stealth proficiency, flight, bonus Dodge",
-      "text": "You gain proficiency in the Sleight of Hand and Stealth skills, and your flying speed is equal to your walking speed. You can take the Dodge or Disengage action as a bonus action on each of your turns.",
-      "source": { "book": "ERLW", "reference": "Eberron Kenku" }
-    },
-    {
-      "id": "race.kenku.sneak",
-      "name": "Sneak",
-      "kind": "race",
-      "owner": "Kenku",
-      "activation": "bonus_action",
-      "limits": { "per": "day", "max": 1 },
-      "trigger": null,
-      "targeting": { "scope": "self" },
-      "duration": { "value": 1, "unit": "hour" },
-      "endsIf": [],
-      "effects": [
-        { "kind": "special", "note": "You can use a bonus action to become invisible until someone makes a sound or an action that you can perceive against you, or until 1 hour has passed. If you attack, cast a spell, or take another action that requires you to be perceivable, the invisibility ends. You gain the use of this trait after a long rest." }
-      ],
-      "summary": "Once a day, turn invisible for an hour",
-      "text": "You can use a bonus action to become invisible until someone makes a sound or an action that you can perceive against you, or until 1 hour has passed. If you attack, cast a spell, or take another action that requires you to be perceivable, the invisibility ends. You gain the use of this trait after a long rest.",
-      "source": { "book": "ERLW", "reference": "Eberron Kenku" }
-    },
-    {
-      "id": "race.changeling.duplicate_form",
-      "name": "Duplicate Form",
-      "kind": "race",
-      "owner": "Changeling",
-      "activation": "action",
-      "limits": { "per": "day", "max": 1 },
-      "trigger": null,
-      "targeting": { "scope": "any" },
-      "duration": { "value": 1, "unit": "hour" },
-      "endsIf": [],
-      "effects": [
-        { "kind": "transform", "formId": "changeling_duplicate", "formTable": "forms", "note": "You can use a bonus action to assume a new form. When you do so, you replace your game statistics with those of another humanoid of your level, keeping your own Wisdom, Charisma, Intelligence, and the same alignment, and you keep your own size, speed, languages, and ability scores except Wisdom, Charisma, and Intelligence. You gain the statistics and game statistics, but not the class features or legendary actions, of another humanoid. You can't use a bonus action to revert to your normal form. You gain the use of this trait after a long rest." }
-      ],
-      "summary": "Once a day, take another humanoid's form for an hour",
-      "text": "You can use a bonus action to assume a new form. When you do so, you replace your game statistics with those of another humanoid of your level, keeping your own Wisdom, Charisma, and Intelligence, and you keep your own size, speed, languages, and ability scores. You gain the use of this trait after a long rest.",
-      "source": { "book": "VGC", "reference": "Volo's Guide to Allies Changeling" }
-    },
-    {
-      "id": "race.changeling.shapeshifter",
-      "name": "Shapeshifter",
-      "kind": "race",
-      "owner": "Changeling",
-      "activation": "action",
-      "limits": { "per": "day", "max": 1 },
-      "trigger": null,
-      "targeting": { "scope": "any" },
-      "duration": { "value": 1, "unit": "hour" },
-      "endsIf": [],
-      "effects": [
-        { "kind": "disguise", "note": "You can use an action to assume the appearance of another humanoid, without altering your game statistics. You must have seen a particular humanoid's appearance in the last 24 hours, or the GM can use a humanoid you've seen within the last week. You can't use this trait to disguise your game statistics. You regain the use of this trait after a long rest." }
-      ],
-      "summary": "Once a day, copy another humanoid's appearance without its stats",
-      "text": "You can use an action to assume the appearance of another humanoid, without altering your game statistics. You must have seen a particular humanoid's appearance in the last 24 hours, or the GM can use a humanoid you've seen within the last week. You can't use this trait to disguise your game statistics. You regain the use of this trait after a long rest.",
-      "source": { "book": "VGC", "reference": "Volo's Guide to Allies Changeling" }
+     "kind": "senses",
+     "sense": "darkvision"
     }
-  ]
+   ],
+   "summary": "See in dim light within 60 feet as if it were bright light",
+   "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
+   "source": {
+    "book": "ERLW",
+    "reference": "Eberron Autonyme"
+   }
+  },
+  {
+   "id": "race.orc.darkvision",
+   "name": "Darkvision",
+   "kind": "race",
+   "owner": "Orc",
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "senses",
+     "sense": "darkvision"
+    }
+   ],
+   "summary": "See in dim light within 60 feet as if it were bright light",
+   "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
+   "source": {
+    "book": "VGC",
+    "reference": "Volo's Guide to Allies Orc"
+   }
+  },
+  {
+   "id": "race.orc.menacing",
+   "name": "Menacing",
+   "kind": "race",
+   "owner": "Orc",
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "special",
+     "note": "When you take the Intimidation action, you can move up to 30 feet toward a creature within your line of sight. On a successful check, the target is frightened until the end of your next turn."
+    }
+   ],
+   "summary": "Intimidate from up to 30 feet further away",
+   "text": "When you take the Intimidation action, you can move up to 30 feet toward a creature within your line of sight. On a successful check, the target is frightened until the end of your next turn.",
+   "source": {
+    "book": "VGC",
+    "reference": "Volo's Guide to Allies Orc"
+   }
+  },
+  {
+   "id": "race.orc.relentless_endurance",
+   "name": "Relentless Endurance",
+   "kind": "race",
+   "owner": "Orc",
+   "activation": "reaction",
+   "limits": {
+    "per": "rest",
+    "max": 1
+   },
+   "trigger": {
+    "event": "reduced_to_0_hp"
+   },
+   "targeting": {
+    "scope": "self"
+   },
+   "duration": null,
+   "endsIf": [],
+   "effects": [
+    {
+     "kind": "temp_hp",
+     "dice": {
+      "dice": "1",
+      "flat": 1
+     },
+     "note": "When you have 0 hit points but are not killed outright, you can use your reaction to drop to 1 hit point instead. You regain the use of this after a long rest."
+    }
+   ],
+   "summary": "Reaction: drop to 1 HP instead of dying outright",
+   "text": "When you have 0 hit points but are not killed outright, you can use your reaction to drop to 1 hit point instead. You regain the use of this after a long rest.",
+   "source": {
+    "book": "VGC",
+    "reference": "Volo's Guide to Allies Orc"
+   }
+  },
+  {
+   "id": "race.orc.savage_attacks",
+   "name": "Savage Attacks",
+   "kind": "race",
+   "owner": "Orc",
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "special",
+     "note": "When you crit with a melee weapon attack, you roll one more weapon damage die a second time, adding it to the critical hit's damage. You can use this feature to make only one attack that uses the effect."
+    }
+   ],
+   "summary": "An extra damage die when you land a critical melee hit",
+   "text": "When you crit with a melee weapon attack, you roll one more weapon damage die a second time, adding it to the critical hit's damage. You can use this feature to make only one attack that uses the effect.",
+   "source": {
+    "book": "VGC",
+    "reference": "Volo's Guide to Allies Orc"
+   }
+  },
+  {
+   "id": "race.goliath.stones_endurance",
+   "name": "Stone's Endurance",
+   "kind": "race",
+   "owner": "Goliath",
+   "activation": "reaction",
+   "limits": {
+    "per": "rest",
+    "max": 1
+   },
+   "trigger": {
+    "event": "self_damaged"
+   },
+   "targeting": {
+    "scope": "self"
+   },
+   "duration": null,
+   "endsIf": [],
+   "effects": [
+    {
+     "kind": "temp_hp",
+     "dice": {
+      "dice": "1",
+      "flat": 1
+     },
+     "note": "You can use your reaction to reduce the damage you take by 1d12 plus your Constitution modifier. You gain the use of this after a short or long rest."
+    }
+   ],
+   "summary": "Reaction: reduce damage taken by 1d12 plus Con",
+   "text": "You can use your reaction to reduce the damage you take by 1d12 plus your Constitution modifier. You gain the use of this after a short or long rest.",
+   "source": {
+    "book": "VGC",
+    "reference": "Volo's Guide to Allies Goliath"
+   }
+  },
+  {
+   "id": "race.goliath.powerful_build",
+   "name": "Powerful Build",
+   "kind": "race",
+   "owner": "Goliath",
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "special",
+     "note": "You have proficiency with the heavy armor, medium armor, and greataxes. Your capacity to carry heavy equipment is increased by 25 percent, and you have advantage on checks to determine or carry your load capacity, and you can use the normal or long jump as a stride much faster than usual. When you make a melee weapon attack using a heavy weapon that you are proficient with, your damage roll is increased by 1."
+    }
+   ],
+   "summary": "Proficiency with heavy and medium armor and greataxes; +1 heavy damage",
+   "text": "You have proficiency with the heavy armor, medium armor, and greataxes. Your capacity to carry heavy equipment is increased by 25 percent, and you have advantage on checks to determine or carry your load capacity, and you can use the normal or long jump as a stride much faster than usual. When you make a melee weapon attack using a heavy weapon that you are proficient with, your damage roll is increased by 1.",
+   "source": {
+    "book": "VGC",
+    "reference": "Volo's Guide to Allies Goliath"
+   }
+  },
+  {
+   "id": "race.goliath.mountains_wisdom",
+   "name": "Mountain's Wisdom",
+   "kind": "race",
+   "owner": "Goliath",
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "special",
+     "note": "During downtime, you can spend 4 hours to gain temporary proficiency in a tool of your choice."
+    }
+   ],
+   "summary": "Spend 4 hours of downtime to learn a tool",
+   "text": "During downtime, you can spend 4 hours to gain temporary proficiency in a tool of your choice.",
+   "source": {
+    "book": "VGC",
+    "reference": "Volo's Guide to Allies Goliath"
+   }
+  },
+  {
+   "id": "race.kenku.fearless",
+   "name": "Fearless",
+   "kind": "race",
+   "owner": "Kenku",
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "special",
+     "note": "While you are frightened, you have advantage on Wisdom saving throws and your speed isn't reduced."
+    }
+   ],
+   "summary": "Advantage on Wisdom saves and no speed loss while frightened",
+   "text": "While you are frightened, you have advantage on Wisdom saving throws and your speed isn't reduced.",
+   "source": {
+    "book": "ERLW",
+    "reference": "Eberron Kenku"
+   }
+  },
+  {
+   "id": "race.kenku.falsely_shaped",
+   "name": "Falsely Shaped",
+   "kind": "race",
+   "owner": "Kenku",
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "skill",
+     "skills": [
+      "Deception"
+     ],
+     "proficiency": "proficient"
+    },
+    {
+     "kind": "special",
+     "note": "You can take the Disguise action. Your voice is a hollow flute sound, and your feathers are rusty brown. You have proficiency in the Deception skill, and you can read and write Common, Auran, and Celestial."
+    }
+   ],
+   "summary": "Disguise as an action, plus Deception proficiency",
+   "text": "You can take the Disguise action. Your voice is a hollow flute sound, and your feathers are rusty brown. You have proficiency in the Deception skill, and you can read and write Common, Auran, and Celestial.",
+   "source": {
+    "book": "ERLW",
+    "reference": "Eberron Kenku"
+   }
+  },
+  {
+   "id": "race.kenku.skillful",
+   "name": "Skillful",
+   "kind": "race",
+   "owner": "Kenku",
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "special",
+     "note": "You gain proficiency in the Sleight of Hand and Stealth skills, and your flying speed is equal to your walking speed. You can take the Dodge or Disengage action as a bonus action on each of your turns."
+    }
+   ],
+   "summary": "Sleight of Hand and Stealth proficiency, flight, bonus Dodge",
+   "text": "You gain proficiency in the Sleight of Hand and Stealth skills, and your flying speed is equal to your walking speed. You can take the Dodge or Disengage action as a bonus action on each of your turns.",
+   "source": {
+    "book": "ERLW",
+    "reference": "Eberron Kenku"
+   }
+  },
+  {
+   "id": "race.kenku.sneak",
+   "name": "Sneak",
+   "kind": "race",
+   "owner": "Kenku",
+   "activation": "bonus_action",
+   "limits": {
+    "per": "day",
+    "max": 1
+   },
+   "trigger": null,
+   "targeting": {
+    "scope": "self"
+   },
+   "duration": {
+    "value": 1,
+    "unit": "hour"
+   },
+   "endsIf": [],
+   "effects": [
+    {
+     "kind": "special",
+     "note": "You can use a bonus action to become invisible until someone makes a sound or an action that you can perceive against you, or until 1 hour has passed. If you attack, cast a spell, or take another action that requires you to be perceivable, the invisibility ends. You gain the use of this trait after a long rest."
+    }
+   ],
+   "summary": "Once a day, turn invisible for an hour",
+   "text": "You can use a bonus action to become invisible until someone makes a sound or an action that you can perceive against you, or until 1 hour has passed. If you attack, cast a spell, or take another action that requires you to be perceivable, the invisibility ends. You gain the use of this trait after a long rest.",
+   "source": {
+    "book": "ERLW",
+    "reference": "Eberron Kenku"
+   }
+  },
+  {
+   "id": "race.changeling.duplicate_form",
+   "name": "Duplicate Form",
+   "kind": "race",
+   "owner": "Changeling",
+   "activation": "action",
+   "limits": {
+    "per": "day",
+    "max": 1
+   },
+   "trigger": null,
+   "targeting": {
+    "scope": "any"
+   },
+   "duration": {
+    "value": 1,
+    "unit": "hour"
+   },
+   "endsIf": [],
+   "effects": [
+    {
+     "kind": "transform",
+     "formId": "changeling_duplicate",
+     "formTable": "forms",
+     "note": "You can use a bonus action to assume a new form. When you do so, you replace your game statistics with those of another humanoid of your level, keeping your own Wisdom, Charisma, Intelligence, and the same alignment, and you keep your own size, speed, languages, and ability scores except Wisdom, Charisma, and Intelligence. You gain the statistics and game statistics, but not the class features or legendary actions, of another humanoid. You can't use a bonus action to revert to your normal form. You gain the use of this trait after a long rest."
+    }
+   ],
+   "summary": "Once a day, take another humanoid's form for an hour",
+   "text": "You can use a bonus action to assume a new form. When you do so, you replace your game statistics with those of another humanoid of your level, keeping your own Wisdom, Charisma, and Intelligence, and you keep your own size, speed, languages, and ability scores. You gain the use of this trait after a long rest.",
+   "source": {
+    "book": "VGC",
+    "reference": "Volo's Guide to Allies Changeling"
+   }
+  },
+  {
+   "id": "race.changeling.shapeshifter",
+   "name": "Shapeshifter",
+   "kind": "race",
+   "owner": "Changeling",
+   "activation": "action",
+   "limits": {
+    "per": "day",
+    "max": 1
+   },
+   "trigger": null,
+   "targeting": {
+    "scope": "any"
+   },
+   "duration": {
+    "value": 1,
+    "unit": "hour"
+   },
+   "endsIf": [],
+   "effects": [
+    {
+     "kind": "disguise",
+     "note": "You can use an action to assume the appearance of another humanoid, without altering your game statistics. You must have seen a particular humanoid's appearance in the last 24 hours, or the GM can use a humanoid you've seen within the last week. You can't use this trait to disguise your game statistics. You regain the use of this trait after a long rest."
+    }
+   ],
+   "summary": "Once a day, copy another humanoid's appearance without its stats",
+   "text": "You can use an action to assume the appearance of another humanoid, without altering your game statistics. You must have seen a particular humanoid's appearance in the last 24 hours, or the GM can use a humanoid you've seen within the last week. You can't use this trait to disguise your game statistics. You regain the use of this trait after a long rest.",
+   "source": {
+    "book": "VGC",
+    "reference": "Volo's Guide to Allies Changeling"
+   }
+  },
+  {
+   "id": "race.changeling.shapechanger",
+   "name": "Shapechanger",
+   "kind": "race",
+   "owner": "Changeling",
+   "activation": "action",
+   "limits": {
+    "per": "day",
+    "max": 1
+   },
+   "trigger": null,
+   "targeting": {
+    "scope": "self"
+   },
+   "duration": null,
+   "endsIf": [],
+   "effects": [
+    {
+     "kind": "disguise",
+     "note": "You can use an action to change your appearance and your voice. You determine what you look like, including your height, weight, facial features, and the sound of your voice, but you can't change your size or category. Your clothing and equipment aren't changed by this trait. You must have seen a humanoid of the chosen appearance at least once. You can stay in this form until you use an action to revert, or until you die. If you are damaged while in this form, your true form is revealed."
+    }
+   ],
+   "summary": "Once a day, alter your appearance and voice as an action",
+   "text": "As an action, you can change your appearance and your voice. You determine what you look like, including your height, weight, facial features, and the sound of your voice, but you can't change your size or category. Your clothing and equipment aren't changed by this trait. You must have seen a humanoid of the chosen appearance at least once. You can stay in this form until you use an action to revert, or until you die. If you are damaged while in this form, your true form is revealed.",
+   "source": {
+    "book": "VGC",
+    "reference": "Volo's Guide to Allies Changeling"
+   }
+  },
+  {
+   "id": "race.kenku.kenku_training",
+   "name": "Kenku Training",
+   "kind": "race",
+   "owner": "Kenku",
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "skill",
+     "skills": [
+      "Acrobatics",
+      "Deception",
+      "Stealth",
+      "Sleight of Hand"
+     ],
+     "proficiency": "proficient"
+    },
+    {
+     "kind": "special",
+     "note": "Choose two of the following skills: Acrobatics, Deception, Stealth, or Sleight of Hand. You gain proficiency in the chosen two."
+    }
+   ],
+   "summary": "Proficiency in two of: Acrobatics, Deception, Stealth, Sleight of Hand",
+   "text": "Choose two of the following skills: Acrobatics, Deception, Stealth, and Sleight of Hand. You gain proficiency in the chosen two.",
+   "source": {
+    "book": "ERLW",
+    "reference": "Eberron Kenku"
+   }
+  },
+  {
+   "id": "race.kenku.mimicry",
+   "name": "Mimicry",
+   "kind": "race",
+   "owner": "Kenku",
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "special",
+     "note": "You can mimic sounds you have heard, including voices. A creature that hears the sounds can tell they are imitations with a successful Wisdom (Insight) check opposed by your Charisma (Deception) check."
+    }
+   ],
+   "summary": "Mimic sounds you have heard, including voices",
+   "text": "You can mimic sounds you have heard, including voices. A creature that hears the sounds can tell they are imitations with a successful Wisdom (Insight) check opposed by your Charisma (Deception) check.",
+   "source": {
+    "book": "ERLW",
+    "reference": "Eberron Kenku"
+   }
+  }
+ ]
 }

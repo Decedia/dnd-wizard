@@ -1,207 +1,390 @@
 {
-  "features": [
+ "features": [
+  {
+   "id": "race.aarakocra.wings_of_the_sky",
+   "name": "Wings of the Sky",
+   "kind": "race",
+   "owner": "Aarakocra",
+   "activation": "passive",
+   "effects": [
     {
-      "id": "race.aarakocra.wings_of_the_sky",
-      "name": "Wings of the Sky",
-      "kind": "race",
-      "owner": "Aarakocra",
-      "activation": "passive",
-      "effects": [
-        { "kind": "special", "note": "You have a flight speed equal to your walking speed. You are considered to be wearing light armor for the purposes of any feat or class feature that lets you ignore light armor, such as a Druid's unarmored defense." }
-      ],
-      "summary": "A flight speed equal to your walking speed",
-      "text": "You have a flight speed equal to your walking speed. You are considered to be wearing light armor for the purposes of any feat or class feature that lets you ignore light armor, such as a Druid's unarmored defense.",
-      "source": { "book": "PHB", "page": 31, "reference": "PHB Aarakocra" }
-    },
-    {
-      "id": "race.aarakocra.talons",
-      "name": "Talons",
-      "kind": "race",
-      "owner": "Aarakocra",
-      "activation": "passive",
-      "effects": [
-        { "kind": "damage", "dice": { "dice": "1d4", "bonusFrom": "dex" }, "damageType": "piercing", "resolution": { "mode": "attack", "reaches": ["5 ft melee"] } },
-        { "kind": "special", "note": "You are considered proficient with light weapons. Your unarmed strike is your talons, dealing 1d4 piercing damage plus your Dexterity modifier. On a critical hit, the damage increases to 1d6." }
-      ],
-      "summary": "Unarmed strike deals 1d4 piercing plus Dex, 1d6 on a critical",
-      "text": "You are considered proficient with light weapons. Your unarmed strike is your talons, dealing 1d4 piercing damage plus your Dexterity modifier. On a critical hit, the damage increases to 1d6.",
-      "source": { "book": "PHB", "page": 31, "reference": "PHB Aarakocra" }
-    },
-    {
-      "id": "race.aarakocra.lightfoot",
-      "name": "Lightfoot",
-      "kind": "race",
-      "owner": "Aarakocra",
-      "activation": "passive",
-      "effects": [{ "kind": "skill", "skills": ["Perception", "Stealth"], "proficiency": "proficient" }],
-      "summary": "Proficiency in Perception and Stealth",
-      "text": "You are dexterous and have a light step. You gain proficiency in the Stealth and Perception skills.",
-      "source": { "book": "PHB", "page": 31, "reference": "PHB Aarakocra" }
-    },
-    {
-      "id": "race.githyanki.githzerai_magic",
-      "name": "Githzerai Magic",
-      "kind": "race",
-      "owner": "Githyanki",
-      "activation": "passive",
-      "effects": [
-        { "kind": "special", "note": "You know the shield of faith cantrip, which you can cast at will without a spell slot, and you can also cast mage hand. You regain expended uses of mage hand after you finish a long rest." }
-      ],
-      "summary": "Shield of faith at will, and mage hand once per long rest",
-      "text": "You know the shield of faith cantrip, which you can cast at will without a spell slot, and you can also cast mage hand. You regain expended uses of mage hand after you finish a long rest.",
-      "source": { "book": "ERLW", "page": 30, "reference": "Eberron Githyanki" }
-    },
-    {
-      "id": "race.githyanki.decisive_speed",
-      "name": "Decisive Speed",
-      "kind": "race",
-      "owner": "Githyanki",
-      "activation": "reaction",
-      "limits": { "per": "rest", "max": 1 },
-      "trigger": { "event": "turn_start" },
-      "targeting": { "scope": "self" },
-      "duration": null,
-      "endsIf": [],
-      "effects": [
-        { "kind": "special", "note": "When you start your turn, you can move up to 10 feet, following the normal rules for your movement, and you can forgo any opportunity attacks that movement would otherwise provoke. You gain the use of this after a long rest." }
-      ],
-      "summary": "Reaction: move up to 10 feet without provoking opportunity attacks",
-      "text": "When you start your turn, you can move up to 10 feet, following the normal rules for your movement, and you can forgo any opportunity attacks that movement would otherwise provoke. You gain the use of this after a long rest.",
-      "source": { "book": "ERLW", "page": 30, "reference": "Eberron Githyanki" }
-    },
-    {
-      "id": "race.githyanki.githzerai_plan",
-      "name": "Githzerai Plan",
-      "kind": "race",
-      "owner": "Githyanki",
-      "activation": "passive",
-      "effects": [
-        { "kind": "special", "note": "You can see, and can communicate with, any creature that can see you and that shares your language. In addition, you gain access to the githyanki and githzerai magic properties listed in the Monstrous Compendium, although you can cast only the githyanki and githzerai magic properties. You do not automatically know any spells." }
-      ],
-      "summary": "See and speak with anything that can see you and shares your language",
-      "text": "You can see, and can communicate with, any creature that can see you and that shares your language. In addition, you gain access to the githyanki and githzerai magic properties listed in the Monstrous Compendium, although you can cast only the githyanki and githzerai magic properties. You do not automatically know any spells.",
-      "source": { "book": "ERLW", "page": 30, "reference": "Eberron Githyanki" }
-    },
-    {
-      "id": "race.githzerai.githzerai_magic",
-      "name": "Githzerai Magic",
-      "kind": "race",
-      "owner": "Githzerai",
-      "activation": "passive",
-      "effects": [
-        { "kind": "special", "note": "You know the shield of faith cantrip, which you can cast at will without a spell slot, and you can also cast mage hand. You regain expended uses of mage hand after you finish a long rest." }
-      ],
-      "summary": "Shield of faith at will, and mage hand once per long rest",
-      "text": "You know the shield of faith cantrip, which you can cast at will without a spell slot, and you can also cast mage hand. You regain expended uses of mage hand after you finish a long rest.",
-      "source": { "book": "ERLW", "page": 30, "reference": "Eberron Githzerai" }
-    },
-    {
-      "id": "race.githzerai.mental_defense",
-      "name": "Mental Defense",
-      "kind": "race",
-      "owner": "Githzerai",
-      "activation": "passive",
-      "effects": [
-        { "kind": "special", "note": "You have resistance to psychic damage." }
-      ],
-      "summary": "Resistance to psychic damage",
-      "text": "You have resistance to psychic damage.",
-      "source": { "book": "ERLW", "page": 30, "reference": "Eberron Githzerai" }
-    },
-    {
-      "id": "race.githzerai.githzerai_plan",
-      "name": "Githzerai Plan",
-      "kind": "race",
-      "owner": "Githzerai",
-      "activation": "passive",
-      "effects": [
-        { "kind": "special", "note": "You can see, and can communicate with, any creature that can see you and that shares your language. In addition, you gain access to the githyanki and githzerai magic properties listed in the Monstrous Compendium, although you can cast only the githyanki and githzerai magic properties. You do not automatically know any spells." }
-      ],
-      "summary": "See and speak with anything that can see you and shares your language",
-      "text": "You can see, and can communicate with, any creature that can see you and that shares your language. In addition, you gain access to the githyanki and githzerai magic properties listed in the Monstrous Compendium, although you can cast only the githyanki and githzerai magic properties. You do not automatically know any spells.",
-      "source": { "book": "ERLW", "page": 30, "reference": "Eberron Githzerai" }
-    },
-    {
-      "id": "race.tabaxi.feline_agility",
-      "name": "Feline Agility",
-      "kind": "race",
-      "owner": "Tabaxi",
-      "activation": "passive",
-      "effects": [
-        { "kind": "special", "note": "Your walking speed increases by 10 feet while you are climbing. You also gain a climbing speed equal to your walking speed." }
-      ],
-      "summary": "Climb at your walking speed, +10 feet while climbing",
-      "text": "Your walking speed increases by 10 feet while you are climbing. You also gain a climbing speed equal to your walking speed.",
-      "source": { "book": "PHB", "page": 48, "reference": "PHB Tabaxi" }
-    },
-    {
-      "id": "race.tabaxi.cats_talent",
-      "name": "Cat's Talent",
-      "kind": "race",
-      "owner": "Tabaxi",
-      "activation": "passive",
-      "effects": [
-        { "kind": "special", "note": "You get a +1 bonus to two skills of your choice. You also get a +1 bonus to two ability scores of your choice." }
-      ],
-      "summary": "Choose two extra skills and two extra ability scores to raise by 1",
-      "text": "You get a +1 bonus to two skills of your choice. You also get a +1 bonus to two ability scores of your choice.",
-      "source": { "book": "PHB", "page": 48, "reference": "PHB Tabaxi" }
-    },
-    {
-      "id": "race.tabaxi.cats_claws",
-      "name": "Cat's Claws",
-      "kind": "race",
-      "owner": "Tabaxi",
-      "activation": "bonus_action",
-      "limits": { "per": "turn", "max": 1 },
-      "trigger": null,
-      "targeting": { "scope": "creature", "range": { "value": 5, "unit": "ft" } },
-      "duration": null,
-      "endsIf": [],
-      "effects": [
-        { "kind": "damage", "dice": { "dice": "1d4", "bonusFrom": "none" }, "damageType": "slashing", "resolution": { "mode": "attack", "ability": "dex", "reaches": ["5 ft melee"] } },
-        { "kind": "special", "note": "The attack deals slashing damage equal to your Dexterity modifier, and it is not considered magical." }
-      ],
-      "summary": "Bonus action: a 5-ft nonmagical slash for Dex modifier damage",
-      "text": "The attack deals slashing damage equal to your Dexterity modifier, and it is not considered magical.",
-      "source": { "book": "PHB", "page": 48, "reference": "PHB Tabaxi" }
-    },
-    {
-      "id": "race.tabaxi.cats_grace",
-      "name": "Cat's Grace",
-      "kind": "race",
-      "owner": "Tabaxi",
-      "activation": "bonus_action",
-      "limits": { "per": "turn", "max": 1 },
-      "trigger": null,
-      "targeting": { "scope": "self" },
-      "duration": null,
-      "endsIf": [],
-      "effects": [
-        { "kind": "special", "note": "You can move up to 10 feet without provoking any opportunity attack." }
-      ],
-      "summary": "Bonus action: move up to 10 feet without provoking attacks",
-      "text": "You can move up to 10 feet without provoking any opportunity attack.",
-      "source": { "book": "PHB", "page": 48, "reference": "PHB Tabaxi" }
-    },
-    {
-      "id": "race.tabaxi.nightsight",
-      "name": "Nightsight",
-      "kind": "race",
-      "owner": "Tabaxi",
-      "activation": "bonus_action",
-      "limits": { "per": "rest", "max": 1 },
-      "trigger": null,
-      "targeting": { "scope": "self" },
-      "duration": { "value": 1, "unit": "hour" },
-      "endsIf": [],
-      "effects": [
-        { "kind": "senses", "sense": "darkvision", "range": 60 },
-        { "kind": "special", "note": "You have superior vision in dim light and darkness, out to 60 feet. The effect doesn't conflict with any other racial darkvision. You regain the use of this after a long rest." }
-      ],
-      "summary": "Bonus action: darkvision out to 60 feet for an hour",
-      "text": "You have superior vision in dim light and darkness, out to 60 feet. The effect doesn't conflict with any other racial darkvision. You regain the use of this after a long rest.",
-      "source": { "book": "PHB", "page": 48, "reference": "PHB Tabaxi" }
+     "kind": "special",
+     "note": "You have a flight speed equal to your walking speed. You are considered to be wearing light armor for the purposes of any feat or class feature that lets you ignore light armor, such as a Druid's unarmored defense."
     }
-  ]
+   ],
+   "summary": "A flight speed equal to your walking speed",
+   "text": "You have a flight speed equal to your walking speed. You are considered to be wearing light armor for the purposes of any feat or class feature that lets you ignore light armor, such as a Druid's unarmored defense.",
+   "source": {
+    "book": "PHB",
+    "page": 31,
+    "reference": "PHB Aarakocra"
+   }
+  },
+  {
+   "id": "race.aarakocra.talons",
+   "name": "Talons",
+   "kind": "race",
+   "owner": "Aarakocra",
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "damage",
+     "dice": {
+      "dice": "1d4",
+      "bonusFrom": "dex"
+     },
+     "damageType": "piercing",
+     "resolution": {
+      "mode": "attack",
+      "reaches": [
+       "5 ft melee"
+      ]
+     }
+    },
+    {
+     "kind": "special",
+     "note": "You are considered proficient with light weapons. Your unarmed strike is your talons, dealing 1d4 piercing damage plus your Dexterity modifier. On a critical hit, the damage increases to 1d6."
+    }
+   ],
+   "summary": "Unarmed strike deals 1d4 piercing plus Dex, 1d6 on a critical",
+   "text": "You are considered proficient with light weapons. Your unarmed strike is your talons, dealing 1d4 piercing damage plus your Dexterity modifier. On a critical hit, the damage increases to 1d6.",
+   "source": {
+    "book": "PHB",
+    "page": 31,
+    "reference": "PHB Aarakocra"
+   }
+  },
+  {
+   "id": "race.aarakocra.lightfoot",
+   "name": "Lightfoot",
+   "kind": "race",
+   "owner": "Aarakocra",
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "skill",
+     "skills": [
+      "Perception",
+      "Stealth"
+     ],
+     "proficiency": "proficient"
+    }
+   ],
+   "summary": "Proficiency in Perception and Stealth",
+   "text": "You are dexterous and have a light step. You gain proficiency in the Stealth and Perception skills.",
+   "source": {
+    "book": "PHB",
+    "page": 31,
+    "reference": "PHB Aarakocra"
+   }
+  },
+  {
+   "id": "race.githyanki.githzerai_magic",
+   "name": "Githzerai Magic",
+   "kind": "race",
+   "owner": "Githyanki",
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "special",
+     "note": "You know the shield of faith cantrip, which you can cast at will without a spell slot, and you can also cast mage hand. You regain expended uses of mage hand after you finish a long rest."
+    }
+   ],
+   "summary": "Shield of faith at will, and mage hand once per long rest",
+   "text": "You know the shield of faith cantrip, which you can cast at will without a spell slot, and you can also cast mage hand. You regain expended uses of mage hand after you finish a long rest.",
+   "source": {
+    "book": "ERLW",
+    "page": 30,
+    "reference": "Eberron Githyanki"
+   }
+  },
+  {
+   "id": "race.githyanki.decisive_speed",
+   "name": "Decisive Speed",
+   "kind": "race",
+   "owner": "Githyanki",
+   "activation": "reaction",
+   "limits": {
+    "per": "rest",
+    "max": 1
+   },
+   "trigger": {
+    "event": "turn_start"
+   },
+   "targeting": {
+    "scope": "self"
+   },
+   "duration": null,
+   "endsIf": [],
+   "effects": [
+    {
+     "kind": "special",
+     "note": "When you start your turn, you can move up to 10 feet, following the normal rules for your movement, and you can forgo any opportunity attacks that movement would otherwise provoke. You gain the use of this after a long rest."
+    }
+   ],
+   "summary": "Reaction: move up to 10 feet without provoking opportunity attacks",
+   "text": "When you start your turn, you can move up to 10 feet, following the normal rules for your movement, and you can forgo any opportunity attacks that movement would otherwise provoke. You gain the use of this after a long rest.",
+   "source": {
+    "book": "ERLW",
+    "page": 30,
+    "reference": "Eberron Githyanki"
+   }
+  },
+  {
+   "id": "race.githyanki.githzerai_plan",
+   "name": "Githzerai Plan",
+   "kind": "race",
+   "owner": "Githyanki",
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "special",
+     "note": "You can see, and can communicate with, any creature that can see you and that shares your language. In addition, you gain access to the githyanki and githzerai magic properties listed in the Monstrous Compendium, although you can cast only the githyanki and githzerai magic properties. You do not automatically know any spells."
+    }
+   ],
+   "summary": "See and speak with anything that can see you and shares your language",
+   "text": "You can see, and can communicate with, any creature that can see you and that shares your language. In addition, you gain access to the githyanki and githzerai magic properties listed in the Monstrous Compendium, although you can cast only the githyanki and githzerai magic properties. You do not automatically know any spells.",
+   "source": {
+    "book": "ERLW",
+    "page": 30,
+    "reference": "Eberron Githyanki"
+   }
+  },
+  {
+   "id": "race.githzerai.githzerai_magic",
+   "name": "Githzerai Magic",
+   "kind": "race",
+   "owner": "Githzerai",
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "special",
+     "note": "You know the shield of faith cantrip, which you can cast at will without a spell slot, and you can also cast mage hand. You regain expended uses of mage hand after you finish a long rest."
+    }
+   ],
+   "summary": "Shield of faith at will, and mage hand once per long rest",
+   "text": "You know the shield of faith cantrip, which you can cast at will without a spell slot, and you can also cast mage hand. You regain expended uses of mage hand after you finish a long rest.",
+   "source": {
+    "book": "ERLW",
+    "page": 30,
+    "reference": "Eberron Githzerai"
+   }
+  },
+  {
+   "id": "race.githzerai.mental_defense",
+   "name": "Mental Defense",
+   "kind": "race",
+   "owner": "Githzerai",
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "special",
+     "note": "You have resistance to psychic damage."
+    }
+   ],
+   "summary": "Resistance to psychic damage",
+   "text": "You have resistance to psychic damage.",
+   "source": {
+    "book": "ERLW",
+    "page": 30,
+    "reference": "Eberron Githzerai"
+   }
+  },
+  {
+   "id": "race.githzerai.githzerai_plan",
+   "name": "Githzerai Plan",
+   "kind": "race",
+   "owner": "Githzerai",
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "special",
+     "note": "You can see, and can communicate with, any creature that can see you and that shares your language. In addition, you gain access to the githyanki and githzerai magic properties listed in the Monstrous Compendium, although you can cast only the githyanki and githzerai magic properties. You do not automatically know any spells."
+    }
+   ],
+   "summary": "See and speak with anything that can see you and shares your language",
+   "text": "You can see, and can communicate with, any creature that can see you and that shares your language. In addition, you gain access to the githyanki and githzerai magic properties listed in the Monstrous Compendium, although you can cast only the githyanki and githzerai magic properties. You do not automatically know any spells.",
+   "source": {
+    "book": "ERLW",
+    "page": 30,
+    "reference": "Eberron Githzerai"
+   }
+  },
+  {
+   "id": "race.tabaxi.feline_agility",
+   "name": "Feline Agility",
+   "kind": "race",
+   "owner": "Tabaxi",
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "special",
+     "note": "Your walking speed increases by 10 feet while you are climbing. You also gain a climbing speed equal to your walking speed."
+    }
+   ],
+   "summary": "Climb at your walking speed, +10 feet while climbing",
+   "text": "Your walking speed increases by 10 feet while you are climbing. You also gain a climbing speed equal to your walking speed.",
+   "source": {
+    "book": "PHB",
+    "page": 48,
+    "reference": "PHB Tabaxi"
+   }
+  },
+  {
+   "id": "race.tabaxi.cats_talent",
+   "name": "Cat's Talent",
+   "kind": "race",
+   "owner": "Tabaxi",
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "special",
+     "note": "You get a +1 bonus to two skills of your choice. You also get a +1 bonus to two ability scores of your choice."
+    }
+   ],
+   "summary": "Choose two extra skills and two extra ability scores to raise by 1",
+   "text": "You get a +1 bonus to two skills of your choice. You also get a +1 bonus to two ability scores of your choice.",
+   "source": {
+    "book": "PHB",
+    "page": 48,
+    "reference": "PHB Tabaxi"
+   }
+  },
+  {
+   "id": "race.tabaxi.cats_claws",
+   "name": "Cat's Claws",
+   "kind": "race",
+   "owner": "Tabaxi",
+   "activation": "bonus_action",
+   "limits": {
+    "per": "turn",
+    "max": 1
+   },
+   "trigger": null,
+   "targeting": {
+    "scope": "creature",
+    "range": {
+     "value": 5,
+     "unit": "ft"
+    }
+   },
+   "duration": null,
+   "endsIf": [],
+   "effects": [
+    {
+     "kind": "damage",
+     "dice": {
+      "dice": "1d4",
+      "bonusFrom": "none"
+     },
+     "damageType": "slashing",
+     "resolution": {
+      "mode": "attack",
+      "ability": "dex",
+      "reaches": [
+       "5 ft melee"
+      ]
+     }
+    },
+    {
+     "kind": "special",
+     "note": "The attack deals slashing damage equal to your Dexterity modifier, and it is not considered magical."
+    }
+   ],
+   "summary": "Bonus action: a 5-ft nonmagical slash for Dex modifier damage",
+   "text": "The attack deals slashing damage equal to your Dexterity modifier, and it is not considered magical.",
+   "source": {
+    "book": "PHB",
+    "page": 48,
+    "reference": "PHB Tabaxi"
+   }
+  },
+  {
+   "id": "race.tabaxi.cats_grace",
+   "name": "Cat's Grace",
+   "kind": "race",
+   "owner": "Tabaxi",
+   "activation": "bonus_action",
+   "limits": {
+    "per": "turn",
+    "max": 1
+   },
+   "trigger": null,
+   "targeting": {
+    "scope": "self"
+   },
+   "duration": null,
+   "endsIf": [],
+   "effects": [
+    {
+     "kind": "special",
+     "note": "You can move up to 10 feet without provoking any opportunity attack."
+    }
+   ],
+   "summary": "Bonus action: move up to 10 feet without provoking attacks",
+   "text": "You can move up to 10 feet without provoking any opportunity attack.",
+   "source": {
+    "book": "PHB",
+    "page": 48,
+    "reference": "PHB Tabaxi"
+   }
+  },
+  {
+   "id": "race.tabaxi.nightsight",
+   "name": "Nightsight",
+   "kind": "race",
+   "owner": "Tabaxi",
+   "activation": "bonus_action",
+   "limits": {
+    "per": "rest",
+    "max": 1
+   },
+   "trigger": null,
+   "targeting": {
+    "scope": "self"
+   },
+   "duration": {
+    "value": 1,
+    "unit": "hour"
+   },
+   "endsIf": [],
+   "effects": [
+    {
+     "kind": "senses",
+     "sense": "darkvision",
+     "range": 60
+    },
+    {
+     "kind": "special",
+     "note": "You have superior vision in dim light and darkness, out to 60 feet. The effect doesn't conflict with any other racial darkvision. You regain the use of this after a long rest."
+    }
+   ],
+   "summary": "Bonus action: darkvision out to 60 feet for an hour",
+   "text": "You have superior vision in dim light and darkness, out to 60 feet. The effect doesn't conflict with any other racial darkvision. You regain the use of this after a long rest.",
+   "source": {
+    "book": "PHB",
+    "page": 48,
+    "reference": "PHB Tabaxi"
+   }
+  },
+  {
+   "id": "race.aarakocra.darkvision",
+   "name": "Darkvision",
+   "kind": "race",
+   "owner": "Aarakocra",
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "senses",
+     "sense": "darkvision"
+    }
+   ],
+   "summary": "See in dim light within 60 feet as if it were bright light",
+   "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
+   "source": {
+    "book": "PHB",
+    "reference": "Volo's Guide to Monsters Aarakocra"
+   }
+  }
+ ]
 }

@@ -85,9 +85,36 @@ for (const f of feats) {
 const done = authoredIds();
 
 // Race entries the app data names one way and the engine registry another.
+// Value is either a plain id (base race, no variant segment - e.g. Eladrin (Elf)
+// is its own race in the registry) or [owner, variant] for flattened variants
+// whose traits live on the parent + optional variant.
 const RACE_OWNER_ALIASES = {
   "Deep Gnome (Svirfneblin)": "svirfneblin",
   "Eladrin (Elf)": "eladrin",
+  "Hill Dwarf": ["dwarf", "Hill"],
+  "Mountain Dwarf": ["dwarf", "Mountain"],
+  "Forest Gnome": ["gnome", "Forest"],
+  "Rock Gnome": ["gnome", "Rock"],
+  "Lightfoot Halfling": ["halfling", "Lightfoot"],
+  "Stout Halfling": ["halfling", "Stout"],
+  "Ghostwise Halfling": ["halfling", "Ghostwise"],
+  "Half-Elf (High Elf)": ["elf", "High"],
+  "Half-Elf (Wood Elf)": ["elf", "Wood"],
+  "Half-Elf (Drow)": ["elf", "Drow"],
+  "Half-Elf (Moon Elf)": ["elf", "Moon"],
+  "Half-Elf (Sun Elf)": ["elf", "Sun"],
+  "Half-Elf (Sea Elf)": ["elf", "Sea"],
+  "Half-Elf (Shadar-kai)": ["elf", "Shadar-kai"],
+  "Half-Elf (Eladrin)": ["elf", "Eladrin"],
+  "Tiefling (Asmodeus)": ["tiefling", "Asmodeus"],
+  "Tiefling (Baalzebul)": ["tiefling", "Baalzebul"],
+  "Tiefling (Zariel)": ["tiefling", "Zariel"],
+  "Tiefling (Dispater)": ["tiefling", "Dispater"],
+  "Tiefling (Fierna)": ["tiefling", "Fierna"],
+  "Tiefling (Glasya)": ["tiefling", "Glasya"],
+  "Tiefling (Levistus)": ["tiefling", "Levistus"],
+  "Tiefling (Mammon)": ["tiefling", "Mammon"],
+  "Tiefling (Mephistopheles)": ["tiefling", "Mephistopheles"],
 };
 
 // 2014 has one tiefling and one half-elf, so the 4e-style variants are not features.
@@ -169,9 +196,31 @@ function isAuthored(entry, done) {
     if (entry.kind === "feat") return done.has(`feat.${slug(name)}`);
     if (entry.kind === "race") {
       const variant = /^([A-Za-z ]+?)\s*\((.+)\)\s*$/.exec(String(entry.owner));
-      const owner = slug(variant ? (RACE_OWNER_ALIASES[variant[1]] ?? variant[1]) : (RACE_OWNER_ALIASES[entry.owner] ?? entry.owner));
-      const key = variant ? `race.${owner}.${slug(variant[2])}.${slug(name)}` : `race.${owner}.${slug(name)}`;
-      return done.has(key);
+      const rawOwner = variant ? variant[1] : entry.owner;
+      const aliased = RACE_OWNER_ALIASES[rawOwner] ?? RACE_OWNER_ALIASES[entry.owner];
+      let owner, varName;
+      if (aliased && Array.isArray(aliased)) {
+        [owner, varName] = aliased;
+      } else if (aliased) {
+        // plain id = base race with no variant segment (Eladrin is its own race)
+        owner = aliased;
+        varName = null;
+      } else if (variant) {
+        owner = variant[1];
+        varName = variant[2];
+      } else {
+        owner = rawOwner;
+        varName = null;
+      }
+      owner = slug(owner);
+      const slugName = slug(name);
+      if (varName) {
+        // variant trait first, then the trait inherited from the base race
+        if (done.has(`race.${owner}.${slug(varName)}.${slugName}`)) return true;
+        if (done.has(`race.${owner}.${slugName}`)) return true;
+        return false;
+      }
+      return done.has(`race.${owner}.${slugName}`);
     }
     return done.has(`${entry.kind}.${slug(entry.owner)}.${slug(name)}`);
   };

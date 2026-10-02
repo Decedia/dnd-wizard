@@ -1,915 +1,915 @@
 {
-  "features": [
+ "features": [
+  {
+   "id": "class.sorcerer.spellcasting",
+   "name": "Spellcasting",
+   "kind": "class",
+   "owner": "Sorcerer",
+   "unlock": 1,
+   "activation": "passive",
+   "effects": [
     {
-      "id": "class.sorcerer.spellcasting",
-      "name": "Spellcasting",
-      "kind": "class",
-      "owner": "Sorcerer",
-      "unlock": 1,
-      "activation": "passive",
-      "effects": [
-        {
-          "kind": "spell_grant",
-          "cantrip": {
-            "known": true
-          },
-          "spells": [
-            {
-              "level": 1,
-              "from": [
-                "sorcerer"
-              ]
-            }
-          ],
-          "note": "Your spellcasting ability is Charisma. You know a number of sorcerer spells equal to 2 plus your Charisma modifier, and you know a number of cantrips equal to your Charisma modifier. Sorcerers do not prepare: their spells are all known."
-        }
-      ],
-      "summary": "Know 2 + Cha mod sorcerer spells; nothing is prepared",
-      "text": "Your spellcasting ability is Charisma. You know a number of sorcerer spells equal to 2 plus your Charisma modifier. You know a number of cantrips equal to your Charisma modifier. Unlike other spellcasters, you do not prepare your spells: every sorcerer spell you know is available to cast.",
-      "source": {
-        "book": "PHB",
-        "reference": "PHB Sorcerer 99"
+     "kind": "spell_grant",
+     "cantrip": {
+      "known": true
+     },
+     "spells": [
+      {
+       "level": 1,
+       "from": [
+        "sorcerer"
+       ]
       }
-    },
-    {
-      "id": "class.sorcerer.font_of_magic",
-      "name": "Font of Magic",
-      "kind": "class",
-      "owner": "Sorcerer",
-      "unlock": 2,
-      "activation": "passive",
-      "effects": [
-        {
-          "kind": "resource",
-          "action": "gain",
-          "resource": "sorcery_points",
-          "amount": 1,
-          "note": "You have a pool of sorcery points equal to your Sorcerer level plus your Charisma modifier, and you gain an extra pool at 2nd, 6th, 10th, 14th and 17th level. You regain the pool when you finish a long rest. Casting a spell costs 1 sorcery point per its level, with a cantrip being free."
-        }
-      ],
-      "summary": "A pool of sorcery points, spent to cast spells",
-      "text": "You have a pool of sorcery points equal to twice your Charisma modifier, and you gain an extra pool of sorcery points equal to your Sorcerer level when you reach 2nd, 6th, 10th, 14th and 17th level. Casting a spell of 1st level or higher costs 1 sorcery point per the spell's level.",
-      "source": {
-        "book": "PHB",
-        "reference": "PHB Sorcerer 99"
-      }
-    },
-    {
-      "id": "class.sorcerer.creating_spell_slots",
-      "name": "Flexible Casting: Creating Spell Slots",
-      "kind": "class",
-      "owner": "Sorcerer",
-      "unlock": 2,
-      "activation": "action",
-      "cost": [
-        {
-          "resource": "sorcery_points",
-          "amount": 1
-        }
-      ],
-      "limits": {
-        "per": "turn",
-        "max": 1
-      },
-      "trigger": null,
-      "targeting": {
-        "scope": "self"
-      },
-      "duration": null,
-      "endsIf": [],
-      "effects": [
-        {
-          "kind": "slot",
-          "action": "create",
-          "level": 1,
-          "count": 1,
-          "note": "You can convert a point of sorcery into a slot of a level you lack, which lasts until the end of a long rest. The slot's level is your level or less, and it can't be a cantrip level."
-        }
-      ],
-      "summary": "Convert 1 sorcery point into a temporary spell slot",
-      "text": "You can convert a point of sorcery into a spell slot of your level or less, which lasts until the end of your next long rest. This is in addition to your existing spell slots.",
-      "source": {
-        "book": "PHB",
-        "reference": "PHB Sorcerer 101"
-      }
-    },
-    {
-      "id": "class.sorcerer.converting_spell_slot",
-      "name": "Flexible Casting: Converting Spell Slots",
-      "kind": "class",
-      "owner": "Sorcerer",
-      "unlock": 2,
-      "activation": "bonus_action",
-      "cost": [
-        {
-          "resource": "sorcery_points",
-          "amount": 2
-        }
-      ],
-      "limits": {
-        "per": "turn",
-        "max": 1
-      },
-      "trigger": null,
-      "targeting": {
-        "scope": "self"
-      },
-      "duration": null,
-      "endsIf": [],
-      "effects": [
-        {
-          "kind": "slot",
-          "action": "convert",
-          "level": 1,
-          "count": 1,
-          "note": "You can convert a spell slot of one level into a spell slot of another level, and you can't convert a slot to a level you lack."
-        }
-      ],
-      "summary": "Spend 2 sorcery points to convert one slot to another level",
-      "text": "You can convert a spell slot of one level into a spell slot of another level. You can't convert a spell slot into a spell slot of a level you lack.",
-      "source": {
-        "book": "PHB",
-        "reference": "PHB Sorcerer 101"
-      }
-    },
-    {
-      "id": "class.sorcerer.sorcerous_restoration",
-      "name": "Sorcerous Restoration",
-      "kind": "class",
-      "owner": "Sorcerer",
-      "unlock": 20,
-      "activation": "passive",
-      "effects": [
-        {
-          "kind": "resource",
-          "action": "restore",
-          "resource": "sorcery_points",
-          "amount": 1,
-          "note": "You have regained your ability to regain sorcery points once per long rest, and you regain them when you finish that rest."
-        }
-      ],
-      "summary": "Regain sorcery points once per long rest",
-      "text": "You have regained the ability to regain sorcery points once per long rest, and you regain them when you finish that rest.",
-      "source": {
-        "book": "PHB",
-        "reference": "PHB Sorcerer 102"
-      }
-    },
-    {
-      "id": "class.sorcerer.ability_score_improvement",
-      "name": "Ability Score Improvement",
-      "kind": "class",
-      "owner": "Sorcerer",
-      "unlock": 4,
-      "activation": "passive",
-      "effects": [
-        {
-          "kind": "special",
-          "note": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1."
-        }
-      ],
-      "tiers": [
-        {
-          "at": 8
-        },
-        {
-          "at": 12
-        },
-        {
-          "at": 16
-        },
-        {
-          "at": 19
-        }
-      ],
-      "summary": "Raise one ability by 2, or two by 1",
-      "text": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1.",
-      "source": {
-        "book": "PHB",
-        "reference": "PHB Sorcerer 102"
-      }
-    },
-    {
-      "id": "class.warlock.pact_magic",
-      "name": "Pact Magic",
-      "kind": "class",
-      "owner": "Warlock",
-      "unlock": 1,
-      "activation": "passive",
-      "effects": [
-        {
-          "kind": "spell_grant",
-          "cantrip": {
-            "known": true
-          },
-          "spells": [
-            {
-              "level": 1,
-              "from": [
-                "warlock"
-              ]
-            }
-          ],
-          "note": "Your spellcasting ability is Charisma. You know a number of warlock spells equal to one plus your Charisma modifier, and a number of cantrips equal to your Charisma modifier. Warlocks have very few spell slots, but they regain all of them on a short rest, which is the defining trade of the class."
-        }
-      ],
-      "summary": "Know 1 + Cha mod warlock spells, all slots recover on a short rest",
-      "text": "Your spellcasting ability is Charisma. You know a number of warlock spells equal to one plus your Charisma modifier. You know a number of cantrips equal to your Charisma modifier. Your spell slots return on a short rest, which is unusual for a full caster.",
-      "source": {
-        "book": "PHB",
-        "reference": "PHB Warlock 64"
-      }
-    },
-    {
-      "id": "class.warlock.pact_boon",
-      "name": "Otherworldly Patron",
-      "kind": "class",
-      "owner": "Warlock",
-      "unlock": 3,
-      "activation": "passive",
-      "effects": [
-        {
-          "kind": "choice",
-          "of": "subclass_feature",
-          "count": 1,
-          "atLevel": 3,
-          "note": "You have made a pact with an otherworldly patron, which grants you a list of spells and a set of patron features. Patron spells are always prepared and do not count against your number of prepared spells."
-        }
-      ],
-      "summary": "Choose an Otherworldly Patron",
-      "text": "You have made a pact with an otherworldly patron. You gain access to a list of spells and patron features, and your patron spells are always prepared.",
-      "source": {
-        "book": "PHB",
-        "reference": "PHB Warlock 64"
-      }
-    },
-    {
-      "id": "class.warlock.mystic_arcanum",
-      "name": "Mystic Arcanum (6th level)",
-      "kind": "class",
-      "owner": "Warlock",
-      "unlock": 11,
-      "activation": "passive",
-      "effects": [
-        {
-          "kind": "spell_grant",
-          "spells": [
-            {
-              "level": 6,
-              "from": [
-                "warlock"
-              ]
-            }
-          ],
-          "note": "You have learned 3 additional spells, which are always prepared and don't count against your prepared spells. At 13th, 15th and 17th level you learn one more arcanum spell of a higher level."
-        }
-      ],
-      "tiers": [
-        {
-          "at": 13,
-          "summary": "Learn a 7th-level arcanum spell"
-        },
-        {
-          "at": 15,
-          "summary": "Learn an 8th-level arcanum spell"
-        },
-        {
-          "at": 17,
-          "summary": "Learn a 9th-level arcanum spell"
-        }
-      ],
-      "summary": "Learn 3 extra always-prepared spells at 6th level",
-      "text": "You have learned 3 additional spells, which are always prepared and don't count against your number of prepared spells.",
-      "source": {
-        "book": "PHB",
-        "reference": "PHB Warlock 66"
-      }
-    },
-    {
-      "id": "class.warlock.eldritch_master",
-      "name": "Eldritch Master",
-      "kind": "class",
-      "owner": "Warlock",
-      "unlock": 20,
-      "activation": "passive",
-      "effects": [
-        {
-          "kind": "special",
-          "note": "Your eldritch invocations and your patron's spells now add Charisma to their own damage dice, so an Eldritch Blast deals 1d10 plus 1d4 plus your Charisma modifier, and an invocation that adds 1d8 adds 1d4. Your invocations are also 20th-level spells for the purposes of the rules."
-        }
-      ],
-      "summary": "Eldritch Blast and patron spell damage add your Charisma to the dice",
-      "text": "Your eldritch invocations and your patron's spells now add Charisma to their own damage dice, so an Eldritch Blast deals 1d10 plus 1d4 plus your Charisma modifier.",
-      "source": {
-        "book": "PHB",
-        "reference": "PHB Warlock 66"
-      }
-    },
-    {
-      "id": "class.warlock.ability_score_improvement",
-      "name": "Ability Score Improvement",
-      "kind": "class",
-      "owner": "Warlock",
-      "unlock": 4,
-      "activation": "passive",
-      "effects": [
-        {
-          "kind": "special",
-          "note": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1."
-        }
-      ],
-      "tiers": [
-        {
-          "at": 8
-        },
-        {
-          "at": 12
-        },
-        {
-          "at": 16
-        },
-        {
-          "at": 19
-        }
-      ],
-      "summary": "Raise one ability by 2, or two by 1",
-      "text": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1.",
-      "source": {
-        "book": "PHB",
-        "reference": "PHB Warlock 66"
-      }
-    },
-    {
-      "id": "class.wizard.spellcasting",
-      "name": "Spellcasting",
-      "kind": "class",
-      "owner": "Wizard",
-      "unlock": 1,
-      "activation": "passive",
-      "effects": [
-        {
-          "kind": "spell_grant",
-          "cantrip": {
-            "known": true
-          },
-          "spells": [
-            {
-              "level": 1,
-              "from": [
-                "wizard"
-              ]
-            }
-          ],
-          "note": "Your spellcasting ability is Intelligence. You know a number of wizard spells equal to 6 plus your Intelligence modifier, and a number of cantrips equal to your Intelligence modifier."
-        }
-      ],
-      "summary": "Know 6 + Int mod wizard spells, and write spellbooks",
-      "text": "Your spellcasting ability is Intelligence. You know a number of wizard spells equal to 6 plus your Intelligence modifier. You know a number of cantrips equal to your Intelligence modifier. Your wizard spells are recorded in a spellbook that you can replace when you finish a long rest.",
-      "source": {
-        "book": "PHB",
-        "reference": "PHB Wizard 112"
-      }
-    },
-    {
-      "id": "class.wizard.arcane_recovery",
-      "name": "Arcane Recovery",
-      "kind": "class",
-      "owner": "Wizard",
-      "unlock": 1,
-      "activation": "action",
-      "limits": {
-        "per": "rest",
-        "max": 1
-      },
-      "trigger": null,
-      "targeting": {
-        "scope": "self"
-      },
-      "duration": null,
-      "endsIf": [],
-      "effects": [
-        {
-          "kind": "resource",
-          "action": "restore",
-          "resource": "hit_dice",
-          "amount": 1,
-          "note": "You have learned to regain some of your magical energy by rest. At the end of a short rest, you can choose expended spell slots to recover, spending hit dice equal to the level of the slot and regaining half the dice's hit points. You regain the use when you finish a long rest."
-        }
-      ],
-      "summary": "At a short rest, spend hit dice to regain spell slots",
-      "text": "You have learned to regain some of your magical energy by rest. At the end of a short rest you can choose expended spell slots to recover, and it takes an action and spell slots equal to half the levels to regain one.",
-      "source": {
-        "book": "PHB",
-        "reference": "PHB Wizard 112"
-      }
-    },
-    {
-      "id": "class.wizard.arcane_tradition",
-      "name": "Arcane Tradition",
-      "kind": "class",
-      "owner": "Wizard",
-      "unlock": 2,
-      "activation": "passive",
-      "effects": [
-        {
-          "kind": "choice",
-          "of": "subclass_feature",
-          "count": 1,
-          "atLevel": 2,
-          "note": "Your studies focus on a particular form of magic. Choose one: Abjuration, Conjuration, Divination, Evocation, Illusion or Transmutation. You gain the tradition's feature and two spells at 1st, 3rd, 6th and 10th level."
-        }
-      ],
-      "summary": "Choose an Arcane Tradition",
-      "text": "Your magic is channeled through your studies, and you choose one arcane tradition.",
-      "source": {
-        "book": "PHB",
-        "reference": "PHB Wizard 112"
-      }
-    },
-    {
-      "id": "class.wizard.extra_attack",
-      "name": "Extra Attack",
-      "kind": "class",
-      "owner": "Wizard",
-      "unlock": 5,
-      "activation": "passive",
-      "effects": [
-        {
-          "kind": "extra_attacks",
-          "count": 1,
-          "note": "You can cast one spell in place of a normal attack and then make one weapon attack with the Attack action, or cast one cantrip and make one weapon attack. You cannot cast a spell and attack twice at 5th level."
-        }
-      ],
-      "summary": "Cast a spell and attack in the same turn, twice at 17",
-      "tiers": [
-        {
-          "at": 17,
-          "effects": [
-            {
-              "kind": "extra_attacks",
-              "count": 2,
-              "note": "You can cast one spell in place of a normal attack and then make two weapon attacks, or cast one cantrip and make two weapon attacks."
-            }
-          ]
-        }
-      ],
-      "text": "You can cast one spell in place of a normal attack and then make one weapon attack, or you can cast one cantrip and then make one weapon attack.",
-      "source": {
-        "book": "PHB",
-        "reference": "PHB Wizard 113"
-      }
-    },
-    {
-      "id": "class.wizard.ability_score_improvement",
-      "name": "Ability Score Improvement",
-      "kind": "class",
-      "owner": "Wizard",
-      "unlock": 4,
-      "activation": "passive",
-      "effects": [
-        {
-          "kind": "special",
-          "note": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1."
-        }
-      ],
-      "tiers": [
-        {
-          "at": 8
-        },
-        {
-          "at": 12
-        },
-        {
-          "at": 16
-        },
-        {
-          "at": 19
-        }
-      ],
-      "summary": "Raise one ability by 2, or two by 1",
-      "text": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1.",
-      "source": {
-        "book": "PHB",
-        "reference": "PHB Wizard 116"
-      }
-    },
-    {
-      "id": "class.artificer.spellcasting",
-      "name": "Spellcasting",
-      "kind": "class",
-      "owner": "Artificer",
-      "unlock": 1,
-      "activation": "passive",
-      "effects": [
-        {
-          "kind": "spell_grant",
-          "cantrip": {
-            "known": true
-          },
-          "spells": [
-            {
-              "level": 1,
-              "from": [
-                "artificer"
-              ]
-            }
-          ],
-          "note": "Your spellcasting ability is Intelligence. You know a number of artificer spells equal to half your artificer level plus half your Intelligence modifier, and a number of cantrips equal to your Intelligence modifier."
-        }
-      ],
-      "summary": "Know half your level + half Int mod artificer spells",
-      "text": "Your spellcasting ability is Intelligence. You know a number of artificer spells equal to half your artificer level plus half your Intelligence modifier. You know a number of cantrips equal to your Intelligence modifier.",
-      "source": {
-        "book": "TCE",
-        "reference": "Tasha's Cauldron Artificer 41"
-      }
-    },
-    {
-      "id": "class.artificer.magical_tinkering",
-      "name": "Magical Tinkering",
-      "kind": "class",
-      "owner": "Artificer",
-      "unlock": 1,
-      "activation": "bonus_action",
-      "limits": {
-        "per": "rest",
-        "max": 1
-      },
-      "trigger": null,
-      "targeting": {
-        "scope": "object"
-      },
-      "duration": null,
-      "endsIf": [],
-      "effects": [
-        {
-          "kind": "special",
-          "note": "You have learned to magically imbue your own creations. When you finish a long rest, you can magically enchant a nonmagical, non-artifact object that can be a held item in a 1-hour crafting period, and it lasts until you finish a long rest or until you use a bonus action to end it. The object must have an Armor or Weapon type and a crafting cost of 25 gp or less."
-        }
-      ],
-      "summary": "Once a long rest, enchant one mundane item for an hour",
-      "text": "When you finish a long rest, you can magically enchant a nonmagical, non-artifact object that can be a held item in a 1-hour crafting period.",
-      "source": {
-        "book": "TCE",
-        "reference": "Tasha's Cauldron Artificer 41"
-      }
-    },
-    {
-      "id": "class.artificer.infuse_item",
-      "name": "Infuse Item",
-      "kind": "class",
-      "owner": "Artificer",
-      "unlock": 2,
-      "activation": "bonus_action",
-      "limits": {
-        "per": "rest",
-        "max": 1
-      },
-      "trigger": null,
-      "targeting": {
-        "scope": "object"
-      },
-      "duration": null,
-      "endsIf": [],
-      "effects": [
-        {
-          "kind": "special",
-          "note": "Your crafting is second to none. When you finish a long rest, you can infuse a nonmagical, non-artifact object that can be held in an 8-hour crafting period. The object has a +1 bonus to attack and damage rolls, and if it hits, it also deals 1d6 bonus damage. You gain the use of this after a long rest."
-        }
-      ],
-      "summary": "Once a long rest, give an item +1 attack and damage and 1d6",
-      "text": "When you finish a long rest, you can infuse a nonmagical, non-artifact object that can be held in an 8-hour crafting period. The object has a +1 bonus to attack and damage rolls, and if it hits, it also deals 1d6 bonus damage.",
-      "source": {
-        "book": "TCE",
-        "reference": "Tasha's Cauldron Artificer 41"
-      }
-    },
-    {
-      "id": "class.artificer.the_right_tool",
-      "name": "The Right Tool for the Job",
-      "kind": "class",
-      "owner": "Artificer",
-      "unlock": 3,
-      "activation": "passive",
-      "effects": [
-        {
-          "kind": "special",
-          "note": "You gain proficiency with Improvised Tools if you don't already have proficiency, and you can add 1 to any ability check you make with an improvised tool, once per turn after taking the Dash, Disengage, Hide or Use an Object action."
-        }
-      ],
-      "summary": "Proficiency with improvised tools, and +1 on checks",
-      "text": "You gain proficiency with Improvised Tools if you don't already have proficiency, and you can add 1 to any ability check you make with an improvised tool.",
-      "source": {
-        "book": "TCE",
-        "reference": "Tasha's Cauldron Artificer 42"
-      }
-    },
-    {
-      "id": "class.artificer.artificer_specialist",
-      "name": "Artificer Specialist",
-      "kind": "class",
-      "owner": "Artificer",
-      "unlock": 3,
-      "activation": "passive",
-      "effects": [
-        {
-          "kind": "choice",
-          "of": "subclass_feature",
-          "count": 1,
-          "atLevel": 3,
-          "note": "You choose an Artificer specialization: Alchemist, Armorer, Artillerist or Smith. Each grants a feature and spells, and the choice can be changed when you finish a long rest."
-        }
-      ],
-      "summary": "Choose Alchemist, Armorer, Artillerist or Smith",
-      "text": "You choose an Artificer specialization. Alchemists, Armorers, Artillerists and Smiths are all Artificer specialists.",
-      "source": {
-        "book": "TCE",
-        "reference": "Tasha's Cauldron Artificer 41"
-      }
-    },
-    {
-      "id": "class.artificer.flash_of_genius",
-      "name": "Flash of Genius",
-      "kind": "class",
-      "owner": "Artificer",
-      "unlock": 7,
-      "activation": "reaction",
-      "limits": {
-        "per": "rest",
-        "max": 1
-      },
-      "trigger": {
-        "event": "turn_start"
-      },
-      "targeting": {
-        "scope": "any"
-      },
-      "duration": null,
-      "endsIf": [],
-      "effects": [
-        {
-          "kind": "special",
-          "note": "When a creature you can see is affected by one of your spells or artifacts, you can use your reaction to give that creature a bonus to one ability check of your choice. You gain the use of this after a long rest."
-        }
-      ],
-      "summary": "Reaction: give an ally affected by your spell a bonus to a check",
-      "text": "When a creature you can see is affected by one of your spells or artifacts, you can use your reaction to give that creature a bonus to one ability check of your choice. You gain the use of this after a long rest.",
-      "source": {
-        "book": "TCE",
-        "reference": "Tasha's Cauldron Artificer 43"
-      }
-    },
-    {
-      "id": "class.artificer.spell_storing_item",
-      "name": "Spell-Storing Item",
-      "kind": "class",
-      "owner": "Artificer",
-      "unlock": 11,
-      "activation": "action",
-      "limits": {
-        "per": "rest",
-        "max": 1
-      },
-      "trigger": null,
-      "targeting": {
-        "scope": "self"
-      },
-      "duration": null,
-      "endsIf": [],
-      "effects": [
-        {
-          "kind": "special",
-          "note": "You can now store a spell of 1st level on an item you make. Using the item casts the stored spell, and you must finish a long rest before storing a spell again. Alchemist, Armorer and Smith specialists instead recharge a magic item with charges, one level higher than normal, without an Attunement requirement."
-        }
-      ],
-      "summary": "Once a long rest, store a 1st-level spell on an item you make",
-      "text": "You can now store a spell of 1st level on an item you make. Using the item casts the stored spell. You must finish a long rest before you can store a spell on an item this way again.",
-      "source": {
-        "book": "TCE",
-        "reference": "Tasha's Cauldron Artificer 44"
-      }
-    },
-    {
-      "id": "class.artificer.soul_of_artifice",
-      "name": "Soul of Artifice",
-      "kind": "class",
-      "owner": "Artificer",
-      "unlock": 20,
-      "activation": "action",
-      "limits": {
-        "per": "rest",
-        "max": 1
-      },
-      "trigger": null,
-      "targeting": {
-        "scope": "self"
-      },
-      "duration": {
-        "value": 1,
-        "unit": "minute"
-      },
-      "endsIf": [],
-      "effects": [
-        {
-          "kind": "temp_hp",
-          "dice": {
-            "dice": "0",
-            "flat": 0
-          },
-          "note": "Your Soul of Artifice can be used a number of times equal to your Intelligence modifier plus your artificer level. As a bonus action you can briefly give yourself or a magic item you touch a +1 bonus to attack and damage rolls or a +1 bonus to an ability check, and this lasts until you finish a long rest or a second time within the same turn."
-        }
-      ],
-      "summary": "A limited number of free +1s to attacks and checks",
-      "text": "Your Soul of Artifice can be used a number of times equal to your Intelligence modifier plus your artificer level, and you regain the use of this after a long rest.",
-      "source": {
-        "book": "TCE",
-        "reference": "Tasha's Cauldron Artificer 44"
-      }
-    },
-    {
-      "id": "class.artificer.ability_score_improvement",
-      "name": "Ability Score Improvement",
-      "kind": "class",
-      "owner": "Artificer",
-      "unlock": 4,
-      "activation": "passive",
-      "effects": [
-        {
-          "kind": "special",
-          "note": "When you reach 4th level, and again at 8th, 10th, 12th, 14th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1."
-        }
-      ],
-      "tiers": [
-        {
-          "at": 8
-        },
-        {
-          "at": 10
-        },
-        {
-          "at": 12
-        },
-        {
-          "at": 14
-        },
-        {
-          "at": 16
-        },
-        {
-          "at": 19
-        }
-      ],
-      "summary": "Raise one ability by 2, or two by 1",
-      "text": "When you reach 4th level, and again at 8th, 10th, 12th, 14th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1.",
-      "source": {
-        "book": "TCE",
-        "reference": "Tasha's Cauldron Artificer 44"
-      }
-    },
-    {
-      "id": "class.artificer.tool_expertise",
-      "name": "Tool Expertise",
-      "kind": "class",
-      "owner": "Artificer",
-      "unlock": 6,
-      "activation": "passive",
-      "effects": [
-        {
-          "kind": "special",
-          "note": "Your proficiency bonus is doubled for any ability check you make with any tool you are proficient with, and you gain proficiency with a further two tools of your choice."
-        }
-      ],
-      "summary": "Double proficiency on tool checks, plus two more tools",
-      "text": "Your proficiency bonus is doubled for any ability check you make with any tool you are proficient with, and you gain proficiency with a further two tools of your choice.",
-      "source": {
-        "book": "TCE",
-        "reference": "Tasha's Cauldron Artificer 42"
-      }
-    },
-    {
-      "id": "class.artificer.magic_item_adept",
-      "name": "Magic Item Adept",
-      "kind": "class",
-      "owner": "Artificer",
-      "unlock": 10,
-      "activation": "passive",
-      "effects": [
-        {
-          "kind": "tool",
-          "tools": [
-            "artificer's tools",
-            "any two tools of your choice"
-          ],
-          "proficiency": "proficient"
-        },
-        {
-          "kind": "special",
-          "note": "Your artificer item rules now apply to all nonmagical items that are not artifacts, and you gain the ability to attune to up to 3 magic items at a time."
-        }
-      ],
-      "summary": "Your artificer item rules cover all non-artifact magic items",
-      "text": "Your artificer item rules now apply to all nonmagical items that are not artifacts. You also gain the ability to attune to up to 3 magic items at a time.",
-      "source": {
-        "book": "TCE",
-        "reference": "Tasha's Cauldron Artificer 43"
-      }
-    },
-    {
-      "id": "class.artificer.magic_item_savant",
-      "name": "Magic Item Savant",
-      "kind": "class",
-      "owner": "Artificer",
-      "unlock": 14,
-      "activation": "passive",
-      "effects": [
-        {
-          "kind": "special",
-          "note": "You can attune to up to 5 magic items at a time, and your artificer item rules apply to all magic items except artifacts."
-        }
-      ],
-      "summary": "Attune to five items, and your item rules cover artifacts too",
-      "text": "You can attune to up to 5 magic items at a time. Your artificer item rules now apply to all magic items except artifacts.",
-      "source": {
-        "book": "TCE",
-        "reference": "Tasha's Cauldron Artificer 44"
-      }
-    },
-    {
-      "id": "class.artificer.magic_item_master",
-      "name": "Magic Item Master",
-      "kind": "class",
-      "owner": "Artificer",
-      "unlock": 18,
-      "activation": "passive",
-      "effects": [
-        {
-          "kind": "special",
-          "note": "You can attune to up to 6 magic items at a time, and your artificer item rules now apply to artifacts as well."
-        }
-      ],
-      "summary": "Attune to six items, and your item rules cover artifacts",
-      "text": "You can attune to up to 6 magic items at a time. Your artificer item rules now apply to artifacts as well.",
-      "source": {
-        "book": "TCE",
-        "reference": "Tasha's Cauldron Artificer 44"
-      }
-    },
-    {
-      "id": "class.wizard.spell_mastery",
-      "name": "Spell Mastery",
-      "kind": "class",
-      "owner": "Wizard",
-      "unlock": 18,
-      "activation": "passive",
-      "effects": [
-        {
-          "kind": "spell_grant",
-          "spells": [
-            {
-              "level": 1,
-              "from": [
-                "wizard"
-              ]
-            },
-            {
-              "level": 2,
-              "from": [
-                "wizard"
-              ]
-            }
-          ],
-          "note": "Your prepared spells of the two lowest levels can be cast at a higher level than normal. This lets you upcast a cantrip to 1st level, which gives it an extra 1d8 of a chosen damage type."
-        }
-      ],
-      "summary": "Cast your 1st- and 2nd-level spells upcast; cantrips gain 1d8",
-      "text": "Your prepared spells of the two lowest levels can be cast at a higher level than normal. This lets you cast your cantrips at 1st level, which gives you an extra 1d8 damage of your choice.",
-      "source": {
-        "book": "PHB",
-        "reference": "PHB Wizard 116"
-      }
-    },
-    {
-      "id": "class.wizard.signature_spell",
-      "name": "Signature Spell",
-      "kind": "class",
-      "owner": "Wizard",
-      "unlock": 20,
-      "activation": "passive",
-      "effects": [
-        {
-          "kind": "choice",
-          "of": "spell_list",
-          "count": 1,
-          "atLevel": 20,
-          "note": "You have learned a signature spell, which you can swap for any 3rd-level wizard spell when you finish a long rest. Casting it copies the chosen spell's effects, and you always have it prepared."
-        }
-      ],
-      "summary": "Copy any 3rd-level wizard spell, swapping it once per long rest",
-      "text": "You have learned a signature spell. You can swap this spell for any 3rd-level wizard spell whenever you finish a long rest. When you cast the spell, you cast the copy, and you always have the spell prepared.",
-      "source": {
-        "book": "PHB",
-        "reference": "PHB Wizard 116"
-      }
+     ],
+     "note": "Your spellcasting ability is Charisma. You know a number of sorcerer spells equal to 2 plus your Charisma modifier, and you know a number of cantrips equal to your Charisma modifier. Sorcerers do not prepare: their spells are all known."
     }
-  ]
+   ],
+   "summary": "Know 2 + Cha mod sorcerer spells; nothing is prepared",
+   "text": "Your spellcasting ability is Charisma. You know a number of sorcerer spells equal to 2 plus your Charisma modifier. You know a number of cantrips equal to your Charisma modifier. Unlike other spellcasters, you do not prepare your spells: every sorcerer spell you know is available to cast.",
+   "source": {
+    "book": "PHB",
+    "reference": "PHB Sorcerer 99"
+   }
+  },
+  {
+   "id": "class.sorcerer.font_of_magic",
+   "name": "Font of Magic",
+   "kind": "class",
+   "owner": "Sorcerer",
+   "unlock": 2,
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "resource",
+     "action": "gain",
+     "resource": "sorcery_points",
+     "amount": 1,
+     "note": "You have a pool of sorcery points equal to your Sorcerer level plus your Charisma modifier, and you gain an extra pool at 2nd, 6th, 10th, 14th and 17th level. You regain the pool when you finish a long rest. Casting a spell costs 1 sorcery point per its level, with a cantrip being free."
+    }
+   ],
+   "summary": "A pool of sorcery points, spent to cast spells",
+   "text": "You have a pool of sorcery points equal to twice your Charisma modifier, and you gain an extra pool of sorcery points equal to your Sorcerer level when you reach 2nd, 6th, 10th, 14th and 17th level. Casting a spell of 1st level or higher costs 1 sorcery point per the spell's level.",
+   "source": {
+    "book": "PHB",
+    "reference": "PHB Sorcerer 99"
+   }
+  },
+  {
+   "id": "class.sorcerer.creating_spell_slots",
+   "name": "Flexible Casting: Creating Spell Slots",
+   "kind": "class",
+   "owner": "Sorcerer",
+   "unlock": 2,
+   "activation": "action",
+   "cost": [
+    {
+     "resource": "sorcery_points",
+     "amount": 1
+    }
+   ],
+   "limits": {
+    "per": "turn",
+    "max": 1
+   },
+   "trigger": null,
+   "targeting": {
+    "scope": "self"
+   },
+   "duration": null,
+   "endsIf": [],
+   "effects": [
+    {
+     "kind": "slot",
+     "action": "create",
+     "level": 1,
+     "count": 1,
+     "note": "You can convert a point of sorcery into a slot of a level you lack, which lasts until the end of a long rest. The slot's level is your level or less, and it can't be a cantrip level."
+    }
+   ],
+   "summary": "Convert 1 sorcery point into a temporary spell slot",
+   "text": "You can convert a point of sorcery into a spell slot of your level or less, which lasts until the end of your next long rest. This is in addition to your existing spell slots.",
+   "source": {
+    "book": "PHB",
+    "reference": "PHB Sorcerer 101"
+   }
+  },
+  {
+   "id": "class.sorcerer.converting_spell_slot",
+   "name": "Flexible Casting: Converting Spell Slots",
+   "kind": "class",
+   "owner": "Sorcerer",
+   "unlock": 2,
+   "activation": "bonus_action",
+   "cost": [
+    {
+     "resource": "sorcery_points",
+     "amount": 2
+    }
+   ],
+   "limits": {
+    "per": "turn",
+    "max": 1
+   },
+   "trigger": null,
+   "targeting": {
+    "scope": "self"
+   },
+   "duration": null,
+   "endsIf": [],
+   "effects": [
+    {
+     "kind": "slot",
+     "action": "convert",
+     "level": 1,
+     "count": 1,
+     "note": "You can convert a spell slot of one level into a spell slot of another level, and you can't convert a slot to a level you lack."
+    }
+   ],
+   "summary": "Spend 2 sorcery points to convert one slot to another level",
+   "text": "You can convert a spell slot of one level into a spell slot of another level. You can't convert a spell slot into a spell slot of a level you lack.",
+   "source": {
+    "book": "PHB",
+    "reference": "PHB Sorcerer 101"
+   }
+  },
+  {
+   "id": "class.sorcerer.sorcerous_restoration",
+   "name": "Sorcerous Restoration",
+   "kind": "class",
+   "owner": "Sorcerer",
+   "unlock": 20,
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "resource",
+     "action": "restore",
+     "resource": "sorcery_points",
+     "amount": 1,
+     "note": "You have regained your ability to regain sorcery points once per long rest, and you regain them when you finish that rest."
+    }
+   ],
+   "summary": "Regain sorcery points once per long rest",
+   "text": "You have regained the ability to regain sorcery points once per long rest, and you regain them when you finish that rest.",
+   "source": {
+    "book": "PHB",
+    "reference": "PHB Sorcerer 102"
+   }
+  },
+  {
+   "id": "class.sorcerer.ability_score_improvement",
+   "name": "Ability Score Improvement",
+   "kind": "class",
+   "owner": "Sorcerer",
+   "unlock": 4,
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "special",
+     "note": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1."
+    }
+   ],
+   "tiers": [
+    {
+     "at": 8
+    },
+    {
+     "at": 12
+    },
+    {
+     "at": 16
+    },
+    {
+     "at": 19
+    }
+   ],
+   "summary": "Raise one ability by 2, or two by 1",
+   "text": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1.",
+   "source": {
+    "book": "PHB",
+    "reference": "PHB Sorcerer 102"
+   }
+  },
+  {
+   "id": "class.warlock.pact_magic",
+   "name": "Pact Magic",
+   "kind": "class",
+   "owner": "Warlock",
+   "unlock": 1,
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "spell_grant",
+     "cantrip": {
+      "known": true
+     },
+     "spells": [
+      {
+       "level": 1,
+       "from": [
+        "warlock"
+       ]
+      }
+     ],
+     "note": "Your spellcasting ability is Charisma. You know a number of warlock spells equal to one plus your Charisma modifier, and a number of cantrips equal to your Charisma modifier. Warlocks have very few spell slots, but they regain all of them on a short rest, which is the defining trade of the class."
+    }
+   ],
+   "summary": "Know 1 + Cha mod warlock spells, all slots recover on a short rest",
+   "text": "Your spellcasting ability is Charisma. You know a number of warlock spells equal to one plus your Charisma modifier. You know a number of cantrips equal to your Charisma modifier. Your spell slots return on a short rest, which is unusual for a full caster.",
+   "source": {
+    "book": "PHB",
+    "reference": "PHB Warlock 64"
+   }
+  },
+  {
+   "id": "class.warlock.pact_boon",
+   "name": "Otherworldly Patron",
+   "kind": "class",
+   "owner": "Warlock",
+   "unlock": 3,
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "choice",
+     "of": "subclass_feature",
+     "count": 1,
+     "atLevel": 3,
+     "note": "You have made a pact with an otherworldly patron, which grants you a list of spells and a set of patron features. Patron spells are always prepared and do not count against your number of prepared spells."
+    }
+   ],
+   "summary": "Choose an Otherworldly Patron",
+   "text": "You have made a pact with an otherworldly patron. You gain access to a list of spells and patron features, and your patron spells are always prepared.",
+   "source": {
+    "book": "PHB",
+    "reference": "PHB Warlock 64"
+   }
+  },
+  {
+   "id": "class.warlock.mystic_arcanum",
+   "name": "Mystic Arcanum (6th level)",
+   "kind": "class",
+   "owner": "Warlock",
+   "unlock": 11,
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "spell_grant",
+     "spells": [
+      {
+       "level": 6,
+       "from": [
+        "warlock"
+       ]
+      }
+     ],
+     "note": "You have learned 3 additional spells, which are always prepared and don't count against your prepared spells. At 13th, 15th and 17th level you learn one more arcanum spell of a higher level."
+    }
+   ],
+   "tiers": [
+    {
+     "at": 13,
+     "summary": "Learn a 7th-level arcanum spell"
+    },
+    {
+     "at": 15,
+     "summary": "Learn an 8th-level arcanum spell"
+    },
+    {
+     "at": 17,
+     "summary": "Learn a 9th-level arcanum spell"
+    }
+   ],
+   "summary": "Learn 3 extra always-prepared spells at 6th level",
+   "text": "You have learned 3 additional spells, which are always prepared and don't count against your number of prepared spells.",
+   "source": {
+    "book": "PHB",
+    "reference": "PHB Warlock 66"
+   }
+  },
+  {
+   "id": "class.warlock.eldritch_master",
+   "name": "Eldritch Master",
+   "kind": "class",
+   "owner": "Warlock",
+   "unlock": 20,
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "special",
+     "note": "Your eldritch invocations and your patron's spells now add Charisma to their own damage dice, so an Eldritch Blast deals 1d10 plus 1d4 plus your Charisma modifier, and an invocation that adds 1d8 adds 1d4. Your invocations are also 20th-level spells for the purposes of the rules."
+    }
+   ],
+   "summary": "Eldritch Blast and patron spell damage add your Charisma to the dice",
+   "text": "Your eldritch invocations and your patron's spells now add Charisma to their own damage dice, so an Eldritch Blast deals 1d10 plus 1d4 plus your Charisma modifier.",
+   "source": {
+    "book": "PHB",
+    "reference": "PHB Warlock 66"
+   }
+  },
+  {
+   "id": "class.warlock.ability_score_improvement",
+   "name": "Ability Score Improvement",
+   "kind": "class",
+   "owner": "Warlock",
+   "unlock": 4,
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "special",
+     "note": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1."
+    }
+   ],
+   "tiers": [
+    {
+     "at": 8
+    },
+    {
+     "at": 12
+    },
+    {
+     "at": 16
+    },
+    {
+     "at": 19
+    }
+   ],
+   "summary": "Raise one ability by 2, or two by 1",
+   "text": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1.",
+   "source": {
+    "book": "PHB",
+    "reference": "PHB Warlock 66"
+   }
+  },
+  {
+   "id": "class.wizard.spellcasting",
+   "name": "Spellcasting",
+   "kind": "class",
+   "owner": "Wizard",
+   "unlock": 1,
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "spell_grant",
+     "cantrip": {
+      "known": true
+     },
+     "spells": [
+      {
+       "level": 1,
+       "from": [
+        "wizard"
+       ]
+      }
+     ],
+     "note": "Your spellcasting ability is Intelligence. You know a number of wizard spells equal to 6 plus your Intelligence modifier, and a number of cantrips equal to your Intelligence modifier."
+    }
+   ],
+   "summary": "Know 6 + Int mod wizard spells, and write spellbooks",
+   "text": "Your spellcasting ability is Intelligence. You know a number of wizard spells equal to 6 plus your Intelligence modifier. You know a number of cantrips equal to your Intelligence modifier. Your wizard spells are recorded in a spellbook that you can replace when you finish a long rest.",
+   "source": {
+    "book": "PHB",
+    "reference": "PHB Wizard 112"
+   }
+  },
+  {
+   "id": "class.wizard.arcane_recovery",
+   "name": "Arcane Recovery",
+   "kind": "class",
+   "owner": "Wizard",
+   "unlock": 1,
+   "activation": "action",
+   "limits": {
+    "per": "rest",
+    "max": 1
+   },
+   "trigger": null,
+   "targeting": {
+    "scope": "self"
+   },
+   "duration": null,
+   "endsIf": [],
+   "effects": [
+    {
+     "kind": "resource",
+     "action": "restore",
+     "resource": "hit_dice",
+     "amount": 1,
+     "note": "You have learned to regain some of your magical energy by rest. At the end of a short rest, you can choose expended spell slots to recover, spending hit dice equal to the level of the slot and regaining half the dice's hit points. You regain the use when you finish a long rest."
+    }
+   ],
+   "summary": "At a short rest, spend hit dice to regain spell slots",
+   "text": "You have learned to regain some of your magical energy by rest. At the end of a short rest you can choose expended spell slots to recover, and it takes an action and spell slots equal to half the levels to regain one.",
+   "source": {
+    "book": "PHB",
+    "reference": "PHB Wizard 112"
+   }
+  },
+  {
+   "id": "class.wizard.arcane_tradition",
+   "name": "Arcane Tradition",
+   "kind": "class",
+   "owner": "Wizard",
+   "unlock": 2,
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "choice",
+     "of": "subclass_feature",
+     "count": 1,
+     "atLevel": 2,
+     "note": "Your studies focus on a particular form of magic. Choose one: Abjuration, Conjuration, Divination, Evocation, Illusion or Transmutation. You gain the tradition's feature and two spells at 1st, 3rd, 6th and 10th level."
+    }
+   ],
+   "summary": "Choose an Arcane Tradition",
+   "text": "Your magic is channeled through your studies, and you choose one arcane tradition.",
+   "source": {
+    "book": "PHB",
+    "reference": "PHB Wizard 112"
+   }
+  },
+  {
+   "id": "class.wizard.extra_attack",
+   "name": "Extra Attack",
+   "kind": "class",
+   "owner": "Wizard",
+   "unlock": 5,
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "extra_attacks",
+     "count": 1,
+     "note": "You can cast one spell in place of a normal attack and then make one weapon attack with the Attack action, or cast one cantrip and make one weapon attack. You cannot cast a spell and attack twice at 5th level."
+    }
+   ],
+   "summary": "Cast a spell and attack in the same turn, twice at 17",
+   "tiers": [
+    {
+     "at": 17,
+     "effects": [
+      {
+       "kind": "extra_attacks",
+       "count": 2,
+       "note": "You can cast one spell in place of a normal attack and then make two weapon attacks, or cast one cantrip and make two weapon attacks."
+      }
+     ]
+    }
+   ],
+   "text": "You can cast one spell in place of a normal attack and then make one weapon attack, or you can cast one cantrip and then make one weapon attack.",
+   "source": {
+    "book": "PHB",
+    "reference": "PHB Wizard 113"
+   }
+  },
+  {
+   "id": "class.wizard.ability_score_improvement",
+   "name": "Ability Score Improvement",
+   "kind": "class",
+   "owner": "Wizard",
+   "unlock": 4,
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "special",
+     "note": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1."
+    }
+   ],
+   "tiers": [
+    {
+     "at": 8
+    },
+    {
+     "at": 12
+    },
+    {
+     "at": 16
+    },
+    {
+     "at": 19
+    }
+   ],
+   "summary": "Raise one ability by 2, or two by 1",
+   "text": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1.",
+   "source": {
+    "book": "PHB",
+    "reference": "PHB Wizard 116"
+   }
+  },
+  {
+   "id": "class.artificer.spellcasting",
+   "name": "Spellcasting",
+   "kind": "class",
+   "owner": "Artificer",
+   "unlock": 1,
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "spell_grant",
+     "cantrip": {
+      "known": true
+     },
+     "spells": [
+      {
+       "level": 1,
+       "from": [
+        "artificer"
+       ]
+      }
+     ],
+     "note": "Your spellcasting ability is Intelligence. You know a number of artificer spells equal to half your artificer level plus half your Intelligence modifier, and a number of cantrips equal to your Intelligence modifier."
+    }
+   ],
+   "summary": "Know half your level + half Int mod artificer spells",
+   "text": "Your spellcasting ability is Intelligence. You know a number of artificer spells equal to half your artificer level plus half your Intelligence modifier. You know a number of cantrips equal to your Intelligence modifier.",
+   "source": {
+    "book": "TCE",
+    "reference": "Tasha's Cauldron Artificer 41"
+   }
+  },
+  {
+   "id": "class.artificer.magical_tinkering",
+   "name": "Magical Tinkering",
+   "kind": "class",
+   "owner": "Artificer",
+   "unlock": 1,
+   "activation": "bonus_action",
+   "limits": {
+    "per": "rest",
+    "max": 1
+   },
+   "trigger": null,
+   "targeting": {
+    "scope": "object"
+   },
+   "duration": null,
+   "endsIf": [],
+   "effects": [
+    {
+     "kind": "special",
+     "note": "You have learned to magically imbue your own creations. When you finish a long rest, you can magically enchant a nonmagical, non-artifact object that can be a held item in a 1-hour crafting period, and it lasts until you finish a long rest or until you use a bonus action to end it. The object must have an Armor or Weapon type and a crafting cost of 25 gp or less."
+    }
+   ],
+   "summary": "Once a long rest, enchant one mundane item for an hour",
+   "text": "When you finish a long rest, you can magically enchant a nonmagical, non-artifact object that can be a held item in a 1-hour crafting period.",
+   "source": {
+    "book": "TCE",
+    "reference": "Tasha's Cauldron Artificer 41"
+   }
+  },
+  {
+   "id": "class.artificer.infuse_item",
+   "name": "Infuse Item",
+   "kind": "class",
+   "owner": "Artificer",
+   "unlock": 2,
+   "activation": "bonus_action",
+   "limits": {
+    "per": "rest",
+    "max": 1
+   },
+   "trigger": null,
+   "targeting": {
+    "scope": "object"
+   },
+   "duration": null,
+   "endsIf": [],
+   "effects": [
+    {
+     "kind": "special",
+     "note": "Your crafting is second to none. When you finish a long rest, you can infuse a nonmagical, non-artifact object that can be held in an 8-hour crafting period. The object has a +1 bonus to attack and damage rolls, and if it hits, it also deals 1d6 bonus damage. You gain the use of this after a long rest."
+    }
+   ],
+   "summary": "Once a long rest, give an item +1 attack and damage and 1d6",
+   "text": "When you finish a long rest, you can infuse a nonmagical, non-artifact object that can be held in an 8-hour crafting period. The object has a +1 bonus to attack and damage rolls, and if it hits, it also deals 1d6 bonus damage.",
+   "source": {
+    "book": "TCE",
+    "reference": "Tasha's Cauldron Artificer 41"
+   }
+  },
+  {
+   "id": "class.artificer.the_right_tool_for_the_job",
+   "name": "The Right Tool for the Job",
+   "kind": "class",
+   "owner": "Artificer",
+   "unlock": 3,
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "special",
+     "note": "You have learned how to produce exactly the tool you need. While you have thieves' tools or artisan's tools in hand, you can magically create one set of artisan's tools in an unoccupied space within 5 feet of you. This creation requires 1 hour of uninterrupted work. The tools vanish 1 hour after you create them. You can't create magical items."
+    }
+   ],
+   "summary": "Create one set of artisan's tools in an unoccupied space within 5 feet",
+   "text": "You have learned how to produce exactly the tool you need. While you have thieves' tools or artisan's tools in hand, you can magically create one set of artisan's tools in an unoccupied space within 5 feet of you. This creation requires 1 hour of uninterrupted work.",
+   "source": {
+    "book": "TCE",
+    "reference": "Tasha's Cauldron Artificer 42"
+   }
+  },
+  {
+   "id": "class.artificer.artificer_specialist",
+   "name": "Artificer Specialist",
+   "kind": "class",
+   "owner": "Artificer",
+   "unlock": 3,
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "choice",
+     "of": "subclass_feature",
+     "count": 1,
+     "atLevel": 3,
+     "note": "You choose an Artificer specialization: Alchemist, Armorer, Artillerist or Smith. Each grants a feature and spells, and the choice can be changed when you finish a long rest."
+    }
+   ],
+   "summary": "Choose Alchemist, Armorer, Artillerist or Smith",
+   "text": "You choose an Artificer specialization. Alchemists, Armorers, Artillerists and Smiths are all Artificer specialists.",
+   "source": {
+    "book": "TCE",
+    "reference": "Tasha's Cauldron Artificer 41"
+   }
+  },
+  {
+   "id": "class.artificer.flash_of_genius",
+   "name": "Flash of Genius",
+   "kind": "class",
+   "owner": "Artificer",
+   "unlock": 7,
+   "activation": "reaction",
+   "limits": {
+    "per": "rest",
+    "max": 1
+   },
+   "trigger": {
+    "event": "turn_start"
+   },
+   "targeting": {
+    "scope": "any"
+   },
+   "duration": null,
+   "endsIf": [],
+   "effects": [
+    {
+     "kind": "special",
+     "note": "When a creature you can see is affected by one of your spells or artifacts, you can use your reaction to give that creature a bonus to one ability check of your choice. You gain the use of this after a long rest."
+    }
+   ],
+   "summary": "Reaction: give an ally affected by your spell a bonus to a check",
+   "text": "When a creature you can see is affected by one of your spells or artifacts, you can use your reaction to give that creature a bonus to one ability check of your choice. You gain the use of this after a long rest.",
+   "source": {
+    "book": "TCE",
+    "reference": "Tasha's Cauldron Artificer 43"
+   }
+  },
+  {
+   "id": "class.artificer.spell_storing_item",
+   "name": "Spell-Storing Item",
+   "kind": "class",
+   "owner": "Artificer",
+   "unlock": 11,
+   "activation": "action",
+   "limits": {
+    "per": "rest",
+    "max": 1
+   },
+   "trigger": null,
+   "targeting": {
+    "scope": "self"
+   },
+   "duration": null,
+   "endsIf": [],
+   "effects": [
+    {
+     "kind": "special",
+     "note": "You can now store a spell of 1st level on an item you make. Using the item casts the stored spell, and you must finish a long rest before storing a spell again. Alchemist, Armorer and Smith specialists instead recharge a magic item with charges, one level higher than normal, without an Attunement requirement."
+    }
+   ],
+   "summary": "Once a long rest, store a 1st-level spell on an item you make",
+   "text": "You can now store a spell of 1st level on an item you make. Using the item casts the stored spell. You must finish a long rest before you can store a spell on an item this way again.",
+   "source": {
+    "book": "TCE",
+    "reference": "Tasha's Cauldron Artificer 44"
+   }
+  },
+  {
+   "id": "class.artificer.soul_of_artifice",
+   "name": "Soul of Artifice",
+   "kind": "class",
+   "owner": "Artificer",
+   "unlock": 20,
+   "activation": "action",
+   "limits": {
+    "per": "rest",
+    "max": 1
+   },
+   "trigger": null,
+   "targeting": {
+    "scope": "self"
+   },
+   "duration": {
+    "value": 1,
+    "unit": "minute"
+   },
+   "endsIf": [],
+   "effects": [
+    {
+     "kind": "temp_hp",
+     "dice": {
+      "dice": "0",
+      "flat": 0
+     },
+     "note": "Your Soul of Artifice can be used a number of times equal to your Intelligence modifier plus your artificer level. As a bonus action you can briefly give yourself or a magic item you touch a +1 bonus to attack and damage rolls or a +1 bonus to an ability check, and this lasts until you finish a long rest or a second time within the same turn."
+    }
+   ],
+   "summary": "A limited number of free +1s to attacks and checks",
+   "text": "Your Soul of Artifice can be used a number of times equal to your Intelligence modifier plus your artificer level, and you regain the use of this after a long rest.",
+   "source": {
+    "book": "TCE",
+    "reference": "Tasha's Cauldron Artificer 44"
+   }
+  },
+  {
+   "id": "class.artificer.ability_score_improvement",
+   "name": "Ability Score Improvement",
+   "kind": "class",
+   "owner": "Artificer",
+   "unlock": 4,
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "special",
+     "note": "When you reach 4th level, and again at 8th, 10th, 12th, 14th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1."
+    }
+   ],
+   "tiers": [
+    {
+     "at": 8
+    },
+    {
+     "at": 10
+    },
+    {
+     "at": 12
+    },
+    {
+     "at": 14
+    },
+    {
+     "at": 16
+    },
+    {
+     "at": 19
+    }
+   ],
+   "summary": "Raise one ability by 2, or two by 1",
+   "text": "When you reach 4th level, and again at 8th, 10th, 12th, 14th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1.",
+   "source": {
+    "book": "TCE",
+    "reference": "Tasha's Cauldron Artificer 44"
+   }
+  },
+  {
+   "id": "class.artificer.tool_expertise",
+   "name": "Tool Expertise",
+   "kind": "class",
+   "owner": "Artificer",
+   "unlock": 6,
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "special",
+     "note": "Your proficiency bonus is doubled for any ability check you make with any tool you are proficient with, and you gain proficiency with a further two tools of your choice."
+    }
+   ],
+   "summary": "Double proficiency on tool checks, plus two more tools",
+   "text": "Your proficiency bonus is doubled for any ability check you make with any tool you are proficient with, and you gain proficiency with a further two tools of your choice.",
+   "source": {
+    "book": "TCE",
+    "reference": "Tasha's Cauldron Artificer 42"
+   }
+  },
+  {
+   "id": "class.artificer.magic_item_adept",
+   "name": "Magic Item Adept",
+   "kind": "class",
+   "owner": "Artificer",
+   "unlock": 10,
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "tool",
+     "tools": [
+      "artificer's tools",
+      "any two tools of your choice"
+     ],
+     "proficiency": "proficient"
+    },
+    {
+     "kind": "special",
+     "note": "Your artificer item rules now apply to all nonmagical items that are not artifacts, and you gain the ability to attune to up to 3 magic items at a time."
+    }
+   ],
+   "summary": "Your artificer item rules cover all non-artifact magic items",
+   "text": "Your artificer item rules now apply to all nonmagical items that are not artifacts. You also gain the ability to attune to up to 3 magic items at a time.",
+   "source": {
+    "book": "TCE",
+    "reference": "Tasha's Cauldron Artificer 43"
+   }
+  },
+  {
+   "id": "class.artificer.magic_item_savant",
+   "name": "Magic Item Savant",
+   "kind": "class",
+   "owner": "Artificer",
+   "unlock": 14,
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "special",
+     "note": "You can attune to up to 5 magic items at a time, and your artificer item rules apply to all magic items except artifacts."
+    }
+   ],
+   "summary": "Attune to five items, and your item rules cover artifacts too",
+   "text": "You can attune to up to 5 magic items at a time. Your artificer item rules now apply to all magic items except artifacts.",
+   "source": {
+    "book": "TCE",
+    "reference": "Tasha's Cauldron Artificer 44"
+   }
+  },
+  {
+   "id": "class.artificer.magic_item_master",
+   "name": "Magic Item Master",
+   "kind": "class",
+   "owner": "Artificer",
+   "unlock": 18,
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "special",
+     "note": "You can attune to up to 6 magic items at a time, and your artificer item rules now apply to artifacts as well."
+    }
+   ],
+   "summary": "Attune to six items, and your item rules cover artifacts",
+   "text": "You can attune to up to 6 magic items at a time. Your artificer item rules now apply to artifacts as well.",
+   "source": {
+    "book": "TCE",
+    "reference": "Tasha's Cauldron Artificer 44"
+   }
+  },
+  {
+   "id": "class.wizard.spell_mastery",
+   "name": "Spell Mastery",
+   "kind": "class",
+   "owner": "Wizard",
+   "unlock": 18,
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "spell_grant",
+     "spells": [
+      {
+       "level": 1,
+       "from": [
+        "wizard"
+       ]
+      },
+      {
+       "level": 2,
+       "from": [
+        "wizard"
+       ]
+      }
+     ],
+     "note": "Your prepared spells of the two lowest levels can be cast at a higher level than normal. This lets you upcast a cantrip to 1st level, which gives it an extra 1d8 of a chosen damage type."
+    }
+   ],
+   "summary": "Cast your 1st- and 2nd-level spells upcast; cantrips gain 1d8",
+   "text": "Your prepared spells of the two lowest levels can be cast at a higher level than normal. This lets you cast your cantrips at 1st level, which gives you an extra 1d8 damage of your choice.",
+   "source": {
+    "book": "PHB",
+    "reference": "PHB Wizard 116"
+   }
+  },
+  {
+   "id": "class.wizard.signature_spell",
+   "name": "Signature Spell",
+   "kind": "class",
+   "owner": "Wizard",
+   "unlock": 20,
+   "activation": "passive",
+   "effects": [
+    {
+     "kind": "choice",
+     "of": "spell_list",
+     "count": 1,
+     "atLevel": 20,
+     "note": "You have learned a signature spell, which you can swap for any 3rd-level wizard spell when you finish a long rest. Casting it copies the chosen spell's effects, and you always have it prepared."
+    }
+   ],
+   "summary": "Copy any 3rd-level wizard spell, swapping it once per long rest",
+   "text": "You have learned a signature spell. You can swap this spell for any 3rd-level wizard spell whenever you finish a long rest. When you cast the spell, you cast the copy, and you always have the spell prepared.",
+   "source": {
+    "book": "PHB",
+    "reference": "PHB Wizard 116"
+   }
+  }
+ ]
 }

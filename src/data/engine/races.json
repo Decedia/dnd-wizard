@@ -1,438 +1,445 @@
 {
-  "schemaVersion": 1,
-  "ruleset": "2014",
-  "note": "Race registry. A race is a base entry plus optional variants; base traits live on the base, and only what a variant adds or changes lives on the variant. A variant with `variantFrom` does not have traits of its own - it borrows a variant list from another race, which is how a 2014 half-elf takes exactly one elf variant rather than all of them. Every race trait in features/race/ must name a race or variant declared here, so a trait cannot be attached to a race that does not exist.",
-  "books": {
-    "PHB": "Player's Handbook",
-    "VGC": "Volo's Guide to Allies",
-    "ERLW": "Eberron: Rising from the Last War",
-    "VgtM": "Vampire's Guide to Ravenloft",
-    "MotM": "Mordenkainen's Tome of Foes"
+ "schemaVersion": 1,
+ "ruleset": "2014",
+ "note": "Race registry. A race is a base entry plus optional variants; base traits live on the base, and only what a variant adds or changes lives on the variant. A variant with `variantFrom` does not have traits of its own - it borrows a variant list from another race, which is how a 2014 half-elf takes exactly one elf variant rather than all of them. Every race trait in features/race/ must name a race or variant declared here, so a trait cannot be attached to a race that does not exist.",
+ "books": {
+  "PHB": "Player's Handbook",
+  "VGC": "Volo's Guide to Allies",
+  "ERLW": "Eberron: Rising from the Last War",
+  "VgtM": "Vampire's Guide to Ravenloft",
+  "MotM": "Mordenkainen's Tome of Foes"
+ },
+ "races": [
+  {
+   "id": "human",
+   "name": "Human",
+   "book": "PHB",
+   "page": 38,
+   "note": "The only playable race with no racial traits. Ability score increases are the only mechanical difference."
   },
-  "races": [
+  {
+   "id": "half_elf",
+   "name": "Half-Elf",
+   "book": "PHB",
+   "page": 32,
+   "variants": [
     {
-      "id": "human",
-      "name": "Human",
-      "book": "PHB",
-      "page": 38,
-      "note": "The only playable race with no racial traits. Ability score increases are the only mechanical difference."
-    },
-    {
-      "id": "half_elf",
-      "name": "Half-Elf",
-      "book": "PHB",
-      "page": 32,
-      "variants": [
-        {
-          "id": "any_elf_variant",
-          "name": "Any Elf Variant",
-          "variantFrom": "elf"
-        }
-      ],
-      "note": "Grants Darkvision, Fey Ancestry and two skill proficiencies, then one elf variant's traits."
-    },
-    {
-      "id": "dwarf",
-      "name": "Dwarf",
-      "book": "PHB",
-      "page": 18,
-      "variants": [
-        {
-          "id": "hill",
-          "name": "Hill Dwarf",
-          "book": "PHB",
-          "page": 18
-        },
-        {
-          "id": "mountain",
-          "name": "Mountain Dwarf",
-          "book": "PHB",
-          "page": 18
-        }
-      ]
-    },
-    {
-      "id": "elf",
-      "name": "Elf",
-      "book": "PHB",
-      "page": 21,
-      "variants": [
-        {
-          "id": "high",
-          "name": "High Elf",
-          "book": "PHB",
-          "page": 22
-        },
-        {
-          "id": "wood",
-          "name": "Wood Elf",
-          "book": "PHB",
-          "page": 23
-        },
-        {
-          "id": "drow",
-          "name": "Dark Elf (Drow)",
-          "book": "PHB",
-          "page": 25
-        }
-      ]
-    },
-    {
-      "id": "gnome",
-      "name": "Gnome",
-      "book": "PHB",
-      "page": 27,
-      "variants": [
-        {
-          "id": "forest",
-          "name": "Forest Gnome",
-          "book": "PHB",
-          "page": 29
-        },
-        {
-          "id": "rock",
-          "name": "Rock Gnome",
-          "book": "PHB",
-          "page": 30
-        }
-      ]
-    },
-    {
-      "id": "halfling",
-      "name": "Halfling",
-      "book": "PHB",
-      "page": 36,
-      "variants": [
-        {
-          "id": "lightfoot",
-          "name": "Lightfoot Halfling",
-          "book": "PHB",
-          "page": 36
-        },
-        {
-          "id": "stout",
-          "name": "Stout Halfling",
-          "book": "PHB",
-          "page": 37
-        },
-        {
-          "id": "ghostwise",
-          "name": "Ghostwise Halfling",
-          "book": "PHB",
-          "page": 37
-        }
-      ]
-    },
-    {
-      "id": "half_orc",
-      "name": "Half-Orc",
-      "book": "PHB",
-      "page": 34
-    },
-    {
-      "id": "tiefling",
-      "name": "Tiefling",
-      "book": "PHB",
-      "page": 40,
-      "note": "One tiefling. The legacy backgrounds replace Infernal Constitution; they are a choice within the race, not separate races."
-    },
-    {
-      "id": "aarakocra",
-      "name": "Aarakocra",
-      "book": "PHB",
-      "page": 31
-    },
-    {
-      "id": "dragonborn",
-      "name": "Dragonborn",
-      "book": "ERLW",
-      "page": 36,
-      "variants": [
-        {
-          "id": "chromatic",
-          "name": "Chromatic Dragonborn",
-          "book": "ERLW",
-          "page": 36
-        },
-        {
-          "id": "gem",
-          "name": "Gem Dragonborn",
-          "book": "ERLW",
-          "page": 37
-        },
-        {
-          "id": "metallic",
-          "name": "Metallic Dragonborn",
-          "book": "ERLW",
-          "page": 37
-        }
-      ],
-      "note": "The ancestry and resistance parts of the base Dragonborn are the Eberron version, which is what the rest of the roster assumes."
-    },
-    {
-      "id": "githyanki",
-      "name": "Githyanki",
-      "book": "ERLW",
-      "page": 30
-    },
-    {
-      "id": "githzerai",
-      "name": "Githzerai",
-      "book": "ERLW",
-      "page": 30
-    },
-    {
-      "id": "tabaxi",
-      "name": "Tabaxi",
-      "book": "PHB",
-      "page": 48
-    },
-    {
-      "id": "kalashtar",
-      "name": "Kalashtar",
-      "book": "ERLW",
-      "page": 28
-    },
-    {
-      "id": "shifter",
-      "name": "Shifter",
-      "book": "ERLW",
-      "page": 34,
-      "variants": [
-        {
-          "id": "beast",
-          "name": "Beast Shifter",
-          "book": "ERLW",
-          "page": 34
-        },
-        {
-          "id": "blade",
-          "name": "Blade Shifter",
-          "book": "ERLW",
-          "page": 34
-        },
-        {
-          "id": "totem",
-          "name": "Totem Shifter",
-          "book": "ERLW",
-          "page": 34
-        }
-      ]
-    },
-    {
-      "id": "autonyme",
-      "name": "Autonyme",
-      "book": "ERLW",
-      "page": 22,
-      "alsoCalled": [
-        "Autognom",
-        "Automne",
-        "Autognome"
-      ],
-      "note": "The app data spells this race \"Autognome\", which is not a word. The rules spell it Autonyme. Every spelling the app data has used is listed in alsoCalled so the inventory check can still resolve the old entry."
-    },
-    {
-      "id": "plasmoid",
-      "name": "Plasmoid",
-      "book": "ERLW",
-      "page": 28
-    },
-    {
-      "id": "thri_kreen",
-      "name": "Thri-kreen",
-      "book": "ERLW",
-      "page": 32
-    },
-    {
-      "id": "warforged",
-      "name": "Warforged",
-      "book": "ERLW",
-      "page": 40
-    },
-    {
-      "id": "eladrin",
-      "name": "Eladrin",
-      "book": "ERLW",
-      "page": 24,
-      "variants": [
-        {
-          "id": "season",
-          "name": "Seasonal Eladrin",
-          "book": "ERLW",
-          "page": 24
-        }
-      ],
-      "note": "A race in its own right, not an elf variant. The seasonal form changes with the day, and the Summer variant has a different bonus feat than the other three."
-    },
-    {
-      "id": "astral_elf",
-      "name": "Astral Elf",
-      "book": "ERLW",
-      "page": 25
-    },
-    {
-      "id": "aasimar",
-      "name": "Aasimar",
-      "book": "VGC",
-      "page": 12,
-      "variants": [
-        {
-          "id": "protector",
-          "name": "Protector Aasimar",
-          "book": "VGC",
-          "page": 13
-        },
-        {
-          "id": "scourge",
-          "name": "Scourge Aasimar",
-          "book": "VGC",
-          "page": 14
-        }
-      ]
-    },
-    {
-      "id": "bugbear",
-      "name": "Bugbear",
-      "book": "VGC",
-      "page": 31
-    },
-    {
-      "id": "centaur",
-      "name": "Centaur",
-      "book": "VGC",
-      "page": 38
-    },
-    {
-      "id": "firbolg",
-      "name": "Firbolg",
-      "book": "VGC",
-      "page": 46
-    },
-    {
-      "id": "goblin",
-      "name": "Goblin",
-      "book": "VGC",
-      "page": 52
-    },
-    {
-      "id": "hobgoblin",
-      "name": "Hobgoblin",
-      "book": "VGC",
-      "page": 58
-    },
-    {
-      "id": "kobold",
-      "name": "Kobold",
-      "book": "VGC",
-      "page": 64
-    },
-    {
-      "id": "lizardfolk",
-      "name": "Lizardfolk",
-      "book": "VGC",
-      "page": 68
-    },
-    {
-      "id": "loxodon",
-      "name": "Loxodon",
-      "book": "VGC",
-      "page": 75
-    },
-    {
-      "id": "minotaur",
-      "name": "Minotaur",
-      "book": "VGC",
-      "page": 82
-    },
-    {
-      "id": "satyr",
-      "name": "Satyr",
-      "book": "VGC",
-      "page": 88
-    },
-    {
-      "id": "simic_hybrid",
-      "name": "Simic Hybrid",
-      "book": "VGC",
-      "page": 92
-    },
-    {
-      "id": "tortle",
-      "name": "Tortle",
-      "book": "VGC",
-      "page": 98
-    },
-    {
-      "id": "triton",
-      "name": "Triton",
-      "book": "VGC",
-      "page": 103
-    },
-    {
-      "id": "verdan",
-      "name": "Verdan",
-      "book": "VGC",
-      "page": 108
-    },
-    {
-      "id": "yuan_ti_pureblood",
-      "name": "Yuan-Ti Pureblood",
-      "book": "VGC",
-      "page": 112
-    },
-    {
-      "id": "dhampir",
-      "name": "Dhampir",
-      "book": "VgtM",
-      "page": 21
-    },
-    {
-      "id": "hexblood",
-      "name": "Hexblood",
-      "book": "VgtM",
-      "page": 23
-    },
-    {
-      "id": "reborn",
-      "name": "Reborn",
-      "book": "VgtM",
-      "page": 27
-    },
-    {
-      "id": "svirfneblin",
-      "name": "Svirfneblin",
-      "book": "MotM",
-      "page": 17,
-      "note": "A duergar offshoot, not a gnome variant, and not a playable gnome subrace in 5e.",
-      "alsoCalled": [
-        "Deep Gnome",
-        "Deep Gnome (Svirfneblin)"
-      ]
-    },
-    {
-      "id": "orc",
-      "name": "Orc",
-      "book": "VGC",
-      "page": 182,
-      "note": "Darkvision, Menacing, Relentless Endurance and Savage Attacks. The app data omitted this race entirely."
-    },
-    {
-      "id": "goliath",
-      "name": "Goliath",
-      "book": "VGC",
-      "page": 166
-    },
-    {
-      "id": "kenku",
-      "name": "Kenku",
-      "book": "ERLW",
-      "page": 29
-    },
-    {
-      "id": "changeling",
-      "name": "Changeling",
-      "book": "VGC",
-      "page": 41
+     "id": "any_elf_variant",
+     "name": "Any Elf Variant",
+     "variantFrom": "elf"
     }
-  ]
+   ],
+   "note": "Grants Darkvision, Fey Ancestry and two skill proficiencies, then one elf variant's traits."
+  },
+  {
+   "id": "dwarf",
+   "name": "Dwarf",
+   "book": "PHB",
+   "page": 18,
+   "variants": [
+    {
+     "id": "hill",
+     "name": "Hill Dwarf",
+     "book": "PHB",
+     "page": 18
+    },
+    {
+     "id": "mountain",
+     "name": "Mountain Dwarf",
+     "book": "PHB",
+     "page": 18
+    }
+   ]
+  },
+  {
+   "id": "elf",
+   "name": "Elf",
+   "book": "PHB",
+   "page": 21,
+   "variants": [
+    {
+     "id": "high",
+     "name": "High Elf",
+     "book": "PHB",
+     "page": 22
+    },
+    {
+     "id": "wood",
+     "name": "Wood Elf",
+     "book": "PHB",
+     "page": 23
+    },
+    {
+     "id": "drow",
+     "name": "Dark Elf (Drow)",
+     "book": "PHB",
+     "page": 25
+    }
+   ]
+  },
+  {
+   "id": "gnome",
+   "name": "Gnome",
+   "book": "PHB",
+   "page": 27,
+   "variants": [
+    {
+     "id": "forest",
+     "name": "Forest Gnome",
+     "book": "PHB",
+     "page": 29
+    },
+    {
+     "id": "rock",
+     "name": "Rock Gnome",
+     "book": "PHB",
+     "page": 30
+    }
+   ]
+  },
+  {
+   "id": "halfling",
+   "name": "Halfling",
+   "book": "PHB",
+   "page": 36,
+   "variants": [
+    {
+     "id": "lightfoot",
+     "name": "Lightfoot Halfling",
+     "book": "PHB",
+     "page": 36
+    },
+    {
+     "id": "stout",
+     "name": "Stout Halfling",
+     "book": "PHB",
+     "page": 37
+    },
+    {
+     "id": "ghostwise",
+     "name": "Ghostwise Halfling",
+     "book": "PHB",
+     "page": 37
+    }
+   ]
+  },
+  {
+   "id": "half_orc",
+   "name": "Half-Orc",
+   "book": "PHB",
+   "page": 34
+  },
+  {
+   "id": "tiefling",
+   "name": "Tiefling",
+   "book": "PHB",
+   "page": 40,
+   "note": "One tiefling. The legacy backgrounds replace Infernal Constitution; they are a choice within the race, not separate races."
+  },
+  {
+   "id": "aarakocra",
+   "name": "Aarakocra",
+   "book": "PHB",
+   "page": 31
+  },
+  {
+   "id": "dragonborn",
+   "name": "Dragonborn",
+   "book": "ERLW",
+   "page": 36,
+   "variants": [
+    {
+     "id": "chromatic",
+     "name": "Chromatic Dragonborn",
+     "book": "ERLW",
+     "page": 36
+    },
+    {
+     "id": "gem",
+     "name": "Gem Dragonborn",
+     "book": "ERLW",
+     "page": 37
+    },
+    {
+     "id": "metallic",
+     "name": "Metallic Dragonborn",
+     "book": "ERLW",
+     "page": 37
+    }
+   ],
+   "note": "The ancestry and resistance parts of the base Dragonborn are the Eberron version, which is what the rest of the roster assumes."
+  },
+  {
+   "id": "githyanki",
+   "name": "Githyanki",
+   "book": "ERLW",
+   "page": 30
+  },
+  {
+   "id": "githzerai",
+   "name": "Githzerai",
+   "book": "ERLW",
+   "page": 30
+  },
+  {
+   "id": "tabaxi",
+   "name": "Tabaxi",
+   "book": "PHB",
+   "page": 48
+  },
+  {
+   "id": "kalashtar",
+   "name": "Kalashtar",
+   "book": "ERLW",
+   "page": 28
+  },
+  {
+   "id": "shifter",
+   "name": "Shifter",
+   "book": "ERLW",
+   "page": 34,
+   "variants": [
+    {
+     "id": "beast",
+     "name": "Beast Shifter",
+     "book": "ERLW",
+     "page": 34
+    },
+    {
+     "id": "blade",
+     "name": "Blade Shifter",
+     "book": "ERLW",
+     "page": 34
+    },
+    {
+     "id": "totem",
+     "name": "Totem Shifter",
+     "book": "ERLW",
+     "page": 34
+    }
+   ]
+  },
+  {
+   "id": "autonyme",
+   "name": "Autonyme",
+   "book": "ERLW",
+   "page": 22,
+   "alsoCalled": [
+    "Autognom",
+    "Automne",
+    "Autognome"
+   ],
+   "note": "The app data spells this race \"Autognome\", which is not a word. The rules spell it Autonyme. Every spelling the app data has used is listed in alsoCalled so the inventory check can still resolve the old entry."
+  },
+  {
+   "id": "plasmoid",
+   "name": "Plasmoid",
+   "book": "ERLW",
+   "page": 28
+  },
+  {
+   "id": "thri_kreen",
+   "name": "Thri-kreen",
+   "book": "ERLW",
+   "page": 32
+  },
+  {
+   "id": "warforged",
+   "name": "Warforged",
+   "book": "ERLW",
+   "page": 40
+  },
+  {
+   "id": "eladrin",
+   "name": "Eladrin",
+   "book": "ERLW",
+   "page": 24,
+   "variants": [
+    {
+     "id": "season",
+     "name": "Seasonal Eladrin",
+     "book": "ERLW",
+     "page": 24
+    }
+   ],
+   "note": "A race in its own right, not an elf variant. The seasonal form changes with the day, and the Summer variant has a different bonus feat than the other three."
+  },
+  {
+   "id": "astral_elf",
+   "name": "Astral Elf",
+   "book": "ERLW",
+   "page": 25
+  },
+  {
+   "id": "aasimar",
+   "name": "Aasimar",
+   "book": "VGC",
+   "page": 12,
+   "variants": [
+    {
+     "id": "protector",
+     "name": "Protector Aasimar",
+     "book": "VGC",
+     "page": 13
+    },
+    {
+     "id": "scourge",
+     "name": "Scourge Aasimar",
+     "book": "VGC",
+     "page": 14
+    }
+   ]
+  },
+  {
+   "id": "bugbear",
+   "name": "Bugbear",
+   "book": "VGC",
+   "page": 31
+  },
+  {
+   "id": "centaur",
+   "name": "Centaur",
+   "book": "VGC",
+   "page": 38
+  },
+  {
+   "id": "firbolg",
+   "name": "Firbolg",
+   "book": "VGC",
+   "page": 46
+  },
+  {
+   "id": "goblin",
+   "name": "Goblin",
+   "book": "VGC",
+   "page": 52
+  },
+  {
+   "id": "hobgoblin",
+   "name": "Hobgoblin",
+   "book": "VGC",
+   "page": 58
+  },
+  {
+   "id": "kobold",
+   "name": "Kobold",
+   "book": "VGC",
+   "page": 64
+  },
+  {
+   "id": "lizardfolk",
+   "name": "Lizardfolk",
+   "book": "VGC",
+   "page": 68
+  },
+  {
+   "id": "loxodon",
+   "name": "Loxodon",
+   "book": "VGC",
+   "page": 75
+  },
+  {
+   "id": "minotaur",
+   "name": "Minotaur",
+   "book": "VGC",
+   "page": 82
+  },
+  {
+   "id": "satyr",
+   "name": "Satyr",
+   "book": "VGC",
+   "page": 88
+  },
+  {
+   "id": "simic_hybrid",
+   "name": "Simic Hybrid",
+   "book": "VGC",
+   "page": 92
+  },
+  {
+   "id": "tortle",
+   "name": "Tortle",
+   "book": "VGC",
+   "page": 98
+  },
+  {
+   "id": "triton",
+   "name": "Triton",
+   "book": "VGC",
+   "page": 103
+  },
+  {
+   "id": "verdan",
+   "name": "Verdan",
+   "book": "VGC",
+   "page": 108
+  },
+  {
+   "id": "yuan_ti_pureblood",
+   "name": "Yuan-Ti Pureblood",
+   "book": "VGC",
+   "page": 112
+  },
+  {
+   "id": "dhampir",
+   "name": "Dhampir",
+   "book": "VgtM",
+   "page": 21
+  },
+  {
+   "id": "hexblood",
+   "name": "Hexblood",
+   "book": "VgtM",
+   "page": 23
+  },
+  {
+   "id": "reborn",
+   "name": "Reborn",
+   "book": "VgtM",
+   "page": 27
+  },
+  {
+   "id": "svirfneblin",
+   "name": "Svirfneblin",
+   "book": "MotM",
+   "page": 17,
+   "note": "A duergar offshoot, not a gnome variant, and not a playable gnome subrace in 5e.",
+   "alsoCalled": [
+    "Deep Gnome",
+    "Deep Gnome (Svirfneblin)"
+   ]
+  },
+  {
+   "id": "orc",
+   "name": "Orc",
+   "book": "VGC",
+   "page": 182,
+   "note": "Darkvision, Menacing, Relentless Endurance and Savage Attacks. The app data omitted this race entirely."
+  },
+  {
+   "id": "goliath",
+   "name": "Goliath",
+   "book": "VGC",
+   "page": 166
+  },
+  {
+   "id": "kenku",
+   "name": "Kenku",
+   "book": "ERLW",
+   "page": 29
+  },
+  {
+   "id": "changeling",
+   "name": "Changeling",
+   "book": "VGC",
+   "page": 41
+  },
+  {
+   "id": "autognome",
+   "name": "Autognome",
+   "book": "MotM",
+   "page": null,
+   "note": "A construct race: a living automaton. Grants Darkvision."
+  }
+ ]
 }
