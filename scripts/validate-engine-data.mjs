@@ -225,7 +225,7 @@ const EFFECT_FIELDS = {
   skill_bonus: ["skills", "amount"],
   tool: ["tools", "proficiency"],
   spell_modifier: ["changes", "atLeastLevel", "cost"],
-  spell_grant: ["cantrip", "spells", "atLevel"],
+  spell_grant: ["cantrip", "spells", "atLevel", "count"],
   choice: ["of", "count", "atLevel", "from"],
   restriction: ["rules"],
   special: ["note", "reference"],

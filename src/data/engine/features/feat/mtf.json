@@ -392,8 +392,9 @@
             {
               "level": 1,
               "from": [
-                "sorcerer"
-              ]
+                "wizard"
+              ],
+              "count": 2
             }
           ],
           "note": "Your Constitution score is increased by 1. You learn the aberration cantrip, which you can cast at will, and you learn to cast two wizard spells of your choice that are cantrips, which you can cast at will. At 5th level, your Constitution increases by 1 again, and you gain a +2 bonus to spell attack rolls."
@@ -427,7 +428,7 @@
           ]
         }
       ],
-      "summary": "+1 Con, and cast two wizard cantrips at will",
+      "summary": "+1 Con, aberration cantrip at will, and two wizard cantrips at will",
       "text": "Your Constitution score is increased by 1. You learn to cast two wizard spells of your choice that are cantrips, which you can cast at will.",
       "source": {
         "book": "MTF",

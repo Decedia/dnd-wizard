@@ -250,8 +250,8 @@ export type Effect =
        * can already cast.
        */
       kind: "spell_grant";
-      cantrip?: { known: true };
-      spells?: { level: number; from: string[] }[];
+      cantrip?: { known: true; count?: number };
+      spells?: { level: number; from: string[]; count?: number; ritual?: boolean }[];
       atLevel?: number;
       note?: string;
     }

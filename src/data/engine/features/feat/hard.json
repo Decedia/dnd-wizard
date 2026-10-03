@@ -44,23 +44,28 @@
         {
           "kind": "spell_grant",
           "cantrip": {
-            "known": true
+            "known": true,
+            "count": 2
           },
           "spells": [
             {
               "level": 1,
               "from": [
-                "wizard",
+                "bard",
                 "cleric",
-                "druid"
-              ]
+                "druid",
+                "sorcerer",
+                "warlock",
+                "wizard"
+              ],
+              "count": 1
             }
           ],
-          "note": "You learn two spells from the wizard, cleric, or druid spell list, and they are always prepared. You can cast them without a spell slot. Once you gain a level in a casting class, you can swap either spell for a spell of the same level from that class's list."
+          "note": "Choose a class: bard, cleric, druid, sorcerer, warlock, or wizard. You learn two cantrips of your choice from that class's spell list. In addition, choose one 1st-level spell from that same list. You learn that spell and can cast it at its lowest level. Once you cast it, you must finish a long rest before you can cast it again. Your spellcasting ability for these spells depends on the class you chose: Charisma for bard, sorcerer, or warlock; Wisdom for cleric or druid; Intelligence for wizard."
         }
       ],
-      "summary": "Learn one cantrip and one 1st-level spell, castable without slots",
-      "text": "You learn two spells from the wizard, cleric, or druid spell list, and they are always prepared. You can cast them without a spell slot. Once you gain a level in a casting class, you can swap either spell for a spell of the same level from that class's list.",
+      "summary": "Learn two cantrips and one 1st-level spell from a chosen class; cast the 1st-level spell once per long rest",
+      "text": "Choose a class: bard, cleric, druid, sorcerer, warlock, or wizard. You learn two cantrips of your choice from that class's spell list. In addition, choose one 1st-level spell from that same list. You learn that spell and can cast it at its lowest level. Once you cast it, you must finish a long rest before you can cast it again. Your spellcasting ability for these spells depends on the class you chose: Charisma for bard, sorcerer, or warlock; Wisdom for cleric or druid; Intelligence for wizard.",
       "source": {
         "book": "PHB",
         "reference": "PHB Feat 166"

@@ -420,17 +420,14 @@
             {
               "level": 1,
               "from": [
+                "druid",
+                "fey",
                 "wizard"
-              ]
-            },
-            {
-              "level": 1,
-              "from": [
-                "wizard"
-              ]
+              ],
+              "count": 1
             }
           ],
-          "note": "You know the druidcraft cantrip, which you can cast at will, and two spells of your choice from the druid, fae, or wizard list. They are always prepared and castable without a slot. At 17th level, one of them is replaced."
+          "note": "You know the druidcraft cantrip, which you can cast at will. Choose a 1st-level spell from the druid, fey, or wizard spell list; it is always prepared and can be cast without a spell slot once per long rest. At 17th level, that spell is replaced by a 3rd-level spell from the same list."
         }
       ],
       "tiers": [
@@ -461,8 +458,8 @@
           ]
         }
       ],
-      "summary": "Druidcraft at will, plus two free always-prepared spells",
-      "text": "You know the druidcraft cantrip, which you can cast at will, and two spells of your choice from the druid, fae, or wizard list.",
+      "summary": "Druidcraft at will; choose one 1st-level druid/fey/wizard spell, always prepared, once per long rest",
+      "text": "You know the druidcraft cantrip, which you can cast at will. Choose a 1st-level spell from the druid, fey, or wizard spell list; it is always prepared and can be cast without a spell slot once per long rest. At 17th level, that spell is replaced by a 3rd-level spell from the same list.",
       "source": {
         "book": "TCE",
         "reference": "Tasha's Cauldron Feat 83"
@@ -692,19 +689,30 @@
       "effects": [
         {
           "kind": "spell_grant",
+          "cantrip": {
+            "known": true,
+            "count": 2
+          },
           "spells": [
             {
               "level": 1,
               "from": [
+                "bard",
+                "cleric",
+                "druid",
+                "sorcerer",
+                "warlock",
                 "wizard"
-              ]
+              ],
+              "count": 1,
+              "ritual": true
             }
           ],
-          "note": "You learn ritual casting as your spellcasting ability. You know the detect magic and find familiar cantrips, castable at will, and any spell of 1st level or higher with the ritual tag."
+          "note": "Choose a class: bard, cleric, druid, sorcerer, warlock, or wizard. You learn two cantrips of your choice from that class's spell list. In addition, choose one 1st-level spell with the ritual tag from that class's spell list. You can cast these spells using your spellcasting ability for this feat. You can also cast any ritual spell that has this spell list; you don't need to have it prepared, but you must expend a spell slot to cast it."
         }
       ],
-      "summary": "Learn ritual casting, detect magic and find familiar",
-      "text": "You learn ritual casting and can cast any spell with the ritual tag. You know the detect magic and find familiar cantrips, which you can cast at will.",
+      "summary": "Learn two cantrips and one 1st-level ritual spell from a chosen casting class; cast ritual spells from that class's list",
+      "text": "Choose a class: bard, cleric, druid, sorcerer, warlock, or wizard. You learn two cantrips of your choice from that class's spell list. In addition, choose one 1st-level spell with the ritual tag from that class's spell list. You can cast these spells using your spellcasting ability for this feat. You can also cast any ritual spell that has this spell list; you don't need to have it prepared, but you must expend a spell slot to cast it.",
       "source": {
         "book": "TCE",
         "reference": "Tasha's Cauldron Feat 85"
@@ -766,21 +774,17 @@
             {
               "level": 1,
               "from": [
+                "necromancy",
                 "wizard"
-              ]
-            },
-            {
-              "level": 1,
-              "from": [
-                "wizard"
-              ]
+              ],
+              "count": 1
             }
           ],
-          "note": "You know the shadow blade cantrip, which you can cast at will, and two spells of your choice from the necromancy or wizard list. They are always prepared and castable without a slot."
+          "note": "You know the shadow blade cantrip, which you can cast at will. Choose a 1st-level spell from the necromancy or wizard spell list; it is always prepared and can be cast without a spell slot once per long rest."
         }
       ],
-      "summary": "Shadow blade at will, plus two free necromancy or wizard spells",
-      "text": "You know the shadow blade cantrip, which you can cast at will, and two spells of your choice from the necromancy or wizard list.",
+      "summary": "Shadow blade at will; choose one 1st-level necromancy/wizard spell, always prepared, once per long rest",
+      "text": "You know the shadow blade cantrip, which you can cast at will. Choose a 1st-level spell from the necromancy or wizard spell list; it is always prepared and can be cast without a spell slot once per long rest.",
       "source": {
         "book": "TCE",
         "reference": "Tasha's Cauldron Feat 85"
