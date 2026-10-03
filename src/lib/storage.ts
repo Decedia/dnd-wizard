@@ -66,7 +66,7 @@ export interface Character {
   attacks: { id: string; name: string; attackBonus: number; damageType: string; sneakAttack?: string; source?: "weapon" | "class" | "grapple" | "shove"; classFeatureName?: string; description?: string }[];
   otherProficiencies: string;
   languages: string[];
-  spells: { id: string; name: string; level: number; source: "srd" | "custom"; srdSpellName?: string; damageDice?: string; damageType?: string; description?: string; summary?: string }[];
+  spells: { id: string; name: string; level: number; source: "srd" | "custom"; srdSpellName?: string; damageDice?: string; damageType?: string; description?: string; summary?: string; grantsFeatureId?: string }[];
   spellcastingAbility: string;
   spellSaveDc: number;
   spellAttackBonus: number;

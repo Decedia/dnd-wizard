@@ -6,6 +6,7 @@ import { SectionCard } from "./SectionCard";
 import { useSRD } from "@/contexts/SRDContext";
 import type { Character } from "@/lib/storage";
 import { getModifier, getMaxPreparedSpells, isPreparationCaster, getDomainSpellNames, getCircleSpells, getMaxSpellsKnown, getMaxCantripsKnown, getMaxSpellLevel } from "@/lib/storage";
+import { getStaticSpells, deduplicateSpells } from "@/lib/srd-client";
 import { LightningIcon as Lightning, PlusIcon as Plus, CheckIcon as Check, CircleIcon as Circle, XIcon as X, ClockIcon as Clock, SparklesIcon as Sparkle, CaretRightIcon as CaretRight } from "@/components/icons";
 import { SpellSelectionModal } from "../modals/SpellSelectionModal";
 import { BUFF_DEFINITIONS, type BuffDefinition, parseDurationToTurns, advanceTurn } from "@/lib/spellEffects";
@@ -15,6 +16,8 @@ import { getStatBadgeStyle, getSchoolBadgeStyle } from "@/lib/badge-styles";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { DiceText } from "@/components/DiceText";
+import { buildDataset, findEngineFeature } from "@/data/engine/index";
+import { getFeatSpellSelections, type SpellGrantSelection } from "@/lib/feat-spell-grants";
 
 interface SpellsSectionProps {
   character: Character;
@@ -54,7 +57,7 @@ interface UnifiedSpell {
 
 export function SpellsSection({ character, onChange, editMode = true }: SpellsSectionProps) {
   const { onFieldBlur, showDescriptions } = useCharacterSheet();
-  const { t, tDesc } = useLanguage();
+  const { t, tDesc, language } = useLanguage();
   const { data } = useSRD();
   const srdSpells = data?.spells || [];
   const [showSpellModal, setShowSpellModal] = useState(false);
@@ -126,9 +129,15 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
     });
   }, [character.spells, srdSpells]);
 
+  const featSpellIds = useMemo(
+    () => new Set((character.spells ?? []).filter((s) => s.grantsFeatureId).map((s) => s.id)),
+    [character.spells]
+  );
+
   const spellsByLevel = useMemo(() => {
     const map = new Map<number, UnifiedSpell[]>();
     for (const spell of unifiedSpells) {
+      if (featSpellIds.has(spell.id)) continue;
       const existing = map.get(spell.level) || [];
       existing.push(spell);
       map.set(spell.level, existing);
@@ -146,7 +155,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
       });
     }
     return map;
-  }, [unifiedSpells]);
+  }, [unifiedSpells, featSpellIds]);
 
   const levels = useMemo(() => {
     return Array.from(spellsByLevel.keys()).sort((a, b) => a - b);
@@ -233,6 +242,96 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
     return desc.slice(0, 180);
   };
 
+  const dataset = buildDataset();
+
+  const featGrantedSpells = useMemo(() => {
+    const list: Array<{ spell: UnifiedSpell; engineId: string; featureName: string; owner: string }> = [];
+    for (const s of character.spells ?? []) {
+      if (!s.grantsFeatureId) continue;
+      const engineFeature = dataset.byId.get(s.grantsFeatureId);
+      if (!engineFeature) continue;
+      list.push({
+        spell: s,
+        engineId: s.grantsFeatureId,
+        featureName: engineFeature.name,
+        owner: engineFeature.owner,
+      });
+    }
+    return list;
+  }, [character.spells, dataset]);
+
+  const getFeatsWithUnfilledSelections = () => {
+    const result: Array<{ engineId: string; featureName: string; owner: string; selections: Array<{ selection: SpellGrantSelection; chosen: number }> }> = [];
+    const chosenByFeat = new Map<string, Map<string, number>>();
+
+    for (const fg of featGrantedSpells) {
+      const f = character.features.find((feat) => feat.engineId === fg.engineId);
+      if (!f?.engineId) continue;
+      const engineFeature = dataset.byId.get(fg.engineId);
+      if (!engineFeature) continue;
+      const selections = getFeatSpellSelections(engineFeature);
+      const m = chosenByFeat.get(fg.engineId) ?? new Map();
+      for (const s of selections) {
+        if (fg.spell.level === s.level) {
+          const key = `${s.kind}|${s.level}`;
+          m.set(key, (m.get(key) ?? 0) + 1);
+        }
+      }
+      chosenByFeat.set(fg.engineId, m);
+    }
+
+    for (const f of character.features ?? []) {
+      if (!f.engineId) continue;
+      const engineFeature = dataset.byId.get(f.engineId);
+      if (!engineFeature) continue;
+      const selections = getFeatSpellSelections(engineFeature);
+      if (selections.length === 0) continue;
+      const chosen = chosenByFeat.get(f.engineId) ?? new Map();
+      const unfilled: Array<{ selection: SpellGrantSelection; chosen: number }> = [];
+      for (const s of selections) {
+        const key = `${s.kind}|${s.level}`;
+        const n = chosen.get(key) ?? 0;
+        if (n < s.count) unfilled.push({ selection: s, chosen: n });
+      }
+      if (unfilled.length > 0) {
+        result.push({ engineId: f.engineId, featureName: engineFeature.name, owner: engineFeature.owner, selections: unfilled });
+      }
+    }
+    return result;
+  };
+
+  const getSpellForSelection = (selection: SpellGrantSelection) => {
+    const from = selection.from;
+    const filtered = deduplicateSpells(
+      getStaticSpells(character.sources, character.ruleset, language).filter(
+        (s) => from.some((c) => s.classes?.map((x) => x.toLowerCase()).includes(c.toLowerCase())) && s.level === selection.level
+      )
+    );
+    return filtered;
+  };
+
+  const addFeatSpell = (featEngineId: string, selection: SpellGrantSelection, spellName: string) => {
+    const spellEntry = getSpellForSelection(selection).find((s) => s.name === spellName);
+    if (!spellEntry) return;
+    const featId = featEngineId.replace(/\./g, "_");
+    const id = `spell-${spellEntry.index || spellEntry.name}-${selection.level}-${featId}`;
+    const newSpell = {
+      id,
+      name: spellEntry.name,
+      level: spellEntry.level,
+      source: "srd" as const,
+      srdSpellName: spellEntry.name,
+      grantsFeatureId: featEngineId,
+      description: Array.isArray(spellEntry.description) ? spellEntry.description.join("\n") : (spellEntry.description || ""),
+    };
+    const newSpells = [...(character.spells ?? []), newSpell];
+    if (selection.kind === "cantrip") {
+      onChange({ spells: newSpells, cantrips: [...(character.cantrips ?? []), { id, name: spellEntry.name }] });
+    } else {
+      onChange({ spells: newSpells });
+    }
+  };
+
   return (
     <SectionCard id="spells" title={t("section.spells")} icon={<Lightning className="h-5 w-5" />}>
       {preparationCaster && (
@@ -252,6 +351,114 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
           <span className="text-sm font-bold text-ink">{t("sheet.cantrips")}: {currentCantripsKnown}/{maxCantripsKnown}</span>
         </div>
       )}
+
+      {featGrantedSpells.length > 0 && (
+        <div className="mb-4">
+          <div className="text-[10px] font-bold text-[var(--color-text-secondary)] uppercase tracking-wider mb-2">
+            Learned via Feats
+          </div>
+          {(() => {
+            const byFeat = new Map<string, typeof featGrantedSpells>();
+            for (const f of featGrantedSpells) {
+              const group = byFeat.get(f.engineId) ?? [];
+              group.push(f);
+              byFeat.set(f.engineId, group);
+            }
+            return [...byFeat.entries()].map(([engineId, group]) => {
+              const feat = dataset.byId.get(engineId);
+              const entries = group.map((f) => (
+                <div key={f.spell.id} className="flex items-center gap-2 py-1">
+                  <span className="text-xs text-[var(--color-text-primary)]">{f.spell.name}</span>
+                  <span className="text-[10px] px-1.5 py-0.5 rounded border border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text-muted)]">
+                    Level {f.spell.level}
+                  </span>
+                  <span className="text-[10px] text-[var(--color-accent-indigo-600)] font-semibold">
+                    via {f.featureName}
+                  </span>
+                </div>
+              ));
+              return (
+                <div key={engineId} className="surface bg-paper-muted px-4 py-3 rounded-2xl">
+                  <div className="text-xs font-bold text-[var(--color-text-primary)] mb-2">
+                    {feat ? feat.name : engineId}
+                  </div>
+                  {entries}
+                </div>
+              );
+            });
+          })()}
+        </div>
+      )}
+
+      {editMode && (() => {
+        const unfilled = getFeatsWithUnfilledSelections();
+        if (unfilled.length === 0) return null;
+        return (
+          <div className="mb-4">
+            <div className="text-[10px] font-bold text-[var(--color-text-secondary)] uppercase tracking-wider mb-2">
+              Manage feat spell selections
+            </div>
+            {unfilled.map((feat) => {
+              const cls = feat.owner.charAt(0).toUpperCase() + feat.owner.slice(1);
+              return (
+                <div key={feat.engineId} className="surface bg-paper-muted px-4 py-3 rounded-2xl mb-3">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="text-xs font-bold text-[var(--color-text-primary)]">
+                      {feat.featureName}
+                    </div>
+                  </div>
+                  {feat.selections.map((sel, idx) => {
+                    const spells = getSpellForSelection(sel.selection);
+                    const label =
+                      sel.selection.kind === "cantrip"
+                        ? "cantrips"
+                        : `${sel.selection.level}${sel.selection.level === 1 ? "st" : sel.selection.level === 2 ? "nd" : sel.selection.level === 3 ? "rd" : "th"}-level spells`;
+                    const classes = sel.selection.from.map((c) => c.charAt(0).toUpperCase() + c.slice(1)).join(", ");
+                    return (
+                      <div key={idx} className="mb-3 last:mb-0">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="text-[10px] font-bold text-[var(--color-text-muted)] uppercase tracking-wider">
+                            {label}
+                          </span>
+                          <span className="text-xs text-[var(--color-text-secondary)]">
+                            from {classes}
+                          </span>
+                          <span className="text-[10px] font-bold text-[var(--color-text-secondary)] ml-auto">
+                            {sel.chosen} / {sel.selection.count} chosen
+                          </span>
+                        </div>
+                        <div className="flex flex-wrap gap-1.5">
+                          {spells.map((s) => {
+                            const already = featGrantedSpells.some(
+                              (f) => f.spell.name === s.name && f.spell.level === s.level
+                            );
+                            const disabled = already || sel.chosen >= sel.selection.count;
+                            return (
+                              <button
+                                key={s.name}
+                                type="button"
+                                disabled={disabled}
+                                onClick={() => addFeatSpell(feat.engineId, sel.selection, s.name)}
+                                className={`text-[10px] px-2 py-1 rounded border transition-colors ${
+                                  disabled
+                                    ? "bg-[var(--color-bg)] text-[var(--color-text-muted)] border-[var(--color-border)]"
+                                    : "bg-[var(--color-surface)] text-[var(--color-text-primary)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                                }`}
+                              >
+                                {s.name}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })}
+          </div>
+        );
+      })()}
 
       {levels.length > 0 && (
         <div className="flex gap-1 mb-4 overflow-x-auto pb-1">
