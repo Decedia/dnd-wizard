@@ -37,7 +37,8 @@ export function FeatSelectionModal({ onSelect, onClose, selectedFeat, sources, d
   const availableSources = useMemo(() => {
     const sourceSet = new Set<string>();
     for (const feat of feats) {
-      if (feat.source) sourceSet.add(feat.source);
+      const src = feat.book || (typeof feat.source === "string" ? feat.source : (feat as any).source?.name);
+      if (src) sourceSet.add(src);
     }
     return Array.from(sourceSet).sort();
   }, [feats]);
@@ -45,7 +46,7 @@ export function FeatSelectionModal({ onSelect, onClose, selectedFeat, sources, d
   const filteredFeats = useMemo(() => {
     let base = feats.filter((feat) => !disabledFeatNames.has(feat.name));
     if (sourceFilter !== "ALL") {
-      base = base.filter((feat) => feat.source === sourceFilter);
+      base = base.filter((feat) => (feat.book || (typeof feat.source === "string" ? feat.source : (feat as any).source?.name)) === sourceFilter);
     }
     if (prereqFilter === "with") {
       base = base.filter((feat) => feat.prerequisites !== null);
@@ -154,7 +155,7 @@ export function FeatSelectionModal({ onSelect, onClose, selectedFeat, sources, d
         <div className="space-y-2">
           {filteredFeats.map((feat) => {
             const isSelected = pendingSelection === feat.name;
-            const sourceLabel = typeof feat.source === "string" ? feat.source : (feat as any).source?.name;
+            const sourceLabel = feat.book || (typeof feat.source === "string" ? feat.source : (feat as any).source?.name);
             return (
               <SplitSelectionCard
                 key={feat.name}
