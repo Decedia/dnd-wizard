@@ -837,7 +837,7 @@ export function getStaticFeats(sources?: string[], ruleset?: string, locale: str
       return true;
     });
   }
-  const sourceFiltered = filtered.filter((f) => sources.includes(f.source || "PHB"));
+  const sourceFiltered = filtered.filter((f) => sources.includes(f.book || (typeof (f as any).source === "string" ? (f as any).source : (f as any).source?.name) || "PHB"));
   const seen = new Set<string>();
   return sourceFiltered.filter((f) => {
     if (seen.has(f.name)) return false;
