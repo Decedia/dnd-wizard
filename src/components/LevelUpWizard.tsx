@@ -576,7 +576,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     return AUTO_GRANTED_SPELLS[key]?.[level] || [];
   }, []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!subclassSelection) return;
     const autoSpells: Record<number, string[]> = {};
     for (let lvl = currentLevel; lvl <= targetLevel; lvl++) {
@@ -587,19 +587,21 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     }
     const entries = Object.entries(autoSpells);
     if (entries.length === 0) return;
-    setSpellSelections((prev) => {
-      const next = { ...prev };
-      for (const [lvl, spells] of entries) {
-        const level = Number(lvl);
-        const existing = next[level] || [];
-        const newSpells = spells.filter((s) => !existing.includes(s));
-        if (newSpells.length > 0) {
-          next[level] = [...existing, ...newSpells];
+    requestAnimationFrame(() => {
+      setSpellSelections((prev) => {
+        const next = { ...prev };
+        for (const [lvl, spells] of entries) {
+          const level = Number(lvl);
+          const existing = next[level] || [];
+          const newSpells = spells.filter((s) => !existing.includes(s));
+          if (newSpells.length > 0) {
+            next[level] = [...existing, ...newSpells];
+          }
         }
-      }
-      return next;
+        return next;
+      });
     });
-  }, [subclassSelection, currentLevel]);
+  }, [subclassSelection, currentLevel, getAutoGrantedSpells, targetLevel]);
 
   useEffect(() => {
     if (targetLevel > prevTargetLevelRef.current) {
@@ -2528,6 +2530,7 @@ function LevelCard({
             ...(character.features || []).filter((f: any) => f.name && f.source !== "custom").map((f: any) => f.name),
             ...Object.values(character.featureSelections || {}).flat(),
           ]}
+          disableFeatsWithPrerequisites
           onSelect={(feat) => {
             onAsiChange({ feat: feat.name });
             setShowAsiFeatModal(false);

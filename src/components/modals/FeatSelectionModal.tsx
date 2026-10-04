@@ -14,7 +14,7 @@ interface FeatSelectionModalProps {
   selectedFeat?: string;
   sources?: string[];
   disabledFeats?: string[];
-  hideFeatsWithPrerequisites?: boolean;
+  disableFeatsWithPrerequisites?: boolean;
 }
 
 function pillClass(active: boolean) {
@@ -25,7 +25,7 @@ function pillClass(active: boolean) {
   }`;
 }
 
-export function FeatSelectionModal({ onSelect, onClose, selectedFeat, sources, disabledFeats = [], hideFeatsWithPrerequisites = false }: FeatSelectionModalProps) {
+export function FeatSelectionModal({ onSelect, onClose, selectedFeat, sources, disabledFeats = [], disableFeatsWithPrerequisites = false }: FeatSelectionModalProps) {
   const { t } = useLanguage();
   const feats = getStaticFeats(sources);
   const [search, setSearch] = useState("");
@@ -33,7 +33,17 @@ export function FeatSelectionModal({ onSelect, onClose, selectedFeat, sources, d
   const [sourceFilter, setSourceFilter] = useState<string>("ALL");
   const [prereqFilter, setPrereqFilter] = useState<"all" | "with" | "without">("all");
 
-  const disabledFeatNames = useMemo(() => new Set(disabledFeats), [disabledFeats]);
+  const disabledFeatNames = useMemo(() => {
+    const base = new Set(disabledFeats);
+    if (disableFeatsWithPrerequisites) {
+      for (const feat of feats) {
+        if (featHasPrerequisite(feat.name)) {
+          base.add(feat.name);
+        }
+      }
+    }
+    return base;
+  }, [disabledFeats, feats, disableFeatsWithPrerequisites]);
 
   const availableSources = useMemo(() => {
     const sourceSet = new Set<string>();
@@ -46,9 +56,6 @@ export function FeatSelectionModal({ onSelect, onClose, selectedFeat, sources, d
 
   const filteredFeats = useMemo(() => {
     let base = feats.filter((feat) => !disabledFeatNames.has(feat.name));
-    if (hideFeatsWithPrerequisites) {
-      base = base.filter((feat) => !featHasPrerequisite(feat.name));
-    }
     if (sourceFilter !== "ALL") {
       base = base.filter((feat) => (feat.book || (typeof feat.source === "string" ? feat.source : (feat as any).source?.name)) === sourceFilter);
     }
@@ -60,7 +67,7 @@ export function FeatSelectionModal({ onSelect, onClose, selectedFeat, sources, d
     if (!search.trim()) return base;
     const q = search.toLowerCase();
     return base.filter((feat) => feat.name.toLowerCase().includes(q) || (feat.description || "").toLowerCase().includes(q));
-  }, [feats, search, disabledFeatNames, hideFeatsWithPrerequisites, sourceFilter, prereqFilter]);
+  }, [feats, search, disabledFeatNames, sourceFilter, prereqFilter]);
 
   const handleConfirm = () => {
     const feat = feats.find((f) => f.name === pendingSelection);
@@ -159,6 +166,7 @@ export function FeatSelectionModal({ onSelect, onClose, selectedFeat, sources, d
         <div className="space-y-2">
           {filteredFeats.map((feat) => {
             const isSelected = pendingSelection === feat.name;
+            const isDisabled = disableFeatsWithPrerequisites && featHasPrerequisite(feat.name);
             const sourceLabel = feat.book || (typeof feat.source === "string" ? feat.source : (feat as any).source?.name);
             return (
               <SplitSelectionCard
@@ -168,7 +176,12 @@ export function FeatSelectionModal({ onSelect, onClose, selectedFeat, sources, d
                 badges={sourceLabel && sourceLabel !== "PHB" ? [sourceLabel] : []}
                 isRecommended={isRecommended("feat", feat.name)}
                 isSelected={isSelected}
-                onSelect={() => setPendingSelection(feat.name)}
+                disabled={isDisabled}
+                onSelect={() => {
+                  if (!isDisabled) {
+                    setPendingSelection(feat.name);
+                  }
+                }}
                 infoType="modal"
                 modalContent={
                   <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">
