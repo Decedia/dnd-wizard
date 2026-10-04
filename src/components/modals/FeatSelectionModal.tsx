@@ -3,7 +3,7 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useState, useMemo } from "react";
 import { MagnifyingGlassIcon as MagnifyingGlass, CheckIcon as Check } from "@/components/icons";
-import { getStaticFeats, type SRDFeat } from "@/lib/srd-client";
+import { getStaticFeats, featHasPrerequisite, type SRDFeat } from "@/lib/srd-client";
 import { isRecommended } from "@/lib/recommendations";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
@@ -47,7 +47,7 @@ export function FeatSelectionModal({ onSelect, onClose, selectedFeat, sources, d
   const filteredFeats = useMemo(() => {
     let base = feats.filter((feat) => !disabledFeatNames.has(feat.name));
     if (hideFeatsWithPrerequisites) {
-      base = base.filter((feat) => !feat.prerequisites);
+      base = base.filter((feat) => !featHasPrerequisite(feat.name));
     }
     if (sourceFilter !== "ALL") {
       base = base.filter((feat) => (feat.book || (typeof feat.source === "string" ? feat.source : (feat as any).source?.name)) === sourceFilter);

@@ -2,6 +2,8 @@ import racesDataEn from "@/data/en/2014_races.json";
 import racesDataId from "@/data/id/2014_races.json";
 const racesDataMap = { en: racesDataEn, id: racesDataId } as const;
 
+import { buildDataset, findEngineFeature } from "@/data/engine/index";
+
 import classesDataEn from "@/data/en/2014_classes.json";
 import classesDataId from "@/data/id/2014_classes.json";
 const classesDataMap = { en: classesDataEn, id: classesDataId } as const;
@@ -948,4 +950,28 @@ export function getWizardSpellsByLevel(level: number, sources?: string[], locale
     .filter((s: any) => s.level === level)
     .map((s: any) => s.name)
     .sort();
+}
+
+const enginePrereqCache: { [featName: string]: boolean } = {};
+
+export function featHasPrerequisite(name: string): boolean {
+  if (enginePrereqCache[name] !== undefined) return enginePrereqCache[name];
+
+  // First, check engine data for a `requires` field.
+  try {
+    const dataset = buildDataset();
+    const engineFeat = findEngineFeature(undefined, name, dataset);
+    if (engineFeat?.requires) {
+      enginePrereqCache[name] = true;
+      return true;
+    }
+  } catch {
+    // Engine data may not be available in all contexts.
+  }
+
+  // Fall back to SRD data.
+  const srdFeat = getStaticFeat(name);
+  const hasPrereq = !!(srdFeat?.prerequisites);
+  enginePrereqCache[name] = hasPrereq;
+  return hasPrereq;
 }
