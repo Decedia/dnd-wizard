@@ -16,20 +16,46 @@ interface FeatSelectionModalProps {
   disabledFeats?: string[];
 }
 
+function pillClass(active: boolean) {
+  return `inline-flex items-center rounded-full border px-2.5 py-1 text-[10px] font-semibold transition-all ${
+    active
+      ? "bg-[var(--color-accent-indigo-600)] text-white border-transparent"
+      : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+  }`;
+}
+
 export function FeatSelectionModal({ onSelect, onClose, selectedFeat, sources, disabledFeats = [] }: FeatSelectionModalProps) {
   const { t } = useLanguage();
   const feats = getStaticFeats(sources);
   const [search, setSearch] = useState("");
   const [pendingSelection, setPendingSelection] = useState<string | null>(selectedFeat || null);
+  const [sourceFilter, setSourceFilter] = useState<string>("ALL");
+  const [prereqFilter, setPrereqFilter] = useState<"all" | "with" | "without">("all");
 
   const disabledFeatNames = useMemo(() => new Set(disabledFeats), [disabledFeats]);
 
+  const availableSources = useMemo(() => {
+    const sourceSet = new Set<string>();
+    for (const feat of feats) {
+      if (feat.source) sourceSet.add(feat.source);
+    }
+    return Array.from(sourceSet).sort();
+  }, [feats]);
+
   const filteredFeats = useMemo(() => {
-    const base = feats.filter((feat) => !disabledFeatNames.has(feat.name));
+    let base = feats.filter((feat) => !disabledFeatNames.has(feat.name));
+    if (sourceFilter !== "ALL") {
+      base = base.filter((feat) => feat.source === sourceFilter);
+    }
+    if (prereqFilter === "with") {
+      base = base.filter((feat) => feat.prerequisites !== null);
+    } else if (prereqFilter === "without") {
+      base = base.filter((feat) => feat.prerequisites === null);
+    }
     if (!search.trim()) return base;
     const q = search.toLowerCase();
     return base.filter((feat) => feat.name.toLowerCase().includes(q) || (feat.description || "").toLowerCase().includes(q));
-  }, [feats, search, disabledFeatNames]);
+  }, [feats, search, disabledFeatNames, sourceFilter, prereqFilter]);
 
   const handleConfirm = () => {
     const feat = feats.find((f) => f.name === pendingSelection);
@@ -77,6 +103,50 @@ export function FeatSelectionModal({ onSelect, onClose, selectedFeat, sources, d
             placeholder="Search feats..."
             className="w-full pl-10 pr-4 py-2 text-sm bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-indigo-500)] focus:border-transparent"
           />
+        </div>
+        <div className="space-y-2 mb-3">
+          <div className="flex gap-1.5 overflow-x-auto scrollbar-hide pb-0.5">
+            <button
+              type="button"
+              onClick={() => setSourceFilter("ALL")}
+              className={pillClass(sourceFilter === "ALL")}
+            >
+              All Sources
+            </button>
+            {availableSources.map((src) => (
+              <button
+                key={src}
+                type="button"
+                onClick={() => setSourceFilter(src)}
+                className={pillClass(sourceFilter === src)}
+              >
+                {src}
+              </button>
+            ))}
+          </div>
+          <div className="flex gap-1.5">
+            <button
+              type="button"
+              onClick={() => setPrereqFilter("all")}
+              className={pillClass(prereqFilter === "all")}
+            >
+              All Feats
+            </button>
+            <button
+              type="button"
+              onClick={() => setPrereqFilter("with")}
+              className={pillClass(prereqFilter === "with")}
+            >
+              With Prereq
+            </button>
+            <button
+              type="button"
+              onClick={() => setPrereqFilter("without")}
+              className={pillClass(prereqFilter === "without")}
+            >
+              No Prereq
+            </button>
+          </div>
         </div>
         {filteredFeats.length === 0 && (
           <p className="text-sm text-[var(--color-text-muted)] text-center py-6">No feats found.</p>
