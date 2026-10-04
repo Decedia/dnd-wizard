@@ -220,6 +220,7 @@ export function HumanVariantConfig({
           selectedFeat={feat}
           sources={[]}
           disabledFeats={disabledFeats}
+          hideFeatsWithPrerequisites
           onSelect={(selected: SRDFeat) => {
             selectFeat(selected.name);
             setFeatModalOpen(false);

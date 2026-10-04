@@ -14,6 +14,7 @@ interface FeatSelectionModalProps {
   selectedFeat?: string;
   sources?: string[];
   disabledFeats?: string[];
+  hideFeatsWithPrerequisites?: boolean;
 }
 
 function pillClass(active: boolean) {
@@ -24,7 +25,7 @@ function pillClass(active: boolean) {
   }`;
 }
 
-export function FeatSelectionModal({ onSelect, onClose, selectedFeat, sources, disabledFeats = [] }: FeatSelectionModalProps) {
+export function FeatSelectionModal({ onSelect, onClose, selectedFeat, sources, disabledFeats = [], hideFeatsWithPrerequisites = false }: FeatSelectionModalProps) {
   const { t } = useLanguage();
   const feats = getStaticFeats(sources);
   const [search, setSearch] = useState("");
@@ -45,6 +46,9 @@ export function FeatSelectionModal({ onSelect, onClose, selectedFeat, sources, d
 
   const filteredFeats = useMemo(() => {
     let base = feats.filter((feat) => !disabledFeatNames.has(feat.name));
+    if (hideFeatsWithPrerequisites) {
+      base = base.filter((feat) => !feat.prerequisites);
+    }
     if (sourceFilter !== "ALL") {
       base = base.filter((feat) => (feat.book || (typeof feat.source === "string" ? feat.source : (feat as any).source?.name)) === sourceFilter);
     }
@@ -56,7 +60,7 @@ export function FeatSelectionModal({ onSelect, onClose, selectedFeat, sources, d
     if (!search.trim()) return base;
     const q = search.toLowerCase();
     return base.filter((feat) => feat.name.toLowerCase().includes(q) || (feat.description || "").toLowerCase().includes(q));
-  }, [feats, search, disabledFeatNames, sourceFilter, prereqFilter]);
+  }, [feats, search, disabledFeatNames, hideFeatsWithPrerequisites, sourceFilter, prereqFilter]);
 
   const handleConfirm = () => {
     const feat = feats.find((f) => f.name === pendingSelection);
