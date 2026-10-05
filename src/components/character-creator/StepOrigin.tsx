@@ -135,52 +135,52 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
   return (
     <div className="space-y-3">
       <div className="mb-6">
-        <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">Identitas & Asal</h1>
-        <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">Tentukan nama, kelas, dan ras untuk memulai pahlawanmu.</p>
+        <h1 className="text-2xl font-black text-[var(--color-text-primary)] tracking-tight">{t("origin.title", "Identitas & Asal")}</h1>
+        <p className="text-sm text-[var(--color-text-secondary)] mt-1 leading-relaxed">{t("origin.hint", "Tentukan nama, kelas, dan ras untuk memulai pahlawanmu.")}</p>
       </div>
 
       <div className="mb-8">
-        <label className="block text-xs font-bold tracking-widest text-slate-500 dark:text-slate-400 mb-2">NAMA KARAKTER</label>
+        <label className="block text-xs font-bold tracking-widest text-[var(--color-text-secondary)] mb-2">{t("origin.characterNameRequired", "NAMA KARAKTER")}</label>
         <input 
           type="text" 
-          placeholder="Masukkan nama..." 
+          placeholder={t("origin.enterCharacterName", "Masukkan nama...")}
           value={characterName}
           onChange={(e) => handleNameChange(e.target.value)}
-          className="w-full bg-slate-50 dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-800 focus:border-indigo-500 dark:focus:border-indigo-500 rounded-2xl py-3.5 px-4 text-base font-semibold text-slate-900 dark:text-white placeholder:text-slate-400 transition-colors outline-none" 
+          className="w-full bg-[var(--color-bg)] border-2 border-[var(--color-border)] focus:border-[var(--color-accent-indigo-500)] rounded-2xl py-3.5 px-4 text-base font-semibold text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] transition-colors outline-none" 
         />
       </div>
 
       <div className="mb-8">
-        <h2 className="text-xs font-bold tracking-widest text-slate-500 dark:text-slate-400 mb-3">PILIH KELAS & RAS</h2>
+        <h2 className="text-xs font-bold tracking-widest text-[var(--color-text-secondary)] mb-3">{t("creator.selectClassRace", "PILIH KELAS & RAS")}</h2>
         
         {/* Class Card */}
         <div 
           onClick={() => setClassModalOpen(true)}
-          className="group border-2 border-dashed border-indigo-300 dark:border-indigo-700 hover:border-indigo-500 bg-white dark:bg-slate-900 rounded-2xl p-4 flex items-center gap-4 cursor-pointer active:scale-[0.98] transition-all mb-3"
+          className="group border-2 border-dashed border-[var(--color-border)] hover:border-[var(--color-accent-indigo-500)] bg-[var(--color-surface)] rounded-2xl p-4 flex items-center gap-4 cursor-pointer active:scale-[0.98] transition-all mb-3"
         >
-          <div className="h-12 w-12 rounded-xl bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
+          <div className="h-12 w-12 rounded-xl bg-[var(--color-accent-indigo-50)] text-[var(--color-accent-indigo-600)] flex items-center justify-center shrink-0">
             <Sword size={24} weight="duotone" />
           </div>
           <div className="flex-1">
-            <h3 className="font-bold text-slate-800 dark:text-slate-100 text-lg">Pilih Kelas</h3>
-            <p className="text-xs text-slate-500">Fighter, Wizard, Rogue...</p>
+            <h3 className="font-bold text-[var(--color-text-primary)] text-lg">{t("origin.selectClass", "Pilih Kelas")}</h3>
+            <p className="text-xs text-[var(--color-text-secondary)]">{t("origin.classExamples", "Fighter, Wizard, Rogue...")}</p>
           </div>
-          <CaretRight className="text-slate-300 dark:text-slate-600 group-hover:text-indigo-500 transition-colors" size={20} weight="bold" />
+          <CaretRight className="text-[var(--color-text-muted)] group-hover:text-[var(--color-accent-indigo-500)] transition-colors" size={20} weight="bold" />
         </div>
 
         {/* Race Card */}
         <div 
           onClick={() => setRaceModalOpen(true)}
-          className="group border-2 border-dashed border-emerald-300 dark:border-emerald-700 hover:border-emerald-500 bg-white dark:bg-slate-900 rounded-2xl p-4 flex items-center gap-4 cursor-pointer active:scale-[0.98] transition-all"
+          className="group border-2 border-dashed border-[var(--color-border)] hover:border-[var(--color-accent-teal-500)] bg-[var(--color-surface)] rounded-2xl p-4 flex items-center gap-4 cursor-pointer active:scale-[0.98] transition-all"
         >
-          <div className="h-12 w-12 rounded-xl bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
+          <div className="h-12 w-12 rounded-xl bg-[var(--color-accent-teal-50)] text-[var(--color-accent-teal-600)] flex items-center justify-center shrink-0">
             <Users size={24} weight="duotone" />
           </div>
           <div className="flex-1">
-            <h3 className="font-bold text-slate-800 dark:text-slate-100 text-lg">Pilih Ras</h3>
-            <p className="text-xs text-slate-500">Manusia, Elf, Dwarf...</p>
+            <h3 className="font-bold text-[var(--color-text-primary)] text-lg">{t("origin.selectRace", "Pilih Ras")}</h3>
+            <p className="text-xs text-[var(--color-text-secondary)]">{t("origin.raceExamples", "Manusia, Elf, Dwarf...")}</p>
           </div>
-          <CaretRight className="text-slate-300 dark:text-slate-600 group-hover:text-emerald-500 transition-colors" size={20} weight="bold" />
+          <CaretRight className="text-[var(--color-text-muted)] group-hover:text-[var(--color-accent-teal-500)] transition-colors" size={20} weight="bold" />
         </div>
       </div>
 
