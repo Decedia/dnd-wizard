@@ -1,183 +1,37 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { UsersIcon as Users, StarIcon as Star, PersonIcon, BarbarianIcon, MusicNotesIcon, ClericIcon, DruidIcon, FighterIcon, MonkIcon, PaladinIcon, RangerIcon, RogueIcon, SparkleIcon, WarlockIcon, WizardStaffIcon, GearGiIcon as ArtificerIcon, SwordIcon, HumanIcon, ElfIcon, DwarfIcon, GnomeIcon, DragonHeadIcon, GoblinIcon, DevilMaskIcon, KenkuIcon, LizardfolkIcon } from "@/components/icons";
-import { StepCard } from "./StepCard";
-import { getStaticClasses, getStaticRaces, getStaticSubclasses, getStaticFeat, type SRDClass, type SRDRace } from "@/lib/srd-client";
-import { SourceBadge } from "../SourceBadge";
-import { NewPlayerTips } from "@/components/NewPlayerTips";
+import { Sword, Users, CaretRight } from "@phosphor-icons/react";
+import { getStaticClasses, getStaticRaces, type SRDClass, type SRDRace } from "@/lib/srd-client";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
-import { SKILLS } from "@/lib/storage";
-import { isRecommended } from "@/lib/recommendations";
-import { BasePopup } from "@/components/BasePopup";
 import { ClassSelectionModal } from "../modals/ClassSelectionModal";
 import { RaceSelectionModal } from "../modals/RaceSelectionModal";
-
-const CLASS_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
-  Barbarian: BarbarianIcon,
-  Bard: MusicNotesIcon,
-  Cleric: ClericIcon,
-  Druid: DruidIcon,
-  Fighter: FighterIcon,
-  Monk: MonkIcon,
-  Paladin: PaladinIcon,
-  Ranger: RangerIcon,
-  Rogue: RogueIcon,
-  Sorcerer: SparkleIcon,
-  Warlock: WarlockIcon,
-  Wizard: WizardStaffIcon,
-  Artificer: ArtificerIcon,
-};
-
-const RACE_SKIN_COLORS: Record<string, string> = {
-  Human: "#f1c27d",
-  Elf: "#ffdbac",
-  Dwarf: "#d2a679",
-  Halfling: "#ffdbac",
-  Dragonborn: "#cd7f32",
-  Gnome: "#ffdbac",
-  "Half-Elf": "#f1c27d",
-  "Half-Orc": "#6b7c5e",
-  Tiefling: "#8b3a3a",
-  "Variant Human": "#f1c27d",
-  Bugbear: "#8b7355",
-  Changeling: "#e0ac69",
-  Dhampir: "#d3d3d3",
-  Firbolg: "#e0ac69",
-  Githyanki: "#d3d3d3",
-  Githzerai: "#e0ac69",
-  Goblin: "#7d8a6e",
-  Hobgoblin: "#8b7355",
-  Kenku: "#5c4033",
-  Lizardfolk: "#6b8e23",
-  Orc: "#5a7248",
-  Reborn: "#d3d3d3",
-  Shifter: "#8b7355",
-  Tabaxi: "#d2a679",
-  Triton: "#5f9ea0",
-  Hexblood: "#e0ac69",
-  "Dragonborn (Chromatic)": "#cd7f32",
-  "Dragonborn (Gem)": "#e0ac69",
-  "Dragonborn (Metallic)": "#c0c0c0",
-  "Deep Gnome (Svirfneblin)": "#ffdbac",
-  "Eladrin (Elf)": "#ffdbac",
-  "Forest Gnome": "#ffdbac",
-  "Rock Gnome": "#ffdbac",
-  "Hill Dwarf": "#d2a679",
-  "Mountain Dwarf": "#d2a679",
-  "Lightfoot Halfling": "#ffdbac",
-  "Stout Halfling": "#ffdbac",
-  "Ghostwise Halfling": "#ffdbac",
-  "Half-Elf (High Elf)": "#f1c27d",
-  "Half-Elf (Wood Elf)": "#f1c27d",
-  "Half-Elf (Drow)": "#f1c27d",
-  "Half-Elf (Moon Elf)": "#f1c27d",
-  "Half-Elf (Sun Elf)": "#f1c27d",
-  "Half-Elf (Sea Elf)": "#f1c27d",
-  "Half-Elf (Shadar-kai)": "#f1c27d",
-  "Half-Elf (Eladrin)": "#ffdbac",
-  "Tiefling (Asmodeus)": "#8b3a3a",
-  "Tiefling (Baalzebul)": "#8b3a3a",
-  "Tiefling (Zariel)": "#c0c0c0",
-  "Tiefling (Dispater)": "#8b3a3a",
-  "Tiefling (Fierna)": "#8b3a3a",
-  "Tiefling (Glasya)": "#8b3a3a",
-  "Tiefling (Levistus)": "#8b3a3a",
-  "Tiefling (Mammon)": "#8b3a3a",
-  "Tiefling (Mephistopheles)": "#8b3a3a",
-};
-
-const RACE_ICONS_GI: Record<string, React.ComponentType<{ className?: string }>> = {
-  Human: PersonIcon,
-  Elf: ElfIcon,
-  Dwarf: DwarfIcon,
-  Halfling: PersonIcon,
-  Dragonborn: DragonHeadIcon,
-  Gnome: GnomeIcon,
-  "Half-Elf": ElfIcon,
-  "Half-Orc": GoblinIcon,
-  Tiefling: DevilMaskIcon,
-  "Variant Human": HumanIcon,
-  Bugbear: PersonIcon,
-  Changeling: PersonIcon,
-  Dhampir: PersonIcon,
-  Firbolg: PersonIcon,
-  Githyanki: PersonIcon,
-  Githzerai: PersonIcon,
-  Goblin: GoblinIcon,
-  Hobgoblin: GoblinIcon,
-  Kenku: KenkuIcon,
-  Lizardfolk: LizardfolkIcon,
-  Orc: GoblinIcon,
-  Reborn: PersonIcon,
-  Shifter: PersonIcon,
-  Tabaxi: PersonIcon,
-  Triton: PersonIcon,
-  Hexblood: PersonIcon,
-  "Dragonborn (Chromatic)": DragonHeadIcon,
-  "Dragonborn (Gem)": DragonHeadIcon,
-  "Dragonborn (Metallic)": DragonHeadIcon,
-  "Deep Gnome (Svirfneblin)": GnomeIcon,
-  "Eladrin (Elf)": ElfIcon,
-  "Forest Gnome": GnomeIcon,
-  "Rock Gnome": GnomeIcon,
-  "Hill Dwarf": DwarfIcon,
-  "Mountain Dwarf": DwarfIcon,
-  "Lightfoot Halfling": PersonIcon,
-  "Stout Halfling": PersonIcon,
-  "Ghostwise Halfling": PersonIcon,
-  "Half-Elf (High Elf)": ElfIcon,
-  "Half-Elf (Wood Elf)": ElfIcon,
-  "Half-Elf (Drow)": ElfIcon,
-  "Half-Elf (Moon Elf)": ElfIcon,
-  "Half-Elf (Sun Elf)": ElfIcon,
-  "Half-Elf (Sea Elf)": ElfIcon,
-  "Half-Elf (Shadar-kai)": ElfIcon,
-  "Half-Elf (Eladrin)": ElfIcon,
-  "Tiefling (Asmodeus)": DevilMaskIcon,
-  "Tiefling (Baalzebul)": DevilMaskIcon,
-  "Tiefling (Zariel)": DevilMaskIcon,
-  "Tiefling (Dispater)": DevilMaskIcon,
-  "Tiefling (Fierna)": DevilMaskIcon,
-  "Tiefling (Glasya)": DevilMaskIcon,
-  "Tiefling (Levistus)": DevilMaskIcon,
-  "Tiefling (Mammon)": DevilMaskIcon,
-  "Tiefling (Mephistopheles)": DevilMaskIcon,
-};
-
-function RaceIconRenderer({ raceName, isVariant, className }: { raceName: string; isVariant: boolean; className?: string }) {
-  if (raceName === "Human" && isVariant) {
-    return <span style={{ color: RACE_SKIN_COLORS["Variant Human"] }} className="inline-flex"><HumanIcon className={className} /></span>;
-  }
-
-  const Icon = RACE_ICONS_GI[raceName] || Users;
-  const color = RACE_SKIN_COLORS[raceName];
-  return <span style={{ color }} className="inline-flex"><Icon className={className} /></span>;
-}
 
 interface StepOriginProps {
   data: Character;
   onChange: (patch: Partial<Character>) => void;
+  currentStep: number;
+  totalSteps: number;
+  onBack: () => void;
+  onNext: () => void;
+  canProceed: boolean;
 }
 
-export function StepOrigin({ data, onChange }: StepOriginProps) {
+export function StepOrigin({ data, onChange, currentStep, totalSteps, onBack, onNext, canProceed }: StepOriginProps) {
   const { t, language } = useLanguage();
   const [classModalOpen, setClassModalOpen] = useState(false);
   const [raceModalOpen, setRaceModalOpen] = useState(false);
+  const [characterName, setCharacterName] = useState(data.name || "");
   const classes: SRDClass[] = getStaticClasses(data.sources, data.ruleset, language);
   const races: SRDRace[] = getStaticRaces(data.sources, data.ruleset, language);
 
-  const handleRaceChoiceChange = useCallback(
-    (choiceId: string, value: string) => {
-      onChange({
-        raceChoices: {
-          ...data.raceChoices,
-          [choiceId]: value,
-        },
-      });
+  const handleNameChange = useCallback(
+    (value: string) => {
+      setCharacterName(value);
+      onChange({ name: value });
     },
-    [data.raceChoices, onChange]
+    [onChange]
   );
 
   const handleClassSelect = useCallback(
@@ -236,6 +90,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
 
       const featPatch: Record<string, any> = { features: data.features };
       if (newFeat && !data.features.some((f) => f.name === newFeat)) {
+        const { getStaticFeat } = require("@/lib/srd-client");
         const featData = getStaticFeat(newFeat);
         if (featData) {
           featPatch.features = [
@@ -280,84 +135,90 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
     [data, onChange]
   );
 
+  const isFormComplete = data.class && data.race;
+
   return (
-    <StepCard title={t("origin.title")} hint={t("origin.hint")}>
-      <div className="space-y-4">
-        <div className="card p-4">
-          <label className="field-label-light">{t("origin.characterNameRequired")}</label>
-          <input
-            type="text"
-            value={data.name}
-            onChange={(e) => onChange({ name: e.target.value })}
-            className="input w-full text-lg font-semibold mt-1"
-            placeholder={t("origin.enterCharacterName")}
+    <div className="space-y-3 pb-32">
+      <div className="mb-6 px-1">
+        <div className="flex justify-between items-end mb-2">
+          <span className="text-xs font-bold text-slate-500 dark:text-slate-400 tracking-widest uppercase">
+            Langkah {currentStep} dari {totalSteps}
+          </span>
+          <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400">
+            {Math.round((currentStep / totalSteps) * 100)}%
+          </span>
+        </div>
+        <div className="h-1.5 w-full bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+          <div 
+            className="h-full bg-indigo-500 rounded-full transition-all duration-300 ease-out" 
+            style={{ width: `${(currentStep / totalSteps) * 100}%` }} 
           />
         </div>
+      </div>
 
-        <NewPlayerTips
-          tips={[
-            {
-              title: t("origin.tip.class"),
-              content: t("origin.tip.classContent"),
-              icon: SwordIcon,
-            },
-            {
-              title: t("origin.tip.race"),
-              content: t("origin.tip.raceContent"),
-              icon: PersonIcon,
-            },
-            {
-              title: t("origin.tip.star"),
-              content: t("origin.tip.starContent"),
-              icon: Star,
-            },
-          ]}
+      <div className="mb-6">
+        <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">Identitas & Asal</h1>
+        <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">Tentukan nama, kelas, dan ras untuk memulai pahlawanmu.</p>
+      </div>
+
+      <div className="mb-8">
+        <label className="block text-xs font-bold tracking-widest text-slate-500 dark:text-slate-400 mb-2">NAMA KARAKTER</label>
+        <input 
+          type="text" 
+          placeholder="Masukkan nama..." 
+          value={characterName}
+          onChange={(e) => handleNameChange(e.target.value)}
+          className="w-full bg-slate-50 dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-800 focus:border-indigo-500 dark:focus:border-indigo-500 rounded-2xl py-3.5 px-4 text-base font-semibold text-slate-900 dark:text-white placeholder:text-slate-400 transition-colors outline-none" 
         />
+      </div>
 
-        <button
-          type="button"
+      <div className="mb-8">
+        <h2 className="text-xs font-bold tracking-widest text-slate-500 dark:text-slate-400 mb-3">PILIH KELAS & RAS</h2>
+        
+        {/* Class Card */}
+        <div 
           onClick={() => setClassModalOpen(true)}
-          className={`w-full p-5 sm:p-6 text-left rounded-[var(--radius-md)] transition-all border-2 ${
-            data.class
-              ? "bg-[var(--color-surface)] border-[var(--color-border-active)]"
-              : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-          }`}
+          className="group border-2 border-dashed border-indigo-300 dark:border-indigo-700 hover:border-indigo-500 bg-white dark:bg-slate-900 rounded-2xl p-4 flex items-center gap-4 cursor-pointer active:scale-[0.98] transition-all mb-3"
         >
-          <div className="flex items-center gap-4">
-            <div className={`flex items-center justify-center w-14 h-14 rounded-[var(--radius-md)] shrink-0 ${data.class ? "bg-[var(--color-border-active)] text-[var(--color-nav-icon)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
-              {data.class ? (() => { const Icon = CLASS_ICONS[data.class] || SwordIcon; return <Icon className="h-7 w-7" />; })() : <SwordIcon className="h-7 w-7" />}
-            </div>
-            <div className="flex-1 min-w-0">
-               <div className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide">{t("origin.classLabel")}</div>
-               <div className="text-base sm:text-lg font-bold text-[var(--color-text-primary)] mt-1 truncate">
-                 {data.class || t("origin.selectClass")}
-               </div>
-            </div>
-            <div className="text-2xl text-[var(--color-text-muted)] shrink-0">→</div>
+          <div className="h-12 w-12 rounded-xl bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
+            <Sword size={24} weight="duotone" />
           </div>
-        </button>
+          <div className="flex-1">
+            <h3 className="font-bold text-slate-800 dark:text-slate-100 text-lg">Pilih Kelas</h3>
+            <p className="text-xs text-slate-500">Fighter, Wizard, Rogue...</p>
+          </div>
+          <CaretRight className="text-slate-300 dark:text-slate-600 group-hover:text-indigo-500 transition-colors" size={20} weight="bold" />
+        </div>
 
-        <button
-          type="button"
+        {/* Race Card */}
+        <div 
           onClick={() => setRaceModalOpen(true)}
-          className={`w-full p-5 sm:p-6 text-left rounded-[var(--radius-md)] transition-all border-2 ${
-            data.race
-              ? "bg-[var(--color-surface)] border-[var(--color-border-active)]"
-              : "bg-[var(--color-surface)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-          }`}
+          className="group border-2 border-dashed border-emerald-300 dark:border-emerald-700 hover:border-emerald-500 bg-white dark:bg-slate-900 rounded-2xl p-4 flex items-center gap-4 cursor-pointer active:scale-[0.98] transition-all"
         >
-          <div className="flex items-center gap-4">
-            <div className={`flex items-center justify-center w-14 h-14 rounded-[var(--radius-md)] shrink-0 ${data.race ? "bg-[var(--color-border-active)] text-[var(--color-nav-icon)]" : "bg-[var(--color-bg)] text-[var(--color-text-muted)]"}`}>
-              {data.race ? <RaceIconRenderer raceName={data.race} isVariant={data.race === "Human" && data.raceVariant === "variant"} className="h-7 w-7" /> : <Users className="h-7 w-7" />}
-            </div>
-            <div className="flex-1 min-w-0">
-               <div className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide">{t("origin.raceLabel")}</div>
-                <div className="text-sm sm:text-base font-semibold text-[var(--color-text-primary)] mt-1 break-words truncate whitespace-nowrap">
-                 {data.race ? (data.race === "Human" && data.raceVariant === "variant" ? t("origin.variantHuman") : data.race) : t("origin.selectRace")}
-               </div>
-            </div>
-            <div className="text-2xl text-[var(--color-text-muted)] shrink-0">→</div>
+          <div className="h-12 w-12 rounded-xl bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
+            <Users size={24} weight="duotone" />
           </div>
+          <div className="flex-1">
+            <h3 className="font-bold text-slate-800 dark:text-slate-100 text-lg">Pilih Ras</h3>
+            <p className="text-xs text-slate-500">Manusia, Elf, Dwarf...</p>
+          </div>
+          <CaretRight className="text-slate-300 dark:text-slate-600 group-hover:text-emerald-500 transition-colors" size={20} weight="bold" />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 gap-3 mt-4">
+        <button 
+          onClick={onBack}
+          className="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold py-3.5 rounded-xl text-center active:scale-[0.98] transition-transform"
+        >
+          Kembali
+        </button>
+        <button 
+          onClick={onNext} 
+          disabled={!isFormComplete}
+          className="bg-indigo-600 disabled:bg-indigo-500/50 disabled:border-b-0 text-white disabled:text-white/70 font-bold py-3.5 rounded-xl text-center border-b-4 border-indigo-800 active:border-b-0 active:translate-y-1 transition-all"
+        >
+          Lanjut
         </button>
       </div>
 
@@ -380,6 +241,6 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
           currentCharacter={data}
         />
       )}
-    </StepCard>
+    </div>
   );
 }

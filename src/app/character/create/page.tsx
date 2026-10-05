@@ -70,11 +70,18 @@ export default function CharacterCreate() {
 
   const renderStep = useCallback(() => {
     if (!currentStep) return null;
+    const commonProps = {
+      currentStep: step + 1,
+      totalSteps,
+      onBack: handleBack,
+      onNext: handleNext,
+      canProceed: canProceed(),
+    };
     switch (currentStep.type) {
       case "source-selection":
         return <StepSourceSelection data={character} onChange={update} />;
       case "origin":
-        return <StepOrigin data={character} onChange={update} />;
+        return <StepOrigin data={character} onChange={update} {...commonProps} />;
       case "personality":
         return <StepPersonality data={character} onChange={update} />;
       case "abilities":
@@ -88,9 +95,10 @@ export default function CharacterCreate() {
       default:
         return null;
     }
-  }, [currentStep, character, update]);
+  }, [currentStep, character, update, step, totalSteps, handleBack, handleNext, canProceed]);
 
   const isLevelStep = currentStep?.type === "level";
+  const isOriginStep = currentStep?.type === "origin";
 
   if (isLevelStep) {
     return (
@@ -126,13 +134,15 @@ export default function CharacterCreate() {
         </div>
       </main>
 
-      <WizardNav
-        onBack={handleBack}
-        onNext={handleNext}
-        canProceed={canProceed()}
-        nextLabel={isLastStep ? t("creator.createCharacter", "Create Character") : t("common.next", "Next")}
-        showBack={step > 0}
-      />
+      {!isOriginStep && (
+        <WizardNav
+          onBack={handleBack}
+          onNext={handleNext}
+          canProceed={canProceed()}
+          nextLabel={isLastStep ? t("creator.createCharacter", "Create Character") : t("common.next", "Next")}
+          showBack={step > 0}
+        />
+      )}
     </div>
   );
 }
