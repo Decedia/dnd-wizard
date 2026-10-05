@@ -31,6 +31,7 @@ interface HumanVariantConfigProps {
   initialFeat?: string;
   disabledFeats?: string[];
   character?: Partial<Character>;
+  sources?: string[];
   onChange: (payload: HumanVariantConfigPayload) => void;
 }
 
@@ -41,6 +42,7 @@ export function HumanVariantConfig({
   initialFeat,
   disabledFeats = [],
   character,
+  sources,
   onChange,
 }: HumanVariantConfigProps) {
   const { t, language } = useLanguage();
@@ -221,7 +223,7 @@ export function HumanVariantConfig({
       {featModalOpen && (
         <FeatSelectionModal
           selectedFeat={feat}
-          sources={[]}
+          sources={sources || []}
           disabledFeats={disabledFeats}
           character={character as Character}
           onSelect={(selected: SRDFeat) => {
