@@ -70,6 +70,7 @@ export interface SRDRace {
   languageDesc?: string;
   source?: string;
   choices?: RaceChoice[];
+  flavorText?: string;
 }
 
 export interface RaceChoice {
