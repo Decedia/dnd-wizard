@@ -9,7 +9,7 @@
         "str",
         "con"
       ],
-      "flavorText": "Barbarian adalah pejuang perkasa yang ditenagai oleh kekuatan primal multiverse, yang terwujud dalam bentuk Rage. Saat penduduk kota merasa bangga dengan kehidupan mereka yang menetap, seorang Barbarian justru melihat gaya hidup seperti itu sebagai tanda kelemahan. Mereka yang kuat memilih untuk menyatu dengan alam, mengandalkan insting yang tajam, fisik yang primal, dan rage yang ganas.\n\nBarbarian benar-benar menjadi hidup di tengah kekacauan pertempuran. Mereka bisa memasuki kondisi berserk di mana rage mengambil alih, memberikan mereka kekuatan dan ketahanan fisik layaknya manusia super. Seorang Barbarian hanya bisa menggunakan cadangan amarah ini beberapa kali sebelum harus beristirahat, namun beberapa kali rage tersebut biasanya sudah cukup untuk menumbangkan ancaman apa pun yang muncul.\n\nSeorang Barbarian berperan sebagai pelindung vital bagi kaumnya dan menjadi pemimpin di masa perang. Kehidupan di alam liar penuh dengan bahaya, mulai dari suku rival, cuaca ekstrem, hingga monster yang mengerikan. Barbarian menerjang bahaya tersebut dengan berani agar kaum mereka tidak perlu mengalaminya.",
+      "flavorText": "Anda tumbuh di mana liar bertemu tak tertamakan. Sementara orang kota khawatir tentang etika, Anda belajar bahwa jawaban terbaik kadang-kadang adalah kapak besar dan teriakan yang baik. Sempurna untuk pemain yang ingin menyalurkan monster kemarahan dalam diri, memecahkan masalah dengan memukulnya sangat keras, dan memiliki ketahanan tank.",
       "proficiencies": {
         "armor": [
           "light",
@@ -988,7 +988,7 @@
         "dex",
         "cha"
       ],
-      "flavorText": "Bard adalah ahli dalam memberi inspirasi, mengobati luka, menjatuhkan mental lawan, dan menciptakan ilusi. Baik kamu seorang cendekiawan, skald, maupun bajingan, kamu merajut sihir melalui kata-kata dan musik untuk menyemangati sekutu, melemahkan musuh, memanipulasi pikiran, menciptakan ilusi, bahkan menyembuhkan luka.\n\nDalam dunia D&D, kata-kata dan musik bukan sekadar getaran udara, melainkan vokal yang memiliki kekuatan tersendiri. Sebagai seorang bard, kamu adalah maestro lagu, pidato, dan sihir yang terkandung di dalamnya. Para bard percaya bahwa multiverse tercipta dari ucapan, bahwa kata-kata para dewa memberinya wujud, dan gema dari Kata Penciptaan primordial ini masih bergaung di seluruh kosmos.\n\nKekuatan terbesarmu adalah fleksibilitas yang luar biasa. Banyak bard lebih suka berada di garis belakang saat bertarung, menggunakan sihir mereka untuk menginspirasi sekutu dan menghambat musuh dari kejauhan. Namun, kamu tetap mampu membela diri dalam pertarungan jarak dekat jika diperlukan, menggunakan sihirmu untuk memperkuat pedang dan zirahmu.",
+      "flavorText": "Anda tidak hanya mempelajari sihir - Anda mempertunjukkannya. Sementara wizard menyembunyikan hidung dalam tomes berdebu, Anda belajar bahwa ejekan yang tepat waktu bisa sekuat bola api. Sempurna untuk pemain yang ingin menjadi wajah party, mendukung teman dengan buff, dan mengubah situasi apa pun menjadi nomor musikal.",
       "proficiencies": {
         "armor": [
           "light"
@@ -3008,7 +3008,7 @@
         "wis",
         "cha"
       ],
-      "flavorText": "Cleric terhubung dengan sihir suci dari Outer Planes, menyalurkannya untuk memperkuat sekutu dan melawan musuh. Mereka memadukan sihir penyembuhan dan inspirasi yang penuh kasih dengan mantra yang dirancang untuk melukai serta menghambat lawan. Mereka mampu membangkitkan rasa kagum sekaligus kengerian, menebar kutukan wabah atau racun, dan memanggil api surgawi untuk menghanguskan siapa pun yang menentang mereka.\n\nSihir suci adalah kekuatan para dewa yang mengalir dari entitas ilahi ke dunia fana. Cleric berperan sebagai perantara kekuatan ini, mewujudkannya menjadi efek-efek mukjizat. Para dewa tidak memberikan kekuatan ini kepada semua orang yang memintanya, melainkan hanya kepada mereka yang terpilih untuk memenuhi panggilan mulia.\n\nCleric bertindak sebagai penghubung antara alam fana dan dimensi para dewa yang jauh. Seiring dengan beragamnya dewa yang mereka layani, para Cleric berusaha untuk menjadi perwujudan dari kehendak tuhan mereka. Lebih dari sekadar pendeta biasa, Cleric diberkati dengan kemampuan sihir suci.",
+      "flavorText": "Agen ilahi dari dewa pilihan Anda, Anda memadukan penyembuhan, dukungan, dan penghancuran dengan cara yang membuat bertanya bagaimana party bisa bertahan tanpa Anda. Sempurna untuk pemain yang ingin menjadi tulang punggung party, menyalurkan kekuatan ilahi, dan sesekali menghancurkan mayat hidup dengan tatapan tegas.",
       "proficiencies": {
         "armor": [
           "light",
@@ -4248,7 +4248,7 @@
         "int",
         "wis"
       ],
-      "flavorText": "Druid memanggil kekuatan alam, memanfaatkan sihir untuk menyembuhkan, berubah wujud menjadi hewan, dan melepaskan kehancuran elemental. Mereka adalah pendeta dari Iman Lama yang menguasai kekuatan alam dan mengadopsi wujud binatang. Merasa nyaman di alam liar, mereka berperan sebagai penjaga dunia alami dan pelindung keseimbangan antara peradaban dan alam.\n\nDruid memuja alam di atas segalanya, memperoleh sihir mereka dari dunia alami itu sendiri atau dari dewa alam. Banyak Druid yang mengejar spiritualitas mistis untuk bersatu dengan alam daripada sekadar berbakti pada entitas ilahi. Ritual Druid biasanya dilakukan di situs suci atau di hutan keramat.\n\nSihir seorang Druid dipengaruhi oleh tanah tempat mereka memulai inisiasinya. Beberapa Druid belajar untuk mengambil wujud hewan, sementara yang lain mengembangkan kemampuan untuk mengendalikan cuaca atau berbicara dengan hewan.",
+      "flavorText": "Anda berbicara untuk pohon, dan kadang-kadang pohon memberi tahu Anda untuk berubah menjadi beruang dan menghajar orang jahat. Sempurna untuk pemain yang ingin menjadi spellcaster bertema alam, berubah menjadi berbagai hewan, dan mengingatkan semua orang bahwa peradaban hanya cara alam mengatakan 'kami akan memaklumi ini untuk saat ini.'",
       "proficiencies": {
         "armor": [
           "light",
@@ -5151,7 +5151,7 @@
         "str",
         "con"
       ],
-      "flavorText": "Fighter memiliki penguasaan senjata dan zirah yang tak tertandingi, serta sangat akrab dengan kematian—baik sebagai sosok yang menebarkannya maupun sosok yang berhasil melawannya. Sebagai ahli pertarungan fisik, kamu sangat terampil dalam menggunakan berbagai senjata dan pelindung tubuh. Kamu adalah kelas petarung yang paling serbaguna dan adaptif, mampu mendominasi medan perang apa pun asalkan kamu memiliki peralatan dan pelatihan yang tepat.\n\nMelalui tahun-tahun peperangan, kamu bertahan hidup dengan menghadapi maut di setiap ayunan pedang atau lepasan anak panah, mengasah keahlianmu dalam seni bertarung hingga benar-benar matang.\n\nFighter adalah karakter yang paling beragam. Apakah kamu seorang ksatria yang sedang menjalankan misi, penguasa yang menaklukkan wilayah, juara kerajaan, prajurit elit, tentara bayaran yang tangguh, atau raja bandit—kamu bisa menjadi siapa saja di antara mereka.",
+      "flavorText": "Anda bukan orang pilihan. Anda tidak menemukan pedang ajaib di gua. Anda berlatih. Anda bertarung. Anda sangat, sangat baik memukul hal-hal dengan berbagai alat kehancuran. Sempurna untuk pemain yang ingin menjadi andal, serbaguna, dan never kehabisan hal-hal untuk dilemparkan ke musuh.",
       "proficiencies": {
         "armor": [
           "light",
@@ -6180,7 +6180,7 @@
         "str",
         "dex"
       ],
-      "flavorText": "Monk memusatkan cadangan kekuatan internal mereka untuk menciptakan efek yang luar biasa, bahkan supernatural. Sebagai ahli seni bela diri, mereka mengolah kekuatan tubuh demi mencapai kesempurnaan fisik dan spiritual, menggunakan disiplin dan latihan untuk menyalurkan energi dalam mereka menjadi serangan yang menghancurkan serta ketangkasan yang luar biasa.\n\nMonk mempelajari energi internal mereka dengan saksama, yang dikenal sebagai ki. Energi inilah yang menjadi bahan bakar bagi berbagai kemampuan supernatural mereka, memungkinkan mereka menciptakan efek magis, melampaui batas fisik tubuh, dan menggunakan serangan khusus untuk menghambat kemampuan lawan dalam bergerak dan bertarung.\n\nMonk mendedikasikan diri mereka pada pengejaran kesempurnaan fisik dan spiritual melalui latihan tempur yang keras dan meditasi. Biara-biara mereka biasanya terletak di lokasi terpencil, tempat mereka bisa berlatih tanpa gangguan.",
+      "flavorText": "Anda menghabiskan tahun di biara-learn bahwa tubuh Anda adalah senjata, pikiran Anda adalah perisai, dan kemampuan Anda untuk mengabaikan sakit adalah benar-benar mengkhawatirkan. Sempurna untuk pemain yang ingin tanpa armor, tanpa senjata, dan tidak terduga mematikan sambil mengutip kutipan filosofis di tengah pukulan.",
       "proficiencies": {
         "armor": [],
         "weapons": [
@@ -7339,7 +7339,7 @@
         "wis",
         "cha"
       ],
-      "flavorText": "Paladin berdiri di garis depan perjuangan kosmik, dipersatukan oleh sumpah mereka untuk melawan kekuatan pemusnah. Mereka adalah pejuang saleh yang terikat pada sumpah suci keadilan dan pengabdian, memadukan sihir penyembuhan untuk menginspirasi sekutu dengan sihir yang melukai dan menghambat musuh, sambil menjadi benteng kokoh melawan kekuatan jahat.\n\nPaladin adalah pejuang suci yang mengabdi pada kebenaran dan menjawab panggilan kekuatan yang lebih tinggi dari diri mereka sendiri. Sihir seorang paladin adalah anugerah ilahi, berkah yang diberikan kepada mereka yang menyerahkan hidupnya untuk panggilan yang mulia.\n\nKehidupan seorang paladin adalah kehidupan pengabdian bagi mereka yang lemah dan tak berdosa. Mereka terikat sumpah untuk melindungi yang tak berdaya, memerangi kejahatan di mana pun ia bersembunyi, serta menjunjung tinggi idealisme tertinggi dari keadilan dan kehormatan.",
+      "flavorText": "Anda bersumpah sumpah, dan Anda mengambilnya sangat serius. Apakah Anda krusader suci atau pemburu gelap, Anda telah mendedikasikan diri untuk penyebab yang lebih tinggi - dan semua orang akan mendengarnya. Sempurna untuk pemain yang ingin menjadi pemimpin karismatik, menghancurkan kejahatan, dan sesekali memberi kuliah party tentang kehormatan.",
       "proficiencies": {
         "armor": [
           "light",
@@ -8348,7 +8348,7 @@
         "str",
         "dex"
       ],
-      "flavorText": "Ranger adalah petarung dengan fokus mematikan yang memanfaatkan kekuatan primal untuk melindungi dunia dari kehancuran akibat monster dan tiran. Mereka adalah prajurit yang menghadapi ancaman di perbatasan peradaban.\n\nSebagai pemburu dan pelacak yang ahli, mereka menggunakan pengetahuan tentang alam liar untuk melindungi orang-orang tak bersalah dari bahaya yang mengintai di hutan dan gunung. Mereka bertahan hidup dari hasil alam dan bergerak tanpa terlihat di balik bayang-bayang.\n\nRanger berspesialisasi dalam memburu monster yang mengancam pinggiran masyarakat—mulai dari penjarah humanoid, binatang buas, hingga raksasa yang mengerikan. Mereka belajar melacak mangsa layaknya predator, bergerak dengan senyap dan menyembunyikan diri dalam kegelapan.",
+      "flavorText": "Anda merasa seperti di rumah di hutan, melacak mangsa dengan presisi mematikan sementara teman Anda masih mencoba membaca peta. Sempurna untuk pemain yang ingin menjadi pemburu terampil, melacak musuh, deal damage single-target masif, dan memiliki hewan pemandu yang lebih keren dari rogue party.",
       "proficiencies": {
         "armor": [
           "light",
@@ -9559,7 +9559,7 @@
         "dex",
         "int"
       ],
-      "flavorText": "Rogue memiliki bakat alami untuk menemukan solusi dari hampir semua masalah, dengan lebih mengutamakan serangan tersembunyi daripada kekuatan kasar. Mereka adalah para oportunis yang menggunakan pengintaian dan tipu muslihat untuk mengatasi rintangan maupun musuh. Dengan keahlian dalam seni menyelinap, penyamaran, dan infiltrasi, Rogue menjadi anggota yang sangat berharga dalam kelompok petualang mana pun.\n\nRogue mencurahkan upaya yang sama besarnya untuk menguasai seni infiltrasi sebagaimana seorang pencuri belajar membobol kunci dan brankas. Banyak Rogue yang mengandalkan kecerdikan dan kelicikan setara dengan kelincahan mereka, berperan sebagai sosok bayangan yang mampu menyelinap melalui celah pertahanan dunia.\n\nDengan mengandalkan keterampilan, kerahasiaan, dan titik lemah lawan, Rogue mampu mengambil kendali dalam situasi apa pun. Kemampuan alami mereka dalam mencari jalan keluar serta fleksibilitas yang mereka miliki menjadi fondasi utama bagi keberhasilan setiap petualangan.",
+      "flavorText": "Anda bukan yang terkuat, dan Anda definitely bukan yang terketat. Tapi Anda adalah orang yang masuk ke ruang harta pertama, membuka kunci dengan satu tangan sambil mengabaikan jebakan dengan yang lain, dan pergi sebelum semua orang menyadari apa yang terjadi. Sempurna untuk pemain yang ingin menjadi licik, deal critical hits masif, dan membuat party bertanya apakah Anda sebenarnya di pihak mereka.",
       "proficiencies": {
         "armor": [
           "light"
@@ -10712,7 +10712,7 @@
         "con",
         "cha"
       ],
-      "flavorText": "Sorcerer mengendalikan dan mengalirkan kekuatan sihir murni yang sudah tertanam di dalam jiwa mereka. Mereka adalah penyihir yang menggunakan kekuatan bawaan, baik itu berasal dari bakat alami maupun garis keturunan. Seorang Sorcerer membawa warisan magis yang didapat dari darah eksotis, pengaruh makhluk dunia lain, atau paparan kekuatan kosmik yang tak dikenal.\n\nSihir adalah bagian intrinsik dari setiap Sorcerer, meresap ke dalam tubuh, pikiran, dan roh sebagai kekuatan terpendam yang menunggu untuk dibangkitkan. Beberapa Sorcerer menggunakan sihir yang muncul dari garis keturunan naga kuno. Yang lain membawa sihir liar yang tak terkendali di dalam diri mereka—badai kekacauan yang bermanifestasi dengan cara yang tak terduga.\n\nSorcerer tidak membutuhkan buku mantra atau kitab kuno seperti Wizard, tidak pula bergantung pada patron untuk mendapatkan sihir mereka seperti Warlock. Dengan belajar mengendalikan dan mengalirkan sihir bawaan mereka, mereka menemukan berbagai cara baru yang luar biasa untuk melepaskan kekuatan tersebut.",
+      "flavorText": "Sihir bukan sesuatu yang Anda pelajari - itu ada di darah Anda. Anda tidak menyusun spell dari buku; Anda menyalurkan kekuatan arcan mentah yang mengalir melalui Anda seperti sungai berlebih-kafein. Sempurna untuk pemain yang ingin menjadi caster spontan dengan metamagic kuat, terlihat keren saat melakukannya, dan sesekali meledakkan hal-hal secara tidak sengaja.",
       "proficiencies": {
         "armor": [],
         "weapons": [],
@@ -11824,7 +11824,7 @@
         "wis",
         "cha"
       ],
-      "flavorText": "Warlock mencari pengetahuan yang tersembunyi di dalam jalinan multiverse, mengumpulkan rahasia arkana untuk memperkuat kekuatan mereka sendiri. Mereka menggunakan sihir yang berasal dari perjanjian dengan entitas ekstraplanar, mencari kebenaran terlarang melalui pakta dengan makhluk dari dunia lain.\n\nDidorong oleh rasa haus akan kekuasaan dan pengetahuan yang tak terpuaskan, Warlock membuka berbagai efek magis—mulai dari yang halus hingga yang spektakuler—melalui pakta dengan makhluk-makhluk misterius yang memiliki kekuatan supernatural.\n\nPakta ini dijalin dengan entitas seperti fey, fiend, dan makhluk supernatural lainnya. Perjanjian tersebut bisa sangat beragam, mulai dari sekadar barter sederhana hingga kontrak rumit yang mengikat sang Warlock untuk mengabdi kepada patron mereka.",
+      "flavorText": "Anda membuat kesepakatan. Di suatu tempat, entah bagaimana, Anda menembak kesepakatan dengan makhluk kuat untuk kekuatan sihir, dan sekarang Anda berutang jiwa mereka (atau setidaknya anak pertama). Sempurna untuk pemain yang ingin menjadi caster berbasis Karisma dengan invokasi eldritch, membuat pakta dengan patron lain-dunia, dan terlihat edgy saat melakukannya.",
       "proficiencies": {
         "armor": [
           "light"
@@ -13462,7 +13462,7 @@
         "int",
         "wis"
       ],
-      "flavorText": "Wizard mampu merapal sihir api yang meledak, kilatan petir, tipu daya yang halus, hingga transformasi yang spektakuler. Mereka adalah pengguna sihir terpelajar yang menguasai kekuatan magis melalui studi mendalam dan pengetahuan arkana.\n\nDengan memanfaatkan jalinan sihir halus yang meresap di seluruh kosmos, seorang Wizard bisa memanggil monster dari dimensi lain, mengintip masa depan, atau membangkitkan musuh yang telah gugur menjadi zombie.\n\nBagi seorang Wizard, sihir adalah napas hidup mereka. Mereka mempelajari, membentuk, dan memanggil kekuatan dari luar batas dunia fana. Wizard adalah cendekiawan arkana, seorang perapal sihir yang mengendalikan magis melalui dedikasi belajar dan wawasan intelektual.",
+      "flavorText": "Anda menghabiskan tahun di perpustakaan mempelajari spell dari tomes berdebu, dan sekarang Anda bisa membentuk realitas dengan gelombangan tangan dan kata yang dipilih dengan hati-hati. Sempurna untuk pemain yang ingin menjadi spellcaster ultimate, menyiapkan spell yang tepat untuk setiap situasi, dan mengingatkan semua orang bahwa kecerdasan adalah stat yang benar-benar matters.",
       "proficiencies": {
         "armor": [],
         "weapons": [],
@@ -14423,7 +14423,7 @@
         "con",
         "int"
       ],
-      "flavorText": "Sebagai maestro penemuan, Artificer menggunakan kecerdikan dan sihir untuk membuka kemampuan luar biasa pada sebuah benda. Mereka memandang sihir sebagai sistem kompleks yang menunggu untuk dipecahkan, yang kemudian mereka manfaatkan melalui mantra dan berbagai penemuan mereka.",
+      "flavorText": "Anda adalah pemecah masalah party, inventor, dan sesekali ilmuwan gila. Sementara orang lain mengandalkan sihir atau kekuatan kasar, Anda membangun hal-hal - gadget, konstruk, dan solusi yang membuat semua orang bertanya mengapa mereka tidak memikirkan itu. Sempurna untuk pemain yang ingin menjadi tukang serbaguna, crafting item ajaib, dan mengubah setiap encounter menjadi proyek pameran sains.",
       "proficiencies": {
         "armor": [
           "light",
