@@ -661,6 +661,56 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     [character, asiSelections]
   );
 
+  const wizardCharacter = useMemo<Character>(() => {
+    const pendingAbilityChanges: Record<AbilityKey, number> = { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 };
+    for (const [, st] of Object.entries(asiSelections)) {
+      if (!st || !st.mode) continue;
+      const alloc = buildAllocation(st);
+      (Object.keys(alloc) as AbilityKey[]).forEach((k) => { pendingAbilityChanges[k] += alloc[k]; });
+    }
+
+    const pendingFeatureSelections: Record<string, string[]> = { ...(character.featureSelections || {}) };
+    for (const [lvl, choices] of Object.entries(subclassFeatureChoices)) {
+      for (const [name, value] of Object.entries(choices)) {
+        pendingFeatureSelections[`subclass-feature-${lvl}-${name}`] = [value];
+      }
+    }
+    for (const [lvl, choices] of Object.entries(classFeatureChoices)) {
+      for (const [name, value] of Object.entries(choices)) {
+        pendingFeatureSelections[`class-feature-${lvl}-${name}`] = [value];
+      }
+    }
+    for (const [lvl, list] of Object.entries(expertiseSelections)) {
+      if (list.length > 0) pendingFeatureSelections[`expertise-${lvl}`] = list;
+    }
+    for (const [lvl, list] of Object.entries(invocationSelections)) {
+      if (list.length > 0) pendingFeatureSelections[`warlock-invocations`] = list;
+    }
+    if (pactTomeCantrips.length > 0) pendingFeatureSelections["pact-tome-cantrips"] = pactTomeCantrips;
+    const pactBoon = Object.values(classFeatureChoices).map((choices) => choices["Pact Boon"]).find(Boolean);
+    if (pactBoon) pendingFeatureSelections["pact-boon"] = [pactBoon];
+
+    const pendingFeatures = [...(character.features || [])];
+    const subclassName = subclassSelection || character.subclass || "";
+    if (subclassName && !pendingFeatures.some(f => f.name === subclassName)) {
+      pendingFeatures.push({ id: `subclass-${subclassName}`, name: subclassName, description: "", source: "subclass" as const });
+    }
+
+    return {
+      ...character,
+      str: character.str + pendingAbilityChanges.str,
+      dex: character.dex + pendingAbilityChanges.dex,
+      con: character.con + pendingAbilityChanges.con,
+      int: character.int + pendingAbilityChanges.int,
+      wis: character.wis + pendingAbilityChanges.wis,
+      cha: character.cha + pendingAbilityChanges.cha,
+      subclass: subclassName || character.subclass,
+      subclassIndex: (subclassName || character.subclass || "").toLowerCase().replace(/\s+/g, "-") || character.subclassIndex,
+      features: pendingFeatures,
+      featureSelections: pendingFeatureSelections,
+    };
+  }, [character, asiSelections, subclassSelection, subclassFeatureChoices, classFeatureChoices, expertiseSelections, invocationSelections, pactTomeCantrips, buildAllocation]);
+
   const asiIsValid = (st?: { mode: "single" | "double" | "feat"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey; feat?: string }): boolean => {
     if (!st || !st.mode) return false;
     if (st.mode === "feat") return !!st.feat;
@@ -1331,6 +1381,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
               conMod={conMod}
               averageHp={averageHp}
               startFromLevelOne={startFromLevelOne}
+              wizardCharacter={wizardCharacter}
               allSpellSelections={spellSelections}
               invocationSelections={invocationSelections[info.level] || []}
               onInvocationsChange={(list) => setInvocations(info.level, list)}
@@ -1392,6 +1443,7 @@ interface LevelCardProps {
   conMod: number;
   averageHp: number;
   startFromLevelOne?: boolean;
+  wizardCharacter: Character;
   allSpellSelections: Record<number, string[]>;
   invocationSelections: string[];
   onInvocationsChange: (list: string[]) => void;
@@ -1437,6 +1489,7 @@ function LevelCard({
   conMod,
   averageHp,
   startFromLevelOne,
+  wizardCharacter,
   allSpellSelections,
   invocationSelections,
   onInvocationsChange,
@@ -2530,7 +2583,7 @@ function LevelCard({
             ...(character.features || []).filter((f: any) => f.name && f.source !== "custom").map((f: any) => f.name),
             ...Object.values(character.featureSelections || {}).flat(),
           ]}
-          character={character}
+          character={wizardCharacter}
           onSelect={(feat) => {
             onAsiChange({ feat: feat.name });
             setShowAsiFeatModal(false);
