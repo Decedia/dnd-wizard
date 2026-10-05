@@ -1092,3 +1092,24 @@ export function meetsPrerequisites(character: Character, featName: string): bool
     return false;
   }
 }
+
+const engineFlavorCache: { [featName: string]: { flavor?: string; flavorId?: string } } = {};
+
+export function getEngineFeatFlavor(name: string): { flavor?: string; flavorId?: string } {
+  if (engineFlavorCache[name] !== undefined) return engineFlavorCache[name];
+
+  try {
+    const dataset = buildDataset();
+    const engineFeat = findEngineFeature(undefined, name, dataset);
+    if (engineFeat) {
+      const result = { flavor: engineFeat.flavor, flavorId: engineFeat.flavorId };
+      engineFlavorCache[name] = result;
+      return result;
+    }
+  } catch {
+    // Engine data may not be available in all contexts.
+  }
+
+  engineFlavorCache[name] = {};
+  return {};
+}

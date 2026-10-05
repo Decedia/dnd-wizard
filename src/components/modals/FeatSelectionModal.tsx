@@ -3,7 +3,7 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useState, useMemo } from "react";
 import { MagnifyingGlassIcon as MagnifyingGlass, CheckIcon as Check } from "@/components/icons";
-import { getStaticFeats, meetsPrerequisites, featHasPrerequisite, type SRDFeat } from "@/lib/srd-client";
+import { getStaticFeats, meetsPrerequisites, featHasPrerequisite, getEngineFeatFlavor, type SRDFeat } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
 import { isRecommended } from "@/lib/recommendations";
 import { BottomSheet } from "@/components/modals/BottomSheet";
@@ -175,9 +175,26 @@ export function FeatSelectionModal({ onSelect, onClose, selectedFeat, sources, d
                 }}
                 infoType="modal"
                 modalContent={
-                  <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">
-                    {feat.description}
-                  </p>
+                  <div className="space-y-3">
+                    {(() => {
+                      const engineFlavor = getEngineFeatFlavor(feat.name);
+                      const flavorText = engineFlavor.flavorId ? t(engineFlavor.flavorId, engineFlavor.flavor) : engineFlavor.flavor;
+                      return flavorText ? (
+                        <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed italic">
+                          {flavorText}
+                        </p>
+                      ) : null;
+                    })()}
+                    {feat.prerequisites && (
+                      <div className="text-xs">
+                        <span className="font-semibold text-[var(--color-text-primary)]">Prerequisite: </span>
+                        <span className="text-[var(--color-text-secondary)]">{feat.prerequisites}</span>
+                      </div>
+                    )}
+                    <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">
+                      {feat.description}
+                    </p>
+                  </div>
                 }
               />
             );

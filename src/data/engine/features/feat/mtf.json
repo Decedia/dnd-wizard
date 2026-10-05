@@ -6,7 +6,9 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
-      "effects": [
+      "flavorId": "feat.flavor.Sharpshooter",
+"flavor": "A master of ranged combat who trades accuracy for massive damage. Essential for archer builds and crossbow users.",
+"effects": [
         {
           "kind": "extra_attacks",
           "count": 0,
@@ -29,7 +31,8 @@
       "gates": [
         "wielding_shield"
       ],
-      "effects": [
+      "flavor": "A shield specialist who uses their shield to defend and bash enemies. Perfect for shield-wielding tanks.",
+"effects": [
         {
           "kind": "extra_attacks",
           "count": 0,
@@ -49,7 +52,8 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
-      "effects": [
+      "flavor": "An aggressive combatant who uses movement to amplify their attacks. Great for barbarians, fighters, and mounted combatants.",
+"effects": [
         {
           "kind": "extra_attacks",
           "count": 0,
@@ -69,7 +73,8 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
-      "effects": [
+      "flavor": "A versatile martial character who gains proficiency with four weapons. Great for characters who use varied weapon types.",
+"effects": [
         {
           "kind": "extra_attacks",
           "count": 0,
@@ -122,7 +127,8 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
-      "effects": [
+      "flavor": "A small but fierce combatant who uses size to their advantage. Good for tiny races who want to contribute in combat.",
+"effects": [
         {
           "kind": "skill_bonus",
           "skills": [
@@ -146,7 +152,8 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
-      "effects": [
+      "flavor": "A seasoned explorer who excels at navigating dangerous ruins and avoiding traps. Perfect for rogues and dungeon-crawling specialists.",
+"effects": [
         {
           "kind": "skill_bonus",
           "skills": [
@@ -198,7 +205,8 @@
           "Half-Elf"
         ]
       },
-      "effects": [
+      "flavor": "An elf, half-elf, or similar race with supernatural precision, granting triple advantage on attacks. Essential for Sharpshooter builds.",
+"effects": [
         {
           "kind": "senses",
           "sense": "darkvision"
@@ -242,7 +250,8 @@
           "Orc"
         ]
       },
-      "effects": [
+      "flavor": "An orc or half-orc who channels their ferocity into devastating blows. Perfect for orc barbarians and fighters.",
+"effects": [
         {
           "kind": "condition",
           "action": "apply",
@@ -307,7 +316,8 @@
         }
       },
       "activation": "passive",
-      "effects": [
+      "flavor": "A tiefling with hellish resilience, gaining damage resistances. Perfect for tiefling tanks and durable spellcasters.",
+"effects": [
         {
           "kind": "resistance",
           "damageTypes": [
@@ -354,7 +364,8 @@
           "int": 13
         }
       },
-      "effects": [
+      "flavor": "A sharp intellect with perfect recall and spatial awareness. Perfect for wizards, artificers, and skill-focused characters.",
+"effects": [
         {
           "kind": "skill",
           "skills": [
@@ -391,7 +402,8 @@
       "requires": {
         "note": "No existing dragonmark"
       },
-      "effects": [
+      "flavor": "A manifestation of dragonmarks on your skin, granting spellcasting tied to a dragonmark house. Requires an existing dragonmark.",
+"effects": [
         {
           "kind": "stat_modifier",
           "stat": "con",
@@ -456,7 +468,8 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
-      "effects": [
+      "flavor": "A champion of chromatic dragons, gaining breath weapon and damage resistance. Perfect for dragon-themed characters.",
+"effects": [
         {
           "kind": "stat_modifier",
           "stat": "str",
@@ -481,7 +494,8 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
-      "effects": [
+      "flavor": "A champion of metallic dragons, gaining healing breath and damage resistance. Perfect for supportive martial characters.",
+"effects": [
         {
           "kind": "stat_modifier",
           "stat": "con",
@@ -506,7 +520,8 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
-      "effects": [
+      "flavor": "A hero blessed by all dragons, gaining draconic resilience and damage resistance. For dragon-themed tanks and spellcasters.",
+"effects": [
         {
           "kind": "special",
           "note": "You have a magic gift from a dragon. You gain a +2 bonus to AC and saving throws while not wearing armor, your damage rolls against creatures with a +2 bonus, and you gain 10 hit points. At 5th, 10th, and 15th level your hit points increase by 5 and your Strength or Dexterity increases by 1, and at 5th level you can cast the detect magic spell once per long rest without a slot."
@@ -539,7 +554,8 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
-      "effects": [
+      "flavor": "A mortal touched by divine favor, gaining luck and resilience. Great for divine casters and chosen heroes.",
+"effects": [
         {
           "kind": "stat_modifier",
           "stat": "ability_score_of_choice",
@@ -564,7 +580,8 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
-      "effects": [
+      "flavor": "A chosen champion of a deity, empowered by divine favor. Great for divine casters and zealous warriors.",
+"effects": [
         {
           "kind": "special",
           "note": "This feat is tied to the divine and the fearsome. You gain a +1 bonus to AC and saving throws, and you gain a +1 bonus to all attack rolls you make with weapons or spells, and a +1 bonus to one saving throw of your choice. At 5th, 10th and 15th level the bonuses increase by 1."
@@ -597,7 +614,8 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
-      "effects": [
+      "flavor": "A smooth negotiator who finds common ground with anyone. Excellent for party faces and social adventurers.",
+"effects": [
         {
           "kind": "special",
           "note": "You gain proficiency in the Insight, Persuasion and Relocation skills, and you gain the benefits of the innate magical trait of your choice: Mimicry, Photomemory or Read Thoughts."
@@ -616,7 +634,8 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
-      "effects": [
+      "flavor": "A naturally charismatic character who can befriend anyone. Great for bards, sorcerers, and social rogues.",
+"effects": [
         {
           "kind": "special",
           "note": "You gain proficiency in Sleight of Hand and Stealth, and you gain the benefits of the innate magical trait of your choice: Charm, Detect Thoughts, or Illusory Reality. At 5th level you gain a second of these traits."

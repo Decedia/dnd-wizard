@@ -485,6 +485,10 @@ export interface FeatureBase {
   summary: string;
   /** Verbatim rules text, for proofreading against the book. */
   text: string;
+  /** Flavor text explaining why a character might take this feature. */
+  flavor?: string;
+  /** Translation key for flavor text. Falls back to `flavor` when missing. */
+  flavorId?: string;
   source: SourceRef;
 }
 

@@ -14,7 +14,9 @@
           "heavy weapons"
         ]
       },
-      "effects": [
+      "flavorId": "feat.flavor.Great_Weapon_Master",
+"flavor": "A mighty warrior who trades accuracy for devastating power with heavy weapons. Essential for great weapon fighters and barbarians.",
+"effects": [
         {
           "kind": "special",
           "note": "On your turn, when you score a critical hit with a melee weapon or reduce a creature to 0 hit points with one, you can make one melee attack with a weapon that you are proficient with as a bonus action."
@@ -40,7 +42,8 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
-      "effects": [
+      "flavor": "A spellcasting novice who learns cantrips and a 1st-level spell from another class. Great for martial characters dipping into magic.",
+"effects": [
         {
           "kind": "spell_grant",
           "cantrip": {
@@ -84,7 +87,8 @@
           "cha": 13
         }
       },
-      "effects": [
+      "flavor": "A vigilant warrior always ready to act first. Essential for front-line defenders and anyone who can't afford to be surprised.",
+"effects": [
         {
           "kind": "stat_modifier",
           "stat": "initiative",
@@ -114,7 +118,8 @@
           "light crossbows"
         ]
       },
-      "effects": [
+      "flavor": "A master of crossbow combat who ignores reloading, fights in close quarters, and fires at multiple targets. Ideal for ranged builds.",
+"effects": [
         {
           "kind": "stat_modifier",
           "stat": "attack_bonus_ranged",
@@ -148,7 +153,8 @@
       "gates": [
         "wielding_finesse_weapon"
       ],
-      "effects": [
+      "flavor": "A precise swordsman who turns defense into deadly counterattacks. Perfect for finesse fighters and swashbucklers.",
+"effects": [
         {
           "kind": "ac_bonus",
           "amount": 1,
@@ -181,7 +187,8 @@
       "gates": [
         "two_weapons"
       ],
-      "effects": [
+      "flavor": "A master of two-weapon fighting who can draw both weapons and even use non-light weapons. Essential for dual-wielding martial builds.",
+"effects": [
         {
           "kind": "stat_modifier",
           "stat": "damage_roll",
@@ -207,7 +214,8 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
-      "effects": [
+      "flavor": "A hardy character who gains proficiency in a saving throw and +1 to that ability. Great for fixing weak saves.",
+"effects": [
         {
           "kind": "stat_modifier",
           "stat": "ability_score_of_choice",
@@ -237,6 +245,7 @@
     "dex": 13
   }
 },
+      "flavor": "A stealth expert who excels in darkness and can hide from partial cover. Perfect for rogues and stealth archers.",
 "effects": [
         {
           "kind": "skill_bonus",
@@ -264,7 +273,8 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
-      "effects": [
+      "flavor": "A brutal martial character who rerolls damage dice for maximum carnage. Perfect for barbarians and great weapon users.",
+"effects": [
         {
           "kind": "special",
           "note": "You're on the offensive when using this feat. On your turn, you can make one melee attack with a weapon that you are proficient with. You gain a +1d6 bonus to the attack's damage, and you can use your choice of Strength or Dexterity for the attack's ability modifier, and the attack doesn't have to be with Strength or Dexterity."
@@ -297,7 +307,8 @@
       },
       "duration": null,
       "endsIf": [],
-      "effects": [
+      "flavor": "A battlefield medic who stabilizes allies and keeps them fighting. Perfect for support classes and party healers.",
+"effects": [
         {
           "kind": "heal",
           "dice": {
@@ -326,7 +337,8 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
-      "effects": [
+      "flavor": "A chronurgy wizard's signature feat that speeds up your reflexes. Unique to chronurgy magic and time manipulation.",
+"effects": [
         {
           "kind": "spell_modifier",
           "changes": [
@@ -364,7 +376,8 @@
       },
       "duration": null,
       "endsIf": [],
-      "effects": [
+      "flavor": "An impossibly fortunate character who can alter fate. Perfect for anyone who wants to control their luck.",
+"effects": [
         {
           "kind": "special",
           "note": "You have 3 luck points that you regain whenever you finish a long rest. When you have luck points, you can use a bonus action to gain 1 of them, and you can spend them to gain advantage on a d20 test of your choice. You can also spend any number of luck points, up to your maximum, to add that many to a d20 test of your choice, and then choose whether to add or subtract that many. You gain 3 luck points when you finish a long rest."

@@ -6,7 +6,9 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
-      "effects": [
+      "flavorId": "feat.flavor.Actor",
+"flavor": "A charismatic performer who excels at deception and entertainment, perfect for bards, sorcerers, and social rogues.",
+"effects": [
         { "kind": "skill_bonus", "skills": ["Deception", "Performance"], "amount": 1 },
         { "kind": "special", "note": "You gain proficiency in Deception or Performance, and you gain a +5 bonus to whichever you choose. You also gain advantage on Charisma (Performance) checks when you are trying to impress a crowd." }
       ],
@@ -20,7 +22,8 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
-      "effects": [
+      "flavor": "A nimble climber, jumper, and swimmer who uses athleticism to overcome physical obstacles. Ideal for martial characters who need mobility.",
+"effects": [
         { "kind": "skill", "skills": ["Athletics"], "proficiency": "proficient" },
         { "kind": "special", "note": "You gain proficiency in Athletics. Your long jump can be up to a number of feet equal to 3 times your Strength score, and your jump distance is multiplied by your long jump distance. From 18th level, you gain proficiency in climbing and swimming." }
       ],
@@ -40,6 +43,7 @@
     "medium armor"
   ]
 },
+      "flavor": "A heavily armored warrior who gains proficiency with heavy armor. Requires medium armor proficiency.",
 "effects": [
         { "kind": "stat_modifier", "stat": "speed", "amount": 0, "duration": "while_active" },
         { "kind": "special", "note": "You gain proficiency with heavy armor. While you are wearing heavy armor, your speed is reduced by 10 feet." }
@@ -75,6 +79,7 @@
     "light armor"
   ]
 },
+      "flavor": "A medium armor user who gains medium armor proficiency and shields. Requires light armor proficiency.",
 "effects": [
         { "kind": "special", "note": "You gain proficiency with light armor and medium armor. When you gain proficiency with armor, you gain proficiency with shields." }
       ],
@@ -94,6 +99,7 @@
     "heavy armor"
   ]
 },
+      "flavor": "A juggernaut in heavy armor who reduces incoming damage. Requires heavy armor proficiency.",
 "effects": [
         { "kind": "extra_attacks", "count": 0, "note": "While you are wearing heavy armor, you gain the following benefits: If you move more than 5 feet and then hit a creature with a melee attack on the same turn, you can make one additional attack. That attack is made at a disadvantage unless you already have the Grave or Slasher feat." }
       ],
@@ -113,6 +119,7 @@
     "medium armor"
   ]
 },
+      "flavor": "A medium armor specialist who eliminates stealth penalties and increases AC. Great for medium armor users.",
 "effects": [
         { "kind": "extra_attacks", "count": 0, "note": "While you are wearing medium armor, if you move more than 5 feet and then hit a creature with a melee attack on the same turn, you can make one additional attack, at a disadvantage unless you have the Grave or Slasher feat." }
       ],
@@ -126,7 +133,8 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
-      "effects": [
+      "flavor": "A keen observer who notices details others miss. Great for investigators, rogues, and watchful characters.",
+"effects": [
         { "kind": "skill_bonus", "skills": ["Investigation", "Perception"], "amount": 1 },
         { "kind": "stat_modifier", "stat": "passive_perception", "amount": 0, "duration": "permanent" },
         { "kind": "special", "note": "Your passive Wisdom (Perception) score is increased by 5." }
@@ -151,6 +159,7 @@
     "cha": 13
   }
 },
+      "flavor": "A charismatic commander who bolsters their allies with temporary hit points. Great for party faces and support characters.",
 "effects": [
         { "kind": "skill_bonus", "skills": ["chosen by you each time"], "amount": 0, "note": "You can take a bonus action to inspire up to five willing creatures within 30 feet of you, each of whom gains temporary hit points equal to 1d8 plus your Charisma modifier. A creature can be inspired only once, and the effect ends when you finish a long rest or when you use this again." }
       ],
@@ -169,7 +178,8 @@
       "targeting": { "scope": "creature" },
       "duration": null,
       "endsIf": [],
-      "effects": [
+      "flavor": "A anti-mage specialist who disrupts spellcasters in melee. Essential for martial characters facing magic-heavy enemies.",
+"effects": [
         { "kind": "special", "note": "When you damage a creature with a melee attack, if it is concentrating on a spell, you can use your reaction to force it to make a Constitution saving throw. It takes half damage on a success and concentration on a failure. At 17th level you can also do this when a creature within 30 feet of you that you can see damages you." }
       ],
       "tiers": [
@@ -190,7 +200,8 @@
       "targeting": { "scope": "creature", "range": { "value": 5, "unit": "ft" } },
       "duration": null,
       "endsIf": [],
-      "effects": [
+      "flavor": "A master of polearm combat who controls the battlefield with reach weapons. Essential for polearm fighters and paladins.",
+"effects": [
         { "kind": "control", "action": "push", "distance": { "value": 5, "unit": "ft" } },
         { "kind": "extra_attacks", "count": 1, "note": "When you take the Attack action on your turn, you can make one melee weapon attack using a quarterstaff, a spear, or a short/long glaive as a bonus action. That attack can be used only to make one of the following, and it must be made before or after your regular attack: a shove, or a grapple attempt. If you hit with it, you can instead make an attack with a quarterstaff, a spear or a glaive as a bonus action." }
       ],
@@ -204,7 +215,8 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
-      "effects": [
+      "flavor": "A defender who locks down enemies with opportunity attacks. Perfect for tanks who want to protect allies.",
+"effects": [
         { "kind": "reactions_without_cost", "count": 1, "note": "You gain the following benefits when you hit a creature with an attack: If the creature is hit by an attack by another creature, you can use your reaction to make a melee weapon attack against that creature. Creatures within your reach have disadvantage on opportunity attack rolls against you, and you can use a reaction to make an opportunity attack when a creature moves out of your reach." }
       ],
       "summary": "Attack a second creature that attacked your target; allies don't provoke you",
@@ -217,7 +229,8 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
-      "effects": [
+      "flavor": "A jack-of-all-trades who gains proficiency in three skills or tools. Great for rounding out a character's abilities.",
+"effects": [
         { "kind": "skill", "skills": ["any three of your choice"], "proficiency": "proficient" }
       ],
       "summary": "Proficiency in three skills of your choice",
@@ -230,7 +243,8 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
-      "effects": [
+      "flavor": "A brutal attacker who slows and bleeds enemies with slashing weapons. Great for martial characters who want to control.",
+"effects": [
         { "kind": "condition", "action": "apply", "conditions": ["prone"] },
         { "kind": "special", "note": "When you hit a creature with a slashing weapon, you can give either yourself or the creature disadvantage on all ability checks until the start of your next turn, and you can also make an additional attack using a bonus action on your next turn." }
       ],
@@ -244,7 +258,8 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
-      "effects": [
+      "flavor": "A durable survivor with extra hit points that scale with level. Essential for front-line characters who need more HP.",
+"effects": [
         { "kind": "stat_modifier", "stat": "max_hp", "amount": 2, "duration": "permanent" }
       ],
       "summary": "Hit point maximum increases by twice your character level",
@@ -260,6 +275,7 @@
       "requires": {
   "note": "The ability to cast at least one spell"
 },
+      "flavor": "A spellcaster who doubles spell range and ignores cover. Requires ability to cast at least one spell.",
 "effects": [
         { "kind": "stat_modifier", "stat": "attack_bonus_ranged", "amount": 1, "duration": "permanent" },
         { "kind": "special", "note": "When you make an attack roll for a ranged spell, you ignore half cover and three-quarters cover, and if you hit, you can add your Charisma modifier, Intelligence modifier or Wisdom modifier to the damage. You also gain the benefits of the Archery fighting style." }
@@ -280,6 +296,7 @@
     "small race"
   ]
 },
+      "flavor": "A dwarf or small race with surprising agility, gaining AC bonus and climbing speed. Perfect for small martial characters.",
 "effects": [
         { "kind": "stat_modifier", "stat": "speed", "amount": 0, "duration": "while_active" },
         { "kind": "special", "note": "You can move at your normal speed through a space occupied by a creature of your size or smaller whose movement is reduced to 0 by difficult terrain, without having difficulty on movement or triggering its opportunity attack." }
@@ -294,7 +311,8 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
-      "effects": [
+      "flavor": "A swift striker who excels at hit-and-run tactics. Perfect for rogues, monks, and skirmishers.",
+"effects": [
         { "kind": "stat_modifier", "stat": "speed", "amount": 10, "duration": "permanent" },
         { "kind": "special", "note": "When you hit a creature with a melee weapon attack, you can move up to 10 feet, without provoking opportunity attacks, whether or not the creature is hit. You also gain the benefits of the Two-Weapon Fighting fighting style." }
       ],
@@ -313,7 +331,8 @@
       "targeting": { "scope": "creature", "range": { "value": 5, "unit": "ft" } },
       "duration": null,
       "endsIf": [],
-      "effects": [
+      "flavor": "A tough fighter who excels in unarmed combat and improvised weapons. Great for monks, barbarians, and brawlers.",
+"effects": [
         { "kind": "damage", "dice": { "dice": "1d4", "bonusFrom": "str" }, "damageType": "bludgeoning", "resolution": { "mode": "attack", "ability": "str", "reaches": ["5 ft melee"] } },
         { "kind": "special", "note": "You have learned to fight in a tavern brawl: you gain proficiency with improvised weapons. When you hit a creature with an improvised weapon, you can use a bonus action to attempt to redirect the creature's attack, as a reaction, by making an attack roll against the creature's AC; on a hit, the creature must use a different target for its attack." }
       ],
@@ -330,6 +349,7 @@
       "requires": {
   "note": "The ability to cast at least one spell"
 },
+      "flavor": "A spellcaster who can cast spells as opportunity attacks and maintain concentration. Requires ability to cast at least one spell.",
 "effects": [
         { "kind": "stat_modifier", "stat": "spell_save_dc", "amount": 1, "duration": "permanent" },
         { "kind": "special", "note": "You have learned to make a spell attack in the middle of a melee fight. You gain the following benefits: your spell save DC is increased by 1, you can cast a spell with one hand without somatic or material components, and you can use a reaction to cast a spell when a creature moves within 10 feet of you that would leave its reach." }
