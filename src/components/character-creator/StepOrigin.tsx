@@ -1,12 +1,41 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { Sword, Users, CaretRight } from "@phosphor-icons/react";
+import { Sword, Users, CaretRight, Person, Sparkle, Shield, Leaf, Hand, Brain, Skull, Flame, Lightning, Hammer } from "@phosphor-icons/react";
 import { getStaticClasses, getStaticRaces, type SRDClass, type SRDRace } from "@/lib/srd-client";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
 import { ClassSelectionModal } from "../modals/ClassSelectionModal";
 import { RaceSelectionModal } from "../modals/RaceSelectionModal";
+
+const CLASS_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
+  Barbarian: Sparkle,
+  Bard: Sparkle,
+  Cleric: Shield,
+  Druid: Leaf,
+  Fighter: Sword,
+  Monk: Hand,
+  Paladin: Shield,
+  Ranger: Sparkle,
+  Rogue: Sparkle,
+  Sorcerer: Sparkle,
+  Warlock: Skull,
+  Wizard: Sparkle,
+  Artificer: Brain,
+};
+
+const RACE_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
+  Human: Person,
+  Elf: Person,
+  Dwarf: Person,
+  Halfling: Person,
+  Dragonborn: Person,
+  Gnome: Person,
+  "Half-Elf": Person,
+  "Half-Orc": Person,
+  Tiefling: Person,
+  "Variant Human": Person,
+};
 
 interface StepOriginProps {
   data: Character;
@@ -159,13 +188,13 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
           className="group border-2 border-dashed border-[var(--color-border)] hover:border-[var(--color-accent-indigo-500)] bg-[var(--color-surface)] rounded-2xl p-4 flex items-center gap-4 cursor-pointer active:scale-[0.98] transition-all mb-3"
         >
           <div className="h-12 w-12 rounded-xl bg-[var(--color-accent-indigo-50)] text-[var(--color-accent-indigo-600)] flex items-center justify-center shrink-0">
-            <Sword size={24} weight="duotone" />
+            {data.class ? (() => { const Icon = CLASS_ICONS[data.class] || Sword; return <Icon className="h-6 w-6" />; })() : <Sword className="h-6 w-6" />}
           </div>
           <div className="flex-1">
-            <h3 className="font-bold text-[var(--color-text-primary)] text-lg">{t("origin.selectClass", "Pilih Kelas")}</h3>
-            <p className="text-xs text-[var(--color-text-secondary)]">{t("origin.classExamples", "Fighter, Wizard, Rogue...")}</p>
+            <h3 className="font-bold text-[var(--color-text-primary)] text-lg">{data.class || t("origin.selectClass", "Pilih Kelas")}</h3>
+            <p className="text-xs text-[var(--color-text-secondary)]">{data.class ? data.class : t("origin.classExamples", "Fighter, Wizard, Rogue...")}</p>
           </div>
-          <CaretRight className="text-[var(--color-text-muted)] group-hover:text-[var(--color-accent-indigo-500)] transition-colors" size={20} weight="bold" />
+          <CaretRight className="text-[var(--color-text-muted)] group-hover:text-[var(--color-accent-indigo-500)] transition-colors h-5 w-5" />
         </div>
 
         {/* Race Card */}
@@ -174,13 +203,13 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
           className="group border-2 border-dashed border-[var(--color-border)] hover:border-[var(--color-accent-teal-500)] bg-[var(--color-surface)] rounded-2xl p-4 flex items-center gap-4 cursor-pointer active:scale-[0.98] transition-all"
         >
           <div className="h-12 w-12 rounded-xl bg-[var(--color-accent-teal-50)] text-[var(--color-accent-teal-600)] flex items-center justify-center shrink-0">
-            <Users size={24} weight="duotone" />
+            {data.race ? (() => { const Icon = RACE_ICONS[data.race] || Users; return <Icon className="h-6 w-6" />; })() : <Users className="h-6 w-6" />}
           </div>
           <div className="flex-1">
-            <h3 className="font-bold text-[var(--color-text-primary)] text-lg">{t("origin.selectRace", "Pilih Ras")}</h3>
-            <p className="text-xs text-[var(--color-text-secondary)]">{t("origin.raceExamples", "Manusia, Elf, Dwarf...")}</p>
+            <h3 className="font-bold text-[var(--color-text-primary)] text-lg">{data.race ? (data.race === "Human" && data.raceVariant === "variant" ? t("origin.variantHuman", "Variant Human") : data.race) : t("origin.selectRace", "Pilih Ras")}</h3>
+            <p className="text-xs text-[var(--color-text-secondary)]">{data.race ? data.race : t("origin.raceExamples", "Manusia, Elf, Dwarf...")}</p>
           </div>
-          <CaretRight className="text-[var(--color-text-muted)] group-hover:text-[var(--color-accent-teal-500)] transition-colors" size={20} weight="bold" />
+          <CaretRight className="text-[var(--color-text-muted)] group-hover:text-[var(--color-accent-teal-500)] transition-colors h-5 w-5" />
         </div>
       </div>
 
