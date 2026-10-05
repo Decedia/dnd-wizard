@@ -192,6 +192,12 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
+      "requires": {
+        "race": [
+          "Elf",
+          "Half-Elf"
+        ]
+      },
       "effects": [
         {
           "kind": "senses",
@@ -230,6 +236,12 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
+      "requires": {
+        "race": [
+          "Half-Orc",
+          "Orc"
+        ]
+      },
       "effects": [
         {
           "kind": "condition",
@@ -376,6 +388,9 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
+      "requires": {
+        "note": "No existing dragonmark"
+      },
       "effects": [
         {
           "kind": "stat_modifier",

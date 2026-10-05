@@ -74,6 +74,9 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
+      "requires": {
+        "race": "Dragonborn"
+      },
       "effects": [
         {
           "kind": "special",
@@ -93,6 +96,12 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
+      "requires": {
+        "race": [
+          "Dragonborn",
+          "Half-Dragon"
+        ]
+      },
       "effects": [
         {
           "kind": "extra_attacks",
@@ -113,6 +122,12 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
+      "requires": {
+        "race": [
+          "Elf (Drow)",
+          "Elf (high)"
+        ]
+      },
       "effects": [
         {
           "kind": "spell_grant",
@@ -220,6 +235,9 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
+      "requires": {
+        "note": "Spellcasting or Pact Magic feature"
+      },
       "effects": [
         {
           "kind": "spell_grant",
@@ -285,6 +303,9 @@
         "unit": "minute"
       },
       "endsIf": [],
+      "requires": {
+        "race": "Gnome"
+      },
       "effects": [
         {
           "kind": "special",
@@ -364,6 +385,12 @@
       },
       "duration": null,
       "endsIf": [],
+      "requires": {
+        "race": [
+          "Elf (high)",
+          "Elf"
+        ]
+      },
       "effects": [
         {
           "kind": "teleport",
@@ -497,6 +524,9 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
+      "requires": {
+        "race": "Tiefling"
+      },
       "effects": [
         {
           "kind": "damage",
@@ -530,6 +560,11 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
+      "requires": {
+        "abilities": {
+          "str": 13
+        }
+      },
       "effects": [
         {
           "kind": "special",
@@ -593,6 +628,9 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
+      "requires": {
+        "note": "Spellcasting or Pact Magic feature"
+      },
       "effects": [
         {
           "kind": "choice",
@@ -666,6 +704,13 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
+      "requires": {
+        "race": [
+          "Half-Elf",
+          "Half-Orc",
+          "Human"
+        ]
+      },
       "effects": [
         {
           "kind": "extra_attacks",
@@ -686,6 +731,12 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
+      "requires": {
+        "abilities": {
+          "int": 13,
+          "wis": 13
+        }
+      },
       "effects": [
         {
           "kind": "spell_grant",
@@ -745,6 +796,9 @@
       },
       "duration": null,
       "endsIf": [],
+      "requires": {
+        "race": "Halfling"
+      },
       "effects": [
         {
           "kind": "special",
@@ -874,6 +928,12 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
+      "requires": {
+        "race": [
+          "Elf (wood)",
+          "Elf"
+        ]
+      },
       "effects": [
         {
           "kind": "spell_grant",
@@ -904,6 +964,12 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
+      "requires": {
+        "race": [
+          "Gnome (Deep Gnome/Svirfneblin)",
+          "Gnome"
+        ]
+      },
       "effects": [
         {
           "kind": "spell_grant",

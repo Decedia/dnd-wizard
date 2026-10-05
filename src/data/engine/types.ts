@@ -399,6 +399,9 @@ export interface RequiresSpec {
   features?: string[];
   /** Minimum character level. */
   minLevel?: number;
+  /** Required race name or list of race names. Supports subrace notation like "Elf (high)". */
+  race?: string | string[];
+  /** Free-text prerequisite for display or fallback evaluation. */
   note?: string;
 }
 

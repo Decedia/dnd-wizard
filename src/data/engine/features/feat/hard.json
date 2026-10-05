@@ -232,7 +232,12 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
-      "effects": [
+      "requires": {
+  "abilities": {
+    "dex": 13
+  }
+},
+"effects": [
         {
           "kind": "skill_bonus",
           "skills": [

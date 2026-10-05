@@ -35,7 +35,12 @@
       "owner": "Feat",
       "activation": "passive",
       "gates": ["wearing_heavy_armor"],
-      "effects": [
+      "requires": {
+  "proficiencies": [
+    "medium armor"
+  ]
+},
+"effects": [
         { "kind": "stat_modifier", "stat": "speed", "amount": 0, "duration": "while_active" },
         { "kind": "special", "note": "You gain proficiency with heavy armor. While you are wearing heavy armor, your speed is reduced by 10 feet." }
       ],
@@ -65,7 +70,12 @@
       "owner": "Feat",
       "activation": "passive",
       "gates": ["wearing_armor"],
-      "effects": [
+      "requires": {
+  "proficiencies": [
+    "light armor"
+  ]
+},
+"effects": [
         { "kind": "special", "note": "You gain proficiency with light armor and medium armor. When you gain proficiency with armor, you gain proficiency with shields." }
       ],
       "summary": "Proficiency with light and medium armor, and with shields",
@@ -79,7 +89,12 @@
       "owner": "Feat",
       "activation": "passive",
       "gates": ["wearing_heavy_armor"],
-      "effects": [
+      "requires": {
+  "proficiencies": [
+    "heavy armor"
+  ]
+},
+"effects": [
         { "kind": "extra_attacks", "count": 0, "note": "While you are wearing heavy armor, you gain the following benefits: If you move more than 5 feet and then hit a creature with a melee attack on the same turn, you can make one additional attack. That attack is made at a disadvantage unless you already have the Grave or Slasher feat." }
       ],
       "summary": "Hit after moving 5+ ft: a second attack at disadvantage",
@@ -93,7 +108,12 @@
       "owner": "Feat",
       "activation": "passive",
       "gates": ["wearing_armor"],
-      "effects": [
+      "requires": {
+  "proficiencies": [
+    "medium armor"
+  ]
+},
+"effects": [
         { "kind": "extra_attacks", "count": 0, "note": "While you are wearing medium armor, if you move more than 5 feet and then hit a creature with a melee attack on the same turn, you can make one additional attack, at a disadvantage unless you have the Grave or Slasher feat." }
       ],
       "summary": "In medium armor: move 5+ ft then hit, extra attack at disadvantage",
@@ -126,7 +146,12 @@
       "targeting": { "scope": "allies", "count": 5, "range": { "value": 30, "unit": "ft" } },
       "duration": { "value": 1, "unit": "hour" },
       "endsIf": [],
-      "effects": [
+      "requires": {
+  "abilities": {
+    "cha": 13
+  }
+},
+"effects": [
         { "kind": "skill_bonus", "skills": ["chosen by you each time"], "amount": 0, "note": "You can take a bonus action to inspire up to five willing creatures within 30 feet of you, each of whom gains temporary hit points equal to 1d8 plus your Charisma modifier. A creature can be inspired only once, and the effect ends when you finish a long rest or when you use this again." }
       ],
       "summary": "Bonus action: give five allies 1d8 + Cha temp HP",
@@ -232,7 +257,10 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
-      "effects": [
+      "requires": {
+  "note": "The ability to cast at least one spell"
+},
+"effects": [
         { "kind": "stat_modifier", "stat": "attack_bonus_ranged", "amount": 1, "duration": "permanent" },
         { "kind": "special", "note": "When you make an attack roll for a ranged spell, you ignore half cover and three-quarters cover, and if you hit, you can add your Charisma modifier, Intelligence modifier or Wisdom modifier to the damage. You also gain the benefits of the Archery fighting style." }
       ],
@@ -246,7 +274,13 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
-      "effects": [
+      "requires": {
+  "race": [
+    "Dwarf",
+    "small race"
+  ]
+},
+"effects": [
         { "kind": "stat_modifier", "stat": "speed", "amount": 0, "duration": "while_active" },
         { "kind": "special", "note": "You can move at your normal speed through a space occupied by a creature of your size or smaller whose movement is reduced to 0 by difficult terrain, without having difficulty on movement or triggering its opportunity attack." }
       ],
@@ -293,7 +327,10 @@
       "kind": "feat",
       "owner": "Feat",
       "activation": "passive",
-      "effects": [
+      "requires": {
+  "note": "The ability to cast at least one spell"
+},
+"effects": [
         { "kind": "stat_modifier", "stat": "spell_save_dc", "amount": 1, "duration": "permanent" },
         { "kind": "special", "note": "You have learned to make a spell attack in the middle of a melee fight. You gain the following benefits: your spell save DC is increased by 1, you can cast a spell with one hand without somatic or material components, and you can use a reaction to cast a spell when a creature moves within 10 feet of you that would leave its reach." }
       ],

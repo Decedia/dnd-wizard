@@ -998,6 +998,42 @@ export function meetsPrerequisites(character: Character, featName: string): bool
       return false;
     }
 
+    if (requires.race) {
+      const characterRace = (character.race || "").toString().trim();
+      if (!characterRace) return false;
+
+      const raceRequirements = Array.isArray(requires.race) ? requires.race : [requires.race];
+      const normalizedCharacterRace = characterRace.toLowerCase();
+
+      const matchesRace = (req: string): boolean => {
+        const normalizedReq = req.toLowerCase();
+
+        if (normalizedCharacterRace === normalizedReq) return true;
+
+        const parentheticalMatch = normalizedReq.match(/^(.+?)\s*\((.+?)\)$/);
+        if (parentheticalMatch) {
+          const [, parentRace, subrace] = parentheticalMatch;
+          const parentLower = parentRace.toLowerCase();
+          const subLower = subrace.toLowerCase();
+
+          if (normalizedCharacterRace === parentLower) return true;
+          if (normalizedCharacterRace.includes(subLower) && normalizedCharacterRace.includes(parentLower)) return true;
+          if (normalizedCharacterRace === subLower) return true;
+        }
+
+        if (normalizedReq.includes("small race")) {
+          const smallRaces = ["halfling", "gnome", "deep gnome (svirfneblin)", "forest gnome", "rock gnome"];
+          if (smallRaces.some((sr) => normalizedCharacterRace === sr || normalizedCharacterRace.includes(sr))) return true;
+        }
+
+        return normalizedCharacterRace.includes(normalizedReq) || normalizedReq.includes(normalizedCharacterRace);
+      };
+
+      if (!raceRequirements.some(matchesRace)) {
+        return false;
+      }
+    }
+
     if (requires.features && requires.features.length > 0) {
       const ownedNames = new Set(
         (character.features || [])
