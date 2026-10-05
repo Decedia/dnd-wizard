@@ -70,18 +70,11 @@ export default function CharacterCreate() {
 
   const renderStep = useCallback(() => {
     if (!currentStep) return null;
-    const commonProps = {
-      currentStep: step + 1,
-      totalSteps,
-      onBack: handleBack,
-      onNext: handleNext,
-      canProceed: canProceed(),
-    };
     switch (currentStep.type) {
       case "source-selection":
         return <StepSourceSelection data={character} onChange={update} />;
       case "origin":
-        return <StepOrigin data={character} onChange={update} {...commonProps} />;
+        return <StepOrigin data={character} onChange={update} />;
       case "personality":
         return <StepPersonality data={character} onChange={update} />;
       case "abilities":
@@ -95,10 +88,9 @@ export default function CharacterCreate() {
       default:
         return null;
     }
-  }, [currentStep, character, update, step, totalSteps, handleBack, handleNext, canProceed]);
+  }, [currentStep, character, update]);
 
   const isLevelStep = currentStep?.type === "level";
-  const isOriginStep = currentStep?.type === "origin";
 
   if (isLevelStep) {
     return (
@@ -125,24 +117,17 @@ export default function CharacterCreate() {
       <main className="px-4 py-5 pb-40">
         <div className="mx-auto max-w-lg">
           <ProgressIndicator currentStep={step + 1} totalSteps={totalSteps} />
-          {currentValidationError && (
-            <div className="mb-3.5 surface border-[var(--color-error-200)] bg-[var(--color-error-50)] px-3 py-2.5">
-              <p className="text-xs font-semibold text-[var(--color-error-600)]">{currentValidationError}</p>
-            </div>
-          )}
           {renderStep()}
         </div>
       </main>
 
-      {!isOriginStep && (
-        <WizardNav
-          onBack={handleBack}
-          onNext={handleNext}
-          canProceed={canProceed()}
-          nextLabel={isLastStep ? t("creator.createCharacter", "Create Character") : t("common.next", "Next")}
-          showBack={step > 0}
-        />
-      )}
+      <WizardNav
+        onBack={handleBack}
+        onNext={handleNext}
+        canProceed={canProceed()}
+        nextLabel={isLastStep ? t("creator.createCharacter", "Create Character") : t("common.next", "Next")}
+        showBack={step > 0}
+      />
     </div>
   );
 }

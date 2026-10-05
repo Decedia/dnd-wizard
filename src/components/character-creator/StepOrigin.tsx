@@ -11,14 +11,9 @@ import { RaceSelectionModal } from "../modals/RaceSelectionModal";
 interface StepOriginProps {
   data: Character;
   onChange: (patch: Partial<Character>) => void;
-  currentStep: number;
-  totalSteps: number;
-  onBack: () => void;
-  onNext: () => void;
-  canProceed: boolean;
 }
 
-export function StepOrigin({ data, onChange, currentStep, totalSteps, onBack, onNext, canProceed }: StepOriginProps) {
+export function StepOrigin({ data, onChange }: StepOriginProps) {
   const { t, language } = useLanguage();
   const [classModalOpen, setClassModalOpen] = useState(false);
   const [raceModalOpen, setRaceModalOpen] = useState(false);
@@ -138,24 +133,7 @@ export function StepOrigin({ data, onChange, currentStep, totalSteps, onBack, on
   const isFormComplete = data.class && data.race;
 
   return (
-    <div className="space-y-3 pb-32">
-      <div className="mb-6 px-1">
-        <div className="flex justify-between items-end mb-2">
-          <span className="text-xs font-bold text-slate-500 dark:text-slate-400 tracking-widest uppercase">
-            Langkah {currentStep} dari {totalSteps}
-          </span>
-          <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400">
-            {Math.round((currentStep / totalSteps) * 100)}%
-          </span>
-        </div>
-        <div className="h-1.5 w-full bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
-          <div 
-            className="h-full bg-indigo-500 rounded-full transition-all duration-300 ease-out" 
-            style={{ width: `${(currentStep / totalSteps) * 100}%` }} 
-          />
-        </div>
-      </div>
-
+    <div className="space-y-3">
       <div className="mb-6">
         <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">Identitas & Asal</h1>
         <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">Tentukan nama, kelas, dan ras untuk memulai pahlawanmu.</p>
@@ -204,22 +182,6 @@ export function StepOrigin({ data, onChange, currentStep, totalSteps, onBack, on
           </div>
           <CaretRight className="text-slate-300 dark:text-slate-600 group-hover:text-emerald-500 transition-colors" size={20} weight="bold" />
         </div>
-      </div>
-
-      <div className="grid grid-cols-2 gap-3 mt-4">
-        <button 
-          onClick={onBack}
-          className="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold py-3.5 rounded-xl text-center active:scale-[0.98] transition-transform"
-        >
-          Kembali
-        </button>
-        <button 
-          onClick={onNext} 
-          disabled={!isFormComplete}
-          className="bg-indigo-600 disabled:bg-indigo-500/50 disabled:border-b-0 text-white disabled:text-white/70 font-bold py-3.5 rounded-xl text-center border-b-4 border-indigo-800 active:border-b-0 active:translate-y-1 transition-all"
-        >
-          Lanjut
-        </button>
       </div>
 
       {classModalOpen && (
