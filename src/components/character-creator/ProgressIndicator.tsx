@@ -6,22 +6,20 @@ interface ProgressIndicatorProps {
 }
 
 export function ProgressIndicator({ currentStep, totalSteps }: ProgressIndicatorProps) {
-  const progress = ((currentStep - 1) / (totalSteps - 1)) * 100;
-
   return (
-    <div className="mb-5">
-      <div className="flex items-center justify-between mb-1.5">
-        <span className="text-[10px] font-semibold text-ink-muted uppercase tracking-wider">
-          Step {currentStep} of {totalSteps}
+    <div className="mb-6 px-1">
+      <div className="flex justify-between items-end mb-2">
+        <span className="text-xs font-bold text-slate-500 dark:text-slate-400 tracking-widest uppercase">
+          Langkah {currentStep} dari {totalSteps}
         </span>
-        <span className="text-[10px] text-ink-muted">
-          {Math.round(progress)}%
+        <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400">
+          {Math.round((currentStep / totalSteps) * 100)}%
         </span>
       </div>
-      <div className="progress-track">
-        <div
-          className="progress-fill"
-          style={{ width: `${progress}%` }}
+      <div className="h-1.5 w-full bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+        <div 
+          className="h-full bg-indigo-500 rounded-full transition-all duration-300 ease-out" 
+          style={{ width: `${(currentStep / totalSteps) * 100}%` }} 
         />
       </div>
     </div>

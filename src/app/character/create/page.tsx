@@ -112,7 +112,7 @@ export default function CharacterCreate() {
 
   return (
     <div className="min-h-screen bg-paper">
-      <AppHeader title={t("creator.title", "Character Creator")} subtitle={t("wizard.stepOf", { step: step + 1, total: totalSteps })} />
+      <AppHeader title={t("creator.title", "Character Creator")} />
 
       <main className="px-4 py-5 pb-40">
         <div className="mx-auto max-w-lg">

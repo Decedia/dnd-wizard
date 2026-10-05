@@ -140,9 +140,6 @@ export function StepSourceSelection({ data, onChange }: { data: { sources: strin
   return (
     <div className="space-y-3">
       <div>
-        <div className="text-[10px] font-semibold text-[var(--color-text-muted)] uppercase tracking-wider mb-1">
-          {t("wizard.stepOf", "Step {step} of {total}").replace("{step}", "1").replace("{total}", totalBooks > 0 ? "8" : "6")}
-        </div>
          <h2 className="text-xl font-bold text-[var(--color-text-primary)]">{t("creator.chooseRulebooks")}</h2>
         <p className="text-xs text-[var(--color-text-secondary)] mt-1 inline-flex items-center gap-1.5 flex-wrap">
           <span>{t("creator.selectRulebooks")}</span>
