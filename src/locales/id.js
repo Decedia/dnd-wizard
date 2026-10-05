@@ -895,7 +895,7 @@ export const translations = {
   "creator.phbOnly": "Hanya PHB",
   "creator.selectAll": "Pilih semua",
   "creator.booksSelected": "Buku dipilih",
-  "creator.contentMode.phbOnly": "Hanya PHB (Direkomendasikan)",
+  "creator.contentMode.phbOnly": "Player's Handbook Only (Direkomendasikan)",
   "creator.contentMode.phbOnlyDesc": "Sempurna untuk pemula. Memuat ras, class, dan aturan dasar yang paling mudah dipelajari.",
   "creator.contentMode.all": "Gunakan Semua Ekspansi",
   "creator.contentMode.allDesc": "Membuka seluruh opsi karakter dari buku seperti Xanathar, Tasha, dan Monsters of the Multiverse.",

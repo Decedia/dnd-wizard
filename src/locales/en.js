@@ -893,7 +893,7 @@ export const translations = {
   "creator.phbOnly": "PHB only",
   "creator.selectAll": "Select all",
   "creator.booksSelected": "Books selected",
-  "creator.contentMode.phbOnly": "PHB Only (Recommended)",
+  "creator.contentMode.phbOnly": "Player's Handbook Only (Recommended)",
   "creator.contentMode.phbOnlyDesc": "Perfect for beginners. Contains the core races, classes, and rules that are easiest to learn.",
   "creator.contentMode.all": "Use All Expansions",
   "creator.contentMode.allDesc": "Unlocks every character option from expansions like Xanathar, Tasha, and Monsters of the Multiverse.",

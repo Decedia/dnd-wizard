@@ -157,7 +157,7 @@ export function StepSourceSelection({ data, onChange }: { data: { sources: strin
         </p>
       </div>
 
-      <div className="flex bg-slate-200 dark:bg-slate-900 p-1 rounded-xl mb-6">
+      <div className="flex bg-[var(--color-bg)] p-1 rounded-xl mb-6">
         {(["2014", "2024"] as const).map((rs) => (
           <button
             key={rs}
@@ -165,8 +165,8 @@ export function StepSourceSelection({ data, onChange }: { data: { sources: strin
             onClick={() => setRuleset(rs)}
             className={`flex-1 font-semibold py-2 text-sm rounded-lg transition-all ${
               ruleset === rs
-                ? "bg-white dark:bg-slate-800 shadow-sm text-slate-900 dark:text-white"
-                : "text-slate-500 dark:text-slate-400 font-medium hover:text-slate-700 dark:hover:text-slate-300"
+                ? "bg-[var(--color-surface)] text-[var(--color-text-primary)] shadow-sm"
+                : "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]"
             }`}
           >
              {rs === "2014" ? t("ruleset.2014", "2014 Rules") : t("ruleset.2024", "2024 Rules")}
@@ -180,15 +180,15 @@ export function StepSourceSelection({ data, onChange }: { data: { sources: strin
           onClick={() => handleContentModeChange("phb_only")}
           className={`w-full text-left p-4 rounded-2xl border-2 transition-all ${
             contentMode === "phb_only"
-              ? "border-indigo-500 bg-indigo-50 dark:bg-indigo-900/20"
-              : "border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-slate-300 dark:hover:border-slate-700"
+              ? "border-[var(--color-accent-indigo-500)] bg-[var(--color-accent-indigo-50)]"
+              : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
           }`}
         >
           <div className="flex items-start gap-3">
             <div className={`mt-0.5 w-5 h-5 rounded-full border-2 flex items-center justify-center ${
               contentMode === "phb_only"
-                ? "border-indigo-500 bg-indigo-500"
-                : "border-slate-300 dark:border-slate-600"
+                ? "border-[var(--color-accent-indigo-500)] bg-[var(--color-accent-indigo-500)]"
+                : "border-[var(--color-border)]"
             }`}>
               {contentMode === "phb_only" && (
                 <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
@@ -197,10 +197,10 @@ export function StepSourceSelection({ data, onChange }: { data: { sources: strin
               )}
             </div>
             <div className="flex-1">
-              <h3 className="font-bold text-sm text-slate-900 dark:text-slate-100">
-                {t("creator.contentMode.phbOnly", "PHB Only (Recommended)")}
+              <h3 className="font-bold text-sm text-[var(--color-text-primary)]">
+                {t("creator.contentMode.phbOnly", "Player's Handbook Only (Recommended)")}
               </h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+              <p className="text-xs text-[var(--color-text-secondary)] mt-1 leading-relaxed">
                 {t("creator.contentMode.phbOnlyDesc", "Perfect for beginners. Contains the core races, classes, and rules that are easiest to learn.")}
               </p>
             </div>
@@ -212,15 +212,15 @@ export function StepSourceSelection({ data, onChange }: { data: { sources: strin
           onClick={() => handleContentModeChange("all")}
           className={`w-full text-left p-4 rounded-2xl border-2 transition-all ${
             contentMode === "all"
-              ? "border-indigo-500 bg-indigo-50 dark:bg-indigo-900/20"
-              : "border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-slate-300 dark:hover:border-slate-700"
+              ? "border-[var(--color-accent-indigo-500)] bg-[var(--color-accent-indigo-50)]"
+              : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
           }`}
         >
           <div className="flex items-start gap-3">
             <div className={`mt-0.5 w-5 h-5 rounded-full border-2 flex items-center justify-center ${
               contentMode === "all"
-                ? "border-indigo-500 bg-indigo-500"
-                : "border-slate-300 dark:border-slate-600"
+                ? "border-[var(--color-accent-indigo-500)] bg-[var(--color-accent-indigo-500)]"
+                : "border-[var(--color-border)]"
             }`}>
               {contentMode === "all" && (
                 <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
@@ -229,10 +229,10 @@ export function StepSourceSelection({ data, onChange }: { data: { sources: strin
               )}
             </div>
             <div className="flex-1">
-              <h3 className="font-bold text-sm text-slate-900 dark:text-slate-100">
+              <h3 className="font-bold text-sm text-[var(--color-text-primary)]">
                 {t("creator.contentMode.all", "Use All Expansions")}
               </h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+              <p className="text-xs text-[var(--color-text-secondary)] mt-1 leading-relaxed">
                 {t("creator.contentMode.allDesc", "Unlocks every character option from expansions like Xanathar, Tasha, and Monsters of the Multiverse.")}
               </p>
             </div>
@@ -244,15 +244,15 @@ export function StepSourceSelection({ data, onChange }: { data: { sources: strin
           onClick={() => handleContentModeChange("custom")}
           className={`w-full text-left p-4 rounded-2xl border-2 transition-all ${
             contentMode === "custom"
-              ? "border-indigo-500 bg-indigo-50 dark:bg-indigo-900/20"
-              : "border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-slate-300 dark:hover:border-slate-700"
+              ? "border-[var(--color-accent-indigo-500)] bg-[var(--color-accent-indigo-50)]"
+              : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
           }`}
         >
           <div className="flex items-start gap-3">
             <div className={`mt-0.5 w-5 h-5 rounded-full border-2 flex items-center justify-center ${
               contentMode === "custom"
-                ? "border-indigo-500 bg-indigo-500"
-                : "border-slate-300 dark:border-slate-600"
+                ? "border-[var(--color-accent-indigo-500)] bg-[var(--color-accent-indigo-500)]"
+                : "border-[var(--color-border)]"
             }`}>
               {contentMode === "custom" && (
                 <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
@@ -261,10 +261,10 @@ export function StepSourceSelection({ data, onChange }: { data: { sources: strin
               )}
             </div>
             <div className="flex-1">
-              <h3 className="font-bold text-sm text-slate-900 dark:text-slate-100">
+              <h3 className="font-bold text-sm text-[var(--color-text-primary)]">
                 {t("creator.contentMode.custom", "Manual Selection")}
               </h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+              <p className="text-xs text-[var(--color-text-secondary)] mt-1 leading-relaxed">
                 {t("creator.contentMode.customDesc", "Choose exactly which expansion books to enable.")}
               </p>
             </div>
@@ -273,10 +273,10 @@ export function StepSourceSelection({ data, onChange }: { data: { sources: strin
       </div>
 
       {contentMode === "custom" && (
-        <div className="mt-6 pt-6 border-t border-slate-200 dark:border-slate-800 animate-in fade-in slide-in-from-top-4 duration-300">
+        <div className="mt-6 pt-6 border-t border-[var(--color-border)] animate-in fade-in slide-in-from-top-4 duration-300">
           <div className="flex justify-between items-center mb-4">
-            <h3 className="font-bold text-sm text-slate-800 dark:text-slate-200">{t("creator.booksSelected", "Books selected")}</h3>
-            <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400">{selectedCount} / {totalBooks}</span>
+            <h3 className="font-bold text-sm text-[var(--color-text-primary)]">{t("creator.booksSelected", "Books selected")}</h3>
+            <span className="text-xs font-bold text-[var(--color-accent-indigo-600)] dark:text-[var(--color-accent-indigo-400)]">{selectedCount} / {totalBooks}</span>
           </div>
           <div className="grid grid-cols-3 gap-2 items-stretch pb-24">
             {SOURCE_OPTIONS.map((source) => {
