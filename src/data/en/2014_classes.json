@@ -9,7 +9,7 @@
         "str",
         "con"
       ],
-      "flavorText": "Barbarians are mighty warriors powered by the primal forces of the multiverse, which manifest as a Rage. While those in towns and cities take pride in their settled ways, a barbarian views such a life as a sign of weakness. The strong embrace nature, valuing keen instincts, primal physicality, and ferocious rage.\n\nBarbarians come alive in the chaos of combat. They can enter a berserk state where rage takes over, granting them superhuman strength and resilience. A barbarian can draw upon this reservoir of fury only a few times without resting, but those few rages are usually sufficient to defeat any threat that arises.\n\nA barbarian serves as a vital protector of their people and a leader in times of war. Life in the wild places of the world is fraught with peril, from rival tribes and deadly weather to terrifying monsters. Barbarians charge headlong into that danger so that their people do not have to.",
+      "flavorText": "You grew up where the wild meets untamed. While city folk fretted about etiquette, you learned that sometimes the best answer is a really big axe and a good scream. Perfect for players who want to channel their inner rage monster, solve problems by hitting them really hard, and have the durability of a tank.",
       "proficiencies": {
         "armor": [
           "light",
@@ -988,7 +988,7 @@
         "dex",
         "cha"
       ],
-      "flavorText": "Bards are experts at inspiring others, soothing hurts, disheartening foes, and creating illusions. Whether you are a scholar, skald, or scoundrel, you weave magic through words and music to inspire your allies, demoralize your enemies, manipulate minds, create illusions, and even heal wounds.\n\nIn the worlds of D&D, words and music are not just vibrations of air, but vocalizations with power all their own. As a bard, you are a master of song, speech, and the magic they contain. Bards believe that the multiverse was spoken into existence, that the words of the gods gave it shape, and that echoes of these primordial Words of Creation still resound throughout the cosmos.\n\nYour greatest strength is your sheer versatility. Many bards prefer to stay on the sidelines in combat, using their magic to inspire allies and hinder foes from a distance. However, you are capable of defending yourself in melee if necessary, using your magic to bolster your swords and armor.",
+      "flavorText": "You didn't just study magic - you performed it. While wizards buried their noses in dusty tomes, you learned that a well-timed insult can be as powerful as a fireball. Perfect for players who want to be the party's face, support their friends with buffs, and turn any situation into a musical number.",
       "proficiencies": {
         "armor": [
           "light"
@@ -3008,7 +3008,7 @@
         "wis",
         "cha"
       ],
-      "flavorText": "Clerics reach out to the divine magic of the Outer Planes, channeling it to bolster their allies and battle their foes. They combine the benevolent magic of healing and inspiration with spells designed to harm and hinder their enemies. They can provoke awe and dread, lay curses of plague or poison, and call down celestial flames to consume those who oppose them.\n\nDivine magic is the power of the gods, flowing from the deities into the mortal world. Clerics serve as conduits for this power, manifesting it as miraculous effects. The gods do not grant this power to everyone who seeks it, but only to those chosen to fulfill a high calling.\n\nClerics act as intermediaries between the mortal realm and the distant planes of the gods. As varied as the deities they serve, clerics strive to embody the handiwork of their gods. More than ordinary priests, clerics are imbued with divine magic.",
+      "flavorText": "A divine agent of your chosen deity, you blend healing, support, and smiting in ways that make the party wonder how they'd survive without you. Perfect for players who want to be the party's backbone, channel divine power, and occasionally turn undead into dust with a stern look.",
       "proficiencies": {
         "armor": [
           "light",
@@ -4248,7 +4248,7 @@
         "int",
         "wis"
       ],
-      "flavorText": "Druids call on the forces of nature, harnessing magic to heal, transform into animals, and wield elemental destruction. They are priests of the Old Faith, wielding the powers of nature and adopting animal forms. At home in the wilds, they serve as guardians of the natural world and protectors of the balance between civilization and nature.\n\nDruids revere nature above all, gaining their spells and other magic from the natural world itself or from a nature deity. Many druids pursue a mystic spirituality of transcendent union with nature rather than devotion to a divine entity. Druidic rites are typically performed at sacred sites or in hallowed groves.\n\nThe magic of druids is influenced by the land where they were initiated. Some druids learn to take on animal forms, while others develop the ability to control the weather or speak with animals.",
+      "flavorText": "You speak for the trees, and sometimes the trees tell you to turn into a bear and maul the bad guys. Perfect for players who want to be a nature-themed spellcaster, shapeshift into various beasts, and remind everyone that civilization is just nature's way of saying 'we'll put up with this for now.'",
       "proficiencies": {
         "armor": [
           "light",
@@ -5151,7 +5151,7 @@
         "str",
         "con"
       ],
-      "flavorText": "Fighters possess an unparalleled mastery of weapons and armor, and are intimately acquainted with death, both as the ones who deal it and those who defy it. As a master of martial combat, you are skilled in the use of arms and plating. You are the most versatile and adaptable of the martial classes, capable of dominating any battlefield provided you have the right tools and training.\n\nThrough years of warfare, you have survived by facing down death with every swing of your blade or release of an arrow, honing a thorough familiarity with the arts of combat.\n\nFighters are the most diverse of all characters. Whether you are a questing knight, a conquering overlord, a royal champion, an elite foot soldier, a hardened mercenary, or a bandit king—you can be any of these.",
+      "flavorText": "You're not the chosen one. You didn't find a magic sword in a cave. You trained. You fought. You're really, really good at hitting things with various implements of destruction. Perfect for players who want to be reliable, versatile, and never run out of things to throw at enemies.",
       "proficiencies": {
         "armor": [
           "light",
@@ -6180,7 +6180,7 @@
         "str",
         "dex"
       ],
-      "flavorText": "Monks focus their internal reservoirs of power to create extraordinary, even supernatural, effects. As masters of martial arts, they harness the power of the body in pursuit of physical and spiritual perfection, using discipline and training to channel their inner energy into devastating attacks and incredible feats of agility.\n\nMonks carefully study their inner energy, known as ki. This energy fuels many of the supernatural abilities they channel, allowing them to create magical effects, exceed their bodies' physical capabilities, and use special attacks to hinder their foes' ability to move and fight.\n\nMonks devote themselves to the pursuit of physical and spiritual perfection through rigorous combat training and meditation. Their monasteries are found in secluded locations, where they can train without distraction.",
+      "flavorText": "You spent years in a monastery learning that your body is a weapon, your mind is a shield, and your ability to ignore pain is genuinely concerning. Perfect for players who want to be unarmored, unarmed, and unexpectedly lethal while reciting philosophical quotes mid-punch.",
       "proficiencies": {
         "armor": [],
         "weapons": [
@@ -7339,7 +7339,7 @@
         "wis",
         "cha"
       ],
-      "flavorText": "Paladins live on the front lines of the cosmic struggle, united by their oaths against the forces of annihilation. They are devout warriors bound to sacred oaths of justice and devotion, combining the helpful magic of healing and inspiring their allies with spells that harm and hinder foes, all while standing as bulwarks against the forces of evil.\n\nPaladins are holy warriors bound to sacred oaths of justice and devotion. They are champions of righteousness, answering to a power higher than themselves. A paladin's magic is a divine gift, a blessing granted to those who pledge their lives to a higher calling.\n\nThe life of a paladin is a life of service to the weak and the innocent. They are bound by their oaths to protect the helpless, to fight evil wherever it lurks, and to uphold the highest ideals of justice and honor.",
+      "flavorText": "You swore an oath, and you take it very seriously. Whether you're a holy crusader or a dark avenger, you've dedicated yourself to a higher cause - and everyone's going to hear about it. Perfect for players who want to be a charismatic leader, smite evil, and occasionally lecture the party about honor.",
       "proficiencies": {
         "armor": [
           "light",
@@ -8348,7 +8348,7 @@
         "str",
         "dex"
       ],
-      "flavorText": "Rangers are honed with deadly focus and harness primal powers to protect the world from the ravages of monsters and tyrants. They are warriors who combat threats on the edges of civilization.\n\nAs skilled hunters and trackers, they use their knowledge of the wilderness to protect the innocent from the dangers that lurk in the wild. They live off the land and move unseen through the shadows.\n\nRangers specialize in hunting the monsters that threaten the fringes of society—humanoid raiders, monstrous beasts, and terrible giants. They learn to track their prey as a predator does, moving quietly and hiding themselves in the shadows.",
+      "flavorText": "You're at home in the wilds, tracking your prey with deadly precision while your friends are still trying to read the map. Perfect for players who want to be a skilled hunter, track enemies, deal massive single-target damage, and have an animal companion who's cooler than the party's rogue.",
       "proficiencies": {
         "armor": [
           "light",
@@ -9559,7 +9559,7 @@
         "dex",
         "int"
       ],
-      "flavorText": "Rogues have a knack for finding the solution to just about any problem, prioritizing subtle strikes over brute strength. They are scoundrels who use stealth and trickery to overcome obstacles and enemies. Skilled in the arts of stealth, deception, and infiltration, rogues are invaluable members of any adventuring party.\n\nRogues devote as much effort to mastering the art of stealth and infiltration as a thief does to picking locks and opening safes. Many rogues rely as much on cunning and trickery as they do on agility and stealth, acting as the shadowy figures who slip through the cracks in the world's defenses.\n\nRogues rely on skill, stealth, and the vulnerabilities of their foes to gain the upper hand in any situation. They possess a natural ability to find solutions to nearly any problem, demonstrating a resourcefulness and versatility that serves as the cornerstone of any successful adventuring party.",
+      "flavorText": "You're not the strongest, and you're definitely not the toughest. But you're the one who walks into the treasure room first, picks the lock with one hand while flipping off the trap with the other, and leaves before everyone else realizes what happened. Perfect for players who want to be sneaky, deal massive critical hits, and make the party wonder if you're actually on their side.",
       "proficiencies": {
         "armor": [
           "light"
@@ -10712,7 +10712,7 @@
         "con",
         "cha"
       ],
-      "flavorText": "Sorcerers harness and channel the raw, roiling power of innate magic stamped into their very being. They are spellcasters who draw upon inherent magic derived from a gift or a bloodline. A sorcerer carries a magical birthright conferred by an exotic bloodline, an otherworldly influence, or exposure to unknown cosmic forces.\n\nMagic is an intrinsic part of every sorcerer, suffusing body, mind, and spirit with a latent power waiting to be tapped. Some sorcerers wield magic that springs from an ancient bloodline infused with the power of dragons. Others carry a raw, uncontrolled magic within them—a chaotic storm that manifests in unexpected ways.\n\nSorcerers have no need for the spellbooks and ancient tomes of lore that wizards rely on, nor do they depend on a patron to grant their spells as warlocks do. By learning to harness and channel their own inborn magic, they discover new and staggering ways to unleash that power.",
+      "flavorText": "Magic isn't something you studied - it's in your blood. You don't cast spells from books; you channel raw arcane power that flows through you like an extra-caffeinated river. Perfect for players who want to be a spontaneous caster with powerful metamagic, look cool while doing it, and occasionally blow things up by accident.",
       "proficiencies": {
         "armor": [],
         "weapons": [],
@@ -11824,7 +11824,7 @@
         "wis",
         "cha"
       ],
-      "flavorText": "Warlocks quest for knowledge hidden within the fabric of the multiverse, piecing together arcane secrets to bolster their own power. They wield magic derived from a bargain with an extraplanar entity, seeking forbidden truths by making pacts with otherworldly beings.\n\nDriven by an insatiable need for power and knowledge, warlocks unlock magical effects that range from the subtle to the spectacular through these pacts with mysterious beings of supernatural power.\n\nThese pacts are forged with entities such as fey, fiends, and other supernatural beings. Such agreements can vary wildly, ranging from a simple bargain to a complex contract that binds the warlock to the service of their patron.",
+      "flavorText": "You made a deal. Somewhere, somehow, you struck a bargain with a powerful being for magical power, and now you owe them your soul (or at least your firstborn). Perfect for players who want to be a Charisma-based caster with eldritch invocations, make pacts with otherworldly patrons, and look edgy while doing it.",
       "proficiencies": {
         "armor": [
           "light"
@@ -13462,7 +13462,7 @@
         "int",
         "wis"
       ],
-      "flavorText": "Wizards cast spells of explosive fire, arcing lightning, subtle deception, and spectacular transformations. They are scholarly spellcasters who wield magic through dedicated study and arcane knowledge. Wizards are supreme magic-users, defined and united as a class by the spells they cast.\n\nDrawing on the subtle weave of magic that permeates the cosmos, wizards cast spells of explosive fire, arcing lightning, subtle deception, and brute-force mind control. Their magic can conjure monsters from other planes of existence, glimpse the future, or turn slain foes into zombies.\n\nWizards live and breathe magic. They learn it, shape it, and call it from beyond the boundaries of the mundane world. The wizard is a scholar of the arcane, a spellcaster who wields magic through study and arcane knowledge.",
+      "flavorText": "You spent years in a library learning spells from dusty tomes, and now you can reshape reality with a wave of your hand and a carefully chosen word. Perfect for players who want to be the ultimate spellcaster, prepare the right spell for every situation, and remind everyone that intelligence is the real stat that matters.",
       "proficiencies": {
         "armor": [],
         "weapons": [],
@@ -14423,7 +14423,7 @@
         "con",
         "int"
       ],
-      "flavorText": "Masters of invention, artificers use ingenuity and magic to unlock extraordinary capabilities in objects. They view magic as a complex system waiting to be decoded, which they then harness through their spells and inventions.",
+      "flavorText": "You're the party's problem-solver, inventor, and occasionally mad scientist. While others rely on magic or brute force, you build things - gadgets, constructs, and solutions that make everyone else wonder why they didn't think of that. Perfect for players who want to be a creative tinkerer, craft magical items, and turn every encounter into a science fair project.",
       "proficiencies": {
         "armor": [
           "light",
