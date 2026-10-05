@@ -2530,7 +2530,7 @@ function LevelCard({
             ...(character.features || []).filter((f: any) => f.name && f.source !== "custom").map((f: any) => f.name),
             ...Object.values(character.featureSelections || {}).flat(),
           ]}
-          disableFeatsWithPrerequisites
+          character={character}
           onSelect={(feat) => {
             onAsiChange({ feat: feat.name });
             setShowAsiFeatModal(false);

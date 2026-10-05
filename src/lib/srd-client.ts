@@ -3,6 +3,8 @@ import racesDataId from "@/data/id/2014_races.json";
 const racesDataMap = { en: racesDataEn, id: racesDataId } as const;
 
 import { buildDataset, findEngineFeature } from "@/data/engine/index";
+import type { Character } from "@/lib/storage";
+import type { RequiresSpec } from "@/data/engine/types";
 
 import classesDataEn from "@/data/en/2014_classes.json";
 import classesDataId from "@/data/id/2014_classes.json";
@@ -974,4 +976,83 @@ export function featHasPrerequisite(name: string): boolean {
   const hasPrereq = !!(srdFeat?.prerequisites);
   enginePrereqCache[name] = hasPrereq;
   return hasPrereq;
+}
+
+export function meetsPrerequisites(character: Character, featName: string): boolean {
+  try {
+    const dataset = buildDataset();
+    const engineFeat = findEngineFeature(undefined, featName, dataset);
+    const requires = engineFeat?.requires as RequiresSpec | undefined;
+    if (!requires) return true;
+
+    if (requires.abilities) {
+      for (const [ability, minScore] of Object.entries(requires.abilities)) {
+        const charScore = character[ability as keyof Character] as number | undefined;
+        if (charScore === undefined || charScore < (minScore as number)) {
+          return false;
+        }
+      }
+    }
+
+    if (requires.minLevel && (character.level || 0) < requires.minLevel) {
+      return false;
+    }
+
+    if (requires.features && requires.features.length > 0) {
+      const ownedNames = new Set(
+        (character.features || [])
+          .map((f) => f.name.trim().toLowerCase())
+          .filter(Boolean)
+      );
+      const ownedEngineIds = new Set(
+        (character.features || [])
+          .map((f) => (f.engineId || "").trim().toLowerCase())
+          .filter(Boolean)
+      );
+      for (const required of requires.features) {
+        const normalized = required.trim().toLowerCase();
+        if (!ownedNames.has(normalized) && !ownedEngineIds.has(normalized)) {
+          return false;
+        }
+      }
+    }
+
+    if (requires.proficiencies && requires.proficiencies.length > 0) {
+      const allProfs = [
+        ...(character.toolProficiencies || []),
+        ...(character.expertise || []),
+        ...(character.otherProficiencies || "").split(",").map((p) => p.trim()).filter(Boolean),
+      ].map((p) => p.toLowerCase());
+
+      const skillProfs = Object.entries(character.skills || {})
+        .filter(([, proficient]) => proficient)
+        .map(([name]) => name.toLowerCase());
+
+      for (const req of requires.proficiencies) {
+        const normalized = req.toLowerCase();
+        const matched = allProfs.some((p) => p.includes(normalized) || normalized.includes(p)) ||
+          skillProfs.some((p) => p.includes(normalized) || normalized.includes(p));
+        if (!matched) {
+          return false;
+        }
+      }
+    }
+
+    if (requires.skills && requires.skills.length > 0) {
+      const skillProfs = Object.entries(character.skills || {})
+        .filter(([, proficient]) => proficient)
+        .map(([name]) => name.toLowerCase());
+
+      for (const req of requires.skills) {
+        const normalized = req.toLowerCase();
+        if (!skillProfs.some((p) => p.includes(normalized) || normalized.includes(p))) {
+          return false;
+        }
+      }
+    }
+
+    return true;
+  } catch {
+    return false;
+  }
 }

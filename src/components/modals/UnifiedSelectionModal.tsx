@@ -376,6 +376,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
                     ...(currentCharacter?.features || []).filter((f: any) => f.name && f.source !== "custom").map((f: any) => f.name),
                     ...Object.values(currentCharacter?.featureSelections || {}).flat(),
                   ]}
+                  character={currentCharacter}
                   onChange={(variantConfig) => {
                     if (!variantConfig.enabled) {
                       setConfigChoice(null);

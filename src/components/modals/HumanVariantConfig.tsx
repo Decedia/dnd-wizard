@@ -6,6 +6,7 @@ import { FeatSelectionModal } from "@/components/modals/FeatSelectionModal";
 import { getStaticFeats } from "@/lib/srd-client";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { SRDFeat } from "@/lib/srd-client";
+import type { Character } from "@/lib/storage";
 
 const ABILITY_OPTIONS = [
   { id: "str", label: "STR" },
@@ -29,6 +30,7 @@ interface HumanVariantConfigProps {
   initialSkill?: string;
   initialFeat?: string;
   disabledFeats?: string[];
+  character?: Partial<Character>;
   onChange: (payload: HumanVariantConfigPayload) => void;
 }
 
@@ -38,6 +40,7 @@ export function HumanVariantConfig({
   initialSkill,
   initialFeat,
   disabledFeats = [],
+  character,
   onChange,
 }: HumanVariantConfigProps) {
   const { t, language } = useLanguage();
@@ -220,7 +223,7 @@ export function HumanVariantConfig({
           selectedFeat={feat}
           sources={[]}
           disabledFeats={disabledFeats}
-          disableFeatsWithPrerequisites
+          character={character as Character}
           onSelect={(selected: SRDFeat) => {
             selectFeat(selected.name);
             setFeatModalOpen(false);

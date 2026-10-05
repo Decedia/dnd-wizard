@@ -3,7 +3,8 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useState, useMemo } from "react";
 import { MagnifyingGlassIcon as MagnifyingGlass, CheckIcon as Check } from "@/components/icons";
-import { getStaticFeats, featHasPrerequisite, type SRDFeat } from "@/lib/srd-client";
+import { getStaticFeats, meetsPrerequisites, featHasPrerequisite, type SRDFeat } from "@/lib/srd-client";
+import type { Character } from "@/lib/storage";
 import { isRecommended } from "@/lib/recommendations";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
@@ -14,7 +15,7 @@ interface FeatSelectionModalProps {
   selectedFeat?: string;
   sources?: string[];
   disabledFeats?: string[];
-  disableFeatsWithPrerequisites?: boolean;
+  character?: Character;
 }
 
 function pillClass(active: boolean) {
@@ -25,7 +26,7 @@ function pillClass(active: boolean) {
   }`;
 }
 
-export function FeatSelectionModal({ onSelect, onClose, selectedFeat, sources, disabledFeats = [], disableFeatsWithPrerequisites = false }: FeatSelectionModalProps) {
+export function FeatSelectionModal({ onSelect, onClose, selectedFeat, sources, disabledFeats = [], character }: FeatSelectionModalProps) {
   const { t } = useLanguage();
   const feats = getStaticFeats(sources);
   const [search, setSearch] = useState("");
@@ -33,17 +34,7 @@ export function FeatSelectionModal({ onSelect, onClose, selectedFeat, sources, d
   const [sourceFilter, setSourceFilter] = useState<string>("ALL");
   const [prereqFilter, setPrereqFilter] = useState<"all" | "with" | "without">("all");
 
-  const disabledFeatNames = useMemo(() => {
-    const base = new Set(disabledFeats);
-    if (disableFeatsWithPrerequisites) {
-      for (const feat of feats) {
-        if (featHasPrerequisite(feat.name)) {
-          base.add(feat.name);
-        }
-      }
-    }
-    return base;
-  }, [disabledFeats, feats, disableFeatsWithPrerequisites]);
+  const disabledFeatNames = useMemo(() => new Set(disabledFeats), [disabledFeats]);
 
   const availableSources = useMemo(() => {
     const sourceSet = new Set<string>();
@@ -166,7 +157,7 @@ export function FeatSelectionModal({ onSelect, onClose, selectedFeat, sources, d
         <div className="space-y-2">
           {filteredFeats.map((feat) => {
             const isSelected = pendingSelection === feat.name;
-            const isDisabled = disableFeatsWithPrerequisites && featHasPrerequisite(feat.name);
+            const isDisabled = disabledFeatNames.has(feat.name) || !meetsPrerequisites(character as Character, feat.name);
             const sourceLabel = feat.book || (typeof feat.source === "string" ? feat.source : (feat as any).source?.name);
             return (
               <SplitSelectionCard
