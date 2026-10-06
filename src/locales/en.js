@@ -461,6 +461,7 @@ export const translations = {
   "home.myCharacters": "My Characters",
   "form.characterName": "Character Name",
   "form.characterNameRequired": "Character Name *",
+  "form.fieldRequired": "This field is required",
   "form.playerName": "Player Name",
   "form.race": "Race",
   "form.class": "Class",

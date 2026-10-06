@@ -474,6 +474,7 @@ export const translations = {
   "home.myCharacters": "Karakter Saya",
   "form.characterName": "Nama Karakter",
   "form.characterNameRequired": "Nama Karakter *",
+  "form.fieldRequired": "Bidang ini wajib diisi",
   "form.playerName": "Nama Pemain",
   "form.race": "Ras",
   "form.class": "Kelas",
