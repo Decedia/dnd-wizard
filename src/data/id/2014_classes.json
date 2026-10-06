@@ -9,7 +9,7 @@
         "str",
         "con"
       ],
-      "flavorText": "Anda tumbuh di mana liar bertemu tak tertamakan. Sementara orang kota khawatir tentang etika, Anda belajar bahwa jawaban terbaik kadang-kadang adalah kapak besar dan teriakan yang baik. Sempurna untuk pemain yang ingin menyalurkan monster kemarahan dalam diri, memecahkan masalah dengan memukulnya sangat keras, dan memiliki ketahanan tank.",
+      "flavorText": "Kamu dibesarkan di alam liar, di mana aturan peradaban tidak berlaku. Amarah adalah hak kelahiranmu—badai yang kamu lepaskan ketika kata-kata gagal. Kamu tidak bertahan dengan kehati-hatian; kamu bertahan dengan menjadikan diri badai itu sendiri.",
       "proficiencies": {
         "armor": [
           "light",
@@ -988,7 +988,7 @@
         "dex",
         "cha"
       ],
-      "flavorText": "Anda tidak hanya mempelajari sihir - Anda mempertunjukkannya. Sementara wizard menyembunyikan hidung dalam tomes berdebu, Anda belajar bahwa ejekan yang tepat waktu bisa sekuat bola api. Sempurna untuk pemain yang ingin menjadi wajah party, mendukung teman dengan buff, dan mengubah situasi apa pun menjadi nomor musikal.",
+      "flavorText": "Sihir mengalir lewat suara, jari, kehadiranmu. Kamu adalah cerita yang menulis dirinya sendiri—menyanyikan mantra, mengubah tawa jadi senjata, dan membuat yang mustahil terasa seperti takdir.",
       "proficiencies": {
         "armor": [
           "light"
@@ -3008,7 +3008,7 @@
         "wis",
         "cha"
       ],
-      "flavorText": "Agen ilahi dari dewa pilihan Anda, Anda memadukan penyembuhan, dukungan, dan penghancuran dengan cara yang membuat bertanya bagaimana party bisa bertahan tanpa Anda. Sempurna untuk pemain yang ingin menjadi tulang punggung party, menyalurkan kekuatan ilahi, dan sesekali menghancurkan mayat hidup dengan tatapan tegas.",
+      "flavorText": "Kuasa ilahi mengalir dalam dirimu, dikaruniakan oleh dewa yang kehendakmu wakili. Kamu saluran antara fana dan abadi—menyembuhkan yang hancur, menghakimi yang jahat, dan berdiri sebagai bukti hidup bahwa dewa berjalan di antara kita.",
       "proficiencies": {
         "armor": [
           "light",
@@ -4248,7 +4248,7 @@
         "int",
         "wis"
       ],
-      "flavorText": "Anda berbicara untuk pohon, dan kadang-kadang pohon memberi tahu Anda untuk berubah menjadi beruang dan menghajar orang jahat. Sempurna untuk pemain yang ingin menjadi spellcaster bertema alam, berubah menjadi berbagai hewan, dan mengingatkan semua orang bahwa peradaban hanya cara alam mengatakan 'kami akan memaklumi ini untuk saat ini.'",
+      "flavorText": "Alam bukan latar belakbagimu—ia adalah saudaramu. Kamu bicara bahasa akar dan badai, memakai wujud binatang, dan memerintahkan liar itu sendiri. Keseimbangan tunduk pada keinginanmu.",
       "proficiencies": {
         "armor": [
           "light",
@@ -5151,7 +5151,7 @@
         "str",
         "con"
       ],
-      "flavorText": "Anda bukan orang pilihan. Anda tidak menemukan pedang ajaib di gua. Anda berlatih. Anda bertarung. Anda sangat, sangat baik memukul hal-hal dengan berbagai alat kehancuran. Sempurna untuk pemain yang ingin menjadi andal, serbaguna, dan never kehabisan hal-hal untuk dilemparkan ke musuh.",
+      "flavorText": "Kamu tidak dipilih takdir atau darah. Kamu memilih proses—ribuan pengulangan, tak terhitung kebaluan, disiplin yang mengubah batas mortal jadi keahlian. Senjatamu adalah lanjutan kehendakmu.",
       "proficiencies": {
         "armor": [
           "light",
@@ -6180,7 +6180,7 @@
         "str",
         "dex"
       ],
-      "flavorText": "Anda menghabiskan tahun di biara-learn bahwa tubuh Anda adalah senjata, pikiran Anda adalah perisai, dan kemampuan Anda untuk mengabaikan sakit adalah benar-benar mengkhawatirkan. Sempurna untuk pemain yang ingin tanpa armor, tanpa senjata, dan tidak terduga mematikan sambil mengutip kutipan filosofis di tengah pukulan.",
+      "flavorText": "Tubuhmu adalah kuil dan disiplinmu kitab sucinya. Ki mengalir di tempat otot gagal. Kamu memukul lebih cepat dari pikiran, menahan apa yang akan menghancurkan orang lain, dan menemukan kesempurnaan dalam gerak itu sendiri.",
       "proficiencies": {
         "armor": [],
         "weapons": [
@@ -7339,7 +7339,7 @@
         "wis",
         "cha"
       ],
-      "flavorText": "Anda bersumpah sumpah, dan Anda mengambilnya sangat serius. Apakah Anda krusader suci atau pemburu gelap, Anda telah mendedikasikan diri untuk penyebab yang lebih tinggi - dan semua orang akan mendengarnya. Sempurna untuk pemain yang ingin menjadi pemimpin karismatik, menghancurkan kejahatan, dan sesekali memberi kuliah party tentang kehormatan.",
+      "flavorText": "Sumpah mengikatmu lebih kencang dari baja. Kamu keyakinan yang nyata—bersinar saat menghakimi, tak tergoyahkan saat melindungi. Janjimu adalah kekuatanmu, dan kamu tak akan melanggarnya.",
       "proficiencies": {
         "armor": [
           "light",
@@ -8348,7 +8348,7 @@
         "str",
         "dex"
       ],
-      "flavorText": "Anda merasa seperti di rumah di hutan, melacak mangsa dengan presisi mematikan sementara teman Anda masih mencoba membaca peta. Sempurna untuk pemain yang ingin menjadi pemburu terampil, melacak musuh, deal damage single-target masif, dan memiliki hewan pemandu yang lebih keren dari rogue party.",
+      "flavorText": "Lembah liar adalah rumah dan tempat berburumu. Kamu baca jejak seperti orang lain baca buku, menyerang sebelum terlihat, dan menjaga beban setiap perbatasan yang kau janjikan.",
       "proficiencies": {
         "armor": [
           "light",
@@ -9559,7 +9559,7 @@
         "dex",
         "int"
       ],
-      "flavorText": "Anda bukan yang terkuat, dan Anda definitely bukan yang terketat. Tapi Anda adalah orang yang masuk ke ruang harta pertama, membuka kunci dengan satu tangan sambil mengabaikan jebakan dengan yang lain, dan pergi sebelum semua orang menyadari apa yang terjadi. Sempurna untuk pemain yang ingin menjadi licik, deal critical hits masif, dan membuat party bertanya apakah Anda sebenarnya di pihak mereka.",
+      "flavorText": "Kamu tak butuh kekuatan bila punya presisi. Bayangan sekutumu, kunci cuma saran, dan pukulan mematikan mendarat sebelum sasaran sadar kau ada. Peluang adalah tuanmu yang satu-satunya.",
       "proficiencies": {
         "armor": [
           "light"
@@ -10712,7 +10712,7 @@
         "con",
         "cha"
       ],
-      "flavorText": "Sihir bukan sesuatu yang Anda pelajari - itu ada di darah Anda. Anda tidak menyusun spell dari buku; Anda menyalurkan kekuatan arcan mentah yang mengalir melalui Anda seperti sungai berlebih-kafein. Sempurna untuk pemain yang ingin menjadi caster spontan dengan metamagic kuat, terlihat keren saat melakukannya, dan sesekali meledakkan hal-hal secara tidak sengaja.",
+      "flavorText": "Sihir bukan dipelajari—ia diwariskan. Kekuatan arcane menyala dalam garis keturunanmu, liar dan mentah, menunggu kau bentukkan. Kau tak 'mencast' mantra; kau melepaskan apa yang kaulah.",
       "proficiencies": {
         "armor": [],
         "weapons": [],
@@ -11824,7 +11824,7 @@
         "wis",
         "cha"
       ],
-      "flavorText": "Anda membuat kesepakatan. Di suatu tempat, entah bagaimana, Anda menembak kesepakatan dengan makhluk kuat untuk kekuatan sihir, dan sekarang Anda berutang jiwa mereka (atau setidaknya anak pertama). Sempurna untuk pemain yang ingin menjadi caster berbasis Karisma dengan invokasi eldritch, membuat pakta dengan patron lain-dunia, dan terlihat edgy saat melakukannya.",
+      "flavorText": "Pakatan ditandatangani dari keputusasaan atau ambisi. Patronmu beri kekuatan dengan syarat—pengetahuan, rahasia, sepotong kekuatan mereka. Tiap mantra dibayar sebagai cicilan utang yang tak pernah lunas sepenuhnya.",
       "proficiencies": {
         "armor": [
           "light"
@@ -13462,7 +13462,7 @@
         "int",
         "wis"
       ],
-      "flavorText": "Anda menghabiskan tahun di perpustakaan mempelajari spell dari tomes berdebu, dan sekarang Anda bisa membentuk realitas dengan gelombangan tangan dan kata yang dipilih dengan hati-hati. Sempurna untuk pemain yang ingin menjadi spellcaster ultimate, menyiapkan spell yang tepat untuk setiap situasi, dan mengingatkan semua orang bahwa kecerdasan adalah stat yang benar-benar matters.",
+      "flavorText": "Kamu belajar hingga jari berdarah dan pikiran melebar. Mantra adalah rumus yang kau kuasai, realitas sistem yang kau retas. Pengetahuan senjatamu, dan kau bersiap untuk segalanya.",
       "proficiencies": {
         "armor": [],
         "weapons": [],
@@ -14423,7 +14423,7 @@
         "con",
         "int"
       ],
-      "flavorText": "Anda adalah pemecah masalah party, inventor, dan sesekali ilmuwan gila. Sementara orang lain mengandalkan sihir atau kekuatan kasar, Anda membangun hal-hal - gadget, konstruk, dan solusi yang membuat semua orang bertanya mengapa mereka tidak memikirkan itu. Sempurna untuk pemain yang ingin menjadi tukang serbaguna, crafting item ajaib, dan mengubah setiap encounter menjadi proyek pameran sains.",
+      "flavorText": "Sihir adalah teknologi yang kau reverse-engineer. Kau suntikkan yang ajaib ke yang biasa—peralatan yang berpikir, senjata yang adaptif, solusi di mana lain hanya lihat masalah. Inovasi adalah kitab mantramu.",
       "proficiencies": {
         "armor": [
           "light",

@@ -9,7 +9,7 @@
         "str",
         "con"
       ],
-      "flavorText": "You grew up where the wild meets untamed. While city folk fretted about etiquette, you learned that sometimes the best answer is a really big axe and a good scream. Perfect for players who want to channel their inner rage monster, solve problems by hitting them really hard, and have the durability of a tank.",
+      "flavorText": "You are forged in the wild, where civilization's rules don't apply. Rage is your birthright—a storm you unleash when words fail. You don't survive by caution; you survive by becoming the storm.",
       "proficiencies": {
         "armor": [
           "light",
@@ -988,7 +988,7 @@
         "dex",
         "cha"
       ],
-      "flavorText": "You didn't just study magic - you performed it. While wizards buried their noses in dusty tomes, you learned that a well-timed insult can be as powerful as a fireball. Perfect for players who want to be the party's face, support their friends with buffs, and turn any situation into a musical number.",
+      "flavorText": "Magic flows through your voice, your fingers, your very presence. You are the story that writes itself—weaving song into spell, turning laughter into a weapon, and making the impossible feel like destiny.",
       "proficiencies": {
         "armor": [
           "light"
@@ -3008,7 +3008,7 @@
         "wis",
         "cha"
       ],
-      "flavorText": "A divine agent of your chosen deity, you blend healing, support, and smiting in ways that make the party wonder how they'd survive without you. Perfect for players who want to be the party's backbone, channel divine power, and occasionally turn undead into dust with a stern look.",
+      "flavorText": "Divine power courses through you, granted by a deity whose will you enact. You are the conduit between mortal and immortal—healing the broken, smiting the wicked, and standing as living proof that gods walk among us.",
       "proficiencies": {
         "armor": [
           "light",
@@ -4248,7 +4248,7 @@
         "int",
         "wis"
       ],
-      "flavorText": "You speak for the trees, and sometimes the trees tell you to turn into a bear and maul the bad guys. Perfect for players who want to be a nature-themed spellcaster, shapeshift into various beasts, and remind everyone that civilization is just nature's way of saying 'we'll put up with this for now.'",
+      "flavorText": "Nature is not a backdrop to you—it is your kin. You speak the language of root and storm, wear the shapes of beasts, and command the wilds themselves. The balance bends to your will.",
       "proficiencies": {
         "armor": [
           "light",
@@ -5151,7 +5151,7 @@
         "str",
         "con"
       ],
-      "flavorText": "You're not the chosen one. You didn't find a magic sword in a cave. You trained. You fought. You're really, really good at hitting things with various implements of destruction. Perfect for players who want to be reliable, versatile, and never run out of things to throw at enemies.",
+      "flavorText": "You are not chosen by fate or blood. You chose the grind—thousands of repetitions, countless bruises, the discipline that turns mortal limits into mastery. Your weapon is an extension of your will.",
       "proficiencies": {
         "armor": [
           "light",
@@ -6180,7 +6180,7 @@
         "str",
         "dex"
       ],
-      "flavorText": "You spent years in a monastery learning that your body is a weapon, your mind is a shield, and your ability to ignore pain is genuinely concerning. Perfect for players who want to be unarmored, unarmed, and unexpectedly lethal while reciting philosophical quotes mid-punch.",
+      "flavorText": "Your body is a temple and your discipline its scripture. Ki flows where muscle fails. You strike faster than thought, endure what would break others, and find perfection in motion itself.",
       "proficiencies": {
         "armor": [],
         "weapons": [
@@ -7339,7 +7339,7 @@
         "wis",
         "cha"
       ],
-      "flavorText": "You swore an oath, and you take it very seriously. Whether you're a holy crusader or a dark avenger, you've dedicated yourself to a higher cause - and everyone's going to hear about it. Perfect for players who want to be a charismatic leader, smite evil, and occasionally lecture the party about honor.",
+      "flavorText": "An oath binds you tighter than steel. You are conviction made manifest—radiant when you smite, unyielding when you protect. Your word is your power, and you will not break it.",
       "proficiencies": {
         "armor": [
           "light",
@@ -8348,7 +8348,7 @@
         "str",
         "dex"
       ],
-      "flavorText": "You're at home in the wilds, tracking your prey with deadly precision while your friends are still trying to read the map. Perfect for players who want to be a skilled hunter, track enemies, deal massive single-target damage, and have an animal companion who's cooler than the party's rogue.",
+      "flavorText": "The wilds are your home and your hunting ground. You read tracks like others read books, strike before you're seen, and carry the weight of every border you've sworn to guard.",
       "proficiencies": {
         "armor": [
           "light",
@@ -9559,7 +9559,7 @@
         "dex",
         "int"
       ],
-      "flavorText": "You're not the strongest, and you're definitely not the toughest. But you're the one who walks into the treasure room first, picks the lock with one hand while flipping off the trap with the other, and leaves before everyone else realizes what happened. Perfect for players who want to be sneaky, deal massive critical hits, and make the party wonder if you're actually on their side.",
+      "flavorText": "You don't need strength when you have precision. Shadows are your ally, locks are suggestions, and the killing blow lands before the target knows you're there. Opportunity is your only master.",
       "proficiencies": {
         "armor": [
           "light"
@@ -10712,7 +10712,7 @@
         "con",
         "cha"
       ],
-      "flavorText": "Magic isn't something you studied - it's in your blood. You don't cast spells from books; you channel raw arcane power that flows through you like an extra-caffeinated river. Perfect for players who want to be a spontaneous caster with powerful metamagic, look cool while doing it, and occasionally blow things up by accident.",
+      "flavorText": "Magic isn't learned—it's inherited. Arcane power burns in your bloodline, wild and raw, waiting for you to shape it. You don't cast spells; you unleash what you are.",
       "proficiencies": {
         "armor": [],
         "weapons": [],
@@ -11824,7 +11824,7 @@
         "wis",
         "cha"
       ],
-      "flavorText": "You made a deal. Somewhere, somehow, you struck a bargain with a powerful being for magical power, and now you owe them your soul (or at least your firstborn). Perfect for players who want to be a Charisma-based caster with eldritch invocations, make pacts with otherworldly patrons, and look edgy while doing it.",
+      "flavorText": "A pact signed in desperation or ambition. Your patron gave you power with strings attached—knowledge, secrets, a sliver of their might. Every spell cast is a payment on a debt that never fully clears.",
       "proficiencies": {
         "armor": [
           "light"
@@ -13462,7 +13462,7 @@
         "int",
         "wis"
       ],
-      "flavorText": "You spent years in a library learning spells from dusty tomes, and now you can reshape reality with a wave of your hand and a carefully chosen word. Perfect for players who want to be the ultimate spellcaster, prepare the right spell for every situation, and remind everyone that intelligence is the real stat that matters.",
+      "flavorText": "You studied until your fingers bled and your mind expanded. Spells are formulas you mastered, reality is a system you hack. Knowledge is your weapon, and you have prepared for everything.",
       "proficiencies": {
         "armor": [],
         "weapons": [],
@@ -14423,7 +14423,7 @@
         "con",
         "int"
       ],
-      "flavorText": "You're the party's problem-solver, inventor, and occasionally mad scientist. While others rely on magic or brute force, you build things - gadgets, constructs, and solutions that make everyone else wonder why they didn't think of that. Perfect for players who want to be a creative tinkerer, craft magical items, and turn every encounter into a science fair project.",
+      "flavorText": "Magic is technology you've reverse-engineered. You infuse the mundane with the miraculous—gadgets that think, weapons that adapt, solutions where others see only problems. Innovation is your spellbook.",
       "proficiencies": {
         "armor": [
           "light",
