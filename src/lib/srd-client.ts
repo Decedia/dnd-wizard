@@ -435,10 +435,18 @@ export function getStaticClasses(sources?: string[], ruleset?: string, locale: s
     if (!existing) {
       seen.set(key, cls);
     } else {
-      const existingLen = (existing.levels || []).length;
-      const clsLen = (cls.levels || []).length;
-      if (clsLen > existingLen) {
+      const existingHasFlavor = !!(existing as any).flavorText;
+      const clsHasFlavor = !!(cls as any).flavorText;
+      if (clsHasFlavor && !existingHasFlavor) {
         seen.set(key, cls);
+      } else if (!clsHasFlavor && existingHasFlavor) {
+        continue;
+      } else {
+        const existingLen = (existing.levels || []).length;
+        const clsLen = (cls.levels || []).length;
+        if (clsLen > existingLen) {
+          seen.set(key, cls);
+        }
       }
     }
   }
