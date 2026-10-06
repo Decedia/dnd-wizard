@@ -159,6 +159,7 @@ D&D 5e Character Manager — a mobile-first PWA built with Next.js 16 + React 19
 ## Session History
 | Date | Changes |
 |------|---------|
+| 2026-10-06 | Race selection modal now shows `flavorText` instead of first trait description for each race option in `UnifiedSelectionModal.tsx`; info button already present via `SplitSelectionCard` |
 | Initial | Template created with base setup |
 | 2026-08-18 | Replaced nav demo with DND Wizard app scaffold |
 | 2026-08-18 | Built full character sheet screen with 7 sections, auto-save, sticky header, section nav |
@@ -292,6 +293,8 @@ D&D 5e Character Manager — a mobile-first PWA built with Next.js 16 + React 19
 - **Fixed**: subclass feature choices (e.g. "Colossus Slayer" from Hunter's Prey) now correctly appear on character sheet after selection. Root cause: `applySubclassFeatures` used `subclass-feature-{name}` lookup key but LevelUpWizard stored selections as `subclass-feature-{level}-{name}`. Fixed by using level-prefixed key when `feature.level` is defined, falling back to old format. Also set `showInSheet: true` on resolved choice features so they pass the sheet's visibility filter.
 
 ## Recently Completed
+
+- [x] **Race selection modal now shows flavor text.** Updated `UnifiedSelectionModal.tsx` to use `race.flavorText` as the primary description for race options in the selection list, with a fallback to `race.traits[0].description` when flavor text is unavailable. This aligns race cards with the class selection behavior (which already used `cls.flavorText`), so each race now displays its descriptive flavor text in the card subtitle and in the info modal. The info button was already present via `SplitSelectionCard`'s `infoType="modal"` pattern. typecheck passes; lint unchanged (17 pre-existing issues in other files).
 
 - [x] **Added filters to FeatSelectionModal for human variant feat selection.** `src/components/modals/FeatSelectionModal.tsx` now includes sourcebook pill filters (All Sources + each available source: PHB, TCE, XGE, VRGR, MTF, EGW, SCAG, FTD) and prerequisite pill filters (All Feats / With Prereq / No Prereq). Filters use the same `pillClass` pattern as `GlossaryPage.tsx` and reset automatically on each modal mount (component unmounts/remounts via conditional rendering in `HumanVariantConfig`). The `filteredFeats` memo applies source, prerequisite, and search filters in sequence. This benefits all feat-selection flows: human variant config, level-up ASI feat choice, and any future `FeatSelectionModal` usage. typecheck and lint pass for the modified file.
 - [x] Created `LanguageContext.tsx` with 300+ translation keys supporting English (`en`) and Indonesian (`id`); implemented `useLanguage()` hook and `t(key, fallback)` pattern; `localStorage` persists language preference under `dnd-language`; typecheck passes

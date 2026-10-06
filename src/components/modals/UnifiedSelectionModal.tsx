@@ -153,7 +153,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
       return races.map((race) => ({
         name: race.name,
         source: race.source || "PHB",
-        description: race.traits?.[0]?.description || "",
+        description: race.flavorText || race.traits?.[0]?.description || "",
         icon: RACE_ICONS[race.name] || RACE_ICONS.Human,
         hasChoice: (race.choices?.length || 0) > 0,
         choiceType: race.choices?.[0]?.type || "ancestry",
