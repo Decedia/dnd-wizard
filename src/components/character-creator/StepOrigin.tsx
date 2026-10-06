@@ -7,6 +7,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
 import { ClassSelectionModal } from "../modals/ClassSelectionModal";
 import { RaceSelectionModal } from "../modals/RaceSelectionModal";
+import { ValidatedInput } from "@/components/ui/FormField";
 
 const CLASS_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
   Barbarian: Sparkle,
@@ -179,13 +180,12 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
       </div>
 
       <div className="mb-8">
-        <label className="block text-xs font-bold tracking-widest text-[var(--color-text-secondary)] mb-2">{t("origin.characterNameRequired", "NAMA KARAKTER")}</label>
-        <input 
-          type="text" 
-          placeholder={t("origin.enterCharacterName", "Masukkan nama...")}
+        <ValidatedInput
+          label={t("form.characterNameRequired", "Character Name *")}
           value={characterName}
           onChange={(e) => handleNameChange(e.target.value)}
-          className="w-full bg-[var(--color-bg)] border-2 border-[var(--color-border)] focus:border-[var(--color-accent-indigo-500)] rounded-2xl py-3.5 px-4 text-base font-semibold text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] transition-colors outline-none" 
+          required
+          placeholder={t("origin.enterCharacterName", "Masukkan nama...")}
         />
       </div>
 
