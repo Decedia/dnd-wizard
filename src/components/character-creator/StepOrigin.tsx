@@ -7,6 +7,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
 import { ClassSelectionModal } from "../modals/ClassSelectionModal";
 import { RaceSelectionModal } from "../modals/RaceSelectionModal";
+import { FieldState } from "@/components/ui/FieldState";
 
 const CLASS_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
   Barbarian: Sparkle,
@@ -179,48 +180,68 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
       </div>
 
       <div className="mb-8">
-        <label className="block text-xs font-bold tracking-widest text-[var(--color-text-secondary)] mb-2">{t("origin.characterNameRequired", "NAMA KARAKTER")}</label>
-        <input 
-          type="text" 
-          placeholder={t("origin.enterCharacterName", "Masukkan nama...")}
+        <FieldState
           value={characterName}
-          onChange={(e) => handleNameChange(e.target.value)}
-          className="w-full bg-[var(--color-bg)] border-2 border-[var(--color-border)] focus:border-[var(--color-accent-indigo-500)] rounded-2xl py-3.5 px-4 text-base font-semibold text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] transition-colors outline-none" 
-        />
+          label={t("origin.characterNameRequired", "NAMA KARAKTER")}
+          required
+          helperText={t("form.enterCharacterName", "Masukkan nama karakter")}
+        >
+          <input
+            type="text"
+            placeholder={t("origin.enterCharacterName", "Masukkan nama...")}
+            value={characterName}
+            onChange={(e) => handleNameChange(e.target.value)}
+            className="w-full bg-[var(--color-bg)] border-2 border-[var(--color-border)] focus:border-[var(--color-accent-indigo-500)] rounded-2xl py-3.5 px-4 text-base font-semibold text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] transition-colors outline-none"
+          />
+        </FieldState>
       </div>
 
       <div className="mb-8">
         <h2 className="text-xs font-bold tracking-widest text-[var(--color-text-secondary)] mb-3">{t("creator.selectClassRace", "PILIH KELAS & RAS")}</h2>
-        
+
         {/* Class Card */}
-        <div 
-          onClick={() => setClassModalOpen(true)}
-          className="group border-2 border-dashed border-[var(--color-border)] hover:border-[var(--color-accent-indigo-500)] bg-[var(--color-surface)] rounded-2xl p-4 flex items-center gap-4 cursor-pointer active:scale-[0.98] transition-all mb-3"
+        <FieldState
+          value={data.class}
+          label={t("form.class", "Class")}
+          required
+          helperText={t("origin.selectClass", "Pilih Kelas")}
         >
-          <div className="h-12 w-12 rounded-xl bg-[var(--color-accent-indigo-50)] text-[var(--color-accent-indigo-600)] flex items-center justify-center shrink-0">
-            {data.class ? (() => { const Icon = CLASS_ICONS[data.class] || Sword; return <Icon className="h-6 w-6" />; })() : <Sword className="h-6 w-6" />}
+          <div
+            onClick={() => setClassModalOpen(true)}
+            className="group border-2 border-dashed border-[var(--color-border)] hover:border-[var(--color-accent-indigo-500)] bg-[var(--color-surface)] rounded-2xl p-4 flex items-center gap-4 cursor-pointer active:scale-[0.98] transition-all mb-3"
+          >
+            <div className="h-12 w-12 rounded-xl bg-[var(--color-accent-indigo-50)] text-[var(--color-accent-indigo-600)] flex items-center justify-center shrink-0">
+              {data.class ? (() => { const Icon = CLASS_ICONS[data.class] || Sword; return <Icon className="h-6 w-6" />; })() : <Sword className="h-6 w-6" />}
+            </div>
+            <div className="flex-1">
+              <h3 className="font-bold text-[var(--color-text-primary)] text-lg">{data.class || t("origin.selectClass", "Pilih Kelas")}</h3>
+              <p className="text-xs text-[var(--color-text-secondary)] line-clamp-2">{data.class ? truncate(selectedClass?.flavorText || data.class) : t("origin.classExamples", "Fighter, Wizard, Rogue...")}</p>
+            </div>
+            <CaretRight className="text-[var(--color-text-muted)] group-hover:text-[var(--color-accent-indigo-500)] transition-colors h-5 w-5" />
           </div>
-          <div className="flex-1">
-            <h3 className="font-bold text-[var(--color-text-primary)] text-lg">{data.class || t("origin.selectClass", "Pilih Kelas")}</h3>
-            <p className="text-xs text-[var(--color-text-secondary)] line-clamp-2">{data.class ? truncate(selectedClass?.flavorText || data.class) : t("origin.classExamples", "Fighter, Wizard, Rogue...")}</p>
-          </div>
-          <CaretRight className="text-[var(--color-text-muted)] group-hover:text-[var(--color-accent-indigo-500)] transition-colors h-5 w-5" />
-        </div>
+        </FieldState>
 
         {/* Race Card */}
-        <div 
-          onClick={() => setRaceModalOpen(true)}
-          className="group border-2 border-dashed border-[var(--color-border)] hover:border-[var(--color-accent-teal-500)] bg-[var(--color-surface)] rounded-2xl p-4 flex items-center gap-4 cursor-pointer active:scale-[0.98] transition-all"
+        <FieldState
+          value={data.race}
+          label={t("form.race", "Race")}
+          required
+          helperText={t("origin.selectRace", "Pilih Ras")}
         >
-          <div className="h-12 w-12 rounded-xl bg-[var(--color-accent-teal-50)] text-[var(--color-accent-teal-600)] flex items-center justify-center shrink-0">
-            {data.race ? (() => { const Icon = RACE_ICONS[data.race] || Users; return <Icon className="h-6 w-6" />; })() : <Users className="h-6 w-6" />}
+          <div
+            onClick={() => setRaceModalOpen(true)}
+            className="group border-2 border-dashed border-[var(--color-border)] hover:border-[var(--color-accent-teal-500)] bg-[var(--color-surface)] rounded-2xl p-4 flex items-center gap-4 cursor-pointer active:scale-[0.98] transition-all"
+          >
+            <div className="h-12 w-12 rounded-xl bg-[var(--color-accent-teal-50)] text-[var(--color-accent-teal-600)] flex items-center justify-center shrink-0">
+              {data.race ? (() => { const Icon = RACE_ICONS[data.race] || Users; return <Icon className="h-6 w-6" />; })() : <Users className="h-6 w-6" />}
+            </div>
+            <div className="flex-1">
+              <h3 className="font-bold text-[var(--color-text-primary)] text-lg">{data.race ? (data.race === "Human" && data.raceVariant === "variant" ? t("origin.variantHuman", "Variant Human") : data.race) : t("origin.selectRace", "Pilih Ras")}</h3>
+              <p className="text-xs text-[var(--color-text-secondary)] line-clamp-2">{data.race ? truncate(selectedRace?.flavorText || (selectedRace as any)?.recommendation?.text || data.race) : t("origin.raceExamples", "Manusia, Elf, Dwarf...")}</p>
+            </div>
+            <CaretRight className="text-[var(--color-text-muted)] group-hover:text-[var(--color-accent-teal-500)] transition-colors h-5 w-5" />
           </div>
-          <div className="flex-1">
-            <h3 className="font-bold text-[var(--color-text-primary)] text-lg">{data.race ? (data.race === "Human" && data.raceVariant === "variant" ? t("origin.variantHuman", "Variant Human") : data.race) : t("origin.selectRace", "Pilih Ras")}</h3>
-            <p className="text-xs text-[var(--color-text-secondary)] line-clamp-2">{data.race ? truncate(selectedRace?.flavorText || (selectedRace as any)?.recommendation?.text || data.race) : t("origin.raceExamples", "Manusia, Elf, Dwarf...")}</p>
-          </div>
-          <CaretRight className="text-[var(--color-text-muted)] group-hover:text-[var(--color-accent-teal-500)] transition-colors h-5 w-5" />
-        </div>
+        </FieldState>
       </div>
 
       {classModalOpen && (
