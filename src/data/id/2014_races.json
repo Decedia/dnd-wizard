@@ -149,7 +149,7 @@
         "is_recommended": false,
         "text": "A tall, aggressive goblinoid with reach and ambush mechanics. Fun for hit-and-run tactics, but the extra movement and surprise rules can trip up new players."
       },
-      "flavorText": "Anda tinggi, ramping, dan cukup tangkas untuk ukuran Anda. Anda punya lengan panjang yang memungkinkan Anda memukul orang dari lebih jauh, dan Anda lebih suka mengejutkan musuh daripada bertarung adil. Sempurna untuk pemain yang ingin unik, taktis, dan memiliki ras yang secara dasarnya adalah versi D&D dari pesta kejutan."
+      "flavorText": "Tinggi, ramping, dan mengejutkan lincah untuk ukuranmu. Lengan panjangmu menjangkau lebih jauh dan kamu lebih suka menyergap daripada bertarung adil. Di medan perang, kamu adalah ancaman pertama yang lawan rasakan."
     },
     {
       "index": "changeling",
@@ -227,7 +227,7 @@
         "is_recommended": false,
         "text": "A shapeshifting diplomat with identity-changing abilities. High social and deceptive potential, but shapechange mechanics add a mechanical and roleplay learning curve."
       },
-      "flavorText": "Anda bisa mengubah penampilan Anda sesuka Anda, yang membuat Anda aktor, mata-mata, dan krisis identitas sesekali ultimate. Anda tidak yakin seperti apa Anda lagi, tapi Anda hebat menjadi apa pun yang party butuhkan. Sempurna untuk pemain yang ingin shapeshifter, kameleon sosial, dan memiliki konsep karakter yang cair seperti bentuk Anda."
+      "flavorText": "Wajah dan suara bisa kamu ubah sesuai keinginan, menjadikan kamu aktor dan mata-mata alami. Identitas sejatimu hanya kamu yang tahu, dan kamu bisa menjadi siapa pun yang dibutuhkan tim."
     },
     {
       "index": "deep-gnome",
@@ -350,7 +350,7 @@
         "is_recommended": false,
         "text": "A subterranean gnome with superior darkvision and stealth bonuses. Niche but flavorful, best suited for players who enjoy light-dependent exploration tactics."
       },
-      "flavorText": "Anda adalah gnome of the deep, dengan darkvision yang memungkinkan Anda melihat tempat lain tidak bisa dan stealth yang membuat Anda virtually tidak terlihat. Anda tidak hanya cerdas; Anda juga sangat, sangat baik tidak ditemukan."
+      "flavorText": "Dilahirkan dari batu dan kelam, kamu melihat apa yang tak bisa dilihat orang lain dan hilang sebelum mereka menyadari keberadaanmu. Kelicikanmu sebanding dengan kemampuan bersembunyi yang luar biasa."
     },
     {
       "index": "dhampir",
@@ -474,7 +474,8 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A vampire-like undead descendant with spider climb and biting. Adds dark thematic mechanics and resource-like hunger that can overwhelm new players."
-      }
+      },
+      "flavorText": "Disebut dari antara kematian dan kehidupan, kamu berjalan di dunia yang tak sepenuhnya menerimamu. Rasa haus dan kekuatan mengalir di pembuluh darahmu, mendorongmu naik sementara bayang-bayang berbisik di belakangmu."
     },
     {
       "name": "Dragonborn",
@@ -632,7 +633,7 @@
         "is_recommended": false,
         "text": "A draconic hero with breath weapon and damage resistance. Simple racial traits, but choosing the right draconic ancestry adds a small decision layer for newer players."
       },
-      "flavorText": "Anda benar-benar descended dari naga, yang menjelaskan scales, senjata napas, dan keinginan kuat untuk mengaum triumphal setelah mengalahkan musuh. Sempurna untuk pemain yang ingin draconic, karismatik, dan memiliki fitur napas api bawaan yang membuat setiap kemenangan terasa epic."
+      "flavorText": "Naga mengalir di darahmu, memberimu aura kesaktian, senjata napas, dan naluri untuk mengaum saat kemenangan jadi milikmu. Kebanggaan leluhur naga kamu bawa ke setiap pertempuran."
     },
     {
       "index": "dragonborn-chromatic",
@@ -758,7 +759,7 @@
         "is_recommended": false,
         "text": "A draconic descendant with a damaging breath weapon and damage resistance. Simple core, but ancestry choice adds a small selection step."
       },
-      "flavorText": "Anda adalah dragonborn dengan keturunan chromatic, yang berarti Anda punya senjata napas yang mencerminkan warisan draconis Anda - dan mungkin kepribadian yang cocok. Anda bukan dragonborn biasa; Anda adalah tampilan berjalan (atau terbang) dari fury elemen."
+      "flavorText": "Keturunan naga chromatismu mengarah pada kehancuran dan amarah murni. Warna sisikmu adalah peringatan: kamu lahir untuk melepaskan kekacauan dalam bentuk paling mentah."
     },
     {
       "index": "dragonborn-gem",
@@ -909,7 +910,7 @@
         "is_recommended": false,
         "text": "A gem-scaled dragonborn with psionic-like breath and resistance. Adds another ancestry option layer, which can distract from core class learning."
       },
-      "flavorText": "Anda adalah gem dragonborn langka, dengan senjata napas dan kemampuan yang terkait dengan batu mulia. Anda tidak hanya kuat; Anda secara harfiah tak bernilai, dan Anda tahu itu."
+      "flavorText": "Langka dan memukau, keturunan naga gem menghubungkanmu dengan cahaya psionik naga permata. Kamu lebih dari sekadar pejuang—kamu adalah permata hidup dengan pikiran se tajam cahayamu."
     },
     {
       "index": "dragonborn-metallic",
@@ -1035,7 +1036,7 @@
         "is_recommended": false,
         "text": "A metallic dragonborn with a stronger breath weapon and a minor transformative trait. Adds choice complexity and resource awareness."
       },
-      "flavorText": "Anda adalah metallic dragonborn, diberkahi dengan sifat mulia naga logam. Anda tidak hanya kuat; Anda juga tahan terhadap elemen dan memiliki kepribadian yang secerah scales Anda."
+      "flavorText": "Diberkahi warisan naga logam, kamu menyatukan kekuatan dengan ketahanan mulia. Sisikmu memancarkan kehormatan, dan hadirmu menenangkan sekutu secepat kamu menahan serangan."
     },
     {
       "name": "Dwarf",
@@ -1184,7 +1185,7 @@
         "is_recommended": true,
         "text": "A sturdy traditional warrior with excellent durability and darkvision. Dwarven Resilience and Combat Training are easy to use, making it an ideal beginner race."
       },
-      "flavorText": "Anda kuat, keras kepala, dan memiliki jenggot yang bisa menampung keluarga kecil. Anda telah membuat bir sejak sebelum manusia menemukan cara menajamkan batu, dan Anda tidak takut memberitahu siapa pun tentang itu. Sempurna untuk pemain yang ingin kuat, tangguh, dan memiliki sekeras batu yang Anda pahat."
+      "flavorText": "Ditempa dari keras kepala dan batu pegunungan, kamu bertahan lebih lama dari musuh melalui ketahanan dan tekad. Kamu membawa warisan tua dan kekuatan abadi, dan tidak mudah tergeser."
     },
     {
       "name": "Hill Dwarf",
@@ -1354,7 +1355,8 @@
         "Dwarvish"
       ],
       "languageDesc": "You can speak, read, and write Common and Dwarvish.",
-      "source": "PHB"
+      "source": "PHB",
+      "flavorText": "Kamu setegar bukit-bukit tinggi, dengan ketahanan yang mengubah kelelahan menjadi endurance. Hubunganmu dengan pegunungan memberimu kekuatan dan semangat yang hanya bertambah di bawah tekanan."
     },
     {
       "name": "Mountain Dwarf",
@@ -1524,7 +1526,8 @@
         "Dwarvish"
       ],
       "languageDesc": "You can speak, read, and write Common and Dwarvish.",
-      "source": "PHB"
+      "source": "PHB",
+      "flavorText": "Kamu dibesarkan di antara batu dan pertemuan, bersenjataan tradisi dan otot. Kamu sekuat pegunungan yang kamu sebut rumah, dengan naluri tempur yang diasah oleh generasi batu dan bukit."
     },
     {
       "index": "eladrin",
@@ -1726,7 +1729,7 @@
         "is_recommended": false,
         "text": "A fey-touched elf with seasonal abilities that shift their playstyle. Interesting tactical variety, but the changing mechanics can confuse new players."
       },
-      "flavorText": "Anda adalah eladrin, elf yang disentuh oleh fey, dengan kepribadian musiman dan kemampuan teleportasi. Anda tidak hanya anggun; Anda juga moody, tidak terduga, dan bisa blink out of existence ketika hal-hal membosankan."
+      "flavorText": "Disebut oleh fey dan terikat pada musim hati, kamu bergeser antara anggun dan tempest. Saat ini kamu tenunan keindahan; saat berikutnya kamu menjadi kekuatan alam yang tak terduga."
     },
     {
       "name": "Elf",
@@ -1850,7 +1853,7 @@
         "is_recommended": false,
         "text": "A graceful, long-lived warrior with keen senses and fey ancestry. Strong in exploration and stealth, but the variety of elven subraces and traits adds choice complexity."
       },
-      "flavorText": "Anda tua, anggun, dan sedikit condescending tentang hal itu. Sementara manusia berlalu cepat, Anda telah memiliki berabad-abad untuk menguasai panah, sihir, atau hanya benar-benar baik tidur di pohon. Sempurna untuk pemain yang ingin elegan, tajam, dan memiliki bakat alami untuk tudo kecuali kesabaran."
+      "flavorText": "Kamu telah menyaksikanabad-abad berlalu seperti musim, dan pandangan panjang itu membentuk segalanya. Berbakat fey dan tajam, kamu bergerak di dunia dengan kelainan yang tak wajar dan kesabaran yang disengaja."
     },
     {
       "index": "firbolg",
@@ -1977,7 +1980,7 @@
         "is_recommended": false,
         "text": "A gentle giant with invisibility and nature magic. Easy to roleplay, but the subtle defensive tools require tactical timing to use well."
       },
-      "flavorText": "Anda adalah giant lembut hutan, dengan koneksi mendalam ke alam dan kemampuan untuk menjadi tidak terlihat. Anda tidak hanya kuat; Anda juga bijak, damai, dan bisa melintasi wilderness seperti jalan yang sering dilalui."
+      "flavorText": "Lembut namun tangguh, kamu adalah jantung hutan yang dalam. Alam membungkuk di kehendakmu, dan empatimu menyamarkan kekuatan yang bisa menggeser dunia di sekitarmu."
     },
     {
       "index": "githyanki",
@@ -2281,7 +2284,7 @@
         "is_recommended": false,
         "text": "A psionic warrior from the Astral Plane with innate spellcasting and teleportation. Cool concept, but managing innate spells and psionic options adds complexity."
       },
-      "flavorText": "Anda adalah githyanki, prajurit Astral Plane, dengan kemampuan psionik dan pedang perak. Anda tidak hanya fighter; Anda juga being kosmik dengan dendam terhadap mind flayers dan memori yang sangat panjang."
+      "flavorText": "Ditempa di Astral Plane, kamu adalah pejuang-filsafat yang dibentuk melawan mind flayers. Pedang perak dan kehendak besimu adalah warisan bangsa yang menolak untuk dipatahkan."
     },
     {
       "index": "githzerai",
@@ -2382,7 +2385,7 @@
         "is_recommended": false,
         "text": "A disciplined monk-like race with psionic defense and meditation. The mental discipline mechanics add another layer for new players to track."
       },
-      "flavorText": "Anda adalah githzerai, master of the mind, dengan kekuatan psionik dan kemampuan meditatif. Anda tidak hanya spellcaster; Anda juga ahli falsafah Astral Plane yang bisa reshape realitas dengan pikiran."
+      "flavorText": "Pikiranmu adalah tempat pembentukan dan perlindunganmu. Melalui meditasi dan kekuatan psionik, kamu membentuk realitas di sekitarmu, mengubah pikiran menjadi kekuatan dan disiplin menjadi tanpa cela."
     },
     {
       "name": "Gnome",
@@ -2456,7 +2459,7 @@
         "is_recommended": false,
         "text": "A small, clever inventor with innate magic resistance. Good for trickster or arcane builds, but gnomish subraces and feature interactions add mild complexity."
       },
-      "flavorText": "Anda kecil, penasaran, dan mungkin orang paling pintar di ruangan mana pun - meskipun Anda juga mungkin yang paling menjengkelkan. Anda melihat dunia sebagai kotak teka-teki raksasa, dan Anda bertekad untuk membongkar untuk melihat cara kerjanya. Sempurna untuk pemain yang ingin cerdas, magis, dan memiliki kepribadian yang secerah pakaian warna-warni Anda."
+      "flavorText": "Kecil tubuhmu namun besar keingintahuanmu, kamu melihat dunia sebagai teka-teki yang memanggil untuk diselesaikan. Kecerdikanmu tak terbatas, antusiasmenyu menular, dan temuanmu… terkadang meledak."
     },
     {
       "name": "Forest Gnome",
@@ -2576,7 +2579,8 @@
         "Gnomish"
       ],
       "languageDesc": "You can speak, read, and write Common and Gnomish.",
-      "source": "PHB"
+      "source": "PHB",
+      "flavorText": "Selaras dengan bisikan dunia alami, kamu bergerak di semak seperti trik cahaya yang hidup. Ukuran kecilmu menyamarkan pikiran tangkas dan kedekatan mendalam dengan makhluk liar."
     },
     {
       "name": "Rock Gnome",
@@ -2696,7 +2700,8 @@
         "Gnomish"
       ],
       "languageDesc": "You can speak, read, and write Common and Gnomish.",
-      "source": "PHB"
+      "source": "PHB",
+      "flavorText": "Pikiranmu adalah bengkel dan tanganmu tak pernah diam. Kamu membuat keajaiban dari sampah, digerakkan oleh keingintahuan yang tak terbatas dan keyakinan gnome bahwa segala sesuatu bisa diperbaiki dengan perbaikan."
     },
     {
       "index": "goblin",
@@ -2797,7 +2802,7 @@
         "is_recommended": false,
         "text": "A small, crafty creature with Fury of the Small and Nimble Escape. Strong tactical positioning tools, but the extra bonus-action option can be tricky for new players."
       },
-      "flavorText": "Anda kecil, scrappy, dan surprisingly vicious. Anda punya mentalitas paket, cinta akan hal-hal berkilau, dan bakat untuk memukul di bawah ikat pinggang. Sempurna untuk pemain yang ingin chaotic, tangkas, dan memiliki kepribadian yang sechaotic gaya bertarung Anda."
+      "flavorText": "Kecil, cepat, dan Opportunis yang kejam, kamu mengubah kelemahan menjadi keuntungan yang mematikan. Kamu adalah kekacauan dengan tujuan—cepat, cerdik, dan benar-benar tak terduga dalam cara terbaik."
     },
     {
       "name": "Half-Elf",
@@ -2896,7 +2901,7 @@
         "is_recommended": false,
         "text": "A versatile hybrid with ability score bonuses and skill versatility. Flexible by design, which is great for concept, but the breadth of options can slow new players."
       },
-      "flavorText": "Anda terjebak antara dua dunia, sepenuhnya tidak termasuk di keduanya, dan Anda memakai ambiguitas itu seperti lencana kehormatan. Anda memiliki pesona manusia dan keanggunan elf, yang membuat Anda kupu-kupu sosial ultimate. Sempurna untuk pemain yang ingin serbaguna, karismatik, dan memiliki cerita tentang menemukan tempat Anda di dunia."
+      "flavorText": "Terjebak antara dua warisan, kamu sepenuhnya tidak termasuk di keduanya—dan juga termasuk di keduanya. Kamu memakai ketegangan itu sebagai kekuatan, menyatukan daya adaptasi manusia dengan anggun fey menjadi sesuatu yang hanya milikmu."
     },
     {
       "name": "Half-Elf (High Elf)",
@@ -3059,7 +3064,8 @@
       "recommendation": {
         "is_recommended": false,
         "text": "An elf-leaning half-elf with an extra cantrip and a skill. Adds a small spellcasting choice layer that beginners may find confusing."
-      }
+      },
+      "flavorText": "Kecerdasan elf dan ambisi manusia berbagi ruang yang sama dalam dirimu. Kamu bergerak antara dua dunia dengan kecerdasan tajam, indra yang tajam, dan serbaguna yang sedikit orang bisa bandingkan."
     },
     {
       "name": "Half-Elf (Wood Elf)",
@@ -3182,7 +3188,8 @@
       "recommendation": {
         "is_recommended": false,
         "text": "An elf-leaning half-elf suited to wilderness exploration. Movement and mask of the wild are easy to use, but subrace selection still adds decision weight."
-      }
+      },
+      "flavorText": "Hutan mengalir di darah elvenmu dan jantung manusiaammu berdetak dengan drives yang gelisah. Kamu cepat, diam, dan paling nyaman di tempat pohon tumbuh paling lebat."
     },
     {
       "name": "Half-Elf (Drow)",
@@ -3305,7 +3312,8 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A dark elf-leaning half-elf with innate spellcasting and darkness control. Strong concept, but sunlight sensitivity and spell options add tactical bookkeeping."
-      }
+      },
+      "flavorText": "Warisan drow memberimu penglihatan gelap dan sentuhan bayang-bayang bawah darat. Kamu membawa misteri itu dengan percaya diri tenang, menghubungkan cahaya dan kegelapan dengan anggun tanpa usaha."
     },
     {
       "name": "Half-Elf (Moon Elf)",
@@ -3428,7 +3436,8 @@
       "recommendation": {
         "is_recommended": false,
         "text": "An elf-leaning half-elf with heightened senses and a cantrip. Adds mild spellcasting complexity to an already flexible chassis."
-      }
+      },
+      "flavorText": "Cahaya bulan memantul dalam dirimu, memberikanmu disiplin, afinitas mistik, dan keyakinan yang tak tergoyahkan. Kamu mengejar keunggulan seperti orang lain mengejar napas—dengan fokus absolut."
     },
     {
       "name": "Half-Elf (Sun Elf)",
@@ -3551,7 +3560,8 @@
       "recommendation": {
         "is_recommended": false,
         "text": "An elf-leaning half-elf with magic resistance and a weapon training bonus. Good for gishes, but the flexibility can distract new players."
-      }
+      },
+      "flavorText": "Api matahari membakar dalam darahmu, memberimu disiplin, afinitas mistik, dan keyakinan yang tak tergoyahkan. Kamu mengejar keunggulan seperti orang lain mengejar napas—dengan fokus absolut."
     },
     {
       "name": "Half-Elf (Sea Elf)",
@@ -3674,7 +3684,8 @@
       "recommendation": {
         "is_recommended": false,
         "text": "An ocean-themed half-elf with swim speed and amphibious breathing. Niche but thematic, best when water exploration is frequent."
-      }
+      },
+      "flavorText": "Gelombang mengalir di darahmu dan garam mewarnai ceritamu. Kamu nyaman di bawah air seperti di darat, membawa kebebasan lautan dalam setiap langkahmu."
     },
     {
       "name": "Half-Elf (Shadar-kai)",
@@ -3797,7 +3808,8 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A shadow-touched half-elf with resistance and necrotic teleportation. Interesting tactical tool, but death-tinged mechanics may be less intuitive for beginners."
-      }
+      },
+      "flavorText": "Disebut oleh Shadowfell, kamu berjalan antara kehidupan dan bayang-bayang dengan anggun yang aneh. Ketahanan yang lahir dari berkah Raven Queen membuatmu sekaligus menakutkan dan tak terelakkan."
     },
     {
       "name": "Half-Elf (Eladrin)",
@@ -3920,7 +3932,8 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A fey-touched half-elf with a season-linked teleport and charm resistance. Cool flavor, but seasonal ability swaps can confuse new players."
-      }
+      },
+      "flavorText": "Gairah fey dan daya adaptasi manusia bersarang dalam dirimu, dan emosimu menggema dengan musim yang berputar. Kamu anggun, intens, dan selamanya terjebak antara dua alam."
     },
     {
       "name": "Half-Orc",
@@ -4045,7 +4058,7 @@
         "is_recommended": true,
         "text": "A tough, aggressive warrior with darkvision, intimidation presence, and a second-wind style death-defying trait. Low mechanical complexity with strong combat feel."
       },
-      "flavorText": "Anda besar, kuat, dan memiliki reputasi untuk menakutkan, tapi Anda juga mungkin memiliki sisi yang lembut secara mengejutkan ketika tidak ada yang melihat. Anda menghadapi prasangka sepanjang hidup, dan Anda belajar baik memukulinya sampai menyerah atau mengintimidasi sampai menyerah. Sempurna untuk pemain yang ingin kuat, tangguh, dan memiliki arc karakter tentang mengatasi stereotip."
+      "flavorText": "Kekuatanmu jelas, ketahananmu legendaris, tapi kelembutanmu adalah rahasia terbaikmu. Kamu membawa prasangka seperti armor dan menjawabnya dengan hasil."
     },
     {
       "name": "Halfling",
@@ -4145,7 +4158,7 @@
         "is_recommended": true,
         "text": "A lucky, nimble smallfolk with reroll advantages and stealth. Lucky and Brave are simple to use, making halflings a very friendly beginner race."
       },
-      "flavorText": "Anda kecil, ceria, dan cukup sulit dibunuh. Sementara orang besar khawatir tentang kehormatan dan kemuliaan, Anda fokus pada kenyamanan, makanan, dan menemukan sudut terbaik untuk menusuk goblin. Sempurna untuk pemain yang ingin beruntung, tangkas, dan memiliki kepribadian yang lebih besar dari tinggi badan Anda."
+      "flavorText": "Kecil, berani, dan anehnya beruntung, kamu menemukan peluang di tempat lain melihat dinding. Kenyamanan dan keberanian mendefinisikan kamu—kamu hadapi bahaya dengan hati penuh dan mata yang tajam."
     },
     {
       "name": "Lightfoot Halfling",
@@ -4270,7 +4283,8 @@
       "recommendation": {
         "is_recommended": true,
         "text": "A stealthy halfling that can hide behind larger allies. Low mechanical complexity and strong roleplay hooks."
-      }
+      },
+      "flavorText": "Kamu menyelinap di antara keramaian dan masalah dengan mudah yang sama. Langkahmu diam, keberuntunganmu ganjil, dan kemampuanmu menghilang ketika hal rumit adalah karunia sejati."
     },
     {
       "name": "Stout Halfling",
@@ -4395,7 +4409,8 @@
       "recommendation": {
         "is_recommended": true,
         "text": "A hearty halfling with poison resistance and bonus constitution. Simple durability boost that is easy to explain and use."
-      }
+      },
+      "flavorText": "Kebersihanmu mengalir di darah. Kamu mengabaikan racun, kelelahan, dan peluang yang akan menghancurkan makhluk lebih besar, membuktikan bahwa ketahanan tidak ada hubungannya dengan ukuran."
     },
     {
       "name": "Ghostwise Halfling",
@@ -4520,7 +4535,8 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A rare halfling subrace with silent speech. Unique communication mechanics, but very niche and situational."
-      }
+      },
+      "flavorText": "Diam dan waspada, kamu jarang bicara namun memahami segalanya. Suara batin langka memandumu, dan hubunganmu dengan tempat sunyi dunia membuatmu rekan yang tak biasa."
     },
     {
       "index": "hexblood",
@@ -4619,7 +4635,8 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A fey-touched or undead-touched lineage with a dark bargain. Adds a narrative and mechanical bargain layer that adds complexity to character creation."
-      }
+      },
+      "flavorText": "Pakatan yang terbentuk dalam kegelapan telah meninggalkan tandanya padamu. Kamu membawa darah fey atau penyihir di pembuluh darahmu—bukti fisik bahwa takdirmu pernah diubah."
     },
     {
       "index": "hobgoblin",
@@ -4719,7 +4736,8 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A disciplined warrior with tactical positioning bonuses. The Saving Face feature adds reactive decision-making that rewards experience."
-      }
+      },
+      "flavorText": "Disiplin, strategis, dan tanpa henti efisien, kamu adalah prajurit alami. Kamuikuti perintah dengan presisi, memimpin dengan keuntungan yang dihitung, dan tidak pernah membuang langkah."
     },
     {
       "name": "Human",
@@ -4759,7 +4777,7 @@
         "is_recommended": true,
         "text": "The baseline adventurer with balanced ability increases and an extra language. Simple, flexible, and forgiving for new players who want to focus on class mechanics."
       },
-      "flavorText": "Anda adalah jack-of-all-trades, yang serbaguna, karakter yang bisa masuk ke cerita apa pun karena Anda adalah kanvas kosong. Sempurna untuk pemain yang ingin serbaguna, bonus feat, atau kebebasan untuk membayangkan latar belakang karakter Anda."
+      "flavorText": "Kamu adalah bunga adaptasi dunia—serbaguna, ambisius, dan terus melampaui batas yang seharusnya tidak mungkin. Potensimu adalah sifat terbaikmu, dan drivesmu tak terhentikan."
     },
     {
       "index": "kenku",
@@ -4860,7 +4878,7 @@
         "is_recommended": false,
         "text": "A bird-like mimic with clever movement and mimicry. Roleplay-heavy with limited but flavorful racial abilities; easy to underestimate mechanically."
       },
-      "flavorText": "Anda adalah kenku, burung yang bisa meniru suara apa pun yang pernah Anda dengar. Anda tidak bisa membuat suara baru, tapi Anda bisa membuat imitasi yang sangat meyakinkan dari rogue party ketika mereka tidak melihat. Sempurna untuk pemain yang ingin licik, kreatif, dan memiliki karakter yang basically soundboard berjalan."
+      "flavorText": "Dilahirkan untuk meniru tapi bukan mencipta, kamu adalah arsip hidup dari suara yang dipinjam dan suara yang dicuri. Kamu mengubah peniruan menjadi kerajinan, membuat sesuatu asli dari gema orang lain."
     },
     {
       "index": "lizardfolk",
@@ -4986,7 +5004,7 @@
         "is_recommended": false,
         "text": "A reptilian survivor with natural armor and a bite attack. Simple durability, but the many optional racial traits can slow new players down."
       },
-      "flavorText": "Anda adalah humanoid reptil dengan logik berdarah-dingin dan bakat membuat senjata dari apa pun yang Anda temukan. Anda tidak hanya kuat; Anda juga praktis, primitif, dan bisa meregenerasi bagian tubuh sendiri ketika hal-hal menjadi berantakan."
+      "flavorText": "Logik dingin dan insting primitif memandu kamu. Kamu membuat senjata dari apa pun yang ada di tangan, meregenerasi cedera yang akan mengakhiri orang lain, dan berpikir dalam cara yang makhluk hidup jarang mengerti."
     },
     {
       "index": "orc",
@@ -5112,7 +5130,7 @@
         "is_recommended": false,
         "text": "A powerful brute with Aggressive and darkvision. Simple combat presence, but reduced intelligence and pack tactics can confuse new tactical positioning."
       },
-      "flavorText": "Anda besar, kuat, dan memiliki kemarahan pertempuran yang membuat Anda lebih kuat. Anda diremehkan sepanjang hidup, dan Anda senang membuktikan semua orang salah dengan memukul mereka sangat keras. Sempurna untuk pemain yang ingin kuat, tangguh, dan memiliki karakter yang sekeras yang terlihat."
+      "flavorText": "Kekuatanmu ditempa dalam perjuangan, amarahmu adalah api yang terkendali. Kamu menghabiskan hidup membuktikan bahwa meremehkanmu adalah kesalahan, dan kamu berniat melanjutkannya dengan sengit."
     },
     {
       "index": "reborn",
@@ -5211,7 +5229,8 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A revenant-style race with past-life knowledge and death resilience. Flavorful, but the extra history and resilience mechanics add bookkeeping."
-      }
+      },
+      "flavorText": "Kamu kembali dari kematian, perubahan, atau akhir mendalam lainnya—berubah, belum selesai, dan mencari apa yang selanjutnya. Masa lalumu misteri, masa depanmu belum ditulis, dan tekadmu tak terpatahkan."
     },
     {
       "index": "shifter",
@@ -5340,7 +5359,8 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A druidic shapeshifter with temporary shifting bonuses. Simple core loop, but Shifter type choice and temporary boost management add decision weight."
-      }
+      },
+      "flavorText": "Potensi liar mengalir di bawah kulitmu, siap melonjak saat kamu paling membutuhkannya. Kamu adalah dua makhluk dalam satu: diri yang tenang dan binatang yang menunggu untuk berlari bebas."
     },
     {
       "index": "tabaxi",
@@ -5465,7 +5485,7 @@
         "is_recommended": false,
         "text": "A feline explorer with speed and climb. Fun for exploration and hit-and-run, but Feline Agility can leave new players overextended."
       },
-      "flavorText": "Anda adalah kucing, yang berarti Anda tangkas, penasaran, dan tidak bisa menahan untuk menjatuhkan hal-hal dari rak. Anda juga bisa memanjat dinding dan melintasi medan perang dengan anggun felin. Sempurna untuk pemain yang ingin cepat, stealthy, dan memiliki kepribadian yang independen seperti kucing."
+      "flavorText": "Dilahirkan penasaran dan digerakkan oleh rasa ingin tahu, kamu memanjat, melesat, dan menyelidiki segala sesuatu. Kamu adalah personifikasi rasa ingin tahu—tangkas, independen, dan mustahil untuk tetap diam lama."
     },
     {
       "name": "Tiefling",
@@ -5565,7 +5585,7 @@
         "is_recommended": false,
         "text": "A hellish descendant with resistance and minor spellcasting. Fiendish legacy features are flavorful but can add spell-management weight for new players."
       },
-      "flavorText": "Anda punya tanduk, ekor, dan pesona iblis yang membuat sulit mengatakan tidak pada Anda. Warisan iblis Anda menandai Anda sebagai berbeda, dan Anda baik merangkulnya dengan gaya atau menghabiskan hidup Anda menyembunyikannya. Sempurna untuk pemain yang ingin karismatik, magis, dan memiliki estetika bawaan yang mengatakan 'saya edgy dan saya tahu itu.'"
+      "flavorText": "Warisan iblis memberimu tanduk, ekor, dan pesona yang memaksa orang setuju. Kamu ditandai sebagai berbeda dan sudah memilih untuk merangkul perbedaan itu atau menjadikannya armor."
     },
     {
       "name": "Tiefling (Asmodeus)",
@@ -5664,7 +5684,8 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A fire-touched tiefling with a cantrip and charisma boost. Simple offense, but managing the extra spell can distract from core class choices."
-      }
+      },
+      "flavorText": "Asmodeus membuat pakatan dengan manusia, dan warisannya mengalir di dalam darahmu. Kamu cerdas, persuasif, dan menyala dengan api dalam yang mencerminkan Nine Hells itu sendiri."
     },
     {
       "name": "Tiefling (Baalzebul)",
@@ -5763,7 +5784,8 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A tiefling with a debuff cantrip and Thaumaturgy. Adds social and control options, which increases decision space for beginners."
-      }
+      },
+      "flavorText": "Tanda Tuhan Lalat tertinggal di garis keturunanmu. Kamu alami karismatik namun secara halus merusak, memakai persuasi seperti pedang yang dibungkus madu."
     },
     {
       "name": "Tiefling (Zariel)",
@@ -5862,7 +5884,8 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A martial tiefling with weapon bonuses and a damaging cantrip. Adds minor combat complexity, but still fairly straightforward."
-      }
+      },
+      "flavorText": "Cahaya yang jatuh dari Zariel membakar di pembuluh darahmu. Kamu adalah pejuang-diabolik, bersenjatakan api suci dan amarah marcial, sama nyamannya di garis depan seperti di realm iblis."
     },
     {
       "name": "Tiefling (Dispater)",
@@ -5961,7 +5984,8 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A deceptive tiefling with a detection cantrip and stealth utility. Adds exploration choices that new players may underuse."
-      }
+      },
+      "flavorText": "Pengaruh Dispater membuatmu master rahasia dan manipulasi urban. Kamu lincah, urban, dan mustahil ditangkap—selalu selangkah di depan dalam permainan bayang-bayang."
     },
     {
       "name": "Tiefling (Fierna)",
@@ -6060,7 +6084,8 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A tiefling with charm-focused cantrips and social utility. Adds roleplay and spellcasting layers that increase cognitive load."
-      }
+      },
+      "flavorText": "Gairah dan persuasi mengalir melaluimu seperti cairan emosi. Tanda Fierna memberimu kecantikan yang melumpuhkan dan keyakinan yang bisa memindahkan gunung—atau menjatuhkannya."
     },
     {
       "name": "Tiefling (Glasya)",
@@ -6159,7 +6184,8 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A trickster tiefling with illusion and deception tools. Fun conceptually, but illusions add mechanical overhead for new players."
-      }
+      },
+      "flavorText": "Dilahirkan untuk menipu dan memerintah melalui kecerdikan, kamu adalah warisan Glasya yang dijadikan daging. Kamu memanipulasi dengan anggun, berbohong tanpa ragu, dan memperlakukan setiap interaksi sosial seperti medan perang."
     },
     {
       "name": "Tiefling (Levistus)",
@@ -6258,7 +6284,8 @@
       "recommendation": {
         "is_recommended": false,
         "text": "An ice-themed tiefling with defensive and damaging cantrips. Adds elemental and tactical options that can overwhelm beginners."
-      }
+      },
+      "flavorText": "Levistus membekukan pakatannya ke dalam darahmu. Kamu dingin, menghitung, dan tak terelakkan—seorang strategis yang menjebak musuh dalam rencana secepat dia menjebak jiwa dalam es."
     },
     {
       "name": "Tiefling (Mammon)",
@@ -6357,7 +6384,8 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A wealth-themed tiefling with a utility cantrip and gold-themed flavor. Adds minor magic and social complexity."
-      }
+      },
+      "flavorText": "Keserakahan dan kekayaan mengalir dalam garis keturunan iblismu. Kamu punya bakat untuk perolehan, kemampuan untuk mengubah keuntungan menjadi kekuatan, dan insting nilai yang dimiliki orang lain tidak."
     },
     {
       "name": "Tiefling (Mephistopheles)",
@@ -6456,7 +6484,8 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A fire-and-flames tiefling with a damaging cantrip. Adds offensive spell management to an otherwise simple package."
-      }
+      },
+      "flavorText": "Dahaga Mephistopheles untuk pengetahuan hidup dalam dirimu. Kamu scholar, ambisius, dan menyala dengan rasa ingin mistis—terus mengejar kekuatan melalui pemahaman yang terlarang."
     },
     {
       "index": "triton",
@@ -6583,7 +6612,7 @@
         "is_recommended": false,
         "text": "An aquatic warrior with amphibious breathing and elemental resistance. Strong in water-heavy campaigns, but situational otherwise."
       },
-      "flavorText": "Anda adalah makhluk laut yang datang ke darat, dengan tangan berkait, trident, dan koneksi ke laut. Anda tidak hanya akuatik; Anda juga mulia, protektif, dan bisa memanggil kekuatan laut ketika hal-hat menjadi kasar."
+      "flavorText": "Kamu adalah anak laut dan tugas kuno mereka. Bersirip dan bersenjatakan trident, kamu memerintah gelombang dan melindungi kedalaman, membawa kehormatan lautan ke pantai mana pun yang kamu pijak."
     },
     {
       "index": "aarakocra",
@@ -6684,7 +6713,7 @@
         "is_recommended": false,
         "text": "A bird-like humanoid with flight and talon attacks. Flight is powerful, but managing aerial positioning and reach can be punishing for new players."
       },
-      "flavorText": "Anda adalah burung yang bisa terbang, yang secara objektif keren. Anda melihat dunia dari atas, harafiah dan metaforis, dan tidak takut untuk dive-bomb musuh dengan cakar terentang. Sempurna untuk pemain yang ingin unik, udara, dan memiliki pandangan terbaik di encounter mana pun."
+      "flavorText": "Kamu mengendarai angin dan melihat dunia dari atas, di mana strategi lebih jelas dan bahaya lebih jauh. Cakar, sayap, dan perspektif udara membuatmu pengembara dan penyerang udara yang tak tertandingi."
     },
     {
       "index": "yuan-ti-pureblood",
@@ -6786,7 +6815,7 @@
         "is_recommended": false,
         "text": "A serpent-touched humanoid with innate spellcasting and poison immunity. Flavorful, but the extra spell list and immunity interactions add complexity."
       },
-      "flavorText": "Anda adalah humanoid serpent dengan kepribadian yang menawan dan gigi beracun. Anda tidak hanya menyesatkan; Anda juga magis, dan bisa merayap melalui situasi sosial dengan anggun yang sama seperti Anda merayap melalui dungeon."
+      "flavorText": "Daya tarik ular dan racun anggun mendefinisikan kamu. Kamu master dualitas—meyakinkan di permukaan, berbisa di bawahnya—dan sama berbahayanya di istana atau medan perang."
     },
     {
       "index": "kobold",
@@ -6883,7 +6912,7 @@
         "dexterity": 2,
         "strength": -2
       },
-      "flavorText": "Anda kecil, draconic, dan memiliki bakat untuk setting jebakan dan bekerja sama. Anda tidak hanya lemah; Anda juga cerdas, terkoordinasi, dan bisa mengkompensasi kurangnya ukuran dengan kecerdikan dan kerja sama tim."
+      "flavorText": "Kecil, draconik, dan tanpa malu cerdik, kamu mengubah kelemahan menjadi kekuatan terkoordinasi. Kamu pembuat jebakan, pemain tim, dan bukti bahwa ukuran hanyalah angka."
     },
     {
       "index": "goliath",
@@ -6955,7 +6984,7 @@
         "strength": 2,
         "constitution": 1
       },
-      "flavorText": "Anda adalah penghuni gunung yang menakutkan, dengan kekuatan luar biasa dan koneksi ke ketinggian tinggi. Anda tidak hanya besar; Anda juga tahan, tangguh, dan bisa mengabaikan cedera yang akan jatuhkan makhluk lesser."
+      "flavorText": "Kamu lahir di udara tipis dan batu, di mana hanya yang kuat bertahan. Warisan pegununganmu memberimu kekuatan yang menakutkan, ketahanan yang menentang alam, dan api kompetitif yang tak pernah dingin."
     },
     {
       "index": "autognome",
@@ -7031,7 +7060,7 @@
         "is_recommended": false,
         "text": "A mechanical gnome with a built-in tool and limited flight. Fun tinker theme, but the mechanical features add small but persistent complexity."
       },
-      "flavorText": "Anda adalah gnome mekanis, dibuat oleh gnome untuk penasaran dan petualang. Anda bukan hanya konstruk; Anda juga ramah, inventor, dan memiliki toolkit bawaan yang membuat Anda pemecah masalah pilihan party."
+      "flavorText": "Dibuat oleh gnome untuk menjelajah dan mencipta, kamu adalah rasa ingin tahu yang diberi roda dan pegas. Tubuh mekanismu menyimpan hati yang petualang, dan peralatan bawaanmu membuatmu engineer tim."
     },
     {
       "index": "plasmoid",
@@ -7107,7 +7136,7 @@
         "is_recommended": false,
         "text": "An ooze-like creature with flexible anatomy and poison resistance. Niche defensive toolkit that rewards experienced positioning."
       },
-      "flavorText": "Anda adalah makhluk mirip ooze yang bisa membentuk ulang tubuh Anda sesuka Anda. Anda tidak hanya aneh; Anda juga serbaguna, dapat beradaptasi, dan bisa menembus ruang yang akan menghentikan party adventurer cold."
+      "flavorText": "Kamu adalah ooze yang bisa mengubah bentuk, sama aliennya sekaligus serbaguna. Tubuhmu melengkuk sesuai kebutuhan—menembus celah, menyerap pukulan, dan mengubah biologi aneh menjadi keuntungan taktis."
     },
     {
       "index": "thri-kreen",
@@ -7179,7 +7208,7 @@
         "strength": 2,
         "dexterity": 2
       },
-      "flavorText": "Anda adalah alien insectoid dengan empat lengan dan koneksi hive mind. Anda tidak hanya aneh; Anda juga cepat, predator, dan bisa menggunakan beberapa senjata sekaligus sementara teman Anda masih mencari cara menggunakan satu."
+      "flavorText": "Empat lengan, kecepatan asing, dan koneksi hive mind membuatmu tak seperti apa pun di Material Plane. Kamu predator-engineer: cepat, menghitung, dan bisa meletakkan perang di setiap arah sekaligus."
     },
     {
       "index": "aasimar",
@@ -7305,7 +7334,7 @@
         "is_recommended": false,
         "text": "A celestial-touched hero with resistance and a healing transformation. Easy to flavor, but the transformation mechanics add a burst-management layer."
       },
-      "flavorText": "Anda disentuh oleh kekayaan surgawi, yang berarti Anda punya kepala bercahaya, tangan penyembuh, dan takdir yang mungkin akan sangat merepotkan. Anda tidak cukup fana, tidak cukup ilahi, dan semua orang mengharapkan hal-hal besar dari Anda. Sempurna untuk pemain yang ingin cerah, kuat, dan memiliki arc karakter bawaan tentang takdir dan tujuan."
+      "flavorText": "Cahaya surgawi membakar dalam dirimu—bersinar, menyembuhkan, dan terbebani takdir. Kamu berjalan antara fana dan ilahi, membawa tujuan yang hanya orang lain impikan dan kekuatan yang menempatkanmu terpisah."
     }
   ]
 }
