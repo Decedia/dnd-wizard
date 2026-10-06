@@ -29,7 +29,7 @@ export function FormField({
     const childProps = child.props as Record<string, any>;
     return cloneElement(child as React.ReactElement<any>, {
       id: fieldId,
-      className: `${childProps.className || ""} input ${error ? "border-[var(--color-error-300)] bg-[var(--color-error-50)] focus:border-[var(--color-error-500)] focus:ring-[var(--color-error-500)] focus:ring-1" : ""}`,
+      className: `${childProps.className || ""} input ${error ? "border-[var(--color-error-500)] focus:border-[var(--color-error-500)]" : ""}`,
       "aria-invalid": error,
       "aria-describedby": error || helperText ? `${fieldId}-message` : undefined,
     });
@@ -43,11 +43,6 @@ export function FormField({
       </label>
       <div className="relative">
         {enhancedChildren}
-        {error && (
-          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-            <div className="absolute inset-0 border-[var(--color-error-500)] rounded-[var(--border-radius-pill)]" />
-          </div>
-        )}
       </div>
       {(error || helperText) && (
         <div
