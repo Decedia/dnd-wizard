@@ -204,7 +204,6 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
           value={data.class}
           label={t("form.class", "Class")}
           required
-          helperText={t("origin.selectClass", "Pilih Kelas")}
         >
           <div
             onClick={() => setClassModalOpen(true)}
@@ -226,7 +225,6 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
           value={data.race}
           label={t("form.race", "Race")}
           required
-          helperText={t("origin.selectRace", "Pilih Ras")}
         >
           <div
             onClick={() => setRaceModalOpen(true)}
