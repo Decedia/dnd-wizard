@@ -919,6 +919,8 @@ export const translations = {
   "creator.selectClassRace": "PILIH KELAS & RAS",
   "origin.classExamples": "Fighter, Wizard, Rogue...",
   "origin.raceExamples": "Manusia, Elf, Dwarf...",
+  "origin.randomName": "Nama Acak",
+  "origin.nameGeneratorOffline": "Generator nama tidak tersedia offline",
   "origin.plusOneToTwoAbilities": "+1 ke Dua Kemampuan",
   "origin.selectedCount": "Dipilih: {count}/2",
   "origin.skillProficiency": "Keahlian",

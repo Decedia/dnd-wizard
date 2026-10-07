@@ -917,6 +917,8 @@ export const translations = {
   "creator.selectClassRace": "PILIH KELAS & RAS",
   "origin.classExamples": "Fighter, Wizard, Rogue...",
   "origin.raceExamples": "Human, Elf, Dwarf...",
+  "origin.randomName": "Random Name",
+  "origin.nameGeneratorOffline": "Name generator unavailable offline",
   "origin.plusOneToTwoAbilities": "+1 to Two Abilities",
   "origin.selectedCount": "Selected: {count}/2",
   "origin.skillProficiency": "Skill Proficiency",

@@ -127,10 +127,10 @@ export function isOnline(): boolean {
 }
 
 export function useOnlineStatus(): boolean {
-  if (typeof window === "undefined") return true;
-  const [online, setOnline] = useState(navigator.onLine);
+  const [online, setOnline] = useState(typeof window !== "undefined" ? navigator.onLine : true);
   
   useEffect(() => {
+    if (typeof window === "undefined") return;
     const handleOnline = () => setOnline(true);
     const handleOffline = () => setOnline(false);
     

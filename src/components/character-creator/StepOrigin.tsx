@@ -8,6 +8,7 @@ import type { Character } from "@/lib/storage";
 import { ClassSelectionModal } from "../modals/ClassSelectionModal";
 import { RaceSelectionModal } from "../modals/RaceSelectionModal";
 import { FieldState } from "@/components/ui/FieldState";
+import { generateNameFromAPI, isOnline } from "@/lib/name-generator";
 
 const CLASS_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
   Barbarian: Sparkle,
@@ -48,8 +49,25 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
   const [classModalOpen, setClassModalOpen] = useState(false);
   const [raceModalOpen, setRaceModalOpen] = useState(false);
   const [characterName, setCharacterName] = useState(data.name || "");
+  const [generatingName, setGeneratingName] = useState(false);
   const classes: SRDClass[] = getStaticClasses(data.sources, data.ruleset, language);
   const races: SRDRace[] = getStaticRaces(data.sources, data.ruleset, language);
+  const online = isOnline();
+
+  const handleRandomName = async () => {
+    setGeneratingName(true);
+    try {
+      // Use selected race or default to Human
+      const raceForName = data.race || "Human";
+      const result = await generateNameFromAPI({ race: raceForName });
+      setCharacterName(result.name);
+      handleNameChange(result.name);
+    } catch (error) {
+      console.warn("Failed to generate name:", error);
+    } finally {
+      setGeneratingName(false);
+    }
+  };
 
   const selectedClass = classes.find((c) => c.name === data.class);
   const selectedRace = races.find((r) => r.name === data.race);
@@ -186,13 +204,24 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
           required
           helperText={t("form.enterCharacterName", "Masukkan nama karakter")}
         >
-          <input
-            type="text"
-            placeholder={t("origin.enterCharacterName", "Masukkan nama...")}
-            value={characterName}
-            onChange={(e) => handleNameChange(e.target.value)}
-            className="w-full bg-[var(--color-bg)] border-2 border-[var(--color-border)] focus:border-[var(--color-accent-indigo-500)] rounded-2xl py-3.5 px-4 text-base font-semibold text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] transition-colors outline-none"
-          />
+          <div className="flex gap-2">
+            <input
+              type="text"
+              placeholder={t("origin.enterCharacterName", "Masukkan nama...")}
+              value={characterName}
+              onChange={(e) => handleNameChange(e.target.value)}
+              className="flex-1 bg-[var(--color-bg)] border-2 border-[var(--color-border)] focus:border-[var(--color-accent-indigo-500)] rounded-2xl py-3.5 px-4 text-base font-semibold text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] transition-colors outline-none"
+            />
+            <button
+              type="button"
+              onClick={handleRandomName}
+              disabled={generatingName || !online}
+              className="flex items-center justify-center w-12 h-12 rounded-xl bg-[var(--color-accent-indigo-50)] text-[var(--color-accent-indigo-600)] hover:bg-[var(--color-accent-indigo-100)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors outline-none"
+              title={!online ? t("origin.nameGeneratorOffline", "Name generator unavailable offline") : t("origin.randomName", "Random Name")}
+            >
+              <span className="text-lg">🎲</span>
+            </button>
+          </div>
         </FieldState>
       </div>
 
