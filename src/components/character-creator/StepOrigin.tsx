@@ -8,7 +8,8 @@ import type { Character } from "@/lib/storage";
 import { ClassSelectionModal } from "../modals/ClassSelectionModal";
 import { RaceSelectionModal } from "../modals/RaceSelectionModal";
 import { FieldState } from "@/components/ui/FieldState";
-import { generateNameFromAPI, isOnline } from "@/lib/name-generator";
+import raceData from "@/data/raceNames.json";
+import classData from "@/data/classNames.json";
 
 const CLASS_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
   Barbarian: Sparkle,
@@ -49,48 +50,8 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
   const [classModalOpen, setClassModalOpen] = useState(false);
   const [raceModalOpen, setRaceModalOpen] = useState(false);
   const [characterName, setCharacterName] = useState(data.name || "");
-  const [generatingName, setGeneratingName] = useState(false);
   const classes: SRDClass[] = getStaticClasses(data.sources, data.ruleset, language);
   const races: SRDRace[] = getStaticRaces(data.sources, data.ruleset, language);
-  const online = isOnline();
-
-  const handleRandomName = async () => {
-    setGeneratingName(true);
-    
-    // Generate random length between 1 and 3
-    const randomLength = Math.floor(Math.random() * 3) + 1;
-    
-    // Safely extract names if objects are selected
-    const raceParam = data.race || "Human";
-    const classParam = data.class || "";
-
-    try {
-      const url = new URL("https://api.namefake.com/");
-      if (raceParam) url.searchParams.append("race", raceParam);
-      if (classParam) url.searchParams.append("class", classParam);
-      url.searchParams.append("length", randomLength.toString());
-
-      const response = await fetch(url.toString());
-      if (!response.ok) throw new Error(`API responded with ${response.status}`);
-      
-      const data = await response.json();
-      const fullName = data.name || "";
-      const firstName = fullName.split(" ")[0];
-      
-      if (firstName) {
-        setCharacterName(firstName);
-        handleNameChange(firstName);
-      }
-    } catch (error) {
-      console.warn("Failed to generate name:", error);
-      // Fallback to local generation
-      const result = await generateNameFromAPI({ race: data.race || "Human" });
-      setCharacterName(result.name);
-      handleNameChange(result.name);
-    } finally {
-      setGeneratingName(false);
-    }
-  };
 
   const selectedClass = classes.find((c) => c.name === data.class);
   const selectedRace = races.find((r) => r.name === data.race);
@@ -109,6 +70,35 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
     },
     [onChange]
   );
+
+  const handleRandomName = useCallback(() => {
+    // Normalize parameters, fallback to human/fighter if empty
+    const raceParam = data.race ? data.race.toLowerCase() : 'human';
+    const classParam = data.class ? data.class.toLowerCase() : 'fighter';
+    
+    // Safely fallback to existing keys if the specific class/race isn't in our top 5
+    const racePool = raceData[raceParam as keyof typeof raceData] || raceData.human;
+    const classPool = classData[classParam as keyof typeof classData] || classData.fighter;
+    
+    const randomFirst = racePool.first[Math.floor(Math.random() * racePool.first.length)];
+    const randomLast = racePool.last[Math.floor(Math.random() * racePool.last.length)];
+    const randomTitle = classPool.titles[Math.floor(Math.random() * classPool.titles.length)];
+    
+    // Randomize the formatting for natural variety
+    const formatRoll = Math.random();
+    let generatedName = randomFirst;
+    
+    if (formatRoll > 0.6) {
+      generatedName = `${randomFirst} ${randomLast}`;
+    } else if (formatRoll > 0.3) {
+      generatedName = `${randomFirst} ${randomTitle}`;
+    } else {
+      generatedName = `${randomFirst} ${randomLast} ${randomTitle}`;
+    }
+    
+    setCharacterName(generatedName);
+    handleNameChange(generatedName);
+  }, [data.race, data.class, handleNameChange]);
 
   const handleClassSelect = useCallback(
     (payload: any) => {
@@ -238,15 +228,10 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
             <button
               type="button"
               onClick={handleRandomName}
-              disabled={generatingName || !online}
-              className="shrink-0 bg-[var(--color-accent-indigo-50)] border-2 border-[var(--color-accent-indigo-200)] text-[var(--color-accent-indigo-600)] hover:bg-[var(--color-accent-indigo-100)] hover:border-[var(--color-accent-indigo-300)] rounded-2xl px-5 flex items-center justify-center active:scale-95 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-              title={!online ? t("origin.nameGeneratorOffline", "Name generator unavailable offline") : t("origin.randomName", "Random Name")}
+              className="shrink-0 bg-[var(--color-accent-indigo-50)] border-2 border-[var(--color-accent-indigo-200)] text-[var(--color-accent-indigo-600)] hover:bg-[var(--color-accent-indigo-100)] hover:border-[var(--color-accent-indigo-300)] rounded-2xl px-5 flex items-center justify-center active:scale-95 transition-all"
+              title={t("origin.randomName", "Random Name")}
             >
-              <DiceFive
-                className={`${generatingName ? "animate-spin" : ""}`}
-                size={24}
-                weight="duotone"
-              />
+              <DiceFive size={24} weight="duotone" />
             </button>
           </div>
         </FieldState>

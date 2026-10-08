@@ -1,0 +1,17 @@
+{
+  "fighter": {
+    "titles": ["the Unyielding", "Ironclad", "the Stalwart", "Battleborn", "the Vanguard", "Shieldbreaker", "the Relentless", "Ironheart", "the Bulwark", "Warcaller", "the Indomitable", "Steelfist", "the Juggernaut", "Hammerfall", "the Dauntless", "Bladestorm", "the Immutable", "Axebreaker", "the Resolute", "Spearwall", "the Unbroken", "Warmaster", "the Fortress", "Greatsword", "the Unstoppable", "Battlelord", "the Ironwall", "Champion", "the Unbowed", "Dreadnought", "the Invincible", "Vanquisher", "the Ironwill", "Conqueror", "the Unshakable", "Tyrant", "the Unmovable", "Overlord", "the Unfaltering", "Warlord", "the Unstoppable", "Destroyer", "the Unyielding", "Sovereign", "the Unbreakable", "Emperor", "the Unconquered", "Legend", "the Eternal", "Paragon"]
+  },
+  "wizard": {
+    "titles": ["the Arcane", "Spellweaver", "the Sage", "Archmage", "the Mystic", "Runecaster", "the Seer", "Voidwalker", "the Oracle", "Spellbinder", "the Adept", "Manawielder", "the Enchanter", "Chronomancer", "the Thaumaturge", "Elementalist", "the Arcanist", "Necromancer", "the Illusionist", "Abjurer", "the Conjurer", "Diviner", "the Transmuter", "Evoker", "the Spellblade", "Warmage", "the Battlemage", "Spellsword", "the Arcane Archer", "Eldritch Knight", "the Magus", "Runemaster", "the Glyphkeeper", "Sigilist", "the Warder", "Aegis", "the Barrier", "Warding", "the Counter", "Dispeller", "the Unraveler", "Antimagic", "the Nullifier", "Spellthief", "the Mimic", "Mirror", "the Reflector", "Prism", "the Spectrum"]
+  },
+  "rogue": {
+    "titles": ["the Shadow", "Silentstep", "the Whisper", "Nightblade", "the Phantom", "Shadewalker", "the Ghost", "Duskstalker", "the Specter", "Gloomstrider", "the Shade", "Umbra", "the Penumbra", "Twilight", "the Gloom", "Midnight", "the Dark", "Obsidian", "the Raven", "Crow", "the Magpie", "Jackdaw", "the Swift", "Quickfoot", "the Fleet", "Lightfoot", "the Nimble", "Surefoot", "the Cat", "Panther", "the Jaguar", "Leopard", "the Lynx", "Ocelot", "the Serpent", "Viper", "the Cobra", "Asp", "the Fang", "Venom", "the Poison", "Toxin", "the Blade", "Dagger", "the Stiletto", "Dirk", "the Rapier", "Saber", "the Edge"]
+  },
+  "cleric": {
+    "titles": ["the Devout", "Faithful", "the Blessed", "Sanctified", "the Hallowed", "Consecrated", "the Anointed", "Ordained", "the Vowed", "Sworn", "the Bound", "Dedicated", "the Committed", "Devoted", "the Pious", "Reverent", "the Humble", "Meek", "the Gentle", "Kind", "the Merciful", "Compassionate", "the Healer", "Restorer", "the Mender", "Physician", "the Physicker", "Chirurgeon", "the Surgeon", "Sawbones", "the Light", "Radiant", "the Dawn", "Morning", "the Sun", "Solar", "the Day", "Noon", "the Zenith", "Apex", "the Peak", "Summit", "the Crown", "Corona", "the Halo", "Aureole", "the Nimbus", "Glory", "the Splendor", "Majesty"]
+  },
+  "ranger": {
+    "titles": ["the Wild", "Hunter", "the Tracker", "Pathfinder", "the Scout", "Guide", "the Wayfarer", "Wanderer", "the Drifter", "Nomad", "the Vagrant", "Rover", "the Ranger", "Warden", "the Guardian", "Keeper", "the Watcher", "Sentinel", "the Lookout", "Outlook", "the Spy", "Scout", "the Observer", "Watcher", "the Vigil", "Sentry", "the Guard", "Ward", "the Shield", "Aegis", "the Bulwark", "Rampart", "the Wall", "Barrier", "the Fence", "Hedge", "the Boundary", "Border", "the Fringe", "Frontier", "the March", "Borderland", "the Wilds", "Wilderness", "the Forest", "Woods", "the Grove", "Copse", "the Thicket", "Brush"]
+  }
+}
