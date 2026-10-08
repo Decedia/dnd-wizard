@@ -5,7 +5,7 @@ import { StepCard } from "./StepCard";
 import { getStaticClass, getStaticRace } from "@/lib/srd-client";
 import { getModifier } from "@/lib/storage";
 import type { Character } from "@/lib/storage";
-import { StarIcon as Star, ChartBarIcon as ChartBar, SparklesIcon as Sparkles, DiceIcon as Dice } from "@/components/icons";
+import { Star as PhosphorStar, Minus as PhosphorMinus, Plus as PhosphorPlus, Info as PhosphorInfo } from "@phosphor-icons/react";
 import { isRecommended } from "@/lib/recommendations";
 import { NewPlayerTips } from "@/components/NewPlayerTips";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -53,7 +53,7 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
     return [...ABILITIES].sort((a, b) => (isRecommended("stat", b.label, data.class) ? 1 : 0) - (isRecommended("stat", a.label, data.class) ? 1 : 0));
   }, [data.class]);
 
-  const [method, setMethod] = useState<AbilityMethod>(data.abilityMethod || "standard");
+   const [method, setMethod] = useState<AbilityMethod>(data.abilityMethod || "pointbuy");
   const [pointBuyScores, setPointBuyScores] = useState<Record<AbilityKey, number>>(() => {
     const initial: Record<AbilityKey, number> = {
       str: 8, dex: 8, con: 8, int: 8, wis: 8, cha: 8
@@ -234,259 +234,271 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
           })}
         </div>
         <div className="space-y-3">
-          {sortedAbilities.map(({ key, label, full }) => {
-            const finalScore = getFinalScore(key);
-            const baseScore = getBaseScore(key);
-            const modifier = getModifier(finalScore);
-            const raceBonus = raceBonuses[key] || 0;
-            const currentSelection = currentSelections[key];
+           {sortedAbilities.map(({ key, label, full }) => {
+             const finalScore = getFinalScore(key);
+             const baseScore = getBaseScore(key);
+             const modifier = getModifier(finalScore);
+             const raceBonus = raceBonuses[key] || 0;
+             const currentSelection = currentSelections[key];
 
-            const valuesUsedByOthers = ABILITIES
-              .filter(({ key: otherKey }) => otherKey !== key)
-              .map(({ key: otherKey }) => currentSelections[otherKey])
-              .filter((val): val is number => val !== null);
+             const valuesUsedByOthers = ABILITIES
+               .filter(({ key: otherKey }) => otherKey !== key)
+               .map(({ key: otherKey }) => currentSelections[otherKey])
+               .filter((val): val is number => val !== null);
 
-            return (
+             return (
+                <div
+                  key={key}
+                  className="card flex items-center justify-between px-4 py-3 relative overflow-visible"
+                >
+                  {isRecommended("stat", label, data.class) && (
+                    <span className="absolute -top-3 -left-3 w-8 h-8 text-amber-400 drop-shadow-md z-10">
+                      <PhosphorStar size={16} weight="fill" className="h-8 w-8 text-amber-400" />
+                    </span>
+                  )}
+                  <div className="flex flex-col">
+                    <span className="text-sm font-bold text-ink w-12">{label}</span>
+                    <span className="text-[10px] text-ink-muted font-medium">{full}</span>
+                  </div>
+                   <div className="flex items-center gap-2">
+                     {raceBonus > 0 && (
+                       <span className="text-xs font-bold text-ink bg-paper px-1.5 py-0.5 rounded-full">+{raceBonus}</span>
+                     )}
+                     <select
+                      value={currentSelection ?? "-"}
+                      onChange={(e) => {
+                        const val = e.target.value === "-" ? null : parseInt(e.target.value);
+                        setStandardArraySelections(prev => ({ ...prev, [key]: val }));
+                        if (val !== null) {
+                          onChange({ [key]: val } as Partial<Character>);
+                        }
+                      }}
+                      className="input w-16 text-center border border-border-strong rounded-full"
+                    >
+                      <option value="-">-</option>
+                      {STANDARD_ARRAY.map((val) => {
+                        const isTakenByOther = valuesUsedByOthers.includes(val);
+                        return (
+                          <option key={val} value={val} disabled={isTakenByOther}>{val}</option>
+                        );
+                      })}
+                    </select>
+                  </div>
+                </div>
+              );
+            })}
+        </div>
+      </div>
+    );
+  };
+
+   const renderPointBuy = () => {
+     return (
+       <>
+         {/* Sticky Point Tracker for Point Buy */}
+         <div className="bg-slate-900 dark:bg-slate-800 text-white rounded-2xl p-4 flex justify-between items-center mb-6 shadow-sm">
+           <span className="text-sm font-bold tracking-widest uppercase text-slate-300">Sisa Poin</span>
+           <span className={`text-2xl font-black ${pointBuyRemaining === 0 ? 'text-slate-400' : 'text-emerald-400'}`}>
+             {pointBuyRemaining} <span className="text-sm text-slate-500">/ 27</span>
+           </span>
+         </div>
+         
+         <div className="space-y-4">
+           <div className="flex items-center justify-between card px-4 py-2">
+             <span className="text-sm font-bold text-ink">Points Remaining</span>
+             <span className={`text-lg font-bold ${pointBuyRemaining >= 0 ? "text-ink" : "text-ink-muted"}`}>
+               {pointBuyRemaining} / {POINT_BUY_TOTAL}
+             </span>
+           </div>
+           <div className="space-y-3">
+             {sortedAbilities.map(({ key, label, full }) => {
+               const score = pointBuyScores[key];
+               const finalScore = Math.min(20, score + (raceBonuses[key] || 0));
+               const modifier = getModifier(finalScore);
+               const raceBonus = raceBonuses[key] || 0;
+               const cost = POINT_BUY_COSTS[score] || 0;
+               const canDecrease = score > 8;
+               const canIncrease = score < 15 && pointBuyRemaining >= (POINT_BUY_COSTS[score + 1] || 0);
+
+               return (
+                 <div
+                   key={key}
+                   className="card flex items-center justify-between px-4 py-3 relative overflow-visible"
+                 >
+                   <div className="flex flex-col">
+                     <span className="text-sm font-bold text-ink w-12">{label}</span>
+                     <span className="text-[10px] text-ink-muted font-medium">{full}</span>
+                   </div>
+                   <div className="flex items-center gap-2">
+                     {isRecommended("stat", label, data.class) && (<span className="absolute -top-3 -left-3 w-8 h-8 text-amber-400 drop-shadow-md z-10"><PhosphorStar size={16} weight="fill" className="text-amber-400 animate-pulse" /></span>)}
+                     <button
+                       type="button"
+                       onClick={() => handlePointBuyChange(key, score - 1)}
+                       disabled={!canDecrease}
+                       className="btn flex h-8 w-8 items-center justify-center p-0 disabled:opacity-30 rounded-full"
+                     >
+                       <PhosphorMinus size={16} weight="bold" />
+                     </button>
+                     <div className="flex flex-col items-center w-20">
+                       <span className="text-lg font-bold text-ink">{score}</span>
+                       <span className="text-[10px] text-ink-muted font-medium">
+                         {cost}
+                       </span>
+                     </div>
+                     <button
+                       type="button"
+                       onClick={() => handlePointBuyChange(key, score + 1)}
+                       disabled={!canIncrease}
+                       className="btn flex h-8 w-8 items-center justify-center p-0 disabled:opacity-30 rounded-full"
+                     >
+                       <PhosphorPlus size={16} weight="bold" />
+                     </button>
+                     <div className="flex flex-col items-center w-12">
+                       <span className="text-sm font-bold text-ink bg-paper px-2 py-0.5 rounded-full">
+                         {modifier >= 0 ? `+${modifier}` : modifier}
+                       </span>
+                       <span className="text-[10px] text-ink-muted font-medium">mod</span>
+                     </div>
+                   </div>
+                 </div>
+               );
+             })}
+           </div>
+         </div>
+       </>
+      );
+    };
+
+
+
+   const renderManual = () => {
+     return (
+       <div className="space-y-4">
+         <p className="text-xs text-ink-muted font-medium">Manually enter each ability score. Maximum is 15, minimum is 8.</p>
+         <div className="space-y-3">
+           {sortedAbilities.map(({ key, label, full }) => {
+             const score = manualScores[key];
+             const finalScore = Math.min(20, score + (raceBonuses[key] || 0));
+             const modifier = getModifier(finalScore);
+             const raceBonus = raceBonuses[key] || 0;
+
+             return (
                <div
                  key={key}
                  className="card flex items-center justify-between px-4 py-3 relative overflow-visible"
                >
-                 {isRecommended("stat", label, data.class) && (
-                   <span className="absolute -top-3 -left-3 w-8 h-8 text-amber-400 drop-shadow-md z-10">
-                     <Star className="h-8 w-8 fill-amber-400" />
-                   </span>
-                 )}
                  <div className="flex flex-col">
                    <span className="text-sm font-bold text-ink w-12">{label}</span>
                    <span className="text-[10px] text-ink-muted font-medium">{full}</span>
                  </div>
-                  <div className="flex items-center gap-2">
-                    {raceBonus > 0 && (
-                      <span className="text-xs font-bold text-ink bg-paper px-1.5 py-0.5 rounded-full">+{raceBonus}</span>
-                    )}
-                    <select
-                     value={currentSelection ?? "-"}
-                     onChange={(e) => {
-                       const val = e.target.value === "-" ? null : parseInt(e.target.value);
-                       setStandardArraySelections(prev => ({ ...prev, [key]: val }));
-                       if (val !== null) {
-                         onChange({ [key]: val } as Partial<Character>);
-                       }
-                     }}
-                     className="input w-16 text-center border border-border-strong rounded-full"
-                   >
-                     <option value="-">-</option>
-                     {STANDARD_ARRAY.map((val) => {
-                       const isTakenByOther = valuesUsedByOthers.includes(val);
-                       return (
-                         <option key={val} value={val} disabled={isTakenByOther}>{val}</option>
-                       );
-                     })}
-                   </select>
-                 </div>
-               </div>
-             );
-           })}
-        </div>
-      </div>
-    );
-  };
-
-  const renderPointBuy = () => {
-    return (
-      <div className="space-y-4">
-         <div className="flex items-center justify-between card px-4 py-2">
-          <span className="text-sm font-bold text-ink">Points Remaining</span>
-          <span className={`text-lg font-bold ${pointBuyRemaining >= 0 ? "text-ink" : "text-ink-muted"}`}>
-            {pointBuyRemaining} / {POINT_BUY_TOTAL}
-          </span>
-        </div>
-        <div className="space-y-3">
-          {sortedAbilities.map(({ key, label, full }) => {
-            const score = pointBuyScores[key];
-            const finalScore = Math.min(20, score + (raceBonuses[key] || 0));
-            const modifier = getModifier(finalScore);
-            const raceBonus = raceBonuses[key] || 0;
-            const cost = POINT_BUY_COSTS[score] || 0;
-            const canDecrease = score > 8;
-            const canIncrease = score < 15 && pointBuyRemaining >= (POINT_BUY_COSTS[score + 1] || 0);
-
-            return (
-              <div
-                key={key}
-                className="card flex items-center justify-between px-4 py-3 relative overflow-visible"
-              >
-                <div className="flex flex-col">
-                  <span className="text-sm font-bold text-ink w-12">{label}</span>
-                  <span className="text-[10px] text-ink-muted font-medium">{full}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  {isRecommended("stat", label, data.class) && (<span className="absolute -top-3 -left-3 w-8 h-8 text-amber-400 drop-shadow-md z-10"><Star className="h-8 w-8 fill-amber-400" /></span>)}
-                  <button
-                    type="button"
-                    onClick={() => handlePointBuyChange(key, score - 1)}
-                    disabled={!canDecrease}
-                    className="btn flex h-8 w-8 items-center justify-center p-0 disabled:opacity-30 rounded-full"
-                  >
-                    -
-                  </button>
-                   <div className="flex flex-col items-center w-20">
-                     <span className="text-lg font-bold text-ink">{score}</span>
-                     <span className="text-[10px] text-ink-muted font-medium">
-                       {cost}
-                     </span>
-                   </div>
-                  <button
-                    type="button"
-                    onClick={() => handlePointBuyChange(key, score + 1)}
-                    disabled={!canIncrease}
-                    className="btn flex h-8 w-8 items-center justify-center p-0 disabled:opacity-30 rounded-full"
-                  >
-                    +
-                  </button>
-                  <div className="flex flex-col items-center w-12">
-                    <span className="text-sm font-bold text-ink bg-paper px-2 py-0.5 rounded-full">
-                      {modifier >= 0 ? `+${modifier}` : modifier}
-                    </span>
-                    <span className="text-[10px] text-ink-muted font-medium">mod</span>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    );
-  };
-
-  const renderManual = () => {
-    return (
-      <div className="space-y-4">
-        <p className="text-xs text-ink-muted font-medium">Manually enter each ability score. Maximum is 15, minimum is 8.</p>
-        <div className="space-y-3">
-          {sortedAbilities.map(({ key, label, full }) => {
-            const score = manualScores[key];
-            const finalScore = Math.min(20, score + (raceBonuses[key] || 0));
-            const modifier = getModifier(finalScore);
-            const raceBonus = raceBonuses[key] || 0;
-
-            return (
-              <div
-                key={key}
-                className="card flex items-center justify-between px-4 py-3 relative overflow-visible"
-              >
-                <div className="flex flex-col">
-                  <span className="text-sm font-bold text-ink w-12">{label}</span>
-                  <span className="text-[10px] text-ink-muted font-medium">{full}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  {isRecommended("stat", label, data.class) && (<span className="absolute -top-3 -left-3 w-8 h-8 text-amber-400 drop-shadow-md z-10"><Star className="h-8 w-8 fill-amber-400" /></span>)}
-                  <button
-                    type="button"
-                    onClick={() => handleManualChange(key, score - 1)}
-                    disabled={score <= 8}
-                    className="btn flex h-8 w-8 items-center justify-center p-0 disabled:opacity-30 rounded-full"
-                  >
-                    -
-                  </button>
-                   <div className="flex flex-col items-center w-20">
-                     <span className="text-lg font-bold text-ink">{score}</span>
-                     <span className="text-[10px] text-ink-muted font-medium">
-                       {raceBonus > 0 ? `final: ${finalScore}` : "max: 15"}
-                     </span>
-                   </div>
+                 <div className="flex items-center gap-2">
+                   {isRecommended("stat", label, data.class) && (<span className="absolute -top-3 -left-3 w-8 h-8 text-amber-400 drop-shadow-md z-10"><PhosphorStar size={16} weight="fill" className="text-amber-400 animate-pulse" /></span>)}
                    <button
                      type="button"
-                     onClick={() => handleManualChange(key, score + 1)}
-                     disabled={score >= 15}
+                     onClick={() => handleManualChange(key, score - 1)}
+                     disabled={score <= 8}
                      className="btn flex h-8 w-8 items-center justify-center p-0 disabled:opacity-30 rounded-full"
                    >
-                     +
+                     <PhosphorMinus size={16} weight="bold" />
                    </button>
-                   <div className="flex flex-col items-center w-12">
-                     <span className="text-sm font-bold text-ink bg-paper px-2 py-0.5 rounded-full">
-                       {modifier >= 0 ? `+${modifier}` : modifier}
-                     </span>
-                     <span className="text-[10px] text-ink-muted font-medium">mod</span>
-                   </div>
-                 </div>
-               </div>
-             );
-           })}
-        </div>
-      </div>
-    );
-  };
-
-  const renderFreeBuy = () => {
-    const usedPoints = ABILITIES.reduce((sum, ability) => sum + freeBuyScores[ability.key], 0);
-    const remainingPoints = FREE_BUY_TOTAL - usedPoints;
-
-    return (
-      <div className="space-y-4">
-        <div className="flex items-center justify-between card px-4 py-2">
-          <span className="text-sm font-bold text-ink">Points Remaining</span>
-          <span className={`text-lg font-bold ${remainingPoints >= 0 ? "text-ink" : "text-ink-muted"}`}>
-            {remainingPoints} / {FREE_BUY_TOTAL}
-          </span>
-        </div>
-        <p className="text-xs text-ink-muted font-medium">Spend up to 80 points freely. Each stat can go up to 15. There is no cost—just assign points directly.</p>
-        <div className="space-y-3">
-          {sortedAbilities.map(({ key, label, full }) => {
-            const score = freeBuyScores[key];
-            const finalScore = Math.min(20, score + (raceBonuses[key] || 0));
-            const modifier = getModifier(finalScore);
-            const raceBonus = raceBonuses[key] || 0;
-            const canDecrease = score > FREE_BUY_MIN;
-            const canIncrease = score < FREE_BUY_MAX && remainingPoints > 0;
-
-            return (
-              <div
-                key={key}
-                className="card flex items-center justify-between px-4 py-3 relative overflow-visible"
-              >
-                <div className="flex flex-col">
-                  <span className="text-sm font-bold text-ink w-12">{label}</span>
-                  <span className="text-[10px] text-ink-muted font-medium">{full}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  {isRecommended("stat", label, data.class) && (<span className="absolute -top-3 -left-3 w-8 h-8 text-amber-400 drop-shadow-md z-10"><Star className="h-8 w-8 fill-amber-400" /></span>)}
-                  <button
-                    type="button"
-                    onClick={() => handleFreeBuyChange(key, score - 1)}
-                    disabled={!canDecrease}
-                    className="btn flex h-8 w-8 items-center justify-center p-0 disabled:opacity-30 rounded-full"
-                  >
-                    -
-                  </button>
                     <div className="flex flex-col items-center w-20">
                       <span className="text-lg font-bold text-ink">{score}</span>
                       <span className="text-[10px] text-ink-muted font-medium">
-                        {raceBonus > 0 ? `final: ${finalScore}` : `max: ${FREE_BUY_MAX}`}
+                        {raceBonus > 0 ? `final: ${finalScore}` : "max: 15"}
                       </span>
                     </div>
                     <button
                       type="button"
-                      onClick={() => handleFreeBuyChange(key, score + 1)}
-                      disabled={!canIncrease}
+                      onClick={() => handleManualChange(key, score + 1)}
+                      disabled={score >= 15}
                       className="btn flex h-8 w-8 items-center justify-center p-0 disabled:opacity-30 rounded-full"
                     >
-                      +
+                      <PhosphorPlus size={16} weight="bold" />
                     </button>
-                   <div className="flex flex-col items-center w-12">
-                     <span className="text-sm font-bold text-ink bg-paper px-2 py-0.5 rounded-full">
-                       {modifier >= 0 ? `+${modifier}` : modifier}
-                     </span>
-                     <span className="text-[10px] text-ink-muted font-medium">mod</span>
-                   </div>
+                    <div className="flex flex-col items-center w-12">
+                      <span className="text-sm font-bold text-ink bg-paper px-2 py-0.5 rounded-full">
+                        {modifier >= 0 ? `+${modifier}` : modifier}
+                      </span>
+                      <span className="text-[10px] text-ink-muted font-medium">mod</span>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+         </div>
+       </div>
+     );
+   };
+
+   const renderFreeBuy = () => {
+     const usedPoints = ABILITIES.reduce((sum, ability) => sum + freeBuyScores[ability.key], 0);
+     const remainingPoints = FREE_BUY_TOTAL - usedPoints;
+
+     return (
+       <div className="space-y-4">
+         <div className="flex items-center justify-between card px-4 py-2">
+           <span className="text-sm font-bold text-ink">Points Remaining</span>
+           <span className={`text-lg font-bold ${remainingPoints >= 0 ? "text-ink" : "text-ink-muted"}`}>
+             {remainingPoints} / {FREE_BUY_TOTAL}
+           </span>
+         </div>
+         <p className="text-xs text-ink-muted font-medium">Spend up to 80 points freely. Each stat can go up to 15. There is no cost—just assign points directly.</p>
+         <div className="space-y-3">
+           {sortedAbilities.map(({ key, label, full }) => {
+             const score = freeBuyScores[key];
+             const finalScore = Math.min(20, score + (raceBonuses[key] || 0));
+             const modifier = getModifier(finalScore);
+             const raceBonus = raceBonuses[key] || 0;
+             const canDecrease = score > FREE_BUY_MIN;
+             const canIncrease = score < FREE_BUY_MAX && remainingPoints > 0;
+
+             return (
+               <div
+                 key={key}
+                 className="card flex items-center justify-between px-4 py-3 relative overflow-visible"
+               >
+                 <div className="flex flex-col">
+                   <span className="text-sm font-bold text-ink w-12">{label}</span>
+                   <span className="text-[10px] text-ink-muted font-medium">{full}</span>
                  </div>
-               </div>
-             );
-           })}
-        </div>
-      </div>
-    );
-  };
+                 <div className="flex items-center gap-2">
+                   {isRecommended("stat", label, data.class) && (<span className="absolute -top-3 -left-3 w-8 h-8 text-amber-400 drop-shadow-md z-10"><PhosphorStar size={16} weight="fill" className="text-amber-400 animate-pulse" /></span>)}
+                   <button
+                     type="button"
+                     onClick={() => handleFreeBuyChange(key, score - 1)}
+                     disabled={!canDecrease}
+                     className="btn flex h-8 w-8 items-center justify-center p-0 disabled:opacity-30 rounded-full"
+                   >
+                     <PhosphorMinus size={16} weight="bold" />
+                   </button>
+                     <div className="flex flex-col items-center w-20">
+                       <span className="text-lg font-bold text-ink">{score}</span>
+                       <span className="text-[10px] text-ink-muted font-medium">
+                         {raceBonus > 0 ? `final: ${finalScore}` : `max: ${FREE_BUY_MAX}`}
+                       </span>
+                     </div>
+                     <button
+                       type="button"
+                       onClick={() => handleFreeBuyChange(key, score + 1)}
+                       disabled={!canIncrease}
+                       className="btn flex h-8 w-8 items-center justify-center p-0 disabled:opacity-30 rounded-full"
+                     >
+                       <PhosphorPlus size={16} weight="bold" />
+                     </button>
+                    <div className="flex flex-col items-center w-12">
+                      <span className="text-sm font-bold text-ink bg-paper px-2 py-0.5 rounded-full">
+                        {modifier >= 0 ? `+${modifier}` : modifier}
+                      </span>
+                      <span className="text-[10px] text-ink-muted font-medium">mod</span>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+         </div>
+       </div>
+     );
+   };
 
   const renderMethodContent = () => {
     switch (method) {
@@ -530,25 +542,21 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
              </button>
            ))}
          </div>
-         <NewPlayerTips
-           tips={[
-             {
-               title: "What are Ability Scores?",
-               content: "Ability scores represent your character's raw potential. STR affects melee attacks and carrying capacity. DEX affects ranged attacks and AC. CON affects HP. INT affects Wizard spells and knowledge. WIS affects Cleric/Druid spells and perception. CHA affects Bard/Sorcerer/Warlock spells and social skills.",
-               icon: ChartBar,
-             },
-             {
-               title: "Gold Star = Recommended",
-               content: "Gold stars show the most important abilities for your class. Put your highest scores here for a stronger character.",
-               icon: Sparkles,
-             },
-             {
-               title: "Generating Scores",
-               content: "Standard Array gives balanced scores (15, 14, 13, 12, 10, 8). Point Buy lets you customize with a point economy. Manual Roll lets you enter scores directly. Free Buy is a homebrew option with 80 free points and no cost system.",
-               icon: Dice,
-             },
-           ]}
-         />
+          {/* Premium Newbie Tips Section */}
+          <div className="bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-200 dark:border-indigo-800/50 rounded-2xl p-4 mb-6">
+            <div className="flex items-center gap-2 mb-2">
+              <PhosphorInfo size={18} weight="bold" className="text-indigo-600 dark:text-indigo-400" />
+              <h3 className="font-bold text-sm text-indigo-900 dark:text-indigo-100">Panduan Pemula</h3>
+            </div>
+            <p className="text-xs text-indigo-700 dark:text-indigo-300 leading-relaxed mb-2">
+              Atribut menentukan seberapa hebat karaktermu. Perhatikan ikon Bintang (⭐) yang menunjukkan stat paling penting untuk kelas yang kamu pilih!
+            </p>
+            <ul className="text-[11px] text-indigo-700/80 dark:text-indigo-300/80 space-y-1 ml-1">
+              <li><strong className="font-semibold">Point Buy:</strong> Atur poin fleksibel. Angka 14 & 15 harganya lebih mahal (2 poin).</li>
+              <li><strong className="font-semibold">Array Standar:</strong> Gunakan urutan angka baku yang aman (15, 14, 13, 12, 10, 8).</li>
+              <li><strong className="font-semibold">Roll:</strong> Acak angkamu menggunakan dadu (Beresiko tinggi!).</li>
+            </ul>
+          </div>
          {renderMethodContent()}
       </div>
     </StepCard>
