@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { Sword, Users, CaretRight, Person, Sparkle, Shield, Leaf, Hand, Brain, Skull, Flame, Lightning, Hammer } from "@phosphor-icons/react";
+import { Sword, Users, CaretRight, Person, Sparkle, Shield, Leaf, Hand, Brain, Skull, Flame, Lightning, Hammer, DiceFive } from "@phosphor-icons/react";
 import { getStaticClasses, getStaticRaces, type SRDClass, type SRDRace } from "@/lib/srd-client";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
@@ -56,14 +56,37 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
 
   const handleRandomName = async () => {
     setGeneratingName(true);
+    
+    // Generate random length between 1 and 3
+    const randomLength = Math.floor(Math.random() * 3) + 1;
+    
+    // Safely extract names if objects are selected
+    const raceParam = data.race || "Human";
+    const classParam = data.class || "";
+
     try {
-      // Use selected race or default to Human
-      const raceForName = data.race || "Human";
-      const result = await generateNameFromAPI({ race: raceForName });
-      setCharacterName(result.name);
-      handleNameChange(result.name);
+      const url = new URL("https://api.namefake.com/");
+      if (raceParam) url.searchParams.append("race", raceParam);
+      if (classParam) url.searchParams.append("class", classParam);
+      url.searchParams.append("length", randomLength.toString());
+
+      const response = await fetch(url.toString());
+      if (!response.ok) throw new Error(`API responded with ${response.status}`);
+      
+      const data = await response.json();
+      const fullName = data.name || "";
+      const firstName = fullName.split(" ")[0];
+      
+      if (firstName) {
+        setCharacterName(firstName);
+        handleNameChange(firstName);
+      }
     } catch (error) {
       console.warn("Failed to generate name:", error);
+      // Fallback to local generation
+      const result = await generateNameFromAPI({ race: data.race || "Human" });
+      setCharacterName(result.name);
+      handleNameChange(result.name);
     } finally {
       setGeneratingName(false);
     }
@@ -216,10 +239,14 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
               type="button"
               onClick={handleRandomName}
               disabled={generatingName || !online}
-              className="flex items-center justify-center w-12 h-12 rounded-xl bg-[var(--color-accent-indigo-50)] text-[var(--color-accent-indigo-600)] hover:bg-[var(--color-accent-indigo-100)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors outline-none"
+              className="shrink-0 bg-[var(--color-accent-indigo-50)] border-2 border-[var(--color-accent-indigo-200)] text-[var(--color-accent-indigo-600)] hover:bg-[var(--color-accent-indigo-100)] hover:border-[var(--color-accent-indigo-300)] rounded-2xl px-5 flex items-center justify-center active:scale-95 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               title={!online ? t("origin.nameGeneratorOffline", "Name generator unavailable offline") : t("origin.randomName", "Random Name")}
             >
-              <span className="text-lg">🎲</span>
+              <DiceFive
+                className={`${generatingName ? "animate-spin" : ""}`}
+                size={24}
+                weight="duotone"
+              />
             </button>
           </div>
         </FieldState>
