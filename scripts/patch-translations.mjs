@@ -10,7 +10,7 @@ import OpenAI from "openai";
 import fs from "fs";
 
 const openai = new OpenAI({
-  apiKey: process.env.RIVA_API_KEY || "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",
+  apiKey: process.env.RIVA_API_KEY,
   baseURL: "https://integrate.api.nvidia.com/v1",
 });
 
