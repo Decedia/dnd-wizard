@@ -78,14 +78,7 @@ export default function CharacterCreate() {
       case "personality":
         return <StepPersonality data={character} onChange={update} />;
       case "abilities":
-        return (
-          <StepAbilities
-            data={character}
-            onChange={update}
-            onBack={handleBack}
-            onNext={handleNext}
-          />
-        );
+        return <StepAbilities data={character} onChange={update} />;
       case "skills":
         return <StepSkills data={character} onChange={update} />;
       case "equipment":
@@ -95,7 +88,7 @@ export default function CharacterCreate() {
       default:
         return null;
     }
-  }, [currentStep, character, update, handleBack, handleNext]);
+  }, [currentStep, character, update]);
 
   const isLevelStep = currentStep?.type === "level";
 

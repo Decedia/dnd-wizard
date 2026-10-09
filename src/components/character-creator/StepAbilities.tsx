@@ -9,8 +9,6 @@ import { useLanguage } from "@/contexts/LanguageContext";
 interface StepAbilitiesProps {
   data: Character;
   onChange: (patch: Partial<Character>) => void;
-  onBack?: () => void;
-  onNext?: () => void;
 }
 
 type AbilityMethod = "standard" | "pointbuy" | "manual" | "freebuy";
@@ -33,18 +31,43 @@ const ROLL_MIN = 3;
 const ROLL_MAX = 20;
 const FREE_BUY_MAX = 30;
 
-const METHOD_TABS: { key: AbilityMethod; label: string }[] = [
-  { key: "pointbuy", label: "Point Buy" },
-  { key: "standard", label: "Array" },
-  { key: "manual", label: "Roll" },
-  { key: "freebuy", label: "Free Buy" },
+const METHOD_TABS: { key: AbilityMethod; labelKey: string; labelFallback: string }[] = [
+  { key: "pointbuy", labelKey: "abilities.tabPointBuy", labelFallback: "Point Buy" },
+  { key: "standard", labelKey: "abilities.tabArray", labelFallback: "Array" },
+  { key: "manual", labelKey: "abilities.tabRoll", labelFallback: "Roll" },
+  { key: "freebuy", labelKey: "abilities.tabFreeBuy", labelFallback: "Free Buy" },
 ];
 
-const GUIDE_RULES: { method: string; text: string }[] = [
-  { method: "Point Buy", text: "Maks 15. Angka 14 & 15 harganya 2 poin." },
-  { method: "Array", text: "Angka baku (15, 14, 13, 12, 10, 8)." },
-  { method: "Roll", text: "Acak dengan dadu (Beresiko tinggi!)." },
-  { method: "Free Buy", text: "Homebrew! Bebas isi poin sesukamu." },
+const GUIDE_RULES: {
+  labelKey: string;
+  labelFallback: string;
+  textKey: string;
+  textFallback: string;
+}[] = [
+  {
+    labelKey: "abilities.pointBuy",
+    labelFallback: "Point Buy",
+    textKey: "abilities.rulePointBuy",
+    textFallback: "Max 15. Scores of 14 & 15 cost 2 points each.",
+  },
+  {
+    labelKey: "abilities.standardArray",
+    labelFallback: "Standard Array",
+    textKey: "abilities.ruleArray",
+    textFallback: "Standard numbers (15, 14, 13, 12, 10, 8).",
+  },
+  {
+    labelKey: "abilities.manualRoll",
+    labelFallback: "Manual Roll",
+    textKey: "abilities.ruleRoll",
+    textFallback: "Roll with dice (High risk!).",
+  },
+  {
+    labelKey: "abilities.freeBuy",
+    labelFallback: "Free Buy",
+    textKey: "abilities.ruleFreeBuy",
+    textFallback: "Homebrew! Spend points however you like.",
+  },
 ];
 
 const ROW_CLASS =
@@ -135,7 +158,7 @@ const normalizeForMethod = (
   return next;
 };
 
-export function StepAbilities({ data, onChange, onBack, onNext }: StepAbilitiesProps) {
+export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
   const { t } = useLanguage();
 
   const [statMethod, setStatMethod] = useState<AbilityMethod>(
@@ -191,14 +214,6 @@ export function StepAbilities({ data, onChange, onBack, onNext }: StepAbilitiesP
       ),
     [arraySelections],
   );
-
-  const canProceed = useMemo(() => {
-    if (statMethod === "standard") {
-      return ABILITIES.every((ability) => arraySelections[ability.key] !== null);
-    }
-    const minScore = statMethod === "manual" ? ROLL_MIN : BASE_SCORE;
-    return ABILITIES.every((ability) => stats[ability.key] >= minScore);
-  }, [statMethod, arraySelections, stats]);
 
   const patchStats = (next: Record<AbilityKey, number>) => {
     const patch: Record<string, number> = {};
@@ -277,12 +292,6 @@ export function StepAbilities({ data, onChange, onBack, onNext }: StepAbilitiesP
     return { canIncrement: score < ROLL_MAX, canDecrement: score > ROLL_MIN };
   };
 
-  const handleNext = () => {
-    if (!canProceed) return;
-    onChange({ abilityMethod: statMethod } as Partial<Character>);
-    onNext?.();
-  };
-
   const renderLabelBlock = (ability: { key: AbilityKey; label: string; full: string }) => {
     const isRec = isRecommended("stat", ability.label, data.class);
     return (
@@ -306,7 +315,9 @@ export function StepAbilities({ data, onChange, onBack, onNext }: StepAbilitiesP
           <div className="flex items-center justify-between">
             {renderLabelBlock(ability)}
             <span className="text-[11px] font-bold uppercase tracking-wider text-ink-muted">
-              {selected !== null ? `${selected} dipilih` : "Pilih angka"}
+              {selected !== null
+                ? t("abilities.numberSelected", { score: selected }, "{score} selected")
+                : t("abilities.pickNumber", "Pick a number")}
             </span>
           </div>
           <div className="mt-3 flex flex-wrap gap-1.5">
@@ -348,7 +359,7 @@ export function StepAbilities({ data, onChange, onBack, onNext }: StepAbilitiesP
             type="button"
             onClick={() => changeScore(key, score - 1)}
             disabled={!canDecrement}
-            aria-label={`Kurangi ${full}`}
+            aria-label={t("abilities.decrease", { ability: full }, "Decrease {ability}")}
             className="flex h-9 w-9 items-center justify-center rounded-full bg-paper-dark text-ink-muted transition-all active:scale-95 disabled:opacity-40"
           >
             <Minus size={16} weight="bold" />
@@ -358,7 +369,7 @@ export function StepAbilities({ data, onChange, onBack, onNext }: StepAbilitiesP
             type="button"
             onClick={() => changeScore(key, score + 1)}
             disabled={!canIncrement}
-            aria-label={`Tambah ${full}`}
+            aria-label={t("abilities.increase", { ability: full }, "Increase {ability}")}
             className="flex h-9 w-9 items-center justify-center rounded-full border border-accent-indigo-200 bg-accent-indigo-50 text-accent-indigo-700 transition-all active:scale-95 disabled:opacity-40"
           >
             <Plus size={16} weight="bold" />
@@ -369,7 +380,7 @@ export function StepAbilities({ data, onChange, onBack, onNext }: StepAbilitiesP
   };
 
   return (
-    <section className="w-full pb-32">
+    <section className="w-full">
       <header className="mb-4">
         <h2 className="text-base font-semibold text-ink">
           {t("creator.abilityScores", "Ability Scores")}
@@ -383,7 +394,7 @@ export function StepAbilities({ data, onChange, onBack, onNext }: StepAbilitiesP
       </header>
 
       <nav
-        aria-label="Ability score generation method"
+        aria-label={t("abilities.methodAria", "Ability score generation method")}
         className="mb-5 flex rounded-xl border border-border-strong bg-paper-muted p-1"
       >
         {METHOD_TABS.map((tab) => {
@@ -399,7 +410,7 @@ export function StepAbilities({ data, onChange, onBack, onNext }: StepAbilitiesP
                 active ? "bg-surface font-bold text-ink shadow-sm" : "font-medium text-ink-muted",
               ].join(" ")}
             >
-              {tab.label}
+              {t(tab.labelKey, tab.labelFallback)}
             </button>
           );
         })}
@@ -408,16 +419,21 @@ export function StepAbilities({ data, onChange, onBack, onNext }: StepAbilitiesP
       <div className="mb-5 rounded-2xl border border-accent-indigo-200 bg-accent-indigo-50 p-4">
         <div className="mb-2 flex items-center gap-2">
           <Info size={18} weight="bold" className="text-accent-indigo-700" />
-          <h3 className="text-sm font-bold text-accent-indigo-800">Panduan Pemula</h3>
+          <h3 className="text-sm font-bold text-accent-indigo-800">
+            {t("abilities.beginnerGuide", "Beginner's Guide")}
+          </h3>
         </div>
         <p className="mb-2 text-xs leading-relaxed text-accent-indigo-800">
-          Atribut menentukan seberapa hebat karaktermu. Perhatikan ikon Bintang (⭐) yang
-          menunjukkan stat paling penting untuk kelas yang kamu pilih!
+          {t(
+            "abilities.guideIntro",
+            "Ability scores determine how great your character is. Watch for the Star (⭐) icon, which marks the most important stats for the class you chose!",
+          )}
         </p>
         <ul className="ml-1 space-y-1 text-[11px] text-accent-indigo-800">
           {GUIDE_RULES.map((rule) => (
-            <li key={rule.method}>
-              <strong className="font-semibold">{rule.method}:</strong> {rule.text}
+            <li key={rule.textKey}>
+              <strong className="font-semibold">{t(rule.labelKey, rule.labelFallback)}:</strong>{" "}
+              {t(rule.textKey, rule.textFallback)}
             </li>
           ))}
         </ul>
@@ -427,7 +443,7 @@ export function StepAbilities({ data, onChange, onBack, onNext }: StepAbilitiesP
         <div className="sticky top-14 z-20 mb-5 rounded-2xl border-2 border-border-strong bg-paper px-4 py-3">
           <div className="flex items-center justify-between">
             <span className="text-[11px] font-bold uppercase tracking-widest text-ink-muted">
-              Sisa Poin
+              {t("abilities.pointsRemaining", "Points Remaining")}
             </span>
             <span className="text-2xl font-black text-ink">
               {pointsRemaining}
@@ -450,30 +466,11 @@ export function StepAbilities({ data, onChange, onBack, onNext }: StepAbilitiesP
           className="mb-5 flex w-full items-center justify-center gap-2 rounded-xl border-2 border-border-strong bg-surface py-3 font-bold text-ink transition-transform active:scale-[0.98]"
         >
           <DiceFive size={18} weight="bold" />
-          Lempar Dadu (4d6)
+          {t("abilities.rollDice", "Roll Dice (4d6)")}
         </button>
       )}
 
       <div>{ABILITIES.map(renderStatRow)}</div>
-
-      <div className="mt-8 grid grid-cols-2 gap-3">
-        <button
-          type="button"
-          onClick={onBack}
-          disabled={!onBack}
-          className="rounded-xl bg-paper-dark py-3.5 text-center font-bold text-ink transition-transform active:scale-[0.98] disabled:opacity-50"
-        >
-          Kembali
-        </button>
-        <button
-          type="button"
-          onClick={handleNext}
-          disabled={!canProceed}
-          className="rounded-xl border-b-4 border-ink-heavy bg-ink py-3.5 text-center font-bold text-surface transition-all active:translate-y-1 active:border-b-0 disabled:opacity-50"
-        >
-          Lanjut
-        </button>
-      </div>
     </section>
   );
 }
