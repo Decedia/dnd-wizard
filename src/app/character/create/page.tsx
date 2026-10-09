@@ -95,7 +95,7 @@ export default function CharacterCreate() {
       default:
         return null;
     }
-  }, [currentStep, character, update]);
+  }, [currentStep, character, update, handleBack, handleNext]);
 
   const isLevelStep = currentStep?.type === "level";
 

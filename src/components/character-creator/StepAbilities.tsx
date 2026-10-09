@@ -146,11 +146,15 @@ export function StepAbilities({ data, onChange, onBack, onNext }: StepAbilitiesP
     const initial = { ...EMPTY_STATS };
     ABILITIES.forEach((ability) => {
       const currentScore = data[ability.key] as number | undefined;
-      if (typeof currentScore === "number" && currentScore >= ROLL_MIN && currentScore <= FREE_BUY_MAX) {
+      if (
+        typeof currentScore === "number" &&
+        currentScore >= ROLL_MIN &&
+        currentScore <= FREE_BUY_MAX
+      ) {
         initial[ability.key] = currentScore;
       }
     });
-    return initial;
+    return normalizeForMethod(statMethod, initial);
   });
 
   const [arraySelections, setArraySelections] = useState<Record<AbilityKey, number | null>>(
