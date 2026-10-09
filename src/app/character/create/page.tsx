@@ -78,7 +78,14 @@ export default function CharacterCreate() {
       case "personality":
         return <StepPersonality data={character} onChange={update} />;
       case "abilities":
-        return <StepAbilities data={character} onChange={update} />;
+        return (
+          <StepAbilities
+            data={character}
+            onChange={update}
+            onBack={handleBack}
+            onNext={handleNext}
+          />
+        );
       case "skills":
         return <StepSkills data={character} onChange={update} />;
       case "equipment":

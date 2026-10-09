@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { Star, Minus, Plus, Info } from "@phosphor-icons/react";
+import { useMemo, useState } from "react";
+import { DiceFive, Info, Minus, Plus, Star } from "@phosphor-icons/react";
 import type { Character } from "@/lib/storage";
 import { isRecommended } from "@/lib/recommendations";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -9,6 +9,8 @@ import { useLanguage } from "@/contexts/LanguageContext";
 interface StepAbilitiesProps {
   data: Character;
   onChange: (patch: Partial<Character>) => void;
+  onBack?: () => void;
+  onNext?: () => void;
 }
 
 type AbilityMethod = "standard" | "pointbuy" | "manual" | "freebuy";
@@ -25,21 +27,37 @@ const ABILITIES: { key: AbilityKey; label: string; full: string }[] = [
 
 const STANDARD_ARRAY = [15, 14, 13, 12, 10, 8];
 const POINT_BUY_TOTAL = 27;
-const DEFAULT_STATS: Record<AbilityKey, number> = {
-  str: 8,
-  dex: 8,
-  con: 8,
-  int: 8,
-  wis: 8,
-  cha: 8,
-};
+const BASE_SCORE = 8;
+const POINT_BUY_MAX = 15;
+const ROLL_MIN = 3;
+const ROLL_MAX = 20;
+const FREE_BUY_MAX = 30;
 
-const METHOD_TABS = [
-  { key: "pointbuy" as AbilityMethod, label: "Point Buy" },
-  { key: "standard" as AbilityMethod, label: "Array" },
-  { key: "manual" as AbilityMethod, label: "Roll" },
-  { key: "freebuy" as AbilityMethod, label: "Free Buy" },
-] as const;
+const METHOD_TABS: { key: AbilityMethod; label: string }[] = [
+  { key: "pointbuy", label: "Point Buy" },
+  { key: "standard", label: "Array" },
+  { key: "manual", label: "Roll" },
+  { key: "freebuy", label: "Free Buy" },
+];
+
+const GUIDE_RULES: { method: string; text: string }[] = [
+  { method: "Point Buy", text: "Maks 15. Angka 14 & 15 harganya 2 poin." },
+  { method: "Array", text: "Angka baku (15, 14, 13, 12, 10, 8)." },
+  { method: "Roll", text: "Acak dengan dadu (Beresiko tinggi!)." },
+  { method: "Free Buy", text: "Homebrew! Bebas isi poin sesukamu." },
+];
+
+const ROW_CLASS =
+  "mb-3 flex items-center justify-between rounded-xl border-2 border-border-strong bg-surface p-3";
+
+const EMPTY_STATS: Record<AbilityKey, number> = {
+  str: BASE_SCORE,
+  dex: BASE_SCORE,
+  con: BASE_SCORE,
+  int: BASE_SCORE,
+  wis: BASE_SCORE,
+  cha: BASE_SCORE,
+};
 
 const getStatCost = (score: number): number => {
   if (score === 8) return 0;
@@ -55,161 +73,262 @@ const getStatCost = (score: number): number => {
 
 const statCostStep = (score: number): number => getStatCost(score + 1) - getStatCost(score);
 
-export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
+const totalCost = (scores: Record<AbilityKey, number>): number =>
+  ABILITIES.reduce((sum, ability) => sum + getStatCost(scores[ability.key]), 0);
+
+const clamp = (value: number, min: number, max: number): number =>
+  Math.min(Math.max(value, min), max);
+
+const roll4d6DropLowest = (): number => {
+  const dice = [0, 1, 2, 3].map(() => 1 + Math.floor(Math.random() * 6));
+  return dice
+    .sort((a, b) => b - a)
+    .slice(0, 3)
+    .reduce((sum, die) => sum + die, 0);
+};
+
+const reduceHighestScore = (
+  scores: Record<AbilityKey, number>,
+): Record<AbilityKey, number> | null => {
+  let target: AbilityKey | null = null;
+  for (const { key } of ABILITIES) {
+    if (scores[key] > BASE_SCORE && (target === null || scores[key] > scores[target])) {
+      target = key;
+    }
+  }
+  if (target === null) return null;
+  const next = { ...scores };
+  next[target] -= 1;
+  return next;
+};
+
+const normalizeForMethod = (
+  method: AbilityMethod,
+  current: Record<AbilityKey, number>,
+): Record<AbilityKey, number> => {
+  const next = { ...current };
+  if (method === "standard") return next;
+  if (method === "pointbuy") {
+    const clamped = { ...next };
+    ABILITIES.forEach((ability) => {
+      clamped[ability.key] = clamp(clamped[ability.key], BASE_SCORE, POINT_BUY_MAX);
+    });
+    let candidate = clamped;
+    let guard = 0;
+    while (totalCost(candidate) > POINT_BUY_TOTAL && guard < 100) {
+      const reduced = reduceHighestScore(candidate);
+      if (!reduced) break;
+      candidate = reduced;
+      guard += 1;
+    }
+    return candidate;
+  }
+  if (method === "freebuy") {
+    ABILITIES.forEach((ability) => {
+      next[ability.key] = clamp(next[ability.key], BASE_SCORE, FREE_BUY_MAX);
+    });
+    return next;
+  }
+  ABILITIES.forEach((ability) => {
+    next[ability.key] = clamp(next[ability.key], ROLL_MIN, ROLL_MAX);
+  });
+  return next;
+};
+
+export function StepAbilities({ data, onChange, onBack, onNext }: StepAbilitiesProps) {
   const { t } = useLanguage();
 
   const [statMethod, setStatMethod] = useState<AbilityMethod>(
     (data.abilityMethod as AbilityMethod) || "pointbuy",
   );
+
   const [stats, setStats] = useState<Record<AbilityKey, number>>(() => {
-    const initial = { ...DEFAULT_STATS };
+    const initial = { ...EMPTY_STATS };
     ABILITIES.forEach((ability) => {
-      const currentScore = (data[ability.key] as number) || 8;
-      if (currentScore >= 8 && currentScore <= 15) {
+      const currentScore = data[ability.key] as number | undefined;
+      if (typeof currentScore === "number" && currentScore >= ROLL_MIN && currentScore <= FREE_BUY_MAX) {
         initial[ability.key] = currentScore;
       }
     });
     return initial;
   });
 
-  const [standardArraySelections, setStandardArraySelections] = useState<
-    Record<AbilityKey, number | null>
-  >(() => {
-    const initial: Record<AbilityKey, number | null> = {
-      str: null,
-      dex: null,
-      con: null,
-      int: null,
-      wis: null,
-      cha: null,
-    };
-    ABILITIES.forEach((ability) => {
-      const currentScore = (data[ability.key] as number) || 8;
-      if (STANDARD_ARRAY.includes(currentScore)) {
-        initial[ability.key] = currentScore;
+  const [arraySelections, setArraySelections] = useState<Record<AbilityKey, number | null>>(
+    () => {
+      const initial: Record<AbilityKey, number | null> = {
+        str: null,
+        dex: null,
+        con: null,
+        int: null,
+        wis: null,
+        cha: null,
+      };
+      const current = ABILITIES.map((ability) => data[ability.key] as number);
+      const sortedCurrent = [...current].sort((a, b) => b - a).join(",");
+      const sortedArray = [...STANDARD_ARRAY].sort((a, b) => b - a).join(",");
+      if (sortedCurrent === sortedArray) {
+        ABILITIES.forEach((ability) => {
+          initial[ability.key] = data[ability.key] as number;
+        });
       }
-    });
-    return initial;
-  });
-
-  const totalPointsSpent = useMemo(
-    () => Object.values(stats).reduce((total, score) => total + getStatCost(score), 0),
-    [stats],
+      return initial;
+    },
   );
-  const pointsRemaining = POINT_BUY_TOTAL - totalPointsSpent;
+
+  const pointsSpent = useMemo(() => totalCost(stats), [stats]);
+  const pointsRemaining = POINT_BUY_TOTAL - pointsSpent;
+
+  const usedArrayValues = useMemo(
+    () =>
+      new Set(
+        ABILITIES.map((ability) => arraySelections[ability.key]).filter(
+          (value): value is number => value !== null,
+        ),
+      ),
+    [arraySelections],
+  );
 
   const canProceed = useMemo(() => {
     if (statMethod === "standard") {
-      return ABILITIES.every((a) => standardArraySelections[a.key] !== null);
+      return ABILITIES.every((ability) => arraySelections[ability.key] !== null);
     }
-    return Object.values(stats).every((s) => s >= 8);
-  }, [statMethod, standardArraySelections, stats]);
+    const minScore = statMethod === "manual" ? ROLL_MIN : BASE_SCORE;
+    return ABILITIES.every((ability) => stats[ability.key] >= minScore);
+  }, [statMethod, arraySelections, stats]);
 
-  const handleTabChange = (method: AbilityMethod) => {
+  const patchStats = (next: Record<AbilityKey, number>) => {
+    const patch: Record<string, number> = {};
+    ABILITIES.forEach((ability) => {
+      patch[ability.key] = next[ability.key];
+    });
+    onChange(patch as Partial<Character>);
+  };
+
+  const applyScore = (key: AbilityKey, score: number) => {
+    setStats((prev) => ({ ...prev, [key]: score }));
+    onChange({ [key]: score } as Partial<Character>);
+  };
+
+  const handleMethodChange = (method: AbilityMethod) => {
+    const normalized = normalizeForMethod(method, stats);
     setStatMethod(method);
-    onChange({ abilityMethod: method } as Partial<Character>);
+    setStats(normalized);
+    const patch: Partial<Character> = { abilityMethod: method } as Partial<Character>;
+    ABILITIES.forEach((ability) => {
+      if (normalized[ability.key] !== stats[ability.key]) {
+        (patch as Record<string, number>)[ability.key] = normalized[ability.key];
+      }
+    });
+    onChange(patch);
   };
 
-  const applyStat = (stat: AbilityKey, newScore: number) => {
-    setStats((prev) => ({ ...prev, [stat]: newScore }));
-    onChange({ [stat]: newScore } as Partial<Character>);
-  };
-
-  const handlePointBuyChange = (stat: AbilityKey, newScore: number) => {
-    if (newScore < 8 || newScore > 15) return;
-    const diff = getStatCost(newScore) - getStatCost(stats[stat]);
-    if (pointsRemaining - diff >= 0) {
-      applyStat(stat, newScore);
+  const changeScore = (key: AbilityKey, requested: number) => {
+    const current = stats[key];
+    let next = requested;
+    if (statMethod === "pointbuy") {
+      if (next < BASE_SCORE || next > POINT_BUY_MAX) return;
+      if (pointsRemaining - (getStatCost(next) - getStatCost(current)) < 0) return;
+    } else if (statMethod === "freebuy") {
+      next = clamp(next, BASE_SCORE, FREE_BUY_MAX);
+    } else {
+      next = clamp(next, ROLL_MIN, ROLL_MAX);
     }
+    if (next === current) return;
+    applyScore(key, next);
   };
 
-  const handleRollChange = (stat: AbilityKey, newScore: number) => {
-    if (newScore < 8 || newScore > 15) return;
-    applyStat(stat, newScore);
+  const selectArrayValue = (key: AbilityKey, value: number | null) => {
+    setArraySelections((prev) => {
+      const next = { ...prev };
+      ABILITIES.forEach((ability) => {
+        if (ability.key !== key && next[ability.key] === value) {
+          next[ability.key] = null;
+        }
+      });
+      next[key] = value;
+      return next;
+    });
+    applyScore(key, value ?? BASE_SCORE);
   };
 
-  const handleFreeBuyChange = (stat: AbilityKey, newScore: number) => {
-    if (newScore < 8 || newScore > 30) return;
-    applyStat(stat, newScore);
+  const handleRoll = () => {
+    const rolled = { ...EMPTY_STATS };
+    ABILITIES.forEach((ability) => {
+      rolled[ability.key] = roll4d6DropLowest();
+    });
+    setStats(rolled);
+    patchStats(rolled);
   };
 
-  const handleArraySelect = (stat: AbilityKey, val: number | null) => {
-    setStandardArraySelections((prev) => ({ ...prev, [stat]: val }));
-    if (val !== null) {
-      applyStat(stat, val);
-    }
-  };
-
-  const getLimits = (
-    score: number,
-  ): { canIncrement: boolean; canDecrement: boolean } => {
+  const getLimits = (score: number): { canIncrement: boolean; canDecrement: boolean } => {
     if (statMethod === "pointbuy") {
       return {
-        canIncrement: score < 15 && pointsRemaining - statCostStep(score) >= 0,
-        canDecrement: score > 8,
+        canIncrement: score < POINT_BUY_MAX && pointsRemaining - statCostStep(score) >= 0,
+        canDecrement: score > BASE_SCORE,
       };
     }
     if (statMethod === "freebuy") {
-      return { canIncrement: score < 30, canDecrement: score > 8 };
+      return { canIncrement: score < FREE_BUY_MAX, canDecrement: score > BASE_SCORE };
     }
-    return { canIncrement: score < 15, canDecrement: score > 8 };
+    return { canIncrement: score < ROLL_MAX, canDecrement: score > ROLL_MIN };
   };
 
-  const onStatChange = (stat: AbilityKey, newScore: number) => {
-    if (statMethod === "pointbuy") return handlePointBuyChange(stat, newScore);
-    if (statMethod === "freebuy") return handleFreeBuyChange(stat, newScore);
-    return handleRollChange(stat, newScore);
+  const handleNext = () => {
+    if (!canProceed) return;
+    onChange({ abilityMethod: statMethod } as Partial<Character>);
+    onNext?.();
   };
 
-  const renderStatRow = (ability: { key: AbilityKey; label: string }) => {
-    const { key, label } = ability;
+  const renderLabelBlock = (ability: { key: AbilityKey; label: string; full: string }) => {
+    const isRec = isRecommended("stat", ability.label, data.class);
+    return (
+      <div className="flex items-center gap-3">
+        <div className="flex w-5 justify-center">
+          {isRec && <Star size={16} weight="fill" className="text-warning-400" />}
+        </div>
+        <span className="text-lg font-black uppercase text-ink">{ability.label}</span>
+      </div>
+    );
+  };
+
+  const renderStatRow = (ability: { key: AbilityKey; label: string; full: string }) => {
+    const { key, full } = ability;
     const score = stats[key];
-    const isRec = isRecommended("stat", label, data.class);
 
     if (statMethod === "standard") {
-      const currentSelection = standardArraySelections[key];
-      const valuesUsedByOthers = ABILITIES.filter((a) => a.key !== key)
-        .map((a) => standardArraySelections[a.key])
-        .filter((v): v is number => v !== null);
-
+      const selected = arraySelections[key];
       return (
-        <div
-          key={key}
-          className="flex items-center justify-between bg-paper border-2 border-[var(--color-border-strong)] rounded-xl p-3 mb-3"
-        >
-          <div className="flex items-center gap-3">
-            <div className="w-5 flex justify-center">
-              {isRec && (
-                <Star
-                  size={16}
-                  weight="fill"
-                  className="text-[var(--color-warning-400)]"
-                />
-              )}
-            </div>
-            <span className="font-black text-lg text-[var(--color-ink)] uppercase">
-              {label}
+        <div key={key} className="mb-3 rounded-xl border-2 border-border-strong bg-surface p-3">
+          <div className="flex items-center justify-between">
+            {renderLabelBlock(ability)}
+            <span className="text-[11px] font-bold uppercase tracking-wider text-ink-muted">
+              {selected !== null ? `${selected} dipilih` : "Pilih angka"}
             </span>
           </div>
-          <div className="flex items-center gap-2">
-            <select
-              value={currentSelection ?? "-"}
-              onChange={(e) => {
-                const val = e.target.value === "-" ? null : parseInt(e.target.value);
-                handleArraySelect(key, val);
-              }}
-              className="input w-16 text-center text-[var(--color-ink)]"
-            >
-              <option value="-">—</option>
-              {STANDARD_ARRAY.map((val) => {
-                const isTakenByOther = valuesUsedByOthers.includes(val);
-                return (
-                  <option key={val} value={val} disabled={isTakenByOther}>
-                    {val}
-                  </option>
-                );
-              })}
-            </select>
+          <div className="mt-3 flex flex-wrap gap-1.5">
+            {STANDARD_ARRAY.map((value) => {
+              const isSelected = selected === value;
+              const isTaken = !isSelected && usedArrayValues.has(value);
+              return (
+                <button
+                  key={value}
+                  type="button"
+                  disabled={isTaken}
+                  onClick={() => selectArrayValue(key, isSelected ? null : value)}
+                  aria-label={`${full} ${value}`}
+                  className={[
+                    "h-8 w-8 rounded-lg text-xs font-bold transition-all",
+                    isSelected
+                      ? "bg-ink text-surface"
+                      : isTaken
+                        ? "border border-border-muted bg-paper-muted text-ink-muted line-through opacity-50"
+                        : "border border-border-strong bg-surface text-ink active:scale-95",
+                  ].join(" ")}
+                >
+                  {value}
+                </button>
+              );
+            })}
           </div>
         </div>
       );
@@ -218,44 +337,25 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
     const { canIncrement, canDecrement } = getLimits(score);
 
     return (
-      <div
-        key={key}
-        className="flex items-center justify-between bg-paper border-2 border-[var(--color-border-strong)] rounded-xl p-3 mb-3"
-      >
-        <div className="flex items-center gap-3">
-          <div className="w-5 flex justify-center">
-            {isRec && (
-              <Star
-                size={16}
-                weight="fill"
-                className="text-[var(--color-warning-400)]"
-              />
-            )}
-          </div>
-          <span className="font-black text-lg text-[var(--color-ink)] uppercase">
-            {label}
-          </span>
-        </div>
-
+      <div key={key} className={ROW_CLASS}>
+        {renderLabelBlock(ability)}
         <div className="flex items-center gap-4">
           <button
             type="button"
-            onClick={() => onStatChange(key, score - 1)}
+            onClick={() => changeScore(key, score - 1)}
             disabled={!canDecrement}
-            className="w-9 h-9 rounded-full bg-[var(--color-paper-muted)] flex items-center justify-center text-[var(--color-ink-muted)] disabled:opacity-40 active:scale-95 transition-all"
+            aria-label={`Kurangi ${full}`}
+            className="flex h-9 w-9 items-center justify-center rounded-full bg-paper-dark text-ink-muted transition-all active:scale-95 disabled:opacity-40"
           >
             <Minus size={16} weight="bold" />
           </button>
-
-          <span className="font-black text-xl w-6 text-center text-[var(--color-ink)]">
-            {score}
-          </span>
-
+          <span className="w-6 text-center text-xl font-black text-ink">{score}</span>
           <button
             type="button"
-            onClick={() => onStatChange(key, score + 1)}
+            onClick={() => changeScore(key, score + 1)}
             disabled={!canIncrement}
-            className="w-9 h-9 rounded-full bg-[var(--color-accent-indigo-50)] border border-[var(--color-accent-indigo-200)] flex items-center justify-center text-[var(--color-accent-indigo-700)] disabled:opacity-40 active:scale-95 transition-all"
+            aria-label={`Tambah ${full}`}
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-accent-indigo-200 bg-accent-indigo-50 text-accent-indigo-700 transition-all active:scale-95 disabled:opacity-40"
           >
             <Plus size={16} weight="bold" />
           </button>
@@ -267,10 +367,10 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
   return (
     <section className="w-full pb-32">
       <header className="mb-4">
-        <h2 className="text-[var(--color-text-primary)] text-base font-semibold">
+        <h2 className="text-base font-semibold text-ink">
           {t("creator.abilityScores", "Ability Scores")}
         </h2>
-        <p className="text-[var(--color-text-secondary)] text-xs mt-1">
+        <p className="mt-1 text-xs text-ink-muted">
           {t(
             "creator.abilityScoresHint",
             "Ability scores define your character's physical and mental abilities.",
@@ -280,7 +380,7 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
 
       <nav
         aria-label="Ability score generation method"
-        className="flex bg-[var(--color-paper-muted)] p-1 rounded-xl mb-6"
+        className="mb-5 flex rounded-xl border border-border-strong bg-paper-muted p-1"
       >
         {METHOD_TABS.map((tab) => {
           const active = statMethod === tab.key;
@@ -288,12 +388,11 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
             <button
               key={tab.key}
               type="button"
-              onClick={() => handleTabChange(tab.key)}
+              onClick={() => handleMethodChange(tab.key)}
+              aria-pressed={active}
               className={[
-                "flex-1 text-[11px] font-medium py-2 px-1 text-center rounded-lg transition-all",
-                active
-                  ? "bg-[var(--color-surface)] text-[var(--color-ink)] font-bold"
-                  : "text-[var(--color-ink-muted)]",
+                "flex-1 rounded-lg px-1 py-2 text-center text-[11px] transition-all",
+                active ? "bg-surface font-bold text-ink shadow-sm" : "font-medium text-ink-muted",
               ].join(" ")}
             >
               {tab.label}
@@ -302,110 +401,71 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
         })}
       </nav>
 
-      <div className="bg-[var(--color-accent-indigo-50)] border border-[var(--color-accent-indigo-200)] rounded-2xl p-4 mb-6">
-        <div className="flex items-center gap-2 mb-2">
-          <Info
-            size={18}
-            weight="bold"
-            className="text-[var(--color-accent-indigo-700)]"
-          />
-          <h3 className="font-bold text-sm text-[var(--color-ink)]">
-            Panduan Pemula
-          </h3>
+      <div className="mb-5 rounded-2xl border border-accent-indigo-200 bg-accent-indigo-50 p-4">
+        <div className="mb-2 flex items-center gap-2">
+          <Info size={18} weight="bold" className="text-accent-indigo-700" />
+          <h3 className="text-sm font-bold text-accent-indigo-800">Panduan Pemula</h3>
         </div>
-        <p className="text-xs text-[var(--color-ink-muted)] leading-relaxed mb-2">
-          Atribut menentukan seberapa hebat karaktermu. Perhatikan ikon Bintang
-          (⭐) yang menunjukkan stat paling penting untuk kelas yang kamu pilih!
+        <p className="mb-2 text-xs leading-relaxed text-accent-indigo-800">
+          Atribut menentukan seberapa hebat karaktermu. Perhatikan ikon Bintang (⭐) yang
+          menunjukkan stat paling penting untuk kelas yang kamu pilih!
         </p>
-        <ul className="text-[11px] text-[var(--color-ink-muted)] space-y-1 ml-1">
-          <li>
-            <strong className="font-semibold text-[var(--color-ink)]">
-              Point Buy:
-            </strong>{" "}
-            Maks 15. Angka 14 & 15 harganya 2 poin.
-          </li>
-          <li>
-            <strong className="font-semibold text-[var(--color-ink)]">
-              Array:
-            </strong>{" "}
-            Angka baku (15, 14, 13, 12, 10, 8).
-          </li>
-          <li>
-            <strong className="font-semibold text-[var(--color-ink)]">
-              Roll:
-            </strong>{" "}
-            Acak dengan dadu (Beresiko tinggi!).
-          </li>
-          <li>
-            <strong className="font-semibold text-[var(--color-ink)]">
-              Free Buy:
-            </strong>{" "}
-            Homebrew! Bebas isi poin sesukamu.
-          </li>
+        <ul className="ml-1 space-y-1 text-[11px] text-accent-indigo-800">
+          {GUIDE_RULES.map((rule) => (
+            <li key={rule.method}>
+              <strong className="font-semibold">{rule.method}:</strong> {rule.text}
+            </li>
+          ))}
         </ul>
       </div>
 
-      {statMethod === "standard" && (
-        <div className="flex flex-wrap gap-2 mb-4">
-          {STANDARD_ARRAY.map((val) => {
-            const isUsed =
-              Object.values(standardArraySelections).includes(val) &&
-              Object.values(standardArraySelections).filter((v) => v === val)
-                .length > 0;
-            const assigned = Object.values(standardArraySelections).includes(val);
-            return (
-              <span
-                key={val}
-                className={`px-3 py-1.5 rounded-full text-xs font-bold ${
-                  assigned
-                    ? "bg-[var(--color-paper-muted)] text-[var(--color-ink-muted)] line-through"
-                    : "bg-paper text-[var(--color-ink)] border border-[var(--color-border-strong)]"
-                }`}
-              >
-                {val}
-              </span>
-            );
-          })}
-        </div>
-      )}
-
       {statMethod === "pointbuy" && (
-        <div className="bg-[var(--color-paper-muted)] border border-[var(--color-border-strong)] rounded-2xl px-4 py-3 flex justify-between items-center sticky top-0 z-10 mb-6">
-          <span className="text-xs font-bold uppercase text-[var(--color-ink-muted)] tracking-widest">
-            Sisa Poin
-          </span>
-          <span
-            className={`text-2xl font-black ${
-              pointsRemaining === 0
-                ? "text-[var(--color-ink-subtle)]"
-                : "text-[var(--color-success-500)]"
-            }`}
-          >
-            {pointsRemaining} <span className="text-xs text-[var(--color-ink-subtle)]">/ {POINT_BUY_TOTAL}</span>
-          </span>
+        <div className="sticky top-14 z-20 mb-5 rounded-2xl border-2 border-border-strong bg-paper px-4 py-3">
+          <div className="flex items-center justify-between">
+            <span className="text-[11px] font-bold uppercase tracking-widest text-ink-muted">
+              Sisa Poin
+            </span>
+            <span className="text-2xl font-black text-ink">
+              {pointsRemaining}
+              <span className="ml-1 text-xs font-bold text-ink-muted">/ {POINT_BUY_TOTAL}</span>
+            </span>
+          </div>
+          <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-paper-muted">
+            <div
+              className="h-full rounded-full bg-ink transition-all"
+              style={{ width: `${(pointsSpent / POINT_BUY_TOTAL) * 100}%` }}
+            />
+          </div>
         </div>
       )}
 
-      <div className="space-y-0">
-        {ABILITIES.map(renderStatRow)}
-      </div>
-
-      <div className="grid grid-cols-2 gap-3 mt-8">
+      {statMethod === "manual" && (
         <button
           type="button"
-          onClick={() => handleTabChange(statMethod)}
-          className="bg-[var(--color-paper-muted)] text-[var(--color-ink-muted)] font-bold py-3.5 rounded-xl text-center disabled:opacity-50 active:scale-[0.98] transition-transform"
+          onClick={handleRoll}
+          className="mb-5 flex w-full items-center justify-center gap-2 rounded-xl border-2 border-border-strong bg-surface py-3 font-bold text-ink transition-transform active:scale-[0.98]"
+        >
+          <DiceFive size={18} weight="bold" />
+          Lempar Dadu (4d6)
+        </button>
+      )}
+
+      <div>{ABILITIES.map(renderStatRow)}</div>
+
+      <div className="mt-8 grid grid-cols-2 gap-3">
+        <button
+          type="button"
+          onClick={onBack}
+          disabled={!onBack}
+          className="rounded-xl bg-paper-dark py-3.5 text-center font-bold text-ink transition-transform active:scale-[0.98] disabled:opacity-50"
         >
           Kembali
         </button>
         <button
           type="button"
+          onClick={handleNext}
           disabled={!canProceed}
-          onClick={() => {
-            if (!canProceed) return;
-            onChange({ abilityMethod: statMethod } as Partial<Character>);
-          }}
-          className="bg-[var(--color-accent-indigo-600)] text-[var(--color-paper)] font-bold py-3.5 rounded-xl text-center border-b-4 border-[var(--color-accent-indigo-700)] disabled:opacity-50 active:border-b-0 active:translate-y-1 transition-all"
+          className="rounded-xl border-b-4 border-ink-heavy bg-ink py-3.5 text-center font-bold text-surface transition-all active:translate-y-1 active:border-b-0 disabled:opacity-50"
         >
           Lanjut
         </button>
