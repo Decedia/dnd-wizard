@@ -1,11 +1,8 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
-import { StepCard } from "./StepCard";
-import { getStaticClass, getStaticRace } from "@/lib/srd-client";
-import { getModifier } from "@/lib/storage";
-import type { Character } from "@/lib/storage";
+import { useState, useMemo } from "react";
 import { Star, Minus, Plus, Info } from "@phosphor-icons/react";
+import type { Character } from "@/lib/storage";
 import { isRecommended } from "@/lib/recommendations";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -14,8 +11,7 @@ interface StepAbilitiesProps {
   onChange: (patch: Partial<Character>) => void;
 }
 
-type AbilityMethod = "standard" | "pointbuy" | "manual";
-
+type AbilityMethod = "standard" | "pointbuy" | "manual" | "freebuy";
 type AbilityKey = "str" | "dex" | "con" | "int" | "wis" | "cha";
 
 const ABILITIES: { key: AbilityKey; label: string; full: string }[] = [
@@ -28,9 +24,7 @@ const ABILITIES: { key: AbilityKey; label: string; full: string }[] = [
 ];
 
 const STANDARD_ARRAY = [15, 14, 13, 12, 10, 8];
-
 const POINT_BUY_TOTAL = 27;
-
 const DEFAULT_STATS: Record<AbilityKey, number> = {
   str: 8,
   dex: 8,
@@ -39,6 +33,13 @@ const DEFAULT_STATS: Record<AbilityKey, number> = {
   wis: 8,
   cha: 8,
 };
+
+const METHOD_TABS = [
+  { key: "pointbuy" as AbilityMethod, label: "Point Buy" },
+  { key: "standard" as AbilityMethod, label: "Array" },
+  { key: "manual" as AbilityMethod, label: "Roll" },
+  { key: "freebuy" as AbilityMethod, label: "Free Buy" },
+] as const;
 
 const getStatCost = (score: number): number => {
   if (score === 8) return 0;
@@ -52,14 +53,18 @@ const getStatCost = (score: number): number => {
   return 0;
 };
 
+const statCostStep = (score: number): number => getStatCost(score + 1) - getStatCost(score);
+
 export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
   const { t } = useLanguage();
 
-  const [statMethod, setStatMethod] = useState<AbilityMethod>((data.abilityMethod as AbilityMethod) || "pointbuy");
+  const [statMethod, setStatMethod] = useState<AbilityMethod>(
+    (data.abilityMethod as AbilityMethod) || "pointbuy",
+  );
   const [stats, setStats] = useState<Record<AbilityKey, number>>(() => {
     const initial = { ...DEFAULT_STATS };
     ABILITIES.forEach((ability) => {
-      const currentScore = (data[ability.key] as number) || 10;
+      const currentScore = (data[ability.key] as number) || 8;
       if (currentScore >= 8 && currentScore <= 15) {
         initial[ability.key] = currentScore;
       }
@@ -67,7 +72,9 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
     return initial;
   });
 
-  const [standardArraySelections, setStandardArraySelections] = useState<Record<AbilityKey, number | null>>(() => {
+  const [standardArraySelections, setStandardArraySelections] = useState<
+    Record<AbilityKey, number | null>
+  >(() => {
     const initial: Record<AbilityKey, number | null> = {
       str: null,
       dex: null,
@@ -76,87 +83,283 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
       wis: null,
       cha: null,
     };
+    ABILITIES.forEach((ability) => {
+      const currentScore = (data[ability.key] as number) || 8;
+      if (STANDARD_ARRAY.includes(currentScore)) {
+        initial[ability.key] = currentScore;
+      }
+    });
     return initial;
   });
 
-  const classData = data.class ? getStaticClass(data.class, data.ruleset) : null;
-  const raceData = data.race ? getStaticRace(data.race, data.ruleset) : null;
+  const totalPointsSpent = useMemo(
+    () => Object.values(stats).reduce((total, score) => total + getStatCost(score), 0),
+    [stats],
+  );
+  const pointsRemaining = POINT_BUY_TOTAL - totalPointsSpent;
 
-  const raceBonuses = useMemo(() => {
-    if (!raceData?.abilityScoreIncreases) return {} as Record<AbilityKey, number>;
-    if (data.race === "Human" && data.raceVariant === "variant") {
-      return {} as Record<AbilityKey, number>;
+  const canProceed = useMemo(() => {
+    if (statMethod === "standard") {
+      return ABILITIES.every((a) => standardArraySelections[a.key] !== null);
     }
-    return raceData.abilityScoreIncreases as Record<AbilityKey, number>;
-  }, [raceData, data.race, data.raceVariant]);
+    return Object.values(stats).every((s) => s >= 8);
+  }, [statMethod, standardArraySelections, stats]);
 
-  const getBaseScore = useCallback(
-    (key: AbilityKey): number => {
-      return (data[key] as number) || 10;
-    },
-    [data]
-  );
+  const handleTabChange = (method: AbilityMethod) => {
+    setStatMethod(method);
+    onChange({ abilityMethod: method } as Partial<Character>);
+  };
 
-  const getFinalScore = useCallback(
-    (key: AbilityKey): number => {
-      const base = getBaseScore(key);
-      const raceBonus = raceBonuses[key] || 0;
-      return Math.min(20, base + raceBonus);
-    },
-    [getBaseScore, raceBonuses]
-  );
+  const applyStat = (stat: AbilityKey, newScore: number) => {
+    setStats((prev) => ({ ...prev, [stat]: newScore }));
+    onChange({ [stat]: newScore } as Partial<Character>);
+  };
 
-  const totalPointsSpent = useMemo(() => {
-    return Object.values(stats).reduce((total, score) => total + getStatCost(score), 0);
-  }, [stats]);
+  const handlePointBuyChange = (stat: AbilityKey, newScore: number) => {
+    if (newScore < 8 || newScore > 15) return;
+    const diff = getStatCost(newScore) - getStatCost(stats[stat]);
+    if (pointsRemaining - diff >= 0) {
+      applyStat(stat, newScore);
+    }
+  };
 
-  const pointsRemaining = useMemo(() => {
-    return POINT_BUY_TOTAL - totalPointsSpent;
-  }, [totalPointsSpent]);
+  const handleRollChange = (stat: AbilityKey, newScore: number) => {
+    if (newScore < 8 || newScore > 15) return;
+    applyStat(stat, newScore);
+  };
 
-  const handleStatChange = useCallback(
-    (stat: AbilityKey, newScore: number) => {
-      if (newScore < 8 || newScore > 15) return;
+  const handleFreeBuyChange = (stat: AbilityKey, newScore: number) => {
+    if (newScore < 8 || newScore > 30) return;
+    applyStat(stat, newScore);
+  };
 
-      const currentCost = getStatCost(stats[stat]);
-      const newCost = getStatCost(newScore);
-      const costDifference = newCost - currentCost;
+  const handleArraySelect = (stat: AbilityKey, val: number | null) => {
+    setStandardArraySelections((prev) => ({ ...prev, [stat]: val }));
+    if (val !== null) {
+      applyStat(stat, val);
+    }
+  };
 
-      if (pointsRemaining - costDifference >= 0) {
-        const nextStats = { ...stats, [stat]: newScore };
-        setStats(nextStats);
-        onChange({ [stat]: newScore } as Partial<Character>);
-      }
-    },
-    [stats, pointsRemaining, onChange]
-  );
+  const getLimits = (
+    score: number,
+  ): { canIncrement: boolean; canDecrement: boolean } => {
+    if (statMethod === "pointbuy") {
+      return {
+        canIncrement: score < 15 && pointsRemaining - statCostStep(score) >= 0,
+        canDecrement: score > 8,
+      };
+    }
+    if (statMethod === "freebuy") {
+      return { canIncrement: score < 30, canDecrement: score > 8 };
+    }
+    return { canIncrement: score < 15, canDecrement: score > 8 };
+  };
 
-  const handleManualChange = useCallback(
-    (abilityKey: AbilityKey, newScore: number) => {
-      if (newScore < 8 || newScore > 15) return;
+  const onStatChange = (stat: AbilityKey, newScore: number) => {
+    if (statMethod === "pointbuy") return handlePointBuyChange(stat, newScore);
+    if (statMethod === "freebuy") return handleFreeBuyChange(stat, newScore);
+    return handleRollChange(stat, newScore);
+  };
 
-      const nextStats = { ...stats, [abilityKey]: newScore };
-      setStats(nextStats);
-      onChange({ [abilityKey]: newScore } as Partial<Character>);
-    },
-    [stats, onChange]
-  );
+  const renderStatRow = (ability: { key: AbilityKey; label: string }) => {
+    const { key, label } = ability;
+    const score = stats[key];
+    const isRec = isRecommended("stat", label, data.class);
 
-  const renderStandardArray = () => {
-    const currentSelections = standardArraySelections;
+    if (statMethod === "standard") {
+      const currentSelection = standardArraySelections[key];
+      const valuesUsedByOthers = ABILITIES.filter((a) => a.key !== key)
+        .map((a) => standardArraySelections[a.key])
+        .filter((v): v is number => v !== null);
+
+      return (
+        <div
+          key={key}
+          className="flex items-center justify-between bg-paper border-2 border-[var(--color-border-strong)] rounded-xl p-3 mb-3"
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-5 flex justify-center">
+              {isRec && (
+                <Star
+                  size={16}
+                  weight="fill"
+                  className="text-[var(--color-warning-400)]"
+                />
+              )}
+            </div>
+            <span className="font-black text-lg text-[var(--color-ink)] uppercase">
+              {label}
+            </span>
+          </div>
+          <div className="flex items-center gap-2">
+            <select
+              value={currentSelection ?? "-"}
+              onChange={(e) => {
+                const val = e.target.value === "-" ? null : parseInt(e.target.value);
+                handleArraySelect(key, val);
+              }}
+              className="input w-16 text-center text-[var(--color-ink)]"
+            >
+              <option value="-">—</option>
+              {STANDARD_ARRAY.map((val) => {
+                const isTakenByOther = valuesUsedByOthers.includes(val);
+                return (
+                  <option key={val} value={val} disabled={isTakenByOther}>
+                    {val}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+        </div>
+      );
+    }
+
+    const { canIncrement, canDecrement } = getLimits(score);
 
     return (
-      <div className="space-y-4">
+      <div
+        key={key}
+        className="flex items-center justify-between bg-paper border-2 border-[var(--color-border-strong)] rounded-xl p-3 mb-3"
+      >
+        <div className="flex items-center gap-3">
+          <div className="w-5 flex justify-center">
+            {isRec && (
+              <Star
+                size={16}
+                weight="fill"
+                className="text-[var(--color-warning-400)]"
+              />
+            )}
+          </div>
+          <span className="font-black text-lg text-[var(--color-ink)] uppercase">
+            {label}
+          </span>
+        </div>
+
+        <div className="flex items-center gap-4">
+          <button
+            type="button"
+            onClick={() => onStatChange(key, score - 1)}
+            disabled={!canDecrement}
+            className="w-9 h-9 rounded-full bg-[var(--color-paper-muted)] flex items-center justify-center text-[var(--color-ink-muted)] disabled:opacity-40 active:scale-95 transition-all"
+          >
+            <Minus size={16} weight="bold" />
+          </button>
+
+          <span className="font-black text-xl w-6 text-center text-[var(--color-ink)]">
+            {score}
+          </span>
+
+          <button
+            type="button"
+            onClick={() => onStatChange(key, score + 1)}
+            disabled={!canIncrement}
+            className="w-9 h-9 rounded-full bg-[var(--color-accent-indigo-50)] border border-[var(--color-accent-indigo-200)] flex items-center justify-center text-[var(--color-accent-indigo-700)] disabled:opacity-40 active:scale-95 transition-all"
+          >
+            <Plus size={16} weight="bold" />
+          </button>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <section className="w-full pb-32">
+      <header className="mb-4">
+        <h2 className="text-[var(--color-text-primary)] text-base font-semibold">
+          {t("creator.abilityScores", "Ability Scores")}
+        </h2>
+        <p className="text-[var(--color-text-secondary)] text-xs mt-1">
+          {t(
+            "creator.abilityScoresHint",
+            "Ability scores define your character's physical and mental abilities.",
+          )}
+        </p>
+      </header>
+
+      <nav
+        aria-label="Ability score generation method"
+        className="flex bg-[var(--color-paper-muted)] p-1 rounded-xl mb-6"
+      >
+        {METHOD_TABS.map((tab) => {
+          const active = statMethod === tab.key;
+          return (
+            <button
+              key={tab.key}
+              type="button"
+              onClick={() => handleTabChange(tab.key)}
+              className={[
+                "flex-1 text-[11px] font-medium py-2 px-1 text-center rounded-lg transition-all",
+                active
+                  ? "bg-[var(--color-surface)] text-[var(--color-ink)] font-bold"
+                  : "text-[var(--color-ink-muted)]",
+              ].join(" ")}
+            >
+              {tab.label}
+            </button>
+          );
+        })}
+      </nav>
+
+      <div className="bg-[var(--color-accent-indigo-50)] border border-[var(--color-accent-indigo-200)] rounded-2xl p-4 mb-6">
+        <div className="flex items-center gap-2 mb-2">
+          <Info
+            size={18}
+            weight="bold"
+            className="text-[var(--color-accent-indigo-700)]"
+          />
+          <h3 className="font-bold text-sm text-[var(--color-ink)]">
+            Panduan Pemula
+          </h3>
+        </div>
+        <p className="text-xs text-[var(--color-ink-muted)] leading-relaxed mb-2">
+          Atribut menentukan seberapa hebat karaktermu. Perhatikan ikon Bintang
+          (⭐) yang menunjukkan stat paling penting untuk kelas yang kamu pilih!
+        </p>
+        <ul className="text-[11px] text-[var(--color-ink-muted)] space-y-1 ml-1">
+          <li>
+            <strong className="font-semibold text-[var(--color-ink)]">
+              Point Buy:
+            </strong>{" "}
+            Maks 15. Angka 14 & 15 harganya 2 poin.
+          </li>
+          <li>
+            <strong className="font-semibold text-[var(--color-ink)]">
+              Array:
+            </strong>{" "}
+            Angka baku (15, 14, 13, 12, 10, 8).
+          </li>
+          <li>
+            <strong className="font-semibold text-[var(--color-ink)]">
+              Roll:
+            </strong>{" "}
+            Acak dengan dadu (Beresiko tinggi!).
+          </li>
+          <li>
+            <strong className="font-semibold text-[var(--color-ink)]">
+              Free Buy:
+            </strong>{" "}
+            Homebrew! Bebas isi poin sesukamu.
+          </li>
+        </ul>
+      </div>
+
+      {statMethod === "standard" && (
         <div className="flex flex-wrap gap-2 mb-4">
           {STANDARD_ARRAY.map((val) => {
-            const isUsed = Object.values(currentSelections).includes(val);
+            const isUsed =
+              Object.values(standardArraySelections).includes(val) &&
+              Object.values(standardArraySelections).filter((v) => v === val)
+                .length > 0;
+            const assigned = Object.values(standardArraySelections).includes(val);
             return (
               <span
                 key={val}
-                className={`px-3 py-1.5 rounded-full text-sm font-bold ${
-                  isUsed
-                    ? "bg-paper-muted text-ink-muted line-through"
-                    : "bg-paper text-ink border border-border-strong"
+                className={`px-3 py-1.5 rounded-full text-xs font-bold ${
+                  assigned
+                    ? "bg-[var(--color-paper-muted)] text-[var(--color-ink-muted)] line-through"
+                    : "bg-paper text-[var(--color-ink)] border border-[var(--color-border-strong)]"
                 }`}
               >
                 {val}
@@ -164,250 +367,49 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
             );
           })}
         </div>
-        <div className="space-y-3">
-          {ABILITIES.map(({ key, label, full }) => {
-            const finalScore = getFinalScore(key);
-            const baseScore = getBaseScore(key);
-            const modifier = getModifier(finalScore);
-            const raceBonus = raceBonuses[key] || 0;
-            const currentSelection = currentSelections[key];
-            const isRec = isRecommended("stat", label, data.class);
+      )}
 
-            const valuesUsedByOthers = ABILITIES.filter(({ key: otherKey }) => otherKey !== key)
-              .map(({ key: otherKey }) => currentSelections[otherKey])
-              .filter((val): val is number => val !== null);
-
-            return (
-              <div
-                key={key}
-                className="flex items-center justify-between bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-3 mb-3 shadow-sm"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-5 flex justify-center">
-                    {isRec && <Star size={16} weight="fill" className="text-amber-400 animate-pulse" />}
-                  </div>
-                  <div>
-                    <span className="font-black text-lg text-slate-800 dark:text-slate-100 uppercase">{label}</span>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  {raceBonus > 0 && (
-                    <span className="text-xs font-bold text-ink bg-paper px-1.5 py-0.5 rounded-full">+{raceBonus}</span>
-                  )}
-                  <select
-                    value={currentSelection ?? "-"}
-                    onChange={(e) => {
-                      const val = e.target.value === "-" ? null : parseInt(e.target.value);
-                      setStandardArraySelections((prev) => ({ ...prev, [key]: val }));
-                      if (val !== null) {
-                        onChange({ [key]: val } as Partial<Character>);
-                      }
-                    }}
-                    className="input w-16 text-center border border-border-strong rounded-full"
-                  >
-                    <option value="-">-</option>
-                    {STANDARD_ARRAY.map((val) => {
-                      const isTakenByOther = valuesUsedByOthers.includes(val);
-                      return (
-                        <option key={val} value={val} disabled={isTakenByOther}>
-                          {val}
-                        </option>
-                      );
-                    })}
-                  </select>
-                </div>
-              </div>
-            );
-          })}
+      {statMethod === "pointbuy" && (
+        <div className="bg-[var(--color-paper-muted)] border border-[var(--color-border-strong)] rounded-2xl px-4 py-3 flex justify-between items-center sticky top-0 z-10 mb-6">
+          <span className="text-xs font-bold uppercase text-[var(--color-ink-muted)] tracking-widest">
+            Sisa Poin
+          </span>
+          <span
+            className={`text-2xl font-black ${
+              pointsRemaining === 0
+                ? "text-[var(--color-ink-subtle)]"
+                : "text-[var(--color-success-500)]"
+            }`}
+          >
+            {pointsRemaining} <span className="text-xs text-[var(--color-ink-subtle)]">/ {POINT_BUY_TOTAL}</span>
+          </span>
         </div>
+      )}
+
+      <div className="space-y-0">
+        {ABILITIES.map(renderStatRow)}
       </div>
-    );
-  };
 
-  const renderPointBuy = () => {
-    return (
-      <div className="space-y-4">
-        {statMethod === "pointbuy" && (
-          <div className="bg-slate-900 dark:bg-slate-800 text-white rounded-2xl p-4 flex justify-between items-center mb-6 shadow-sm">
-            <span className="text-sm font-bold tracking-widest uppercase text-slate-300">Sisa Poin</span>
-            <span className={`text-2xl font-black ${pointsRemaining === 0 ? "text-slate-400" : "text-emerald-400"}`}>
-              {pointsRemaining} <span className="text-sm text-slate-500">/ 27</span>
-            </span>
-          </div>
-        )}
-
-        <div className="space-y-3">
-          {ABILITIES.map(({ key, label, full }) => {
-            const currentScore = stats[key];
-            const finalScore = Math.min(20, currentScore + (raceBonuses[key] || 0));
-            const modifier = getModifier(finalScore);
-            const raceBonus = raceBonuses[key] || 0;
-            const isRec = isRecommended("stat", label, data.class);
-            const nextCost = getStatCost(currentScore + 1) - getStatCost(currentScore);
-            const canIncrement = currentScore < 15 && pointsRemaining - nextCost >= 0;
-            const canDecrement = currentScore > 8;
-
-            return (
-              <div
-                key={key}
-                className="flex items-center justify-between bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-3 mb-3 shadow-sm"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-5 flex justify-center">
-                    {isRec && <Star size={16} weight="fill" className="text-amber-400 animate-pulse" />}
-                  </div>
-                  <div>
-                    <span className="font-black text-lg text-slate-800 dark:text-slate-100 uppercase">{label}</span>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <button
-                    onClick={() => handleStatChange(key, currentScore - 1)}
-                    disabled={!canDecrement}
-                    className="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 disabled:opacity-30 active:scale-95 transition-all"
-                  >
-                    <Minus size={16} weight="bold" />
-                  </button>
-
-                  <span className="font-black text-xl w-6 text-center text-slate-900 dark:text-white">
-                    {currentScore}
-                  </span>
-
-                  <button
-                    onClick={() => handleStatChange(key, currentScore + 1)}
-                    disabled={!canIncrement}
-                    className="w-9 h-9 rounded-full bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-100 dark:border-indigo-800 flex items-center justify-center text-indigo-600 dark:text-indigo-400 disabled:opacity-30 disabled:bg-slate-50 disabled:border-transparent active:scale-95 transition-all"
-                  >
-                    <Plus size={16} weight="bold" />
-                  </button>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+      <div className="grid grid-cols-2 gap-3 mt-8">
+        <button
+          type="button"
+          onClick={() => handleTabChange(statMethod)}
+          className="bg-[var(--color-paper-muted)] text-[var(--color-ink-muted)] font-bold py-3.5 rounded-xl text-center disabled:opacity-50 active:scale-[0.98] transition-transform"
+        >
+          Kembali
+        </button>
+        <button
+          type="button"
+          disabled={!canProceed}
+          onClick={() => {
+            if (!canProceed) return;
+            onChange({ abilityMethod: statMethod } as Partial<Character>);
+          }}
+          className="bg-[var(--color-accent-indigo-600)] text-[var(--color-paper)] font-bold py-3.5 rounded-xl text-center border-b-4 border-[var(--color-accent-indigo-700)] disabled:opacity-50 active:border-b-0 active:translate-y-1 transition-all"
+        >
+          Lanjut
+        </button>
       </div>
-    );
-  };
-
-  const renderManual = () => {
-    return (
-      <div className="space-y-4">
-        <p className="text-xs text-ink-muted font-medium">Manually enter each ability score. Maximum is 15, minimum is 8.</p>
-        <div className="space-y-3">
-          {ABILITIES.map(({ key, label, full }) => {
-            const currentScore = stats[key];
-            const finalScore = Math.min(20, currentScore + (raceBonuses[key] || 0));
-            const modifier = getModifier(finalScore);
-            const raceBonus = raceBonuses[key] || 0;
-            const isRec = isRecommended("stat", label, data.class);
-
-            return (
-              <div
-                key={key}
-                className="flex items-center justify-between bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-3 mb-3 shadow-sm"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-5 flex justify-center">
-                    {isRec && <Star size={16} weight="fill" className="text-amber-400 animate-pulse" />}
-                  </div>
-                  <div>
-                    <span className="font-black text-lg text-slate-800 dark:text-slate-100 uppercase">{label}</span>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <button
-                    onClick={() => handleManualChange(key, currentScore - 1)}
-                    disabled={currentScore <= 8}
-                    className="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 disabled:opacity-30 active:scale-95 transition-all"
-                  >
-                    <Minus size={16} weight="bold" />
-                  </button>
-
-                  <span className="font-black text-xl w-6 text-center text-slate-900 dark:text-white">
-                    {currentScore}
-                  </span>
-
-                  <button
-                    onClick={() => handleManualChange(key, currentScore + 1)}
-                    disabled={currentScore >= 15}
-                    className="w-9 h-9 rounded-full bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-100 dark:border-indigo-800 flex items-center justify-center text-indigo-600 dark:text-indigo-400 disabled:opacity-30 disabled:bg-slate-50 disabled:border-transparent active:scale-95 transition-all"
-                  >
-                    <Plus size={16} weight="bold" />
-                  </button>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    );
-  };
-
-  const renderMethodContent = () => {
-    switch (statMethod) {
-      case "standard":
-        return renderStandardArray();
-      case "pointbuy":
-        return renderPointBuy();
-      case "manual":
-        return renderManual();
-      default:
-        return null;
-    }
-  };
-
-  return (
-    <StepCard
-      title={t("creator.abilityScores")}
-      hint={t("creator.abilityScoresHint", "Ability scores define your character's physical and mental abilities. Choose how to generate them: Standard Array (balanced), Point Buy (custom with costs), Manual Roll (direct entry).")}
-    >
-      <div className="space-y-4">
-        <div className="flex rounded-full bg-paper-muted p-1">
-          {[
-            { key: "standard" as AbilityMethod, label: "Standard Array" },
-            { key: "pointbuy" as AbilityMethod, label: "Point Buy" },
-            { key: "manual" as AbilityMethod, label: "Manual Roll" },
-          ].map((tab) => (
-            <button
-              key={tab.key}
-              type="button"
-              onClick={() => setStatMethod(tab.key)}
-              className={`btn flex-1 px-3 py-2 rounded-full ${
-                statMethod === tab.key ? "btn btn-primary" : "btn btn-secondary"
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Premium Newbie Tips Section */}
-        <div className="bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-200 dark:border-indigo-800/50 rounded-2xl p-4 mb-6">
-          <div className="flex items-center gap-2 mb-2">
-            <Info size={18} weight="bold" className="text-indigo-600 dark:text-indigo-400" />
-            <h3 className="font-bold text-sm text-indigo-900 dark:text-indigo-100">Panduan Pemula</h3>
-          </div>
-          <p className="text-xs text-indigo-700 dark:text-indigo-300 leading-relaxed mb-2">
-            Atribut menentukan seberapa hebat karaktermu. Perhatikan ikon Bintang (⭐) yang menunjukkan stat paling penting untuk kelas yang kamu pilih!
-          </p>
-          <ul className="text-[11px] text-indigo-700/80 dark:text-indigo-300/80 space-y-1 ml-1">
-            <li>
-              <strong className="font-semibold">Point Buy:</strong> Atur poin fleksibel. Angka 14 & 15 harganya lebih mahal (2 poin).
-            </li>
-            <li>
-              <strong className="font-semibold">Array Standar:</strong> Gunakan urutan angka baku yang aman (15, 14, 13, 12, 10, 8).
-            </li>
-            <li>
-              <strong className="font-semibold">Roll:</strong> Acak angkamu menggunakan dadu (Beresiko tinggi!).
-            </li>
-          </ul>
-        </div>
-
-        {renderMethodContent()}
-      </div>
-    </StepCard>
+    </section>
   );
 }
