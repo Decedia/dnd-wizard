@@ -9,7 +9,6 @@
         "str",
         "con"
       ],
-      "flavorText": "Kamu dibesarkan di alam liar, di mana aturan peradaban tidak berlaku. Amarah adalah hak kelahiranmu—badai yang kamu lepaskan ketika kata-kata gagal. Kamu tidak bertahan dengan kehati-hatian; kamu bertahan dengan menjadikan diri badai itu sendiri.",
       "proficiencies": {
         "armor": [
           "light",
@@ -989,7 +988,6 @@
         "dex",
         "cha"
       ],
-      "flavorText": "Sihir mengalir lewat suara, jari, kehadiranmu. Kamu adalah cerita yang menulis dirinya sendiri—menyanyikan mantra, mengubah tawa jadi senjata, dan membuat yang mustahil terasa seperti takdir.",
       "proficiencies": {
         "armor": [
           "light"
@@ -3010,7 +3008,6 @@
         "wis",
         "cha"
       ],
-      "flavorText": "Kuasa ilahi mengalir dalam dirimu, dikaruniakan oleh dewa yang kehendakmu wakili. Kamu saluran antara fana dan abadi—menyembuhkan yang hancur, menghakimi yang jahat, dan berdiri sebagai bukti hidup bahwa dewa berjalan di antara kita.",
       "proficiencies": {
         "armor": [
           "light",
@@ -4251,7 +4248,6 @@
         "int",
         "wis"
       ],
-      "flavorText": "Alam bukan latar belakbagimu—ia adalah saudaramu. Kamu bicara bahasa akar dan badai, memakai wujud binatang, dan memerintahkan liar itu sendiri. Keseimbangan tunduk pada keinginanmu.",
       "proficiencies": {
         "armor": [
           "light",
@@ -5155,7 +5151,6 @@
         "str",
         "con"
       ],
-      "flavorText": "Kamu tidak dipilih takdir atau darah. Kamu memilih proses—ribuan pengulangan, tak terhitung kebaluan, disiplin yang mengubah batas mortal jadi keahlian. Senjatamu adalah lanjutan kehendakmu.",
       "proficiencies": {
         "armor": [
           "light",
@@ -6185,7 +6180,6 @@
         "str",
         "dex"
       ],
-      "flavorText": "Tubuhmu adalah kuil dan disiplinmu kitab sucinya. Ki mengalir di tempat otot gagal. Kamu memukul lebih cepat dari pikiran, menahan apa yang akan menghancurkan orang lain, dan menemukan kesempurnaan dalam gerak itu sendiri.",
       "proficiencies": {
         "armor": [],
         "weapons": [
@@ -7345,7 +7339,6 @@
         "wis",
         "cha"
       ],
-      "flavorText": "Sumpah mengikatmu lebih kencang dari baja. Kamu keyakinan yang nyata—bersinar saat menghakimi, tak tergoyahkan saat melindungi. Janjimu adalah kekuatanmu, dan kamu tak akan melanggarnya.",
       "proficiencies": {
         "armor": [
           "light",
@@ -8355,7 +8348,6 @@
         "str",
         "dex"
       ],
-      "flavorText": "Lembah liar adalah rumah dan tempat berburumu. Kamu baca jejak seperti orang lain baca buku, menyerang sebelum terlihat, dan menjaga beban setiap perbatasan yang kau janjikan.",
       "proficiencies": {
         "armor": [
           "light",
@@ -9567,7 +9559,6 @@
         "dex",
         "int"
       ],
-      "flavorText": "Kamu tak butuh kekuatan bila punya presisi. Bayangan sekutumu, kunci cuma saran, dan pukulan mematikan mendarat sebelum sasaran sadar kau ada. Peluang adalah tuanmu yang satu-satunya.",
       "proficiencies": {
         "armor": [
           "light"
@@ -10721,7 +10712,6 @@
         "con",
         "cha"
       ],
-      "flavorText": "Sihir bukan dipelajari—ia diwariskan. Kekuatan arcane menyala dalam garis keturunanmu, liar dan mentah, menunggu kau bentukkan. Kau tak 'mencast' mantra; kau melepaskan apa yang kaulah.",
       "proficiencies": {
         "armor": [],
         "weapons": [],
@@ -11834,7 +11824,6 @@
         "wis",
         "cha"
       ],
-      "flavorText": "Pakatan ditandatangani dari keputusasaan atau ambisi. Patronmu beri kekuatan dengan syarat—pengetahuan, rahasia, sepotong kekuatan mereka. Tiap mantra dibayar sebagai cicilan utang yang tak pernah lunas sepenuhnya.",
       "proficiencies": {
         "armor": [
           "light"
@@ -13473,7 +13462,6 @@
         "int",
         "wis"
       ],
-      "flavorText": "Kamu belajar hingga jari berdarah dan pikiran melebar. Mantra adalah rumus yang kau kuasai, realitas sistem yang kau retas. Pengetahuan senjatamu, dan kau bersiap untuk segalanya.",
       "proficiencies": {
         "armor": [],
         "weapons": [],
@@ -14435,7 +14423,6 @@
         "con",
         "int"
       ],
-      "flavorText": "Sihir adalah teknologi yang kau reverse-engineer. Kau suntikkan yang ajaib ke yang biasa—peralatan yang berpikir, senjata yang adaptif, solusi di mana lain hanya lihat masalah. Inovasi adalah kitab mantramu.",
       "proficiencies": {
         "armor": [
           "light",

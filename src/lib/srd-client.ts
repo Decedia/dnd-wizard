@@ -70,7 +70,6 @@ export interface SRDRace {
   languageDesc?: string;
   source?: string;
   choices?: RaceChoice[];
-  flavorText?: string;
   flavor?: string;
 }
 
@@ -88,7 +87,6 @@ export interface SRDClass {
   hpPerLevel: number;
   primaryAbility: string;
   savingThrows: string[];
-  flavorText: string;
   flavor?: string;
   /** Full class text, including the per-level feature summaries. */
   description?: string;
@@ -386,8 +384,8 @@ export function getStaticRaces(sources?: string[], ruleset?: string, locale: str
       } else if (!raceHasChoices && existingHasChoices) {
         continue;
       } else {
-        const existingHasFlavor = !!(existing as any).flavorText;
-        const raceHasFlavor = !!(race as any).flavorText;
+        const existingHasFlavor = !!(existing as any).flavor;
+        const raceHasFlavor = !!(race as any).flavor;
         if (raceHasFlavor && !existingHasFlavor) {
           seen.set(key, race);
         } else if (!raceHasFlavor && existingHasFlavor) {
@@ -416,8 +414,8 @@ export function getStaticRace(name: string, ruleset?: string, locale: string = "
   if (matches.length === 0) return undefined;
   if (matches.length === 1) return matches[0];
   return matches.reduce((best, r) => {
-    const bestHasFlavor = !!(best as any).flavorText;
-    const rHasFlavor = !!(r as any).flavorText;
+    const bestHasFlavor = !!(best as any).flavor;
+    const rHasFlavor = !!(r as any).flavor;
     if (rHasFlavor && !bestHasFlavor) return r;
     if (!rHasFlavor && bestHasFlavor) return best;
     return (r.traits || []).length > (best.traits || []).length ? r : best;
@@ -437,8 +435,8 @@ export function getStaticClasses(sources?: string[], ruleset?: string, locale: s
     if (!existing) {
       seen.set(key, cls);
     } else {
-      const existingHasFlavor = !!(existing as any).flavorText;
-      const clsHasFlavor = !!(cls as any).flavorText;
+      const existingHasFlavor = !!(existing as any).flavor;
+      const clsHasFlavor = !!(cls as any).flavor;
       if (clsHasFlavor && !existingHasFlavor) {
         seen.set(key, cls);
       } else if (!clsHasFlavor && existingHasFlavor) {

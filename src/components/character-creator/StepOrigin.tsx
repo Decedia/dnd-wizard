@@ -255,7 +255,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
             </div>
             <div className="flex-1">
               <h3 className="font-bold text-[var(--color-text-primary)] text-lg">{data.class || t("origin.selectClass", "Pilih Kelas")}</h3>
-              <p className="text-xs text-[var(--color-text-secondary)] line-clamp-2">{data.class ? truncate(selectedClass?.flavorText || data.class) : t("origin.classExamples", "Fighter, Wizard, Rogue...")}</p>
+              <p className="text-xs text-[var(--color-text-secondary)] line-clamp-2">{data.class ? truncate(selectedClass?.flavor || data.class) : t("origin.classExamples", "Fighter, Wizard, Rogue...")}</p>
             </div>
             <CaretRight className="text-[var(--color-text-muted)] group-hover:text-[var(--color-accent-indigo-500)] transition-colors h-5 w-5" />
           </div>
@@ -276,7 +276,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
             </div>
             <div className="flex-1">
               <h3 className="font-bold text-[var(--color-text-primary)] text-lg">{data.race ? (data.race === "Human" && data.raceVariant === "variant" ? t("origin.variantHuman", "Variant Human") : data.race) : t("origin.selectRace", "Pilih Ras")}</h3>
-              <p className="text-xs text-[var(--color-text-secondary)] line-clamp-2">{data.race ? truncate(selectedRace?.flavorText || (selectedRace as any)?.recommendation?.text || data.race) : t("origin.raceExamples", "Manusia, Elf, Dwarf...")}</p>
+              <p className="text-xs text-[var(--color-text-secondary)] line-clamp-2">{data.race ? truncate(selectedRace?.flavor || (selectedRace as any)?.recommendation?.text || data.race) : t("origin.raceExamples", "Manusia, Elf, Dwarf...")}</p>
             </div>
             <CaretRight className="text-[var(--color-text-muted)] group-hover:text-[var(--color-accent-teal-500)] transition-colors h-5 w-5" />
           </div>

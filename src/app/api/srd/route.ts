@@ -163,7 +163,7 @@ async function fetchAllClasses() {
       hpPerLevel: Math.floor((cls.hit_die || 10) / 2) + 1,
       primaryAbility: spellcastingMap.get(cls.index) || "str",
       savingThrows: (cls.saving_throws || []).map((s: any) => s.index),
-      flavorText: "",
+      flavor: "",
       proficiencies: {
         armor: (cls.proficiencies || [])
           .filter((p: any) => /armor|shield/i.test(p.name))
