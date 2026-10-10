@@ -1120,10 +1120,24 @@ export function meetsPrerequisites(character: Character, featName: string): bool
       }
     }
 
+    if (requires.spellcasting && !canCastSpells(character)) {
+      return false;
+    }
+
     return true;
   } catch {
     return false;
   }
+}
+
+function canCastSpells(character: Character): boolean {
+  if (character.spellcastingAbility) return true;
+  if ((character.spells || []).length > 0) return true;
+  if ((character.cantrips || []).length > 0) return true;
+  return (character.features || []).some((f: any) => {
+    const haystack = `${f.engineId || ""} ${f.name || ""}`.toLowerCase();
+    return haystack.includes("spellcasting") || haystack.includes("pact_magic") || haystack.includes("pact magic");
+  });
 }
 
 const engineFlavorCache: { [featName: string]: { flavor?: string; flavorId?: string } } = {};

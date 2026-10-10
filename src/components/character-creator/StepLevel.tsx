@@ -734,6 +734,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
             ...(data.features || []).filter((f: any) => f.name && f.source !== "custom").map((f: any) => f.name),
             ...Object.values(data.featureSelections || {}).flat(),
           ]}
+          character={data}
           onSelect={(feat: SRDFeat, featOptions?: Record<string, string>) => {
             setAsiState((prev) => ({
               ...prev,

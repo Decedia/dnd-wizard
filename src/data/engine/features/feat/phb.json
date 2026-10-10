@@ -273,6 +273,7 @@
       "owner": "Feat",
       "activation": "passive",
       "requires": {
+  "spellcasting": true,
   "note": "The ability to cast at least one spell"
 },
       "flavor": "A spellcaster who doubles spell range and ignores cover. Requires ability to cast at least one spell.",
@@ -347,6 +348,7 @@
       "owner": "Feat",
       "activation": "passive",
       "requires": {
+  "spellcasting": true,
   "note": "The ability to cast at least one spell"
 },
       "flavor": "A spellcaster who can cast spells as opportunity attacks and maintain concentration. Requires ability to cast at least one spell.",

@@ -401,6 +401,8 @@ export interface RequiresSpec {
   minLevel?: number;
   /** Required race name or list of race names. Supports subrace notation like "Elf (high)". */
   race?: string | string[];
+  /** Requires the ability to cast at least one spell, from any source. */
+  spellcasting?: boolean;
   /** Free-text prerequisite for display or fallback evaluation. */
   note?: string;
 }

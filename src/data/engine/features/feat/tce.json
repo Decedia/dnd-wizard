@@ -244,6 +244,7 @@
       "owner": "Feat",
       "activation": "passive",
       "requires": {
+        "spellcasting": true,
         "note": "Spellcasting or Pact Magic feature"
       },
       "flavor": "A spellcaster who dips into warlock magic, gaining a pact invocation. Requires spellcasting or pact magic feature.",
@@ -648,6 +649,7 @@
       "owner": "Feat",
       "activation": "passive",
       "requires": {
+        "spellcasting": true,
         "note": "Spellcasting or Pact Magic feature"
       },
       "flavor": "A spellcaster who learns metamagic options to customize their spells. Requires spellcasting or pact magic feature.",
