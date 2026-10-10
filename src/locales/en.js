@@ -1017,6 +1017,7 @@ export const translations = {
   "creator.classHint": "Choose your character's class. This determines your core abilities, hit points, and when you'll pick a subclass.",
   "modal.selectClass": "Choose Your Class",
   "modal.selectRace": "Choose Your Race",
+  "modal.selected": "Selected",
   "modal.selectRaceOption": "Select {race}",
   "modal.noRacesFound": "No races match your search.",
   "modal.noClassesFound": "No classes match your search.",

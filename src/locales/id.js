@@ -1019,6 +1019,7 @@ export const translations = {
   "creator.classHint": "Pilih kelas karaktermu. Ini menentukan kemampuan dasar, poin HP, dan kapan kamu akan memilih subclass.",
   "modal.selectClass": "Pilih Kelas",
   "modal.selectRace": "Pilih Ras",
+  "modal.selected": "Terpilih",
   "modal.selectRaceOption": "Pilih {race}",
   "modal.noRacesFound": "Tidak ada ras yang cocok dengan pencarianmu.",
   "modal.noClassesFound": "Tidak ada kelas yang cocok dengan pencarianmu.",

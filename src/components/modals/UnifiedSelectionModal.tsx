@@ -363,7 +363,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
   const canConfirmHuman = isHumanVariantConfig && !variantEnabled;
 
   const stickyHeader = (
-    <div className="sticky top-0 z-20 bg-[var(--color-surface)] border-b border-[var(--color-border)] px-4 py-3 space-y-2">
+    <div className="sticky top-0 z-20 shrink-0 bg-surface border-b border-border-strong px-4 py-3 space-y-2">
       <div className="relative">
         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
           <MagnifyingGlass className="h-4 w-4 text-[var(--color-text-muted)]" />
@@ -431,7 +431,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
       {stickyHeader}
 
       {step === "list" && (
-        <div className="px-4 pt-4 pb-6 overflow-y-auto overscroll-contain">
+        <div className="flex-1 max-h-[75vh] space-y-3 overflow-y-auto overscroll-contain p-4 pb-8">
           {filteredOptions.length === 0 && (
             <p className="py-8 text-center text-sm text-ink-muted">
               {selectionType === "race"
@@ -442,82 +442,105 @@ export function UnifiedSelectionModal<T extends SelectionType>({
 
           {selectionType === "race" ? (
             <div className="space-y-3">
-              {raceGroups.map((group) => (
-                <details
-                  key={group.groupName}
-                  open={openGroups.includes(group.groupName)}
-                  onToggle={(e) => handleGroupToggle(group.groupName, e.currentTarget.open)}
-                  className="group overflow-hidden rounded-2xl border-2 border-border-strong bg-surface shadow-sm"
-                >
-                  <summary className="flex cursor-pointer select-none items-center justify-between p-4 outline-none transition-colors active:bg-ink/5 [&::-webkit-details-marker]:hidden">
-                    <div className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-ink/10 text-ink">
-                        <Users className="h-5 w-5" />
-                      </div>
-                      <h3 className="text-lg font-bold text-ink">{group.groupName}</h3>
-                    </div>
-                    <div className="text-ink-muted transition-transform duration-300 group-open:rotate-90">
-                      <ChevronRight className="h-5 w-5" />
-                    </div>
-                  </summary>
-
-                  <div className="space-y-2 border-t-2 border-border-muted bg-paper/50 p-3">
-                    {group.options.map((opt) => {
-                      const isSelected = previewItem?.name === opt.name;
-                      return (
-                        <label
-                          key={opt.name}
-                          className={`flex cursor-pointer items-center justify-between rounded-xl border-2 p-3 transition-all active:scale-[0.98] ${
-                            isSelected
-                              ? "border-ink bg-ink/10"
-                              : "border-transparent bg-surface hover:border-ink/30"
+              {raceGroups.map((group) => {
+                const isGroupSelected = group.options.some(
+                  (opt) => previewItem?.name === opt.name
+                );
+                return (
+                  <details
+                    key={group.groupName}
+                    open={openGroups.includes(group.groupName)}
+                    onToggle={(e) => handleGroupToggle(group.groupName, e.currentTarget.open)}
+                    className={`group overflow-hidden rounded-2xl border-2 shadow-sm [&::-webkit-details-marker]:hidden ${
+                      isGroupSelected ? "border-ink" : "border-border-strong"
+                    }`}
+                  >
+                    <summary
+                      className={`flex cursor-pointer select-none items-center justify-between p-4 outline-none transition-colors ${
+                        isGroupSelected ? "bg-ink/5" : "active:bg-ink/5"
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div
+                          className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${
+                            isGroupSelected ? "bg-ink text-surface" : "bg-ink/10 text-ink"
                           }`}
                         >
-                          <div className="min-w-0">
-                            <h4 className="font-bold text-ink">{opt.name}</h4>
-                            <div className="mt-1 flex flex-wrap items-center gap-1.5">
-                              {opt.source && (
-                                <span className="rounded bg-paper-muted px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-ink-muted">
-                                  {opt.source}
-                                </span>
-                              )}
-                              {opt.basicStats && (
-                                <span className="text-[10px] font-bold uppercase tracking-wider text-ink-subtle">
-                                  {opt.basicStats}
-                                </span>
-                              )}
-                            </div>
-                            {opt.description && (
-                              <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-ink-muted">
-                                {opt.description}
-                              </p>
-                            )}
-                          </div>
+                          <Users className="h-5 w-5" />
+                        </div>
+                        <h3 className="text-lg font-bold text-ink">{group.groupName}</h3>
+                      </div>
 
-                          <div
-                            className={`ml-3 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-colors ${
+                      <div className="flex items-center gap-3">
+                        {isGroupSelected && (
+                          <span className="rounded-md bg-ink px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-surface shadow-sm">
+                            {t("modal.selected", "Terpilih")}
+                          </span>
+                        )}
+                        <div className="text-ink-muted transition-transform duration-300 group-open:rotate-90">
+                          <ChevronRight className="h-5 w-5" />
+                        </div>
+                      </div>
+                    </summary>
+
+                    <div className="space-y-2 border-t-2 border-border-muted bg-paper/50 p-3">
+                      {group.options.map((opt) => {
+                        const isSelected = previewItem?.name === opt.name;
+                        return (
+                          <label
+                            key={opt.name}
+                            className={`flex cursor-pointer items-center justify-between rounded-xl border-2 p-3 transition-all active:scale-[0.98] ${
                               isSelected
-                                ? "border-ink bg-ink text-surface"
-                                : "border-ink-subtle bg-transparent"
+                                ? "border-ink bg-ink/10"
+                                : "border-transparent bg-surface hover:border-ink/30"
                             }`}
                           >
-                            {isSelected && <Check className="h-3 w-3" />}
-                          </div>
+                            <div className="min-w-0">
+                              <h4 className="font-bold text-ink">{opt.name}</h4>
+                              <div className="mt-1 flex flex-wrap items-center gap-1.5">
+                                {opt.source && (
+                                  <span className="rounded bg-paper-muted px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-ink-muted">
+                                    {opt.source}
+                                  </span>
+                                )}
+                                {opt.basicStats && (
+                                  <span className="text-[10px] font-bold uppercase tracking-wider text-ink-subtle">
+                                    {opt.basicStats}
+                                  </span>
+                                )}
+                              </div>
+                              {opt.description && (
+                                <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-ink-muted">
+                                  {opt.description}
+                                </p>
+                              )}
+                            </div>
 
-                          <input
-                            type="radio"
-                            name="race-selection"
-                            className="sr-only"
-                            checked={isSelected}
-                            onChange={() => handleRaceOptionClick(opt, group.groupName)}
-                            aria-label={t("modal.selectRaceOption", { race: opt.name }, "Pilih {race}")}
-                          />
-                        </label>
-                      );
-                    })}
-                  </div>
-                </details>
-              ))}
+                            <div
+                              className={`ml-3 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-colors ${
+                                isSelected
+                                  ? "border-ink bg-ink text-surface"
+                                  : "border-ink-subtle bg-transparent"
+                              }`}
+                            >
+                              {isSelected && <Check className="h-3 w-3" />}
+                            </div>
+
+                            <input
+                              type="radio"
+                              name="race-selection"
+                              className="sr-only"
+                              checked={isSelected}
+                              onChange={() => handleRaceOptionClick(opt, group.groupName)}
+                              aria-label={t("modal.selectRaceOption", { race: opt.name }, "Pilih {race}")}
+                            />
+                          </label>
+                        );
+                      })}
+                    </div>
+                  </details>
+                );
+              })}
             </div>
           ) : (
             <div className="space-y-3">
