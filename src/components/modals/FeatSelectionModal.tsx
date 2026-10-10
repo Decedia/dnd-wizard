@@ -1,16 +1,29 @@
 "use client";
 
-import { useLanguage } from "@/contexts/LanguageContext";
-import { useState, useMemo } from "react";
-import { MagnifyingGlassIcon as MagnifyingGlass, CheckIcon as Check } from "@/components/icons";
-import { getStaticFeats, meetsPrerequisites, featHasPrerequisite, getEngineFeatFlavor, type SRDFeat } from "@/lib/srd-client";
+import { useCallback, useMemo, useState } from "react";
+import {
+  MagnifyingGlassIcon as MagnifyingGlass,
+  CheckIcon as Check,
+  InfoIcon as Info,
+  CaretRightIcon as ChevronRight,
+  WarningCircleIcon as Warning,
+  BookIcon as BookBookmark,
+} from "@/components/icons";
+import {
+  getStaticFeats,
+  getStaticSpells,
+  meetsPrerequisites,
+  getEngineFeatFlavor,
+  type SRDFeat,
+  type FeatOptionGroup,
+} from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
 import { isRecommended } from "@/lib/recommendations";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { BottomSheet } from "@/components/modals/BottomSheet";
-import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
 
 interface FeatSelectionModalProps {
-  onSelect: (feat: SRDFeat) => void;
+  onSelect: (feat: SRDFeat, optionSelections?: Record<string, string>) => void;
   onClose: () => void;
   selectedFeat?: string;
   sources?: string[];
@@ -18,21 +31,40 @@ interface FeatSelectionModalProps {
   character?: Character;
 }
 
+type ModalStep = "list" | "info" | "spell";
+type FeatOptions = Record<string, string>;
+
+const SCROLL_CLASS = "flex-1 overflow-y-auto overscroll-contain p-4 pb-8 max-h-[75vh]";
+
 function pillClass(active: boolean) {
   return `inline-flex items-center rounded-full border px-2.5 py-1 text-[10px] font-semibold transition-all ${
     active
-      ? "bg-[var(--color-accent-indigo-600)] text-white border-transparent"
-      : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+      ? "bg-ink text-surface border-transparent"
+      : "bg-paper-muted text-ink-muted border-border-strong hover:border-ink"
   }`;
 }
 
-export function FeatSelectionModal({ onSelect, onClose, selectedFeat, sources, disabledFeats = [], character }: FeatSelectionModalProps) {
+export function FeatSelectionModal({
+  onSelect,
+  onClose,
+  selectedFeat,
+  sources,
+  disabledFeats = [],
+  character,
+}: FeatSelectionModalProps) {
   const { t } = useLanguage();
   const feats = getStaticFeats(sources);
   const [search, setSearch] = useState("");
   const [pendingSelection, setPendingSelection] = useState<string | null>(selectedFeat || null);
   const [sourceFilter, setSourceFilter] = useState<string>("ALL");
   const [prereqFilter, setPrereqFilter] = useState<"all" | "with" | "without">("all");
+  const [optionSelections, setOptionSelections] = useState<FeatOptions>({});
+  const [step, setStep] = useState<ModalStep>("list");
+  const [infoFeat, setInfoFeat] = useState<SRDFeat | null>(null);
+  const [spellTarget, setSpellTarget] = useState<{ optionId: string; group: FeatOptionGroup } | null>(
+    null,
+  );
+  const [spellSearch, setSpellSearch] = useState("");
 
   const disabledFeatNames = useMemo(() => new Set(disabledFeats), [disabledFeats]);
 
@@ -48,7 +80,11 @@ export function FeatSelectionModal({ onSelect, onClose, selectedFeat, sources, d
   const filteredFeats = useMemo(() => {
     let base = feats.filter((feat) => !disabledFeatNames.has(feat.name));
     if (sourceFilter !== "ALL") {
-      base = base.filter((feat) => (feat.book || (typeof feat.source === "string" ? feat.source : (feat as any).source?.name)) === sourceFilter);
+      base = base.filter(
+        (feat) =>
+          (feat.book || (typeof feat.source === "string" ? feat.source : (feat as any).source?.name)) ===
+          sourceFilter,
+      );
     }
     if (prereqFilter === "with") {
       base = base.filter((feat) => feat.prerequisites !== null);
@@ -57,150 +93,530 @@ export function FeatSelectionModal({ onSelect, onClose, selectedFeat, sources, d
     }
     if (!search.trim()) return base;
     const q = search.toLowerCase();
-    return base.filter((feat) => feat.name.toLowerCase().includes(q) || (feat.description || "").toLowerCase().includes(q));
+    return base.filter(
+      (feat) => feat.name.toLowerCase().includes(q) || (feat.description || "").toLowerCase().includes(q),
+    );
   }, [feats, search, disabledFeatNames, sourceFilter, prereqFilter]);
 
-  const handleConfirm = () => {
-    const feat = feats.find((f) => f.name === pendingSelection);
-    if (feat) {
-      onSelect(feat);
+  const pendingFeat = useMemo(
+    () => feats.find((feat) => feat.name === pendingSelection) ?? null,
+    [feats, pendingSelection],
+  );
+
+  const optionGroups = useMemo<FeatOptionGroup[]>(
+    () => (pendingFeat?.options ?? []).filter((group) => group.count > 0),
+    [pendingFeat],
+  );
+
+  const missingOptionIds = useMemo(
+    () => optionGroups.filter((group) => !optionSelections[group.id]).map((group) => group.id),
+    [optionGroups, optionSelections],
+  );
+
+  const isReadyToConfirm = !!pendingFeat && missingOptionIds.length === 0;
+
+  const spellChoices = useMemo(() => {
+    if (!spellTarget) return [];
+    const filter = spellTarget.group.spell;
+    if (!filter) return [];
+
+    const classFilter = filter.classFromOptionId
+      ? optionSelections[filter.classFromOptionId]
+      : undefined;
+    const classes = filter.classes ?? (classFilter ? [classFilter] : []);
+
+    let spells = getStaticSpells(sources);
+    if (filter.level !== undefined) {
+      spells = spells.filter((spell) => spell.level === filter.level);
     }
+    // Spell data stores class names capitalized ("Wizard") while option values are
+    // lowercase keys, so compare case-insensitively.
+    if (classes.length > 0) {
+      const classSet = new Set(classes.map((cls) => cls.toLowerCase()));
+      spells = spells.filter((spell) =>
+        spell.classes.some((cls) => classSet.has(cls.toLowerCase())),
+      );
+    }
+    if (filter.ritualOnly) {
+      spells = spells.filter((spell) => spell.ritual);
+    }
+    const takenByOtherGroups = new Set(
+      Object.entries(optionSelections)
+        .filter(([optionId]) => optionId !== spellTarget.optionId)
+        .map(([, value]) => value),
+    );
+    spells = spells.filter((spell) => !takenByOtherGroups.has(spell.name));
+
+    if (!spellSearch.trim()) return spells;
+    const q = spellSearch.toLowerCase();
+    return spells.filter((spell) => spell.name.toLowerCase().includes(q));
+  }, [spellTarget, optionSelections, sources, spellSearch]);
+
+  const handleSelectFeat = useCallback((feat: SRDFeat) => {
+    setPendingSelection((prev) => {
+      if (prev !== feat.name) setOptionSelections({});
+      return feat.name;
+    });
+  }, []);
+
+  const handleFeatOptionChange = useCallback((optionId: string, value: string) => {
+    setOptionSelections((prev) => ({ ...prev, [optionId]: value }));
+  }, []);
+
+  const openFeatInfo = useCallback((feat: SRDFeat) => {
+    setInfoFeat(feat);
+    setStep("info");
+  }, []);
+
+  const openSpellModal = useCallback((groupId: string, group: FeatOptionGroup) => {
+    setSpellTarget({ optionId: groupId, group });
+    setSpellSearch("");
+    setStep("spell");
+  }, []);
+
+  const handleBack = useCallback(() => {
+    setStep("list");
+    setInfoFeat(null);
+    setSpellTarget(null);
+    setSpellSearch("");
+  }, []);
+
+  const handleConfirm = useCallback(() => {
+    if (!pendingFeat || !isReadyToConfirm) return;
+    const hasOptions = optionGroups.length > 0;
+    onSelect(pendingFeat, hasOptions ? optionSelections : undefined);
     onClose();
-  };
+  }, [pendingFeat, isReadyToConfirm, optionGroups.length, optionSelections, onSelect, onClose]);
+
+  const modalTitle =
+    step === "info" && infoFeat
+      ? infoFeat.name
+      : step === "spell"
+        ? t("feat.selectSpell", "Pilih Mantra")
+        : t("feat.selectOne", "Pilih Fitur");
 
   const stickyFooter = (
-    <div className="sticky bottom-0 bg-[var(--color-surface)] border-t border-[var(--color-border)] px-4 py-3 flex gap-2">
+    <div className="sticky bottom-0 flex gap-2 border-t border-border-strong bg-surface px-4 py-3">
       <button
         type="button"
-        onClick={onClose}
-        className="flex-1 py-2.5 px-4 text-sm font-medium rounded-lg border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:bg-[var(--color-bg)] transition-colors"
+        onClick={step === "list" ? onClose : handleBack}
+        className="flex-1 rounded-lg border border-border-strong px-4 py-2.5 text-sm font-medium text-ink-muted transition-colors hover:bg-paper-muted"
       >
-        Cancel
+        {step === "list" ? t("common.cancel", "Batal") : t("common.back", "Kembali")}
       </button>
       <button
         type="button"
         onClick={handleConfirm}
-        disabled={!pendingSelection}
-        className={`flex-1 py-2.5 px-4 text-sm font-semibold rounded-lg transition-all ${
-          pendingSelection
-            ? "bg-[var(--color-accent-indigo-600)] text-white hover:bg-[var(--color-accent-indigo-700)] active:bg-[var(--color-accent-indigo-800)]"
-            : "bg-[var(--color-bg)] text-[var(--color-text-muted)] cursor-not-allowed"
+        disabled={!isReadyToConfirm || step !== "list"}
+        className={`flex-1 rounded-lg px-4 py-2.5 text-sm font-semibold transition-all ${
+          isReadyToConfirm && step === "list"
+            ? "bg-ink text-surface active:translate-y-0.5"
+            : "cursor-not-allowed bg-paper-muted text-ink-subtle"
         }`}
       >
-        Confirm
+        {step === "list"
+          ? isReadyToConfirm
+            ? t("feat.selectThisFeat", "Pilih Fitur Ini")
+            : t("feat.completeOptions", "Lengkapi Pilihan")
+          : t("common.back", "Kembali")}
       </button>
     </div>
   );
 
   return (
-    <BottomSheet isOpen={true} onClose={onClose} title={t("feat.selectOne", "Select a Feat")} footer={stickyFooter} showHeader={false}>
-      <div className="px-4 pt-4 pb-2 space-y-3">
-        <div className="relative mb-3">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <MagnifyingGlass className="h-4 w-4 text-[var(--color-text-muted)]" />
-          </div>
-          <input
-            type="text"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search feats..."
-            className="w-full pl-10 pr-4 py-2 text-sm bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-indigo-500)] focus:border-transparent"
-          />
+    <BottomSheet
+      isOpen={true}
+      onClose={onClose}
+      title={modalTitle}
+      footer={stickyFooter}
+      showHeader={false}
+    >
+      {step === "info" && infoFeat ? (
+        <div className={SCROLL_CLASS}>
+          <FeatInfo feat={infoFeat} />
         </div>
-        <div className="space-y-2 mb-3">
-          <div className="flex gap-1.5 overflow-x-auto scrollbar-hide pb-0.5">
-            <button
-              type="button"
-              onClick={() => setSourceFilter("ALL")}
-              className={pillClass(sourceFilter === "ALL")}
-            >
-              All Sources
-            </button>
-            {availableSources.map((src) => (
+      ) : step === "spell" && spellTarget ? (
+        <SpellPicker
+          target={spellTarget}
+          spells={spellChoices}
+          search={spellSearch}
+          onSearchChange={setSpellSearch}
+          selectedValue={optionSelections[spellTarget.optionId]}
+          needsClass={!!spellTarget.group.spell?.classFromOptionId && !optionSelections[spellTarget.group.spell.classFromOptionId]}
+          onPick={(spellName) => {
+            handleFeatOptionChange(spellTarget.optionId, spellName);
+            handleBack();
+          }}
+        />
+      ) : (
+        <div className={SCROLL_CLASS}>
+          <div className="relative mb-3">
+            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+              <MagnifyingGlass className="h-4 w-4 text-ink-muted" />
+            </div>
+            <input
+              type="text"
+              value={search}
+              onChange={(event) => setSearch(event.target.value)}
+              placeholder={t("feat.searchFeats", "Cari fitur...")}
+              className="w-full rounded-lg border border-border-strong bg-surface py-2 pl-10 pr-4 text-sm text-ink placeholder:text-ink-muted focus:border-ink focus:outline-none"
+            />
+          </div>
+
+          <div className="mb-3 space-y-2">
+            <div className="scrollbar-hide flex gap-1.5 overflow-x-auto pb-0.5">
               <button
-                key={src}
                 type="button"
-                onClick={() => setSourceFilter(src)}
-                className={pillClass(sourceFilter === src)}
+                onClick={() => setSourceFilter("ALL")}
+                className={pillClass(sourceFilter === "ALL")}
               >
-                {src}
+                {t("common.all", "Semua Sumber")}
               </button>
-            ))}
+              {availableSources.map((src) => (
+                <button
+                  key={src}
+                  type="button"
+                  onClick={() => setSourceFilter(src)}
+                  className={pillClass(sourceFilter === src)}
+                >
+                  {src}
+                </button>
+              ))}
+            </div>
+            <div className="flex gap-1.5">
+              <button
+                type="button"
+                onClick={() => setPrereqFilter("all")}
+                className={pillClass(prereqFilter === "all")}
+              >
+                {t("feat.allFeats", "Semua Fitur")}
+              </button>
+              <button
+                type="button"
+                onClick={() => setPrereqFilter("with")}
+                className={pillClass(prereqFilter === "with")}
+              >
+                {t("feat.withPrereq", "Berasyarat")}
+              </button>
+              <button
+                type="button"
+                onClick={() => setPrereqFilter("without")}
+                className={pillClass(prereqFilter === "without")}
+              >
+                {t("feat.noPrereq", "Tanpa Syarat")}
+              </button>
+            </div>
           </div>
-          <div className="flex gap-1.5">
-            <button
-              type="button"
-              onClick={() => setPrereqFilter("all")}
-              className={pillClass(prereqFilter === "all")}
-            >
-              All Feats
-            </button>
-            <button
-              type="button"
-              onClick={() => setPrereqFilter("with")}
-              className={pillClass(prereqFilter === "with")}
-            >
-              With Prereq
-            </button>
-            <button
-              type="button"
-              onClick={() => setPrereqFilter("without")}
-              className={pillClass(prereqFilter === "without")}
-            >
-              No Prereq
-            </button>
-          </div>
-        </div>
-        {filteredFeats.length === 0 && (
-          <p className="text-sm text-[var(--color-text-muted)] text-center py-6">No feats found.</p>
-        )}
-        <div className="space-y-2">
-          {filteredFeats.map((feat) => {
-            const isSelected = pendingSelection === feat.name;
-            const isDisabled = disabledFeatNames.has(feat.name) || !meetsPrerequisites(character as Character, feat.name);
-            const sourceLabel = feat.book || (typeof feat.source === "string" ? feat.source : (feat as any).source?.name);
-            return (
-              <SplitSelectionCard
-                key={feat.name}
-                title={feat.name}
-                subtitle={feat.prerequisites ? `Prerequisite: ${feat.prerequisites}` : undefined}
-                badges={sourceLabel && sourceLabel !== "PHB" ? [sourceLabel] : []}
-                isRecommended={isRecommended("feat", feat.name)}
-                isSelected={isSelected}
-                disabled={isDisabled}
-                onSelect={() => {
-                  if (!isDisabled) {
-                    setPendingSelection(feat.name);
-                  }
-                }}
-                infoType="modal"
-                modalContent={
-                  <div className="space-y-3">
-                    {(() => {
-                      const engineFlavor = getEngineFeatFlavor(feat.name);
-                      const flavorText = engineFlavor.flavorId ? t(engineFlavor.flavorId, engineFlavor.flavor) : engineFlavor.flavor;
-                      return flavorText ? (
-                        <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed italic">
-                          {flavorText}
-                        </p>
-                      ) : null;
-                    })()}
-                    {feat.prerequisites && (
-                      <div className="text-xs">
-                        <span className="font-semibold text-[var(--color-text-primary)]">Prerequisite: </span>
-                        <span className="text-[var(--color-text-secondary)]">{feat.prerequisites}</span>
+
+          {filteredFeats.length === 0 && (
+            <p className="py-6 text-center text-sm text-ink-muted">
+              {t("feat.noFeatsFound", "Fitur tidak ditemukan.")}
+            </p>
+          )}
+
+          <div className="space-y-3">
+            {filteredFeats.map((feat) => {
+              const isSelected = pendingSelection === feat.name;
+              const isDisabled = disabledFeatNames.has(feat.name) || !meetsPrerequisites(character as Character, feat.name);
+              const sourceLabel = feat.book || (typeof feat.source === "string" ? feat.source : (feat as any).source?.name);
+              const groups = (feat.options ?? []).filter((group) => group.count > 0);
+
+              const disabledGroup = isDisabled
+                ? "cursor-not-allowed border-border-strong bg-surface opacity-50"
+                : isSelected
+                  ? "border-ink bg-ink/5 shadow-sm"
+                  : "border-border-strong bg-surface hover:border-ink/30";
+
+              return (
+                <div
+                  key={feat.name}
+                  className={`overflow-hidden rounded-2xl border-2 transition-all ${disabledGroup}`}
+                >
+                  <label className="flex cursor-pointer items-center justify-between p-4 transition-transform active:scale-[0.99]">
+                    <div className="min-w-0 flex-1 pr-4">
+                      <h3 className={`text-lg font-bold ${isSelected ? "text-ink" : "text-ink"}`}>
+                        {feat.name}
+                      </h3>
+                      {feat.prerequisites && (
+                        <span className="mt-0.5 block text-[10px] font-bold uppercase tracking-wider text-warning-500">
+                          {t("feat.prerequisiteLabel", "Syarat")}: {feat.prerequisites}
+                        </span>
+                      )}
+                      <p className="mt-1 line-clamp-2 text-xs text-ink-muted">{feat.description}</p>
+                      {sourceLabel && sourceLabel !== "PHB" && (
+                        <span className="mt-1 inline-block rounded bg-paper-muted px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-ink-muted">
+                          {sourceLabel}
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="flex shrink-0 items-center gap-3">
+                      <button
+                        type="button"
+                        onClick={(event) => {
+                          event.preventDefault();
+                          event.stopPropagation();
+                          openFeatInfo(feat);
+                        }}
+                        aria-label={t("feat.infoButton", { feat: feat.name }, "Info {feat}")}
+                        className="flex h-8 w-8 items-center justify-center rounded-full text-ink-muted transition-all hover:bg-ink/10 hover:text-ink active:scale-90"
+                      >
+                        <Info className="h-5 w-5" />
+                      </button>
+
+                      <div
+                        className={`flex h-5 w-5 items-center justify-center rounded-full border-2 transition-colors ${
+                          isSelected
+                            ? "border-ink bg-ink text-surface"
+                            : "border-ink-subtle bg-transparent"
+                        }`}
+                      >
+                        {isSelected && <Check className="h-3 w-3" />}
                       </div>
-                    )}
-                    <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">
-                      {feat.description}
-                    </p>
-                  </div>
-                }
-              />
-            );
-          })}
+                    </div>
+
+                    <input
+                      type="radio"
+                      name="feat-selection"
+                      className="sr-only"
+                      checked={isSelected}
+                      disabled={isDisabled}
+                      onChange={() => {
+                        if (!isDisabled) handleSelectFeat(feat);
+                      }}
+                      aria-label={t("feat.selectFeatOption", { feat: feat.name }, "Pilih {feat}")}
+                    />
+                  </label>
+
+                  {isSelected && groups.length > 0 && (
+                    <div className="mt-2 space-y-3 border-t-2 border-ink/20 bg-paper/50 p-4 pt-0">
+                      <div className="mt-3 flex items-center gap-2">
+                        <Warning className="h-4 w-4 text-ink" />
+                        <span className="text-xs font-bold uppercase tracking-wider text-ink">
+                          {t("feat.optionsRequired", "Pilihan Wajib")}
+                        </span>
+                        <span className="ml-auto text-[11px] font-bold text-ink-muted">
+                          {optionGroups.length - missingOptionIds.length}/{optionGroups.length}
+                        </span>
+                      </div>
+
+                      {groups.map((group) => {
+                        const selectedValue = optionSelections[group.id];
+                        const label = t(group.labelId, group.label);
+                        const isValueTakenElsewhere = (value?: string) =>
+                          !!value &&
+                          Object.entries(optionSelections).some(
+                            ([optionId, current]) => optionId !== group.id && current === value,
+                          );
+
+                        if (group.type === "spell") {
+                          const spell = selectedValue ? { name: selectedValue } : null;
+                          const needsClass =
+                            !!group.spell?.classFromOptionId &&
+                            !optionSelections[group.spell.classFromOptionId];
+
+                          return (
+                            <div key={group.id} className="flex flex-col gap-1.5">
+                              <span className="pl-1 text-[11px] font-bold uppercase tracking-wide text-ink">
+                                {label}
+                              </span>
+                              <button
+                                type="button"
+                                disabled={needsClass}
+                                onClick={(event) => {
+                                  event.preventDefault();
+                                  event.stopPropagation();
+                                  if (!needsClass) openSpellModal(group.id, group);
+                                }}
+                                className={`flex w-full items-center justify-between rounded-xl border-2 p-2.5 text-sm transition-all active:scale-[0.98] ${
+                                  needsClass
+                                    ? "cursor-not-allowed border-border-strong bg-surface opacity-50"
+                                    : "border-border-strong bg-surface hover:border-ink"
+                                }`}
+                              >
+                                <span
+                                  className={spell ? "font-semibold text-ink" : "text-ink-muted"}
+                                >
+                                  {needsClass
+                                    ? t("feat.pickClassFirst", "Pilih kelas daftar mantra dulu")
+                                    : spell
+                                      ? spell.name
+                                      : t("feat.chooseOption", { label }, "-- Pilih {label} --")}
+                                </span>
+                                <BookBookmark className="h-[18px] w-[18px] shrink-0 text-ink-muted" />
+                              </button>
+                            </div>
+                          );
+                        }
+
+                        return (
+                          <div key={group.id} className="flex flex-col gap-1.5">
+                            <label
+                              htmlFor={`feat-option-${group.id}`}
+                              className="pl-1 text-[11px] font-bold uppercase tracking-wide text-ink"
+                            >
+                              {label}
+                            </label>
+                            <select
+                              id={`feat-option-${group.id}`}
+                              className="w-full cursor-pointer appearance-none rounded-xl border-2 border-border-strong bg-surface p-2.5 text-sm text-ink transition-colors focus:border-ink focus:outline-none"
+                              value={selectedValue || ""}
+                              onChange={(event) =>
+                                handleFeatOptionChange(group.id, event.target.value)
+                              }
+                            >
+                              <option value="" disabled>
+                                {t("feat.chooseOption", { label }, "-- Pilih {label} --")}
+                              </option>
+                              {(group.choices ?? []).map((choice) => {
+                                const taken = isValueTakenElsewhere(choice.value);
+                                return (
+                                  <option
+                                    key={choice.value}
+                                    value={choice.value}
+                                    disabled={taken}
+                                    className={taken ? "text-ink-subtle" : undefined}
+                                  >
+                                    {choice.label}
+                                    {taken ? ` ${t("feat.alreadyChosen", "(Sudah Dipilih)")}` : ""}
+                                  </option>
+                                );
+                              })}
+                            </select>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      )}
     </BottomSheet>
+  );
+}
+
+function FeatInfo({ feat }: { feat: SRDFeat }) {
+  const { t } = useLanguage();
+  const engineFlavor = getEngineFeatFlavor(feat.name);
+  const flavorText = engineFlavor.flavorId ? t(engineFlavor.flavorId, engineFlavor.flavor) : engineFlavor.flavor;
+
+  return (
+    <div className="space-y-3">
+      <div className="rounded-2xl border-2 border-border-strong bg-surface p-4">
+        <h3 className="text-lg font-bold text-ink">{feat.name}</h3>
+        {feat.prerequisites && (
+          <span className="mt-0.5 block text-[10px] font-bold uppercase tracking-wider text-warning-500">
+            {t("feat.prerequisiteLabel", "Syarat")}: {feat.prerequisites}
+          </span>
+        )}
+      </div>
+
+      {flavorText && (
+        <p className="text-xs italic leading-relaxed text-ink-muted">{flavorText}</p>
+      )}
+
+      <p className="whitespace-pre-line text-xs leading-relaxed text-ink-muted">{feat.description}</p>
+
+      {feat.summary && (
+        <div className="rounded-xl border-2 border-border-strong bg-surface p-3">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">
+            {t("feat.summary", "Ringkasan")}
+          </span>
+          <p className="mt-1 text-xs leading-relaxed text-ink">{feat.summary}</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+interface SpellPickerProps {
+  target: { optionId: string; group: FeatOptionGroup };
+  spells: { name: string; level: number; school: string }[];
+  search: string;
+  onSearchChange: (value: string) => void;
+  selectedValue?: string;
+  needsClass: boolean;
+  onPick: (spellName: string) => void;
+}
+
+function SpellPicker({
+  target,
+  spells,
+  search,
+  onSearchChange,
+  selectedValue,
+  needsClass,
+  onPick,
+}: SpellPickerProps) {
+  const { t } = useLanguage();
+
+  return (
+    <div className={SCROLL_CLASS}>
+      <div className="relative mb-3">
+        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+          <MagnifyingGlass className="h-4 w-4 text-ink-muted" />
+        </div>
+        <input
+          type="text"
+          value={search}
+          onChange={(event) => onSearchChange(event.target.value)}
+          placeholder={t("feat.searchSpells", "Cari mantra...")}
+          className="w-full rounded-lg border border-border-strong bg-surface py-2 pl-10 pr-4 text-sm text-ink placeholder:text-ink-muted focus:border-ink focus:outline-none"
+        />
+      </div>
+
+      {needsClass && (
+        <p className="mb-3 rounded-xl border-2 border-warning-500/40 bg-warning-500/10 p-3 text-xs font-bold text-ink">
+          {t("feat.pickClassFirst", "Pilih kelas daftar mantra dulu")}
+        </p>
+      )}
+
+      {spells.length === 0 && !needsClass && (
+        <p className="py-6 text-center text-sm text-ink-muted">
+          {t("feat.noSpellsFound", "Mantra tidak ditemukan.")}
+        </p>
+      )}
+
+      <div className="space-y-2">
+        {spells.map((spell) => {
+          const isSelected = selectedValue === spell.name;
+          return (
+            <label
+              key={spell.name}
+              className={`flex cursor-pointer items-center justify-between rounded-xl border-2 p-3 transition-all active:scale-[0.98] ${
+                isSelected ? "border-ink bg-ink/10" : "border-transparent bg-surface hover:border-ink/30"
+              }`}
+            >
+              <div className="min-w-0">
+                <h4 className="font-bold text-ink">{spell.name}</h4>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">
+                  {spell.school} · {spell.level === 0 ? "Cantrip" : `Level ${spell.level}`}
+                </span>
+              </div>
+
+              <div
+                className={`ml-3 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-colors ${
+                  isSelected ? "border-ink bg-ink text-surface" : "border-ink-subtle bg-transparent"
+                }`}
+              >
+                {isSelected && <Check className="h-3 w-3" />}
+              </div>
+
+              <input
+                type="radio"
+                name={`feat-spell-${target.optionId}`}
+                className="sr-only"
+                checked={isSelected}
+                onChange={() => onPick(spell.name)}
+                aria-label={t("feat.selectSpellOption", { spell: spell.name }, "Pilih {spell}")}
+              />
+            </label>
+          );
+        })}
+      </div>
+    </div>
   );
 }

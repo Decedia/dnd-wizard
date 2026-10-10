@@ -22,6 +22,7 @@ export interface HumanVariantConfigPayload {
   abilities: string[];
   skill: string | undefined;
   feat: string | undefined;
+  featOptions?: Record<string, string>;
 }
 
 interface HumanVariantConfigProps {
@@ -29,6 +30,7 @@ interface HumanVariantConfigProps {
   initialAbilities?: string[];
   initialSkill?: string;
   initialFeat?: string;
+  initialFeatOptions?: Record<string, string>;
   disabledFeats?: string[];
   character?: Partial<Character>;
   sources?: string[];
@@ -40,6 +42,7 @@ export function HumanVariantConfig({
   initialAbilities = [],
   initialSkill,
   initialFeat,
+  initialFeatOptions,
   disabledFeats = [],
   character,
   sources,
@@ -50,12 +53,13 @@ export function HumanVariantConfig({
   const [abilities, setAbilities] = useState<string[]>(initialAbilities);
   const [skill, setSkill] = useState<string | undefined>(initialSkill);
   const [feat, setFeat] = useState<string | undefined>(initialFeat);
+  const [featOptions, setFeatOptions] = useState<Record<string, string> | undefined>(initialFeatOptions);
   const [featModalOpen, setFeatModalOpen] = useState(false);
   const feats = useMemo(() => getStaticFeats([], undefined, "en"), []);
 
   useEffect(() => {
-    onChange({ enabled, abilities, skill, feat });
-  }, [enabled, abilities, skill, feat, onChange]);
+    onChange({ enabled, abilities, skill, feat, featOptions });
+  }, [enabled, abilities, skill, feat, featOptions, onChange]);
 
   const toggleAbility = (abilityId: string) => {
     setAbilities((prev) => {
@@ -226,8 +230,11 @@ export function HumanVariantConfig({
           sources={sources || []}
           disabledFeats={disabledFeats}
           character={character as Character}
-          onSelect={(selected: SRDFeat) => {
+          onSelect={(selected: SRDFeat, selectedOptions?: Record<string, string>) => {
             selectFeat(selected.name);
+            setFeatOptions(
+              selectedOptions && Object.keys(selectedOptions).length > 0 ? selectedOptions : undefined,
+            );
             setFeatModalOpen(false);
           }}
           onClose={() => setFeatModalOpen(false)}

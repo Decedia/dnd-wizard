@@ -57,6 +57,9 @@ import races2024DataEn from "@/data/en/2024_phb.json";
 import races2024DataId from "@/data/id/2024_phb.json";
 const races2024DataMap = { en: races2024DataEn, id: races2024DataId } as const;
 
+import { getFeatOptionGroups, type FeatOptionGroup } from "@/data/feat-options";
+
+export type { FeatOptionGroup, FeatOptionChoice, FeatOptionSpellFilter } from "@/data/feat-options";
 import { determineDefaultVisibility } from "./feature-filters";
 
 export interface SRDRace {
@@ -278,6 +281,7 @@ export interface SRDFeat {
   source?: string;
   book?: string;
   summary?: string;
+  options?: FeatOptionGroup[];
 }
 
  export interface SRDLanguage {
@@ -855,20 +859,26 @@ export function getStaticFeats(sources?: string[], ruleset?: string, locale: str
     filtered = filtered.filter((f) => (f as any).ruleset === ruleset || (!(f as any).ruleset && ruleset === "2014"));
   }
   if (!sources || sources.length === 0) {
-    const seen = new Set<string>();
-    return filtered.filter((f) => {
-      if (seen.has(f.name)) return false;
-      seen.add(f.name);
-      return true;
-    });
+    return dedupeFeats(filtered, new Set<string>());
   }
   const sourceFiltered = filtered.filter((f) => sources.includes(f.book || (typeof (f as any).source === "string" ? (f as any).source : (f as any).source?.name) || "PHB"));
   const seen = new Set<string>();
-  return sourceFiltered.filter((f) => {
-    if (seen.has(f.name)) return false;
-    seen.add(f.name);
-    return true;
-  });
+  return dedupeFeats(sourceFiltered, seen);
+}
+
+function dedupeFeats(feats: SRDFeat[], seen: Set<string>): SRDFeat[] {
+  const out: SRDFeat[] = [];
+  for (const feat of feats) {
+    if (seen.has(feat.name)) continue;
+    seen.add(feat.name);
+    out.push(attachFeatOptions(feat));
+  }
+  return out;
+}
+
+function attachFeatOptions(feat: SRDFeat): SRDFeat {
+  const options = getFeatOptionGroups(feat.name);
+  return options.length > 0 ? { ...feat, options } : feat;
 }
 
 export function getStaticFeat(name: string, ruleset?: string, locale: string = "en"): SRDFeat | undefined {

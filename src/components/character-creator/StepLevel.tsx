@@ -55,6 +55,7 @@ interface AsiState {
   d1?: AbilityKey;
   d2?: AbilityKey;
   feat?: string;
+  featOptions?: Record<string, string>;
   confirmed?: boolean;
 }
 
@@ -279,6 +280,13 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
         featureSelections: {
           ...data.featureSelections,
           [`asi-feat-${currentAsiLevel}`]: [asiState.feat],
+          ...(asiState.featOptions && Object.keys(asiState.featOptions).length > 0
+            ? {
+                [`asi-feat-${currentAsiLevel}-options`]: Array.from(
+                  new Set(Object.values(asiState.featOptions)),
+                ),
+              }
+            : {}),
         },
       });
       setAsiAllocation({ str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 });
@@ -726,8 +734,12 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
             ...(data.features || []).filter((f: any) => f.name && f.source !== "custom").map((f: any) => f.name),
             ...Object.values(data.featureSelections || {}).flat(),
           ]}
-          onSelect={(feat: SRDFeat) => {
-            setAsiState((prev) => ({ ...prev, feat: feat.name }));
+          onSelect={(feat: SRDFeat, featOptions?: Record<string, string>) => {
+            setAsiState((prev) => ({
+              ...prev,
+              feat: feat.name,
+              featOptions: featOptions && Object.keys(featOptions).length > 0 ? featOptions : undefined,
+            }));
           }}
           onClose={() => setFeatModalOpen(false)}
         />

@@ -625,6 +625,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
                   initialAbilities={configChoice?.featureData?.abilities || []}
                   initialSkill={configChoice?.featureData?.skill}
                   initialFeat={configChoice?.featureData?.feat}
+                  initialFeatOptions={configChoice?.featureData?.featOptions}
                   disabledFeats={[
                     ...(currentCharacter?.features || []).filter((f: any) => f.name && f.source !== "custom").map((f: any) => f.name),
                     ...Object.values(currentCharacter?.featureSelections || {}).flat(),
