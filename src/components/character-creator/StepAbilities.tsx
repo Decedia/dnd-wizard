@@ -28,8 +28,8 @@ const POINT_BUY_TOTAL = 27;
 const BASE_SCORE = 8;
 const POINT_BUY_MAX = 15;
 const ROLL_MIN = 3;
-const ROLL_MAX = 20;
-const FREE_BUY_MAX = 30;
+const ROLL_MAX = 18;
+const FREE_BUY_MAX = 20;
 
 const METHOD_TABS: { key: AbilityMethod; labelKey: string; labelFallback: string }[] = [
   { key: "pointbuy", labelKey: "abilities.tabPointBuy", labelFallback: "Point Buy" },
@@ -359,11 +359,24 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
     }
 
     const { canIncrement, canDecrement } = getLimits(score);
+    const statCost = getStatCost(score);
+    const nextStepCost = statCostStep(score);
 
     return (
       <div key={key} className={ROW_CLASS}>
         {renderLabelBlock(ability)}
         <div className="flex items-center gap-4">
+          {statMethod === "pointbuy" && (
+            <span
+              className="w-9 text-right text-[10px] font-bold text-ink-muted"
+              title={t("abilities.costTitle", { n: statCost }, "Costs {n} points")}
+            >
+              {statCost}
+              {nextStepCost > 1 && (
+                <span className="text-accent-indigo-700">+{nextStepCost}</span>
+              )}
+            </span>
+          )}
           <button
             type="button"
             onClick={() => changeScore(key, score - 1)}
@@ -464,6 +477,12 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
               className="h-full rounded-full bg-ink transition-all"
               style={{ width: `${(pointsSpent / POINT_BUY_TOTAL) * 100}%` }}
             />
+          </div>
+          <div className="mt-1.5 flex items-center justify-between text-[10px] font-bold text-ink-muted">
+            <span>
+              {t("abilities.pointsSpent", { n: pointsSpent }, "Spent {n}")}
+            </span>
+            <span>{t("abilities.maxScore", { max: POINT_BUY_MAX }, "Max {max}")}</span>
           </div>
         </div>
       )}
