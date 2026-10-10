@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useCallback, useEffect, useLayoutEffect } from "react";
 import { getStaticClasses } from "@/lib/srd-client";
-import { getStaticRaces, getStaticRaceDetails } from "@/lib/srd-client";
+import { getStaticRaces, getStaticRaceDetails, type SRDRace } from "@/lib/srd-client";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { RACE_ICONS } from "@/components/race-icons";
 import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
@@ -11,6 +11,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import {
   CheckIcon as Check,
   CaretRightIcon as ChevronRight,
+  InfoIcon as Info,
   MagnifyingGlassIcon as MagnifyingGlass,
   StarIcon as Star,
   UsersIcon as Users,
@@ -30,7 +31,7 @@ import {
 } from "@/components/icons";
 
 export type SelectionType = "class" | "race";
-export type SelectionStep = "list" | "config";
+export type SelectionStep = "list" | "config" | "info";
 
 export interface SelectionOption {
   name: string;
@@ -176,6 +177,9 @@ export function UnifiedSelectionModal<T extends SelectionType>({
   const [previewItem, setPreviewItem] = useState<SelectionOption | null>(null);
   const [requireChoice, setRequireChoice] = useState(true);
   const [openGroups, setOpenGroups] = useState<string[]>([]);
+  const [infoItem, setInfoItem] = useState<{ option: SelectionOption; groupName: string } | null>(
+    null,
+  );
 
   useLayoutEffect(() => {
     if (isOpen) {
@@ -190,6 +194,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
       setSourceFilter("ALL");
       setRequireChoice(true);
       setOpenGroups([]);
+      setInfoItem(null);
     }
     return () => {
       document.body.style.overflow = "";
@@ -284,6 +289,18 @@ export function UnifiedSelectionModal<T extends SelectionType>({
     [handleItemClick]
   );
 
+  const handleOpenRaceInfo = useCallback((option: SelectionOption, groupName: string) => {
+    setInfoItem({ option, groupName });
+    setStep("info");
+  }, []);
+
+  const handleSelectInfoRace = useCallback(() => {
+    if (!infoItem) return;
+    const { option, groupName } = infoItem;
+    setInfoItem(null);
+    handleRaceOptionClick(option, groupName);
+  }, [infoItem, handleRaceOptionClick]);
+
   const handleGroupToggle = useCallback((groupName: string, isOpen: boolean) => {
     setOpenGroups((prev) =>
       isOpen
@@ -312,6 +329,8 @@ export function UnifiedSelectionModal<T extends SelectionType>({
       }
       onConfirm(payload);
       onClose();
+    } else if (step === "info") {
+      handleSelectInfoRace();
     } else if (step === "list" && previewItem && !previewItem.hasChoice) {
       const payload: SelectionPayload<T> = {
         type: selectionType,
@@ -325,16 +344,17 @@ export function UnifiedSelectionModal<T extends SelectionType>({
       onConfirm(payload);
       onClose();
     }
-  }, [step, selectedItem, configChoice, requireChoice, previewItem, selectionType, onConfirm, onClose]);
+  }, [step, selectedItem, configChoice, requireChoice, previewItem, selectionType, onConfirm, onClose, handleSelectInfoRace]);
 
   const handleBack = useCallback(() => {
     setStep("list");
     setSelectedItem(null);
     setConfigChoice(null);
+    setInfoItem(null);
   }, []);
 
   const handleCancel = useCallback(() => {
-    if (step === "config") {
+    if (step === "config" || step === "info") {
       handleBack();
     } else {
       onClose();
@@ -343,20 +363,29 @@ export function UnifiedSelectionModal<T extends SelectionType>({
 
   if (!isOpen) return null;
 
-  const title = selectionType === "class" ? t("modal.selectClass", "Choose Your Class") : t("modal.selectRace", "Choose Your Race");
+  const title =
+    step === "info" && infoItem
+      ? t("modal.raceInfo", "Info Ras")
+      : selectionType === "class"
+        ? t("modal.selectClass", "Choose Your Class")
+        : t("modal.selectRace", "Choose Your Race");
   const confirmLabel =
     step === "config"
       ? `${t("common.confirm")} ${configChoice ? configChoice.name : t("common.selection", "Selection")}`
-      : previewItem
-      ? t("common.confirmSelection", "Confirm Selection")
-      : t("modal.selectOption", "Select an Option");
+      : step === "info"
+        ? t("modal.selectThisRace", "Pilih Ras Ini")
+        : previewItem
+          ? t("common.confirmSelection", "Confirm Selection")
+          : t("modal.selectOption", "Select an Option");
 
   const isHumanVariantStep = step === "config" && selectedItem?.name === "Human" && selectedItem.choiceType === "variant";
   const variantHumanSelected = isHumanVariantStep && configChoice?.featureData?.choiceType === "variant";
   const isConfirmDisabled =
     step === "config"
       ? requireChoice && !configChoice && !(isHumanVariantStep && !variantHumanSelected)
-      : !previewItem || (previewItem.hasChoice && !configChoice && requireChoice);
+      : step === "info"
+        ? !infoItem
+        : !previewItem || (previewItem.hasChoice && !configChoice && requireChoice);
 
   const isHumanVariantConfig = step === "config" && selectedItem?.name === "Human" && selectedItem.choiceType === "variant";
   const variantEnabled = isHumanVariantConfig && configChoice?.featureData?.choiceType === "variant";
@@ -403,7 +432,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
         onClick={handleCancel}
         className="flex-1 py-2.5 px-4 text-sm font-medium rounded-lg border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:bg-[var(--color-bg)] transition-colors"
       >
-        {step === "config" ? t("common.back", "Back") : t("common.cancel", "Cancel")}
+        {step === "config" || step === "info" ? t("common.back", "Back") : t("common.cancel", "Cancel")}
       </button>
       <button
         type="button"
@@ -428,17 +457,26 @@ export function UnifiedSelectionModal<T extends SelectionType>({
       footer={stickyFooter}
       showHeader={false}
     >
-      {stickyHeader}
+      {step !== "info" && stickyHeader}
 
-      {step === "list" && (
+      {(step === "list" || step === "info") && (
         <div className="flex-1 max-h-[75vh] space-y-3 overflow-y-auto overscroll-contain p-4 pb-8">
-          {filteredOptions.length === 0 && (
-            <p className="py-8 text-center text-sm text-ink-muted">
-              {selectionType === "race"
-                ? t("modal.noRacesFound", "Tidak ada ras yang cocok dengan pencarianmu.")
-                : t("modal.noClassesFound", "Tidak ada kelas yang cocok dengan pencarianmu.")}
-            </p>
-          )}
+          {step === "info" && infoItem ? (
+            <RaceInfoPanel
+              option={infoItem.option}
+              characterSources={characterSources}
+              language={language}
+              t={t}
+            />
+          ) : (
+            <>
+            {filteredOptions.length === 0 && (
+              <p className="py-8 text-center text-sm text-ink-muted">
+                {selectionType === "race"
+                  ? t("modal.noRacesFound", "Tidak ada ras yang cocok dengan pencarianmu.")
+                  : t("modal.noClassesFound", "Tidak ada kelas yang cocok dengan pencarianmu.")}
+              </p>
+            )}
 
           {selectionType === "race" ? (
             <div className="space-y-3">
@@ -516,14 +554,29 @@ export function UnifiedSelectionModal<T extends SelectionType>({
                               )}
                             </div>
 
-                            <div
-                              className={`ml-3 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-colors ${
-                                isSelected
-                                  ? "border-ink bg-ink text-surface"
-                                  : "border-ink-subtle bg-transparent"
-                              }`}
-                            >
-                              {isSelected && <Check className="h-3 w-3" />}
+                            <div className="flex items-center gap-3">
+                              <button
+                                type="button"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  handleOpenRaceInfo(opt, group.groupName);
+                                }}
+                                aria-label={t("modal.raceInfoButton", { race: opt.name }, "Info {race}")}
+                                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-ink-muted transition-all hover:bg-ink/10 hover:text-ink active:scale-90"
+                              >
+                                <Info className="h-5 w-5" />
+                              </button>
+
+                              <div
+                                className={`ml-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-colors ${
+                                  isSelected
+                                    ? "border-ink bg-ink text-surface"
+                                    : "border-ink-subtle bg-transparent"
+                                }`}
+                              >
+                                {isSelected && <Check className="h-3 w-3" />}
+                              </div>
                             </div>
 
                             <input
@@ -558,6 +611,8 @@ export function UnifiedSelectionModal<T extends SelectionType>({
                   />
                 ))}
             </div>
+            )}
+            </>
           )}
         </div>
       )}
@@ -768,7 +823,6 @@ interface ConfigChoiceCardProps {
   isSelected: boolean;
   onClick: () => void;
 }
-
 function ConfigChoiceCard({ choice, isSelected, onClick }: ConfigChoiceCardProps) {
   return (
     <button
@@ -803,5 +857,141 @@ function ConfigChoiceCard({ choice, isSelected, onClick }: ConfigChoiceCardProps
         </div>
       </div>
     </button>
+  );
+}
+
+interface RaceInfoPanelProps {
+  option: SelectionOption;
+  characterSources?: string[];
+  language: string;
+  t: ReturnType<typeof useLanguage>["t"];
+}
+
+function formatDarkvision(
+  darkvision: SRDRace["darkvision"] | undefined,
+  t: ReturnType<typeof useLanguage>["t"],
+): string {
+  if (!darkvision) return t("modal.none", "Tidak ada");
+  if (typeof darkvision === "object" && typeof darkvision.range === "number") {
+    return `${darkvision.range} ft`;
+  }
+  return t("common.yes", "Ya");
+}
+
+function RaceInfoPanel({ option, characterSources, language, t }: RaceInfoPanelProps) {
+  const details = getStaticRaceDetails(option.name, characterSources, undefined, language);
+  const abilityIncreases = Object.entries(details?.abilityScoreIncreases || {});
+  const traits = details?.traits || [];
+  const languages = details?.languages || [];
+
+  return (
+    <div className="space-y-4">
+      <div className="rounded-2xl border-2 border-border-strong bg-surface p-4">
+        <h3 className="text-lg font-bold text-ink">{option.name}</h3>
+        <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
+          {option.source && (
+            <span className="rounded bg-paper-muted px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-ink-muted">
+              {option.source}
+            </span>
+          )}
+          {option.basicStats && (
+            <span className="text-[10px] font-bold uppercase tracking-wider text-ink-subtle">
+              {option.basicStats}
+            </span>
+          )}
+        </div>
+      </div>
+
+      {details?.flavorText && (
+        <p className="text-xs leading-relaxed text-ink-muted">{details.flavorText}</p>
+      )}
+
+      <div className="grid grid-cols-2 gap-2">
+        <div className="rounded-xl border-2 border-border-strong bg-surface p-3">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">
+            {t("modal.size", "Ukuran")}
+          </span>
+          <p className="mt-0.5 text-sm font-bold text-ink">{details?.size || "—"}</p>
+        </div>
+        <div className="rounded-xl border-2 border-border-strong bg-surface p-3">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">
+            {t("modal.speed", "Kecepatan")}
+          </span>
+          <p className="mt-0.5 text-sm font-bold text-ink">
+            {details?.speed ? `${details.speed} ft` : "—"}
+          </p>
+        </div>
+        <div className="rounded-xl border-2 border-border-strong bg-surface p-3">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">
+            {t("modal.darkvision", "Penglihatan Gelap")}
+          </span>
+          <p className="mt-0.5 text-sm font-bold text-ink">
+            {formatDarkvision(details?.darkvision, t)}
+          </p>
+        </div>
+        <div className="rounded-xl border-2 border-border-strong bg-surface p-3">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">
+            {t("modal.languages", "Bahasa")}
+          </span>
+          <p className="mt-0.5 text-sm font-bold text-ink">
+            {languages.length > 0 ? languages.join(", ") : "—"}
+          </p>
+        </div>
+      </div>
+
+      {abilityIncreases.length > 0 && (
+        <div>
+          <span className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">
+            {t("modal.abilityBonuses", "Bonus Kemampuan")}
+          </span>
+          <div className="mt-1.5 flex flex-wrap gap-1.5">
+            {abilityIncreases.map(([stat, bonus]) => (
+              <span
+                key={stat}
+                className="rounded-lg border-2 border-ink bg-ink/10 px-2 py-1 text-xs font-bold text-ink"
+              >
+                +{bonus} {stat.toUpperCase()}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {option.recommendationText && (
+        <div className="rounded-xl border-2 border-border-strong bg-surface p-3">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">
+            {t("modal.recommendation", "Rekomendasi")}
+          </span>
+          <p className="mt-1 text-xs leading-relaxed text-ink-muted">
+            {option.recommendationText}
+          </p>
+        </div>
+      )}
+
+      <div>
+        <span className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">
+          {t("modal.traits", "Ciri-ciri")}
+        </span>
+        {traits.length > 0 ? (
+          <div className="mt-1.5 space-y-2">
+            {traits.map((trait, index) => (
+              <div
+                key={`${trait.name}-${index}`}
+                className="rounded-xl border-2 border-border-strong bg-surface p-3"
+              >
+                <h4 className="text-sm font-bold text-ink">{trait.name}</h4>
+                <p className="mt-1 text-xs leading-relaxed text-ink-muted">
+                  {trait.summary || trait.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="mt-1.5 text-xs text-ink-muted">
+            {t("modal.noRaceInfo", "Detail ras tidak tersedia.")}
+          </p>
+        )}
+      </div>
+    </div>
   );
 }
