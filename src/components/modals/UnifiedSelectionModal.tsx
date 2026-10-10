@@ -298,6 +298,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
     if (!infoItem) return;
     const { option, groupName } = infoItem;
     setInfoItem(null);
+    setStep("list");
     handleRaceOptionClick(option, groupName);
   }, [infoItem, handleRaceOptionClick]);
 
@@ -378,6 +379,8 @@ export function UnifiedSelectionModal<T extends SelectionType>({
           ? t("common.confirmSelection", "Confirm Selection")
           : t("modal.selectOption", "Select an Option");
 
+  const showInfo = step === "info" && !!infoItem;
+
   const isHumanVariantStep = step === "config" && selectedItem?.name === "Human" && selectedItem.choiceType === "variant";
   const variantHumanSelected = isHumanVariantStep && configChoice?.featureData?.choiceType === "variant";
   const isConfirmDisabled =
@@ -426,7 +429,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
   );
 
   const stickyFooter = (
-    <div className="sticky bottom-0 bg-[var(--color-surface)] border-t border-[var(--color-border)] px-4 py-3 flex gap-2">
+    <div className="bg-[var(--color-surface)] border-t border-[var(--color-border)] px-4 py-3 flex gap-2">
       <button
         type="button"
         onClick={handleCancel}
@@ -457,11 +460,11 @@ export function UnifiedSelectionModal<T extends SelectionType>({
       footer={stickyFooter}
       showHeader={false}
     >
-      {step !== "info" && stickyHeader}
+      {!showInfo && stickyHeader}
 
-      {(step === "list" || step === "info") && (
-        <div className="flex-1 max-h-[75vh] space-y-3 overflow-y-auto overscroll-contain p-4 pb-8">
-          {step === "info" && infoItem ? (
+      {(step === "list" || showInfo) && (
+        <div className="flex-1 min-h-0 space-y-3 overflow-y-auto overscroll-contain p-4 pb-8">
+          {showInfo ? (
             <RaceInfoPanel
               option={infoItem.option}
               characterSources={characterSources}
@@ -525,51 +528,43 @@ export function UnifiedSelectionModal<T extends SelectionType>({
                       {group.options.map((opt) => {
                         const isSelected = previewItem?.name === opt.name;
                         return (
-                          <label
+                          <div
                             key={opt.name}
-                            className={`flex cursor-pointer items-center justify-between rounded-xl border-2 p-3 transition-all active:scale-[0.98] ${
+                            className={`flex flex-row overflow-hidden rounded-xl border-2 transition-all ${
                               isSelected
                                 ? "border-ink bg-ink/10"
                                 : "border-transparent bg-surface hover:border-ink/30"
                             }`}
                           >
-                            <div className="min-w-0">
-                              <h4 className="font-bold text-ink">{opt.name}</h4>
-                              <div className="mt-1 flex flex-wrap items-center gap-1.5">
-                                {opt.source && (
-                                  <span className="rounded bg-paper-muted px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-ink-muted">
-                                    {opt.source}
-                                  </span>
-                                )}
-                                {opt.basicStats && (
-                                  <span className="text-[10px] font-bold uppercase tracking-wider text-ink-subtle">
-                                    {opt.basicStats}
-                                  </span>
+                            <button
+                              type="button"
+                              onClick={() => handleRaceOptionClick(opt, group.groupName)}
+                              aria-label={t("modal.selectRaceOption", { race: opt.name }, "Pilih {race}")}
+                              className="flex flex-1 items-center justify-between p-3 text-left transition active:scale-[0.98]"
+                            >
+                              <div className="min-w-0">
+                                <h4 className="font-bold text-ink">{opt.name}</h4>
+                                <div className="mt-1 flex flex-wrap items-center gap-1.5">
+                                  {opt.source && (
+                                    <span className="rounded bg-paper-muted px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-ink-muted">
+                                      {opt.source}
+                                    </span>
+                                  )}
+                                  {opt.basicStats && (
+                                    <span className="text-[10px] font-bold uppercase tracking-wider text-ink-subtle">
+                                      {opt.basicStats}
+                                    </span>
+                                  )}
+                                </div>
+                                {opt.description && (
+                                  <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-ink-muted">
+                                    {opt.description}
+                                  </p>
                                 )}
                               </div>
-                              {opt.description && (
-                                <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-ink-muted">
-                                  {opt.description}
-                                </p>
-                              )}
-                            </div>
-
-                            <div className="flex items-center gap-3">
-                              <button
-                                type="button"
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  e.stopPropagation();
-                                  handleOpenRaceInfo(opt, group.groupName);
-                                }}
-                                aria-label={t("modal.raceInfoButton", { race: opt.name }, "Info {race}")}
-                                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-ink-muted transition-all hover:bg-ink/10 hover:text-ink active:scale-90"
-                              >
-                                <Info className="h-5 w-5" />
-                              </button>
 
                               <div
-                                className={`ml-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-colors ${
+                                className={`ml-3 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-colors ${
                                   isSelected
                                     ? "border-ink bg-ink text-surface"
                                     : "border-ink-subtle bg-transparent"
@@ -577,17 +572,17 @@ export function UnifiedSelectionModal<T extends SelectionType>({
                               >
                                 {isSelected && <Check className="h-3 w-3" />}
                               </div>
-                            </div>
+                            </button>
 
-                            <input
-                              type="radio"
-                              name="race-selection"
-                              className="sr-only"
-                              checked={isSelected}
-                              onChange={() => handleRaceOptionClick(opt, group.groupName)}
-                              aria-label={t("modal.selectRaceOption", { race: opt.name }, "Pilih {race}")}
-                            />
-                          </label>
+                            <button
+                              type="button"
+                              onClick={() => handleOpenRaceInfo(opt, group.groupName)}
+                              aria-label={t("modal.raceInfoButton", { race: opt.name }, "Info {race}")}
+                              className="flex w-12 shrink-0 items-center justify-center border-l-2 border-border-muted text-ink-muted transition hover:bg-ink/5 hover:text-ink active:scale-90"
+                            >
+                              <Info className="h-5 w-5" />
+                            </button>
+                          </div>
                         );
                       })}
                     </div>

@@ -330,42 +330,34 @@ export function FeatSelectionModal({
               return (
                 <div
                   key={feat.name}
-                  className={`overflow-hidden rounded-2xl border-2 transition-all ${disabledGroup}`}
+                  className={`relative overflow-hidden rounded-2xl border-2 transition-all ${disabledGroup}`}
                 >
-                  <label className="flex cursor-pointer items-center justify-between p-4 transition-transform active:scale-[0.99]">
-                    <div className="min-w-0 flex-1 pr-4">
-                      <h3 className={`text-lg font-bold ${isSelected ? "text-ink" : "text-ink"}`}>
-                        {feat.name}
-                      </h3>
-                      {feat.prerequisites && (
-                        <span className="mt-0.5 block text-[10px] font-bold uppercase tracking-wider text-warning-500">
-                          {t("feat.prerequisiteLabel", "Syarat")}: {feat.prerequisites}
-                        </span>
-                      )}
-                      <p className="mt-1 line-clamp-2 text-xs text-ink-muted">{feat.description}</p>
-                      {sourceLabel && sourceLabel !== "PHB" && (
-                        <span className="mt-1 inline-block rounded bg-paper-muted px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-ink-muted">
-                          {sourceLabel}
-                        </span>
-                      )}
-                    </div>
-
-                    <div className="flex shrink-0 items-center gap-3">
-                      <button
-                        type="button"
-                        onClick={(event) => {
-                          event.preventDefault();
-                          event.stopPropagation();
-                          openFeatInfo(feat);
-                        }}
-                        aria-label={t("feat.infoButton", { feat: feat.name }, "Info {feat}")}
-                        className="flex h-8 w-8 items-center justify-center rounded-full text-ink-muted transition-all hover:bg-ink/10 hover:text-ink active:scale-90"
-                      >
-                        <Info className="h-5 w-5" />
-                      </button>
+                  <div className="flex flex-row">
+                    <button
+                      type="button"
+                      disabled={isDisabled}
+                      onClick={() => {
+                        if (!isDisabled) handleSelectFeat(feat);
+                      }}
+                      className="flex flex-1 items-start gap-3 p-4 text-left transition active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-50"
+                    >
+                      <div className="min-w-0 flex-1">
+                        <h3 className="text-lg font-bold text-ink">{feat.name}</h3>
+                        {feat.prerequisites && (
+                          <span className="mt-0.5 block text-[10px] font-bold uppercase tracking-wider text-warning-500">
+                            {t("feat.prerequisiteLabel", "Syarat")}: {feat.prerequisites}
+                          </span>
+                        )}
+                        <p className="mt-1 line-clamp-2 text-xs text-ink-muted">{feat.description}</p>
+                        {sourceLabel && sourceLabel !== "PHB" && (
+                          <span className="mt-1 inline-block rounded bg-paper-muted px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-ink-muted">
+                            {sourceLabel}
+                          </span>
+                        )}
+                      </div>
 
                       <div
-                        className={`flex h-5 w-5 items-center justify-center rounded-full border-2 transition-colors ${
+                        className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-colors ${
                           isSelected
                             ? "border-ink bg-ink text-surface"
                             : "border-ink-subtle bg-transparent"
@@ -373,20 +365,17 @@ export function FeatSelectionModal({
                       >
                         {isSelected && <Check className="h-3 w-3" />}
                       </div>
-                    </div>
+                    </button>
 
-                    <input
-                      type="radio"
-                      name="feat-selection"
-                      className="sr-only"
-                      checked={isSelected}
-                      disabled={isDisabled}
-                      onChange={() => {
-                        if (!isDisabled) handleSelectFeat(feat);
-                      }}
-                      aria-label={t("feat.selectFeatOption", { feat: feat.name }, "Pilih {feat}")}
-                    />
-                  </label>
+                    <button
+                      type="button"
+                      onClick={() => openFeatInfo(feat)}
+                      aria-label={t("feat.infoButton", { feat: feat.name }, "Info {feat}")}
+                      className="flex w-14 shrink-0 items-center justify-center border-l-2 border-border-strong text-ink-muted transition hover:bg-ink/5 hover:text-ink active:scale-90"
+                    >
+                      <Info className="h-5 w-5" />
+                    </button>
+                  </div>
 
                   {isSelected && groups.length > 0 && (
                     <div className="mt-2 space-y-3 border-t-2 border-ink/20 bg-paper/50 p-4 pt-0">
@@ -423,9 +412,7 @@ export function FeatSelectionModal({
                               <button
                                 type="button"
                                 disabled={needsClass}
-                                onClick={(event) => {
-                                  event.preventDefault();
-                                  event.stopPropagation();
+                                onClick={() => {
                                   if (!needsClass) openSpellModal(group.id, group);
                                 }}
                                 className={`flex w-full items-center justify-between rounded-xl border-2 p-2.5 text-sm transition-all active:scale-[0.98] ${
@@ -584,9 +571,12 @@ function SpellPicker({
         {spells.map((spell) => {
           const isSelected = selectedValue === spell.name;
           return (
-            <label
+            <button
               key={spell.name}
-              className={`flex cursor-pointer items-center justify-between rounded-xl border-2 p-3 transition-all active:scale-[0.98] ${
+              type="button"
+              onClick={() => onPick(spell.name)}
+              aria-label={t("feat.selectSpellOption", { spell: spell.name }, "Pilih {spell}")}
+              className={`flex w-full items-center justify-between rounded-xl border-2 p-3 text-left transition-all active:scale-[0.98] ${
                 isSelected ? "border-ink bg-ink/10" : "border-transparent bg-surface hover:border-ink/30"
               }`}
             >
@@ -604,16 +594,7 @@ function SpellPicker({
               >
                 {isSelected && <Check className="h-3 w-3" />}
               </div>
-
-              <input
-                type="radio"
-                name={`feat-spell-${target.optionId}`}
-                className="sr-only"
-                checked={isSelected}
-                onChange={() => onPick(spell.name)}
-                aria-label={t("feat.selectSpellOption", { spell: spell.name }, "Pilih {spell}")}
-              />
-            </label>
+            </button>
           );
         })}
       </div>
