@@ -22,7 +22,11 @@ import {
   FistIcon,
 } from "@/components/icons";
 
-const DICE_RE = /\*\*(\d+d\d+)\*\*|(?<!\*)(\d+d\d+)(?!\*)/g;
+const DICE_SHAPE = "(?:\\d+d\\d+|d\\d+|\\d+d)";
+const DICE_RE = new RegExp(
+  `\\*\\*(${DICE_SHAPE})\\*\\*|(?<!\\*)(?<![\\w])(${DICE_SHAPE})(?![\\w-])`,
+  "g",
+);
 
 const DAMAGE_TYPES = [
   "acid",

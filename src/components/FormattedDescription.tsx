@@ -2,6 +2,7 @@
 
 import { DamageBadge } from "@/components/character-sheet/DamageBadge";
 import { DiceBadge } from "@/components/DiceBadge";
+import { highlightDice } from "@/components/DiceText";
 
 function renderWithBadges(text: string): React.ReactNode[] {
   const parts: React.ReactNode[] = [];
@@ -10,23 +11,30 @@ function renderWithBadges(text: string): React.ReactNode[] {
   let match: RegExpExecArray | null;
   let key = 0;
 
-  while ((match = regex.exec(text)) !== null) {
-    if (match.index > lastIndex) {
-      parts.push(text.slice(lastIndex, match.index));
+  const pushPlainText = (chunk: string) => {
+    if (!chunk) return;
+    for (const part of highlightDice(chunk)) {
+      if (part.type === "dice") {
+        parts.push(<DiceBadge key={`dice-${key++}`} dice={part.value} />);
+      } else if (part.value) {
+        parts.push(part.value);
+      }
     }
+  };
+
+  while ((match = regex.exec(text)) !== null) {
+    pushPlainText(text.slice(lastIndex, match.index));
     const type = match[1];
     const content = match[2];
     if (type === "dice") {
-      parts.push(<DiceBadge key={key++} dice={content} />);
+      parts.push(<DiceBadge key={`tag-${key++}`} dice={content} />);
     } else if (type === "damage") {
-      parts.push(<DamageBadge key={key++} type={content} size="sm" />);
+      parts.push(<DamageBadge key={`tag-${key++}`} type={content} size="sm" />);
     }
     lastIndex = match.index + match[0].length;
   }
 
-  if (lastIndex < text.length) {
-    parts.push(text.slice(lastIndex));
-  }
+  pushPlainText(text.slice(lastIndex));
   return parts.length > 0 ? parts : [text];
 }
 
