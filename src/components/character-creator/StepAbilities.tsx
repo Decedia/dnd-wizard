@@ -82,6 +82,25 @@ const EMPTY_STATS: Record<AbilityKey, number> = {
   cha: BASE_SCORE,
 };
 
+const PLACEHOLDER_SCORE = 10;
+
+const seedScores = (character: Character): Record<AbilityKey, number> => {
+  const variantAbilities = new Set(character.variantHumanAbilities || []);
+  const seeded = { ...EMPTY_STATS };
+  ABILITIES.forEach((ability) => {
+    const saved = character[ability.key] as number | undefined;
+    if (typeof saved !== "number") return;
+    const base = variantAbilities.has(ability.key) ? saved - 1 : saved;
+    if (base >= ROLL_MIN && base <= FREE_BUY_MAX) {
+      seeded[ability.key] = base;
+    }
+  });
+  const isPlaceholder = ABILITIES.every(
+    (ability) => seeded[ability.key] === PLACEHOLDER_SCORE,
+  );
+  return isPlaceholder ? { ...EMPTY_STATS } : seeded;
+};
+
 const getStatCost = (score: number): number => {
   if (score === 8) return 0;
   if (score === 9) return 1;
@@ -165,23 +184,13 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
     (data.abilityMethod as AbilityMethod) || "pointbuy",
   );
 
-  const [stats, setStats] = useState<Record<AbilityKey, number>>(() => {
-    const initial = { ...EMPTY_STATS };
-    ABILITIES.forEach((ability) => {
-      const currentScore = data[ability.key] as number | undefined;
-      if (
-        typeof currentScore === "number" &&
-        currentScore >= ROLL_MIN &&
-        currentScore <= FREE_BUY_MAX
-      ) {
-        initial[ability.key] = currentScore;
-      }
-    });
-    return normalizeForMethod(statMethod, initial);
-  });
+  const [stats, setStats] = useState<Record<AbilityKey, number>>(() =>
+    normalizeForMethod(statMethod, seedScores(data)),
+  );
 
   const [arraySelections, setArraySelections] = useState<Record<AbilityKey, number | null>>(
     () => {
+      const seeded = seedScores(data);
       const initial: Record<AbilityKey, number | null> = {
         str: null,
         dex: null,
@@ -190,12 +199,12 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
         wis: null,
         cha: null,
       };
-      const current = ABILITIES.map((ability) => data[ability.key] as number);
-      const sortedCurrent = [...current].sort((a, b) => b - a).join(",");
+      const values = ABILITIES.map((ability) => seeded[ability.key]);
+      const sortedSeeded = [...values].sort((a, b) => b - a).join(",");
       const sortedArray = [...STANDARD_ARRAY].sort((a, b) => b - a).join(",");
-      if (sortedCurrent === sortedArray) {
+      if (sortedSeeded === sortedArray) {
         ABILITIES.forEach((ability) => {
-          initial[ability.key] = data[ability.key] as number;
+          initial[ability.key] = seeded[ability.key];
         });
       }
       return initial;
