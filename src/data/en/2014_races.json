@@ -149,7 +149,8 @@
         "is_recommended": false,
         "text": "A tall, aggressive goblinoid with reach and ambush mechanics. Fun for hit-and-run tactics, but the extra movement and surprise rules can trip up new players."
       },
-      "flavorText": "Born tall and long-limbed, you strike from unexpected range and prefer ambush to fair fight. Your reach and sudden aggression make you a terrifying opener in any encounter."
+      "flavorText": "Born tall and long-limbed, you strike from unexpected range and prefer ambush to fair fight. Your reach and sudden aggression make you a terrifying opener in any encounter.",
+      "flavor": "Ideal for stealthy ambushers. You get incredibly long, stretchy arms for melee attacks and deal massive extra damage on turn one."
     },
     {
       "index": "changeling",
@@ -227,7 +228,8 @@
         "is_recommended": false,
         "text": "A shapeshifting diplomat with identity-changing abilities. High social and deceptive potential, but shapechange mechanics add a mechanical and roleplay learning curve."
       },
-      "flavorText": "Shape and voice bend to your will, letting you become anyone you have seen. You are a living mask—equal parts spy, actor, and drifting mystery—whose true self is known to no one."
+      "flavorText": "Shape and voice bend to your will, letting you become anyone you have seen. You are a living mask—equal parts spy, actor, and drifting mystery—whose true self is known to no one.",
+      "flavor": "The ultimate infiltrator. Perfect if you want a social-heavy game where you can physically change your face and voice at will."
     },
     {
       "index": "deep-gnome",
@@ -350,7 +352,8 @@
         "is_recommended": false,
         "text": "A subterranean gnome with superior darkvision and stealth bonuses. Niche but flavorful, best suited for players who enjoy light-dependent exploration tactics."
       },
-      "flavorText": "Carved from deep stone and deeper shadow, you see what others cannot and vanish before they realize you were there. Your cunning is matched only by your gift for staying unseen."
+      "flavorText": "Carved from deep stone and deeper shadow, you see what others cannot and vanish before they realize you were there. Your cunning is matched only by your gift for staying unseen.",
+      "flavor": "Choose this if you want a stealthy, pragmatic character who easily blends into rocky terrain and possesses innate Underdark magic."
     },
     {
       "index": "dhampir",
@@ -633,7 +636,8 @@
         "is_recommended": false,
         "text": "A draconic hero with breath weapon and damage resistance. Simple racial traits, but choosing the right draconic ancestry adds a small decision layer for newer players."
       },
-      "flavorText": "Dragon blood runs in your veins, giving you draconic presence, a breath weapon, and the instinct to roar when victory is yours. You carry ancestral pride into every battle."
+      "flavorText": "Dragon blood runs in your veins, giving you draconic presence, a breath weapon, and the instinct to roar when victory is yours. You carry ancestral pride into every battle.",
+      "flavor": "Ideal if you want to look intimidating, resist elemental damage, and literally breathe fire (or acid, ice, or lightning) on your enemies."
     },
     {
       "index": "dragonborn-chromatic",
@@ -1185,7 +1189,8 @@
         "is_recommended": true,
         "text": "A sturdy traditional warrior with excellent durability and darkvision. Dwarven Resilience and Combat Training are easy to use, making it an ideal beginner race."
       },
-      "flavorText": "Forged from stubbornness and mountain stone, you outlast foes through endurance and grit. You carry the weight of tradition and the strength of ages, and you are not easily moved."
+      "flavorText": "Forged from stubbornness and mountain stone, you outlast foes through endurance and grit. You carry the weight of tradition and the strength of ages, and you are not easily moved.",
+      "flavor": "Choose this if you want to play a tough, stubborn survivor who excels in heavy armor, resists poison, and holds the frontline."
     },
     {
       "name": "Hill Dwarf",
@@ -1729,7 +1734,8 @@
         "is_recommended": false,
         "text": "A fey-touched elf with seasonal abilities that shift their playstyle. Interesting tactical variety, but the changing mechanics can confuse new players."
       },
-      "flavorText": "Touched by the fey and bound to a season of the heart, you shift between grace and tempest. One moment you are serene beauty; the next you are a force of nature."
+      "flavorText": "Touched by the fey and bound to a season of the heart, you shift between grace and tempest. One moment you are serene beauty; the next you are a force of nature.",
+      "flavor": "Play this if you want a Feywild elf who can magically teleport short distances, with extra effects based on your emotional season."
     },
     {
       "name": "Elf",
@@ -1853,7 +1859,8 @@
         "is_recommended": false,
         "text": "A graceful, long-lived warrior with keen senses and fey ancestry. Strong in exploration and stealth, but the variety of elven subraces and traits adds choice complexity."
       },
-      "flavorText": "You have watched centuries pass like seasons, and that long view shapes everything you do. Fey-touched and sharp, you move through the world with unnatural grace and deliberate patience."
+      "flavorText": "You have watched centuries pass like seasons, and that long view shapes everything you do. Fey-touched and sharp, you move through the world with unnatural grace and deliberate patience.",
+      "flavor": "Perfect for playing an ageless, graceful wanderer with deep ties to ancient magic, nature, and unmatched perception."
     },
     {
       "index": "firbolg",
@@ -1980,7 +1987,8 @@
         "is_recommended": false,
         "text": "A gentle giant with invisibility and nature magic. Easy to roleplay, but the subtle defensive tools require tactical timing to use well."
       },
-      "flavorText": "Gentle yet formidable, you are of the forest’s deep heart. Nature bends to your quiet will, and your empathy masks a strength that can shift the very world around you."
+      "flavorText": "Gentle yet formidable, you are of the forest’s deep heart. Nature bends to your quiet will, and your empathy masks a strength that can shift the very world around you.",
+      "flavor": "Choose this if you want to play a gentle, nature-loving giant who can turn invisible and casually chat with animals and plants."
     },
     {
       "index": "githyanki",
@@ -2284,7 +2292,8 @@
         "is_recommended": false,
         "text": "A psionic warrior from the Astral Plane with innate spellcasting and teleportation. Cool concept, but managing innate spells and psionic options adds complexity."
       },
-      "flavorText": "Tempered in the Astral Plane, you are a warrior-philosopher forged against mind flayers. Your silver sword and iron will are the legacy of a people who refused to be broken."
+      "flavorText": "Tempered in the Astral Plane, you are a warrior-philosopher forged against mind flayers. Your silver sword and iron will are the legacy of a people who refused to be broken.",
+      "flavor": "Play this to be a militaristic, astral warrior who can magically jump, step through dimensions, and swap out skills every morning."
     },
     {
       "index": "githzerai",
@@ -2385,7 +2394,8 @@
         "is_recommended": false,
         "text": "A disciplined monk-like race with psionic defense and meditation. The mental discipline mechanics add another layer for new players to track."
       },
-      "flavorText": "Your mind is your forge and your sanctuary. Through meditation and psionic might, you reshape reality around you, turning thought into power and discipline into unstoppable force."
+      "flavorText": "Your mind is your forge and your sanctuary. Through meditation and psionic might, you reshape reality around you, turning thought into power and discipline into unstoppable force.",
+      "flavor": "Ideal for a monk or wizard who relies on mental discipline, granting you innate psionic spells like Shield to protect yourself."
     },
     {
       "name": "Gnome",
@@ -2459,7 +2469,8 @@
         "is_recommended": false,
         "text": "A small, clever inventor with innate magic resistance. Good for trickster or arcane builds, but gnomish subraces and feature interactions add mild complexity."
       },
-      "flavorText": "Small in body but enormous in curiosity, you see the world as a puzzle begging to be solved. Your ingenuity is boundless, your enthusiasm infectious, and your inventions… occasionally explosive."
+      "flavorText": "Small in body but enormous in curiosity, you see the world as a puzzle begging to be solved. Your ingenuity is boundless, your enthusiasm infectious, and your inventions… occasionally explosive.",
+      "flavor": "Perfect for playing a brilliant, energetic tinkerer or illusionist with a natural magical resistance to mind-altering spells."
     },
     {
       "name": "Forest Gnome",
@@ -2802,7 +2813,8 @@
         "is_recommended": false,
         "text": "A small, crafty creature with Fury of the Small and Nimble Escape. Strong tactical positioning tools, but the extra bonus-action option can be tricky for new players."
       },
-      "flavorText": "Small, fast, and ferociously opportunistic, you turn disadvantages into devastating advantages. You are chaos with a purpose—quick, cunning, and genuinely unpredictable in the best way."
+      "flavorText": "Small, fast, and ferociously opportunistic, you turn disadvantages into devastating advantages. You are chaos with a purpose—quick, cunning, and genuinely unpredictable in the best way.",
+      "flavor": "Choose this if you want a scrappy, highly mobile skirmisher who can safely disengage or hide as a bonus action every single turn."
     },
     {
       "name": "Half-Elf",
@@ -2901,7 +2913,8 @@
         "is_recommended": false,
         "text": "A versatile hybrid with ability score bonuses and skill versatility. Flexible by design, which is great for concept, but the breadth of options can slow new players."
       },
-      "flavorText": "Caught between two heritages, you belong fully to neither and to both. You wear that tension as strength, weaving human adaptability with fey grace into something uniquely your own."
+      "flavorText": "Caught between two heritages, you belong fully to neither and to both. You wear that tension as strength, weaving human adaptability with fey grace into something uniquely your own.",
+      "flavor": "The ultimate face of the party. You get the charisma and extra skills of a human mixed with the magical resistances of an elf."
     },
     {
       "name": "Half-Elf (High Elf)",
@@ -3685,7 +3698,8 @@
         "is_recommended": false,
         "text": "An ocean-themed half-elf with swim speed and amphibious breathing. Niche but thematic, best when water exploration is frequent."
       },
-      "flavorText": "Tides flow in your blood and salt colors your stories. You are as comfortable beneath waves as on shore, carrying the ocean’s freedom in every movement."
+      "flavorText": "Tides flow in your blood and salt colors your stories. You are as comfortable beneath waves as on shore, carrying the ocean’s freedom in every movement.",
+      "flavor": "Play this if you are entering a nautical campaign. You can breathe underwater, swim fast, and communicate with sea creatures."
     },
     {
       "name": "Half-Elf (Shadar-kai)",
@@ -3809,7 +3823,8 @@
         "is_recommended": false,
         "text": "A shadow-touched half-elf with resistance and necrotic teleportation. Interesting tactical tool, but death-tinged mechanics may be less intuitive for beginners."
       },
-      "flavorText": "Touched by the Shadowfell, you walk between life and shadow with eerie grace. Endurance born of the Raven Queen’s blessing makes you both haunting and unyielding."
+      "flavorText": "Touched by the Shadowfell, you walk between life and shadow with eerie grace. Endurance born of the Raven Queen’s blessing makes you both haunting and unyielding.",
+      "flavor": "Ideal for a gothic, edgy assassin or fighter. You can magically teleport and gain resistance to all damage when you do."
     },
     {
       "name": "Half-Elf (Eladrin)",
@@ -4058,7 +4073,8 @@
         "is_recommended": true,
         "text": "A tough, aggressive warrior with darkvision, intimidation presence, and a second-wind style death-defying trait. Low mechanical complexity with strong combat feel."
       },
-      "flavorText": "Your strength is obvious, your endurance legendary, but your capacity for gentleness is your secret weapon. You carry prejudice like armor and answer it with results."
+      "flavorText": "Your strength is obvious, your endurance legendary, but your capacity for gentleness is your secret weapon. You carry prejudice like armor and answer it with results.",
+      "flavor": "Choose this if you want to hit incredibly hard with melee weapons and have the sheer grit to survive a blow that should have killed you."
     },
     {
       "name": "Halfling",
@@ -4158,7 +4174,8 @@
         "is_recommended": true,
         "text": "A lucky, nimble smallfolk with reroll advantages and stealth. Lucky and Brave are simple to use, making halflings a very friendly beginner race."
       },
-      "flavorText": "Small, brave, and improbably lucky, you find opportunity where others see walls. Comfort and courage define you—you face danger with a full heart and a sharp eye for the advantage."
+      "flavorText": "Small, brave, and improbably lucky, you find opportunity where others see walls. Comfort and courage define you—you face danger with a full heart and a sharp eye for the advantage.",
+      "flavor": "Play this if you hate rolling critical fails. You are stealthy, cheerful, and literally lucky enough to reroll 1s on the dice."
     },
     {
       "name": "Lightfoot Halfling",
@@ -4636,7 +4653,8 @@
         "is_recommended": false,
         "text": "A fey-touched or undead-touched lineage with a dark bargain. Adds a narrative and mechanical bargain layer that adds complexity to character creation."
       },
-      "flavorText": "A pact forged in darkness has left its mark on you. You carry fey or witchblood in your veins, a physical testament to a bargain that forever changed your destiny."
+      "flavorText": "A pact forged in darkness has left its mark on you. You carry fey or witchblood in your veins, a physical testament to a bargain that forever changed your destiny.",
+      "flavor": "Ideal for playing a spooky, witchy character who can leave behind magic tokens to communicate or spy on people remotely."
     },
     {
       "index": "hobgoblin",
@@ -4737,7 +4755,8 @@
         "is_recommended": false,
         "text": "A disciplined warrior with tactical positioning bonuses. The Saving Face feature adds reactive decision-making that rewards experience."
       },
-      "flavorText": "Disciplined, strategic, and relentlessly efficient, you are a soldier born. You follow orders with precision, lead with calculated advantage, and never waste a move."
+      "flavorText": "Disciplined, strategic, and relentlessly efficient, you are a soldier born. You follow orders with precision, lead with calculated advantage, and never waste a move.",
+      "flavor": "Choose this if you love tactical teamwork. You can magically buff your allies or use your bonds of friendship to turn missed attacks into hits."
     },
     {
       "name": "Human",
@@ -4777,7 +4796,8 @@
         "is_recommended": true,
         "text": "The baseline adventurer with balanced ability increases and an extra language. Simple, flexible, and forgiving for new players who want to focus on class mechanics."
       },
-      "flavorText": "You are the adaptive spark of the world—versatile, ambitious, and forever reaching beyond what should be possible. Your potential is your greatest trait, and your drive is unstoppable."
+      "flavorText": "You are the adaptive spark of the world—versatile, ambitious, and forever reaching beyond what should be possible. Your potential is your greatest trait, and your drive is unstoppable.",
+      "flavor": "Great for playing a versatile, ambitious underdog who can fit into absolutely any class or role with ease."
     },
     {
       "index": "kenku",
@@ -4878,7 +4898,8 @@
         "is_recommended": false,
         "text": "A bird-like mimic with clever movement and mimicry. Roleplay-heavy with limited but flavorful racial abilities; easy to underestimate mechanically."
       },
-      "flavorText": "Born to mimicry but not creation, you are a living archive of borrowed sounds and stolen voices. You turn mimicry into craft, making something original from the echoes of others."
+      "flavorText": "Born to mimicry but not creation, you are a living archive of borrowed sounds and stolen voices. You turn mimicry into craft, making something original from the echoes of others.",
+      "flavor": "Perfect for a rogue or bard who loves roleplay. You are a flightless bird who speaks entirely through perfectly mimicking sounds you've heard."
     },
     {
       "index": "lizardfolk",
@@ -5004,7 +5025,8 @@
         "is_recommended": false,
         "text": "A reptilian survivor with natural armor and a bite attack. Simple durability, but the many optional racial traits can slow new players down."
       },
-      "flavorText": "Cold logic and primal instinct guide you. You forge weapons from whatever lies at hand, regenerate from wounds that would end others, and think in terms the living rarely understand."
+      "flavorText": "Cold logic and primal instinct guide you. You forge weapons from whatever lies at hand, regenerate from wounds that would end others, and think in terms the living rarely understand.",
+      "flavor": "Choose this if you want to play a cold, calculating survivor with natural armor who can bite enemies to regain health."
     },
     {
       "index": "orc",
@@ -5130,7 +5152,8 @@
         "is_recommended": false,
         "text": "A powerful brute with Aggressive and darkvision. Simple combat presence, but reduced intelligence and pack tactics can confuse new tactical positioning."
       },
-      "flavorText": "Your might is forged in struggle, your rage a controlled inferno. You have spent a lifetime proving underestimation wrong, and you intend to keep doing so with extreme prejudice."
+      "flavorText": "Your might is forged in struggle, your rage a controlled inferno. You have spent a lifetime proving underestimation wrong, and you intend to keep doing so with extreme prejudice.",
+      "flavor": "Ideal if you want to be a relentless chaser. You can dash toward enemies as a bonus action and refuse to drop to 0 hit points."
     },
     {
       "index": "reborn",
@@ -5360,7 +5383,8 @@
         "is_recommended": false,
         "text": "A druidic shapeshifter with temporary shifting bonuses. Simple core loop, but Shifter type choice and temporary boost management add decision weight."
       },
-      "flavorText": "Feral potential flickers beneath your skin, ready to surge when you need it most. You are two beings in one: the settled self and the beast waiting to run free."
+      "flavorText": "Feral potential flickers beneath your skin, ready to surge when you need it most. You are two beings in one: the settled self and the beast waiting to run free.",
+      "flavor": "Choose this if you want a werewolf vibe. You can shift into a more bestial form during combat for temporary health and special abilities."
     },
     {
       "index": "tabaxi",
@@ -5485,7 +5509,8 @@
         "is_recommended": false,
         "text": "A feline explorer with speed and climb. Fun for exploration and hit-and-run, but Feline Agility can leave new players overextended."
       },
-      "flavorText": "Born curious and fueled by wanderlust, you climb, dash, and investigate everything. You are curiosity incarnate—agile, independent, and impossible to keep still for long."
+      "flavorText": "Born curious and fueled by wanderlust, you climb, dash, and investigate everything. You are curiosity incarnate—agile, independent, and impossible to keep still for long.",
+      "flavor": "Perfect if you want to be the fastest character on the board. You can double your movement speed for incredible bursts of sprinting."
     },
     {
       "name": "Tiefling",
@@ -5585,7 +5610,8 @@
         "is_recommended": false,
         "text": "A hellish descendant with resistance and minor spellcasting. Fiendish legacy features are flavorful but can add spell-management weight for new players."
       },
-      "flavorText": "Infernal heritage gives you horns, a tail, and a charm that bends situations to your will. You are marked as different and have either embraced that distinction or turned it into armor."
+      "flavorText": "Infernal heritage gives you horns, a tail, and a charm that bends situations to your will. You are marked as different and have either embraced that distinction or turned it into armor.",
+      "flavor": "Play this if you want to lean into an infernal, misunderstood anti-hero vibe, complete with innate fire resistance and dark magic."
     },
     {
       "name": "Tiefling (Asmodeus)",
@@ -6612,7 +6638,8 @@
         "is_recommended": false,
         "text": "An aquatic warrior with amphibious breathing and elemental resistance. Strong in water-heavy campaigns, but situational otherwise."
       },
-      "flavorText": "You are of the sea and its ancient duties. Webbed and trident-wielding, you command the tides and protect the deeps, carrying the ocean’s nobility onto any shore you walk."
+      "flavorText": "You are of the sea and its ancient duties. Webbed and trident-wielding, you command the tides and protect the deeps, carrying the ocean’s nobility onto any shore you walk.",
+      "flavor": "Ideal for a noble, underwater paladin. You get cold resistance, swimming speed, and innate aquatic magic like Fog Cloud."
     },
     {
       "index": "aarakocra",
@@ -6713,7 +6740,8 @@
         "is_recommended": false,
         "text": "A bird-like humanoid with flight and talon attacks. Flight is powerful, but managing aerial positioning and reach can be punishing for new players."
       },
-      "flavorText": "You ride the wind and see the world from above, where strategy is clearer and danger is distant. Talons, wings, and aerial perspective make you an unmatched scout and skydiving striker."
+      "flavorText": "You ride the wind and see the world from above, where strategy is clearer and danger is distant. Talons, wings, and aerial perspective make you an unmatched scout and skydiving striker.",
+      "flavor": "Perfect for players who want to dominate the battlefield from the sky. You get early, unrestricted access to flight."
     },
     {
       "index": "yuan-ti-pureblood",
@@ -6815,7 +6843,8 @@
         "is_recommended": false,
         "text": "A serpent-touched humanoid with innate spellcasting and poison immunity. Flavorful, but the extra spell list and immunity interactions add complexity."
       },
-      "flavorText": "Serpentine charm and poisonous grace define you. You are a master of duality—persuasive on the surface, venomous underneath—and equally dangerous in court or combat."
+      "flavorText": "Serpentine charm and poisonous grace define you. You are a master of duality—persuasive on the surface, venomous underneath—and equally dangerous in court or combat.",
+      "flavor": "Perfect for a slippery spellcaster. You get complete immunity to poison and advantage on saving throws against magic."
     },
     {
       "index": "kobold",
@@ -6912,7 +6941,8 @@
         "dexterity": 2,
         "strength": -2
       },
-      "flavorText": "Small, draconic, and unapologetically cunning, you turn weakness into coordinated might. You are a trap-maker, a team player, and proof that size is just a number."
+      "flavorText": "Small, draconic, and unapologetically cunning, you turn weakness into coordinated might. You are a trap-maker, a team player, and proof that size is just a number.",
+      "flavor": "Play this if you want to be a brave little draconic underdog who can let out a fearless roar to give your entire party an advantage in combat."
     },
     {
       "index": "goliath",
@@ -6984,7 +7014,8 @@
         "strength": 2,
         "constitution": 1
       },
-      "flavorText": "You were born in thin air and stone, where only the strong survive. Your mountain heritage gives you towering power, endurance that defies nature, and a competitive fire that never cools."
+      "flavorText": "You were born in thin air and stone, where only the strong survive. Your mountain heritage gives you towering power, endurance that defies nature, and a competitive fire that never cools.",
+      "flavor": "Perfect if you want to be a massive mountain of muscle who can shrug off physical damage with Stone's Endurance."
     },
     {
       "index": "autognome",
@@ -7334,7 +7365,8 @@
         "is_recommended": false,
         "text": "A celestial-touched hero with resistance and a healing transformation. Easy to flavor, but the transformation mechanics add a burst-management layer."
       },
-      "flavorText": "Celestial light burns within you—radiant, healing, and burdened with destiny. You walk the line between mortal and divine, carrying a purpose others only dream of and a power that sets you apart."
+      "flavorText": "Celestial light burns within you—radiant, healing, and burdened with destiny. You walk the line between mortal and divine, carrying a purpose others only dream of and a power that sets you apart.",
+      "flavor": "Choose this if you want to play a celestial champion who can sprout glowing wings and unleash bursts of holy healing or radiant damage."
     }
   ]
 }

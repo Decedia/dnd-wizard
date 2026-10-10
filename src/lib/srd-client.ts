@@ -71,6 +71,7 @@ export interface SRDRace {
   source?: string;
   choices?: RaceChoice[];
   flavorText?: string;
+  flavor?: string;
 }
 
 export interface RaceChoice {
@@ -88,6 +89,7 @@ export interface SRDClass {
   primaryAbility: string;
   savingThrows: string[];
   flavorText: string;
+  flavor?: string;
   /** Full class text, including the per-level feature summaries. */
   description?: string;
   source?: string;

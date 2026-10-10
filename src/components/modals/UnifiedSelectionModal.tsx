@@ -37,6 +37,7 @@ export interface SelectionOption {
   name: string;
   source: string;
   description: string;
+  flavor?: string;
   icon?: React.ComponentType<{ className?: string }>;
   hasChoice?: boolean;
   choiceType?: string;
@@ -208,6 +209,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
         name: cls.name,
         source: cls.source || "PHB",
         description: cls.flavorText || "",
+        flavor: cls.flavor || "",
         icon: CLASS_ICONS[cls.name] || FallbackIcon,
         hasChoice: false,
         choiceType: "subclass",
@@ -222,6 +224,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
         name: race.name,
         source: race.source || "PHB",
         description: race.flavorText || race.traits?.[0]?.description || "",
+        flavor: race.flavor || "",
         icon: RACE_ICONS[race.name] || RACE_ICONS.Human,
         hasChoice: (race.choices?.length || 0) > 0,
         choiceType: race.choices?.[0]?.type || "ancestry",
@@ -552,6 +555,11 @@ export function UnifiedSelectionModal<T extends SelectionType>({
                                   {opt.description}
                                 </p>
                               )}
+                              {opt.flavor && (
+                                <p className="mt-1 line-clamp-3 text-[11px] font-bold leading-relaxed text-ink">
+                                  {opt.flavor}
+                                </p>
+                              )}
                             </div>
 
                             <div className="flex items-center gap-3">
@@ -689,14 +697,27 @@ function SelectionCard({
   return (
     <SplitSelectionCard
       title={option.name}
-      subtitle={option.description}
+      subtitle={option.flavor || option.description}
       icon={<Icon className="h-6 w-6 text-[var(--color-text-primary)]" />}
       badges={badges}
       isRecommended={option.isRecommended}
       isSelected={isSelected}
       onSelect={onClick}
       infoType="modal"
-      modalContent={<p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{option.description}</p>}
+      modalContent={
+        <div className="space-y-2">
+          {option.flavor && (
+            <p className="text-xs font-bold text-[var(--color-text-primary)] leading-relaxed">
+              {option.flavor}
+            </p>
+          )}
+          {option.description && (
+            <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">
+              {option.description}
+            </p>
+          )}
+        </div>
+      }
     />
   );
 }
@@ -901,6 +922,15 @@ function RaceInfoPanel({ option, characterSources, language, t }: RaceInfoPanelP
           )}
         </div>
       </div>
+
+      {option.flavor && (
+        <div className="rounded-2xl border-2 border-ink bg-ink/5 p-4">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">
+            {t("modal.whyPlay", "Kenapa Pilih Ini")}
+          </span>
+          <p className="mt-1 text-sm font-bold leading-relaxed text-ink">{option.flavor}</p>
+        </div>
+      )}
 
       {details?.flavorText && (
         <p className="text-xs leading-relaxed text-ink-muted">{details.flavorText}</p>

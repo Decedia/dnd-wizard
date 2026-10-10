@@ -1031,6 +1031,7 @@ export const translations = {
   "modal.traits": "Traits",
   "modal.none": "None",
   "modal.noRaceInfo": "Race details are not available.",
+  "modal.whyPlay": "Why Play This",
   "modal.selectRaceOption": "Select {race}",
   "modal.noRacesFound": "No races match your search.",
   "modal.noClassesFound": "No classes match your search.",

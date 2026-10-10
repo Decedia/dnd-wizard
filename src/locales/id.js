@@ -1033,6 +1033,7 @@ export const translations = {
   "modal.traits": "Ciri-ciri",
   "modal.none": "Tidak ada",
   "modal.noRaceInfo": "Detail ras tidak tersedia.",
+  "modal.whyPlay": "Kenapa Pilih Ini",
   "modal.selectRaceOption": "Pilih {race}",
   "modal.noRacesFound": "Tidak ada ras yang cocok dengan pencarianmu.",
   "modal.noClassesFound": "Tidak ada kelas yang cocok dengan pencarianmu.",
