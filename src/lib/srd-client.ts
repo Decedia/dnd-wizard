@@ -1130,6 +1130,146 @@ export function meetsPrerequisites(character: Character, featName: string): bool
   }
 }
 
+export interface FeatRequirementLine {
+  text: string;
+  met: boolean;
+}
+
+function meetsAbility(character: Character, ability: string, minimum: number): boolean {
+  const score = character?.[ability as keyof Character] as number | undefined;
+  return typeof score === "number" && score >= minimum;
+}
+
+function meetsFeature(character: Character, required: string): boolean {
+  const normalized = required.trim().toLowerCase();
+  const owned = character?.features || [];
+  return owned.some(
+    (f: any) =>
+      (f.name || "").trim().toLowerCase() === normalized ||
+      (f.engineId || "").trim().toLowerCase() === normalized,
+  );
+}
+
+function meetsProficiency(character: Character, required: string): boolean {
+  const normalized = required.toLowerCase();
+  const all = [
+    ...(character?.toolProficiencies || []),
+    ...(character?.expertise || []),
+    ...String(character?.otherProficiencies || "")
+      .split(",")
+      .map((p) => p.trim())
+      .filter(Boolean),
+  ].map((p) => p.toLowerCase());
+  const skills = Object.entries(character?.skills || {})
+    .filter(([, proficient]) => proficient)
+    .map(([name]) => name.toLowerCase());
+  return (
+    all.some((p) => p.includes(normalized) || normalized.includes(p)) ||
+    skills.some((p) => p.includes(normalized) || normalized.includes(p))
+  );
+}
+
+export function describeFeatRequirements(
+  character: Character,
+  featName: string,
+  t: (
+    key: string,
+    fallbackOrParams?: Record<string, string | number> | string,
+    fallback?: string,
+  ) => string = (key, fallbackOrParams, fallback) =>
+    typeof fallback === "string" ? fallback : key,
+): FeatRequirementLine[] {
+  let requires: RequiresSpec | undefined;
+  try {
+    requires = findEngineFeature(undefined, featName, buildDataset())?.requires as RequiresSpec | undefined;
+  } catch {
+    return [];
+  }
+  if (!requires) return [];
+
+  const lines: FeatRequirementLine[] = [];
+
+  if (requires.spellcasting) {
+    const ok = (() => {
+      try {
+        return canCastSpells(character);
+      } catch {
+        return false;
+      }
+    })();
+    lines.push({
+      text: t("feat.req.spellcasting", "Mampu merapal minimal satu mantra"),
+      met: ok,
+    });
+  }
+
+  if (requires.abilities) {
+    for (const [ability, minimum] of Object.entries(requires.abilities)) {
+      const code = ability.toUpperCase();
+      lines.push({
+        text: t("feat.req.abilityMin", { ability: code, n: minimum as number }, "{ability} {n} atau lebih"),
+        met: meetsAbility(character, ability, minimum as number),
+      });
+    }
+  }
+
+  if (requires.proficiencies?.length) {
+    for (const item of requires.proficiencies) {
+      lines.push({
+        text: t("feat.req.proficiency", { item }, "Kemampuan: {item}"),
+        met: meetsProficiency(character, item),
+      });
+    }
+  }
+
+  if (requires.skills?.length) {
+    for (const skill of requires.skills) {
+      const ok = Object.entries(character?.skills || {})
+        .filter(([, proficient]) => proficient)
+        .map(([name]) => name.toLowerCase())
+        .some((p) => p.includes(skill.toLowerCase()));
+      lines.push({
+        text: t("feat.req.skill", { item: skill }, "Kemampuan skill {item}"),
+        met: ok,
+      });
+    }
+  }
+
+  if (requires.race) {
+    const names = Array.isArray(requires.race) ? requires.race : [requires.race];
+    const ok = (() => {
+      try {
+        return meetsPrerequisites(character, featName);
+      } catch {
+        return false;
+      }
+    })();
+    lines.push({
+      text: t("feat.req.race", { names: names.join(" / ") }, "Ras: {names}"),
+      met: ok,
+    });
+  }
+
+  if (requires.features?.length) {
+    for (const feature of requires.features) {
+      lines.push({
+        text: t("feat.req.feature", { item: feature }, "Fitur: {item}"),
+        met: meetsFeature(character, feature),
+      });
+    }
+  }
+
+  if (requires.minLevel) {
+    const level = character?.level ?? 0;
+    lines.push({
+      text: t("feat.req.minLevel", { n: requires.minLevel }, "Level {n} atau lebih"),
+      met: level >= requires.minLevel,
+    });
+  }
+
+  return lines;
+}
+
 function canCastSpells(character: Character): boolean {
   if (character.spellcastingAbility) return true;
   if ((character.spells || []).length > 0) return true;
@@ -1141,7 +1281,6 @@ function canCastSpells(character: Character): boolean {
 }
 
 const engineFlavorCache: { [featName: string]: { flavor?: string; flavorId?: string } } = {};
-
 export function getEngineFeatFlavor(name: string): { flavor?: string; flavorId?: string } {
   if (engineFlavorCache[name] !== undefined) return engineFlavorCache[name];
 

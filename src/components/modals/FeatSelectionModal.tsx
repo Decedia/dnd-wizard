@@ -13,6 +13,7 @@ import {
   getStaticFeats,
   getStaticSpells,
   meetsPrerequisites,
+  describeFeatRequirements,
   getEngineFeatFlavor,
   type SRDFeat,
   type FeatOptionGroup,
@@ -114,6 +115,23 @@ export function FeatSelectionModal({
   );
 
   const isReadyToConfirm = !!pendingFeat && missingOptionIds.length === 0;
+
+  const getPrerequisiteLine = useCallback(
+    (feat: SRDFeat): { text: string; unmet: boolean } | null => {
+      const lines = describeFeatRequirements(character as Character, feat.name, t);
+      const unmet = lines.some((line) => !line.met);
+
+      if (feat.prerequisites) {
+        return {
+          text: feat.prerequisites,
+          unmet: lines.length > 0 ? unmet : !meetsPrerequisites(character as Character, feat.name),
+        };
+      }
+      if (lines.length === 0) return null;
+      return { text: lines.map((line) => line.text).join(" • "), unmet };
+    },
+    [character, t],
+  );
 
   const spellChoices = useMemo(() => {
     if (!spellTarget) return [];
@@ -343,11 +361,19 @@ export function FeatSelectionModal({
                     >
                       <div className="min-w-0 flex-1">
                         <h3 className="text-lg font-bold text-ink">{feat.name}</h3>
-                        {feat.prerequisites && (
-                          <span className="mt-0.5 block text-[10px] font-bold uppercase tracking-wider text-warning-500">
-                            {t("feat.prerequisiteLabel", "Syarat")}: {feat.prerequisites}
-                          </span>
-                        )}
+                        {(() => {
+                          const prerequisite = getPrerequisiteLine(feat);
+                          if (!prerequisite) return null;
+                          return (
+                            <span
+                              className={`mt-0.5 block text-[10px] font-bold uppercase tracking-wider ${
+                                prerequisite.unmet ? "text-warning-500" : "text-ink-subtle"
+                              }`}
+                            >
+                              {t("feat.prerequisiteLabel", "Syarat")}: {prerequisite.text}
+                            </span>
+                          );
+                        })()}
                         <p className="mt-1 line-clamp-2 text-xs text-ink-muted">{feat.description}</p>
                         {sourceLabel && sourceLabel !== "PHB" && (
                           <span className="mt-1 inline-block rounded bg-paper-muted px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-ink-muted">
