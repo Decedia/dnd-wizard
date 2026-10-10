@@ -339,7 +339,7 @@ export function FeatSelectionModal({
                       onClick={() => {
                         if (!isDisabled) handleSelectFeat(feat);
                       }}
-                      className="flex flex-1 items-start gap-3 p-4 text-left transition active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-50"
+                      className="flex flex-1 items-center gap-3 p-4 text-left transition active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-50"
                     >
                       <div className="min-w-0 flex-1">
                         <h3 className="text-lg font-bold text-ink">{feat.name}</h3>
@@ -357,7 +357,7 @@ export function FeatSelectionModal({
                       </div>
 
                       <div
-                        className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-colors ${
+                        className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-colors ${
                           isSelected
                             ? "border-ink bg-ink text-surface"
                             : "border-ink-subtle bg-transparent"
