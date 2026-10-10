@@ -978,7 +978,7 @@
         "text": "A straightforward melee powerhouse with high durability and simple resource management through Rage. Great for players who want to be in the thick of combat without complex spellcasting."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Pilih ini kalau kamu ingin menjadi juggernaut yang tak terbendung, mampu menyerap kerusakan besar dan meluluhlantak musuh dengan amarah primal."
+      "flavor": "Pilih ini jika kamu ingin menjadi petarung tangguh yang tak terhentikan, mengabaikan damage besar, dan menghancurkan musuh dengan amarah murni yang buas."
     },
     {
       "name": "Bard",
@@ -2999,7 +2999,7 @@
         "text": "A versatile support caster with extensive spell and skill options. High mechanical ceiling from managing Inspiration dice, spell slots, and cutting words, but can overwhelm new players."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Cocok untuk pemain yang ingin menjadi pendukung karismatik, memperkuat rekan, memukau musuh, dan mengeluarkan regu dari (atau ke dalam) masalah lewat bicara."
+      "flavor": "Sempurna untuk memainkan perapal mantra pendukung karismatik yang memberikan buff pada sekutu, memikat musuh, dan menyelamatkan party (atau menjerumuskan mereka) lewat diplomasi."
     },
     {
       "name": "Cleric",
@@ -4240,7 +4240,7 @@
         "text": "A durable divine caster with access to the entire spell list. Strong action economy through Channel Divinity and Turn Undead, plus domain choices offer clear tactical niches without bookkeeping."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Ideal kalau kamu ingin menjadi penyembir dan penyihir berarmor tebal yang menjaga regu tetap hidup sambil menimpakan murka ilahi."
+      "flavor": "Ideal jika kamu ingin menjadi healer dan perapal mantra berbaju zirah berat yang menjaga party tetap hidup sambil menjatuhkan murka ilahi."
     },
     {
       "name": "Druid",
@@ -5144,7 +5144,7 @@
         "text": "A shapeshifting caster with one of the most complex spell lists in the game. Managing Wild Shape, spell preparation, and concentration checks creates a steep learning curve."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Main ini kalau kamu ingin menggunakan kekuatan mentah alam, menguasai medan pertempuran, dan berubah wujud menjadi hewan liar."
+      "flavor": "Mainkan kelas ini jika kamu ingin mengendalikan kekuatan alam liar, menguasai medan pertempuran, dan berubah wujud menjadi hewan liar secara fisik."
     },
     {
       "name": "Fighter",
@@ -6174,7 +6174,7 @@
         "text": "The quintessential martial class with excellent durability and a simple core loop. Action Surge and Second Wind give huge tactical spikes without complex resource tracking."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Pilihan terbaik kalau kamu ingin menjadi master senjata sejati, dengan fleksibilitas taktis luar biasa dan banyak serangan setiap giliran."
+      "flavor": "Pilihan terbaik jika kamu ingin menjadi master senjata sejati, memiliki fleksibilitas taktis yang tak tertandingi, dan menyerang berkali-kali dalam satu giliran."
     },
     {
       "name": "Monk",
@@ -7334,7 +7334,7 @@
         "text": "A mobile martial artist reliant on short-rest resources like Ki points. High tactical ceiling from positioning and stun locks, but requires careful resource economy awareness."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Pilih ini untuk memainkan pesilat yang sangat lincah, menembus barisan musuh, menangkis panah, dan melumpuhkan lawan dengan sihir ki."
+      "flavor": "Pilih ini untuk memainkan petarung bela diri yang sangat lincah, menembus garis pertahanan musuh, menangkis panah, dan melumpuhkan lawan dengan sihir ki."
     },
     {
       "name": "Paladin",
@@ -8344,7 +8344,7 @@
         "text": "A heavy-armor divine warrior with burst damage via Smite and strong sustain. Easy to play at a basic level, but spell slot management and aura positioning add tactical depth."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Sempurna untuk memainkan ksatria suci. Kamu mendapat armor berat, lay on hands untuk memulihkan, dan dapat membakar slot sihir untuk kerusakan besar."
+      "flavor": "Sempurna untuk memainkan ksatria suci. Kamu mendapatkan zirah berat, kemampuan menyembuhkan (lay on hands), dan bisa membakar slot mantra untuk menghasilkan burst damage masif."
     },
     {
       "name": "Ranger",
@@ -9556,7 +9556,7 @@
         "text": "A martial nature warrior with spellcasting and companion management. Favored Foe and spell tracking add moderate complexity, and positioning is key."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Ideal kalau kamu ingin menjadi pelacak penyintas yang memadukan tembak anak panah atau pedang ganda dengan sihir alam primal."
+      "flavor": "Ideal jika kamu ingin memainkan pelacak ahli bertahan hidup yang memadukan panahan atau pertarungan dua senjata dengan sihir alam purba."
     },
     {
       "name": "Rogue",
@@ -10710,7 +10710,7 @@
         "text": "A skill-focused striker with Sneak Attack and Cunning Action. Low mechanical overhead with a clear core loop, but mastery of positioning and stealth tactics rewards advanced play."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Pilih ini kalau kamu suka menyelinap dalam bayangan, membuka kunci, melumpuhkan perangkap, dan memberikan kerusakan besar lewat Sneak Attack."
+      "flavor": "Pilih ini jika kamu suka menyusup dalam bayangan, membobol kunci, menjinakkan jebakan, dan memberikan damage serangan tunggal yang masif dengan Sneak Attack."
     },
     {
       "name": "Sorcerer",
@@ -11823,7 +11823,7 @@
         "text": "A raw spellcaster with limited spell knowledge but flexible Metamagic. High burst potential, but managing sorcery points and spell choices can be punishing for new casters."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Main ini kalau kamu ingin membengkokkan aturan sihir. Daftar sihirmu lebih sedikit, tetapi kamu dapat menggandakan, memperpanjang, atau memperkuat sihir saat dibutuhkan."
+      "flavor": "Mainkan kelas ini jika kamu ingin membengkokkan aturan sihir. Daftar mantramu lebih sedikit, tapi kamu bisa menggandakan, memperpanjang, atau memperkuat mantramu secara langsung."
     },
     {
       "name": "Warlock",
@@ -13462,7 +13462,7 @@
         "text": "A pact-bound caster with short-rest spell slots and Eldritch Invocations. Managing invocations, spell slots, and pact magic mechanics creates a steep learning curve."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Sempurna untuk menjadi penembak yang kokoh dan mudah dikhususkan. Slot sihirmu pulih setelah istirahat pendek, dan kamu punya cantrip pemukul terbaik."
+      "flavor": "Sempurna untuk memainkan blaster mematikan yang misterius. Slot mantramu pulih setelah short rest dan kamu punya cantrip damage terbaik di game."
     },
     {
       "name": "Wizard",
@@ -14423,7 +14423,7 @@
         "text": "The most mechanically complex caster with a vast spellbook. Spell preparation, ritual casting, and arcane recovery create heavy bookkeeping that punishes inexperience."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Penyihir utilitas pamungkas. Pilih ini kalau kamu ingin daftar sihir terbesar, menyiapkan persis apa yang dibutuhkan regu untuk tiap situasi."
+      "flavor": "Perapal mantra utilitas pamungkas. Pilih ini jika kamu menginginkan buku mantra terbesar di game, menyiapkan sihir yang paling tepat untuk situasi apa pun."
     },
     {
       "index": "artificer",
@@ -15347,7 +15347,7 @@
         "text": "A magical tinkerer with infused items and spellcasting. Item management, infusions, and spell tracking create a high mechanical load that can overwhelm beginners."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Main ini kalau kamu ingin jadi penemu ajaib yang mengelas perlengkapan sendiri, memperkuat senjata rekan, dan memecahkan masalah dengan sains sihir."
+      "flavor": "Mainkan kelas ini jika kamu ingin menjadi penemu magis yang merakit perlengkapan khusus, memberikan buff pada senjata party, dan memecahkan masalah dengan sains misterius."
     }
   ],
   "generated": "2026-08-31T10:21:35.670Z"
