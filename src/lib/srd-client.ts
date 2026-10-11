@@ -1087,21 +1087,8 @@ export function meetsPrerequisites(character: Character, featName: string): bool
     }
 
     if (requires.proficiencies && requires.proficiencies.length > 0) {
-      const allProfs = [
-        ...(character.toolProficiencies || []),
-        ...(character.expertise || []),
-        ...(character.otherProficiencies || "").split(",").map((p) => p.trim()).filter(Boolean),
-      ].map((p) => p.toLowerCase());
-
-      const skillProfs = Object.entries(character.skills || {})
-        .filter(([, proficient]) => proficient)
-        .map(([name]) => name.toLowerCase());
-
       for (const req of requires.proficiencies) {
-        const normalized = req.toLowerCase();
-        const matched = allProfs.some((p) => p.includes(normalized) || normalized.includes(p)) ||
-          skillProfs.some((p) => p.includes(normalized) || normalized.includes(p));
-        if (!matched) {
+        if (!meetsProficiency(character, req)) {
           return false;
         }
       }
@@ -1150,23 +1137,54 @@ function meetsFeature(character: Character, required: string): boolean {
   );
 }
 
-function meetsProficiency(character: Character, required: string): boolean {
-  const normalized = required.toLowerCase();
-  const all = [
+const PROFICIENCY_IMPLICATIONS: Record<string, string[]> = {
+  "all armor": ["light armor", "medium armor", "heavy armor"],
+  "all armour": ["light armor", "medium armor", "heavy armor"],
+  "martial weapons": ["heavy weapons"],
+  "simple weapons": ["light crossbows"],
+};
+
+function normalizeProficiency(value: string): string {
+  return value.toLowerCase().trim().replace(/armour/g, "armor");
+}
+
+function collectProficiencyLists(character: Character): { profs: string[]; skills: string[] } {
+  const profs = [
     ...(character?.toolProficiencies || []),
     ...(character?.expertise || []),
     ...String(character?.otherProficiencies || "")
       .split(",")
       .map((p) => p.trim())
       .filter(Boolean),
-  ].map((p) => p.toLowerCase());
+  ].map(normalizeProficiency);
   const skills = Object.entries(character?.skills || {})
     .filter(([, proficient]) => proficient)
-    .map(([name]) => name.toLowerCase());
+    .map(([name]) => normalizeProficiency(name));
+  return { profs, skills };
+}
+
+function matchesProficiency(profs: string[], skills: string[], required: string): boolean {
+  const normalized = normalizeProficiency(required);
+  if (!normalized) return true;
+
+  const implied = new Set<string>();
+  for (const prof of [...profs, ...skills]) {
+    implied.add(prof);
+    for (const extra of PROFICIENCY_IMPLICATIONS[prof] || []) {
+      implied.add(extra);
+    }
+  }
+  if (implied.has(normalized)) return true;
+
   return (
-    all.some((p) => p.includes(normalized) || normalized.includes(p)) ||
+    profs.some((p) => p.includes(normalized) || normalized.includes(p)) ||
     skills.some((p) => p.includes(normalized) || normalized.includes(p))
   );
+}
+
+function meetsProficiency(character: Character, required: string): boolean {
+  const { profs, skills } = collectProficiencyLists(character);
+  return matchesProficiency(profs, skills, required);
 }
 
 export function describeFeatRequirements(
