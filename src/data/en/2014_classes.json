@@ -5140,7 +5140,7 @@
         "text": "A shapeshifting caster with one of the most complex spell lists in the game. Managing Wild Shape, spell preparation, and concentration checks creates a steep learning curve."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Play this if you want full spellcasting and the option to turn into an animal."
+      "flavor": "Play this if you want full spellcasting plus Wild Shape to turn into an animal."
     },
     {
       "name": "Fighter",
@@ -8337,7 +8337,7 @@
         "text": "A heavy-armor divine warrior with burst damage via Smite and strong sustain. Easy to play at a basic level, but spell slot management and aura positioning add tactical depth."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Play this if you want heavy armor, healing, and big damage on a hit."
+      "flavor": "Play this if you want heavy armor, healing, and big damage through smites."
     },
     {
       "name": "Ranger",
@@ -10701,7 +10701,7 @@
         "text": "A skill-focused striker with Sneak Attack and Cunning Action. Low mechanical overhead with a clear core loop, but mastery of positioning and stealth tactics rewards advanced play."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Play this if you want one big hit per turn and to handle locks, traps, and skill checks."
+      "flavor": "Play this if you want a big Sneak Attack once per turn, plus handling locks, traps, and skill checks."
     },
     {
       "name": "Sorcerer",
@@ -11813,7 +11813,7 @@
         "text": "A raw spellcaster with limited spell knowledge but flexible Metamagic. High burst potential, but managing sorcery points and spell choices can be punishing for new casters."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Play this if you want a short spell list you can bend mid-fight."
+      "flavor": "Play this if you want a short spell list you can bend with Metamagic."
     },
     {
       "name": "Warlock",

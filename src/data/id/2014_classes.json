@@ -977,7 +977,7 @@
         "text": "A straightforward melee powerhouse with high durability and simple resource management through Rage. Great for players who want to be in the thick of combat without complex spellcasting."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Pilih ini kalau kamu ingin darah tebal, pukulan kuat, dan lebih tahan dipukul."
+      "flavor": "Pilih ini kalau kamu ingin HP besar, pukulan kuat di melee, dan lebih tahan damage saat rage."
     },
     {
       "name": "Bard",
@@ -2997,7 +2997,7 @@
         "text": "A versatile support caster with extensive spell and skill options. High mechanical ceiling from managing Inspiration dice, spell slots, and cutting words, but can overwhelm new players."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Pilih ini kalau kamu ingin banyak mantra tanpa kehilangan peran sebagai wajah dan tukang skill regu."
+      "flavor": "Pilih ini kalau kamu ingin spellcasting penuh, skill terbanyak, dan jadi wajah regu."
     },
     {
       "name": "Cleric",
@@ -4237,7 +4237,7 @@
         "text": "A durable divine caster with access to the entire spell list. Strong action economy through Channel Divinity and Turn Undead, plus domain choices offer clear tactical niches without bookkeeping."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Pilih ini kalau kamu ingin menyembuhkan regu sambil tetap memakai zirah berat."
+      "flavor": "Pilih ini kalau kamu ingin heal regu, pakai armor berat, dan tetap bisa nyerang."
     },
     {
       "name": "Druid",
@@ -5140,7 +5140,7 @@
         "text": "A shapeshifting caster with one of the most complex spell lists in the game. Managing Wild Shape, spell preparation, and concentration checks creates a steep learning curve."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Pilih ini kalau kamu ingin banyak mantra ditambah opsi berubah menjadi hewan."
+      "flavor": "Pilih ini kalau kamu ingin spellcasting penuh ditambah opsi Wild Shape jadi hewan."
     },
     {
       "name": "Fighter",
@@ -6169,7 +6169,7 @@
         "text": "The quintessential martial class with excellent durability and a simple core loop. Action Surge and Second Wind give huge tactical spikes without complex resource tracking."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Pilih ini kalau kamu ingin menyerang lebih banyak dan punya pemulihan sendiri."
+      "flavor": "Pilih ini kalau kamu ingin extra attack dan punya heal sendiri."
     },
     {
       "name": "Monk",
@@ -7328,7 +7328,7 @@
         "text": "A mobile martial artist reliant on short-rest resources like Ki points. High tactical ceiling from positioning and stun locks, but requires careful resource economy awareness."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Pilih ini kalau kamu ingin bertarung tanpa zirah, bergerak cepat, dan memukul beberapa kali dalam satu giliran."
+      "flavor": "Pilih ini kalau kamu ingin bertarung tanpa armor, gerak cepat, dan memukul beberapa kali per turn."
     },
     {
       "name": "Paladin",
@@ -8337,7 +8337,7 @@
         "text": "A heavy-armor divine warrior with burst damage via Smite and strong sustain. Easy to play at a basic level, but spell slot management and aura positioning add tactical depth."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Pilih ini kalau kamu ingin zirah berat, penyembuhan, dan kerusakan besar saat serangan kena."
+      "flavor": "Pilih ini kalau kamu ingin armor berat, kemampuan heal, dan damage besar lewat smite."
     },
     {
       "name": "Ranger",
@@ -9548,7 +9548,7 @@
         "text": "A martial nature warrior with spellcasting and companion management. Favored Foe and spell tracking add moderate complexity, and positioning is key."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Pilih ini kalau kamu ingin menyerang dari jauh dengan bantuan mantra serta skill jelajah yang berguna."
+      "flavor": "Pilih ini kalau kamu ingin damage jarak jauh, sedikit spell, dan skill jelajah."
     },
     {
       "name": "Rogue",
@@ -10701,7 +10701,7 @@
         "text": "A skill-focused striker with Sneak Attack and Cunning Action. Low mechanical overhead with a clear core loop, but mastery of positioning and stealth tactics rewards advanced play."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Pilih ini kalau kamu ingin satu serangan besar per giliran dan menangani kunci, jebakan, serta uji skill."
+      "flavor": "Pilih ini kalau kamu ingin Sneak Attack besar sekali per turn, dan menangani kunci serta jebakan."
     },
     {
       "name": "Sorcerer",
@@ -11813,7 +11813,7 @@
         "text": "A raw spellcaster with limited spell knowledge but flexible Metamagic. High burst potential, but managing sorcery points and spell choices can be punishing for new casters."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Pilih ini kalau kamu ingin daftar pendek yang bisa dibengkokkan saat bertarung."
+      "flavor": "Pilih ini kalau kamu ingin spell list pendek yang bisa dibengkokkan pakai Metamagic."
     },
     {
       "name": "Warlock",
@@ -13451,7 +13451,7 @@
         "text": "A pact-bound caster with short-rest spell slots and Eldritch Invocations. Managing invocations, spell slots, and pact magic mechanics creates a steep learning curve."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Pilih ini kalau kamu ingin sedikit slot mantra yang pulih setelah istirahat pendek, plus satu cantrip andalan."
+      "flavor": "Pilih ini kalau kamu ingin sedikit spell slot yang pulih setelah short rest, plus satu cantrip andalan."
     },
     {
       "name": "Wizard",
@@ -14411,7 +14411,7 @@
         "text": "The most mechanically complex caster with a vast spellbook. Spell preparation, ritual casting, and arcane recovery create heavy bookkeeping that punishes inexperience."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Pilih ini kalau kamu ingin pilihan terbanyak dan tidak masalah menyiapkannya tiap hari."
+      "flavor": "Pilih ini kalau kamu ingin spell list terbesar dan tidak masalah prepare tiap hari."
     },
     {
       "index": "artificer",
@@ -15334,7 +15334,7 @@
         "text": "A magical tinkerer with infused items and spellcasting. Item management, infusions, and spell tracking create a high mechanical load that can overwhelm beginners."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Pilih ini kalau kamu suka memasang benda ajaib dan menyiapkan perlengkapan untuk regu."
+      "flavor": "Pilih ini kalau kamu suka membuat magic item dan memperlengkapi regu dengan buatanmu sendiri."
     }
   ],
   "generated": "2026-08-31T10:21:35.670Z"
