@@ -57,7 +57,43 @@ plain text, `<code>`, or bold.
 
 ---
 
-## 3. Bullets
+## 3. Ability, skill, damage and status badges
+
+Prose that mentions an ability, a saving throw, a skill, a damage type, or a status condition
+must render as a colour-coded badge with an icon, not plain text. `DiceText` already does this,
+so **the rule is simply to route text through it** — never hand-write these as plain text or
+your own `<span>`.
+
+The handling is word-order sensitive, and getting it wrong is the usual failure:
+
+| What is said | What happens |
+| --- | --- |
+| `Charisma saving throw` | Badge, coloured by Charisma |
+| `Dexterity saving throw` | Badge, coloured by Dexterity |
+| `Athletics`, `Stealth`, any listed skill | Badge on its own, coloured by the governing ability |
+| `fire damage`, `1d8 necrotic damage` | Damage badge, coloured by the damage type, with its icon |
+| `frightened`, `stunned`, any listed status | Status badge with its icon |
+| `Charisma` alone | **Not** a badge — only `… saving throw` is |
+| `fire` alone | **Not** a badge — only `… damage` is |
+
+The word boundaries are load-bearing and match on the surrounding words, not just the term:
+
+- `SAVING_THROW_RE` — `src/components/DiceText.tsx:97`
+- `DAMAGE_TYPE_RE` — `src/components/DiceText.tsx:95` (requires the word `damage`)
+- `SKILL_RE` — `src/components/DiceText.tsx:98`
+- `STATUS_RE` — `src/components/DiceText.tsx:96`
+
+To add a term, extend the relevant list (`DAMAGE_TYPES`, `STATUSES`, `SKILLS`, `ABILITIES`) and
+the colour/icon maps beside it. Never add a second ad-hoc matcher.
+
+**Known violation, do not copy it:** `getAbilityBadgeStyle` at `src/components/DiceText.tsx:168`
+uses raw palette colours (`bg-red-100`, `dark:bg-emerald-500/20`) instead of theme tokens, which
+breaks rule 5. New badge colours must use theme tokens; fixing the existing ones is tracked
+separately so this file does not claim a compliance the code does not have.
+
+---
+
+## 4. Bullets
 
 - Use `- ` or `* ` for unordered and `1. `, `2. ` for ordered. **One item per line.**
   Parsed at `src/components/DiceText.tsx:196-197` and
@@ -71,7 +107,7 @@ plain text, `<code>`, or bold.
 
 ---
 
-## 4. Native elements & theme colors
+## 5. Native elements & theme colors
 
 - New selection UI uses **native** `<div>`, `<button>`, `<label>`, `<select>`, `<option>`,
   `<input>`. Do not use `<Card>`, `<Button>`, `<Box>`, `<Container>` — their classes win over
@@ -82,7 +118,7 @@ plain text, `<code>`, or bold.
 
 ---
 
-## 5. Modal structure
+## 6. Modal structure
 
 - One floating nav. Do not render a second bottom navigation; the fixed `WizardNav` owns it.
 - Page-level outermost scroll container gets `pb-32` so content clears the floating nav.
@@ -96,7 +132,7 @@ plain text, `<code>`, or bold.
 
 ---
 
-## 6. Data file hygiene
+## 7. Data file hygiene
 
 - **Never JSON round-trip `src/data/engine/features/feat/*.json`.** Those files are
   hand-formatted with inline objects; a parse/stringify cycle rewrites hundreds of unrelated
@@ -110,7 +146,7 @@ plain text, `<code>`, or bold.
 
 ---
 
-## 7. Before you call it done
+## 8. Before you call it done
 
 Run these and report which you could not run:
 
