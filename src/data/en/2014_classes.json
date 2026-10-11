@@ -977,7 +977,7 @@
         "text": "A straightforward melee powerhouse with high durability and simple resource management through Rage. Great for players who want to be in the thick of combat without complex spellcasting."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Choose this if you want to be an unstoppable juggernaut who shrugs off massive damage and crushes enemies with sheer, primal rage."
+      "flavor": "You want to walk into the fire first and stay standing when everyone else has dropped. Rage keeps you swinging long after that should be impossible."
     },
     {
       "name": "Bard",
@@ -2997,7 +2997,7 @@
         "text": "A versatile support caster with extensive spell and skill options. High mechanical ceiling from managing Inspiration dice, spell slots, and cutting words, but can overwhelm new players."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Perfect for playing a charismatic support caster who buffs allies, charms enemies, and talks the party out of (or into) trouble."
+      "flavor": "You want conversations to matter as much as combat, and to be the reason the party talks its way out of the fight entirely."
     },
     {
       "name": "Cleric",
@@ -4237,7 +4237,7 @@
         "text": "A durable divine caster with access to the entire spell list. Strong action economy through Channel Divinity and Turn Undead, plus domain choices offer clear tactical niches without bookkeeping."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Ideal if you want to be a heavily armored healer and spellcaster who keeps the party alive while calling down divine wrath."
+      "flavor": "You want to be the reason everyone else is still alive — and to bring holy fury down when healing stops being the answer."
     },
     {
       "name": "Druid",
@@ -5140,7 +5140,7 @@
         "text": "A shapeshifting caster with one of the most complex spell lists in the game. Managing Wild Shape, spell preparation, and concentration checks creates a steep learning curve."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Play this if you want to wield the raw power of nature, control the battlefield, and physically transform into wild animals."
+      "flavor": "You want the land itself on your side, and the option to stop being human whenever that turns out to be the better tool."
     },
     {
       "name": "Fighter",
@@ -6169,7 +6169,7 @@
         "text": "The quintessential martial class with excellent durability and a simple core loop. Action Surge and Second Wind give huge tactical spikes without complex resource tracking."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "The best choice if you want to be the ultimate weaponmaster, boasting unmatched tactical flexibility and attacking multiple times per turn."
+      "flavor": "You want a class that always has an answer, whatever lands on the table, and the actions economy to actually use it."
     },
     {
       "name": "Monk",
@@ -7328,7 +7328,7 @@
         "text": "A mobile martial artist reliant on short-rest resources like Ki points. High tactical ceiling from positioning and stun locks, but requires careful resource economy awareness."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Choose this to play a highly mobile martial artist who punches through enemy lines, deflects arrows, and stuns foes with ki magic."
+      "flavor": "You want to move in ways nobody else can — straight through the front line, between the arrows, and out again before they land."
     },
     {
       "name": "Paladin",
@@ -8337,7 +8337,7 @@
         "text": "A heavy-armor divine warrior with burst damage via Smite and strong sustain. Easy to play at a basic level, but spell slot management and aura positioning add tactical depth."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Perfect for playing a holy knight. You get heavy armor, lay on hands for healing, and can burn spell slots to deal massive burst damage."
+      "flavor": "You want to be the line that holds, and to make anything that crosses it regret it with everything you have sworn."
     },
     {
       "name": "Ranger",
@@ -9548,7 +9548,7 @@
         "text": "A martial nature warrior with spellcasting and companion management. Favored Foe and spell tracking add moderate complexity, and positioning is key."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Ideal if you want to play a survivalist tracker who blends martial archery or dual-wielding with primal nature magic."
+      "flavor": "You want to read the terrain before anyone else notices it, and stay dangerous both from a hundred feet and arm's length."
     },
     {
       "name": "Rogue",
@@ -10701,7 +10701,7 @@
         "text": "A skill-focused striker with Sneak Attack and Cunning Action. Low mechanical overhead with a clear core loop, but mastery of positioning and stealth tactics rewards advanced play."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Choose this if you love sneaking in the shadows, picking locks, disarming traps, and dealing massive single-hit damage with Sneak Attack."
+      "flavor": "You want the plan to work because you were in the room — the lock opened, the trap found, and the guard heard nothing at all."
     },
     {
       "name": "Sorcerer",
@@ -11813,7 +11813,7 @@
         "text": "A raw spellcaster with limited spell knowledge but flexible Metamagic. High burst potential, but managing sorcery points and spell choices can be punishing for new casters."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Play this if you want to bend the rules of magic. You have a smaller spell list, but can twin, extend, or empower your spells on the fly."
+      "flavor": "You want power that is yours by birth rather than by book, and the freedom to reshape a spell while it is already in the air."
     },
     {
       "name": "Warlock",
@@ -13451,7 +13451,7 @@
         "text": "A pact-bound caster with short-rest spell slots and Eldritch Invocations. Managing invocations, spell slots, and pact magic mechanics creates a steep learning curve."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Perfect for playing an edgy, customizable blaster. You get spell slots that recharge on a short rest and the best damage cantrip in the game."
+      "flavor": "You want just enough borrowed power to be genuinely dangerous, and the freedom to decide entirely on your own what to do with it."
     },
     {
       "name": "Wizard",
@@ -14411,7 +14411,7 @@
         "text": "The most mechanically complex caster with a vast spellbook. Spell preparation, ritual casting, and arcane recovery create heavy bookkeeping that punishes inexperience."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "The ultimate utility spellcaster. Choose this if you want the largest spellbook in the game, preparing exactly what the party needs for any situation."
+      "flavor": "You want an answer to almost any problem waiting in your spellbook, provided you were clever enough to prepare it this morning."
     },
     {
       "index": "artificer",
@@ -15334,7 +15334,7 @@
         "text": "A magical tinkerer with infused items and spellcasting. Item management, infusions, and spell tracking create a high mechanical load that can overwhelm beginners."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Play this if you want to be a magical inventor who crafts custom gear, buffs the party's weapons, and solves problems with arcane science."
+      "flavor": "You want to solve problems with something you built yourself, and to hand the party gear no shop in the realm could sell them."
     }
   ],
   "generated": "2026-08-31T10:21:35.670Z"
