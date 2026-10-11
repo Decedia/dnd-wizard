@@ -3,7 +3,7 @@
     {
       "name": "Aberrant Dragonmark",
       "description": "Paparanmu terhadap pengaruh asing dari Far Realm atau plane-plane telah memunculkan tanda ajaib. Kamu mendapatkan manfaat berikut:\n- Tingkatkan Constitution scoremu sebesar 1, maksimal 20.\n- Kamu mempelajari satu cantrip sesuai pilihanmu dari sorcerer spell list. Selain itu, pilih satu spell level 1 dari sorcerer spell list. Kamu mempelajari spell itu dan bisa mencapinya di level terendahnya. Setelah kamu mencapinya, kamu harus menyelesaikan long rest sebelum bisa mencapinya lagi menggunakan fitur ini. Constitution adalah spellcasting ability untuk spell-spell ini.\n- Dragonmarkmu telah tumbuh dalam ukuran dan kekuatan. Saat kamu mendapatkan level, kamu bisa mengganti cantrip yang kamu pelajari dari feat ini dengan cantrip lain dari sorcerer spell list.",
-      "prerequisites": "No existing dragonmark",
+      "prerequisites": "Tidak memiliki dragonmark",
       "source": "MTF",
       "featureType": null,
       "actionType": null,
@@ -24,7 +24,7 @@
     {
       "name": "Aberrant Dragonmark",
       "description": "Paparanmu terhadap pengaruh asing dari Far Realm atau plane-plane telah memunculkan tanda ajaib. Kamu mendapatkan manfaat berikut:\n- Tingkatkan Constitution scoremu sebesar 1, maksimal 20.\n- Kamu mempelajari satu cantrip sesuai pilihanmu dari sorcerer spell list. Selain itu, pilih satu spell level 1 dari sorcerer spell list. Kamu mempelajari spell itu dan bisa mencapinya di level terendahnya. Setelah kamu mencapinya, kamu harus menyelesaikan long rest sebelum bisa mencapinya lagi menggunakan fitur ini. Constitution adalah spellcasting ability untuk spell-spell ini.\n- Dragonmarkmu telah tumbuh dalam ukuran dan kekuatan. Saat kamu mendapatkan level, kamu bisa mengganti cantrip yang kamu pelajari dari feat ini dengan cantrip lain dari sorcerer spell list.",
-      "prerequisites": "No existing dragonmark",
+      "prerequisites": "Tidak memiliki dragonmark",
       "source": "EGW",
       "featureType": null,
       "actionType": null,
@@ -402,7 +402,7 @@
     {
       "description": "Saat kamu mengayun senjata finesse yang kamu miliki proficiency dan makhluk lain memukulmu dengan melee attack, kamu bisa menggunakan reactionmu untuk menambahkan proficiency bonusmu ke AC untuk serangan itu, berpotensi membuat serangan itu meleset darimu.",
       "name": "Defensive Duelist",
-      "prerequisites": "Dexterity 13 or higher",
+      "prerequisites": "Dexterity 13 atau lebih",
       "source": "PHB",
       "featureType": null,
       "actionType": null,
@@ -423,7 +423,7 @@
     {
       "name": "Defensive Duelist",
       "description": "Saat kamu mengayun senjata finesse yang kamu miliki proficiency dan makhluk lain memukulmu dengan melee attack, kamu bisa menggunakan reactionmu untuk menambahkan proficiency bonusmu ke AC untuk serangan itu, berpotensi membuat serangan itu meleset darimu.",
-      "prerequisites": "Dexterity 13 or higher",
+      "prerequisites": "Dexterity 13 atau lebih",
       "source": "TCE",
       "featureType": null,
       "actionType": null,
@@ -444,7 +444,7 @@
     {
       "name": "Defensive Duelist",
       "description": "Saat kamu mengayun senjata finesse yang kamu miliki proficiency dan makhluk lain memukulmu dengan melee attack, kamu bisa menggunakan reactionmu untuk menambahkan proficiency bonusmu ke AC untuk serangan itu, berpotensi membuat serangan itu meleset darimu.",
-      "prerequisites": "Dexterity 13 or higher",
+      "prerequisites": "Dexterity 13 atau lebih",
       "source": "VRGR",
       "featureType": null,
       "actionType": null,
@@ -570,7 +570,7 @@
     {
       "name": "Dragon Hide",
       "description": "Kamu memunculkan sisik dan cakar yang mirip dengan naga. Kamu mendapatkan manfaat berikut:\n- Tingkatkan Strength, Constitution, atau Charismamu sebesar 1, maksimal 20.\n- Sisikmu mengeras. Selagi kamu tidak memakai armor, ACmu adalah 13 + Dexterity modifiermu. Kamu bisa menggunakan shield dan tetap mendapatkan manfaat ini.\n- Kamu menumbuhkan cakar retraktabel dari ujung jari. Memperpanjang atau menarik cakar tidak memerlukan action. Cakar adalah senjata alami, yang bisa kamu gunakan untuk melakukan unarmed strike. Jika kamu memukul dengan mereka, kamu deal slashing damage sebesar 1d4 + Strength modifiermu, bukan bludgeoning damage normal untuk unarmed strike.",
-      "prerequisites": "Dragonborn or Half-Dragon",
+      "prerequisites": "Dragonborn atau Half-Dragon",
       "source": "TCE",
       "featureType": null,
       "actionType": null,
@@ -822,7 +822,7 @@
     {
       "name": "Eldritch Adept",
       "description": "Mempelajari lore occult, kamu telah membuka magic eldritch yang hanya bisa dipelajari oleh mereka yang tahu Arcana of the Mysteries. Kamu mendapatkan manfaat berikut:\n- Kamu mempelajari satu Eldritch Invocation sesuai pilihanmu dari warlock class. Jika invocation memiliki prerequisite, kamu bisa memilih invocation itu hanya jika kamu warlock yang memenuhi prerequisite. Saat kamu mendapatkan level, kamu bisa mengganti invocation dengan invocation lain dari warlock class yang kamu memenuhi prasyaratnya.\n- Jika invocation memerlukan spell, kamu harus tahu spell untuk menggunakan invocation, kecuali invocation menyatakan sebaliknya.",
-      "prerequisites": "Spellcasting or Pact Magic feature",
+      "prerequisites": "Fitur Spellcasting atau Pact Magic",
       "source": "TCE",
       "featureType": null,
       "actionType": null,
@@ -843,7 +843,7 @@
     {
       "name": "Eldritch Adept",
       "description": "Mempelajari lore occult, kamu telah membuka magic eldritch yang hanya bisa dipelajari oleh mereka yang tahu Arcana of the Mysteries. Kamu mendapatkan manfaat berikut:\n- Kamu mempelajari satu Eldritch Invocation sesuai pilihanmu dari warlock class. Jika invocation memiliki prerequisite, kamu bisa memilih invocation itu hanya jika kamu warlock yang memenuhi prerequisite. Saat kamu mendapatkan level, kamu bisa mengganti invocation dengan invocation lain dari warlock class yang kamu memenuhi prasyaratnya.\n- Jika invocation memerlukan spell, kamu harus tahu spell untuk menggunakan invocation, kecuali invocation menyatakan sebaliknya.",
-      "prerequisites": "Spellcasting or Pact Magic feature",
+      "prerequisites": "Fitur Spellcasting atau Pact Magic",
       "source": "VRGR",
       "featureType": null,
       "actionType": null,
@@ -864,7 +864,7 @@
     {
       "description": "Saat kamu mendapatkan feat ini, pilih salah satu dari jenis damage berikut: acid, cold, fire, lightning, atau thunder.\nSpell yang kamu cast mengabaikan resistance terhadap jenis damage yang kamu pilih. Selain itu, saat kamu menggulir damage untuk spell yang kamu cast yang deals damage jenis itu, kamu bisa memperlakukan 1 apa saja di damage die sebagai 2.\nKamu bisa memilih feat ini beberapa kali. Setiap kali kamu melakukannya, kamu harus memilih jenis damage yang berbeda.",
       "name": "Elemental Adept",
-      "prerequisites": "The ability to cast at least one spell",
+      "prerequisites": "Mampu merapal minimal satu mantra",
       "source": "PHB",
       "featureType": null,
       "actionType": null,
@@ -906,7 +906,7 @@
     {
       "name": "Elven Accuracy",
       "description": "Ketepatan elf adalah legendaris, terutama dengan busur. Kamu memiliki aim uncanny dengan seranganmu, memberikanmu manfaat berikut:\n- Tingkatkan Dexterity, Intelligence, Wisdom, atau Charismamu sebesar 1, maksimal 20.\n- Saat kamu memiliki advantage pada attack roll menggunakan Dexterity, Intelligence, Wisdom, atau Charisma, kamu bisa menggulir ulang salah satu dadu sekali. Kamu harus menggunakan roll baru.",
-      "prerequisites": "Elf or Half-Elf",
+      "prerequisites": "Elf atau Half-Elf",
       "source": "TCE",
       "featureType": null,
       "actionType": null,
@@ -927,7 +927,7 @@
     {
       "name": "Elven Accuracy",
       "description": "Ketepatan elf adalah legendaris, terutama dengan busur. Kamu memiliki aim uncanny dengan seranganmu, memberikanmu manfaat berikut:\n- Tingkatkan Dexterity, Intelligence, Wisdom, atau Charismamu sebesar 1, maksimal 20.\n- Saat kamu memiliki advantage pada attack roll menggunakan Dexterity, Intelligence, Wisdom, atau Charisma, kamu bisa menggulir ulang salah satu dadu sekali. Kamu harus menggunakan roll baru.",
-      "prerequisites": "Elf or Half-Elf",
+      "prerequisites": "Elf atau Half-Elf",
       "source": "MTF",
       "featureType": null,
       "actionType": null,
@@ -948,7 +948,7 @@
     {
       "name": "Elven Accuracy",
       "description": "Ketepatan elf adalah legendaris, terutama dengan busur. Kamu memiliki aim uncanny dengan seranganmu, memberikanmu manfaat berikut:\n- Tingkatkan Dexterity, Intelligence, Wisdom, atau Charismamu sebesar 1, maksimal 20.\n- Saat kamu memiliki advantage pada attack roll menggunakan Dexterity, Intelligence, Wisdom, atau Charisma, kamu bisa menggulir ulang salah satu dadu sekali. Kamu harus menggunakan roll baru.",
-      "prerequisites": "Elf or Half-Elf",
+      "prerequisites": "Elf atau Half-Elf",
       "source": "EGW",
       "featureType": null,
       "actionType": null,
@@ -1221,7 +1221,7 @@
     {
       "name": "Fighting Initiate",
       "description": "Pelatihan martialmu telah memungkinkanmu mengembangkan gaya bertarung tertentu. Kamu mendapatkan manfaat berikut:\n- Kamu mempelajari satu Fighting Style sesuai pilihanmu dari fighter class. Jika kamu sudah memiliki style, yang kamu pilih harus berbeda dari yang sudah kamu ketahui. Saat kamu mencapai level yang memberikan fitur Ability Score Improvement, kamu bisa mengganti style ini dengan style lain dari fighter class yang belum kamu ketahui.",
-      "prerequisites": "Proficiency with a martial weapon",
+      "prerequisites": "Kemampuan senjata martial",
       "source": "TCE",
       "featureType": null,
       "actionType": null,
@@ -1242,7 +1242,7 @@
     {
       "name": "Fighting Initiate",
       "description": "Pelatihan martialmu telah memungkinkanmu mengembangkan gaya bertarung tertentu. Kamu mendapatkan manfaat berikut:\n- Kamu mempelajari satu Fighting Style sesuai pilihanmu dari fighter class. Jika kamu sudah memiliki style, yang kamu pilih harus berbeda dari yang sudah kamu ketahui. Saat kamu mencapai level yang memberikan fitur Ability Score Improvement, kamu bisa mengganti style ini dengan style lain dari fighter class yang belum kamu ketahui.",
-      "prerequisites": "Proficiency with a martial weapon",
+      "prerequisites": "Kemampuan senjata martial",
       "source": "VRGR",
       "featureType": null,
       "actionType": null,
@@ -1473,7 +1473,7 @@
     {
       "description": "Kamu telah mengembangkan keterampilan yang diperlukan untuk bertahan di grappling jarak dekat. Kamu mendapatkan manfaat berikut:\n- Kamu memiliki advantage pada attack roll terhadap makhluk yang sedang kamu grapple.\n- Kamu bisa menggunakan actionmu untuk mencoba menahan makhluk yang di-grapple olehmu. Untuk melakukannya, buat grapple check lain. Jika kamu berhasil, kamu dan makhluk itu sama-sama restrained sampai grapple berakhir.",
       "name": "Grappler",
-      "prerequisites": "Strength 13 or higher",
+      "prerequisites": "Strength 13 atau lebih",
       "source": "PHB",
       "featureType": null,
       "actionType": null,
@@ -1536,7 +1536,7 @@
     {
       "description": "Kamu telah dilatih untuk menguasai penggunaan heavy armor, mendapatkan manfaat berikut:\n- Tingkatkan Strength scoremu sebesar 1, maksimal 20.\n- Kamu mendapatkan proficiency dengan heavy armor.",
       "name": "Heavily Armored",
-      "prerequisites": "Proficiency with medium armor",
+      "prerequisites": "Kemampuan zirah medium",
       "source": "PHB",
       "featureType": null,
       "actionType": null,
@@ -1557,7 +1557,7 @@
     {
       "name": "Heavily Armored",
       "description": "Kamu telah dilatih untuk menguasai penggunaan heavy armor, mendapatkan manfaat berikut:\n- Tingkatkan Strength scoremu sebesar 1, maksimal 20.\n- Kamu mendapatkan proficiency dengan heavy armor.",
-      "prerequisites": "Proficiency with medium armor",
+      "prerequisites": "Kemampuan zirah medium",
       "source": "TCE",
       "featureType": null,
       "actionType": null,
@@ -1578,7 +1578,7 @@
     {
       "name": "Heavily Armored",
       "description": "Kamu telah dilatih untuk menguasai penggunaan heavy armor, mendapatkan manfaat berikut:\n- Tingkatkan Strength scoremu sebesar 1, maksimal 20.\n- Kamu mendapatkan proficiency dengan heavy armor.",
-      "prerequisites": "Proficiency with medium armor",
+      "prerequisites": "Kemampuan zirah medium",
       "source": "VRGR",
       "featureType": null,
       "actionType": null,
@@ -1599,7 +1599,7 @@
     {
       "description": "Kamu bisa menggunakan armor untuk membelokkan serangan yang akan membunuh orang lain. Kamu mendapatkan manfaat berikut:\n- Tingkatkan Strength scoremu sebesar 1, maksimal 20.\n- Selagi kamu memakai heavy armor, bludgeoning, piercing, dan slashing damage yang kamu terima dari senjata nonmagical berkurang 3.",
       "name": "Heavy Armor Master",
-      "prerequisites": "Proficiency with heavy armor",
+      "prerequisites": "Kemampuan zirah heavy",
       "source": "PHB",
       "featureType": null,
       "actionType": null,
@@ -1704,7 +1704,7 @@
     {
       "description": "Kamu bisa menghabiskan 10 menit menginspirasi kawanmu, menguatkan tekad mereka untuk bertarung. Saat kamu melakukannya, pilih hingga enam makhluk ramah (yang bisa termasuk dirimu) dalam jarak 30 kaki darimu yang bisa melihat atau mendengarmu dan yang bisa memahami kamu. Setiap makhluk mendapatkan temporary hit points sebesar levelmu + Charisma modifiermu. Makhluk tidak bisa mendapatkan temporary hit points dari feat ini lagi sampai ia menyelesaikan short rest atau long rest.",
       "name": "Inspiring Leader",
-      "prerequisites": "Charisma 13 or higher",
+      "prerequisites": "Charisma 13 atau lebih",
       "source": "PHB",
       "featureType": null,
       "actionType": null,
@@ -1918,7 +1918,7 @@
     {
       "description": "Kamu telah berlatih bergerak dalam medium armor untuk mendapatkan manfaat berikut:\n- Memakai medium armor tidak mengenakan disadvantage pada Dexterity (Stealth) checkmu.\n- Saat kamu memakai medium armor, kamu bisa menambahkan 3, bukan 2, ke ACmu dari Dexterity modifiermu.",
       "name": "Medium Armor Master",
-      "prerequisites": "Proficiency with medium armor",
+      "prerequisites": "Kemampuan zirah medium",
       "source": "PHB",
       "featureType": null,
       "actionType": null,
@@ -1939,7 +1939,7 @@
     {
       "name": "Medium Armor Master",
       "description": "Kamu telah berlatih bergerak dalam medium armor untuk mendapatkan manfaat penuh dari perlindungannya, mendapatkan manfaat berikut:\n- Memakai medium armor tidak mengenakan disadvantage pada Dexterity (Stealth) checkmu.\n- Saat kamu memakai medium armor, kamu bisa menambahkan 3, bukan 2, ke Armor Class jika Dexteritymu 16 atau lebih tinggi.",
-      "prerequisites": "Proficiency with medium armor",
+      "prerequisites": "Kemampuan zirah medium",
       "source": "TCE",
       "featureType": null,
       "actionType": null,
@@ -1960,7 +1960,7 @@
     {
       "name": "Medium Armor Master",
       "description": "Kamu telah berlatih bergerak dalam medium armor untuk mendapatkan manfaat penuh dari perlindungannya, mendapatkan manfaat berikut:\n- Memakai medium armor tidak mengenakan disadvantage pada Dexterity (Stealth) checkmu.\n- Saat kamu memakai medium armor, kamu bisa menambahkan 3, bukan 2, ke Armor Class jika Dexteritymu 16 atau lebih tinggi.",
-      "prerequisites": "Proficiency with medium armor",
+      "prerequisites": "Kemampuan zirah medium",
       "source": "VRGR",
       "featureType": null,
       "actionType": null,
@@ -1981,7 +1981,7 @@
     {
       "name": "Metamagic Adept",
       "description": "Kamu telah mempelajari cara meletakkan kemauanmu untuk mengubah spellmu dengan cara halus namun berbeda. Kamu mendapatkan manfaat berikut:\n- Kamu mempelajari dua Metamagic options sesuai pilihanmu dari sorcerer class. Kamu bisa menggunakan hanya satu Metamagic option pada spell saat kamu mencapinya, kecuali option menyatakan sebaliknya. Saat kamu mendapatkan level, kamu bisa mengganti salah satu Metamagic options dengan option lain dari sorcerer class.\n- Kamu mendapatkan 2 sorcery points untuk menghabiskan pada Metamagic (point ini ditambahkan ke sorcery points yang kamu miliki dari sumber lain tapi hanya bisa digunakan untuk Metamagic). Kamu mendapatkan kembali semua sorcery points yang dihabiskan saat kamu menyelesaikan long rest.",
-      "prerequisites": "Spellcasting or Pact Magic feature",
+      "prerequisites": "Fitur Spellcasting atau Pact Magic",
       "source": "TCE",
       "featureType": null,
       "actionType": null,
@@ -2002,7 +2002,7 @@
     {
       "name": "Metamagic Adept",
       "description": "Kamu telah mempelajari cara meletakkan kemauanmu untuk mengubah spellmu dengan cara halus namun berbeda. Kamu mendapatkan manfaat berikut:\n- Kamu mempelajari dua Metamagic options sesuai pilihanmu dari sorcerer class. Kamu bisa menggunakan hanya satu Metamagic option pada spell saat kamu mencapinya, kecuali option menyatakan sebaliknya. Saat kamu mendapatkan level, kamu bisa mengganti salah satu Metamagic options dengan option lain dari sorcerer class.\n- Kamu mendapatkan 2 sorcery points untuk menghabiskan pada Metamagic (point ini ditambahkan ke sorcery points yang kamu miliki dari sumber lain tapi hanya bisa digunakan untuk Metamagic). Kamu mendapatkan kembali semua sorcery points yang dihabiskan saat kamu menyelesaikan long rest.",
-      "prerequisites": "Spellcasting or Pact Magic feature",
+      "prerequisites": "Fitur Spellcasting atau Pact Magic",
       "source": "VRGR",
       "featureType": null,
       "actionType": null,
@@ -2044,7 +2044,7 @@
     {
       "description": "Kamu telah dilatih untuk menguasai penggunaan medium armor dan shields, mendapatkan manfaat berikut:\n- Tingkatkan Strength atau Dexterity scoremu sebesar 1, maksimal 20.\n- Kamu mendapatkan proficiency dengan medium armor dan shields.",
       "name": "Moderately Armored",
-      "prerequisites": "Proficiency with light armor",
+      "prerequisites": "Kemampuan zirah light",
       "source": "PHB",
       "featureType": null,
       "actionType": null,
@@ -2065,7 +2065,7 @@
     {
       "name": "Moderately Armored",
       "description": "Kamu telah dilatih untuk menguasai penggunaan medium armor dan shields, mendapatkan manfaat berikut:\n- Tingkatkan Strength atau Dexterity sebesar 1, maksimal 20.\n- Kamu mendapatkan proficiency dengan medium armor dan shields.",
-      "prerequisites": "Proficiency with light armor",
+      "prerequisites": "Kemampuan zirah light",
       "source": "TCE",
       "featureType": null,
       "actionType": null,
@@ -2086,7 +2086,7 @@
     {
       "name": "Moderately Armored",
       "description": "Kamu telah dilatih untuk menguasai penggunaan medium armor dan shields, mendapatkan manfaat berikut:\n- Tingkatkan Strength atau Dexterity sebesar 1, maksimal 20.\n- Kamu mendapatkan proficiency dengan medium armor dan shields.",
-      "prerequisites": "Proficiency with light armor",
+      "prerequisites": "Kemampuan zirah light",
       "source": "VRGR",
       "featureType": null,
       "actionType": null,
@@ -2170,7 +2170,7 @@
     {
       "name": "Orcish Fury",
       "description": "Kemarahanmu membakar tanpa lelah, memberikanmu manfaat berikut:\n- Tingkatkan Strength atau Constitution sebesar 1, maksimal 20.\n- Saat kamu memukul dengan serangan menggunakan simple atau martial weapon, kamu bisa menggulir salah satu dadu damage senjata itu satu kali lagi dan menambahkannya ke extra damage dari serangan. Setelah kamu menggunakan kemampuan ini, kamu tidak bisa menggunakannya lagi sampai kamu memulai short rest atau long rest.\n- Saat kamu menggunakan trait Relentless Endurance, kamu juga bisa membuat melee attack sebagai reaction.",
-      "prerequisites": "Half-Orc or Orc",
+      "prerequisites": "Half-Orc atau Orc",
       "source": "TCE",
       "featureType": null,
       "actionType": null,
@@ -2191,7 +2191,7 @@
     {
       "name": "Orcish Fury",
       "description": "Kemarahanmu membakar tanpa lelah, memberikanmu manfaat berikut:\n- Tingkatkan Strength atau Constitution sebesar 1, maksimal 20.\n- Saat kamu memukul dengan serangan menggunakan simple atau martial weapon, kamu bisa menggulir salah satu dadu damage senjata itu satu kali lagi dan menambahkannya ke extra damage dari serangan. Setelah kamu menggunakan kemampuan ini, kamu tidak bisa menggunakannya lagi sampai kamu memulai short rest atau long rest.\n- Saat kamu menggunakan trait Relentless Endurance, kamu juga bisa membuat melee attack sebagai reaction.",
-      "prerequisites": "Half-Orc or Orc",
+      "prerequisites": "Half-Orc atau Orc",
       "source": "MTF",
       "featureType": null,
       "actionType": null,
@@ -2212,7 +2212,7 @@
     {
       "name": "Orcish Fury",
       "description": "Kemarahanmu membakar tanpa lelah, memberikanmu manfaat berikut:\n- Tingkatkan Strength atau Constitution sebesar 1, maksimal 20.\n- Saat kamu memukul dengan serangan menggunakan simple atau martial weapon, kamu bisa menggulir salah satu dadu damage senjata itu satu kali lagi dan menambahkannya ke extra damage dari serangan. Setelah kamu menggunakan kemampuan ini, kamu tidak bisa menggunakannya lagi sampai kamu memulai short rest atau long rest.\n- Saat kamu menggunakan trait Relentless Endurance, kamu juga bisa membuat melee attack sebagai reaction.",
-      "prerequisites": "Half-Orc or Orc",
+      "prerequisites": "Half-Orc atau Orc",
       "source": "EGW",
       "featureType": null,
       "actionType": null,
@@ -2317,7 +2317,7 @@
     {
       "name": "Prodigy",
       "description": "Kamu memiliki bakat untuk mempelajari hal baru, memberikanmu manfaat berikut:\n- Kamu mendapatkan proficiency dengan satu skill sesuai pilihanmu, satu tool sesuai pilihanmu, dan kecakapan dalam satu bahasa sesuai pilihanmu.\n- Kamu mendapatkan expertise dengan satu skill sesuai pilihanmu yang sudah kamu proficient. Skill yang kamu pilih harus yang belum mendapat manfaat dari fitur seperti Expertise yang menggandakan proficiency bonus.",
-      "prerequisites": "Half-Elf or Human",
+      "prerequisites": "Half-Elf atau Human",
       "source": "TCE",
       "featureType": null,
       "actionType": null,
@@ -2338,7 +2338,7 @@
     {
       "name": "Prodigy",
       "description": "Kamu memiliki bakat untuk mempelajari hal baru, memberikanmu manfaat berikut:\n- Kamu mendapatkan proficiency dengan satu skill sesuai pilihanmu, satu tool sesuai pilihanmu, dan kecakapan dalam satu bahasa sesuai pilihanmu.\n- Kamu mendapatkan expertise dengan satu skill sesuai pilihanmu yang sudah kamu proficient. Skill yang kamu pilih harus yang belum mendapat manfaat dari fitur seperti Expertise yang menggandakan proficiency bonus.",
-      "prerequisites": "Half-Elf or Human",
+      "prerequisites": "Half-Elf atau Human",
       "source": "MTF",
       "featureType": null,
       "actionType": null,
@@ -2359,7 +2359,7 @@
     {
       "name": "Prodigy",
       "description": "Kamu memiliki bakat untuk mempelajari hal baru, memberikanmu manfaat berikut:\n- Kamu mendapatkan proficiency dengan satu skill sesuai pilihanmu, satu tool sesuai pilihanmu, dan kecakapan dalam satu bahasa sesuai pilihanmu.\n- Kamu mendapatkan expertise dengan satu skill sesuai pilihanmu yang sudah kamu proficient. Skill yang kamu pilih harus yang belum mendapat manfaat dari fitur seperti Expertise yang menggandakan proficiency bonus.",
-      "prerequisites": "Half-Elf or Human",
+      "prerequisites": "Half-Elf atau Human",
       "source": "EGW",
       "featureType": null,
       "actionType": null,
@@ -2401,7 +2401,7 @@
     {
       "description": "Kamu telah mempelajari sejumlah spell yang bisa kamu cast sebagai rituals. Spell-spell ini ditulis dalam ritual book, yang harus kamu pegang saat cast salah satu dari mereka.\nSaat kamu memilih feat ini, kamu mendapatkan ritual book yang memegang dua spell level 1 sesuai pilihanmu. Pilih salah satu kelas berikut: bard, cleric, druid, sorcerer, warlock, atau wizard. Kamu harus memilih spell dari spell list kelas itu, dan spell yang kamu pilih harus memiliki ritual tag. Kelas yang kamu pilih juga menentukan spellcasting ability untuk spell-spell ini: Charisma untuk bard, sorcerer, atau warlock; Wisdom untuk cleric atau druid; Intelligence untuk wizard.\nJika kamu menemukan spell dalam bentuk tertulis, seperti spell scroll magis atau spellbook wizard, kamu mungkin bisa menambahkannya ke ritual book. Spell harus ada di spell list untuk kelas yang kamu pilih, level spell tidak boleh lebih tinggi dari setengah levelmu (dibulatkan ke atas), dan menambahkannya memerlukan waktu dan emas sebesar dua kali level spell.",
       "name": "Ritual Caster",
-      "prerequisites": "Intelligence or Wisdom 13 or higher",
+      "prerequisites": "Intelligence atau Wisdom 13 atau lebih",
       "source": "PHB",
       "featureType": null,
       "actionType": null,
@@ -2716,7 +2716,7 @@
     {
       "description": "Kamu ahli dalam menyelinap melalui bayangan. Kamu mendapatkan manfaat berikut:\n- Kamu bisa mencoba bersembunyi saat kamu slightly obscured dari makhluk yang kamu sembunyikan darinya.\n- Saat kamu tersembunyi dari makhluk dan miss dengan ranged attack, membuat serangan itu tidak mengungkapkan posisimu.\n- Cahaya redup tidak mengenakan disadvantage pada Wisdom (Perception) checkmu yang bergantung pada penglihatan.",
       "name": "Skulker",
-      "prerequisites": "Dexterity 13 or higher",
+      "prerequisites": "Dexterity 13 atau lebih",
       "source": "PHB",
       "featureType": null,
       "actionType": null,
@@ -2779,7 +2779,7 @@
     {
       "description": "Kamu telah mempelajari teknik untuk meningkatkan seranganmu dengan certain kinds of spells, mendapatkan manfaat berikut:\n- Saat kamu cast spell yang memerlukanmu membuat attack roll, range spell digandakan.\n- ranged spell attackmu mengabaikan half cover dan three-quarters cover.\n- Kamu mempelajari satu cantrip yang memerlukan attack roll. Pilih cantrip dari bard, cleric, druid, sorcerer, warlock, atau wizard spell list. Spellcasting ability untuk cantrip ini tergantung pada kelas yang kamu pilih: Charisma untuk bard, sorcerer, atau warlock; Wisdom untuk cleric atau druid; Intelligence untuk wizard.",
       "name": "Spell Sniper",
-      "prerequisites": "The ability to cast at least one spell",
+      "prerequisites": "Mampu merapal minimal satu mantra",
       "source": "PHB",
       "featureType": null,
       "actionType": null,
@@ -2821,7 +2821,7 @@
     {
       "name": "Squat Nimbleness",
       "description": "Kamu sangat gesit untuk orang-orangmu, memberikanmu manfaat berikut:\n- Tingkatkan Strength atau Dexterity sebesar 1, maksimal 20.\n- Speedmu meningkat sebesar 5 kaki.\n- Kamu mendapatkan proficiency dalam skill Acrobatics atau Athletics (pilihanmu).\n- Kamu memiliki advantage pada check apapun yang kamu lakukan untuk escape grapple.",
-      "prerequisites": "Dwarf or Small race",
+      "prerequisites": "Dwarf atau ras Small",
       "source": "TCE",
       "featureType": null,
       "actionType": null,
@@ -2842,7 +2842,7 @@
     {
       "name": "Squat Nimbleness",
       "description": "Kamu sangat gesit untuk orang-orangmu, memberikanmu manfaat berikut:\n- Tingkatkan Strength atau Dexterity sebesar 1, maksimal 20.\n- Speedmu meningkat sebesar 5 kaki.\n- Kamu mendapatkan proficiency dalam skill Acrobatics atau Athletics (pilihanmu).\n- Kamu memiliki advantage pada check apapun yang kamu lakukan untuk escape grapple.",
-      "prerequisites": "Dwarf or Small race",
+      "prerequisites": "Dwarf atau ras Small",
       "source": "MTF",
       "featureType": null,
       "actionType": null,
@@ -2863,7 +2863,7 @@
     {
       "name": "Squat Nimbleness",
       "description": "Kamu sangat gesit untuk orang-orangmu, memberikanmu manfaat berikut:\n- Tingkatkan Strength atau Dexterity sebesar 1, maksimal 20.\n- Speedmu meningkat sebesar 5 kaki.\n- Kamu mendapatkan proficiency dalam skill Acrobatics atau Athletics (pilihanmu).\n- Kamu memiliki advantage pada check apapun yang kamu lakukan untuk escape grapple.",
-      "prerequisites": "Dwarf or Small race",
+      "prerequisites": "Dwarf atau ras Small",
       "source": "EGW",
       "featureType": null,
       "actionType": null,
@@ -2947,7 +2947,7 @@
     {
       "description": "Kamu telah berlatih cast spell di tengah combat, mempelajari teknik yang memberikanmu manfaat berikut:\n- Kamu memiliki advantage pada Constitution saving throw yang kamu buat untuk maintaining concentration pada spell saat kamu menerima damage.\n- Kamu bisa melakukan somatic components dari spells bahkan ketika kamu memiliki weapons atau shield di satu atau kedua tangan.\n- Saat gerakan hostile makhluk memancing opportunity attack darimu, kamu bisa menggunakan reactionmu untuk cast spell ke makhluk itu, alih-alih membuat opportunity attack. Spell harus memiliki casting time of 1 action dan hanya menargetkan makhluk itu.",
       "name": "War Caster",
-      "prerequisites": "The ability to cast at least one spell",
+      "prerequisites": "Mampu merapal minimal satu mantra",
       "source": "PHB",
       "featureType": null,
       "actionType": null,

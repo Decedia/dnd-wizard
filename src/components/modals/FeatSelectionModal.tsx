@@ -54,8 +54,8 @@ export function FeatSelectionModal({
   disabledFeats = [],
   character,
 }: FeatSelectionModalProps) {
-  const { t } = useLanguage();
-  const feats = getStaticFeats(sources);
+  const { t, language } = useLanguage();
+  const feats = useMemo(() => getStaticFeats(sources, undefined, language), [sources, language]);
   const [search, setSearch] = useState("");
   const [pendingSelection, setPendingSelection] = useState<string | null>(selectedFeat || null);
   const [sourceFilter, setSourceFilter] = useState<string>("ALL");
@@ -144,7 +144,7 @@ export function FeatSelectionModal({
       : undefined;
     const classes = filter.classes ?? (classFilter ? [classFilter] : []);
 
-    let spells = getStaticSpells(sources);
+    let spells = getStaticSpells(sources, undefined, language);
     if (filter.level !== undefined) {
       spells = spells.filter((spell) => spell.level === filter.level);
     }
@@ -169,7 +169,7 @@ export function FeatSelectionModal({
     if (!spellSearch.trim()) return spells;
     const q = spellSearch.toLowerCase();
     return spells.filter((spell) => spell.name.toLowerCase().includes(q));
-  }, [spellTarget, optionSelections, sources, spellSearch]);
+  }, [spellTarget, optionSelections, sources, spellSearch, language]);
 
   const handleSelectFeat = useCallback((feat: SRDFeat) => {
     setPendingSelection((prev) => {
