@@ -94,7 +94,7 @@ const SKILLS = [
 
 const DAMAGE_TYPE_RE = new RegExp(`\\b(${DAMAGE_TYPES.join("|")})\\s+damage\\b`, "gi");
 const STATUS_RE = new RegExp(`\\b(${STATUSES.join("|")})\\b`, "gi");
-const SAVING_THROW_RE = new RegExp(`\\b(${ABILITIES.join("|")})\\s+saving\\s+throw\\b`, "gi");
+const SAVING_THROW_RE = new RegExp(`\\b(${ABILITIES.join("|")})\\s+saving\\s+throws?\\b`, "gi");
 const SKILL_RE = new RegExp(`\\b(${SKILLS.join("|")})\\b`, "gi");
 
 const DAMAGE_STYLE: Record<string, string> = {

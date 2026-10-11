@@ -69,12 +69,16 @@ The handling is word-order sensitive, and getting it wrong is the usual failure:
 | What is said | What happens |
 | --- | --- |
 | `Charisma saving throw` | Badge, coloured by Charisma |
+| `Charisma saving throws` | Same badge — the trailing `s` is optional (`throws?`) |
 | `Dexterity saving throw` | Badge, coloured by Dexterity |
 | `Athletics`, `Stealth`, any listed skill | Badge on its own, coloured by the governing ability |
 | `fire damage`, `1d8 necrotic damage` | Damage badge, coloured by the damage type, with its icon |
 | `frightened`, `stunned`, any listed status | Status badge with its icon |
-| `Charisma` alone | **Not** a badge — only `… saving throw` is |
+| `Charisma` alone | **Not** a badge — only `… saving throw(s)` is |
 | `fire` alone | **Not** a badge — only `… damage` is |
+
+The plural matters: the SRD data writes "saving throws" about half the time, and a regex pinned
+to the singular `throw` silently skips those.
 
 The word boundaries are load-bearing and match on the surrounding words, not just the term:
 
