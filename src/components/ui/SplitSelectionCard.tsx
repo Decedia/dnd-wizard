@@ -23,6 +23,8 @@ export interface SplitSelectionCardProps {
   isSelected?: boolean;
   disabled?: boolean;
   modalContent?: ReactNode;
+  /** Keep the full subtitle instead of clamping it to two lines. */
+  clampSubtitle?: boolean;
 }
 
 export function SplitSelectionCard({
@@ -39,6 +41,7 @@ export function SplitSelectionCard({
   isSelected = false,
   disabled = false,
   modalContent,
+  clampSubtitle = true,
 }: SplitSelectionCardProps) {
   const { t } = useLanguage();
   const [showModal, setShowModal] = useState(false);
@@ -95,7 +98,11 @@ export function SplitSelectionCard({
               ))}
             </div>
             {subtitle && (
-              <p className="text-xs text-[var(--color-text-secondary)] line-clamp-2">
+              <p
+                className={`text-xs text-[var(--color-text-secondary)] leading-relaxed ${
+                  clampSubtitle ? "line-clamp-2" : ""
+                }`}
+              >
                 {subtitle}
               </p>
             )}

@@ -2,13 +2,14 @@
 
 import { useState, useMemo, useCallback, useEffect, useLayoutEffect } from "react";
 import { getStaticClasses } from "@/lib/srd-client";
-import { getStaticRaces, getStaticRaceDetails, type SRDRace } from "@/lib/srd-client";
+import { getStaticRaces, getStaticRaceDetails, type SRDClass, type SRDRace } from "@/lib/srd-client";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import {
   InfoBadge,
   InfoCallout,
   InfoCard,
   InfoChip,
+  InfoProse,
   InfoSectionLabel,
   InfoStatTile,
   InfoTraitList,
@@ -47,6 +48,8 @@ export interface SelectionOption {
   source: string;
   description: string;
   icon?: React.ComponentType<{ className?: string }>;
+  /** Full class record for the class info panel. */
+  details?: SRDClass;
   hasChoice?: boolean;
   choiceType?: string;
   basicStats?: string;
@@ -217,6 +220,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
         name: cls.name,
         source: cls.source || "PHB",
         description: cls.flavor || "",
+        details: cls,
         icon: CLASS_ICONS[cls.name] || FallbackIcon,
         hasChoice: false,
         choiceType: "subclass",
@@ -695,6 +699,7 @@ function SelectionCard({
     <SplitSelectionCard
       title={option.name}
       subtitle={option.description}
+      clampSubtitle={selectionType !== "class"}
       icon={<Icon className="h-6 w-6 text-[var(--color-text-primary)]" />}
       badges={badges}
       isRecommended={option.isRecommended}
@@ -702,9 +707,13 @@ function SelectionCard({
       onSelect={onClick}
       infoType="modal"
       modalContent={
-        <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">
-          {option.description}
-        </p>
+        selectionType === "class" ? (
+          <ClassInfoPanel option={option} />
+        ) : (
+          <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">
+            {option.description}
+          </p>
+        )
       }
     />
   );
@@ -866,6 +875,176 @@ function ConfigChoiceCard({ choice, isSelected, onClick }: ConfigChoiceCardProps
         </div>
       </div>
     </button>
+  );
+}
+
+function formatProficiencyList(items: string[] | undefined): string[] {
+  return (items || []).filter(Boolean);
+}
+
+function ClassInfoPanel({ option }: { option: SelectionOption }) {
+  const { t } = useLanguage();
+  const cls = option.details;
+  const flavor = cls?.flavor || option.description || "";
+  const sourceLabel = cls?.source || option.source;
+  const savingThrows = (cls?.savingThrows || []).map((a) => a.toUpperCase());
+  const primaryAbility = cls?.primaryAbility ? cls.primaryAbility.toUpperCase() : "";
+  const armor = formatProficiencyList(cls?.proficiencies?.armor);
+  const weapons = formatProficiencyList(cls?.proficiencies?.weapons);
+  const tools = formatProficiencyList(cls?.proficiencies?.tools);
+  const skillOptions = cls?.skillChoices?.options || [];
+  const subclasses = (cls?.subclasses || []).filter((sc) => !!sc?.name);
+  const earlyLevels = (cls?.levels || [])
+    .slice(0, 3)
+    .map((entry, index) => ({
+      level: index + 1,
+      features: (entry.features || []).map((feature) => feature.name).filter(Boolean),
+    }))
+    .filter((entry) => entry.features.length > 0);
+  const equipment = (cls?.startingEquipment || [])
+    .map((entry) => entry?.description)
+    .filter(Boolean);
+
+  return (
+    <div className="space-y-4">
+      <div className="rounded-2xl border-2 border-border-strong bg-surface p-4">
+        <h3 className="text-lg font-bold text-ink">{option.name}</h3>
+        <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
+          {sourceLabel && sourceLabel !== "PHB" && <InfoBadge>{sourceLabel}</InfoBadge>}
+          {cls?.subclassLevel && (
+            <span className="text-[10px] font-bold uppercase tracking-wider text-ink-subtle">
+              {t("modal.subclassAt", { n: cls.subclassLevel }, "Subclass di Level {n}")}
+            </span>
+          )}
+        </div>
+      </div>
+
+      {flavor && (
+        <InfoCallout label={t("modal.whyPlay", "Kenapa Pilih Ini")}>{flavor}</InfoCallout>
+      )}
+
+      <div className="grid grid-cols-2 gap-2">
+        <InfoStatTile
+          label={t("modal.hitDie", "Dadu HP")}
+          value={cls?.hitDie ? `d${cls.hitDie}` : ""}
+        />
+        <InfoStatTile label={t("modal.hpPerLevel", "HP per Level")} value={cls?.hpPerLevel ? `+${cls.hpPerLevel}` : ""} />
+        <InfoStatTile label={t("modal.primaryAbility", "Kemampuan Utama")} value={primaryAbility} />
+        <InfoStatTile
+          label={t("modal.savingThrows", "Saving Throw")}
+          value={savingThrows.length > 0 ? savingThrows.join(", ") : ""}
+        />
+      </div>
+
+      {armor.length + weapons.length + tools.length > 0 && (
+        <div>
+          <InfoSectionLabel>{t("modal.proficiencies", "Keahlian")}</InfoSectionLabel>
+          <div className="mt-1.5 space-y-1.5">
+            {armor.length > 0 && (
+              <div className="flex flex-wrap items-center gap-1.5">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-ink-subtle">
+                  {t("modal.armor", "Zirah")}
+                </span>
+                {armor.map((item) => (
+                  <InfoChip key={`armor-${item}`}>{item}</InfoChip>
+                ))}
+              </div>
+            )}
+            {weapons.length > 0 && (
+              <div className="flex flex-wrap items-center gap-1.5">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-ink-subtle">
+                  {t("modal.weapons", "Senjata")}
+                </span>
+                {weapons.map((item) => (
+                  <InfoChip key={`weapon-${item}`}>{item}</InfoChip>
+                ))}
+              </div>
+            )}
+            {tools.length > 0 && (
+              <div className="flex flex-wrap items-center gap-1.5">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-ink-subtle">
+                  {t("proficiencies.tools", "Keahlian Alat")}
+                </span>
+                {tools.map((item) => (
+                  <InfoChip key={`tool-${item}`}>{item}</InfoChip>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {cls?.skillChoices && (
+        <InfoCard
+          label={t("modal.skillChoices", "Pilihan Skill")}
+          labelClassName="text-ink"
+        >
+          <p className="text-xs text-ink-muted">
+            {t("modal.chooseSkillsCount", { n: cls.skillChoices.count }, "Pilih {n} skill")}
+          </p>
+          <div className="mt-1.5 flex flex-wrap gap-1.5">
+            {skillOptions.map((skill) => (
+              <InfoChip key={skill}>{skill}</InfoChip>
+            ))}
+          </div>
+        </InfoCard>
+      )}
+
+      {subclasses.length > 0 && (
+        <InfoCard label={t("modal.subclasses", "Subclass")}>
+          <div className="flex flex-wrap gap-1.5">
+            {subclasses.map((subclass) => (
+              <InfoChip key={subclass.name} emphasis>
+                {subclass.name}
+              </InfoChip>
+            ))}
+          </div>
+        </InfoCard>
+      )}
+
+      {option.recommendationText && (
+        <InfoCard label={t("modal.recommendation", "Rekomendasi")}>
+          <p className="text-xs leading-relaxed text-ink-muted">{option.recommendationText}</p>
+        </InfoCard>
+      )}
+
+      {earlyLevels.length > 0 && (
+        <div>
+          <InfoSectionLabel>{t("modal.earlyFeatures", "Fitur Awal")}</InfoSectionLabel>
+          <div className="mt-1.5 space-y-2">
+            {earlyLevels.map(({ level, features }) => (
+              <div key={level} className="rounded-xl border-2 border-border-strong bg-surface p-3">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">
+                  {t("modal.levelN", { n: level }, "Level {n}")}
+                </span>
+                <div className="mt-1 flex flex-wrap gap-1">
+                  {features.map((feature) => (
+                    <span
+                      key={feature}
+                      className="rounded-md border-2 border-border-strong bg-paper-muted px-2 py-0.5 text-[11px] font-semibold text-ink"
+                    >
+                      {feature}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {equipment.length > 0 && (
+        <InfoCard label={t("modal.startingEquipment", "Perlengkapan Awal")}>
+          <ul className="space-y-1">
+            {equipment.map((entry, index) => (
+              <li key={`equip-${index}`} className="text-xs leading-relaxed text-ink-muted">
+                - {entry}
+              </li>
+            ))}
+          </ul>
+        </InfoCard>
+      )}
+    </div>
   );
 }
 
