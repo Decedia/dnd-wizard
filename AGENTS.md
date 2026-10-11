@@ -1,3 +1,17 @@
+## Read First
+
+**Before editing any user-facing text, SRD data, locale file, or selection UI, read
+[`.kilocode/rules/content-rules.md`](.kilocode/rules/content-rules.md).**
+
+It covers localization (Indonesian wrapper copy, English D&D terms, which of the three locale
+files a string belongs in), inline dice rendering, bullet syntax, native elements, theme color
+tokens, modal layout, data-file hygiene (never JSON round-trip the hand-formatted feat files),
+and the checks required before finishing.
+
+The short version: localize everything with `t()`, render dice through `DiceText`, use `- ` and
+`1. ` bullets one per line, native HTML elements with theme tokens only, and verify with
+`bun typecheck && bun lint && bun test src/tests/srd-data.test.ts && npx next build`.
+
 ## Optional Feature Guides
 
 When users request features beyond the base template, check for available recipes in `.kilocode/recipes/`.
