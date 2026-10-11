@@ -22,6 +22,7 @@ import type { Character } from "@/lib/storage";
 import { isRecommended } from "@/lib/recommendations";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { BottomSheet } from "@/components/modals/BottomSheet";
+import { InfoBadge, InfoCallout, InfoCard, InfoProse } from "@/components/modals/InfoBits";
 
 interface FeatSelectionModalProps {
   onSelect: (feat: SRDFeat, optionSelections?: Record<string, string>) => void;
@@ -251,7 +252,7 @@ export function FeatSelectionModal({
     >
       {step === "info" && infoFeat ? (
         <div className={SCROLL_CLASS}>
-          <FeatInfo feat={infoFeat} />
+          <FeatInfo feat={infoFeat} character={character} />
         </div>
       ) : step === "spell" && spellTarget ? (
         <SpellPicker
@@ -511,35 +512,48 @@ export function FeatSelectionModal({
   );
 }
 
-function FeatInfo({ feat }: { feat: SRDFeat }) {
+function FeatInfo({ feat, character }: { feat: SRDFeat; character?: Character }) {
   const { t } = useLanguage();
   const engineFlavor = getEngineFeatFlavor(feat.name);
   const flavorText = engineFlavor.flavorId ? t(engineFlavor.flavorId, engineFlavor.flavor) : engineFlavor.flavor;
+  const sourceLabel = feat.book || feat.source;
+  const lines = describeFeatRequirements(character ?? ({} as Character), feat.name, t);
+  const prerequisiteText = feat.prerequisites ?? (lines.length > 0 ? lines.map((l) => l.text).join(" • ") : null);
+  const prerequisiteUnmet = lines.some((line) => !line.met);
 
   return (
     <div className="space-y-3">
       <div className="rounded-2xl border-2 border-border-strong bg-surface p-4">
         <h3 className="text-lg font-bold text-ink">{feat.name}</h3>
-        {feat.prerequisites && (
-          <span className="mt-0.5 block text-[10px] font-bold uppercase tracking-wider text-warning-500">
-            {t("feat.prerequisiteLabel", "Syarat")}: {feat.prerequisites}
+        <div className="mt-1 flex flex-wrap items-center gap-1.5">
+          {sourceLabel && sourceLabel !== "PHB" && <InfoBadge>{sourceLabel}</InfoBadge>}
+          {feat.prerequisites === null && lines.length === 0 && (
+            <InfoBadge>{t("feat.noPrerequisite", "Tanpa syarat")}</InfoBadge>
+          )}
+        </div>
+        {prerequisiteText && (
+          <span
+            className={`mt-1 block text-[10px] font-bold uppercase tracking-wider ${
+              prerequisiteUnmet ? "text-warning-500" : "text-ink-subtle"
+            }`}
+          >
+            {t("feat.prerequisiteLabel", "Syarat")}: {prerequisiteText}
           </span>
         )}
       </div>
 
       {flavorText && (
-        <p className="text-xs italic leading-relaxed text-ink-muted">{flavorText}</p>
+        <InfoCallout label={t("modal.whyPlay", "Kenapa Pilih Ini")}>{flavorText}</InfoCallout>
       )}
 
-      <p className="whitespace-pre-line text-xs leading-relaxed text-ink-muted">{feat.description}</p>
+      <InfoCard label={t("feat.description", "Deskripsi")}>
+        <InfoProse text={feat.description || ""} />
+      </InfoCard>
 
       {feat.summary && (
-        <div className="rounded-xl border-2 border-border-strong bg-surface p-3">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">
-            {t("feat.summary", "Ringkasan")}
-          </span>
-          <p className="mt-1 text-xs leading-relaxed text-ink">{feat.summary}</p>
-        </div>
+        <InfoCard label={t("feat.summary", "Ringkasan")}>
+          <InfoProse text={feat.summary} />
+        </InfoCard>
       )}
     </div>
   );

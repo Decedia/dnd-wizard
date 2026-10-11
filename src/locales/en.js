@@ -351,6 +351,8 @@ export const translations = {
   "feat.selectThisFeat": "Select This Feat",
   "feat.completeOptions": "Complete Choices",
   "feat.optionsRequired": "Required Choices",
+  "feat.description": "Description",
+  "feat.noPrerequisite": "No prerequisite",
   "feat.prerequisiteLabel": "Requires",
   "feat.chooseOption": "-- Pick {label} --",
   "feat.alreadyChosen": "(Already Taken)",

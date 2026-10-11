@@ -364,6 +364,8 @@ export const translations = {
   "feat.selectThisFeat": "Pilih Fitur Ini",
   "feat.completeOptions": "Lengkapi Pilihan",
   "feat.optionsRequired": "Pilihan Wajib",
+  "feat.description": "Deskripsi",
+  "feat.noPrerequisite": "Tanpa syarat",
   "feat.prerequisiteLabel": "Syarat",
   "feat.chooseOption": "-- Pilih {label} --",
   "feat.alreadyChosen": "(Sudah Dipilih)",

@@ -4,6 +4,15 @@ import { useState, useMemo, useCallback, useEffect, useLayoutEffect } from "reac
 import { getStaticClasses } from "@/lib/srd-client";
 import { getStaticRaces, getStaticRaceDetails, type SRDRace } from "@/lib/srd-client";
 import { BottomSheet } from "@/components/modals/BottomSheet";
+import {
+  InfoBadge,
+  InfoCallout,
+  InfoCard,
+  InfoChip,
+  InfoSectionLabel,
+  InfoStatTile,
+  InfoTraitList,
+} from "@/components/modals/InfoBits";
 import { RACE_ICONS } from "@/components/race-icons";
 import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
 import { HumanVariantConfig, type HumanVariantConfigPayload } from "@/components/modals/HumanVariantConfig";
@@ -889,11 +898,7 @@ function RaceInfoPanel({ option, characterSources, language, t }: RaceInfoPanelP
       <div className="rounded-2xl border-2 border-border-strong bg-surface p-4">
         <h3 className="text-lg font-bold text-ink">{option.name}</h3>
         <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
-          {option.source && (
-            <span className="rounded bg-paper-muted px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-ink-muted">
-              {option.source}
-            </span>
-          )}
+          {option.source && <InfoBadge>{option.source}</InfoBadge>}
           {option.basicStats && (
             <span className="text-[10px] font-bold uppercase tracking-wider text-ink-subtle">
               {option.basicStats}
@@ -903,99 +908,50 @@ function RaceInfoPanel({ option, characterSources, language, t }: RaceInfoPanelP
       </div>
 
       {details?.flavor && (
-        <div className="rounded-2xl border-2 border-ink bg-ink/5 p-4">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">
-            {t("modal.whyPlay", "Kenapa Pilih Ini")}
-          </span>
-          <p className="mt-1 text-sm font-bold leading-relaxed text-ink">{details.flavor}</p>
-        </div>
+        <InfoCallout label={t("modal.whyPlay", "Kenapa Pilih Ini")}>{details.flavor}</InfoCallout>
       )}
 
       <div className="grid grid-cols-2 gap-2">
-        <div className="rounded-xl border-2 border-border-strong bg-surface p-3">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">
-            {t("modal.size", "Ukuran")}
-          </span>
-          <p className="mt-0.5 text-sm font-bold text-ink">{details?.size || "—"}</p>
-        </div>
-        <div className="rounded-xl border-2 border-border-strong bg-surface p-3">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">
-            {t("modal.speed", "Kecepatan")}
-          </span>
-          <p className="mt-0.5 text-sm font-bold text-ink">
-            {details?.speed ? `${details.speed} ft` : "—"}
-          </p>
-        </div>
-        <div className="rounded-xl border-2 border-border-strong bg-surface p-3">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">
-            {t("modal.darkvision", "Penglihatan Gelap")}
-          </span>
-          <p className="mt-0.5 text-sm font-bold text-ink">
-            {formatDarkvision(details?.darkvision, t)}
-          </p>
-        </div>
-        <div className="rounded-xl border-2 border-border-strong bg-surface p-3">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">
-            {t("modal.languages", "Bahasa")}
-          </span>
-          <p className="mt-0.5 text-sm font-bold text-ink">
-            {languages.length > 0 ? languages.join(", ") : "—"}
-          </p>
-        </div>
+        <InfoStatTile label={t("modal.size", "Ukuran")} value={details?.size} />
+        <InfoStatTile
+          label={t("modal.speed", "Kecepatan")}
+          value={details?.speed ? `${details.speed} ft` : ""}
+        />
+        <InfoStatTile
+          label={t("modal.darkvision", "Penglihatan Gelap")}
+          value={formatDarkvision(details?.darkvision, t)}
+        />
+        <InfoStatTile
+          label={t("modal.languages", "Bahasa")}
+          value={languages.length > 0 ? languages.join(", ") : ""}
+        />
       </div>
 
       {abilityIncreases.length > 0 && (
         <div>
-          <span className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">
-            {t("modal.abilityBonuses", "Bonus Kemampuan")}
-          </span>
+          <InfoSectionLabel>{t("modal.abilityBonuses", "Bonus Kemampuan")}</InfoSectionLabel>
           <div className="mt-1.5 flex flex-wrap gap-1.5">
             {abilityIncreases.map(([stat, bonus]) => (
-              <span
-                key={stat}
-                className="rounded-lg border-2 border-ink bg-ink/10 px-2 py-1 text-xs font-bold text-ink"
-              >
+              <InfoChip key={stat} emphasis>
                 +{bonus} {stat.toUpperCase()}
-              </span>
+              </InfoChip>
             ))}
           </div>
         </div>
       )}
 
       {option.recommendationText && (
-        <div className="rounded-xl border-2 border-border-strong bg-surface p-3">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">
-            {t("modal.recommendation", "Rekomendasi")}
-          </span>
-          <p className="mt-1 text-xs leading-relaxed text-ink-muted">
-            {option.recommendationText}
-          </p>
-        </div>
+        <InfoCard label={t("modal.recommendation", "Rekomendasi")}>
+          <p className="text-xs leading-relaxed text-ink-muted">{option.recommendationText}</p>
+        </InfoCard>
       )}
 
       <div>
-        <span className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">
-          {t("modal.traits", "Ciri-ciri")}
-        </span>
-        {traits.length > 0 ? (
-          <div className="mt-1.5 space-y-2">
-            {traits.map((trait, index) => (
-              <div
-                key={`${trait.name}-${index}`}
-                className="rounded-xl border-2 border-border-strong bg-surface p-3"
-              >
-                <h4 className="text-sm font-bold text-ink">{trait.name}</h4>
-                <p className="mt-1 text-xs leading-relaxed text-ink-muted">
-                  {trait.summary || trait.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <p className="mt-1.5 text-xs text-ink-muted">
-            {t("modal.noRaceInfo", "Detail ras tidak tersedia.")}
-          </p>
-        )}
+        <InfoSectionLabel>{t("modal.traits", "Ciri-ciri")}</InfoSectionLabel>
+        <InfoTraitList
+          traits={traits}
+          emptyText={t("modal.noRaceInfo", "Detail ras tidak tersedia.")}
+        />
       </div>
     </div>
   );
