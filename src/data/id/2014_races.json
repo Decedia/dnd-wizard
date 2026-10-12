@@ -144,6 +144,9 @@
       "recommendation": {
         "is_recommended": false,
         "text": "Goblinoid tinggi dan agresif dengan reach serta mekanik ambush. Seru untuk taktik hit-and-run, tapi aturan extra movement dan surprise bisa menjerat pemain baru."
+      },
+      "darkvision": {
+        "range": 60
       }
     },
     {
@@ -339,6 +342,9 @@
       "abilityScoreIncreases": {
         "int": 2,
         "dex": 1
+      },
+      "darkvision": {
+        "range": 120
       }
     },
     {
@@ -459,6 +465,9 @@
       "recommendation": {
         "is_recommended": false,
         "text": "Keturunan undead seperti vampire dengan spider climb dan gigitan. Menambah mekanik tematik gelap berupa rasa lapar yang mirip resource, dan itu bisa membanjiri pemain baru."
+      },
+      "darkvision": {
+        "range": 60
       }
     },
     {
@@ -1693,6 +1702,9 @@
       "abilityScoreIncreases": {
         "dex": 2,
         "cha": 1
+      },
+      "darkvision": {
+        "range": 60
       }
     },
     {
@@ -2742,6 +2754,9 @@
       "recommendation": {
         "is_recommended": false,
         "text": "Makhluk kecil yang licik dengan Fury of the Small dan Nimble Escape. Alat positioning taktisnya kuat, tapi opsi bonus action tambahan bisa menyulitkan pemain baru."
+      },
+      "darkvision": {
+        "range": 60
       }
     },
     {
@@ -4653,6 +4668,9 @@
       "recommendation": {
         "is_recommended": false,
         "text": "Petarung disiplin dengan bonus positioning taktis. Ciri Saving Face menambah keputusan reaktif yang lebih menguntungkan pemain berpengalaman."
+      },
+      "darkvision": {
+        "range": 60
       }
     },
     {
@@ -5030,6 +5048,9 @@
       "recommendation": {
         "is_recommended": false,
         "text": "Brut kuat dengan Aggressive dan darkvision. Kehadiran tempurnya sederhana, tapi intelligence rendah dan pack tactics bisa membingungkan positioning taktis pemain baru."
+      },
+      "darkvision": {
+        "range": 60
       }
     },
     {
@@ -5250,6 +5271,9 @@
       "recommendation": {
         "is_recommended": false,
         "text": "Pengubah wujud ala druid dengan bonus sementara saat shifting. Core loop-nya sederhana, tapi pilihan tipe Shifter dan ngatur boost sementara menambah beban keputusan."
+      },
+      "darkvision": {
+        "range": 60
       }
     },
     {
@@ -5370,6 +5394,9 @@
       "recommendation": {
         "is_recommended": false,
         "text": "Penjelajah berbentuk kucing dengan kecepatan dan kemampuan memanjat. Seru untuk eksplorasi serta hit-and-run, tapi Feline Agility bisa membuat pemain baru terlalu maju."
+      },
+      "darkvision": {
+        "range": 60
       }
     },
     {
@@ -6578,6 +6605,9 @@
       "recommendation": {
         "is_recommended": false,
         "text": "Humanoid berbentuk burung dengan flight dan serangan cakar. Flight-nya kuat, tapi mengelola positioning udara dan reach bisa menyiksa pemain baru."
+      },
+      "darkvision": {
+        "range": 60
       }
     },
     {
@@ -6675,6 +6705,9 @@
       "recommendation": {
         "is_recommended": false,
         "text": "Humanoid tersentuh ular dengan innate spellcasting dan poison immunity. Penuh rasa, tapi daftar spell ekstra dan interaksi imunitas menambah kompleksitas."
+      },
+      "darkvision": {
+        "range": 60
       }
     },
     {
@@ -6767,6 +6800,9 @@
       "abilityScoreIncreases": {
         "dexterity": 2,
         "strength": -2
+      },
+      "darkvision": {
+        "range": 60
       }
     },
     {
@@ -6905,6 +6941,9 @@
       "recommendation": {
         "is_recommended": false,
         "text": "Gnome mekanik dengan alat bawaan dan flight terbatas. Tema tukang-alatnya seru, tapi ciri mekaniknya menambah kompleksitas kecil yang terus terasa."
+      },
+      "darkvision": {
+        "range": 60
       }
     },
     {
@@ -7043,6 +7082,9 @@
       "abilityScoreIncreases": {
         "strength": 2,
         "dexterity": 2
+      },
+      "darkvision": {
+        "range": 30
       }
     },
     {
@@ -7164,6 +7206,9 @@
       "recommendation": {
         "is_recommended": false,
         "text": "Pahlawan tersentuh selestial dengan resistance dan transformasi penyembuhan. Mudah dirasakan, tapi mekanik transformasi menambah lapisan mengelola burst."
+      },
+      "darkvision": {
+        "range": 60
       }
     }
   ]

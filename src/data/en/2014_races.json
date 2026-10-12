@@ -144,6 +144,9 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A tall, aggressive goblinoid with reach and ambush mechanics. Fun for hit-and-run tactics, but the extra movement and surprise rules can trip up new players."
+      },
+      "darkvision": {
+        "range": 60
       }
     },
     {
@@ -339,6 +342,9 @@
       "abilityScoreIncreases": {
         "int": 2,
         "dex": 1
+      },
+      "darkvision": {
+        "range": 120
       }
     },
     {
@@ -459,6 +465,9 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A vampire-like undead descendant with spider climb and biting. Adds dark thematic mechanics and resource-like hunger that can overwhelm new players."
+      },
+      "darkvision": {
+        "range": 60
       }
     },
     {
@@ -1693,6 +1702,9 @@
       "abilityScoreIncreases": {
         "dex": 2,
         "cha": 1
+      },
+      "darkvision": {
+        "range": 60
       }
     },
     {
@@ -2742,6 +2754,9 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A small, crafty creature with Fury of the Small and Nimble Escape. Strong tactical positioning tools, but the extra bonus-action option can be tricky for new players."
+      },
+      "darkvision": {
+        "range": 60
       }
     },
     {
@@ -4653,6 +4668,9 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A disciplined warrior with tactical positioning bonuses. The Saving Face feature adds reactive decision-making that rewards experience."
+      },
+      "darkvision": {
+        "range": 60
       }
     },
     {
@@ -5030,6 +5048,9 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A powerful brute with Aggressive and darkvision. Simple combat presence, but reduced intelligence and pack tactics can confuse new tactical positioning."
+      },
+      "darkvision": {
+        "range": 60
       }
     },
     {
@@ -5250,6 +5271,9 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A druidic shapeshifter with temporary shifting bonuses. Simple core loop, but Shifter type choice and temporary boost management add decision weight."
+      },
+      "darkvision": {
+        "range": 60
       }
     },
     {
@@ -5370,6 +5394,9 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A feline explorer with speed and climb. Fun for exploration and hit-and-run, but Feline Agility can leave new players overextended."
+      },
+      "darkvision": {
+        "range": 60
       }
     },
     {
@@ -6578,6 +6605,9 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A bird-like humanoid with flight and talon attacks. Flight is powerful, but managing aerial positioning and reach can be punishing for new players."
+      },
+      "darkvision": {
+        "range": 60
       }
     },
     {
@@ -6675,6 +6705,9 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A serpent-touched humanoid with innate spellcasting and poison immunity. Flavorful, but the extra spell list and immunity interactions add complexity."
+      },
+      "darkvision": {
+        "range": 60
       }
     },
     {
@@ -6767,6 +6800,9 @@
       "abilityScoreIncreases": {
         "dexterity": 2,
         "strength": -2
+      },
+      "darkvision": {
+        "range": 60
       }
     },
     {
@@ -6905,6 +6941,9 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A mechanical gnome with a built-in tool and limited flight. Fun tinker theme, but the mechanical features add small but persistent complexity."
+      },
+      "darkvision": {
+        "range": 60
       }
     },
     {
@@ -7043,6 +7082,9 @@
       "abilityScoreIncreases": {
         "strength": 2,
         "dexterity": 2
+      },
+      "darkvision": {
+        "range": 30
       }
     },
     {
@@ -7164,6 +7206,9 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A celestial-touched hero with resistance and a healing transformation. Easy to flavor, but the transformation mechanics add a burst-management layer."
+      },
+      "darkvision": {
+        "range": 60
       }
     }
   ]
