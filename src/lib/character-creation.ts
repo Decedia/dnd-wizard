@@ -1442,13 +1442,12 @@ export function recreateCharacter(character: Character, language = "en"): Charac
   const chosenLanguages = new Set<string>([...(character.languages ?? [])]);
   const languages = [...new Set([...grantedLanguages, ...chosenLanguages])];
 
-  // The class proficiencies table lists saving throws alongside tools, and this
-  // field is tools only. Pulling them through produced entries like
-  // "Saving Throw: INT" in the tool proficiencies.
+  // Class tool proficiencies. The class data's tools field used to be a
+  // catch-all that also held weapons, shields and duplicated saving-throw
+  // rows, which polluted this list; the data now routes each to its own
+  // field, so the class tools can be taken as they are.
   const grantedTools = new Set<string>(
-    (((classData as any)?.proficiencies?.tools ?? []) as string[]).filter(
-      (t) => !/^saving throw/i.test(t)
-    )
+    (((classData as any)?.proficiencies?.tools ?? []) as string[]).filter(Boolean)
   );
   const chosenTools = new Set<string>([...(character.toolProficiencies ?? [])]);
   const toolProficiencies = [...new Set([...grantedTools, ...chosenTools])];

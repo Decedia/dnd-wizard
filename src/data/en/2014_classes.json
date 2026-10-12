@@ -993,14 +993,13 @@
           "light"
         ],
         "weapons": [
-          "simple"
-        ],
-        "tools": [
+          "simple",
           "Longswords",
-          "Rapiers",
           "Shortswords",
-          "Hand crossbows"
-        ]
+          "Hand crossbows",
+          "Rapiers"
+        ],
+        "tools": []
       },
       "skillChoices": {
         "count": 3,
@@ -4251,24 +4250,23 @@
       "proficiencies": {
         "armor": [
           "light",
-          "medium"
+          "medium",
+          "shields"
         ],
-        "weapons": [],
-        "tools": [
-          "shields",
+        "weapons": [
           "Clubs",
           "Daggers",
           "Javelins",
           "Maces",
           "Quarterstaffs",
-          "Sickles",
           "Spears",
           "Darts",
           "Slings",
-          "Scimitars",
-          "Herbalism Kit",
-          "Saving Throw: INT",
-          "Saving Throw: WIS"
+          "Sickles",
+          "Scimitars"
+        ],
+        "tools": [
+          "Herbalism Kit"
         ]
       },
       "skillChoices": {
@@ -7343,17 +7341,14 @@
         "armor": [
           "light",
           "medium",
-          "heavy"
+          "heavy",
+          "shields"
         ],
         "weapons": [
           "simple",
           "martial"
         ],
-        "tools": [
-          "shields",
-          "Saving Throw: WIS",
-          "Saving Throw: CHA"
-        ]
+        "tools": []
       },
       "skillChoices": {
         "count": 2,
@@ -8351,17 +8346,14 @@
       "proficiencies": {
         "armor": [
           "light",
-          "medium"
+          "medium",
+          "shields"
         ],
         "weapons": [
           "simple",
           "martial"
         ],
-        "tools": [
-          "shields",
-          "Saving Throw: DEX",
-          "Saving Throw: STR"
-        ]
+        "tools": []
       },
       "skillChoices": {
         "count": 3,
@@ -9564,16 +9556,14 @@
           "light"
         ],
         "weapons": [
-          "simple"
-        ],
-        "tools": [
+          "simple",
           "Longswords",
-          "Rapiers",
           "Shortswords",
           "Hand crossbows",
-          "Thieves' Tools",
-          "Saving Throw: DEX",
-          "Saving Throw: INT"
+          "Rapiers"
+        ],
+        "tools": [
+          "Thieves' Tools"
         ]
       },
       "skillChoices": {
@@ -10714,16 +10704,14 @@
       ],
       "proficiencies": {
         "armor": [],
-        "weapons": [],
-        "tools": [
+        "weapons": [
           "Daggers",
           "Darts",
           "Slings",
           "Quarterstaffs",
-          "Crossbows, light",
-          "Saving Throw: CON",
-          "Saving Throw: CHA"
-        ]
+          "Crossbows, light"
+        ],
+        "tools": []
       },
       "skillChoices": {
         "count": 2,
@@ -11831,10 +11819,7 @@
         "weapons": [
           "simple"
         ],
-        "tools": [
-          "Saving Throw: WIS",
-          "Saving Throw: CHA"
-        ]
+        "tools": []
       },
       "skillChoices": {
         "count": 2,
@@ -13464,16 +13449,14 @@
       ],
       "proficiencies": {
         "armor": [],
-        "weapons": [],
-        "tools": [
+        "weapons": [
           "Daggers",
           "Darts",
           "Slings",
           "Quarterstaffs",
-          "Crossbows, light",
-          "Saving Throw: INT",
-          "Saving Throw: WIS"
-        ]
+          "Crossbows, light"
+        ],
+        "tools": []
       },
       "skillChoices": {
         "count": 2,
@@ -14436,13 +14419,6 @@
           "thieves' tools",
           "tinker's tools",
           "one type of artisan's tools of your choice"
-        ],
-        "savingThrows": [
-          "Constitution",
-          "Intelligence"
-        ],
-        "skills": [
-          "Choose two from Arcana, History, Investigation, Medicine, Nature, Perception, Sleight of Hand"
         ]
       },
       "subclassLevel": 3,

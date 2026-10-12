@@ -1,11 +1,11 @@
 "use client";
 
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { Check, Info, Star } from "@phosphor-icons/react";
 import { getBackgroundData } from "@/data/backgrounds";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { isRecommended } from "@/lib/recommendations";
-import { getStaticClass } from "@/lib/srd-client";
+import { getStaticClass, getStaticRace } from "@/lib/srd-client";
 import { getProficiencyBonus, type Character } from "@/lib/storage";
 
 interface StepSkillsProps {
@@ -40,6 +40,20 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
     [data.background],
   );
 
+  // Skills the race already granted. Counting these toward the class allowance
+  // would silently shortchange the character - a Half-Elf who takes Stealth
+  // racially must still get all four of the Rogue's picks.
+  const raceGrantedSkills = useMemo(() => {
+    const granted = new Set<string>();
+    if (data.race.startsWith("Half-Elf")) {
+      for (const skill of data.halfElfSkills || []) granted.add(skill);
+    }
+    if (data.race === "Human" && data.raceVariant === "variant" && data.variantHumanSkill) {
+      granted.add(data.variantHumanSkill);
+    }
+    return granted;
+  }, [data.race, data.raceVariant, data.halfElfSkills, data.variantHumanSkill]);
+
   const allSkills = useMemo(
     () =>
       SKILL_GROUPS.flatMap(({ ability, skills }) =>
@@ -54,19 +68,28 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
       ([name, proficient]) =>
         proficient &&
         skillChoices.options.includes(name) &&
-        !backgroundSkills.includes(name),
+        !backgroundSkills.includes(name) &&
+        !raceGrantedSkills.has(name),
     ).length;
-  }, [data.skills, skillChoices, backgroundSkills]);
+  }, [data.skills, skillChoices, backgroundSkills, raceGrantedSkills]);
 
   const totalProficient = useMemo(
     () => Object.values(data.skills || {}).filter(Boolean).length,
     [data.skills],
   );
 
+  // A skill granted by the race or background cannot be unchecked here; the
+  // race panel and the background select own it.
+  const isSkillGranted = useCallback(
+    (skillName: string) =>
+      backgroundSkills.includes(skillName) || raceGrantedSkills.has(skillName),
+    [backgroundSkills, raceGrantedSkills],
+  );
+
   const allowedCount = skillChoices?.count ?? 0;
 
   const toggleSkill = (skillName: string) => {
-    if (backgroundSkills.includes(skillName)) return;
+    if (isSkillGranted(skillName)) return;
     if (skillChoices && !skillChoices.options.includes(skillName)) return;
 
     const isSelected = !!data.skills[skillName];
@@ -79,6 +102,26 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
     const score = (data[ability as keyof Character] as number) || 10;
     return Math.floor((score - 10) / 2);
   };
+
+  // Racial bonuses only land in finalizeCreation, so the score stored on the
+  // character while this step is open is the pre-racial one. Show both the
+  // modifier the player is looking at now and the one they will end up with,
+  // so a Half-Elf who put their +1 in DEX is not surprised by +5 instead of +4.
+  const racialBonusFor = useCallback(
+    (ability: string): number => {
+      let bonus = 0;
+      const raceIncreases = getStaticRace(data.race, data.ruleset, "en")?.abilityScoreIncreases;
+      if (raceIncreases) bonus += raceIncreases[ability] || 0;
+      if (data.race.startsWith("Half-Elf")) {
+        if ((data.halfElfAbilities || []).includes(ability)) bonus += 1;
+      }
+      if (data.race === "Human" && data.raceVariant === "variant") {
+        if ((data.variantHumanAbilities || []).includes(ability)) bonus += 1;
+      }
+      return bonus;
+    },
+    [data.race, data.ruleset, data.halfElfAbilities, data.variantHumanAbilities, data.raceVariant],
+  );
 
   const formatModifier = (value: number): string => (value >= 0 ? `+${value}` : `${value}`);
 
@@ -154,6 +197,13 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
           const modifier = getModifier(ability);
           const totalBonus =
             modifier + (isProficient || isBackgroundSkill ? profBonus : 0);
+          // The final total, once the racial bonus lands on this ability.
+          const racialBonus = racialBonusFor(ability);
+          const finalModifier = Math.floor(
+            ((data[ability as keyof Character] as number || 10) + racialBonus - 10) / 2,
+          );
+          const finalBonus =
+            finalModifier + (isProficient || isBackgroundSkill ? profBonus : 0);
 
           return (
             <label
@@ -181,6 +231,11 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
                   }`}
                 >
                   {formatModifier(totalBonus)}
+                  {racialBonus > 0 && (
+                    <span className="ml-1 text-[11px] font-bold text-ink-muted">
+                      {formatModifier(finalBonus)}
+                    </span>
+                  )}
                 </span>
 
                 {isBackgroundSkill && (
