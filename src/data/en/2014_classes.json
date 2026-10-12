@@ -977,7 +977,7 @@
         "text": "A straightforward melee powerhouse with high durability and simple resource management through Rage. Great for players who want to be in the thick of combat without complex spellcasting."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Play this if you like being feared, hard to put down, and not caring what anyone thinks of it."
+      "flavor": "Play this if you want to be the one who runs in first, gets hit a lot, and keeps fighting anyway."
     },
     {
       "name": "Bard",
@@ -2997,7 +2997,7 @@
         "text": "A versatile support caster with extensive spell and skill options. High mechanical ceiling from managing Inspiration dice, spell slots, and cutting words, but can overwhelm new players."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Play this if you like being the favourite — the one the party likes, trusts, and follows into trouble."
+      "flavor": "Play this if you want to be the person everyone likes, who talks and sings their way out of trouble."
     },
     {
       "name": "Cleric",
@@ -4237,7 +4237,7 @@
         "text": "A durable divine caster with access to the entire spell list. Strong action economy through Channel Divinity and Turn Undead, plus domain choices offer clear tactical niches without bookkeeping."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Play this if you want your character to genuinely believe in a god, and to be the party's reason to keep going."
+      "flavor": "Play this if you want to be someone who spreads the word of god and heals their friends."
     },
     {
       "name": "Druid",
@@ -5140,7 +5140,7 @@
         "text": "A shapeshifting caster with one of the most complex spell lists in the game. Managing Wild Shape, spell preparation, and concentration checks creates a steep learning curve."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Play this if you feel more at home in the wild than in any city, and would rather answer civilisation with teeth."
+      "flavor": "Play this if you want to be someone who lives out in the wild and can turn into animals."
     },
     {
       "name": "Fighter",
@@ -6169,7 +6169,7 @@
         "text": "The quintessential martial class with excellent durability and a simple core loop. Action Surge and Second Wind give huge tactical spikes without complex resource tracking."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Play this if you like being dependable — the one who trained until it became reflex."
+      "flavor": "Play this if you want to be the dependable fighter who attacks several times and rarely goes down."
     },
     {
       "name": "Monk",
@@ -7328,7 +7328,7 @@
         "text": "A mobile martial artist reliant on short-rest resources like Ki points. High tactical ceiling from positioning and stun locks, but requires careful resource economy awareness."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Play this if you like power that was earned through discipline, not handed to you."
+      "flavor": "Play this if you want to be someone who trained hard enough to fight with their bare hands."
     },
     {
       "name": "Paladin",
@@ -8337,7 +8337,7 @@
         "text": "A heavy-armor divine warrior with burst damage via Smite and strong sustain. Easy to play at a basic level, but spell slot management and aura positioning add tactical depth."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Play this if you like having a code, and the weight of having kept it when it cost you."
+      "flavor": "Play this if you want to be the holy knight in heavy armour who heals friends and hits hard."
     },
     {
       "name": "Ranger",
@@ -9548,7 +9548,7 @@
         "text": "A martial nature warrior with spellcasting and companion management. Favored Foe and spell tracking add moderate complexity, and positioning is key."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Play this if you like being alone with the map while the party camps, and hearing the wolf before it arrives."
+      "flavor": "Play this if you want to be the one who shoots from far away, tracks animals, and knows the wilds."
     },
     {
       "name": "Rogue",
@@ -10701,7 +10701,7 @@
         "text": "A skill-focused striker with Sneak Attack and Cunning Action. Low mechanical overhead with a clear core loop, but mastery of positioning and stealth tactics rewards advanced play."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Play this if you like never playing fair, and never being the one who gets caught."
+      "flavor": "Play this if you want to be the sneaky one who hides, picks locks, and lands one big hit."
     },
     {
       "name": "Sorcerer",
@@ -11813,7 +11813,7 @@
         "text": "A raw spellcaster with limited spell knowledge but flexible Metamagic. High burst potential, but managing sorcery points and spell choices can be punishing for new casters."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Play this if you like power you were born with, that nobody chose to give you."
+      "flavor": "Play this if you want to be someone born with magic who can bend spells while casting them."
     },
     {
       "name": "Warlock",
@@ -13451,7 +13451,7 @@
         "text": "A pact-bound caster with short-rest spell slots and Eldritch Invocations. Managing invocations, spell slots, and pact magic mechanics creates a steep learning curve."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Play this if you like the danger of power that isn't really yours, and the bill arriving later."
+      "flavor": "Play this if you want to be someone who got their magic from a deal with a powerful being."
     },
     {
       "name": "Wizard",
@@ -14411,7 +14411,7 @@
         "text": "The most mechanically complex caster with a vast spellbook. Spell preparation, ritual casting, and arcane recovery create heavy bookkeeping that punishes inexperience."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Play this if you like the quiet satisfaction of having prepared for exactly this moment."
+      "flavor": "Play this if you want to be the one who studied magic and has a spell ready for any problem."
     },
     {
       "index": "artificer",
@@ -15334,7 +15334,7 @@
         "text": "A magical tinkerer with infused items and spellcasting. Item management, infusions, and spell tracking create a high mechanical load that can overwhelm beginners."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Play this if you like being the one who builds what the party needs — and being quietly proud it worked."
+      "flavor": "Play this if you want to be the one who builds the magical items the party uses."
     }
   ],
   "generated": "2026-08-31T10:21:35.670Z"
