@@ -5,10 +5,6 @@
       "name": "Bugbear",
       "size": "Medium",
       "speed": 30,
-      "abilityBonuses": {
-        "strength": 2,
-        "dexterity": 1
-      },
       "traits": [
         {
           "name": "Darkvision",
@@ -155,10 +151,6 @@
       "name": "Changeling",
       "size": "Medium",
       "speed": 30,
-      "abilityBonuses": {
-        "dexterity": 2,
-        "charisma": 1
-      },
       "traits": [
         {
           "name": "Duplicity",
@@ -232,10 +224,6 @@
       "name": "Deep Gnome (Svirfneblin)",
       "size": "Small",
       "speed": 25,
-      "abilityBonuses": {
-        "intelligence": 2,
-        "dexterity": 1
-      },
       "traits": [
         {
           "name": "Darkvision",
@@ -347,6 +335,10 @@
       "recommendation": {
         "is_recommended": false,
         "text": "Gnome bawah tanah dengan darkvision lebih baik dan bonus stealth. Marginal tapi penuh karakter, cocok untuk pemain yang menikmati taktik eksplorasi yang bergantung pada cahaya."
+      },
+      "abilityScoreIncreases": {
+        "int": 2,
+        "dex": 1
       }
     },
     {
@@ -354,10 +346,6 @@
       "name": "Dhampir",
       "size": "Medium",
       "speed": 30,
-      "abilityBonuses": {
-        "dexterity": 2,
-        "charisma": 1
-      },
       "traits": [
         {
           "name": "Darkvision",
@@ -635,10 +623,6 @@
       "name": "Dragonborn (Chromatic)",
       "size": "Medium",
       "speed": 30,
-      "abilityBonuses": {
-        "strength": 2,
-        "charisma": 1
-      },
       "traits": [
         {
           "name": "Draconic Ancestry",
@@ -760,10 +744,6 @@
       "name": "Dragonborn (Gem)",
       "size": "Medium",
       "speed": 30,
-      "abilityBonuses": {
-        "strength": 2,
-        "charisma": 1
-      },
       "traits": [
         {
           "name": "Draconic Ancestry",
@@ -897,7 +877,7 @@
       ],
       "source": "FTD",
       "abilityScoreIncreases": {
-        "int": 2,
+        "str": 2,
         "cha": 1
       },
       "recommendation": {
@@ -910,10 +890,6 @@
       "name": "Dragonborn (Metallic)",
       "size": "Medium",
       "speed": 30,
-      "abilityBonuses": {
-        "strength": 2,
-        "charisma": 1
-      },
       "traits": [
         {
           "name": "Draconic Ancestry",
@@ -1523,10 +1499,6 @@
       "name": "Eladrin (Elf)",
       "size": "Medium",
       "speed": 30,
-      "abilityBonuses": {
-        "intelligence": 2,
-        "charisma": 1
-      },
       "traits": [
         {
           "name": "Darkvision",
@@ -1717,6 +1689,10 @@
       "recommendation": {
         "is_recommended": false,
         "text": "Elf tersentuh fey dengan kemampuan musiman yang mengubah gaya mainnya. Variasi taktisnya menarik, tapi mekanik yang berganti-ganti bisa membingungkan pemain baru."
+      },
+      "abilityScoreIncreases": {
+        "dex": 2,
+        "cha": 1
       }
     },
     {
@@ -1847,10 +1823,6 @@
       "name": "Firbolg",
       "size": "Medium",
       "speed": 30,
-      "abilityBonuses": {
-        "wisdom": 2,
-        "strength": 1
-      },
       "traits": [
         {
           "name": "Firbolg Magic",
@@ -1973,10 +1945,6 @@
       "name": "Githyanki",
       "size": "Medium",
       "speed": 30,
-      "abilityBonuses": {
-        "strength": 2,
-        "intelligence": 1
-      },
       "traits": [
         {
           "name": "Decadent Mastery",
@@ -2276,10 +2244,6 @@
       "name": "Githzerai",
       "size": "Medium",
       "speed": 30,
-      "abilityBonuses": {
-        "wisdom": 2,
-        "intelligence": 1
-      },
       "traits": [
         {
           "name": "Mental Discipline",
@@ -2689,10 +2653,6 @@
       "name": "Goblin",
       "size": "Small",
       "speed": 30,
-      "abilityBonuses": {
-        "dexterity": 2,
-        "constitution": 1
-      },
       "traits": [
         {
           "name": "Darkvision",
@@ -4509,10 +4469,6 @@
       "name": "Hexblood",
       "size": "Medium",
       "speed": 30,
-      "abilityBonuses": {
-        "intelligence": 2,
-        "charisma": 1
-      },
       "traits": [
         {
           "name": "Fey",
@@ -4608,10 +4564,6 @@
       "name": "Hobgoblin",
       "size": "Medium",
       "speed": 30,
-      "abilityBonuses": {
-        "constitution": 2,
-        "intelligence": 1
-      },
       "traits": [
         {
           "name": "Darkvision",
@@ -4747,10 +4699,6 @@
       "name": "Kenku",
       "size": "Medium",
       "speed": 30,
-      "abilityBonuses": {
-        "dexterity": 2,
-        "wisdom": 1
-      },
       "traits": [
         {
           "name": "Expert Forgery",
@@ -4847,10 +4795,6 @@
       "name": "Lizardfolk",
       "size": "Medium",
       "speed": 30,
-      "abilityBonuses": {
-        "constitution": 2,
-        "wisdom": 1
-      },
       "traits": [
         {
           "name": "Bite",
@@ -4972,10 +4916,6 @@
       "name": "Orc",
       "size": "Medium",
       "speed": 30,
-      "abilityBonuses": {
-        "strength": 2,
-        "constitution": 1
-      },
       "traits": [
         {
           "name": "Darkvision",
@@ -5097,10 +5037,6 @@
       "name": "Reborn",
       "size": "Medium",
       "speed": 30,
-      "abilityBonuses": {
-        "constitution": 2,
-        "charisma": 1
-      },
       "traits": [
         {
           "name": "Deathless Nature",
@@ -5196,10 +5132,6 @@
       "name": "Shifter",
       "size": "Medium",
       "speed": 30,
-      "abilityBonuses": {
-        "dexterity": 2,
-        "constitution": 1
-      },
       "traits": [
         {
           "name": "Darkvision",
@@ -5325,10 +5257,6 @@
       "name": "Tabaxi",
       "size": "Medium",
       "speed": 30,
-      "abilityBonuses": {
-        "dexterity": 2,
-        "charisma": 1
-      },
       "traits": [
         {
           "name": "Darkvision",
@@ -6439,11 +6367,6 @@
       "name": "Triton",
       "size": "Medium",
       "speed": 30,
-      "abilityBonuses": {
-        "strength": 1,
-        "constitution": 1,
-        "charisma": 1
-      },
       "traits": [
         {
           "name": "Amphibious",
@@ -6552,8 +6475,9 @@
       ],
       "source": "EGW",
       "abilityScoreIncreases": {
-        "cha": 2,
-        "str": 1
+        "str": 1,
+        "con": 1,
+        "cha": 1
       },
       "recommendation": {
         "is_recommended": false,
@@ -6565,10 +6489,6 @@
       "name": "Aarakocra",
       "size": "Medium",
       "speed": 25,
-      "abilityBonuses": {
-        "dexterity": 2,
-        "wisdom": 1
-      },
       "traits": [
         {
           "name": "Darkvision",
@@ -6665,10 +6585,6 @@
       "name": "Yuan-ti Pureblood",
       "size": "Medium",
       "speed": 30,
-      "abilityBonuses": {
-        "charisma": 2,
-        "intelligence": 1
-      },
       "traits": [
         {
           "name": "Darkvision",
@@ -6766,10 +6682,6 @@
       "name": "Kobold",
       "size": "Small",
       "speed": 30,
-      "abilityBonuses": {
-        "dexterity": 2,
-        "strength": -2
-      },
       "traits": [
         {
           "name": "Darkvision",
@@ -6862,10 +6774,6 @@
       "name": "Goliath",
       "size": "Medium",
       "speed": 30,
-      "abilityBonuses": {
-        "strength": 2,
-        "constitution": 1
-      },
       "traits": [
         {
           "name": "Stone's Endurance",
@@ -6933,10 +6841,6 @@
       "name": "Autognome",
       "size": "Small",
       "speed": 30,
-      "abilityBonuses": {
-        "dexterity": 2,
-        "constitution": 1
-      },
       "traits": [
         {
           "name": "Darkvision",
@@ -7008,10 +6912,6 @@
       "name": "Plasmoid",
       "size": "Medium",
       "speed": 30,
-      "abilityBonuses": {
-        "constitution": 2,
-        "dexterity": 1
-      },
       "traits": [
         {
           "name": "Shape Yourself",
@@ -7083,10 +6983,6 @@
       "name": "Thri-kreen",
       "size": "Medium",
       "speed": 30,
-      "abilityBonuses": {
-        "strength": 2,
-        "dexterity": 2
-      },
       "traits": [
         {
           "name": "Darkvision",
@@ -7154,10 +7050,6 @@
       "name": "Aasimar",
       "size": "Medium",
       "speed": 30,
-      "abilityBonuses": {
-        "charisma": 2,
-        "constitution": 1
-      },
       "traits": [
         {
           "name": "Darkvision",

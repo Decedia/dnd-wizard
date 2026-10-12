@@ -1192,6 +1192,16 @@ export async function finalizeCreation(character: Character, language = "en"): P
   final = applySubclassSpellGrants(final);
   final = syncBaseFeatures(final, language);
 
+  // The race grants languages, and the player may have added their own on the
+  // personality step. Preserving only the player's list drops the granted ones,
+  // and taking only the granted list would drop theirs.
+  const raceLanguages = getStaticRace(final.race, final.ruleset, language)?.languages ?? [];
+  if (raceLanguages.length > 0) {
+    const granted = new Set<string>(raceLanguages);
+    const chosen = new Set<string>(final.languages ?? []);
+    final = { ...final, languages: [...new Set([...granted, ...chosen])] };
+  }
+
   if (final.race === "Human" && final.raceVariant === "variant") {
     const abilities = final.variantHumanAbilities || [];
     const skill = final.variantHumanSkill;

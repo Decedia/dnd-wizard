@@ -50,7 +50,6 @@ export interface Character {
   rageDamage: number;
   sorceryPoints: number;
   maxSorceryPoints: number;
-  draconicAncestor: string;
   initiative: number;
   speed: number;
   savingThrows: Record<string, { proficient: boolean; value: number }>;
@@ -412,7 +411,6 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
     rageDamage: 0,
     sorceryPoints: 0,
     maxSorceryPoints: 0,
-    draconicAncestor: "",
     initiative: 0,
     speed: 30,
     savingThrows: {},
