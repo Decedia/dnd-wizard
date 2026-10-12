@@ -2997,7 +2997,7 @@
         "text": "A versatile support caster with extensive spell and skill options. High mechanical ceiling from managing Inspiration dice, spell slots, and cutting words, but can overwhelm new players."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Pilih ini kalau kamu ingin jadi orang yang disukai semua orang dan pandai bicara keluar dari masalah."
+      "flavor": "Pilih ini kalau kamu ingin jadi orang yang disukai semua orang dan pandai bicara untuk merayu dan keluar dari masalah."
     },
     {
       "name": "Cleric",
@@ -4237,7 +4237,7 @@
         "text": "A durable divine caster with access to the entire spell list. Strong action economy through Channel Divinity and Turn Undead, plus domain choices offer clear tactical niches without bookkeeping."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Pilih ini kalau kamu ingin jadi penyebar firman dewa yang mengobati teman-temannya."
+      "flavor": "Pilih ini kalau kamu ingin jadi penyebar firman dewa yang mengobati teman-temanmu."
     },
     {
       "name": "Druid",
@@ -10701,7 +10701,7 @@
         "text": "A skill-focused striker with Sneak Attack and Cunning Action. Low mechanical overhead with a clear core loop, but mastery of positioning and stealth tactics rewards advanced play."
       },
       "lastUpdated": "2026-09-29",
-      "flavor": "Pilih ini kalau kamu ingin jadi yang sembunyi, membuka kunci, dan menyerang satu kali besar."
+      "flavor": "Pilih ini kalau kamu ingin jadi yang menyelinap, membuka kunci, dan menyerang dengan damage besar saat bersembunyi."
     },
     {
       "name": "Sorcerer",
