@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useCallback, useEffect, useLayoutEffect } from "react";
 import { getStaticClasses } from "@/lib/srd-client";
+import type { Character } from "@/lib/storage";
 import { getStaticRaces, getStaticRaceDetails, type SRDClass, type SRDRace } from "@/lib/srd-client";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import {
@@ -18,6 +19,7 @@ import { RACE_ICONS } from "@/components/race-icons";
 import { buildRaceCategoryIndex, getRaceCategoryName } from "@/data/race-categories";
 import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
 import { HumanVariantConfig, type HumanVariantConfigPayload } from "@/components/modals/HumanVariantConfig";
+import { HalfElfConfig, type HalfElfConfigPayload } from "@/components/modals/HalfElfConfig";
 import { useLanguage } from "@/contexts/LanguageContext";
 import {
   CheckIcon as Check,
@@ -119,6 +121,15 @@ interface RaceGroup {
   groupName: string;
   options: SelectionOption[];
   hasRecommended: boolean;
+}
+
+/**
+ * Half-Elf and all of its subraces carry the same two player choices. They are
+ * matched by name because the race data has no choice rows of its own - the
+ * config panel supplies the pickers directly.
+ */
+function isHalfElfRace(raceName: string): boolean {
+  return raceName.startsWith("Half-Elf");
 }
 
 function findParentRaceName(name: string, candidates: string[]): string | null {
@@ -244,8 +255,10 @@ export function UnifiedSelectionModal<T extends SelectionType>({
         source: race.source || "PHB",
         description: categoryByRace.get(race.name)?.flavor || race.traits?.[0]?.description || "",
         icon: RACE_ICONS[race.name] || RACE_ICONS.Human,
-        hasChoice: (race.choices?.length || 0) > 0,
-        choiceType: race.choices?.[0]?.type || "ancestry",
+        hasChoice: isHalfElfRace(race.name) || (race.choices?.length || 0) > 0,
+        choiceType: isHalfElfRace(race.name)
+          ? "half_elf"
+          : race.choices?.[0]?.type || "ancestry",
         basicStats: `${race.size} • Speed ${race.speed} ft`,
         isRecommended: (race as any).recommendation?.is_recommended || false,
         recommendationText: (race as any).recommendation?.text || "",
@@ -638,7 +651,22 @@ export function UnifiedSelectionModal<T extends SelectionType>({
 
       {step === "config" && selectedItem && (
     <>
-              {selectedItem.name === "Human" ? (
+              {selectedItem.choiceType === "half_elf" ? (
+                <HalfElfConfig
+                  initialAbilities={(configChoice?.featureData as HalfElfConfigPayload | undefined)?.abilities || []}
+                  initialSkills={(configChoice?.featureData as HalfElfConfigPayload | undefined)?.skills || []}
+                  character={currentCharacter as Partial<Character>}
+                  onChange={(halfElfConfig) => {
+                    setConfigChoice({
+                      id: "half-elf-abilities",
+                      name: t("modal.halfElfChoices", "Half-Elf Choices"),
+                      description: t("modal.halfElfHint", "As a Half-Elf, you gain +1 to two ability scores of your choice, and proficiency in two skills of your choice."),
+                      featureData: halfElfConfig,
+                      parentChoiceId: "",
+                    } as any);
+                  }}
+                />
+              ) : selectedItem.name === "Human" ? (
                 <HumanVariantConfig
                   initialEnabled={!!configChoice}
                   initialAbilities={configChoice?.featureData?.abilities || []}

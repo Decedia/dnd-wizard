@@ -478,7 +478,16 @@ export function getValidationMessage(step: CreationStep, character?: Character):
 export function getCreationSteps(character: Character): CreationStep[] {
   const classData = character.class ? getStaticClass(character.class, character.ruleset) : null;
 
-  const originCompleted = !!character.name.trim() && !!character.class && !!character.race && !(character.race === "Human" && character.raceVariant === "variant" && (!character.featureSelections?.["variant-human-feat"]?.[0] || (character.variantHumanAbilities || []).length < 2 || !character.variantHumanSkill));
+  const isHalfElf = (character.race || "").startsWith("Half-Elf");
+  const halfElfComplete =
+    !isHalfElf ||
+    ((character.halfElfAbilities || []).length === 2 && (character.halfElfSkills || []).length === 2);
+  const originCompleted =
+    !!character.name.trim() &&
+    !!character.class &&
+    !!character.race &&
+    halfElfComplete &&
+    !(character.race === "Human" && character.raceVariant === "variant" && (!character.featureSelections?.["variant-human-feat"]?.[0] || (character.variantHumanAbilities || []).length < 2 || !character.variantHumanSkill));
   const personalityCompleted = !!character.background && !!character.alignment;
   const abilitiesCompleted = [character.str, character.dex, character.con, character.int, character.wis, character.cha].every((s) => s > 0);
   const skillsCompleted = !classData?.skillChoices || Object.entries(character.skills || {}).filter(([name, proficient]) => proficient && classData.skillChoices.options.includes(name)).length >= classData.skillChoices.count;
@@ -1200,6 +1209,41 @@ export async function finalizeCreation(character: Character, language = "en"): P
     const granted = new Set<string>(raceLanguages);
     const chosen = new Set<string>(final.languages ?? []);
     final = { ...final, languages: [...new Set([...granted, ...chosen])] };
+  }
+
+  // Racial ability score increases. The race data has carried these all along
+  // but nothing ever applied them, so a Dwarf saved as con 13 rather than 15.
+  // Applied at the end like the Variant Human bonus, which means it shares that
+  // block's caveat: this function runs once at creation and is not safe to repeat.
+  {
+    const raceIncreases = getStaticRace(final.race, final.ruleset, language)?.abilityScoreIncreases || {};
+    const asiPatch: Record<string, any> = {};
+    for (const [ability, bonus] of Object.entries(raceIncreases)) {
+      const key = ability as keyof Character;
+      if (typeof final[key] === "number") {
+        asiPatch[key] = (final[key] as number) + (bonus as number);
+      }
+    }
+    final = { ...final, ...asiPatch };
+  }
+
+  // Half-Elf: +1 to the two chosen ability scores, and the two chosen skills.
+  // Applied at the end like the Variant Human bonus so the abilities step's
+  // final values are what gets adjusted.
+  if ((final.race || "").startsWith("Half-Elf")) {
+    const halfAbilities = final.halfElfAbilities || [];
+    const halfSkills = final.halfElfSkills || [];
+    const halfPatch: Record<string, any> = {};
+    for (const ab of halfAbilities.slice(0, 2)) {
+      const key = ab as keyof Character;
+      if (typeof final[key] === "number") halfPatch[key] = (final[key] as number) + 1;
+    }
+    if (halfSkills.length > 0) {
+      const nextSkills = { ...final.skills };
+      for (const skill of halfSkills.slice(0, 2)) nextSkills[skill] = true;
+      halfPatch.skills = nextSkills;
+    }
+    final = { ...final, ...halfPatch };
   }
 
   if (final.race === "Human" && final.raceVariant === "variant") {

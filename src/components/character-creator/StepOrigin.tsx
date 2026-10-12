@@ -132,6 +132,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
         nextRaceChoices[payload.configChoice.parentChoiceId] = payload.configChoice.featureData.id;
       }
 
+      const isHalfElf = raceName.startsWith("Half-Elf");
       const oldAbilities = data.variantHumanAbilities || [];
       const newAbilities = isVariant ? (payload.configChoice?.featureData?.abilities || []) : [];
       const oldSkill = data.variantHumanSkill;
@@ -139,20 +140,31 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
       const oldFeat = data.featureSelections?.["variant-human-feat"]?.[0];
       const newFeat = isVariant ? payload.configChoice?.featureData?.feat : undefined;
 
+      // Half-Elf mirrors the variant human pattern: undo what was previously
+      // applied, then apply the new picks.
+      const oldHalfElfAbilities = data.halfElfAbilities || [];
+      const newHalfElfAbilities = isHalfElf ? (payload.configChoice?.featureData?.abilities || []) : [];
+      const oldHalfElfSkills = data.halfElfSkills || [];
+      const newHalfElfSkills = isHalfElf ? (payload.configChoice?.featureData?.skills || []) : [];
+
       const abilityPatch: Record<string, number> = {};
-      for (const ab of oldAbilities) {
+      for (const ab of [...oldAbilities, ...oldHalfElfAbilities]) {
         if (abilityPatch[ab] !== undefined) continue;
         abilityPatch[ab] = ((data[ab as keyof Character] as number) || 10) - 1;
       }
-      for (const ab of newAbilities) {
+      for (const ab of [...newAbilities, ...newHalfElfAbilities]) {
         if (abilityPatch[ab] !== undefined) continue;
         abilityPatch[ab] = ((data[ab as keyof Character] as number) || 10) + 1;
       }
 
-      const skillPatch: Record<string, any> = {};
-      if (newSkill && !data.skills[newSkill]) {
-        skillPatch.skills = { ...data.skills, [newSkill]: true };
+      const nextSkills: Record<string, boolean> = { ...data.skills };
+      if (newSkill && !nextSkills[newSkill]) nextSkills[newSkill] = true;
+      for (const skill of newHalfElfSkills) nextSkills[skill] = true;
+      for (const skill of oldHalfElfSkills) {
+        if (newHalfElfSkills.includes(skill)) continue;
+        delete nextSkills[skill];
       }
+      const skillPatch: Record<string, any> = { skills: nextSkills };
 
       const featPatch: Record<string, any> = { features: data.features };
       if (newFeat && !data.features.some((f) => f.name === newFeat)) {
@@ -192,6 +204,12 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
           variantHumanSkill: undefined, 
           featureSelections: { ...data.featureSelections, "variant-human-feat": [] } 
         }),
+        // Half-Elf selections are stored on the character so the abilities step
+        // and the final rebuild can see them, and are cleared when leaving the
+        // race so a stale +1 cannot linger.
+        ...(isHalfElf
+          ? { halfElfAbilities: newHalfElfAbilities, halfElfSkills: newHalfElfSkills }
+          : { halfElfAbilities: undefined, halfElfSkills: undefined }),
         ...abilityPatch,
         ...skillPatch,
         ...featPatch,

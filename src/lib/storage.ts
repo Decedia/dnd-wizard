@@ -85,6 +85,9 @@ export interface Character {
   featureSelections: Record<string, string[]>;
   variantHumanAbilities?: string[];
   variantHumanSkill?: string;
+  /** Half-Elf: the two ability scores that get +1, and the two chosen skills. */
+  halfElfAbilities?: string[];
+  halfElfSkills?: string[];
   raceChoices?: Record<string, string>;
   appliedAsi: number[];
   activeStates: string[];
