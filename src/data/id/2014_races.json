@@ -148,8 +148,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A tall, aggressive goblinoid with reach and ambush mechanics. Fun for hit-and-run tactics, but the extra movement and surprise rules can trip up new players."
-      },
-      "flavor": "Ideal untuk penyergap yang mengandalkan stealth. Lenganmu sangat panjang untuk serangan melee dan kamu memberikan ekstra damage masif di giliran pertama."
+      }
     },
     {
       "index": "changeling",
@@ -226,8 +225,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A shapeshifting diplomat with identity-changing abilities. High social and deceptive potential, but shapechange mechanics add a mechanical and roleplay learning curve."
-      },
-      "flavor": "Penyusup ulung. Sempurna jika kamu bermain di campaign yang berfokus pada interaksi sosial, di mana kamu bisa mengubah wajah dan suaramu sesuka hati."
+      }
     },
     {
       "index": "deep-gnome",
@@ -349,8 +347,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A subterranean gnome with superior darkvision and stealth bonuses. Niche but flavorful, best suited for players who enjoy light-dependent exploration tactics."
-      },
-      "flavor": "Pilih ini jika kamu menginginkan karakter pragmatis dan ahli mengendap-endap, yang mudah menyatu dengan medan berbatu dan memiliki sihir bawaan Underdark."
+      }
     },
     {
       "index": "dhampir",
@@ -631,8 +628,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A draconic hero with breath weapon and damage resistance. Simple racial traits, but choosing the right draconic ancestry adds a small decision layer for newer players."
-      },
-      "flavor": "Ideal jika kamu ingin tampil mengintimidasi, memiliki resistance terhadap elemen tertentu, dan bisa menyemburkan api (atau asam, es, atau petir) ke musuhmu."
+      }
     },
     {
       "index": "dragonborn-chromatic",
@@ -1180,8 +1176,7 @@
       "recommendation": {
         "is_recommended": true,
         "text": "A sturdy traditional warrior with excellent durability and darkvision. Dwarven Resilience and Combat Training are easy to use, making it an ideal beginner race."
-      },
-      "flavor": "Pilih ini jika kamu ingin menjadi penyintas yang tangguh dan keras kepala, ahli menggunakan zirah berat, kebal racun, dan menahan garis depan."
+      }
     },
     {
       "name": "Hill Dwarf",
@@ -1722,8 +1717,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A fey-touched elf with seasonal abilities that shift their playstyle. Interesting tactical variety, but the changing mechanics can confuse new players."
-      },
-      "flavor": "Mainkan ini jika kamu menginginkan Elf Feywild yang bisa teleportasi jarak dekat, dengan efek tambahan magis berdasarkan 'musim' emosionalmu."
+      }
     },
     {
       "name": "Elf",
@@ -1846,8 +1840,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A graceful, long-lived warrior with keen senses and fey ancestry. Strong in exploration and stealth, but the variety of elven subraces and traits adds choice complexity."
-      },
-      "flavor": "Sempurna untuk memainkan pengembara abadi yang anggun dengan ikatan kuat pada sihir kuno, alam, dan memiliki persepsi yang sangat tajam."
+      }
     },
     {
       "index": "firbolg",
@@ -1973,8 +1966,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A gentle giant with invisibility and nature magic. Easy to roleplay, but the subtle defensive tools require tactical timing to use well."
-      },
-      "flavor": "Pilih ini jika kamu ingin memainkan raksasa lembut pecinta alam yang bisa menghilang secara magis dan mengobrol santai dengan hewan serta tumbuhan."
+      }
     },
     {
       "index": "githyanki",
@@ -2277,8 +2269,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A psionic warrior from the Astral Plane with innate spellcasting and teleportation. Cool concept, but managing innate spells and psionic options adds complexity."
-      },
-      "flavor": "Mainkan ini untuk menjadi pejuang astral militeristik yang bisa melompat dengan sihir, melangkah melintasi dimensi, dan mengganti skill set setiap pagi."
+      }
     },
     {
       "index": "githzerai",
@@ -2378,8 +2369,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A disciplined monk-like race with psionic defense and meditation. The mental discipline mechanics add another layer for new players to track."
-      },
-      "flavor": "Ideal untuk Monk atau Wizard yang mengandalkan disiplin mental, memberimu sihir psionik bawaan seperti Shield untuk melindungi diri di garis depan."
+      }
     },
     {
       "name": "Gnome",
@@ -2452,8 +2442,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A small, clever inventor with innate magic resistance. Good for trickster or arcane builds, but gnomish subraces and feature interactions add mild complexity."
-      },
-      "flavor": "Sempurna untuk memainkan penemu atau ahli ilusi yang brilian dan energik, dengan ketahanan magis alami terhadap mantra pengendali pikiran."
+      }
     },
     {
       "name": "Forest Gnome",
@@ -2793,8 +2782,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A small, crafty creature with Fury of the Small and Nimble Escape. Strong tactical positioning tools, but the extra bonus-action option can be tricky for new players."
-      },
-      "flavor": "Pilih ini jika kamu menginginkan petarung lincah yang berani, yang bisa mundur (disengage) atau bersembunyi sebagai bonus action di setiap giliran."
+      }
     },
     {
       "name": "Half-Elf",
@@ -2892,8 +2880,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A versatile hybrid with ability score bonuses and skill versatility. Flexible by design, which is great for concept, but the breadth of options can slow new players."
-      },
-      "flavor": "Juru bicara (face) party yang paling ideal. Kamu mendapatkan karisma dan skill ekstra dari manusia, dipadukan dengan ketahanan magis dari Elf."
+      }
     },
     {
       "name": "Half-Elf (High Elf)",
@@ -3671,8 +3658,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "An ocean-themed half-elf with swim speed and amphibious breathing. Niche but thematic, best when water exploration is frequent."
-      },
-      "flavor": "Mainkan ini jika kamu memasuki campaign pelayaran laut. Kamu bisa bernapas di bawah air, berenang sangat cepat, dan berkomunikasi dengan hewan laut."
+      }
     },
     {
       "name": "Half-Elf (Shadar-kai)",
@@ -3795,8 +3781,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A shadow-touched half-elf with resistance and necrotic teleportation. Interesting tactical tool, but death-tinged mechanics may be less intuitive for beginners."
-      },
-      "flavor": "Ideal untuk Assassin atau Fighter bernuansa gotik. Kamu bisa teleportasi secara magis dan mendapatkan resistance terhadap semua damage sesudahnya."
+      }
     },
     {
       "name": "Half-Elf (Eladrin)",
@@ -4043,8 +4028,7 @@
       "recommendation": {
         "is_recommended": true,
         "text": "A tough, aggressive warrior with darkvision, intimidation presence, and a second-wind style death-defying trait. Low mechanical complexity with strong combat feel."
-      },
-      "flavor": "Pilih ini jika kamu ingin memberikan damage melee yang luar biasa dan punya ketahanan untuk tetap berdiri dari serangan yang seharusnya membunuhmu."
+      }
     },
     {
       "name": "Halfling",
@@ -4143,8 +4127,7 @@
       "recommendation": {
         "is_recommended": true,
         "text": "A lucky, nimble smallfolk with reroll advantages and stealth. Lucky and Brave are simple to use, making halflings a very friendly beginner race."
-      },
-      "flavor": "Mainkan ini jika kamu benci mendapat critical fail. Kamu lincah, ceria, dan sangat beruntung hingga bisa mengulang lemparan dadu angka 1."
+      }
     },
     {
       "name": "Lightfoot Halfling",
@@ -4618,8 +4601,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A fey-touched or undead-touched lineage with a dark bargain. Adds a narrative and mechanical bargain layer that adds complexity to character creation."
-      },
-      "flavor": "Ideal untuk memainkan karakter mistis bernuansa penyihir (witch) yang bisa meninggalkan token sihir untuk berkomunikasi atau memata-matai orang dari jauh."
+      }
     },
     {
       "index": "hobgoblin",
@@ -4719,8 +4701,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A disciplined warrior with tactical positioning bonuses. The Saving Face feature adds reactive decision-making that rewards experience."
-      },
-      "flavor": "Pilih ini jika kamu menyukai kerja sama tim taktis. Kamu bisa memberi buff magis ke sekutu atau mengubah serangan yang meleset menjadi hit berkat ikatan persahabatan."
+      }
     },
     {
       "name": "Human",
@@ -4759,8 +4740,7 @@
       "recommendation": {
         "is_recommended": true,
         "text": "The baseline adventurer with balanced ability increases and an extra language. Simple, flexible, and forgiving for new players who want to focus on class mechanics."
-      },
-      "flavor": "Sangat cocok untuk memainkan karakter serbabisa dan ambisius yang bisa masuk ke kelas atau peran apa pun dengan mudah."
+      }
     },
     {
       "index": "kenku",
@@ -4860,8 +4840,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A bird-like mimic with clever movement and mimicry. Roleplay-heavy with limited but flavorful racial abilities; easy to underestimate mechanically."
-      },
-      "flavor": "Sempurna untuk Rogue atau Bard yang suka roleplay. Kamu adalah burung tanpa sayap yang berkomunikasi sepenuhnya dengan meniru secara presisi suara yang pernah didengar."
+      }
     },
     {
       "index": "lizardfolk",
@@ -4986,8 +4965,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A reptilian survivor with natural armor and a bite attack. Simple durability, but the many optional racial traits can slow new players down."
-      },
-      "flavor": "Pilih ini jika kamu ingin memainkan penyintas yang dingin dan penuh perhitungan dengan zirah alami, yang bisa menggigit musuh untuk memulihkan health."
+      }
     },
     {
       "index": "orc",
@@ -5112,8 +5090,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A powerful brute with Aggressive and darkvision. Simple combat presence, but reduced intelligence and pack tactics can confuse new tactical positioning."
-      },
-      "flavor": "Ideal jika kamu ingin menjadi pengejar yang tak kenal lelah. Kamu bisa berlari kencang (dash) ke arah musuh sebagai bonus action dan menolak mati saat hit point-mu habis."
+      }
     },
     {
       "index": "reborn",
@@ -5341,8 +5318,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A druidic shapeshifter with temporary shifting bonuses. Simple core loop, but Shifter type choice and temporary boost management add decision weight."
-      },
-      "flavor": "Pilih ini jika kamu menginginkan aura manusia serigala. Kamu bisa 'berubah' (shift) ke wujud buas saat bertarung untuk mendapatkan hit point sementara dan kemampuan unik."
+      }
     },
     {
       "index": "tabaxi",
@@ -5466,8 +5442,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A feline explorer with speed and climb. Fun for exploration and hit-and-run, but Feline Agility can leave new players overextended."
-      },
-      "flavor": "Sempurna jika kamu ingin menjadi karakter tercepat di permainan. Kamu bisa menggandakan kecepatan gerakmu untuk berlari dalam sekejap."
+      }
     },
     {
       "name": "Tiefling",
@@ -5566,8 +5541,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A hellish descendant with resistance and minor spellcasting. Fiendish legacy features are flavorful but can add spell-management weight for new players."
-      },
-      "flavor": "Mainkan ini jika kamu menyukai nuansa anti-hero dengan garis keturunan iblis, lengkap dengan fire resistance bawaan dan sihir kegelapan."
+      }
     },
     {
       "name": "Tiefling (Asmodeus)",
@@ -6584,8 +6558,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "An aquatic warrior with amphibious breathing and elemental resistance. Strong in water-heavy campaigns, but situational otherwise."
-      },
-      "flavor": "Ideal untuk Paladin bawah air yang mulia. Kamu mendapatkan resistance dingin, kecepatan berenang, dan sihir air bawaan seperti Fog Cloud."
+      }
     },
     {
       "index": "aarakocra",
@@ -6685,8 +6658,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A bird-like humanoid with flight and talon attacks. Flight is powerful, but managing aerial positioning and reach can be punishing for new players."
-      },
-      "flavor": "Sempurna untuk pemain yang ingin mendominasi medan pertempuran dari langit. Kamu mendapatkan kemampuan terbang secara permanen sejak level awal."
+      }
     },
     {
       "index": "yuan-ti-pureblood",
@@ -6787,8 +6759,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A serpent-touched humanoid with innate spellcasting and poison immunity. Flavorful, but the extra spell list and immunity interactions add complexity."
-      },
-      "flavor": "Sempurna untuk perapal mantra yang licin. Kamu kebal sepenuhnya terhadap racun dan punya advantage mutlak pada saving throw terhadap sihir."
+      }
     },
     {
       "index": "kobold",
@@ -6884,8 +6855,7 @@
       "abilityScoreIncreases": {
         "dexterity": 2,
         "strength": -2
-      },
-      "flavor": "Mainkan ini jika kamu ingin menjadi underdog naga kecil pemberani yang bisa mengeluarkan auman untuk memberi seluruh party advantage dalam pertempuran."
+      }
     },
     {
       "index": "goliath",
@@ -6956,8 +6926,7 @@
       "abilityScoreIncreases": {
         "strength": 2,
         "constitution": 1
-      },
-      "flavor": "Sempurna jika kamu ingin menjadi gunung otot raksasa yang bisa menahan damage fisik secara langsung menggunakan Stone's Endurance."
+      }
     },
     {
       "index": "autognome",
@@ -7303,8 +7272,7 @@
       "recommendation": {
         "is_recommended": false,
         "text": "A celestial-touched hero with resistance and a healing transformation. Easy to flavor, but the transformation mechanics add a burst-management layer."
-      },
-      "flavor": "Pilih ini jika kamu ingin memainkan pahlawan surgawi yang bisa memunculkan sayap bercahaya dan melepaskan energi penyembuhan suci atau radiant damage."
+      }
     }
   ]
 }

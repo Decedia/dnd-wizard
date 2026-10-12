@@ -1,0 +1,140 @@
+{
+  "categories": [
+    {
+      "name": "Aarakocra",
+      "flavor": "Play this if you want to be a bird-person who fights from the sky and never needs the ground."
+    },
+    {
+      "name": "Aasimar",
+      "flavor": "Play this if you want to be someone with an angel's touch who can grow wings and heal with light."
+    },
+    {
+      "name": "Autognome",
+      "flavor": "Play this if you want to be a small clockwork person someone else built, who keeps tinkering with their own parts."
+    },
+    {
+      "name": "Bugbear",
+      "flavor": "Play this if you want to be a big hairy brute who is scarily good at surprising people."
+    },
+    {
+      "name": "Changeling",
+      "flavor": "Play this if you want to be someone who can change their face and voice and become anyone."
+    },
+    {
+      "name": "Dhampir",
+      "flavor": "Play this if you want to be a half-vampire who walks somewhere between the living and the dead."
+    },
+    {
+      "name": "Dragonborn",
+      "flavor": "Play this if you want to be a proud dragon-person who breathes elemental power and stands tall."
+    },
+    {
+      "name": "Dwarf",
+      "flavor": "Play this if you want to be a tough, stubborn person who likes working stone, good ale, and never letting a grudge go."
+    },
+    {
+      "name": "Eladrin (Elf)",
+      "flavor": "Play this if you want to be a fey elf who teleports short distances and changes with their moods."
+    },
+    {
+      "name": "Elf",
+      "flavor": "Play this if you want to be a graceful, long-lived person who is good with bows, swords and magic."
+    },
+    {
+      "name": "Firbolg",
+      "flavor": "Play this if you want to be a gentle forest giant who can talk to animals and plants."
+    },
+    {
+      "name": "Githyanki",
+      "flavor": "Play this if you want to be a stern astral warrior with a silver sword and psionic power."
+    },
+    {
+      "name": "Githzerai",
+      "flavor": "Play this if you want to be a disciplined, monk-like person who trusts their own mind above everything."
+    },
+    {
+      "name": "Gnome",
+      "flavor": "Play this if you want to be a small, curious tinkerer with a natural knack for magic."
+    },
+    {
+      "name": "Goblin",
+      "flavor": "Play this if you want to be a scrappy little creature who runs away, hides, and comes back when it suits them."
+    },
+    {
+      "name": "Goliath",
+      "flavor": "Play this if you want to be a mountain of a person who competes with everything, including the weather."
+    },
+    {
+      "name": "Half-Elf",
+      "flavor": "Play this if you want to be someone caught between two worlds who is good at talking to both."
+    },
+    {
+      "name": "Half-Orc",
+      "flavor": "Play this if you want to be a tough person who hits very hard and refuses to stay down."
+    },
+    {
+      "name": "Halfling",
+      "flavor": "Play this if you want to be a small, lucky, cheerful person who is good at sneaking and staying out of trouble."
+    },
+    {
+      "name": "Hexblood",
+      "flavor": "Play this if you want to be someone touched by hags, with a witchy streak and curses that linger."
+    },
+    {
+      "name": "Hobgoblin",
+      "flavor": "Play this if you want to be a disciplined, military-minded goblin-kin who fights best as a unit."
+    },
+    {
+      "name": "Human",
+      "flavor": "Play this if you want to be the adaptable everyman who can grow into almost anything."
+    },
+    {
+      "name": "Kenku",
+      "flavor": "Play this if you want to be a bird-person who cannot speak their own words and can only copy sounds they have heard."
+    },
+    {
+      "name": "Kobold",
+      "flavor": "Play this if you want to be a tiny dragon-kin who is weak alone but dangerous in a pack."
+    },
+    {
+      "name": "Lizardfolk",
+      "flavor": "Play this if you want to be a cold, practical reptile-person who survives on instinct rather than feelings."
+    },
+    {
+      "name": "Orc",
+      "flavor": "Play this if you want to be a relentless brute who charges first and refuses to fall."
+    },
+    {
+      "name": "Plasmoid",
+      "flavor": "Play this if you want to be a living blob of ooze who can squeeze through a keyhole."
+    },
+    {
+      "name": "Reborn",
+      "flavor": "Play this if you want to be someone who died and came back, not quite the same as before."
+    },
+    {
+      "name": "Shifter",
+      "flavor": "Play this if you want to be part-beast who grows more animal exactly when it matters."
+    },
+    {
+      "name": "Tabaxi",
+      "flavor": "Play this if you want to be a cat-person who is impossibly fast, curious and hard to keep still."
+    },
+    {
+      "name": "Thri-kreen",
+      "flavor": "Play this if you want to be a four-armed insect-person who never needs to sleep."
+    },
+    {
+      "name": "Tiefling",
+      "flavor": "Play this if you want to be someone with demon blood, horns and fire in their veins who people distrust on sight."
+    },
+    {
+      "name": "Triton",
+      "flavor": "Play this if you want to be a proud guardian of the deep sea who is at home in the water."
+    },
+    {
+      "name": "Yuan-ti Pureblood",
+      "flavor": "Play this if you want to be a snake-person who shrugs off poison and is hard to charm."
+    }
+  ]
+}

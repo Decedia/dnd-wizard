@@ -1,0 +1,140 @@
+{
+  "categories": [
+    {
+      "name": "Aarakocra",
+      "flavor": "Pilih ini kalau kamu ingin jadi manusia burung yang bertarung dari langit dan tidak pernah butuh tanah."
+    },
+    {
+      "name": "Aasimar",
+      "flavor": "Pilih ini kalau kamu ingin jadi orang yang punya sentuhan malaikat, bisa memunculkan sayap, dan menyembuhkan dengan cahaya."
+    },
+    {
+      "name": "Autognome",
+      "flavor": "Pilih ini kalau kamu ingin jadi orang mesin kecil yang dibuat orang lain, lalu terus mengutak-atik tubuhnya sendiri."
+    },
+    {
+      "name": "Bugbear",
+      "flavor": "Pilih ini kalau kamu ingin jadi brut besar berbulu yang sangat menakutkan saat menyergap."
+    },
+    {
+      "name": "Changeling",
+      "flavor": "Pilih ini kalau kamu ingin jadi orang yang bisa mengubah wajah dan suara, lalu menjadi siapa saja."
+    },
+    {
+      "name": "Dhampir",
+      "flavor": "Pilih ini kalau kamu ingin jadi setengah vampire yang berjalan di antara yang hidup dan yang mati."
+    },
+    {
+      "name": "Dragonborn",
+      "flavor": "Pilih ini kalau kamu ingin jadi orang naga yang bangga, bisa menyemburkan kekuatan elemen, dan berdiri tegap."
+    },
+    {
+      "name": "Dwarf",
+      "flavor": "Pilih ini kalau kamu ingin jadi orang yang keras kepala dan tangguh, suka memahat batu, minuman kuat, dan tidak mudah melupakan dendam."
+    },
+    {
+      "name": "Eladrin (Elf)",
+      "flavor": "Pilih ini kalau kamu ingin jadi elf fey yang bisa teleportasi jarak dekat dan berubah mengikuti perasaannya."
+    },
+    {
+      "name": "Elf",
+      "flavor": "Pilih ini kalau kamu ingin jadi orang anggun yang hidup lama, dan pintar memakai busur panah serta sihir."
+    },
+    {
+      "name": "Firbolg",
+      "flavor": "Pilih ini kalau kamu ingin jadi raksasa hutan yang lembut dan bisa berbicara dengan hewan serta tumbuhan."
+    },
+    {
+      "name": "Githyanki",
+      "flavor": "Pilih ini kalau kamu ingin jadi prajurit astral yang tegas, dengan pedang perak dan kekuatan psionik."
+    },
+    {
+      "name": "Githzerai",
+      "flavor": "Pilih ini kalau kamu ingin jadi orang yang sangat disiplin seperti biarawan, dan hanya percaya pada pikirannya sendiri."
+    },
+    {
+      "name": "Gnome",
+      "flavor": "Pilih ini kalau kamu ingin jadi orang kecil yang penasaran, suka membuat alat, dan punya bakat sihir alami."
+    },
+    {
+      "name": "Goblin",
+      "flavor": "Pilih ini kalau kamu ingin jadi makhluk kecil yang lincah, kabur dan sembunyi, lalu kembali kalau sedang menguntungkan."
+    },
+    {
+      "name": "Goliath",
+      "flavor": "Pilih ini kalau kamu ingin jadi orang sebesar gunung yang suka menyaingi apa pun, termasuk cuacanya."
+    },
+    {
+      "name": "Half-Elf",
+      "flavor": "Pilih ini kalau kamu ingin jadi orang yang terjepak di antara dua dunia, dan pandai bicara kepada keduanya."
+    },
+    {
+      "name": "Half-Orc",
+      "flavor": "Pilih ini kalau kamu ingin jadi orang tangguh yang pukulannya sangat keras dan menolak tetap tumbang."
+    },
+    {
+      "name": "Halfling",
+      "flavor": "Pilih ini kalau kamu ingin jadi orang kecil yang ceria, beruntung, dan pintar menyelinap serta menjauh dari masalah."
+    },
+    {
+      "name": "Hexblood",
+      "flavor": "Pilih ini kalau kamu ingin jadi orang yang disentuh penyihir, punya sisi nyeleneh, dan kutukan yang menempel lama."
+    },
+    {
+      "name": "Hobgoblin",
+      "flavor": "Pilih ini kalau kamu ingin jadi goblin-kin yang disiplin seperti tentara, dan paling kuat saat bertarung bersama."
+    },
+    {
+      "name": "Human",
+      "flavor": "Pilih ini kalau kamu ingin jadi orang biasa yang mudah menyesuaikan diri dan bisa berkembang jadi hampir apa pun."
+    },
+    {
+      "name": "Kenku",
+      "flavor": "Pilih ini kalau kamu ingin jadi manusia burung yang tidak bisa berbicara dengan kata-katanya sendiri, hanya bisa meniru suara yang pernah didengar."
+    },
+    {
+      "name": "Kobold",
+      "flavor": "Pilih ini kalau kamu ingin jadi keturunan naga kecil yang lemah sendirian, tapi berbahaya saat bergerombol."
+    },
+    {
+      "name": "Lizardfolk",
+      "flavor": "Pilih ini kalau kamu ingin jadi orang kadal yang dingin dan praktis, bertahan pakai insting daripada perasaan."
+    },
+    {
+      "name": "Orc",
+      "flavor": "Pilih ini kalau kamu ingin jadi brut yang tidak kenal lelah, maju paling depan, dan menolak jatuh."
+    },
+    {
+      "name": "Plasmoid",
+      "flavor": "Pilih ini kalau kamu ingin jadi gumpalan lendir hidup yang bisa menyusup lewat lubang kunci."
+    },
+    {
+      "name": "Reborn",
+      "flavor": "Pilih ini kalau kamu ingin jadi orang yang sudah mati lalu kembali, tidak sepenuhnya sama seperti sebelumnya."
+    },
+    {
+      "name": "Shifter",
+      "flavor": "Pilih ini kalau kamu ingin jadi setengah binatang yang berubah lebih buas tepat saat dibutuhkan."
+    },
+    {
+      "name": "Tabaxi",
+      "flavor": "Pilih ini kalau kamu ingin jadi orang kucing yang sangat cepat, penasaran, dan sulit diam."
+    },
+    {
+      "name": "Thri-kreen",
+      "flavor": "Pilih ini kalau kamu ingin jadi orang serangga berlengan empat yang tidak pernah perlu tidur."
+    },
+    {
+      "name": "Tiefling",
+      "flavor": "Pilih ini kalau kamu ingin jadi orang berdarah iblis, bertanduk, dengan api di dalam tubuhnya, yang langsung ditcurigai orang lain."
+    },
+    {
+      "name": "Triton",
+      "flavor": "Pilih ini kalau kamu ingin jadi penjaga laut dalam yang bangga dan paling nyaman berada di dalam air."
+    },
+    {
+      "name": "Yuan-ti Pureblood",
+      "flavor": "Pilih ini kalau kamu ingin jadi orang ular yang kebal racun dan sulit dipengaruhi sihir."
+    }
+  ]
+}

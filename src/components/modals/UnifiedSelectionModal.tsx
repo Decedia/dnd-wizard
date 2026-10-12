@@ -15,6 +15,7 @@ import {
   InfoTraitList,
 } from "@/components/modals/InfoBits";
 import { RACE_ICONS } from "@/components/race-icons";
+import { buildRaceCategoryIndex, getRaceCategoryName } from "@/data/race-categories";
 import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
 import { HumanVariantConfig, type HumanVariantConfigPayload } from "@/components/modals/HumanVariantConfig";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -47,6 +48,8 @@ export interface SelectionOption {
   name: string;
   source: string;
   description: string;
+  /** Parent race category the description came from, when grouped. */
+  categoryName?: string;
   icon?: React.ComponentType<{ className?: string }>;
   /** Full class record for the class info panel. */
   details?: SRDClass;
@@ -231,10 +234,15 @@ export function UnifiedSelectionModal<T extends SelectionType>({
       })) as SelectionOption[];
     } else {
       const races = getStaticRaces(characterSources, undefined, language);
+      const categoryByRace = buildRaceCategoryIndex(
+        races.map((race) => race.name),
+        language,
+      );
       return races.map((race) => ({
         name: race.name,
+        categoryName: getRaceCategoryName(race.name, races.map((r) => r.name)),
         source: race.source || "PHB",
-        description: race.flavor || race.traits?.[0]?.description || "",
+        description: categoryByRace.get(race.name)?.flavor || race.traits?.[0]?.description || "",
         icon: RACE_ICONS[race.name] || RACE_ICONS.Human,
         hasChoice: (race.choices?.length || 0) > 0,
         choiceType: race.choices?.[0]?.type || "ancestry",
@@ -1086,8 +1094,16 @@ function RaceInfoPanel({ option, characterSources, language, t }: RaceInfoPanelP
         </div>
       </div>
 
-      {details?.flavor && (
-        <InfoCallout label={t("modal.whyPlay", "Kenapa Pilih Ini")}>{details.flavor}</InfoCallout>
+      {option.description && (
+        <InfoCallout
+          label={
+            option.categoryName && option.categoryName !== option.name
+              ? t("modal.whyPlayCategory", { category: option.categoryName }, "Kenapa Pilih {category}")
+              : t("modal.whyPlay", "Kenapa Pilih Ini")
+          }
+        >
+          {option.description}
+        </InfoCallout>
       )}
 
       <div className="grid grid-cols-2 gap-2">
