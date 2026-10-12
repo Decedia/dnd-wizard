@@ -499,6 +499,10 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
       )}
 
       <div>{ABILITIES.map(renderStatRow)}</div>
+
+      <p className="mt-4 text-center text-[11px] font-medium leading-relaxed text-ink-muted">
+        {t("abilities.notFinalValue", "This is not your final ability score. Racial bonuses from your race are added afterwards.")}
+      </p>
     </section>
   );
 }

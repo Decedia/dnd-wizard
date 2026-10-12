@@ -417,9 +417,24 @@ export function UnifiedSelectionModal<T extends SelectionType>({
 
   const isHumanVariantStep = step === "config" && selectedItem?.name === "Human" && selectedItem.choiceType === "variant";
   const variantHumanSelected = isHumanVariantStep && configChoice?.featureData?.choiceType === "variant";
+  // Half-Elf: both picks must be made before the race can be confirmed. Without
+  // this the button enabled itself on mount, because HalfElfConfig reports an
+  // empty payload through useEffect as soon as it renders.
+  const isHalfElfStep = step === "config" && selectedItem?.choiceType === "half_elf";
+  const halfElfData = configChoice?.featureData as HalfElfConfigPayload | undefined;
+  const halfElfComplete =
+    !isHalfElfStep ||
+    (halfElfData?.abilities?.length === 2 && halfElfData?.skills?.length === 2);
+  const halfElfMissing: string[] = [];
+  if (isHalfElfStep && !halfElfComplete) {
+    const abilityGap = 2 - (halfElfData?.abilities?.length || 0);
+    const skillGap = 2 - (halfElfData?.skills?.length || 0);
+    if (abilityGap > 0) halfElfMissing.push(t("modal.missingAbilities", { n: abilityGap }, "Pilih {n} ability"));
+    if (skillGap > 0) halfElfMissing.push(t("modal.missingSkills", { n: skillGap }, "Pilih {n} skill"));
+  }
   const isConfirmDisabled =
     step === "config"
-      ? requireChoice && !configChoice && !(isHumanVariantStep && !variantHumanSelected)
+      ? !halfElfComplete || (requireChoice && !configChoice && !(isHumanVariantStep && !variantHumanSelected))
       : step === "info"
         ? !infoItem
         : !previewItem || (previewItem.hasChoice && !configChoice && requireChoice);
@@ -463,7 +478,12 @@ export function UnifiedSelectionModal<T extends SelectionType>({
   );
 
   const stickyFooter = (
-    <div className="bg-[var(--color-surface)] border-t border-[var(--color-border)] px-4 py-3 flex gap-2">
+    <div className="bg-[var(--color-surface)] border-t border-[var(--color-border)] px-4 py-3 flex flex-wrap gap-2">
+      {halfElfMissing.length > 0 && (
+        <p className="w-full text-xs font-semibold text-[var(--color-warning-600)]">
+          {halfElfMissing.join(" · ")}
+        </p>
+      )}
       <button
         type="button"
         onClick={handleCancel}
