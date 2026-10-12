@@ -147,7 +147,7 @@
       },
       "recommendation": {
         "is_recommended": false,
-        "text": "A tall, aggressive goblinoid with reach and ambush mechanics. Fun for hit-and-run tactics, but the extra movement and surprise rules can trip up new players."
+        "text": "Goblinoid tinggi dan agresif dengan reach serta mekanik ambush. Seru untuk taktik hit-and-run, tapi aturan extra movement dan surprise bisa menjerat pemain baru."
       }
     },
     {
@@ -224,7 +224,7 @@
       },
       "recommendation": {
         "is_recommended": false,
-        "text": "A shapeshifting diplomat with identity-changing abilities. High social and deceptive potential, but shapechange mechanics add a mechanical and roleplay learning curve."
+        "text": "Diplomat pengubah wujud dengan kemampuan mengubah identitas. Potensi sosial dan penipuannya tinggi, tapi mekanik shapechange menambah kurva belajar, baik secara mekanik maupun roleplay."
       }
     },
     {
@@ -346,7 +346,7 @@
       "source": "SCAG",
       "recommendation": {
         "is_recommended": false,
-        "text": "A subterranean gnome with superior darkvision and stealth bonuses. Niche but flavorful, best suited for players who enjoy light-dependent exploration tactics."
+        "text": "Gnome bawah tanah dengan darkvision lebih baik dan bonus stealth. Marginal tapi penuh karakter, cocok untuk pemain yang menikmati taktik eksplorasi yang bergantung pada cahaya."
       }
     },
     {
@@ -470,7 +470,7 @@
       },
       "recommendation": {
         "is_recommended": false,
-        "text": "A vampire-like undead descendant with spider climb and biting. Adds dark thematic mechanics and resource-like hunger that can overwhelm new players."
+        "text": "Keturunan undead seperti vampire dengan spider climb dan gigitan. Menambah mekanik tematik gelap berupa rasa lapar yang mirip resource, dan itu bisa membanjiri pemain baru."
       }
     },
     {
@@ -627,7 +627,7 @@
       ],
       "recommendation": {
         "is_recommended": false,
-        "text": "A draconic hero with breath weapon and damage resistance. Simple racial traits, but choosing the right draconic ancestry adds a small decision layer for newer players."
+        "text": "Pahlawan naga dengan breath weapon dan damage resistance. Ciri-ciri rasialnya sederhana, tapi memilih draconic ancestry yang tepat menambah satu lapisan keputusan untuk pemain baru."
       }
     },
     {
@@ -752,7 +752,7 @@
       },
       "recommendation": {
         "is_recommended": false,
-        "text": "A draconic descendant with a damaging breath weapon and damage resistance. Simple core, but ancestry choice adds a small selection step."
+        "text": "Keturunan naga dengan breath weapon yang menyakitkan dan damage resistance. Intinya sederhana, tapi pilihan ancestry menambah satu langkah pemilihan."
       }
     },
     {
@@ -902,7 +902,7 @@
       },
       "recommendation": {
         "is_recommended": false,
-        "text": "A gem-scaled dragonborn with psionic-like breath and resistance. Adds another ancestry option layer, which can distract from core class learning."
+        "text": "Dragonborn bersisik permata dengan breath seperti psionic dan resistance. Menambah lapisan pilihan ancestry lagi, dan itu bisa mengalihkan fokus dari belajar kelas utama."
       }
     },
     {
@@ -1027,7 +1027,7 @@
       },
       "recommendation": {
         "is_recommended": false,
-        "text": "A metallic dragonborn with a stronger breath weapon and a minor transformative trait. Adds choice complexity and resource awareness."
+        "text": "Dragonborn logam dengan breath weapon lebih kuat dan satu ciri transformasi kecil. Menambah kompleksitas pilihan serta kesadaran resource."
       }
     },
     {
@@ -1175,7 +1175,7 @@
       "source": "PHB",
       "recommendation": {
         "is_recommended": true,
-        "text": "A sturdy traditional warrior with excellent durability and darkvision. Dwarven Resilience and Combat Training are easy to use, making it an ideal beginner race."
+        "text": "Petarung tradisional yang kokoh dengan durability luar biasa dan darkvision. Dwarven Resilience dan Combat Training mudah dipakai, sehingga Dwarf menjadi ras awal yang ideal."
       }
     },
     {
@@ -1716,7 +1716,7 @@
       ],
       "recommendation": {
         "is_recommended": false,
-        "text": "A fey-touched elf with seasonal abilities that shift their playstyle. Interesting tactical variety, but the changing mechanics can confuse new players."
+        "text": "Elf tersentuh fey dengan kemampuan musiman yang mengubah gaya mainnya. Variasi taktisnya menarik, tapi mekanik yang berganti-ganti bisa membingungkan pemain baru."
       }
     },
     {
@@ -1839,7 +1839,7 @@
       "source": "PHB",
       "recommendation": {
         "is_recommended": false,
-        "text": "A graceful, long-lived warrior with keen senses and fey ancestry. Strong in exploration and stealth, but the variety of elven subraces and traits adds choice complexity."
+        "text": "Petarung anggun berumur panjang dengan indra tajam dan darah fey. Kuat untuk eksplorasi dan stealth, tapi banyaknya subrace serta ciri elf menambah kompleksitas pilihan."
       }
     },
     {
@@ -1965,7 +1965,7 @@
       },
       "recommendation": {
         "is_recommended": false,
-        "text": "A gentle giant with invisibility and nature magic. Easy to roleplay, but the subtle defensive tools require tactical timing to use well."
+        "text": "Raksasa lembut dengan invisibility dan nature magic. Mudah di-roleplay, tapi alat pertahanannya yang halus menuntut timing taktis untuk terpakai baik."
       }
     },
     {
@@ -2268,7 +2268,7 @@
       },
       "recommendation": {
         "is_recommended": false,
-        "text": "A psionic warrior from the Astral Plane with innate spellcasting and teleportation. Cool concept, but managing innate spells and psionic options adds complexity."
+        "text": "Petarung psionic dari Astral Plane dengan innate spellcasting dan teleportation. Konsepnya keren, tapi mengelola innate spell dan pilihan psionic menambah kompleksitas."
       }
     },
     {
@@ -2368,7 +2368,7 @@
       },
       "recommendation": {
         "is_recommended": false,
-        "text": "A disciplined monk-like race with psionic defense and meditation. The mental discipline mechanics add another layer for new players to track."
+        "text": "Ras seperti biarawan yang disiplin dengan pertahanan psionic dan meditasi. Mekanik disiplin mental menambah satu lapisan lagi yang harus diikuti pemain baru."
       }
     },
     {
@@ -2441,7 +2441,7 @@
       "source": "PHB",
       "recommendation": {
         "is_recommended": false,
-        "text": "A small, clever inventor with innate magic resistance. Good for trickster or arcane builds, but gnomish subraces and feature interactions add mild complexity."
+        "text": "Penemu kecil yang cerdas dengan magic resistance alami. Cocok untuk build trickster atau arcane, tapi subrace gnome dan interaksi cirinya menambah kompleksitas ringan."
       }
     },
     {
@@ -2781,7 +2781,7 @@
       },
       "recommendation": {
         "is_recommended": false,
-        "text": "A small, crafty creature with Fury of the Small and Nimble Escape. Strong tactical positioning tools, but the extra bonus-action option can be tricky for new players."
+        "text": "Makhluk kecil yang licik dengan Fury of the Small dan Nimble Escape. Alat positioning taktisnya kuat, tapi opsi bonus action tambahan bisa menyulitkan pemain baru."
       }
     },
     {
@@ -2879,7 +2879,7 @@
       "source": "PHB",
       "recommendation": {
         "is_recommended": false,
-        "text": "A versatile hybrid with ability score bonuses and skill versatility. Flexible by design, which is great for concept, but the breadth of options can slow new players."
+        "text": "Hibrida serbaguna dengan bonus ability score dan keluwesan skill. Fleksibel dari desainnya, bagus untuk konsep, tapi banyaknya opsi bisa memperlambat pemain baru."
       }
     },
     {
@@ -3042,7 +3042,7 @@
       ],
       "recommendation": {
         "is_recommended": false,
-        "text": "An elf-leaning half-elf with an extra cantrip and a skill. Adds a small spellcasting choice layer that beginners may find confusing."
+        "text": "Half-Elf condong elf dengan satu cantrip dan satu skill ekstra. Menambah lapisan pilihan spellcasting yang bisa membingungkan pemula."
       }
     },
     {
@@ -3165,7 +3165,7 @@
       "source": "SCAG",
       "recommendation": {
         "is_recommended": false,
-        "text": "An elf-leaning half-elf suited to wilderness exploration. Movement and mask of the wild are easy to use, but subrace selection still adds decision weight."
+        "text": "Half-Elf condong elf yang cocok untuk eksplorasi alam. Movement dan Mask of the Wild mudah dipakai, tapi pemilihan subrace tetap menambah beban keputusan."
       }
     },
     {
@@ -3288,7 +3288,7 @@
       "source": "SCAG",
       "recommendation": {
         "is_recommended": false,
-        "text": "A dark elf-leaning half-elf with innate spellcasting and darkness control. Strong concept, but sunlight sensitivity and spell options add tactical bookkeeping."
+        "text": "Half-Elf condong dark elf dengan innate spellcasting dan kendali kegelapan. Konsepnya kuat, tapi sunlight sensitivity dan pilihan spell menambah catatan taktis."
       }
     },
     {
@@ -3411,7 +3411,7 @@
       "source": "SCAG",
       "recommendation": {
         "is_recommended": false,
-        "text": "An elf-leaning half-elf with heightened senses and a cantrip. Adds mild spellcasting complexity to an already flexible chassis."
+        "text": "Half-Elf condong elf dengan indra lebih tajam dan satu cantrip. Menambah kompleksitas spellcasting ringan pada kerangka yang sudah fleksibel."
       }
     },
     {
@@ -3534,7 +3534,7 @@
       "source": "SCAG",
       "recommendation": {
         "is_recommended": false,
-        "text": "An elf-leaning half-elf with magic resistance and a weapon training bonus. Good for gishes, but the flexibility can distract new players."
+        "text": "Half-Elf condong elf dengan magic resistance dan bonus weapon training. Bagus untuk gish, tapi fleksibilitasnya bisa mengalihkan fokus pemain baru."
       }
     },
     {
@@ -3657,7 +3657,7 @@
       "source": "SCAG",
       "recommendation": {
         "is_recommended": false,
-        "text": "An ocean-themed half-elf with swim speed and amphibious breathing. Niche but thematic, best when water exploration is frequent."
+        "text": "Half-Elf bertema lautan dengan swim speed dan napas amfibi. Marginal tapi tematis, paling pas saat eksplorasi air sering terjadi."
       }
     },
     {
@@ -3780,7 +3780,7 @@
       "source": "SCAG",
       "recommendation": {
         "is_recommended": false,
-        "text": "A shadow-touched half-elf with resistance and necrotic teleportation. Interesting tactical tool, but death-tinged mechanics may be less intuitive for beginners."
+        "text": "Half-Elf tersentuh bayangan dengan resistance dan teleportasi nekrotik. Alat taktisnya menarik, tapi mekanik bernuansa kematian kurang intuitif untuk pemula."
       }
     },
     {
@@ -3903,7 +3903,7 @@
       "source": "SCAG",
       "recommendation": {
         "is_recommended": false,
-        "text": "A fey-touched half-elf with a season-linked teleport and charm resistance. Cool flavor, but seasonal ability swaps can confuse new players."
+        "text": "Half-Elf tersentuh fey dengan teleport terkait musim dan charm resistance. Rasanya keren, tapi pertukaran kemampuan musiman bisa membingungkan pemain baru."
       }
     },
     {
@@ -4027,7 +4027,7 @@
       "source": "PHB",
       "recommendation": {
         "is_recommended": true,
-        "text": "A tough, aggressive warrior with darkvision, intimidation presence, and a second-wind style death-defying trait. Low mechanical complexity with strong combat feel."
+        "text": "Petarung tangguh dan agresif dengan darkvision, keberanian intimidasi, dan ciri selamat dari kematian seperti second wind. Kompleksitas mekaniknya rendah dengan rasa tempur yang kuat."
       }
     },
     {
@@ -4126,7 +4126,7 @@
       "source": "PHB",
       "recommendation": {
         "is_recommended": true,
-        "text": "A lucky, nimble smallfolk with reroll advantages and stealth. Lucky and Brave are simple to use, making halflings a very friendly beginner race."
+        "text": "Orang kecil lincah dan beruntung dengan keuntungan lempar ulang serta stealth. Lucky dan Brave mudah dipakai, sehingga halfling menjadi ras pemula yang sangat ramah."
       }
     },
     {
@@ -4251,7 +4251,7 @@
       "source": "PHB",
       "recommendation": {
         "is_recommended": true,
-        "text": "A stealthy halfling that can hide behind larger allies. Low mechanical complexity and strong roleplay hooks."
+        "text": "Halfling penyendiri yang bisa bersembunyi di balik penjaga yang lebih besar. Kompleksitas mekaniknya rendah dan punya banyak pancingan roleplay."
       }
     },
     {
@@ -4376,7 +4376,7 @@
       "source": "PHB",
       "recommendation": {
         "is_recommended": true,
-        "text": "A hearty halfling with poison resistance and bonus constitution. Simple durability boost that is easy to explain and use."
+        "text": "Halfling kokoh dengan poison resistance dan bonus constitution. Peningkatan durability sederhana yang mudah dijelaskan dan dipakai."
       }
     },
     {
@@ -4501,7 +4501,7 @@
       "source": "SCAG",
       "recommendation": {
         "is_recommended": false,
-        "text": "A rare halfling subrace with silent speech. Unique communication mechanics, but very niche and situational."
+        "text": "Subrace halfling langka dengan silent speech. Mekanik komunikasinya unik, tapi sangat marginal dan situasional."
       }
     },
     {
@@ -4600,7 +4600,7 @@
       },
       "recommendation": {
         "is_recommended": false,
-        "text": "A fey-touched or undead-touched lineage with a dark bargain. Adds a narrative and mechanical bargain layer that adds complexity to character creation."
+        "text": "Garis keturunan tersentuh fey atau undead dengan perjanjian gelap. Menambah lapisan perjanjian naratif dan mekanik yang menambah kompleksitas saat pembuatan karakter."
       }
     },
     {
@@ -4700,7 +4700,7 @@
       },
       "recommendation": {
         "is_recommended": false,
-        "text": "A disciplined warrior with tactical positioning bonuses. The Saving Face feature adds reactive decision-making that rewards experience."
+        "text": "Petarung disiplin dengan bonus positioning taktis. Ciri Saving Face menambah keputusan reaktif yang lebih menguntungkan pemain berpengalaman."
       }
     },
     {
@@ -4739,7 +4739,7 @@
       ],
       "recommendation": {
         "is_recommended": true,
-        "text": "The baseline adventurer with balanced ability increases and an extra language. Simple, flexible, and forgiving for new players who want to focus on class mechanics."
+        "text": "Petualang standar dengan peningkatan ability seimbang dan satu bahasa ekstra. Sederhana, fleksibel, dan memaafkan untuk pemain baru yang ingin fokus pada mekanik kelas."
       }
     },
     {
@@ -4839,7 +4839,7 @@
       },
       "recommendation": {
         "is_recommended": false,
-        "text": "A bird-like mimic with clever movement and mimicry. Roleplay-heavy with limited but flavorful racial abilities; easy to underestimate mechanically."
+        "text": "Peniru berbentuk burung dengan movement cerdik dan kemampuan tiru. Berat pada roleplay dengan kemampuan rasial terbatas tapi penuh rasa; mudah diremehkan secara mekanik."
       }
     },
     {
@@ -4964,7 +4964,7 @@
       },
       "recommendation": {
         "is_recommended": false,
-        "text": "A reptilian survivor with natural armor and a bite attack. Simple durability, but the many optional racial traits can slow new players down."
+        "text": "Penyintas reptil dengan natural armor dan serangan gigitan. Durability-nya sederhana, tapi banyaknya pilihan ciri rasial bisa memperlambat pemain baru."
       }
     },
     {
@@ -5089,7 +5089,7 @@
       },
       "recommendation": {
         "is_recommended": false,
-        "text": "A powerful brute with Aggressive and darkvision. Simple combat presence, but reduced intelligence and pack tactics can confuse new tactical positioning."
+        "text": "Brut kuat dengan Aggressive dan darkvision. Kehadiran tempurnya sederhana, tapi intelligence rendah dan pack tactics bisa membingungkan positioning taktis pemain baru."
       }
     },
     {
@@ -5188,7 +5188,7 @@
       },
       "recommendation": {
         "is_recommended": false,
-        "text": "A revenant-style race with past-life knowledge and death resilience. Flavorful, but the extra history and resilience mechanics add bookkeeping."
+        "text": "Ras bergaya revenant dengan pengetahuan kehidupan lampau dan ketahanan terhadap kematian. Penuh rasa, tapi riwayat ekstra dan mekanik resilience menambah catatan."
       }
     },
     {
@@ -5317,7 +5317,7 @@
       },
       "recommendation": {
         "is_recommended": false,
-        "text": "A druidic shapeshifter with temporary shifting bonuses. Simple core loop, but Shifter type choice and temporary boost management add decision weight."
+        "text": "Pengubah wujud ala druid dengan bonus sementara saat shifting. Core loop-nya sederhana, tapi pilihan tipe Shifter dan ngatur boost sementara menambah beban keputusan."
       }
     },
     {
@@ -5441,7 +5441,7 @@
       },
       "recommendation": {
         "is_recommended": false,
-        "text": "A feline explorer with speed and climb. Fun for exploration and hit-and-run, but Feline Agility can leave new players overextended."
+        "text": "Penjelajah berbentuk kucing dengan kecepatan dan kemampuan memanjat. Seru untuk eksplorasi serta hit-and-run, tapi Feline Agility bisa membuat pemain baru terlalu maju."
       }
     },
     {
@@ -5540,7 +5540,7 @@
       "source": "PHB",
       "recommendation": {
         "is_recommended": false,
-        "text": "A hellish descendant with resistance and minor spellcasting. Fiendish legacy features are flavorful but can add spell-management weight for new players."
+        "text": "Keturunan neraka dengan resistance dan spellcasting ringan. Ciri Fiendish Legacy penuh rasa, tapi bisa menambah beban mengelola spell bagi pemain baru."
       }
     },
     {
@@ -5639,7 +5639,7 @@
       "source": "MTF",
       "recommendation": {
         "is_recommended": false,
-        "text": "A fire-touched tiefling with a cantrip and charisma boost. Simple offense, but managing the extra spell can distract from core class choices."
+        "text": "Tiefling tersentuh api dengan satu cantrip dan bonus charisma. Ofensif sederhana, tapi mengelola spell ekstra bisa mengalihkan fokus dari pilihan kelas utama."
       }
     },
     {
@@ -5738,7 +5738,7 @@
       "source": "MTF",
       "recommendation": {
         "is_recommended": false,
-        "text": "A tiefling with a debuff cantrip and Thaumaturgy. Adds social and control options, which increases decision space for beginners."
+        "text": "Tiefling dengan cantrip debuff dan Thaumaturgy. Menambah opsi sosial dan kontrol, sehingga memperluas ruang keputusan bagi pemula."
       }
     },
     {
@@ -5837,7 +5837,7 @@
       "source": "MTF",
       "recommendation": {
         "is_recommended": false,
-        "text": "A martial tiefling with weapon bonuses and a damaging cantrip. Adds minor combat complexity, but still fairly straightforward."
+        "text": "Tiefling martial dengan bonus senjata dan cantrip yang menyakitkan. Menambah kompleksitas tempur ringan, tapi tetap cukup lugas."
       }
     },
     {
@@ -5936,7 +5936,7 @@
       "source": "MTF",
       "recommendation": {
         "is_recommended": false,
-        "text": "A deceptive tiefling with a detection cantrip and stealth utility. Adds exploration choices that new players may underuse."
+        "text": "Tiefling penipu dengan cantrip deteksi dan utilitas stealth. Menambah pilihan eksplorasi yang mungkin kurang dimanfaatkan pemain baru."
       }
     },
     {
@@ -6035,7 +6035,7 @@
       "source": "MTF",
       "recommendation": {
         "is_recommended": false,
-        "text": "A tiefling with charm-focused cantrips and social utility. Adds roleplay and spellcasting layers that increase cognitive load."
+        "text": "Tiefling dengan cantrip berpola charm dan utilitas sosial. Menambah lapisan roleplay dan spellcasting yang meningkatkan beban berpikir."
       }
     },
     {
@@ -6134,7 +6134,7 @@
       "source": "MTF",
       "recommendation": {
         "is_recommended": false,
-        "text": "A trickster tiefling with illusion and deception tools. Fun conceptually, but illusions add mechanical overhead for new players."
+        "text": "Tiefling penipu dengan alat ilusi dan tipu daya. Konsepnya seru, tapi ilusi menambah urusan mekanik bagi pemain baru."
       }
     },
     {
@@ -6233,7 +6233,7 @@
       "source": "MTF",
       "recommendation": {
         "is_recommended": false,
-        "text": "An ice-themed tiefling with defensive and damaging cantrips. Adds elemental and tactical options that can overwhelm beginners."
+        "text": "Tiefling bertema es dengan cantrip defensif dan ofensif. Menambah opsi elemen dan taktis yang bisa membanjiri pemula."
       }
     },
     {
@@ -6332,7 +6332,7 @@
       "source": "MTF",
       "recommendation": {
         "is_recommended": false,
-        "text": "A wealth-themed tiefling with a utility cantrip and gold-themed flavor. Adds minor magic and social complexity."
+        "text": "Tiefling bertema kekayaan dengan cantrip utilitas dan rasa bertema emas. Menambah kompleksitas sihir dan sosial ringan."
       }
     },
     {
@@ -6431,7 +6431,7 @@
       "source": "MTF",
       "recommendation": {
         "is_recommended": false,
-        "text": "A fire-and-flames tiefling with a damaging cantrip. Adds offensive spell management to an otherwise simple package."
+        "text": "Tiefling bernuansa api dengan cantrip yang menyakitkan. Menambah urusan mengelola spell ofensif pada paket yang sebenarnya sederhana."
       }
     },
     {
@@ -6557,7 +6557,7 @@
       },
       "recommendation": {
         "is_recommended": false,
-        "text": "An aquatic warrior with amphibious breathing and elemental resistance. Strong in water-heavy campaigns, but situational otherwise."
+        "text": "Petarung akuatik dengan napas amfibi dan resistance elemen. Kuat di campaign yang banyak air, tapi situasional di luar itu."
       }
     },
     {
@@ -6657,7 +6657,7 @@
       },
       "recommendation": {
         "is_recommended": false,
-        "text": "A bird-like humanoid with flight and talon attacks. Flight is powerful, but managing aerial positioning and reach can be punishing for new players."
+        "text": "Humanoid berbentuk burung dengan flight dan serangan cakar. Flight-nya kuat, tapi mengelola positioning udara dan reach bisa menyiksa pemain baru."
       }
     },
     {
@@ -6758,7 +6758,7 @@
       },
       "recommendation": {
         "is_recommended": false,
-        "text": "A serpent-touched humanoid with innate spellcasting and poison immunity. Flavorful, but the extra spell list and immunity interactions add complexity."
+        "text": "Humanoid tersentuh ular dengan innate spellcasting dan poison immunity. Penuh rasa, tapi daftar spell ekstra dan interaksi imunitas menambah kompleksitas."
       }
     },
     {
@@ -7000,7 +7000,7 @@
       },
       "recommendation": {
         "is_recommended": false,
-        "text": "A mechanical gnome with a built-in tool and limited flight. Fun tinker theme, but the mechanical features add small but persistent complexity."
+        "text": "Gnome mekanik dengan alat bawaan dan flight terbatas. Tema tukang-alatnya seru, tapi ciri mekaniknya menambah kompleksitas kecil yang terus terasa."
       }
     },
     {
@@ -7075,7 +7075,7 @@
       },
       "recommendation": {
         "is_recommended": false,
-        "text": "An ooze-like creature with flexible anatomy and poison resistance. Niche defensive toolkit that rewards experienced positioning."
+        "text": "Makhluk seperti lumpur dengan anatomi lentur dan poison resistance. Perkakas defensifnya marginal dan lebih menguntungkan positioning berpengalaman."
       }
     },
     {
@@ -7271,7 +7271,7 @@
       },
       "recommendation": {
         "is_recommended": false,
-        "text": "A celestial-touched hero with resistance and a healing transformation. Easy to flavor, but the transformation mechanics add a burst-management layer."
+        "text": "Pahlawan tersentuh selestial dengan resistance dan transformasi penyembuhan. Mudah dirasakan, tapi mekanik transformasi menambah lapisan mengelola burst."
       }
     }
   ]

@@ -974,7 +974,7 @@
       "source": "PHB",
       "recommendation": {
         "is_recommended": true,
-        "text": "A straightforward melee powerhouse with high durability and simple resource management through Rage. Great for players who want to be in the thick of combat without complex spellcasting."
+        "text": "Petarung melee yang kuat dan tahan lama, dengan resource sederhana berupa Rage. Cocok kalau kamu ingin berada di tengah pertempuran tanpa mengurus spellcasting yang rumit."
       },
       "lastUpdated": "2026-09-29",
       "flavor": "Pilih ini kalau kamu ingin jadi yang maju pertama, sering kena pukul, tapi tetap bertahan."
@@ -2994,7 +2994,7 @@
       "source": "PHB",
       "recommendation": {
         "is_recommended": false,
-        "text": "A versatile support caster with extensive spell and skill options. High mechanical ceiling from managing Inspiration dice, spell slots, and cutting words, but can overwhelm new players."
+        "text": "Support caster serbaguna dengan banyak pilihan spell dan skill. Plafon mekaniknya tinggi karena harus mengelola Inspiration dice, spell slot, dan Cutting Words, tapi itu bisa membebani pemain baru."
       },
       "lastUpdated": "2026-09-29",
       "flavor": "Pilih ini kalau kamu ingin jadi orang yang disukai semua orang dan pandai bicara untuk merayu dan keluar dari masalah."
@@ -4234,7 +4234,7 @@
       "source": "PHB",
       "recommendation": {
         "is_recommended": true,
-        "text": "A durable divine caster with access to the entire spell list. Strong action economy through Channel Divinity and Turn Undead, plus domain choices offer clear tactical niches without bookkeeping."
+        "text": "Divine caster yang tahan banting dengan akses ke seluruh spell list. Action economy-nya kuat lewat Channel Divinity dan Turn Undead, ditambah pilihan domain yang memberi niche taktis jelas tanpa banyak catatan."
       },
       "lastUpdated": "2026-09-29",
       "flavor": "Pilih ini kalau kamu ingin jadi penyebar firman dewa yang mengobati teman-temanmu."
@@ -5137,7 +5137,7 @@
       "source": "PHB",
       "recommendation": {
         "is_recommended": false,
-        "text": "A shapeshifting caster with one of the most complex spell lists in the game. Managing Wild Shape, spell preparation, and concentration checks creates a steep learning curve."
+        "text": "Shapeshifting caster dengan salah satu spell list paling kompleks di game. Ngatur Wild Shape, menyiapkan spell, dan concentration check membuat kurva belajarnya curam."
       },
       "lastUpdated": "2026-09-29",
       "flavor": "Pilih ini kalau kamu ingin jadi orang yang akrab dengan alam dan bisa berubah jadi hewan."
@@ -6166,7 +6166,7 @@
       "source": "PHB",
       "recommendation": {
         "is_recommended": true,
-        "text": "The quintessential martial class with excellent durability and a simple core loop. Action Surge and Second Wind give huge tactical spikes without complex resource tracking."
+        "text": "Kelas martial klasik dengan durability tinggi dan core loop sederhana. Action Surge dan Second Wind memberi lonjakan taktis besar tanpa perlu mencatat resource yang rumit."
       },
       "lastUpdated": "2026-09-29",
       "flavor": "Pilih ini kalau kamu ingin jadi petarung andalan yang menyerang berkali-kali dan jarang tumbang."
@@ -7325,7 +7325,7 @@
       "source": "PHB",
       "recommendation": {
         "is_recommended": false,
-        "text": "A mobile martial artist reliant on short-rest resources like Ki points. High tactical ceiling from positioning and stun locks, but requires careful resource economy awareness."
+        "text": "Martial artist lincah yang bergantung pada resource short-rest seperti Ki points. Plafon taktisnya tinggi dari positioning dan stun lock, tapi menuntut perhatian ekstra soal resource economy."
       },
       "lastUpdated": "2026-09-29",
       "flavor": "Pilih ini kalau kamu ingin jadi orang yang berlatih keras sampai bisa bertarung tanpa senjata."
@@ -8334,7 +8334,7 @@
       "source": "PHB",
       "recommendation": {
         "is_recommended": true,
-        "text": "A heavy-armor divine warrior with burst damage via Smite and strong sustain. Easy to play at a basic level, but spell slot management and aura positioning add tactical depth."
+        "text": "Petarung suci berarmor berat dengan burst damage lewat Smite dan sustain kuat. Mudah dimainkan di level dasar, tapi mengelola spell slot dan posisi aura menambah kedalaman taktis."
       },
       "lastUpdated": "2026-09-29",
       "flavor": "Pilih ini kalau kamu ingin jadi ksatria suci berarmor berat yang melindungi dan mengobati teman."
@@ -9545,7 +9545,7 @@
       "source": "PHB",
       "recommendation": {
         "is_recommended": false,
-        "text": "A martial nature warrior with spellcasting and companion management. Favored Foe and spell tracking add moderate complexity, and positioning is key."
+        "text": "Petarung alam dengan spellcasting dan pengelolaan companion. Favored Foe dan pencatatan spell menambah kompleksitas sedang, dan positioning jadi kunci."
       },
       "lastUpdated": "2026-09-29",
       "flavor": "Pilih ini kalau kamu ingin jadi yang memanah dari jauh, melacak hewan, dan paham alam liar."
@@ -10698,7 +10698,7 @@
       "source": "PHB",
       "recommendation": {
         "is_recommended": true,
-        "text": "A skill-focused striker with Sneak Attack and Cunning Action. Low mechanical overhead with a clear core loop, but mastery of positioning and stealth tactics rewards advanced play."
+        "text": "Striker yang fokus pada skill dengan Sneak Attack dan Cunning Action. Beban mekaniknya ringan dan core loop jelas, tapi menguasai positioning serta taktik stealth lebih menghargai pemain mahir."
       },
       "lastUpdated": "2026-09-29",
       "flavor": "Pilih ini kalau kamu ingin jadi yang menyelinap, membuka kunci, dan menyerang dengan damage besar saat bersembunyi."
@@ -11810,7 +11810,7 @@
       "source": "PHB",
       "recommendation": {
         "is_recommended": false,
-        "text": "A raw spellcaster with limited spell knowledge but flexible Metamagic. High burst potential, but managing sorcery points and spell choices can be punishing for new casters."
+        "text": "Spellcaster alami dengan jumlah spell terbatas tapi Metamagic yang fleksibel. Potensi burst-nya tinggi, tapi mengelola sorcery points dan pilihan spell bisa menyiksa caster pemula."
       },
       "lastUpdated": "2026-09-29",
       "flavor": "Pilih ini kalau kamu ingin jadi orang yang lahir sudah membawa magic dan bisa mengubahnya saat dipakai."
@@ -13448,7 +13448,7 @@
       "source": "PHB",
       "recommendation": {
         "is_recommended": false,
-        "text": "A pact-bound caster with short-rest spell slots and Eldritch Invocations. Managing invocations, spell slots, and pact magic mechanics creates a steep learning curve."
+        "text": "Caster terikat pact dengan spell slot yang pulih lewat short rest ditambah Eldritch Invocations. Mengelola invocation, spell slot, dan mekanik pact magic membuat kurva belajarnya curam."
       },
       "lastUpdated": "2026-09-29",
       "flavor": "Pilih ini kalau kamu ingin jadi orang yang mendapat magic dari kesepakatan dengan makhluk kuat."
@@ -14408,7 +14408,7 @@
       "source": "PHB",
       "recommendation": {
         "is_recommended": false,
-        "text": "The most mechanically complex caster with a vast spellbook. Spell preparation, ritual casting, and arcane recovery create heavy bookkeeping that punishes inexperience."
+        "text": "Caster paling kompleks secara mekanik dengan spellbook sangat luas. Menyiapkan spell, ritual casting, dan Arcane Recovery menciptakan banyak catatan, dan itu menghukum pemain yang belum berpengalaman."
       },
       "lastUpdated": "2026-09-29",
       "flavor": "Pilih ini kalau kamu ingin jadi pelajar magic yang selalu punya spell untuk setiap masalah."
@@ -15331,7 +15331,7 @@
       ],
       "recommendation": {
         "is_recommended": false,
-        "text": "A magical tinkerer with infused items and spellcasting. Item management, infusions, and spell tracking create a high mechanical load that can overwhelm beginners."
+        "text": "Tukang sihir dengan infused item dan spellcasting. Mengelola item, infusion, dan pencatatan spell menciptakan beban mekanik tinggi yang bisa membanjiri pemula."
       },
       "lastUpdated": "2026-09-29",
       "flavor": "Pilih ini kalau kamu ingin jadi orang yang membuat magic item yang dipakai regu."
