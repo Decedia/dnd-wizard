@@ -231,7 +231,7 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
                   }`}
                 >
                   {formatModifier(totalBonus)}
-                  {racialBonus > 0 && (
+                  {finalBonus !== totalBonus && (
                     <span className="ml-1 text-[11px] font-bold text-ink-muted">
                       {formatModifier(finalBonus)}
                     </span>
