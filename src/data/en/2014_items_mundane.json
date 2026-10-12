@@ -1,0 +1,4193 @@
+{
+  "items": [
+    {
+      "index": "battleaxe",
+      "name": "Battleaxe",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 4,
+      "damage": {
+        "dice": "1d8",
+        "type": "Slashing",
+        "twoHanded": "1d10"
+      },
+      "properties": [
+        "Versatile"
+      ],
+      "handedness": "versatile",
+      "training": "martial",
+      "range": "melee",
+      "ammunition": false,
+      "stackable": false,
+      "usesAmmo": false,
+      "description": "A broad-bladed axe mounted on a sturdy haft, designed for war. Its heavy head delivers devastating chopping blows, cleaving through armor and shield alike.",
+      "source": "PHB"
+    },
+    {
+      "index": "blowgun",
+      "name": "Blowgun",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "damage": {
+        "dice": "1",
+        "type": "Piercing"
+      },
+      "properties": [
+        "Ammunition",
+        "Loading"
+      ],
+      "handedness": "two-handed",
+      "training": "martial",
+      "range": "ranged",
+      "ammunition": true,
+      "stackable": false,
+      "usesAmmo": true,
+      "description": "A narrow tube used to propel small darts with a breath of air. Silent and deadly, it favors stealth over brute force.",
+      "source": "PHB"
+    },
+    {
+      "index": "club",
+      "name": "Club",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 1,
+        "unit": "sp"
+      },
+      "weight": 2,
+      "damage": {
+        "dice": "1d4",
+        "type": "Bludgeoning"
+      },
+      "properties": [
+        "Light",
+        "Monk"
+      ],
+      "handedness": "light",
+      "training": "simple",
+      "range": "melee",
+      "ammunition": false,
+      "stackable": false,
+      "usesAmmo": false,
+      "description": "A simple length of wood shaped into a weapon. Crude but effective, it has served as a tool of violence since the earliest days.",
+      "source": "PHB"
+    },
+    {
+      "index": "crossbow-hand",
+      "name": "Crossbow, hand",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 75,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "damage": {
+        "dice": "1d6",
+        "type": "Piercing"
+      },
+      "properties": [
+        "Ammunition",
+        "Light",
+        "Loading"
+      ],
+      "handedness": "two-handed",
+      "training": "martial",
+      "range": "ranged",
+      "ammunition": true,
+      "stackable": false,
+      "usesAmmo": true,
+      "description": "A compact crossbow that can be wielded and fired with one hand. Its concealed size makes it a favored tool of assassins and scouts.",
+      "source": "PHB"
+    },
+    {
+      "index": "crossbow-heavy",
+      "name": "Crossbow, heavy",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 50,
+        "unit": "gp"
+      },
+      "weight": 18,
+      "damage": {
+        "dice": "1d10",
+        "type": "Piercing"
+      },
+      "properties": [
+        "Ammunition",
+        "Heavy",
+        "Loading",
+        "Two-Handed"
+      ],
+      "handedness": "two-handed",
+      "training": "martial",
+      "range": "ranged",
+      "ammunition": true,
+      "stackable": false,
+      "usesAmmo": true,
+      "description": "A large crossbow with a powerful draw, capable of launching bolts with tremendous force. Its weight and bulk demand two hands to operate.",
+      "source": "PHB"
+    },
+    {
+      "index": "crossbow-light",
+      "name": "Crossbow, light",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 5,
+      "damage": {
+        "dice": "1d8",
+        "type": "Piercing"
+      },
+      "properties": [
+        "Ammunition",
+        "Loading",
+        "Two-Handed"
+      ],
+      "handedness": "two-handed",
+      "training": "simple",
+      "range": "ranged",
+      "ammunition": true,
+      "stackable": false,
+      "usesAmmo": true,
+      "description": "A small, simple crossbow that is easy to load and fire. Popular among travelers and militia for its reliability and ease of use.",
+      "source": "PHB"
+    },
+    {
+      "index": "dagger",
+      "name": "Dagger",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "damage": {
+        "dice": "1d4",
+        "type": "Piercing"
+      },
+      "properties": [
+        "Finesse",
+        "Light",
+        "Thrown",
+        "Monk"
+      ],
+      "handedness": "light",
+      "training": "simple",
+      "range": "melee",
+      "ammunition": false,
+      "stackable": false,
+      "usesAmmo": false,
+      "description": "A short, double-edged blade designed for stabbing and slashing. Light and concealable, it is a versatile tool in both combat and daily life.",
+      "source": "PHB"
+    },
+    {
+      "index": "dart",
+      "name": "Dart",
+      "type": "ammunition",
+      "slot": "quiver",
+      "cost": {
+        "quantity": 5,
+        "unit": "cp"
+      },
+      "weight": 0.25,
+      "stackable": 20,
+      "usesAmmo": false,
+      "description": "A small, weighted projectile designed to be thrown with accuracy. Easy to conceal and quick to throw, darts are favored by those who prefer ranged precision.",
+      "source": "PHB"
+    },
+    {
+      "index": "flail",
+      "name": "Flail",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "damage": {
+        "dice": "1d8",
+        "type": "Bludgeoning"
+      },
+      "properties": [],
+      "handedness": "one-handed",
+      "training": "martial",
+      "range": "melee",
+      "ammunition": false,
+      "stackable": false,
+      "usesAmmo": false,
+      "description": "A spiked metal ball attached to a handle by a chain. Its swinging strikes can bypass shields and deliver crushing bludgeoning damage.",
+      "source": "PHB"
+    },
+    {
+      "index": "glaive",
+      "name": "Glaive",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 20,
+        "unit": "gp"
+      },
+      "weight": 6,
+      "damage": {
+        "dice": "1d10",
+        "type": "Slashing"
+      },
+      "properties": [
+        "Heavy",
+        "Reach",
+        "Two-Handed"
+      ],
+      "handedness": "two-handed",
+      "training": "martial",
+      "range": "melee",
+      "ammunition": false,
+      "stackable": false,
+      "usesAmmo": false,
+      "description": "A polearm with a single-edged blade mounted at the end of a long shaft. Its reach allows wielders to strike foes from a safe distance.",
+      "source": "PHB"
+    },
+    {
+      "index": "greataxe",
+      "name": "Greataxe",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 30,
+        "unit": "gp"
+      },
+      "weight": 7,
+      "damage": {
+        "dice": "1d12",
+        "type": "Slashing"
+      },
+      "properties": [
+        "Heavy",
+        "Two-Handed"
+      ],
+      "handedness": "two-handed",
+      "training": "martial",
+      "range": "melee",
+      "ammunition": false,
+      "stackable": false,
+      "usesAmmo": false,
+      "description": "An immense axe with a heavy, broad blade. Wielded with two hands, it delivers devastating slashing blows that can cleave through the toughest defenses.",
+      "source": "PHB"
+    },
+    {
+      "index": "greatclub",
+      "name": "Greatclub",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 2,
+        "unit": "sp"
+      },
+      "weight": 10,
+      "damage": {
+        "dice": "1d8",
+        "type": "Bludgeoning"
+      },
+      "properties": [
+        "Two-Handed"
+      ],
+      "handedness": "two-handed",
+      "training": "simple",
+      "range": "melee",
+      "ammunition": false,
+      "stackable": false,
+      "usesAmmo": false,
+      "description": "A massive, heavy club fashioned from a thick log or bound timber. Crude and oversized, its weight delivers tremendous blunt force.",
+      "source": "PHB"
+    },
+    {
+      "index": "greatsword",
+      "name": "Greatsword",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 50,
+        "unit": "gp"
+      },
+      "weight": 6,
+      "damage": {
+        "dice": "2d6",
+        "type": "Slashing"
+      },
+      "properties": [
+        "Heavy",
+        "Two-Handed"
+      ],
+      "handedness": "two-handed",
+      "training": "martial",
+      "range": "melee",
+      "ammunition": false,
+      "stackable": false,
+      "usesAmmo": false,
+      "description": "A towering two-handed blade of exceptional length and weight. Mastery of this weapon allows for sweeping cuts that can fell multiple foes.",
+      "source": "PHB"
+    },
+    {
+      "index": "halberd",
+      "name": "Halberd",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 20,
+        "unit": "gp"
+      },
+      "weight": 6,
+      "damage": {
+        "dice": "1d10",
+        "type": "Slashing"
+      },
+      "properties": [
+        "Heavy",
+        "Reach",
+        "Two-Handed"
+      ],
+      "handedness": "two-handed",
+      "training": "martial",
+      "range": "melee",
+      "ammunition": false,
+      "stackable": false,
+      "usesAmmo": false,
+      "description": "A versatile polearm combining an axe blade with a spear point and a hook. Effective for both chopping and thrusting, it is a staple of battlefield infantry.",
+      "source": "PHB"
+    },
+    {
+      "index": "handaxe",
+      "name": "Handaxe",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "damage": {
+        "dice": "1d6",
+        "type": "Slashing"
+      },
+      "properties": [
+        "Light",
+        "Thrown",
+        "Monk"
+      ],
+      "handedness": "light",
+      "training": "simple",
+      "range": "melee",
+      "ammunition": false,
+      "stackable": false,
+      "usesAmmo": false,
+      "description": "A small, light axe designed for one-handed use or throwing. Its balance makes it equally effective in close combat or hurled at distant targets.",
+      "source": "PHB"
+    },
+    {
+      "index": "javelin",
+      "name": "Javelin",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "sp"
+      },
+      "weight": 2,
+      "damage": {
+        "dice": "1d6",
+        "type": "Piercing"
+      },
+      "properties": [
+        "Thrown",
+        "Monk"
+      ],
+      "handedness": "one-handed",
+      "training": "simple",
+      "range": "melee",
+      "ammunition": false,
+      "stackable": false,
+      "usesAmmo": false,
+      "description": "A light spear designed primarily for throwing. Its aerodynamic design allows it to be hurled with great distance and penetrating force.",
+      "source": "PHB"
+    },
+    {
+      "index": "lance",
+      "name": "Lance",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 6,
+      "damage": {
+        "dice": "1d12",
+        "type": "Piercing"
+      },
+      "properties": [
+        "Reach",
+        "Special"
+      ],
+      "handedness": "one-handed",
+      "training": "martial",
+      "range": "melee",
+      "ammunition": false,
+      "stackable": false,
+      "usesAmmo": false,
+      "description": "A long, sturdy weapon designed for mounted combat. When couched under the arm during a charge, it delivers devastating piercing damage.",
+      "source": "PHB"
+    },
+    {
+      "index": "light-hammer",
+      "name": "Light hammer",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "damage": {
+        "dice": "1d4",
+        "type": "Bludgeoning"
+      },
+      "properties": [
+        "Light",
+        "Thrown",
+        "Monk"
+      ],
+      "handedness": "light",
+      "training": "simple",
+      "range": "melee",
+      "ammunition": false,
+      "stackable": false,
+      "usesAmmo": false,
+      "description": "A small, balanced hammer that can be thrown or wielded in close combat. Its compact head delivers focused bludgeoning force.",
+      "source": "PHB"
+    },
+    {
+      "index": "longbow",
+      "name": "Longbow",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 50,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "damage": {
+        "dice": "1d8",
+        "type": "Piercing"
+      },
+      "properties": [
+        "Ammunition",
+        "Heavy",
+        "Two-Handed"
+      ],
+      "handedness": "two-handed",
+      "training": "martial",
+      "range": "ranged",
+      "ammunition": true,
+      "stackable": false,
+      "usesAmmo": true,
+      "description": "A tall bow with a powerful draw, capable of sending arrows great distances with deadly accuracy. Crafted from a single piece of quality wood, it requires strength and skill to master.",
+      "source": "PHB"
+    },
+    {
+      "index": "longsword",
+      "name": "Longsword",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 15,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "damage": {
+        "dice": "1d8",
+        "type": "Slashing",
+        "twoHanded": "1d10"
+      },
+      "properties": [
+        "Versatile"
+      ],
+      "handedness": "versatile",
+      "training": "martial",
+      "range": "melee",
+      "ammunition": false,
+      "stackable": false,
+      "usesAmmo": false,
+      "description": "A versatile blade of moderate length, balanced for one or two-handed use. The quintessential knightly weapon, it excels at both slashing and thrusting.",
+      "source": "PHB"
+    },
+    {
+      "index": "mace",
+      "name": "Mace",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 4,
+      "damage": {
+        "dice": "1d6",
+        "type": "Bludgeoning"
+      },
+      "properties": [
+        "Monk"
+      ],
+      "handedness": "one-handed",
+      "training": "simple",
+      "range": "melee",
+      "ammunition": false,
+      "stackable": false,
+      "usesAmmo": false,
+      "description": "A heavy metal head mounted on a sturdy shaft, designed to crush and bludgeon. Against heavily armored foes, its concentrated impact is particularly effective.",
+      "source": "PHB"
+    },
+    {
+      "index": "maul",
+      "name": "Maul",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 10,
+      "damage": {
+        "dice": "2d6",
+        "type": "Bludgeoning"
+      },
+      "properties": [
+        "Heavy",
+        "Two-Handed"
+      ],
+      "handedness": "two-handed",
+      "training": "martial",
+      "range": "melee",
+      "ammunition": false,
+      "stackable": false,
+      "usesAmmo": false,
+      "description": "An enormous two-headed sledgehammer of immense weight. Wielded with two hands, its crushing blows can shatter bone and splinter shields.",
+      "source": "PHB"
+    },
+    {
+      "index": "morningstar",
+      "name": "Morningstar",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 15,
+        "unit": "gp"
+      },
+      "weight": 4,
+      "damage": {
+        "dice": "1d8",
+        "type": "Piercing"
+      },
+      "properties": [],
+      "handedness": "one-handed",
+      "training": "martial",
+      "range": "melee",
+      "ammunition": false,
+      "stackable": false,
+      "usesAmmo": false,
+      "description": "A spiked mace with a heavy, flanged head designed to puncture and tear. Its brutal design inflicts grievous piercing wounds.",
+      "source": "PHB"
+    },
+    {
+      "index": "net",
+      "name": "Net",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "damage": {
+        "dice": "",
+        "type": ""
+      },
+      "properties": [
+        "Thrown",
+        "Special"
+      ],
+      "handedness": "one-handed",
+      "training": "martial",
+      "range": "ranged",
+      "ammunition": false,
+      "stackable": false,
+      "usesAmmo": false,
+      "description": "A weighted mesh net designed to entangle and restrain foes. When thrown effectively, it can immobilize a creature, rendering it helpless.",
+      "source": "PHB"
+    },
+    {
+      "index": "pike",
+      "name": "Pike",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 18,
+      "damage": {
+        "dice": "1d10",
+        "type": "Piercing"
+      },
+      "properties": [
+        "Heavy",
+        "Reach",
+        "Two-Handed"
+      ],
+      "handedness": "two-handed",
+      "training": "martial",
+      "range": "melee",
+      "ammunition": false,
+      "stackable": false,
+      "usesAmmo": false,
+      "description": "An exceptionally long thrusting spear used by formations of infantry. Its extreme reach allows ranks of soldiers to strike at approaching enemies from behind the front line.",
+      "source": "PHB"
+    },
+    {
+      "index": "quarterstaff",
+      "name": "Quarterstaff",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 2,
+        "unit": "sp"
+      },
+      "weight": 4,
+      "damage": {
+        "dice": "1d6",
+        "type": "Bludgeoning",
+        "twoHanded": "1d8"
+      },
+      "properties": [
+        "Versatile",
+        "Monk"
+      ],
+      "handedness": "versatile",
+      "training": "simple",
+      "range": "melee",
+      "ammunition": false,
+      "stackable": false,
+      "usesAmmo": false,
+      "description": "A length of hardened wood, typically six to eight feet long. Simple yet effective, it can be wielded as a versatile weapon or walking aid.",
+      "source": "PHB"
+    },
+    {
+      "index": "rapier",
+      "name": "Rapier",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "damage": {
+        "dice": "1d8",
+        "type": "Piercing"
+      },
+      "properties": [
+        "Finesse"
+      ],
+      "handedness": "one-handed",
+      "training": "martial",
+      "range": "melee",
+      "ammunition": false,
+      "stackable": false,
+      "usesAmmo": false,
+      "description": "A slender, sharply pointed sword designed for thrusting. Favored by duelists and nobles, it emphasizes speed and finesse over raw power.",
+      "source": "PHB"
+    },
+    {
+      "index": "scimitar",
+      "name": "Scimitar",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "damage": {
+        "dice": "1d6",
+        "type": "Slashing"
+      },
+      "properties": [
+        "Finesse",
+        "Light"
+      ],
+      "handedness": "light",
+      "training": "martial",
+      "range": "melee",
+      "ammunition": false,
+      "stackable": false,
+      "usesAmmo": false,
+      "description": "A curved, single-edged sword designed for slashing. Its sweeping blade allows for quick, graceful cuts and is favored by cavalry and skirmishers.",
+      "source": "PHB"
+    },
+    {
+      "index": "shortbow",
+      "name": "Shortbow",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "damage": {
+        "dice": "1d6",
+        "type": "Piercing"
+      },
+      "properties": [
+        "Ammunition",
+        "Two-Handed"
+      ],
+      "handedness": "two-handed",
+      "training": "simple",
+      "range": "ranged",
+      "ammunition": true,
+      "stackable": false,
+      "usesAmmo": true,
+      "description": "A compact bow suitable for hunting and skirmishing. Easy to handle and quick to fire, it is a reliable weapon for those who fight at range.",
+      "source": "PHB"
+    },
+    {
+      "index": "shortsword",
+      "name": "Shortsword",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "damage": {
+        "dice": "1d6",
+        "type": "Piercing"
+      },
+      "properties": [
+        "Finesse",
+        "Light",
+        "Monk"
+      ],
+      "handedness": "light",
+      "training": "martial",
+      "range": "melee",
+      "ammunition": false,
+      "stackable": false,
+      "usesAmmo": false,
+      "description": "A light, double-edged blade of moderate length. Well-suited for quick thrusts and cuts, it is a favored sidearm among soldiers and adventurers.",
+      "source": "PHB"
+    },
+    {
+      "index": "sickle",
+      "name": "Sickle",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "damage": {
+        "dice": "1d4",
+        "type": "Slashing"
+      },
+      "properties": [
+        "Light",
+        "Monk"
+      ],
+      "handedness": "light",
+      "training": "simple",
+      "range": "melee",
+      "ammunition": false,
+      "stackable": false,
+      "usesAmmo": false,
+      "description": "A curved agricultural blade adapted for combat. Its hooked edge can catch limbs and deliver slashing cuts, though it is primarily a farming tool.",
+      "source": "PHB"
+    },
+    {
+      "index": "sling",
+      "name": "Sling",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 1,
+        "unit": "sp"
+      },
+      "weight": 0,
+      "damage": {
+        "dice": "1d4",
+        "type": "Bludgeoning"
+      },
+      "properties": [
+        "Ammunition"
+      ],
+      "handedness": "two-handed",
+      "training": "simple",
+      "range": "ranged",
+      "ammunition": true,
+      "stackable": false,
+      "usesAmmo": true,
+      "description": "A simple leather strap used to hurl stones or lead bullets at high velocity. Ancient yet deadly, it requires skill but can strike from great range.",
+      "source": "PHB"
+    },
+    {
+      "index": "spear",
+      "name": "Spear",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "damage": {
+        "dice": "1d6",
+        "type": "Piercing",
+        "twoHanded": "1d8"
+      },
+      "properties": [
+        "Thrown",
+        "Versatile",
+        "Monk"
+      ],
+      "handedness": "versatile",
+      "training": "simple",
+      "range": "melee",
+      "ammunition": false,
+      "stackable": false,
+      "usesAmmo": false,
+      "description": "A simple shaft tipped with a sharpened point, usable for thrusting or throwing. One of the oldest and most reliable weapons known to civilization.",
+      "source": "PHB"
+    },
+    {
+      "index": "trident",
+      "name": "Trident",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 4,
+      "damage": {
+        "dice": "1d6",
+        "type": "Piercing",
+        "twoHanded": "1d8"
+      },
+      "properties": [
+        "Thrown",
+        "Versatile"
+      ],
+      "handedness": "versatile",
+      "training": "martial",
+      "range": "melee",
+      "ammunition": false,
+      "stackable": false,
+      "usesAmmo": false,
+      "description": "A three-pronged spear designed for both melee and throwing. Associated with coastal peoples and waterborne combat, it is effective on land and sea.",
+      "source": "PHB"
+    },
+    {
+      "index": "war-pick",
+      "name": "War pick",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "damage": {
+        "dice": "1d8",
+        "type": "Piercing"
+      },
+      "properties": [],
+      "handedness": "one-handed",
+      "training": "martial",
+      "range": "melee",
+      "ammunition": false,
+      "stackable": false,
+      "usesAmmo": false,
+      "description": "A specialized hammer with a pointed spike opposite the hammer face. Designed to pierce armor, its concentrated impact can punch through metal plate.",
+      "source": "PHB"
+    },
+    {
+      "index": "warhammer",
+      "name": "Warhammer",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 15,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "damage": {
+        "dice": "1d8",
+        "type": "Bludgeoning",
+        "twoHanded": "1d10"
+      },
+      "properties": [
+        "Versatile"
+      ],
+      "handedness": "versatile",
+      "training": "martial",
+      "range": "melee",
+      "ammunition": false,
+      "stackable": false,
+      "usesAmmo": false,
+      "description": "A heavy hammer designed for combat, balanced for one or two-handed use. Its solid head delivers tremendous concussive force against armor and flesh alike.",
+      "source": "PHB"
+    },
+    {
+      "index": "whip",
+      "name": "Whip",
+      "type": "weapon",
+      "slot": "none",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "damage": {
+        "dice": "1d4",
+        "type": "Slashing"
+      },
+      "properties": [
+        "Finesse",
+        "Reach"
+      ],
+      "handedness": "one-handed",
+      "training": "martial",
+      "range": "melee",
+      "ammunition": false,
+      "stackable": false,
+      "usesAmmo": false,
+      "description": "A long, flexible lash of braided leather or cord. Though not a weapon of war in the traditional sense, its reach and finesse make it deadly in skilled hands.",
+      "source": "PHB"
+    },
+    {
+      "index": "breastplate",
+      "name": "Breastplate",
+      "type": "armor",
+      "slot": "armor",
+      "cost": {
+        "quantity": 400,
+        "unit": "gp"
+      },
+      "weight": 20,
+      "armorClass": {
+        "base": 14,
+        "maxDex": 2,
+        "shield": false
+      },
+      "strengthRequirement": 0,
+      "stealthDisadvantage": false,
+      "weightClass": "medium",
+      "stackable": false,
+      "description": "A fitted metal chest piece that covers the torso while leaving the legs free for mobility. It offers solid protection without the weight of a full suit, making it a favored choice of soldiers and adventurers who value both defense and agility.",
+      "source": "PHB"
+    },
+    {
+      "index": "chain-mail",
+      "name": "Chain Mail",
+      "type": "armor",
+      "slot": "armor",
+      "cost": {
+        "quantity": 75,
+        "unit": "gp"
+      },
+      "weight": 55,
+      "armorClass": {
+        "base": 16,
+        "maxDex": null,
+        "shield": false
+      },
+      "strengthRequirement": 13,
+      "stealthDisadvantage": true,
+      "weightClass": "heavy",
+      "stackable": false,
+      "description": "Interlocking metal rings woven into a shirt that covers the torso and arms. Heavy and durable, it provides excellent protection but is noisy and requires considerable strength to wear effectively.",
+      "source": "PHB"
+    },
+    {
+      "index": "chain-shirt",
+      "name": "Chain Shirt",
+      "type": "armor",
+      "slot": "armor",
+      "cost": {
+        "quantity": 50,
+        "unit": "gp"
+      },
+      "weight": 20,
+      "armorClass": {
+        "base": 13,
+        "maxDex": 2,
+        "shield": false
+      },
+      "strengthRequirement": 0,
+      "stealthDisadvantage": false,
+      "weightClass": "medium",
+      "stackable": false,
+      "description": "A shirt of interlocking metal rings worn as a lighter alternative to chain mail. It offers decent protection while allowing greater freedom of movement, often worn under clothing or combined with other armor.",
+      "source": "PHB"
+    },
+    {
+      "index": "half-plate-armor",
+      "name": "Half Plate Armor",
+      "type": "armor",
+      "slot": "armor",
+      "cost": {
+        "quantity": 750,
+        "unit": "gp"
+      },
+      "weight": 40,
+      "armorClass": {
+        "base": 15,
+        "maxDex": 2,
+        "shield": false
+      },
+      "strengthRequirement": 0,
+      "stealthDisadvantage": true,
+      "weightClass": "medium",
+      "stackable": false,
+      "description": "A combination of plate armor pieces covering roughly half the body, paired with brigandine or leather on the rest. It offers substantial protection with less weight than full plate, though its articulated joints create slight noise.",
+      "source": "PHB"
+    },
+    {
+      "index": "hide-armor",
+      "name": "Hide Armor",
+      "type": "armor",
+      "slot": "armor",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 12,
+      "armorClass": {
+        "base": 12,
+        "maxDex": 2,
+        "shield": false
+      },
+      "strengthRequirement": 0,
+      "stealthDisadvantage": false,
+      "weightClass": "medium",
+      "stackable": false,
+      "description": "Thick animal hides layered and boiled for rigidity, fashioned into a crude but functional suit. Common among barbarians and wilderness dwellers, it provides basic protection at low cost.",
+      "source": "PHB"
+    },
+    {
+      "index": "leather-armor",
+      "name": "Leather Armor",
+      "type": "armor",
+      "slot": "armor",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 10,
+      "armorClass": {
+        "base": 11,
+        "maxDex": null,
+        "shield": false
+      },
+      "strengthRequirement": 0,
+      "stealthDisadvantage": false,
+      "weightClass": "light",
+      "stackable": false,
+      "description": "A breastpiece and shoulder guards of hardened leather, offering light protection while allowing full mobility. Favored by scouts and rogues, it is the simplest armor that still provides meaningful defense.",
+      "source": "PHB"
+    },
+    {
+      "index": "padded-armor",
+      "name": "Padded Armor",
+      "type": "armor",
+      "slot": "armor",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 8,
+      "armorClass": {
+        "base": 11,
+        "maxDex": null,
+        "shield": false
+      },
+      "strengthRequirement": 0,
+      "stealthDisadvantage": true,
+      "weightClass": "light",
+      "stackable": false,
+      "description": "A quilted coat of layered cloth and batting that absorbs blows. While offering minimal protection, it is better than nothing and has the advantage of being wearable under other armor.",
+      "source": "PHB"
+    },
+    {
+      "index": "plate-armor",
+      "name": "Plate Armor",
+      "type": "armor",
+      "slot": "armor",
+      "cost": {
+        "quantity": 1500,
+        "unit": "gp"
+      },
+      "weight": 65,
+      "armorClass": {
+        "base": 18,
+        "maxDex": null,
+        "shield": false
+      },
+      "strengthRequirement": 15,
+      "stealthDisadvantage": true,
+      "weightClass": "heavy",
+      "stackable": false,
+      "description": "A full suit of carefully fitted and articulated steel plates covering the entire body. The pinnacle of armorcraft, it provides unmatched protection but is prohibitively expensive and requires great strength to wear.",
+      "source": "PHB"
+    },
+    {
+      "index": "ring-mail",
+      "name": "Ring Mail",
+      "type": "armor",
+      "slot": "armor",
+      "cost": {
+        "quantity": 30,
+        "unit": "gp"
+      },
+      "weight": 40,
+      "armorClass": {
+        "base": 14,
+        "maxDex": null,
+        "shield": false
+      },
+      "strengthRequirement": 0,
+      "stealthDisadvantage": true,
+      "weightClass": "heavy",
+      "stackable": false,
+      "description": "A leather suit with heavy rings sewn onto it for additional protection. An older design that offers modest defense, it is less effective than chain armor but easier to produce.",
+      "source": "PHB"
+    },
+    {
+      "index": "scale-mail",
+      "name": "Scale Mail",
+      "type": "armor",
+      "slot": "armor",
+      "cost": {
+        "quantity": 50,
+        "unit": "gp"
+      },
+      "weight": 45,
+      "armorClass": {
+        "base": 14,
+        "maxDex": 2,
+        "shield": false
+      },
+      "strengthRequirement": 0,
+      "stealthDisadvantage": true,
+      "weightClass": "medium",
+      "stackable": false,
+      "description": "A coat of leather covered with overlapping metal scales, resembling the hide of a dragon or fish. It offers good protection with moderate weight, though its many small scales can catch and snag.",
+      "source": "PHB"
+    },
+    {
+      "index": "shield",
+      "name": "Shield",
+      "type": "armor",
+      "slot": "off-hand",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 6,
+      "armorClass": {
+        "base": 2,
+        "maxDex": null,
+        "shield": true
+      },
+      "strengthRequirement": 0,
+      "stealthDisadvantage": false,
+      "weightClass": "shield",
+      "stackable": false,
+      "description": "A hand-held barrier of wood or metal used to block blows. Wielded in the off-hand, it provides a quick boost to defense and can be used offensively in a shield bash.",
+      "source": "PHB"
+    },
+    {
+      "index": "splint-armor",
+      "name": "Splint Armor",
+      "type": "armor",
+      "slot": "armor",
+      "cost": {
+        "quantity": 200,
+        "unit": "gp"
+      },
+      "weight": 60,
+      "armorClass": {
+        "base": 17,
+        "maxDex": null,
+        "shield": false
+      },
+      "strengthRequirement": 15,
+      "stealthDisadvantage": true,
+      "weightClass": "heavy",
+      "stackable": false,
+      "description": "Vertical strips of metal riveted to a backing of leather and cloth. Similar in construction to a flail, it offers heavy protection at moderate cost, though its weight limits mobility.",
+      "source": "PHB"
+    },
+    {
+      "index": "studded-leather-armor",
+      "name": "Studded Leather Armor",
+      "type": "armor",
+      "slot": "armor",
+      "cost": {
+        "quantity": 45,
+        "unit": "gp"
+      },
+      "weight": 13,
+      "armorClass": {
+        "base": 12,
+        "maxDex": null,
+        "shield": false
+      },
+      "strengthRequirement": 0,
+      "stealthDisadvantage": false,
+      "weightClass": "light",
+      "stackable": false,
+      "description": "Hardened leather reinforced with closely spaced metal studs or rivets. It offers better protection than standard leather armor while maintaining the light weight and flexibility favored by rangers and scouts.",
+      "source": "PHB"
+    },
+    {
+      "index": "abacus",
+      "name": "Abacus",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "description": "A frame of beads on rods used for counting and calculation. Essential for merchants, bankers, and anyone who needs to keep precise accounts on the road.",
+      "source": "PHB"
+    },
+    {
+      "index": "acid-vial",
+      "name": "Acid (vial)",
+      "type": "consumable",
+      "slot": "none",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "stackable": 1,
+      "description": "As an action, you can splash the contents of this vial onto a creature within 5 feet of you or throw the vial up to 20 feet, shattering it on impact. In either case, make a ranged attack against a creature or object, treating the acid as an improvised weapon. On a hit, the target takes 2d6 acid damage.",
+      "source": "PHB"
+    },
+    {
+      "index": "alchemists-fire-flask",
+      "name": "Alchemist's fire (flask)",
+      "type": "consumable",
+      "slot": "none",
+      "cost": {
+        "quantity": 50,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "stackable": 1,
+      "description": "This sticky, adhesive fluid ignites when exposed to air. As an action, you can throw this flask up to 20 feet, shattering it on impact. Make a ranged attack against a creature or object, treating the alchemist's fire as an improvised weapon. On a hit, the target takes 1d4 fire damage at the start of each of its turns. A creature can end this damage by using its action to make a DC 10 Dexterity check to extinguish the flames.",
+      "source": "PHB"
+    },
+    {
+      "index": "alchemists-supplies",
+      "name": "Alchemist's Supplies",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 50,
+        "unit": "gp"
+      },
+      "weight": 8,
+      "proficiency": "tool",
+      "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+      "source": "PHB"
+    },
+    {
+      "index": "alms-box",
+      "name": "Alms box",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 0,
+        "unit": "cp"
+      },
+      "weight": 0,
+      "description": "A small box for alms, typically found in a priest's pack.",
+      "source": "PHB"
+    },
+    {
+      "index": "amulet",
+      "name": "Amulet",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "description": "A holy symbol is a representation of a god or pantheon. It might be an amulet depicting a symbol representing a deity, the same symbol carefully engraved or inlaid as an emblem on a shield, or a tiny box holding a fragment of a sacred relic. Appendix B lists the symbols commonly associated with many gods in the multiverse. A cleric or paladin can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield.",
+      "source": "PHB"
+    },
+    {
+      "index": "animal-feed-1-day",
+      "name": "Animal Feed (1 day)",
+      "type": "consumable",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "cp"
+      },
+      "weight": 10,
+      "description": "A day's worth of feed for a single mount or beast of burden. Typically a mix of grain, dried vegetables, and hay.",
+      "source": "PHB",
+      "stackable": 1
+    },
+    {
+      "index": "antitoxin-vial",
+      "name": "Antitoxin (vial)",
+      "type": "consumable",
+      "slot": "none",
+      "cost": {
+        "quantity": 50,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "stackable": 1,
+      "description": "A creature that drinks this vial of liquid gains advantage on saving throws against poison for 1 hour. It confers no benefit to undead or constructs.",
+      "source": "PHB"
+    },
+    {
+      "index": "arrow",
+      "name": "Arrow",
+      "type": "ammunition",
+      "slot": "quiver",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "stackable": 20,
+      "description": "A shafted projectile designed for use with a bow. Each arrow consists of a wooden shaft, fletching, and a metal arrowhead.",
+      "source": "PHB"
+    },
+    {
+      "index": "backpack",
+      "name": "Backpack",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 5,
+      "description": "A sturdy leather sack with shoulder straps, designed to carry gear on the back. It has multiple compartments and can hold several days' worth of supplies.",
+      "source": "PHB"
+    },
+    {
+      "index": "bagpipes",
+      "name": "Bagpipes",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 30,
+        "unit": "gp"
+      },
+      "weight": 6,
+      "proficiency": "tool",
+      "description": "Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.",
+      "source": "PHB"
+    },
+    {
+      "index": "ball-bearings-bag-of-1000",
+      "name": "Ball bearings (bag of 1,000)",
+      "type": "consumable",
+      "slot": "none",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "stackable": 1,
+      "description": "As an action, you can spill these tiny metal balls from their pouch to cover a level, square area that is 10 feet on a side. A creature moving across the covered area must succeed on a DC 10 Dexterity saving throw or fall prone. A creature moving through the area at half speed doesn't need to make the save.",
+      "source": "PHB"
+    },
+    {
+      "index": "barding-breastplate",
+      "name": "Barding: Breastplate",
+      "type": "armor",
+      "slot": "mount",
+      "cost": {
+        "quantity": 1600,
+        "unit": "gp"
+      },
+      "weight": 40,
+      "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+      "source": "PHB",
+      "armorClass": {
+        "base": 0,
+        "maxDex": null,
+        "shield": false
+      },
+      "stealthDisadvantage": false
+    },
+    {
+      "index": "barding-chain-mail",
+      "name": "Barding: Chain mail",
+      "type": "armor",
+      "slot": "mount",
+      "cost": {
+        "quantity": 300,
+        "unit": "gp"
+      },
+      "weight": 110,
+      "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+      "source": "PHB",
+      "armorClass": {
+        "base": 0,
+        "maxDex": null,
+        "shield": false
+      },
+      "stealthDisadvantage": false
+    },
+    {
+      "index": "barding-chain-shirt",
+      "name": "Barding: Chain shirt",
+      "type": "armor",
+      "slot": "mount",
+      "cost": {
+        "quantity": 200,
+        "unit": "gp"
+      },
+      "weight": 40,
+      "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+      "source": "PHB",
+      "armorClass": {
+        "base": 0,
+        "maxDex": null,
+        "shield": false
+      },
+      "stealthDisadvantage": false
+    },
+    {
+      "index": "barding-half-plate",
+      "name": "Barding: Half plate",
+      "type": "armor",
+      "slot": "mount",
+      "cost": {
+        "quantity": 3000,
+        "unit": "gp"
+      },
+      "weight": 80,
+      "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+      "source": "PHB",
+      "armorClass": {
+        "base": 0,
+        "maxDex": null,
+        "shield": false
+      },
+      "stealthDisadvantage": false
+    },
+    {
+      "index": "barding-hide",
+      "name": "Barding: Hide",
+      "type": "armor",
+      "slot": "mount",
+      "cost": {
+        "quantity": 40,
+        "unit": "gp"
+      },
+      "weight": 24,
+      "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+      "source": "PHB",
+      "armorClass": {
+        "base": 0,
+        "maxDex": null,
+        "shield": false
+      },
+      "stealthDisadvantage": false
+    },
+    {
+      "index": "barding-leather",
+      "name": "Barding: Leather",
+      "type": "armor",
+      "slot": "mount",
+      "cost": {
+        "quantity": 40,
+        "unit": "gp"
+      },
+      "weight": 20,
+      "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+      "source": "PHB",
+      "armorClass": {
+        "base": 0,
+        "maxDex": null,
+        "shield": false
+      },
+      "stealthDisadvantage": false
+    },
+    {
+      "index": "barding-padded",
+      "name": "Barding: Padded",
+      "type": "armor",
+      "slot": "mount",
+      "cost": {
+        "quantity": 20,
+        "unit": "gp"
+      },
+      "weight": 16,
+      "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+      "source": "PHB",
+      "armorClass": {
+        "base": 0,
+        "maxDex": null,
+        "shield": false
+      },
+      "stealthDisadvantage": false
+    },
+    {
+      "index": "barding-plate",
+      "name": "Barding: Plate",
+      "type": "armor",
+      "slot": "mount",
+      "cost": {
+        "quantity": 6000,
+        "unit": "gp"
+      },
+      "weight": 130,
+      "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+      "source": "PHB",
+      "armorClass": {
+        "base": 0,
+        "maxDex": null,
+        "shield": false
+      },
+      "stealthDisadvantage": false
+    },
+    {
+      "index": "barding-ring-mail",
+      "name": "Barding: Ring mail",
+      "type": "armor",
+      "slot": "mount",
+      "cost": {
+        "quantity": 12,
+        "unit": "gp"
+      },
+      "weight": 80,
+      "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+      "source": "PHB",
+      "armorClass": {
+        "base": 0,
+        "maxDex": null,
+        "shield": false
+      },
+      "stealthDisadvantage": false
+    },
+    {
+      "index": "barding-scale-mail",
+      "name": "Barding: Scale mail",
+      "type": "armor",
+      "slot": "mount",
+      "cost": {
+        "quantity": 200,
+        "unit": "gp"
+      },
+      "weight": 90,
+      "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+      "source": "PHB",
+      "armorClass": {
+        "base": 0,
+        "maxDex": null,
+        "shield": false
+      },
+      "stealthDisadvantage": false
+    },
+    {
+      "index": "barding-splint",
+      "name": "Barding: Splint",
+      "type": "armor",
+      "slot": "mount",
+      "cost": {
+        "quantity": 800,
+        "unit": "gp"
+      },
+      "weight": 120,
+      "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+      "source": "PHB",
+      "armorClass": {
+        "base": 0,
+        "maxDex": null,
+        "shield": false
+      },
+      "stealthDisadvantage": false
+    },
+    {
+      "index": "barding-studded-leather",
+      "name": "Barding: Studded Leather",
+      "type": "armor",
+      "slot": "mount",
+      "cost": {
+        "quantity": 180,
+        "unit": "gp"
+      },
+      "weight": 26,
+      "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+      "source": "PHB",
+      "armorClass": {
+        "base": 0,
+        "maxDex": null,
+        "shield": false
+      },
+      "stealthDisadvantage": false
+    },
+    {
+      "index": "barrel",
+      "name": "Barrel",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 70,
+      "description": "A large wooden cask bound with iron hoops, used for storing liquids or dry goods. A standard barrel can hold up to 40 gallons of liquid.",
+      "source": "PHB"
+    },
+    {
+      "index": "basket",
+      "name": "Basket",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 4,
+        "unit": "sp"
+      },
+      "weight": 2,
+      "description": "A woven container of reeds or wicker, useful for carrying goods, foraging, or storing items. Lightweight and versatile.",
+      "source": "PHB"
+    },
+    {
+      "index": "bedroll",
+      "name": "Bedroll",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 7,
+      "description": "A rolled-up bedding kit consisting of a thick blanket and a thin mattress, tied with leather straps. Essential for sleeping comfortably outdoors.",
+      "source": "PHB"
+    },
+    {
+      "index": "bell",
+      "name": "Bell",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "description": "A small handheld metal bell that produces a clear ringing tone. Useful for signaling, alerting guards, or drawing attention.",
+      "source": "PHB"
+    },
+    {
+      "index": "bit-and-bridle",
+      "name": "Bit and bridle",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "description": "The headgear used to control a horse or similar mount, consisting of metal bars (bit) placed in the animal's mouth and straps (bridle) fitting around the head.",
+      "source": "PHB"
+    },
+    {
+      "index": "blanket",
+      "name": "Blanket",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "sp"
+      },
+      "weight": 3,
+      "description": "A thick woven cloth used for warmth while sleeping or as a makeshift curtain, wrap, or padding.",
+      "source": "PHB"
+    },
+    {
+      "index": "block-and-tackle",
+      "name": "Block and tackle",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 5,
+      "description": "A set of pulleys with a cable threaded through them and a hook to attach to objects, a block and tackle allows you to hoist up to four times the weight you can normally lift.",
+      "source": "PHB"
+    },
+    {
+      "index": "block-of-incense",
+      "name": "Block of incense",
+      "type": "consumable",
+      "slot": "none",
+      "cost": {
+        "quantity": 0,
+        "unit": "cp"
+      },
+      "weight": 0,
+      "stackable": 1,
+      "description": "A block of incense, typically found in a priest's pack.",
+      "source": "PHB"
+    },
+    {
+      "index": "blowgun-needle",
+      "name": "Blowgun needle",
+      "type": "ammunition",
+      "slot": "quiver",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "stackable": 20,
+      "description": "A small, lightweight dart designed for use with a blowgun. Often coated with poison for silent takedowns.",
+      "source": "PHB"
+    },
+    {
+      "index": "book",
+      "name": "Book",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 5,
+      "description": "A book might contain poetry, historical accounts, information pertaining to a particular field of lore, diagrams and notes on gnomish contraptions, or just about anything else that can be represented using text or pictures. A book of spells is a spellbook (described later in this section).",
+      "source": "PHB"
+    },
+    {
+      "index": "bottle-glass",
+      "name": "Bottle, glass",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "description": "A fragile glass container with a narrow neck and cork stopper, used for holding liquids such as potions, ink, or wine.",
+      "source": "PHB"
+    },
+    {
+      "index": "brewers-supplies",
+      "name": "Brewer's Supplies",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 20,
+        "unit": "gp"
+      },
+      "weight": 9,
+      "proficiency": "tool",
+      "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+      "source": "PHB"
+    },
+    {
+      "index": "bucket",
+      "name": "Bucket",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "cp"
+      },
+      "weight": 2,
+      "description": "A cylindrical container of wood or metal with a handle, used for carrying water, mixing compounds, or holding various materials.",
+      "source": "PHB"
+    },
+    {
+      "index": "burglars-pack",
+      "name": "Burglar's Pack",
+      "type": "pack",
+      "slot": "none",
+      "cost": {
+        "quantity": 16,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "pack": {
+        "contents": [
+          {
+            "name": "Backpack",
+            "quantity": 1
+          },
+          {
+            "name": "Ball bearings (bag of 1,000)",
+            "quantity": 1
+          },
+          {
+            "name": "String (10 feet)",
+            "quantity": 1
+          },
+          {
+            "name": "Bell",
+            "quantity": 1
+          },
+          {
+            "name": "Candle",
+            "quantity": 5
+          },
+          {
+            "name": "Crowbar",
+            "quantity": 1
+          },
+          {
+            "name": "Hammer",
+            "quantity": 1
+          },
+          {
+            "name": "Piton",
+            "quantity": 10
+          },
+          {
+            "name": "Lantern, hooded",
+            "quantity": 1
+          },
+          {
+            "name": "Oil (flask)",
+            "quantity": 2
+          },
+          {
+            "name": "Rations (1 day)",
+            "quantity": 5
+          },
+          {
+            "name": "Tinderbox",
+            "quantity": 1
+          },
+          {
+            "name": "Waterskin",
+            "quantity": 1
+          },
+          {
+            "name": "Rope, hempen (50 feet)",
+            "quantity": 1
+          }
+        ]
+      },
+      "description": "A curated collection of gear for the aspiring rogue, including a backpack, ball bearings, string, bells, candles, crowbar, hammer, pitons, a lantern, oil, rations, tinderbox, waterskin, and rope.",
+      "source": "PHB"
+    },
+    {
+      "index": "calligraphers-supplies",
+      "name": "Calligrapher's Supplies",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 5,
+      "proficiency": "tool",
+      "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+      "source": "PHB"
+    },
+    {
+      "index": "caltrops",
+      "name": "Caltrops",
+      "type": "consumable",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "cp"
+      },
+      "weight": 2,
+      "stackable": 1,
+      "description": "As an action, you can spread a bag of caltrops to cover a square area that is 5 feet on a side. Any creature that enters the area must succeed on a DC 15 Dexterity saving throw or stop moving this turn and take 1 piercing damage. Taking this damage reduces the creature's walking speed by 10 feet until the creature regains at least 1 hit point. A creature moving through the area at half speed doesn't need to make the save.",
+      "source": "PHB"
+    },
+    {
+      "index": "camel",
+      "name": "Camel",
+      "type": "mount",
+      "slot": "mount",
+      "cost": {
+        "quantity": 50,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "description": "A large desert beast of burden, capable of carrying heavy loads across arid terrain for days without water. Slower than a horse but better suited to desert conditions.",
+      "source": "PHB"
+    },
+    {
+      "index": "candle",
+      "name": "Candle",
+      "type": "consumable",
+      "slot": "none",
+      "cost": {
+        "quantity": 1,
+        "unit": "cp"
+      },
+      "weight": 0,
+      "stackable": 1,
+      "description": "For 1 hour, a candle sheds bright light in a 5-foot radius and dim light for an additional 5 feet.",
+      "source": "PHB"
+    },
+    {
+      "index": "carpenters-tools",
+      "name": "Carpenter's Tools",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 8,
+        "unit": "gp"
+      },
+      "weight": 6,
+      "proficiency": "tool",
+      "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+      "source": "PHB"
+    },
+    {
+      "index": "carriage",
+      "name": "Carriage",
+      "type": "mount",
+      "slot": "mount",
+      "cost": {
+        "quantity": 100,
+        "unit": "gp"
+      },
+      "weight": 600,
+      "description": "A four-wheeled enclosed vehicle designed to carry passengers in relative comfort. Drawn by horses, it features padded seating and a roof.",
+      "source": "PHB"
+    },
+    {
+      "index": "cart",
+      "name": "Cart",
+      "type": "mount",
+      "slot": "mount",
+      "cost": {
+        "quantity": 15,
+        "unit": "gp"
+      },
+      "weight": 200,
+      "description": "A two-wheeled open vehicle pulled by a draft animal, used for hauling goods, supplies, or refuse. Simple and utilitarian.",
+      "source": "PHB"
+    },
+    {
+      "index": "cartographers-tools",
+      "name": "Cartographer's Tools",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 15,
+        "unit": "gp"
+      },
+      "weight": 6,
+      "proficiency": "tool",
+      "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+      "source": "PHB"
+    },
+    {
+      "index": "case-crossbow-bolt",
+      "name": "Case, crossbow bolt",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "description": "This wooden case can hold up to twenty crossbow bolts.",
+      "source": "PHB"
+    },
+    {
+      "index": "case-map-or-scroll",
+      "name": "Case, map or scroll",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "description": "This cylindrical leather case can hold up to ten rolled-up sheets of paper or five rolled-up sheets of parchment.",
+      "source": "PHB"
+    },
+    {
+      "index": "censer",
+      "name": "Censer",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 0,
+        "unit": "cp"
+      },
+      "weight": 0,
+      "description": "A censer, typically found in a priest's pack.",
+      "source": "PHB"
+    },
+    {
+      "index": "chain-10-feet",
+      "name": "Chain (10 feet)",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 10,
+      "description": "A chain has 10 hit points. It can be burst with a successful DC 20 Strength check.",
+      "source": "PHB"
+    },
+    {
+      "index": "chalk-1-piece",
+      "name": "Chalk (1 piece)",
+      "type": "consumable",
+      "slot": "none",
+      "cost": {
+        "quantity": 1,
+        "unit": "cp"
+      },
+      "weight": 0,
+      "stackable": 1,
+      "description": "A small stick of soft limestone used to mark surfaces. Useful for leaving signs, marking paths, or tallying counts.",
+      "source": "PHB"
+    },
+    {
+      "index": "chariot",
+      "name": "Chariot",
+      "type": "mount",
+      "slot": "mount",
+      "cost": {
+        "quantity": 250,
+        "unit": "gp"
+      },
+      "weight": 100,
+      "description": "A lightweight, two-wheeled vehicle drawn by horses, used for rapid transport or mounted combat. Its open design allows the rider to fight while moving.",
+      "source": "PHB"
+    },
+    {
+      "index": "chest",
+      "name": "Chest",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 25,
+      "description": "A large wooden box with a hinged lid and lock, used for storing treasure, trade goods, or personal belongings. Reinforced with iron bands for durability.",
+      "source": "PHB"
+    },
+    {
+      "index": "climbers-kit",
+      "name": "Climber's Kit",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 12,
+      "proficiency": "tool",
+      "description": "A climber's kit includes special pitons, boot tips, gloves, and a harness. You can use the climber's kit as an action to anchor yourself; when you do, you can't fall more than 25 feet from the point where you anchored yourself, and you can't climb more than 25 feet away from that point without undoing the anchor.",
+      "source": "PHB"
+    },
+    {
+      "index": "clothes-common",
+      "name": "Clothes, common",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "sp"
+      },
+      "weight": 3,
+      "description": "A set of ordinary, practical garments suitable for common folk. Includes a simple shirt, pants or skirt, and basic footwear.",
+      "source": "PHB"
+    },
+    {
+      "index": "clothes-costume",
+      "name": "Clothes, costume",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 4,
+      "description": "An elaborate outfit designed for disguise or performance. May include masks, exotic fabrics, and accessories to help the wearer assume a different identity.",
+      "source": "PHB"
+    },
+    {
+      "index": "clothes-fine",
+      "name": "Clothes, fine",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 15,
+        "unit": "gp"
+      },
+      "weight": 6,
+      "description": "An expensive set of garments made from quality fabrics with fine tailoring. Includes silk linings, decorative buttons, and matching accessories.",
+      "source": "PHB"
+    },
+    {
+      "index": "clothes-travelers",
+      "name": "Clothes, traveler's",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 4,
+      "description": "A sturdy set of garments designed for long journeys on foot. Made from durable fabrics in earth tones, it includes a cloak, sturdy boots, and a wide-brimmed hat.",
+      "source": "PHB"
+    },
+    {
+      "index": "cobblers-tools",
+      "name": "Cobbler's Tools",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 5,
+      "proficiency": "tool",
+      "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+      "source": "PHB"
+    },
+    {
+      "index": "component-pouch",
+      "name": "Component pouch",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "description": "A component pouch is a small, watertight leather belt pouch that has compartments to hold all the material components and other special items you need to cast your spells, except for those components that have a specific cost (as indicated in a spell's description).",
+      "source": "PHB"
+    },
+    {
+      "index": "cooks-utensils",
+      "name": "Cook's utensils",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 8,
+      "proficiency": "tool",
+      "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+      "source": "PHB"
+    },
+    {
+      "index": "crossbow-bolt",
+      "name": "Crossbow bolt",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 1.5,
+      "description": "A short, thick shaft designed for use with a crossbow. Shorter and heavier than an arrow, it delivers tremendous impact at close to medium range.",
+      "source": "PHB"
+    },
+    {
+      "index": "crowbar",
+      "name": "Crowbar",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 5,
+      "description": "Using a crowbar grants advantage to Strength checks where the crowbar's leverage can be applied.",
+      "source": "PHB"
+    },
+    {
+      "index": "crystal",
+      "name": "Crystal",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "description": "An arcane focus is a special item--an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item--designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus.",
+      "source": "PHB"
+    },
+    {
+      "index": "dice-set",
+      "name": "Dice Set",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 1,
+        "unit": "sp"
+      },
+      "weight": 0,
+      "proficiency": "tool",
+      "description": "This item encompasses a wide range of game pieces, including dice and decks of cards (for games such as Three-Dragon Ante). A few common examples appear on the Tools table, but other kinds of gaming sets exist. If you are proficient with a gaming set, you can add your proficiency bonus to ability checks you make to play a game with that set. Each type of gaming set requires a separate proficiency.",
+      "source": "PHB"
+    },
+    {
+      "index": "diplomats-pack",
+      "name": "Diplomat's Pack",
+      "type": "pack",
+      "slot": "none",
+      "cost": {
+        "quantity": 39,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "pack": {
+        "contents": [
+          {
+            "name": "Chest",
+            "quantity": 1
+          },
+          {
+            "name": "Case, map or scroll",
+            "quantity": 2
+          },
+          {
+            "name": "Clothes, fine",
+            "quantity": 1
+          },
+          {
+            "name": "Ink (1 ounce bottle)",
+            "quantity": 1
+          },
+          {
+            "name": "Ink pen",
+            "quantity": 1
+          },
+          {
+            "name": "Lamp",
+            "quantity": 1
+          },
+          {
+            "name": "Oil (flask)",
+            "quantity": 2
+          },
+          {
+            "name": "Paper (one sheet)",
+            "quantity": 5
+          },
+          {
+            "name": "Perfume (vial)",
+            "quantity": 1
+          },
+          {
+            "name": "Sealing wax",
+            "quantity": 1
+          },
+          {
+            "name": "Soap",
+            "quantity": 1
+          }
+        ]
+      },
+      "description": "A collection of items for the traveling negotiator, including a chest, map cases, fine clothes, writing supplies, lamp, oil, paper, perfume, sealing wax, and soap.",
+      "source": "PHB"
+    },
+    {
+      "index": "disguise-kit",
+      "name": "Disguise Kit",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "proficiency": "tool",
+      "description": "This pouch of cosmetics, hair dye, and small props lets you create disguises that change your physical appearance. Proficiency with this kit lets you add your proficiency bonus to any ability checks you make to create a visual disguise.",
+      "source": "PHB"
+    },
+    {
+      "index": "donkey",
+      "name": "Donkey",
+      "type": "mount",
+      "slot": "mount",
+      "cost": {
+        "quantity": 8,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "description": "A sturdy, sure-footed beast of burden. Slower than a horse but more reliable on rough terrain and less expensive to maintain.",
+      "source": "PHB"
+    },
+    {
+      "index": "drum",
+      "name": "Drum",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 6,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "proficiency": "tool",
+      "description": "Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.",
+      "source": "PHB"
+    },
+    {
+      "index": "dulcimer",
+      "name": "Dulcimer",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 10,
+      "proficiency": "tool",
+      "description": "Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.",
+      "source": "PHB"
+    },
+    {
+      "index": "dungeoneers-pack",
+      "name": "Dungeoneer's Pack",
+      "type": "pack",
+      "slot": "none",
+      "cost": {
+        "quantity": 12,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "pack": {
+        "contents": [
+          {
+            "name": "Backpack",
+            "quantity": 1
+          },
+          {
+            "name": "Crowbar",
+            "quantity": 1
+          },
+          {
+            "name": "Hammer",
+            "quantity": 1
+          },
+          {
+            "name": "Piton",
+            "quantity": 10
+          },
+          {
+            "name": "Torch",
+            "quantity": 10
+          },
+          {
+            "name": "Tinderbox",
+            "quantity": 1
+          },
+          {
+            "name": "Rations (1 day)",
+            "quantity": 10
+          },
+          {
+            "name": "Waterskin",
+            "quantity": 1
+          },
+          {
+            "name": "Rope, hempen (50 feet)",
+            "quantity": 1
+          }
+        ]
+      },
+      "description": "Essential gear for exploring underground, including a backpack, crowbar, hammer, pitons, torches, tinderbox, rations, waterskin, and rope.",
+      "source": "PHB"
+    },
+    {
+      "index": "elephant",
+      "name": "Elephant",
+      "type": "mount",
+      "slot": "mount",
+      "cost": {
+        "quantity": 200,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "description": "A massive beast used as a living war machine or heavy transport. Elephants can carry enormous loads and are fearsome in battle.",
+      "source": "PHB"
+    },
+    {
+      "index": "emblem",
+      "name": "Emblem",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "description": "A holy symbol is a representation of a god or pantheon. It might be an amulet depicting a symbol representing a deity, the same symbol carefully engraved or inlaid as an emblem on a shield, or a tiny box holding a fragment of a sacred relic. Appendix B lists the symbols commonly associated with many gods in the multiverse. A cleric or paladin can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield.",
+      "source": "PHB"
+    },
+    {
+      "index": "entertainers-pack",
+      "name": "Entertainer's Pack",
+      "type": "pack",
+      "slot": "none",
+      "cost": {
+        "quantity": 40,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "pack": {
+        "contents": [
+          {
+            "name": "Backpack",
+            "quantity": 1
+          },
+          {
+            "name": "Bedroll",
+            "quantity": 1
+          },
+          {
+            "name": "Clothes, costume",
+            "quantity": 2
+          },
+          {
+            "name": "Candle",
+            "quantity": 5
+          },
+          {
+            "name": "Rations (1 day)",
+            "quantity": 5
+          },
+          {
+            "name": "Waterskin",
+            "quantity": 1
+          },
+          {
+            "name": "Disguise Kit",
+            "quantity": 1
+          }
+        ]
+      },
+      "description": "Gear for the traveling performer, including a backpack, bedroll, costumes, candles, rations, waterskin, and a disguise kit.",
+      "source": "PHB"
+    },
+    {
+      "index": "explorers-pack",
+      "name": "Explorer's Pack",
+      "type": "pack",
+      "slot": "none",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "pack": {
+        "contents": [
+          {
+            "name": "Backpack",
+            "quantity": 1
+          },
+          {
+            "name": "Bedroll",
+            "quantity": 1
+          },
+          {
+            "name": "Mess Kit",
+            "quantity": 1
+          },
+          {
+            "name": "Tinderbox",
+            "quantity": 1
+          },
+          {
+            "name": "Torch",
+            "quantity": 10
+          },
+          {
+            "name": "Rations (1 day)",
+            "quantity": 10
+          },
+          {
+            "name": "Waterskin",
+            "quantity": 1
+          },
+          {
+            "name": "Rope, hempen (50 feet)",
+            "quantity": 1
+          }
+        ]
+      },
+      "description": "A well-rounded kit for wilderness travel, including a backpack, bedroll, mess kit, tinderbox, torches, rations, waterskin, and rope.",
+      "source": "PHB"
+    },
+    {
+      "index": "fishing-tackle",
+      "name": "Fishing tackle",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 4,
+      "description": "This kit includes a wooden rod, silken line, corkwood bobbers, steel hooks, lead sinkers, velvet lures, and narrow netting.",
+      "source": "PHB"
+    },
+    {
+      "index": "flask-or-tankard",
+      "name": "Flask or tankard",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 2,
+        "unit": "cp"
+      },
+      "weight": 1,
+      "description": "A small container for holding liquid, whether a simple ceramic tankard for ale or a metal flask for stronger spirits.",
+      "source": "PHB"
+    },
+    {
+      "index": "flute",
+      "name": "Flute",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "proficiency": "tool",
+      "description": "Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.",
+      "source": "PHB"
+    },
+    {
+      "index": "forgery-kit",
+      "name": "Forgery Kit",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 15,
+        "unit": "gp"
+      },
+      "weight": 5,
+      "proficiency": "tool",
+      "description": "This small box contains a variety of papers and parchments, pens and inks, seals and sealing wax, gold and silver leaf, and other supplies necessary to create convincing forgeries of physical documents. Proficiency with this kit lets you add your proficiency bonus to any ability checks you make to create a physical forgery of a document.",
+      "source": "PHB"
+    },
+    {
+      "index": "galley",
+      "name": "Galley",
+      "type": "mount",
+      "slot": "mount",
+      "cost": {
+        "quantity": 30000,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "description": "A large warship propelled by rows of oars and sails. Used for naval combat and transporting troops across open water.",
+      "source": "PHB"
+    },
+    {
+      "index": "glassblowers-tools",
+      "name": "Glassblower's Tools",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 30,
+        "unit": "gp"
+      },
+      "weight": 5,
+      "proficiency": "tool",
+      "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+      "source": "PHB"
+    },
+    {
+      "index": "grappling-hook",
+      "name": "Grappling hook",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 4,
+      "description": "A multi-pronged metal hook attached to a rope, used to catch on ledges, walls, or rigging to enable climbing or crossing gaps.",
+      "source": "PHB"
+    },
+    {
+      "index": "hammer",
+      "name": "Hammer",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "description": "A simple tool with a weighted head, used for driving nails, breaking objects, or shaping metal. The same tool makes a surprisingly effective weapon.",
+      "source": "PHB"
+    },
+    {
+      "index": "hammer-sledge",
+      "name": "Hammer, sledge",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 10,
+      "description": "A massive two-handed hammer with a heavy iron head, used for breaking stone, driving stakes, or demolishing structures.",
+      "source": "PHB"
+    },
+    {
+      "index": "healers-kit",
+      "name": "Healer's Kit",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "proficiency": "tool",
+      "description": "This kit is a leather pouch containing bandages, salves, and splints. The kit has ten uses. As an action, you can expend one use of the kit to stabilize a creature that has 0 hit points, without needing to make a Wisdom (Medicine) check.",
+      "source": "PHB"
+    },
+    {
+      "index": "herbalism-kit",
+      "name": "Herbalism Kit",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "proficiency": "tool",
+      "description": "This kit contains a variety of instruments such as clippers, mortar and pestle, and pouches and vials used by herbalists to create remedies and potions. Proficiency with this kit lets you add your proficiency bonus to any ability checks you make to identify or apply herbs. Also, proficiency with this kit is required to create antitoxin and potions of healing.",
+      "source": "PHB"
+    },
+    {
+      "index": "holy-water-flask",
+      "name": "Holy water (flask)",
+      "type": "consumable",
+      "slot": "none",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "stackable": 1,
+      "description": "As an action, you can splash the contents of this flask onto a creature within 5 feet of you or throw it up to 20 feet, shattering it on impact. In either case, make a ranged attack against a target creature, treating the holy water as an improvised weapon. If the target is a fiend or undead, it takes 2d6 radiant damage. A cleric or paladin may create holy water by performing a special ritual. The ritual takes 1 hour to perform, uses 25 gp worth of powdered silver, and requires the caster to expend a 1st-level spell slot.",
+      "source": "PHB"
+    },
+    {
+      "index": "horn",
+      "name": "Horn",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 3,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "proficiency": "tool",
+      "description": "Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.",
+      "source": "PHB"
+    },
+    {
+      "index": "horse-draft",
+      "name": "Horse, draft",
+      "type": "mount",
+      "slot": "mount",
+      "cost": {
+        "quantity": 50,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "description": "A large, powerful horse bred for pulling heavy loads rather than speed. Essential for hauling wagons and carts over long distances.",
+      "source": "PHB"
+    },
+    {
+      "index": "horse-riding",
+      "name": "Horse, riding",
+      "type": "mount",
+      "slot": "mount",
+      "cost": {
+        "quantity": 75,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "description": "A trained mount suitable for riding. Faster and more agile than a draft horse, it is the standard steed for adventurers and cavalry.",
+      "source": "PHB"
+    },
+    {
+      "index": "hourglass",
+      "name": "Hourglass",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "description": "A timepiece consisting of two glass bulbs connected by a narrow passage, through which sand flows in exactly one hour. Useful for tracking short durations.",
+      "source": "PHB"
+    },
+    {
+      "index": "hunting-trap",
+      "name": "Hunting trap",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 25,
+      "description": "When you use your action to set it, this trap forms a saw-toothed steel ring that snaps shut when a creature steps on a pressure plate in the center. The trap is affixed by a heavy chain to an immobile object, such as a tree or a spike driven into the ground. A creature that steps on the plate must succeed on a DC 13 Dexterity saving throw or take 1d4 piercing damage and stop moving. Thereafter, until the creature breaks free of the trap, its movement is limited by the length of the chain (typically 3 feet long). A creature can use its action to make a DC 13 Strength check, freeing itself or another creature within its reach on a success. Each failed check deals 1 piercing damage to the trapped creature.",
+      "source": "PHB"
+    },
+    {
+      "index": "ink-1-ounce-bottle",
+      "name": "Ink (1 ounce bottle)",
+      "type": "consumable",
+      "slot": "none",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "stackable": 1,
+      "description": "A small bottle of black or colored ink, used for writing, drawing maps, or illuminating manuscripts. Essential for scribes and scholars.",
+      "source": "PHB"
+    },
+    {
+      "index": "ink-pen",
+      "name": "Ink pen",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 2,
+        "unit": "cp"
+      },
+      "weight": 0,
+      "description": "A slender pointed instrument dipped in ink for writing or drawing. Typically made from a bird feather with a sharpened and split tip.",
+      "source": "PHB"
+    },
+    {
+      "index": "jewelers-tools",
+      "name": "Jeweler's Tools",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "proficiency": "tool",
+      "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+      "source": "PHB"
+    },
+    {
+      "index": "jug-or-pitcher",
+      "name": "Jug or pitcher",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 2,
+        "unit": "cp"
+      },
+      "weight": 4,
+      "description": "A ceramic or metal container with a handle and spout, used for storing and pouring liquids such as water, milk, or wine.",
+      "source": "PHB"
+    },
+    {
+      "index": "keelboat",
+      "name": "Keelboat",
+      "type": "mount",
+      "slot": "mount",
+      "cost": {
+        "quantity": 3000,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "description": "Keelboats and rowboats are used on lakes and rivers. If going downstream, add the speed of the current (typically 3 miles per hour) to the speed of the vehicle. These vehicles can't be rowed against any significant current, but they can be pulled upstream by draft animals on the shores. A rowboat weighs 100 pounds, in case adventurers carry it over land.",
+      "source": "PHB"
+    },
+    {
+      "index": "ladder-10-foot",
+      "name": "Ladder (10-foot)",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 1,
+        "unit": "sp"
+      },
+      "weight": 25,
+      "description": "A wooden ladder ten feet in length, consisting of two side rails connected by rungs. Useful for climbing walls, trees, or other vertical obstacles.",
+      "source": "PHB"
+    },
+    {
+      "index": "lamp",
+      "name": "Lamp",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "sp"
+      },
+      "weight": 1,
+      "description": "A lamp casts bright light in a 15-foot radius and dim light for an additional 30 feet. Once lit, it burns for 6 hours on a flask (1 pint) of oil.",
+      "source": "PHB"
+    },
+    {
+      "index": "lantern-bullseye",
+      "name": "Lantern, bullseye",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "description": "A bullseye lantern casts bright light in a 60-foot cone and dim light for an additional 60 feet. Once lit, it burns for 6 hours on a flask (1 pint) of oil.",
+      "source": "PHB"
+    },
+    {
+      "index": "lantern-hooded",
+      "name": "Lantern, hooded",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "description": "A hooded lantern casts bright light in a 30-foot radius and dim light for an additional 30 feet. Once lit, it burns for 6 hours on a flask (1 pint) of oil. As an action, you can lower the hood, reducing the light to dim light in a 5-foot radius.",
+      "source": "PHB"
+    },
+    {
+      "index": "leatherworkers-tools",
+      "name": "Leatherworker's Tools",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 5,
+      "proficiency": "tool",
+      "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+      "source": "PHB"
+    },
+    {
+      "index": "little-bag-of-sand",
+      "name": "Little bag of sand",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 0,
+        "unit": "cp"
+      },
+      "weight": 0,
+      "description": "A small bag of sand, typically found in a scholar's pack.",
+      "source": "PHB"
+    },
+    {
+      "index": "lock",
+      "name": "Lock",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "description": "A key is provided with the lock. Without the key, a creature proficient with thieves' tools can pick this lock with a successful DC 15 Dexterity check. Your GM may decide that better locks are available for higher prices.",
+      "source": "PHB"
+    },
+    {
+      "index": "longship",
+      "name": "Longship",
+      "type": "mount",
+      "slot": "mount",
+      "cost": {
+        "quantity": 10000,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "description": "A long, shallow-draft vessel propelled by oars and a single sail. Designed for both open-ocean voyages and river navigation.",
+      "source": "PHB"
+    },
+    {
+      "index": "lute",
+      "name": "Lute",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 35,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "proficiency": "tool",
+      "description": "Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.",
+      "source": "PHB"
+    },
+    {
+      "index": "lyre",
+      "name": "Lyre",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 30,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "proficiency": "tool",
+      "description": "Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.",
+      "source": "PHB"
+    },
+    {
+      "index": "magnifying-glass",
+      "name": "Magnifying glass",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 100,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "description": "This lens allows a closer look at small objects. It is also useful as a substitute for flint and steel when starting fires. Lighting a fire with a magnifying glass requires light as bright as sunlight to focus, tinder to ignite, and about 5 minutes for the fire to ignite. A magnifying glass grants advantage on any ability check made to appraise or inspect an item that is small or highly detailed.",
+      "source": "PHB"
+    },
+    {
+      "index": "manacles",
+      "name": "Manacles",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 6,
+      "description": "These metal restraints can bind a Small or Medium creature. Escaping the manacles requires a successful DC 20 Dexterity check. Breaking them requires a successful DC 20 Strength check. Each set of manacles comes with one key. Without the key, a creature proficient with thieves' tools can pick the manacles' lock with a successful DC 15 Dexterity check. Manacles have 15 hit points.",
+      "source": "PHB"
+    },
+    {
+      "index": "masons-tools",
+      "name": "Mason's Tools",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 8,
+      "proficiency": "tool",
+      "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+      "source": "PHB"
+    },
+    {
+      "index": "mastiff",
+      "name": "Mastiff",
+      "type": "mount",
+      "slot": "mount",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "description": "A large, powerful breed of dog trained for guarding, hunting, or warfare. Loyal and fierce, mastiffs make excellent companions and guard animals.",
+      "source": "PHB"
+    },
+    {
+      "index": "mess-kit",
+      "name": "Mess Kit",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 2,
+        "unit": "sp"
+      },
+      "weight": 1,
+      "proficiency": "tool",
+      "description": "This tin box contains a cup and simple cutlery. The box clamps together, and one side can be used as a cooking pan and the other as a plate or shallow bowl.",
+      "source": "PHB"
+    },
+    {
+      "index": "mirror-steel",
+      "name": "Mirror, steel",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 0.5,
+      "description": "A small polished steel mirror, useful for seeing around corners, signaling at a distance, or checking one's appearance.",
+      "source": "PHB"
+    },
+    {
+      "index": "mule",
+      "name": "Mule",
+      "type": "mount",
+      "slot": "mount",
+      "cost": {
+        "quantity": 8,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "description": "A hybrid offspring of a horse and donkey, combining the best traits of both. Sure-footed, patient, and strong, mules are excellent pack animals.",
+      "source": "PHB"
+    },
+    {
+      "index": "navigators-tools",
+      "name": "Navigator's Tools",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "proficiency": "tool",
+      "description": "This set of instruments is used for navigation at sea. Proficiency with navigator's tools lets you chart a ship's course and follow navigation charts. In addition, these tools allow you to add your proficiency bonus to any ability check you make to avoid getting lost at sea.",
+      "source": "PHB"
+    },
+    {
+      "index": "oil-flask",
+      "name": "Oil (flask)",
+      "type": "consumable",
+      "slot": "none",
+      "cost": {
+        "quantity": 1,
+        "unit": "sp"
+      },
+      "weight": 1,
+      "stackable": 1,
+      "description": "Oil usually comes in a clay flask that holds 1 pint. As an action, you can splash the oil in this flask onto a creature within 5 feet of you or throw it up to 20 feet, shattering it on impact. Make a ranged attack against a target creature or object, treating the oil as an improvised weapon. On a hit, the target is covered in oil. If the target takes any fire damage before the oil dries (after 1 minute), the target takes an additional 5 fire damage from the burning oil. You can also pour a flask of oil on the ground to cover a 5-foot-square area, provided that the surface is level. If lit, the oil burns for 2 rounds and deals 5 fire damage to any creature that enters the area or ends its turn in the area. A creature can take this damage only once per turn.",
+      "source": "PHB"
+    },
+    {
+      "index": "orb",
+      "name": "Orb",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 20,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "description": "An arcane focus is a special item--an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item--designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus.",
+      "source": "PHB"
+    },
+    {
+      "index": "painters-supplies",
+      "name": "Painter's Supplies",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 5,
+      "proficiency": "tool",
+      "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+      "source": "PHB"
+    },
+    {
+      "index": "pan-flute",
+      "name": "Pan flute",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 12,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "proficiency": "tool",
+      "description": "Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.",
+      "source": "PHB"
+    },
+    {
+      "index": "paper-one-sheet",
+      "name": "Paper (one sheet)",
+      "type": "consumable",
+      "slot": "none",
+      "cost": {
+        "quantity": 2,
+        "unit": "sp"
+      },
+      "weight": 0,
+      "stackable": 1,
+      "description": "A single sheet of fine paper, suitable for writing letters, drawing maps, or recording important information.",
+      "source": "PHB"
+    },
+    {
+      "index": "parchment-one-sheet",
+      "name": "Parchment (one sheet)",
+      "type": "consumable",
+      "slot": "none",
+      "cost": {
+        "quantity": 1,
+        "unit": "sp"
+      },
+      "weight": 0,
+      "stackable": 1,
+      "description": "A sheet of treated animal skin, prepared for writing. More durable than paper, parchment is used for important documents and maps.",
+      "source": "PHB"
+    },
+    {
+      "index": "perfume-vial",
+      "name": "Perfume (vial)",
+      "type": "consumable",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "stackable": 1,
+      "description": "A small crystal vial containing concentrated fragrance. A single application can mask unpleasant odors or convey social status.",
+      "source": "PHB"
+    },
+    {
+      "index": "pick-miners",
+      "name": "Pick, miner's",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 10,
+      "description": "A heavy, pointed tool designed for breaking rock and ore. Its sharp point concentrates force to shatter stone with each strike.",
+      "source": "PHB"
+    },
+    {
+      "index": "piton",
+      "name": "Piton",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "cp"
+      },
+      "weight": 0.25,
+      "description": "A pointed metal spike driven into rock or wood to serve as an anchor point for ropes. Essential for climbing sheer surfaces.",
+      "source": "PHB"
+    },
+    {
+      "index": "playing-card-set",
+      "name": "Playing Card Set",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "sp"
+      },
+      "weight": 0,
+      "proficiency": "tool",
+      "description": "This item encompasses a wide range of game pieces, including dice and decks of cards (for games such as Three-Dragon Ante). A few common examples appear on the Tools table, but other kinds of gaming sets exist. If you are proficient with a gaming set, you can add your proficiency bonus to ability checks you make to play a game with that set. Each type of gaming set requires a separate proficiency.",
+      "source": "PHB"
+    },
+    {
+      "index": "poison-basic-vial",
+      "name": "Poison, basic (vial)",
+      "type": "consumable",
+      "slot": "none",
+      "cost": {
+        "quantity": 100,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "stackable": 1,
+      "description": "You can use the poison in this vial to coat one slashing or piercing weapon or up to three pieces of ammunition. Applying the poison takes an action. A creature hit by the poisoned weapon or ammunition must make a DC 10 Constitution saving throw or take 1d4 poison damage. Once applied, the poison retains potency for 1 minute before drying.",
+      "source": "PHB"
+    },
+    {
+      "index": "poisoners-kit",
+      "name": "Poisoner's Kit",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 50,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "proficiency": "tool",
+      "description": "A poisoner's kit includes the vials, chemicals, and other equipment necessary for the creation of poisons. Proficiency with this kit lets you add your proficiency bonus to any ability checks you make to craft or use poisons.",
+      "source": "PHB"
+    },
+    {
+      "index": "pole-10-foot",
+      "name": "Pole (10-foot)",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "cp"
+      },
+      "weight": 7,
+      "description": "A sturdy wooden pole, ten feet in length. Useful for probing pits, measuring depths, knocking down objects, or as a makeshift weapon.",
+      "source": "PHB"
+    },
+    {
+      "index": "pony",
+      "name": "Pony",
+      "type": "mount",
+      "slot": "mount",
+      "cost": {
+        "quantity": 30,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "description": "A small horse suitable for lighter riders or as a pack animal. Sure-footed on mountain trails, ponies are favored by halflings and dwarves.",
+      "source": "PHB"
+    },
+    {
+      "index": "pot-iron",
+      "name": "Pot, iron",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 10,
+      "description": "A heavy cast-iron cooking pot with a lid, capable of withstanding direct flame. Used for boiling water, cooking stews, or melting substances.",
+      "source": "PHB"
+    },
+    {
+      "index": "potters-tools",
+      "name": "Potter's Tools",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "proficiency": "tool",
+      "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+      "source": "PHB"
+    },
+    {
+      "index": "pouch",
+      "name": "Pouch",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "sp"
+      },
+      "weight": 1,
+      "description": "A cloth or leather pouch can hold up to 20 sling bullets or 50 blowgun needles, among other things. A compartmentalized pouch for holding spell components is called a component pouch (described earlier in this section).",
+      "source": "PHB"
+    },
+    {
+      "index": "priests-pack",
+      "name": "Priest's Pack",
+      "type": "pack",
+      "slot": "none",
+      "cost": {
+        "quantity": 19,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "pack": {
+        "contents": [
+          {
+            "name": "Backpack",
+            "quantity": 1
+          },
+          {
+            "name": "Blanket",
+            "quantity": 1
+          },
+          {
+            "name": "Candle",
+            "quantity": 10
+          },
+          {
+            "name": "Tinderbox",
+            "quantity": 1
+          },
+          {
+            "name": "Rations (1 day)",
+            "quantity": 2
+          },
+          {
+            "name": "Waterskin",
+            "quantity": 1
+          },
+          {
+            "name": "Alms box",
+            "quantity": 1
+          },
+          {
+            "name": "Block of incense",
+            "quantity": 2
+          },
+          {
+            "name": "Censer",
+            "quantity": 1
+          },
+          {
+            "name": "Vestments",
+            "quantity": 1
+          }
+        ]
+      },
+      "description": "A collection of items for the traveling cleric, including a backpack, blanket, candles, an alms box, incense, censer, vestments, rations, waterskin, and robes.",
+      "source": "PHB"
+    },
+    {
+      "index": "quiver",
+      "name": "Quiver",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "description": "A quiver can hold up to 20 arrows.",
+      "source": "PHB"
+    },
+    {
+      "index": "rations-1-day",
+      "name": "Rations (1 day)",
+      "type": "consumable",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "sp"
+      },
+      "weight": 2,
+      "stackable": 1,
+      "description": "Rations consist of dry foods suitable for extended travel, including jerky, dried fruit, hardtack, and nuts.",
+      "source": "PHB"
+    },
+    {
+      "index": "reliquary",
+      "name": "Reliquary",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "description": "A holy symbol is a representation of a god or pantheon. It might be an amulet depicting a symbol representing a deity, the same symbol carefully engraved or inlaid as an emblem on a shield, or a tiny box holding a fragment of a sacred relic. Appendix B lists the symbols commonly associated with many gods in the multiverse. A cleric or paladin can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield.",
+      "source": "PHB"
+    },
+    {
+      "index": "robes",
+      "name": "Robes",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 4,
+      "description": "Loose, flowing garments that cover the body from shoulder to ankle. Common among wizards, priests, and scholars, robes offer comfort and concealment.",
+      "source": "PHB"
+    },
+    {
+      "index": "rod",
+      "name": "Rod",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 2,
+      "description": "An arcane focus is a special item--an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item--designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus.",
+      "source": "PHB"
+    },
+    {
+      "index": "rope-hempen-50-feet",
+      "name": "Rope, hempen (50 feet)",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 10,
+      "description": "Rope, whether made of hemp or silk, has 2 hit points and can be burst with a DC 17 Strength check.",
+      "source": "PHB"
+    },
+    {
+      "index": "rope-silk-50-feet",
+      "name": "Rope, silk (50 feet)",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 5,
+      "description": "Rope, whether made of hemp or silk, has 2 hit points and can be burst with a DC 17 Strength check.",
+      "source": "PHB"
+    },
+    {
+      "index": "rowboat",
+      "name": "Rowboat",
+      "type": "mount",
+      "slot": "mount",
+      "cost": {
+        "quantity": 50,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "description": "Keelboats and rowboats are used on lakes and rivers. If going downstream, add the speed of the current (typically 3 miles per hour) to the speed of the vehicle. These vehicles can't be rowed against any significant current, but they can be pulled upstream by draft animals on the shores. A rowboat weighs 100 pounds, in case adventurers carry it over land.",
+      "source": "PHB"
+    },
+    {
+      "index": "sack",
+      "name": "Sack",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 1,
+        "unit": "cp"
+      },
+      "weight": 0.5,
+      "description": "A large cloth or leather bag with a drawstring closure, used for carrying bulk goods, loot, or supplies.",
+      "source": "PHB"
+    },
+    {
+      "index": "saddle-exotic",
+      "name": "Saddle, Exotic",
+      "type": "mount",
+      "slot": "mount",
+      "cost": {
+        "quantity": 60,
+        "unit": "gp"
+      },
+      "weight": 50,
+      "description": "An exotic saddle is required for riding any aquatic or flying mount.",
+      "source": "PHB"
+    },
+    {
+      "index": "saddle-military",
+      "name": "Saddle, Military",
+      "type": "mount",
+      "slot": "mount",
+      "cost": {
+        "quantity": 20,
+        "unit": "gp"
+      },
+      "weight": 30,
+      "description": "A military saddle braces the rider, helping you keep your seat on an active mount in battle. It gives you advantage on any check you make to remain mounted.",
+      "source": "PHB"
+    },
+    {
+      "index": "saddle-pack",
+      "name": "Saddle, Pack",
+      "type": "mount",
+      "slot": "mount",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 15,
+      "description": "A pair of leather bags designed to hang on either side of a horse's saddle, used for carrying supplies on long journeys.",
+      "source": "PHB"
+    },
+    {
+      "index": "saddle-riding",
+      "name": "Saddle, Riding",
+      "type": "mount",
+      "slot": "mount",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 25,
+      "description": "A leather seat secured to a horse's back with straps and buckles, providing stability and comfort for the rider.",
+      "source": "PHB"
+    },
+    {
+      "index": "saddlebags",
+      "name": "Saddlebags",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 4,
+        "unit": "gp"
+      },
+      "weight": 8,
+      "description": "Reinforced leather bags that attach behind a saddle, used for carrying provisions, gear, and personal items during travel.",
+      "source": "PHB"
+    },
+    {
+      "index": "sailing-ship",
+      "name": "Sailing ship",
+      "type": "mount",
+      "slot": "mount",
+      "cost": {
+        "quantity": 10000,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "description": "A large ocean-going vessel powered by multiple masts and sails. Capable of crossing seas and carrying significant cargo or crew.",
+      "source": "PHB"
+    },
+    {
+      "index": "scale-merchants",
+      "name": "Scale, merchant's",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "description": "A scale includes a small balance, pans, and a suitable assortment of weights up to 2 pounds. With it, you can measure the exact weight of small objects, such as raw precious metals or trade goods, to help determine their worth.",
+      "source": "PHB"
+    },
+    {
+      "index": "scholars-pack",
+      "name": "Scholar's Pack",
+      "type": "pack",
+      "slot": "none",
+      "cost": {
+        "quantity": 40,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "pack": {
+        "contents": [
+          {
+            "name": "Backpack",
+            "quantity": 1
+          },
+          {
+            "name": "Book",
+            "quantity": 1
+          },
+          {
+            "name": "Ink (1 ounce bottle)",
+            "quantity": 1
+          },
+          {
+            "name": "Ink pen",
+            "quantity": 1
+          },
+          {
+            "name": "Parchment (one sheet)",
+            "quantity": 10
+          },
+          {
+            "name": "Little bag of sand",
+            "quantity": 1
+          },
+          {
+            "name": "Small knife",
+            "quantity": 1
+          }
+        ]
+      },
+      "description": "A kit for the traveling academic, including a backpack, book of lore, ink, ink pen, parchment, sand, and a small knife.",
+      "source": "PHB"
+    },
+    {
+      "index": "sealing-wax",
+      "name": "Sealing wax",
+      "type": "consumable",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "sp"
+      },
+      "weight": 0,
+      "stackable": 1,
+      "description": "A stick of hardened wax that melts when heated, used to seal letters and packages. Often stamped with a signet ring to verify the sender.",
+      "source": "PHB"
+    },
+    {
+      "index": "shawm",
+      "name": "Shawm",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "proficiency": "tool",
+      "description": "Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.",
+      "source": "PHB"
+    },
+    {
+      "index": "shovel",
+      "name": "Shovel",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 5,
+      "description": "A broad, flat blade attached to a handle, used for digging earth, sand, or snow. Essential for burying the dead or excavating ruins.",
+      "source": "PHB"
+    },
+    {
+      "index": "signal-whistle",
+      "name": "Signal whistle",
+      "type": "consumable",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "cp"
+      },
+      "weight": 0,
+      "stackable": 1,
+      "description": "A small metal whistle that produces a piercing tone audible over great distances. Used for signaling between party members in poor visibility.",
+      "source": "PHB"
+    },
+    {
+      "index": "signet-ring",
+      "name": "Signet ring",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "description": "A ring bearing a family crest, guild symbol, or official seal. Used to authenticate documents by pressing into warm wax.",
+      "source": "PHB"
+    },
+    {
+      "index": "sled",
+      "name": "Sled",
+      "type": "mount",
+      "slot": "mount",
+      "cost": {
+        "quantity": 20,
+        "unit": "gp"
+      },
+      "weight": 300,
+      "description": "A flat-bottomed vehicle designed to slide over snow or ice. Pulled by animals or people, it is essential for transporting goods in arctic environments.",
+      "source": "PHB"
+    },
+    {
+      "index": "sling-bullet",
+      "name": "Sling bullet",
+      "type": "ammunition",
+      "slot": "quiver",
+      "cost": {
+        "quantity": 4,
+        "unit": "cp"
+      },
+      "weight": 1.5,
+      "stackable": 20,
+      "description": "A smooth, rounded stone or lead pellet designed for use with a sling. Easily found or manufactured, sling bullets are the ammunition of the common folk.",
+      "source": "PHB"
+    },
+    {
+      "index": "small-knife",
+      "name": "Small knife",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 0,
+        "unit": "cp"
+      },
+      "weight": 0,
+      "description": "A small knife, typically found in a scholar's pack.",
+      "source": "PHB"
+    },
+    {
+      "index": "smiths-tools",
+      "name": "Smith's Tools",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 20,
+        "unit": "gp"
+      },
+      "weight": 8,
+      "proficiency": "tool",
+      "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+      "source": "PHB"
+    },
+    {
+      "index": "soap",
+      "name": "Soap",
+      "type": "consumable",
+      "slot": "none",
+      "cost": {
+        "quantity": 2,
+        "unit": "cp"
+      },
+      "weight": 0,
+      "stackable": 1,
+      "description": "A bar of rendered fat mixed with lye and ash, used for cleaning wounds, washing clothes, or maintaining hygiene.",
+      "source": "PHB"
+    },
+    {
+      "index": "spellbook",
+      "name": "Spellbook",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 50,
+        "unit": "gp"
+      },
+      "weight": 3,
+      "description": "Essential for wizards, a spellbook is a leather-bound tome with 100 blank vellum pages suitable for recording spells.",
+      "source": "PHB"
+    },
+    {
+      "index": "spike-iron",
+      "name": "Spike, iron",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 1,
+        "unit": "sp"
+      },
+      "weight": 5,
+      "description": "A heavy iron spike, larger and sturdier than a piton. Used as a door anchor, improvised weapon, or structural support.",
+      "source": "PHB"
+    },
+    {
+      "index": "sprig-of-mistletoe",
+      "name": "Sprig of mistletoe",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "description": "A druidic focus might be a sprig of mistletoe or holly, a wand or scepter made of yew or another special wood, a staff drawn whole out of a living tree, or a totem object incorporating feathers, fur, bones, and teeth from sacred animals. A druid can use such an object as a spellcasting focus.",
+      "source": "PHB"
+    },
+    {
+      "index": "spyglass",
+      "name": "Spyglass",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 1000,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "description": "Objects viewed through a spyglass are magnified to twice their size.",
+      "source": "PHB"
+    },
+    {
+      "index": "stabling-1-day",
+      "name": "Stabling (1 day)",
+      "type": "consumable",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "sp"
+      },
+      "weight": 0,
+      "description": "A day's board for a single mount, including a stall, feed, water, and basic grooming.",
+      "source": "PHB",
+      "stackable": 1
+    },
+    {
+      "index": "staff",
+      "name": "Staff",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 4,
+      "description": "An arcane focus is a special item--an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item--designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus.",
+      "source": "PHB"
+    },
+    {
+      "index": "string-10-feet",
+      "name": "String (10 feet)",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 0,
+        "unit": "cp"
+      },
+      "weight": 0,
+      "description": "A 10-foot length of string, typically found in a burglar's pack.",
+      "source": "PHB"
+    },
+    {
+      "index": "tent-two-person",
+      "name": "Tent, two-person",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 2,
+        "unit": "gp"
+      },
+      "weight": 20,
+      "description": "A simple and portable canvas shelter, a tent sleeps two.",
+      "source": "PHB"
+    },
+    {
+      "index": "thieves-tools",
+      "name": "Thieves' Tools",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 25,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "proficiency": "tool",
+      "description": "This set of tools includes a small file, a set of lock picks, a small mirror mounted on a metal handle, a set of narrow-bladed scissors, and a pair of pliers. Proficiency with these tools lets you add your proficiency bonus to any ability checks you make to disarm traps or open locks.",
+      "source": "PHB"
+    },
+    {
+      "index": "tinderbox",
+      "name": "Tinderbox",
+      "type": "consumable",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "sp"
+      },
+      "weight": 1,
+      "stackable": 1,
+      "description": "This small container holds flint, fire steel, and tinder (usually dry cloth soaked in light oil) used to kindle a fire. Using it to light a torch--or anything else with abundant, exposed fuel--takes an action. Lighting any other fire takes 1 minute.",
+      "source": "PHB"
+    },
+    {
+      "index": "tinkers-tools",
+      "name": "Tinker's Tools",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 50,
+        "unit": "gp"
+      },
+      "weight": 10,
+      "proficiency": "tool",
+      "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+      "source": "PHB"
+    },
+    {
+      "index": "torch",
+      "name": "Torch",
+      "type": "consumable",
+      "slot": "none",
+      "cost": {
+        "quantity": 1,
+        "unit": "cp"
+      },
+      "weight": 1,
+      "stackable": 1,
+      "description": "A torch burns for 1 hour, providing bright light in a 20-foot radius and dim light for an additional 20 feet. If you make a melee attack with a burning torch and hit, it deals 1 fire damage.",
+      "source": "PHB"
+    },
+    {
+      "index": "totem",
+      "name": "Totem",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "description": "A druidic focus might be a sprig of mistletoe or holly, a wand or scepter made of yew or another special wood, a staff drawn whole out of a living tree, or a totem object incorporating feathers, fur, bones, and teeth from sacred animals. A druid can use such an object as a spellcasting focus.",
+      "source": "PHB"
+    },
+    {
+      "index": "vestments",
+      "name": "Vestments",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 0,
+        "unit": "cp"
+      },
+      "weight": 0,
+      "description": "Religious clothing, typically found in a priest's pack.",
+      "source": "PHB"
+    },
+    {
+      "index": "vial",
+      "name": "Vial",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "description": "A small glass container with a tight stopper, used for holding potions, poison, or other precious liquids. Typically holds about one ounce.",
+      "source": "PHB"
+    },
+    {
+      "index": "viol",
+      "name": "Viol",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 30,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "proficiency": "tool",
+      "description": "Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.",
+      "source": "PHB"
+    },
+    {
+      "index": "wagon",
+      "name": "Wagon",
+      "type": "mount",
+      "slot": "mount",
+      "cost": {
+        "quantity": 35,
+        "unit": "gp"
+      },
+      "weight": 400,
+      "description": "A four-wheeled vehicle pulled by draft animals, used for hauling goods, supplies, or passengers over roads and trails.",
+      "source": "PHB"
+    },
+    {
+      "index": "wand",
+      "name": "Wand",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "description": "An arcane focus is a special item--an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item--designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus.",
+      "source": "PHB"
+    },
+    {
+      "index": "warhorse",
+      "name": "Warhorse",
+      "type": "mount",
+      "slot": "mount",
+      "cost": {
+        "quantity": 400,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "description": "A powerful, specially trained mount bred for combat. Warhorses are trained to remain calm in battle and can wear barding armor.",
+      "source": "PHB"
+    },
+    {
+      "index": "warship",
+      "name": "Warship",
+      "type": "mount",
+      "slot": "mount",
+      "cost": {
+        "quantity": 25000,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "description": "A large, heavily armed vessel designed for naval warfare. Equipped with rams, ballistae, and marines, it dominates the seas.",
+      "source": "PHB"
+    },
+    {
+      "index": "waterskin",
+      "name": "Waterskin",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 2,
+        "unit": "sp"
+      },
+      "weight": 5,
+      "description": "A leather bladder designed to carry water or other liquids. A full waterskin holds about a gallon and can sustain a traveler for a day.",
+      "source": "PHB"
+    },
+    {
+      "index": "weavers-tools",
+      "name": "Weaver's Tools",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 5,
+      "proficiency": "tool",
+      "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+      "source": "PHB"
+    },
+    {
+      "index": "whetstone",
+      "name": "Whetstone",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 1,
+        "unit": "cp"
+      },
+      "weight": 1,
+      "description": "A flat, coarse stone used to sharpen blades and tools. Regular use keeps swords, axes, and knives at peak effectiveness.",
+      "source": "PHB"
+    },
+    {
+      "index": "woodcarvers-tools",
+      "name": "Woodcarver's Tools",
+      "type": "tool",
+      "slot": "none",
+      "cost": {
+        "quantity": 1,
+        "unit": "gp"
+      },
+      "weight": 5,
+      "proficiency": "tool",
+      "description": "These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.",
+      "source": "PHB"
+    },
+    {
+      "index": "wooden-staff",
+      "name": "Wooden staff",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 5,
+        "unit": "gp"
+      },
+      "weight": 4,
+      "description": "A druidic focus might be a sprig of mistletoe or holly, a wand or scepter made of yew or another special wood, a staff drawn whole out of a living tree, or a totem object incorporating feathers, fur, bones, and teeth from sacred animals. A druid can use such an object as a spellcasting focus.",
+      "source": "PHB"
+    },
+    {
+      "index": "yew-wand",
+      "name": "Yew wand",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 10,
+        "unit": "gp"
+      },
+      "weight": 1,
+      "description": "A druidic focus might be a sprig of mistletoe or holly, a wand or scepter made of yew or another special wood, a staff drawn whole out of a living tree, or a totem object incorporating feathers, fur, bones, and teeth from sacred animals. A druid can use such an object as a spellcasting focus.",
+      "source": "PHB"
+    },
+    {
+      "index": "adamantine-armor",
+      "name": "Adamantine Armor",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 0,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "description": "Armor (medium or heavy, but not hide), uncommon This suit of armor is reinforced with adamantine, one of the hardest substances in existence. While you're wearing it, any critical hit against you becomes a normal hit.",
+      "source": "PHB"
+    },
+    {
+      "index": "arrow-of-slaying",
+      "name": "Arrow of Slaying",
+      "type": "ammunition",
+      "slot": "quiver",
+      "cost": {
+        "quantity": 0,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "stackable": 20,
+      "description": "Weapon (arrow), very rare An arrow of slaying is a magic weapon meant to slay a particular kind of creature. Some are more focused than others; for example, there are both arrows of dragon slaying and arrows of blue dragon slaying. If a creature belonging to the type, race, or group associated with an arrow of slaying takes damage from the arrow, the creature must make a DC 17 Constitution saving throw, taking an extra 6d10 piercing damage on a failed save, or half as much extra damage on a successful one. Once an arrow of slaying deals its extra damage to a creature, it becomes a nonmagical arrow. Other types of magic ammunition of this kind exist, such as bolts of slaying meant for a crossbow, though arrows are most common.",
+      "source": "PHB"
+    },
+    {
+      "index": "javelin-of-lightning",
+      "name": "Javelin of Lightning",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 0,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "description": "Weapon (javelin), uncommon This javelin is a magic weapon. When you hurl it and speak its command word, it transforms into a bolt of lightning, forming a line 5 feet wide that extends out from you to a target within 120 feet. Each creature in the line excluding you and the target must make a DC 13 Dexterity saving throw, taking 4d6 lightning damage on a failed save, and half as much damage on a successful one. The lightning bolt turns back into a javelin when it reaches the target. Make a ranged weapon attack against the target. On a hit, the target takes damage from the javelin plus 4d6 lightning damage. The javelin's property can't be used again until the next dawn. In the meantime, the javelin can still be used as a magic weapon.",
+      "source": "PHB"
+    },
+    {
+      "index": "mithral-armor",
+      "name": "Mithral Armor",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 0,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "description": "Armor (medium or heavy), uncommon Mithral is a light, flexible metal. A mithral chain shirt or breastplate can be worn under normal clothes. If the armor normally imposes disadvantage on Dexterity (Stealth) checks or has a Strength requirement, the mithral version of the armor doesn't.",
+      "source": "PHB"
+    },
+    {
+      "index": "vicious-weapon",
+      "name": "Vicious Weapon",
+      "type": "gear",
+      "slot": "none",
+      "cost": {
+        "quantity": 0,
+        "unit": "gp"
+      },
+      "weight": 0,
+      "description": "Weapon (any), rare When you roll a 20 on your attack roll with this magic weapon, your critical hit deals an extra 2d6 damage of the weapon's type.",
+      "source": "PHB"
+    }
+  ]
+}
