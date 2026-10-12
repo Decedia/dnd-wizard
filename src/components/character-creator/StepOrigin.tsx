@@ -45,6 +45,15 @@ interface StepOriginProps {
   onChange: (patch: Partial<Character>) => void;
 }
 
+// Gender is a label the player writes about their own character, so it is
+// never required and always deselectable. English D&D terms stay English.
+const GENDER_OPTIONS: { id: string; labelKey: string; fallback: string }[] = [
+  { id: "female", labelKey: "origin.genderFemale", fallback: "Female" },
+  { id: "male", labelKey: "origin.genderMale", fallback: "Male" },
+  { id: "nonbinary", labelKey: "origin.genderNonBinary", fallback: "Non-binary" },
+  { id: "other", labelKey: "origin.genderOther", fallback: "Other" },
+];
+
 export function StepOrigin({ data, onChange }: StepOriginProps) {
   const { t, language } = useLanguage();
   const [classModalOpen, setClassModalOpen] = useState(false);
@@ -256,8 +265,39 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
       </div>
 
       <div className="mb-8">
-        <h2 className="text-xs font-bold tracking-widest text-[var(--color-text-secondary)] mb-3">{t("creator.selectClassRace", "PILIH KELAS & RAS")}</h2>
+        <div className="flex items-center justify-between mb-3">
+          <h2 className="text-xs font-bold tracking-widest text-[var(--color-text-secondary)]">
+            {t("origin.genderLabel", "JENIS KELAMIN")}
+          </h2>
+          <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">
+            {t("creator.optional", "Opsional")}
+          </span>
+        </div>
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+          {GENDER_OPTIONS.map((option) => {
+            const isSelected = (data.gender || "") === option.id;
+            return (
+              <button
+                key={option.id}
+                type="button"
+                onClick={() => onChange({ gender: isSelected ? "" : option.id })}
+                aria-pressed={isSelected}
+                className={[
+                  "rounded-2xl border-2 py-3 px-2 text-center text-sm font-bold transition-all active:scale-[0.98]",
+                  isSelected
+                    ? "border-[var(--color-accent-teal-500)] bg-[var(--color-accent-teal-50)] text-[var(--color-accent-teal-600)]"
+                    : "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-secondary)] hover:border-[var(--color-border-active)]",
+                ].join(" ")}
+              >
+                {t(option.labelKey, option.fallback)}
+              </button>
+            );
+          })}
+        </div>
+      </div>
 
+      <div className="mb-8">
+        <h2 className="text-xs font-bold tracking-widest text-[var(--color-text-secondary)] mb-3">{t("creator.selectClassRace", "PILIH KELAS & RAS")}</h2>
         {/* Class Card */}
         <FieldState
           value={data.class}

@@ -15,6 +15,7 @@ interface IdentitySectionProps {
   character: {
     name: string;
     playerName: string;
+    gender?: string;
     race: string;
     class: string;
     level: number;
@@ -90,6 +91,16 @@ export function IdentitySection({ character, onChange, editMode = true }: Identi
                 onBlur={() => {}}
                 className="input"
                 placeholder={t("form.yourName", "Your name")}
+              />
+            </Field>
+            <Field label={t("form.gender", "GENDER")}>
+              <input
+                type="text"
+                value={character.gender || ""}
+                onChange={(e) => onChange({ gender: e.target.value })}
+                onBlur={() => {}}
+                className="input"
+                placeholder={t("form.genderPlaceholder", "Optional")}
               />
             </Field>
             <div className="grid grid-cols-2 divide-x divide-border-strong">
@@ -179,6 +190,12 @@ export function IdentitySection({ character, onChange, editMode = true }: Identi
               <ViewField label={t("form.background", "BACKGROUND")} value={translateBackground(character.background)} />
               <ViewField label={t("form.alignment", "ALIGNMENT")} value={translateAlignment(character.alignment)} className="pl-3" />
             </div>
+            {character.gender ? (
+              <div className="grid grid-cols-2 divide-x divide-border-strong">
+                <ViewField label={t("form.gender", "GENDER")} value={character.gender} />
+                <span />
+              </div>
+            ) : null}
             <div className="flex flex-col gap-1.5">
               <span className="field-label-light">{t("form.languages", "LANGUAGES")}</span>
               <span className="text-sm font-semibold text-ink">

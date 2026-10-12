@@ -1466,6 +1466,7 @@ export function recreateCharacter(character: Character, language = "en"): Charac
     subclassIndex: character.subclassIndex,
     background: character.background,
     alignment: character.alignment,
+    gender: character.gender,
     level: character.level,
     ruleset: character.ruleset,
     sources: character.sources,

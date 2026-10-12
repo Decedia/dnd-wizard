@@ -13,6 +13,8 @@ export interface Character {
   level: number;
   background: string;
   alignment: string;
+  /** Free-form and optional: gender is personal, so it is never gated on. */
+  gender?: string;
   experiencePoints: number;
   maxExperiencePoints: number;
   isCustomHp: boolean;
@@ -379,6 +381,7 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
     level: 1,
     background: "",
     alignment: "",
+    gender: "",
     experiencePoints: 0,
     maxExperiencePoints: 300,
     isCustomHp: false,
