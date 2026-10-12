@@ -508,6 +508,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
                 const isGroupSelected = group.options.some(
                   (opt) => previewItem?.name === opt.name
                 );
+                const groupFlavor = group.options[0]?.description || "";
                 return (
                   <details
                     key={group.groupName}
@@ -530,7 +531,14 @@ export function UnifiedSelectionModal<T extends SelectionType>({
                         >
                           <Users className="h-5 w-5" />
                         </div>
-                        <h3 className="text-lg font-bold text-ink">{group.groupName}</h3>
+                        <div className="min-w-0">
+                          <h3 className="text-lg font-bold text-ink">{group.groupName}</h3>
+                          {groupFlavor && (
+                            <p className="mt-0.5 text-[11px] leading-relaxed text-ink-muted">
+                              {groupFlavor}
+                            </p>
+                          )}
+                        </div>
                       </div>
 
                       <div className="flex items-center gap-3">
@@ -577,11 +585,6 @@ export function UnifiedSelectionModal<T extends SelectionType>({
                                     </span>
                                   )}
                                 </div>
-                                {opt.description && (
-                                  <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-ink-muted">
-                                    {opt.description}
-                                  </p>
-                                )}
                               </div>
 
                               <div
