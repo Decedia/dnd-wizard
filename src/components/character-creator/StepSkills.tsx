@@ -177,10 +177,12 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
             ? t("skills.trackerLabel", "Pilih Skill")
             : t("skills.trackerLabelOpen", "Skill Dipilih")}
         </span>
-        <span className="text-xl font-black text-ink">
+        <span className="flex items-center gap-2 text-xl font-black text-ink">
           {skillChoices ? selectedCount : totalProficient}
           {skillChoices && (
-            <span className="ml-1 text-sm font-bold text-ink-muted">/ {allowedCount}</span>
+            <span className="text-sm font-bold text-ink-muted">
+              / {allowedCount}
+            </span>
           )}
         </span>
       </div>
