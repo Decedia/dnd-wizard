@@ -60,8 +60,31 @@ function getEquippedHands(inventory: Character["inventory"]): { main: string | n
   return result;
 }
 
+function safeParse(raw: string): Record<string, unknown> | null {
+  try {
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === "object" ? (parsed as Record<string, unknown>) : null;
+  } catch {
+    return null;
+  }
+}
+
+export function getActiveConsumables(
+  inventory: Character["inventory"],
+): Character["inventory"] {
+  return inventory.filter(
+    (item) => item.equipped && item.itemType === "consumable",
+  );
+}
+
 function canEquipItemCheck(item: Character["inventory"][number]): boolean {
-  return item.itemType === "weapon" || item.itemType === "armor";
+  // Consumables are equippable too: equipping one is how its effect becomes
+  // active on the character.
+  return (
+    item.itemType === "weapon" ||
+    item.itemType === "armor" ||
+    item.itemType === "consumable"
+  );
 }
 
 export function InventorySection({ character, onChange, editMode = true }: InventorySectionProps) {
@@ -417,6 +440,11 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
     []
   );
 
+  const activeConsumables = useMemo(
+    () => getActiveConsumables(character.inventory),
+    [character.inventory]
+  );
+
   const slotItems = useMemo(() => filteredInventory.map(mapToSlotData), [filteredInventory, mapToSlotData]);
 
   const handleSlotClick = useCallback(
@@ -480,6 +508,31 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
           active={activeInventoryTab}
           onSelect={(cat) => setActiveInventoryTab(cat as "all" | "weapons" | "armor" | "items")}
         />
+
+        {activeConsumables.length > 0 && (
+          <div className="rounded-xl border-2 border-[var(--color-accent-indigo-200)] bg-[var(--color-accent-indigo-50)] p-3">
+            <div className="mb-1.5 text-[10px] font-bold uppercase tracking-wider text-[var(--color-accent-indigo-700)]">
+              {t("section.activeEffects", "Efek Aktif")}
+            </div>
+            <ul className="space-y-1.5">
+              {activeConsumables.map((item) => {
+                const info = item.description ? safeParse(item.description) : null;
+                const effect = item.effect || info?.effect || "";
+                return (
+                  <li key={item.id} className="text-xs leading-relaxed text-[var(--color-accent-indigo-800)]">
+                    <strong className="font-semibold">{item.name}</strong>
+                    {effect ? ` — ${effect}` : ""}
+                    {item.uses !== undefined && item.maxUses !== undefined && (
+                      <span className="ml-1 text-[10px] font-bold uppercase tracking-wider opacity-80">
+                        ({item.uses}/{item.maxUses})
+                      </span>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        )}
 
         <InventoryGrid
           items={slotItems}

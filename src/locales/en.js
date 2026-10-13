@@ -714,6 +714,7 @@ export const translations = {
   "section.levelXp": "Level & Experience",
   "section.attacks": "Attacks",
   "section.inventory": "Inventory",
+  "section.activeEffects": "Active Effects",
   "section.currency": "Currency",
   "section.skills": "Skills",
   "section.spells": "Spells",

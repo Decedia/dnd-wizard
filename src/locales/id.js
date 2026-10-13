@@ -716,6 +716,7 @@ export const translations = {
   "section.levelXp": "Level & Pengalaman",
   "section.attacks": "Serangan",
   "section.inventory": "Inventaris",
+  "section.activeEffects": "Efek Aktif",
   "section.currency": "Mata Uang",
   "section.skills": "Keterampilan",
   "section.spells": "Sihir",

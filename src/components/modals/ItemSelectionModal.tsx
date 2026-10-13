@@ -5,10 +5,12 @@ import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { getStaticWeapons, getStaticEquipments, getEquipmentData } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
 import { XIcon as X, SwordIcon as Sword, ShieldIcon as Shield, BackpackIcon as Backpack, CheckIcon as Check } from "@/components/icons";
+import { Flask } from "@phosphor-icons/react";
 import { DamageBadge } from "@/components/character-sheet/DamageBadge";
 import { SourceBadge } from "@/components/SourceBadge";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
+import { getMagicItems, getMundaneItem, getMundaneItems } from "@/data/items";
 
 interface ItemSelectionModalProps {
   character: Character;
@@ -16,7 +18,7 @@ interface ItemSelectionModalProps {
   onClose: () => void;
 }
 
-type ItemCategory = "weapons" | "armor" | "items";
+type ItemCategory = "weapons" | "armor" | "consumables" | "items";
 
 export function ItemSelectionModal({ character, onAdd, onClose }: ItemSelectionModalProps) {
   const { t } = useLanguage();
@@ -84,7 +86,29 @@ export function ItemSelectionModal({ character, onAdd, onClose }: ItemSelectionM
       });
   }, [character.sources]);
 
-  const currentItems = activeCategory === "weapons" ? weapons : activeCategory === "armor" ? armors : items;
+  const consumables = useMemo(
+    () => [
+      ...getMundaneItems("consumable"),
+      ...getMagicItems().filter((m) => m.type === "consumable"),
+    ],
+    []
+  );
+
+  const itemMagicInfo = (item: unknown) => {
+    const record = getMundaneItem((item as { name: string }).name);
+    return record && "rarity" in record
+      ? (record as { rarity: string; attunement: boolean })
+      : null;
+  };
+
+  const currentItems =
+    activeCategory === "weapons"
+      ? weapons
+      : activeCategory === "armor"
+        ? armors
+        : activeCategory === "consumables"
+          ? consumables
+          : items;
 
   const filteredItems = currentItems.filter((item: any) => {
     if (!searchQuery.trim()) return true;
@@ -142,6 +166,22 @@ export function ItemSelectionModal({ character, onAdd, onClose }: ItemSelectionM
           description: armor.description || "",
         }),
       };
+    } else if (activeCategory === "consumables") {
+      const consumable = consumables.find((i) => i.name === selectedItem);
+      if (!consumable) return;
+      newItem = {
+        id: generateId(),
+        name: consumable.name,
+        quantity: 1,
+        equipped: false,
+        source: "srd",
+        srdItemName: consumable.name,
+        itemType: "consumable",
+        rarity: itemMagicInfo(consumable)?.rarity,
+        attunement: itemMagicInfo(consumable)?.attunement ?? false,
+        effect: consumable.description,
+        description: consumable.description,
+      };
     } else {
       const item = items.find((i) => i.name === selectedItem);
       if (!item) return;
@@ -166,6 +206,8 @@ export function ItemSelectionModal({ character, onAdd, onClose }: ItemSelectionM
     switch (cat) {
       case "weapons": return <Sword className="h-4 w-4" />;
       case "armor": return <Shield className="h-4 w-4" />;
+
+      case "consumables": return <Flask className="h-4 w-4" />;
       case "items": return <Backpack className="h-4 w-4" />;
     }
   };
@@ -177,6 +219,11 @@ export function ItemSelectionModal({ character, onAdd, onClose }: ItemSelectionM
     if (item.weapon_category) parts.push(item.weapon_category);
     if (item.armor_category) parts.push(item.armor_category);
     if (item.equipment_category) parts.push(item.equipment_category);
+    const magic = itemMagicInfo(item);
+    if (magic?.rarity) {
+      parts.push(magic.rarity.charAt(0).toUpperCase() + magic.rarity.slice(1));
+    }
+    if (magic?.attunement) parts.push(t("items.attunement", "Requires attunement"));
     return parts.join(" • ") || undefined;
   };
 
@@ -207,7 +254,7 @@ export function ItemSelectionModal({ character, onAdd, onClose }: ItemSelectionM
   return (
     <BottomSheet isOpen={true} onClose={onClose} title={t("item.addItem", "Add Item")} footer={stickyFooter} showHeader={false}>
       <div className="flex-shrink-0 flex border-b border-[var(--color-border)]">
-        {(["weapons", "armor", "items"] as ItemCategory[]).map((cat) => (
+        {(["weapons", "armor", "consumables", "items"] as ItemCategory[]).map((cat) => (
           <button
             key={cat}
             type="button"
