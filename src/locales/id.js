@@ -1194,6 +1194,7 @@ export const translations = {
   "equipment.selectFromOptions": "Pilih dari opsi di bawah",
   "equipment.choosePackage": "Pilih paket peralatan",
   "equipment.orChooseWeapons": "Atau pilih senjata",
+  "equipment.noItems": "Tidak ada barang di paket ini.",
   "equipment.chooseWeapons": "Pilih {count} senjata",
   "equipment.confirmSelection": "Konfirmasi pilihan",
   "items.type.weapon": "Senjata",

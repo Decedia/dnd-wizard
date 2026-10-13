@@ -1192,6 +1192,7 @@ export const translations = {
   "equipment.selectFromOptions": "Select from the options below",
   "equipment.choosePackage": "Choose equipment package",
   "equipment.orChooseWeapons": "Or choose weapons",
+  "equipment.noItems": "No items in this package.",
   "equipment.chooseWeapons": "Choose {count} weapon(s)",
   "equipment.confirmSelection": "Confirm selection",
   "items.type.weapon": "Weapons",
