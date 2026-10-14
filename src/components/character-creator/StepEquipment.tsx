@@ -1,16 +1,15 @@
 "use client";
 
 import { useState, useMemo, useEffect, useCallback } from "react";
+import { Backpack, CaretRight, Info, Lock, Plus } from "@phosphor-icons/react";
 import { StepCard } from "./StepCard";
-import { getStaticClass, getStaticWeapons, getStaticArmors, getEquipmentData, getEquipmentNames } from "@/lib/srd-client";
-import { getModifier, getProficiencyBonus, generateId } from "@/lib/storage";
+import { getStaticClass, getStaticWeapons, getStaticArmors, getEquipmentData } from "@/lib/srd-client";
+import { generateId } from "@/lib/storage";
 import type { Character } from "@/lib/storage";
 import { buildChoiceGroups, type ChoiceGroup, type EquipmentOption } from "@/lib/character-creation";
-import { InfoIcon } from "@/components/icons";
-import { DamageBadge, getDamageTypeColor, getDamageTypeBgColor } from "@/components/character-sheet/DamageBadge";
-import { SwordIcon as Sword, DaggerIcon as Dagger, BowArrowIcon as BowArrow, CrossbowIcon as Crossbow, BattleAxeIcon as BattleAxe, HammerIcon as Hammer, WizardStaffIcon as Staff, PolearmIcon as Polearm, WhipIcon as Whip, TridentIcon as Trident, MaceIcon as Mace, ClubIcon as Club, CheckIcon as Check, XIcon as XIcon } from "@/components/icons";
-import { SourceBadge } from "@/components/SourceBadge";
-import { ItemSlot, ItemDetailPanel, InventoryGrid, type ItemSlotData } from "@/components/character-sheet/InventoryGrid";
+import { DamageBadge } from "@/components/character-sheet/DamageBadge";
+import { DiceBadge } from "@/components/DiceBadge";
+import { SwordIcon as Sword, DaggerIcon as Dagger, BowArrowIcon as BowArrow, CrossbowIcon as Crossbow, BattleAxeIcon as BattleAxe, HammerIcon as Hammer, WizardStaffIcon as Staff, PolearmIcon as Polearm, WhipIcon as Whip, TridentIcon as Trident, MaceIcon as Mace, ClubIcon as Club, MusicNotesIcon as MusicNotes, PackageIcon as PackageBox, ShieldIcon as ArmorShield } from "@/components/icons";
 import { EquipmentChoiceModal } from "@/components/modals/EquipmentChoiceModal";
 import { useDebugLogger } from "@/lib/debug/DebugContext";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -87,10 +86,24 @@ function getWeaponEmoji(name: string, weaponType?: string): string {
   return weaponTypeEmojis[weaponType || ""] || "⚔️";
 }
 
+// The tile icon mirrors the item kind the same way the skills step mirrors an
+// ability: weapons fall back to the per-name map, everything else to its type.
+function getItemTileIcon(
+  name: string,
+  itemInfo: { type?: string; category?: string } | null,
+  itemType?: string,
+): React.ComponentType<{ className?: string }> {
+  if (itemInfo?.type === "weapon" || itemType === "weapon") {
+    return getWeaponIcon(name, itemInfo?.category);
+  }
+  if (itemInfo?.type === "armor" || itemType === "armor") return ArmorShield;
+  if (itemInfo?.type === "instrument" || itemType === "instrument") return MusicNotes;
+  return PackageBox;
+}
+
 interface StepEquipmentProps {
   data: Character;
   onChange: (patch: Partial<Character>) => void;
-  onNext?: () => void;
 }
 
 const MUSICAL_INSTRUMENTS = [
@@ -109,15 +122,13 @@ const DRUIDIC_FOCUS_TYPES = [
   "Sprig of Mistletoe", "Totem", "Wooden Staff", "Yew Wand"
 ];
 
-export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
+export function StepEquipment({ data, onChange }: StepEquipmentProps) {
   const debug = useDebugLogger("StepEquipment");
   const { t, language } = useLanguage();
   const classData = data.class ? getStaticClass(data.class, data.ruleset, undefined, language) : null;
   const [modalGroup, setModalGroup] = useState<{ group: ChoiceGroup; selectedOptionIndex: number | null; selectedWeaponChoiceIndex: number | null } | null>(null);
   const [tempWeaponSelectionsMap, setTempWeaponSelectionsMap] = useState<Record<number, string[]>>({});
-  const [tempSelectedName, setTempSelectedName] = useState<string | null>(null);
   const [confirmedSelections, setConfirmedSelections] = useState<Record<string, string[]>>({});
-  const [infoState, setInfoState] = useState<{title: string; description: string} | null>(null);
 
   useEffect(() => {
     debug.log('tempWeaponSelectionsMap CHANGED', { tempWeaponSelectionsMap, modalGroupId: modalGroup?.group.id });
@@ -134,7 +145,6 @@ export function StepEquipment({ data, onChange, onNext }: StepEquipmentProps) {
 
    const weapons = useMemo(() => getStaticWeapons(data.sources, data.ruleset, language), [data.sources, data.ruleset, language]);
    const armors = useMemo(() => getStaticArmors(data.sources, data.ruleset, language), [data.sources, data.ruleset, language]);
-   const allEquipment = useMemo(() => getEquipmentNames(data.sources, language), [data.sources, language]);
 
   useEffect(() => {
     debug.log('startingEquipment CHANGED', {
@@ -287,30 +297,6 @@ function buildFallbackDescription(t: ReturnType<typeof useLanguage>["t"], itemNa
     };
   }, [weapons, armors, isMusicalInstrument, t]);
 
-  const isOptionSelected = useCallback((group: ChoiceGroup, optionIndex: number): boolean => {
-    const groupIndex = getGroupIndex(group.id);
-    return data.inventory.some(item => item.choiceGroupIndex === groupIndex && item.choiceOptionIndex === optionIndex);
-  }, [data.inventory, getGroupIndex]);
-
-  const getSelectedWeaponForGroup = useCallback((groupId: string) => {
-    const groupIndex = getGroupIndex(groupId);
-    return data.inventory.find(item => item.choiceGroupIndex === groupIndex && item.itemType === "weapon");
-  }, [data.inventory, getGroupIndex]);
-
-  const getSelectedWeaponsForGroup = useCallback((groupId: string, optionIndex?: number) => {
-    const groupIndex = getGroupIndex(groupId);
-    return data.inventory.filter(item => {
-      if (item.choiceGroupIndex !== groupIndex || item.itemType !== "weapon") return false;
-      if (optionIndex !== undefined && item.choiceOptionIndex !== optionIndex) return false;
-      return true;
-    });
-  }, [data.inventory, getGroupIndex]);
-
-  const getSelectedItemForGroup = useCallback((groupId: string) => {
-    const groupIndex = getGroupIndex(groupId);
-    return data.inventory.find(item => item.choiceGroupIndex === groupIndex);
-  }, [data.inventory, getGroupIndex]);
-
   const getOptionLabel = useCallback((option: EquipmentOption): string => {
     if (option.isWeaponChoice) {
       const count = option.selectionCount || 1;
@@ -323,62 +309,6 @@ function buildFallbackDescription(t: ReturnType<typeof useLanguage>["t"], itemNa
     if (option.items.length === 1) return option.items[0].name;
     return option.items.map(i => `${i.quantity || 1}× ${i.name}`).join(", ");
   }, [t]);
-
-  const getOptionSummary = useCallback((option: EquipmentOption): string => {
-    if (option.items.length === 0) return "";
-    if (option.items.length === 1) {
-      const info = getItemInfo(option.items[0].name);
-      if (info?.type === "weapon") return `${info.damageDice} ${info.damageType}`;
-      if (info?.type === "armor") return `AC ${info.baseAC}`;
-      if (info?.type === "instrument") return "Spellcasting focus";
-    }
-    return `${option.items.length} items`;
-  }, [getItemInfo]);
-
-  const handleOptionClick = useCallback((group: ChoiceGroup, optionIndex: number) => {
-    const option = group.options[optionIndex];
-    const groupIndex = getGroupIndex(group.id);
-
-    let newInventory = data.inventory.filter(item => item.choiceGroupIndex !== groupIndex);
-
-    const isFirstChoiceGroup = groupIndex === 0;
-
-    if (isFirstChoiceGroup) {
-      if (optionIndex === 1) {
-        newInventory = newInventory.filter(item => item.choiceGroupIndex === 0);
-      } else {
-        newInventory = newInventory.filter(item => {
-          if (item.choiceGroupIndex === 0 && item.choiceOptionIndex === 1) return false;
-          return true;
-        });
-      }
-    }
-
-    const newItems = option.items.map(item => {
-      const itemInfo = getItemInfo(item.name);
-      const newItem: Character["inventory"][number] = {
-        id: generateId(),
-        name: item.name,
-        quantity: item.quantity || 1,
-        equipped: false,
-        source: "srd" as const,
-        description: itemInfo ? JSON.stringify(itemInfo) : "",
-        itemType: itemInfo?.type === "weapon" ? "weapon" : itemInfo?.type === "armor" ? "armor" : itemInfo?.type === "instrument" ? "instrument" : "item",
-        choiceGroupIndex: groupIndex,
-        choiceOptionIndex: optionIndex,
-      };
-
-      if (itemInfo?.type === "weapon") {
-        newItem.damageDice = itemInfo.damageDice;
-        newItem.damageType = itemInfo.damageType;
-        newItem.category = itemInfo.category === "Melee" ? "melee" : itemInfo.category === "Ranged" ? "ranged" : undefined;
-      }
-
-      return newItem;
-    });
-
-    onChange({ inventory: [...newInventory, ...newItems] });
-  }, [data.inventory, getGroupIndex, getItemInfo, onChange]);
 
   const handleWeaponSelect = useCallback((weaponName: string, choiceIndex: number) => {
     debug.log('handleWeaponSelect CALLED', { weaponName, choiceIndex, currentTempWeaponSelectionsMap: tempWeaponSelectionsMap, currentSelectedOptionIndex: modalGroup?.selectedOptionIndex, currentSelectedWeaponChoiceIndex: modalGroup?.selectedWeaponChoiceIndex, currentInventoryCount: data.inventory.length });
@@ -400,32 +330,7 @@ function buildFallbackDescription(t: ReturnType<typeof useLanguage>["t"], itemNa
       return { ...prev, [choiceIndex]: [...current, weaponName] };
     });
     setModalGroup(prev => prev ? { ...prev, selectedOptionIndex: null, selectedWeaponChoiceIndex: choiceIndex } : null);
-    setTempSelectedName(null);
   }, [modalGroup, debug, tempWeaponSelectionsMap, data.inventory]);
-
-  const handleInstrumentSelect = useCallback((instrumentName: string, groupId: string, optionIndex: number) => {
-    const groupIndex = getGroupIndex(groupId);
-    setModalGroup(prev => prev ? { ...prev, selectedOptionIndex: optionIndex } : null);
-    setTempSelectedName(instrumentName);
-  }, [getGroupIndex]);
-
-  const handleArcaneFocusSelect = useCallback((focusName: string, groupId: string, optionIndex: number) => {
-    const groupIndex = getGroupIndex(groupId);
-    setModalGroup(prev => prev ? { ...prev, selectedOptionIndex: optionIndex } : null);
-    setTempSelectedName(focusName);
-  }, [getGroupIndex]);
-
-  const handleHolySymbolSelect = useCallback((symbolName: string, groupId: string, optionIndex: number) => {
-    const groupIndex = getGroupIndex(groupId);
-    setModalGroup(prev => prev ? { ...prev, selectedOptionIndex: optionIndex } : null);
-    setTempSelectedName(symbolName);
-  }, [getGroupIndex]);
-
-  const handleDruidicFocusSelect = useCallback((focusName: string, groupId: string, optionIndex: number) => {
-    const groupIndex = getGroupIndex(groupId);
-    setModalGroup(prev => prev ? { ...prev, selectedOptionIndex: optionIndex } : null);
-    setTempSelectedName(focusName);
-  }, [getGroupIndex]);
 
   const handleModalConfirm = useCallback(() => {
     if (!modalGroup) return;
@@ -457,7 +362,6 @@ function buildFallbackDescription(t: ReturnType<typeof useLanguage>["t"], itemNa
       }
       setModalGroup(null);
       setTempWeaponSelectionsMap({});
-      setTempSelectedName(null);
       return;
     }
 
@@ -524,23 +428,11 @@ function buildFallbackDescription(t: ReturnType<typeof useLanguage>["t"], itemNa
 
     setModalGroup(null);
     setTempWeaponSelectionsMap({});
-    setTempSelectedName(null);
   }, [modalGroup, tempWeaponSelectionsMap, data.inventory, getGroupIndex, getItemInfo, weapons, generateId, onChange, debug]);
 
   const handleModalClose = useCallback(() => {
     setModalGroup(null);
     setTempWeaponSelectionsMap({});
-    setTempSelectedName(null);
-  }, []);
-
-  const handleChoiceRemove = useCallback((group: ChoiceGroup) => {
-    const groupIndex = getGroupIndex(group.id);
-    const newInventory = data.inventory.filter(item => item.choiceGroupIndex !== groupIndex);
-    onChange({ inventory: newInventory });
-  }, [data.inventory, getGroupIndex, onChange]);
-
-  const handleGoldSelect = useCallback(() => {
-    // Gold option removed - not implemented
   }, []);
 
   const autoGrantItems = useCallback(() => {
@@ -589,38 +481,6 @@ function buildFallbackDescription(t: ReturnType<typeof useLanguage>["t"], itemNa
     autoGrantItems();
   }, [autoGrantItems]);
 
-  const getWeaponStats = useCallback((weaponName: string, category?: string) => {
-    const weapon = weapons.find((w) => w.name === weaponName) as any;
-    if (!weapon) return null;
-
-    const profBonus = getProficiencyBonus(data.level);
-    const isFinesse = weapon.properties?.some((p: any) => p.name === "Finesse");
-    const isRanged = category === "Ranged" || weapon.category_range === "Ranged";
-
-    let abilityKey: "str" | "dex";
-    if (isFinesse) {
-      const strMod = getModifier(data.str);
-      const dexMod = getModifier(data.dex);
-      abilityKey = dexMod >= strMod ? "dex" : "str";
-    } else if (isRanged) {
-      abilityKey = "dex";
-    } else {
-      abilityKey = "str";
-    }
-
-    const abilityMod = getModifier(data[abilityKey]);
-    const attackBonus = abilityMod + profBonus;
-    const damageBonus = abilityMod;
-
-    return {
-      attackBonus: attackBonus >= 0 ? `+${attackBonus}` : `${attackBonus}`,
-      damageBonus: `${damageBonus}`,
-      abilityKey: abilityKey.toUpperCase(),
-      damageDice: weapon.damage?.damage_dice || "",
-      damageType: weapon.damage?.damage_type?.name || "",
-    };
-  }, [weapons, data]);
-
   const getWeaponsByCategory = useCallback((weaponType: string) => {
     return weapons.filter((w: any) => {
       if (weaponType === "martial") return w.weapon_category === "Martial";
@@ -650,177 +510,60 @@ function buildFallbackDescription(t: ReturnType<typeof useLanguage>["t"], itemNa
     };
   }, [getWeaponsByCategory]);
 
-  const renderItemInfo = useCallback((itemInfo: any, compact: boolean = false) => {
-    if (!itemInfo) return null;
+  const parseItemInfo = useCallback((item: Character["inventory"][number]) => {
+    return item.description ? JSON.parse(item.description) : null;
+  }, []);
+
+  // Stat chips reuse the sheet badge pipeline: DamageBadge for the type and
+  // DiceBadge for the dice, never hand-written dice or bare damage words.
+  const getItemStats = useCallback((itemInfo: any): React.ReactNode[] => {
+    if (!itemInfo) return [];
 
     if (itemInfo.type === "weapon") {
-      return (
-        <span className="inline-flex items-center gap-1.5">
-          <DamageBadge type={itemInfo.damageType} size="sm" showLabel={true} />
-          <span
-            className="text-[10px] font-bold px-1.5 py-0.5 rounded"
-            style={{ color: getDamageTypeColor(itemInfo.damageType), backgroundColor: getDamageTypeBgColor(itemInfo.damageType) }}
-          >
-            {itemInfo.damageDice}
-          </span>
-          {itemInfo.properties && itemInfo.properties.length > 0 && (
-            <span className="text-[var(--color-text-secondary)] font-medium">{itemInfo.properties.join(", ")}</span>
-          )}
-          {itemInfo.category && <span className="text-[var(--color-text-secondary)] font-medium">({itemInfo.category})</span>}
-        </span>
-      );
+      const chips: React.ReactNode[] = [<DamageBadge key="damage" type={itemInfo.damageType} size="sm" />];
+      if (itemInfo.damageDice) {
+        chips.push(<DiceBadge key="dice" dice={itemInfo.damageDice} size="sm" />);
+      }
+      if (itemInfo.properties?.length) {
+        chips.push(
+          <span key="props" className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">
+            {itemInfo.properties.join(", ")}
+          </span>,
+        );
+      }
+      return chips;
     }
 
     if (itemInfo.type === "armor") {
-      return (
-        <span>
-          AC {itemInfo.baseAC}{itemInfo.maxDex !== null ? ` + Dex (max +${itemInfo.maxDex})` : " + Dex"}
-          {itemInfo.armorType && <span className="ml-2 text-[var(--color-text-secondary)] font-medium">({itemInfo.armorType})</span>}
-          {!compact && itemInfo.description && (
-            <button
-              type="button"
-              onClick={() => setInfoState({ title: t("equipment.armorDetails", "Armor Details"), description: itemInfo.description })}
-              className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-2 hover:border-[var(--color-text-primary)] active:bg-[var(--color-bg)] transition-all shrink-0"
-              aria-label={t("equipment.armorDetails", "Info: Armor Details")}
-            >
-              <InfoIcon className="h-4 w-4" />
-            </button>
+      return [
+        <span
+          key="ac"
+          className="rounded-md bg-paper-muted px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-ink-muted"
+        >
+          {t(
+            "equipment.armorStats",
+            { ac: itemInfo.baseAC ?? "—", maxDex: itemInfo.maxDex ? ` (max +${itemInfo.maxDex})` : "" },
+            "AC {ac} + Dex{maxDex}",
           )}
-          {infoState?.title === t("equipment.armorDetails", "Armor Details") && itemInfo.description && (
-            <div className="fixed inset-0 z-[1000000] flex items-center justify-center bg-black/50 backdrop-blur-sm" onClick={() => setInfoState(null)}>
-              <div className="relative w-full max-w-sm mx-4 bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] shadow-2xl p-4">
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-sm font-semibold text-[var(--color-text-primary)]">{infoState.title}</h3>
-                  <button type="button" onClick={() => setInfoState(null)} className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]">
-                    <XIcon className="h-4 w-4" />
-                  </button>
-                </div>
-                <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{itemInfo.description}</p>
-                <button type="button" onClick={() => setInfoState(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">{t("common.gotIt", "Got it")}</button>
-              </div>
-            </div>
-          )}
-        </span>
-      );
+        </span>,
+      ];
     }
 
     if (itemInfo.type === "instrument") {
-      return <span>{t("equipment.musicalInstrument", "Musical instrument")}</span>;
+      return [
+        <span
+          key="focus"
+          className="rounded-md bg-paper-muted px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-ink-muted"
+        >
+          {t("equipment.spellcastingFocus", "Spellcasting focus")}
+        </span>,
+      ];
     }
 
-    if (itemInfo.type === "item") {
-      return (
-        <span>
-          {itemInfo.description && (
-            <button
-              type="button"
-              onClick={() => setInfoState({ title: t("equipment.itemDetails", "Item Details"), description: itemInfo.description })}
-              className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-2 hover:border-[var(--color-text-primary)] active:bg-[var(--color-bg)] transition-all shrink-0"
-              aria-label={t("equipment.itemDetails", "Info: Item Details")}
-            >
-              <InfoIcon className="h-4 w-4" />
-            </button>
-          )}
-          {infoState?.title === t("equipment.itemDetails", "Item Details") && itemInfo.description && (
-            <div className="fixed inset-0 z-[1000000] flex items-center justify-center bg-black/50 backdrop-blur-sm" onClick={() => setInfoState(null)}>
-              <div className="relative w-full max-w-sm mx-4 bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] shadow-2xl p-4">
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-sm font-semibold text-[var(--color-text-primary)]">{infoState.title}</h3>
-                  <button type="button" onClick={() => setInfoState(null)} className="h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]">
-                    <XIcon className="h-4 w-4" />
-                  </button>
-                </div>
-                <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{itemInfo.description}</p>
-                <button type="button" onClick={() => setInfoState(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">{t("common.gotIt", "Got it")}</button>
-              </div>
-            </div>
-          )}
-          {itemInfo.contents && (
-            <span className="ml-2 text-[var(--color-text-secondary)] font-medium">{t("equipment.contains", "Contains:")} {itemInfo.contents}</span>
-          )}
-        </span>
-      );
-    }
-
-    return null;
-  }, [infoState, t]);
-
-  const getItemDescription = useCallback((itemInfo: any): string => {
-    if (!itemInfo) return "";
-
-    const parts: string[] = [];
-
-    if (itemInfo.type === "weapon") {
-      if (itemInfo.description) parts.push(itemInfo.description);
-      if (itemInfo.damageDice) parts.push(t("equipment.damage", { damageDice: itemInfo.damageDice, damageType: itemInfo.damageType || "" }, "Damage: [dice]{damageDice}[/dice] [damage]{damageType}[/damage]"));
-      if (itemInfo.category) parts.push(t("equipment.category", { category: itemInfo.category }, "Category: {category}"));
-      if (itemInfo.properties && itemInfo.properties.length > 0) parts.push(t("equipment.properties", { properties: itemInfo.properties.join(", ") }, "Properties: {properties}"));
-    } else if (itemInfo.type === "armor") {
-      if (itemInfo.description) parts.push(itemInfo.description);
-      parts.push(t("equipment.ac", { baseAC: itemInfo.baseAC, maxDex: itemInfo.maxDex }, "AC: {baseAC} + Dex") + (itemInfo.maxDex !== null ? ` (max +${itemInfo.maxDex})` : ""));
-      if (itemInfo.armorType) parts.push(t("equipment.type", { type: itemInfo.armorType }, "Type: {type}"));
-    } else if (itemInfo.type === "instrument") {
-      parts.push(t("equipment.bardInstrument", "Musical instrument. Bards use musical instruments as a spellcasting focus."));
-    } else if (itemInfo.type === "item") {
-      if (itemInfo.description) parts.push(itemInfo.description);
-      if (itemInfo.contents) parts.push(t("equipment.contentsLabel", { contents: itemInfo.contents }, "Contains: {contents}"));
-    }
-
-    return parts.join("\n");
+    return [];
   }, [t]);
 
-  const isAllRequiredSelected = useMemo(() => {
-    if (choiceGroups.length === 0) return true;
-    return choiceGroups.every(group => {
-      const groupIndex = getGroupIndex(group.id);
-      return data.inventory.some(item => item.choiceGroupIndex === groupIndex);
-    });
-  }, [choiceGroups, data.inventory, getGroupIndex]);
-
-  const grantedItems = useMemo(() => {
-    return data.inventory.filter(item => item.isGranted);
-  }, [data.inventory]);
-
-  const choiceItems = useMemo(() => {
-    return data.inventory.filter(item => item.choiceGroupIndex !== undefined && !item.isGranted);
-  }, [data.inventory]);
-
-  const mapToSlotData = useCallback((item: Character["inventory"][number]): ItemSlotData => {
-    const itemInfo = item.description ? JSON.parse(item.description) : null;
-    return {
-      id: item.id,
-      name: item.name || "Unnamed Item",
-      icon: (itemInfo as any)?.icon || "📦",
-      category: (itemInfo as any)?.category || "misc",
-      itemType: item.itemType || "item",
-      equipped: item.equipped,
-      quantity: item.quantity,
-      description: (itemInfo as any)?.description || item.description || "",
-      damageDice: item.damageDice,
-      damageType: item.damageType,
-      properties: item.properties,
-      baseAC: item.baseAC,
-      armorType: item.armorType,
-      maxDexBonus: item.maxDexBonus,
-      stealthDisadvantage: (itemInfo as any)?.stealthDisadvantage,
-      strengthRequirement: (itemInfo as any)?.strengthRequirement,
-      toolUse: (itemInfo as any)?.toolUse,
-      associatedAbility: (itemInfo as any)?.associatedAbility,
-      effect: (itemInfo as any)?.effect,
-      uses: (itemInfo as any)?.uses,
-      value: (itemInfo as any)?.value,
-      weight: (itemInfo as any)?.weight ?? item.weight ?? null,
-      hand: item.hand,
-      range: (item as any).range,
-      versatileDice: (item as any).versatileDice,
-      isGranted: item.isGranted,
-      choiceGroupIndex: item.choiceGroupIndex,
-      choiceOptionIndex: item.choiceOptionIndex,
-    };
-  }, []);
-
-  const grantedSlotItems = useMemo(() => grantedItems.map(mapToSlotData), [grantedItems, mapToSlotData]);
-  const choiceSlotItems = useMemo(() => choiceItems.map(mapToSlotData), [choiceItems, mapToSlotData]);
+  const grantedItems = useMemo(() => data.inventory.filter((item) => item.isGranted), [data.inventory]);
 
   const handleChoiceSlotClick = useCallback((group: ChoiceGroup) => {
     const groupIndex = getGroupIndex(group.id);
@@ -838,131 +581,132 @@ function buildFallbackDescription(t: ReturnType<typeof useLanguage>["t"], itemNa
       selectedWeaponChoiceIndex: null,
     });
     setTempWeaponSelectionsMap({});
-    setTempSelectedName(null);
   }, [data.inventory, getGroupIndex, onChange, debug]);
 
   return (
-    <StepCard
-      title={t("creator.equipment", "Equipment")}
-      hint={t("creator.equipmentHint", "Choose your character's starting equipment. Your class determines what you can choose from — weapons, armor, and adventuring gear.")}
-    >
-      <div className="space-y-5">
-        {grantedSlotItems.length > 0 && (
-          <div>
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-card-title text-[var(--color-text-primary)]">{t("sheet.grantedEquipment", "Granted Equipment")}</span>
-              <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)]">
-                {t("sheet.locked", "LOCKED")}
+    <StepCard title={t("creator.equipment", "Equipment")}>
+      <div className="space-y-6">
+        {/* Same guide box the skills step uses: an ink panel with the info glyph. */}
+        <div className="mb-6 flex gap-3 rounded-2xl border border-ink/20 bg-ink/10 p-4">
+          <Info size={18} weight="bold" className="mt-0.5 shrink-0 text-ink" />
+          <p className="text-xs leading-relaxed text-ink/80">
+            {t("creator.equipmentHint", "Choose your character's starting equipment. Your class determines what you can choose from — weapons, armor, and adventuring gear.")}
+          </p>
+        </div>
+        {grantedItems.length > 0 && (
+          <section>
+            <div className="mb-3 flex items-center gap-2">
+              <Lock size={14} weight="bold" className="text-ink-subtle" />
+              <h3 className="text-xs font-bold uppercase tracking-widest text-ink-muted">
+                {t("sheet.grantedEquipment", "Granted Equipment")}
+              </h3>
+              <span className="rounded-md bg-paper-muted px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-ink-subtle">
+                {t("sheet.locked", "Locked")}
               </span>
             </div>
-            <InventoryGrid
-              items={grantedSlotItems}
-              totalSlots={grantedSlotItems.length}
-              onItemClick={() => {}}
-              showEmptySlots={false}
-              lockedSlotCount={grantedSlotItems.length}
-            />
-          </div>
-        )}
-
-        <div>
-          <span className="text-card-title text-[var(--color-text-primary)] block mb-2">
-            {t("creator.yourChoices", "Your Choices")}
-          </span>
-          <div className="grid grid-cols-4 gap-[6px]">
-            {choiceGroups.map((group) => {
-              const groupIndex = getGroupIndex(group.id);
-              const weaponChoiceOpt = group.options.find((opt: any) =>
-                opt.isWeaponChoice || opt.isInstrumentChoice || opt.isArcaneFocusChoice || opt.isHolySymbolChoice || opt.isDruidicFocusChoice
-              ) ?? null;
-              const selectionCount = weaponChoiceOpt?.selectionCount || 1;
-              const isMultiWeapon = weaponChoiceOpt && selectionCount > 1;
-              
-              const selectedItems = data.inventory.filter(item => item.choiceGroupIndex === groupIndex);
-              const hasWeaponChoiceSelection = isMultiWeapon && selectedItems.some(item => item.choiceOptionIndex === group.options.indexOf(weaponChoiceOpt));
-              
-              if (isMultiWeapon && hasWeaponChoiceSelection) {
+            <div>
+              {grantedItems.map((item) => {
+                const itemInfo = parseItemInfo(item);
+                const TileIcon = getItemTileIcon(item.name, itemInfo, item.itemType);
+                const detail = itemInfo?.contents || itemInfo?.description || "";
                 return (
                   <div
-                    key={group.id}
-                    className="flex gap-[6px]"
-                    style={{ gridColumn: `span ${Math.min(selectionCount, 4)}` }}
+                    key={item.id}
+                    className="mb-3 flex items-center gap-3 rounded-xl border-2 border-border-strong bg-paper-muted p-4"
                   >
-                    {Array.from({ length: selectionCount }).map((_, idx) => {
-                      const selectedItem = selectedItems[idx];
-                      const hasSelection = !!selectedItem;
-                      const itemInfo = selectedItem?.description ? JSON.parse(selectedItem.description) : null;
-
-                      return (
-                        <button
-                          key={idx}
-                          type="button"
-                          onClick={() => handleChoiceSlotClick(group)}
-                          className={`flex-1 aspect-square rounded-[8px] border-2 flex flex-col items-center justify-center gap-1 p-1.5 transition-all relative ${
-                            hasSelection
-                              ? "border-[var(--color-ink)] bg-[var(--color-ink)]/10"
-                              : "border-dashed border-[var(--color-border)] bg-[var(--color-bg)] hover:border-[var(--color-text-muted)]"
-                          }`}
-                        >
-                          {hasSelection ? (
-                            <>
-                              <span className="text-2xl leading-none">{(itemInfo as any)?.icon || "📦"}</span>
-                              <span className="text-[9px] font-bold text-[var(--color-text-secondary)] text-center leading-tight line-clamp-2 w-full">
-                                {selectedItem.name}
-                              </span>
-                              {selectedItem.quantity > 1 && (
-                                <span className="text-[10px] font-bold text-[var(--color-text-muted)]">x{selectedItem.quantity}</span>
-                              )}
-                            </>
-                          ) : (
-                            <>
-                              <span className="text-2xl text-[var(--color-text-muted)] leading-none">+</span>
-                               <span className="text-[9px] font-bold text-[var(--color-text-muted)]">{t("creator.choose", "Choose")}</span>
-                            </>
-                          )}
-                        </button>
-                      );
-                    })}
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border-2 border-border-strong bg-surface text-ink-muted">
+                      <TileIcon className="h-5 w-5" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <h4 className="text-sm font-bold leading-none text-ink">{item.name}</h4>
+                      {detail && <p className="mt-1.5 line-clamp-2 text-xs text-ink-muted">{detail}</p>}
+                      <div className="mt-1.5 flex flex-wrap items-center gap-1.5">{getItemStats(itemInfo)}</div>
+                    </div>
+                    {item.quantity > 1 && (
+                      <span className="shrink-0 text-sm font-bold text-ink-muted">x{item.quantity}</span>
+                    )}
                   </div>
                 );
-              }
+              })}
+            </div>
+          </section>
+        )}
 
-              const selectedItem = selectedItems[0];
-              const hasSelection = !!selectedItem;
-              const itemInfo = selectedItem?.description ? JSON.parse(selectedItem.description) : null;
+        <section>
+          <div className="mb-3 flex items-center gap-2">
+            <Backpack size={14} weight="bold" className="text-ink-subtle" />
+            <h3 className="text-xs font-bold uppercase tracking-widest text-ink-muted">
+              {t("creator.yourChoices", "Your Choices")}
+            </h3>
+          </div>
 
-              return (
-                <button
-                  key={group.id}
-                  type="button"
-                  onClick={() => handleChoiceSlotClick(group)}
-                  className={`aspect-square rounded-[8px] border-2 flex flex-col items-center justify-center gap-1 p-1.5 transition-all relative ${
-                    hasSelection
-                      ? "border-[var(--color-ink)] bg-[var(--color-ink)]/10"
-                      : "border-dashed border-[var(--color-border)] bg-[var(--color-bg)] hover:border-[var(--color-text-muted)]"
-                  }`}
-                >
-                  {hasSelection ? (
-                    <>
-                      <span className="text-2xl leading-none">{(itemInfo as any)?.icon || "📦"}</span>
-                      <span className="text-[9px] font-bold text-[var(--color-text-secondary)] text-center leading-tight line-clamp-2 w-full">
-                        {selectedItem.name}
-                      </span>
-                      {selectedItem.quantity > 1 && (
-                        <span className="text-[10px] font-bold text-[var(--color-text-muted)]">x{selectedItem.quantity}</span>
+          <div className="space-y-3">
+            {choiceGroups.map((group) => {
+              const groupIndex = getGroupIndex(group.id);
+              const choiceOption = group.options.find(
+                (opt) =>
+                  opt.isWeaponChoice ||
+                  opt.isInstrumentChoice ||
+                  opt.isArcaneFocusChoice ||
+                  opt.isHolySymbolChoice ||
+                  opt.isDruidicFocusChoice,
+              ) ?? null;
+              const choiceOptionCount = choiceOption ? Math.max(choiceOption.selectionCount || 1, 1) : 1;
+              const selectedItems = data.inventory.filter((item) => item.choiceGroupIndex === groupIndex);
+              // One card per picked item; while the group is still empty the
+              // prompt repeats for however many picks the group asks for.
+              const slotCount = selectedItems.length > 0 ? selectedItems.length : choiceOptionCount;
+              const prompt = choiceOption
+                ? getOptionLabel(choiceOption)
+                : t("creator.selectFromOptions", "Select from the options below");
+
+              return Array.from({ length: slotCount }).map((_, slotIndex) => {
+                const selectedItem = selectedItems[slotIndex];
+                const itemInfo = selectedItem ? parseItemInfo(selectedItem) : null;
+                const TileIcon = selectedItem
+                  ? getItemTileIcon(selectedItem.name, itemInfo, selectedItem.itemType)
+                  : Plus;
+                const detail = selectedItem ? itemInfo?.contents || itemInfo?.description || "" : prompt;
+
+                return (
+                  <button
+                    key={`${group.id}-${slotIndex}`}
+                    type="button"
+                    onClick={() => handleChoiceSlotClick(group)}
+                    className={`flex w-full items-center gap-4 rounded-2xl border-2 p-4 text-left transition-all active:scale-[0.98] ${
+                      selectedItem
+                        ? "border-ink bg-ink/5"
+                        : "border-dashed border-border-strong bg-surface hover:border-ink-subtle"
+                    }`}
+                  >
+                    <div
+                      className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${
+                        selectedItem ? "bg-ink/10 text-ink" : "bg-paper-muted text-ink-subtle"
+                      }`}
+                    >
+                      <TileIcon className="h-6 w-6" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <h4 className="text-sm font-bold leading-tight text-ink">
+                        {selectedItem ? selectedItem.name : t("equipment.choose", "Choose")}
+                      </h4>
+                      {detail && <p className="mt-0.5 line-clamp-2 text-xs text-ink-muted">{detail}</p>}
+                      {selectedItem && (
+                        <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
+                          {getItemStats(itemInfo)}
+                        </div>
                       )}
-                    </>
-                  ) : (
-                    <>
-                      <span className="text-2xl text-[var(--color-text-muted)] leading-none">?</span>
-                      <span className="text-[9px] font-bold text-[var(--color-text-muted)]">Choose</span>
-                    </>
-                  )}
-                </button>
-              );
+                    </div>
+                    {selectedItem && selectedItem.quantity > 1 && (
+                      <span className="shrink-0 text-xs font-bold text-ink-muted">x{selectedItem.quantity}</span>
+                    )}
+                    <CaretRight className="h-5 w-5 shrink-0 text-ink-subtle" />
+                  </button>
+                );
+              });
             })}
           </div>
-        </div>
+        </section>
 
         {modalGroup && (() => {
           const group = modalGroup.group;
@@ -1061,7 +805,6 @@ function buildFallbackDescription(t: ReturnType<typeof useLanguage>["t"], itemNa
                 onConcreteSelect={(idx) => {
                   setModalGroup(prev => prev ? { ...prev, selectedOptionIndex: idx, selectedWeaponChoiceIndex: null } : null);
                   setTempWeaponSelectionsMap({});
-                  setTempSelectedName(null);
                 }}
                 weaponChoiceOptions={weaponChoiceOptions}
                 selectedWeaponChoiceIndex={modalGroup.selectedWeaponChoiceIndex}
