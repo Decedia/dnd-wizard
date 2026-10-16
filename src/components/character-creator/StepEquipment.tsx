@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useMemo, useEffect, useCallback } from "react";
-import { Backpack, CaretRight, Info, Lock, Plus } from "@phosphor-icons/react";
-import { StepCard } from "./StepCard";
+import { Backpack, Info, Lock, Plus } from "@phosphor-icons/react";
+import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
 import { getStaticClass, getStaticWeapons, getStaticArmors, getEquipmentData } from "@/lib/srd-client";
 import { generateId } from "@/lib/storage";
 import type { Character } from "@/lib/storage";
@@ -563,6 +563,32 @@ function buildFallbackDescription(t: ReturnType<typeof useLanguage>["t"], itemNa
     return [];
   }, [t]);
 
+  const renderItemModalContent = useCallback(
+    (itemInfo: any, itemName: string): React.ReactNode => {
+      if (!itemInfo) return null;
+
+      const chips = getItemStats(itemInfo);
+
+      return (
+        <div className="space-y-4">
+          {chips.length > 0 && <div className="flex flex-wrap gap-2">{chips}</div>}
+          {itemInfo.contents && (
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">
+                {t("equipment.contents", "Contents")}
+              </p>
+              <p className="text-xs text-ink-muted">{itemInfo.contents}</p>
+            </div>
+          )}
+          {itemInfo.description && (
+            <p className="text-xs leading-relaxed text-ink-muted">{itemInfo.description}</p>
+          )}
+        </div>
+      );
+    },
+    [t, getItemStats],
+  );
+
   const grantedItems = useMemo(() => data.inventory.filter((item) => item.isGranted), [data.inventory]);
 
   const handleChoiceSlotClick = useCallback((group: ChoiceGroup) => {
@@ -584,7 +610,7 @@ function buildFallbackDescription(t: ReturnType<typeof useLanguage>["t"], itemNa
   }, [data.inventory, getGroupIndex, onChange, debug]);
 
   return (
-    <StepCard title={t("creator.equipment", "Equipment")}>
+    <section className="w-full pb-32">
       <div className="space-y-6">
         {/* Same guide box the skills step uses: an ink panel with the info glyph. */}
         <div className="mb-6 flex gap-3 rounded-2xl border border-ink/20 bg-ink/10 p-4">
@@ -610,22 +636,17 @@ function buildFallbackDescription(t: ReturnType<typeof useLanguage>["t"], itemNa
                 const TileIcon = getItemTileIcon(item.name, itemInfo, item.itemType);
                 const detail = itemInfo?.contents || itemInfo?.description || "";
                 return (
-                  <div
+                  <SplitSelectionCard
                     key={item.id}
-                    className="mb-3 flex items-center gap-3 rounded-xl border-2 border-border-strong bg-paper-muted p-4"
-                  >
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border-2 border-border-strong bg-surface text-ink-muted">
-                      <TileIcon className="h-5 w-5" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <h4 className="text-sm font-bold leading-none text-ink">{item.name}</h4>
-                      {detail && <p className="mt-1.5 line-clamp-2 text-xs text-ink-muted">{detail}</p>}
-                      <div className="mt-1.5 flex flex-wrap items-center gap-1.5">{getItemStats(itemInfo)}</div>
-                    </div>
-                    {item.quantity > 1 && (
-                      <span className="shrink-0 text-sm font-bold text-ink-muted">x{item.quantity}</span>
-                    )}
-                  </div>
+                    title={item.name}
+                    subtitle={detail}
+                    icon={<TileIcon className="h-6 w-6 text-ink-muted" />}
+                    disabled
+                    onSelect={() => {}}
+                    infoType="modal"
+                    modalContent={renderItemModalContent(itemInfo, item.name)}
+                    clampSubtitle={false}
+                  />
                 );
               })}
             </div>
@@ -669,39 +690,18 @@ function buildFallbackDescription(t: ReturnType<typeof useLanguage>["t"], itemNa
                 const detail = selectedItem ? itemInfo?.contents || itemInfo?.description || "" : prompt;
 
                 return (
-                  <button
+                  <SplitSelectionCard
                     key={`${group.id}-${slotIndex}`}
-                    type="button"
-                    onClick={() => handleChoiceSlotClick(group)}
-                    className={`flex w-full items-center gap-4 rounded-2xl border-2 p-4 text-left transition-all active:scale-[0.98] ${
-                      selectedItem
-                        ? "border-ink bg-ink/5"
-                        : "border-dashed border-border-strong bg-surface hover:border-ink-subtle"
-                    }`}
-                  >
-                    <div
-                      className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${
-                        selectedItem ? "bg-ink/10 text-ink" : "bg-paper-muted text-ink-subtle"
-                      }`}
-                    >
-                      <TileIcon className="h-6 w-6" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <h4 className="text-sm font-bold leading-tight text-ink">
-                        {selectedItem ? selectedItem.name : t("equipment.choose", "Choose")}
-                      </h4>
-                      {detail && <p className="mt-0.5 line-clamp-2 text-xs text-ink-muted">{detail}</p>}
-                      {selectedItem && (
-                        <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
-                          {getItemStats(itemInfo)}
-                        </div>
-                      )}
-                    </div>
-                    {selectedItem && selectedItem.quantity > 1 && (
-                      <span className="shrink-0 text-xs font-bold text-ink-muted">x{selectedItem.quantity}</span>
-                    )}
-                    <CaretRight className="h-5 w-5 shrink-0 text-ink-subtle" />
-                  </button>
+                    title={selectedItem ? selectedItem.name : t("equipment.choose", "Choose")}
+                    subtitle={detail}
+                    icon={<TileIcon className="h-6 w-6" />}
+                    isSelected={!!selectedItem}
+                    onSelect={() => handleChoiceSlotClick(group)}
+                    infoType="modal"
+                    modalContent={selectedItem ? renderItemModalContent(itemInfo, selectedItem.name) : null}
+                    badges={selectedItem && selectedItem.quantity > 1 ? [`x${selectedItem.quantity}`] : []}
+                    clampSubtitle={false}
+                  />
                 );
               });
             })}
@@ -720,58 +720,59 @@ function buildFallbackDescription(t: ReturnType<typeof useLanguage>["t"], itemNa
 
           const weaponChoiceOptions = choiceOptions.map((opt, idx) => {
             const selectionCount = opt.selectionCount || 1;
-            let weaponOpts: Array<{ icon: string; name: string; description: string; data?: any }> = [];
+            let weaponOpts: Array<{ icon: React.ReactNode; name: string; description: string; data?: any }> = [];
 
             if (opt.isWeaponChoice) {
               const categoryWeapons = getWeaponsByCategory(opt.weaponType || "");
               weaponOpts = categoryWeapons.map((w: any) => {
                 const itemInfo = getItemInfo(w.name);
-                return {
-                  icon: getWeaponEmoji(w.name, opt.weaponType),
+                const TileIcon = getWeaponIcon(w.name, itemInfo?.category);
+                return ({
+                  icon: <TileIcon className="h-6 w-6 text-ink-muted" />,
                   name: w.name,
                   description: w.description || "",
                   data: w,
-                };
+                });
               });
             } else if (opt.isInstrumentChoice) {
               weaponOpts = MUSICAL_INSTRUMENTS.map(name => {
                 const itemInfo = getItemInfo(name);
-                return {
-                  icon: "🎵",
+                return ({
+                  icon: <MusicNotes className="h-6 w-6 text-ink-muted" />,
                   name,
                   description: itemInfo?.description || "",
                   data: itemInfo,
-                };
+                });
               });
             } else if (opt.isArcaneFocusChoice) {
               weaponOpts = ARCANE_FOCUS_TYPES.map(name => {
                 const itemInfo = getItemInfo(name);
-                return {
-                  icon: "🔮",
+                return ({
+                  icon: <PackageBox className="h-6 w-6 text-ink-muted" />,
                   name,
                   description: itemInfo?.description || "",
                   data: itemInfo,
-                };
+                });
               });
             } else if (opt.isHolySymbolChoice) {
               weaponOpts = HOLY_SYMBOL_TYPES.map(name => {
                 const itemInfo = getItemInfo(name);
-                return {
-                  icon: "✨",
+                return ({
+                  icon: <PackageBox className="h-6 w-6 text-ink-muted" />,
                   name,
                   description: itemInfo?.description || "",
                   data: itemInfo,
-                };
+                });
               });
             } else if (opt.isDruidicFocusChoice) {
               weaponOpts = DRUIDIC_FOCUS_TYPES.map(name => {
                 const itemInfo = getItemInfo(name);
-                return {
-                  icon: "🌿",
+                return ({
+                  icon: <PackageBox className="h-6 w-6 text-ink-muted" />,
                   name,
                   description: itemInfo?.description || "",
                   data: itemInfo,
-                };
+                });
               });
             }
 
@@ -818,6 +819,6 @@ function buildFallbackDescription(t: ReturnType<typeof useLanguage>["t"], itemNa
           );
         })()}
       </div>
-    </StepCard>
+    </section>
   );
 }

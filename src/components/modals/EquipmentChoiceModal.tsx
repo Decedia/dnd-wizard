@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { CheckIcon as Check } from "@/components/icons";
+import type { ReactNode } from "react";
+import { CheckIcon as Check, PackageIcon as PackageBox } from "@/components/icons";
 import { ItemBundleList } from "@/components/modals/ItemBundle";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
@@ -12,7 +13,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 interface WeaponOption {
   name: string;
   description?: string;
-  icon?: string;
+  icon?: ReactNode;
   statSummary?: string | null;
   data?: any;
 }
@@ -183,11 +184,7 @@ export function EquipmentChoiceModal({
                               key={wIdx}
                               title={weapon.name}
                               subtitle={weapon.description}
-                              icon={
-                                <span className="text-[22px] leading-none">
-                                  {weapon.icon || "📦"}
-                                </span>
-                              }
+                              icon={weapon.icon || <PackageBox className="h-6 w-6 text-ink-muted" />}
                               isSelected={isWeaponSelected}
                               onSelect={() => wc.onWeaponSelect(weapon.name)}
                               infoType="modal"
