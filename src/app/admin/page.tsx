@@ -355,8 +355,8 @@ export default function AdminPage() {
             <ul className="space-y-2">
               {characters.filter((c: any) => (c.name || "").endsWith("Test")).map((char: any) => (
                 <li key={char.id} className="flex items-center gap-2">
-                  <Link
-                    href={`/character/${char.id}`}
+                    <Link
+                      href={`/character?id=${char.id}`}
                     className="card block flex-1 p-3.5 transition-all active:scale-[0.98] hover:bg-paper-muted"
                   >
                     <div className="flex items-center justify-between">

@@ -13,7 +13,7 @@ export default function NewCharacter() {
       const character = createEmptyCharacter();
       await saveCharacter(character);
       if (!cancelled) {
-        router.replace(`/character/${character.id}`);
+        router.replace(`/character?id=${character.id}`);
       }
     })();
     return () => { cancelled = true; };

@@ -255,7 +255,7 @@ export default function Home() {
                     className="mb-3 flex items-center justify-between rounded-2xl border border-border-muted bg-paper p-3 shadow-sm"
                   >
                     <Link
-                      href={`/character/${char.id}`}
+                      href={`/character?id=${char.id}`}
                       className="flex min-w-0 flex-1 items-center gap-3"
                     >
                       <div className="flex shrink-0 items-center justify-center rounded-xl bg-paper-muted p-2.5 text-ink">

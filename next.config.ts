@@ -28,6 +28,10 @@ const withPWA = require("next-pwa")({
 
 const nextConfig: NextConfig = {
   turbopack: {},
+  output: "export",
+  trailingSlash: false,
+  basePath: process.env.PAGES_BASE_PATH ?? "",
+  images: { unoptimized: true },
 };
 
 export default withPWA(nextConfig);

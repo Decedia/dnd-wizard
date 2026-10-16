@@ -5,6 +5,7 @@ import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
 import { useDebug } from "@/lib/debug/DebugContext";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { runSrdDataIntegrityTests } from "@/lib/srd-data-tests";
 import type { SrdTestReport, SrdTestResult } from "@/lib/srd-data-tests";
 
 export default function AdminSrdDataPage() {
@@ -16,16 +17,14 @@ export default function AdminSrdDataPage() {
   const [error, setError] = useState<string | null>(null);
   const [filter, setFilter] = useState<"all" | "fail" | "warn" | "pass">("all");
 
-  const loadReport = useCallback(async () => {
+  const loadReport = useCallback(() => {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch("/api/test/srd-data");
-      if (!res.ok) throw new Error(`Failed to load SRD tests: ${res.status}`);
-      const data = (await res.json()) as SrdTestReport;
-      setReport(data);
+      const data = runSrdDataIntegrityTests();
+      setReport(data as SrdTestReport);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to load SRD tests");
+      setError(err instanceof Error ? err.message : "Failed to run SRD tests");
     } finally {
       setLoading(false);
     }

@@ -2,7 +2,7 @@
   "name": "DND Wizard",
   "short_name": "DND Wizard",
   "description": "Offline-first D&D 5e character creator and manager",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#faf8f5",
   "theme_color": "#1a1a2e",

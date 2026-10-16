@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useState, useCallback, useEffect } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useRef, useState, useCallback, useEffect, Suspense } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
 import { BottomNav } from "@/components/BottomNav";
@@ -30,10 +30,10 @@ import { PassiveStatsSection } from "@/components/character-sheet/PassiveStatsSe
 import { CurrencySection } from "@/components/character-sheet/CurrencySection";
 import { TrashIcon as Trash, ExportIcon as Export, UploadIcon as Upload, CheckCircleIcon as CheckCircle, UserPlusIcon as UserPlus, ClockIcon as Clock, FileJsonIcon as FileJson } from "@/components/icons";
 
-export default function CharacterView() {
-  const params = useParams();
+export function CharacterView() {
+  const searchParams = useSearchParams();
   const router = useRouter();
-  const id = params.id as string;
+  const id = searchParams.get("id") ?? "";
   const { data: srdData } = useSRD();
   const { t, language } = useLanguage();
 
@@ -136,7 +136,7 @@ export default function CharacterView() {
       const imported = await importCharacterFromPdf(file);
       await saveCharacter(imported);
       setImportSuccess(t("import.success", { name: imported.name || "Unnamed" } as any));
-      router.push(`/character/${imported.id}`);
+      router.push(`/character?id=${imported.id}`);
     } catch (err) {
       setImportError(t("import.pdfError"));
     } finally {
@@ -157,7 +157,7 @@ export default function CharacterView() {
       const imported = await importCharacterFromJson(file);
       await saveCharacter(imported);
       setImportSuccess(t("import.success", { name: imported.name || "Unnamed" } as any));
-      router.push(`/character/${imported.id}`);
+      router.push(`/character?id=${imported.id}`);
     } catch (err) {
       setImportError(t("import.jsonError"));
     } finally {
@@ -253,7 +253,7 @@ export default function CharacterView() {
               {character.level < 20 && (
                 <div className="mb-4">
                   <button
-                    onClick={() => router.push(`/character/${character.id}/level-up`)}
+                    onClick={() => router.push(`/character/level-up?id=${character.id}`)}
                     className="btn btn-secondary w-full"
                   >
                     {t("character.levelUp", "Level Up")}
@@ -370,5 +370,18 @@ export default function CharacterView() {
 
       <BottomNav />
     </div>
+  );
+}
+
+export default function CharacterPage() {
+  const { t } = useLanguage();
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-paper flex items-center justify-center">
+        <span className="text-ink-muted font-semibold text-sm">{t("common.loading")}</span>
+      </div>
+    }>
+      <CharacterView />
+    </Suspense>
   );
 }

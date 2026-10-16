@@ -56,7 +56,7 @@ export default function CharacterCreate() {
     if (!canProceed()) return;
     if (isLastStep) {
       const final = await finalizeCreation(character, language);
-      router.replace(`/character/${final.id}`);
+      router.replace(`/character?id=${final.id}`);
     } else {
       setStep((s) => s + 1);
     }
@@ -98,8 +98,8 @@ export default function CharacterCreate() {
         character={character}
         onCancel={() => setStep((s) => Math.max(0, s - 1))}
         onComplete={async (updated) => {
-          const final = await finalizeCreation(updated, language);
-          router.replace(`/character/${final.id}`);
+        const final = await finalizeCreation(updated, language);
+        router.replace(`/character?id=${final.id}`);
         }}
         minLevel={1}
         maxLevel={10}
