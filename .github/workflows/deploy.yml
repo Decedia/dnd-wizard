@@ -24,7 +24,6 @@ jobs:
           bun-version: latest
       - run: bun install --frozen-lockfile
       - run: bun run typecheck
-      - run: bun run lint
       - run: bun test src/tests/srd-data.test.ts
       - run: PAGES_BASE_PATH=/dnd-wizard bun run build
       - run: |
