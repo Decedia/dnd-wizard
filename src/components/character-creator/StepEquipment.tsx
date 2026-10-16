@@ -574,14 +574,14 @@ function buildFallbackDescription(t: ReturnType<typeof useLanguage>["t"], itemNa
           {chips.length > 0 && <div className="flex flex-wrap gap-2">{chips}</div>}
           {itemInfo.contents && (
             <div>
-              <p className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">
+              <p className="text-[10px] font-bold uppercase tracking-wider text-ink">
                 {t("equipment.contents", "Contents")}
               </p>
-              <p className="text-xs text-ink-muted">{itemInfo.contents}</p>
+              <p className="mt-1 text-xs leading-relaxed text-ink">{itemInfo.contents}</p>
             </div>
           )}
           {itemInfo.description && (
-            <p className="text-xs leading-relaxed text-ink-muted">{itemInfo.description}</p>
+            <p className="mt-2 text-xs leading-relaxed text-ink">{itemInfo.description}</p>
           )}
         </div>
       );
@@ -622,15 +622,15 @@ function buildFallbackDescription(t: ReturnType<typeof useLanguage>["t"], itemNa
         {grantedItems.length > 0 && (
           <section>
             <div className="mb-3 flex items-center gap-2">
-              <Lock size={14} weight="bold" className="text-ink-subtle" />
-              <h3 className="text-xs font-bold uppercase tracking-widest text-ink-muted">
+              <Lock size={14} weight="bold" className="text-ink" />
+              <h3 className="text-xs font-bold uppercase tracking-widest text-ink">
                 {t("sheet.grantedEquipment", "Granted Equipment")}
               </h3>
-              <span className="rounded-md bg-paper-muted px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-ink-subtle">
+              <span className="rounded-md bg-paper-muted px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-ink">
                 {t("sheet.locked", "Locked")}
               </span>
             </div>
-            <div>
+            <div className="space-y-3">
               {grantedItems.map((item) => {
                 const itemInfo = parseItemInfo(item);
                 const TileIcon = getItemTileIcon(item.name, itemInfo, item.itemType);
@@ -640,7 +640,7 @@ function buildFallbackDescription(t: ReturnType<typeof useLanguage>["t"], itemNa
                     key={item.id}
                     title={item.name}
                     subtitle={detail}
-                    icon={<TileIcon className="h-6 w-6 text-ink-muted" />}
+                    icon={<TileIcon className="h-6 w-6 text-ink" />}
                     disabled
                     onSelect={() => {}}
                     infoType="modal"
@@ -653,13 +653,13 @@ function buildFallbackDescription(t: ReturnType<typeof useLanguage>["t"], itemNa
           </section>
         )}
 
-        <section>
-          <div className="mb-3 flex items-center gap-2">
-            <Backpack size={14} weight="bold" className="text-ink-subtle" />
-            <h3 className="text-xs font-bold uppercase tracking-widest text-ink-muted">
-              {t("creator.yourChoices", "Your Choices")}
-            </h3>
-          </div>
+          <section>
+            <div className="mb-3 flex items-center gap-2">
+              <Backpack size={14} weight="bold" className="text-ink" />
+              <h3 className="text-xs font-bold uppercase tracking-widest text-ink">
+                {t("creator.yourChoices", "Your Choices")}
+              </h3>
+            </div>
 
           <div className="space-y-3">
             {choiceGroups.map((group) => {
@@ -728,7 +728,7 @@ function buildFallbackDescription(t: ReturnType<typeof useLanguage>["t"], itemNa
                 const itemInfo = getItemInfo(w.name);
                 const TileIcon = getWeaponIcon(w.name, itemInfo?.category);
                 return ({
-                  icon: <TileIcon className="h-6 w-6 text-ink-muted" />,
+                  icon: <TileIcon className="h-6 w-6 text-ink" />,
                   name: w.name,
                   description: w.description || "",
                   data: w,
@@ -738,7 +738,7 @@ function buildFallbackDescription(t: ReturnType<typeof useLanguage>["t"], itemNa
               weaponOpts = MUSICAL_INSTRUMENTS.map(name => {
                 const itemInfo = getItemInfo(name);
                 return ({
-                  icon: <MusicNotes className="h-6 w-6 text-ink-muted" />,
+                  icon: <MusicNotes className="h-6 w-6 text-ink" />,
                   name,
                   description: itemInfo?.description || "",
                   data: itemInfo,
@@ -748,7 +748,7 @@ function buildFallbackDescription(t: ReturnType<typeof useLanguage>["t"], itemNa
               weaponOpts = ARCANE_FOCUS_TYPES.map(name => {
                 const itemInfo = getItemInfo(name);
                 return ({
-                  icon: <PackageBox className="h-6 w-6 text-ink-muted" />,
+                  icon: <PackageBox className="h-6 w-6 text-ink" />,
                   name,
                   description: itemInfo?.description || "",
                   data: itemInfo,
@@ -758,7 +758,7 @@ function buildFallbackDescription(t: ReturnType<typeof useLanguage>["t"], itemNa
               weaponOpts = HOLY_SYMBOL_TYPES.map(name => {
                 const itemInfo = getItemInfo(name);
                 return ({
-                  icon: <PackageBox className="h-6 w-6 text-ink-muted" />,
+                  icon: <PackageBox className="h-6 w-6 text-ink" />,
                   name,
                   description: itemInfo?.description || "",
                   data: itemInfo,
@@ -768,7 +768,7 @@ function buildFallbackDescription(t: ReturnType<typeof useLanguage>["t"], itemNa
               weaponOpts = DRUIDIC_FOCUS_TYPES.map(name => {
                 const itemInfo = getItemInfo(name);
                 return ({
-                  icon: <PackageBox className="h-6 w-6 text-ink-muted" />,
+                  icon: <PackageBox className="h-6 w-6 text-ink" />,
                   name,
                   description: itemInfo?.description || "",
                   data: itemInfo,
