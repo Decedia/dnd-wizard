@@ -5,7 +5,13 @@ import { createPortal } from "react-dom";
 import { XIcon as X, CheckIcon as Check, InfoIcon } from "@/components/icons";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
+import {
+  InfoSectionLabel,
+  InfoStatTile,
+  InfoChip,
+} from "@/components/modals/InfoBits";
 import type { ChoiceGroup, EquipmentOption } from "@/lib/character-creation";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface EquipmentSelectionModalProps {
   isOpen: boolean;
@@ -32,6 +38,7 @@ export function EquipmentSelectionModal({
   getItemInfo,
   getStatSummary,
 }: EquipmentSelectionModalProps) {
+  const { t } = useLanguage();
   const [mounted, setMounted] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -129,9 +136,43 @@ export function EquipmentSelectionModal({
               onSelect={() => onSelect(index)}
               infoType="modal"
               modalContent={
-                <div className="space-y-2">
-                  {itemNames && <p className="text-xs text-[var(--color-text-secondary)]">{itemNames}</p>}
-                  {statSummary && <p className="text-xs text-[var(--color-text-primary)] font-medium">{statSummary}</p>}
+                <div className="space-y-3">
+                  {(option.items || []).length > 0 && (
+                    <div>
+                      <InfoSectionLabel>{t("equipment.contains", "Berisi:")}</InfoSectionLabel>
+                      <div className="mt-1.5 space-y-1.5">
+                        {(option.items || []).map((i: any, idx: number) => {
+                          const info = getItemInfo?.(i.name);
+                          return (
+                            <div
+                              key={`${i.name}-${idx}`}
+                              className="flex items-center justify-between rounded-xl border-2 border-border-strong bg-surface p-2.5"
+                            >
+                              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-paper-muted">
+                                <span className="text-[16px] leading-none">{info?.icon || "📦"}</span>
+                              </div>
+                              <div className="min-w-0 flex-1">
+                                <span className="text-xs font-semibold text-ink">{i.name}</span>
+                                {info?.description && (
+                                  <p className="mt-0.5 text-[10px] leading-relaxed text-ink-muted">
+                                    {info.description}
+                                  </p>
+                                )}
+                              </div>
+                              {i.quantity > 1 && (
+                                <span className="shrink-0 text-[10px] font-bold text-ink-muted">
+                                  ×{i.quantity}
+                                </span>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+                  {statSummary && (
+                    <InfoStatTile label={t("equipment.statSummary", "Stat")} value={statSummary} />
+                  )}
                 </div>
               }
             />

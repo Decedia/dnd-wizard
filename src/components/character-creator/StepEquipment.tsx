@@ -7,8 +7,11 @@ import { getStaticClass, getStaticWeapons, getStaticArmors, getEquipmentData } f
 import { generateId } from "@/lib/storage";
 import type { Character } from "@/lib/storage";
 import { buildChoiceGroups, type ChoiceGroup, type EquipmentOption } from "@/lib/character-creation";
-import { DamageBadge } from "@/components/character-sheet/DamageBadge";
-import { DiceBadge } from "@/components/DiceBadge";
+import {
+  InfoSectionLabel,
+  InfoStatTile,
+  InfoChip,
+} from "@/components/modals/InfoBits";
 import { SwordIcon as Sword, DaggerIcon as Dagger, BowArrowIcon as BowArrow, CrossbowIcon as Crossbow, BattleAxeIcon as BattleAxe, HammerIcon as Hammer, WizardStaffIcon as Staff, PolearmIcon as Polearm, WhipIcon as Whip, TridentIcon as Trident, MaceIcon as Mace, ClubIcon as Club, MusicNotesIcon as MusicNotes, PackageIcon as PackageBox, ShieldIcon as ArmorShield } from "@/components/icons";
 import { EquipmentChoiceModal } from "@/components/modals/EquipmentChoiceModal";
 import { useDebugLogger } from "@/lib/debug/DebugContext";
@@ -514,79 +517,88 @@ function buildFallbackDescription(t: ReturnType<typeof useLanguage>["t"], itemNa
     return item.description ? JSON.parse(item.description) : null;
   }, []);
 
-  // Stat chips reuse the sheet badge pipeline: DamageBadge for the type and
-  // DiceBadge for the dice, never hand-written dice or bare damage words.
-  const getItemStats = useCallback((itemInfo: any): React.ReactNode[] => {
-    if (!itemInfo) return [];
-
-    if (itemInfo.type === "weapon") {
-      const chips: React.ReactNode[] = [<DamageBadge key="damage" type={itemInfo.damageType} size="sm" />];
-      if (itemInfo.damageDice) {
-        chips.push(<DiceBadge key="dice" dice={itemInfo.damageDice} size="sm" />);
-      }
-      if (itemInfo.properties?.length) {
-        chips.push(
-          <span key="props" className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">
-            {itemInfo.properties.join(", ")}
-          </span>,
-        );
-      }
-      return chips;
-    }
-
-    if (itemInfo.type === "armor") {
-      return [
-        <span
-          key="ac"
-          className="rounded-md bg-paper-muted px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-ink-muted"
-        >
-          {t(
-            "equipment.armorStats",
-            { ac: itemInfo.baseAC ?? "—", maxDex: itemInfo.maxDex ? ` (max +${itemInfo.maxDex})` : "" },
-            "AC {ac} + Dex{maxDex}",
-          )}
-        </span>,
-      ];
-    }
-
-    if (itemInfo.type === "instrument") {
-      return [
-        <span
-          key="focus"
-          className="rounded-md bg-paper-muted px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-ink-muted"
-        >
-          {t("equipment.spellcastingFocus", "Spellcasting focus")}
-        </span>,
-      ];
-    }
-
-    return [];
-  }, [t]);
-
   const renderItemModalContent = useCallback(
     (itemInfo: any, itemName: string): React.ReactNode => {
       if (!itemInfo) return null;
 
-      const chips = getItemStats(itemInfo);
+      const dice = itemInfo.damageDice;
+      const damageType = itemInfo.damageType;
+      const baseAC = itemInfo.baseAC;
+      const maxDex = itemInfo.maxDex;
+      const properties = (itemInfo.properties || []) as string[];
+      const contents = itemInfo.contents;
 
       return (
         <div className="space-y-4">
-          {chips.length > 0 && <div className="flex flex-wrap gap-2">{chips}</div>}
-          {itemInfo.contents && (
-            <div>
-              <p className="text-[10px] font-bold uppercase tracking-wider text-ink">
-                {t("equipment.contents", "Contents")}
-              </p>
-              <p className="mt-1 text-xs leading-relaxed text-ink">{itemInfo.contents}</p>
+          {(dice || baseAC !== undefined) && (
+            <div className="grid grid-cols-2 gap-2">
+              {dice && (
+                <InfoStatTile
+                  label={t("items.damage", "Kerusakan")}
+                  value={damageType ? `${dice} ${damageType}` : dice}
+                />
+              )}
+              {baseAC !== undefined && (
+                <InfoStatTile
+                  label={t("items.armorClass", "Kelas Armor")}
+                  value={
+                    maxDex === null
+                      ? `${t("items.baseAC", "AC")} ${baseAC} (${t("items.fullDex", "DEX penuh")})`
+                      : maxDex === 0
+                        ? `${t("items.baseAC", "AC")} ${baseAC} (${t("items.noDex", "Tanpa DEX")})`
+                        : `${t("items.baseAC", "AC")} ${baseAC} (+${maxDex} DEX)`
+                  }
+                />
+              )}
             </div>
           )}
+
+          {properties.length > 0 && (
+            <div>
+              <InfoSectionLabel>{t("items.properties", "Sifat")}</InfoSectionLabel>
+              <div className="mt-1.5 flex flex-wrap gap-1.5">
+                {properties.map((prop) => (
+                  <InfoChip key={prop}>{prop}</InfoChip>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {contents && (
+            <div>
+              <InfoSectionLabel>{t("equipment.contains", "Berisi:")}</InfoSectionLabel>
+              <div className="mt-1.5 space-y-1.5">
+                {Array.isArray(contents)
+                  ? contents.map((entry: any, idx: number) => (
+                      <div
+                        key={`${entry.name}-${idx}`}
+                        className="flex items-center justify-between rounded-xl border-2 border-border-strong bg-surface p-2.5"
+                      >
+                        <span className="text-xs font-semibold text-ink">{entry.name}</span>
+                        {entry.quantity > 1 && (
+                          <span className="text-[11px] font-bold text-ink-muted">
+                            ×{entry.quantity}
+                          </span>
+                        )}
+                      </div>
+                    ))
+                  : (
+                    <p className="text-xs leading-relaxed text-ink-muted">{contents}</p>
+                  )}
+              </div>
+            </div>
+          )}
+
           {itemInfo.description && (
-            <p className="mt-2 text-xs leading-relaxed text-ink">{itemInfo.description}</p>
+            <div>
+              <InfoSectionLabel>{t("equipment.itemDetails", "Detail Item")}</InfoSectionLabel>
+              <p className="mt-1 text-xs leading-relaxed text-ink-muted">{itemInfo.description}</p>
+            </div>
           )}
         </div>
       );
     },
-    [t, getItemStats],
+    [t],
   );
 
   const grantedItems = useMemo(() => data.inventory.filter((item) => item.isGranted), [data.inventory]);

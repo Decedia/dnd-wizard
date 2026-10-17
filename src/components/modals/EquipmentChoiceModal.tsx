@@ -1,9 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { createPortal } from "react-dom";
+import { useEffect } from "react";
 import type { ReactNode } from "react";
-import { CheckIcon as Check, PackageIcon as PackageBox } from "@/components/icons";
+import { PackageIcon as PackageBox } from "@/components/icons";
 import { ItemBundleList } from "@/components/modals/ItemBundle";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
@@ -62,12 +61,6 @@ export function EquipmentChoiceModal({
   getItemInfo,
 }: EquipmentChoiceModalProps) {
   const { t } = useLanguage();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    return () => setMounted(false);
-  }, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -80,21 +73,28 @@ export function EquipmentChoiceModal({
     };
   }, [isOpen]);
 
-  if (!isOpen || !mounted) return null;
+  if (!isOpen) return null;
 
   const hasConcrete = concreteOptions.length > 0;
   const hasWeaponChoices = weaponChoiceOptions.length > 0;
 
   const stickyFooter = (
-    <div className="sticky bottom-0 bg-[var(--color-surface)] border-t border-[var(--color-border)] px-4 py-3">
+    <div className="bg-[var(--color-surface)] border-t border-[var(--color-border)] px-4 py-3 flex flex-wrap gap-2">
+      <button
+        type="button"
+        onClick={onClose}
+        className="flex-1 py-2.5 px-4 text-sm font-medium rounded-lg border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:bg-[var(--color-bg)] transition-colors"
+      >
+        {t("common.back", "Back")}
+      </button>
       <button
         type="button"
         onClick={onConfirm}
         disabled={confirmDisabled}
-        className={`w-full py-3 rounded-full font-bold text-sm transition-colors ${
-          !confirmDisabled
-            ? "bg-[var(--color-ink)] text-[var(--color-surface)] hover:opacity-90"
-            : "bg-[var(--color-border)] text-[var(--color-text-muted)] cursor-not-allowed"
+        className={`flex-1 py-2.5 px-4 text-sm font-semibold rounded-lg transition-all ${
+          confirmDisabled
+            ? "bg-[var(--color-bg)] text-[var(--color-text-muted)] cursor-not-allowed"
+            : "bg-[var(--color-accent-indigo-600)] text-white hover:bg-[var(--color-accent-indigo-700)] active:bg-[var(--color-accent-indigo-800)]"
         }`}
       >
         {t("equipment.confirmSelection", "Confirm selection")}
@@ -102,39 +102,41 @@ export function EquipmentChoiceModal({
     </div>
   );
 
-  return createPortal(
+  return (
     <BottomSheet isOpen={isOpen} onClose={onClose} title={title} footer={stickyFooter} showHeader={false}>
-      <div className="px-4 pt-4 pb-8 space-y-4">
+      <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain p-4 pb-8">
         {hasConcrete && (
-          <div className="space-y-2">
-            <div className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">
+          <div className="space-y-3">
+            <span className="block text-[10px] font-bold uppercase tracking-wider text-ink-muted">
               {t("equipment.choosePackage", "Pilih paket perlengkapan")}
-            </div>
-            {concreteOptions.map((opt, idx) => {
+            </span>
+            {concreteOptions.map((opt) => {
               const globalIdx = group.options.indexOf(opt);
               const isSelected = selectedConcreteIndex === globalIdx;
               const bundleItems = (opt.items || []).map((i) => ({
                 name: i.name,
-                quantity: i.quantity,
+                quantity: i.quantity || 1,
               }));
-              const summary = bundleItems
-                .map((item) => item.name + (item.quantity > 1 ? " x" + item.quantity : ""))
-                .join(", ");
               return (
                 <SplitSelectionCard
-                  key={globalIdx}
-                  title={opt.description || `Option ${idx + 1}`}
-                  subtitle={summary}
+                  key={opt.description || globalIdx}
+                  title={opt.description || t("equipment.optionLabel", { n: globalIdx + 1 }, "Opsi {n}")}
+                  icon={<PackageBox className="h-6 w-6 text-ink-muted" />}
                   isSelected={isSelected}
                   onSelect={() => onConcreteSelect(globalIdx)}
-                  infoType="expand"
-                  isExpanded={isSelected}
-                  expandedContent={
-                    <ItemBundleList
-                      items={bundleItems}
-                      getInfo={getItemInfo}
-                      emptyLabel={t("equipment.noItems", "Tidak ada barang.")}
-                    />
+                  infoType="modal"
+                  modalContent={
+                    <div className="space-y-3">
+                      {bundleItems.length > 0 ? (
+                        <ItemBundleList
+                          items={bundleItems}
+                          getInfo={getItemInfo}
+                          emptyLabel={t("equipment.noItems", "Tidak ada barang.")}
+                        />
+                      ) : (
+                        <p className="text-xs text-ink-muted">{t("equipment.noItems", "Tidak ada barang.")}</p>
+                      )}
+                    </div>
                   }
                 />
               );
@@ -143,10 +145,10 @@ export function EquipmentChoiceModal({
         )}
 
         {hasWeaponChoices && hasConcrete && (
-          <div className="border-t-2 border-border-muted pt-3">
-            <div className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">
+          <div className="border-t-2 border-border-muted pt-3 mt-2">
+            <span className="block text-[10px] font-bold uppercase tracking-wider text-ink-muted">
               {t("equipment.orChooseWeapons", "Atau pilih senjata")}
-            </div>
+            </span>
           </div>
         )}
 
@@ -154,44 +156,51 @@ export function EquipmentChoiceModal({
           weaponChoiceOptions.map((wc, wcIdx) => {
             const isWeaponChoiceSelected = selectedWeaponChoiceIndex === wcIdx;
             return (
-              <div key={wc.id} className="space-y-2">
+              <div key={wc.id} className="space-y-3">
                 <SplitSelectionCard
                   title={wc.label}
-                  subtitle={t(
-                    "equipment.chooseWeapons",
-                    { count: wc.selectionCount },
-                    "Pilih {count} senjata",
-                  )}
+                  subtitle={t("equipment.chooseWeapons", { count: wc.selectionCount }, "Pilih {count} senjata")}
+                  icon={<PackageBox className="h-6 w-6 text-ink-muted" />}
                   isSelected={isWeaponChoiceSelected}
                   onSelect={() => onWeaponChoiceSelect(wcIdx)}
-                  infoType="expand"
-                  isExpanded={isWeaponChoiceSelected}
-                  expandedContent={
-                    <div className="space-y-3">
-                      <ItemBundleList
-                        items={wc.bonusItems || []}
-                        getInfo={getItemInfo}
-                        showIncluded
-                      />
-                      <div className="space-y-1.5">
+                  infoType="modal"
+                  modalContent={
+                    <div className="space-y-4">
+                      {wc.bonusItems && wc.bonusItems.length > 0 && (
+                        <div>
+                          <span className="block text-[10px] font-bold uppercase tracking-wider text-ink-muted">
+                            {t("equipment.contains", "Berisi:")}
+                          </span>
+                          <div className="mt-1.5">
+                            <ItemBundleList
+                              items={wc.bonusItems}
+                              getInfo={getItemInfo}
+                              showIncluded
+                            />
+                          </div>
+                        </div>
+                      )}
+                      <div className="space-y-2">
                         {wc.weaponOptions.map((weapon, wIdx) => {
-                          const isWeaponSelected = wc.selectedWeaponNames.includes(
-                            weapon.name,
-                          );
-                          const weaponInfo = getItemInfo?.(weapon.name);
+                          const isWeaponSelected = wc.selectedWeaponNames.includes(weapon.name);
                           return (
                             <SplitSelectionCard
                               key={wIdx}
                               title={weapon.name}
-                              subtitle={weapon.description}
+                              subtitle={weapon.description || undefined}
                               icon={weapon.icon || <PackageBox className="h-6 w-6 text-ink-muted" />}
                               isSelected={isWeaponSelected}
                               onSelect={() => wc.onWeaponSelect(weapon.name)}
                               infoType="modal"
                               modalContent={
-                                <p className="text-xs leading-relaxed text-ink-muted">
-                                  {weaponInfo?.description || ""}
-                                </p>
+                                <div className="space-y-3">
+                                  {weapon.description && (
+                                    <p className="text-xs leading-relaxed text-ink-muted">{weapon.description}</p>
+                                  )}
+                                  {weapon.statSummary && (
+                                    <p className="text-xs font-medium text-ink">{weapon.statSummary}</p>
+                                  )}
+                                </div>
                               }
                             />
                           );
@@ -203,7 +212,7 @@ export function EquipmentChoiceModal({
               </div>
             );
           })}
-      </div>    </BottomSheet>,
-    document.body
+      </div>
+    </BottomSheet>
   );
 }
