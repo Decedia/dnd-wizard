@@ -1,0 +1,2188 @@
+================================================================================
+LEVEL UP WIZARD GAP ANALYSIS - Complete Report
+================================================================================
+
+Methodology: Analyzed all classes (levels 1-20) and subclasses from
+en/2014_classes.json and en/2014_subclasses.json. Compared against
+LevelUpWizard.tsx implementation to identify choice features that are
+NOT handled by the wizard.
+
+A choice feature is considered HANDLED if:
+  1. It has 'choices' in the class/subclass data (LevelUpWizard reads it directly)
+  2. It has choices in subclass_feature_choices.json (merged by getStaticSubclasses)
+  3. It's in the hardcoded handled list (Pact Boon, Invocations, etc.)
+
+================================================================================
+
+PART 1: CLASS-LEVEL CHOICE FEATURES (Levels 1-20)
+==================================================
+
+
+------------------------------------------------------------------------------
+CLASS: BARBARIAN (subclass at level 3)
+------------------------------------------------------------------------------
+
+  Level 1 
+    [PASSIVE] Rage
+    [PASSIVE] Unarmored Defense
+
+  Level 2 
+    [PASSIVE] Reckless Attack
+    [PASSIVE] Danger Sense
+
+  Level 3 
+    [CHOICE] Subclass Selection - [HANDLED]
+      Options: Ancestral Guardian, Berserker, Path of the Beast, Path of Wild Magic, Storm Herald, Totem Warrior, Zealot
+    [PASSIVE] Primal Path
+
+  Level 4 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 5 
+    [PASSIVE] Extra Attack
+    [PASSIVE] Fast Movement
+
+  Level 6 
+    [PASSIVE] Path feature
+
+  Level 7 
+    [PASSIVE] Feral Instinct
+
+  Level 8 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 9 
+    [PASSIVE] Brutal Critical (1 die)
+
+  Level 10 
+    [PASSIVE] Path feature
+    [PASSIVE] Primal Knowledge
+
+  Level 11 
+    [PASSIVE] Relentless Rage
+
+  Level 12 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 13 
+    [PASSIVE] Brutal Critical (2 dice)
+
+  Level 14 
+    [PASSIVE] Path feature
+
+  Level 15 
+    [PASSIVE] Persistent Rage
+
+  Level 16 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 17 
+    [PASSIVE] Brutal Critical (3 dice)
+
+  Level 18 
+    [PASSIVE] Indomitable Might
+
+  Level 19 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 20 
+    [PASSIVE] Primal Champion
+
+------------------------------------------------------------------------------
+CLASS: BARD (subclass at level 3)
+------------------------------------------------------------------------------
+
+  Level 1 
+    [PASSIVE] Spellcasting: Bard
+    [PASSIVE] Bardic Inspiration (d6)
+
+  Level 2 
+    [PASSIVE] Jack of All Trades
+    [PASSIVE] Song of Rest (d6)
+
+  Level 3 
+    [CHOICE] Subclass Selection - [HANDLED]
+      Options: College of Creation, College of Eloquence, College of Glamour, College of Spirits, College of Swords, College of Whispers, Lore, Valor
+    [CHOICE] Expertise (2x) - [HANDLED]
+      Options: Acrobatics, Animal Handling, Arcana, Athletics, Deception, History, Insight, Intimidation, Investigation, Medicine, Nature, Perception, Performance, Persuasion, Religion, Sleight of Hand, Stealth, Survival
+    [PASSIVE] Bard College
+
+  Level 4 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 5 
+    [PASSIVE] Bardic Inspiration (d8)
+    [PASSIVE] Font of Inspiration
+
+  Level 6 
+    [PASSIVE] Countercharm
+    [PASSIVE] Bard College feature
+
+  Level 7 
+
+  Level 8 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 9 
+    [PASSIVE] Song of Rest (d8)
+
+  Level 10 
+    [CHOICE] Expertise (2x) - [HANDLED]
+      Options: Acrobatics, Animal Handling, Arcana, Athletics, Deception, History, Insight, Intimidation, Investigation, Medicine, Nature, Perception, Performance, Persuasion, Religion, Sleight of Hand, Stealth, Survival
+    [PASSIVE] Bardic Inspiration (d10)
+    [CHOICE] Magical Secrets (2x) - [HANDLED]
+      Options: Acid Arrow, Acid Splash, Aid, Alarm, Alter Self, Animal Friendship, Animal Messenger, Animate Dead, Arcane Eye, Arcane Lock, Arcanist's Magic Aura, Augury, Bane, Banishment, Barkskin, Beacon of Hope, Bestow Curse, Black Tentacles, Bless, Blight, Blindness/Deafness, Blink, Blur, Branding Smite, Burning Hands, Call Lightning, Calm Emotions, Charm Person, Chill Touch, Clairvoyance, Color Spray, Command, Comprehend Languages, Compulsion, Confusion, Conjure Animals, Conjure Minor Elementals, Conjure Woodland Beings, Continual Flame, Control Water, Counterspell, Create Food and Water, Create or Destroy Water, Cure Wounds, Dancing Lights, Darkness, Darkvision, Daylight, Death Ward, Detect Evil and Good, Detect Magic, Detect Poison and Disease, Detect Thoughts, Dimension Door, Disguise Self, Dispel Magic, Divination, Divine Favor, Dominate Beast, Druidcraft, Eldritch Blast, Enhance Ability, Enlarge/Reduce, Entangle, Enthrall, Expeditious Retreat, Fabricate, Faerie Fire, Faithful Hound, False Life, Fear, Feather Fall, Find Familiar, Find Steed, Find Traps, Fire Bolt, Fire Shield, Fireball, Flame Blade, Flaming Sphere, Floating Disk, Fly, Fog Cloud, Freedom of Movement, Gaseous Form, Gentle Repose, Giant Insect, Glyph of Warding, Goodberry, Grease, Greater Invisibility, Guardian of Faith, Guidance, Guiding Bolt, Gust of Wind, Hallucinatory Terrain, Haste, Healing Word, Heat Metal, Hellish Rebuke, Heroism, Hideous Laughter, Hold Person, Hunter's Mark, Hypnotic Pattern, Ice Storm, Identify, Illusory Script, Inflict Wounds, Invisibility, Jump, Knock, Lesser Restoration, Levitate, Light, Lightning Bolt, Locate Animals or Plants, Locate Creature, Locate Object, Longstrider, Mage Armor, Mage Hand, Magic Circle, Magic Missile, Magic Mouth, Magic Weapon, Major Image, Mass Healing Word, Meld Into Stone, Mending, Message, Minor Illusion, Mirror Image, Misty Step, Moonbeam, Nondetection, Pass Without Trace, Phantasmal Killer, Phantom Steed, Plant Growth, Poison Spray, Polymorph, Prayer of Healing, Prestidigitation, Private Sanctum, Produce Flame, Protection From Energy, Protection from Evil and Good, Protection from Poison, Purify Food and Drink, Ray of Enfeeblement, Ray of Frost, Remove Curse, Resilient Sphere, Resistance, Revivify, Rope Trick, Sacred Flame, Sanctuary, Scorching Ray, Secret Chest, See Invisibility, Sending, Shatter, Shield, Shield of Faith, Shillelagh, Shocking Grasp, Silence, Silent Image, Sleep, Sleet Storm, Slow, Spare the Dying, Speak with Animals, Speak with Dead, Speak with Plants, Spider Climb, Spike Growth, Spirit Guardians, Spiritual Weapon, Stinking Cloud, Stone Shape, Stoneskin, Suggestion, Thaumaturgy, Thunderwave, Tiny Hut, Tongues, True Strike, Unseen Servant, Vampiric Touch, Vicious Mockery, Wall of Fire, Warding Bond, Water Breathing, Water Walk, Web, Wind Wall, Zone of Truth
+
+  Level 11 
+
+  Level 12 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 13 
+    [PASSIVE] Song of Rest (d10)
+
+  Level 14 
+    [CHOICE] Magical Secrets (2x) - [HANDLED]
+      Options: Acid Arrow, Acid Splash, Aid, Alarm, Alter Self, Animal Friendship, Animal Messenger, Animate Dead, Animate Objects, Antilife Shell, Arcane Eye, Arcane Hand, Arcane Lock, Arcanist's Magic Aura, Augury, Awaken, Bane, Banishment, Barkskin, Beacon of Hope, Bestow Curse, Black Tentacles, Blade Barrier, Bless, Blight, Blindness/Deafness, Blink, Blur, Branding Smite, Burning Hands, Call Lightning, Calm Emotions, Chain Lightning, Charm Person, Chill Touch, Circle of Death, Clairvoyance, Cloudkill, Color Spray, Command, Commune, Commune With Nature, Comprehend Languages, Compulsion, Cone of Cold, Confusion, Conjure Animals, Conjure Elemental, Conjure Fey, Conjure Minor Elementals, Conjure Woodland Beings, Contact Other Plane, Contagion, Contingency, Continual Flame, Control Water, Counterspell, Create Food and Water, Create or Destroy Water, Create Undead, Creation, Cure Wounds, Dancing Lights, Darkness, Darkvision, Daylight, Death Ward, Detect Evil and Good, Detect Magic, Detect Poison and Disease, Detect Thoughts, Dimension Door, Disguise Self, Disintegrate, Dispel Evil and Good, Dispel Magic, Divination, Divine Favor, Dominate Beast, Dominate Person, Dream, Druidcraft, Eldritch Blast, Enhance Ability, Enlarge/Reduce, Entangle, Enthrall, Expeditious Retreat, Eyebite, Fabricate, Faerie Fire, Faithful Hound, False Life, Fear, Feather Fall, Find Familiar, Find Steed, Find the Path, Find Traps, Fire Bolt, Fire Shield, Fireball, Flame Blade, Flame Strike, Flaming Sphere, Flesh to Stone, Floating Disk, Fly, Fog Cloud, Forbiddance, Freedom of Movement, Freezing Sphere, Gaseous Form, Geas, Gentle Repose, Giant Insect, Globe of Invulnerability, Glyph of Warding, Goodberry, Grease, Greater Invisibility, Greater Restoration, Guardian of Faith, Guards and Wards, Guidance, Guiding Bolt, Gust of Wind, Hallow, Hallucinatory Terrain, Harm, Haste, Heal, Healing Word, Heat Metal, Hellish Rebuke, Heroes' Feast, Heroism, Hideous Laughter, Hold Monster, Hold Person, Hunter's Mark, Hypnotic Pattern, Ice Storm, Identify, Illusory Script, Inflict Wounds, Insect Plague, Instant Summons, Invisibility, Irresistible Dance, Jump, Knock, Legend Lore, Lesser Restoration, Levitate, Light, Lightning Bolt, Locate Animals or Plants, Locate Creature, Locate Object, Longstrider, Mage Armor, Mage Hand, Magic Circle, Magic Jar, Magic Missile, Magic Mouth, Magic Weapon, Major Image, Mass Cure Wounds, Mass Healing Word, Mass Suggestion, Meld Into Stone, Mending, Message, Minor Illusion, Mirror Image, Mislead, Misty Step, Modify Memory, Moonbeam, Move Earth, Nondetection, Pass Without Trace, Passwall, Phantasmal Killer, Phantom Steed, Planar Ally, Planar Binding, Plant Growth, Poison Spray, Polymorph, Prayer of Healing, Prestidigitation, Private Sanctum, Produce Flame, Programmed Illusion, Protection From Energy, Protection from Evil and Good, Protection from Poison, Purify Food and Drink, Raise Dead, Ray of Enfeeblement, Ray of Frost, Reincarnate, Remove Curse, Resilient Sphere, Resistance, Revivify, Rope Trick, Sacred Flame, Sanctuary, Scorching Ray, Scrying, Secret Chest, See Invisibility, Seeming, Sending, Shatter, Shield, Shield of Faith, Shillelagh, Shocking Grasp, Silence, Silent Image, Sleep, Sleet Storm, Slow, Spare the Dying, Speak with Animals, Speak with Dead, Speak with Plants, Spider Climb, Spike Growth, Spirit Guardians, Spiritual Weapon, Stinking Cloud, Stone Shape, Stoneskin, Suggestion, Sunbeam, Telekinesis, Telepathic Bond, Teleportation Circle, Thaumaturgy, Thunderwave, Tiny Hut, Tongues, Transport via Plants, Tree Stride, True Seeing, True Strike, Unseen Servant, Vampiric Touch, Vicious Mockery, Wall of Fire, Wall of Force, Wall of Ice, Wall of Stone, Wall of Thorns, Warding Bond, Water Breathing, Water Walk, Web, Wind Walk, Wind Wall, Word of Recall, Zone of Truth
+    [PASSIVE] Bard College feature
+
+  Level 15 
+    [PASSIVE] Bardic Inspiration (d12)
+
+  Level 16 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 17 
+    [PASSIVE] Song of Rest (d12)
+
+  Level 18 
+    [CHOICE] Magical Secrets (2x) - [HANDLED]
+      Options: Acid Arrow, Acid Splash, Aid, Alarm, Alter Self, Animal Friendship, Animal Messenger, Animal Shapes, Animate Dead, Animate Objects, Antilife Shell, Antimagic Field, Antipathy/Sympathy, Arcane Eye, Arcane Hand, Arcane Lock, Arcane Sword, Arcanist's Magic Aura, Augury, Awaken, Bane, Banishment, Barkskin, Beacon of Hope, Bestow Curse, Black Tentacles, Blade Barrier, Bless, Blight, Blindness/Deafness, Blink, Blur, Branding Smite, Burning Hands, Call Lightning, Calm Emotions, Chain Lightning, Charm Person, Chill Touch, Circle of Death, Clairvoyance, Clone, Cloudkill, Color Spray, Command, Commune, Commune With Nature, Comprehend Languages, Compulsion, Cone of Cold, Confusion, Conjure Animals, Conjure Celestial, Conjure Elemental, Conjure Fey, Conjure Minor Elementals, Conjure Woodland Beings, Contact Other Plane, Contagion, Contingency, Continual Flame, Control Water, Control Weather, Counterspell, Create Food and Water, Create or Destroy Water, Create Undead, Creation, Cure Wounds, Dancing Lights, Darkness, Darkvision, Daylight, Death Ward, Delayed Blast Fireball, Demiplane, Detect Evil and Good, Detect Magic, Detect Poison and Disease, Detect Thoughts, Dimension Door, Disguise Self, Disintegrate, Dispel Evil and Good, Dispel Magic, Divination, Divine Favor, Divine Word, Dominate Beast, Dominate Monster, Dominate Person, Dream, Druidcraft, Earthquake, Eldritch Blast, Enhance Ability, Enlarge/Reduce, Entangle, Enthrall, Etherealness, Expeditious Retreat, Eyebite, Fabricate, Faerie Fire, Faithful Hound, False Life, Fear, Feather Fall, Feeblemind, Find Familiar, Find Steed, Find the Path, Find Traps, Finger of Death, Fire Bolt, Fire Shield, Fire Storm, Fireball, Flame Blade, Flame Strike, Flaming Sphere, Flesh to Stone, Floating Disk, Fly, Fog Cloud, Forbiddance, Forcecage, Freedom of Movement, Freezing Sphere, Gaseous Form, Geas, Gentle Repose, Giant Insect, Glibness, Globe of Invulnerability, Glyph of Warding, Goodberry, Grease, Greater Invisibility, Greater Restoration, Guardian of Faith, Guards and Wards, Guidance, Guiding Bolt, Gust of Wind, Hallow, Hallucinatory Terrain, Harm, Haste, Heal, Healing Word, Heat Metal, Hellish Rebuke, Heroes' Feast, Heroism, Hideous Laughter, Hold Monster, Hold Person, Holy Aura, Hunter's Mark, Hypnotic Pattern, Ice Storm, Identify, Illusory Script, Incendiary Cloud, Inflict Wounds, Insect Plague, Instant Summons, Invisibility, Irresistible Dance, Jump, Knock, Legend Lore, Lesser Restoration, Levitate, Light, Lightning Bolt, Locate Animals or Plants, Locate Creature, Locate Object, Longstrider, Mage Armor, Mage Hand, Magic Circle, Magic Jar, Magic Missile, Magic Mouth, Magic Weapon, Magnificent Mansion, Major Image, Mass Cure Wounds, Mass Healing Word, Mass Suggestion, Maze, Meld Into Stone, Mending, Message, Mind Blank, Minor Illusion, Mirage Arcane, Mirror Image, Mislead, Misty Step, Modify Memory, Moonbeam, Move Earth, Nondetection, Pass Without Trace, Passwall, Phantasmal Killer, Phantom Steed, Planar Ally, Planar Binding, Plane Shift, Plant Growth, Poison Spray, Polymorph, Power Word Stun, Prayer of Healing, Prestidigitation, Prismatic Spray, Private Sanctum, Produce Flame, Programmed Illusion, Project Image, Protection From Energy, Protection from Evil and Good, Protection from Poison, Purify Food and Drink, Raise Dead, Ray of Enfeeblement, Ray of Frost, Regenerate, Reincarnate, Remove Curse, Resilient Sphere, Resistance, Resurrection, Reverse Gravity, Revivify, Rope Trick, Sacred Flame, Sanctuary, Scorching Ray, Scrying, Secret Chest, See Invisibility, Seeming, Sending, Sequester, Shatter, Shield, Shield of Faith, Shillelagh, Shocking Grasp, Silence, Silent Image, Simulacrum, Sleep, Sleet Storm, Slow, Spare the Dying, Speak with Animals, Speak with Dead, Speak with Plants, Spider Climb, Spike Growth, Spirit Guardians, Spiritual Weapon, Stinking Cloud, Stone Shape, Stoneskin, Suggestion, Sunbeam, Sunburst, Symbol, Telekinesis, Telepathic Bond, Teleport, Teleportation Circle, Thaumaturgy, Thunderwave, Tiny Hut, Tongues, Transport via Plants, Tree Stride, True Seeing, True Strike, Unseen Servant, Vampiric Touch, Vicious Mockery, Wall of Fire, Wall of Force, Wall of Ice, Wall of Stone, Wall of Thorns, Warding Bond, Water Breathing, Water Walk, Web, Wind Walk, Wind Wall, Word of Recall, Zone of Truth
+
+  Level 19 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 20 
+    [PASSIVE] Superior Inspiration
+
+------------------------------------------------------------------------------
+CLASS: CLERIC (subclass at level 1)
+------------------------------------------------------------------------------
+
+  Level 1 
+    [CHOICE] Subclass Selection - [HANDLED]
+      Options: Arcana Domain, Death Domain, Forge Domain, Grave Domain, Knowledge, Life, Light, Nature, Order Domain, Peace Domain, Tempest, Trickery, Twilight Domain, War
+    [PASSIVE] Spellcasting: Cleric
+    [PASSIVE] Divine Domain
+    [PASSIVE] Domain Spells
+
+  Level 2 
+    [PASSIVE] Channel Divinity (1/rest)
+    [PASSIVE] Channel Divinity: Turn Undead
+    [PASSIVE] Divine Domain feature
+
+  Level 3 
+    [PASSIVE] Domain Spells
+
+  Level 4 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 5 
+    [PASSIVE] Domain Spells
+    [PASSIVE] Destroy Undead (CR 1/2 or below)
+
+  Level 6 
+    [PASSIVE] Channel Divinity (2/rest)
+    [PASSIVE] Divine Domain feature
+
+  Level 7 
+    [PASSIVE] Domain Spells
+
+  Level 8 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+    [PASSIVE] Destroy Undead (CR 1 or below)
+    [PASSIVE] Divine Domain feature
+
+  Level 9 
+    [PASSIVE] Domain Spells
+
+  Level 10 
+    [PASSIVE] Divine Intervention
+
+  Level 11 
+    [PASSIVE] Destroy Undead (CR 2 or below)
+
+  Level 12 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 13 
+
+  Level 14 
+    [PASSIVE] Destroy Undead (CR 3 or below)
+
+  Level 15 
+
+  Level 16 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 17 
+    [PASSIVE] Destroy Undead (CR 4 or below)
+    [PASSIVE] Divine Domain feature
+
+  Level 18 
+    [PASSIVE] Channel Divinity (3/rest)
+
+  Level 19 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 20 
+    [PASSIVE] Divine Intervention Improvement
+
+------------------------------------------------------------------------------
+CLASS: DRUID (subclass at level 2)
+------------------------------------------------------------------------------
+
+  Level 1 
+    [PASSIVE] Spellcasting: Druid
+    [PASSIVE] Druidic
+
+  Level 2 
+    [CHOICE] Subclass Selection - [HANDLED]
+      Options: Circle of Dreams, Circle of Spores, Circle of Stars, Circle of the Sea, Circle of the Shepherd, Circle of Wildfire, Land, Moon
+    [PASSIVE] Wild Shape (CR 1/4 or below, no flying or swim speed)
+    [PASSIVE] Druid Circle
+
+  Level 3 
+
+  Level 4 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Wild Shape (CR 1/2 or below, no flying speed)
+    [PASSIVE] Ability Score Improvement
+
+  Level 5 
+
+  Level 6 
+    [PASSIVE] Druid Circle feature
+
+  Level 7 
+
+  Level 8 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Wild Shape (CR 1 or below)
+    [PASSIVE] Ability Score Improvement
+
+  Level 9 
+
+  Level 10 
+    [PASSIVE] Druid Circle feature
+
+  Level 11 
+
+  Level 12 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 13 
+
+  Level 14 
+    [PASSIVE] Druid Circle feature
+
+  Level 15 
+
+  Level 16 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 17 
+
+  Level 18 
+    [PASSIVE] Timeless Body
+    [PASSIVE] Beast Spells
+
+  Level 19 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 20 
+    [PASSIVE] Archdruid
+
+------------------------------------------------------------------------------
+CLASS: FIGHTER (subclass at level 3)
+------------------------------------------------------------------------------
+
+  Level 1 
+    [CHOICE] Fighting Style (1x) - [MISSING]
+      Options: Archery, Blind Fighting, Defense, Dueling, Great Weapon Fighting, Interception, Protection, Superior Technique, Thrown Weapon Fighting, Two-Weapon Fighting, Unarmed Fighting
+    [PASSIVE] Second Wind
+
+  Level 2 
+    [PASSIVE] Action Surge (1 use)
+
+  Level 3 
+    [CHOICE] Subclass Selection - [HANDLED]
+      Options: Arcane Archer, Battle Master, Cavalier, Champion, Echo Knight, Eldritch Knight, Psi Warrior, Rune Knight, Samurai
+    [PASSIVE] Martial Archetype
+
+  Level 4 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 5 
+    [PASSIVE] Extra Attack
+
+  Level 6 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 7 
+    [PASSIVE] Martial Archetype feature
+
+  Level 8 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 9 
+    [PASSIVE] Indomitable (1 use)
+
+  Level 10 
+    [PASSIVE] Martial Archetype feature
+
+  Level 11 
+    [PASSIVE] Extra Attack (2)
+
+  Level 12 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 13 
+    [PASSIVE] Indomitable (2 uses)
+
+  Level 14 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 15 
+    [PASSIVE] Martial Archetype feature
+
+  Level 16 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 17 
+    [PASSIVE] Action Surge (2 uses)
+    [PASSIVE] Indomitable (3 uses)
+
+  Level 18 
+    [PASSIVE] Martial Archetype feature
+
+  Level 19 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 20 
+    [PASSIVE] Extra Attack (3)
+
+------------------------------------------------------------------------------
+CLASS: MONK (subclass at level 3)
+------------------------------------------------------------------------------
+
+  Level 1 
+    [PASSIVE] Unarmored Defense
+    [PASSIVE] Martial Arts
+
+  Level 2 
+    [PASSIVE] Ki
+    [PASSIVE] Flurry of Blows
+    [PASSIVE] Patient Defense
+    [PASSIVE] Step of the Wind
+    [PASSIVE] Unarmored Movement
+
+  Level 3 
+    [CHOICE] Subclass Selection - [HANDLED]
+      Options: Ascendant Dragon, Open Hand, Shadow, Way of Mercy, Way of the Astral Self, Way of the Drunken Master, Way of the Four Elements, Way of the Kensei, Way of the Long Death, Way of the Sun Soul
+    [PASSIVE] Monastic Tradition
+    [PASSIVE] Deflect Missiles
+
+  Level 4 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+    [PASSIVE] Slow Fall
+
+  Level 5 
+    [PASSIVE] Extra Attack
+    [PASSIVE] Stunning Strike
+
+  Level 6 
+    [PASSIVE] Ki Empowered Strikes
+    [PASSIVE] Monastic Tradition feature
+
+  Level 7 
+    [PASSIVE] Evasion
+    [PASSIVE] Stillness of Mind
+
+  Level 8 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 9 
+    [PASSIVE] Unarmored Movement
+
+  Level 10 
+    [PASSIVE] Purity of Body
+
+  Level 11 
+    [PASSIVE] Monastic Tradition feature
+
+  Level 12 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 13 
+    [PASSIVE] Tongue of the Sun and Moon
+
+  Level 14 
+    [PASSIVE] Diamond Soul
+
+  Level 15 
+    [PASSIVE] Timeless Body
+
+  Level 16 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 17 
+    [PASSIVE] Monastic Tradition feature
+
+  Level 18 
+    [PASSIVE] Empty Body
+
+  Level 19 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 20 
+    [PASSIVE] Perfect Self
+
+------------------------------------------------------------------------------
+CLASS: PALADIN (subclass at level 3)
+------------------------------------------------------------------------------
+
+  Level 1 
+    [PASSIVE] Divine Sense
+    [PASSIVE] Lay on Hands
+
+  Level 2 
+    [CHOICE] Fighting Style (1x) - [MISSING]
+      Options: Archery, Defense, Dueling, Great Weapon Fighting, Protection, Two-Weapon Fighting
+    [PASSIVE] Spellcasting: Paladin
+    [PASSIVE] Divine Smite
+
+  Level 3 
+    [CHOICE] Subclass Selection - [HANDLED]
+      Options: Ancients, Devotion, Draconic Disciple, Oath of Conquest, Oath of Glory, Oath of Redemption, Oath of the Crown, Oath of the Watchers, Oathbreaker, Vengeance
+    [PASSIVE] Divine Health
+    [PASSIVE] Sacred Oath
+    [PASSIVE] Oath Spells
+    [PASSIVE] Channel Divinity
+
+  Level 4 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 5 
+    [PASSIVE] Extra Attack
+
+  Level 6 
+    [PASSIVE] Aura of Protection
+
+  Level 7 
+    [PASSIVE] Sacred Oath feature
+
+  Level 8 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 9 
+
+  Level 10 
+    [PASSIVE] Aura of Courage
+
+  Level 11 
+    [PASSIVE] Improved Divine Smite
+
+  Level 12 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 13 
+
+  Level 14 
+    [PASSIVE] Cleansing Touch
+
+  Level 15 
+    [PASSIVE] Sacred Oath feature
+
+  Level 16 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 17 
+
+  Level 18 
+    [PASSIVE] Aura improvements
+
+  Level 19 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 20 
+    [PASSIVE] Sacred Oath feature
+
+------------------------------------------------------------------------------
+CLASS: RANGER (subclass at level 3)
+------------------------------------------------------------------------------
+
+  Level 1 
+    [CHOICE] Favored Enemy (1 type) (1x) - [MISSING]
+      Options: Aberrations, Beasts, Celestials, Constructs, Dragons, Elementals, Fey, Fiends, Giants, Monstrosities, Oozes, Plants, Undead, Humanoid (2 races)
+    [CHOICE] Natural Explorer (1 terrain type) (1x) - [MISSING]
+      Options: Arctic, Coast, Desert, Forest, Grassland, Mountain, Swamp, Underdark
+
+  Level 2 
+    [CHOICE] Fighting Style (1x) - [MISSING]
+      Options: Archery, Defense, Dueling, Great Weapon Fighting, Protection, Two-Weapon Fighting
+    [PASSIVE] Spellcasting: Ranger
+
+  Level 3 
+    [CHOICE] Subclass Selection - [HANDLED]
+      Options: Beast Master, Drake Warden, Fey Wanderer, Gloom Stalker, Horizon Walker, Hunter, Monster Slayer, Swarmkeeper
+    [PASSIVE] Ranger Archetype
+    [PASSIVE] Primeval Awareness
+
+  Level 4 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 5 
+    [PASSIVE] Extra Attack
+
+  Level 6 
+    [CHOICE] Favored Enemy (2 types) (1x) - [MISSING]
+      Options: Aberrations, Beasts, Celestials, Constructs, Dragons, Elementals, Fey, Fiends, Giants, Monstrosities, Oozes, Plants, Undead, Humanoid (2 races)
+    [CHOICE] Natural Explorer (2 terrain types) (1x) - [MISSING]
+      Options: Arctic, Coast, Desert, Forest, Grassland, Mountain, Swamp, Underdark
+
+  Level 7 
+    [PASSIVE] Ranger Archetype feature
+
+  Level 8 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+    [PASSIVE] Land's Stride
+
+  Level 9 
+
+  Level 10 
+    [CHOICE] Natural Explorer (3 terrain types) (1x) - [MISSING]
+      Options: Arctic, Coast, Desert, Forest, Grassland, Mountain, Swamp, Underdark
+    [PASSIVE] Hide in Plain Sight
+
+  Level 11 
+    [PASSIVE] Ranger Archetype feature
+
+  Level 12 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 13 
+
+  Level 14 
+    [CHOICE] Favored Enemy (3 enemies) (1x) - [MISSING]
+      Options: Aberrations, Beasts, Celestials, Constructs, Dragons, Elementals, Fey, Fiends, Giants, Monstrosities, Oozes, Plants, Undead, Humanoid (2 races)
+    [PASSIVE] Vanish
+
+  Level 15 
+    [PASSIVE] Ranger Archetype feature
+
+  Level 16 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 17 
+
+  Level 18 
+    [PASSIVE] Feral Senses
+
+  Level 19 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 20 
+    [PASSIVE] Foe Slayer
+
+------------------------------------------------------------------------------
+CLASS: ROGUE (subclass at level 3)
+------------------------------------------------------------------------------
+
+  Level 1 
+    [CHOICE] Expertise (2x) - [HANDLED]
+      Options: Acrobatics, Athletics, Deception, Insight, Intimidation, Investigation, Perception, Performance, Persuasion, Sleight of Hand, Stealth, Thieves' Tools
+    [PASSIVE] Sneak Attack
+    [PASSIVE] Thieves' Cant
+
+  Level 2 
+    [PASSIVE] Cunning Action
+
+  Level 3 
+    [CHOICE] Subclass Selection - [HANDLED]
+      Options: Arcane Trickster, Assassin, Inquisitive, Mastermind, Phantom, Scout, Soulknife, Swashbuckler, Thief
+    [PASSIVE] Roguish Archetype
+
+  Level 4 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 5 
+    [PASSIVE] Uncanny Dodge
+
+  Level 6 
+    [CHOICE] Expertise (2x) - [HANDLED]
+      Options: Acrobatics, Athletics, Deception, Insight, Intimidation, Investigation, Perception, Performance, Persuasion, Sleight of Hand, Stealth, Thieves' Tools
+
+  Level 7 
+    [PASSIVE] Evasion
+
+  Level 8 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 9 
+    [PASSIVE] Roguish Archetype feature
+
+  Level 10 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 11 
+    [PASSIVE] Reliable Talent
+
+  Level 12 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 13 
+    [PASSIVE] Roguish Archetype feature
+
+  Level 14 
+    [PASSIVE] Blindsense
+
+  Level 15 
+    [PASSIVE] Slippery Mind
+
+  Level 16 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 17 
+    [PASSIVE] Roguish Archetype feature
+
+  Level 18 
+    [PASSIVE] Elusive
+
+  Level 19 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 20 
+    [PASSIVE] Stroke of Luck
+
+------------------------------------------------------------------------------
+CLASS: SORCERER (subclass at level 1)
+------------------------------------------------------------------------------
+
+  Level 1 
+    [CHOICE] Subclass Selection - [HANDLED]
+      Options: Aberrant Mind, Clockwork Soul, Divine Soul, Draconic, Shadow Magic, Storm Sorcery, Wild Magic
+    [PASSIVE] Spellcasting: Sorcerer
+    [PASSIVE] Sorcerous Origin
+
+  Level 2 
+    [PASSIVE] Font of Magic
+    [PASSIVE] Flexible Casting: Creating Spell Slots
+    [PASSIVE] Flexible Casting: Converting Spell Slot
+
+  Level 3 
+    [CHOICE] Metamagic (2x) - [MISSING]
+      Options: Careful Spell, Distant Spell, Empowered Spell, Extended Spell, Heightened Spell, Quickened Spell, Subtle Spell, Twin Spell
+
+  Level 4 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 5 
+
+  Level 6 
+    [PASSIVE] Sorcerous Origin feature
+
+  Level 7 
+
+  Level 8 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 9 
+
+  Level 10 
+    [CHOICE] Metamagic (1x) - [MISSING]
+      Options: Careful Spell, Distant Spell, Empowered Spell, Extended Spell, Heightened Spell, Quickened Spell, Subtle Spell, Twin Spell
+
+  Level 11 
+
+  Level 12 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 13 
+
+  Level 14 
+    [PASSIVE] Sorcerous Origin feature
+
+  Level 15 
+
+  Level 16 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 17 
+    [CHOICE] Metamagic (1x) - [MISSING]
+      Options: Careful Spell, Distant Spell, Empowered Spell, Extended Spell, Heightened Spell, Quickened Spell, Subtle Spell, Twin Spell
+
+  Level 18 
+    [PASSIVE] Sorcerous Origin feature
+
+  Level 19 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 20 
+    [PASSIVE] Sorcerous Restoration
+
+------------------------------------------------------------------------------
+CLASS: WARLOCK (subclass at level 1)
+------------------------------------------------------------------------------
+
+  Level 1 
+    [CHOICE] Subclass Selection - [HANDLED]
+      Options: Archfey, Fiend, Great Old One, Hexblade, The Celestial, The Fathomless, The Genie, The Undead, Undying
+    [PASSIVE] Otherworldly Patron
+    [PASSIVE] Pact Magic
+
+  Level 2 
+    [CHOICE] Eldritch Invocations (2x) - [HANDLED]
+      Options: Agonizing Blast, Armor of Shadows, Beast Speech, Beguiling Defenses, Bewitching Whispers, Book of Ancient Secrets, Chains of Carceri, Devil's Sight, Dreadful Word, Eldritch Master, Eldritch Sight, Eyes of the Rune Keeper, Fiendish Vigor, Gift of the Depths, Gift of the Ever-Living Ones, Mask of Many Faces, Master of Myriad Forms, Minions of Chaos, Mire the Mind, Misty Visions, One with Shadows, Otherworldly Leap, Piercing Gaze, Poisonous Touch, Protection of the Seraph, Puppet Master, Repelling Blast, Sculptor of Flesh, Sign of Ill Omen, Spirit of the Dead, Starry Form, Tomb of Levistus, Trickster's Escape, Uncanny Armor, Visions of Distant Realms, Whispers of the Grave, Witch Sight
+
+  Level 3 
+    [CHOICE] Pact Boon (1x) - [HANDLED]
+      Options: Pact of the Chain, Pact of the Blade, Pact of the Tome
+
+  Level 4 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 5 
+    [CHOICE] Eldritch Invocations (1x) - [HANDLED]
+      Options: Agonizing Blast, Armor of Shadows, Ascendant Step, Aspect of the Moon, Beast Speech, Beguiling Influence, Bewitching Whispers, Book of Ancient Secrets, Chains of Carceri, Devil's Sight, Dreadful Word, Eldritch Mind, Eldritch Sight, Eldritch Smite, Eldritch Spear, Eyes of the Rune Keeper, Far Scribe, Fiendish Vigor, Gaze of Two Minds, Ghostly Gaze, Gift of the Depths, Gift of the Ever-Living Ones, Gift of the Protectors, Grasp of Hadar, Improved Pact Weapon, Investment of the Chain Master, Lance of Lethargy, Lifedrinker, Maddening Hex, Mask of Many Faces, Master of Myriad Forms, Minions of Chaos, Mire the Mind, Misty Visions, One with Shadows, Otherworldly Leap, Relentless Hex, Repelling Blast, Sculptor of Flesh, Shroud of Shadow, Sign of Ill Omen, Thief of Five Fates, Thirsting Blade, Tomb of Levistus, Trickster's Escape, Undying Servitude, Visions of Distant Realms, Voice of the Chain Master, Whispers of the Grave, Witch Sight
+
+  Level 6 
+    [PASSIVE] Otherworldly Patron feature
+
+  Level 7 
+    [CHOICE] Eldritch Invocations (1x) - [HANDLED]
+      Options: Agonizing Blast, Armor of Shadows, Ascendant Step, Aspect of the Moon, Beast Speech, Beguiling Influence, Bewitching Whispers, Book of Ancient Secrets, Chains of Carceri, Devil's Sight, Dreadful Word, Eldritch Mind, Eldritch Sight, Eldritch Smite, Eldritch Spear, Eyes of the Rune Keeper, Far Scribe, Fiendish Vigor, Gaze of Two Minds, Ghostly Gaze, Gift of the Depths, Gift of the Ever-Living Ones, Gift of the Protectors, Grasp of Hadar, Improved Pact Weapon, Investment of the Chain Master, Lance of Lethargy, Lifedrinker, Maddening Hex, Mask of Many Faces, Master of Myriad Forms, Minions of Chaos, Mire the Mind, Misty Visions, One with Shadows, Otherworldly Leap, Relentless Hex, Repelling Blast, Sculptor of Flesh, Shroud of Shadow, Sign of Ill Omen, Thief of Five Fates, Thirsting Blade, Tomb of Levistus, Trickster's Escape, Undying Servitude, Visions of Distant Realms, Voice of the Chain Master, Whispers of the Grave, Witch Sight
+
+  Level 8 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 9 
+    [CHOICE] Eldritch Invocations (1x) - [HANDLED]
+      Options: Agonizing Blast, Armor of Shadows, Ascendant Step, Aspect of the Moon, Beast Speech, Beguiling Influence, Bewitching Whispers, Book of Ancient Secrets, Chains of Carceri, Devil's Sight, Dreadful Word, Eldritch Mind, Eldritch Sight, Eldritch Smite, Eldritch Spear, Eyes of the Rune Keeper, Far Scribe, Fiendish Vigor, Gaze of Two Minds, Ghostly Gaze, Gift of the Depths, Gift of the Ever-Living Ones, Gift of the Protectors, Grasp of Hadar, Improved Pact Weapon, Investment of the Chain Master, Lance of Lethargy, Lifedrinker, Maddening Hex, Mask of Many Faces, Master of Myriad Forms, Minions of Chaos, Mire the Mind, Misty Visions, One with Shadows, Otherworldly Leap, Relentless Hex, Repelling Blast, Sculptor of Flesh, Shroud of Shadow, Sign of Ill Omen, Thief of Five Fates, Thirsting Blade, Tomb of Levistus, Trickster's Escape, Undying Servitude, Visions of Distant Realms, Voice of the Chain Master, Whispers of the Grave, Witch Sight
+
+  Level 10 
+    [PASSIVE] Otherworldly Patron feature
+
+  Level 11 
+    [CHOICE] Mystic Arcanum (6th level) (1x) - [MISSING]
+      Options: Circle of Death, Conjure Fey, Create Undead, Eyebite, Flesh to Stone, Mass Suggestion, True Seeing
+
+  Level 12 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+    [CHOICE] Eldritch Invocations (1x) - [HANDLED]
+      Options: Agonizing Blast, Armor of Shadows, Ascendant Step, Aspect of the Moon, Beast Speech, Beguiling Influence, Bewitching Whispers, Book of Ancient Secrets, Chains of Carceri, Devil's Sight, Dreadful Word, Eldritch Mind, Eldritch Sight, Eldritch Smite, Eldritch Spear, Eyes of the Rune Keeper, Far Scribe, Fiendish Vigor, Gaze of Two Minds, Ghostly Gaze, Gift of the Depths, Gift of the Ever-Living Ones, Gift of the Protectors, Grasp of Hadar, Improved Pact Weapon, Investment of the Chain Master, Lance of Lethargy, Lifedrinker, Maddening Hex, Mask of Many Faces, Master of Myriad Forms, Minions of Chaos, Mire the Mind, Misty Visions, One with Shadows, Otherworldly Leap, Relentless Hex, Repelling Blast, Sculptor of Flesh, Shroud of Shadow, Sign of Ill Omen, Thief of Five Fates, Thirsting Blade, Tomb of Levistus, Trickster's Escape, Undying Servitude, Visions of Distant Realms, Voice of the Chain Master, Whispers of the Grave, Witch Sight
+
+  Level 13 
+    [CHOICE] Mystic Arcanum (7th level) (1x) - [MISSING]
+      Options: Etherealness, Finger of Death, Forcecage, Plane Shift
+
+  Level 14 
+    [PASSIVE] Otherworldly Patron feature
+
+  Level 15 
+    [CHOICE] Mystic Arcanum (8th level) (1x) - [MISSING]
+      Options: Demiplane, Dominate Monster, Feeblemind, Glibness, Power Word Stun
+    [CHOICE] Eldritch Invocations (1x) - [HANDLED]
+      Options: Agonizing Blast, Armor of Shadows, Ascendant Step, Aspect of the Moon, Beast Speech, Beguiling Influence, Bewitching Whispers, Book of Ancient Secrets, Chains of Carceri, Devil's Sight, Dreadful Word, Eldritch Mind, Eldritch Sight, Eldritch Smite, Eldritch Spear, Eyes of the Rune Keeper, Far Scribe, Fiendish Vigor, Gaze of Two Minds, Ghostly Gaze, Gift of the Depths, Gift of the Ever-Living Ones, Gift of the Protectors, Grasp of Hadar, Improved Pact Weapon, Investment of the Chain Master, Lance of Lethargy, Lifedrinker, Maddening Hex, Mask of Many Faces, Master of Myriad Forms, Minions of Chaos, Mire the Mind, Misty Visions, One with Shadows, Otherworldly Leap, Relentless Hex, Repelling Blast, Sculptor of Flesh, Shroud of Shadow, Sign of Ill Omen, Thief of Five Fates, Thirsting Blade, Tomb of Levistus, Trickster's Escape, Undying Servitude, Visions of Distant Realms, Voice of the Chain Master, Whispers of the Grave, Witch Sight
+
+  Level 16 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 17 
+    [CHOICE] Mystic Arcanum (9th level) (1x) - [MISSING]
+      Options: Astral Projection, Foresight, Imprisonment, Power Word Kill, True Polymorph
+
+  Level 18 
+
+  Level 19 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 20 
+    [PASSIVE] Eldritch Master
+    [CHOICE] Eldritch Invocations (1x) - [HANDLED]
+      Options: Agonizing Blast, Armor of Shadows, Ascendant Step, Aspect of the Moon, Beast Speech, Beguiling Influence, Bewitching Whispers, Book of Ancient Secrets, Chains of Carceri, Devil's Sight, Dreadful Word, Eldritch Mind, Eldritch Sight, Eldritch Smite, Eldritch Spear, Eyes of the Rune Keeper, Far Scribe, Fiendish Vigor, Gaze of Two Minds, Ghostly Gaze, Gift of the Depths, Gift of the Ever-Living Ones, Gift of the Protectors, Grasp of Hadar, Improved Pact Weapon, Investment of the Chain Master, Lance of Lethargy, Lifedrinker, Maddening Hex, Mask of Many Faces, Master of Myriad Forms, Minions of Chaos, Mire the Mind, Misty Visions, One with Shadows, Otherworldly Leap, Relentless Hex, Repelling Blast, Sculptor of Flesh, Shroud of Shadow, Sign of Ill Omen, Thief of Five Fates, Thirsting Blade, Tomb of Levistus, Trickster's Escape, Undying Servitude, Visions of Distant Realms, Voice of the Chain Master, Whispers of the Grave, Witch Sight
+
+------------------------------------------------------------------------------
+CLASS: WIZARD (subclass at level 2)
+------------------------------------------------------------------------------
+
+  Level 1 
+    [PASSIVE] Spellcasting: Wizard
+    [PASSIVE] Arcane Recovery
+
+  Level 2 
+    [CHOICE] Subclass Selection - [HANDLED]
+      Options: Abjuration, Bladesinging, Chronurgy Magic, Conjuration, Divination, Enchantment, Evocation, Graviturgy Magic, Illusion, Necromancy, Order of Scribes, Transmutation, War Magic
+    [PASSIVE] Arcane Tradition
+
+  Level 3 
+
+  Level 4 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 5 
+
+  Level 6 
+    [PASSIVE] Arcane Tradition feature
+
+  Level 7 
+
+  Level 8 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 9 
+
+  Level 10 
+    [PASSIVE] Arcane Tradition feature
+
+  Level 11 
+
+  Level 12 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 13 
+
+  Level 14 
+    [PASSIVE] Arcane Tradition feature
+
+  Level 15 
+
+  Level 16 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 17 
+
+  Level 18 
+    [PASSIVE] Spell Mastery
+
+  Level 19 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 20 
+    [CHOICE] Signature Spell (2x) - [MISSING]
+      Options: Animate Dead, Bestow Curse, Blink, Clairvoyance, Counterspell, Dispel Magic, Fear, Fireball, Fly, Gaseous Form, Glyph of Warding, Haste, Hypnotic Pattern, Lightning Bolt, Magic Circle, Major Image, Nondetection, Phantom Steed, Protection From Energy, Remove Curse, Sending, Sleet Storm, Slow, Stinking Cloud, Tiny Hut, Tongues, Vampiric Touch, Water Breathing
+
+------------------------------------------------------------------------------
+CLASS: ARTIFICER (subclass at level 3)
+------------------------------------------------------------------------------
+
+  Level 1 
+    [PASSIVE] Magical Tinkering
+    [PASSIVE] Spellcasting
+
+  Level 2 
+    [PASSIVE] Infuse Item
+
+  Level 3 
+    [CHOICE] Subclass Selection - [HANDLED]
+      Options: Alchemist, Armorer, Artillerist, Battle Smith
+    [PASSIVE] The Right Tool for the Job
+    [PASSIVE] Artificer Specialist
+
+  Level 4 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 5 
+    [PASSIVE] Artificer Specialist Feature
+
+  Level 6 
+    [PASSIVE] Tool Expertise
+
+  Level 7 
+    [PASSIVE] Flash of Genius
+
+  Level 8 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 9 
+    [PASSIVE] Artificer Specialist Feature
+
+  Level 10 
+    [PASSIVE] Magic Item Adept
+
+  Level 11 
+    [PASSIVE] Spell-Storing Item
+
+  Level 12 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 13 
+
+  Level 14 
+    [PASSIVE] Magic Item Savant
+
+  Level 15 
+    [PASSIVE] Artificer Specialist Feature
+
+  Level 16 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 17 
+
+  Level 18 
+    [PASSIVE] Magic Item Master
+
+  Level 19 (ASI)
+    [CHOICE] Ability Score Improvement - [HANDLED]
+    [PASSIVE] Ability Score Improvement
+
+  Level 20 
+    [PASSIVE] Soul of Artifice
+
+
+================================================================================
+PART 2: SUBCLASS-LEVEL CHOICE FEATURES
+================================================================================
+
+
+------------------------------------------------------------------------------
+SUBCLASS: Artificer > Alchemist
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Tool Proficiency
+  Level 3: [PASSIVE] Experimental Elixir
+  Level 5: [PASSIVE] Alchemical Savant
+  Level 9: [PASSIVE] Restorative Reagents
+  Level 15: [PASSIVE] Chemical Mastery
+
+------------------------------------------------------------------------------
+SUBCLASS: Artificer > Armorer
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Tools of the Trade
+  Level 3: [PASSIVE] Arcane Armor
+  Level 3: [PASSIVE] Armor Model
+  Level 5: [PASSIVE] Extra Attack
+  Level 9: [PASSIVE] Armor Modifications
+  Level 15: [PASSIVE] Perfected Armor
+
+------------------------------------------------------------------------------
+SUBCLASS: Artificer > Artillerist
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Tool Proficiency
+  Level 3: [PASSIVE] Eldritch Cannon
+  Level 5: [PASSIVE] Arcane Firearm
+  Level 9: [PASSIVE] Explosive Cannon
+  Level 15: [PASSIVE] Fortified Position
+
+------------------------------------------------------------------------------
+SUBCLASS: Artificer > Battle Smith
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Tool Proficiency
+  Level 3: [PASSIVE] Battle Ready
+  Level 3: [PASSIVE] Steel Defender
+  Level 5: [PASSIVE] Extra Attack
+  Level 9: [PASSIVE] Arcane Jolt
+  Level 15: [PASSIVE] Improved Defender
+
+------------------------------------------------------------------------------
+SUBCLASS: Barbarian > Ancestral Guardian
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Ancestral Protectors
+  Level 6: [PASSIVE] Spirit Shield
+  Level 10: [PASSIVE] Consult the Spirits
+  Level 14: [PASSIVE] Vengeful Ancestors
+
+------------------------------------------------------------------------------
+SUBCLASS: Barbarian > Berserker
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Frenzy
+  Level 6: [PASSIVE] Mindless Rage
+  Level 10: [PASSIVE] Intimidating Presence
+  Level 14: [PASSIVE] Retaliation
+
+------------------------------------------------------------------------------
+SUBCLASS: Barbarian > Path of the Beast
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Form of the Beast
+  Level 6: [PASSIVE] Bestial Soul
+  Level 10: [PASSIVE] Infectious Fury
+  Level 14: [PASSIVE] Call the Hunt
+
+------------------------------------------------------------------------------
+SUBCLASS: Barbarian > Path of Wild Magic
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Magic Awareness
+  Level 3: [PASSIVE] Wild Magic Surge
+  Level 6: [PASSIVE] Bolstering Presence
+  Level 10: [PASSIVE] Unstable Backlash
+  Level 14: [PASSIVE] Controlled Surge
+
+------------------------------------------------------------------------------
+SUBCLASS: Barbarian > Storm Herald
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Storm Aura
+  Level 6: [PASSIVE] Storm Soul
+  Level 10: [PASSIVE] Shielding Storm
+  Level 14: [PASSIVE] Raging Storm
+
+------------------------------------------------------------------------------
+SUBCLASS: Barbarian > Totem Warrior
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Spirit Seeker
+  Level 3: [PASSIVE] Totem Spirit
+  Level 6: [PASSIVE] Aspect of the Beast
+  Level 10: [PASSIVE] Spirit Walker
+  Level 14: [PASSIVE] Totemic Attunement
+
+------------------------------------------------------------------------------
+SUBCLASS: Barbarian > Zealot
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Divine Fury
+  Level 6: [PASSIVE] Warrior of the Gods
+  Level 10: [PASSIVE] Fanatical Focus
+  Level 14: [PASSIVE] Zealous Presence
+
+------------------------------------------------------------------------------
+SUBCLASS: Bard > College of Creation
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Mote of Potential
+  Level 3: [PASSIVE] Performance of Creation
+  Level 6: [PASSIVE] Animating Performance
+  Level 14: [PASSIVE] Creative Crescendo
+
+------------------------------------------------------------------------------
+SUBCLASS: Bard > College of Eloquence
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Silver Tongue
+  Level 3: [PASSIVE] Unsettling Words
+  Level 6: [PASSIVE] Unfailing Inspiration
+  Level 6: [PASSIVE] Universal Speech
+  Level 14: [PASSIVE] Infectious Inspiration
+
+------------------------------------------------------------------------------
+SUBCLASS: Bard > College of Glamour
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Mantle of Inspiration
+  Level 6: [PASSIVE] Enthralling Performance
+  Level 14: [PASSIVE] Mantle of Majesty
+
+------------------------------------------------------------------------------
+SUBCLASS: Bard > College of Spirits
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Spiritual Focus
+  Level 3: [PASSIVE] Tales from Beyond
+  Level 6: [PASSIVE] Spiritual Focus (Improved)
+  Level 6: [PASSIVE] Spirit Session
+  Level 14: [PASSIVE] Mystical Connection
+
+------------------------------------------------------------------------------
+SUBCLASS: Bard > College of Swords
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Bonus Proficiencies
+  Level 3: [CHOICE] Fighting Style (1x) - [MISSING]
+    Options: Dueling, Two-Weapon Fighting, Great Weapon Fighting
+  Level 3: [PASSIVE] Blade Flourish
+  Level 6: [PASSIVE] Extra Attack
+  Level 14: [PASSIVE] Master Flourish
+
+------------------------------------------------------------------------------
+SUBCLASS: Bard > College of Whispers
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Psychic Blades
+  Level 6: [PASSIVE] Words of Terror
+  Level 14: [PASSIVE] Mantle of Whispers
+
+------------------------------------------------------------------------------
+SUBCLASS: Bard > Lore
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Bonus Proficiencies
+  Level 3: [PASSIVE] Cutting Words
+  Level 6: [CHOICE] Additional Magical Secrets (1x) - [MISSING]
+    Options: spell1, spell2
+  Level 14: [PASSIVE] Peerless Skill
+
+------------------------------------------------------------------------------
+SUBCLASS: Bard > Valor
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Bonus Proficiencies
+  Level 3: [PASSIVE] Combat Inspiration
+  Level 6: [PASSIVE] Extra Attack
+  Level 14: [PASSIVE] Battle Magic
+
+------------------------------------------------------------------------------
+SUBCLASS: Cleric > Arcana Domain
+------------------------------------------------------------------------------
+  Level 1: [PASSIVE] Arcane Initiate
+  Level 1: [PASSIVE] Arcana Domain Spells
+  Level 2: [PASSIVE] Channel Divinity: Arcane Abjuration
+  Level 6: [PASSIVE] Spell Breaker
+  Level 8: [PASSIVE] Potent Spellcasting
+  Level 17: [PASSIVE] Arcane Mastery
+
+------------------------------------------------------------------------------
+SUBCLASS: Cleric > Death Domain
+------------------------------------------------------------------------------
+  Level 1: [PASSIVE] Bonus Proficiency
+  Level 1: [PASSIVE] Reaper
+  Level 1: [PASSIVE] Death Domain Spells
+  Level 2: [PASSIVE] Channel Divinity: Touch of Death
+  Level 6: [PASSIVE] Inescapable Destruction
+  Level 8: [PASSIVE] Divine Strike
+  Level 17: [PASSIVE] Improved Reaper
+
+------------------------------------------------------------------------------
+SUBCLASS: Cleric > Forge Domain
+------------------------------------------------------------------------------
+  Level 1: [PASSIVE] Bonus Proficiency
+  Level 1: [PASSIVE] Blessing of the Forge
+  Level 2: [PASSIVE] Channel Divinity: Artisan's Blessing
+  Level 6: [PASSIVE] Soul of the Forge
+  Level 8: [PASSIVE] Divine Strike
+  Level 17: [PASSIVE] Saint of Forge and Fire
+
+------------------------------------------------------------------------------
+SUBCLASS: Cleric > Grave Domain
+------------------------------------------------------------------------------
+  Level 1: [PASSIVE] Bonus Proficiency
+  Level 1: [PASSIVE] Circle of Mortality
+  Level 1: [PASSIVE] Eyes of the Grave
+  Level 2: [PASSIVE] Path to the Grave
+  Level 6: [PASSIVE] Sentinel at Death's Door
+  Level 8: [PASSIVE] Divine Strike
+  Level 17: [PASSIVE] Keeper of Souls
+
+------------------------------------------------------------------------------
+SUBCLASS: Cleric > Knowledge
+------------------------------------------------------------------------------
+  Level 1: [PASSIVE] Blessings of Knowledge
+  Level 2: [PASSIVE] Channel Divinity: Knowledge of the Ages
+  Level 6: [PASSIVE] Channel Divinity: Read Thoughts
+  Level 8: [PASSIVE] Potent Spellcasting
+  Level 17: [PASSIVE] Visions of the Past
+
+------------------------------------------------------------------------------
+SUBCLASS: Cleric > Life
+------------------------------------------------------------------------------
+  Level 1: [PASSIVE] Bonus Proficiency
+  Level 1: [PASSIVE] Disciple of Life
+  Level 2: [PASSIVE] Channel Divinity: Preserve Life
+  Level 6: [PASSIVE] Blessed Healer
+  Level 8: [PASSIVE] Divine Strike
+  Level 17: [PASSIVE] Supreme Healing
+
+------------------------------------------------------------------------------
+SUBCLASS: Cleric > Light
+------------------------------------------------------------------------------
+  Level 1: [PASSIVE] Bonus Cantrip
+  Level 1: [PASSIVE] Warding Flare
+  Level 2: [PASSIVE] Channel Divinity: Radiance of the Dawn
+  Level 6: [PASSIVE] Improved Flare
+  Level 8: [PASSIVE] Potent Spellcasting
+  Level 17: [PASSIVE] Corona of Light
+
+------------------------------------------------------------------------------
+SUBCLASS: Cleric > Nature
+------------------------------------------------------------------------------
+  Level 1: [PASSIVE] Acolyte of Nature
+  Level 1: [PASSIVE] Charm Animals and Plants
+  Level 2: [PASSIVE] Channel Divinity: Charm Animals and Plants
+  Level 6: [PASSIVE] Dampen Elements
+  Level 8: [PASSIVE] Potent Spellcasting
+  Level 17: [PASSIVE] Master of Nature
+
+------------------------------------------------------------------------------
+SUBCLASS: Cleric > Order Domain
+------------------------------------------------------------------------------
+  Level 1: [PASSIVE] Bonus Proficiencies
+  Level 1: [PASSIVE] Voice of Authority
+  Level 1: [PASSIVE] Order Domain Spells
+  Level 2: [PASSIVE] Channel Divinity: Order's Demand
+  Level 6: [PASSIVE] Embodiment of the Law
+  Level 8: [PASSIVE] Divine Strike
+  Level 17: [PASSIVE] Order's Wrath
+
+------------------------------------------------------------------------------
+SUBCLASS: Cleric > Peace Domain
+------------------------------------------------------------------------------
+  Level 1: [PASSIVE] Implement of Peace
+  Level 1: [PASSIVE] Emboldening Bond
+  Level 1: [PASSIVE] Peace Domain Spells
+  Level 2: [PASSIVE] Channel Divinity: Balm of Peace
+  Level 6: [PASSIVE] Protective Bond
+  Level 8: [PASSIVE] Potent Spellcasting
+  Level 17: [PASSIVE] Expansive Bond
+
+------------------------------------------------------------------------------
+SUBCLASS: Cleric > Tempest
+------------------------------------------------------------------------------
+  Level 1: [PASSIVE] Bonus Proficiencies
+  Level 1: [PASSIVE] Wrath of the Storm
+  Level 2: [PASSIVE] Channel Divinity: Destructive Wrath
+  Level 6: [PASSIVE] Thunderbolt Strike
+  Level 8: [PASSIVE] Potent Spellcasting
+  Level 17: [PASSIVE] Stormborn
+
+------------------------------------------------------------------------------
+SUBCLASS: Cleric > Trickery
+------------------------------------------------------------------------------
+  Level 1: [PASSIVE] Blessing of the Trickster
+  Level 2: [PASSIVE] Channel Divinity: Invoke Duplicity
+  Level 6: [PASSIVE] Channel Divinity: Cloak of Shadows
+  Level 8: [PASSIVE] Potent Spellcasting
+  Level 8: [PASSIVE] Divine Strike
+  Level 17: [PASSIVE] Improved Duplicity
+
+------------------------------------------------------------------------------
+SUBCLASS: Cleric > Twilight Domain
+------------------------------------------------------------------------------
+  Level 1: [PASSIVE] Bonus Proficiencies
+  Level 1: [PASSIVE] Eyes of Night
+  Level 1: [PASSIVE] Vigilant Blessing
+  Level 1: [PASSIVE] Twilight Domain Spells
+  Level 2: [PASSIVE] Channel Divinity: Twilight Sanctuary
+  Level 6: [PASSIVE] Steps of Night
+  Level 8: [PASSIVE] Divine Strike
+  Level 17: [PASSIVE] Twilight Shroud
+
+------------------------------------------------------------------------------
+SUBCLASS: Cleric > War
+------------------------------------------------------------------------------
+  Level 1: [PASSIVE] Bonus Proficiencies
+  Level 1: [PASSIVE] War Priest
+  Level 2: [PASSIVE] Channel Divinity: Guided Strike
+  Level 6: [PASSIVE] Channel Divinity: War God's Blessing
+  Level 8: [PASSIVE] Potent Spellcasting
+  Level 17: [PASSIVE] Avatar of Battle
+
+------------------------------------------------------------------------------
+SUBCLASS: Druid > Circle of Dreams
+------------------------------------------------------------------------------
+  Level 2: [PASSIVE] Balm of the Summer Court
+  Level 6: [PASSIVE] Hearth of Moonlight and Shadow
+  Level 10: [PASSIVE] Hidden Paths
+  Level 14: [PASSIVE] Walker in Dreams
+
+------------------------------------------------------------------------------
+SUBCLASS: Druid > Circle of Spores
+------------------------------------------------------------------------------
+  Level 2: [PASSIVE] Circle Spells
+  Level 2: [PASSIVE] Halo of Spores
+  Level 2: [PASSIVE] Symbiotic Entity
+  Level 6: [PASSIVE] Fungal Infestation
+  Level 10: [PASSIVE] Spreading Spores
+  Level 14: [PASSIVE] Fungal Body
+
+------------------------------------------------------------------------------
+SUBCLASS: Druid > Circle of Stars
+------------------------------------------------------------------------------
+  Level 2: [PASSIVE] Star Map
+  Level 2: [PASSIVE] Starry Form
+  Level 6: [PASSIVE] Cosmic Omen
+  Level 10: [PASSIVE] Twinkling Constellations
+  Level 14: [PASSIVE] Full of Stars
+
+------------------------------------------------------------------------------
+SUBCLASS: Druid > Circle of the Sea
+------------------------------------------------------------------------------
+  Level 2: [PASSIVE] Oceanic Resilience
+  Level 2: [PASSIVE] Wrath of the Sea
+  Level 6: [PASSIVE] Elemental Wild Shape
+  Level 10: [PASSIVE] Aquatic Master
+  Level 14: [PASSIVE] Oceanic Guardian
+
+------------------------------------------------------------------------------
+SUBCLASS: Druid > Circle of the Shepherd
+------------------------------------------------------------------------------
+  Level 2: [PASSIVE] Speech of the Woods
+  Level 2: [PASSIVE] Spirit Totem
+  Level 6: [PASSIVE] Mighty Summoner
+  Level 10: [PASSIVE] Guardian Spirit
+  Level 14: [PASSIVE] Faithful Summons
+
+------------------------------------------------------------------------------
+SUBCLASS: Druid > Circle of Wildfire
+------------------------------------------------------------------------------
+  Level 2: [PASSIVE] Circle of Wildfire Spells
+  Level 2: [PASSIVE] Summon Wildfire Spirit
+  Level 6: [PASSIVE] Enhanced Bond
+  Level 10: [PASSIVE] Cauterizing Flames
+  Level 14: [PASSIVE] Blazing Revival
+
+------------------------------------------------------------------------------
+SUBCLASS: Druid > Land
+------------------------------------------------------------------------------
+  Level 2: [CHOICE] Bonus Cantrip (1x) - [HANDLED]
+    Options: cantrip
+  Level 2: [PASSIVE] Natural Recovery
+  Level 3: [CHOICE] Circle Spells (1x) - [MISSING]
+    Options: terrain
+  Level 6: [PASSIVE] Land's Stride
+  Level 10: [PASSIVE] Nature's Ward
+  Level 14: [PASSIVE] Nature's Sanctuary
+
+------------------------------------------------------------------------------
+SUBCLASS: Druid > Moon
+------------------------------------------------------------------------------
+  Level 2: [PASSIVE] Combat Wild Shape
+  Level 2: [PASSIVE] Circle Forms
+  Level 6: [PASSIVE] Primal Strike
+  Level 10: [PASSIVE] Elemental Wild Shape
+  Level 14: [PASSIVE] Thousand Forms
+
+------------------------------------------------------------------------------
+SUBCLASS: Fighter > Arcane Archer
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Arcane Archer Lore
+  Level 3: [PASSIVE] Arcane Shot
+  Level 3: [CHOICE] Arcane Shot Options (2x) - [MISSING]
+    Options: Banishing Arrow, Beguiling Arrow, Bursting Arrow, Enfeebling Arrow, Grasping Arrow, Mind-Scrambling Arrow, Piercing Arrow, Seeking Arrow, Shadow Arrow
+  Level 7: [PASSIVE] Magic Arrow
+  Level 7: [PASSIVE] Curving Shot
+  Level 15: [PASSIVE] Ever-Ready Shot
+
+------------------------------------------------------------------------------
+SUBCLASS: Fighter > Battle Master
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Combat Superiority
+  Level 3: [PASSIVE] Student of War
+  Level 7: [PASSIVE] Know Your Enemy
+  Level 10: [PASSIVE] Improved Combat Superiority (d10)
+  Level 15: [PASSIVE] Relentless
+  Level 18: [PASSIVE] Improved Combat Superiority (d12)
+
+------------------------------------------------------------------------------
+SUBCLASS: Fighter > Cavalier
+------------------------------------------------------------------------------
+  Level 3: [CHOICE] Bonus Proficiency (1x) - [MISSING]
+    Options: Animal Handling, History, Insight, Performance, Persuasion, Language (choice)
+  Level 3: [PASSIVE] Born to the Saddle
+  Level 3: [PASSIVE] Unwavering Mark
+  Level 7: [PASSIVE] Warding Maneuver
+  Level 10: [PASSIVE] Hold the Line
+  Level 15: [PASSIVE] Ferocious Charger
+  Level 18: [PASSIVE] Vigilant Defender
+
+------------------------------------------------------------------------------
+SUBCLASS: Fighter > Champion
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Improved Critical
+  Level 7: [PASSIVE] Remarkable Athlete
+  Level 10: [PASSIVE] Additional Fighting Style
+  Level 15: [PASSIVE] Superior Critical
+  Level 18: [PASSIVE] Survivor
+
+------------------------------------------------------------------------------
+SUBCLASS: Fighter > Echo Knight
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Manifest Echo
+  Level 3: [PASSIVE] Unleash Incarnation
+  Level 7: [PASSIVE] Echo Avatar
+  Level 10: [PASSIVE] Shadow Martyr
+  Level 15: [PASSIVE] Reclaim Potential
+  Level 18: [PASSIVE] Legion of One
+
+------------------------------------------------------------------------------
+SUBCLASS: Fighter > Eldritch Knight
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Spellcasting
+  Level 3: [PASSIVE] Weapon Bond
+  Level 7: [PASSIVE] War Magic
+  Level 10: [PASSIVE] Eldritch Strike
+  Level 15: [PASSIVE] Arcane Charge
+  Level 18: [PASSIVE] Improved War Magic
+
+------------------------------------------------------------------------------
+SUBCLASS: Fighter > Psi Warrior
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Psionic Power
+  Level 7: [PASSIVE] Telekinetic Leap
+  Level 7: [PASSIVE] Guarded Mind
+  Level 10: [PASSIVE] Bulwark of Force
+  Level 15: [PASSIVE] Telekinetic Master
+
+------------------------------------------------------------------------------
+SUBCLASS: Fighter > Rune Knight
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Bonus Proficiencies
+  Level 3: [PASSIVE] Rune Carver
+  Level 3: [PASSIVE] Giant's Might
+  Level 7: [PASSIVE] Runic Shield
+  Level 10: [PASSIVE] Great Stature
+  Level 15: [PASSIVE] Master of Runes
+  Level 18: [PASSIVE] Runic Juggernaut
+
+------------------------------------------------------------------------------
+SUBCLASS: Fighter > Samurai
+------------------------------------------------------------------------------
+  Level 3: [CHOICE] Bonus Proficiency (1x) - [MISSING]
+    Options: History, Insight, Performance, Persuasion, Language (choice)
+  Level 3: [PASSIVE] Fighting Spirit
+  Level 7: [PASSIVE] Elegant Courtier
+  Level 10: [PASSIVE] Tireless Spirit
+  Level 15: [PASSIVE] Rapid Strike
+  Level 18: [PASSIVE] Strength Before Death
+
+------------------------------------------------------------------------------
+SUBCLASS: Monk > Ascendant Dragon
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Draconic Discipline
+  Level 3: [PASSIVE] Breath of the Dragon
+  Level 6: [PASSIVE] Wings Unfurled
+  Level 11: [PASSIVE] Aspect of the Wyrm
+  Level 17: [PASSIVE] Ascendant Aspect
+
+------------------------------------------------------------------------------
+SUBCLASS: Monk > Open Hand
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Open Hand Technique
+  Level 6: [PASSIVE] Wholeness of Body
+  Level 11: [PASSIVE] Tranquility
+  Level 17: [PASSIVE] Quivering Palm
+
+------------------------------------------------------------------------------
+SUBCLASS: Monk > Shadow
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Shadow Arts
+  Level 6: [PASSIVE] Shadow Step
+  Level 11: [PASSIVE] Cloak of Shadows
+  Level 17: [PASSIVE] Opportunist
+
+------------------------------------------------------------------------------
+SUBCLASS: Monk > Way of Mercy
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Implements of Mercy
+  Level 3: [PASSIVE] Hands of Healing
+  Level 3: [PASSIVE] Hands of Harm
+  Level 6: [PASSIVE] Physician's Touch
+  Level 11: [PASSIVE] Flurry of Healing and Harm
+  Level 17: [PASSIVE] Hand of Ultimate Mercy
+
+------------------------------------------------------------------------------
+SUBCLASS: Monk > Way of the Astral Self
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Arms of the Astral Self
+  Level 6: [PASSIVE] Visage of the Astral Self
+  Level 11: [PASSIVE] Body of the Astral Self
+  Level 17: [PASSIVE] Awakened Astral Self
+
+------------------------------------------------------------------------------
+SUBCLASS: Monk > Way of the Drunken Master
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Bonus Proficiencies
+  Level 3: [PASSIVE] Drunken Technique
+  Level 6: [PASSIVE] Tipsy Sway
+  Level 11: [PASSIVE] Drunkard's Luck
+  Level 17: [PASSIVE] Intoxicated Frenzy
+
+------------------------------------------------------------------------------
+SUBCLASS: Monk > Way of the Four Elements
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Disciple of the Elements
+  Level 3: [PASSIVE] Elemental Attunement
+  Level 3: [PASSIVE] Fangs of the Fire Snake
+  Level 3: [PASSIVE] Water Whip
+  Level 3: [PASSIVE] Fist of Four Thunders
+  Level 6: [PASSIVE] Sweeping Cinder Strike
+  Level 6: [PASSIVE] Gong of the Summit
+  Level 11: [PASSIVE] Flames of the Phoenix
+  Level 11: [PASSIVE] Ride the Wind
+  Level 17: [PASSIVE] River of Hungry Flame
+
+------------------------------------------------------------------------------
+SUBCLASS: Monk > Way of the Kensei
+------------------------------------------------------------------------------
+  Level 3: [CHOICE] Path of the Kensei (2x) - [MISSING]
+    Options: Kensei Weapons (Melee), Kensei Weapons (Ranged)
+  Level 6: [PASSIVE] One with the Blade
+  Level 11: [PASSIVE] Sharpen the Blade
+  Level 17: [PASSIVE] Unerring Accuracy
+
+------------------------------------------------------------------------------
+SUBCLASS: Monk > Way of the Long Death
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Touch of Death
+  Level 6: [PASSIVE] Hour of Reaping
+  Level 11: [PASSIVE] Mastery of Death
+  Level 17: [PASSIVE] Touch of the Long Death
+
+------------------------------------------------------------------------------
+SUBCLASS: Monk > Way of the Sun Soul
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Radiant Sun Bolt
+  Level 6: [PASSIVE] Searing Arc Strike
+  Level 11: [PASSIVE] Searing Sunburst
+  Level 17: [PASSIVE] Sun Shield
+
+------------------------------------------------------------------------------
+SUBCLASS: Paladin > Ancients
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Oath Spells
+  Level 3: [PASSIVE] Channel Divinity: Nature's Wrath
+  Level 3: [PASSIVE] Channel Divinity: Turn the Faithless
+  Level 7: [PASSIVE] Aura of Warding
+  Level 15: [PASSIVE] Undying Sentinel
+  Level 20: [PASSIVE] Elder Champion
+
+------------------------------------------------------------------------------
+SUBCLASS: Paladin > Devotion
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Oath Spells
+  Level 3: [PASSIVE] Channel Divinity: Sacred Weapon
+  Level 3: [PASSIVE] Channel Divinity: Turn the Unholy
+  Level 7: [PASSIVE] Aura of Devotion
+  Level 15: [PASSIVE] Purity of Spirit
+  Level 20: [PASSIVE] Holy Nimbus
+
+------------------------------------------------------------------------------
+SUBCLASS: Paladin > Draconic Disciple
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Channel Divinity: Draconic Presence
+  Level 3: [PASSIVE] Channel Divinity: Draconic Might
+  Level 7: [PASSIVE] Aura of the Dragon
+  Level 15: [PASSIVE] Draconic Resilience
+  Level 20: [PASSIVE] Dragon Knight
+
+------------------------------------------------------------------------------
+SUBCLASS: Paladin > Oath of Conquest
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Channel Divinity: Conquering Presence
+  Level 7: [PASSIVE] Aura of Conquest
+  Level 15: [PASSIVE] Scarred Earth
+  Level 20: [PASSIVE] Invincible Conqueror
+
+------------------------------------------------------------------------------
+SUBCLASS: Paladin > Oath of Glory
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Oath Spells
+  Level 3: [PASSIVE] Channel Divinity: Peerless Athlete
+  Level 3: [PASSIVE] Channel Divinity: Inspiring Smite
+  Level 7: [PASSIVE] Aura of Alacrity
+  Level 15: [PASSIVE] Glorious Defense
+  Level 20: [PASSIVE] Living Legend
+
+------------------------------------------------------------------------------
+SUBCLASS: Paladin > Oath of Redemption
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Channel Divinity: Emissary of Peace
+  Level 7: [PASSIVE] Aura of the Guardian
+  Level 15: [PASSIVE] Protective Spirit
+  Level 20: [PASSIVE] Emissary of Redemption
+
+------------------------------------------------------------------------------
+SUBCLASS: Paladin > Oath of the Crown
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Oath Spells
+  Level 3: [PASSIVE] Channel Divinity: Champion's Challenge
+  Level 3: [PASSIVE] Channel Divinity: Turn the Tide
+  Level 7: [PASSIVE] Divine Allegiance
+  Level 15: [PASSIVE] Unyielding Saint
+  Level 20: [PASSIVE] Exalted Champion
+
+------------------------------------------------------------------------------
+SUBCLASS: Paladin > Oath of the Watchers
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Channel Divinity: Watcher's Will
+  Level 7: [PASSIVE] Aura of the Sentinel
+  Level 15: [PASSIVE] Vigilant Rebuke
+  Level 20: [PASSIVE] Mortal Bulwark
+
+------------------------------------------------------------------------------
+SUBCLASS: Paladin > Oathbreaker
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Oathbreaker Spells
+  Level 3: [PASSIVE] Channel Divinity: Control Undead
+  Level 3: [PASSIVE] Channel Divinity: Dreadful Aspect
+  Level 7: [PASSIVE] Aura of Hate
+  Level 15: [PASSIVE] Supernatural Resistance
+  Level 20: [PASSIVE] Dread Lord
+
+------------------------------------------------------------------------------
+SUBCLASS: Paladin > Vengeance
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Oath Spells
+  Level 3: [PASSIVE] Channel Divinity: Abjure Enemy
+  Level 3: [PASSIVE] Channel Divinity: Vow of Enmity
+  Level 7: [PASSIVE] Relentless Avenger
+  Level 15: [PASSIVE] Soul of Vengeance
+  Level 20: [PASSIVE] Avenging Angel
+
+------------------------------------------------------------------------------
+SUBCLASS: Ranger > Beast Master
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Ranger's Companion
+  Level 7: [PASSIVE] Exceptional Training
+  Level 11: [PASSIVE] Bestial Fury
+  Level 15: [PASSIVE] Share Spells
+
+------------------------------------------------------------------------------
+SUBCLASS: Ranger > Drake Warden
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Draconic Gift
+  Level 3: [PASSIVE] Bond of Fang and Scale
+  Level 7: [PASSIVE] Drake's Breath
+  Level 11: [PASSIVE] Perfected Bond
+  Level 15: [PASSIVE] Reflexive Resistance
+
+------------------------------------------------------------------------------
+SUBCLASS: Ranger > Fey Wanderer
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Dreadful Strikes
+  Level 3: [PASSIVE] Fey Wanderer Magic
+  Level 3: [PASSIVE] Otherworldly Glamour
+  Level 7: [PASSIVE] Beguiling Twist
+  Level 11: [PASSIVE] Fey Reinforcements
+  Level 15: [PASSIVE] Misty Wanderer
+
+------------------------------------------------------------------------------
+SUBCLASS: Ranger > Gloom Stalker
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Gloom Stalker Magic
+  Level 3: [PASSIVE] Dread Ambusher
+  Level 3: [PASSIVE] Umbral Sight
+  Level 7: [PASSIVE] Iron Mind
+  Level 11: [PASSIVE] Stalker's Flurry
+  Level 15: [PASSIVE] Shadowy Dodge
+
+------------------------------------------------------------------------------
+SUBCLASS: Ranger > Horizon Walker
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Detect Portal
+  Level 3: [PASSIVE] Planar Warrior
+  Level 7: [PASSIVE] Ethereal Step
+  Level 11: [PASSIVE] Distant Strike
+  Level 15: [PASSIVE] Spectral Defense
+
+------------------------------------------------------------------------------
+SUBCLASS: Ranger > Hunter
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Hunter's Prey
+  Level 7: [PASSIVE] Defensive Tactics
+  Level 11: [PASSIVE] Multiattack
+  Level 15: [PASSIVE] Superior Hunter's Defense
+
+------------------------------------------------------------------------------
+SUBCLASS: Ranger > Monster Slayer
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Hunter's Sense
+  Level 3: [PASSIVE] Slayer's Prey
+  Level 7: [PASSIVE] Supernatural Defense
+  Level 11: [PASSIVE] Magic-User's Nemesis
+  Level 15: [PASSIVE] Slayer's Counter
+
+------------------------------------------------------------------------------
+SUBCLASS: Ranger > Swarmkeeper
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Swarmkeeper Magic
+  Level 3: [PASSIVE] Gathered Swarm
+  Level 7: [PASSIVE] Writhing Tide
+  Level 11: [PASSIVE] Mighty Swarm
+  Level 15: [PASSIVE] Swarming Dispersal
+
+------------------------------------------------------------------------------
+SUBCLASS: Rogue > Arcane Trickster
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Spellcasting
+  Level 3: [PASSIVE] Mage Hand Legerdemain
+  Level 9: [PASSIVE] Magical Ambush
+  Level 13: [PASSIVE] Versatile Trickster
+  Level 17: [PASSIVE] Spell Thief
+
+------------------------------------------------------------------------------
+SUBCLASS: Rogue > Assassin
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Bonus Proficiencies
+  Level 3: [PASSIVE] Assassinate
+  Level 9: [PASSIVE] Infiltration Expertise
+  Level 13: [PASSIVE] Impostor
+  Level 17: [PASSIVE] Death Strike
+
+------------------------------------------------------------------------------
+SUBCLASS: Rogue > Inquisitive
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Ear for Deceit
+  Level 3: [PASSIVE] Eye for Detail
+  Level 3: [PASSIVE] Insightful Fighting
+  Level 9: [PASSIVE] Steady Eye
+  Level 13: [PASSIVE] Unerring Eye
+  Level 17: [PASSIVE] Eye for Weakness
+
+------------------------------------------------------------------------------
+SUBCLASS: Rogue > Mastermind
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Master of Intrigue
+  Level 3: [PASSIVE] Master of Tactics
+  Level 9: [PASSIVE] Insightful Manipulator
+  Level 13: [PASSIVE] Misdirection
+  Level 17: [PASSIVE] Soul of Deceit
+
+------------------------------------------------------------------------------
+SUBCLASS: Rogue > Phantom
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Whispers of the Dead
+  Level 3: [PASSIVE] Wails from the Grave
+  Level 9: [PASSIVE] Tokens of the Departed
+  Level 13: [PASSIVE] Ghost Walk
+  Level 17: [PASSIVE] Death's Friend
+
+------------------------------------------------------------------------------
+SUBCLASS: Rogue > Scout
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Skirmisher
+  Level 3: [PASSIVE] Survivalist
+  Level 9: [PASSIVE] Superior Mobility
+  Level 13: [PASSIVE] Ambush Master
+  Level 17: [PASSIVE] Sudden Strike
+
+------------------------------------------------------------------------------
+SUBCLASS: Rogue > Soulknife
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Psionic Power
+  Level 3: [PASSIVE] Psychic Blades
+  Level 9: [PASSIVE] Soul Blades
+  Level 13: [PASSIVE] Psychic Veil
+  Level 17: [PASSIVE] Rend Mind
+
+------------------------------------------------------------------------------
+SUBCLASS: Rogue > Swashbuckler
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Fancy Footwork
+  Level 3: [PASSIVE] Rakish Audacity
+  Level 9: [PASSIVE] Panache
+  Level 13: [PASSIVE] Elegant Maneuver
+  Level 17: [PASSIVE] Duelist's Defense
+
+------------------------------------------------------------------------------
+SUBCLASS: Rogue > Thief
+------------------------------------------------------------------------------
+  Level 3: [PASSIVE] Fast Hands
+  Level 3: [PASSIVE] Second-Story Work
+  Level 9: [PASSIVE] Supreme Sneak
+  Level 13: [PASSIVE] Use Magic Device
+  Level 17: [PASSIVE] Thief's Reflexes
+
+------------------------------------------------------------------------------
+SUBCLASS: Sorcerer > Aberrant Mind
+------------------------------------------------------------------------------
+  Level 1: [PASSIVE] Telepathy
+  Level 1: [PASSIVE] Psionic Spells
+  Level 6: [PASSIVE] Psychic Deflection
+  Level 14: [PASSIVE] Revelation in Flesh
+  Level 18: [PASSIVE] Warping Implosion
+
+------------------------------------------------------------------------------
+SUBCLASS: Sorcerer > Clockwork Soul
+------------------------------------------------------------------------------
+  Level 1: [PASSIVE] Clockwork Magic
+  Level 1: [PASSIVE] Restore Balance
+  Level 6: [PASSIVE] Bastion of Law
+  Level 14: [PASSIVE] Trance of Order
+  Level 18: [PASSIVE] Clockwork Cavalcade
+
+------------------------------------------------------------------------------
+SUBCLASS: Sorcerer > Divine Soul
+------------------------------------------------------------------------------
+  Level 1: [PASSIVE] Bonus Proficiency
+  Level 1: [PASSIVE] Favored by the Gods
+  Level 6: [PASSIVE] Empowered Healing
+  Level 14: [PASSIVE] Otherworldly Wings
+  Level 18: [PASSIVE] Unnerving Defense
+
+------------------------------------------------------------------------------
+SUBCLASS: Sorcerer > Draconic
+------------------------------------------------------------------------------
+  Level 1: [CHOICE] Dragon Ancestor (1x) - [HANDLED]
+    Options: Black, Blue, Brass, Bronze, Copper, Gold, Green, Red, Silver, White
+  Level 1: [PASSIVE] Draconic Resilience
+  Level 6: [PASSIVE] Elemental Affinity
+  Level 14: [PASSIVE] Dragon Wings
+  Level 18: [PASSIVE] Draconic Presence
+
+------------------------------------------------------------------------------
+SUBCLASS: Sorcerer > Shadow Magic
+------------------------------------------------------------------------------
+  Level 1: [PASSIVE] Eyes of the Dark
+  Level 1: [PASSIVE] Strength of the Grave
+  Level 6: [PASSIVE] Hound of Ill Omen
+  Level 14: [PASSIVE] Shadow Walk
+  Level 18: [PASSIVE] Umbral Form
+
+------------------------------------------------------------------------------
+SUBCLASS: Sorcerer > Storm Sorcery
+------------------------------------------------------------------------------
+  Level 1: [PASSIVE] Wind Speaker
+  Level 1: [PASSIVE] Tempestuous Magic
+  Level 6: [PASSIVE] Heart of the Storm
+  Level 6: [PASSIVE] Storm Guide
+  Level 14: [PASSIVE] Storm's Fury
+  Level 18: [PASSIVE] Wind Soul
+
+------------------------------------------------------------------------------
+SUBCLASS: Sorcerer > Wild Magic
+------------------------------------------------------------------------------
+  Level 1: [PASSIVE] Wild Magic Surge
+  Level 1: [PASSIVE] Tides of Chaos
+  Level 6: [PASSIVE] Bend Luck
+  Level 14: [PASSIVE] Controlled Chaos
+  Level 18: [PASSIVE] Spell Bombardment
+
+------------------------------------------------------------------------------
+SUBCLASS: Warlock > Archfey
+------------------------------------------------------------------------------
+  Level 1: [PASSIVE] Fey Presence
+  Level 6: [PASSIVE] Misty Escape
+  Level 10: [PASSIVE] Beguiling Defenses
+  Level 14: [PASSIVE] Dark Delirium
+
+------------------------------------------------------------------------------
+SUBCLASS: Warlock > Fiend
+------------------------------------------------------------------------------
+  Level 1: [PASSIVE] Dark One's Blessing
+  Level 6: [PASSIVE] Dark One's Own Luck
+  Level 10: [PASSIVE] Fiendish Resilience
+  Level 14: [PASSIVE] Hurl Through Hell
+
+------------------------------------------------------------------------------
+SUBCLASS: Warlock > Great Old One
+------------------------------------------------------------------------------
+  Level 1: [PASSIVE] Awakened Mind
+  Level 6: [PASSIVE] Entropic Ward
+  Level 10: [PASSIVE] Thought Shield
+  Level 14: [PASSIVE] Create Thrall
+
+------------------------------------------------------------------------------
+SUBCLASS: Warlock > Hexblade
+------------------------------------------------------------------------------
+  Level 1: [PASSIVE] Hexblade's Curse
+  Level 1: [PASSIVE] Hex Warrior
+  Level 6: [PASSIVE] Accursed Specter
+  Level 10: [PASSIVE] Armor of Hexes
+  Level 14: [PASSIVE] Master of Hexes
+
+------------------------------------------------------------------------------
+SUBCLASS: Warlock > The Celestial
+------------------------------------------------------------------------------
+  Level 1: [PASSIVE] Bonus Cantrips
+  Level 1: [PASSIVE] Healing Light
+  Level 6: [PASSIVE] Radiant Soul
+  Level 10: [PASSIVE] Celestial Resilience
+  Level 14: [PASSIVE] Searing Vengeance
+
+------------------------------------------------------------------------------
+SUBCLASS: Warlock > The Fathomless
+------------------------------------------------------------------------------
+  Level 1: [PASSIVE] Bonus Spells
+  Level 1: [PASSIVE] Tentacle of the Deep
+  Level 6: [PASSIVE] Gift of the Sea
+  Level 10: [PASSIVE] Oceanic Soul
+  Level 14: [PASSIVE] Guardian Coil
+  Level 18: [PASSIVE] Grasping Tentacles
+
+------------------------------------------------------------------------------
+SUBCLASS: Warlock > The Genie
+------------------------------------------------------------------------------
+  Level 1: [PASSIVE] Bonus Spells
+  Level 1: [PASSIVE] Genie's Vessel
+  Level 6: [PASSIVE] Elemental Gift
+  Level 10: [PASSIVE] Sanctuary Vessel
+  Level 14: [PASSIVE] Limited Wish
+
+------------------------------------------------------------------------------
+SUBCLASS: Warlock > The Undead
+------------------------------------------------------------------------------
+  Level 1: [PASSIVE] Form of Dread
+  Level 6: [PASSIVE] Grave Touched
+  Level 10: [PASSIVE] Necrotic Husk
+  Level 14: [PASSIVE] Spirit Projection
+
+------------------------------------------------------------------------------
+SUBCLASS: Warlock > Undying
+------------------------------------------------------------------------------
+  Level 1: [PASSIVE] Among the Dead
+  Level 1: [PASSIVE] Undying Nature
+  Level 6: [PASSIVE] Beyond the Grave
+  Level 10: [PASSIVE] Indestructible Life
+  Level 14: [PASSIVE] Undying Nature
+
+------------------------------------------------------------------------------
+SUBCLASS: Wizard > Abjuration
+------------------------------------------------------------------------------
+  Level 2: [PASSIVE] Abjuration Savant
+  Level 2: [PASSIVE] Arcane Ward
+  Level 6: [PASSIVE] Projected Ward
+  Level 10: [PASSIVE] Improved Abjuration
+  Level 14: [PASSIVE] Spell Resistance
+
+------------------------------------------------------------------------------
+SUBCLASS: Wizard > Bladesinging
+------------------------------------------------------------------------------
+  Level 2: [PASSIVE] Bonus Proficiency
+  Level 2: [PASSIVE] Training in War and Song
+  Level 2: [PASSIVE] Bladesong
+  Level 6: [PASSIVE] Extra Attack
+  Level 10: [PASSIVE] Song of Defense
+  Level 14: [PASSIVE] Song of Victory
+
+------------------------------------------------------------------------------
+SUBCLASS: Wizard > Chronurgy Magic
+------------------------------------------------------------------------------
+  Level 2: [PASSIVE] Chronal Shift
+  Level 2: [PASSIVE] Temporal Awareness
+  Level 6: [PASSIVE] Momentary Stasis
+  Level 10: [PASSIVE] Arcane Abeyance
+  Level 14: [PASSIVE] Convergent Future
+
+------------------------------------------------------------------------------
+SUBCLASS: Wizard > Conjuration
+------------------------------------------------------------------------------
+  Level 2: [PASSIVE] Conjuration Savant
+  Level 2: [PASSIVE] Minor Conjuration
+  Level 6: [PASSIVE] Benign Transportation
+  Level 10: [PASSIVE] Focused Conjuration
+  Level 14: [PASSIVE] Durable Summons
+
+------------------------------------------------------------------------------
+SUBCLASS: Wizard > Divination
+------------------------------------------------------------------------------
+  Level 2: [PASSIVE] Divination Savant
+  Level 2: [PASSIVE] Portent
+  Level 6: [PASSIVE] Expert Divination
+  Level 10: [PASSIVE] Third Eye
+  Level 14: [PASSIVE] Greater Portent
+
+------------------------------------------------------------------------------
+SUBCLASS: Wizard > Enchantment
+------------------------------------------------------------------------------
+  Level 2: [PASSIVE] Savant
+  Level 2: [PASSIVE] Hypnotic Gaze
+  Level 6: [PASSIVE] Instinctive Charm
+  Level 10: [PASSIVE] Split Enchantment
+  Level 14: [PASSIVE] Alter Memories
+
+------------------------------------------------------------------------------
+SUBCLASS: Wizard > Evocation
+------------------------------------------------------------------------------
+  Level 2: [PASSIVE] Evocation Savant
+  Level 2: [PASSIVE] Sculpt Spells
+  Level 6: [PASSIVE] Potent Cantrip
+  Level 10: [PASSIVE] Empowered Evocation
+  Level 14: [PASSIVE] Overchannel
+
+------------------------------------------------------------------------------
+SUBCLASS: Wizard > Graviturgy Magic
+------------------------------------------------------------------------------
+  Level 2: [PASSIVE] Adjust Density
+  Level 6: [PASSIVE] Gravity Well
+  Level 10: [PASSIVE] Violent Attraction
+  Level 14: [PASSIVE] Gravity Sinkhole
+
+------------------------------------------------------------------------------
+SUBCLASS: Wizard > Illusion
+------------------------------------------------------------------------------
+  Level 2: [PASSIVE] Illusion Savant
+  Level 2: [PASSIVE] Improved Minor Illusion
+  Level 6: [PASSIVE] Illusory Self
+  Level 10: [PASSIVE] Illusory Self
+  Level 14: [PASSIVE] Illusory Reality
+
+------------------------------------------------------------------------------
+SUBCLASS: Wizard > Necromancy
+------------------------------------------------------------------------------
+  Level 2: [PASSIVE] Savant
+  Level 2: [PASSIVE] Grim Harvest
+  Level 6: [PASSIVE] Undead Thralls
+  Level 10: [PASSIVE] Inured to Undeath
+  Level 14: [PASSIVE] Command Undead
+
+------------------------------------------------------------------------------
+SUBCLASS: Wizard > Order of Scribes
+------------------------------------------------------------------------------
+  Level 2: [PASSIVE] Wizardly Quill
+  Level 2: [PASSIVE] Awakened Spellbook
+  Level 6: [PASSIVE] Manifest Mind
+  Level 10: [PASSIVE] Master Scrivian
+  Level 14: [PASSIVE] One with Words
+
+------------------------------------------------------------------------------
+SUBCLASS: Wizard > Transmutation
+------------------------------------------------------------------------------
+  Level 2: [PASSIVE] Savant
+  Level 2: [PASSIVE] Minor Alchemy
+  Level 6: [PASSIVE] Transmuter's Stone
+  Level 10: [PASSIVE] Shapechanger
+  Level 14: [PASSIVE] Master Transmuter
+
+------------------------------------------------------------------------------
+SUBCLASS: Wizard > War Magic
+------------------------------------------------------------------------------
+  Level 2: [PASSIVE] Arcane Deflection
+  Level 2: [PASSIVE] Tactical Wit
+  Level 6: [PASSIVE] Power Surge
+  Level 10: [PASSIVE] Durable Magic
+  Level 14: [PASSIVE] Deflecting Shroud
+
+
+================================================================================
+SUMMARY OF ALL MISSING CHOICE FEATURES
+================================================================================
+
+  Class: Fighter Level 1
+    Feature: Fighting Style
+    Options: Archery, Blind Fighting, Defense, Dueling, Great Weapon Fighting, Interception, Protection, Superior Technique, Thrown Weapon Fighting, Two-Weapon Fighting, Unarmed Fighting
+
+  Class: Paladin Level 2
+    Feature: Fighting Style
+    Options: Archery, Defense, Dueling, Great Weapon Fighting, Protection, Two-Weapon Fighting
+
+  Class: Ranger Level 1
+    Feature: Favored Enemy (1 type)
+    Options: Aberrations, Beasts, Celestials, Constructs, Dragons, Elementals, Fey, Fiends, Giants, Monstrosities, Oozes, Plants, Undead, Humanoid (2 races)
+
+  Class: Ranger Level 1
+    Feature: Natural Explorer (1 terrain type)
+    Options: Arctic, Coast, Desert, Forest, Grassland, Mountain, Swamp, Underdark
+
+  Class: Ranger Level 2
+    Feature: Fighting Style
+    Options: Archery, Defense, Dueling, Great Weapon Fighting, Protection, Two-Weapon Fighting
+
+  Class: Ranger Level 6
+    Feature: Favored Enemy (2 types)
+    Options: Aberrations, Beasts, Celestials, Constructs, Dragons, Elementals, Fey, Fiends, Giants, Monstrosities, Oozes, Plants, Undead, Humanoid (2 races)
+
+  Class: Ranger Level 6
+    Feature: Natural Explorer (2 terrain types)
+    Options: Arctic, Coast, Desert, Forest, Grassland, Mountain, Swamp, Underdark
+
+  Class: Ranger Level 10
+    Feature: Natural Explorer (3 terrain types)
+    Options: Arctic, Coast, Desert, Forest, Grassland, Mountain, Swamp, Underdark
+
+  Class: Ranger Level 14
+    Feature: Favored Enemy (3 enemies)
+    Options: Aberrations, Beasts, Celestials, Constructs, Dragons, Elementals, Fey, Fiends, Giants, Monstrosities, Oozes, Plants, Undead, Humanoid (2 races)
+
+  Class: Sorcerer Level 3
+    Feature: Metamagic
+    Options: Careful Spell, Distant Spell, Empowered Spell, Extended Spell, Heightened Spell, Quickened Spell, Subtle Spell, Twin Spell
+
+  Class: Sorcerer Level 10
+    Feature: Metamagic
+    Options: Careful Spell, Distant Spell, Empowered Spell, Extended Spell, Heightened Spell, Quickened Spell, Subtle Spell, Twin Spell
+
+  Class: Sorcerer Level 17
+    Feature: Metamagic
+    Options: Careful Spell, Distant Spell, Empowered Spell, Extended Spell, Heightened Spell, Quickened Spell, Subtle Spell, Twin Spell
+
+  Class: Warlock Level 11
+    Feature: Mystic Arcanum (6th level)
+    Options: Circle of Death, Conjure Fey, Create Undead, Eyebite, Flesh to Stone, Mass Suggestion, True Seeing
+
+  Class: Warlock Level 13
+    Feature: Mystic Arcanum (7th level)
+    Options: Etherealness, Finger of Death, Forcecage, Plane Shift
+
+  Class: Warlock Level 15
+    Feature: Mystic Arcanum (8th level)
+    Options: Demiplane, Dominate Monster, Feeblemind, Glibness, Power Word Stun
+
+  Class: Warlock Level 17
+    Feature: Mystic Arcanum (9th level)
+    Options: Astral Projection, Foresight, Imprisonment, Power Word Kill, True Polymorph
+
+  Class: Wizard Level 20
+    Feature: Signature Spell
+    Options: Animate Dead, Bestow Curse, Blink, Clairvoyance, Counterspell, Dispel Magic, Fear, Fireball, Fly, Gaseous Form, Glyph of Warding, Haste, Hypnotic Pattern, Lightning Bolt, Magic Circle, Major Image, Nondetection, Phantom Steed, Protection From Energy, Remove Curse, Sending, Sleet Storm, Slow, Stinking Cloud, Tiny Hut, Tongues, Vampiric Touch, Water Breathing
+
+  Subclass: Bard > College of Swords Level 3
+    Feature: Fighting Style
+    Options: Dueling, Two-Weapon Fighting, Great Weapon Fighting
+
+  Subclass: Bard > Lore Level 6
+    Feature: Additional Magical Secrets
+    Options: spell1, spell2
+
+  Subclass: Druid > Land Level 3
+    Feature: Circle Spells
+    Options: terrain
+
+  Subclass: Fighter > Arcane Archer Level 3
+    Feature: Arcane Shot Options
+    Options: Banishing Arrow, Beguiling Arrow, Bursting Arrow, Enfeebling Arrow, Grasping Arrow, Mind-Scrambling Arrow, Piercing Arrow, Seeking Arrow, Shadow Arrow
+
+  Subclass: Fighter > Cavalier Level 3
+    Feature: Bonus Proficiency
+    Options: Animal Handling, History, Insight, Performance, Persuasion, Language (choice)
+
+  Subclass: Fighter > Samurai Level 3
+    Feature: Bonus Proficiency
+    Options: History, Insight, Performance, Persuasion, Language (choice)
+
+  Subclass: Monk > Way of the Kensei Level 3
+    Feature: Path of the Kensei
+    Options: Kensei Weapons (Melee), Kensei Weapons (Ranged)
+
+Total missing: 24
