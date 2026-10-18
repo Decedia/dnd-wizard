@@ -3,7 +3,7 @@
 import { ReactNode, useState } from "react";
 import {
   StarIcon as Star,
-  InfoIcon as Info,
+  CaretRightIcon as ChevronRight,
   CaretDownIcon as ChevronDown,
 } from "@/components/icons";
 import { BasePopup } from "@/components/BasePopup";
@@ -121,7 +121,7 @@ export function SplitSelectionCard({
               }`}
             />
           ) : (
-            <Info className="h-5 w-5 text-[var(--color-text-primary)]" />
+            <ChevronRight className="h-5 w-5 text-[var(--color-text-primary)]" />
           )}
         </button>
       </div>

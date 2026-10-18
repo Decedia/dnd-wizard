@@ -550,6 +550,7 @@ export function EquipmentSelectionModal({
                   onClick={() => handleOptionClick(opt)}
                   onInfoClick={() => handleOpenInfo(opt)}
                   onWeaponSelect={handleWeaponSelect}
+                  getItemInfo={getItemInfo}
                   t={t}
                 />
               ))}
@@ -570,6 +571,7 @@ interface EquipmentCardProps {
   onClick: () => void;
   onInfoClick: () => void;
   onWeaponSelect: (name: string) => void;
+  getItemInfo: (name: string) => any;
   t: ReturnType<typeof useLanguage>["t"];
 }
 
@@ -581,6 +583,7 @@ function EquipmentCard({
   onClick,
   onInfoClick,
   onWeaponSelect,
+  getItemInfo,
   t,
 }: EquipmentCardProps) {
   const Icon = option.icon;
@@ -646,32 +649,50 @@ function EquipmentCard({
                 </div>
               </div>
             )}
-            <div className="space-y-2">
-              {option.weaponOptions?.map((weapon, wIdx) => {
-                const isWeaponSelected = weaponSelections.includes(weapon.name);
-                return (
-                  <SplitSelectionCard
-                    key={wIdx}
-                    title={weapon.name}
-                    subtitle={weapon.description || undefined}
-                    icon={weapon.icon}
-                    isSelected={isWeaponSelected}
-                    onSelect={() => onWeaponSelect(weapon.name)}
-                    infoType="modal"
-                    modalContent={
-                      <div className="space-y-3">
-                        {weapon.description && (
-                          <p className="text-xs leading-relaxed text-ink-muted">{weapon.description}</p>
-                        )}
-                        <InfoCallout label={t("modal.whyPlay", "Why choose this")}>
-                          {weapon.description || t("equipment.chooseWeaponHint", "Select this weapon for your character.")}
-                        </InfoCallout>
+            <div>
+              <InfoSectionLabel>{t("equipment.availableOptions", "Available Options")}</InfoSectionLabel>
+              <div className="mt-1.5 space-y-2">
+                {option.weaponOptions?.map((weapon, wIdx) => {
+                  const isWeaponSelected = weaponSelections.includes(weapon.name);
+                  const info = getItemInfo(weapon.name);
+                  return (
+                    <div
+                      key={wIdx}
+                      className={`rounded-xl border-2 transition-all p-3 ${isWeaponSelected ? "border-ink bg-ink/10" : "border-border-strong bg-surface"}`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3 min-w-0">
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-paper-muted">
+                            {weapon.icon}
+                          </div>
+                          <div className="min-w-0">
+                            <h4 className="font-bold text-ink truncate">{weapon.name}</h4>
+                            <p className="text-xs text-ink-muted truncate">{weapon.description}</p>
+                          </div>
+                        </div>
+                        <div className={`ml-3 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-colors ${isWeaponSelected ? "border-ink bg-ink text-surface" : "border-ink-subtle bg-transparent"}`}>
+                          {isWeaponSelected && <Check className="h-3 w-3" />}
+                        </div>
                       </div>
-                    }
-                    clampSubtitle={false}
-                  />
-                );
-              })}
+                      {isWeaponSelected && info && (
+                        <div className="mt-2 flex flex-wrap gap-1.5">
+                          {info.type === "weapon" && info.damageDice && (
+                            <>
+                              <InfoChip emphasis>{info.damageDice} {info.damageType || ""}</InfoChip>
+                              {info.properties?.map((p: string) => (
+                                <InfoChip key={p}>{p}</InfoChip>
+                              ))}
+                            </>
+                          )}
+                          {info.type === "armor" && info.baseAC !== undefined && (
+                            <InfoChip emphasis>{t("items.baseAC", "AC")} {info.baseAC}{info.maxDex === 0 ? ` (${t("items.noDex", "No DEX")})` : info.maxDex !== null && info.maxDex !== undefined ? ` (+${info.maxDex} ${t("items.dex", "DEX")})` : ` (${t("items.fullDex", "Full DEX")})`}</InfoChip>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         }
