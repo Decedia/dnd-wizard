@@ -1,256 +1,868 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { CheckIcon as Check, InfoIcon as Info, MagnifyingGlassIcon as MagnifyingGlass } from "@/components/icons";
+import { useState, useMemo, useCallback, useEffect, useLayoutEffect } from "react";
+import { CheckIcon as Check, MagnifyingGlassIcon as MagnifyingGlass, InfoIcon as Info, PackageIcon as PackageBox, SwordIcon as Sword, MusicNotesIcon as MusicNotes, ShieldIcon as ArmorShield, StarIcon as Star } from "@/components/icons";
 import { BottomSheet } from "@/components/modals/BottomSheet";
-import { BasePopup } from "@/components/BasePopup";
-import {
-  InfoSectionLabel,
-  InfoStatTile,
-} from "@/components/modals/InfoBits";
+import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
+import { ItemBundleList } from "@/components/modals/ItemBundle";
+import { InfoCallout, InfoSectionLabel, InfoStatTile, InfoChip, InfoProse, InfoCard, InfoBadge, InfoTraitList } from "@/components/modals/InfoBits";
 import type { ChoiceGroup, EquipmentOption } from "@/lib/character-creation";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { getStaticWeapons, getStaticArmors, getEquipmentData as getEquipmentDataFromSRD } from "@/lib/srd-client";
+import type { Character } from "@/lib/storage";
 
-interface EquipmentSelectionModalProps {
+export interface EquipmentSelectionModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onConfirm: () => void;
-  title: string;
+  onConfirm: (selectedOption: EquipmentOption | null, weaponSelections: string[]) => void;
   group: ChoiceGroup;
-  selectedOptionIndex: number | null;
-  onSelect: (index: number) => void;
-  renderRightContent?: (option: any, isSelected: boolean) => React.ReactNode;
-  getItemInfo?: (name: string) => { icon: string; description: string } | null;
-  getStatSummary?: (item: any) => string | null;
+  character: Character;
+  currentSelection?: EquipmentOption | null;
+  currentWeaponSelections?: string[];
+  requireChoice?: boolean;
+  onRequirementChange?: (required: boolean) => void;
+}
+
+interface SelectableOption {
+  id: string;
+  type: "package" | "weapon_choice" | "instrument_choice" | "arcane_focus_choice" | "holy_symbol_choice" | "druidic_focus_choice";
+  label: string;
+  description: string;
+  icon: React.ReactNode;
+  badges: string[];
+  equipmentOption: EquipmentOption;
+  selectionCount?: number;
+  bonusItems?: Array<{ name: string; quantity: number }>;
+  weaponOptions?: Array<{ name: string; description: string; icon: React.ReactNode }>;
+  isRecommended?: boolean;
+}
+
+const WEAPON_TYPE_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
+  martial_melee: Sword,
+  martial_ranged: Sword,
+  martial: Sword,
+  simple_melee: Sword,
+  simple_ranged: Sword,
+  simple: Sword,
+};
+
+const FOCUS_TYPE_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
+  arcane_focus: PackageBox,
+  holy_symbol: PackageBox,
+  druidic_focus: PackageBox,
+  musical_instrument: MusicNotes,
+};
+
+function getWeaponIcon(name: string, weaponType?: string): React.ReactNode {
+  const Icon = WEAPON_TYPE_ICONS[weaponType || ""] || Sword;
+  return <Icon className="h-6 w-6 text-ink" />;
+}
+
+function getFocusIcon(choiceType: string): React.ReactNode {
+  const Icon = FOCUS_TYPE_ICONS[choiceType] || PackageBox;
+  return <Icon className="h-6 w-6 text-ink" />;
+}
+
+function getItemIcon(itemName: string, itemType?: string): React.ReactNode {
+  if (itemType === "weapon") return <Sword className="h-6 w-6 text-ink" />;
+  if (itemType === "armor") return <ArmorShield className="h-6 w-6 text-ink" />;
+  if (itemType === "instrument") return <MusicNotes className="h-6 w-6 text-ink" />;
+  return <PackageBox className="h-6 w-6 text-ink" />;
+}
+
+function buildFallbackDescription(t: ReturnType<typeof useLanguage>["t"], itemName: string, info: any): string {
+  if (info.type === "weapon") {
+    const parts: string[] = [];
+    if (info.category) parts.push(`${t("equipment.weaponCategory", "A")} ${info.category} ${t("equipment.weapon", "weapon")}.`);
+    if (info.damageDice) parts.push(`${t("equipment.deals", "Deals")} ${info.damageDice} ${info.damageType || t("equipment.damage", "damage")}.`);
+    if (info.properties?.length) parts.push(`${t("equipment.properties", "Properties")}: ${info.properties.join(", ")}.`);
+    return parts.join(" ") || t("equipment.weaponFallback", { itemName }, "A weapon called {itemName}.");
+  }
+  if (info.type === "armor") {
+    const parts: string[] = [];
+    const armorLabel = info.armorType ? info.armorType.charAt(0).toUpperCase() + info.armorType.slice(1) : t("equipment.armorTypeFallback", "A type of");
+    parts.push(t("equipment.armorLabel", { armorLabel }, "Armor {armorLabel}."));
+    if (info.baseAC) parts.push(t("equipment.baseAC", { baseAC: info.baseAC }, "Base AC {baseAC}."));
+    if (info.maxDex !== undefined && info.maxDex !== null) {
+      parts.push(info.maxDex === 0 ? t("equipment.noDexBonus", "No Dex bonus.") : t("equipment.maxDexBonus", { maxDex: info.maxDex }, "Max Dex bonus +{maxDex}."));
+    }
+    return parts.join(" ") || t("equipment.armorFallback", { itemName }, "A type of armor called {itemName}.");
+  }
+  if (info.type === "instrument") {
+    return t("equipment.musicalInstrumentFocus", "Musical instrument used as a spellcasting focus.");
+  }
+  if (info.contents) {
+    return t("equipment.contentsLabel", { contents: info.contents }, "Contains: {contents}.");
+  }
+  return t("equipment.unknownFallback", { itemName }, "A {itemName}.");
 }
 
 export function EquipmentSelectionModal({
   isOpen,
   onClose,
   onConfirm,
-  title,
   group,
-  selectedOptionIndex,
-  onSelect,
-  renderRightContent,
-  getItemInfo,
-  getStatSummary,
+  character,
+  currentSelection,
+  currentWeaponSelections = [],
+  requireChoice = true,
+  onRequirementChange,
 }: EquipmentSelectionModalProps) {
-  const { t } = useLanguage();
-  const [mounted, setMounted] = useState(false);
+  const { t, language } = useLanguage();
+  const [step, setStep] = useState<"list" | "info">("list");
   const [searchQuery, setSearchQuery] = useState("");
-  const [infoOption, setInfoOption] = useState<EquipmentOption | null>(null);
+  const [selectedOption, setSelectedOption] = useState<SelectableOption | null>(null);
+  const [weaponSelections, setWeaponSelections] = useState<string[]>(currentWeaponSelections || []);
+  const [previewOption, setPreviewOption] = useState<SelectableOption | null>(null);
+  const [infoOption, setInfoOption] = useState<SelectableOption | null>(null);
+  const [sourceFilter, setSourceFilter] = useState<string>("ALL");
 
-  useEffect(() => {
-    setMounted(true);
-    return () => setMounted(false);
-  }, []);
+  const weapons = useMemo(() => getStaticWeapons(character.sources, character.ruleset, language), [character.sources, character.ruleset, language]);
+  const armors = useMemo(() => getStaticArmors(character.sources, character.ruleset, language), [character.sources, character.ruleset, language]);
 
-  useEffect(() => {
+  const getItemInfo = useCallback((itemName: string) => {
+    const weapon = weapons.find((w: any) => w.name === itemName) as any;
+    if (weapon) {
+      const rawDescription = weapon.description || "";
+      const description = rawDescription.length >= 30 && rawDescription !== weapon.name
+        ? rawDescription
+        : buildFallbackDescription(t, itemName, {
+            type: "weapon",
+            damageDice: weapon.damage?.damage_dice || "",
+            damageType: weapon.damage?.damage_type?.name || "",
+            properties: weapon.properties?.map((p: any) => p.name) || [],
+            category: weapon.category_range,
+          });
+      return {
+        type: "weapon",
+        damageDice: weapon.damage?.damage_dice || "",
+        damageType: weapon.damage?.damage_type?.name || "",
+        properties: weapon.properties?.map((p: any) => p.name) || [],
+        category: weapon.category_range,
+        description,
+        icon: "⚔️",
+      };
+    }
+
+    const armor = armors.find((a: any) => a.name === itemName) as any;
+    if (armor) {
+      const armorType = armor.armor_category === "Light" ? "light" : armor.armor_category === "Medium" ? "medium" : armor.armor_category === "Heavy" ? "heavy" : armor.armor_category === "Shield" ? "shield" : "unknown";
+      const rawDescription = armor.description || "";
+      const description = rawDescription.length >= 30 && rawDescription !== armor.name
+        ? rawDescription
+        : buildFallbackDescription(t, itemName, {
+            type: "armor",
+            baseAC: armor.armor_class?.base || 0,
+            maxDex: armor.armor_class?.max_bonus ?? (armor.armor_class?.dex_bonus ? null : 0),
+            armorType,
+          });
+      return {
+        type: "armor",
+        baseAC: armor.armor_class?.base || 0,
+        maxDex: armor.armor_class?.max_bonus ?? (armor.armor_class?.dex_bonus ? null : 0),
+        armorType,
+        description,
+        icon: "🛡️",
+      };
+    }
+
+    const equipmentData = getEquipmentDataFromSRD(itemName);
+    if (equipmentData) {
+      const rawDescription = equipmentData.description || "";
+      const description = rawDescription.length >= 30 && rawDescription !== itemName
+        ? rawDescription
+        : buildFallbackDescription(t, itemName, {
+            type: equipmentData.type,
+            baseAC: equipmentData.baseAC,
+            armorType: equipmentData.armorType,
+            maxDex: equipmentData.maxDexBonus,
+            damageDice: equipmentData.damageDice,
+            damageType: equipmentData.damageType,
+            category: equipmentData.category,
+            contents: equipmentData.contents,
+          });
+      return {
+        type: equipmentData.type,
+        description,
+        baseAC: equipmentData.baseAC,
+        armorType: equipmentData.armorType,
+        maxDex: equipmentData.maxDexBonus ?? null,
+        damageDice: equipmentData.damageDice,
+        damageType: equipmentData.damageType,
+        category: equipmentData.category,
+        contents: equipmentData.contents,
+        icon: "📦",
+      };
+    }
+
+    return {
+      type: "unknown",
+      description: buildFallbackDescription(t, itemName, { type: "unknown" }),
+      icon: "📦",
+    };
+  }, [weapons, armors, t]);
+
+  const allOptions = useMemo((): SelectableOption[] => {
+    const opts: SelectableOption[] = [];
+
+    group.options.forEach((opt, idx) => {
+      if (opt.isWeaponChoice) {
+        const categoryWeapons = weapons.filter((w: any) => {
+          if (opt.weaponType === "martial") return w.weapon_category === "Martial";
+          if (opt.weaponType === "simple") return w.weapon_category === "Simple";
+          if (opt.weaponType === "martial_melee") return w.weapon_category === "Martial" && w.category_range === "Melee";
+          if (opt.weaponType === "martial_ranged") return w.weapon_category === "Martial" && w.category_range === "Ranged";
+          if (opt.weaponType === "simple_melee") return w.weapon_category === "Simple" && w.category_range === "Melee";
+          if (opt.weaponType === "simple_ranged") return w.weapon_category === "Simple" && w.category_range === "Ranged";
+          return false;
+        });
+
+        const weaponOpts = categoryWeapons.map((w: any) => {
+          const info = getItemInfo(w.name);
+          return {
+            name: w.name,
+            description: w.description || "",
+            icon: getWeaponIcon(w.name, info.category),
+          };
+        });
+
+        opts.push({
+          id: `wc-${idx}`,
+          type: "weapon_choice",
+          label: opt.description || t("equipment.weaponChoice", "Choose weapons"),
+          description: `${opt.selectionCount || 1} ${t("equipment.weaponChoiceDesc", "weapon(s) of your choice")}`,
+          icon: getWeaponIcon("", opt.weaponType),
+          badges: ["PHB"],
+          equipmentOption: opt,
+          selectionCount: opt.selectionCount || 1,
+          bonusItems: (opt.items || []).map(item => ({ name: item.name, quantity: item.quantity || 1 })),
+          weaponOptions: weaponOpts,
+        });
+      } else if (opt.isInstrumentChoice) {
+        const MUSICAL_INSTRUMENTS = ["Bagpipes", "Drum", "Flute", "Horn", "Lute", "Lyre", "Pan flute", "Shawm", "Viol"];
+        const instrumentOpts = MUSICAL_INSTRUMENTS.map((name) => ({
+          name,
+          description: getItemInfo(name)?.description || "",
+          icon: <MusicNotes className="h-6 w-6 text-ink" />,
+        }));
+
+        opts.push({
+          id: `ic-${idx}`,
+          type: "instrument_choice",
+          label: t("creator.selectMusicalInstrument", "Select a musical instrument"),
+          description: t("equipment.instrumentChoiceDesc", "Choose one musical instrument"),
+          icon: <MusicNotes className="h-6 w-6 text-ink" />,
+          badges: ["PHB"],
+          equipmentOption: opt,
+          selectionCount: 1,
+          weaponOptions: instrumentOpts,
+        });
+      } else if (opt.isArcaneFocusChoice) {
+        const ARCANE_FOCUS_TYPES = ["Crystal", "Orb", "Rod", "Staff", "Wand"];
+        const focusOpts = ARCANE_FOCUS_TYPES.map((name) => ({
+          name,
+          description: getItemInfo(name)?.description || "",
+          icon: <PackageBox className="h-6 w-6 text-ink" />,
+        }));
+
+        opts.push({
+          id: `afc-${idx}`,
+          type: "arcane_focus_choice",
+          label: t("creator.selectArcaneFocus", "Select an arcane focus"),
+          description: t("equipment.arcaneFocusChoiceDesc", "Choose one arcane focus"),
+          icon: <PackageBox className="h-6 w-6 text-ink" />,
+          badges: ["PHB"],
+          equipmentOption: opt,
+          selectionCount: 1,
+          weaponOptions: focusOpts,
+        });
+      } else if (opt.isHolySymbolChoice) {
+        const HOLY_SYMBOL_TYPES = ["Amulet", "Emblem", "Reliquary"];
+        const focusOpts = HOLY_SYMBOL_TYPES.map((name) => ({
+          name,
+          description: getItemInfo(name)?.description || "",
+          icon: <PackageBox className="h-6 w-6 text-ink" />,
+        }));
+
+        opts.push({
+          id: `hsc-${idx}`,
+          type: "holy_symbol_choice",
+          label: t("creator.selectHolySymbol", "Select a holy symbol"),
+          description: t("equipment.holySymbolChoiceDesc", "Choose one holy symbol"),
+          icon: <PackageBox className="h-6 w-6 text-ink" />,
+          badges: ["PHB"],
+          equipmentOption: opt,
+          selectionCount: 1,
+          weaponOptions: focusOpts,
+        });
+      } else if (opt.isDruidicFocusChoice) {
+        const DRUIDIC_FOCUS_TYPES = ["Sprig of Mistletoe", "Totem", "Wooden Staff", "Yew Wand"];
+        const focusOpts = DRUIDIC_FOCUS_TYPES.map((name) => ({
+          name,
+          description: getItemInfo(name)?.description || "",
+          icon: <PackageBox className="h-6 w-6 text-ink" />,
+        }));
+
+        opts.push({
+          id: `dfc-${idx}`,
+          type: "druidic_focus_choice",
+          label: t("creator.selectDruidicFocus", "Select a druidic focus"),
+          description: t("equipment.druidicFocusChoiceDesc", "Choose one druidic focus"),
+          icon: <PackageBox className="h-6 w-6 text-ink" />,
+          badges: ["PHB"],
+          equipmentOption: opt,
+          selectionCount: 1,
+          weaponOptions: focusOpts,
+        });
+      } else {
+        const itemNames = (opt.items || [])
+          .map((i: any) => `${i.name}${i.quantity > 1 ? ` ×${i.quantity}` : ""}`)
+          .join(" • ");
+
+        const firstItem = opt.items?.[0];
+        let icon: React.ReactNode = <PackageBox className="h-6 w-6 text-ink" />;
+        if (firstItem) {
+          const info = getItemInfo(firstItem.name);
+          icon = getItemIcon(firstItem.name, info.type);
+        }
+
+        opts.push({
+          id: `pkg-${idx}`,
+          type: "package",
+          label: opt.description || t("equipment.optionLabel", { n: idx + 1 }, "Option {n}"),
+          description: itemNames,
+          icon,
+          badges: ["PHB"],
+          equipmentOption: opt,
+        });
+      }
+    });
+
+    return opts;
+  }, [group.options, weapons, getItemInfo, t]);
+
+  const filteredOptions = useMemo(() => {
+    let options = allOptions;
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      options = options.filter((opt) =>
+        opt.label.toLowerCase().includes(q) ||
+        opt.description.toLowerCase().includes(q) ||
+        opt.weaponOptions?.some((w) => w.name.toLowerCase().includes(q))
+      );
+    }
+    if (sourceFilter !== "ALL") {
+      options = options.filter((opt) => opt.badges.includes(sourceFilter));
+    }
+    return options;
+  }, [allOptions, searchQuery, sourceFilter]);
+
+  const availableSources = useMemo(() => {
+    const sources = new Set(allOptions.flatMap((opt) => opt.badges));
+    return Array.from(sources).sort();
+  }, [allOptions]);
+
+  useLayoutEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
+      // Reset modal state when opening - standard modal pattern
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setStep("list");
+      setSelectedOption(currentSelection ? allOptions.find(o => o.equipmentOption === currentSelection) || null : null);
+      setWeaponSelections(currentWeaponSelections || []);
+      setPreviewOption(null);
+      setSearchQuery("");
+      setSourceFilter("ALL");
+      setInfoOption(null);
     }
     return () => {
       document.body.style.overflow = "";
     };
-  }, [isOpen]);
+  }, [isOpen, currentSelection, currentWeaponSelections, allOptions]);
 
-  if (!isOpen || !mounted) return null;
+  const handleOptionClick = useCallback((option: SelectableOption) => {
+    setPreviewOption(option);
+    if (option.type !== "package") {
+      setSelectedOption(option);
+    }
+  }, []);
 
-  const options = group.options || [];
-  const filteredOptions = options.filter((opt) => {
-    if (!searchQuery.trim()) return true;
-    const q = searchQuery.toLowerCase();
-    return (opt.description || "").toLowerCase().includes(q) || (opt.items || []).some((i: any) => i.name.toLowerCase().includes(q));
-  });
+  const handleWeaponSelect = useCallback((weaponName: string) => {
+    setWeaponSelections((prev) => {
+      if (prev.includes(weaponName)) {
+        return prev.filter((w) => w !== weaponName);
+      }
+      if (!selectedOption) return prev;
+      const maxSelection = selectedOption.selectionCount || 1;
+      if (prev.length >= maxSelection) return prev;
+      return [...prev, weaponName];
+    });
+  }, [selectedOption]);
+
+  const handleOpenInfo = useCallback((option: SelectableOption) => {
+    setInfoOption(option);
+    setStep("info");
+  }, []);
+
+  const handleSelectInfoOption = useCallback(() => {
+    if (!infoOption) return;
+    setInfoOption(null);
+    setStep("list");
+    handleOptionClick(infoOption);
+  }, [infoOption, handleOptionClick]);
+
+  const handleConfirm = useCallback(() => {
+    if (step === "info") {
+      handleSelectInfoOption();
+    } else if (step === "list") {
+      if (selectedOption && selectedOption.type !== "package") {
+        const selectionCount = selectedOption.selectionCount || 1;
+        if (weaponSelections.length < selectionCount) return;
+      }
+      const payloadOption = selectedOption?.equipmentOption ?? previewOption?.equipmentOption ?? null;
+      onConfirm(payloadOption, weaponSelections);
+      onClose();
+    }
+  }, [step, selectedOption, previewOption, weaponSelections, onConfirm, onClose, handleSelectInfoOption]);
+
+  const handleCancel = useCallback(() => {
+    if (step === "info") {
+      setInfoOption(null);
+      setStep("list");
+    } else {
+      onClose();
+    }
+  }, [step, onClose]);
+
+  const title = step === "info" && infoOption
+    ? infoOption.label
+    : t("equipment.selectFromOptions", "Select from the options below");
+
+  const confirmLabel = step === "info"
+    ? t("modal.selectThisOption", "Select this option")
+    : previewOption
+      ? t("common.confirmSelection", "Confirm selection")
+      : t("modal.selectOption", "Select an option");
+
+  const showInfo = step === "info" && !!infoOption;
+
+  const isConfirmDisabled =
+    step === "info"
+      ? !infoOption
+      : !previewOption || (selectedOption != null && selectedOption.type !== "package" && weaponSelections.length < (selectedOption.selectionCount || 1));
+
+  const stickyHeader = (
+    <div className="sticky top-0 z-20 shrink-0 bg-surface border-b border-border-strong px-4 py-3 space-y-2">
+      <div className="relative">
+        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <MagnifyingGlass className="h-4 w-4 text-[var(--color-text-muted)]" />
+        </div>
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder={t("modal.searchPlaceholder")}
+          className="w-full pl-10 pr-4 py-2 text-sm bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-indigo-500)] focus:border-transparent"
+        />
+      </div>
+      <div className="relative">
+        <select
+          value={sourceFilter}
+          onChange={(e) => setSourceFilter(e.target.value)}
+          className="w-full px-4 py-2 text-sm bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg text-[var(--color-text-primary)] appearance-none focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-indigo-500)] focus:border-transparent"
+        >
+          <option value="ALL">{t("common.all", "All")}</option>
+          {availableSources.map((src) => (
+            <option key={src} value={src}>
+              {src}
+            </option>
+          ))}
+        </select>
+        <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+          <svg className="h-4 w-4 text-[var(--color-text-muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+        </div>
+      </div>
+    </div>
+  );
 
   const stickyFooter = (
     <div className="bg-[var(--color-surface)] border-t border-[var(--color-border)] px-4 py-3 flex flex-wrap gap-2">
       <button
         type="button"
-        onClick={onClose}
+        onClick={handleCancel}
         className="flex-1 py-2.5 px-4 text-sm font-medium rounded-lg border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:bg-[var(--color-bg)] transition-colors"
       >
-        {t("common.back", "Back")}
+        {step === "info" ? t("common.back", "Back") : t("common.cancel", "Cancel")}
       </button>
       <button
         type="button"
-        onClick={onConfirm}
-        disabled={selectedOptionIndex === null}
+        onClick={handleConfirm}
+        disabled={isConfirmDisabled}
         className={`flex-1 py-2.5 px-4 text-sm font-semibold rounded-lg transition-all ${
-          selectedOptionIndex !== null
-            ? "bg-[var(--color-accent-indigo-600)] text-white hover:bg-[var(--color-accent-indigo-700)] active:bg-[var(--color-accent-indigo-800)]"
-            : "bg-[var(--color-bg)] text-[var(--color-text-muted)] cursor-not-allowed"
+          isConfirmDisabled
+            ? "bg-[var(--color-bg)] text-[var(--color-text-muted)] cursor-not-allowed"
+            : "bg-[var(--color-accent-indigo-600)] text-white hover:bg-[var(--color-accent-indigo-700)] active:bg-[var(--color-accent-indigo-800)]"
         }`}
       >
-        {t("equipment.confirmSelection", "Confirm selection")}
+        {confirmLabel}
       </button>
     </div>
   );
 
-  const infoModalContent = (option: EquipmentOption) => {
-    const statSummary = getStatSummary?.(option);
-    return (
-      <div className="space-y-3">
-        {(option.items || []).length > 0 && (
-          <div>
-            <InfoSectionLabel>{t("equipment.contains", "Berisi:")}</InfoSectionLabel>
-            <div className="mt-1.5 space-y-1.5">
-              {(option.items || []).map((i: any, idx: number) => {
-                const info = getItemInfo?.(i.name);
-                return (
-                  <div
-                    key={`${i.name}-${idx}`}
-                    className="flex items-center justify-between rounded-xl border-2 border-border-strong bg-surface p-2.5"
-                  >
-                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-paper-muted">
-                      <span className="text-[16px] leading-none">{info?.icon || "📦"}</span>
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <span className="text-xs font-semibold text-ink">{i.name}</span>
-                      {info?.description && (
-                        <p className="mt-0.5 text-[10px] leading-relaxed text-ink-muted">
-                          {info.description}
-                        </p>
-                      )}
-                    </div>
-                    {i.quantity > 1 && (
-                      <span className="shrink-0 text-[10px] font-bold text-ink-muted">
-                        ×{i.quantity}
-                      </span>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        )}
-        {statSummary && (
-          <InfoStatTile label={t("equipment.statSummary", "Stat")} value={statSummary} />
-        )}
-      </div>
-    );
-  };
+  if (!isOpen) return null;
 
   return (
-    <BottomSheet isOpen={isOpen} onClose={onClose} title={title} footer={stickyFooter} showHeader={false}>
-      <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain p-4 pb-8">
-        <div className="mb-4">
-          <span className="block text-[10px] font-bold uppercase tracking-wider text-ink-muted">
-            {t("equipment.choosePackage", "Pilih paket perlengkapan")}
-          </span>
-          {group.description && (
-            <p className="mt-0.5 text-sm leading-relaxed text-ink-muted">{group.description}</p>
+    <BottomSheet
+      isOpen={isOpen}
+      onClose={onClose}
+      title={title}
+      footer={stickyFooter}
+      showHeader={false}
+    >
+      {!showInfo && stickyHeader}
+
+      {(step === "list" || showInfo) && (
+        <div className="flex-1 min-h-0 space-y-3 overflow-y-auto overscroll-contain p-4 pb-8">
+          {showInfo ? (
+            <EquipmentInfoPanel
+              option={infoOption!}
+              weaponSelections={weaponSelections}
+              getItemInfo={getItemInfo}
+              t={t}
+              language={language}
+            />
+          ) : (
+            <>
+            {filteredOptions.length === 0 && (
+              <p className="py-8 text-center text-sm text-ink-muted">
+                {t("modal.noClassesFound", "Tidak ada opsi yang cocok dengan pencarianmu.")}
+              </p>
+            )}
+
+            <div className="space-y-3">
+              {filteredOptions.map((opt) => (
+                <EquipmentCard
+                  key={opt.id}
+                  option={opt}
+                  isSelected={previewOption?.id === opt.id}
+                  isWeaponSelected={opt.type !== "package" && selectedOption?.id === opt.id}
+                  weaponSelections={weaponSelections}
+                  onClick={() => handleOptionClick(opt)}
+                  onInfoClick={() => handleOpenInfo(opt)}
+                  onWeaponSelect={handleWeaponSelect}
+                  t={t}
+                />
+              ))}
+            </div>
+            </>
           )}
         </div>
-
-        <div className="relative mb-4">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <MagnifyingGlass className="h-4 w-4 text-[var(--color-text-muted)]" />
-          </div>
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder={t("modal.searchPlaceholder", "Cari...")}
-            className="w-full pl-9 pr-4 py-2 text-sm bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-indigo-500)] focus:border-transparent"
-          />
-        </div>
-
-        {filteredOptions.length === 0 && (
-          <p className="text-sm text-[var(--color-text-muted)] text-center py-6">
-            {t("modal.noClassesFound", "Tidak ada opsi yang cocok dengan pencarianmu.")}
-          </p>
-        )}
-
-        {filteredOptions.map((option, index) => {
-          const isSelected = selectedOptionIndex === index;
-          const itemNames = (option.items || [])
-            .map((i: any) => `${i.name}${i.quantity > 1 ? ` x${i.quantity}` : ""}`)
-            .join(", ");
-          const statSummary = getStatSummary?.(option);
-          const isInfoOpen = infoOption?.description === option.description;
-
-          return (
-            <div key={option.description || index} className="space-y-2">
-              <div
-                className={`flex flex-row overflow-hidden rounded-xl border-2 transition-all p-3 ${
-                  isSelected
-                    ? "border-ink bg-ink/5 shadow-sm"
-                    : "border-border-strong bg-surface hover:border-ink/30"
-                }`}
-              >
-                <button
-                  type="button"
-                  onClick={() => onSelect(index)}
-                  className="flex flex-1 items-center justify-between p-0 text-left active:scale-[0.99]"
-                >
-                  <div className="min-w-0">
-                    <h4 className="font-bold text-ink">{option.description}</h4>
-                    <div className="mt-1 flex flex-wrap items-center gap-1.5">
-                      <span className="rounded bg-paper-muted px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-ink-muted">
-                        PHB
-                      </span>
-                      {statSummary && (
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-ink-subtle">
-                          {statSummary}
-                        </span>
-                      )}
-                    </div>
-                    {itemNames && (
-                      <p className="mt-1 text-[10px] leading-relaxed text-ink-muted whitespace-pre-line">
-                        {itemNames}
-                      </p>
-                    )}
-                  </div>
-                  <div
-                    className={`ml-3 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-colors ${
-                      isSelected
-                        ? "border-ink bg-ink text-surface"
-                        : "border-ink-subtle bg-transparent"
-                    }`}
-                  >
-                    {isSelected && <Check className="h-3 w-3" />}
-                  </div>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setInfoOption(option);
-                  }}
-                  className="flex w-12 shrink-0 items-center justify-center border-l-2 border-border-muted text-ink-muted transition hover:bg-ink/5 hover:text-ink active:scale-90"
-                >
-                  <Info className="h-5 w-5" />
-                </button>
-              </div>
-
-              {isInfoOpen && (
-                <BasePopup
-                  isOpen={isInfoOpen}
-                  onClose={() => setInfoOption(null)}
-                  title={option.description}
-                  children={infoModalContent(option)}
-                  confirmLabel={t("common.gotIt", "Got it")}
-                  showFooter={true}
-                />
-              )}
-            </div>
-          );
-        })}
-      </div>
+      )}
     </BottomSheet>
   );
 }
 
-function getStatSummary(item: any): string | null {
-  if (!item) return null;
-  if (item.damageDice) return `${item.damageDice} ${item.damageType || ""}`.trim();
-  if (item.baseAC) return `AC ${item.baseAC}`;
-  if (item.toolUse) return item.toolUse;
-  if (item.effect) return item.effect;
-  return null;
+interface EquipmentCardProps {
+  option: SelectableOption;
+  isSelected: boolean;
+  isWeaponSelected: boolean;
+  weaponSelections: string[];
+  onClick: () => void;
+  onInfoClick: () => void;
+  onWeaponSelect: (name: string) => void;
+  t: ReturnType<typeof useLanguage>["t"];
+}
+
+function EquipmentCard({
+  option,
+  isSelected,
+  isWeaponSelected,
+  weaponSelections,
+  onClick,
+  onInfoClick,
+  onWeaponSelect,
+  t,
+}: EquipmentCardProps) {
+  const Icon = option.icon;
+
+  if (option.type === "package") {
+    const bundleItems = (option.equipmentOption.items || []).map((i: any) => ({
+      name: i.name,
+      quantity: i.quantity || 1,
+    }));
+
+    return (
+      <SplitSelectionCard
+        title={option.label}
+        subtitle={option.description}
+        clampSubtitle={false}
+        icon={Icon}
+        badges={option.badges}
+        isSelected={isSelected}
+        onSelect={onClick}
+        infoType="modal"
+        modalContent={
+          <div className="space-y-3">
+            {bundleItems.length > 0 ? (
+              <ItemBundleList
+                items={bundleItems}
+                getInfo={(name) => getEquipmentDataFromSRD(name) ? { description: getEquipmentDataFromSRD(name)!.description, icon: "📦" } : null}
+                emptyLabel={t("equipment.noItems", "Tidak ada barang.")}
+              />
+            ) : (
+              <p className="text-xs text-ink-muted">{t("equipment.noItems", "Tidak ada barang.")}</p>
+            )}
+          </div>
+        }
+      />
+    );
+  }
+
+  const selectedCount = weaponSelections.length;
+  const totalCount = option.selectionCount || 1;
+
+  return (
+    <div className="space-y-2">
+      <SplitSelectionCard
+        title={option.label}
+        subtitle={`${selectedCount}/${totalCount} ${t("equipment.selectedCount", "selected")}`}
+        clampSubtitle={false}
+        icon={Icon}
+        badges={option.badges}
+        isSelected={isWeaponSelected}
+        onSelect={onClick}
+        infoType="modal"
+        modalContent={
+          <div className="space-y-4">
+            {option.bonusItems && option.bonusItems.length > 0 && (
+              <div>
+                <InfoSectionLabel>{t("equipment.contains", "Contains:")}</InfoSectionLabel>
+                <div className="mt-1.5">
+                  <ItemBundleList
+                    items={option.bonusItems}
+                    getInfo={(name) => getEquipmentDataFromSRD(name) ? { description: getEquipmentDataFromSRD(name)!.description, icon: "📦" } : null}
+                    showIncluded
+                  />
+                </div>
+              </div>
+            )}
+            <div className="space-y-2">
+              {option.weaponOptions?.map((weapon, wIdx) => {
+                const isWeaponSelected = weaponSelections.includes(weapon.name);
+                return (
+                  <SplitSelectionCard
+                    key={wIdx}
+                    title={weapon.name}
+                    subtitle={weapon.description || undefined}
+                    icon={weapon.icon}
+                    isSelected={isWeaponSelected}
+                    onSelect={() => onWeaponSelect(weapon.name)}
+                    infoType="modal"
+                    modalContent={
+                      <div className="space-y-3">
+                        {weapon.description && (
+                          <p className="text-xs leading-relaxed text-ink-muted">{weapon.description}</p>
+                        )}
+                        <InfoCallout label={t("modal.whyPlay", "Why choose this")}>
+                          {weapon.description || t("equipment.chooseWeaponHint", "Select this weapon for your character.")}
+                        </InfoCallout>
+                      </div>
+                    }
+                    clampSubtitle={false}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        }
+      />
+    </div>
+  );
+}
+
+interface EquipmentInfoPanelProps {
+  option: SelectableOption;
+  weaponSelections: string[];
+  getItemInfo: (name: string) => any;
+  t: ReturnType<typeof useLanguage>["t"];
+  language: string;
+}
+
+function EquipmentInfoPanel({ option, weaponSelections, getItemInfo, t, language }: EquipmentInfoPanelProps) {
+  if (option.type === "package") {
+    const items = option.equipmentOption.items || [];
+    const itemDetails = items.map((item) => {
+      const info = getItemInfo(item.name);
+      return {
+        name: item.name,
+        quantity: item.quantity || 1,
+        info,
+      };
+    });
+
+    return (
+      <div className="space-y-4">
+        <div className="rounded-2xl border-2 border-border-strong bg-surface p-4">
+          <h3 className="text-lg font-bold text-ink">{option.label}</h3>
+          <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
+            {option.badges.map((badge) => (
+              <InfoBadge key={badge}>{badge}</InfoBadge>
+            ))}
+          </div>
+        </div>
+
+        <InfoCallout label={t("modal.whyPlay", "Why choose this")}>
+          {option.equipmentOption.description || t("equipment.packageDesc", "This equipment package provides a balanced set of starting gear.")}
+        </InfoCallout>
+
+        <div>
+          <InfoSectionLabel>{t("equipment.contains", "Contains:")}</InfoSectionLabel>
+          <div className="mt-1.5 space-y-2">
+            {itemDetails.map((item, idx) => (
+              <div key={`${item.name}-${idx}`} className="rounded-xl border-2 border-border-strong bg-surface p-3">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-paper-muted">
+                      <span className="text-[16px] leading-none">{item.info?.icon || "📦"}</span>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-ink">{item.name}</h4>
+                      <p className="text-xs text-ink-muted">{item.info?.description}</p>
+                    </div>
+                  </div>
+                  {item.quantity > 1 && (
+                    <span className="rounded-md bg-paper-muted px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-ink-muted">
+                      ×{item.quantity}
+                    </span>
+                  )}
+                </div>
+                {item.info?.type === "weapon" && item.info.damageDice && (
+                  <div className="mt-2 flex flex-wrap gap-1.5">
+                    <InfoChip emphasis>{item.info.damageDice} {item.info.damageType || ""}</InfoChip>
+                    {item.info.properties?.map((p: string) => (
+                      <InfoChip key={p}>{p}</InfoChip>
+                    ))}
+                  </div>
+                )}
+                {item.info?.type === "armor" && item.info.baseAC !== undefined && (
+                  <div className="mt-2 flex flex-wrap gap-1.5">
+                    <InfoChip emphasis>{t("items.baseAC", "AC")} {item.info.baseAC}{item.info.maxDex === 0 ? ` (${t("items.noDex", "No DEX")})` : item.info.maxDex !== null && item.info.maxDex !== undefined ? ` (+${item.info.maxDex} ${t("items.dex", "DEX")})` : ` (${t("items.fullDex", "Full DEX")})`}</InfoChip>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const selectedWeapons = option.weaponOptions?.filter((w) => weaponSelections.includes(w.name)) || [];
+
+  return (
+    <div className="space-y-4">
+      <div className="rounded-2xl border-2 border-border-strong bg-surface p-4">
+        <h3 className="text-lg font-bold text-ink">{option.label}</h3>
+        <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
+          {option.badges.map((badge) => (
+            <InfoBadge key={badge}>{badge}</InfoBadge>
+          ))}
+          <span className="text-[10px] font-bold uppercase tracking-wider text-ink-subtle">
+            {weaponSelections.length}/{option.selectionCount || 1} {t("equipment.selectedCount", "selected")}
+          </span>
+        </div>
+      </div>
+
+      <InfoCallout label={t("modal.whyPlay", "Why choose this")}>
+        {option.description}
+      </InfoCallout>
+
+      {option.bonusItems && option.bonusItems.length > 0 && (
+        <div>
+          <InfoSectionLabel>{t("equipment.contains", "Contains:")}</InfoSectionLabel>
+          <div className="mt-1.5 space-y-2">
+            {option.bonusItems.map((item, idx) => {
+              const info = getItemInfo(item.name);
+              return (
+                <div key={`${item.name}-${idx}`} className="rounded-xl border-2 border-border-strong bg-surface p-3">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-paper-muted">
+                        <span className="text-[16px] leading-none">{info?.icon || "📦"}</span>
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-ink">{item.name}</h4>
+                        <p className="text-xs text-ink-muted">{info?.description}</p>
+                      </div>
+                    </div>
+                    {item.quantity > 1 && (
+                      <span className="rounded-md bg-paper-muted px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-ink-muted">
+                        ×{item.quantity}
+                      </span>
+                    )}
+                  </div>
+                  {info?.type === "weapon" && info.damageDice && (
+                    <div className="mt-2 flex flex-wrap gap-1.5">
+                      <InfoChip emphasis>{info.damageDice} {info.damageType || ""}</InfoChip>
+                      {info.properties?.map((p: string) => (
+                        <InfoChip key={p}>{p}</InfoChip>
+                      ))}
+                    </div>
+                  )}
+                  {info?.type === "armor" && info.baseAC !== undefined && (
+                    <div className="mt-2 flex flex-wrap gap-1.5">
+                      <InfoChip emphasis>{t("items.baseAC", "AC")} {info.baseAC}{info.maxDex === 0 ? ` (${t("items.noDex", "No DEX")})` : info.maxDex !== null && info.maxDex !== undefined ? ` (+${info.maxDex} ${t("items.dex", "DEX")})` : ` (${t("items.fullDex", "Full DEX")})`}</InfoChip>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      <div>
+        <InfoSectionLabel>{t("equipment.availableOptions", "Available Options")}</InfoSectionLabel>
+        <div className="mt-1.5 space-y-2">
+          {option.weaponOptions?.map((weapon, wIdx) => {
+            const isSelected = weaponSelections.includes(weapon.name);
+            const info = getItemInfo(weapon.name);
+            return (
+              <div key={wIdx} className={`rounded-xl border-2 transition-all p-3 ${isSelected ? "border-ink bg-ink/10" : "border-border-strong bg-surface hover:border-ink/30"}`}>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-paper-muted">
+                      {weapon.icon}
+                    </div>
+                    <div className="min-w-0">
+                      <h4 className="font-bold text-ink truncate">{weapon.name}</h4>
+                      <p className="text-xs text-ink-muted truncate">{weapon.description}</p>
+                    </div>
+                  </div>
+                  <div className={`ml-3 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-colors ${isSelected ? "border-ink bg-ink text-surface" : "border-ink-subtle bg-transparent"}`}>
+                    {isSelected && <Check className="h-3 w-3" />}
+                  </div>
+                </div>
+                {isSelected && info && (
+                  <div className="mt-2 flex flex-wrap gap-1.5">
+                    {info.type === "weapon" && info.damageDice && (
+                      <>
+                        <InfoChip emphasis>{info.damageDice} {info.damageType || ""}</InfoChip>
+                        {info.properties?.map((p: string) => (
+                          <InfoChip key={p}>{p}</InfoChip>
+                        ))}
+                      </>
+                    )}
+                    {info.type === "armor" && info.baseAC !== undefined && (
+                      <InfoChip emphasis>{t("items.baseAC", "AC")} {info.baseAC}{info.maxDex === 0 ? ` (${t("items.noDex", "No DEX")})` : info.maxDex !== null && info.maxDex !== undefined ? ` (+${info.maxDex} ${t("items.dex", "DEX")})` : ` (${t("items.fullDex", "Full DEX")})`}</InfoChip>
+                    )}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
 }
