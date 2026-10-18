@@ -106,79 +106,106 @@ export function EquipmentChoiceModal({
     <BottomSheet isOpen={isOpen} onClose={onClose} title={title} footer={stickyFooter} showHeader={false}>
       <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain p-4 pb-8">
         {hasConcrete && (
-          <div className="space-y-3">
-            <span className="block text-[10px] font-bold uppercase tracking-wider text-ink-muted">
-              {t("equipment.choosePackage", "Pilih paket perlengkapan")}
-            </span>
-            {concreteOptions.map((opt) => {
-              const globalIdx = group.options.indexOf(opt);
-              const isSelected = selectedConcreteIndex === globalIdx;
-              const bundleItems = (opt.items || []).map((i) => ({
-                name: i.name,
-                quantity: i.quantity || 1,
-              }));
-              return (
-                <SplitSelectionCard
-                  key={opt.description || globalIdx}
-                  title={opt.description || t("equipment.optionLabel", { n: globalIdx + 1 }, "Opsi {n}")}
-                  icon={<PackageBox className="h-6 w-6 text-ink-muted" />}
-                  isSelected={isSelected}
-                  onSelect={() => onConcreteSelect(globalIdx)}
-                  infoType="modal"
-                  modalContent={
-                    <div className="space-y-3">
-                      {bundleItems.length > 0 ? (
-                        <ItemBundleList
-                          items={bundleItems}
-                          getInfo={getItemInfo}
-                          emptyLabel={t("equipment.noItems", "Tidak ada barang.")}
-                        />
-                      ) : (
-                        <p className="text-xs text-ink-muted">{t("equipment.noItems", "Tidak ada barang.")}</p>
-                      )}
-                    </div>
-                  }
-                />
-              );
-            })}
-          </div>
+          <details className="group" open>
+            <summary className="flex items-center justify-between gap-3 p-3 rounded-xl border-2 border-border-strong bg-surface cursor-pointer list-none transition-colors">
+              <div className="flex items-center gap-3 min-w-0">
+                <PackageBox className="h-5 w-5 text-ink-muted shrink-0" />
+                <div className="min-w-0">
+                  <h4 className="font-bold text-ink truncate">{t("equipment.choosePackage", "Pilih paket perlengkapan")}</h4>
+                  {group.description && (
+                    <p className="mt-0.5 text-sm leading-relaxed text-ink-muted truncate">{group.description}</p>
+                  )}
+                </div>
+              </div>
+            </summary>
+            <div className="space-y-2 mt-3">
+              {concreteOptions.map((opt) => {
+                const globalIdx = group.options.indexOf(opt);
+                const isSelected = selectedConcreteIndex === globalIdx;
+                const bundleItems = (opt.items || []).map((i) => ({
+                  name: i.name,
+                  quantity: i.quantity || 1,
+                }));
+                // Visible item summary like race cards show "MEDIUM • SPEED 30 FT"
+                const itemSummary = bundleItems
+                  .map((i) => `${i.name}${i.quantity > 1 ? ` ×${i.quantity}` : ""}`)
+                  .join(" • ");
+                return (
+                  <SplitSelectionCard
+                    key={opt.description || globalIdx}
+                    title={opt.description || t("equipment.optionLabel", { n: globalIdx + 1 }, "Opsi {n}")}
+                    subtitle={itemSummary || undefined}
+                    icon={<PackageBox className="h-6 w-6 text-ink-muted" />}
+                    badges={["PHB"]}
+                    isSelected={isSelected}
+                    onSelect={() => onConcreteSelect(globalIdx)}
+                    infoType="modal"
+                    modalContent={
+                      <div className="space-y-3">
+                        {bundleItems.length > 0 ? (
+                          <ItemBundleList
+                            items={bundleItems}
+                            getInfo={getItemInfo}
+                            emptyLabel={t("equipment.noItems", "Tidak ada barang.")}
+                          />
+                        ) : (
+                          <p className="text-xs text-ink-muted">{t("equipment.noItems", "Tidak ada barang.")}</p>
+                        )}
+                      </div>
+                    }
+                    clampSubtitle={false}
+                  />
+                );
+              })}
+            </div>
+          </details>
         )}
 
-        {hasWeaponChoices && hasConcrete && (
-          <div className="border-t-2 border-border-muted pt-3 mt-2">
-            <span className="block text-[10px] font-bold uppercase tracking-wider text-ink-muted">
-              {t("equipment.orChooseWeapons", "Atau pilih senjata")}
-            </span>
-          </div>
-        )}
-
-        {hasWeaponChoices &&
-          weaponChoiceOptions.map((wc, wcIdx) => {
-            const isWeaponChoiceSelected = selectedWeaponChoiceIndex === wcIdx;
-            return (
-              <div key={wc.id} className="space-y-3">
-                <SplitSelectionCard
-                  title={wc.label}
-                  subtitle={t("equipment.chooseWeapons", { count: wc.selectionCount }, "Pilih {count} senjata")}
-                  icon={<PackageBox className="h-6 w-6 text-ink-muted" />}
-                  isSelected={isWeaponChoiceSelected}
-                  onSelect={() => onWeaponChoiceSelect(wcIdx)}
-                  infoType="modal"
-                  modalContent={
-                    <div className="space-y-4">
+        {hasWeaponChoices && (
+          <details className="group mt-4" open>
+            <summary className="flex items-center justify-between gap-3 p-3 rounded-xl border-2 border-border-strong bg-surface cursor-pointer list-none transition-colors">
+              <div className="flex items-center gap-3 min-w-0">
+                <PackageBox className="h-5 w-5 text-ink-muted shrink-0" />
+                <div className="min-w-0">
+                  <h4 className="font-bold text-ink truncate">{t("equipment.orChooseWeapons", "Atau pilih senjata")}</h4>
+                  <p className="mt-0.5 text-sm leading-relaxed text-ink-muted truncate">
+                    {t("equipment.chooseWeaponsDesc", "Pilih senjata dari kategori yang tersedia")}
+                  </p>
+                </div>
+              </div>
+            </summary>
+            <div className="space-y-3 mt-3">
+              {weaponChoiceOptions.map((wc, wcIdx) => {
+                const isWeaponChoiceSelected = selectedWeaponChoiceIndex === wcIdx;
+                return (
+                  <details key={wc.id} className="group" open>
+                    <summary className="flex items-center justify-between gap-3 p-3 rounded-xl border-2 border-border-strong bg-surface cursor-pointer list-none transition-colors">
+                      <div className="flex items-center gap-3 min-w-0">
+                        <PackageBox className="h-5 w-5 text-ink-muted shrink-0" />
+                        <div className="min-w-0">
+                          <h4 className="font-bold text-ink truncate">{wc.label}</h4>
+                          <p className="mt-0.5 text-sm leading-relaxed text-ink-muted truncate">
+                            {t("equipment.chooseWeapons", { count: wc.selectionCount }, "Pilih {count} senjata")}
+                          </p>
+                        </div>
+                      </div>
+                    </summary>
+                    <div className="space-y-3 mt-3">
                       {wc.bonusItems && wc.bonusItems.length > 0 && (
-                        <div>
-                          <span className="block text-[10px] font-bold uppercase tracking-wider text-ink-muted">
-                            {t("equipment.contains", "Berisi:")}
-                          </span>
-                          <div className="mt-1.5">
+                        <details className="group" open>
+                          <summary className="flex items-center gap-3 p-2.5 rounded-lg border border-border-strong bg-surface/50 cursor-pointer list-none">
+                            <span className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">
+                              {t("equipment.contains", "Berisi:")}
+                            </span>
+                          </summary>
+                          <div className="mt-2 ml-6 space-y-1.5">
                             <ItemBundleList
                               items={wc.bonusItems}
                               getInfo={getItemInfo}
                               showIncluded
                             />
                           </div>
-                        </div>
+                        </details>
                       )}
                       <div className="space-y-2">
                         {wc.weaponOptions.map((weapon, wIdx) => {
@@ -202,16 +229,18 @@ export function EquipmentChoiceModal({
                                   )}
                                 </div>
                               }
+                              clampSubtitle={false}
                             />
                           );
                         })}
                       </div>
                     </div>
-                  }
-                />
-              </div>
-            );
-          })}
+                  </details>
+                );
+              })}
+            </div>
+          </details>
+        )}
       </div>
     </BottomSheet>
   );
