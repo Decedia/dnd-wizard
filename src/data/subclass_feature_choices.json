@@ -471,6 +471,30 @@
           }
         ]
       }
+    },
+    "The Genie": {
+      "Genie Patron": {
+        "count": 1,
+        "description": "Choose the type of genie that is your patron. This determines your damage resistance, language, and added spells.",
+        "options": [
+          {
+            "name": "Dao (Earth)",
+            "description": "Fire damage; Terran language"
+          },
+          {
+            "name": "Djinni (Air)",
+            "description": "Cold damage; Auran language"
+          },
+          {
+            "name": "Efreeti (Fire)",
+            "description": "Lightning damage; Ignan language"
+          },
+          {
+            "name": "Marid (Water)",
+            "description": "Thunder damage; Aquan language"
+          }
+        ]
+      }
     }
   },
   "Monk": {

@@ -13854,6 +13854,54 @@
       "description": "Kamu telah membuat pakta dengan salah satu genie, penguasa elemental yang perkasa dari Inner Planes. Patron genie adalah makhluk kuat yang bisa mengabulkan permintaan dan membengkokkan realitas sesuai keinginannya.",
       "features": [
         {
+          "name": "Genie Patron",
+          "description": "Pada level 1, kamu memilih jenis genie yang menjadi patronmu: Dao (bumi), Djinni (udara), Efreeti (api), atau Marid (air). Pilihanmu menentukan tipe kerusakan untuk fitur Elemental Gift dan menambahkan sihir ke daftar sihirmu.\n\n- Dao (Bumi): Kerusakan api\n- Djinni (Udara): Kerusakan dingin\n- Efreeti (Api): Kerusakan petir\n- Marid (Air): Kerusakan guntur\n\nKamu bisa berbicara, membaca, dan menulis bahasa bidang patronmu: Terran (Dao), Auran (Djinni), Ignan (Efreeti), atau Aquan (Marid).",
+          "level": 1,
+          "choices": [
+            {
+              "name": "Dao (Bumi)",
+              "description": "Kerusakan api; Bahasa Terran",
+              "lastUpdated": "2026-10-18"
+            },
+            {
+              "name": "Djinni (Udara)",
+              "description": "Kerusakan dingin; Bahasa Auran",
+              "lastUpdated": "2026-10-18"
+            },
+            {
+              "name": "Efreeti (Api)",
+              "description": "Kerusakan petir; Bahasa Ignan",
+              "lastUpdated": "2026-10-18"
+            },
+            {
+              "name": "Marid (Air)",
+              "description": "Kerusakan guntur; Bahasa Aquan",
+              "lastUpdated": "2026-10-18"
+            }
+          ],
+          "featureType": "Active",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Pilih tipe patron genie untuk menentukan resistansi kerusakan, bahasa, dan sihir tambahan.",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "The Genie",
+            "level": 1
+          },
+          "book": "TCE",
+          "lastUpdated": "2026-10-18"
+        },
+        {
           "name": "Bonus Spells",
           "description": "Pada level 1, kamu mempelajari sihir tambahan saat mencapai level tertentu dalam kelas ini, sebagaimana tertera pada tabel Genie Spells. Setiap sihir ini dianggap sebagai sihir warlock bagimu, tetapi tidak dihitung dalam jumlah maksimal sihir warlock yang kamu kuasai.\n\nLevel 1: detect evil and good, protection from evil and good\nLevel 3: create food and water, phantasmal killer\nLevel 5: creation, sending\nLevel 7: creation, summon elemental\nLevel 9: creation, wall of stone\nLevel 11: creation, wish",
           "level": 1,
