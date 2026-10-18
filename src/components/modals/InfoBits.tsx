@@ -202,7 +202,7 @@ export function EquipmentInfoPanel({ option, t, language }: EquipmentInfoPanelPr
         {option.weight && (
           <InfoStatTile label={t("items.weight", "Weight")} value={`${option.weight} lb`} />
         )}
-        {isWeapon && option.properties?.length > 0 && (
+        {isWeapon && option.properties && option.properties.length > 0 && (
           <div className="col-span-2">
             <InfoSectionLabel>{t("items.properties", "Properties")}</InfoSectionLabel>
             <div className="mt-1 flex flex-wrap gap-1.5">

@@ -525,9 +525,20 @@ export function EquipmentSelectionModal({
         <div className="flex-1 min-h-0 space-y-3 overflow-y-auto overscroll-contain p-4 pb-8">
           {showInfo ? (
             <EquipmentInfoPanel
-              option={infoOption!}
-              weaponSelections={weaponSelections}
-              getItemInfo={getItemInfo}
+              option={{
+                name: infoOption.label,
+                description: infoOption.description,
+                type: infoOption.type === "weapon_choice" ? "weapon" : infoOption.type === "package" ? "item" : "item",
+                icon: infoOption.icon,
+                source: infoOption.badges?.[0],
+                items: infoOption.equipmentOption?.items?.map((i: any) => ({
+                  name: i.name,
+                  quantity: i.quantity || 1,
+                  info: getEquipmentDataFromSRD(i.name) || {},
+                })),
+                selectionCount: infoOption.selectionCount,
+                equipmentOption: infoOption.equipmentOption,
+              }}
               t={t}
               language={language}
             />
@@ -551,6 +562,7 @@ export function EquipmentSelectionModal({
                   onInfoClick={() => handleOpenInfo(opt)}
                   onWeaponSelect={handleWeaponSelect}
                   t={t}
+                  language={language}
                 />
               ))}
             </div>
@@ -571,6 +583,7 @@ interface EquipmentCardProps {
   onInfoClick: () => void;
   onWeaponSelect: (name: string) => void;
   t: ReturnType<typeof useLanguage>["t"];
+  language: string;
 }
 
 function EquipmentCard({
@@ -582,6 +595,7 @@ function EquipmentCard({
   onInfoClick,
   onWeaponSelect,
   t,
+  language,
 }: EquipmentCardProps) {
   const Icon = option.icon;
 
