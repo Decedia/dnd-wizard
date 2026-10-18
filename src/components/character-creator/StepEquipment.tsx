@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useMemo, useEffect, useCallback } from "react";
-import { Backpack, Info, Lock, Plus } from "@phosphor-icons/react";
+import { Backpack, Info, Lock, Plus, CheckIcon as Check } from "@phosphor-icons/react";
 import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
+import { ItemBundleList } from "@/components/modals/ItemBundle";
 import { getStaticClass, getStaticWeapons, getStaticArmors, getEquipmentData } from "@/lib/srd-client";
 import { generateId } from "@/lib/storage";
 import type { Character } from "@/lib/storage";
@@ -13,9 +14,8 @@ import {
   InfoChip,
 } from "@/components/modals/InfoBits";
 import { SwordIcon as Sword, DaggerIcon as Dagger, BowArrowIcon as BowArrow, CrossbowIcon as Crossbow, BattleAxeIcon as BattleAxe, HammerIcon as Hammer, WizardStaffIcon as Staff, PolearmIcon as Polearm, WhipIcon as Whip, TridentIcon as Trident, MaceIcon as Mace, ClubIcon as Club, MusicNotesIcon as MusicNotes, PackageIcon as PackageBox, ShieldIcon as ArmorShield } from "@/components/icons";
-import { EquipmentChoiceModal } from "@/components/modals/EquipmentChoiceModal";
-import { useDebugLogger } from "@/lib/debug/DebugContext";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useDebugLogger } from "@/lib/debug/DebugContext";
 
 const weaponTypeIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   martial_melee: Sword,
@@ -89,8 +89,6 @@ function getWeaponEmoji(name: string, weaponType?: string): string {
   return weaponTypeEmojis[weaponType || ""] || "⚔️";
 }
 
-// The tile icon mirrors the item kind the same way the skills step mirrors an
-// ability: weapons fall back to the per-name map, everything else to its type.
 function getItemTileIcon(
   name: string,
   itemInfo: { type?: string; category?: string } | null,
@@ -129,17 +127,12 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
   const debug = useDebugLogger("StepEquipment");
   const { t, language } = useLanguage();
   const classData = data.class ? getStaticClass(data.class, data.ruleset, undefined, language) : null;
-  const [modalGroup, setModalGroup] = useState<{ group: ChoiceGroup; selectedOptionIndex: number | null; selectedWeaponChoiceIndex: number | null } | null>(null);
-  const [tempWeaponSelectionsMap, setTempWeaponSelectionsMap] = useState<Record<number, string[]>>({});
-  const [confirmedSelections, setConfirmedSelections] = useState<Record<string, string[]>>({});
+  const [selectedConcreteMap, setSelectedConcreteMap] = useState<Record<number, number | null>>({});
+  const [selectedWeaponMap, setSelectedWeaponMap] = useState<Record<number, Record<number, string[]>>>({});
 
   useEffect(() => {
-    debug.log('tempWeaponSelectionsMap CHANGED', { tempWeaponSelectionsMap, modalGroupId: modalGroup?.group.id });
-  }, [tempWeaponSelectionsMap, modalGroup, debug]);
-
-  useEffect(() => {
-    debug.log('inventory CHANGED', { inventoryCount: data.inventory.length, items: data.inventory.map(i => ({ name: i.name, choiceGroupIndex: i.choiceGroupIndex, choiceOptionIndex: i.choiceOptionIndex })) });
-  }, [data.inventory, debug]);
+    debug.log('selectedConcreteMap CHANGED', { selectedConcreteMap, selectedWeaponMap });
+  }, [selectedConcreteMap, selectedWeaponMap, debug]);
 
   const startingEquipment = useMemo(() => {
     const data = classData?.startingEquipment || [];
@@ -147,7 +140,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
   }, [classData?.startingEquipment]);
 
    const weapons = useMemo(() => getStaticWeapons(data.sources, data.ruleset, language), [data.sources, data.ruleset, language]);
-   const armors = useMemo(() => getStaticArmors(data.sources, data.ruleset, language), [data.sources, data.ruleset, language]);
+ const armors = useMemo(() => getStaticArmors(data.sources, data.ruleset, language), [data.sources, data.ruleset, language]);
 
   useEffect(() => {
     debug.log('startingEquipment CHANGED', {
@@ -168,47 +161,36 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     return match ? parseInt(match[1], 10) : -1;
   }, []);
 
-  useEffect(() => {
-    if (!modalGroup) return;
-    const groupIndex = getGroupIndex(modalGroup.group.id);
-    const hasSelections = Object.values(tempWeaponSelectionsMap).some(selections => selections.length > 0);
-    if (hasSelections) return;
-    const hasItems = data.inventory.some(item => item.choiceGroupIndex === groupIndex);
-    if (!hasItems) return;
-    debug.log('CLEARING inventory for deselected group', { groupIndex, modalGroupId: modalGroup.group.id });
-    onChange({ inventory: data.inventory.filter(item => item.choiceGroupIndex !== groupIndex) });
-  }, [tempWeaponSelectionsMap, modalGroup, data.inventory, onChange, getGroupIndex, debug]);
+  const isMusicalInstrument = useCallback((itemName: string) => {
+    return MUSICAL_INSTRUMENTS.some(i => i.toLowerCase() === itemName.toLowerCase());
+  }, []);
 
-const isMusicalInstrument = useCallback((itemName: string) => {
-  return MUSICAL_INSTRUMENTS.some(i => i.toLowerCase() === itemName.toLowerCase());
-}, []);
-
-function buildFallbackDescription(t: ReturnType<typeof useLanguage>["t"], itemName: string, info: any): string {
-  if (info.type === "weapon") {
-    const parts: string[] = [];
-    if (info.category) parts.push(`${t("equipment.weaponCategory", "A")} ${info.category} ${t("equipment.weapon", "weapon")}.`);
-    if (info.damageDice) parts.push(`${t("equipment.deals", "Deals")} ${info.damageDice} ${info.damageType || t("equipment.damage", "damage")}.`);
-    if (info.properties?.length) parts.push(`${t("equipment.properties", "Properties")}: ${info.properties.join(", ")}.`);
-    return parts.join(" ") || t("equipment.weaponFallback", { itemName }, "A weapon called {itemName}.");
-  }
-  if (info.type === "armor") {
-    const parts: string[] = [];
-    const armorLabel = info.armorType ? info.armorType.charAt(0).toUpperCase() + info.armorType.slice(1) : t("equipment.armorTypeFallback", "A type of");
-    parts.push(t("equipment.armorTypeLabel", { armorLabel }, "{armorLabel} armor."));
-    if (info.baseAC) parts.push(t("equipment.baseAC", { baseAC: info.baseAC }, "Base AC {baseAC}."));
-    if (info.maxDex !== undefined && info.maxDex !== null) {
-      parts.push(info.maxDex === 0 ? t("equipment.noDexBonus", "No Dex bonus.") : t("equipment.maxDexBonus", { maxDex: info.maxDex }, "Max Dex bonus +{maxDex}."));
+  function buildFallbackDescription(t: ReturnType<typeof useLanguage>["t"], itemName: string, info: any): string {
+    if (info.type === "weapon") {
+      const parts: string[] = [];
+      if (info.category) parts.push(`${t("equipment.weaponCategory", "A")} ${info.category} ${t("equipment.weapon", "weapon")}.`);
+      if (info.damageDice) parts.push(`${t("equipment.deals", "Memberikan")} ${info.damageDice} ${info.damageType || t("equipment.damage", "damage")}.`);
+      if (info.properties?.length) parts.push(`${t("equipment.properties", "Properti")}: ${info.properties.join(", ")}.`);
+      return parts.join(" ") || t("equipment.weaponFallback", { itemName }, "A weapon called {itemName}.");
     }
-    return parts.join(" ") || t("equipment.armorFallback", { itemName }, "A type of armor called {itemName}.");
+    if (info.type === "armor") {
+      const parts: string[] = [];
+      const armorLabel = info.armorType ? info.armorType.charAt(0).toUpperCase() + info.armorType.slice(1) : t("equipment.armorTypeFallback", "A type of");
+      parts.push(t("equipment.armorLabel", { armorLabel }, "Armor {armorLabel}."));
+      if (info.baseAC) parts.push(t("equipment.baseAC", { baseAC: info.baseAC }, "Base AC {baseAC}."));
+      if (info.maxDex !== undefined && info.maxDex !== null) {
+        parts.push(info.maxDex === 0 ? t("equipment.noDexBonus", "Tidak ada bonus Dex.") : t("equipment.maxDexBonus", { maxDex: info.maxDex }, "Maks bonus Dex +{maxDex}."));
+      }
+      return parts.join(" ") || t("equipment.armorFallback", { itemName }, "A type of armor called {itemName}.");
+    }
+    if (info.type === "instrument") {
+      return t("equipment.musicalInstrumentFocus", "Musical instrument used as a spellcasting focus.");
+    }
+    if (info.contents) {
+      return t("equipment.contentsLabel", { contents: info.contents }, "Contains: {contents}.");
+    }
+    return t("equipment.unknownFallback", { itemName }, "A {itemName}.");
   }
-  if (info.type === "instrument") {
-    return t("equipment.musicalInstrumentFocus", "Musical instrument used as a spellcasting focus.");
-  }
-  if (info.contents) {
-    return t("equipment.contentsLabel", { contents: info.contents }, "Contains: {contents}.");
-  }
-  return t("equipment.unknownFallback", { itemName }, "A {itemName}.");
-}
 
   const getItemInfo = useCallback((itemName: string) => {
     const weapon = weapons.find((w: any) => w.name === itemName) as any;
@@ -259,7 +241,7 @@ function buildFallbackDescription(t: ReturnType<typeof useLanguage>["t"], itemNa
     if (isMusicalInstrument(itemName)) {
       return {
         type: "instrument",
-        description: t("equipment.bardInstrument", "Musical instrument. Bards use musical instruments as a spellcasting focus."),
+        description: t("equipment.bardInstrument", "Alat musik. Bard menggunakan alat musik sebagai fokus penyihir."),
         icon: "🎵",
       };
     }
@@ -312,206 +294,6 @@ function buildFallbackDescription(t: ReturnType<typeof useLanguage>["t"], itemNa
     if (option.items.length === 1) return option.items[0].name;
     return option.items.map(i => `${i.quantity || 1}× ${i.name}`).join(", ");
   }, [t]);
-
-  const handleWeaponSelect = useCallback((weaponName: string, choiceIndex: number) => {
-    debug.log('handleWeaponSelect CALLED', { weaponName, choiceIndex, currentTempWeaponSelectionsMap: tempWeaponSelectionsMap, currentSelectedOptionIndex: modalGroup?.selectedOptionIndex, currentSelectedWeaponChoiceIndex: modalGroup?.selectedWeaponChoiceIndex, currentInventoryCount: data.inventory.length });
-    setTempWeaponSelectionsMap(prev => {
-      const current = prev[choiceIndex] || [];
-      const alreadySelectedIndex = current.findIndex(w => w.toLowerCase() === weaponName.toLowerCase());
-      if (alreadySelectedIndex >= 0) {
-        const newList = current.filter(w => w.toLowerCase() !== weaponName.toLowerCase());
-        debug.log('handleWeaponSelect DESELECT', { weaponName, newList, wasSelected: true });
-        return { ...prev, [choiceIndex]: newList };
-      }
-      const selectionCount = modalGroup?.group.options.filter(o =>
-        o.isWeaponChoice || o.isInstrumentChoice || o.isArcaneFocusChoice || o.isHolySymbolChoice || o.isDruidicFocusChoice
-      )[choiceIndex]?.selectionCount || 1;
-      debug.log('handleWeaponSelect SELECT', { weaponName, prevLength: current.length, selectionCount, choiceIndex, modalGroupId: modalGroup?.group.id, willAdd: current.length < selectionCount });
-      if (current.length >= selectionCount) {
-        return prev;
-      }
-      return { ...prev, [choiceIndex]: [...current, weaponName] };
-    });
-    setModalGroup(prev => prev ? { ...prev, selectedOptionIndex: null, selectedWeaponChoiceIndex: choiceIndex } : null);
-  }, [modalGroup, debug, tempWeaponSelectionsMap, data.inventory]);
-
-  const handleModalConfirm = useCallback(() => {
-    if (!modalGroup) return;
-
-    const { group, selectedOptionIndex, selectedWeaponChoiceIndex } = modalGroup;
-    const groupIndex = getGroupIndex(group.id);
-
-    const isChoiceOption = (opt: EquipmentOption) =>
-      opt.isWeaponChoice || opt.isInstrumentChoice || opt.isArcaneFocusChoice || opt.isHolySymbolChoice || opt.isDruidicFocusChoice;
-
-    let option: EquipmentOption | null = null;
-    let effectiveOptionIndex: number | undefined;
-
-    if (selectedWeaponChoiceIndex !== null) {
-      const choiceOptions = group.options.filter(isChoiceOption);
-      option = choiceOptions[selectedWeaponChoiceIndex] ?? null;
-      effectiveOptionIndex = option ? group.options.indexOf(option) : undefined;
-    } else if (selectedOptionIndex !== null) {
-      option = group.options[selectedOptionIndex];
-      effectiveOptionIndex = selectedOptionIndex;
-    }
-
-    debug.log('handleModalConfirm', { groupId: group.id, selectedOptionIndex, selectedWeaponChoiceIndex, tempWeaponSelectionsMap, optionDescription: option?.description, effectiveOptionIndex });
-
-    if (!option) {
-      if (selectedWeaponChoiceIndex === null && selectedOptionIndex === null) {
-        debug.log('handleModalConfirm CLEARING group', groupIndex);
-        onChange({ inventory: data.inventory.filter(item => item.choiceGroupIndex !== groupIndex) });
-      }
-      setModalGroup(null);
-      setTempWeaponSelectionsMap({});
-      return;
-    }
-
-    let newInventory = data.inventory.filter(item => item.choiceGroupIndex !== groupIndex);
-    const newItems: Character["inventory"] = [];
-
-    if (!isChoiceOption(option)) {
-      (option.items || []).forEach((item: any) => {
-        const itemInfo = getItemInfo(item.name);
-        newItems.push({
-          id: generateId(),
-          name: item.name,
-          quantity: item.quantity || 1,
-          equipped: false,
-          source: "srd" as const,
-          description: itemInfo ? JSON.stringify(itemInfo) : "",
-          itemType: itemInfo?.type === "weapon" ? "weapon" : itemInfo?.type === "armor" ? "armor" : itemInfo?.type === "instrument" ? "instrument" : "item",
-          choiceGroupIndex: groupIndex,
-          choiceOptionIndex: effectiveOptionIndex,
-        });
-      });
-    } else if (selectedWeaponChoiceIndex !== null) {
-      const selectionCount = option.selectionCount || 1;
-      const selections = tempWeaponSelectionsMap[selectedWeaponChoiceIndex] || [];
-
-      selections.slice(0, selectionCount).forEach(weaponName => {
-        const itemInfo = getItemInfo(weaponName);
-        const weapon = weapons.find((w: any) => w.name === weaponName);
-        newItems.push({
-          id: generateId(),
-          name: weaponName,
-          quantity: 1,
-          equipped: false,
-          source: "srd" as const,
-          description: itemInfo ? JSON.stringify(itemInfo) : "",
-          itemType: itemInfo?.type === "weapon" ? "weapon" : itemInfo?.type === "armor" ? "armor" : itemInfo?.type === "instrument" ? "instrument" : "item",
-          damageDice: weapon?.damage?.damage_dice || "",
-          damageType: weapon?.damage?.damage_type?.name || "",
-          category: weapon?.category_range || weapon?.weapon_category,
-          choiceGroupIndex: groupIndex,
-          choiceOptionIndex: effectiveOptionIndex,
-        });
-      });
-
-      (option.items || []).forEach((item: any) => {
-        const itemInfo = getItemInfo(item.name);
-        newItems.push({
-          id: generateId(),
-          name: item.name,
-          quantity: item.quantity || 1,
-          equipped: false,
-          source: "srd" as const,
-          description: itemInfo ? JSON.stringify(itemInfo) : "",
-          itemType: itemInfo?.type === "weapon" ? "weapon" : itemInfo?.type === "armor" ? "armor" : "item",
-          choiceGroupIndex: groupIndex,
-          choiceOptionIndex: effectiveOptionIndex,
-        });
-      });
-    }
-
-    if (newItems.length > 0) {
-      onChange({ inventory: [...newInventory, ...newItems] });
-    }
-
-    setModalGroup(null);
-    setTempWeaponSelectionsMap({});
-  }, [modalGroup, tempWeaponSelectionsMap, data.inventory, getGroupIndex, getItemInfo, weapons, generateId, onChange, debug]);
-
-  const handleModalClose = useCallback(() => {
-    setModalGroup(null);
-    setTempWeaponSelectionsMap({});
-  }, []);
-
-  const autoGrantItems = useCallback(() => {
-    const newInventory = [...data.inventory];
-    const grantedItems: Character["inventory"][number][] = [];
-    let hasChanges = false;
-
-    startingEquipment.forEach((entry: any) => {
-      if (!entry.granted || !entry.items) return;
-
-      entry.items.forEach((item: any) => {
-        const existing = newInventory.find(i => i.name === item.name);
-        if (!existing) {
-          const itemInfo = getItemInfo(item.name);
-          const newItem: Character["inventory"][number] = {
-            id: generateId(),
-            name: item.name,
-            quantity: item.quantity || 1,
-            equipped: false,
-            source: "srd" as const,
-            description: itemInfo ? JSON.stringify(itemInfo) : "",
-            itemType: itemInfo?.type === "weapon" ? "weapon" : itemInfo?.type === "armor" ? "armor" : itemInfo?.type === "instrument" ? "instrument" : "item",
-            isGranted: true,
-          };
-
-          if (itemInfo?.type === "weapon") {
-            const weapon = weapons.find((w: any) => w.name === item.name);
-            newItem.damageDice = weapon?.damage?.damage_dice || "";
-            newItem.damageType = weapon?.damage?.damage_type?.name || "";
-            newItem.category = weapon?.category_range === "Melee" ? "melee" : weapon?.category_range === "Ranged" ? "ranged" : undefined;
-          }
-
-          grantedItems.push(newItem);
-          newInventory.push(newItem);
-          hasChanges = true;
-        }
-      });
-    });
-
-    if (hasChanges) {
-      onChange({ inventory: newInventory });
-    }
-  }, [data.inventory, startingEquipment, weapons, getItemInfo, onChange]);
-
-  useEffect(() => {
-    autoGrantItems();
-  }, [autoGrantItems]);
-
-  const getWeaponsByCategory = useCallback((weaponType: string) => {
-    return weapons.filter((w: any) => {
-      if (weaponType === "martial") return w.weapon_category === "Martial";
-      if (weaponType === "simple") return w.weapon_category === "Simple";
-      if (weaponType === "martial_melee") return w.weapon_category === "Martial" && w.category_range === "Melee";
-      if (weaponType === "martial_ranged") return w.weapon_category === "Martial" && w.category_range === "Ranged";
-      if (weaponType === "simple_melee") return w.weapon_category === "Simple" && w.category_range === "Melee";
-      if (weaponType === "simple_ranged") return w.weapon_category === "Simple" && w.category_range === "Ranged";
-      return false;
-    });
-  }, [weapons]);
-
-  const getCategoryDamagePreview = useCallback((weaponType: string) => {
-    const categoryWeapons = getWeaponsByCategory(weaponType);
-    if (categoryWeapons.length === 0) return null;
-
-    const diceSet = new Set<string>();
-    const typesSet = new Set<string>();
-    categoryWeapons.forEach((w: any) => {
-      if (w.damage?.damage_dice) diceSet.add(w.damage.damage_dice);
-      if (w.damage?.damage_type?.name) typesSet.add(w.damage.damage_type.name);
-    });
-
-    return {
-      dice: Array.from(diceSet).join("/"),
-      types: Array.from(typesSet).join("/"),
-    };
-  }, [getWeaponsByCategory]);
 
   const parseItemInfo = useCallback((item: Character["inventory"][number]) => {
     return item.description ? JSON.parse(item.description) : null;
@@ -603,23 +385,227 @@ function buildFallbackDescription(t: ReturnType<typeof useLanguage>["t"], itemNa
 
   const grantedItems = useMemo(() => data.inventory.filter((item) => item.isGranted), [data.inventory]);
 
-  const handleChoiceSlotClick = useCallback((group: ChoiceGroup) => {
-    const groupIndex = getGroupIndex(group.id);
+  const autoGrantItems = useCallback(() => {
+    const newInventory = [...data.inventory];
+    const grantedItems: Character["inventory"][number][] = [];
+    let hasChanges = false;
 
-    const existingItems = data.inventory.filter(item => item.choiceGroupIndex === groupIndex);
-    if (existingItems.length > 0) {
-      debug.log('handleChoiceSlotClick CLEARING group', { groupIndex, groupId: group.id, count: existingItems.length });
-      onChange({ inventory: data.inventory.filter(item => item.choiceGroupIndex !== groupIndex) });
+    startingEquipment.forEach((entry: any) => {
+      if (!entry.granted || !entry.items) return;
+
+      entry.items.forEach((item: any) => {
+        const existing = newInventory.find(i => i.name === item.name);
+        if (!existing) {
+          const itemInfo = getItemInfo(item.name);
+          const newItem: Character["inventory"][number] = {
+            id: generateId(),
+            name: item.name,
+            quantity: item.quantity || 1,
+            equipped: false,
+            source: "srd" as const,
+            srdItemName: item.name,
+            itemType: itemInfo?.type === "weapon" ? "weapon" : itemInfo?.type === "armor" ? "armor" : itemInfo?.type === "instrument" ? "instrument" : "item",
+            description: itemInfo ? JSON.stringify(itemInfo) : "",
+            isGranted: true,
+          };
+
+          if (itemInfo?.type === "weapon") {
+            const weapon = weapons.find((w: any) => w.name === item.name);
+            newItem.damageDice = weapon?.damage?.damage_dice || "";
+            newItem.damageType = weapon?.damage?.damage_type?.name || "";
+            newItem.category = weapon?.category_range === "Melee" ? "melee" : weapon?.category_range === "Ranged" ? "ranged" : undefined;
+          }
+
+          grantedItems.push(newItem);
+          newInventory.push(newItem);
+          hasChanges = true;
+        }
+      });
+    });
+
+    if (hasChanges) {
+      onChange({ inventory: newInventory });
+    }
+  }, [data.inventory, startingEquipment, weapons, getItemInfo, onChange]);
+
+  useEffect(() => {
+    autoGrantItems();
+  }, [autoGrantItems]);
+
+  const getWeaponsByCategory = useCallback((weaponType: string) => {
+    return weapons.filter((w: any) => {
+      if (weaponType === "martial") return w.weapon_category === "Martial";
+      if (weaponType === "simple") return w.weapon_category === "Simple";
+      if (weaponType === "martial_melee") return w.weapon_category === "Martial" && w.category_range === "Melee";
+      if (weaponType === "martial_ranged") return w.weapon_category === "Martial" && w.category_range === "Ranged";
+      if (weaponType === "simple_melee") return w.weapon_category === "Simple" && w.category_range === "Melee";
+      if (weaponType === "simple_ranged") return w.weapon_category === "Simple" && w.category_range === "Ranged";
+      return false;
+    });
+  }, [weapons]);
+
+  const isChoiceOption = (opt: EquipmentOption) =>
+    opt.isWeaponChoice || opt.isInstrumentChoice || opt.isArcaneFocusChoice || opt.isHolySymbolChoice || opt.isDruidicFocusChoice;
+
+  // Commit the current selection for a group to inventory immediately (classes: click = select).
+  const commitGroup = useCallback((group: ChoiceGroup) => {
+    const groupIndex = getGroupIndex(group.id);
+    const concreteIdx = selectedConcreteMap[groupIndex];
+    const weaponSel = selectedWeaponMap[groupIndex] || {};
+
+    const concreteOptions = group.options.filter((o) => !isChoiceOption(o));
+    const choiceOptions = group.options.filter(isChoiceOption);
+
+    let selectedOpt: EquipmentOption | null = null;
+    let selectedWeaponChoiceIdx: number | null = null;
+
+    if (concreteIdx !== null) {
+      selectedOpt = concreteOptions[concreteIdx] ?? null;
+    } else {
+      const wcIdx = Object.keys(weaponSel).find((k) => {
+        const co = choiceOptions[Number(k)];
+        return co && (weaponSel[Number(k)] || []).length >= (co.selectionCount || 1);
+      });
+      if (wcIdx !== undefined) {
+        selectedWeaponChoiceIdx = Number(wcIdx);
+        selectedOpt = choiceOptions[selectedWeaponChoiceIdx] ?? null;
+      }
     }
 
-    debug.log('handleChoiceSlotClick OPEN empty', { groupId: group.id, groupIndex });
-    setModalGroup({
-      group,
-      selectedOptionIndex: null,
-      selectedWeaponChoiceIndex: null,
+    let newInventory = data.inventory.filter(item => item.choiceGroupIndex !== groupIndex);
+    const newItems: Character["inventory"] = [];
+
+    if (selectedOpt && !isChoiceOption(selectedOpt)) {
+      (selectedOpt.items || []).forEach((item: any) => {
+        const itemInfo = getItemInfo(item.name);
+        newItems.push({
+          id: generateId(),
+          name: item.name,
+          quantity: item.quantity || 1,
+          equipped: false,
+          source: "srd" as const,
+          srdItemName: item.name,
+          itemType: itemInfo?.type === "weapon" ? "weapon" : itemInfo?.type === "armor" ? "armor" : itemInfo?.type === "instrument" ? "instrument" : "item",
+          description: itemInfo ? JSON.stringify(itemInfo) : "",
+          choiceGroupIndex: groupIndex,
+          choiceOptionIndex: concreteIdx ?? undefined,
+        });
+      });
+    } else if (selectedOpt && selectedWeaponChoiceIdx !== null) {
+      const selectionCount = selectedOpt.selectionCount || 1;
+      const selections = (weaponSel[selectedWeaponChoiceIdx] || []).slice(0, selectionCount);
+
+      selections.forEach((weaponName) => {
+        const itemInfo = getItemInfo(weaponName);
+        const weapon = weapons.find((w: any) => w.name === weaponName);
+        newItems.push({
+          id: generateId(),
+          name: weaponName,
+          quantity: 1,
+          equipped: false,
+          source: "srd" as const,
+          srdItemName: weaponName,
+          itemType: itemInfo?.type === "weapon" ? "weapon" : itemInfo?.type === "armor" ? "armor" : itemInfo?.type === "instrument" ? "instrument" : "item",
+          description: itemInfo ? JSON.stringify(itemInfo) : "",
+          damageDice: weapon?.damage?.damage_dice || "",
+          damageType: weapon?.damage?.damage_type?.name || "",
+          category: weapon?.category_range || weapon?.weapon_category,
+          choiceGroupIndex: groupIndex,
+          choiceOptionIndex: group.options.indexOf(selectedOpt),
+        });
+      });
+
+      (selectedOpt.items || []).forEach((item: any) => {
+        const itemInfo = getItemInfo(item.name);
+        newItems.push({
+          id: generateId(),
+          name: item.name,
+          quantity: item.quantity || 1,
+          equipped: false,
+          source: "srd" as const,
+          srdItemName: item.name,
+          itemType: itemInfo?.type === "weapon" ? "weapon" : itemInfo?.type === "armor" ? "armor" : "item",
+          description: itemInfo ? JSON.stringify(itemInfo) : "",
+          choiceGroupIndex: groupIndex,
+          choiceOptionIndex: group.options.indexOf(selectedOpt),
+        });
+      });
+    }
+
+    if (newItems.length > 0) {
+      onChange({ inventory: [...newInventory, ...newItems] });
+    }
+  }, [selectedConcreteMap, selectedWeaponMap, data.inventory, getItemInfo, weapons, getGroupIndex, onChange, isChoiceOption]);
+
+  const selectConcreteOption = useCallback((group: ChoiceGroup, optionIndex: number) => {
+    const groupIndex = getGroupIndex(group.id);
+    setSelectedConcreteMap(prev => {
+      const next = { ...prev };
+      next[groupIndex] = next[groupIndex] === optionIndex ? null : optionIndex;
+      return next;
     });
-    setTempWeaponSelectionsMap({});
+    // clear weapon selection for this group
+    setSelectedWeaponMap(prev => {
+      const next = { ...prev };
+      delete next[groupIndex];
+      return next;
+    });
+    commitGroup(group);
+  }, [getGroupIndex, commitGroup]);
+
+  const toggleWeapon = useCallback((group: ChoiceGroup, groupIndex: number, wcIdx: number, weaponName: string) => {
+    setSelectedWeaponMap(prev => {
+      const next = { ...prev };
+      const groupSel = { ...(next[groupIndex] || {}) };
+      const current = groupSel[wcIdx] || [];
+      const already = current.includes(weaponName);
+      const updated = already
+        ? current.filter(w => w !== weaponName)
+        : [...current, weaponName];
+      groupSel[wcIdx] = updated;
+      next[groupIndex] = groupSel;
+      return next;
+    });
+    // clear concrete selection for this group
+    setSelectedConcreteMap(prev => {
+      const next = { ...prev };
+      next[groupIndex] = null;
+      return next;
+    });
+    commitGroup(group);
+  }, [commitGroup]);
+
+  const handleChoiceSlotClick = useCallback((group: ChoiceGroup) => {
+    const groupIndex = getGroupIndex(group.id);
+    const existingItems = data.inventory.filter(item => item.choiceGroupIndex === groupIndex);
+    if (existingItems.length > 0) {
+      debug.log('CLEARING inventory for deselected group', { groupIndex, groupId: group.id, count: existingItems.length });
+      onChange({ inventory: data.inventory.filter(item => item.choiceGroupIndex !== groupIndex) });
+      setSelectedConcreteMap(prev => { const next = { ...prev }; delete next[groupIndex]; return next; });
+      setSelectedWeaponMap(prev => { const next = { ...prev }; delete next[groupIndex]; return next; });
+      return;
+    }
+    debug.log('OPEN empty group', { groupId: group.id, groupIndex });
+    setSelectedConcreteMap(prev => { const next = { ...prev }; next[groupIndex] = null; return next; });
+    setSelectedWeaponMap(prev => { const next = { ...prev }; next[groupIndex] = {}; return next; });
   }, [data.inventory, getGroupIndex, onChange, debug]);
+
+  const getCategoryDamagePreview = useCallback((weaponType: string) => {
+    const categoryWeapons = getWeaponsByCategory(weaponType);
+    if (categoryWeapons.length === 0) return null;
+
+    const diceSet = new Set<string>();
+    const typesSet = new Set<string>();
+    categoryWeapons.forEach((w: any) => {
+      if (w.damage?.damage_dice) diceSet.add(w.damage.damage_dice);
+      if (w.damage?.damage_type?.name) typesSet.add(w.damage.damage_type.name);
+    });
+
+    return {
+      dice: Array.from(diceSet).join("/"),
+      types: Array.from(typesSet).join("/"),
+    };
+  }, [getWeaponsByCategory]);
 
   return (
     <section className="w-full pb-32">
@@ -669,168 +655,200 @@ function buildFallbackDescription(t: ReturnType<typeof useLanguage>["t"], itemNa
             <div className="mb-3 flex items-center gap-2">
               <Backpack size={14} weight="bold" className="text-ink" />
               <h3 className="text-xs font-bold uppercase tracking-widest text-ink">
-                {t("creator.yourChoices", "Your Choices")}
+                {t("creator.yourChoices", "Pilihanmu")}
               </h3>
             </div>
 
           <div className="space-y-3">
             {choiceGroups.map((group) => {
               const groupIndex = getGroupIndex(group.id);
-              const choiceOption = group.options.find(
-                (opt) =>
-                  opt.isWeaponChoice ||
-                  opt.isInstrumentChoice ||
-                  opt.isArcaneFocusChoice ||
-                  opt.isHolySymbolChoice ||
-                  opt.isDruidicFocusChoice,
-              ) ?? null;
+              const choiceOption = group.options.find(isChoiceOption) ?? null;
               const choiceOptionCount = choiceOption ? Math.max(choiceOption.selectionCount || 1, 1) : 1;
               const selectedItems = data.inventory.filter((item) => item.choiceGroupIndex === groupIndex);
-              // One card per picked item; while the group is still empty the
-              // prompt repeats for however many picks the group asks for.
-              const slotCount = selectedItems.length > 0 ? selectedItems.length : choiceOptionCount;
-              const prompt = choiceOption
-                ? getOptionLabel(choiceOption)
-                : t("creator.selectFromOptions", "Select from the options below");
+              const hasAnySelection = selectedItems.length > 0;
 
-              return Array.from({ length: slotCount }).map((_, slotIndex) => {
-                const selectedItem = selectedItems[slotIndex];
-                const itemInfo = selectedItem ? parseItemInfo(selectedItem) : null;
-                const TileIcon = selectedItem
-                  ? getItemTileIcon(selectedItem.name, itemInfo, selectedItem.itemType)
-                  : Plus;
-                const detail = selectedItem ? itemInfo?.contents || itemInfo?.description || "" : prompt;
+              const concreteOptions = group.options.filter((o) => !isChoiceOption(o));
+              const choiceOptions = group.options.filter(isChoiceOption);
 
-                return (
-                  <SplitSelectionCard
-                    key={`${group.id}-${slotIndex}`}
-                    title={selectedItem ? selectedItem.name : t("equipment.choose", "Choose")}
-                    subtitle={detail}
-                    icon={<TileIcon className="h-6 w-6" />}
-                    isSelected={!!selectedItem}
-                    onSelect={() => handleChoiceSlotClick(group)}
-                    infoType="modal"
-                    modalContent={selectedItem ? renderItemModalContent(itemInfo, selectedItem.name) : null}
-                    badges={selectedItem && selectedItem.quantity > 1 ? [`x${selectedItem.quantity}`] : []}
-                    clampSubtitle={false}
-                  />
-                );
-              });
+              return (
+                <section key={group.id} className="space-y-3">
+                  {/* Group header */}
+                  <div className="rounded-xl border-2 border-border-strong bg-surface p-4">
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="flex items-center gap-3">
+                        <PackageBox className="h-5 w-5 text-ink-muted" />
+                        <div>
+                          <h4 className="font-bold text-ink">{group.description}</h4>
+                          <p className="mt-0.5 text-[10px] text-ink-muted">
+                            {choiceOption
+                              ? t("equipment.chooseWeapons", { count: choiceOptionCount }, "Pilih {count} senjata")
+                              : t("creator.selectFromOptions", "Pilih dari opsi di bawah")}
+                          </p>
+                        </div>
+                      </div>
+                      {hasAnySelection && (
+                        <span className="rounded-md bg-ink px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-surface shadow-sm">
+                          {t("modal.selected", "Terpilih")}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Concrete options (packages) — exactly like class cards */}
+                  {concreteOptions.length > 0 && (
+                    <div className="space-y-2">
+                      {concreteOptions.map((opt, idx) => {
+                        const isSelected = selectedConcreteMap[groupIndex] === idx;
+                        const itemNames = (opt.items || [])
+                          .map((i) => `${i.name}${i.quantity > 1 ? ` x${i.quantity}` : ""}`)
+                          .join(", ");
+                        const firstItem = opt.items?.[0];
+                        const firstInfo = firstItem ? getItemInfo(firstItem.name) : null;
+                        return (
+                          <SplitSelectionCard
+                            key={opt.description || idx}
+                            title={opt.description}
+                            subtitle={itemNames || undefined}
+                            icon={<span className="text-[18px] leading-none">{firstInfo?.icon || "📦"}</span>}
+                            badges={["PHB"]}
+                            isSelected={isSelected}
+                            onSelect={() => selectConcreteOption(group, idx)}
+                            infoType="modal"
+                            modalContent={
+                              <div className="space-y-3">
+                                <InfoSectionLabel>{t("equipment.contains", "Berisi:")}</InfoSectionLabel>
+                                <div className="mt-1.5">
+                                  <ItemBundleList
+                                    items={(opt.items || []).map((i) => ({ name: i.name, quantity: i.quantity || 1 }))}
+                                    getInfo={getItemInfo}
+                                    emptyLabel={t("equipment.noItems", "Tidak ada barang.")}
+                                  />
+                                </div>
+                              </div>
+                            }
+                            clampSubtitle={false}
+                          />
+                        );
+                      })}
+                    </div>
+                  )}
+
+                  {/* Weapon / instrument / focus choices — each selectable as a class card */}
+                  {choiceOptions.length > 0 && (
+                    <div className="space-y-3">
+                      {choiceOptions.map((opt, wcIdx) => {
+                        const selectionCount = opt.selectionCount || 1;
+                        const selectedWeapons = (selectedWeaponMap[groupIndex] || {})[wcIdx] || [];
+                        const isComplete = selectedWeapons.length >= selectionCount;
+
+                        let weaponOpts: Array<{ icon: React.ReactNode; name: string; description: string }> = [];
+                        if (opt.isWeaponChoice) {
+                          const categoryWeapons = getWeaponsByCategory(opt.weaponType || "");
+                          weaponOpts = categoryWeapons.map((w: any) => {
+                            const info = getItemInfo(w.name);
+                            const WeaponIcon = getWeaponIcon(w.name, info?.category);
+                            return ({
+                              icon: <WeaponIcon className="h-6 w-6 text-ink" />,
+                              name: w.name,
+                              description: w.description || "",
+                            });
+                          });
+                        } else if (opt.isInstrumentChoice) {
+                          weaponOpts = MUSICAL_INSTRUMENTS.map((name) => ({
+                            icon: <MusicNotes className="h-6 w-6 text-ink" />,
+                            name,
+                            description: getItemInfo(name)?.description || "",
+                          }));
+                        } else if (opt.isArcaneFocusChoice) {
+                          weaponOpts = ARCANE_FOCUS_TYPES.map((name) => ({
+                            icon: <PackageBox className="h-6 w-6 text-ink-muted" />,
+                            name,
+                            description: getItemInfo(name)?.description || "",
+                          }));
+                        } else if (opt.isHolySymbolChoice) {
+                          weaponOpts = HOLY_SYMBOL_TYPES.map((name) => ({
+                            icon: <PackageBox className="h-6 w-6 text-ink-muted" />,
+                            name,
+                            description: getItemInfo(name)?.description || "",
+                          }));
+                        } else if (opt.isDruidicFocusChoice) {
+                          weaponOpts = DRUIDIC_FOCUS_TYPES.map((name) => ({
+                            icon: <PackageBox className="h-6 w-6 text-ink-muted" />,
+                            name,
+                            description: getItemInfo(name)?.description || "",
+                          }));
+                        }
+
+                        return (
+                          <div key={opt.description || wcIdx} className="space-y-3">
+                            <div className="flex items-center justify-between gap-3">
+                              <div>
+                                <h4 className="font-bold text-ink">{opt.description}</h4>
+                                <p className="mt-0.5 text-[10px] text-ink-muted">
+                                  {t("equipment.chooseWeapons", { count: selectionCount }, "Pilih {count} senjata")}
+                                </p>
+                              </div>
+                              {isComplete && (
+                                <span className="rounded-md bg-ink px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-surface shadow-sm">
+                                  {t("modal.selected", "Terpilih")}
+                                </span>
+                              )}
+                            </div>
+                            <div className="space-y-2">
+                              {weaponOpts.map((weapon, wIdx) => {
+                                const isWeaponSelected = selectedWeapons.includes(weapon.name);
+                                return (
+                                  <SplitSelectionCard
+                                    key={wIdx}
+                                    title={weapon.name}
+                                    subtitle={weapon.description || undefined}
+                                    icon={weapon.icon}
+                                    isSelected={isWeaponSelected}
+                                    onSelect={() => toggleWeapon(group, groupIndex, wcIdx, weapon.name)}
+                                    infoType="modal"
+                                    modalContent={
+                                      <div className="space-y-3">
+                                        {weapon.description && (
+                                          <p className="text-xs leading-relaxed text-ink-muted">{weapon.description}</p>
+                                        )}
+                                        {getItemInfo(weapon.name)?.damageDice && (
+                                          <InfoStatTile
+                                            label={t("items.damage", "Kerusakan")}
+                                            value={getItemInfo(weapon.name)?.damageType
+                                              ? `${getItemInfo(weapon.name).damageDice} ${getItemInfo(weapon.name).damageType}`
+                                              : getItemInfo(weapon.name).damageDice}
+                                          />
+                                        )}
+                                      </div>
+                                    }
+                                    clampSubtitle={false}
+                                  />
+                                );
+                              })}
+                            </div>
+                            <p className="text-[10px] text-ink-muted">
+                              {selectedWeapons.length}/{selectionCount} {t("equipment.itemsCount", "{count} item")}
+                            </p>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+
+                  {/* Empty group prompt */}
+                  {concreteOptions.length === 0 && choiceOptions.length === 0 && (
+                    <p className="text-sm text-[var(--color-text-muted)] text-center py-6">
+                      {t("modal.noClassesFound", "Tidak ada opsi yang tersedia.")}
+                    </p>
+                  )}
+                </section>
+              );
             })}
           </div>
         </section>
-
-        {modalGroup && (() => {
-          const group = modalGroup.group;
-          const groupIndex = getGroupIndex(group.id);
-
-          const isChoiceOption = (opt: EquipmentOption) =>
-            opt.isWeaponChoice || opt.isInstrumentChoice || opt.isArcaneFocusChoice || opt.isHolySymbolChoice || opt.isDruidicFocusChoice;
-
-          const choiceOptions = group.options.filter(isChoiceOption);
-          const concreteOptions = group.options.filter((o) => !isChoiceOption(o));
-
-          const weaponChoiceOptions = choiceOptions.map((opt, idx) => {
-            const selectionCount = opt.selectionCount || 1;
-            let weaponOpts: Array<{ icon: React.ReactNode; name: string; description: string; data?: any }> = [];
-
-            if (opt.isWeaponChoice) {
-              const categoryWeapons = getWeaponsByCategory(opt.weaponType || "");
-              weaponOpts = categoryWeapons.map((w: any) => {
-                const itemInfo = getItemInfo(w.name);
-                const TileIcon = getWeaponIcon(w.name, itemInfo?.category);
-                return ({
-                  icon: <TileIcon className="h-6 w-6 text-ink" />,
-                  name: w.name,
-                  description: w.description || "",
-                  data: w,
-                });
-              });
-            } else if (opt.isInstrumentChoice) {
-              weaponOpts = MUSICAL_INSTRUMENTS.map(name => {
-                const itemInfo = getItemInfo(name);
-                return ({
-                  icon: <MusicNotes className="h-6 w-6 text-ink" />,
-                  name,
-                  description: itemInfo?.description || "",
-                  data: itemInfo,
-                });
-              });
-            } else if (opt.isArcaneFocusChoice) {
-              weaponOpts = ARCANE_FOCUS_TYPES.map(name => {
-                const itemInfo = getItemInfo(name);
-                return ({
-                  icon: <PackageBox className="h-6 w-6 text-ink" />,
-                  name,
-                  description: itemInfo?.description || "",
-                  data: itemInfo,
-                });
-              });
-            } else if (opt.isHolySymbolChoice) {
-              weaponOpts = HOLY_SYMBOL_TYPES.map(name => {
-                const itemInfo = getItemInfo(name);
-                return ({
-                  icon: <PackageBox className="h-6 w-6 text-ink" />,
-                  name,
-                  description: itemInfo?.description || "",
-                  data: itemInfo,
-                });
-              });
-            } else if (opt.isDruidicFocusChoice) {
-              weaponOpts = DRUIDIC_FOCUS_TYPES.map(name => {
-                const itemInfo = getItemInfo(name);
-                return ({
-                  icon: <PackageBox className="h-6 w-6 text-ink" />,
-                  name,
-                  description: itemInfo?.description || "",
-                  data: itemInfo,
-                });
-              });
-            }
-
-            return {
-              id: `wc-${idx}`,
-              label: opt.description,
-              bonusItems: (opt.items || []).map(item => ({ name: item.name, quantity: item.quantity || 1 })),
-              selectionCount,
-              weaponOptions: weaponOpts,
-              selectedWeaponNames: tempWeaponSelectionsMap[idx] || [],
-              onWeaponSelect: (name: string) => handleWeaponSelect(name, idx),
-            };
-          });
-
-          const selectedOpt = modalGroup.selectedOptionIndex !== null ? group.options[modalGroup.selectedOptionIndex] : null;
-          const hasConcreteSelection = selectedOpt !== null && !isChoiceOption(selectedOpt);
-          const selectedWcIdx = modalGroup.selectedWeaponChoiceIndex;
-          const hasWeaponSelection = selectedWcIdx !== null && (tempWeaponSelectionsMap[selectedWcIdx] || []).length >= (weaponChoiceOptions[selectedWcIdx]?.selectionCount || 1);
-          const confirmDisabled = !hasConcreteSelection && !hasWeaponSelection;
-
-          return (
-            <>
-              <EquipmentChoiceModal
-                isOpen={!!modalGroup}
-                onClose={handleModalClose}
-                onConfirm={handleModalConfirm}
-                title={t("equipment.selectFromOptions", "Select from the options below")}
-                group={group}
-                concreteOptions={concreteOptions}
-                selectedConcreteIndex={modalGroup.selectedOptionIndex}
-                onConcreteSelect={(idx) => {
-                  setModalGroup(prev => prev ? { ...prev, selectedOptionIndex: idx, selectedWeaponChoiceIndex: null } : null);
-                  setTempWeaponSelectionsMap({});
-                }}
-                weaponChoiceOptions={weaponChoiceOptions}
-                selectedWeaponChoiceIndex={modalGroup.selectedWeaponChoiceIndex}
-                onWeaponChoiceSelect={(idx) => {
-                  setModalGroup(prev => prev ? { ...prev, selectedWeaponChoiceIndex: idx, selectedOptionIndex: null } : null);
-                }}
-                confirmDisabled={confirmDisabled}
-                getItemInfo={getItemInfo}
-              />
-            </>
-          );
-        })()}
       </div>
     </section>
   );
 }
+
+
