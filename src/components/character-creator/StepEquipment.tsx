@@ -16,6 +16,7 @@ import {
 import { SwordIcon as Sword, DaggerIcon as Dagger, BowArrowIcon as BowArrow, CrossbowIcon as Crossbow, BattleAxeIcon as BattleAxe, HammerIcon as Hammer, WizardStaffIcon as Staff, PolearmIcon as Polearm, WhipIcon as Whip, TridentIcon as Trident, MaceIcon as Mace, ClubIcon as Club, MusicNotesIcon as MusicNotes, PackageIcon as PackageBox, ShieldIcon as ArmorShield } from "@/components/icons";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useDebugLogger } from "@/lib/debug/DebugContext";
+import { EquipmentChoiceModal } from "@/components/modals/EquipmentChoiceModal";
 
 const weaponTypeIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   martial_melee: Sword,
@@ -84,7 +85,7 @@ function getWeaponEmoji(name: string, weaponType?: string): string {
   if (lower.includes("crossbow")) return "🏹";
   if (lower.includes("bow")) return "🏹";
   if (lower.includes("arrow") || lower.includes("bolt")) return "↗️";
-  if (lower.includes("spear") || lower.includes("polearm") || lower.includes("glaive") || lower.includes("halberd") || lower.includes("lance") || lower.includes("pike") || lower.includes("trident") || lower.includes("javelin")) return "🔱";
+  if (lower.includes("spear") || lower.includes("polearm") || lower.includes("glaive") || lower.includes("halberd") || lower.includes("lance") || lower.includes("trident") || lower.includes("javelin")) return "🔱";
   if (lower.includes("whip")) return "🥢";
   return weaponTypeEmojis[weaponType || ""] || "⚔️";
 }
@@ -127,20 +128,16 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
   const debug = useDebugLogger("StepEquipment");
   const { t, language } = useLanguage();
   const classData = data.class ? getStaticClass(data.class, data.ruleset, undefined, language) : null;
-  const [selectedConcreteMap, setSelectedConcreteMap] = useState<Record<number, number | null>>({});
-  const [selectedWeaponMap, setSelectedWeaponMap] = useState<Record<number, Record<number, string[]>>>({});
-
-  useEffect(() => {
-    debug.log('selectedConcreteMap CHANGED', { selectedConcreteMap, selectedWeaponMap });
-  }, [selectedConcreteMap, selectedWeaponMap, debug]);
+  const [modalGroup, setModalGroup] = useState<{ group: ChoiceGroup; selectedOptionIndex: number | null; selectedWeaponChoiceIndex: number | null } | null>(null);
+  const [tempWeaponSelectionsMap, setTempWeaponSelectionsMap] = useState<Record<number, string[]>>({});
 
   const startingEquipment = useMemo(() => {
     const data = classData?.startingEquipment || [];
     return JSON.parse(JSON.stringify(data));
   }, [classData?.startingEquipment]);
 
-   const weapons = useMemo(() => getStaticWeapons(data.sources, data.ruleset, language), [data.sources, data.ruleset, language]);
- const armors = useMemo(() => getStaticArmors(data.sources, data.ruleset, language), [data.sources, data.ruleset, language]);
+  const weapons = useMemo(() => getStaticWeapons(data.sources, data.ruleset, language), [data.sources, data.ruleset, language]);
+  const armors = useMemo(() => getStaticArmors(data.sources, data.ruleset, language), [data.sources, data.ruleset, language]);
 
   useEffect(() => {
     debug.log('startingEquipment CHANGED', {
@@ -447,11 +444,32 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
   const isChoiceOption = (opt: EquipmentOption) =>
     opt.isWeaponChoice || opt.isInstrumentChoice || opt.isArcaneFocusChoice || opt.isHolySymbolChoice || opt.isDruidicFocusChoice;
 
-  // Commit the current selection for a group to inventory immediately (classes: click = select).
-  const commitGroup = useCallback((group: ChoiceGroup) => {
+  const handleChoiceSlotClick = useCallback((group: ChoiceGroup) => {
     const groupIndex = getGroupIndex(group.id);
-    const concreteIdx = selectedConcreteMap[groupIndex];
-    const weaponSel = selectedWeaponMap[groupIndex] || {};
+    const existingItems = data.inventory.filter(item => item.choiceGroupIndex === groupIndex);
+    if (existingItems.length > 0) {
+      debug.log('CLEARING inventory for deselected group', { groupIndex, groupId: group.id, count: existingItems.length });
+      onChange({ inventory: data.inventory.filter(item => item.choiceGroupIndex !== groupIndex) });
+      return;
+    }
+    debug.log('OPEN empty group', { groupId: group.id, groupIndex });
+    setModalGroup({
+      group,
+      selectedOptionIndex: null,
+      selectedWeaponChoiceIndex: null,
+    });
+    setTempWeaponSelectionsMap({});
+  }, [data.inventory, getGroupIndex, onChange, debug]);
+
+  const handleModalClose = useCallback(() => {
+    setModalGroup(null);
+    setTempWeaponSelectionsMap({});
+  }, []);
+
+  const handleModalConfirm = useCallback(() => {
+    if (!modalGroup) return;
+    const group = modalGroup.group;
+    const groupIndex = getGroupIndex(group.id);
 
     const concreteOptions = group.options.filter((o) => !isChoiceOption(o));
     const choiceOptions = group.options.filter(isChoiceOption);
@@ -459,23 +477,19 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     let selectedOpt: EquipmentOption | null = null;
     let selectedWeaponChoiceIdx: number | null = null;
 
-    if (concreteIdx !== null) {
-      selectedOpt = concreteOptions[concreteIdx] ?? null;
-    } else {
-      const wcIdx = Object.keys(weaponSel).find((k) => {
-        const co = choiceOptions[Number(k)];
-        return co && (weaponSel[Number(k)] || []).length >= (co.selectionCount || 1);
-      });
-      if (wcIdx !== undefined) {
-        selectedWeaponChoiceIdx = Number(wcIdx);
-        selectedOpt = choiceOptions[selectedWeaponChoiceIdx] ?? null;
-      }
+    if (modalGroup.selectedOptionIndex !== null) {
+      selectedOpt = concreteOptions[modalGroup.selectedOptionIndex] ?? null;
+    } else if (modalGroup.selectedWeaponChoiceIndex !== null) {
+      selectedWeaponChoiceIdx = modalGroup.selectedWeaponChoiceIndex;
+      selectedOpt = choiceOptions[selectedWeaponChoiceIdx] ?? null;
     }
+
+    if (!selectedOpt) return;
 
     let newInventory = data.inventory.filter(item => item.choiceGroupIndex !== groupIndex);
     const newItems: Character["inventory"] = [];
 
-    if (selectedOpt && !isChoiceOption(selectedOpt)) {
+    if (!isChoiceOption(selectedOpt)) {
       (selectedOpt.items || []).forEach((item: any) => {
         const itemInfo = getItemInfo(item.name);
         newItems.push({
@@ -488,12 +502,12 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
           itemType: itemInfo?.type === "weapon" ? "weapon" : itemInfo?.type === "armor" ? "armor" : itemInfo?.type === "instrument" ? "instrument" : "item",
           description: itemInfo ? JSON.stringify(itemInfo) : "",
           choiceGroupIndex: groupIndex,
-          choiceOptionIndex: concreteIdx ?? undefined,
+          choiceOptionIndex: modalGroup.selectedOptionIndex ?? undefined,
         });
       });
-    } else if (selectedOpt && selectedWeaponChoiceIdx !== null) {
+    } else if (selectedWeaponChoiceIdx !== null) {
       const selectionCount = selectedOpt.selectionCount || 1;
-      const selections = (weaponSel[selectedWeaponChoiceIdx] || []).slice(0, selectionCount);
+      const selections = (tempWeaponSelectionsMap[selectedWeaponChoiceIdx] || []).slice(0, selectionCount);
 
       selections.forEach((weaponName) => {
         const itemInfo = getItemInfo(weaponName);
@@ -535,60 +549,10 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     if (newItems.length > 0) {
       onChange({ inventory: [...newInventory, ...newItems] });
     }
-  }, [selectedConcreteMap, selectedWeaponMap, data.inventory, getItemInfo, weapons, getGroupIndex, onChange, isChoiceOption]);
 
-  const selectConcreteOption = useCallback((group: ChoiceGroup, optionIndex: number) => {
-    const groupIndex = getGroupIndex(group.id);
-    setSelectedConcreteMap(prev => {
-      const next = { ...prev };
-      next[groupIndex] = next[groupIndex] === optionIndex ? null : optionIndex;
-      return next;
-    });
-    // clear weapon selection for this group
-    setSelectedWeaponMap(prev => {
-      const next = { ...prev };
-      delete next[groupIndex];
-      return next;
-    });
-    commitGroup(group);
-  }, [getGroupIndex, commitGroup]);
-
-  const toggleWeapon = useCallback((group: ChoiceGroup, groupIndex: number, wcIdx: number, weaponName: string) => {
-    setSelectedWeaponMap(prev => {
-      const next = { ...prev };
-      const groupSel = { ...(next[groupIndex] || {}) };
-      const current = groupSel[wcIdx] || [];
-      const already = current.includes(weaponName);
-      const updated = already
-        ? current.filter(w => w !== weaponName)
-        : [...current, weaponName];
-      groupSel[wcIdx] = updated;
-      next[groupIndex] = groupSel;
-      return next;
-    });
-    // clear concrete selection for this group
-    setSelectedConcreteMap(prev => {
-      const next = { ...prev };
-      next[groupIndex] = null;
-      return next;
-    });
-    commitGroup(group);
-  }, [commitGroup]);
-
-  const handleChoiceSlotClick = useCallback((group: ChoiceGroup) => {
-    const groupIndex = getGroupIndex(group.id);
-    const existingItems = data.inventory.filter(item => item.choiceGroupIndex === groupIndex);
-    if (existingItems.length > 0) {
-      debug.log('CLEARING inventory for deselected group', { groupIndex, groupId: group.id, count: existingItems.length });
-      onChange({ inventory: data.inventory.filter(item => item.choiceGroupIndex !== groupIndex) });
-      setSelectedConcreteMap(prev => { const next = { ...prev }; delete next[groupIndex]; return next; });
-      setSelectedWeaponMap(prev => { const next = { ...prev }; delete next[groupIndex]; return next; });
-      return;
-    }
-    debug.log('OPEN empty group', { groupId: group.id, groupIndex });
-    setSelectedConcreteMap(prev => { const next = { ...prev }; next[groupIndex] = null; return next; });
-    setSelectedWeaponMap(prev => { const next = { ...prev }; next[groupIndex] = {}; return next; });
-  }, [data.inventory, getGroupIndex, onChange, debug]);
+    setModalGroup(null);
+    setTempWeaponSelectionsMap({});
+  }, [modalGroup, data.inventory, getGroupIndex, onChange, generateId, weapons, getItemInfo, tempWeaponSelectionsMap]);
 
   const getCategoryDamagePreview = useCallback((weaponType: string) => {
     const categoryWeapons = getWeaponsByCategory(weaponType);
@@ -667,188 +631,116 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
               const selectedItems = data.inventory.filter((item) => item.choiceGroupIndex === groupIndex);
               const hasAnySelection = selectedItems.length > 0;
 
-              const concreteOptions = group.options.filter((o) => !isChoiceOption(o));
-              const choiceOptions = group.options.filter(isChoiceOption);
+              return Array.from({ length: Math.max(selectedItems.length, 1) }).map((_, slotIndex) => {
+                const selectedItem = selectedItems[slotIndex];
+                const itemInfo = selectedItem ? parseItemInfo(selectedItem) : null;
+                const TileIcon = selectedItem
+                  ? getItemTileIcon(selectedItem.name, itemInfo, selectedItem.itemType)
+                  : Plus;
+                const detail = selectedItem ? itemInfo?.contents || itemInfo?.description || "" : t("creator.selectFromOptions", "Pilih dari opsi di bawah");
 
-              return (
-                <section key={group.id} className="space-y-3">
-                  {/* Group header */}
-                  <div className="rounded-xl border-2 border-border-strong bg-surface p-4">
-                    <div className="flex items-center justify-between gap-3">
-                      <div className="flex items-center gap-3">
-                        <PackageBox className="h-5 w-5 text-ink-muted" />
-                        <div>
-                          <h4 className="font-bold text-ink">{group.description}</h4>
-                          <p className="mt-0.5 text-[10px] text-ink-muted">
-                            {choiceOption
-                              ? t("equipment.chooseWeapons", { count: choiceOptionCount }, "Pilih {count} senjata")
-                              : t("creator.selectFromOptions", "Pilih dari opsi di bawah")}
-                          </p>
-                        </div>
-                      </div>
-                      {hasAnySelection && (
-                        <span className="rounded-md bg-ink px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-surface shadow-sm">
-                          {t("modal.selected", "Terpilih")}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Concrete options (packages) — exactly like class cards */}
-                  {concreteOptions.length > 0 && (
-                    <div className="space-y-2">
-                      {concreteOptions.map((opt, idx) => {
-                        const isSelected = selectedConcreteMap[groupIndex] === idx;
-                        const itemNames = (opt.items || [])
-                          .map((i) => `${i.name}${i.quantity > 1 ? ` x${i.quantity}` : ""}`)
-                          .join(", ");
-                        const firstItem = opt.items?.[0];
-                        const firstInfo = firstItem ? getItemInfo(firstItem.name) : null;
-                        return (
-                          <SplitSelectionCard
-                            key={opt.description || idx}
-                            title={opt.description}
-                            subtitle={itemNames || undefined}
-                            icon={<span className="text-[18px] leading-none">{firstInfo?.icon || "📦"}</span>}
-                            badges={["PHB"]}
-                            isSelected={isSelected}
-                            onSelect={() => selectConcreteOption(group, idx)}
-                            infoType="modal"
-                            modalContent={
-                              <div className="space-y-3">
-                                <InfoSectionLabel>{t("equipment.contains", "Berisi:")}</InfoSectionLabel>
-                                <div className="mt-1.5">
-                                  <ItemBundleList
-                                    items={(opt.items || []).map((i) => ({ name: i.name, quantity: i.quantity || 1 }))}
-                                    getInfo={getItemInfo}
-                                    emptyLabel={t("equipment.noItems", "Tidak ada barang.")}
-                                  />
-                                </div>
-                              </div>
-                            }
-                            clampSubtitle={false}
-                          />
-                        );
-                      })}
-                    </div>
-                  )}
-
-                  {/* Weapon / instrument / focus choices — each selectable as a class card */}
-                  {choiceOptions.length > 0 && (
-                    <div className="space-y-3">
-                      {choiceOptions.map((opt, wcIdx) => {
-                        const selectionCount = opt.selectionCount || 1;
-                        const selectedWeapons = (selectedWeaponMap[groupIndex] || {})[wcIdx] || [];
-                        const isComplete = selectedWeapons.length >= selectionCount;
-
-                        let weaponOpts: Array<{ icon: React.ReactNode; name: string; description: string }> = [];
-                        if (opt.isWeaponChoice) {
-                          const categoryWeapons = getWeaponsByCategory(opt.weaponType || "");
-                          weaponOpts = categoryWeapons.map((w: any) => {
-                            const info = getItemInfo(w.name);
-                            const WeaponIcon = getWeaponIcon(w.name, info?.category);
-                            return ({
-                              icon: <WeaponIcon className="h-6 w-6 text-ink" />,
-                              name: w.name,
-                              description: w.description || "",
-                            });
-                          });
-                        } else if (opt.isInstrumentChoice) {
-                          weaponOpts = MUSICAL_INSTRUMENTS.map((name) => ({
-                            icon: <MusicNotes className="h-6 w-6 text-ink" />,
-                            name,
-                            description: getItemInfo(name)?.description || "",
-                          }));
-                        } else if (opt.isArcaneFocusChoice) {
-                          weaponOpts = ARCANE_FOCUS_TYPES.map((name) => ({
-                            icon: <PackageBox className="h-6 w-6 text-ink-muted" />,
-                            name,
-                            description: getItemInfo(name)?.description || "",
-                          }));
-                        } else if (opt.isHolySymbolChoice) {
-                          weaponOpts = HOLY_SYMBOL_TYPES.map((name) => ({
-                            icon: <PackageBox className="h-6 w-6 text-ink-muted" />,
-                            name,
-                            description: getItemInfo(name)?.description || "",
-                          }));
-                        } else if (opt.isDruidicFocusChoice) {
-                          weaponOpts = DRUIDIC_FOCUS_TYPES.map((name) => ({
-                            icon: <PackageBox className="h-6 w-6 text-ink-muted" />,
-                            name,
-                            description: getItemInfo(name)?.description || "",
-                          }));
-                        }
-
-                        return (
-                          <div key={opt.description || wcIdx} className="space-y-3">
-                            <div className="flex items-center justify-between gap-3">
-                              <div>
-                                <h4 className="font-bold text-ink">{opt.description}</h4>
-                                <p className="mt-0.5 text-[10px] text-ink-muted">
-                                  {t("equipment.chooseWeapons", { count: selectionCount }, "Pilih {count} senjata")}
-                                </p>
-                              </div>
-                              {isComplete && (
-                                <span className="rounded-md bg-ink px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-surface shadow-sm">
-                                  {t("modal.selected", "Terpilih")}
-                                </span>
-                              )}
-                            </div>
-                            <div className="space-y-2">
-                              {weaponOpts.map((weapon, wIdx) => {
-                                const isWeaponSelected = selectedWeapons.includes(weapon.name);
-                                return (
-                                  <SplitSelectionCard
-                                    key={wIdx}
-                                    title={weapon.name}
-                                    subtitle={weapon.description || undefined}
-                                    icon={weapon.icon}
-                                    isSelected={isWeaponSelected}
-                                    onSelect={() => toggleWeapon(group, groupIndex, wcIdx, weapon.name)}
-                                    infoType="modal"
-                                    modalContent={
-                                      <div className="space-y-3">
-                                        {weapon.description && (
-                                          <p className="text-xs leading-relaxed text-ink-muted">{weapon.description}</p>
-                                        )}
-                                        {getItemInfo(weapon.name)?.damageDice && (
-                                          <InfoStatTile
-                                            label={t("items.damage", "Kerusakan")}
-                                            value={getItemInfo(weapon.name)?.damageType
-                                              ? `${getItemInfo(weapon.name).damageDice} ${getItemInfo(weapon.name).damageType}`
-                                              : getItemInfo(weapon.name).damageDice}
-                                          />
-                                        )}
-                                      </div>
-                                    }
-                                    clampSubtitle={false}
-                                  />
-                                );
-                              })}
-                            </div>
-                            <p className="text-[10px] text-ink-muted">
-                              {selectedWeapons.length}/{selectionCount} {t("equipment.itemsCount", "{count} item")}
-                            </p>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  )}
-
-                  {/* Empty group prompt */}
-                  {concreteOptions.length === 0 && choiceOptions.length === 0 && (
-                    <p className="text-sm text-[var(--color-text-muted)] text-center py-6">
-                      {t("modal.noClassesFound", "Tidak ada opsi yang tersedia.")}
-                    </p>
-                  )}
-                </section>
-              );
+                return (
+                  <SplitSelectionCard
+                    key={`${group.id}-${slotIndex}`}
+                    title={selectedItem ? selectedItem.name : t("equipment.choose", "Pilih")}
+                    subtitle={detail}
+                    icon={<TileIcon className="h-6 w-6" />}
+                    isSelected={!!selectedItem}
+                    onSelect={() => handleChoiceSlotClick(group)}
+                    infoType="modal"
+                    modalContent={selectedItem ? renderItemModalContent(itemInfo, selectedItem.name) : null}
+                    badges={selectedItem && selectedItem.quantity > 1 ? [`x${selectedItem.quantity}`] : []}
+                    clampSubtitle={false}
+                  />
+                );
+              });
             })}
           </div>
         </section>
       </div>
+
+      {modalGroup && (
+        <EquipmentChoiceModal
+          isOpen={!!modalGroup}
+          onClose={handleModalClose}
+          onConfirm={handleModalConfirm}
+          title={t("equipment.selectFromOptions", "Select from the options below")}
+          group={modalGroup.group}
+          concreteOptions={modalGroup.group.options.filter((o) => !isChoiceOption(o))}
+          selectedConcreteIndex={modalGroup.selectedOptionIndex}
+          onConcreteSelect={(idx) => setModalGroup(prev => prev ? { ...prev, selectedOptionIndex: idx, selectedWeaponChoiceIndex: null } : null)}
+          weaponChoiceOptions={modalGroup.group.options.filter(isChoiceOption).map((opt, idx) => {
+            const selectionCount = opt.selectionCount || 1;
+            let weaponOpts: Array<{ icon: React.ReactNode; name: string; description: string }> = [];
+            if (opt.isWeaponChoice) {
+              const categoryWeapons = getWeaponsByCategory(opt.weaponType || "");
+              weaponOpts = categoryWeapons.map((w: any) => {
+                const info = getItemInfo(w.name);
+                const WeaponIcon = getWeaponIcon(w.name, info?.category);
+                return ({
+                  icon: <WeaponIcon className="h-6 w-6 text-ink" />,
+                  name: w.name,
+                  description: w.description || "",
+                });
+              });
+            } else if (opt.isInstrumentChoice) {
+              weaponOpts = MUSICAL_INSTRUMENTS.map((name) => ({
+                icon: <MusicNotes className="h-6 w-6 text-ink" />,
+                name,
+                description: getItemInfo(name)?.description || "",
+              }));
+            } else if (opt.isArcaneFocusChoice) {
+              weaponOpts = ARCANE_FOCUS_TYPES.map((name) => ({
+                icon: <PackageBox className="h-6 w-6 text-ink-muted" />,
+                name,
+                description: getItemInfo(name)?.description || "",
+              }));
+            } else if (opt.isHolySymbolChoice) {
+              weaponOpts = HOLY_SYMBOL_TYPES.map((name) => ({
+                icon: <PackageBox className="h-6 w-6 text-ink-muted" />,
+                name,
+                description: getItemInfo(name)?.description || "",
+              }));
+            } else if (opt.isDruidicFocusChoice) {
+              weaponOpts = DRUIDIC_FOCUS_TYPES.map((name) => ({
+                icon: <PackageBox className="h-6 w-6 text-ink-muted" />,
+                name,
+                description: getItemInfo(name)?.description || "",
+              }));
+            }
+
+            return {
+              id: `wc-${idx}`,
+              label: opt.description,
+              bonusItems: (opt.items || []).map(item => ({ name: item.name, quantity: item.quantity || 1 })),
+              selectionCount,
+              weaponOptions: weaponOpts,
+              selectedWeaponNames: tempWeaponSelectionsMap[idx] || [],
+              onWeaponSelect: (name: string) => {
+                setTempWeaponSelectionsMap(prev => {
+                  const next = { ...prev };
+                  const current = next[idx] || [];
+                  const already = current.includes(name);
+                  const updated = already
+                    ? current.filter(w => w !== name)
+                    : [...current, name];
+                  next[idx] = updated;
+                  return next;
+                });
+              },
+            };
+          })}
+          selectedWeaponChoiceIndex={modalGroup.selectedWeaponChoiceIndex}
+          onWeaponChoiceSelect={(idx) => setModalGroup(prev => prev ? { ...prev, selectedWeaponChoiceIndex: idx, selectedOptionIndex: null } : null)}
+          confirmDisabled={
+            modalGroup.selectedOptionIndex === null &&
+            (!modalGroup.selectedWeaponChoiceIndex ||
+              (tempWeaponSelectionsMap[modalGroup.selectedWeaponChoiceIndex] || []).length <
+                (modalGroup.group.options.filter(isChoiceOption)[modalGroup.selectedWeaponChoiceIndex]?.selectionCount || 1))
+          }
+          getItemInfo={getItemInfo}
+        />
+      )}
     </section>
   );
 }
-
-
