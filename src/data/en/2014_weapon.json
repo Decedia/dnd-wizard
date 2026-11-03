@@ -30,7 +30,8 @@
       "properties": [
         {
           "index": "versatile",
-          "name": "Versatile"
+          "name": "Versatile",
+          "desc": "You can use this weapon with one or two hands. Wielding it with both hands for a melee attack uses the two-handed damage."
         }
       ],
       "contents": [],
@@ -59,15 +60,21 @@
       "properties": [
         {
           "index": "ammunition",
-          "name": "Ammunition"
+          "name": "Ammunition",
+          "desc": "You can make a ranged attack with this weapon only if you have ammunition for it. Each attack uses one piece, and drawing it is part of the attack. After a battle, you can spend 1 minute to recover half of the ammunition you used. Attacks past the normal range, up to the long range, have disadvantage."
         },
         {
           "index": "loading",
-          "name": "Loading"
+          "name": "Loading",
+          "desc": "Loading takes time, so you can fire only one piece of ammunition from this weapon when you use an action, bonus action, or reaction to fire it, no matter how many attacks you can normally make."
         }
       ],
       "contents": [],
-      "source": "PHB"
+      "source": "PHB",
+      "range": {
+        "normal": 25,
+        "long": 100
+      }
     },
     {
       "index": "club",
@@ -92,11 +99,13 @@
       "properties": [
         {
           "index": "light",
-          "name": "Light"
+          "name": "Light",
+          "desc": "Small and easy to handle, ideal for fighting with two weapons. When you attack with a light melee weapon in one hand, you can use a bonus action to attack with a different light melee weapon in your other hand."
         },
         {
           "index": "monk",
-          "name": "Monk"
+          "name": "Monk",
+          "desc": "Counts as a monk weapon, so a monk can use Dexterity instead of Strength and the Martial Arts damage die with it."
         }
       ],
       "contents": [],
@@ -125,19 +134,26 @@
       "properties": [
         {
           "index": "ammunition",
-          "name": "Ammunition"
+          "name": "Ammunition",
+          "desc": "You can make a ranged attack with this weapon only if you have ammunition for it. Each attack uses one piece, and drawing it is part of the attack. After a battle, you can spend 1 minute to recover half of the ammunition you used. Attacks past the normal range, up to the long range, have disadvantage."
         },
         {
           "index": "light",
-          "name": "Light"
+          "name": "Light",
+          "desc": "Small and easy to handle, ideal for fighting with two weapons. When you attack with a light melee weapon in one hand, you can use a bonus action to attack with a different light melee weapon in your other hand."
         },
         {
           "index": "loading",
-          "name": "Loading"
+          "name": "Loading",
+          "desc": "Loading takes time, so you can fire only one piece of ammunition from this weapon when you use an action, bonus action, or reaction to fire it, no matter how many attacks you can normally make."
         }
       ],
       "contents": [],
-      "source": "PHB"
+      "source": "PHB",
+      "range": {
+        "normal": 30,
+        "long": 120
+      }
     },
     {
       "index": "crossbow-heavy",
@@ -162,23 +178,31 @@
       "properties": [
         {
           "index": "ammunition",
-          "name": "Ammunition"
+          "name": "Ammunition",
+          "desc": "You can make a ranged attack with this weapon only if you have ammunition for it. Each attack uses one piece, and drawing it is part of the attack. After a battle, you can spend 1 minute to recover half of the ammunition you used. Attacks past the normal range, up to the long range, have disadvantage."
         },
         {
           "index": "heavy",
-          "name": "Heavy"
+          "name": "Heavy",
+          "desc": "Small creatures have disadvantage on attack rolls with this weapon. It is too big and bulky for a Small creature to use well."
         },
         {
           "index": "loading",
-          "name": "Loading"
+          "name": "Loading",
+          "desc": "Loading takes time, so you can fire only one piece of ammunition from this weapon when you use an action, bonus action, or reaction to fire it, no matter how many attacks you can normally make."
         },
         {
           "index": "two-handed",
-          "name": "Two-Handed"
+          "name": "Two-Handed",
+          "desc": "You need two hands to attack with this weapon."
         }
       ],
       "contents": [],
-      "source": "PHB"
+      "source": "PHB",
+      "range": {
+        "normal": 100,
+        "long": 400
+      }
     },
     {
       "index": "crossbow-light",
@@ -203,19 +227,26 @@
       "properties": [
         {
           "index": "ammunition",
-          "name": "Ammunition"
+          "name": "Ammunition",
+          "desc": "You can make a ranged attack with this weapon only if you have ammunition for it. Each attack uses one piece, and drawing it is part of the attack. After a battle, you can spend 1 minute to recover half of the ammunition you used. Attacks past the normal range, up to the long range, have disadvantage."
         },
         {
           "index": "loading",
-          "name": "Loading"
+          "name": "Loading",
+          "desc": "Loading takes time, so you can fire only one piece of ammunition from this weapon when you use an action, bonus action, or reaction to fire it, no matter how many attacks you can normally make."
         },
         {
           "index": "two-handed",
-          "name": "Two-Handed"
+          "name": "Two-Handed",
+          "desc": "You need two hands to attack with this weapon."
         }
       ],
       "contents": [],
-      "source": "PHB"
+      "source": "PHB",
+      "range": {
+        "normal": 80,
+        "long": 320
+      }
     },
     {
       "index": "dagger",
@@ -240,19 +271,23 @@
       "properties": [
         {
           "index": "finesse",
-          "name": "Finesse"
+          "name": "Finesse",
+          "desc": "Use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls."
         },
         {
           "index": "light",
-          "name": "Light"
+          "name": "Light",
+          "desc": "Small and easy to handle, ideal for fighting with two weapons. When you attack with a light melee weapon in one hand, you can use a bonus action to attack with a different light melee weapon in your other hand."
         },
         {
           "index": "thrown",
-          "name": "Thrown"
+          "name": "Thrown",
+          "desc": "You can throw this weapon to make a ranged attack, using the same ability modifier you would use for a melee attack with it. Throws past the normal range, up to the long range, have disadvantage."
         },
         {
           "index": "monk",
-          "name": "Monk"
+          "name": "Monk",
+          "desc": "Counts as a monk weapon, so a monk can use Dexterity instead of Strength and the Martial Arts damage die with it."
         }
       ],
       "throw_range": {
@@ -285,11 +320,13 @@
       "properties": [
         {
           "index": "finesse",
-          "name": "Finesse"
+          "name": "Finesse",
+          "desc": "Use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls."
         },
         {
           "index": "thrown",
-          "name": "Thrown"
+          "name": "Thrown",
+          "desc": "You can throw this weapon to make a ranged attack, using the same ability modifier you would use for a melee attack with it. Throws past the normal range, up to the long range, have disadvantage."
         }
       ],
       "throw_range": {
@@ -346,15 +383,18 @@
       "properties": [
         {
           "index": "heavy",
-          "name": "Heavy"
+          "name": "Heavy",
+          "desc": "Small creatures have disadvantage on attack rolls with this weapon. It is too big and bulky for a Small creature to use well."
         },
         {
           "index": "reach",
-          "name": "Reach"
+          "name": "Reach",
+          "desc": "Adds 5 feet to your reach when you attack with this weapon, including when you make opportunity attacks with it."
         },
         {
           "index": "two-handed",
-          "name": "Two-Handed"
+          "name": "Two-Handed",
+          "desc": "You need two hands to attack with this weapon."
         }
       ],
       "contents": [],
@@ -383,11 +423,13 @@
       "properties": [
         {
           "index": "heavy",
-          "name": "Heavy"
+          "name": "Heavy",
+          "desc": "Small creatures have disadvantage on attack rolls with this weapon. It is too big and bulky for a Small creature to use well."
         },
         {
           "index": "two-handed",
-          "name": "Two-Handed"
+          "name": "Two-Handed",
+          "desc": "You need two hands to attack with this weapon."
         }
       ],
       "contents": [],
@@ -416,7 +458,8 @@
       "properties": [
         {
           "index": "two-handed",
-          "name": "Two-Handed"
+          "name": "Two-Handed",
+          "desc": "You need two hands to attack with this weapon."
         }
       ],
       "contents": [],
@@ -445,11 +488,13 @@
       "properties": [
         {
           "index": "heavy",
-          "name": "Heavy"
+          "name": "Heavy",
+          "desc": "Small creatures have disadvantage on attack rolls with this weapon. It is too big and bulky for a Small creature to use well."
         },
         {
           "index": "two-handed",
-          "name": "Two-Handed"
+          "name": "Two-Handed",
+          "desc": "You need two hands to attack with this weapon."
         }
       ],
       "contents": [],
@@ -478,15 +523,18 @@
       "properties": [
         {
           "index": "heavy",
-          "name": "Heavy"
+          "name": "Heavy",
+          "desc": "Small creatures have disadvantage on attack rolls with this weapon. It is too big and bulky for a Small creature to use well."
         },
         {
           "index": "reach",
-          "name": "Reach"
+          "name": "Reach",
+          "desc": "Adds 5 feet to your reach when you attack with this weapon, including when you make opportunity attacks with it."
         },
         {
           "index": "two-handed",
-          "name": "Two-Handed"
+          "name": "Two-Handed",
+          "desc": "You need two hands to attack with this weapon."
         }
       ],
       "contents": [],
@@ -515,15 +563,18 @@
       "properties": [
         {
           "index": "light",
-          "name": "Light"
+          "name": "Light",
+          "desc": "Small and easy to handle, ideal for fighting with two weapons. When you attack with a light melee weapon in one hand, you can use a bonus action to attack with a different light melee weapon in your other hand."
         },
         {
           "index": "thrown",
-          "name": "Thrown"
+          "name": "Thrown",
+          "desc": "You can throw this weapon to make a ranged attack, using the same ability modifier you would use for a melee attack with it. Throws past the normal range, up to the long range, have disadvantage."
         },
         {
           "index": "monk",
-          "name": "Monk"
+          "name": "Monk",
+          "desc": "Counts as a monk weapon, so a monk can use Dexterity instead of Strength and the Martial Arts damage die with it."
         }
       ],
       "throw_range": {
@@ -556,11 +607,13 @@
       "properties": [
         {
           "index": "thrown",
-          "name": "Thrown"
+          "name": "Thrown",
+          "desc": "You can throw this weapon to make a ranged attack, using the same ability modifier you would use for a melee attack with it. Throws past the normal range, up to the long range, have disadvantage."
         },
         {
           "index": "monk",
-          "name": "Monk"
+          "name": "Monk",
+          "desc": "Counts as a monk weapon, so a monk can use Dexterity instead of Strength and the Martial Arts damage die with it."
         }
       ],
       "throw_range": {
@@ -593,11 +646,13 @@
       "properties": [
         {
           "index": "reach",
-          "name": "Reach"
+          "name": "Reach",
+          "desc": "Adds 5 feet to your reach when you attack with this weapon, including when you make opportunity attacks with it."
         },
         {
           "index": "special",
-          "name": "Special"
+          "name": "Special",
+          "desc": "This weapon has unusual rules. See Special Rules below."
         }
       ],
       "contents": [],
@@ -626,15 +681,18 @@
       "properties": [
         {
           "index": "light",
-          "name": "Light"
+          "name": "Light",
+          "desc": "Small and easy to handle, ideal for fighting with two weapons. When you attack with a light melee weapon in one hand, you can use a bonus action to attack with a different light melee weapon in your other hand."
         },
         {
           "index": "thrown",
-          "name": "Thrown"
+          "name": "Thrown",
+          "desc": "You can throw this weapon to make a ranged attack, using the same ability modifier you would use for a melee attack with it. Throws past the normal range, up to the long range, have disadvantage."
         },
         {
           "index": "monk",
-          "name": "Monk"
+          "name": "Monk",
+          "desc": "Counts as a monk weapon, so a monk can use Dexterity instead of Strength and the Martial Arts damage die with it."
         }
       ],
       "throw_range": {
@@ -667,19 +725,26 @@
       "properties": [
         {
           "index": "ammunition",
-          "name": "Ammunition"
+          "name": "Ammunition",
+          "desc": "You can make a ranged attack with this weapon only if you have ammunition for it. Each attack uses one piece, and drawing it is part of the attack. After a battle, you can spend 1 minute to recover half of the ammunition you used. Attacks past the normal range, up to the long range, have disadvantage."
         },
         {
           "index": "heavy",
-          "name": "Heavy"
+          "name": "Heavy",
+          "desc": "Small creatures have disadvantage on attack rolls with this weapon. It is too big and bulky for a Small creature to use well."
         },
         {
           "index": "two-handed",
-          "name": "Two-Handed"
+          "name": "Two-Handed",
+          "desc": "You need two hands to attack with this weapon."
         }
       ],
       "contents": [],
-      "source": "PHB"
+      "source": "PHB",
+      "range": {
+        "normal": 150,
+        "long": 600
+      }
     },
     {
       "index": "longsword",
@@ -711,7 +776,8 @@
       "properties": [
         {
           "index": "versatile",
-          "name": "Versatile"
+          "name": "Versatile",
+          "desc": "You can use this weapon with one or two hands. Wielding it with both hands for a melee attack uses the two-handed damage."
         }
       ],
       "contents": [],
@@ -740,7 +806,8 @@
       "properties": [
         {
           "index": "monk",
-          "name": "Monk"
+          "name": "Monk",
+          "desc": "Counts as a monk weapon, so a monk can use Dexterity instead of Strength and the Martial Arts damage die with it."
         }
       ],
       "contents": [],
@@ -769,11 +836,13 @@
       "properties": [
         {
           "index": "heavy",
-          "name": "Heavy"
+          "name": "Heavy",
+          "desc": "Small creatures have disadvantage on attack rolls with this weapon. It is too big and bulky for a Small creature to use well."
         },
         {
           "index": "two-handed",
-          "name": "Two-Handed"
+          "name": "Two-Handed",
+          "desc": "You need two hands to attack with this weapon."
         }
       ],
       "contents": [],
@@ -819,11 +888,13 @@
       "properties": [
         {
           "index": "thrown",
-          "name": "Thrown"
+          "name": "Thrown",
+          "desc": "You can throw this weapon to make a ranged attack, using the same ability modifier you would use for a melee attack with it. Throws past the normal range, up to the long range, have disadvantage."
         },
         {
           "index": "special",
-          "name": "Special"
+          "name": "Special",
+          "desc": "This weapon has unusual rules. See Special Rules below."
         }
       ],
       "throw_range": {
@@ -856,15 +927,18 @@
       "properties": [
         {
           "index": "heavy",
-          "name": "Heavy"
+          "name": "Heavy",
+          "desc": "Small creatures have disadvantage on attack rolls with this weapon. It is too big and bulky for a Small creature to use well."
         },
         {
           "index": "reach",
-          "name": "Reach"
+          "name": "Reach",
+          "desc": "Adds 5 feet to your reach when you attack with this weapon, including when you make opportunity attacks with it."
         },
         {
           "index": "two-handed",
-          "name": "Two-Handed"
+          "name": "Two-Handed",
+          "desc": "You need two hands to attack with this weapon."
         }
       ],
       "contents": [],
@@ -900,11 +974,13 @@
       "properties": [
         {
           "index": "versatile",
-          "name": "Versatile"
+          "name": "Versatile",
+          "desc": "You can use this weapon with one or two hands. Wielding it with both hands for a melee attack uses the two-handed damage."
         },
         {
           "index": "monk",
-          "name": "Monk"
+          "name": "Monk",
+          "desc": "Counts as a monk weapon, so a monk can use Dexterity instead of Strength and the Martial Arts damage die with it."
         }
       ],
       "contents": [],
@@ -933,7 +1009,8 @@
       "properties": [
         {
           "index": "finesse",
-          "name": "Finesse"
+          "name": "Finesse",
+          "desc": "Use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls."
         }
       ],
       "contents": [],
@@ -962,11 +1039,13 @@
       "properties": [
         {
           "index": "finesse",
-          "name": "Finesse"
+          "name": "Finesse",
+          "desc": "Use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls."
         },
         {
           "index": "light",
-          "name": "Light"
+          "name": "Light",
+          "desc": "Small and easy to handle, ideal for fighting with two weapons. When you attack with a light melee weapon in one hand, you can use a bonus action to attack with a different light melee weapon in your other hand."
         }
       ],
       "contents": [],
@@ -995,15 +1074,21 @@
       "properties": [
         {
           "index": "ammunition",
-          "name": "Ammunition"
+          "name": "Ammunition",
+          "desc": "You can make a ranged attack with this weapon only if you have ammunition for it. Each attack uses one piece, and drawing it is part of the attack. After a battle, you can spend 1 minute to recover half of the ammunition you used. Attacks past the normal range, up to the long range, have disadvantage."
         },
         {
           "index": "two-handed",
-          "name": "Two-Handed"
+          "name": "Two-Handed",
+          "desc": "You need two hands to attack with this weapon."
         }
       ],
       "contents": [],
-      "source": "PHB"
+      "source": "PHB",
+      "range": {
+        "normal": 80,
+        "long": 320
+      }
     },
     {
       "index": "shortsword",
@@ -1028,15 +1113,18 @@
       "properties": [
         {
           "index": "finesse",
-          "name": "Finesse"
+          "name": "Finesse",
+          "desc": "Use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls."
         },
         {
           "index": "light",
-          "name": "Light"
+          "name": "Light",
+          "desc": "Small and easy to handle, ideal for fighting with two weapons. When you attack with a light melee weapon in one hand, you can use a bonus action to attack with a different light melee weapon in your other hand."
         },
         {
           "index": "monk",
-          "name": "Monk"
+          "name": "Monk",
+          "desc": "Counts as a monk weapon, so a monk can use Dexterity instead of Strength and the Martial Arts damage die with it."
         }
       ],
       "contents": [],
@@ -1065,11 +1153,13 @@
       "properties": [
         {
           "index": "light",
-          "name": "Light"
+          "name": "Light",
+          "desc": "Small and easy to handle, ideal for fighting with two weapons. When you attack with a light melee weapon in one hand, you can use a bonus action to attack with a different light melee weapon in your other hand."
         },
         {
           "index": "monk",
-          "name": "Monk"
+          "name": "Monk",
+          "desc": "Counts as a monk weapon, so a monk can use Dexterity instead of Strength and the Martial Arts damage die with it."
         }
       ],
       "contents": [],
@@ -1098,11 +1188,16 @@
       "properties": [
         {
           "index": "ammunition",
-          "name": "Ammunition"
+          "name": "Ammunition",
+          "desc": "You can make a ranged attack with this weapon only if you have ammunition for it. Each attack uses one piece, and drawing it is part of the attack. After a battle, you can spend 1 minute to recover half of the ammunition you used. Attacks past the normal range, up to the long range, have disadvantage."
         }
       ],
       "contents": [],
-      "source": "PHB"
+      "source": "PHB",
+      "range": {
+        "normal": 30,
+        "long": 120
+      }
     },
     {
       "index": "spear",
@@ -1134,15 +1229,18 @@
       "properties": [
         {
           "index": "thrown",
-          "name": "Thrown"
+          "name": "Thrown",
+          "desc": "You can throw this weapon to make a ranged attack, using the same ability modifier you would use for a melee attack with it. Throws past the normal range, up to the long range, have disadvantage."
         },
         {
           "index": "versatile",
-          "name": "Versatile"
+          "name": "Versatile",
+          "desc": "You can use this weapon with one or two hands. Wielding it with both hands for a melee attack uses the two-handed damage."
         },
         {
           "index": "monk",
-          "name": "Monk"
+          "name": "Monk",
+          "desc": "Counts as a monk weapon, so a monk can use Dexterity instead of Strength and the Martial Arts damage die with it."
         }
       ],
       "throw_range": {
@@ -1182,11 +1280,13 @@
       "properties": [
         {
           "index": "thrown",
-          "name": "Thrown"
+          "name": "Thrown",
+          "desc": "You can throw this weapon to make a ranged attack, using the same ability modifier you would use for a melee attack with it. Throws past the normal range, up to the long range, have disadvantage."
         },
         {
           "index": "versatile",
-          "name": "Versatile"
+          "name": "Versatile",
+          "desc": "You can use this weapon with one or two hands. Wielding it with both hands for a melee attack uses the two-handed damage."
         }
       ],
       "throw_range": {
@@ -1250,7 +1350,8 @@
       "properties": [
         {
           "index": "versatile",
-          "name": "Versatile"
+          "name": "Versatile",
+          "desc": "You can use this weapon with one or two hands. Wielding it with both hands for a melee attack uses the two-handed damage."
         }
       ],
       "contents": [],
@@ -1279,11 +1380,13 @@
       "properties": [
         {
           "index": "finesse",
-          "name": "Finesse"
+          "name": "Finesse",
+          "desc": "Use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls."
         },
         {
           "index": "reach",
-          "name": "Reach"
+          "name": "Reach",
+          "desc": "Adds 5 feet to your reach when you attack with this weapon, including when you make opportunity attacks with it."
         }
       ],
       "contents": [],
