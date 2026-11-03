@@ -43,7 +43,7 @@ export interface CreationStep {
   title: string;
   description: string;
   hint: string;
-  type: "source-selection" | "origin" | "personality" | "level" | "subclass" | "abilities" | "skills" | "equipment" | "spells" | "appearance" | "feature-selections";
+  type: "source-selection" | "origin" | "personality" | "level" | "subclass" | "abilities" | "skills" | "equipment" | "spells" | "look" | "feature-selections";
   required: boolean;
   completed: boolean;
 }

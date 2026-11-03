@@ -11,7 +11,8 @@ import { LevelUpWizard } from "@/components/LevelUpWizard";
 import { StepAbilities } from "@/components/character-creator/StepAbilities";
 import { StepSkills } from "@/components/character-creator/StepSkills";
 import { StepEquipment } from "@/components/character-creator/StepEquipment";
-import { StepAppearance } from "@/components/character-creator/StepAppearance";
+import { StepLook } from "@/components/character-creator/StepLook";
+import { CreationOrderPicker } from "@/components/character-creator/CreationOrderPicker";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { WizardNav } from "@/components/WizardNav";
 import {
@@ -72,7 +73,16 @@ export default function CharacterCreate() {
     if (!currentStep) return null;
     switch (currentStep.type) {
       case "source-selection":
-        return <StepSourceSelection data={character} onChange={update} />;
+        return (
+          <>
+            <CreationOrderPicker
+              order={character.creationOrder ?? "concept"}
+              steps={steps}
+              onChange={(creationOrder) => update({ creationOrder })}
+            />
+            <StepSourceSelection data={character} onChange={update} />
+          </>
+        );
       case "origin":
         return <StepOrigin data={character} onChange={update} />;
       case "personality":
@@ -83,12 +93,12 @@ export default function CharacterCreate() {
         return <StepSkills data={character} onChange={update} />;
       case "equipment":
         return <StepEquipment data={character} onChange={update} />;
-      case "appearance":
-        return <StepAppearance data={character} onChange={update} />;
+      case "look":
+        return <StepLook data={character} onChange={update} />;
       default:
         return null;
     }
-  }, [currentStep, character, update]);
+  }, [currentStep, character, update, steps]);
 
   const isLevelStep = currentStep?.type === "level";
 

@@ -32,6 +32,8 @@ export interface PickerEntry {
   source: string;
   description: string;
   weapon?: SRDWeapon;
+  /** Row stat line for non-weapon entries (a weapon's is derived). */
+  stats?: string;
 }
 
 export interface PickerGroup {
@@ -205,7 +207,7 @@ export function WeaponPickerList({
               {group.entries.map((entry) => {
                 const count = selections.filter((s) => s === entry.name).length;
                 const isSelected = count > 0;
-                const stats = entry.weapon ? weaponStatLine(entry.weapon) : "";
+                const stats = entry.weapon ? weaponStatLine(entry.weapon) : entry.stats ?? "";
                 return (
                   <div
                     key={entry.name}
