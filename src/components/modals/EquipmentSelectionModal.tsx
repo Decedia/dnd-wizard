@@ -8,7 +8,16 @@ import { ItemBundleList } from "@/components/modals/ItemBundle";
 import { InfoCallout, InfoSectionLabel, InfoStatTile, InfoChip, InfoProse, InfoCard, InfoBadge, InfoTraitList, EquipmentInfoPanel } from "@/components/modals/InfoBits";
 import type { ChoiceGroup, EquipmentOption } from "@/lib/character-creation";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { getStaticWeapons, getStaticArmors, getEquipmentData as getEquipmentDataFromSRD } from "@/lib/srd-client";
+import { getStaticWeapons, getStaticArmors, getStaticClass, getEquipmentData as getEquipmentDataFromSRD } from "@/lib/srd-client";
+import {
+  WeaponPickerList,
+  WeaponInfoPanel,
+  buildWeaponGroups,
+  buildItemGroup,
+  weaponMatchesType,
+  type PickerEntry,
+  type PickerGroup,
+} from "@/components/modals/WeaponPicker";
 import type { Character } from "@/lib/storage";
 
 export interface EquipmentSelectionModalProps {
@@ -97,6 +106,9 @@ function buildFallbackDescription(t: ReturnType<typeof useLanguage>["t"], itemNa
   return t("equipment.unknownFallback", { itemName }, "A {itemName}.");
 }
 
+// Stable default: a fresh [] per render re-ran the open-reset effect forever.
+const NO_SELECTIONS: string[] = [];
+
 export function EquipmentSelectionModal({
   isOpen,
   onClose,
@@ -104,12 +116,16 @@ export function EquipmentSelectionModal({
   group,
   character,
   currentSelection,
-  currentWeaponSelections = [],
+  currentWeaponSelections = NO_SELECTIONS,
   requireChoice = true,
   onRequirementChange,
 }: EquipmentSelectionModalProps) {
   const { t, language } = useLanguage();
-  const [step, setStep] = useState<"list" | "info">("list");
+  // list: equipment options. pick: grouped weapon/item picker for a choice option.
+  // info: option info. pickInfo: info for one weapon inside the picker.
+  const [step, setStep] = useState<"list" | "pick" | "info" | "pickInfo">("list");
+  const [pickInfoEntry, setPickInfoEntry] = useState<PickerEntry | null>(null);
+  const [openGroups, setOpenGroups] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedOption, setSelectedOption] = useState<SelectableOption | null>(null);
   const [weaponSelections, setWeaponSelections] = useState<string[]>(currentWeaponSelections || []);
@@ -119,6 +135,14 @@ export function EquipmentSelectionModal({
 
   const weapons = useMemo(() => getStaticWeapons(character.sources, character.ruleset, language), [character.sources, character.ruleset, language]);
   const armors = useMemo(() => getStaticArmors(character.sources, character.ruleset, language), [character.sources, character.ruleset, language]);
+
+  // Proficiency names are matched against the English class data so localized
+  // class text cannot break the match.
+  const weaponProficiencies = useMemo<string[] | null>(() => {
+    if (!character.class) return null;
+    const cls = getStaticClass(character.class, character.ruleset, undefined, "en") as any;
+    return cls?.proficiencies?.weapons ?? null;
+  }, [character.class, character.ruleset]);
 
   const getItemInfo = useCallback((itemName: string) => {
     const weapon = weapons.find((w: any) => w.name === itemName) as any;
@@ -357,47 +381,96 @@ export function EquipmentSelectionModal({
     return options;
   }, [allOptions, searchQuery, sourceFilter]);
 
+  const pickerGroups = useMemo<PickerGroup[]>(() => {
+    if (!selectedOption || selectedOption.type === "package") return [];
+    if (selectedOption.type === "weapon_choice") {
+      const weaponType = selectedOption.equipmentOption.weaponType;
+      return buildWeaponGroups(weapons.filter((w) => weaponMatchesType(w, weaponType)), t);
+    }
+    return [
+      buildItemGroup(
+        selectedOption.type,
+        selectedOption.label,
+        (selectedOption.weaponOptions || []).map((o) => ({ name: o.name, source: "PHB", description: o.description })),
+      ),
+    ];
+  }, [selectedOption, weapons, t]);
+
+  const filteredPickerGroups = useMemo<PickerGroup[]>(() => {
+    const q = searchQuery.trim().toLowerCase();
+    return pickerGroups
+      .map((g) => ({
+        ...g,
+        entries: g.entries.filter(
+          (e) => (!q || e.name.toLowerCase().includes(q)) && (sourceFilter === "ALL" || e.source === sourceFilter),
+        ),
+      }))
+      .filter((g) => g.entries.length > 0);
+  }, [pickerGroups, searchQuery, sourceFilter]);
+
   const availableSources = useMemo(() => {
-    const sources = new Set(allOptions.flatMap((opt) => opt.badges));
+    const sources = step === "pick"
+      ? new Set(pickerGroups.flatMap((g) => g.entries.map((e) => e.source)))
+      : new Set(allOptions.flatMap((opt) => opt.badges));
     return Array.from(sources).sort();
-  }, [allOptions]);
+  }, [allOptions, pickerGroups, step]);
+
+  // A group whose only option is a choice ("any two simple weapons") opens the picker directly.
+  const soloChoice = allOptions.length === 1 && allOptions[0].type !== "package" ? allOptions[0] : null;
 
   useLayoutEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
       // Reset modal state when opening - standard modal pattern
       // eslint-disable-next-line react-hooks/set-state-in-effect
-      setStep("list");
-      setSelectedOption(currentSelection ? allOptions.find(o => o.equipmentOption === currentSelection) || null : null);
+      const initial = currentSelection ? allOptions.find(o => o.equipmentOption === currentSelection) || null : null;
+      setStep(soloChoice ? "pick" : "list");
+      setSelectedOption(soloChoice ?? initial);
       setWeaponSelections(currentWeaponSelections || []);
-      setPreviewOption(null);
+      setPreviewOption(soloChoice ?? null);
       setSearchQuery("");
       setSourceFilter("ALL");
       setInfoOption(null);
+      setPickInfoEntry(null);
+      setOpenGroups([]);
     }
     return () => {
       document.body.style.overflow = "";
     };
+    // soloChoice is derived from allOptions.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen, currentSelection, currentWeaponSelections, allOptions]);
 
   const handleOptionClick = useCallback((option: SelectableOption) => {
     setPreviewOption(option);
-    if (option.type !== "package") {
-      setSelectedOption(option);
+    if (option.type === "package") {
+      setSelectedOption(null);
+      setWeaponSelections([]);
+      return;
     }
-  }, []);
+    if (selectedOption?.id !== option.id) setWeaponSelections([]);
+    setSelectedOption(option);
+    setSearchQuery("");
+    setSourceFilter("ALL");
+    setOpenGroups([]);
+    setStep("pick");
+  }, [selectedOption]);
 
-  const handleWeaponSelect = useCallback((weaponName: string) => {
+  // Duplicates are allowed ("two handaxes"). Once the count is full, a new pick
+  // replaces the oldest one so a tap always does something.
+  const handlePick = useCallback((entry: PickerEntry, groupKey?: string) => {
+    if (groupKey) setOpenGroups((prev) => (prev.includes(groupKey) ? prev : [...prev, groupKey]));
+    const max = selectedOption?.selectionCount || 1;
     setWeaponSelections((prev) => {
-      if (prev.includes(weaponName)) {
-        return prev.filter((w) => w !== weaponName);
-      }
-      if (!selectedOption) return prev;
-      const maxSelection = selectedOption.selectionCount || 1;
-      if (prev.length >= maxSelection) return prev;
-      return [...prev, weaponName];
+      if (max === 1) return [entry.name];
+      if (prev.length < max) return [...prev, entry.name];
+      return [...prev.slice(1), entry.name];
     });
   }, [selectedOption]);
+
+  const handleGroupToggle = useCallback((key: string, open: boolean) => {
+    setOpenGroups((prev) => (open ? (prev.includes(key) ? prev : [...prev, key]) : prev.filter((k) => k !== key)));
+  }, []);
 
   const handleOpenInfo = useCallback((option: SelectableOption) => {
     setInfoOption(option);
@@ -412,9 +485,13 @@ export function EquipmentSelectionModal({
   }, [infoOption, handleOptionClick]);
 
   const handleConfirm = useCallback(() => {
-    if (step === "info") {
+    if (step === "pickInfo") {
+      if (pickInfoEntry) handlePick(pickInfoEntry);
+      setPickInfoEntry(null);
+      setStep("pick");
+    } else if (step === "info") {
       handleSelectInfoOption();
-    } else if (step === "list") {
+    } else if (step === "list" || step === "pick") {
       if (selectedOption && selectedOption.type !== "package") {
         const selectionCount = selectedOption.selectionCount || 1;
         if (weaponSelections.length < selectionCount) return;
@@ -423,22 +500,34 @@ export function EquipmentSelectionModal({
       onConfirm(payloadOption, weaponSelections);
       onClose();
     }
-  }, [step, selectedOption, previewOption, weaponSelections, onConfirm, onClose, handleSelectInfoOption]);
+  }, [step, selectedOption, previewOption, weaponSelections, onConfirm, onClose, handleSelectInfoOption, pickInfoEntry, handlePick]);
 
   const handleCancel = useCallback(() => {
-    if (step === "info") {
+    if (step === "pickInfo") {
+      setPickInfoEntry(null);
+      setStep("pick");
+    } else if (step === "pick" && !soloChoice) {
+      setSearchQuery("");
+      setSourceFilter("ALL");
+      setStep("list");
+    } else if (step === "info") {
       setInfoOption(null);
       setStep("list");
     } else {
       onClose();
     }
-  }, [step, onClose]);
+  }, [step, onClose, soloChoice]);
 
   const title = step === "info" && infoOption
     ? infoOption.label
     : t("equipment.selectFromOptions", "Select from the options below");
 
-  const confirmLabel = step === "info"
+  const pickCount = selectedOption?.selectionCount || 1;
+  const pickSummary = weaponSelections.length > 0 ? weaponSelections.join(", ") : t("weaponPicker.nothingPicked", "Belum ada yang dipilih");
+
+  const confirmLabel = step === "pickInfo"
+    ? t("weaponPicker.selectThis", "Pilih Ini")
+    : step === "info"
     ? t("modal.selectThisOption", "Select this option")
     : previewOption
       ? t("common.confirmSelection", "Confirm selection")
@@ -447,7 +536,11 @@ export function EquipmentSelectionModal({
   const showInfo = step === "info" && !!infoOption;
 
   const isConfirmDisabled =
-    step === "info"
+    step === "pickInfo"
+      ? !pickInfoEntry
+      : step === "pick"
+      ? weaponSelections.length < pickCount
+      : step === "info"
       ? !infoOption
       : !previewOption || (selectedOption != null && selectedOption.type !== "package" && weaponSelections.length < (selectedOption.selectionCount || 1));
 
@@ -487,12 +580,30 @@ export function EquipmentSelectionModal({
 
   const stickyFooter = (
     <div className="bg-[var(--color-surface)] border-t border-[var(--color-border)] px-4 py-3 flex flex-wrap gap-2">
+      {step === "pick" && (
+        <div className="flex w-full items-center justify-between gap-2">
+          <p className="min-w-0 truncate text-xs font-semibold text-ink-muted">
+            {t("weaponPicker.pickedCount", { count: weaponSelections.length, total: pickCount }, "Dipilih {count}/{total}")}
+            {": "}
+            <span className="text-ink">{pickSummary}</span>
+          </p>
+          {weaponSelections.length > 0 && (
+            <button
+              type="button"
+              onClick={() => setWeaponSelections([])}
+              className="shrink-0 text-xs font-bold text-ink underline"
+            >
+              {t("weaponPicker.clear", "Hapus")}
+            </button>
+          )}
+        </div>
+      )}
       <button
         type="button"
         onClick={handleCancel}
         className="flex-1 py-2.5 px-4 text-sm font-medium rounded-lg border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:bg-[var(--color-bg)] transition-colors"
       >
-        {step === "info" ? t("common.back", "Back") : t("common.cancel", "Cancel")}
+        {step === "info" || step === "pickInfo" || (step === "pick" && !soloChoice) ? t("common.back", "Back") : t("common.cancel", "Cancel")}
       </button>
       <button
         type="button"
@@ -519,7 +630,37 @@ export function EquipmentSelectionModal({
       footer={stickyFooter}
       showHeader={false}
     >
-      {!showInfo && stickyHeader}
+      {(step === "list" || step === "pick") && stickyHeader}
+
+      {step === "pick" && (
+        <div className="flex-1 min-h-0 space-y-3 overflow-y-auto overscroll-contain p-4 pb-8">
+          {filteredPickerGroups.length === 0 ? (
+            <p className="py-8 text-center text-sm text-ink-muted">
+              {t("weaponPicker.noResults", "Tidak ada senjata yang cocok dengan pencarianmu.")}
+            </p>
+          ) : (
+            <WeaponPickerList
+              groups={filteredPickerGroups}
+              openGroups={openGroups}
+              forceOpen={filteredPickerGroups.length === 1 || searchQuery.trim().length > 0}
+              selections={weaponSelections}
+              onToggleGroup={handleGroupToggle}
+              onPick={handlePick}
+              onInfo={(entry) => {
+                setPickInfoEntry(entry);
+                setStep("pickInfo");
+              }}
+              t={t}
+            />
+          )}
+        </div>
+      )}
+
+      {step === "pickInfo" && pickInfoEntry && (
+        <div className="flex-1 min-h-0 space-y-3 overflow-y-auto overscroll-contain p-4 pb-8">
+          <WeaponInfoPanel entry={pickInfoEntry} proficiencies={weaponProficiencies} t={t} />
+        </div>
+      )}
 
       {(step === "list" || showInfo) && (
         <div className="flex-1 min-h-0 space-y-3 overflow-y-auto overscroll-contain p-4 pb-8">
@@ -557,10 +698,9 @@ export function EquipmentSelectionModal({
                   option={opt}
                   isSelected={previewOption?.id === opt.id}
                   isWeaponSelected={opt.type !== "package" && selectedOption?.id === opt.id}
-                  weaponSelections={weaponSelections}
+                  weaponSelections={selectedOption?.id === opt.id ? weaponSelections : []}
                   onClick={() => handleOptionClick(opt)}
                   onInfoClick={() => handleOpenInfo(opt)}
-                  onWeaponSelect={handleWeaponSelect}
                   t={t}
                   language={language}
                 />
@@ -581,7 +721,6 @@ interface EquipmentCardProps {
   weaponSelections: string[];
   onClick: () => void;
   onInfoClick: () => void;
-  onWeaponSelect: (name: string) => void;
   t: ReturnType<typeof useLanguage>["t"];
   language: string;
 }
@@ -593,7 +732,6 @@ function EquipmentCard({
   weaponSelections,
   onClick,
   onInfoClick,
-  onWeaponSelect,
   t,
   language,
 }: EquipmentCardProps) {
@@ -637,7 +775,7 @@ function EquipmentCard({
     <div className="space-y-2">
       <SplitSelectionCard
         title={option.label}
-        subtitle={`${selectedCount}/${totalCount} ${t("equipment.selectedCount", "selected")}`}
+        subtitle={`${selectedCount}/${totalCount} ${t("equipment.selectedCount", "selected")}${selectedCount > 0 ? `: ${weaponSelections.join(", ")}` : ""}`}
         clampSubtitle={false}
         icon={Icon}
         badges={option.badges}

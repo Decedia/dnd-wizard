@@ -211,8 +211,10 @@ export interface SRDWeapon {
   category_range: string;
   damage?: { damage_dice: string; damage_type: { index: string; name: string } };
   two_handed_damage?: { damage_dice: string; damage_type: { index: string; name: string } };
-  properties?: { index: string; name: string }[];
+  properties?: { index: string; name: string; desc?: string }[];
+  range?: { normal: number; long?: number };
   throw_range?: { normal: number; long: number };
+  special?: string;
   source?: string;
 }
 
