@@ -3,6 +3,7 @@ import { engineIdFor } from "@/lib/feature-engine";
 import { getStaticClass, getStaticRace, getStaticSubclasses, getStaticEquipments, getStaticWeapons, getStaticArmors, getStaticItems, getStaticFeat, getStaticSpells, getSubclassSpellGrants as getJsonSubclassSpellGrants } from "./srd-client";
 import { determineDefaultVisibility } from "./feature-filters";
 import type { CreationStep } from "./creation-types";
+import { getBackgroundData } from "@/data/backgrounds";
 
 const ARCANE_FOCUS_NAMES = ["crystal", "orb", "rod", "staff", "wand"];
 const HOLY_SYMBOL_NAMES = ["amulet", "emblem", "reliquary"];
@@ -447,10 +448,12 @@ export function buildChoiceGroups(startingEquipment: any[], ruleset?: string): C
 export function getValidationMessage(step: CreationStep, character?: Character): string {
   switch (step.type) {
     case "origin":
-      if (!character?.name?.trim()) return "Please enter your character's name.";
+      if (!character?.background) return "Please select a background for your character.";
       return "Please select a class and race for your character.";
+    case "look":
+      return "Please enter your character's name.";
     case "personality":
-      return "Please select a background and choose an alignment.";
+      return "Please choose an alignment.";
     case "abilities":
       return "Please set all six ability scores before continuing.";
     case "skills":
@@ -469,7 +472,6 @@ export function getValidationMessage(step: CreationStep, character?: Character):
       return "Please complete this step before continuing.";
     case "feature-selections":
       return "Please make all required feature selections.";
-    case "appearance":
     default:
       return "Please complete this step before continuing.";
   }
@@ -482,17 +484,19 @@ export function getCreationSteps(character: Character): CreationStep[] {
   const halfElfComplete =
     !isHalfElf ||
     ((character.halfElfAbilities || []).length === 2 && (character.halfElfSkills || []).length === 2);
+  // Background lives in Origin: it grants skills, tools and languages, so it
+  // must be set before the Skills step in either creation order.
   const originCompleted =
-    !!character.name.trim() &&
+    !!character.background &&
     !!character.class &&
     !!character.race &&
     halfElfComplete &&
     !(character.race === "Human" && character.raceVariant === "variant" && (!character.featureSelections?.["variant-human-feat"]?.[0] || (character.variantHumanAbilities || []).length < 2 || !character.variantHumanSkill));
-  const personalityCompleted = !!character.background && !!character.alignment;
+  const personalityCompleted = !!character.alignment;
+  const lookCompleted = !!character.name.trim();
   const abilitiesCompleted = [character.str, character.dex, character.con, character.int, character.wis, character.cha].every((s) => s > 0);
   const skillsCompleted = !classData?.skillChoices || Object.entries(character.skills || {}).filter(([name, proficient]) => proficient && classData.skillChoices.options.includes(name)).length >= classData.skillChoices.count;
   const equipmentCompleted = character.inventory.length > 0 && isEquipmentComplete(character, classData);
-  const appearanceCompleted = true;
 
   const asiLevels = classData?.levels
     .map((lvl, idx) => ({ level: idx + 1, asi: !!lvl.asi }))
@@ -510,21 +514,33 @@ export function getCreationSteps(character: Character): CreationStep[] {
     pendingLevelOneFeatures === 0 &&
     (Object.keys(character.levelHp || {}).length >= character.level);
 
-  const steps: CreationStep[] = [
+  const conceptSteps: CreationStep[] = [
     {
-      id: "source-selection",
-      title: "Sourcebooks",
-      description: "Choose allowed sourcebooks",
-      hint: "Select which sourcebooks are allowed for this character. Only content from selected sources will appear during creation. PHB is always included.",
-      type: "source-selection",
+      id: "look",
+      title: "Look",
+      description: "Name and appearance",
+      hint: "Picture your character. None of this changes your stats.",
+      type: "look",
       required: true,
-      completed: true,
+      completed: lookCompleted,
     },
+    {
+      id: "personality",
+      title: "Personality",
+      description: "Alignment and traits",
+      hint: "Choose an alignment and the traits, ideals, bonds and flaws that drive your character.",
+      type: "personality",
+      required: true,
+      completed: personalityCompleted,
+    },
+  ];
+
+  const gameplaySteps: CreationStep[] = [
     {
       id: "origin",
       title: "Origin",
-      description: "Choose class and race",
-      hint: "Choose your character's class and race. Your class defines your abilities and role, while your race provides unique traits and ability bonuses.",
+      description: "Choose class, race and background",
+      hint: "Choose your character's class, race and background. Your class defines your abilities and role, your race provides traits and ability bonuses, and your background grants skills, tools and languages.",
       type: "origin",
       required: true,
       completed: originCompleted,
@@ -538,9 +554,6 @@ export function getCreationSteps(character: Character): CreationStep[] {
       required: true,
       completed: abilitiesCompleted,
     },
-  ];
-
-  steps.push(
     {
       id: "skills",
       title: "Skills & Proficiencies",
@@ -559,28 +572,24 @@ export function getCreationSteps(character: Character): CreationStep[] {
       required: true,
       completed: equipmentCompleted,
     },
-  );
+  ];
 
-  steps.push(
+  // Concept steps carry no mechanics, so they can sit before or after the
+  // gameplay steps. Level stays last in both orders: the level-up wizard
+  // finalizes the character when it completes.
+  const conceptFirst = (character.creationOrder ?? "concept") === "concept";
+  const steps: CreationStep[] = [
     {
-      id: "appearance",
-      title: "Appearance",
-      description: "Final details",
-      hint: "Add the finishing touches to your character - appearance, personality, and any other details that bring them to life.",
-      type: "appearance",
-      required: false,
-      completed: appearanceCompleted,
-    },
-    {
-      id: "personality",
-      title: "Personality",
-      description: "Background and traits",
-      hint: "Define your character's personality, background, and the languages they speak. Your background provides skill proficiencies and special features.",
-      type: "personality",
+      id: "source-selection",
+      title: "Sourcebooks",
+      description: "Choose allowed sourcebooks",
+      hint: "Select which sourcebooks are allowed for this character. Only content from selected sources will appear during creation. PHB is always included.",
+      type: "source-selection",
       required: true,
-      completed: personalityCompleted,
-    }
-  );
+      completed: true,
+    },
+    ...(conceptFirst ? [...conceptSteps, ...gameplaySteps] : [...gameplaySteps, ...conceptSteps]),
+  ];
 
   if (character.class) {
     steps.push({
@@ -1589,4 +1598,66 @@ export function recreateCharacter(character: Character, language = "en"): Charac
   };
 
   return next;
+}
+
+/**
+ * The patch a background choice applies: its skill proficiencies, tool
+ * proficiencies and starting equipment. Switching or clearing the background
+ * removes the old background's skills (and, when switching, its granted items).
+ */
+export function applyBackground(data: Character, newBackground: string): Partial<Character> {
+  const bgData = getBackgroundData(newBackground);
+  const patch: Partial<Character> = { background: newBackground };
+
+  if (bgData) {
+    // Switching backgrounds: drop the old one's skills and granted items first,
+    // so the picker can be reopened without stacking grants.
+    const oldBg = getBackgroundData(data.background);
+    const newSkills = { ...data.skills };
+    let baseInventory = data.inventory;
+    if (oldBg && oldBg.name !== bgData.name) {
+      for (const skill of oldBg.skillProficiencies) delete newSkills[skill];
+      const oldItems = [...oldBg.equipment];
+      baseInventory = data.inventory.filter((item) => {
+        if (item.source !== "custom" || !item.isGranted) return true;
+        const idx = oldItems.indexOf(item.name);
+        if (idx === -1) return true;
+        oldItems.splice(idx, 1);
+        return false;
+      });
+    }
+    for (const skill of bgData.skillProficiencies) {
+      newSkills[skill] = true;
+    }
+    patch.skills = newSkills;
+
+    patch.toolProficiencies = bgData.toolProficiencies;
+
+    const newInventory = [...baseInventory];
+    for (const itemName of bgData.equipment) {
+      newInventory.push({
+        id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+        name: itemName,
+        quantity: 1,
+        equipped: false,
+        source: "custom",
+        isGranted: true,
+      });
+    }
+    patch.inventory = newInventory;
+  } else {
+    const newSkills = { ...data.skills };
+    const currentBg = getBackgroundData(data.background);
+    if (currentBg) {
+      for (const skill of currentBg.skillProficiencies) {
+        if (newSkills[skill]) {
+          delete newSkills[skill];
+        }
+      }
+    }
+    patch.skills = newSkills;
+    patch.toolProficiencies = [];
+  }
+
+  return patch;
 }

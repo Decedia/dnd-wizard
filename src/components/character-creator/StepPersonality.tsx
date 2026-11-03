@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useCallback } from "react";
-import { StepCard } from "./StepCard";
-import { backgroundsData, alignmentOptions, getBackgroundData } from "@/data/backgrounds";
-import { languages as languageList } from "@/data/srd";
+import { useMemo, useState } from "react";
+import { Info, Scales, MaskHappy, DiceFive, Plus, Check, CaretRight, MagnifyingGlass } from "@phosphor-icons/react";
+import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
+import { BottomSheet } from "@/components/modals/BottomSheet";
+import { InfoCallout } from "@/components/modals/InfoBits";
+import { backgroundsData, alignmentOptions, getBackgroundData, type BackgroundData } from "@/data/backgrounds";
 import type { Character } from "@/lib/storage";
-import { CaretDownIcon as CaretDown, XIcon as X, InfoIcon } from "@/components/icons";
-import { BasePopup } from "@/components/BasePopup";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 interface StepPersonalityProps {
@@ -14,331 +14,290 @@ interface StepPersonalityProps {
   onChange: (patch: Partial<Character>) => void;
 }
 
-const defaultLanguages = ["Common"];
+type TraitKind = "personality" | "ideal" | "bond" | "flaw";
+type TraitField = "personalityTrait1" | "ideal" | "bond" | "flaw";
 
-function getRaceLanguages(race: string): string[] {
-  const raceLanguageMap: Record<string, string[]> = {
-    "Dwarf": ["Common", "Dwarvish"],
-    "Elf": ["Common", "Elvish"],
-    "Halfling": ["Common", "Halfling"],
-    "Human": ["Common"],
-    "Dragonborn": ["Common", "Draconic"],
-    "Gnome": ["Common", "Gnomish"],
-    "Half-Elf": ["Common", "Elvish"],
-    "Half-Orc": ["Common", "Orc"],
-    "Tiefling": ["Common", "Infernal"],
-  };
-  return raceLanguageMap[race] || ["Common"];
-}
+const TRAITS: { kind: TraitKind; field: TraitField; list: (bg: BackgroundData) => string[]; labelKey: string; label: string; aboutKey: string; about: string }[] = [
+  { kind: "personality", field: "personalityTrait1", list: (bg) => bg.personalityTraits, labelKey: "creator.personalityTrait", label: "Sifat Kepribadian", aboutKey: "personality.about.personality", about: "Kebiasaan, sikap, atau ciri kecil yang membuat karaktermu mudah dikenali di meja." },
+  { kind: "ideal", field: "ideal", list: (bg) => bg.ideals, labelKey: "creator.ideal", label: "Ideal", aboutKey: "personality.about.ideal", about: "Prinsip yang paling dipegang karaktermu, hal yang mendorong pilihan besarnya." },
+  { kind: "bond", field: "bond", list: (bg) => bg.bonds, labelKey: "creator.bond", label: "Ikatan", aboutKey: "personality.about.bond", about: "Orang, tempat, atau hal yang paling berarti bagi karaktermu dan mengikatnya ke dunia." },
+  { kind: "flaw", field: "flaw", list: (bg) => bg.flaws, labelKey: "creator.flaw", label: "Kelemahan", aboutKey: "personality.about.flaw", about: "Sifat buruk, ketakutan, atau godaan yang bisa dipakai lawan atau DM untuk menyulitkanmu." },
+];
 
-function getRaceBonusLanguages(race: string): number {
-  const bonusMap: Record<string, number> = {
-    "Human": 1,
-    "Half-Elf": 1,
-    "Half-Orc": 0,
-  };
-  return bonusMap[race] || 0;
+/** Abbreviations for the 3x3 grid, in alignmentOptions order. */
+const ALIGNMENT_CODES = ["LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE"];
+
+function pick<T>(list: T[]): T | undefined {
+  return list.length ? list[Math.floor(Math.random() * list.length)] : undefined;
 }
 
 export function StepPersonality({ data, onChange }: StepPersonalityProps) {
   const { t } = useLanguage();
-
-  const raceLanguages = getRaceLanguages(data.race);
-  const raceBonusLanguages = getRaceBonusLanguages(data.race);
+  const [openKind, setOpenKind] = useState<TraitKind | null>(null);
   const selectedBackground = getBackgroundData(data.background);
-  const backgroundLanguageCount = selectedBackground?.languages || 0;
+  const openTrait = TRAITS.find((tr) => tr.kind === openKind) ?? null;
 
-  const totalBonusLanguages = raceBonusLanguages + backgroundLanguageCount;
-
-  const handleLanguageToggle = useCallback((language: string) => {
-    const currentLanguages = data.languages || [...defaultLanguages];
-    const isRaceLanguage = raceLanguages.includes(language);
-
-    if (isRaceLanguage) return;
-
-    if (currentLanguages.includes(language)) {
-      onChange({ languages: currentLanguages.filter(l => l !== language) });
-    } else {
-      if (currentLanguages.length < raceLanguages.length + totalBonusLanguages) {
-        onChange({ languages: [...currentLanguages, language] });
-      }
+  const rollAll = () => {
+    const bg = selectedBackground ?? pick(backgroundsData);
+    if (!bg) return;
+    const patch: Partial<Character> = {};
+    for (const tr of TRAITS) {
+      const value = pick(tr.list(bg));
+      if (value) patch[tr.field] = value;
     }
-  }, [data.languages, raceLanguages, totalBonusLanguages, onChange]);
-
-  const availableLanguages = languageList.map(l => l.name).filter(l => !raceLanguages.includes(l));
-  const canAddMoreLanguages = (data.languages?.length || defaultLanguages.length) < raceLanguages.length + totalBonusLanguages;
-
-  const personalityTraits = selectedBackground?.personalityTraits || [];
-  const ideals = selectedBackground?.ideals || [];
-  const bonds = selectedBackground?.bonds || [];
-  const flaws = selectedBackground?.flaws || [];
-
-  const [popupType, setPopupType] = useState<"personality" | "ideal" | "bond" | "flaw" | null>(null);
-
-  const getPopupOptions = () => {
-    switch (popupType) {
-      case "personality": return personalityTraits;
-      case "ideal": return ideals;
-      case "bond": return bonds;
-      case "flaw": return flaws;
-      default: return [];
-    }
+    onChange(patch);
   };
 
-  const getPopupTitle = () => {
-    switch (popupType) {
-      case "personality": return t("creator.choosePersonalityTrait", "Choose Personality Trait");
-      case "ideal": return t("creator.chooseIdeal", "Choose Ideal");
-      case "bond": return t("creator.chooseBond", "Choose Bond");
-      case "flaw": return t("creator.chooseFlaw", "Choose Flaw");
-      default: return "";
-    }
-  };
+  return (
+    <section className="w-full pb-32">
+      <div className="mb-6">
+        <p className="text-[11px] font-bold uppercase tracking-widest text-ink-muted">{t("look.kicker", "Konsep")}</p>
+        <h1 className="text-2xl font-black tracking-tight text-ink">{t("personality.title", "Kepribadian")}</h1>
+      </div>
 
-  const getCurrentValue = () => {
-    switch (popupType) {
-      case "personality": return data.personalityTrait1;
-      case "ideal": return data.ideal;
-      case "bond": return data.bond;
-      case "flaw": return data.flaw;
-      default: return "";
-    }
-  };
+      <div className="space-y-6">
+        <div className="flex gap-3 rounded-2xl border border-ink/20 bg-ink/10 p-4">
+          <Info size={18} weight="bold" className="mt-0.5 shrink-0 text-ink" />
+          <p className="text-xs leading-relaxed text-ink/80">
+            {t("personality.conceptHint", "Pilih alignment dan sifat yang menggerakkan karaktermu. Bagian ini tidak mengubah stat.")}
+          </p>
+        </div>
 
-  const [pendingValue, setPendingValue] = useState<string>("");
-  const [infoState, setInfoState] = useState<{title: string; description: string} | null>(null);
+        <section>
+          <div className="mb-3 flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2">
+              <Scales size={14} weight="bold" className="text-ink" />
+              <h3 className="text-xs font-bold uppercase tracking-widest text-ink">{t("form.alignment", "Alignment")}</h3>
+            </div>
+            <span className="text-[11px] font-bold text-ink-muted">{data.alignment}</span>
+          </div>
+          <div className="grid grid-cols-3 gap-2">
+            {alignmentOptions.map((alignment, idx) => {
+              const isSelected = data.alignment === alignment;
+              return (
+                <button
+                  key={alignment}
+                  type="button"
+                  onClick={() => onChange({ alignment })}
+                  aria-pressed={isSelected}
+                  aria-label={alignment}
+                  className={`flex h-14 flex-col items-center justify-center rounded-xl border-2 transition-all active:scale-[0.98] ${
+                    isSelected ? "border-ink bg-ink text-surface" : "border-border-strong bg-surface text-ink"
+                  }`}
+                >
+                  <span className="text-sm font-black">{ALIGNMENT_CODES[idx]}</span>
+                  <span className={`text-[9px] font-semibold leading-tight ${isSelected ? "text-surface/80" : "text-ink-muted"}`}>
+                    {alignment}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </section>
 
-  const handleOpenPopup = (type: "personality" | "ideal" | "bond" | "flaw") => {
-    setPopupType(type);
-    setPendingValue(getCurrentValue());
-  };
+        <section>
+          <div className="mb-3 flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2">
+              <MaskHappy size={14} weight="bold" className="text-ink" />
+              <h3 className="text-xs font-bold uppercase tracking-widest text-ink">{t("personality.traits", "Sifat")}</h3>
+            </div>
+            <button
+              type="button"
+              onClick={rollAll}
+              className="flex h-9 items-center gap-1.5 rounded-xl border-2 border-border-strong bg-surface px-3 text-xs font-bold text-ink transition active:scale-95"
+            >
+              <DiceFive size={14} weight="bold" />
+              {t("personality.rollAll", "Acak Semua")}
+            </button>
+          </div>
+          <div className="space-y-3">
+            {TRAITS.map((tr) => {
+              const value = data[tr.field];
+              return (
+                <SplitSelectionCard
+                  key={tr.kind}
+                  title={t(tr.labelKey, tr.label)}
+                  subtitle={value || t("personality.chooseOrWrite", "Pilih atau tulis sendiri")}
+                  icon={value ? <Check size={20} weight="bold" className="text-ink" /> : <Plus size={20} weight="bold" className="text-ink" />}
+                  isSelected={!!value}
+                  onSelect={() => setOpenKind(tr.kind)}
+                  infoType="modal"
+                  modalContent={<InfoCallout label={t(tr.labelKey, tr.label)}>{t(tr.aboutKey, tr.about)}</InfoCallout>}
+                  clampSubtitle={false}
+                />
+              );
+            })}
+          </div>
+        </section>
+      </div>
 
-  const handleSelect = (value: string) => {
-    setPendingValue(value);
-  };
+      {openTrait && (
+        <TraitPickerModal
+          title={t(openTrait.labelKey, openTrait.label)}
+          current={data[openTrait.field]}
+          selectedBackground={selectedBackground}
+          list={openTrait.list}
+          onClose={() => setOpenKind(null)}
+          onConfirm={(value) => {
+            onChange({ [openTrait.field]: value } as Partial<Character>);
+            setOpenKind(null);
+          }}
+        />
+      )}
+    </section>
+  );
+}
 
-  const handleConfirm = () => {
-    switch (popupType) {
-      case "personality": onChange({ personalityTrait1: pendingValue }); break;
-      case "ideal": onChange({ ideal: pendingValue }); break;
-      case "bond": onChange({ bond: pendingValue }); break;
-      case "flaw": onChange({ flaw: pendingValue }); break;
-    }
-    setPopupType(null);
-  };
+interface TraitPickerModalProps {
+  title: string;
+  current: string;
+  selectedBackground?: BackgroundData;
+  list: (bg: BackgroundData) => string[];
+  onClose: () => void;
+  onConfirm: (value: string) => void;
+}
 
-  const handleCancel = () => {
-    setPopupType(null);
-  };
+/**
+ * Suggestions from every background, grouped like the race modal. The chosen
+ * background's group is first and open, since concept-first players may not
+ * have picked one yet.
+ */
+function TraitPickerModal({ title, current, selectedBackground, list, onClose, onConfirm }: TraitPickerModalProps) {
+  const { t } = useLanguage();
+  const [pending, setPending] = useState(current);
+  const [search, setSearch] = useState("");
+  const [openGroups, setOpenGroups] = useState<string[]>(selectedBackground ? [selectedBackground.name] : []);
 
-  const renderSelectButton = (label: string, value: string, placeholder: string, type: "personality" | "ideal" | "bond" | "flaw") => (
-    <div>
-      <label className="field-label-light">{label}</label>
+  const groups = useMemo(() => {
+    const ordered = selectedBackground
+      ? [selectedBackground, ...backgroundsData.filter((bg) => bg.name !== selectedBackground.name)]
+      : backgroundsData;
+    const q = search.trim().toLowerCase();
+    return ordered
+      .map((bg) => ({ name: bg.name, options: list(bg).filter((o) => !q || o.toLowerCase().includes(q)) }))
+      .filter((g) => g.options.length > 0);
+  }, [selectedBackground, list, search]);
+
+  const searching = search.trim().length > 0;
+  const isCustom = !!pending && !backgroundsData.some((bg) => list(bg).includes(pending));
+
+  const footer = (
+    <div className="flex gap-2 bg-[var(--color-surface)] px-4 py-3">
       <button
         type="button"
-        onClick={() => handleOpenPopup(type)}
-        className="w-full mt-1 p-3 text-left rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)] transition-all flex items-center justify-between gap-2"
+        onClick={onClose}
+        className="flex-1 rounded-lg border border-[var(--color-border)] px-4 py-2.5 text-sm font-medium text-[var(--color-text-secondary)] transition-colors hover:bg-[var(--color-bg)]"
       >
-        <span className={"text-sm " + (value ? "text-[var(--color-text-primary)]" : "text-[var(--color-text-muted)]")}>
-          {value || placeholder}
-        </span>
-        <CaretDown className="h-4 w-4 text-[var(--color-text-muted)]" />
+        {t("common.cancel", "Batal")}
+      </button>
+      <button
+        type="button"
+        disabled={!pending.trim()}
+        onClick={() => onConfirm(pending.trim())}
+        className={`flex-1 rounded-lg px-4 py-2.5 text-sm font-semibold transition-all ${
+          pending.trim()
+            ? "bg-[var(--color-accent-indigo-600)] text-white hover:bg-[var(--color-accent-indigo-700)]"
+            : "cursor-not-allowed bg-[var(--color-bg)] text-[var(--color-text-muted)]"
+        }`}
+      >
+        {t("common.confirmSelection", "Konfirmasi pilihan")}
       </button>
     </div>
   );
 
   return (
-    <StepCard title={t("creator.finalTouches")} hint={t("creator.personalityHint", "Define your character's personality, background, and the languages they speak. Your background provides skill proficiencies and special features.")}>
-      <div className="space-y-6">
-
-        <div>
-          <label className="field-label-light">{t("form.alignment")}</label>
-          <select
-            value={data.alignment}
-            onChange={(e) => onChange({ alignment: e.target.value })}
-            className="input w-full"
-          >
-            <option value="">{t("form.selectAlignment")}</option>
-            {alignmentOptions.map((alignment) => (
-              <option key={alignment} value={alignment}>{alignment}</option>
-            ))}
-          </select>
-        </div>
-
-        <div>
-          <label className="field-label-light">{t("form.background")}</label>
-          <select
-            value={data.background}
-            onChange={(e) => {
-              const newBackground = e.target.value;
-              const bgData = getBackgroundData(newBackground);
-              const patch: Partial<Character> = { background: newBackground };
-
-              if (bgData) {
-                const newSkills = { ...data.skills };
-                for (const skill of bgData.skillProficiencies) {
-                  newSkills[skill] = true;
-                }
-                patch.skills = newSkills;
-
-                patch.toolProficiencies = bgData.toolProficiencies;
-
-                const newInventory = [...data.inventory];
-                for (const itemName of bgData.equipment) {
-                  newInventory.push({
-                    id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
-                    name: itemName,
-                    quantity: 1,
-                    equipped: false,
-                    source: "custom",
-                    isGranted: true,
-                  });
-                }
-                patch.inventory = newInventory;
-              } else {
-                const newSkills = { ...data.skills };
-                const currentBg = getBackgroundData(data.background);
-                if (currentBg) {
-                  for (const skill of currentBg.skillProficiencies) {
-                    if (newSkills[skill]) {
-                      delete newSkills[skill];
-                    }
-                  }
-                }
-                patch.skills = newSkills;
-                patch.toolProficiencies = [];
-              }
-
-              onChange(patch);
-            }}
-            className="input w-full"
-          >
-            <option value="">{t("form.selectBackground")}</option>
-            {backgroundsData.map((bg) => (
-              <option key={bg.name} value={bg.name}>{bg.name}</option>
-            ))}
-          </select>
-          {selectedBackground && (
-             <div className="mt-2 p-3 bg-[var(--color-bg)] rounded-[var(--radius-md)] border border-[var(--color-border)]">
-               <div className="text-xs font-bold text-[var(--color-text-primary)] flex items-center gap-2">{selectedBackground.feature.name}
-                 <button
-                   type="button"
-                   onClick={() => setInfoState({ title: selectedBackground.feature.name, description: selectedBackground.feature.description })}
-                   className="h-7 w-7 flex items-center justify-center rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-2 hover:border-[var(--color-text-primary)] active:bg-[var(--color-bg)] transition-all shrink-0"
-                   aria-label={`Info: ${selectedBackground.feature.name}`}
-                 >
-                   <InfoIcon className="h-4 w-4" />
-                 </button>
-               </div>
-              <div className="mt-2 flex flex-wrap gap-2">
-              <div>
-                   <span className="text-[10px] font-bold text-[var(--color-text-muted)]">{t("creator.skillsLabel", "Skills:")}</span>
-                   <span className="text-[10px] text-[var(--color-text-secondary)] ml-1">{selectedBackground.skillProficiencies.join(", ")}</span>
-                 </div>
-                 {selectedBackground.toolProficiencies.length > 0 && (
-                   <div>
-                     <span className="text-[10px] font-bold text-[var(--color-text-muted)]">{t("creator.toolsLabel", "Tools:")}</span>
-                     <span className="text-[10px] text-[var(--color-text-secondary)] ml-1">{selectedBackground.toolProficiencies.join(", ")}</span>
-                   </div>
-                 )}
-                 {selectedBackground.languages > 0 && (
-                   <div>
-                     <span className="text-[10px] font-bold text-[var(--color-text-muted)]">{t("creator.languagesLabel", "Languages:")}</span>
-                     <span className="text-[10px] text-[var(--color-text-secondary)] ml-1">+{selectedBackground.languages}</span>
-                   </div>
-                 )}
-              </div>
-            </div>
-          )}
-        </div>
-
-        <div>
-          <label className="field-label-light">
-            {t("form.languages")}
-            <span className="text-[var(--color-text-muted)] font-normal ml-2">
-              ({data.languages?.length || defaultLanguages.length}/{raceLanguages.length + totalBonusLanguages})
-            </span>
-          </label>
-          <div className="space-y-2 mt-2">
-            <div className="flex flex-wrap gap-2">
-              {raceLanguages.map((lang) => (
-                <span
-                  key={lang}
-                  className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-[var(--color-border-active)] text-[var(--color-nav-icon)]"
-                >
-                  {lang}
-                </span>
-              ))}
-              {(data.languages || defaultLanguages).filter(l => !raceLanguages.includes(l)).map((lang) => (
-                <button
-                  key={lang}
-                  type="button"
-                  onClick={() => handleLanguageToggle(lang)}
-                  className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-[var(--color-bg)] text-[var(--color-text-primary)] border border-[var(--color-border)] hover:border-[var(--color-error-300)] hover:text-[var(--color-error-500)] transition-colors"
-                >
-                  {lang} ×
-                </button>
-              ))}
-            </div>
-            {canAddMoreLanguages && (
-              <div>
-                <select
-                  value=""
-                  onChange={(e) => {
-                    if (e.target.value) {
-                      handleLanguageToggle(e.target.value);
-                      e.target.value = "";
-                    }
-                  }}
-                  className="input w-full text-sm"
-                >
-                   <option value="">{t("creator.addLanguage", "Add a language...")}</option>
-                  {availableLanguages
-                    .filter(l => !(data.languages || defaultLanguages).includes(l))
-                    .map((lang) => (
-                      <option key={lang} value={lang}>{lang}</option>
-                    ))}
-                </select>
-              </div>
-            )}
+    <BottomSheet isOpen onClose={onClose} title={title} footer={footer} showHeader={false}>
+      <div className="sticky top-0 z-20 shrink-0 border-b border-border-strong bg-surface px-4 py-3">
+        <div className="relative">
+          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+            <MagnifyingGlass className="h-4 w-4 text-[var(--color-text-muted)]" />
           </div>
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder={t("modal.searchPlaceholder")}
+            aria-label={t("personality.searchSuggestions", "Cari saran")}
+            className="w-full rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] py-2 pl-10 pr-4 text-sm text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:border-transparent focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-indigo-500)]"
+          />
         </div>
-
-        {personalityTraits.length > 0 && renderSelectButton(t("creator.personalityTrait", "Personality Trait"), data.personalityTrait1, t("creator.selectPersonalityTrait", "Select a personality trait..."), "personality")}
-        {ideals.length > 0 && renderSelectButton(t("creator.ideal", "Ideal"), data.ideal, t("creator.selectIdeal", "Select an ideal..."), "ideal")}
-        {bonds.length > 0 && renderSelectButton(t("creator.bond", "Bond"), data.bond, t("creator.selectBond", "Select a bond..."), "bond")}
-        {flaws.length > 0 && renderSelectButton(t("creator.flaw", "Flaw"), data.flaw, t("creator.selectFlaw", "Select a flaw..."), "flaw")}
       </div>
 
-      {popupType && (
-        <BasePopup
-          isOpen={true}
-          onClose={handleCancel}
-          title={getPopupTitle()}
-          confirmLabel={t("button.confirm", "Confirm")}
-          cancelLabel={t("button.cancel", "Cancel")}
-          onConfirm={handleConfirm}
-          confirmDisabled={!pendingValue}
-          showFooter={true}
-        >
-          <div className="space-y-2">
-            {getPopupOptions().map((option, idx) => (
-              <button
-                key={idx}
-                type="button"
-                onClick={() => handleSelect(option)}
-                className={`w-full p-3 text-left rounded-[var(--radius-sm)] border transition-all ${
-                  pendingValue === option
-                    ? "border-[var(--color-border-active)] bg-[var(--color-bg)]"
-                    : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
-                }`}
-              >
-                <span className="text-xs text-[var(--color-text-primary)] leading-relaxed">{option}</span>
-              </button>
-            ))}
-          </div>
-        </BasePopup>
-      )}
-    </StepCard>
+      <div className="min-h-0 flex-1 space-y-3 overflow-y-auto overscroll-contain p-4 pb-8">
+        <div className={`rounded-2xl border-2 p-3 ${isCustom ? "border-ink bg-ink/5" : "border-border-strong bg-surface"}`}>
+          <label htmlFor="trait-custom" className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">
+            {t("personality.writeOwn", "Tulis sendiri")}
+          </label>
+          <textarea
+            id="trait-custom"
+            value={isCustom ? pending : ""}
+            onChange={(e) => setPending(e.target.value)}
+            rows={2}
+            placeholder={t("personality.writeOwnPlaceholder", "Tulis dengan kata-katamu sendiri...")}
+            className="mt-1.5 w-full rounded-xl border-2 border-border-strong bg-surface p-2.5 text-sm text-ink placeholder:text-ink-subtle outline-none focus:border-ink"
+          />
+        </div>
+
+        {groups.map((group) => {
+          const groupSelected = group.options.includes(pending);
+          const isOwn = group.name === selectedBackground?.name;
+          return (
+            <details
+              key={group.name}
+              open={searching || openGroups.includes(group.name)}
+              onToggle={(e) => {
+                const open = e.currentTarget.open;
+                setOpenGroups((prev) => (open ? (prev.includes(group.name) ? prev : [...prev, group.name]) : prev.filter((n) => n !== group.name)));
+              }}
+              className={`group overflow-hidden rounded-2xl border-2 shadow-sm [&::-webkit-details-marker]:hidden ${groupSelected ? "border-ink" : "border-border-strong"}`}
+            >
+              <summary className={`flex cursor-pointer select-none items-center justify-between p-4 outline-none transition-colors ${groupSelected ? "bg-ink/5" : "active:bg-ink/5"}`}>
+                <div className="min-w-0">
+                  <h3 className="text-lg font-bold text-ink">{group.name}</h3>
+                  {isOwn && (
+                    <p className="mt-0.5 text-[11px] leading-relaxed text-ink-muted">{t("personality.yourBackground", "Latar belakangmu")}</p>
+                  )}
+                </div>
+                <div className="flex items-center gap-3">
+                  {groupSelected && (
+                    <span className="rounded-md bg-ink px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-surface shadow-sm">
+                      {t("modal.selected", "Terpilih")}
+                    </span>
+                  )}
+                  <div className="text-ink-muted transition-transform duration-300 group-open:rotate-90">
+                    <CaretRight size={20} />
+                  </div>
+                </div>
+              </summary>
+              <div className="space-y-2 border-t-2 border-border-muted bg-paper/50 p-3">
+                {group.options.map((option) => {
+                  const isSelected = pending === option;
+                  return (
+                    <button
+                      key={option}
+                      type="button"
+                      onClick={() => setPending(option)}
+                      aria-pressed={isSelected}
+                      className={`flex w-full items-start justify-between gap-3 rounded-xl border-2 p-3 text-left transition-all active:scale-[0.99] ${
+                        isSelected ? "border-ink bg-ink/10" : "border-transparent bg-surface hover:border-ink/30"
+                      }`}
+                    >
+                      <span className="text-xs leading-relaxed text-ink">{option}</span>
+                      <span
+                        className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 ${
+                          isSelected ? "border-ink bg-ink text-surface" : "border-ink-subtle"
+                        }`}
+                      >
+                        {isSelected && <Check size={12} weight="bold" />}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </details>
+          );
+        })}
+      </div>
+    </BottomSheet>
   );
 }

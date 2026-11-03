@@ -96,6 +96,8 @@ export interface Character {
   activeBuffs: ActiveBuff[];
   sources: string[];
   ruleset?: "2014" | "2024";
+  /** Creation wizard order: story steps before ("concept") or after ("gameplay") the mechanical steps. */
+  creationOrder?: "concept" | "gameplay";
   buffModifiers?: Record<string, unknown>;
   currency: { copper: number; silver: number; electrum: number; gold: number; platinum: number };
   appearance: {
