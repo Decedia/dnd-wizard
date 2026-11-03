@@ -4,7 +4,7 @@
       "index": "battleaxe",
       "name": "Battleaxe",
       "equipment_category": "Weapon",
-      "description": "Sangkur dengan kepala berbentuk anak panah, dapat digunakan dengan satu atau dua tangan.",
+      "description": "Kapak perang berbilah lebar dengan gagang kokoh. Kepalanya yang berat memberi tebasan dahsyat yang membelah armor dan perisai.",
       "special": "",
       "cost": {
         "quantity": 10,
@@ -30,7 +30,8 @@
       "properties": [
         {
           "index": "versatile",
-          "name": "Versatile"
+          "name": "Versatile",
+          "desc": "Senjata ini bisa dipakai dengan satu atau dua tangan. Memegangnya dengan dua tangan untuk melee attack memakai damage dua tangan."
         }
       ],
       "contents": [],
@@ -59,15 +60,21 @@
       "properties": [
         {
           "index": "ammunition",
-          "name": "Ammunition"
+          "name": "Ammunition",
+          "desc": "Kamu hanya bisa melakukan ranged attack dengan senjata ini jika punya amunisinya. Setiap serangan memakai satu amunisi, dan mengambilnya termasuk bagian dari serangan. Setelah pertarungan, kamu bisa menghabiskan 1 menit untuk mengambil kembali setengah amunisi yang terpakai. Serangan melewati jarak normal, sampai jarak jauh, terkena disadvantage."
         },
         {
           "index": "loading",
-          "name": "Loading"
+          "name": "Loading",
+          "desc": "Mengisi senjata ini butuh waktu, jadi kamu hanya bisa menembakkan satu amunisi saat memakai action, bonus action, atau reaction untuk menembak, berapa pun jumlah serangan yang biasanya bisa kamu lakukan."
         }
       ],
       "contents": [],
-      "source": "PHB"
+      "source": "PHB",
+      "range": {
+        "normal": 25,
+        "long": 100
+      }
     },
     {
       "index": "club",
@@ -92,11 +99,13 @@
       "properties": [
         {
           "index": "light",
-          "name": "Light"
+          "name": "Light",
+          "desc": "Kecil dan mudah dipegang, cocok untuk bertarung dengan dua senjata. Saat menyerang dengan light melee weapon di satu tangan, kamu bisa memakai bonus action untuk menyerang dengan light melee weapon lain di tangan satunya."
         },
         {
           "index": "monk",
-          "name": "Monk"
+          "name": "Monk",
+          "desc": "Termasuk monk weapon, jadi monk bisa memakai Dexterity alih-alih Strength dan dadu damage Martial Arts dengan senjata ini."
         }
       ],
       "contents": [],
@@ -125,19 +134,26 @@
       "properties": [
         {
           "index": "ammunition",
-          "name": "Ammunition"
+          "name": "Ammunition",
+          "desc": "Kamu hanya bisa melakukan ranged attack dengan senjata ini jika punya amunisinya. Setiap serangan memakai satu amunisi, dan mengambilnya termasuk bagian dari serangan. Setelah pertarungan, kamu bisa menghabiskan 1 menit untuk mengambil kembali setengah amunisi yang terpakai. Serangan melewati jarak normal, sampai jarak jauh, terkena disadvantage."
         },
         {
           "index": "light",
-          "name": "Light"
+          "name": "Light",
+          "desc": "Kecil dan mudah dipegang, cocok untuk bertarung dengan dua senjata. Saat menyerang dengan light melee weapon di satu tangan, kamu bisa memakai bonus action untuk menyerang dengan light melee weapon lain di tangan satunya."
         },
         {
           "index": "loading",
-          "name": "Loading"
+          "name": "Loading",
+          "desc": "Mengisi senjata ini butuh waktu, jadi kamu hanya bisa menembakkan satu amunisi saat memakai action, bonus action, atau reaction untuk menembak, berapa pun jumlah serangan yang biasanya bisa kamu lakukan."
         }
       ],
       "contents": [],
-      "source": "PHB"
+      "source": "PHB",
+      "range": {
+        "normal": 30,
+        "long": 120
+      }
     },
     {
       "index": "crossbow-heavy",
@@ -162,23 +178,31 @@
       "properties": [
         {
           "index": "ammunition",
-          "name": "Ammunition"
+          "name": "Ammunition",
+          "desc": "Kamu hanya bisa melakukan ranged attack dengan senjata ini jika punya amunisinya. Setiap serangan memakai satu amunisi, dan mengambilnya termasuk bagian dari serangan. Setelah pertarungan, kamu bisa menghabiskan 1 menit untuk mengambil kembali setengah amunisi yang terpakai. Serangan melewati jarak normal, sampai jarak jauh, terkena disadvantage."
         },
         {
           "index": "heavy",
-          "name": "Heavy"
+          "name": "Heavy",
+          "desc": "Makhluk Small terkena disadvantage pada attack roll dengan senjata ini. Senjata ini terlalu besar dan berat untuk dipakai dengan baik oleh makhluk Small."
         },
         {
           "index": "loading",
-          "name": "Loading"
+          "name": "Loading",
+          "desc": "Mengisi senjata ini butuh waktu, jadi kamu hanya bisa menembakkan satu amunisi saat memakai action, bonus action, atau reaction untuk menembak, berapa pun jumlah serangan yang biasanya bisa kamu lakukan."
         },
         {
           "index": "two-handed",
-          "name": "Two-Handed"
+          "name": "Two-Handed",
+          "desc": "Kamu butuh dua tangan untuk menyerang dengan senjata ini."
         }
       ],
       "contents": [],
-      "source": "PHB"
+      "source": "PHB",
+      "range": {
+        "normal": 100,
+        "long": 400
+      }
     },
     {
       "index": "crossbow-light",
@@ -203,19 +227,26 @@
       "properties": [
         {
           "index": "ammunition",
-          "name": "Ammunition"
+          "name": "Ammunition",
+          "desc": "Kamu hanya bisa melakukan ranged attack dengan senjata ini jika punya amunisinya. Setiap serangan memakai satu amunisi, dan mengambilnya termasuk bagian dari serangan. Setelah pertarungan, kamu bisa menghabiskan 1 menit untuk mengambil kembali setengah amunisi yang terpakai. Serangan melewati jarak normal, sampai jarak jauh, terkena disadvantage."
         },
         {
           "index": "loading",
-          "name": "Loading"
+          "name": "Loading",
+          "desc": "Mengisi senjata ini butuh waktu, jadi kamu hanya bisa menembakkan satu amunisi saat memakai action, bonus action, atau reaction untuk menembak, berapa pun jumlah serangan yang biasanya bisa kamu lakukan."
         },
         {
           "index": "two-handed",
-          "name": "Two-Handed"
+          "name": "Two-Handed",
+          "desc": "Kamu butuh dua tangan untuk menyerang dengan senjata ini."
         }
       ],
       "contents": [],
-      "source": "PHB"
+      "source": "PHB",
+      "range": {
+        "normal": 80,
+        "long": 320
+      }
     },
     {
       "index": "dagger",
@@ -240,19 +271,23 @@
       "properties": [
         {
           "index": "finesse",
-          "name": "Finesse"
+          "name": "Finesse",
+          "desc": "Pilih modifier Strength atau Dexterity untuk attack roll dan damage roll. Kedua roll harus memakai modifier yang sama."
         },
         {
           "index": "light",
-          "name": "Light"
+          "name": "Light",
+          "desc": "Kecil dan mudah dipegang, cocok untuk bertarung dengan dua senjata. Saat menyerang dengan light melee weapon di satu tangan, kamu bisa memakai bonus action untuk menyerang dengan light melee weapon lain di tangan satunya."
         },
         {
           "index": "thrown",
-          "name": "Thrown"
+          "name": "Thrown",
+          "desc": "Kamu bisa melempar senjata ini untuk melakukan ranged attack, memakai modifier kemampuan yang sama seperti melee attack dengan senjata ini. Lemparan melewati jarak normal, sampai jarak jauh, terkena disadvantage."
         },
         {
           "index": "monk",
-          "name": "Monk"
+          "name": "Monk",
+          "desc": "Termasuk monk weapon, jadi monk bisa memakai Dexterity alih-alih Strength dan dadu damage Martial Arts dengan senjata ini."
         }
       ],
       "throw_range": {
@@ -266,7 +301,7 @@
       "index": "dart",
       "name": "Dart",
       "equipment_category": "Weapon",
-      "description": "Panah kecil yang bisa dilempar dengan tangan atau menggunakan blowgun.",
+      "description": "Anak panah kecil berujung runcing yang dilempar dengan tangan.",
       "special": "",
       "cost": {
         "quantity": 5,
@@ -285,11 +320,13 @@
       "properties": [
         {
           "index": "finesse",
-          "name": "Finesse"
+          "name": "Finesse",
+          "desc": "Pilih modifier Strength atau Dexterity untuk attack roll dan damage roll. Kedua roll harus memakai modifier yang sama."
         },
         {
           "index": "thrown",
-          "name": "Thrown"
+          "name": "Thrown",
+          "desc": "Kamu bisa melempar senjata ini untuk melakukan ranged attack, memakai modifier kemampuan yang sama seperti melee attack dengan senjata ini. Lemparan melewati jarak normal, sampai jarak jauh, terkena disadvantage."
         }
       ],
       "throw_range": {
@@ -346,15 +383,18 @@
       "properties": [
         {
           "index": "heavy",
-          "name": "Heavy"
+          "name": "Heavy",
+          "desc": "Makhluk Small terkena disadvantage pada attack roll dengan senjata ini. Senjata ini terlalu besar dan berat untuk dipakai dengan baik oleh makhluk Small."
         },
         {
           "index": "reach",
-          "name": "Reach"
+          "name": "Reach",
+          "desc": "Menambah 5 kaki ke jangkauanmu saat menyerang dengan senjata ini, termasuk saat melakukan opportunity attack."
         },
         {
           "index": "two-handed",
-          "name": "Two-Handed"
+          "name": "Two-Handed",
+          "desc": "Kamu butuh dua tangan untuk menyerang dengan senjata ini."
         }
       ],
       "contents": [],
@@ -364,7 +404,7 @@
       "index": "greataxe",
       "name": "Greataxe",
       "equipment_category": "Weapon",
-      "description": "Sangkur besar yang membutuhkan dua tangan untuk digunakan.",
+      "description": "Kapak besar yang butuh dua tangan untuk diayunkan, memberi tebasan paling keras di antara senjata martial.",
       "special": "",
       "cost": {
         "quantity": 30,
@@ -383,11 +423,13 @@
       "properties": [
         {
           "index": "heavy",
-          "name": "Heavy"
+          "name": "Heavy",
+          "desc": "Makhluk Small terkena disadvantage pada attack roll dengan senjata ini. Senjata ini terlalu besar dan berat untuk dipakai dengan baik oleh makhluk Small."
         },
         {
           "index": "two-handed",
-          "name": "Two-Handed"
+          "name": "Two-Handed",
+          "desc": "Kamu butuh dua tangan untuk menyerang dengan senjata ini."
         }
       ],
       "contents": [],
@@ -416,7 +458,8 @@
       "properties": [
         {
           "index": "two-handed",
-          "name": "Two-Handed"
+          "name": "Two-Handed",
+          "desc": "Kamu butuh dua tangan untuk menyerang dengan senjata ini."
         }
       ],
       "contents": [],
@@ -445,11 +488,13 @@
       "properties": [
         {
           "index": "heavy",
-          "name": "Heavy"
+          "name": "Heavy",
+          "desc": "Makhluk Small terkena disadvantage pada attack roll dengan senjata ini. Senjata ini terlalu besar dan berat untuk dipakai dengan baik oleh makhluk Small."
         },
         {
           "index": "two-handed",
-          "name": "Two-Handed"
+          "name": "Two-Handed",
+          "desc": "Kamu butuh dua tangan untuk menyerang dengan senjata ini."
         }
       ],
       "contents": [],
@@ -478,15 +523,18 @@
       "properties": [
         {
           "index": "heavy",
-          "name": "Heavy"
+          "name": "Heavy",
+          "desc": "Makhluk Small terkena disadvantage pada attack roll dengan senjata ini. Senjata ini terlalu besar dan berat untuk dipakai dengan baik oleh makhluk Small."
         },
         {
           "index": "reach",
-          "name": "Reach"
+          "name": "Reach",
+          "desc": "Menambah 5 kaki ke jangkauanmu saat menyerang dengan senjata ini, termasuk saat melakukan opportunity attack."
         },
         {
           "index": "two-handed",
-          "name": "Two-Handed"
+          "name": "Two-Handed",
+          "desc": "Kamu butuh dua tangan untuk menyerang dengan senjata ini."
         }
       ],
       "contents": [],
@@ -515,15 +563,18 @@
       "properties": [
         {
           "index": "light",
-          "name": "Light"
+          "name": "Light",
+          "desc": "Kecil dan mudah dipegang, cocok untuk bertarung dengan dua senjata. Saat menyerang dengan light melee weapon di satu tangan, kamu bisa memakai bonus action untuk menyerang dengan light melee weapon lain di tangan satunya."
         },
         {
           "index": "thrown",
-          "name": "Thrown"
+          "name": "Thrown",
+          "desc": "Kamu bisa melempar senjata ini untuk melakukan ranged attack, memakai modifier kemampuan yang sama seperti melee attack dengan senjata ini. Lemparan melewati jarak normal, sampai jarak jauh, terkena disadvantage."
         },
         {
           "index": "monk",
-          "name": "Monk"
+          "name": "Monk",
+          "desc": "Termasuk monk weapon, jadi monk bisa memakai Dexterity alih-alih Strength dan dadu damage Martial Arts dengan senjata ini."
         }
       ],
       "throw_range": {
@@ -556,11 +607,13 @@
       "properties": [
         {
           "index": "thrown",
-          "name": "Thrown"
+          "name": "Thrown",
+          "desc": "Kamu bisa melempar senjata ini untuk melakukan ranged attack, memakai modifier kemampuan yang sama seperti melee attack dengan senjata ini. Lemparan melewati jarak normal, sampai jarak jauh, terkena disadvantage."
         },
         {
           "index": "monk",
-          "name": "Monk"
+          "name": "Monk",
+          "desc": "Termasuk monk weapon, jadi monk bisa memakai Dexterity alih-alih Strength dan dadu damage Martial Arts dengan senjata ini."
         }
       ],
       "throw_range": {
@@ -575,7 +628,7 @@
       "name": "Lance",
       "equipment_category": "Weapon",
       "description": "Tombak panjang yang sangat efektif saat digunakan berkuda.",
-      "special": "You have disadvantage when you use a lance to attack a target within 5 feet of you. Also, a lance requires two hands to wield when you aren't mounted.",
+      "special": "Kamu terkena disadvantage saat menyerang target dalam jarak 5 kaki darimu dengan lance. Lance juga butuh dua tangan saat kamu tidak menungganginya.",
       "cost": {
         "quantity": 10,
         "unit": "gp"
@@ -593,11 +646,13 @@
       "properties": [
         {
           "index": "reach",
-          "name": "Reach"
+          "name": "Reach",
+          "desc": "Menambah 5 kaki ke jangkauanmu saat menyerang dengan senjata ini, termasuk saat melakukan opportunity attack."
         },
         {
           "index": "special",
-          "name": "Special"
+          "name": "Special",
+          "desc": "Senjata ini punya aturan khusus. Lihat Aturan Khusus di bawah."
         }
       ],
       "contents": [],
@@ -607,7 +662,7 @@
       "index": "light-hammer",
       "name": "Light hammer",
       "equipment_category": "Weapon",
-      "description": "Palu kecil yang bisa digunakan untuk menebas atau melempar.",
+      "description": "Palu kecil yang ringan, bisa dipakai untuk memukul atau dilempar.",
       "special": "",
       "cost": {
         "quantity": 2,
@@ -626,15 +681,18 @@
       "properties": [
         {
           "index": "light",
-          "name": "Light"
+          "name": "Light",
+          "desc": "Kecil dan mudah dipegang, cocok untuk bertarung dengan dua senjata. Saat menyerang dengan light melee weapon di satu tangan, kamu bisa memakai bonus action untuk menyerang dengan light melee weapon lain di tangan satunya."
         },
         {
           "index": "thrown",
-          "name": "Thrown"
+          "name": "Thrown",
+          "desc": "Kamu bisa melempar senjata ini untuk melakukan ranged attack, memakai modifier kemampuan yang sama seperti melee attack dengan senjata ini. Lemparan melewati jarak normal, sampai jarak jauh, terkena disadvantage."
         },
         {
           "index": "monk",
-          "name": "Monk"
+          "name": "Monk",
+          "desc": "Termasuk monk weapon, jadi monk bisa memakai Dexterity alih-alih Strength dan dadu damage Martial Arts dengan senjata ini."
         }
       ],
       "throw_range": {
@@ -667,19 +725,26 @@
       "properties": [
         {
           "index": "ammunition",
-          "name": "Ammunition"
+          "name": "Ammunition",
+          "desc": "Kamu hanya bisa melakukan ranged attack dengan senjata ini jika punya amunisinya. Setiap serangan memakai satu amunisi, dan mengambilnya termasuk bagian dari serangan. Setelah pertarungan, kamu bisa menghabiskan 1 menit untuk mengambil kembali setengah amunisi yang terpakai. Serangan melewati jarak normal, sampai jarak jauh, terkena disadvantage."
         },
         {
           "index": "heavy",
-          "name": "Heavy"
+          "name": "Heavy",
+          "desc": "Makhluk Small terkena disadvantage pada attack roll dengan senjata ini. Senjata ini terlalu besar dan berat untuk dipakai dengan baik oleh makhluk Small."
         },
         {
           "index": "two-handed",
-          "name": "Two-Handed"
+          "name": "Two-Handed",
+          "desc": "Kamu butuh dua tangan untuk menyerang dengan senjata ini."
         }
       ],
       "contents": [],
-      "source": "PHB"
+      "source": "PHB",
+      "range": {
+        "normal": 150,
+        "long": 600
+      }
     },
     {
       "index": "longsword",
@@ -711,7 +776,8 @@
       "properties": [
         {
           "index": "versatile",
-          "name": "Versatile"
+          "name": "Versatile",
+          "desc": "Senjata ini bisa dipakai dengan satu atau dua tangan. Memegangnya dengan dua tangan untuk melee attack memakai damage dua tangan."
         }
       ],
       "contents": [],
@@ -740,7 +806,8 @@
       "properties": [
         {
           "index": "monk",
-          "name": "Monk"
+          "name": "Monk",
+          "desc": "Termasuk monk weapon, jadi monk bisa memakai Dexterity alih-alih Strength dan dadu damage Martial Arts dengan senjata ini."
         }
       ],
       "contents": [],
@@ -769,11 +836,13 @@
       "properties": [
         {
           "index": "heavy",
-          "name": "Heavy"
+          "name": "Heavy",
+          "desc": "Makhluk Small terkena disadvantage pada attack roll dengan senjata ini. Senjata ini terlalu besar dan berat untuk dipakai dengan baik oleh makhluk Small."
         },
         {
           "index": "two-handed",
-          "name": "Two-Handed"
+          "name": "Two-Handed",
+          "desc": "Kamu butuh dua tangan untuk menyerang dengan senjata ini."
         }
       ],
       "contents": [],
@@ -808,7 +877,7 @@
       "name": "Net",
       "equipment_category": "Weapon",
       "description": "Jaring yang digunakan untuk menjerat musuh. Setelah kamu menggunakan net untuk menyerang, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan short rest.",
-      "special": "A Large or smaller creature hit by a net is restrained until it is freed. A net has no effect on creatures that are formless, or creatures that are Huge or larger. A creature can use its action to make a DC 10 Strength check, freeing itself or another creature within its reach on a success. Dealing 5 slashing damage to the net (AC 10) also frees the creature without harming it, ending the effect and destroying the net. When you use an action, bonus action, or reaction to attack with a net, you can make only one attack regardless of the number of attacks you can normally make.",
+      "special": "Makhluk Large atau lebih kecil yang terkena net menjadi restrained sampai dibebaskan. Net tidak berpengaruh pada makhluk tanpa bentuk atau makhluk Huge atau lebih besar. Makhluk bisa memakai action untuk melakukan Strength check DC 10, membebaskan dirinya atau makhluk lain dalam jangkauannya jika berhasil. Memberi 5 slashing damage ke net (AC 10) juga membebaskan makhluk tanpa melukainya, mengakhiri efek dan menghancurkan net. Saat kamu memakai action, bonus action, atau reaction untuk menyerang dengan net, kamu hanya bisa melakukan satu serangan berapa pun jumlah serangan yang biasanya bisa kamu lakukan.",
       "cost": {
         "quantity": 1,
         "unit": "gp"
@@ -819,11 +888,13 @@
       "properties": [
         {
           "index": "thrown",
-          "name": "Thrown"
+          "name": "Thrown",
+          "desc": "Kamu bisa melempar senjata ini untuk melakukan ranged attack, memakai modifier kemampuan yang sama seperti melee attack dengan senjata ini. Lemparan melewati jarak normal, sampai jarak jauh, terkena disadvantage."
         },
         {
           "index": "special",
-          "name": "Special"
+          "name": "Special",
+          "desc": "Senjata ini punya aturan khusus. Lihat Aturan Khusus di bawah."
         }
       ],
       "throw_range": {
@@ -856,15 +927,18 @@
       "properties": [
         {
           "index": "heavy",
-          "name": "Heavy"
+          "name": "Heavy",
+          "desc": "Makhluk Small terkena disadvantage pada attack roll dengan senjata ini. Senjata ini terlalu besar dan berat untuk dipakai dengan baik oleh makhluk Small."
         },
         {
           "index": "reach",
-          "name": "Reach"
+          "name": "Reach",
+          "desc": "Menambah 5 kaki ke jangkauanmu saat menyerang dengan senjata ini, termasuk saat melakukan opportunity attack."
         },
         {
           "index": "two-handed",
-          "name": "Two-Handed"
+          "name": "Two-Handed",
+          "desc": "Kamu butuh dua tangan untuk menyerang dengan senjata ini."
         }
       ],
       "contents": [],
@@ -900,11 +974,13 @@
       "properties": [
         {
           "index": "versatile",
-          "name": "Versatile"
+          "name": "Versatile",
+          "desc": "Senjata ini bisa dipakai dengan satu atau dua tangan. Memegangnya dengan dua tangan untuk melee attack memakai damage dua tangan."
         },
         {
           "index": "monk",
-          "name": "Monk"
+          "name": "Monk",
+          "desc": "Termasuk monk weapon, jadi monk bisa memakai Dexterity alih-alih Strength dan dadu damage Martial Arts dengan senjata ini."
         }
       ],
       "contents": [],
@@ -933,7 +1009,8 @@
       "properties": [
         {
           "index": "finesse",
-          "name": "Finesse"
+          "name": "Finesse",
+          "desc": "Pilih modifier Strength atau Dexterity untuk attack roll dan damage roll. Kedua roll harus memakai modifier yang sama."
         }
       ],
       "contents": [],
@@ -943,7 +1020,7 @@
       "index": "scimitar",
       "name": "Scimitar",
       "equipment_category": "Weapon",
-      "description": "Pedang melengkung yang cepat dan elegan, sering digunakan olehEastern warriors.",
+      "description": "Pedang melengkung yang ringan, cepat, dan elegan, cocok untuk tebasan gesit.",
       "special": "",
       "cost": {
         "quantity": 25,
@@ -962,11 +1039,13 @@
       "properties": [
         {
           "index": "finesse",
-          "name": "Finesse"
+          "name": "Finesse",
+          "desc": "Pilih modifier Strength atau Dexterity untuk attack roll dan damage roll. Kedua roll harus memakai modifier yang sama."
         },
         {
           "index": "light",
-          "name": "Light"
+          "name": "Light",
+          "desc": "Kecil dan mudah dipegang, cocok untuk bertarung dengan dua senjata. Saat menyerang dengan light melee weapon di satu tangan, kamu bisa memakai bonus action untuk menyerang dengan light melee weapon lain di tangan satunya."
         }
       ],
       "contents": [],
@@ -995,15 +1074,21 @@
       "properties": [
         {
           "index": "ammunition",
-          "name": "Ammunition"
+          "name": "Ammunition",
+          "desc": "Kamu hanya bisa melakukan ranged attack dengan senjata ini jika punya amunisinya. Setiap serangan memakai satu amunisi, dan mengambilnya termasuk bagian dari serangan. Setelah pertarungan, kamu bisa menghabiskan 1 menit untuk mengambil kembali setengah amunisi yang terpakai. Serangan melewati jarak normal, sampai jarak jauh, terkena disadvantage."
         },
         {
           "index": "two-handed",
-          "name": "Two-Handed"
+          "name": "Two-Handed",
+          "desc": "Kamu butuh dua tangan untuk menyerang dengan senjata ini."
         }
       ],
       "contents": [],
-      "source": "PHB"
+      "source": "PHB",
+      "range": {
+        "normal": 80,
+        "long": 320
+      }
     },
     {
       "index": "shortsword",
@@ -1028,15 +1113,18 @@
       "properties": [
         {
           "index": "finesse",
-          "name": "Finesse"
+          "name": "Finesse",
+          "desc": "Pilih modifier Strength atau Dexterity untuk attack roll dan damage roll. Kedua roll harus memakai modifier yang sama."
         },
         {
           "index": "light",
-          "name": "Light"
+          "name": "Light",
+          "desc": "Kecil dan mudah dipegang, cocok untuk bertarung dengan dua senjata. Saat menyerang dengan light melee weapon di satu tangan, kamu bisa memakai bonus action untuk menyerang dengan light melee weapon lain di tangan satunya."
         },
         {
           "index": "monk",
-          "name": "Monk"
+          "name": "Monk",
+          "desc": "Termasuk monk weapon, jadi monk bisa memakai Dexterity alih-alih Strength dan dadu damage Martial Arts dengan senjata ini."
         }
       ],
       "contents": [],
@@ -1065,11 +1153,13 @@
       "properties": [
         {
           "index": "light",
-          "name": "Light"
+          "name": "Light",
+          "desc": "Kecil dan mudah dipegang, cocok untuk bertarung dengan dua senjata. Saat menyerang dengan light melee weapon di satu tangan, kamu bisa memakai bonus action untuk menyerang dengan light melee weapon lain di tangan satunya."
         },
         {
           "index": "monk",
-          "name": "Monk"
+          "name": "Monk",
+          "desc": "Termasuk monk weapon, jadi monk bisa memakai Dexterity alih-alih Strength dan dadu damage Martial Arts dengan senjata ini."
         }
       ],
       "contents": [],
@@ -1098,11 +1188,16 @@
       "properties": [
         {
           "index": "ammunition",
-          "name": "Ammunition"
+          "name": "Ammunition",
+          "desc": "Kamu hanya bisa melakukan ranged attack dengan senjata ini jika punya amunisinya. Setiap serangan memakai satu amunisi, dan mengambilnya termasuk bagian dari serangan. Setelah pertarungan, kamu bisa menghabiskan 1 menit untuk mengambil kembali setengah amunisi yang terpakai. Serangan melewati jarak normal, sampai jarak jauh, terkena disadvantage."
         }
       ],
       "contents": [],
-      "source": "PHB"
+      "source": "PHB",
+      "range": {
+        "normal": 30,
+        "long": 120
+      }
     },
     {
       "index": "spear",
@@ -1134,15 +1229,18 @@
       "properties": [
         {
           "index": "thrown",
-          "name": "Thrown"
+          "name": "Thrown",
+          "desc": "Kamu bisa melempar senjata ini untuk melakukan ranged attack, memakai modifier kemampuan yang sama seperti melee attack dengan senjata ini. Lemparan melewati jarak normal, sampai jarak jauh, terkena disadvantage."
         },
         {
           "index": "versatile",
-          "name": "Versatile"
+          "name": "Versatile",
+          "desc": "Senjata ini bisa dipakai dengan satu atau dua tangan. Memegangnya dengan dua tangan untuk melee attack memakai damage dua tangan."
         },
         {
           "index": "monk",
-          "name": "Monk"
+          "name": "Monk",
+          "desc": "Termasuk monk weapon, jadi monk bisa memakai Dexterity alih-alih Strength dan dadu damage Martial Arts dengan senjata ini."
         }
       ],
       "throw_range": {
@@ -1156,7 +1254,7 @@
       "index": "trident",
       "name": "Trident",
       "equipment_category": "Weapon",
-      "description": "Tombak dengan tiga mata, sering digunakan oleh aquatic creatures.",
+      "description": "Tombak bermata tiga, sering dipakai oleh makhluk laut dan prajurit pantai.",
       "special": "",
       "cost": {
         "quantity": 5,
@@ -1182,11 +1280,13 @@
       "properties": [
         {
           "index": "thrown",
-          "name": "Thrown"
+          "name": "Thrown",
+          "desc": "Kamu bisa melempar senjata ini untuk melakukan ranged attack, memakai modifier kemampuan yang sama seperti melee attack dengan senjata ini. Lemparan melewati jarak normal, sampai jarak jauh, terkena disadvantage."
         },
         {
           "index": "versatile",
-          "name": "Versatile"
+          "name": "Versatile",
+          "desc": "Senjata ini bisa dipakai dengan satu atau dua tangan. Memegangnya dengan dua tangan untuk melee attack memakai damage dua tangan."
         }
       ],
       "throw_range": {
@@ -1250,7 +1350,8 @@
       "properties": [
         {
           "index": "versatile",
-          "name": "Versatile"
+          "name": "Versatile",
+          "desc": "Senjata ini bisa dipakai dengan satu atau dua tangan. Memegangnya dengan dua tangan untuk melee attack memakai damage dua tangan."
         }
       ],
       "contents": [],
@@ -1279,11 +1380,13 @@
       "properties": [
         {
           "index": "finesse",
-          "name": "Finesse"
+          "name": "Finesse",
+          "desc": "Pilih modifier Strength atau Dexterity untuk attack roll dan damage roll. Kedua roll harus memakai modifier yang sama."
         },
         {
           "index": "reach",
-          "name": "Reach"
+          "name": "Reach",
+          "desc": "Menambah 5 kaki ke jangkauanmu saat menyerang dengan senjata ini, termasuk saat melakukan opportunity attack."
         }
       ],
       "contents": [],
