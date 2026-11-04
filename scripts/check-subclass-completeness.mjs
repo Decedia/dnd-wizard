@@ -20,6 +20,11 @@ const DATA = path.join(ROOT, "src", "data", "en", "2014_subclasses.json");
 const CLASS_DATA = path.join(ROOT, "src", "data", "en", "2014_classes.json");
 const CHOICE_MANIFEST = path.join(ROOT, "scripts", "data", "subclass-choice-manifest.txt");
 const CHOICE_DATA = path.join(ROOT, "src", "data", "subclass_feature_choices.json");
+const RACE_MANIFEST = path.join(ROOT, "scripts", "data", "race-manifest.txt");
+const RACE_DATA = path.join(ROOT, "src", "data", "en", "2014_races.json");
+const FEAT_MANIFEST = path.join(ROOT, "scripts", "data", "feat-manifest.txt");
+const FEAT_DATA = path.join(ROOT, "src", "data", "en", "2014_feats.json");
+const { getFeatOptionGroups } = await import(path.join(ROOT, "src", "data", "feat-options.ts"));
 
 const args = new Set(process.argv.slice(2));
 const md = args.has("--md");
@@ -133,7 +138,7 @@ function compareSubclass(want, have, { extras = true, source = true, renames = t
   }
 
   // Pass 3: anything left over in the data.
-  const optionKeys = new Set(want.options.map(featKey));
+  const optionKeys = new Set((want.options || []).map(featKey));
   for (const p of extras ? pool : []) {
     if (p.used || IGNORED.test(p.name) || isSpellListMagic(p.name) || optionKeys.has(p.key)) continue;
     issues.push({ kind: "extra", text: `level ${p.level}: ${p.name}` });
@@ -319,7 +324,116 @@ if (choiceOut.size) {
   }
 }
 
-const gaps = choiceGaps + totals.missing + totals.level + totals.name + totals.extra + totals.source + totals.missingSubclass + totals.extraSubclass;
+// ---------------------------------------------------------------- races
+
+const section = (title, entries) => {
+  if (!entries.length) return;
+  say(md ? `## ${title}` : `[${title}]`);
+  say();
+  for (const e of entries) {
+    say(md ? `**${e.title}**${e.uncertain ? " (manifest entry needs a book check)" : ""}` : `  ${e.title}${e.uncertain ? "  ?" : ""}`);
+    if (md) say();
+    for (const l of e.lines) say(md ? `- ${l}` : `    - ${l}`);
+    say();
+  }
+};
+
+const raceWant = [];
+for (const raw of fs.readFileSync(RACE_MANIFEST, "utf8").split(/\r?\n/)) {
+  const line = raw.replace(/\s+$/, "");
+  if (!line.trim() || line.trim().startsWith("#")) continue;
+  const uncertain = / \?$/.test(line);
+  const body = line.replace(/ \?$/, "");
+  let m;
+  if ((m = body.match(/^(\S.*?) \(([A-Za-z]+)\)((?: \w+=\S+)*)$/))) {
+    const attrs = Object.fromEntries([...m[3].matchAll(/(\w+)=(\S+)/g)].map((a) => [a[1], a[2]]));
+    raceWant.push({ name: m[1], source: m[2], asi: attrs.asi, speed: attrs.speed ? Number(attrs.speed) : null, uncertain, traits: [] });
+  } else if ((m = body.match(/^\s+(.+)$/)) && raceWant.length) {
+    raceWant[raceWant.length - 1].traits.push({ name: m[1], level: 0 });
+  } else throw new Error(`race manifest: cannot parse "${raw}"`);
+}
+const raceData = JSON.parse(fs.readFileSync(RACE_DATA, "utf8")).races;
+const words = (s, keepParen = true) =>
+  (keepParen ? s.replace(/[()]/g, " ") : s.replace(/\(.*?\)/g, " ")).toLowerCase().replace(/[^a-z ]/g, "").split(/\s+/).filter(Boolean).sort().join(" ");
+const RACE_IGNORED = /^(ability score increase|age|alignment|size|speed|languages?|flying speed|swim(ming)? speed|extra language|creature type|fey|humanoid)$/i;
+const raceOut = [];
+let raceGaps = 0;
+for (const w of raceWant) {
+  const d = raceData.find((r) => words(r.name) === words(w.name) || words(r.name, false) === words(w.name));
+  if (!d) {
+    raceOut.push({ title: `${w.name} (${w.source})`, uncertain: w.uncertain, lines: ["Missing race: not in the data at all"] });
+    raceGaps++;
+    continue;
+  }
+  const issues = compareSubclass(
+    { features: w.traits, source: w.source },
+    { features: (d.traits || []).filter((t) => !RACE_IGNORED.test(t.name)).map((t) => ({ name: t.name, level: 0 })), source: d.source },
+  ).map((i) => ({ ...i, text: i.text.replace(/^level 0: /, "").replace(/ at level 0, should be 0/, "") }));
+  const lines = issues.map((i) => `${KIND_LABEL[i.kind]}: ${i.text}`);
+  if (w.asi) {
+    const got = Object.fromEntries(Object.entries(d.abilityScoreIncreases || {}).map(([k, v]) => [k.slice(0, 3), v]));
+    if (w.asi === "flex") {
+      if (Object.keys(got).length) lines.push(`Wrong ASI: fixed ${JSON.stringify(got)}, should be flexible (+2/+1 or +1/+1/+1 of the player's choice)`);
+    } else {
+      const want = Object.fromEntries(w.asi.split(",").map((p) => [p.slice(0, 3), Number(p.slice(3))]));
+      const keys = new Set([...Object.keys(want), ...Object.keys(got)]);
+      const diff = [...keys].filter((k) => (want[k] || 0) !== (got[k] || 0));
+      if (diff.length) lines.push(`Wrong ASI: ${JSON.stringify(got)}, should be ${JSON.stringify(want)}`);
+    }
+  }
+  if (w.speed && d.speed !== w.speed) lines.push(`Wrong speed: ${d.speed}, should be ${w.speed}`);
+  if (!lines.length) continue;
+  raceGaps += lines.length;
+  raceOut.push({ title: `${w.name} (${w.source})${d.name !== w.name ? ` (data: "${d.name}")` : ""}`, uncertain: w.uncertain, lines });
+}
+section("Races", raceOut);
+
+// ---------------------------------------------------------------- feats
+
+const featWant = [];
+for (const raw of fs.readFileSync(FEAT_MANIFEST, "utf8").split(/\r?\n/)) {
+  const line = raw.replace(/\s+$/, "");
+  if (!line.trim() || line.trim().startsWith("#")) continue;
+  const uncertain = / \?$/.test(line);
+  const m = line.replace(/ \?$/, "").match(/^(.+?) \(([A-Za-z]+)\)(?: asi=(\S+))?(?: picks=(.+))?$/);
+  if (!m) throw new Error(`feat manifest: cannot parse "${raw}"`);
+  featWant.push({ name: m[1], source: m[2], asi: m[3] ? m[3].split("|") : null, picks: m[4] || null, uncertain });
+}
+const featData = JSON.parse(fs.readFileSync(FEAT_DATA, "utf8")).feats;
+const featSource = (f) => f.book || (typeof f.source === "string" ? f.source : f.source?.name) || "PHB";
+const featOut = [];
+let featGaps = 0;
+for (const w of featWant) {
+  const entries = featData.filter((f) => featKey(f.name) === featKey(w.name));
+  if (!entries.length) {
+    featOut.push({ title: `${w.name} (${w.source})`, uncertain: w.uncertain, lines: ["Missing feat: not in the data at all"] });
+    featGaps++;
+    continue;
+  }
+  const lines = [];
+  const sources = [...new Set(entries.map(featSource))];
+  if (!sources.includes(w.source)) lines.push(`Wrong source: tagged ${sources.join(", ")}, should be ${w.source}`);
+  else if (sources.length > 1) lines.push(`Duplicate entries: also tagged ${sources.filter((x) => x !== w.source).join(", ")}, so it shows for tables without ${w.source}`);
+  const groups = getFeatOptionGroups(entries[0].name) || [];
+  const abilityGroup = groups.find((g) => /abilit/i.test(g.id));
+  if (w.asi && !abilityGroup) lines.push(`No ability picker: +1 should go to ${w.asi.join(" or ").toUpperCase()}`);
+  if (!w.asi && abilityGroup) lines.push(`Ability picker that should not be there (no choice of ability)`);
+  const otherGroups = groups.filter((g) => !/abilit/i.test(g.id));
+  if (w.picks && !otherGroups.length) lines.push(`No picker for: ${w.picks}`);
+  if (!lines.length) continue;
+  featGaps += lines.length;
+  featOut.push({ title: `${w.name} (${w.source})`, uncertain: w.uncertain, lines });
+}
+const featWantKeys = new Set(featWant.map((w) => featKey(w.name)));
+for (const name of [...new Set(featData.map((f) => f.name))]) {
+  if (featWantKeys.has(featKey(name))) continue;
+  const srcs = [...new Set(featData.filter((f) => f.name === name).map(featSource))];
+  featOut.push({ title: `${name} (${srcs.join(", ")})`, lines: ["Not in manifest: not an official 2014 feat (UA or invented), or the manifest is missing it"] });
+  featGaps++;
+}
+section("Feats", featOut);
+
+const gaps = raceGaps + featGaps + choiceGaps + totals.missing + totals.level + totals.name + totals.extra + totals.source + totals.missingSubclass + totals.extraSubclass;
 const summary = [
   `Subclasses in manifest: ${checked}, matching the data exactly: ${clean}`,
   `Missing subclasses: ${totals.missingSubclass}`,
@@ -330,6 +444,8 @@ const summary = [
   `Features not in manifest: ${totals.extra}`,
   `Wrong source tags: ${totals.source}`,
   `Subclass choice problems: ${choiceGaps} (of ${choiceWant.length} choices in the manifest)`,
+  `Race problems: ${raceGaps} (of ${raceWant.length} races in the manifest)`,
+  `Feat problems: ${featGaps} (of ${featWant.length} feats in the manifest)`,
 ];
 say(md ? "## Totals" : "TOTALS");
 say();

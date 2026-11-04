@@ -1,0 +1,101 @@
+# Feat manifest — D&D 5e 2014 rules
+#
+# Checked by scripts/check-subclass-completeness.mjs against
+# src/data/en/2014_feats.json. Names only, no rules text.
+#
+# Format:
+#   Feat Name (SOURCE) [asi=str|dex] [picks=what the player chooses]
+# asi lists the abilities the +1 may go to when there is more than one;
+# a single fixed ability is not a choice and is not listed.
+# picks is free text for a human; the checker only asks that some picker
+# exists. A trailing " ?" marks entries that need a book check.
+
+# Player's Handbook
+Actor (PHB)
+Alert (PHB)
+Athlete (PHB) asi=str|dex
+Charger (PHB)
+Crossbow Expert (PHB)
+Defensive Duelist (PHB)
+Dual Wielder (PHB)
+Dungeon Delver (PHB)
+Durable (PHB)
+Elemental Adept (PHB) picks=damage type
+Grappler (PHB)
+Great Weapon Master (PHB)
+Healer (PHB)
+Heavily Armored (PHB)
+Heavy Armor Master (PHB)
+Inspiring Leader (PHB)
+Keen Mind (PHB)
+Lightly Armored (PHB) asi=str|dex
+Linguist (PHB) picks=3 languages
+Lucky (PHB)
+Mage Slayer (PHB)
+Magic Initiate (PHB) picks=class, 2 cantrips, 1 spell
+Martial Adept (PHB) picks=2 maneuvers
+Medium Armor Master (PHB)
+Mobile (PHB)
+Moderately Armored (PHB) asi=str|dex
+Mounted Combatant (PHB)
+Observant (PHB) asi=int|wis
+Polearm Master (PHB)
+Resilient (PHB) asi=str|dex|con|int|wis|cha
+Ritual Caster (PHB) picks=class, 2 ritual spells
+Savage Attacker (PHB)
+Sentinel (PHB)
+Sharpshooter (PHB)
+Shield Master (PHB)
+Skilled (PHB) picks=3 skills or tools
+Skulker (PHB)
+Spell Sniper (PHB) picks=1 cantrip
+Tavern Brawler (PHB) asi=str|con
+Tough (PHB)
+War Caster (PHB)
+Weapon Master (PHB) asi=str|dex picks=4 weapons
+
+# Xanathar's Guide to Everything (racial feats)
+Bountiful Luck (XGE)
+Dragon Fear (XGE) asi=str|con|cha
+Dragon Hide (XGE) asi=str|con|cha
+Drow High Magic (XGE)
+Dwarven Fortitude (XGE)
+Elven Accuracy (XGE) asi=dex|int|wis|cha
+Fade Away (XGE) asi=dex|int
+Fey Teleportation (XGE) asi=int|cha
+Flames of Phlegethos (XGE) asi=int|cha
+Infernal Constitution (XGE)
+Orcish Fury (XGE) asi=str|con
+Prodigy (XGE) picks=skill, tool, language, expertise
+Second Chance (XGE) asi=dex|con|cha
+Squat Nimbleness (XGE) asi=str|dex
+Wood Elf Magic (XGE) picks=1 druid cantrip
+
+# Tasha's Cauldron of Everything
+Artificer Initiate (TCE) picks=1 cantrip, 1 spell, 1 tool
+Chef (TCE) asi=con|wis
+Crusher (TCE) asi=str|con
+Eldritch Adept (TCE) picks=1 invocation
+Fey Touched (TCE) asi=int|wis|cha picks=1 divination or enchantment spell
+Fighting Initiate (TCE) picks=1 fighting style
+Gunner (TCE)
+Metamagic Adept (TCE) picks=2 metamagic
+Piercer (TCE) asi=str|dex
+Poisoner (TCE)
+Shadow Touched (TCE) asi=int|wis|cha picks=1 illusion or necromancy spell
+Skill Expert (TCE) asi=str|dex|con|int|wis|cha picks=skill, expertise
+Slasher (TCE) asi=str|dex
+Telekinetic (TCE) asi=int|wis|cha
+Telepathic (TCE) asi=int|wis|cha
+
+# Eberron: Rising from the Last War
+Aberrant Dragonmark (ERLW) picks=1 sorcerer cantrip, 1 sorcerer spell
+Revenant Blade (ERLW) asi=dex|str ?
+
+# Elemental Evil Player's Companion / SCAG
+Svirfneblin Magic (EEPC)
+
+# Fizban's Treasury of Dragons
+Gift of the Chromatic Dragon (FTD)
+Gift of the Gem Dragon (FTD) asi=int|wis|cha
+Gift of the Metallic Dragon (FTD)

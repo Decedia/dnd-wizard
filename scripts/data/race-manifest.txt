@@ -1,0 +1,284 @@
+# Race manifest — D&D 5e 2014 rules (legacy, pre-MPMM versions)
+#
+# Checked by scripts/check-subclass-completeness.mjs against
+# src/data/en/2014_races.json. Names and numbers only, no rules text.
+#
+# Format:
+#   Race Name (SOURCE) asi=con2,wis1 speed=30
+#     Trait Name
+# asi=flex means "+2/+1 or +1/+1/+1 of your choice" (lineages, MPMM-style).
+# Omitted asi or speed means "not checked". A trailing " ?" marks entries
+# that need a book check. SRD races are checked against the SRD itself and
+# are listed here only where the SRD leaves a subrace out.
+#
+# Traits that only restate size, speed, age, alignment, languages or
+# creature type are not listed.
+
+# PHB subraces missing from the SRD
+High Elf (PHB) asi=dex2,int1 speed=30
+  Darkvision
+  Keen Senses
+  Fey Ancestry
+  Trance
+  Elf Weapon Training
+  Cantrip
+  Extra Language
+Wood Elf (PHB) asi=dex2,wis1 speed=35
+  Darkvision
+  Keen Senses
+  Fey Ancestry
+  Trance
+  Elf Weapon Training
+  Fleet of Foot
+  Mask of the Wild
+Drow (PHB) asi=dex2,cha1 speed=30
+  Superior Darkvision
+  Keen Senses
+  Fey Ancestry
+  Trance
+  Sunlight Sensitivity
+  Drow Magic
+  Drow Weapon Training
+Mountain Dwarf (PHB) asi=con2,str2 speed=25
+  Darkvision
+  Dwarven Resilience
+  Dwarven Combat Training
+  Tool Proficiency
+  Stonecunning
+  Dwarven Armor Training
+Forest Gnome (PHB) asi=int2,dex1 speed=25
+  Darkvision
+  Gnome Cunning
+  Natural Illusionist
+  Speak with Small Beasts
+Stout Halfling (PHB) asi=dex2,con1 speed=25
+  Brave
+  Halfling Nimbleness
+  Lucky
+  Stout Resilience
+
+# SCAG
+Duergar (SCAG) asi=con2,str1 speed=25
+  Superior Darkvision
+  Dwarven Resilience
+  Dwarven Combat Training
+  Tool Proficiency
+  Stonecunning
+  Duergar Resilience
+  Duergar Magic
+  Sunlight Sensitivity
+Ghostwise Halfling (SCAG) asi=dex2,wis1 speed=25
+  Brave
+  Halfling Nimbleness
+  Lucky
+  Silent Speech
+
+# Volo's Guide to Monsters
+Aasimar (VGTM) asi=cha2 speed=30
+  Darkvision
+  Celestial Resistance
+  Healing Hands
+  Light Bearer
+Protector Aasimar (VGTM) asi=cha2,wis1 speed=30
+  Radiant Soul
+Scourge Aasimar (VGTM) asi=cha2,con1 speed=30
+  Radiant Consumption
+Fallen Aasimar (VGTM) asi=cha2,str1 speed=30
+  Necrotic Shroud
+Bugbear (VGTM) asi=str2,dex1 speed=30
+  Darkvision
+  Long-Limbed
+  Powerful Build
+  Sneaky
+  Surprise Attack
+Firbolg (VGTM) asi=wis2,str1 speed=30
+  Firbolg Magic
+  Hidden Step
+  Powerful Build
+  Speech of Beast and Leaf
+Goblin (VGTM) asi=dex2,con1 speed=30
+  Darkvision
+  Fury of the Small
+  Nimble Escape
+Goliath (VGTM) asi=str2,con1 speed=30
+  Natural Athlete
+  Stone's Endurance
+  Powerful Build
+  Mountain Born
+Hobgoblin (VGTM) asi=con2,int1 speed=30
+  Darkvision
+  Martial Training
+  Saving Face
+Kenku (VGTM) asi=dex2,wis1 speed=30
+  Expert Forgery
+  Kenku Training
+  Mimicry
+Kobold (VGTM) asi=dex2,str-2 speed=30
+  Darkvision
+  Grovel, Cower, and Beg
+  Pack Tactics
+  Sunlight Sensitivity
+Lizardfolk (VGTM) asi=con2,wis1 speed=30
+  Bite
+  Cunning Artisan
+  Hold Breath
+  Hunter's Lore
+  Natural Armor
+  Hungry Jaws
+Orc (VGTM) asi=str2,con1,int-2 speed=30
+  Darkvision
+  Aggressive
+  Menacing
+  Powerful Build
+Tabaxi (VGTM) asi=dex2,cha1 speed=30
+  Darkvision
+  Feline Agility
+  Cat's Claws
+  Cat's Talent
+Triton (VGTM) asi=str1,con1,cha1 speed=30
+  Amphibious
+  Control Air and Water
+  Emissary of the Sea
+  Guardians of the Depths
+Yuan-ti Pureblood (VGTM) asi=cha2,int1 speed=30
+  Darkvision
+  Innate Spellcasting
+  Magic Resistance
+  Poison Immunity
+
+# Elemental Evil Player's Companion
+Aarakocra (EEPC) asi=dex2,wis1 speed=25
+  Flight
+  Talons
+Air Genasi (EEPC) asi=con2,dex1 speed=30
+  Unending Breath
+  Mingle with the Wind
+Earth Genasi (EEPC) asi=con2,str1 speed=30
+  Earth Walk
+  Merge with Stone
+Fire Genasi (EEPC) asi=con2,int1 speed=30
+  Darkvision
+  Fire Resistance
+  Reach to the Blaze
+Water Genasi (EEPC) asi=con2,wis1 speed=30
+  Acid Resistance
+  Amphibious
+  Swim
+  Call to the Wave
+Deep Gnome (EEPC) asi=int2,dex1 speed=25
+  Superior Darkvision
+  Gnome Cunning
+  Stone Camouflage
+
+# Mordenkainen's Tome of Foes
+Eladrin (MTF) asi=dex2,cha1 speed=30
+  Darkvision
+  Keen Senses
+  Fey Ancestry
+  Trance
+  Fey Step
+Sea Elf (MTF) asi=dex2,con1 speed=30
+  Darkvision
+  Keen Senses
+  Fey Ancestry
+  Trance
+  Sea Elf Training
+  Child of the Sea
+  Friend of the Sea
+Shadar-kai (MTF) asi=dex2,con1 speed=30
+  Darkvision
+  Keen Senses
+  Fey Ancestry
+  Trance
+  Necrotic Resistance
+  Blessing of the Raven Queen
+Githyanki (MTF) asi=str2,int1 speed=30
+  Decadent Mastery
+  Martial Prodigy
+  Githyanki Psionics
+Githzerai (MTF) asi=wis2,int1 speed=30
+  Mental Discipline
+  Githzerai Psionics
+
+# Eberron: Rising from the Last War
+Changeling (ERLW) asi=cha2 speed=30
+  Shapechanger
+  Changeling Instincts
+Kalashtar (ERLW) asi=wis2,cha1 speed=30
+  Dual Mind
+  Mental Discipline
+  Mind Link
+  Severed from Dreams
+Shifter (ERLW) speed=30 ?
+  Darkvision
+  Keen Senses
+  Shifting
+Warforged (ERLW) asi=con2 speed=30
+  Constructed Resilience
+  Sentry's Rest
+  Integrated Protection
+  Specialized Design
+
+# Van Richten's Guide to Ravenloft
+Dhampir (VRGR) asi=flex speed=35
+  Darkvision
+  Deathless Nature
+  Spider Climb
+  Vampiric Bite
+Hexblood (VRGR) asi=flex speed=30
+  Darkvision
+  Eerie Token
+  Hex Magic
+Reborn (VRGR) asi=flex speed=30
+  Deathless Nature
+  Knowledge from a Past Life
+
+# Other legacy races
+Tortle (TTP) asi=str2,wis1 speed=30
+  Claws
+  Hold Breath
+  Natural Armor
+  Shell Defense
+  Survival Instinct
+Centaur (MOoT) asi=str2,wis1 speed=40 ?
+  Charge
+  Equine Build
+  Hooves
+  Survivor
+Minotaur (MOoT) asi=str2,con1 speed=30 ?
+  Horns
+  Goring Rush
+  Hammering Horns
+  Imposing Presence
+Satyr (MOoT) asi=cha2,dex1 speed=35
+  Ram
+  Magic Resistance
+  Mirthful Leaps
+  Reveler
+Loxodon (GGR) asi=con2,wis1 speed=30
+  Powerful Build
+  Loxodon Serenity
+  Natural Armor
+  Trunk
+  Keen Smell
+
+# Spelljammer: Adventures in Space (flexible ASI)
+Autognome (AAG) asi=flex speed=30
+  Armored Casing
+  Built for Success
+  Healing Machine
+  Mechanical Nature
+  Sentry's Rest
+  Specialized Design
+Plasmoid (AAG) asi=flex speed=30
+  Amorphous
+  Darkvision
+  Hold Breath
+  Natural Resilience
+  Shape Self
+Thri-kreen (AAG) asi=flex speed=30
+  Carapace
+  Chameleon Carapace
+  Secondary Arms
+  Sleepless
+  Thri-kreen Telepathy

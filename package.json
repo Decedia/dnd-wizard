@@ -19,7 +19,7 @@
     "srd:enhance:id": "node scripts/enhance-indonesian.mjs",
     "srd:enhance:cr:en": "node scripts/enhance-classes-races-en.mjs",
     "srd:enhance:cr:id": "node scripts/enhance-classes-races-id.mjs",
-    "data:completeness": "node scripts/check-subclass-completeness.mjs"
+    "data:completeness": "node --no-warnings scripts/check-subclass-completeness.mjs"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
