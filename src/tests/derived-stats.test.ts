@@ -1,6 +1,7 @@
 // @ts-ignore - bun:test is provided by the Bun runtime
 import { describe, expect, test } from "bun:test";
-import { computeDerivedStats, createEmptyCharacter, getBaseSpeed, getHpBonusPerLevel, type Character } from "@/lib/storage";
+import { computeDerivedStats, createEmptyCharacter, getBaseSpeed, getHpBonusPerLevel, getPassiveScore, type Character } from "@/lib/storage";
+import { getOptionalClassFeatures } from "@/data/optional-class-features";
 
 const make = (patch: Partial<Character>): Character =>
   ({ ...createEmptyCharacter(), sources: ["PHB"], ruleset: "2014", class: "Fighter", level: 4, str: 10, dex: 14, con: 12, int: 10, wis: 12, cha: 10, ...patch } as Character);
@@ -60,5 +61,21 @@ describe("exhaustion", () => {
   });
   test("the exhaustion field halves speed at level 2", () => {
     expect(computeDerivedStats(make({ race: "Human", exhaustionLevel: 2 })).speed).toBe(15);
+  });
+});
+
+describe("passive scores", () => {
+  test("Observant adds 5 to passive Investigation, not Insight; expertise doubles proficiency", () => {
+    const c = make({ int: 14, features: [feat("Observant")], skills: { Investigation: true, Insight: true } as any, expertise: ["Investigation"] });
+    expect(getPassiveScore(c, "Investigation")).toBe(10 + 2 + 2 + 2 + 5);
+    expect(getPassiveScore(c, "Insight")).toBe(10 + 1 + 2);
+  });
+});
+
+describe("Deft Explorer", () => {
+  test("Canny's two languages are one pick of two, so they can't repeat", () => {
+    const c = make({ class: "Ranger", level: 1, sources: ["PHB", "TCE"], optionalClassFeatures: true } as any);
+    const canny = getOptionalClassFeatures(c).filter((f) => f.name.startsWith("Canny"));
+    expect(canny.map((f) => [f.name, f.choice?.count])).toEqual([["Canny: Languages", 2]]);
   });
 });

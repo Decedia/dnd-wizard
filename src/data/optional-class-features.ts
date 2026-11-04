@@ -100,14 +100,11 @@ export const OPTIONAL_CLASS_FEATURES: OptionalClassFeature[] = [
     en: "Replaces Natural Explorer. Canny (1st level): expertise in one skill you're proficient in, and two languages. Roving (6th): +5 feet walking speed, and a climbing and swimming speed equal to it. Tireless (10th): as an action, gain 1d8 + Wisdom modifier temporary HP, proficiency bonus times per long rest; a short rest lowers your exhaustion by 1.",
     id: "Menggantikan Natural Explorer. Canny (level 1): expertise pada satu skill yang kamu kuasai, dan dua bahasa. Roving (level 6): +5 kaki walking speed, serta climbing dan swimming speed sebesar itu. Tireless (level 10): sebagai action, dapatkan 1d8 + modifier Wisdom temporary HP, sebanyak proficiency bonus per long rest; short rest mengurangi exhaustion-mu 1 tingkat.",
   }, choice: { options: ALL_SKILLS, count: 1, grants: "skill-expertise" } },
-  { className: "Ranger", level: 1, name: "Canny: Language 1", hidden: true, text: {
-    en: "Deft Explorer (Canny): learn a language of your choice.",
-    id: "Deft Explorer (Canny): pelajari satu bahasa pilihanmu.",
-  }, choice: { options: LANGUAGE_NAMES, count: 1, grants: "language" } },
-  { className: "Ranger", level: 1, name: "Canny: Language 2", hidden: true, text: {
-    en: "Deft Explorer (Canny): learn a language of your choice.",
-    id: "Deft Explorer (Canny): pelajari satu bahasa pilihanmu.",
-  }, choice: { options: LANGUAGE_NAMES, count: 1, grants: "language" } },
+  // One pick of two, so the same language can't be taken twice.
+  { className: "Ranger", level: 1, name: "Canny: Languages", hidden: true, text: {
+    en: "Deft Explorer (Canny): learn two languages of your choice.",
+    id: "Deft Explorer (Canny): pelajari dua bahasa pilihanmu.",
+  }, choice: { options: LANGUAGE_NAMES, count: 2, grants: "language" } },
   { className: "Ranger", level: 1, name: "Favored Foe", replaces: ["Favored Enemy"], text: {
     en: "Replaces Favored Enemy. When you hit a creature, you can mark it as your favored foe for 1 minute (concentration). The first time each turn you hit it, add 1d4 damage (1d6 at 6th level, 1d8 at 14th). Proficiency bonus times per long rest.",
     id: "Menggantikan Favored Enemy. Saat mengenai makhluk, kamu bisa menandainya sebagai musuh pilihan selama 1 menit (concentration). Pertama kali tiap giliran kamu mengenainya, tambahkan 1d4 damage (1d6 di level 6, 1d8 di level 14). Sebanyak proficiency bonus per long rest.",

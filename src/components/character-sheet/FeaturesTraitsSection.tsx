@@ -28,6 +28,7 @@ import {
 } from "@/lib/feature-engine";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { DiceText } from "@/components/DiceText";
+import { FEATURE_GROUP_ORDER, getFeatPicks, getFeaturePicks, matchesFeatureSearch, poolMax, type FeatureGroup } from "@/lib/feature-groups";
 
 /**
  * The character sheet tracks a few resource pools by name. A feature whose cost
@@ -106,6 +107,10 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
   // Which feature the spend sheet is open for, if any.
   const [spendModalFeature, setSpendModalFeature] = useState<any | null>(null);
   const [currentChoiceIndex, setCurrentChoiceIndex] = useState(0);
+  // The list's own controls: filter chip, search text and the ⋯ menu.
+  const [featureFilter, setFeatureFilter] = useState<"all" | "use" | "passive" | "race" | "feat">("all");
+  const [featureQuery, setFeatureQuery] = useState("");
+  const [featureMenuOpen, setFeatureMenuOpen] = useState(false);
   const feats = useMemo(() => getStaticFeats([], character.ruleset, language), [character.ruleset, language]);
   const popupFeat = feats.find((f) => f.name === popupFeatName) || null;
 
@@ -472,6 +477,199 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
     onChange(patch);
   };
 
+  // ---- Grouped list: Use first, then class, subclass, race, feats, other ----
+  const missingAll = useMemo(() => {
+    try {
+      return getMissingFeatureChoices(character, language);
+    } catch {
+      return [];
+    }
+  }, [character, language]);
+  // A later pick ("Path of the Kensei: 6th-level Weapon") belongs to its feature.
+  const missingFor = (name: string) => missingAll.filter((m) => m.featureName === name || m.featureName.split(":")[0].trim() === name);
+  const shownNames = new Set(enrichedFeatures.map((f) => f.name));
+  const missingElsewhere = missingAll.filter((m) => !shownNames.has(m.featureName) && !shownNames.has(m.featureName.split(":")[0].trim()));
+  const openChoices = (choices: typeof missingAll) => {
+    if (choices.length === 0) return;
+    setMissingChoices(choices);
+    setCurrentChoiceIndex(0);
+  };
+
+  const rows = enrichedFeatures.map((feature) => {
+    const resolved = resolvedFor(feature.id);
+    const kind = sourceKind(feature);
+    const featInfo = getFeatPicks(character, feature.name);
+    const isFeat = featInfo.taken || ((kind === "feat" || kind === "custom" || !kind) && feats.some((f) => f.name === feature.name));
+    const usable = resolved !== undefined && resolved.activation !== "passive";
+    const home: FeatureGroup = isFeat ? "feat" : kind === "class" || kind === "subclass" || kind === "race" ? kind : "other";
+    const level = isFeat ? featInfo.level : getFeatureLevel(feature);
+    const picks = isFeat ? featInfo.picks : home === "class" || home === "subclass" ? getFeaturePicks(character, feature.name) : [];
+    const levelLabel = level !== null ? t("feature.levelShort", { level }, "Lv {level}") : "";
+    const origin =
+      home === "class" ? `${character.class} ${level ?? ""}`.trim()
+      : home === "subclass" ? `${character.subclass} ${level ?? ""}`.trim()
+      : home === "race" ? t("feature.racial", "Racial")
+      : home === "feat" ? [t("features.feat", "Feat"), levelLabel].filter(Boolean).join(" · ")
+      : "";
+    const poolCost = (resolved?.resources ?? []).find((r) => r.tracked && !r.sized && poolFieldFor(r.id));
+    const poolField = poolCost ? poolFieldFor(poolCost.id) : null;
+    const poolTop = poolField ? poolMax(character, poolField) : null;
+    const pool = poolField && poolTop ? { field: poolField, current: Math.min(poolTop, Math.max(0, ((character as any)[poolField] as number) ?? 0)), max: poolTop } : null;
+    const summary = ((feature as any).summary || resolved?.summary || (feature.description || "").slice(0, 160)) as string;
+    return { feature, resolved, group: usable ? ("use" as FeatureGroup) : home, home, level, levelLabel, origin, picks, pool, summary, missing: missingFor(feature.name), usable };
+  });
+  type Row = (typeof rows)[number];
+
+  const filteredRows = rows.filter((r) => {
+    if (!matchesFeatureSearch(featureQuery, [r.feature.name, r.summary, ...r.picks])) return false;
+    if (featureFilter === "all") return true;
+    if (featureFilter === "use") return r.usable;
+    if (featureFilter === "passive") return !r.usable;
+    return r.home === featureFilter;
+  });
+  const homeOrder = { class: 0, subclass: 1, race: 2, feat: 3, other: 4, use: 5 } as const;
+  const groups = FEATURE_GROUP_ORDER.map((g) => {
+    const items = filteredRows
+      .filter((r) => r.group === g)
+      .sort((a, b) => (g === "use" ? homeOrder[a.home] - homeOrder[b.home] : 0) || (a.level ?? 0) - (b.level ?? 0) || a.feature.name.localeCompare(b.feature.name));
+    const title =
+      g === "use" ? t("features.groupUse", "Use")
+      : g === "class" ? character.class || t("features.groupClass", "Class")
+      : g === "subclass" ? character.subclass || t("features.groupSubclass", "Subclass")
+      : g === "race" ? character.race || t("features.groupRace", "Race")
+      : g === "feat" ? t("features.groupFeats", "Feats")
+      : t("features.groupOther", "Other");
+    const sub =
+      g === "use" ? (items.some((r) => r.pool) ? t("features.tapToSpend", "Tap a dot to spend") : "")
+      : g === "class" || g === "subclass" ? t("features.byLevel", "By level")
+      : g === "feat" ? t("features.featCount", { count: items.length }, "{count} taken")
+      : "";
+    return { id: g, title, sub, items };
+  }).filter((g) => g.items.length > 0);
+
+  const setPool = (field: keyof Character, value: number) => onChange({ [field]: value } as Partial<Character>);
+
+  const openFeature = (feature: any) => {
+    setSpendAmount(1);
+    setSelectedFeature(feature);
+  };
+
+  const filterChips: { id: typeof featureFilter; label: string }[] = [
+    { id: "all", label: t("features.filterAll", "All") },
+    { id: "use", label: t("features.filterUsable", "Usable") },
+    { id: "passive", label: t("features.filterPassive", "Passive") },
+    { id: "race", label: t("features.filterRace", "Race") },
+    { id: "feat", label: t("features.filterFeats", "Feats") },
+  ];
+
+  const renderRow = (r: Row, index: number) => {
+    const { feature, resolved, pool } = r;
+    const featureUsed = (character.featuresUsedThisTurn || []).includes(feature.id);
+    const badges = r.group === "use" ? getFeatureBadges(feature) : [];
+    return (
+      <div key={feature.id} className={index === 0 ? "" : "border-t border-[var(--color-border-muted)]"}>
+        <button
+          type="button"
+          onClick={() => openFeature(feature)}
+          className="block w-full text-left px-3.5 pt-3 pb-2 active:bg-[var(--color-paper-muted)] transition-colors"
+        >
+          <span className="flex items-center justify-between gap-2">
+            <span className="font-semibold text-[15px] text-[var(--color-text-primary)] leading-tight">{feature.name}</span>
+            <span className="text-[11px] font-semibold text-[var(--color-text-muted)] whitespace-nowrap">
+              {r.group === "use" ? r.origin : r.home === "race" ? "" : r.levelLabel}
+            </span>
+          </span>
+          {r.summary && (
+            <span className="mt-0.5 block text-[13px] leading-snug text-[var(--color-text-secondary)] line-clamp-2">{r.summary}</span>
+          )}
+          {badges.length > 0 && (
+            <span className="mt-1.5 flex flex-wrap gap-1">
+              {badges.map((badge, i) => (
+                <span key={i} style={getStatBadgeStyle(badge)} className="text-[10px] font-bold px-1.5 py-0.5 rounded-md border">{badge}</span>
+              ))}
+            </span>
+          )}
+          {r.group !== "use" && r.picks.length > 0 && (
+            <span className="mt-1.5 flex flex-wrap gap-1">
+              {r.picks.map((p) => (
+                <span key={p} className="text-xs font-medium px-2 py-0.5 rounded-full bg-[var(--color-info-50)] text-[var(--color-info-700)]">{p}</span>
+              ))}
+            </span>
+          )}
+          {(feature as any).showInSheet === false && (
+            <span className="mt-1.5 inline-block text-[10px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-paper-muted)] text-[var(--color-text-muted)] border border-[var(--color-border)]">
+              {t("sheet.referenceOnly")}
+            </span>
+          )}
+          {resolved && !resolved.available && resolved.blockedBy && !resolved.used && r.group === "use" && !pool && (
+            <span className="mt-1.5 block text-[11px] text-[var(--color-text-muted)]">{resolved.blockedBy}</span>
+          )}
+        </button>
+        {r.missing.length > 0 && (
+          <div className="px-3.5 pb-2">
+            <button
+              type="button"
+              onClick={() => openChoices(r.missing)}
+              className="inline-flex items-center gap-1.5 min-h-[32px] px-2.5 rounded-full text-xs font-semibold bg-[var(--color-warning-50,#FFF1E6)] text-[var(--color-warning-700,#9A3412)] border border-[var(--color-warning-200,#FED7AA)]"
+            >
+              {t("features.missingPick", { name: r.missing[0].featureName }, "Pick: {name}")}
+            </button>
+          </div>
+        )}
+        {r.group === "use" && (
+          <div className="flex items-center justify-between gap-2 px-3.5 pb-3">
+            {pool ? (
+              pool.max <= 8 ? (
+                <div className="flex flex-wrap gap-1.5">
+                  {Array.from({ length: pool.max }, (_, i) => {
+                    const spent = i >= pool.current;
+                    return (
+                      <button
+                        key={i}
+                        type="button"
+                        aria-label={t(spent ? "features.restoreUse" : "features.spendUse", { name: feature.name }, spent ? "Restore a use of {name}" : "Spend a use of {name}")}
+                        onClick={() => setPool(pool.field, spent ? pool.current + 1 : pool.current - 1)}
+                        className={`h-8 w-8 rounded-full transition-colors ${
+                          spent
+                            ? "border-[1.5px] border-dashed border-[var(--color-border-strong,#B8B2A7)] bg-[var(--color-surface)]"
+                            : "border-[1.5px] border-[var(--color-accent-indigo-500)] bg-[var(--color-accent-indigo-500)]"
+                        }`}
+                      />
+                    );
+                  })}
+                </div>
+              ) : (
+                <div className="flex items-center gap-2">
+                  <button type="button" aria-label={t("features.spendUse", { name: feature.name }, "Spend a use of {name}")} onClick={() => setPool(pool.field, Math.max(0, pool.current - 1))} className="h-8 w-8 rounded-full border border-[var(--color-border)] font-bold text-[var(--color-text-secondary)]">−</button>
+                  <button type="button" aria-label={t("features.restoreUse", { name: feature.name }, "Restore a use of {name}")} onClick={() => setPool(pool.field, Math.min(pool.max, pool.current + 1))} className="h-8 w-8 rounded-full border border-[var(--color-border)] font-bold text-[var(--color-text-secondary)]">+</button>
+                </div>
+              )
+            ) : (
+              <button
+                type="button"
+                onClick={() => toggleFeatureUsed(feature.id)}
+                className={`flex items-center gap-1 min-h-[32px] px-2.5 text-xs font-bold rounded-full border transition-colors ${
+                  featureUsed
+                    ? "border-[var(--color-border)] text-[var(--color-text-muted)]"
+                    : "border-[var(--color-accent-indigo-500)] text-[var(--color-accent-indigo-600)]"
+                }`}
+                title={featureUsed ? t("spells.clickToMarkUnused") : t("spells.clickToMarkUsed")}
+              >
+                <Sparkle className="h-4 w-4" />
+                {featureUsed ? t("spells.used") : t("spells.use")}
+              </button>
+            )}
+            {pool && (
+              <span className="text-xs text-[var(--color-text-muted)]">
+                {t("features.usesLeft", { current: pool.current, max: pool.max }, "{current} of {max} left")}
+              </span>
+            )}
+          </div>
+        )}
+      </div>
+    );
+  };
+
   return (
     <SectionCard
       id="features"
@@ -489,163 +687,93 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
         </div>
       }
     >
-      <div className="space-y-2">
-        {character.subclass && (
-              <div key="subclass-header" className="surface bg-paper-muted px-3 py-2">
-                <div className="flex items-center gap-2">
-                  <Crown className="h-4 w-4 text-[var(--color-text-muted)]" />
-                  {(() => {
-                     const subclasses = character.class ? getStaticSubclasses(character.class, character.sources, undefined, language) : [];
-                    const sub = subclasses.find(s => s.name === character.subclass);
-                    return sub?.source ? <span className="inline-flex items-center font-semibold" style={{ fontSize: "9px", padding: "1px 5px", borderRadius: "4px", backgroundColor: "var(--color-bg)", color: "var(--color-text-secondary)" }}>{sub.source}</span> : null;
-                  })()}
-                  <span className="text-sm font-bold text-[var(--color-text-primary)]">{character.subclass}</span>
-                </div>
-              </div>
-        )}
-        {editMode && (
-          <div className="px-1">
+      <div className="relative">
+        <div className="flex items-center gap-2">
+          <label className="flex flex-1 items-center gap-2 h-11 px-3 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)]">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true" className="text-[var(--color-text-muted)]"><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" /></svg>
+            <span className="sr-only">{t("features.search", "Search features")}</span>
+            <input
+              type="search"
+              value={featureQuery}
+              onChange={(e) => setFeatureQuery(e.target.value)}
+              placeholder={t("features.search", "Search features")}
+              className="flex-1 min-w-0 bg-transparent text-sm text-[var(--color-text-primary)] outline-none"
+            />
+          </label>
+          {editMode && (
             <button
               type="button"
-              onClick={handleSyncFeatures}
+              aria-label={t("features.moreActions", "More actions")}
+              aria-expanded={featureMenuOpen}
+              onClick={() => setFeatureMenuOpen((v) => !v)}
+              className="h-11 w-11 shrink-0 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] flex items-center justify-center text-[var(--color-text-primary)]"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="2" /><circle cx="12" cy="12" r="2" /><circle cx="19" cy="12" r="2" /></svg>
+            </button>
+          )}
+        </div>
+        {featureMenuOpen && editMode && (
+          <div className="absolute right-0 top-12 z-20 w-52 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-1.5 shadow-lg">
+            <button
+              type="button"
+              onClick={() => { setFeatureMenuOpen(false); addItem(); }}
+              className="flex w-full items-center gap-2 min-h-[44px] px-3 rounded-lg text-left text-sm text-[var(--color-text-primary)] hover:bg-[var(--color-paper-muted)]"
+            >
+              <Plus size={16} />
+              {t("button.addFeature", "Add Feature")}
+            </button>
+            <button
+              type="button"
               disabled={syncing}
-              className="text-xs font-semibold px-3 py-1.5 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-colors disabled:opacity-60"
+              onClick={() => { setFeatureMenuOpen(false); handleSyncFeatures(); }}
+              className="flex w-full items-center min-h-[44px] px-3 rounded-lg text-left text-sm text-[var(--color-text-primary)] hover:bg-[var(--color-paper-muted)] disabled:opacity-60"
             >
               {syncing ? t("features.syncing") : t("features.syncWithSrd")}
             </button>
           </div>
         )}
-        {enrichedFeatures.map((feature) => {
-          const safeFeature = { ...feature, source: (feature as any).source || "class" };
-          const resolved = resolvedFor(feature.id);
-          const summaryText = (feature as any).summary || resolved?.summary || "";
-          const badges = getFeatureBadges(feature);
-          // The engine knows the duration as a value, which beats the sheet's
-          // prose when both exist.
-          const duration =
-            resolved?.duration ? `${resolved.duration.value} ${resolved.duration.unit}` : (feature as any).duration || "";;
-          const level = getFeatureLevel(feature);
-          // "Active" came from the stored featureType string, which the engine
-          // does not use. The engine's activation is the same fact with five
-          // values instead of two, so a bonus action or reaction feature stops
-          // reading as plain "Active" and loses its slot.
-          const isActive = resolved !== undefined && resolved.activation !== "passive";
-          const featureUsed = (character.featuresUsedThisTurn || []).includes(feature.id);
-          const summary = summaryText || (feature.description || "").slice(0, 180);
-          return (
-            <div
-              key={safeFeature.id}
-              role="button"
-              tabIndex={0}
-              onClick={() => {
-                setSpendAmount(1);
-                setSelectedFeature(feature);
-              }}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault();
-                  setSelectedFeature(feature);
-                  setSpendAmount(1);
-                }
-              }}
-              className="relative block w-full text-left bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl shadow-sm cursor-pointer active:scale-[0.98] active:border-[var(--color-border-active)] transition-all duration-75 overflow-hidden mb-4 group"
+        <div className="mt-3 flex gap-1.5 overflow-x-auto pb-0.5">
+          {filterChips.map((chip) => (
+            <button
+              key={chip.id}
+              type="button"
+              aria-pressed={featureFilter === chip.id}
+              onClick={() => setFeatureFilter(chip.id)}
+              className={`shrink-0 min-h-[36px] px-3.5 rounded-full border text-[13px] font-semibold transition-colors ${
+                featureFilter === chip.id
+                  ? "border-[var(--color-accent-indigo-500)] bg-[var(--color-accent-indigo-500)] text-white"
+                  : "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)]"
+              }`}
             >
-              {/* Content Body */}
-              <div className="p-4 pb-3">
-                {/* Title Block */}
-                <div className="mb-2">
-                  <h3 className="font-bold text-lg text-[var(--color-text-primary)] leading-tight">
-                    {feature.name}
-                  </h3>
-                  <span className="text-xs text-[var(--color-text-muted)] block mt-0.5">
-                    {level !== null ? `${t("feature.level", "Level")} ${level}` : isRacialFeature(feature) ? t("feature.racial", "Racial") : (feature as any).source?.name || "Feature"}
-                  </span>
-                </div>
-
-                {/* Badges Row */}
-                {badges.length > 0 && (
-                  <div className="flex flex-wrap gap-1.5 mb-3">
-                    {badges.map((badge: string, badgeIdx: number) => (
-                      <span
-                        key={badgeIdx}
-                        style={getStatBadgeStyle(badge)}
-                        className="text-[10px] font-bold px-2 py-0.5 rounded-md border shadow-sm"
-                      >
-                        {badge}
-                      </span>
-                    ))}
-                  </div>
-                )}
-
-                {duration && (
-                  <span className="block text-[10px] text-[var(--color-text-muted)] mb-2">⏱ {duration}</span>
-                )}
-
-                {/* Why this cannot be used right now. The resolver computes it;
-                    without it a feature that cannot be taken looks simply dim. */}
-                {resolved && !resolved.available && resolved.blockedBy && !resolved.used && (
-                  <span className="inline-flex items-center gap-1 rounded-full border border-[var(--color-border)] bg-[var(--color-paper-muted)] px-2 py-0.5 text-[10px] font-semibold text-[var(--color-text-muted)] mb-2">
-                    {resolved.blockedBy}
-                  </span>
-                )}
-
-                {isActive && (
-                  <span className="inline-flex items-center gap-1 rounded-full border border-[var(--color-border)] bg-[var(--color-info-50)] px-2 py-0.5 text-[10px] font-semibold text-[var(--color-info-700)] mb-2">
-                    {t("feature.active", "Active")}
-                  </span>
-                )}
-
-                {(feature as any).showInSheet === false && (
-                  <span className="inline-flex items-center gap-1 text-[9px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-paper-muted)] text-[var(--color-text-muted)] border border-[var(--color-border)] mb-2">
-                    {t("sheet.referenceOnly")}
-                  </span>
-                )}
-
-                {/* Summary Text */}
-                {summary && (
-                  <div className="text-sm text-[var(--color-text-secondary)] leading-relaxed line-clamp-3 [&>p]:line-clamp-3">
-                    <DiceText text={summary} />
-                  </div>
-                )}
-              </div>
-
-              {/* Action Footer */}
-              <div className="bg-[var(--color-bg)] border-t border-[var(--color-border)] px-4 py-2.5 flex justify-between items-center group-active:bg-[var(--color-border-muted)] transition-colors">
-                {isActive && (
-                  <button
-                    type="button"
-                    onClick={(e) => { e.stopPropagation(); toggleFeatureUsed(feature.id); }}
-                    className={`flex items-center gap-1 px-2 py-1 text-[10px] font-bold rounded transition-colors ${
-                      featureUsed
-                        ? "bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)]"
-                        : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                    }`}
-                    title={featureUsed ? t("spells.clickToMarkUnused") : t("spells.clickToMarkUsed")}
-                  >
-                    <Sparkle className="h-4 w-4" />
-                    {featureUsed ? t("spells.used") : t("spells.use")}
-                  </button>
-                )}
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-bold text-[var(--color-accent-indigo-600)] tracking-wide uppercase">
-                    {t("glossary.viewDetails", "Lihat Detail")}
-                  </span>
-                  <CaretRight size={16} className="text-[var(--color-accent-indigo-500)]" />
-                </div>
-              </div>
-            </div>
-          );
-        })}
+              {chip.label}
+            </button>
+          ))}
+        </div>
       </div>
-      {editMode && (
+
+      {missingElsewhere.length > 0 && (
         <button
           type="button"
-          onClick={addItem}
-          className="mt-3 btn-secondary flex items-center gap-1.5"
+          onClick={() => openChoices(missingElsewhere)}
+          className="mt-3 w-full min-h-[44px] px-3 rounded-xl text-left text-sm font-semibold bg-[var(--color-warning-50,#FFF1E6)] text-[var(--color-warning-700,#9A3412)] border border-[var(--color-warning-200,#FED7AA)]"
         >
-          <Plus size={16} />
-          {t("button.addFeature", "Add Feature")}
+          {t("features.picksMissing", { count: missingElsewhere.length }, "{count} pick(s) still to make")}
         </button>
+      )}
+
+      {groups.map((g) => (
+        <section key={g.id} className="mt-5">
+          <div className="mb-2 flex items-baseline justify-between px-1">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)]">{g.title}</h3>
+            {g.sub && <span className="text-xs text-[var(--color-text-muted)]">{g.sub}</span>}
+          </div>
+          <div className="overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)]">
+            {g.items.map((r, i) => renderRow(r, i))}
+          </div>
+        </section>
+      ))}
+      {groups.length === 0 && (
+        <p className="mt-6 text-center text-sm text-[var(--color-text-muted)]">{t("features.noMatch", "No features match.")}</p>
       )}
         {/* Spending a pool: amount and target, then a receipt. The sheet has no
             party, so a target is either the character or a name the player types

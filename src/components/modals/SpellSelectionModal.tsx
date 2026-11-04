@@ -177,7 +177,10 @@ export function SpellSelectionModal({
   const knownLeveledNames = [
     ...(existingSpells || []).map((sp) => sp.name),
     ...(earlierSelections || []).filter((sp) => !sp.endsWith(":0")).map((sp) => sp.split(":")[0]),
-    ...(onChange ? [] : selectedSpells.filter((sp) => !sp.endsWith(":0")).map((sp) => sp.split(":")[0])),
+    // On the sheet the character's own spell list is what is known.
+    ...(onChange
+      ? (character.spells || []).filter((sp) => sp.level > 0 && !grantedNames.has(sp.name.toLowerCase())).map((sp) => sp.name)
+      : selectedSpells.filter((sp) => !sp.endsWith(":0")).map((sp) => sp.split(":")[0])),
   ];
   const offSchoolUsed = new Set(knownLeveledNames.filter(isOffSchool)).size;
   const schoolBlocked = (name: string, level: number) => level > 0 && isOffSchool(name) && offSchoolUsed >= freeSchoolPicks;
