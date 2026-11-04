@@ -1,5 +1,6 @@
 "use client";
 
+import { getWeaponAttackDetails as weaponAttackDetails } from "@/lib/weapon-attacks";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import type { Character } from "@/lib/storage";
@@ -28,38 +29,7 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
   const isBarbarian = character.class === "Barbarian";
   const isPaladin = character.class === "Paladin";
 
-  const getWeaponAttackDetails = (attack: Character["attacks"][number]) => {
-    const weapon = character.inventory.find((i) => i.id === attack.id);
-    if (!weapon || weapon.itemType !== "weapon") return null;
-    const isFinesseOrRanged = weapon.category === "ranged" || weapon.name === "Dagger" || weapon.name === "Rapier" || weapon.name === "Shortsword";
-    let abilityKey: "str" | "dex";
-    if (isFinesseOrRanged) {
-      const strMod = getModifier(character.str);
-      const dexMod = getModifier(character.dex);
-      abilityKey = dexMod >= strMod ? "dex" : "str";
-    } else {
-      abilityKey = weapon.category === "ranged" ? "dex" : "str";
-    }
-    const abilityMod = getModifier(character[abilityKey] as number);
-    const attackBonus = abilityMod + profBonus;
-    const damageBonus = abilityMod + (isBarbarian && abilityKey === "str" ? rageDamage : 0);
-    const damageDice = weapon.damageDice || "";
-    const damageTypeName = weapon.damageType || "";
-    const strMod = getModifier(character.str);
-    const dexMod = getModifier(character.dex);
-    return {
-      attackBonus,
-      damageDice,
-      damageBonus,
-      damageType: damageTypeName,
-      abilityKey,
-      abilityMod,
-      isFinesseOrRanged,
-      strMod,
-      dexMod,
-      rageBonus: isBarbarian && abilityKey === "str" ? rageDamage : 0,
-    };
-  };
+  const getWeaponAttackDetails = (attack: Character["attacks"][number]) => weaponAttackDetails(character, attack, rageDamage);
 
   return (
     <SectionCard id="attacks" title={t("section.attacks")} icon={<Sword className="h-5 w-5" />}>
