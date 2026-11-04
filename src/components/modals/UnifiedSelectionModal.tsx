@@ -1,5 +1,6 @@
 "use client";
 
+import { getTakenSpellNames } from "@/lib/taken-spells";
 import { useState, useMemo, useCallback, useEffect, useLayoutEffect } from "react";
 import { getStaticClasses, getStaticSubclasses } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
@@ -741,6 +742,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
               language={language}
               requireChoice={requireChoice}
               onRequirementChange={handleRequirementChange}
+              takenSpells={currentCharacter ? getTakenSpellNames({ ...currentCharacter, raceChoices: {} }) : undefined}
               t={t}
             />
           )}
@@ -805,6 +807,8 @@ interface ConfigDrawerProps {
   language: string;
   requireChoice?: boolean;
   onRequirementChange?: (required: boolean) => void;
+  /** Spells the character has from other sources; a race cantrip option naming one can't be picked. */
+  takenSpells?: Set<string>;
   t: ReturnType<typeof useLanguage>["t"];
 }
 
@@ -816,6 +820,7 @@ function ConfigDrawer({
   language,
   requireChoice = true,
   onRequirementChange,
+  takenSpells,
   t,
 }: ConfigDrawerProps) {
   const [useVariant, setUseVariant] = useState(false);
@@ -904,6 +909,8 @@ function ConfigDrawer({
                 key={choice.id}
                 choice={choice}
                 isSelected={selectedChoice?.id === choice.id}
+                known={!!takenSpells?.has(choice.name.toLowerCase())}
+                knownLabel={t("sheet.alreadyKnown", "Already known")}
                 onClick={() => onChoice(choice)}
               />
             ))}
@@ -917,14 +924,18 @@ function ConfigDrawer({
 interface ConfigChoiceCardProps {
   choice: ConfigChoice;
   isSelected: boolean;
+  /** A spell the character already has from another source. */
+  known?: boolean;
+  knownLabel?: string;
   onClick: () => void;
 }
-function ConfigChoiceCard({ choice, isSelected, onClick }: ConfigChoiceCardProps) {
+function ConfigChoiceCard({ choice, isSelected, known = false, knownLabel, onClick }: ConfigChoiceCardProps) {
   return (
     <button
       type="button"
       onClick={onClick}
-      className={`w-full p-4 text-left rounded-xl border transition-all ${
+      disabled={known && !isSelected}
+      className={`w-full p-4 text-left rounded-xl border transition-all disabled:opacity-50 disabled:cursor-not-allowed ${
         isSelected
           ? "border-[var(--color-accent-indigo-500)] bg-[var(--color-accent-indigo-50)]"
           : "border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)]"
@@ -943,7 +954,7 @@ function ConfigChoiceCard({ choice, isSelected, onClick }: ConfigChoiceCardProps
             )}
           </div>
           <p className="text-xs text-[var(--color-text-secondary)] line-clamp-2 mb-2">
-            {choice.description}
+            {known && !isSelected ? knownLabel : choice.description}
           </p>
           {choice.effect && (
             <p className="text-[10px] text-[var(--color-text-muted)] font-mono">

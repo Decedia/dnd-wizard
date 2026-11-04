@@ -19,6 +19,7 @@ import {
   type FeatOptionGroup,
 } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
+import { getTakenSpellNames } from "@/lib/taken-spells";
 import { isRecommended } from "@/lib/recommendations";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { BottomSheet } from "@/components/modals/BottomSheet";
@@ -31,6 +32,8 @@ interface FeatSelectionModalProps {
   sources?: string[];
   disabledFeats?: string[];
   character?: Character;
+  /** Spells the character already has (getTakenSpellNames); worked out from `character` when left out. */
+  takenSpells?: Set<string>;
 }
 
 type ModalStep = "list" | "info" | "spell";
@@ -53,8 +56,10 @@ export function FeatSelectionModal({
   sources,
   disabledFeats = [],
   character,
+  takenSpells,
 }: FeatSelectionModalProps) {
   const { t, language } = useLanguage();
+  const knownSpells = useMemo(() => takenSpells ?? (character ? getTakenSpellNames(character) : null), [takenSpells, character]);
   const feats = useMemo(() => getStaticFeats(sources, undefined, language), [sources, language]);
   const [search, setSearch] = useState("");
   const [pendingSelection, setPendingSelection] = useState<string | null>(selectedFeat || null);
@@ -169,11 +174,14 @@ export function FeatSelectionModal({
         .map(([, value]) => value),
     );
     spells = spells.filter((spell) => !takenByOtherGroups.has(spell.name));
+    // A spell the character already has from anywhere else can't be picked again.
+    const own = optionSelections[spellTarget.optionId];
+    if (knownSpells) spells = spells.filter((spell) => spell.name === own || !knownSpells.has(spell.name.toLowerCase()));
 
     if (!spellSearch.trim()) return spells;
     const q = spellSearch.toLowerCase();
     return spells.filter((spell) => spell.name.toLowerCase().includes(q));
-  }, [spellTarget, optionSelections, sources, spellSearch, language]);
+  }, [spellTarget, optionSelections, sources, spellSearch, language, knownSpells]);
 
   const handleSelectFeat = useCallback((feat: SRDFeat) => {
     setPendingSelection((prev) => {

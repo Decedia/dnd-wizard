@@ -20,6 +20,8 @@ export interface FeatureChipSelectorProps {
   onChange: (values: string[]) => void;
   isSubclass?: boolean;
   characterSources?: string[];
+  /** Spells the character already has; passed to the picker so they can't be picked again. */
+  takenSpells?: Set<string>;
 }
 
 export function FeatureChipSelector({
@@ -31,6 +33,7 @@ export function FeatureChipSelector({
   onChange,
   isSubclass = false,
   characterSources = [],
+  takenSpells,
 }: FeatureChipSelectorProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -100,6 +103,7 @@ export function FeatureChipSelector({
         onSelect={handleModalSelect}
         characterSources={characterSources}
         selectedValues={selectedValues}
+        takenSpells={takenSpells}
       />
     </div>
   );

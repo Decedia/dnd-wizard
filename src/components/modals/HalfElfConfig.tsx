@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
+import { getTakenSpellNames } from "@/lib/taken-spells";
 import { activeRaceChoices, type RaceChoice } from "@/lib/srd-client";
 
 const ABILITY_OPTIONS = [
@@ -60,6 +61,8 @@ export function HalfElfConfig({
 
   // Skills already granted by the class or background stay available here but
   // are flagged, so a player can see they already have the proficiency.
+  // Spells from other sources; this race's own cantrip pick is left out.
+  const takenSpells = character ? getTakenSpellNames({ ...(character as Character), raceChoices: {} }) : new Set<string>();
   const alreadyKnown = new Set<string>(
     Object.entries(character?.skills || {})
       .filter(([, proficient]) => proficient)
@@ -141,17 +144,23 @@ export function HalfElfConfig({
             <div className="grid grid-cols-1 gap-1.5">
               {(choice.options || []).map((opt) => {
                 const isSelected = picks[choice.id] === opt.id;
+                const known = !isSelected && !!choice.spellList && takenSpells.has(opt.name.toLowerCase());
                 return (
                   <button
                     key={opt.id}
                     type="button"
+                    disabled={known}
                     onClick={() => setPicks((prev) => ({ ...prev, [choice.id]: opt.id }))}
-                    className={`p-2 text-left rounded-lg border-2 text-xs transition-all active:scale-[0.98] ${
+                    className={`p-2 text-left rounded-lg border-2 text-xs transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed ${
                       isSelected ? "border-ink bg-ink/10 text-ink" : "border-border-strong text-ink hover:border-ink/40"
                     }`}
                   >
                     <span className="font-semibold">{opt.name}</span>
-                    {opt.description && <span className="block text-[10px] text-ink-muted mt-0.5">{opt.description}</span>}
+                    {known ? (
+                      <span className="block text-[10px] text-ink-muted mt-0.5">{t("sheet.alreadyKnown", "Already known")}</span>
+                    ) : (
+                      opt.description && <span className="block text-[10px] text-ink-muted mt-0.5">{opt.description}</span>
+                    )}
                   </button>
                 );
               })}

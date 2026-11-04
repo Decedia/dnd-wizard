@@ -12,6 +12,7 @@ import { SpellSelectionModal } from "./modals/SpellSelectionModal";
 import { applyFeatGrants, encodeFeatOptions } from "@/lib/feat-grants";
 import { getOptionalClassFeatures, getOptionalChoiceOptions, isReplacedFeature } from "@/data/optional-class-features";
 import { FeatSelectionModal } from "./modals/FeatSelectionModal";
+import { getTakenSpellNames } from "@/lib/taken-spells";
 import { SubclassDetailsModal } from "./modals/SubclassDetailsModal";
 import { SubclassSelectionModal } from "./modals/SubclassSelectionModal";
 import { FeatureSelectionModal } from "./modals/FeatureSelectionModal";
@@ -748,6 +749,20 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     };
   }, [character, asiSelections, subclassSelection, subclassFeatureChoices, classFeatureChoices, expertiseSelections, invocationSelections, pactTomeCantrips, buildAllocation]);
 
+  // Every spell the character has or has picked anywhere in this wizard, so no
+  // picker offers a spell twice. Free spells are counted at the target level.
+  const takenSpells = useMemo(
+    () =>
+      getTakenSpellNames({ ...wizardCharacter, level: Math.max(character.level || 1, targetLevel) }, [
+        ...Object.values(spellSelections).flat(),
+        ...Object.values(magicalSecretsSelections).flat(),
+        ...Object.values(subclassSpellSelections).flat(),
+        ...Object.values(bonusCantripSelections),
+        ...Object.values(asiSelections).flatMap((st) => Object.values(st?.featOptions || {})),
+      ]),
+    [wizardCharacter, character.level, targetLevel, spellSelections, magicalSecretsSelections, subclassSpellSelections, bonusCantripSelections, asiSelections]
+  );
+
   const asiIsValid = (st?: { mode: "single" | "double" | "feat"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey; feat?: string; featOptions?: Record<string, string> }): boolean => {
     if (!st || !st.mode) return false;
     if (st.mode === "feat") return !!st.feat;
@@ -1437,6 +1452,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
                 allInvocationSelections={invocationSelections}
                 pactBoon={pactBoon}
                  sectionRefs={sectionRefs}
+                 takenSpells={takenSpells}
              />
             </div>
           ))}
@@ -1499,6 +1515,7 @@ interface LevelCardProps {
   allInvocationSelections?: Record<number, string[]>;
   pactBoon?: string;
   sectionRefs: React.MutableRefObject<Record<string, HTMLDivElement | null>>;
+  takenSpells: Set<string>;
 }
 
 function LevelCard({
@@ -1545,6 +1562,7 @@ function LevelCard({
   allInvocationSelections,
   pactBoon,
   sectionRefs,
+  takenSpells,
 }: LevelCardProps) {
     const { language, tDesc } = useLanguage();
     const dict = language === "id" ? idTranslations : enTranslations;
@@ -2135,7 +2153,8 @@ function LevelCard({
                             maxCount={maxCount}
                             onChange={(values) => onClassFeatureChoice(fc.name, values.join(", "))}
                             isSubclass={false}
-                          />
+                            takenSpells={takenSpells}
+                />
                         ) : (
                           <button
                             type="button"
@@ -2212,7 +2231,8 @@ function LevelCard({
                       maxCount={3}
                       onChange={onPactTomeCantripsChange}
                       isSubclass={false}
-                    />
+                      takenSpells={takenSpells}
+                />
                   </div>
                 )}
                 {pactBoon === "Pact of the Chain" && (
@@ -2263,6 +2283,7 @@ function LevelCard({
                   maxCount={invocationCount}
                   onChange={onInvocationsChange}
                   isSubclass={false}
+                  takenSpells={takenSpells}
                 />
                 {hasPriorInvocations && info.level > 2 && (
                   <div className="mt-3">
@@ -2493,6 +2514,7 @@ function LevelCard({
           spells={spells}
           onSpellsChange={onSpellsChange}
           onClose={() => setShowSpellModal(false)}
+          takenSpells={takenSpells}
           existingSpells={info.spellSelectionType === "book" ? [] : (character.spells?.filter((s) => s.level > 0) || [])}
           spellsKnownChanged={info.spellsKnownChanged}
           earlierSelections={Object.entries(allSpellSelections).filter(([l]) => Number(l) < info.level).flatMap(([, s]) => s)}
@@ -2628,6 +2650,11 @@ function LevelCard({
             ...Object.values(character.featureSelections || {}).flat(),
           ]}
           character={wizardCharacter}
+          takenSpells={(() => {
+            // This feat's own earlier picks stay pickable when it is changed.
+            const own = new Set(Object.values(asiSelection?.featOptions || {}).map((v) => v.toLowerCase()));
+            return new Set([...takenSpells].filter((n) => !own.has(n)));
+          })()}
           onSelect={(feat, featOptions) => {
             onAsiChange({ feat: feat.name, featOptions });
             setShowAsiFeatModal(false);
@@ -2685,6 +2712,7 @@ function LevelCard({
             }
           }}
           characterSources={character.sources}
+          takenSpells={showFeaturePopup.name === "__replace_spell__" ? undefined : takenSpells}
           selectedValues={(() => {
             const current = showFeaturePopup.isSubclass
               ? subclassFeatureChoices[showFeaturePopup.name]
@@ -2716,6 +2744,7 @@ function LevelCard({
           onClose={() => setShowBonusCantripModal(false)}
           selectedCantrip={bonusCantrip}
           onCantripChange={onBonusCantripChange}
+          takenSpells={takenSpells}
         />
       )}
 

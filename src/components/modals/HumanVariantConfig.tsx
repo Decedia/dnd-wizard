@@ -7,6 +7,7 @@ import { getStaticFeats } from "@/lib/srd-client";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { SRDFeat } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
+import { getTakenSpellNames } from "@/lib/taken-spells";
 
 const ABILITY_OPTIONS = [
   { id: "str", label: "STR" },
@@ -230,6 +231,12 @@ export function HumanVariantConfig({
           sources={sources || []}
           disabledFeats={disabledFeats}
           character={character as Character}
+          takenSpells={(() => {
+            // This feat's own picks stay pickable when it is changed.
+            const own = new Set(Object.values(featOptions || {}).map((v) => v.toLowerCase()));
+            const { ["variant-human-feat-options"]: _own, ...rest } = (character as Character)?.featureSelections || {};
+            return new Set([...getTakenSpellNames({ ...(character as Character), featureSelections: rest })].filter((n) => !own.has(n)));
+          })()}
           onSelect={(selected: SRDFeat, selectedOptions?: Record<string, string>) => {
             selectFeat(selected.name);
             setFeatOptions(

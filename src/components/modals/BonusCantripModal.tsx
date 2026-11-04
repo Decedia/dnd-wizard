@@ -7,12 +7,15 @@ import { BottomSheet } from "@/components/modals/BottomSheet";
 import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
 import { getSpellSchoolStyle } from "@/lib/spell-schools";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { isSpellTakenElsewhere } from "@/lib/taken-spells";
 
 interface BonusCantripModalProps {
   isOpen: boolean;
   onClose: () => void;
   selectedCantrip: string;
   onCantripChange: (cantrip: string) => void;
+  /** Spells the character already has; those can't be picked again. */
+  takenSpells?: Set<string>;
 }
 
 export function BonusCantripModal({
@@ -20,6 +23,7 @@ export function BonusCantripModal({
   onClose,
   selectedCantrip,
   onCantripChange,
+  takenSpells,
 }: BonusCantripModalProps) {
   const { t, language } = useLanguage();
   const [searchQuery, setSearchQuery] = useState("");
@@ -72,6 +76,7 @@ export function BonusCantripModal({
         )}
         {filteredCantrips.map((sp) => {
           const isSelected = selectedCantrip === sp.name;
+          const isKnown = !!takenSpells && isSpellTakenElsewhere(takenSpells, sp.name, [selectedCantrip]);
           const rawDesc = sp.description;
           const desc = Array.isArray(rawDesc) ? rawDesc.join(" ") : (rawDesc || "");
           const schoolLabel = sp.school
@@ -85,9 +90,10 @@ export function BonusCantripModal({
             <SplitSelectionCard
               key={sp.name}
               title={sp.name}
-              subtitle={subtitleText}
+              subtitle={isKnown ? t("sheet.alreadyKnown", "Already known") : subtitleText}
               isSelected={isSelected}
-              onSelect={() => handleSelect(sp.name)}
+              disabled={isKnown}
+              onSelect={() => !isKnown && handleSelect(sp.name)}
               infoType="modal"
               modalContent={<p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{desc}</p>}
             />

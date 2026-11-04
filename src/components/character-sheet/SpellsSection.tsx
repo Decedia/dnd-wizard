@@ -19,6 +19,7 @@ import { BottomSheet } from "@/components/modals/BottomSheet";
 import { DiceText } from "@/components/DiceText";
 import { buildDataset, findEngineFeature } from "@/data/engine/index";
 import { getFeatSpellSelections, type SpellGrantSelection } from "@/lib/feat-spell-grants";
+import { getTakenSpellNames } from "@/lib/taken-spells";
 
 interface SpellsSectionProps {
   character: Character;
@@ -311,9 +312,11 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
     return filtered;
   };
 
+  const takenSpells = getTakenSpellNames(character);
+
   const addFeatSpell = (featEngineId: string, selection: SpellGrantSelection, spellName: string) => {
     const spellEntry = getSpellForSelection(selection).find((s) => s.name === spellName);
-    if (!spellEntry) return;
+    if (!spellEntry || takenSpells.has(spellEntry.name.toLowerCase())) return;
     const featId = featEngineId.replace(/\./g, "_");
     const id = `spell-${spellEntry.index || spellEntry.name}-${selection.level}-${featId}`;
     const newSpell = {
@@ -430,9 +433,8 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                         </div>
                         <div className="flex flex-wrap gap-1.5">
                           {spells.map((s) => {
-                            const already = featGrantedSpells.some(
-                              (f) => f.spell.name === s.name && f.spell.level === s.level
-                            );
+                            // Known from any source (class, feat, subclass, race): no second copy.
+                            const already = takenSpells.has(s.name.toLowerCase());
                             const disabled = already || sel.chosen >= sel.selection.count;
                             return (
                               <button
