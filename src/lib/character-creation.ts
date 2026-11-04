@@ -1,5 +1,6 @@
 import { createEmptyCharacter, saveCharacter, computeDerivedStats, generateId, getFeatureValue, getMaxHpFromLevelHp, getSpellSlotTable, SKILLS, type Character } from "./storage";
 import { LANGUAGE_NAMES } from "@/data/feat-options";
+import { applyFeatGrants, decodeFeatOptions } from "./feat-grants";
 import { getRaceAsi, getRaceSkills, isFlexAsiValid } from "./race-grants";
 import { engineIdFor } from "@/lib/feature-engine";
 import { getStaticClass, getStaticRace, getStaticSubclasses, getStaticEquipments, getStaticWeapons, getStaticArmors, getStaticItems, getStaticFeat, getStaticSpells, getSubclassSpellGrants as getJsonSubclassSpellGrants } from "./srd-client";
@@ -1342,6 +1343,7 @@ export async function finalizeCreation(character: Character, language = "en"): P
 
     const featName = final.featureSelections?.["variant-human-feat"]?.[0];
     if (featName) {
+      final = applyFeatGrants(final, featName, decodeFeatOptions(final.featureSelections?.["variant-human-feat-options"]));
       const featData = getStaticFeat(featName);
       if (featData && !final.features.some((f) => f.name === featName)) {
         final = {
@@ -1431,6 +1433,7 @@ export function rebuildDerived(character: Character, language = "en"): Character
     raceChoices: character.raceChoices,
     variantHumanAbilities: character.variantHumanAbilities,
     variantHumanSkill: character.variantHumanSkill,
+    bonusSaves: character.bonusSaves,
     appliedAsi: character.appliedAsi,
     inventory: character.inventory,
     spells: character.spells,
@@ -1573,6 +1576,7 @@ export function recreateCharacter(character: Character, language = "en"): Charac
     raceChoices: { ...(character.raceChoices ?? {}) },
     variantHumanAbilities: character.variantHumanAbilities,
     variantHumanSkill: character.variantHumanSkill,
+    bonusSaves: [...(character.bonusSaves ?? [])],
     appliedAsi: [...(character.appliedAsi ?? [])],
     spells: [...(character.spells ?? [])],
     cantrips: [...(character.cantrips ?? [])],

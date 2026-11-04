@@ -21,6 +21,8 @@ export interface FeatOptionSpellFilter {
   classFromOptionId?: string;
   /** Only include spells tagged as rituals (Ritual Caster). */
   ritualOnly?: boolean;
+  /** Only include spells of these schools (Fey Touched, Shadow Touched). */
+  schools?: string[];
 }
 
 export interface FeatOptionGroup {
@@ -256,7 +258,67 @@ const repeated = (
   return out;
 };
 
+/** "+1 to one of these abilities" picker. */
+const abilityGroup = (...keys: string[]): FeatOptionGroup =>
+  optionGroup("ability", "feat.opt.abilityScore", "Ability Score", ABILITIES.filter((a) => keys.includes(a.value)));
+
+const ALL_ABILITIES = ["str", "dex", "con", "int", "wis", "cha"];
+
+const ARTISAN_TOOLS = TOOLS.filter((tool) => /Supplies|Tools|Utensils/.test(tool.value) && tool.value !== "Thieves' Tools" && tool.value !== "Navigator's Tools");
+
+const WEAPONS: FeatOptionChoice[] = [
+  "Club", "Dagger", "Greatclub", "Handaxe", "Javelin", "Light Hammer", "Mace", "Quarterstaff", "Sickle", "Spear",
+  "Light Crossbow", "Dart", "Shortbow", "Sling",
+  "Battleaxe", "Flail", "Glaive", "Greataxe", "Greatsword", "Halberd", "Lance", "Longsword", "Maul", "Morningstar",
+  "Pike", "Rapier", "Scimitar", "Shortsword", "Trident", "War Pick", "Warhammer", "Whip",
+  "Blowgun", "Hand Crossbow", "Heavy Crossbow", "Longbow", "Net",
+].map((name) => ({ value: name, label: name }));
+
 const FEAT_OPTIONS: Record<string, FeatOptionGroup[]> = {
+  Athlete: [abilityGroup("str", "dex")],
+  "Lightly Armored": [abilityGroup("str", "dex")],
+  "Moderately Armored": [abilityGroup("str", "dex")],
+  Observant: [abilityGroup("int", "wis")],
+  "Tavern Brawler": [abilityGroup("str", "con")],
+  "Weapon Master": repeated([
+    abilityGroup("str", "dex"),
+    optionGroup("weapon", "feat.opt.weapon", "Weapon", WEAPONS, 4),
+  ]),
+  "Dragon Fear": [abilityGroup("str", "con", "cha")],
+  "Dragon Hide": [abilityGroup("str", "con", "cha")],
+  "Elven Accuracy": [abilityGroup("dex", "int", "wis", "cha")],
+  "Fade Away": [abilityGroup("dex", "int")],
+  "Fey Teleportation": [abilityGroup("int", "cha")],
+  "Flames of Phlegethos": [abilityGroup("int", "cha")],
+  "Orcish Fury": [abilityGroup("str", "con")],
+  "Second Chance": [abilityGroup("dex", "con", "cha")],
+  "Squat Nimbleness": [
+    abilityGroup("str", "dex"),
+    optionGroup("skill", "feat.opt.skill", "Skill", SKILLS.filter((s) => s.value === "Acrobatics" || s.value === "Athletics")),
+  ],
+  "Wood Elf Magic": [spellGroup("cantrip", "feat.opt.cantrip", "Cantrip", { level: 0, classes: ["druid"] })],
+  "Artificer Initiate": [
+    spellGroup("cantrip", "feat.opt.cantrip", "Cantrip", { level: 0, classes: ["artificer"] }),
+    spellGroup("first_level_spell", "feat.opt.firstLevelSpell", "1st-Level Spell", { level: 1, classes: ["artificer"] }),
+    optionGroup("tool", "feat.opt.tool", "Tool", ARTISAN_TOOLS),
+  ],
+  Chef: [abilityGroup("con", "wis")],
+  Crusher: [abilityGroup("str", "con")],
+  "Fey Touched": [
+    abilityGroup("int", "wis", "cha"),
+    spellGroup("first_level_spell", "feat.opt.firstLevelSpell", "1st-Level Spell", { level: 1, schools: ["Divination", "Enchantment"] }),
+  ],
+  Piercer: [abilityGroup("str", "dex")],
+  "Shadow Touched": [
+    abilityGroup("int", "wis", "cha"),
+    spellGroup("first_level_spell", "feat.opt.firstLevelSpell", "1st-Level Spell", { level: 1, schools: ["Illusion", "Necromancy"] }),
+  ],
+  Slasher: [abilityGroup("str", "dex")],
+  Telekinetic: [abilityGroup("int", "wis", "cha")],
+  Telepathic: [abilityGroup("int", "wis", "cha")],
+  "Revenant Blade": [abilityGroup("str", "dex")],
+  "Gift of the Gem Dragon": [abilityGroup("int", "wis", "cha")],
+
   "Aberrant Dragonmark": repeated([
     {
       id: "cantrip",
@@ -286,14 +348,6 @@ const FEAT_OPTIONS: Record<string, FeatOptionGroup[]> = {
 
   "Fighting Initiate": repeated([
     optionGroup("fighting_style", "feat.opt.fightingStyle", "Fighting Style", FIGHTING_STYLES),
-  ]),
-
-  "Gift of the Chromatic Dragon": repeated([
-    optionGroup("ability", "feat.opt.abilityScore", "Ability Score", ABILITIES),
-  ]),
-
-  "Gift of the Metallic Dragon": repeated([
-    optionGroup("ability", "feat.opt.abilityScore", "Ability Score", ABILITIES),
   ]),
 
   "Divinely Favored": repeated([
@@ -347,7 +401,12 @@ const FEAT_OPTIONS: Record<string, FeatOptionGroup[]> = {
     optionGroup("metamagic", "feat.opt.metamagic", "Metamagic", METAMAGIC, 2),
   ]),
 
-  Prodigy: repeated([optionGroup("skill", "feat.opt.skill", "Skill", SKILLS)]),
+  Prodigy: [
+    optionGroup("skill", "feat.opt.skill", "Skill", SKILLS),
+    optionGroup("tool", "feat.opt.tool", "Tool", TOOLS),
+    optionGroup("language", "feat.opt.language", "Language", LANGUAGES),
+    optionGroup("expertise", "feat.opt.expertise", "Expertise", SKILLS),
+  ],
 
   Resilient: repeated([
     optionGroup("ability", "feat.opt.abilityScore", "Ability Score", ABILITIES),
@@ -369,7 +428,11 @@ const FEAT_OPTIONS: Record<string, FeatOptionGroup[]> = {
     optionGroup("skill_or_tool", "feat.opt.skillOrTool", "Skill or Tool", [...SKILLS, ...TOOLS], 3),
   ]),
 
-  "Skill Expert": repeated([optionGroup("skill", "feat.opt.skill", "Skill", SKILLS)]),
+  "Skill Expert": [
+    abilityGroup(...ALL_ABILITIES),
+    optionGroup("skill", "feat.opt.skill", "Skill", SKILLS),
+    optionGroup("expertise", "feat.opt.expertise", "Expertise", SKILLS),
+  ],
 
   "Spell Sniper": repeated([
     {

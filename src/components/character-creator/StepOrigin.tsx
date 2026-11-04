@@ -1,5 +1,6 @@
 "use client";
 
+import { encodeFeatOptions } from "@/lib/feat-grants";
 import { useState, useCallback } from "react";
 import { Sword, Users, CaretRight, Person, Sparkle, Shield, Leaf, Hand, Brain, Skull, Flame, Lightning, Hammer, Scroll } from "@phosphor-icons/react";
 import { getStaticClasses, getStaticRaces, type SRDClass, type SRDRace } from "@/lib/srd-client";
@@ -164,11 +165,12 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
           featureSelections: {
             ...data.featureSelections,
             "variant-human-feat": newFeat ? [newFeat] : [],
+            "variant-human-feat-options": newFeat ? encodeFeatOptions(payload.configChoice?.featureData?.featOptions) : [],
           },
         } : { 
           variantHumanAbilities: undefined, 
           variantHumanSkill: undefined, 
-          featureSelections: { ...data.featureSelections, "variant-human-feat": [] } 
+          featureSelections: { ...data.featureSelections, "variant-human-feat": [], "variant-human-feat-options": [] } 
         }),
         // Half-Elf selections are stored on the character so the abilities step
         // and the final rebuild can see them, and are cleared when leaving the

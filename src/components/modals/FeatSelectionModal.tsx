@@ -159,6 +159,10 @@ export function FeatSelectionModal({
     if (filter.ritualOnly) {
       spells = spells.filter((spell) => spell.ritual);
     }
+    if (filter.schools?.length) {
+      const schools = new Set(filter.schools.map((school) => school.toLowerCase()));
+      spells = spells.filter((spell) => schools.has(String(spell.school).toLowerCase()));
+    }
     const takenByOtherGroups = new Set(
       Object.entries(optionSelections)
         .filter(([optionId]) => optionId !== spellTarget.optionId)
@@ -422,7 +426,11 @@ export function FeatSelectionModal({
                         const isValueTakenElsewhere = (value?: string) =>
                           !!value &&
                           Object.entries(optionSelections).some(
-                            ([optionId, current]) => optionId !== group.id && current === value,
+                            // Only repeats of the same pick clash: a skill can also take expertise.
+                            ([optionId, current]) =>
+                              optionId !== group.id &&
+                              optionId.replace(/_\d+$/, "") === group.id.replace(/_\d+$/, "") &&
+                              current === value,
                           );
 
                         if (group.type === "spell") {
