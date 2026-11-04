@@ -12,6 +12,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
 import { getMaxSpellLevel, getWarlockExpandedSpellNames } from "@/lib/storage";
 import { getGrantedSpellNames } from "@/lib/granted-spells";
+import { getTakenSpellNames, isSpellTakenElsewhere } from "@/lib/taken-spells";
 
 function slugify(name: string): string {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
@@ -44,6 +45,8 @@ interface SpellSelectionModalProps {
   disabledSpells?: string[];
   /** The class level these picks are for; sets how many off-school picks a third caster has. */
   castingLevel?: number;
+  /** Spells the character already has from any source (see getTakenSpellNames); worked out from `character` when left out. */
+  takenSpells?: Set<string>;
 }
 
 const THIRD_CASTER_SCHOOLS: Record<string, string[]> = {
@@ -71,6 +74,7 @@ export function SpellSelectionModal({
   allKnownSpells = [],
   disabledSpells = [],
   castingLevel,
+  takenSpells,
 }: SpellSelectionModalProps) {
   const { t, tDesc, language } = useLanguage();
   const [activeTab, setActiveTab] = useState<"cantrips" | number>(mode === "spells" ? 1 : "cantrips");
@@ -167,6 +171,11 @@ export function SpellSelectionModal({
   const existingSpellNames = new Set((existingSpells || []).map(s => s.name));
   const earlierKnownSpellNames = new Set([...existingSpellNames, ...earlierSpellNames]);
   const disabledSpellNames = new Set((disabledSpells || []).map(s => s.split(":")[0]));
+  // A spell the character has from anywhere (another level, a feat, a subclass
+  // or race pick) can't be picked again. This picker's own picks stay toggleable.
+  const taken = takenSpells ?? getTakenSpellNames(character);
+  const ownPicks = onChange ? (character.spells || []).map((s) => s.name) : selectedSpells;
+  const takenElsewhere = (name: string) => isSpellTakenElsewhere(taken, name, ownPicks);
 
   // Eldritch Knight and Arcane Trickster spells come from two schools, except
   // one free pick at 3rd level and one more at 8th, 14th and 20th.
@@ -190,7 +199,7 @@ export function SpellSelectionModal({
 
   const toggle = (name: string, level: number) => {
     const isDisabled = disabledSpellNames.has(name);
-    if (isDisabled) return;
+    if (isDisabled || takenElsewhere(name)) return;
     const alreadyPicked = onChange ? (character.spells || []).some(s => s.name === name && s.level === level) : selectedSpells.includes(`${name}:${level}`);
     if (!alreadyPicked && schoolBlocked(name, level)) return;
 
@@ -252,8 +261,8 @@ export function SpellSelectionModal({
 
   const renderSpell = (sp: any) => {
     const level = sp.level ?? 0;
-    const isAlreadyKnown = level === 0 ? alreadyKnownCantripNames.has(sp.name) : earlierKnownSpellNames.has(sp.name);
     const isDisabled = disabledSpellNames.has(sp.name);
+    const isAlreadyKnown = (level === 0 ? alreadyKnownCantripNames.has(sp.name) : earlierKnownSpellNames.has(sp.name)) || (!isDisabled && takenElsewhere(sp.name));
     const isSel = level === 0 ? selectedCantripNames.has(sp.name) : selectedSpellNames.has(sp.name);
     const maxForLevel = level === 0 ? (onChange ? maxCantripsKnown : cantripCount) : (onChange ? maxSpellsKnown : count);
     const wrongSchool = !isSel && !isAlreadyKnown && schoolBlocked(sp.name, level);

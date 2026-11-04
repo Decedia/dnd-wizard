@@ -1,5 +1,6 @@
 "use client";
 
+import { getTakenSpellNames } from "@/lib/taken-spells";
 import { useState, useMemo } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
@@ -1025,6 +1026,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
            isSubclass={currentChoice.source === "subclass"}
            onSelect={handleChoiceSelect}
            selectedValues={[]}
+           takenSpells={getTakenSpellNames(character)}
          />
        )}
     </SectionCard>

@@ -5,6 +5,8 @@ import { getStaticSpells, getWizardSpellsByLevel } from "@/lib/srd-client";
 import { XIcon as X } from "@/components/icons";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { isSpellTakenElsewhere } from "@/lib/taken-spells";
 
 interface FeatureSelectionModalProps {
   isOpen: boolean;
@@ -18,6 +20,8 @@ interface FeatureSelectionModalProps {
   onSpecialOption?: (optName: string) => void;
   characterSources?: string[];
   selectedValues?: string[];
+  /** Spells the character already has (getTakenSpellNames). An option naming one is shown as known and can't be picked. */
+  takenSpells?: Set<string>;
 }
 
 export function FeatureSelectionModal({
@@ -32,7 +36,9 @@ export function FeatureSelectionModal({
   onSpecialOption,
   characterSources = [],
   selectedValues = [],
+  takenSpells,
 }: FeatureSelectionModalProps) {
+  const { t } = useLanguage();
   const [featureSelections, setFeatureSelections] = useState<string[]>(() => selectedValues);
   const isMultiSelect = count > 1;
 
@@ -98,14 +104,15 @@ export function FeatureSelectionModal({
         {options.map((opt, idx) => {
           const isSelected = isMultiSelect ? featureSelections.includes(opt.name) : false;
           const isMaxed = isMultiSelect && !isSelected && featureSelections.length >= count;
-          const isUnavailable = !!opt.disabled;
+          const isKnown = !!takenSpells && isSpellTakenElsewhere(takenSpells, opt.name, [...selectedValues, ...featureSelections]);
+          const isUnavailable = !!opt.disabled || isKnown;
           const isDisabled = isMaxed || isUnavailable;
           const icon = opt.icon || getOptionIcon(opt.name);
           return (
             <SplitSelectionCard
               key={idx}
               title={opt.name}
-              subtitle={opt.description}
+              subtitle={isKnown ? t("sheet.alreadyKnown", "Already known") : opt.description}
               icon={icon ? <span className="text-[22px] leading-none">{icon}</span> : undefined}
               badges={[]}
               isSelected={isSelected}
