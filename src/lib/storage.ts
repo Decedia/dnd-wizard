@@ -938,6 +938,23 @@ export function getHpBonusPerLevel(character: Character): number {
     (character.class === "Sorcerer" && character.subclass === "Draconic Bloodline" ? 1 : 0);
 }
 
+/**
+ * Passive Perception, Insight or Investigation: 10 + ability modifier +
+ * proficiency (twice with expertise). Observant adds 5 to Perception and
+ * Investigation.
+ */
+export function getPassiveScore(
+  character: Pick<Character, "level" | "wis" | "int" | "skills" | "expertise" | "features">,
+  skill: "Perception" | "Insight" | "Investigation"
+): number {
+  const profBonus = getProficiencyBonus(character.level || 1);
+  const proficient = character.skills?.[skill] ?? false;
+  const expert = proficient && (character.expertise || []).includes(skill);
+  const ability = skill === "Investigation" ? character.int : character.wis;
+  const observant = skill !== "Insight" && hasFeat(character as Character, "feat.observant");
+  return 10 + getModifier(ability) + (proficient ? profBonus : 0) + (expert ? profBonus : 0) + (observant ? 5 : 0);
+}
+
 function hasFeat(character: Character, engineId: string): boolean {
   const name = engineId.replace(/^feat\./, "").replace(/_/g, " ");
   return (character.features ?? []).some((f) => {
@@ -1006,12 +1023,7 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   // Alert: +5 initiative.
   const initiative = getModifier(character.dex) + (hasFeat(character, "feat.alert") ? 5 : 0);
 
-  const perceptionProficient = character.skills["Perception"] ?? false;
-  const perceptionExpert = perceptionProficient && (character.expertise || []).includes("Perception");
-  // Observant: +5 passive Perception.
-  const passivePerception =
-    10 + getModifier(character.wis) + (perceptionProficient ? profBonus : 0) + (perceptionExpert ? profBonus : 0) +
-    (hasFeat(character, "feat.observant") ? 5 : 0);
+  const passivePerception = getPassiveScore(character, "Perception");
 
   // Fighters and rogues only cast with Eldritch Knight or Arcane Trickster.
   const castsWithoutSubclass = character.class !== "Fighter" && character.class !== "Rogue";

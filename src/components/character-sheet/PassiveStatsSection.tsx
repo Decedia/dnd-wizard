@@ -3,26 +3,19 @@
 import { SectionCard } from "./SectionCard";
 import { EyeIcon as Eye, EarIcon as Ear, ShieldIcon as Shield, BrainIcon as Brain } from "@/components/icons";
 import type { Character } from "@/lib/storage";
-import { getModifier, getProficiencyBonus } from "@/lib/storage";
+import { getPassiveScore } from "@/lib/storage";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 interface PassiveStatsSectionProps {
-  character: Pick<Character, "level" | "wis" | "int" | "skills" | "passivePerception">;
+  character: Pick<Character, "level" | "wis" | "int" | "skills" | "expertise" | "features" | "passivePerception">;
 }
 
 export function PassiveStatsSection({ character }: PassiveStatsSectionProps) {
   const { t } = useLanguage();
-  const profBonus = getProficiencyBonus(character.level);
-  const wisMod = getModifier(character.wis);
-  const intMod = getModifier(character.int);
-
-  const isPerceptionProficient = character.skills["Perception"] ?? false;
-  const isInsightProficient = character.skills["Insight"] ?? false;
-  const isInvestigationProficient = character.skills["Investigation"] ?? false;
-
-  const passivePerception = 10 + wisMod + (isPerceptionProficient ? profBonus : 0);
-  const passiveInsight = 10 + wisMod + (isInsightProficient ? profBonus : 0);
-  const passiveInvestigation = 10 + intMod + (isInvestigationProficient ? profBonus : 0);
+  // Same rules as the derived stats: expertise and Observant count.
+  const passivePerception = getPassiveScore(character, "Perception");
+  const passiveInsight = getPassiveScore(character, "Insight");
+  const passiveInvestigation = getPassiveScore(character, "Investigation");
 
   return (
     <SectionCard id="passive-stats" title={t("section.passiveStats")} icon={<Eye className="h-5 w-5" />}>
