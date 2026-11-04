@@ -18,6 +18,8 @@ const MANIFEST = path.join(ROOT, "scripts", "data", "subclass-manifest.txt");
 const CLASS_MANIFEST = path.join(ROOT, "scripts", "data", "class-feature-manifest.txt");
 const DATA = path.join(ROOT, "src", "data", "en", "2014_subclasses.json");
 const CLASS_DATA = path.join(ROOT, "src", "data", "en", "2014_classes.json");
+const CHOICE_MANIFEST = path.join(ROOT, "scripts", "data", "subclass-choice-manifest.txt");
+const CHOICE_DATA = path.join(ROOT, "src", "data", "subclass_feature_choices.json");
 
 const args = new Set(process.argv.slice(2));
 const md = args.has("--md");
@@ -238,7 +240,86 @@ if (classOut.length) {
   }
 }
 
-const gaps = totals.missing + totals.level + totals.name + totals.extra + totals.source + totals.missingSubclass + totals.extraSubclass;
+// Subclass choices: every build-time pick in subclass-choice-manifest.txt.
+function parseChoiceManifest(text) {
+  const out = [];
+  let cls = null;
+  let sub = null;
+  text.split(/\r?\n/).forEach((raw, i) => {
+    const line = raw.replace(/\s+$/, "");
+    if (!line.trim() || line.trim().startsWith("#")) return;
+    const uncertain = / \?$/.test(line);
+    const body = line.replace(/ \?$/, "");
+    let m;
+    if ((m = body.match(/^\[(.+)\]$/))) cls = m[1];
+    else if ((m = body.match(/^(\S.*)$/))) sub = { name: m[1], uncertain };
+    else if ((m = body.match(/^\s+(\d+) (.+?) = (\w+) x(\d+)(?:: (.+))?$/))) {
+      out.push({
+        cls, sub: sub.name, level: Number(m[1]), feature: m[2], kind: m[3], count: Number(m[4]),
+        options: m[5] ? m[5].split(";").map((o) => o.trim()) : null,
+        uncertain: sub.uncertain || uncertain,
+      });
+    } else throw new Error(`choice manifest line ${i + 1}: cannot parse "${raw}"`);
+  });
+  return out;
+}
+
+const PLACEHOLDER = /^(spell\d*|cantrip\d*|terrain|skill\d*|option\d*)$/i;
+/** "Dragon Ancestor: Black - Acid Damage" -> "black"; "Fighting Style: Archery" -> "archery". */
+const optKey = (s) => featKey(String(s).split(":").pop().split(" - ")[0]);
+
+const choiceWant = parseChoiceManifest(fs.readFileSync(CHOICE_MANIFEST, "utf8"));
+const choiceExtra = JSON.parse(fs.readFileSync(CHOICE_DATA, "utf8"));
+const choiceOut = new Map();
+let choiceGaps = 0;
+for (const w of choiceWant) {
+  const have = data.find((s) => s.class === w.cls && subKey(s.name) === subKey(w.sub));
+  if (!have) continue; // already reported as a missing subclass
+  const merged = (have.features || []).map((f) => {
+    const extra = choiceExtra?.[w.cls]?.[have.name]?.[f.name];
+    const choices = extra && Array.isArray(extra.options) ? extra.options : f.choices;
+    const count = extra && typeof extra.count === "number" ? extra.count : f.choicesCount;
+    return { name: f.name, level: f.level, choices: Array.isArray(choices) ? choices.map((c) => c.name ?? c) : null, count: count ?? 1 };
+  });
+  const wantKeys = (w.options || []).map(optKey);
+  let f = merged.find((x) => x.choices?.length && featKey(x.name) === featKey(w.feature));
+  if (!f && wantKeys.length) {
+    f = merged.find((x) => x.choices?.length && x.level === w.level && x.choices.filter((c) => wantKeys.includes(optKey(c))).length * 2 >= wantKeys.length);
+  }
+  const lines = [];
+  if (!f) {
+    lines.push(`No picker: level ${w.level} ${w.feature} (${w.kind}, pick ${w.count})`);
+  } else {
+    const label = `level ${w.level} ${w.feature}${featKey(f.name) !== featKey(w.feature) ? ` (data: "${f.name}")` : ""}`;
+    const placeholders = f.choices.filter((c) => PLACEHOLDER.test(String(c)));
+    if (placeholders.length) lines.push(`Placeholder options: ${label} offers "${placeholders.join('", "')}" instead of real ${w.kind}`);
+    if (f.count !== w.count) lines.push(`Wrong count: ${label} picks ${f.count}, should pick ${w.count}`);
+    if (w.options) {
+      const haveKeys = f.choices.map(optKey);
+      const missing = w.options.filter((o) => !haveKeys.includes(optKey(o)));
+      const extra = f.choices.filter((c) => !wantKeys.includes(optKey(c)) && !PLACEHOLDER.test(String(c)));
+      if (missing.length) lines.push(`Missing options: ${label}: ${missing.join(", ")}`);
+      if (extra.length) lines.push(`Options not in manifest: ${label}: ${extra.join(", ")}`);
+    }
+  }
+  if (!lines.length) continue;
+  choiceGaps += lines.length;
+  const key = `${w.cls}|${have.name}`;
+  if (!choiceOut.has(key)) choiceOut.set(key, { title: `${w.cls}: ${have.name}`, uncertain: w.uncertain, lines: [] });
+  choiceOut.get(key).lines.push(...lines.map((l) => l + (w.uncertain ? " [check book]" : "")));
+}
+if (choiceOut.size) {
+  say(md ? "## Subclass choices" : "[Subclass choices]");
+  say();
+  for (const s of choiceOut.values()) {
+    say(md ? `**${s.title}**` : `  ${s.title}`);
+    if (md) say();
+    for (const l of s.lines) say(md ? `- ${l}` : `    - ${l}`);
+    say();
+  }
+}
+
+const gaps = choiceGaps + totals.missing + totals.level + totals.name + totals.extra + totals.source + totals.missingSubclass + totals.extraSubclass;
 const summary = [
   `Subclasses in manifest: ${checked}, matching the data exactly: ${clean}`,
   `Missing subclasses: ${totals.missingSubclass}`,
@@ -248,6 +329,7 @@ const summary = [
   `Features with the wrong name: ${totals.name}`,
   `Features not in manifest: ${totals.extra}`,
   `Wrong source tags: ${totals.source}`,
+  `Subclass choice problems: ${choiceGaps} (of ${choiceWant.length} choices in the manifest)`,
 ];
 say(md ? "## Totals" : "TOTALS");
 say();
