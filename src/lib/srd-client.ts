@@ -40,11 +40,7 @@ import equipmentsDataEn from "@/data/en/2014_equipments.json";
 import equipmentsDataId from "@/data/id/2014_equipments.json";
 const equipmentsDataMap = { en: equipmentsDataEn, id: equipmentsDataId } as const;
 
-import wizardSpellsDataEn from "@/data/en/2014_wizard_spells.json";
-import wizardSpellsDataId from "@/data/id/2014_wizard_spells.json";
-const wizardSpellsDataMap = { en: wizardSpellsDataEn, id: wizardSpellsDataId } as const;
 
-import arcaneTricksterSpellsData from "@/data/arcane_trickster_spells.json";
 
 import featsDataEn from "@/data/en/2014_feats.json";
 import featsDataId from "@/data/id/2014_feats.json";
@@ -837,13 +833,11 @@ export function applySpellLocalesOverrides(spells: any[], locale: string = "en")
   });
 }
 
+/** The wizard spell list, read from the main spell data so the two can't drift apart. */
 export function getStaticWizardSpells(sources?: string[], locale: string = "en"): SRDWizardSpell[] {
-  const wizardSpellsData = pickLocaleData(wizardSpellsDataMap, locale) as any;
-  const raw = (wizardSpellsData as any).spells || [];
-  const spells: SRDWizardSpell[] = raw.map(normalizeSpell);
-  const filtered = applySpellLocalesOverrides(spells, locale);
-  if (!sources || sources.length === 0) return filtered;
-  return filtered.filter((s) => sources.includes(s.source || "PHB"));
+  return getStaticSpells(sources, undefined, locale).filter((s) =>
+    (s.classes || []).some((c) => String(c).toLowerCase() === "wizard"),
+  ) as unknown as SRDWizardSpell[];
 }
 
 export function getStaticWizardSpell(name: string, locale: string = "en"): SRDWizardSpell | undefined {
@@ -854,22 +848,15 @@ export function getWizardSpellNames(sources?: string[], locale: string = "en"): 
   return getStaticWizardSpells(sources, locale).map((s) => s.name);
 }
 
+/** Arcane Tricksters learn wizard spells. */
 export function getStaticArcaneTricksterSpells(locale: string = "en"): SRDWizardSpell[] {
-  const raw = (arcaneTricksterSpellsData as any).spells || [];
-  const spells: SRDWizardSpell[] = raw.map(normalizeSpell);
-  return applySpellLocalesOverrides(spells, locale);
+  return getStaticWizardSpells([], locale);
 }
 
 export function getClassSpells(classOrSubclassId: string, locale: string = "en"): SRDSpell[] {
   const lower = classOrSubclassId.toLowerCase().replace(/[\s-]+/g, "_");
-  const dataFiles: Record<string, any> = {
-    "arcane_trickster": arcaneTricksterSpellsData,
-  };
-  const source = dataFiles[lower];
-  if (!source) return [];
-  const raw = (source as any).spells || [];
-  const spells = raw.map(normalizeSpell);
-  return applySpellLocalesOverrides(spells, locale);
+  if (lower === "arcane_trickster") return getStaticWizardSpells([], locale) as unknown as SRDSpell[];
+  return [];
 }
 
 export function getStaticFeats(sources?: string[], ruleset?: string, locale: string = "en"): SRDFeat[] {

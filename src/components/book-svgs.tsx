@@ -113,6 +113,11 @@ export const BookPatterns = {
       <path d="M60,16 L100,4 L140,16" fill="none" stroke="#fff" strokeWidth="0.8" opacity="0.12" />
     </svg>
   ),
+  SCC: (
+    <svg width="100%" height="100%" viewBox="0 0 200 72" preserveAspectRatio="xMidYMid slice">
+      <path d="M70,56 L100,16 L130,56 Z M85,56 L85,40 L115,40 L115,56" fill="none" stroke="#fff" strokeWidth="1.2" opacity="0.12" />
+    </svg>
+  ),
   MPMM: (
     <svg width="100%" height="100%" viewBox="0 0 200 72" preserveAspectRatio="xMidYMid slice">
       <circle cx="100" cy="36" r="32" fill="none" stroke="#fff" strokeWidth="1.2" opacity="0.12" />
@@ -142,6 +147,7 @@ export const BookEmojis: Record<string, string> = {
   TTP: "🐢",
   MOoT: "🏛️",
   GGR: "🏙️",
+  SCC: "🎓",
 };
 
 export type BookId = keyof typeof BookPatterns;

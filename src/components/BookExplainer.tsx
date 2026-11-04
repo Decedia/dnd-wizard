@@ -25,6 +25,7 @@ const BOOK_DESCRIPTIONS: Record<BookId, string> = {
   TTP: "The Tortle Package is a short supplement that adds the tortle race.",
   MOoT: "Mythic Odysseys of Theros presents a Greek-myth setting, with the centaur, minotaur, satyr and leonin races and new subclasses.",
   GGR: "Guildmasters' Guide to Ravnica presents the Ravnica setting, with races such as the loxodon, centaur, minotaur, simic hybrid and vedalken.",
+  SCC: "Strixhaven: A Curriculum of Chaos is set in a magic university, with new backgrounds, feats and spells such as silvery barbs.",
 };
 
 interface BookExplainerProps {

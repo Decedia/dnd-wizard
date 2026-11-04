@@ -23,6 +23,7 @@ const SOURCE_NAMES: Record<string, string> = {
   TTP: "The Tortle Package",
   MOoT: "Mythic Odysseys of Theros",
   GGR: "Guildmasters' Guide to Ravnica",
+  SCC: "Strixhaven: A Curriculum of Chaos",
   EEPC: "Elemental Evil Player's Companion",
   AAG: "Spelljammer: Astral Adventurer's Guide",
 };
@@ -79,6 +80,7 @@ export const SOURCE_OPTIONS = [
   { id: "TTP", name: "The Tortle Package" },
   { id: "MOoT", name: "Mythic Odysseys of Theros" },
   { id: "GGR", name: "Guildmasters' Guide to Ravnica" },
+  { id: "SCC", name: "Strixhaven: A Curriculum of Chaos" },
 ];
 
 export function getSourceName(source: string): string {

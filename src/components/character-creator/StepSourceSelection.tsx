@@ -151,6 +151,13 @@ const BOOK_SPECS: Record<
     stripColor: "#4db6ac",
     patternSvg: BookPatterns.GGR,
   },
+  SCC: {
+    name: "Strixhaven: A Curriculum of Chaos",
+    tags: ["Spells"],
+    color: "#4a148c",
+    stripColor: "#ba68c8",
+    patternSvg: BookPatterns.SCC,
+  },
 };
 
 const ALL_BOOK_IDS = SOURCE_OPTIONS.map((s) => s.id);
