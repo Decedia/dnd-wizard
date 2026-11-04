@@ -1,3 +1,4 @@
+import { decodePdfCharacterData } from "./pdf-data";
 import { jsPDF } from "jspdf";
 import type { Character } from "./storage";
 
@@ -344,6 +345,9 @@ export async function importCharacterFromPdf(file: File): Promise<Character> {
   try {
     const metadata = await pdf.getMetadata();
     const info = (metadata as any)?.info ?? {};
+    // Sheets from the current export carry the character in Keywords.
+    const fromKeywords = decodePdfCharacterData(info?.Keywords);
+    if (fromKeywords) return fromKeywords;
     const candidate =
       info?.[DND_WIZARD_MARKER] ??
       info?.["dnd-wizard-character"] ??
