@@ -118,6 +118,8 @@ const LANGUAGES: FeatOptionChoice[] = [
   { value: "Undercommon", label: "Undercommon" },
 ];
 
+export const LANGUAGE_NAMES: string[] = LANGUAGES.map((l) => l.value);
+
 const FIGHTING_STYLES: FeatOptionChoice[] = [
   { value: "Archery", label: "Archery" },
   { value: "Blind Fighting", label: "Blind Fighting" },

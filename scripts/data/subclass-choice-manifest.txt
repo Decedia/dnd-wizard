@@ -73,7 +73,7 @@ Rune Knight
 
 [Monk]
 Way of the Four Elements
-  3 Disciple of the Elements = options x2: Elemental Attunement; Fangs of the Fire Snake; Fist of Four Thunders; Fist of Unbroken Air; Rush of the Gale Spirits; Shape the Flowing River; Sweeping Cinder Strike; Water Whip; Clench of the North Wind; Gong of the Summit; Flames of the Phoenix; Mist Stance; Ride the Wind; Breath of Winter; Eternal Mountain Defense; River of Hungry Flame; Wave of Rolling Earth
+  3 Disciple of the Elements = options x1: Fangs of the Fire Snake; Fist of Four Thunders; Fist of Unbroken Air; Rush of the Gale Spirits; Shape the Flowing River; Sweeping Cinder Strike; Water Whip; Clench of the North Wind; Gong of the Summit; Flames of the Phoenix; Mist Stance; Ride the Wind; Breath of Winter; Eternal Mountain Defense; River of Hungry Flame; Wave of Rolling Earth
 Way of the Kensei
   3 Path of the Kensei = weapons x2
 

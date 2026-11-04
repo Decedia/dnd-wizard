@@ -82,7 +82,7 @@ export function SpellSelectionModal({
 
   const atFlags = character.subclassIndex ? getSubclassFlags(character.subclassIndex) : {};
   const isArcaneTrickster = atFlags.usesMageSpellList;
-  const effectiveMaxLevel = onChange ? (maxLevel ?? getMaxSpellLevel(character.class, character.level, character.ruleset)) : (maxLevel || 0);
+  const effectiveMaxLevel = onChange ? (maxLevel ?? getMaxSpellLevel(character.class, character.level, character.ruleset, subclassSelection || character.subclass)) : (maxLevel || 0);
   // A warlock patron's expanded spells join the list to choose from; the max
   // spell level filter below already gates them by level.
   const patronSpells = new Set(getWarlockExpandedSpellNames({ ...character, level: 20 }, subclassSelection || character.subclass).map((n) => n.toLowerCase()));

@@ -941,6 +941,9 @@
     "arcane-trickster": {
       "usesMageSpellList": true
     },
+    "eldritch-knight": {
+      "usesMageSpellList": true
+    },
     "bladesinging": {
       "grantsExtraAttack": true
     }

@@ -2216,11 +2216,6 @@
        "name": "Two-Weapon Fighting",
        "description": "When you engage in two-weapon fighting, you can add your ability modifier to the damage of the second attack.",
        "lastUpdated": "2026-09-29"
-      },
-      {
-       "name": "Great Weapon Fighting",
-       "description": "When you roll a 1 or 2 on a damage die for an attack you make with a melee weapon that you are wielding with two hands, you can reroll the die and must use the new roll.",
-       "lastUpdated": "2026-09-29"
       }
      ],
      "choicesCount": 1,
@@ -2519,18 +2514,6 @@
      "name": "Additional Magical Secrets",
      "description": "At 6th level, you learn two spells of your choice from any class. A spell you choose must be a cantrip or a spell of a level you can cast, as shown on the Bard table. The chosen spells count as bard spells for you but do not count against the number of bard spells you know.",
      "level": 6,
-     "choices": [
-      {
-       "name": "spell1",
-       "description": "Choose one spell from any class.",
-       "lastUpdated": "2026-09-29"
-      },
-      {
-       "name": "spell2",
-       "description": "Choose another spell from any class.",
-       "lastUpdated": "2026-09-29"
-      }
-     ],
      "featureType": "Active",
      "actionType": null,
      "uses": null,
@@ -5293,13 +5276,6 @@
      "name": "Bonus Cantrip",
      "description": "When you choose this circle at 2nd level, you learn one additional druid cantrip of your choice.",
      "level": 2,
-     "choices": [
-      {
-       "name": "cantrip",
-       "description": "Choose one additional druid cantrip",
-       "lastUpdated": "2026-09-29"
-      }
-     ],
      "featureType": "Active",
      "actionType": null,
      "uses": null,
@@ -5352,13 +5328,6 @@
      "name": "Circle Spells",
      "description": "Your mystical connection to the land infuses you with the ability to cast certain spells. At 3rd, 5th, 7th, and 9th level you gain access to circle spells connected to the land where you became a druid.\n\nChoose that land\u2014arctic, coast, desert, forest, grassland, mountain, or swamp\u2014and consult the associated list of spells.\n\nOnce you gain access to a circle spell, you always have it prepared, and it doesn't count against the number of spells you can prepare each day. If you gain access to a spell that doesn't appear on the druid spell list, the spell is nonetheless a druid spell for you.",
      "level": 3,
-     "choices": [
-      {
-       "name": "terrain",
-       "description": "Choose your terrain type (arctic, coast, desert, forest, grassland, mountain, swamp, underdark)",
-       "lastUpdated": "2026-09-29"
-      }
-     ],
      "featureType": "Active",
      "actionType": null,
      "uses": null,
@@ -5698,11 +5667,6 @@
        "lastUpdated": "2026-09-29"
       },
       {
-       "name": "Mind-Scrambling Arrow",
-       "description": "The target must make a Wisdom saving throw. On a failed save, the target cannot take reactions until the start of your next turn and must roll a **d6** to determine its behavior.",
-       "lastUpdated": "2026-09-29"
-      },
-      {
        "name": "Piercing Arrow",
        "description": "You make a ranged attack with the arrow as a normal ranged attack. The arrow passes through the target to another creature.",
        "lastUpdated": "2026-09-29"
@@ -5794,6 +5758,60 @@
      "lastUpdated": "2026-09-29"
     },
     {
+     "name": "Arcane Shot Options",
+     "description": "You learn one more Arcane Shot option of your choice.",
+     "level": 7,
+     "choicesCount": 2,
+     "featureType": "Passive",
+     "actionType": null,
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "You learn one more Arcane Shot option of your choice.",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Arcane Archer",
+      "level": 7
+     },
+     "book": "XGE",
+     "lastUpdated": "2026-11-04"
+    },
+    {
+     "name": "Arcane Shot Options",
+     "description": "You learn one more Arcane Shot option of your choice.",
+     "level": 10,
+     "choicesCount": 2,
+     "featureType": "Passive",
+     "actionType": null,
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "You learn one more Arcane Shot option of your choice.",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Arcane Archer",
+      "level": 10
+     },
+     "book": "XGE",
+     "lastUpdated": "2026-11-04"
+    },
+    {
      "name": "Ever-Ready Shot",
      "description": "Starting at 15th level, your magical archery is always at the ready. You regain all expended uses of your Arcane Shot feature when you finish a short or long rest.",
      "level": 15,
@@ -5818,6 +5836,60 @@
      },
      "book": "XGE",
      "lastUpdated": "2026-09-29"
+    },
+    {
+     "name": "Arcane Shot Options",
+     "description": "You learn one more Arcane Shot option of your choice.",
+     "level": 15,
+     "choicesCount": 2,
+     "featureType": "Passive",
+     "actionType": null,
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "You learn one more Arcane Shot option of your choice.",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Arcane Archer",
+      "level": 15
+     },
+     "book": "XGE",
+     "lastUpdated": "2026-11-04"
+    },
+    {
+     "name": "Arcane Shot Options",
+     "description": "You learn one more Arcane Shot option of your choice.",
+     "level": 18,
+     "choicesCount": 2,
+     "featureType": "Passive",
+     "actionType": null,
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "You learn one more Arcane Shot option of your choice.",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Arcane Archer",
+      "level": 18
+     },
+     "book": "XGE",
+     "lastUpdated": "2026-11-04"
     }
    ],
    "source": "XGE",
@@ -6160,6 +6232,32 @@
      "lastUpdated": "2026-09-29"
     },
     {
+     "name": "Combat Superiority",
+     "description": "You learn two more maneuvers of your choice.",
+     "level": 7,
+     "featureType": "Passive",
+     "actionType": null,
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "You learn two more maneuvers of your choice.",
+     "grantsSpells": false,
+     "grantsAttack": true,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Battle Master",
+      "level": 7
+     },
+     "book": "PHB",
+     "lastUpdated": "2026-11-04"
+    },
+    {
      "name": "Improved Combat Superiority (d10)",
      "description": "At 10th level, your superiority dice turn into **d10s**.",
      "level": 10,
@@ -6186,6 +6284,32 @@
      "lastUpdated": "2026-09-29"
     },
     {
+     "name": "Combat Superiority",
+     "description": "You learn two more maneuvers of your choice.",
+     "level": 10,
+     "featureType": "Passive",
+     "actionType": null,
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "You learn two more maneuvers of your choice.",
+     "grantsSpells": false,
+     "grantsAttack": true,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Battle Master",
+      "level": 10
+     },
+     "book": "PHB",
+     "lastUpdated": "2026-11-04"
+    },
+    {
      "name": "Relentless",
      "description": "Starting at 15th level, when you roll initiative and have no superiority dice remaining, you regain **1** superiority die.",
      "level": 15,
@@ -6210,6 +6334,32 @@
      },
      "book": "PHB",
      "lastUpdated": "2026-09-29"
+    },
+    {
+     "name": "Combat Superiority",
+     "description": "You learn two more maneuvers of your choice.",
+     "level": 15,
+     "featureType": "Passive",
+     "actionType": null,
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "You learn two more maneuvers of your choice.",
+     "grantsSpells": false,
+     "grantsAttack": true,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Battle Master",
+      "level": 15
+     },
+     "book": "PHB",
+     "lastUpdated": "2026-11-04"
     },
     {
      "name": "Improved Combat Superiority (d12)",
@@ -7245,6 +7395,22 @@
      "lastUpdated": "2026-09-29"
     },
     {
+     "name": "Rune Carver",
+     "level": 7,
+     "featureType": "Passive",
+     "summary": "You learn one more rune of your choice.",
+     "description": "You learn one more rune of your choice.",
+     "source": {
+      "type": "subclass",
+      "name": "Rune Knight",
+      "level": 7
+     },
+     "book": "TCE",
+     "lastUpdated": "2026-11-04",
+     "uses": null,
+     "actionType": null
+    },
+    {
      "name": "Great Stature",
      "level": 10,
      "featureType": "Passive",
@@ -7259,6 +7425,22 @@
      "lastUpdated": "2026-09-29"
     },
     {
+     "name": "Rune Carver",
+     "level": 10,
+     "featureType": "Passive",
+     "summary": "You learn one more rune of your choice.",
+     "description": "You learn one more rune of your choice.",
+     "source": {
+      "type": "subclass",
+      "name": "Rune Knight",
+      "level": 10
+     },
+     "book": "TCE",
+     "lastUpdated": "2026-11-04",
+     "uses": null,
+     "actionType": null
+    },
+    {
      "name": "Master of Runes",
      "level": 15,
      "featureType": "Passive",
@@ -7271,6 +7453,22 @@
      },
      "book": "TCE",
      "lastUpdated": "2026-09-29"
+    },
+    {
+     "name": "Rune Carver",
+     "level": 15,
+     "featureType": "Passive",
+     "summary": "You learn one more rune of your choice.",
+     "description": "You learn one more rune of your choice.",
+     "source": {
+      "type": "subclass",
+      "name": "Rune Knight",
+      "level": 15
+     },
+     "book": "TCE",
+     "lastUpdated": "2026-11-04",
+     "uses": null,
+     "actionType": null
     },
     {
      "name": "Runic Juggernaut",
@@ -8330,123 +8528,52 @@
      "lastUpdated": "2026-09-29"
     },
     {
-     "name": "Fangs of the Fire Snake",
-     "level": 3,
-     "featureType": "Active",
-     "summary": "Spend **1** ki to increase unarmed strike reach by **10** feet and deal fire damage; spend **1** more ki on hit for **1d10** extra fire damage.",
-     "description": "When you use the Attack action on your turn, you can spend **1** ki point to cause tendrils of flame to stretch out from your fists and feet. Your reach with your unarmed strikes increases by **10** feet for that action, as well as the rest of the turn. A hit with such an attack deals fire damage instead of bludgeoning damage, and if you spend **1** additional ki point when the attack hits, it deals an extra **1d10** fire damage.",
-     "source": {
-      "type": "subclass",
-      "name": "Way of the Four Elements",
-      "level": 3
-     },
-     "book": "PHB",
-     "lastUpdated": "2026-09-29"
-    },
-    {
-     "name": "Water Whip",
-     "level": 3,
-     "featureType": "Active",
-     "actionType": "Action",
-     "summary": "Spend 2 ki to deal 3d10 bludgeoning damage to a target within 30 feet, and either knock it prone or pull it 25 feet closer to you.",
-     "description": "As an action, you can spend 2 ki points to create a whip of water that shoves and pulls a creature to unbalance it. Choose a creature you can see within 30 feet of you; it must make a Dexterity saving throw. On a failed save, the creature takes **3d10** bludgeoning damage, plus an extra **1d10** for each additional ki point you spend. Additionally, you can either knock the creature prone or pull it up to 25 feet closer to you.",
-     "source": {
-      "type": "subclass",
-      "name": "Way of the Four Elements",
-      "level": 3
-     },
-     "book": "PHB",
-     "lastUpdated": "2026-09-29"
-    },
-    {
-     "name": "Fist of Four Thunders",
-     "level": 3,
-     "featureType": "Active",
-     "actionType": "Action",
-     "summary": "Spend 2 ki points to cast Thunderwave.",
-     "description": "You can spend 2 ki points to cast Thunderwave.",
-     "source": {
-      "type": "subclass",
-      "name": "Way of the Four Elements",
-      "level": 3
-     },
-     "book": "PHB",
-     "lastUpdated": "2026-09-29"
-    },
-    {
-     "name": "Sweeping Cinder Strike",
+     "name": "Disciple of the Elements",
      "level": 6,
-     "featureType": "Active",
-     "actionType": "Action",
-     "summary": "Spend 2 ki points to cast Burning Hands.",
-     "description": "You can spend 2 ki points to cast Burning Hands.",
+     "featureType": "Passive",
+     "summary": "You learn one more elemental discipline of your choice.",
+     "description": "You learn one more elemental discipline of your choice.",
      "source": {
       "type": "subclass",
       "name": "Way of the Four Elements",
       "level": 6
      },
      "book": "PHB",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04",
+     "uses": null,
+     "actionType": null
     },
     {
-     "name": "Gong of the Summit",
-     "level": 6,
-     "featureType": "Active",
-     "actionType": "Action",
-     "summary": "Spend 3 ki points to cast Shatter.",
-     "description": "You can spend 3 ki points to cast Shatter.",
-     "source": {
-      "type": "subclass",
-      "name": "Way of the Four Elements",
-      "level": 6
-     },
-     "book": "PHB",
-     "lastUpdated": "2026-09-29"
-    },
-    {
-     "name": "Flames of the Phoenix",
+     "name": "Disciple of the Elements",
      "level": 11,
-     "featureType": "Active",
-     "actionType": "Action",
-     "summary": "Spend 4 ki points to cast Fireball.",
-     "description": "You can spend 4 ki points to cast Fireball.",
+     "featureType": "Passive",
+     "summary": "You learn one more elemental discipline of your choice.",
+     "description": "You learn one more elemental discipline of your choice.",
      "source": {
       "type": "subclass",
       "name": "Way of the Four Elements",
       "level": 11
      },
      "book": "PHB",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04",
+     "uses": null,
+     "actionType": null
     },
     {
-     "name": "Ride the Wind",
-     "level": 11,
-     "featureType": "Active",
-     "actionType": "Action",
-     "summary": "Spend 4 ki points to cast Fly on yourself.",
-     "description": "You can spend 4 ki points to cast Fly, targeting yourself.",
-     "source": {
-      "type": "subclass",
-      "name": "Way of the Four Elements",
-      "level": 11
-     },
-     "book": "PHB",
-     "lastUpdated": "2026-09-29"
-    },
-    {
-     "name": "River of Hungry Flame",
+     "name": "Disciple of the Elements",
      "level": 17,
-     "featureType": "Active",
-     "actionType": "Action",
-     "summary": "Spend 5 ki points to cast Wall of Fire.",
-     "description": "You can spend 5 ki points to cast Wall of Fire.",
+     "featureType": "Passive",
+     "summary": "You learn one more elemental discipline of your choice.",
+     "description": "You learn one more elemental discipline of your choice.",
      "source": {
       "type": "subclass",
       "name": "Way of the Four Elements",
       "level": 17
      },
      "book": "PHB",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04",
+     "uses": null,
+     "actionType": null
     }
    ],
    "lastUpdated": "2026-09-29",

@@ -327,14 +327,35 @@ export function getMaxCantripsKnown(character: Character): number {
   return cantrips;
 }
 
-export function getMaxSpellLevel(className: string, level: number, ruleset?: string): number {
+/**
+ * Third casters (Eldritch Knight, Arcane Trickster) keep their slot table on
+ * the class, outside the level table, because the rest of the class has none.
+ */
+const THIRD_CASTER_SLOT_KEYS: Record<string, string> = {
+  "arcane trickster": "arcaneTricksterSpellSlots",
+  "eldritch knight": "eldritchKnightSpellSlots",
+};
+
+export function isThirdCaster(subclass?: string | null): boolean {
+  return !!subclass && subclass.toLowerCase() in THIRD_CASTER_SLOT_KEYS;
+}
+
+/** Spell slots for a class level, including third-caster subclasses. */
+export function getSpellSlotTable(classData: any, level: number, subclass?: string | null): Record<number, number> | undefined {
+  const own = classData?.levels?.[level - 1]?.spellSlots;
+  if (own && Object.keys(own).length > 0) return own;
+  const key = subclass ? THIRD_CASTER_SLOT_KEYS[subclass.toLowerCase()] : undefined;
+  return (key && classData?.[key]?.[String(level)]) || undefined;
+}
+
+export function getMaxSpellLevel(className: string, level: number, ruleset?: string, subclass?: string | null): number {
   const classData = getStaticClass(className, ruleset);
   if (!classData?.levels) return 0;
 
-  const levelData = classData.levels[level - 1];
-  if (!levelData?.spellSlots) return 0;
+  const slots = getSpellSlotTable(classData, level, subclass);
+  if (!slots) return 0;
 
-  const levels = Object.keys(levelData.spellSlots).map(Number);
+  const levels = Object.keys(slots).map(Number);
   if (levels.length === 0) return 0;
 
   return Math.max(...levels);
@@ -951,7 +972,9 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   const perceptionProficient = character.skills["Perception"] ?? false;
   const passivePerception = 10 + getModifier(character.wis) + (perceptionProficient ? profBonus : 0);
 
-  const spellcastingAbility = classData?.spellcastingAbility || "";
+  // Fighters and rogues only cast with Eldritch Knight or Arcane Trickster.
+  const castsWithoutSubclass = character.class !== "Fighter" && character.class !== "Rogue";
+  const spellcastingAbility = castsWithoutSubclass || isThirdCaster(character.subclass) ? classData?.spellcastingAbility || "" : "";
   const spellcastingAbilityMod = spellcastingAbility ? getModifier(character[spellcastingAbility as keyof Character] as number) : 0;
   const spellSaveDc = 8 + profBonus + spellcastingAbilityMod;
   const spellAttackBonus = profBonus + spellcastingAbilityMod;
@@ -1533,9 +1556,9 @@ export function applyLongRest(character: Character): Partial<Character> {
   // Get max spell slots from class data
   const maxSpellSlots: Record<number, number> = {};
   if (classData?.levels) {
-    const levelData = classData.levels[character.level - 1];
-    if (levelData?.spellSlots) {
-      for (const [slotLevel, count] of Object.entries(levelData.spellSlots)) {
+    const slots = getSpellSlotTable(classData, character.level, character.subclass);
+    if (slots) {
+      for (const [slotLevel, count] of Object.entries(slots)) {
         maxSpellSlots[Number(slotLevel)] = count;
       }
     }

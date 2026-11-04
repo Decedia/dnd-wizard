@@ -2216,11 +2216,6 @@
               "name": "Two-Weapon Fighting",
               "description": "Saat kamu melakukan pertarungan dua senjata, kamu bisa menambahkan modifier kemampuanmu ke kerusakan dari serangan kedua.",
               "lastUpdated": "2026-09-29"
-            },
-            {
-              "name": "Great Weapon Fighting",
-              "description": "Ketika kamu melakukan roll 1 atau 2 pada dadu kerusakan untuk serangan menggunakan senjata jarak dekat yang kamu genggam dengan dua tangan, kamu bisa melempar ulang dadu tersebut dan harus menggunakan hasil roll yang baru.",
-              "lastUpdated": "2026-09-29"
             }
           ],
           "choicesCount": 1,
@@ -2519,18 +2514,6 @@
           "name": "Additional Magical Secrets",
           "description": "Pada level 6, kamu mempelajari dua sihir pilihanmu dari kelas mana pun. Sihir yang kamu pilih harus berupa cantrip atau sihir dengan level yang bisa kamu cast, sesuai dengan tabel Bard. Sihir-sihir ini dianggap sebagai sihir bard bagimu, tetapi tidak dihitung dalam jumlah total sihir bard yang kamu kuasai.",
           "level": 6,
-          "choices": [
-            {
-              "name": "spell1",
-              "description": "Pilih satu sihir dari kelas mana pun.",
-              "lastUpdated": "2026-09-29"
-            },
-            {
-              "name": "spell2",
-              "description": "Pilih satu sihir lain dari kelas mana pun.",
-              "lastUpdated": "2026-09-29"
-            }
-          ],
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -5293,13 +5276,6 @@
           "name": "Bonus Cantrip",
           "description": "Saat kamu memilih lingkaran ini pada level 2, kamu mempelajari satu tambahan druid cantrip pilihanmu.",
           "level": 2,
-          "choices": [
-            {
-              "name": "cantrip",
-              "description": "Pilih satu tambahan druid cantrip",
-              "lastUpdated": "2026-09-29"
-            }
-          ],
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -5352,13 +5328,6 @@
           "name": "Circle Spells",
           "description": "Koneksi mistismu dengan alam memberimu kemampuan untuk merapal sihir tertentu. Pada level 3, 5, 7, dan 9, kamu mendapatkan akses ke Circle Spells yang terhubung dengan lahan tempat kamu menjadi seorang druid.\n\nPilihlah lahan tersebut—arctic, coast, desert, forest, grassland, mountain, atau swamp—lalu lihat daftar sihir yang terkait.\n\nSetelah kamu mendapatkan akses ke sebuah Circle Spell, sihir tersebut akan selalu dalam kondisi prepared, dan tidak dihitung dalam batas jumlah sihir yang bisa kamu prepare setiap harinya. Jika kamu mendapatkan akses ke sihir yang tidak ada dalam daftar sihir druid, sihir tersebut tetap dianggap sebagai sihir druid bagimu.",
           "level": 3,
-          "choices": [
-            {
-              "name": "terrain",
-              "description": "Pilih tipe lahanmu (arctic, coast, desert, forest, grassland, mountain, swamp, underdark)",
-              "lastUpdated": "2026-09-29"
-            }
-          ],
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -5698,11 +5667,6 @@
               "lastUpdated": "2026-09-29"
             },
             {
-              "name": "Mind-Scrambling Arrow",
-              "description": "Sasaran harus melakukan saving throw Kearifan. Jika gagal, sasaran tidak bisa menggunakan reactions hingga awal giliranmu berikutnya dan harus melakukan roll **d6** untuk menentukan perilakunya.",
-              "lastUpdated": "2026-09-29"
-            },
-            {
               "name": "Piercing Arrow",
               "description": "Kamu melakukan serangan jarak jauh dengan anak panah ini seperti serangan jarak jauh biasa. Anak panah tersebut akan menembus sasaran dan berlanjut ke makhluk lain.",
               "lastUpdated": "2026-09-29"
@@ -5794,6 +5758,60 @@
           "lastUpdated": "2026-09-29"
         },
         {
+          "name": "Arcane Shot Options",
+          "description": "Kamu mempelajari satu opsi Arcane Shot lagi pilihanmu.",
+          "level": 7,
+          "choicesCount": 2,
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Kamu mempelajari satu opsi Arcane Shot lagi pilihanmu.",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Arcane Archer",
+            "level": 7
+          },
+          "book": "XGE",
+          "lastUpdated": "2026-11-04"
+        },
+        {
+          "name": "Arcane Shot Options",
+          "description": "Kamu mempelajari satu opsi Arcane Shot lagi pilihanmu.",
+          "level": 10,
+          "choicesCount": 2,
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Kamu mempelajari satu opsi Arcane Shot lagi pilihanmu.",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Arcane Archer",
+            "level": 10
+          },
+          "book": "XGE",
+          "lastUpdated": "2026-11-04"
+        },
+        {
           "name": "Ever-Ready Shot",
           "description": "Mulai level 15, kemampuan memanah magismu selalu siap digunakan. Kamu memulihkan seluruh penggunaan fitur Arcane Shot yang telah terpakai setiap kali kamu menyelesaikan short atau long rest.",
           "level": 15,
@@ -5818,6 +5836,60 @@
           },
           "book": "XGE",
           "lastUpdated": "2026-09-29"
+        },
+        {
+          "name": "Arcane Shot Options",
+          "description": "Kamu mempelajari satu opsi Arcane Shot lagi pilihanmu.",
+          "level": 15,
+          "choicesCount": 2,
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Kamu mempelajari satu opsi Arcane Shot lagi pilihanmu.",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Arcane Archer",
+            "level": 15
+          },
+          "book": "XGE",
+          "lastUpdated": "2026-11-04"
+        },
+        {
+          "name": "Arcane Shot Options",
+          "description": "Kamu mempelajari satu opsi Arcane Shot lagi pilihanmu.",
+          "level": 18,
+          "choicesCount": 2,
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Kamu mempelajari satu opsi Arcane Shot lagi pilihanmu.",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Arcane Archer",
+            "level": 18
+          },
+          "book": "XGE",
+          "lastUpdated": "2026-11-04"
         }
       ],
       "source": "XGE",
@@ -6160,6 +6232,32 @@
           "lastUpdated": "2026-09-29"
         },
         {
+          "name": "Combat Superiority",
+          "description": "Kamu mempelajari dua maneuver lagi pilihanmu.",
+          "level": 7,
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Kamu mempelajari dua maneuver lagi pilihanmu.",
+          "grantsSpells": false,
+          "grantsAttack": true,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Battle Master",
+            "level": 7
+          },
+          "book": "PHB",
+          "lastUpdated": "2026-11-04"
+        },
+        {
           "name": "Improved Combat Superiority (d10)",
           "description": "Pada level 10, dadu superiority milikmu berubah menjadi **d10**.",
           "level": 10,
@@ -6186,6 +6284,32 @@
           "lastUpdated": "2026-09-29"
         },
         {
+          "name": "Combat Superiority",
+          "description": "Kamu mempelajari dua maneuver lagi pilihanmu.",
+          "level": 10,
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Kamu mempelajari dua maneuver lagi pilihanmu.",
+          "grantsSpells": false,
+          "grantsAttack": true,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Battle Master",
+            "level": 10
+          },
+          "book": "PHB",
+          "lastUpdated": "2026-11-04"
+        },
+        {
           "name": "Relentless",
           "description": "Mulai level 15, ketika kamu melakukan roll initiative dan tidak memiliki dadu superiority yang tersisa, kamu mendapatkan kembali **1** dadu superiority.",
           "level": 15,
@@ -6210,6 +6334,32 @@
           },
           "book": "PHB",
           "lastUpdated": "2026-09-29"
+        },
+        {
+          "name": "Combat Superiority",
+          "description": "Kamu mempelajari dua maneuver lagi pilihanmu.",
+          "level": 15,
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Kamu mempelajari dua maneuver lagi pilihanmu.",
+          "grantsSpells": false,
+          "grantsAttack": true,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Battle Master",
+            "level": 15
+          },
+          "book": "PHB",
+          "lastUpdated": "2026-11-04"
         },
         {
           "name": "Improved Combat Superiority (d12)",
@@ -7245,6 +7395,22 @@
           "lastUpdated": "2026-09-29"
         },
         {
+          "name": "Rune Carver",
+          "level": 7,
+          "featureType": "Passive",
+          "summary": "Kamu mempelajari satu rune lagi pilihanmu.",
+          "description": "Kamu mempelajari satu rune lagi pilihanmu.",
+          "source": {
+            "type": "subclass",
+            "name": "Rune Knight",
+            "level": 7
+          },
+          "book": "TCE",
+          "lastUpdated": "2026-11-04",
+          "uses": null,
+          "actionType": null
+        },
+        {
           "name": "Great Stature",
           "level": 10,
           "featureType": "Passive",
@@ -7259,6 +7425,22 @@
           "lastUpdated": "2026-09-29"
         },
         {
+          "name": "Rune Carver",
+          "level": 10,
+          "featureType": "Passive",
+          "summary": "Kamu mempelajari satu rune lagi pilihanmu.",
+          "description": "Kamu mempelajari satu rune lagi pilihanmu.",
+          "source": {
+            "type": "subclass",
+            "name": "Rune Knight",
+            "level": 10
+          },
+          "book": "TCE",
+          "lastUpdated": "2026-11-04",
+          "uses": null,
+          "actionType": null
+        },
+        {
           "name": "Master of Runes",
           "level": 15,
           "featureType": "Passive",
@@ -7271,6 +7453,22 @@
           },
           "book": "TCE",
           "lastUpdated": "2026-09-29"
+        },
+        {
+          "name": "Rune Carver",
+          "level": 15,
+          "featureType": "Passive",
+          "summary": "Kamu mempelajari satu rune lagi pilihanmu.",
+          "description": "Kamu mempelajari satu rune lagi pilihanmu.",
+          "source": {
+            "type": "subclass",
+            "name": "Rune Knight",
+            "level": 15
+          },
+          "book": "TCE",
+          "lastUpdated": "2026-11-04",
+          "uses": null,
+          "actionType": null
         },
         {
           "name": "Runic Juggernaut",
@@ -8330,123 +8528,52 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Fangs of the Fire Snake",
-          "level": 3,
-          "featureType": "Active",
-          "summary": "Habiskan **1** ki untuk menambah jangkauan serangan tak bersenjata sejauh **10** kaki dan memberikan kerusakan api; habiskan **1** ki lagi saat kena untuk tambahan kerusakan api **1d10**.",
-          "description": "Saat kamu menggunakan action Attack pada giliranmu, kamu bisa menghabiskan **1** poin ki untuk memunculkan suluran api yang menjulur dari kepalan tangan dan kakimu. Jangkauan serangan tak bersenjatamu bertambah **10** kaki untuk action tersebut dan selama sisa giliranmu. Serangan ini memberikan kerusakan api, bukan kerusakan blunt. Jika kamu menghabiskan **1** poin ki tambahan saat serangan tersebut kena, serangan itu memberikan tambahan kerusakan api sebesar **1d10**.",
-          "source": {
-            "type": "subclass",
-            "name": "Way of the Four Elements",
-            "level": 3
-          },
-          "book": "PHB",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Water Whip",
-          "level": 3,
-          "featureType": "Active",
-          "actionType": "Action",
-          "summary": "Habiskan 2 ki untuk memberikan 3d10 kerusakan blunt pada sasaran dalam jarak 30 kaki, lalu buat ia terbaring atau tarik ia mendekat sejauh 25 kaki.",
-          "description": "Sebagai action, kamu bisa menghabiskan 2 poin ki untuk menciptakan cambuk air yang mendorong dan menarik makhluk untuk mengganggu keseimbangannya. Pilih satu makhluk yang bisa kamu lihat dalam jarak 30 kaki; makhluk tersebut harus melakukan Dexterity saving throw. Jika gagal, makhluk itu menerima **3d10** kerusakan blunt, ditambah ekstra **1d10** untuk setiap poin ki tambahan yang kamu habiskan. Selain itu, kamu bisa membuat makhluk tersebut menjadi Prone atau menariknya hingga 25 kaki lebih dekat ke arahmu.",
-          "source": {
-            "type": "subclass",
-            "name": "Way of the Four Elements",
-            "level": 3
-          },
-          "book": "PHB",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Fist of Four Thunders",
-          "level": 3,
-          "featureType": "Active",
-          "actionType": "Action",
-          "summary": "Habiskan 2 poin ki untuk merapal Thunderwave.",
-          "description": "Kamu bisa menghabiskan 2 poin ki untuk merapal Thunderwave.",
-          "source": {
-            "type": "subclass",
-            "name": "Way of the Four Elements",
-            "level": 3
-          },
-          "book": "PHB",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Sweeping Cinder Strike",
+          "name": "Disciple of the Elements",
           "level": 6,
-          "featureType": "Active",
-          "actionType": "Action",
-          "summary": "Habiskan 2 poin ki untuk merapal Burning Hands.",
-          "description": "Kamu bisa menghabiskan 2 poin ki untuk merapal Burning Hands.",
+          "featureType": "Passive",
+          "summary": "Kamu mempelajari satu elemental discipline lagi pilihanmu.",
+          "description": "Kamu mempelajari satu elemental discipline lagi pilihanmu.",
           "source": {
             "type": "subclass",
             "name": "Way of the Four Elements",
             "level": 6
           },
           "book": "PHB",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04",
+          "uses": null,
+          "actionType": null
         },
         {
-          "name": "Gong of the Summit",
-          "level": 6,
-          "featureType": "Active",
-          "actionType": "Action",
-          "summary": "Habiskan 3 poin ki untuk merapal Shatter.",
-          "description": "Kamu bisa menghabiskan 3 poin ki untuk merapal Shatter.",
-          "source": {
-            "type": "subclass",
-            "name": "Way of the Four Elements",
-            "level": 6
-          },
-          "book": "PHB",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Flames of the Phoenix",
+          "name": "Disciple of the Elements",
           "level": 11,
-          "featureType": "Active",
-          "actionType": "Action",
-          "summary": "Habiskan 4 ki points untuk merapal Fireball.",
-          "description": "Kamu bisa menghabiskan 4 ki points untuk merapal sihir Fireball.",
+          "featureType": "Passive",
+          "summary": "Kamu mempelajari satu elemental discipline lagi pilihanmu.",
+          "description": "Kamu mempelajari satu elemental discipline lagi pilihanmu.",
           "source": {
             "type": "subclass",
             "name": "Way of the Four Elements",
             "level": 11
           },
           "book": "PHB",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04",
+          "uses": null,
+          "actionType": null
         },
         {
-          "name": "Ride the Wind",
-          "level": 11,
-          "featureType": "Active",
-          "actionType": "Action",
-          "summary": "Habiskan 4 ki points untuk merapal Fly pada dirimu sendiri.",
-          "description": "Kamu bisa menghabiskan 4 ki points untuk merapal sihir Fly dengan menjadikan dirimu sendiri sebagai sasarannya.",
-          "source": {
-            "type": "subclass",
-            "name": "Way of the Four Elements",
-            "level": 11
-          },
-          "book": "PHB",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "River of Hungry Flame",
+          "name": "Disciple of the Elements",
           "level": 17,
-          "featureType": "Active",
-          "actionType": "Action",
-          "summary": "Habiskan 5 ki points untuk merapal Wall of Fire.",
-          "description": "Kamu bisa menghabiskan 5 ki points untuk merapal sihir Wall of Fire.",
+          "featureType": "Passive",
+          "summary": "Kamu mempelajari satu elemental discipline lagi pilihanmu.",
+          "description": "Kamu mempelajari satu elemental discipline lagi pilihanmu.",
           "source": {
             "type": "subclass",
             "name": "Way of the Four Elements",
             "level": 17
           },
           "book": "PHB",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04",
+          "uses": null,
+          "actionType": null
         }
       ],
       "lastUpdated": "2026-09-29",

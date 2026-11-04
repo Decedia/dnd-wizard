@@ -82,7 +82,7 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
   // A warlock patron's expanded spells join the list to choose from.
   const patronSpells = new Set(getWarlockExpandedSpellNames(data).map((n) => n.toLowerCase()));
   const allSpells = deduplicateSpells(getStaticSpells(data.sources, data.ruleset, language).filter((s) => s.classes?.includes(data.class) || patronSpells.has(s.name.toLowerCase())));
-  const maxSpellLevel = getMaxSpellLevel(data.class, data.level, data.ruleset);
+  const maxSpellLevel = getMaxSpellLevel(data.class, data.level, data.ruleset, data.subclass);
 
   const { cantrips: maxCantrips, spells: maxSpells } = getSpellCountForClass(data.class, data.level, abilityMod, data.ruleset);
 

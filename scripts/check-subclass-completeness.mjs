@@ -141,6 +141,8 @@ function compareSubclass(want, have, { extras = true, source = true, renames = t
   const optionKeys = new Set((want.options || []).map(featKey));
   for (const p of extras ? pool : []) {
     if (p.used || IGNORED.test(p.name) || isSpellListMagic(p.name) || optionKeys.has(p.key)) continue;
+    // A feature repeated at a later level is a further pick (two more maneuvers at 7th).
+    if (want.features.some((w) => featKey(w.name) === p.key && w.level < p.level)) continue;
     issues.push({ kind: "extra", text: `level ${p.level}: ${p.name}` });
   }
 
@@ -273,6 +275,15 @@ const PLACEHOLDER = /^(spell\d*|cantrip\d*|terrain|skill\d*|option\d*)$/i;
 /** "Dragon Ancestor: Black - Acid Damage" -> "black"; "Fighting Style: Archery" -> "archery". */
 const optKey = (s) => featKey(String(s).split(":").pop().split(" - ")[0]);
 
+// Picks that a dedicated step of the level-up wizard handles instead of an
+// option list in the data. Keep in step with src/components/LevelUpWizard.tsx.
+const DEDICATED = new Set([
+  "Bard|Lore|Additional Magical Secrets", // subclassSpellSelectionCount, spell modal
+  "Druid|Land|Bonus Cantrip", // bonus cantrip picker
+  "Druid|Land|Circle Spells", // circle terrain picker
+  "Fighter|Eldritch Knight|Spellcasting", // third-caster spell step
+]);
+
 const choiceWant = parseChoiceManifest(fs.readFileSync(CHOICE_MANIFEST, "utf8"));
 const choiceExtra = JSON.parse(fs.readFileSync(CHOICE_DATA, "utf8"));
 const choiceOut = new Map();
@@ -280,6 +291,7 @@ let choiceGaps = 0;
 for (const w of choiceWant) {
   const have = data.find((s) => s.class === w.cls && subKey(s.name) === subKey(w.sub));
   if (!have) continue; // already reported as a missing subclass
+  if (DEDICATED.has(`${w.cls}|${have.name}|${w.feature}`)) continue;
   const merged = (have.features || []).map((f) => {
     const extra = choiceExtra?.[w.cls]?.[have.name]?.[f.name];
     const choices = extra && Array.isArray(extra.options) ? extra.options : f.choices;

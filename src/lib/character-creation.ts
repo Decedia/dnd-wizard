@@ -1,4 +1,5 @@
-import { createEmptyCharacter, saveCharacter, computeDerivedStats, generateId, getFeatureValue, getMaxHpFromLevelHp, type Character } from "./storage";
+import { createEmptyCharacter, saveCharacter, computeDerivedStats, generateId, getFeatureValue, getMaxHpFromLevelHp, getSpellSlotTable, SKILLS, type Character } from "./storage";
+import { LANGUAGE_NAMES } from "@/data/feat-options";
 import { engineIdFor } from "@/lib/feature-engine";
 import { getStaticClass, getStaticRace, getStaticSubclasses, getStaticEquipments, getStaticWeapons, getStaticArmors, getStaticItems, getStaticFeat, getStaticSpells, getSubclassSpellGrants as getJsonSubclassSpellGrants } from "./srd-client";
 import { determineDefaultVisibility } from "./feature-filters";
@@ -939,8 +940,10 @@ export function applySubclassFeatures(character: Character, language = "en"): Ch
           ...extractFeatureFields(feature),
         });
       }
-      if (selected && Array.isArray(selected) && selected.length > 0) {
-        for (const optName of selected) {
+      // Picks that grant a proficiency or a spell show up there, not as features.
+      if (selected && Array.isArray(selected) && selected.length > 0 && !(feature as any).choiceGrants) {
+        // A multi-pick is stored as one "a, b" string.
+        for (const optName of selected.flatMap((s: string) => String(s).split(", ").filter(Boolean))) {
           const opt = feature.choices.find((c: any) => c.name === optName);
           if (opt && !newFeatures.some((f) => f.name === opt.name)) {
             newFeatures.push({
@@ -976,7 +979,59 @@ export function applySubclassFeatures(character: Character, language = "en"): Ch
 
   const existingNames = new Set(character.features.map((f) => f.name));
   const toAdd = newFeatures.filter((f) => !existingNames.has(f.name));
-  return { ...character, features: [...character.features, ...toAdd] };
+  return applyChoiceGrants({ ...character, features: [...character.features, ...toAdd] }, earnedFeatures);
+}
+
+/**
+ * Turns picked subclass options into proficiencies, for features whose choices
+ * say they grant something (Bonus Proficiencies, Blessings of Knowledge and so
+ * on). Each pick is sorted by name into a skill, a language or a tool; "weapon"
+ * picks go to other proficiencies. `fixed` grants come with the feature itself.
+ * Adding to a set is idempotent, so this is safe on every derive pass.
+ */
+function applyChoiceGrants(character: Character, features: any[]): Character {
+  const skillNames = new Set<string>(SKILLS.map((s) => s.name));
+  const languageNames = new Set(LANGUAGE_NAMES);
+  let next = character;
+  const add = (names: string[], mode: string) => {
+    const skills = { ...next.skills };
+    const expertise = new Set(next.expertise || []);
+    const languages = new Set(next.languages || []);
+    const tools = new Set(next.toolProficiencies || []);
+    const other = (next.otherProficiencies || "").split(/,\s*/).filter(Boolean);
+    if (mode === "spell") {
+      // Picked spells join the character's spells; for clerics they are domain spells.
+      const spells = [...(next.spells || [])];
+      const domain = new Set((next as any).domainSpells || []);
+      for (const n of names) {
+        const spell = getStaticSpells(next.sources).find((s) => s.name === n);
+        if (!spell) continue;
+        const level = spell.level || 0;
+        if (!spells.some((s) => s.name === n && s.level === level)) {
+          spells.push({ id: `spell-${n}-${level}`.replace(/\s+/g, "-"), name: n, level, source: "srd", srdSpellName: n, description: normalizeDescription(spell.description) } as any);
+        }
+        if (next.class === "Cleric" && level > 0) domain.add(n);
+      }
+      next = { ...next, spells, ...(next.class === "Cleric" ? { domainSpells: [...domain] } : {}) } as Character;
+      return;
+    }
+    for (const n of names) {
+      if (mode === "weapon") { if (!other.includes(n)) other.push(n); }
+      else if (skillNames.has(n)) { skills[n] = true; if (mode === "skill-expertise") expertise.add(n); }
+      else if (languageNames.has(n)) languages.add(n);
+      else tools.add(n);
+    }
+    next = { ...next, skills, expertise: [...expertise], languages: [...languages], toolProficiencies: [...tools], otherProficiencies: other.join(", ") };
+  };
+  for (const feature of features) {
+    const grants = feature.choiceGrants as { mode: string; fixed?: string[] } | undefined;
+    if (!grants) continue;
+    if (grants.fixed?.length) add(grants.fixed, "proficiency");
+    const key = feature.level != null ? `subclass-feature-${feature.level}-${feature.name}` : `subclass-feature-${feature.name}`;
+    const picked = ((next as any).featureSelections?.[key] || []).flatMap((s: string) => String(s).split(", ").filter(Boolean));
+    if (picked.length) add(picked, grants.mode);
+  }
+  return next;
 }
 
 export type MissingFeatureChoice = {
@@ -1296,8 +1351,7 @@ export async function finalizeCreation(character: Character, language = "en"): P
   const derived = computeDerivedStats(final);
 
   const classData = getStaticClass(character.class, character.ruleset);
-  const levelData = classData?.levels?.[(character.level || 1) - 1];
-  const spellSlots = levelData?.spellSlots || {};
+  const spellSlots = getSpellSlotTable(classData, character.level || 1, final.subclass) || {};
 
   const finalCharacter = {
     ...final,
@@ -1388,8 +1442,7 @@ export function rebuildDerived(character: Character, language = "en"): Character
 
   // The slot table itself is derived, but what is spent from it is not.
   const classData = getStaticClass(character.class, character.ruleset, undefined, language);
-  const levelData = classData?.levels?.[(character.level || 1) - 1];
-  const slotTable = levelData?.spellSlots || {};
+  const slotTable = getSpellSlotTable(classData, character.level || 1, next.subclass) || {};
   if (Object.keys(slotTable).length > 0) {
     next = {
       ...next,
@@ -1550,8 +1603,7 @@ export function recreateCharacter(character: Character, language = "en"): Charac
   next = { ...next, ...computeDerivedStats(next) };
 
   // Spell slots come from the class table for the level.
-  const levelData = classData?.levels?.[(character.level || 1) - 1];
-  const slotTable = levelData?.spellSlots || {};
+  const slotTable = getSpellSlotTable(classData, character.level || 1, next.subclass) || {};
   if (Object.keys(slotTable).length > 0) {
     next = {
       ...next,
