@@ -1137,10 +1137,6 @@
             "description": "Wizard cantrip (Evocation)."
           },
           {
-            "name": "Gravity Shift",
-            "description": "Wizard cantrip (Transmutation)."
-          },
-          {
             "name": "Green-Flame Blade",
             "description": "Wizard cantrip (Evocation)."
           },
@@ -1217,24 +1213,12 @@
             "description": "Wizard cantrip (Evocation)."
           },
           {
-            "name": "Time Slipp",
-            "description": "Wizard cantrip (Transmutation)."
-          },
-          {
             "name": "Toll the Dead",
             "description": "Wizard cantrip (Necromancy)."
           },
           {
-            "name": "Touch of the Void",
-            "description": "Wizard cantrip (Evocation)."
-          },
-          {
             "name": "True Strike",
             "description": "Wizard cantrip ([object Object])."
-          },
-          {
-            "name": "Void Writing",
-            "description": "Wizard cantrip (Transmutation)."
           }
         ]
       },
@@ -1338,7 +1322,7 @@
             "description": "Level 6 wizard spell."
           },
           {
-            "name": "Otherworldly Form",
+            "name": "Tasha's Otherworldly Guise",
             "description": "Level 6 wizard spell."
           },
           {
@@ -1375,10 +1359,6 @@
           },
           {
             "name": "Arcane Sword",
-            "description": "Level 7 wizard spell."
-          },
-          {
-            "name": "Concordant Crossing (UA)",
             "description": "Level 7 wizard spell."
           },
           {
@@ -1543,10 +1523,6 @@
           },
           {
             "name": "Meteor Swarm",
-            "description": "Level 9 wizard spell."
-          },
-          {
-            "name": "Polar Ray",
             "description": "Level 9 wizard spell."
           },
           {

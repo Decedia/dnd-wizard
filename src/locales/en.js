@@ -980,6 +980,8 @@ export const translations = {
   "creator.contentMode.allDesc": "Unlocks every character option from expansions like Xanathar, Tasha, and Monsters of the Multiverse.",
   "creator.contentMode.custom": "Manual Selection",
   "creator.contentMode.customDesc": "Choose exactly which expansion books to enable.",
+  "creator.optionalFeatures": "Tasha's optional class features",
+  "creator.optionalFeaturesDesc": "Adds the optional features from Tasha's Cauldron, some of which replace a base feature (Deft Explorer for Natural Explorer, for example). Ask your DM first.",
   "creator.raceOptions": "Race Options",
   "creator.speed": "Speed {speed} ft",
   "origin.title": "Origin",

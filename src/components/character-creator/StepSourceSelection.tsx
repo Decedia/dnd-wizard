@@ -151,13 +151,20 @@ const BOOK_SPECS: Record<
     stripColor: "#4db6ac",
     patternSvg: BookPatterns.GGR,
   },
+  SCC: {
+    name: "Strixhaven: A Curriculum of Chaos",
+    tags: ["Spells"],
+    color: "#4a148c",
+    stripColor: "#ba68c8",
+    patternSvg: BookPatterns.SCC,
+  },
 };
 
 const ALL_BOOK_IDS = SOURCE_OPTIONS.map((s) => s.id);
 
 type ContentMode = "phb_only" | "all" | "custom";
 
-export function StepSourceSelection({ data, onChange }: { data: { sources: string[]; ruleset?: "2014" | "2024" }; onChange: (patch: { sources: string[]; ruleset?: "2014" | "2024" }) => void }) {
+export function StepSourceSelection({ data, onChange }: { data: { sources: string[]; ruleset?: "2014" | "2024"; optionalClassFeatures?: boolean }; onChange: (patch: { sources?: string[]; ruleset?: "2014" | "2024"; optionalClassFeatures?: boolean }) => void }) {
   const { t } = useLanguage();
   const selectedSources = data.sources || ["PHB"];
   const ruleset = data.ruleset || "2014";
@@ -331,6 +338,25 @@ export function StepSourceSelection({ data, onChange }: { data: { sources: strin
           </div>
         </button>
       </div>
+
+      {ruleset === "2014" && selectedSources.includes("TCE") && (
+        <label className="flex items-start gap-3 p-4 rounded-2xl border-2 border-[var(--color-border)] bg-[var(--color-surface)] cursor-pointer">
+          <input
+            type="checkbox"
+            className="mt-0.5 w-5 h-5 accent-[var(--color-accent-indigo-500)]"
+            checked={!!data.optionalClassFeatures}
+            onChange={(e) => onChange({ optionalClassFeatures: e.target.checked })}
+          />
+          <div className="flex-1">
+            <h3 className="font-bold text-sm text-[var(--color-text-primary)]">
+              {t("creator.optionalFeatures", "Tasha's optional class features")}
+            </h3>
+            <p className="text-xs text-[var(--color-text-secondary)] mt-1 leading-relaxed">
+              {t("creator.optionalFeaturesDesc", "Adds the optional features from Tasha's Cauldron, some of which replace a base feature. Ask your DM first.")}
+            </p>
+          </div>
+        </label>
+      )}
 
       {contentMode === "custom" && (
         <div className="mt-6 pt-6 border-t border-[var(--color-border)] animate-in fade-in slide-in-from-top-4 duration-300">

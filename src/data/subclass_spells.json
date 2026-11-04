@@ -236,11 +236,11 @@
       ],
       "7": [
         "Aura of Purity",
-        "Otiluke's Resilient Sphere"
+        "Resilient Sphere"
       ],
       "9": [
         "Greater Restoration",
-        "Rary's Telepathic Bond"
+        "Telepathic Bond"
       ]
     },
     "order": {
@@ -280,7 +280,7 @@
       ],
       "7": [
         "Arcane Eye",
-        "Leomund's Secret Chest"
+        "Secret Chest"
       ],
       "9": [
         "Planar Binding",
@@ -578,7 +578,7 @@
         "swamp": {
           "3": [
             "Darkness",
-            "Melf's Acid Arrow"
+            "Acid Arrow"
           ],
           "5": [
             "Water Walk",
@@ -892,11 +892,11 @@
         "Slow"
       ],
       "7": [
-        "Evard's Black Tentacles",
+        "Black Tentacles",
         "Summon Aberration"
       ],
       "9": [
-        "Rary's Telepathic Bond",
+        "Telepathic Bond",
         "Telekinesis"
       ],
       "11": [

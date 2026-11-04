@@ -35,7 +35,7 @@ export const FEAT_FIXED_GRANTS: Record<string, FixedFeatGrants> = {
   Telepathic: { spells: ["Detect Thoughts"] },
   "Drow High Magic": { spells: ["Detect Magic", "Levitate", "Dispel Magic"] },
   "Svirfneblin Magic": { spells: ["Nondetection", "Blindness/Deafness", "Blur", "Disguise Self"] },
-  "Wood Elf Magic": { spells: ["Longstrider", "Pass without Trace"] },
+  "Wood Elf Magic": { spells: ["Longstrider", "Pass Without Trace"] },
   "Gift of the Metallic Dragon": { spells: ["Cure Wounds"] },
 };
 

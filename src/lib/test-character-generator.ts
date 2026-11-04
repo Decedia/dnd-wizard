@@ -18,7 +18,7 @@ import { createEmptyCharacter, saveCharacter, getCharacters, type Character } fr
 import { finalizeCreation } from "@/lib/character-creation";
 import { validateTestCharacter, type CharacterValidationReport } from "@/lib/test-character-validator";
 
-const ALL_SOURCES = ["PHB", "EGW", "XGE", "TCE", "SCAG", "VGTM", "VRGR", "FTD", "MTF", "MPMM", "DMG", "ERLW", "EEPC", "AAG", "BGG", "DSotDQ", "TTP", "MOoT", "GGR"];
+const ALL_SOURCES = ["PHB", "EGW", "XGE", "TCE", "SCAG", "VGTM", "VRGR", "FTD", "MTF", "MPMM", "DMG", "ERLW", "EEPC", "AAG", "BGG", "DSotDQ", "TTP", "MOoT", "GGR", "SCC"];
 
 const TEST_RACES = [
   "Human",

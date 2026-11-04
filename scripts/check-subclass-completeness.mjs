@@ -18,6 +18,7 @@ const MANIFEST = path.join(ROOT, "scripts", "data", "subclass-manifest.txt");
 const CLASS_MANIFEST = path.join(ROOT, "scripts", "data", "class-feature-manifest.txt");
 const DATA = path.join(ROOT, "src", "data", "en", "2014_subclasses.json");
 const CLASS_DATA = path.join(ROOT, "src", "data", "en", "2014_classes.json");
+const OPTIONAL_DATA = path.join(ROOT, "src", "data", "optional-class-features.ts");
 const CHOICE_MANIFEST = path.join(ROOT, "scripts", "data", "subclass-choice-manifest.txt");
 const CHOICE_DATA = path.join(ROOT, "src", "data", "subclass_feature_choices.json");
 const RACE_MANIFEST = path.join(ROOT, "scripts", "data", "race-manifest.txt");
@@ -223,11 +224,17 @@ for (const [cls, wantSubs] of manifest) {
 // Base classes: only the non-SRD features in class-feature-manifest.txt.
 const classManifest = parseManifest(fs.readFileSync(CLASS_MANIFEST, "utf8"));
 const classData = JSON.parse(fs.readFileSync(CLASS_DATA, "utf8")).classes;
+// Tasha's optional features live in a TS file; read their class, level and name.
+const optionalFeatures = [...fs.readFileSync(OPTIONAL_DATA, "utf8").matchAll(/className: "([^"]+)", level: (\d+), name: "([^"]+)"/g)]
+  .map(([, cls, level, name]) => ({ cls, name, level: Number(level) }));
 let classMissing = 0;
 const classOut = [];
 for (const [cls, groups] of classManifest) {
   const c = classData.find((x) => x.name === cls);
-  const features = (c?.levels ?? []).flatMap((l) => (l.features ?? []).map((f) => ({ name: f.name, level: l.level })));
+  const features = [
+    ...(c?.levels ?? []).flatMap((l) => (l.features ?? []).map((f) => ({ name: f.name, level: l.level }))),
+    ...optionalFeatures.filter((f) => f.cls === cls),
+  ];
   for (const g of groups) {
     const issues = compareSubclass(g, { features, source: g.source }, { extras: false, source: false, renames: false });
     if (!issues.length) continue;

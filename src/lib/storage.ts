@@ -97,6 +97,8 @@ export interface Character {
   flexAsi?: Record<string, number>;
   /** Saving throw proficiencies from outside the class (Resilient). */
   bonusSaves?: string[];
+  /** Tasha's optional class features are on for this character (needs TCE in sources). */
+  optionalClassFeatures?: boolean;
   appliedAsi: number[];
   activeStates: string[];
   activeBuffs: ActiveBuff[];

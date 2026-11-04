@@ -1,5 +1,6 @@
 "use client";
 
+import { encodeFeatOptions } from "@/lib/feat-grants";
 import { useState, useMemo, useEffect } from "react";
 import { StepCard } from "./StepCard";
 import { getStaticClass, getStaticSubclasses } from "@/lib/srd-client";
@@ -280,13 +281,7 @@ export function StepLevel({ data, onChange }: StepLevelProps) {
         featureSelections: {
           ...data.featureSelections,
           [`asi-feat-${currentAsiLevel}`]: [asiState.feat],
-          ...(asiState.featOptions && Object.keys(asiState.featOptions).length > 0
-            ? {
-                [`asi-feat-${currentAsiLevel}-options`]: Array.from(
-                  new Set(Object.values(asiState.featOptions)),
-                ),
-              }
-            : {}),
+          [`asi-feat-${currentAsiLevel}-options`]: encodeFeatOptions(asiState.featOptions),
         },
       });
       setAsiAllocation({ str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 });
