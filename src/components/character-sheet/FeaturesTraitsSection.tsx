@@ -29,7 +29,7 @@ import {
 } from "@/lib/feature-engine";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { DiceText } from "@/components/DiceText";
-import { FEATURE_GROUP_ORDER, getFeatPicks, getFeaturePicks, matchesFeatureSearch, poolMax, type FeatureGroup } from "@/lib/feature-groups";
+import { FEATURE_GROUP_ORDER, getAsiFeats, getFeatPicks, getFeaturePicks, matchesFeatureSearch, poolMax, type FeatureGroup } from "@/lib/feature-groups";
 
 /**
  * The character sheet tracks a few resource pools by name. A feature whose cost
@@ -93,7 +93,7 @@ interface FeaturesTraitsSectionProps {
 }
 
 export function FeaturesTraitsSection({ character, onChange, editMode = true }: FeaturesTraitsSectionProps) {
-  const { onFieldBlur, showDescriptions } = useCharacterSheet();
+  const { onFieldBlur } = useCharacterSheet();
   const { t, tDesc, language } = useLanguage();
   const [popupFeatName, setPopupFeatName] = useState<string | null>(null);
   const [selectedFeature, setSelectedFeature] = useState<any | null>(null);
@@ -183,14 +183,16 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
     });
   }, [character.features]);
 
+  // A feature gained more than once (Ability Score Improvement at 4, 8, ...) is one row.
   const visibleFeatures = useMemo(() => {
-    const base = showDescriptions ? sortedFeatures : sortedFeatures.filter(f => (f as any).showInSheet !== false);
-    return base.filter(f => f.id && f.name);
-  }, [sortedFeatures, showDescriptions]);
-
-  const hiddenCount = useMemo(() => {
-    return character.features.filter(f => (f as any).showInSheet === false).length;
-  }, [character.features]);
+    const seen = new Set<string>();
+    return sortedFeatures.filter((f) => {
+      const key = `${f.source ?? ""}|${f.name}`;
+      if (!f.id || !f.name || seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  }, [sortedFeatures]);
 
   const enrichedFeatures = useMemo(() => {
     const engineDataset = buildDataset();
@@ -292,7 +294,6 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
           grantsAttack: srdFeature?.grantsAttack ?? existing.grantsAttack ?? false,
           grantsSkills: srdFeature?.grantsSkills ?? existing.grantsSkills ?? false,
           grantsProficiency: srdFeature?.grantsProficiency ?? existing.grantsProficiency ?? false,
-          showInSheet: srdFeature?.showInSheet ?? existing.showInSheet ?? true,
           source: srdSource ?? existing.source ?? derivedSource ?? null,
           // The engine's sourcebook wins: it is per-entry and verified, whereas
           // this lookup falls back to "PHB" whenever the SRD entry has no source.
@@ -504,7 +505,11 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
     const usable = resolved !== undefined && resolved.activation !== "passive";
     const home: FeatureGroup = isFeat ? "feat" : kind === "class" || kind === "subclass" || kind === "race" ? kind : "other";
     const level = isFeat ? featInfo.level : getFeatureLevel(feature);
-    const picks = isFeat ? featInfo.picks : home === "class" || home === "subclass" ? getFeaturePicks(character, feature.name) : [];
+    const picks = isFeat
+      ? featInfo.picks
+      : feature.name === "Ability Score Improvement" || feature.id === "base-class-Ability-Score-Improvement"
+        ? getAsiFeats(character).map((a) => `${t("feature.levelShort", { level: a.level }, "Lv {level}")}: ${a.feat}`)
+        : home === "class" || home === "subclass" ? getFeaturePicks(character, feature.name) : [];
     const levelLabel = level !== null ? t("feature.levelShort", { level }, "Lv {level}") : "";
     const origin =
       home === "class" ? `${character.class} ${level ?? ""}`.trim()
@@ -598,11 +603,6 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
               ))}
             </span>
           )}
-          {(feature as any).showInSheet === false && (
-            <span className="mt-1.5 inline-block text-[10px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-paper-muted)] text-[var(--color-text-muted)] border border-[var(--color-border)]">
-              {t("sheet.referenceOnly")}
-            </span>
-          )}
           {resolved && !resolved.available && resolved.blockedBy && !resolved.used && r.group === "use" && !pool && (
             <span className="mt-1.5 block text-[11px] text-[var(--color-text-muted)]">{resolved.blockedBy}</span>
           )}
@@ -681,11 +681,6 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
             <Star className="h-5 w-5" />
             <span>{t("section.featuresTraits")}</span>
           </div>
-          {hiddenCount > 0 && !showDescriptions && (
-            <span className="text-sm text-gray-400">
-              {t("features.hiddenCount", { count: hiddenCount, plural: hiddenCount !== 1 ? "s" : "" })}
-            </span>
-          )}
         </div>
       }
     >

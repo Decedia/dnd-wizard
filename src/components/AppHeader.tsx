@@ -4,8 +4,7 @@ import Link from "next/link";
 import { ViewEditToggle } from "@/components/character-sheet/ViewEditToggle";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { LanguageToggle } from "@/components/LanguageToggle";
-import { WizardHatIcon, EyeIcon as Eye, EyeSlashIcon as EyeSlash } from "@/components/icons";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { WizardHatIcon } from "@/components/icons";
 
 interface AppHeaderProps {
   title?: string;
@@ -14,12 +13,9 @@ interface AppHeaderProps {
   onEditModeChange?: (mode: boolean) => void;
   onSave?: () => void;
   showThemeToggle?: boolean;
-  showDescriptions?: boolean;
-  onShowDescriptionsChange?: (value: boolean) => void;
 }
 
-export function AppHeader({ title, subtitle, editMode, onEditModeChange, onSave, showThemeToggle, showDescriptions, onShowDescriptionsChange }: AppHeaderProps) {
-  const { t } = useLanguage();
+export function AppHeader({ title, subtitle, editMode, onEditModeChange, onSave, showThemeToggle }: AppHeaderProps) {
   return (
     <header className="sticky top-0 z-40 border-b border-border-strong bg-paper">
       <div className="mx-auto max-w-lg px-4 py-3">
@@ -42,25 +38,6 @@ export function AppHeader({ title, subtitle, editMode, onEditModeChange, onSave,
           <div className="flex items-center gap-2">
             {editMode !== undefined && onEditModeChange && (
               <ViewEditToggle mode={editMode ? "edit" : "view"} onModeChange={(m) => onEditModeChange(m === "edit")} onSave={onSave} />
-            )}
-            {showDescriptions !== undefined && onShowDescriptionsChange !== undefined && (
-              <button
-                type="button"
-                onClick={() => onShowDescriptionsChange(!showDescriptions)}
-                className={`flex h-9 w-9 items-center justify-center rounded-full border transition-all ${
-                  showDescriptions
-                    ? "border-[var(--color-border-active)] bg-[var(--color-surface)] text-[var(--color-text-primary)]"
-                    : "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-muted)]"
-                }`}
-                aria-label={showDescriptions ? t("description.hide") : t("description.show")}
-                title={showDescriptions ? t("description.hide") : t("description.show")}
-              >
-                {showDescriptions ? (
-                  <Eye className="h-4 w-4" />
-                ) : (
-                  <EyeSlash className="h-4 w-4" />
-                )}
-              </button>
             )}
             {showThemeToggle && <ThemeToggle />}
             <LanguageToggle />

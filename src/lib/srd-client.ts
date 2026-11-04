@@ -56,7 +56,6 @@ const races2024DataMap = { en: races2024DataEn, id: races2024DataId } as const;
 import { getFeatOptionGroups, type FeatOptionGroup } from "@/data/feat-options";
 
 export type { FeatOptionGroup, FeatOptionChoice, FeatOptionSpellFilter } from "@/data/feat-options";
-import { determineDefaultVisibility } from "./feature-filters";
 
 export interface SRDRace {
   name: string;
@@ -533,7 +532,6 @@ export function getStaticSubclasses(className: string, sources?: string[], rules
             grantsAttack: f.grantsAttack ?? false,
             grantsSkills: f.grantsSkills ?? false,
             grantsProficiency: f.grantsProficiency ?? false,
-            showInSheet: f.showInSheet ?? determineDefaultVisibility(f),
             source: f.source ?? undefined,
             book: f.book ?? undefined,
           };

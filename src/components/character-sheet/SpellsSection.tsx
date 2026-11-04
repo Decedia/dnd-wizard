@@ -58,7 +58,7 @@ interface UnifiedSpell {
 }
 
 export function SpellsSection({ character, onChange, editMode = true }: SpellsSectionProps) {
-  const { onFieldBlur, showDescriptions } = useCharacterSheet();
+  const { onFieldBlur } = useCharacterSheet();
   const { t, tDesc, language } = useLanguage();
   const { data } = useSRD();
   const srdSpells = data?.spells || [];

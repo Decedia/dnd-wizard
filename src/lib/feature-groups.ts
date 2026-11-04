@@ -28,6 +28,17 @@ export function getFeaturePicks(character: Pick<Character, "featureSelections">,
   return out;
 }
 
+/** The feats taken at Ability Score Improvement levels, in level order. */
+export function getAsiFeats(character: Pick<Character, "featureSelections">): { level: number; feat: string }[] {
+  const out: { level: number; feat: string }[] = [];
+  for (const [key, values] of Object.entries(character.featureSelections || {})) {
+    const m = key.match(/^asi-feat-(\d+)$/);
+    const feat = split(values)[0];
+    if (m && feat) out.push({ level: Number(m[1]), feat });
+  }
+  return out.sort((a, b) => a.level - b.level);
+}
+
 /** Feats the rules let a character take more than once, each time with a new pick. */
 export const REPEATABLE_FEATS = new Set(["Elemental Adept"]);
 
