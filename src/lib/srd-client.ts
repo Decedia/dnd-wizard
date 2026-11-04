@@ -557,13 +557,14 @@ export function getStaticSubclasses(className: string, sources?: string[], rules
             }
           }
           // A feature with a second pick (Blessings of Knowledge: skills, then
-          // languages) gets one choice-only entry per extra pick, at its level.
+          // languages) gets one choice-only entry per extra pick, at its own level
+          // when it sets one (Kensei weapons at 6, 11, 17), else the feature's.
           const extras = (featChoices?.extra || []).map((x: any) => {
             const e = withSpellOptions(x, sources, ruleset, locale);
             return {
               name: e.name,
               description: e.description || "",
-              level: f.level,
+              level: x.level ?? f.level,
               choiceOnly: true,
               choices: (e.options || []).map((opt: any) => ({ name: opt.name, description: opt.description || "" })),
               choicesCount: e.count ?? 1,

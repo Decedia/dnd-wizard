@@ -104,8 +104,6 @@ const RACE_OWNER_ALIASES = {
   "Half-Elf (Moon Elf)": ["elf", "Moon"],
   "Half-Elf (Sun Elf)": ["elf", "Sun"],
   "Half-Elf (Sea Elf)": ["elf", "Sea"],
-  "Half-Elf (Shadar-kai)": ["elf", "Shadar-kai"],
-  "Half-Elf (Eladrin)": ["elf", "Eladrin"],
   "Tiefling (Asmodeus)": ["tiefling", "Asmodeus"],
   "Tiefling (Baalzebul)": ["tiefling", "Baalzebul"],
   "Tiefling (Zariel)": ["tiefling", "Zariel"],
@@ -123,7 +121,7 @@ const LEGACY_RACE_OWNERS = new Set([
   "Tiefling (Glasya)", "Tiefling (Levistus)", "Tiefling (Mammon)", "Tiefling (Mephistopheles)",
   "Tiefling (Zariel)",
   "Half-Elf (High Elf)", "Half-Elf (Wood Elf)", "Half-Elf (Drow)", "Half-Elf (Moon Elf)",
-  "Half-Elf (Sun Elf)", "Half-Elf (Sea Elf)", "Half-Elf (Shadar-kai)", "Half-Elf (Eladrin)",
+  "Half-Elf (Sun Elf)", "Half-Elf (Sea Elf)",
 ]);
 
 // 3e/4e traits the engine deliberately does not carry, by slug.
@@ -430,7 +428,7 @@ const VARIANT_FAMILIES = [
   { parent: "Gnome", variants: ["Forest", "Rock"], keep: true },
   { parent: "Halfling", variants: ["Lightfoot", "Stout", "Ghostwise"], keep: true },
   { parent: "Tiefling", variants: ["Asmodeus", "Baalzebul", "Zariel", "Dispater", "Fierna", "Glasya", "Levistus", "Mammon", "Mephistopheles"], keep: false },
-  { parent: "Half-Elf", variants: ["High Elf", "Wood Elf", "Drow", "Moon Elf", "Sun Elf", "Sea Elf", "Shadar-kai", "Eladrin"], keep: false },
+  { parent: "Half-Elf", variants: ["High Elf", "Wood Elf", "Drow", "Moon Elf", "Sun Elf", "Sea Elf"], keep: false },
 ];
 
 console.log("\n" + "-".repeat(78));

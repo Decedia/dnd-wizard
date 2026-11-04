@@ -11,6 +11,7 @@ import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
 import { getMaxSpellLevel, getWarlockExpandedSpellNames } from "@/lib/storage";
+import { getGrantedSpellNames } from "@/lib/granted-spells";
 
 function slugify(name: string): string {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
@@ -97,9 +98,17 @@ export function SpellSelectionModal({
   const classSpells = isArcaneTrickster
     ? getClassSpells("arcane-trickster", language)
     : [];
-  const allSpells = classSpells.length > 0
+  // Spells the character gets free (domain, oath, race) aren't worth a pick.
+  // A wizard can still copy one into the spellbook.
+  const grantedNames = new Set(
+    selectionType === "book"
+      ? []
+      : getGrantedSpellNames({ ...character, subclass: subclassSelection || character.subclass, level: castingLevel ?? character.level }).map((n) => n.toLowerCase())
+  );
+  const allSpells = (classSpells.length > 0
     ? deduplicateSpells(classSpells.filter((s: any) => s.level === 0 || s.level <= effectiveMaxLevel))
-    : deduplicateSpells(getStaticSpells(character.sources, character.ruleset, language).filter((s) => (s.classes?.includes(character.class) || patronSpells.has(s.name.toLowerCase())) && (s.level === 0 || s.level <= effectiveMaxLevel)));
+    : deduplicateSpells(getStaticSpells(character.sources, character.ruleset, language).filter((s) => (s.classes?.includes(character.class) || patronSpells.has(s.name.toLowerCase())) && (s.level === 0 || s.level <= effectiveMaxLevel)))
+  ).filter((s: any) => !grantedNames.has(String(s.name).toLowerCase()));
 
   const existingCantripNames = new Set((character.cantrips || []).map(c => c.name));
   const earlierSpellNames = new Set((earlierSelections || []).map(s => s.split(":")[0]));

@@ -318,9 +318,15 @@ function buildLevelInfos(
           if (f.choices && f.choices.length > 0) {
             // When the same feature comes back at a later level (Disciple of the
             // Elements, Combat Superiority), the options picked before are gone.
+            // Later picks of one feature ("Path of the Kensei: 6th-level Weapon")
+            // also skip what the feature itself picked.
+            const base = f.name.split(":")[0];
             const pickedBefore = new Set(
               Object.entries(character.featureSelections || {})
-                .filter(([key]) => key.startsWith("subclass-feature-") && key.endsWith(`-${f.name}`) && key !== `subclass-feature-${level}-${f.name}`)
+                .filter(([key]) => {
+                  const m = key.match(/^subclass-feature-\d+-(.*)$/);
+                  return !!m && m[1].split(":")[0] === base && key !== `subclass-feature-${level}-${f.name}`;
+                })
                 .flatMap(([, v]) => (v || []).flatMap((s) => String(s).split(", ")))
             );
             subclassFeatureChoices.push({

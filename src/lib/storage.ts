@@ -36,6 +36,8 @@ export interface Character {
   ac: number;
   currentHp: number;
   maxHp: number;
+  // Max HP after effects such as exhaustion 4. Derived; never saved over maxHp.
+  effectiveMaxHp?: number;
   temporaryHp: number;
   hitDiceTotal: string;
   hitDiceRemaining: number;
@@ -1251,7 +1253,7 @@ export function computeDerivedStats(character: Character): Partial<Character> {
       return match ? parseInt(match[1], 10) : 0;
     })
     .filter((n) => n > 0)
-    .reduce((max, n) => Math.max(max, n), 0);
+    .reduce((max, n) => Math.max(max, n), character.exhaustionLevel || 0);
 
   // Speed modifications from conditions
   const speedZeroConditions = [
@@ -1394,7 +1396,9 @@ export function computeDerivedStats(character: Character): Partial<Character> {
     maxBardicInspirationUses,
     ac,
     speed,
-    maxHp: effectiveMaxHp,
+    effectiveMaxHp,
+    // Current HP can't sit above the reduced maximum.
+    ...(exhaustionLevel >= 4 && (character.currentHp || 0) > effectiveMaxHp ? { currentHp: effectiveMaxHp } : {}),
     temporaryHp: newTemporaryHp,
     buffModifiers: buffMods as any,
     // Universal grapple/shove attacks

@@ -308,10 +308,13 @@ for (const w of choiceWant) {
   };
   const merged = (have.features || []).flatMap((f) => {
     const extra = choiceExtra?.[w.cls]?.[have.name]?.[f.name];
-    return [pick(f.name, f.level, extra, f.choices, f.choicesCount), ...(extra?.extra || []).map((x) => pick(x.name, f.level, x))];
+    return [pick(f.name, f.level, extra, f.choices, f.choicesCount), ...(extra?.extra || []).map((x) => pick(x.name, x.level ?? f.level, x))];
   });
   const wantKeys = (w.options || []).map(optKey);
-  let f = merged.find((x) => x.choices?.length && featKey(x.name) === featKey(w.feature));
+  // Names can differ only by a level number, which featKey drops, so prefer
+  // the entry at the manifest's level.
+  const byName = merged.filter((x) => x.choices?.length && featKey(x.name) === featKey(w.feature));
+  let f = byName.find((x) => x.level === w.level) || byName[0];
   if (!f && wantKeys.length) {
     f = merged.find((x) => x.choices?.length && x.level === w.level && x.choices.filter((c) => wantKeys.includes(optKey(c))).length * 2 >= wantKeys.length);
   }
@@ -322,6 +325,7 @@ for (const w of choiceWant) {
     const label = `level ${w.level} ${w.feature}${featKey(f.name) !== featKey(w.feature) ? ` (data: "${f.name}")` : ""}`;
     const placeholders = f.choices.filter((c) => PLACEHOLDER.test(String(c)));
     if (placeholders.length) lines.push(`Placeholder options: ${label} offers "${placeholders.join('", "')}" instead of real ${w.kind}`);
+    if (f.level !== w.level) lines.push(`Wrong level: ${label} is offered at level ${f.level}`);
     if (f.count !== w.count) lines.push(`Wrong count: ${label} picks ${f.count}, should pick ${w.count}`);
     if (w.options) {
       const haveKeys = f.choices.map(optKey);
