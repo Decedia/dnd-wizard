@@ -28,32 +28,42 @@ export function getFeaturePicks(character: Pick<Character, "featureSelections">,
   return out;
 }
 
+/** Feats the rules let a character take more than once, each time with a new pick. */
+export const REPEATABLE_FEATS = new Set(["Elemental Adept"]);
+
 /**
  * A feat's level and the options picked for it: "+1 WIS", a spell name. A feat
  * taken at an ASI level is stored as `asi-feat-<level>`, a Variant Human's as
  * `variant-human-feat`; the options sit under the same key plus `-options`.
+ * A feat taken more than once (Elemental Adept) lists every pick, at its
+ * first level.
  */
 export function getFeatPicks(
   character: Pick<Character, "featureSelections">,
   featName: string
 ): { taken: boolean; level: number | null; picks: string[] } {
   const selections = character.featureSelections || {};
+  let taken = false;
+  let level: number | null = null;
+  const picks: string[] = [];
   for (const [key, values] of Object.entries(selections)) {
     const asi = key.match(/^asi-feat-(\d+)$/);
     if (!asi && key !== "variant-human-feat") continue;
     if (!(values || []).includes(featName)) continue;
+    const at = asi ? Number(asi[1]) : 1;
+    if (!taken || at < (level ?? 1)) level = asi ? at : null;
+    taken = true;
     const options = decodeFeatOptions(selections[`${key}-options`]);
-    const picks: string[] = [];
     for (const group of getFeatOptionGroups(featName)) {
       for (const [id, value] of Object.entries(options)) {
         if (id !== group.id && id.replace(/_\d+$/, "") !== group.id) continue;
         const label = group.choices?.find((c) => c.value === value)?.label ?? value;
-        picks.push(group.id.startsWith("ability") ? `+1 ${label}` : label);
+        const pick = group.id.startsWith("ability") ? `+1 ${label}` : label;
+        if (!picks.includes(pick)) picks.push(pick);
       }
     }
-    return { taken: true, level: asi ? Number(asi[1]) : null, picks };
   }
-  return { taken: false, level: null, picks: [] };
+  return { taken, level, picks };
 }
 
 /** Whether a feature row matches the search text: its name, summary or picks. */

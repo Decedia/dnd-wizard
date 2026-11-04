@@ -517,7 +517,8 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
     const poolTop = poolField ? poolMax(character, poolField) : null;
     const pool = poolField && poolTop ? { field: poolField, current: Math.min(poolTop, Math.max(0, ((character as any)[poolField] as number) ?? 0)), max: poolTop } : null;
     const summary = ((feature as any).summary || resolved?.summary || (feature.description || "").slice(0, 160)) as string;
-    return { feature, resolved, group: usable ? ("use" as FeatureGroup) : home, home, level, levelLabel, origin, picks, pool, summary, missing: missingFor(feature.name), usable };
+    // Feats always list under Feats, with their spend controls, so every feat taken shows there.
+    return { feature, resolved, group: usable && home !== "feat" ? ("use" as FeatureGroup) : home, home, level, levelLabel, origin, picks, pool, summary, missing: missingFor(feature.name), usable };
   });
   type Row = (typeof rows)[number];
 

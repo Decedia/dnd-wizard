@@ -10,6 +10,7 @@ import { normalizeDescription } from "@/lib/level-up";
 import invocationsData from "@/data/warlock_invocations.json";
 import { SpellSelectionModal } from "./modals/SpellSelectionModal";
 import { applyFeatGrants, encodeFeatOptions } from "@/lib/feat-grants";
+import { REPEATABLE_FEATS } from "@/lib/feature-groups";
 import { getOptionalClassFeatures, getOptionalChoiceOptions, isReplacedFeature } from "@/data/optional-class-features";
 import { FeatSelectionModal } from "./modals/FeatSelectionModal";
 import { getTakenSpellNames } from "@/lib/taken-spells";
@@ -947,18 +948,22 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
         // The sheet language, or the feat's English text is baked into the save
         // at level-up and no later lookup can tell it from a translation.
         const featData = getStaticFeat(st.feat, character.ruleset, language);
-        if (featData && !draft.features.some((f) => f.name === featData.name)) {
+        const hasFeat = !!featData && draft.features.some((f) => f.name === featData.name);
+        // A repeatable feat (Elemental Adept) keeps one feature row but records every pick.
+        if (featData && (!hasFeat || REPEATABLE_FEATS.has(featData.name))) {
           draft = {
             ...draft,
-            features: [
-              ...draft.features,
-              {
-                id: `feat-${featData.name}`.replace(/\s+/g, "-"),
-                name: featData.name,
-                description: featData.description,
-                source: "custom" as const,
-              },
-            ],
+            features: hasFeat
+              ? draft.features
+              : [
+                  ...draft.features,
+                  {
+                    id: `feat-${featData.name}`.replace(/\s+/g, "-"),
+                    name: featData.name,
+                    description: featData.description,
+                    source: "custom" as const,
+                  },
+                ],
             featureSelections: {
               ...draft.featureSelections,
               [`asi-feat-${lvl}`]: [featData.name],
@@ -1453,6 +1458,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
                 pactBoon={pactBoon}
                  sectionRefs={sectionRefs}
                  takenSpells={takenSpells}
+                 allAsiFeats={Object.entries(asiSelections).flatMap(([l, st]) => (st?.mode === "feat" && st.feat ? [{ level: Number(l), feat: st.feat }] : []))}
              />
             </div>
           ))}
@@ -1516,6 +1522,8 @@ interface LevelCardProps {
   pactBoon?: string;
   sectionRefs: React.MutableRefObject<Record<string, HTMLDivElement | null>>;
   takenSpells: Set<string>;
+  /** Feats picked at every ASI of this level-up, so the same feat isn't taken twice. */
+  allAsiFeats: { level: number; feat: string }[];
 }
 
 function LevelCard({
@@ -1563,6 +1571,7 @@ function LevelCard({
   pactBoon,
   sectionRefs,
   takenSpells,
+  allAsiFeats,
 }: LevelCardProps) {
     const { language, tDesc } = useLanguage();
     const dict = language === "id" ? idTranslations : enTranslations;
@@ -2648,7 +2657,9 @@ function LevelCard({
           disabledFeats={[
             ...(character.features || []).filter((f: any) => f.name && f.source !== "custom").map((f: any) => f.name),
             ...Object.values(character.featureSelections || {}).flat(),
-          ]}
+            // Feats picked at other levels of this level-up.
+            ...allAsiFeats.filter((x) => x.level !== info.level).map((x) => x.feat),
+          ].filter((name) => !REPEATABLE_FEATS.has(String(name)))}
           character={wizardCharacter}
           takenSpells={(() => {
             // This feat's own earlier picks stay pickable when it is changed.

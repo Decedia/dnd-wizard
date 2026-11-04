@@ -26,6 +26,19 @@ describe("feature picks", () => {
     expect(getFeatPicks(sel({ "variant-human-feat": ["Alert"] }), "Alert")).toEqual({ taken: true, level: null, picks: [] });
     expect(getFeatPicks(c, "Tough").taken).toBe(false);
   });
+
+  test("a feat taken twice lists both picks at its first level", () => {
+    const c = sel({
+      "asi-feat-8": ["Elemental Adept"],
+      "asi-feat-8-options": ["damage_type=Cold"],
+      "asi-feat-4": ["Elemental Adept"],
+      "asi-feat-4-options": ["damage_type=Fire"],
+    });
+    const info = getFeatPicks(c, "Elemental Adept");
+    expect(info.taken).toBe(true);
+    expect(info.level).toBe(4);
+    expect([...info.picks].sort()).toEqual(["Cold", "Fire"]);
+  });
 });
 
 test("search looks at name, summary and picks", () => {
