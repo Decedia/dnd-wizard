@@ -3,7 +3,7 @@ import { LANGUAGE_NAMES } from "@/data/feat-options";
 import { applyFeatGrants, decodeFeatOptions } from "./feat-grants";
 import { getRaceAsi, getRaceSkills, isFlexAsiValid } from "./race-grants";
 import { engineIdFor } from "@/lib/feature-engine";
-import { getStaticClass, getStaticRace, getStaticRaceDetails, getStaticSubclasses, getStaticEquipments, getStaticWeapons, getStaticArmors, getStaticItems, getStaticFeat, getStaticSpells } from "./srd-client";
+import { activeRaceChoices, getStaticClass, getStaticRace, getStaticRaceDetails, getStaticSubclasses, getStaticEquipments, getStaticWeapons, getStaticArmors, getStaticItems, getStaticFeat, getStaticSpells } from "./srd-client";
 import { getGrantedSpellNames, grantSpells } from "./granted-spells";
 import { determineDefaultVisibility } from "./feature-filters";
 import type { CreationStep } from "./creation-types";
@@ -482,13 +482,26 @@ export function getValidationMessage(step: CreationStep, character?: Character):
   }
 }
 
+/**
+ * Half-Elf picks: +1 to two abilities, then two skills for the base race, or
+ * for a SCAG variant the elf trait that replaces Skill Versatility (and its
+ * cantrip when the trait is a cantrip).
+ */
+export function halfElfPicksComplete(character: Pick<Character, "race" | "sources" | "halfElfAbilities" | "halfElfSkills" | "raceChoices">): boolean {
+  const race = character.race || "";
+  if (!race.startsWith("Half-Elf")) return true;
+  if ((character.halfElfAbilities || []).length !== 2) return false;
+  if (!race.startsWith("Half-Elf (")) return (character.halfElfSkills || []).length === 2;
+  const choices = activeRaceChoices(getStaticRaceDetails(race, character.sources)?.choices, character.raceChoices);
+  return choices.every((c) => !!character.raceChoices?.[c.id]);
+}
+
+export const ELF_WEAPON_TRAINING = ["Longsword", "Shortsword", "Shortbow", "Longbow"];
+
 export function getCreationSteps(character: Character): CreationStep[] {
   const classData = character.class ? getStaticClass(character.class, character.ruleset) : null;
 
-  const isHalfElf = (character.race || "").startsWith("Half-Elf");
-  const halfElfComplete =
-    !isHalfElf ||
-    ((character.halfElfAbilities || []).length === 2 && (character.halfElfSkills || []).length === 2);
+  const halfElfComplete = halfElfPicksComplete(character);
   // Background lives in Origin: it grants skills, tools and languages, so it
   // must be set before the Skills step in either creation order.
   const originCompleted =
@@ -799,7 +812,7 @@ function getRaceTraits(character: Character, language: string): any[] {
     ...extractFeatureFields(t),
   }));
   if (race.choices && character.raceChoices) {
-    for (const choice of race.choices) {
+    for (const choice of activeRaceChoices(race.choices, character.raceChoices)) {
       const selectedId = character.raceChoices[choice.id];
       if (!selectedId) continue;
       const selectedOption = choice.options?.find((o: any) => o.id === selectedId);
@@ -1335,6 +1348,11 @@ export async function finalizeCreation(character: Character, language = "en"): P
       const nextSkills = { ...final.skills };
       for (const skill of halfSkills.slice(0, 2)) nextSkills[skill] = true;
       halfPatch.skills = nextSkills;
+    }
+    if (final.raceChoices?.["half-elf-versatility"] === "elf-weapon-training") {
+      const other = (final.otherProficiencies || "").split(/,\s*/).filter(Boolean);
+      for (const w of ELF_WEAPON_TRAINING) if (!other.includes(w)) other.push(w);
+      halfPatch.otherProficiencies = other.join(", ");
     }
     final = { ...final, ...halfPatch };
   }

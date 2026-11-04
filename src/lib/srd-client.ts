@@ -90,6 +90,13 @@ export interface RaceChoice {
   options?: { id: string; name: string; description?: string }[];
   /** A cantrip pick from this class's list; options are built from the spell data. */
   spellList?: string;
+  /** Shown only when another choice has this value (a half-elf's cantrip needs "cantrip"). */
+  requires?: Record<string, string>;
+}
+
+/** The race choices that apply given what is picked so far. */
+export function activeRaceChoices(choices: RaceChoice[] | undefined, picked: Record<string, string> | undefined): RaceChoice[] {
+  return (choices || []).filter((c) => !c.requires || Object.entries(c.requires).every(([k, v]) => picked?.[k] === v));
 }
 
 export interface SRDClass {

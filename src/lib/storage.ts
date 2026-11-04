@@ -915,10 +915,13 @@ function getClassResourceValue(classData: any, resourceName: string, level: numb
  * display name second, since older saves have no engineId stamped.
  */
 /** Walking speed before bonuses: the player's own base, else the race's, else 30. */
-export function getBaseSpeed(character: Pick<Character, "baseSpeed" | "race" | "ruleset">): number {
+export function getBaseSpeed(character: Pick<Character, "baseSpeed" | "race" | "ruleset"> & { raceChoices?: Record<string, string> }): number {
   if (typeof character.baseSpeed === "number" && character.baseSpeed > 0) return character.baseSpeed;
   const raceSpeed = character.race ? getStaticRace(character.race, character.ruleset)?.speed : undefined;
-  return typeof raceSpeed === "number" && raceSpeed > 0 ? raceSpeed : 30;
+  const base = typeof raceSpeed === "number" && raceSpeed > 0 ? raceSpeed : 30;
+  // A wood half-elf who takes Fleet of Foot walks 35 feet.
+  const fleet = character.race?.startsWith("Half-Elf (") && character.raceChoices?.["half-elf-versatility"] === "fleet-of-foot";
+  return base + (fleet ? 5 : 0);
 }
 
 /**

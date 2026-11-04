@@ -100,6 +100,13 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
       }
 
       const isHalfElf = raceName.startsWith("Half-Elf");
+      // A half-elf variant's elf trait and cantrip are race choices; the old
+      // picks go so switching variant or trait leaves nothing stale.
+      delete nextRaceChoices["half-elf-versatility"];
+      if (isHalfElf) {
+        delete nextRaceChoices["high-elf-cantrip"];
+        Object.assign(nextRaceChoices, payload.configChoice?.featureData?.choices || {});
+      }
       const oldAbilities = data.variantHumanAbilities || [];
       const newAbilities = isVariant ? (payload.configChoice?.featureData?.abilities || []) : [];
       const oldSkill = data.variantHumanSkill;

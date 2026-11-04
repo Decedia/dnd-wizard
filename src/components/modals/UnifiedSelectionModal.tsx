@@ -3,7 +3,7 @@
 import { useState, useMemo, useCallback, useEffect, useLayoutEffect } from "react";
 import { getStaticClasses, getStaticSubclasses } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
-import { getStaticRaces, getStaticRaceDetails, type SRDClass, type SRDRace } from "@/lib/srd-client";
+import { activeRaceChoices, getStaticRaces, getStaticRaceDetails, type SRDClass, type SRDRace } from "@/lib/srd-client";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import {
   InfoBadge,
@@ -434,16 +434,20 @@ export function UnifiedSelectionModal<T extends SelectionType>({
   // empty payload through useEffect as soon as it renders.
   const isHalfElfStep = step === "config" && selectedItem?.choiceType === "half_elf";
   const halfElfData = configChoice?.featureData as HalfElfConfigPayload | undefined;
-  const halfElfComplete =
-    !isHalfElfStep ||
-    (halfElfData?.abilities?.length === 2 && halfElfData?.skills?.length === 2);
+  // A SCAG variant (Half-Elf (Wood Elf)) picks an elf trait instead of skills.
+  const halfElfVariant = isHalfElfStep && selectedItem!.name.startsWith("Half-Elf (");
+  // Plain call, not a hook: this runs after the early return above.
+  const halfElfRaceChoices = halfElfVariant ? getStaticRaceDetails(selectedItem!.name, characterSources, undefined, language)?.choices || [] : [];
+  const halfElfOpenChoices = activeRaceChoices(halfElfRaceChoices, halfElfData?.choices).filter((c) => !halfElfData?.choices?.[c.id]);
   const halfElfMissing: string[] = [];
-  if (isHalfElfStep && !halfElfComplete) {
+  if (isHalfElfStep) {
     const abilityGap = 2 - (halfElfData?.abilities?.length || 0);
-    const skillGap = 2 - (halfElfData?.skills?.length || 0);
+    const skillGap = halfElfVariant ? 0 : 2 - (halfElfData?.skills?.length || 0);
     if (abilityGap > 0) halfElfMissing.push(t("modal.missingAbilities", { n: abilityGap }, "Pilih {n} ability"));
     if (skillGap > 0) halfElfMissing.push(t("modal.missingSkills", { n: skillGap }, "Pilih {n} skill"));
+    for (const c of halfElfOpenChoices) halfElfMissing.push(t("modal.missingChoice", { name: c.name }, "Pick {name}"));
   }
+  const halfElfComplete = halfElfMissing.length === 0;
   const isConfirmDisabled =
     step === "config"
       ? !halfElfComplete || (requireChoice && !configChoice && !(isHumanVariantStep && !variantHumanSelected))
@@ -687,6 +691,9 @@ export function UnifiedSelectionModal<T extends SelectionType>({
                 <HalfElfConfig
                   initialAbilities={(configChoice?.featureData as HalfElfConfigPayload | undefined)?.abilities || []}
                   initialSkills={(configChoice?.featureData as HalfElfConfigPayload | undefined)?.skills || []}
+                  initialChoices={(configChoice?.featureData as HalfElfConfigPayload | undefined)?.choices || (currentCharacter?.race === selectedItem.name ? currentCharacter?.raceChoices : undefined) || {}}
+                  variant={halfElfVariant}
+                  raceChoices={halfElfRaceChoices}
                   character={currentCharacter as Partial<Character>}
                   onChange={(halfElfConfig) => {
                     setConfigChoice({
