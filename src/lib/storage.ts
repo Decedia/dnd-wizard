@@ -1418,18 +1418,33 @@ export function getOathSpellNames(character: Character): string[] {
   return getOathSpells(character.subclassIndex, character.level || 1);
 }
 
-export function getWarlockExpandedSpellNames(character: Character): string[] {
-  if (character.class !== "Warlock" || !character.subclass) return [];
+/**
+ * Spells a warlock's patron adds to the warlock spell list at the character's level.
+ * They are extra options for spells known, not spells the warlock learns for free.
+ * Keys are class levels. The Genie adds more spells by genie kind, read from the
+ * patron option the player picked (a feature named "Dao (Earth)" and so on).
+ */
+export function getWarlockExpandedSpellNames(character: Partial<Character>, subclassName?: string): string[] {
+  const sub = subclassName || character.subclass;
+  if (character.class !== "Warlock" || !sub) return [];
   const level = character.level || 1;
   const classData = getStaticClass("Warlock", character.ruleset);
-  if (!classData?.subclasses) return [];
-  const subclass = classData.subclasses.find((s) => s.name.toLowerCase() === character.subclass?.toLowerCase());
-  if (!subclass?.expandedSpells) return [];
-
+  const subclass = classData?.subclasses?.find((s) => s.name.toLowerCase() === sub.toLowerCase());
+  if (!subclass) return [];
+  const tables = [subclass.expandedSpells || {}];
+  if (subclass.expandedSpellsByOption) {
+    const picked = [
+      ...(character.features || []).map((f) => f.name),
+      ...Object.values(character.featureSelections || {}).flat(),
+    ];
+    for (const [option, table] of Object.entries(subclass.expandedSpellsByOption)) {
+      if (picked.some((name) => name === option || name.startsWith(option + " "))) tables.push(table);
+    }
+  }
   const spells: string[] = [];
-  for (const [lvlStr, lvlSpells] of Object.entries(subclass.expandedSpells)) {
-    if (level >= Number(lvlStr)) {
-      spells.push(...(lvlSpells as string[]));
+  for (const table of tables) {
+    for (const [lvlStr, lvlSpells] of Object.entries(table)) {
+      if (level >= Number(lvlStr)) spells.push(...lvlSpells);
     }
   }
   return spells;

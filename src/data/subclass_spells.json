@@ -785,11 +785,6 @@
     }
   },
   "wizardTraditionSpells": {
-    "divination": {
-      "14": [
-        "Foresight"
-      ]
-    },
     "transmutation": {
       "10": [
         "Polymorph"

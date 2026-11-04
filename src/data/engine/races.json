@@ -15,7 +15,12 @@
   "AAG": "Spelljammer: Astral Adventurer's Guide",
   "SCAG": "Sword Coast Adventurer's Guide",
   "MPMM": "Mordenkainen Presents: Monsters of the Multiverse",
-  "FTD": "Fizban's Treasury of Dragons"
+  "FTD": "Fizban's Treasury of Dragons",
+  "BGG": "Bigby Presents: Glory of the Giants",
+  "DSotDQ": "Dragonlance: Shadow of the Dragon Queen",
+  "TTP": "The Tortle Package",
+  "MOoT": "Mythic Odysseys of Theros",
+  "GGR": "Guildmasters' Guide to Ravnica"
  },
  "races": [
   {

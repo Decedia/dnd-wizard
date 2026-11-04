@@ -116,6 +116,41 @@ const BOOK_SPECS: Record<
     stripColor: "#5c6bc0",
     patternSvg: BookPatterns.AAG,
   },
+  BGG: {
+    name: "Bigby Presents: Glory of the Giants",
+    tags: ["Subclasses", "Giants"],
+    color: "#4e342e",
+    stripColor: "#a1887f",
+    patternSvg: BookPatterns.BGG,
+  },
+  DSotDQ: {
+    name: "Dragonlance: Shadow of the Dragon Queen",
+    tags: ["Subclasses", "Dragonlance"],
+    color: "#311b92",
+    stripColor: "#9575cd",
+    patternSvg: BookPatterns.DSotDQ,
+  },
+  TTP: {
+    name: "The Tortle Package",
+    tags: ["Races"],
+    color: "#1b5e20",
+    stripColor: "#66bb6a",
+    patternSvg: BookPatterns.TTP,
+  },
+  MOoT: {
+    name: "Mythic Odysseys of Theros",
+    tags: ["Races", "Subclasses"],
+    color: "#bf360c",
+    stripColor: "#ff8a65",
+    patternSvg: BookPatterns.MOoT,
+  },
+  GGR: {
+    name: "Guildmasters' Guide to Ravnica",
+    tags: ["Races", "Subclasses"],
+    color: "#004d40",
+    stripColor: "#4db6ac",
+    patternSvg: BookPatterns.GGR,
+  },
 };
 
 const ALL_BOOK_IDS = SOURCE_OPTIONS.map((s) => s.id);

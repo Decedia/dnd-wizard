@@ -195,7 +195,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
       </div>
 
       <div className="mb-8">
-        <h2 className="text-xs font-bold tracking-widest text-[var(--color-text-secondary)] mb-3">{t("creator.selectClassRace", "PILIH KELAS & RAS")}</h2>
+        <h2 className="text-xs font-bold tracking-widest text-[var(--color-text-secondary)] mb-3">{t("creator.selectClassRace", "CHOOSE CLASS & RACE")}</h2>
         {/* Class Card */}
         <FieldState
           value={data.class}

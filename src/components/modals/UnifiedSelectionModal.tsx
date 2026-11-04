@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo, useCallback, useEffect, useLayoutEffect } from "react";
-import { getStaticClasses } from "@/lib/srd-client";
+import { getStaticClasses, getStaticSubclasses } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
 import { getStaticRaces, getStaticRaceDetails, type SRDClass, type SRDRace } from "@/lib/srd-client";
 import { BottomSheet } from "@/components/modals/BottomSheet";
@@ -59,6 +59,8 @@ export interface SelectionOption {
   choiceType?: string;
   basicStats?: string;
   subclassCount?: number;
+  /** Subclass names offered under the character's sourcebooks. */
+  subclassNames?: string[];
   subclassLevel?: number;
   isRecommended?: boolean;
   recommendationText?: string;
@@ -230,7 +232,11 @@ export function UnifiedSelectionModal<T extends SelectionType>({
   const allOptions = useMemo(() => {
     if (selectionType === "class") {
       const classes = getStaticClasses(characterSources, undefined, language);
-      return classes.map((cls) => ({
+      return classes.map((cls) => {
+        // Count from the subclass data under the chosen books; the class
+        // file's own subclass list is incomplete.
+        const subclassNames = getStaticSubclasses(cls.name, characterSources, undefined, language).map((s) => s.name);
+        return {
         name: cls.name,
         source: cls.source || "PHB",
         description: cls.flavor || "",
@@ -238,11 +244,13 @@ export function UnifiedSelectionModal<T extends SelectionType>({
         icon: CLASS_ICONS[cls.name] || FallbackIcon,
         hasChoice: false,
         choiceType: "subclass",
-        subclassCount: cls.subclasses?.length || 0,
+        subclassCount: subclassNames.length,
+        subclassNames,
         subclassLevel: cls.subclassLevel || 3,
         isRecommended: (cls as any).recommendation?.is_recommended || false,
         recommendationText: (cls as any).recommendation?.text || "",
-      })) as SelectionOption[];
+      };
+      }) as SelectionOption[];
     } else {
       const races = getStaticRaces(characterSources, undefined, language);
       const categoryByRace = buildRaceCategoryIndex(
@@ -952,7 +960,9 @@ function ClassInfoPanel({ option }: { option: SelectionOption }) {
   const weapons = formatProficiencyList(cls?.proficiencies?.weapons);
   const tools = formatProficiencyList(cls?.proficiencies?.tools);
   const skillOptions = cls?.skillChoices?.options || [];
-  const subclasses = (cls?.subclasses || []).filter((sc) => !!sc?.name);
+  const subclasses = option.subclassNames
+    ? option.subclassNames.map((name) => ({ name }))
+    : (cls?.subclasses || []).filter((sc) => !!sc?.name);
   const earlyLevels = (cls?.levels || [])
     .slice(0, 3)
     .map((entry, index) => ({

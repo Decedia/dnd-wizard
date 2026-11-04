@@ -20,6 +20,11 @@ const BOOK_DESCRIPTIONS: Record<BookId, string> = {
   ERLW: "Eberron: Rising from the Last War presents the Eberron setting, with races such as the changeling, kalashtar, shifter and warforged, plus dragonmarks.",
   AAG: "Spelljammer: Astral Adventurer's Guide covers adventures in wildspace and adds the astral elf, autognome, giff, hadozee, plasmoid and thri-kreen races.",
   EEPC: "The Elemental Evil Player's Companion adds the aarakocra, deep gnome, genasi and goliath races, and many elemental spells.",
+  BGG: "Bigby Presents: Glory of the Giants is about giants and their lore. For players it adds the Path of the Giant barbarian and giant-themed feats.",
+  DSotDQ: "Dragonlance: Shadow of the Dragon Queen is a Krynn adventure. For players it adds the kender race, the Lunar Sorcery sorcerer and backgrounds.",
+  TTP: "The Tortle Package is a short supplement that adds the tortle race.",
+  MOoT: "Mythic Odysseys of Theros presents a Greek-myth setting, with the centaur, minotaur, satyr and leonin races and new subclasses.",
+  GGR: "Guildmasters' Guide to Ravnica presents the Ravnica setting, with races such as the loxodon, centaur, minotaur, simic hybrid and vedalken.",
 };
 
 interface BookExplainerProps {

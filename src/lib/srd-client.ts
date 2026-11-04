@@ -123,6 +123,8 @@ export interface SRDClass {
     description: string;
     features: { name: string; description: string; level?: number }[];
     expandedSpells?: Record<string, string[]>;
+    /** Extra expanded spells that depend on a subclass option, such as the Genie's kind. Keyed by option name, then class level. */
+    expandedSpellsByOption?: Record<string, Record<string, string[]>>;
   }[];
   scalingFeatures?: {
     name: string;

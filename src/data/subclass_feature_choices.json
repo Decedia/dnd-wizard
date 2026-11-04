@@ -475,23 +475,23 @@
     "The Genie": {
       "Genie Patron": {
         "count": 1,
-        "description": "Choose the type of genie that is your patron. This determines your damage resistance, language, and added spells.",
+        "description": "Choose the kind of genie that is your patron. This sets your damage type and adds spells you can choose.",
         "options": [
           {
-            "name": "Dao (Earth)",
-            "description": "Fire damage; Terran language"
+            "name": "Dao",
+            "description": "Earth genie. Bludgeoning damage. Adds sanctuary, spike growth, meld into stone, stone shape and wall of stone."
           },
           {
-            "name": "Djinni (Air)",
-            "description": "Cold damage; Auran language"
+            "name": "Djinni",
+            "description": "Air genie. Thunder damage. Adds thunderwave, gust of wind, wind wall, greater invisibility and seeming."
           },
           {
-            "name": "Efreeti (Fire)",
-            "description": "Lightning damage; Ignan language"
+            "name": "Efreeti",
+            "description": "Fire genie. Fire damage. Adds burning hands, scorching ray, fireball, fire shield and flame strike."
           },
           {
-            "name": "Marid (Water)",
-            "description": "Thunder damage; Aquan language"
+            "name": "Marid",
+            "description": "Water genie. Cold damage. Adds fog cloud, blur, sleet storm, control water and cone of cold."
           }
         ]
       }

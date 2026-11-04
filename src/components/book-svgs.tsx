@@ -85,6 +85,34 @@ export const BookPatterns = {
       <circle cx="100" cy="36" r="10" fill="none" stroke="#fff" strokeWidth="0.8" opacity="0.12" />
     </svg>
   ),
+  BGG: (
+    <svg width="100%" height="100%" viewBox="0 0 200 72" preserveAspectRatio="xMidYMid slice">
+      <path d="M20,64 L70,14 L100,44 L130,10 L180,64" fill="none" stroke="#fff" strokeWidth="1.2" opacity="0.12" />
+    </svg>
+  ),
+  DSotDQ: (
+    <svg width="100%" height="100%" viewBox="0 0 200 72" preserveAspectRatio="xMidYMid slice">
+      <circle cx="100" cy="36" r="24" fill="none" stroke="#fff" strokeWidth="1.2" opacity="0.12" />
+      <circle cx="112" cy="30" r="20" fill="none" stroke="#fff" strokeWidth="0.8" opacity="0.12" />
+    </svg>
+  ),
+  TTP: (
+    <svg width="100%" height="100%" viewBox="0 0 200 72" preserveAspectRatio="xMidYMid slice">
+      <ellipse cx="100" cy="40" rx="40" ry="24" fill="none" stroke="#fff" strokeWidth="1.2" opacity="0.12" />
+      <path d="M80,40 L100,24 L120,40 L100,56 Z" fill="none" stroke="#fff" strokeWidth="0.8" opacity="0.12" />
+    </svg>
+  ),
+  MOoT: (
+    <svg width="100%" height="100%" viewBox="0 0 200 72" preserveAspectRatio="xMidYMid slice">
+      <path d="M50,64 L50,20 M80,64 L80,20 M120,64 L120,20 M150,64 L150,20 M40,20 L160,20 L100,6 Z" fill="none" stroke="#fff" strokeWidth="1.2" opacity="0.12" />
+    </svg>
+  ),
+  GGR: (
+    <svg width="100%" height="100%" viewBox="0 0 200 72" preserveAspectRatio="xMidYMid slice">
+      <rect x="60" y="16" width="80" height="44" fill="none" stroke="#fff" strokeWidth="1.2" opacity="0.12" />
+      <path d="M60,16 L100,4 L140,16" fill="none" stroke="#fff" strokeWidth="0.8" opacity="0.12" />
+    </svg>
+  ),
   MPMM: (
     <svg width="100%" height="100%" viewBox="0 0 200 72" preserveAspectRatio="xMidYMid slice">
       <circle cx="100" cy="36" r="32" fill="none" stroke="#fff" strokeWidth="1.2" opacity="0.12" />
@@ -109,6 +137,11 @@ export const BookEmojis: Record<string, string> = {
   ERLW: "⚙️",
   EEPC: "🌪️",
   AAG: "🚀",
+  BGG: "⛰️",
+  DSotDQ: "🌙",
+  TTP: "🐢",
+  MOoT: "🏛️",
+  GGR: "🏙️",
 };
 
 export type BookId = keyof typeof BookPatterns;

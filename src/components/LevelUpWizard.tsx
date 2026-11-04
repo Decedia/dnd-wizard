@@ -4,7 +4,7 @@ import { useState, useMemo, useCallback, useEffect, useRef, useLayoutEffect } fr
 import { WizardNav } from "./WizardNav";
 import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclassDetails, getSubclassFlags, getPactBoons, getStaticFeat, getStaticEquipments } from "@/lib/srd-client";
 import { SourceBadge } from "./SourceBadge";
-import { getHitDieAverage, getModifier, computeDerivedStats, getMaxBardicInspirationUses, getBardicInspirationDie, getSongOfRestDie, hasFontOfInspiration, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getOathSpellNames, getWarlockExpandedSpellNames, getWizardTraditionSpellNames, getMaxSpellLevel, getFeatureValue, type Character } from "@/lib/storage";
+import { getHitDieAverage, getModifier, computeDerivedStats, getMaxBardicInspirationUses, getBardicInspirationDie, getSongOfRestDie, hasFontOfInspiration, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getOathSpellNames, getWizardTraditionSpellNames, getMaxSpellLevel, getFeatureValue, type Character } from "@/lib/storage";
 import { applySubclassFeatures, applySubclassSpellGrants, syncBaseFeatures } from "@/lib/character-creation";
 import { normalizeDescription } from "@/lib/level-up";
 import invocationsData from "@/data/warlock_invocations.json";
@@ -1064,27 +1064,6 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       }
     }
 
-    if (draft.class === "Warlock" && draft.subclass) {
-      const expandedSpellNames = getWarlockExpandedSpellNames(draft);
-      const currentSpellNames = spells.map((s) => s.name?.toLowerCase());
-      for (const name of expandedSpellNames) {
-        if (!currentSpellNames.includes(name.toLowerCase())) {
-          const spell = getStaticSpells(character.sources, undefined, language).find((s) => s.name?.toLowerCase() === name.toLowerCase());
-          if (spell) {
-            const id = `spell-${spell.name}-${spell.level}`.replace(/\s+/g, "-");
-            spells.push({
-              id,
-              name: spell.name,
-              level: spell.level || 0,
-              source: "srd" as const,
-              srdSpellName: spell.name,
-              description: Array.isArray(spell.description) ? spell.description.join("\n") : (spell.description || ""),
-            });
-          }
-        }
-      }
-    }
-
     if (draft.class === "Wizard" && draft.subclass) {
       const traditionSpellNames = getWizardTraditionSpellNames(draft);
       const currentSpellNames = spells.map((s) => s.name?.toLowerCase());
@@ -1986,7 +1965,7 @@ function LevelCard({
                   onClick={() => setShowSubclassModal(true)}
                   className="mt-1 w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all"
                 >
-                   {subclassSelection ? `${t("creator.selectedFeat", "Selected")}: ${subclassSelection}` : t("creator.selectSubclass", "Select Subclass")}
+                   {subclassSelection ? `${t("creator.selectedSubclass", "Selected subclass")}: ${subclassSelection}` : t("creator.selectSubclass", "Select Subclass")}
                 </button>
               </div>
             </div>
@@ -2206,10 +2185,10 @@ function LevelCard({
                    <Sparkle className="h-3.5 w-3.5 text-indigo-600" />
                    <span className="text-sm font-bold text-[var(--color-text-primary)]">{t("spell.eldritchInvocations", "Eldritch Invocations")}</span>
                  </div>
-                 <p className="text-[10px] text-[var(--color-text-muted)] mb-2">{t("spell.invocationCountHint", "Choose {count} invocation{count, plural, one {} other {s}}. Spell slots recover on short rest.", { count: invocationCount })}</p>
+                 <p className="text-[10px] text-[var(--color-text-muted)] mb-2">{t("spell.invocationCountHint", "Invocations to choose: {count}. Spell slots recover on a short rest.", { count: invocationCount })}</p>
                 <FeatureChipSelector
                   name="Eldritch Invocations"
-                  description={t("spell.chooseInvocations", "Choose {count} invocation{count, plural, one {} other {s}}", { count: invocationCount })}
+                  description={t("spell.chooseInvocations", "Invocations to choose: {count}", { count: invocationCount })}
                    options={availableInvocations.map((i) => ({
                      name: i.name,
                      description: i.available ? t("spell.availableAtLevel", "Available at level {level}", { level: info.level }) : i.reason || t("common.notAvailable", "Not available"),
@@ -2261,7 +2240,7 @@ function LevelCard({
                  <Sparkle className="h-3.5 w-3.5 text-purple-600" />
                  <span className="text-sm font-bold text-[var(--color-text-primary)]">{t("spell.magicalSecrets", "Magical Secrets")}</span>
                </div>
-               <p className="text-[10px] text-[var(--color-text-muted)] mb-2">{t("spell.magicalSecretsHint", "Choose {count} spell{count, plural, one {} other {s}} from any class", { count: info.magicalSecretsCount })}</p>
+               <p className="text-[10px] text-[var(--color-text-muted)] mb-2">{t("spell.magicalSecretsHint", "Choose {count} spells from any class", { count: info.magicalSecretsCount })}</p>
               <button
                 type="button"
                 onClick={() => setShowSpellModal(true)}
@@ -2296,7 +2275,7 @@ function LevelCard({
                  <Sparkle className="h-3.5 w-3.5 text-indigo-600" />
                  <span className="text-sm font-bold text-[var(--color-text-primary)]">{t("spell.additionalMagicalSecrets", "Additional Magical Secrets")}</span>
                </div>
-               <p className="text-[10px] text-[var(--color-text-muted)] mb-2">{t("spell.additionalMagicalSecretsHint", "Choose {count} spell{count, plural, one {} other {s}} from any class (Lore feature)", { count: info.subclassSpellSelectionCount })}</p>
+               <p className="text-[10px] text-[var(--color-text-muted)] mb-2">{t("spell.additionalMagicalSecretsHint", "Choose {count} spells from any class (Lore feature)", { count: info.subclassSpellSelectionCount })}</p>
               <button
                 type="button"
                 onClick={() => setShowSpellModal(true)}

@@ -10,7 +10,7 @@ import { BottomSheet } from "@/components/modals/BottomSheet";
 import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
-import { getMaxSpellLevel } from "@/lib/storage";
+import { getMaxSpellLevel, getWarlockExpandedSpellNames } from "@/lib/storage";
 
 function slugify(name: string): string {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
@@ -83,12 +83,15 @@ export function SpellSelectionModal({
   const atFlags = character.subclassIndex ? getSubclassFlags(character.subclassIndex) : {};
   const isArcaneTrickster = atFlags.usesMageSpellList;
   const effectiveMaxLevel = onChange ? (maxLevel ?? getMaxSpellLevel(character.class, character.level, character.ruleset)) : (maxLevel || 0);
+  // A warlock patron's expanded spells join the list to choose from; the max
+  // spell level filter below already gates them by level.
+  const patronSpells = new Set(getWarlockExpandedSpellNames({ ...character, level: 20 }, subclassSelection || character.subclass).map((n) => n.toLowerCase()));
   const classSpells = isArcaneTrickster
     ? getClassSpells("arcane-trickster", language)
     : [];
   const allSpells = classSpells.length > 0
     ? deduplicateSpells(classSpells.filter((s: any) => s.level === 0 || s.level <= effectiveMaxLevel))
-    : deduplicateSpells(getStaticSpells(character.sources, character.ruleset, language).filter((s) => s.classes?.includes(character.class) && (s.level === 0 || s.level <= effectiveMaxLevel)));
+    : deduplicateSpells(getStaticSpells(character.sources, character.ruleset, language).filter((s) => (s.classes?.includes(character.class) || patronSpells.has(s.name.toLowerCase())) && (s.level === 0 || s.level <= effectiveMaxLevel)));
 
   const existingCantripNames = new Set((character.cantrips || []).map(c => c.name));
   const earlierSpellNames = new Set((earlierSelections || []).map(s => s.split(":")[0]));
