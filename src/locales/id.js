@@ -860,6 +860,7 @@ export const translations = {
   "appearance.rebuildFailed": "Gagal membangun ulang. Lihat detail di konsol.",
   "features.syncWithSrd": "Sinkronkan dengan SRD",
   "spells.prepared": "Disiapkan",
+  "spells.alwaysPrepared": "Selalu disiapkan",
   "spells.prepare": "Siapkan",
   "spells.used": "Digunakan",
   "spells.use": "Gunakan",

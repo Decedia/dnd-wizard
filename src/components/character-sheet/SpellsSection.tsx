@@ -5,7 +5,8 @@ import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { useSRD } from "@/contexts/SRDContext";
 import type { Character } from "@/lib/storage";
-import { getModifier, getMaxPreparedSpells, isPreparationCaster, getDomainSpellNames, getCircleSpells, getMaxSpellsKnown, getMaxCantripsKnown, getMaxSpellLevel } from "@/lib/storage";
+import { getGrantedSpellNames } from "@/lib/granted-spells";
+import { getModifier, getMaxPreparedSpells, isPreparationCaster, getMaxSpellsKnown, getMaxCantripsKnown, getMaxSpellLevel } from "@/lib/storage";
 import { getStaticSpells, deduplicateSpells } from "@/lib/srd-client";
 import { LightningIcon as Lightning, PlusIcon as Plus, CheckIcon as Check, CircleIcon as Circle, XIcon as X, ClockIcon as Clock, SparklesIcon as Sparkle, CaretRightIcon as CaretRight } from "@/components/icons";
 import { SpellSelectionModal } from "../modals/SpellSelectionModal";
@@ -69,14 +70,14 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
   const maxSpellsKnown = getMaxSpellsKnown(character);
   const maxCantripsKnown = getMaxCantripsKnown(character);
   const maxLevel = getMaxSpellLevel(character.class, character.level, character.ruleset, character.subclass);
-  const currentSpellsKnown = (character.spells || []).filter(s => s.level > 0).length;
-  const currentCantripsKnown = (character.spells || []).filter(s => s.level === 0).length;
-  const domainSpells = getDomainSpellNames(character);
-  const circleTerrain = character.circleTerrain || "";
-  const circleSpellsList = circleTerrain ? getCircleSpells(circleTerrain, character.level) : [];
+  // Subclass, race and optional-feature spells: always prepared, never counted.
+  const grantedSpells = useMemo(() => new Set(getGrantedSpellNames(character).map((n) => n.toLowerCase())), [character]);
+  const isGranted = (name?: string) => !!name && grantedSpells.has(name.toLowerCase());
+  const currentSpellsKnown = (character.spells || []).filter(s => s.level > 0 && !isGranted(s.name)).length;
+  const currentCantripsKnown = (character.spells || []).filter(s => s.level === 0 && !isGranted(s.name)).length;
   const preparedCount = (character.preparedSpells || []).filter(id => {
     const spell = character.spells.find(s => s.id === id);
-    return spell && spell.level > 0 && !circleSpellsList.some(cs => cs.toLowerCase() === spell.name?.toLowerCase());
+    return spell && spell.level > 0 && !isGranted(spell.name);
   }).length;
 
   const unifiedSpells: UnifiedSpell[] = useMemo(() => {
@@ -545,7 +546,12 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
               {/* Action Footer */}
               <div className="bg-[var(--color-bg)] border-t border-[var(--color-border)] px-4 py-2.5 flex justify-between items-center group-active:bg-[var(--color-border-muted)] transition-colors">
                 <div className="flex items-center gap-2">
-                  {preparationCaster && spell.level > 0 && (
+                  {preparationCaster && spell.level > 0 && isGranted(spell.name) && (
+                    <span className="px-2 py-1 text-[10px] font-bold rounded bg-[var(--color-success-500)] text-[var(--color-surface)]">
+                      {t("spells.alwaysPrepared", "Always prepared")}
+                    </span>
+                  )}
+                  {preparationCaster && spell.level > 0 && !isGranted(spell.name) && (
                     <button
                       type="button"
                       onClick={(e) => { e.stopPropagation(); togglePrepared(spell.id); }}

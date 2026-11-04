@@ -858,6 +858,7 @@ export const translations = {
   "appearance.rebuildFailed": "Rebuild failed. See the console for details.",
   "features.syncWithSrd": "Sync with SRD",
   "spells.prepared": "Prepared",
+  "spells.alwaysPrepared": "Always prepared",
   "spells.prepare": "Prepare",
   "spells.used": "Used",
   "spells.use": "Use",

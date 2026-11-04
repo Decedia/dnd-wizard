@@ -12,11 +12,11 @@
       ],
       "5": [
         "Beacon of Hope",
-        "Death Ward"
+        "Revivify"
       ],
       "7": [
-        "Guardian of Faith",
-        "Healing Word"
+        "Death Ward",
+        "Guardian of Faith"
       ],
       "9": [
         "Mass Cure Wounds",
@@ -55,16 +55,16 @@
         "Scorching Ray"
       ],
       "5": [
-        "Fireball",
-        "Daylight"
+        "Daylight",
+        "Fireball"
       ],
       "7": [
-        "Flame Strike",
+        "Guardian of Faith",
         "Wall of Fire"
       ],
       "9": [
-        "Fire Storm",
-        "Flame Strike"
+        "Flame Strike",
+        "Scrying"
       ]
     },
     "nature": {
@@ -78,37 +78,37 @@
       ],
       "5": [
         "Plant Growth",
-        "Wall of Stone"
+        "Wind Wall"
       ],
       "7": [
         "Dominate Beast",
-        "Insect Plague"
+        "Grasping Vine"
       ],
       "9": [
-        "Tree Stride",
-        "Insect Plague"
+        "Insect Plague",
+        "Tree Stride"
       ]
     },
     "tempest": {
       "1": [
         "Fog Cloud",
-        "Gust of Wind"
+        "Thunderwave"
       ],
       "3": [
-        "Shatter",
-        "Call Lightning"
+        "Gust of Wind",
+        "Shatter"
       ],
       "5": [
-        "Sleet Storm",
-        "Control Water"
+        "Call Lightning",
+        "Sleet Storm"
       ],
       "7": [
-        "Ice Storm",
-        "Destructive Wave"
+        "Control Water",
+        "Ice Storm"
       ],
       "9": [
-        "Control Water",
-        "Destructive Wave"
+        "Destructive Wave",
+        "Insect Plague"
       ]
     },
     "trickery": {
@@ -122,11 +122,11 @@
       ],
       "5": [
         "Blink",
-        "Dimension Door"
+        "Dispel Magic"
       ],
       "7": [
-        "Polymorph",
-        "Dominate Person"
+        "Dimension Door",
+        "Polymorph"
       ],
       "9": [
         "Dominate Person",
@@ -143,12 +143,12 @@
         "Spiritual Weapon"
       ],
       "5": [
-        "Freedom of Movement",
-        "Stoneskin"
+        "Crusader's Mantle",
+        "Spirit Guardians"
       ],
       "7": [
-        "Flame Strike",
-        "Hold Monster"
+        "Freedom of Movement",
+        "Stoneskin"
       ],
       "9": [
         "Flame Strike",
@@ -272,7 +272,7 @@
       ],
       "3": [
         "Magic Weapon",
-        "Nondetection"
+        "Arcanist's Magic Aura"
       ],
       "5": [
         "Dispel Magic",
@@ -307,160 +307,6 @@
       "9": [
         "Antilife Shell",
         "Cloudkill"
-      ]
-    },
-    "circle-of-stars": {
-      "2": [
-        "Guidance",
-        "Guiding Bolt"
-      ]
-    },
-    "circle-of-wildfire": {
-      "2": [
-        "Burning Hands",
-        "Cure Wounds"
-      ],
-      "3": [
-        "Flaming Sphere",
-        "Scorching Ray"
-      ],
-      "5": [
-        "Plant Growth",
-        "Revivify"
-      ],
-      "7": [
-        "Aura of Life",
-        "Fire Shield"
-      ],
-      "9": [
-        "Flame Strike",
-        "Mass Cure Wounds"
-      ]
-    },
-    "circle-of-spores": {
-      "2": [
-        "Chill Touch"
-      ],
-      "3": [
-        "Blindness/Deafness",
-        "Gentle Repose"
-      ],
-      "5": [
-        "Animate Dead",
-        "Gaseous Form"
-      ],
-      "7": [
-        "Blight",
-        "Confusion"
-      ],
-      "9": [
-        "Cloudkill",
-        "Contagion"
-      ]
-    },
-    "oath-of-glory": {
-      "3": [
-        "Guiding Bolt",
-        "Heroism"
-      ],
-      "5": [
-        "Enhance Ability",
-        "Magic Weapon"
-      ],
-      "9": [
-        "Haste",
-        "Protection from Energy"
-      ],
-      "13": [
-        "Compulsion",
-        "Freedom of Movement"
-      ],
-      "17": [
-        "Commune",
-        "Flame Strike"
-      ]
-    },
-    "gloom-stalker": {
-      "3": [
-        "Disguise Self"
-      ],
-      "5": [
-        "Rope Trick"
-      ],
-      "9": [
-        "Fear"
-      ],
-      "13": [
-        "Greater Invisibility"
-      ],
-      "17": [
-        "Seeming"
-      ]
-    },
-    "clockwork-soul": {
-      "1": [
-        "Alarm",
-        "Protection from Evil and Good"
-      ],
-      "3": [
-        "Aid",
-        "Lesser Restoration"
-      ],
-      "5": [
-        "Dispel Magic",
-        "Protection from Energy"
-      ],
-      "7": [
-        "Freedom of Movement",
-        "Summon Construct"
-      ],
-      "9": [
-        "Greater Restoration",
-        "Wall of Force"
-      ]
-    },
-    "oath-of-the-crown": {
-      "3": [
-        "Command",
-        "Compelled Duel"
-      ],
-      "5": [
-        "Warding Bond",
-        "Zone of Truth"
-      ],
-      "9": [
-        "Aura of Vitality",
-        "Spirit Guardians"
-      ],
-      "13": [
-        "Banishment",
-        "Guardian of Faith"
-      ],
-      "17": [
-        "Circle of Power",
-        "Geas"
-      ]
-    },
-    "oathbreaker": {
-      "3": [
-        "Hellish Rebuke",
-        "Inflict Wounds"
-      ],
-      "5": [
-        "Crown of Madness",
-        "Darkness"
-      ],
-      "9": [
-        "Animate Dead",
-        "Bestow Curse"
-      ],
-      "13": [
-        "Blight",
-        "Confusion"
-      ],
-      "17": [
-        "Contagion",
-        "Dominate Person"
       ]
     }
   },
@@ -612,42 +458,6 @@
           ]
         }
       }
-    },
-    "dreams": {
-      "3": [
-        "Sleep",
-        "Faerie Fire"
-      ],
-      "5": [
-        "Calm Emotions",
-        "Darkness"
-      ],
-      "7": [
-        "Daylight",
-        "Fear"
-      ],
-      "9": [
-        "Dream",
-        "Telekinesis"
-      ]
-    },
-    "shepherd": {
-      "3": [
-        "Charm Person",
-        "Faerie Fire"
-      ],
-      "5": [
-        "Darkness",
-        "Meld into Stone"
-      ],
-      "7": [
-        "Fear",
-        "Guardian of Faith"
-      ],
-      "9": [
-        "Dream",
-        "Flame Strike"
-      ]
     }
   },
   "oathSpells": {
@@ -753,12 +563,12 @@
         "Hypnotic Pattern"
       ],
       "13": [
-        "Death Ward",
-        "Guardian of Faith"
+        "Resilient Sphere",
+        "Stoneskin"
       ],
       "17": [
-        "Commune",
-        "Flame Strike"
+        "Hold Monster",
+        "Wall of Force"
       ]
     },
     "watchers": {
@@ -775,12 +585,78 @@
         "Nondetection"
       ],
       "13": [
-        "Freedom of Movement",
+        "Aura of Purity",
+        "Banishment"
+      ],
+      "17": [
+        "Hold Monster",
+        "Scrying"
+      ]
+    },
+    "oath-of-glory": {
+      "3": [
+        "Guiding Bolt",
+        "Heroism"
+      ],
+      "5": [
+        "Enhance Ability",
+        "Magic Weapon"
+      ],
+      "9": [
+        "Haste",
+        "Protection from Energy"
+      ],
+      "13": [
+        "Compulsion",
+        "Freedom of Movement"
+      ],
+      "17": [
+        "Commune",
+        "Flame Strike"
+      ]
+    },
+    "oath-of-the-crown": {
+      "3": [
+        "Command",
+        "Compelled Duel"
+      ],
+      "5": [
+        "Warding Bond",
+        "Zone of Truth"
+      ],
+      "9": [
+        "Aura of Vitality",
+        "Spirit Guardians"
+      ],
+      "13": [
+        "Banishment",
         "Guardian of Faith"
       ],
       "17": [
-        "Flame Strike",
-        "Hold Monster"
+        "Circle of Power",
+        "Geas"
+      ]
+    },
+    "oathbreaker": {
+      "3": [
+        "Hellish Rebuke",
+        "Inflict Wounds"
+      ],
+      "5": [
+        "Crown of Madness",
+        "Darkness"
+      ],
+      "9": [
+        "Animate Dead",
+        "Bestow Curse"
+      ],
+      "13": [
+        "Blight",
+        "Confusion"
+      ],
+      "17": [
+        "Contagion",
+        "Dominate Person"
       ]
     }
   },
@@ -792,52 +668,104 @@
     }
   },
   "subclassSpellGrants": {
-    "shadow-magic": {
-      "1": [
-        "Darkness"
+    "circle-of-stars": {
+      "2": [
+        "Guidance",
+        "Guiding Bolt"
       ]
     },
-    "the-celestial": {
-      "1": [
-        "Sacred Flame",
-        "Light"
-      ]
-    },
-    "the-fathomless": {
-      "1": [
-        "Create or Destroy Water"
+    "circle-of-wildfire": {
+      "2": [
+        "Burning Hands",
+        "Cure Wounds"
       ],
       "3": [
-        "Thunderwave"
+        "Flaming Sphere",
+        "Scorching Ray"
       ],
       "5": [
-        "Sleet Storm"
+        "Plant Growth",
+        "Revivify"
       ],
       "7": [
-        "Control Water"
+        "Aura of Life",
+        "Fire Shield"
       ],
       "9": [
-        "Cone of Cold"
+        "Flame Strike",
+        "Mass Cure Wounds"
       ]
     },
-    "the-genie": {
-      "1": [
-        "Detect Evil and Good",
+    "circle-of-spores": {
+      "2": [
+        "Chill Touch"
+      ],
+      "3": [
+        "Blindness/Deafness",
+        "Gentle Repose"
+      ],
+      "5": [
+        "Animate Dead",
+        "Gaseous Form"
+      ],
+      "7": [
+        "Blight",
+        "Confusion"
+      ],
+      "9": [
+        "Cloudkill",
+        "Contagion"
+      ]
+    },
+    "gloom-stalker": {
+      "3": [
+        "Disguise Self"
+      ],
+      "5": [
+        "Rope Trick"
+      ],
+      "9": [
+        "Fear"
+      ],
+      "13": [
+        "Greater Invisibility"
+      ],
+      "17": [
+        "Seeming"
+      ]
+    },
+    "horizon-walker": {
+      "3": [
         "Protection from Evil and Good"
       ],
-      "3": [
-        "Create Food and Water",
-        "Phantasmal Killer"
-      ],
       "5": [
-        "Creation",
-        "Sending"
-      ],
-      "7": [
-        "Summon Elemental"
+        "Misty Step"
       ],
       "9": [
-        "Wall of Stone"
+        "Haste"
+      ],
+      "13": [
+        "Banishment"
+      ],
+      "17": [
+        "Teleportation Circle"
+      ]
+    },
+    "monster-slayer": {
+      "3": [
+        "Protection from Evil and Good"
+      ],
+      "5": [
+        "Zone of Truth"
+      ],
+      "9": [
+        "Magic Circle"
+      ],
+      "13": [
+        "Banishment"
+      ],
+      "17": [
+        "Hold Monster"
       ]
     },
     "fey-wanderer": {
@@ -869,10 +797,15 @@
         "Gaseous Form"
       ],
       "13": [
-        "Giant Insect"
+        "Arcane Eye"
       ],
       "17": [
         "Insect Plague"
+      ]
+    },
+    "drake-warden": {
+      "3": [
+        "Thaumaturgy"
       ]
     },
     "aberrant-mind": {
@@ -883,13 +816,11 @@
       ],
       "3": [
         "Calm Emotions",
-        "Detect Thoughts",
-        "Hunger of Hadar"
+        "Detect Thoughts"
       ],
       "5": [
-        "Compulsion",
-        "Sending",
-        "Slow"
+        "Hunger of Hadar",
+        "Sending"
       ],
       "7": [
         "Black Tentacles",
@@ -898,10 +829,6 @@
       "9": [
         "Telepathic Bond",
         "Telekinesis"
-      ],
-      "11": [
-        "Psychic Scream",
-        "Summon Aberration"
       ]
     },
     "clockwork-soul": {
@@ -924,6 +851,105 @@
       "9": [
         "Greater Restoration",
         "Wall of Force"
+      ]
+    },
+    "shadow": {
+      "3": [
+        "Darkness"
+      ]
+    },
+    "celestial": {
+      "1": [
+        "Light",
+        "Sacred Flame"
+      ]
+    },
+    "alchemist": {
+      "3": [
+        "Healing Word",
+        "Ray of Sickness"
+      ],
+      "5": [
+        "Flaming Sphere",
+        "Acid Arrow"
+      ],
+      "9": [
+        "Gaseous Form",
+        "Mass Healing Word"
+      ],
+      "13": [
+        "Blight",
+        "Death Ward"
+      ],
+      "17": [
+        "Cloudkill",
+        "Raise Dead"
+      ]
+    },
+    "armorer": {
+      "3": [
+        "Magic Missile",
+        "Thunderwave"
+      ],
+      "5": [
+        "Mirror Image",
+        "Shatter"
+      ],
+      "9": [
+        "Hypnotic Pattern",
+        "Lightning Bolt"
+      ],
+      "13": [
+        "Fire Shield",
+        "Greater Invisibility"
+      ],
+      "17": [
+        "Passwall",
+        "Wall of Force"
+      ]
+    },
+    "artillerist": {
+      "3": [
+        "Shield",
+        "Thunderwave"
+      ],
+      "5": [
+        "Scorching Ray",
+        "Shatter"
+      ],
+      "9": [
+        "Fireball",
+        "Wind Wall"
+      ],
+      "13": [
+        "Ice Storm",
+        "Wall of Fire"
+      ],
+      "17": [
+        "Cone of Cold",
+        "Wall of Force"
+      ]
+    },
+    "battle-smith": {
+      "3": [
+        "Heroism",
+        "Shield"
+      ],
+      "5": [
+        "Branding Smite",
+        "Warding Bond"
+      ],
+      "9": [
+        "Aura of Vitality",
+        "Conjure Barrage"
+      ],
+      "13": [
+        "Aura of Purity",
+        "Fire Shield"
+      ],
+      "17": [
+        "Banishing Smite",
+        "Mass Cure Wounds"
       ]
     }
   },
@@ -964,90 +990,5 @@
       "name": "Pact of the Tome",
       "description": "Your patron gives you a grimoire called a Book of Shadows. When you gain this feature, choose three cantrips from any class's spell list. While the book is on your person, you can cast those cantrips at will. They don't count against your number of cantrips known. If you lose your Book of Shadows, you can perform a 1-hour ceremony to receive a replacement from your patron. This ceremony can be performed during a short or long rest, and it destroys the previous book."
     }
-  ],
-  "artificerSpells": {
-    "alchemist": {
-      "3": [
-        "Healing Word"
-      ],
-      "5": [
-        "Flaming Sphere"
-      ],
-      "9": [
-        "Protection from Energy"
-      ],
-      "13": [
-        "Death Ward"
-      ],
-      "15": [
-        "Greater Restoration"
-      ]
-    },
-    "armorer": {
-      "3": [
-        "Magic Missile",
-        "Thunderwave"
-      ],
-      "5": [
-        "Mirror Image",
-        "Shatter"
-      ],
-      "9": [
-        "Hypnotic Pattern",
-        "Lightning Bolt"
-      ],
-      "13": [
-        "Fire Shield",
-        "Greater Invisibility"
-      ],
-      "15": [
-        "Passwall",
-        "Wall of Force"
-      ]
-    },
-    "artillerist": {
-      "3": [
-        "Shield",
-        "Thunderwave"
-      ],
-      "5": [
-        "Scorching Ray",
-        "Shatter"
-      ],
-      "9": [
-        "Fireball",
-        "Wind Wall"
-      ],
-      "13": [
-        "Ice Storm",
-        "Wall of Fire"
-      ],
-      "15": [
-        "Cone of Cold",
-        "Wall of Force"
-      ]
-    },
-    "battleSmith": {
-      "3": [
-        "Heroism",
-        "Shield"
-      ],
-      "5": [
-        "Branding Smite",
-        "Warding Bond"
-      ],
-      "9": [
-        "Aura of Vitality",
-        "Conjure Barrage"
-      ],
-      "13": [
-        "Aura of Purity",
-        "Fire Shield"
-      ],
-      "15": [
-        "Banishing Smite",
-        "Mass Cure Wounds"
-      ]
-    }
-  }
+  ]
 }
