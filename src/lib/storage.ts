@@ -91,6 +91,10 @@ export interface Character {
   halfElfAbilities?: string[];
   halfElfSkills?: string[];
   raceChoices?: Record<string, string>;
+  /** Skills picked from the race's own skill choice (Kenku Training, Hunter's Lore). */
+  raceSkillPicks?: string[];
+  /** Ability increases the player placed for a race with a flexible increase. */
+  flexAsi?: Record<string, number>;
   appliedAsi: number[];
   activeStates: string[];
   activeBuffs: ActiveBuff[];

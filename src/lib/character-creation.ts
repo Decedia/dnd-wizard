@@ -1,5 +1,6 @@
 import { createEmptyCharacter, saveCharacter, computeDerivedStats, generateId, getFeatureValue, getMaxHpFromLevelHp, getSpellSlotTable, SKILLS, type Character } from "./storage";
 import { LANGUAGE_NAMES } from "@/data/feat-options";
+import { getRaceAsi, getRaceSkills, isFlexAsiValid } from "./race-grants";
 import { engineIdFor } from "@/lib/feature-engine";
 import { getStaticClass, getStaticRace, getStaticSubclasses, getStaticEquipments, getStaticWeapons, getStaticArmors, getStaticItems, getStaticFeat, getStaticSpells, getSubclassSpellGrants as getJsonSubclassSpellGrants } from "./srd-client";
 import { determineDefaultVisibility } from "./feature-filters";
@@ -495,8 +496,11 @@ export function getCreationSteps(character: Character): CreationStep[] {
     !(character.race === "Human" && character.raceVariant === "variant" && (!character.featureSelections?.["variant-human-feat"]?.[0] || (character.variantHumanAbilities || []).length < 2 || !character.variantHumanSkill));
   const personalityCompleted = !!character.alignment;
   const lookCompleted = !!character.name.trim();
-  const abilitiesCompleted = [character.str, character.dex, character.con, character.int, character.wis, character.cha].every((s) => s > 0);
-  const skillsCompleted = !classData?.skillChoices || Object.entries(character.skills || {}).filter(([name, proficient]) => proficient && classData.skillChoices.options.includes(name)).length >= classData.skillChoices.count;
+  const raceData = character.race ? getStaticRace(character.race, character.ruleset) : undefined;
+  const abilitiesCompleted = [character.str, character.dex, character.con, character.int, character.wis, character.cha].every((s) => s > 0)
+    && isFlexAsiValid(raceData, character.flexAsi);
+  const raceSkillsDone = !raceData?.skillChoice || getRaceSkills(character).length >= (raceData.skillProficiencies?.length || 0) + raceData.skillChoice.count;
+  const skillsCompleted = raceSkillsDone && (!classData?.skillChoices || Object.entries(character.skills || {}).filter(([name, proficient]) => proficient && classData.skillChoices.options.includes(name) && !getRaceSkills(character).includes(name)).length >= classData.skillChoices.count);
   const equipmentCompleted = character.inventory.length > 0 && isEquipmentComplete(character, classData);
 
   const asiLevels = classData?.levels
@@ -1280,7 +1284,8 @@ export async function finalizeCreation(character: Character, language = "en"): P
   // Applied at the end like the Variant Human bonus, which means it shares that
   // block's caveat: this function runs once at creation and is not safe to repeat.
   {
-    const raceIncreases = getStaticRace(final.race, final.ruleset, language)?.abilityScoreIncreases || {};
+    // Includes a lineage's flexible +2/+1 once the player has placed it.
+    const raceIncreases = getRaceAsi(final);
     const asiPatch: Record<string, any> = {};
     for (const [ability, bonus] of Object.entries(raceIncreases)) {
       const key = ability as keyof Character;
@@ -1289,6 +1294,16 @@ export async function finalizeCreation(character: Character, language = "en"): P
       }
     }
     final = { ...final, ...asiPatch };
+  }
+
+  // Racial skills: fixed ones (Keen Senses, Menacing) and the race's own picks.
+  {
+    const raceSkills = getRaceSkills(final);
+    if (raceSkills.length > 0) {
+      const skills = { ...final.skills };
+      for (const s of raceSkills) skills[s] = true;
+      final = { ...final, skills };
+    }
   }
 
   // Half-Elf: +1 to the two chosen ability scores, and the two chosen skills.

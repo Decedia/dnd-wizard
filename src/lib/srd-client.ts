@@ -74,6 +74,16 @@ export interface SRDRace {
   source?: string;
   choices?: RaceChoice[];
   flavor?: string;
+  /** Languages the player picks on top of `languages`. */
+  extraLanguages?: number;
+  /** Skills the race always grants. */
+  skillProficiencies?: string[];
+  /** Skills the player picks; no options means any skill. */
+  skillChoice?: { count: number; options?: string[] };
+  /** "lineage": +2/+1 or +1/+1/+1 of the player's choice. "one": +1 to one other ability. */
+  flexibleAsi?: "lineage" | "one";
+  /** A parent race (Elf, Dwarf) that is only played through a subrace. */
+  requiresSubrace?: boolean;
 }
 
 export interface RaceChoice {

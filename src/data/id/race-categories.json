@@ -17,6 +17,10 @@
       "flavor": "Pilih ini kalau kamu ingin jadi brut besar berbulu yang sangat menakutkan saat menyergap."
     },
     {
+      "name": "Centaur",
+      "flavor": "Pilih ini kalau kamu ingin jadi pengembara bertubuh kuda yang menerjang ke medan perang dengan kuku dan tombak."
+    },
+    {
       "name": "Changeling",
       "flavor": "Pilih ini kalau kamu ingin jadi orang yang bisa mengubah wajah dan suara, lalu menjadi siapa saja."
     },
@@ -43,6 +47,10 @@
     {
       "name": "Firbolg",
       "flavor": "Pilih ini kalau kamu ingin jadi raksasa hutan yang lembut dan bisa berbicara dengan hewan serta tumbuhan."
+    },
+    {
+      "name": "Genasi",
+      "flavor": "Pilih ini kalau kamu ingin jadi orang berdarah elemen, dibentuk oleh udara, tanah, api, atau air."
     },
     {
       "name": "Githyanki",
@@ -89,6 +97,10 @@
       "flavor": "Pilih ini kalau kamu ingin jadi orang biasa yang mudah menyesuaikan diri dan bisa berkembang jadi hampir apa pun."
     },
     {
+      "name": "Kalashtar",
+      "flavor": "Pilih ini kalau kamu ingin jadi pemimpi yang tenang, terhubung dengan roh, dan bisa bicara lewat pikiran."
+    },
+    {
       "name": "Kenku",
       "flavor": "Pilih ini kalau kamu ingin jadi manusia burung yang tidak bisa berbicara dengan kata-katanya sendiri, hanya bisa meniru suara yang pernah didengar."
     },
@@ -101,6 +113,14 @@
       "flavor": "Pilih ini kalau kamu ingin jadi orang kadal yang dingin dan praktis, bertahan pakai insting daripada perasaan."
     },
     {
+      "name": "Loxodon",
+      "flavor": "Pilih ini kalau kamu ingin jadi penjaga bijak mirip gajah, berkulit tebal dan punya belalai yang serba guna."
+    },
+    {
+      "name": "Minotaur",
+      "flavor": "Pilih ini kalau kamu ingin jadi petarung bertanduk yang menyeruduk lawan dan tak pernah tersesat di labirin."
+    },
+    {
       "name": "Orc",
       "flavor": "Pilih ini kalau kamu ingin jadi brut yang tidak kenal lelah, maju paling depan, dan menolak jatuh."
     },
@@ -111,6 +131,10 @@
     {
       "name": "Reborn",
       "flavor": "Pilih ini kalau kamu ingin jadi orang yang sudah mati lalu kembali, tidak sepenuhnya sama seperti sebelumnya."
+    },
+    {
+      "name": "Satyr",
+      "flavor": "Pilih ini kalau kamu ingin jadi makhluk fey yang suka berpesta dan bermusik, melompat tinggi, dan tahan sihir."
     },
     {
       "name": "Shifter",
@@ -129,8 +153,16 @@
       "flavor": "Pilih ini kalau kamu ingin jadi orang berdarah iblis, bertanduk, dengan api di dalam tubuhnya, yang langsung ditcurigai orang lain."
     },
     {
+      "name": "Tortle",
+      "flavor": "Pilih ini kalau kamu ingin jadi manusia kura-kura yang kokoh, dengan cangkang sebagai armor sekaligus rumah."
+    },
+    {
       "name": "Triton",
       "flavor": "Pilih ini kalau kamu ingin jadi penjaga laut dalam yang bangga dan paling nyaman berada di dalam air."
+    },
+    {
+      "name": "Warforged",
+      "flavor": "Pilih ini kalau kamu ingin jadi konstruk hidup yang dibuat untuk perang dan kini mencari tujuan hidup."
     },
     {
       "name": "Yuan-ti Pureblood",

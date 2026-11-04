@@ -22,7 +22,6 @@ High Elf (PHB) asi=dex2,int1 speed=30
   Trance
   Elf Weapon Training
   Cantrip
-  Extra Language
 Wood Elf (PHB) asi=dex2,wis1 speed=35
   Darkvision
   Keen Senses
@@ -80,10 +79,22 @@ Aasimar (VGTM) asi=cha2 speed=30
   Healing Hands
   Light Bearer
 Protector Aasimar (VGTM) asi=cha2,wis1 speed=30
+  Darkvision
+  Celestial Resistance
+  Healing Hands
+  Light Bearer
   Radiant Soul
 Scourge Aasimar (VGTM) asi=cha2,con1 speed=30
+  Darkvision
+  Celestial Resistance
+  Healing Hands
+  Light Bearer
   Radiant Consumption
 Fallen Aasimar (VGTM) asi=cha2,str1 speed=30
+  Darkvision
+  Celestial Resistance
+  Healing Hands
+  Light Bearer
   Necrotic Shroud
 Bugbear (VGTM) asi=str2,dex1 speed=30
   Darkvision

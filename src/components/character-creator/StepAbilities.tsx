@@ -5,6 +5,60 @@ import { DiceFive, Info, Minus, Plus, Star } from "@phosphor-icons/react";
 import type { Character } from "@/lib/storage";
 import { isRecommended } from "@/lib/recommendations";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { getStaticRace } from "@/lib/srd-client";
+import { isFlexAsiValid } from "@/lib/race-grants";
+
+/**
+ * Where a race with a flexible increase puts it. Lineages pick +2 and +1, or
+ * +1 to three scores; races such as the Changeling add +1 to one other score.
+ */
+function FlexAsiPicker({ data, onChange }: { data: Character; onChange: (patch: Partial<Character>) => void }) {
+  const { t } = useLanguage();
+  const race = data.race ? getStaticRace(data.race, data.ruleset) : undefined;
+  if (!race?.flexibleAsi) return null;
+  const flex = data.flexAsi || {};
+  const fixed = Object.keys(race.abilityScoreIncreases || {});
+  const isLineage = race.flexibleAsi === "lineage";
+  const amounts = isLineage ? [0, 1, 2] : [0, 1];
+  const valid = isFlexAsiValid(race, flex);
+  const set = (key: string, value: number) => {
+    const next = { ...flex, [key]: value };
+    if (value === 2) for (const k of Object.keys(next)) if (k !== key && next[k] === 2) next[k] = 0;
+    if (!isLineage && value === 1) for (const k of Object.keys(next)) if (k !== key) next[k] = 0;
+    onChange({ flexAsi: next });
+  };
+  return (
+    <div className={`mb-6 rounded-2xl border-2 p-4 ${valid ? "border-ink/30" : "border-warning-400"} bg-surface`}>
+      <h3 className="text-sm font-bold text-ink">{t("abilities.flexTitle", { race: data.race }, "Racial increase ({race})")}</h3>
+      <p className="mt-1 mb-3 text-xs text-ink-muted">
+        {isLineage
+          ? t("abilities.flexLineage", "Give +2 to one score and +1 to another, or +1 to three different scores.")
+          : t("abilities.flexOne", "Give +1 to one more score of your choice.")}
+      </p>
+      <div className="grid grid-cols-3 gap-2">
+        {ABILITIES.filter((a) => isLineage || !fixed.includes(a.key)).map((a) => (
+          <div key={a.key} className="rounded-lg border border-border-strong p-2 text-center">
+            <div className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">{a.label}</div>
+            <div className="mt-1 flex justify-center gap-1">
+              {amounts.map((v) => (
+                <button
+                  key={v}
+                  type="button"
+                  onClick={() => set(a.key, v)}
+                  className={`h-7 w-7 rounded-md border text-xs font-bold ${
+                    (flex[a.key] || 0) === v ? "border-ink bg-ink text-surface" : "border-border-strong text-ink"
+                  }`}
+                >
+                  {v === 0 ? "–" : `+${v}`}
+                </button>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 interface StepAbilitiesProps {
   data: Character;
@@ -497,6 +551,8 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
           {t("abilities.rollDice", "Roll Dice (4d6)")}
         </button>
       )}
+
+      <FlexAsiPicker data={data} onChange={onChange} />
 
       <div>{ABILITIES.map(renderStatRow)}</div>
 

@@ -3,60 +3,47 @@
 import { useCallback } from "react";
 import { Translate } from "@phosphor-icons/react";
 import { getBackgroundData } from "@/data/backgrounds";
+import { getStaticRace } from "@/lib/srd-client";
 import { languages as languageList } from "@/data/srd";
 import type { Character } from "@/lib/storage";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const defaultLanguages = ["Common"];
-
-function getRaceLanguages(race: string): string[] {
-  const raceLanguageMap: Record<string, string[]> = {
-    "Dwarf": ["Common", "Dwarvish"],
-    "Elf": ["Common", "Elvish"],
-    "Halfling": ["Common", "Halfling"],
-    "Human": ["Common"],
-    "Dragonborn": ["Common", "Draconic"],
-    "Gnome": ["Common", "Gnomish"],
-    "Half-Elf": ["Common", "Elvish"],
-    "Half-Orc": ["Common", "Orc"],
-    "Tiefling": ["Common", "Infernal"],
-  };
-  return raceLanguageMap[race] || ["Common"];
+// The race's fixed languages and how many more it lets the player choose, both
+// from the race data so subraces (Hill Dwarf, Wood Elf) are covered.
+function getRaceLanguages(race: string, ruleset?: string): string[] {
+  return getStaticRace(race, ruleset)?.languages?.filter((l) => l !== "any") || ["Common"];
 }
 
-function getRaceBonusLanguages(race: string): number {
-  const bonusMap: Record<string, number> = {
-    "Human": 1,
-    "Half-Elf": 1,
-    "Half-Orc": 0,
-  };
-  return bonusMap[race] || 0;
+function getRaceBonusLanguages(race: string, ruleset?: string): number {
+  return getStaticRace(race, ruleset)?.extraLanguages || 0;
 }
 
 /** Race + background language picks. Rules moved unchanged from the Personality step. */
 export function LanguagePicker({ data, onChange }: { data: Character; onChange: (patch: Partial<Character>) => void }) {
   const { t } = useLanguage();
 
-  const raceLanguages = getRaceLanguages(data.race);
-  const raceBonusLanguages = getRaceBonusLanguages(data.race);
+  const raceLanguages = getRaceLanguages(data.race, data.ruleset);
+  const raceBonusLanguages = getRaceBonusLanguages(data.race, data.ruleset);
   const backgroundLanguageCount = getBackgroundData(data.background)?.languages || 0;
   const totalBonusLanguages = raceBonusLanguages + backgroundLanguageCount;
 
   const handleLanguageToggle = useCallback((language: string) => {
-    const currentLanguages = data.languages || [...defaultLanguages];
     if (raceLanguages.includes(language)) return;
+    // Store only the player's own picks; the race's languages are added at finalize.
+    const picks = (data.languages || []).filter(l => !raceLanguages.includes(l));
 
-    if (currentLanguages.includes(language)) {
-      onChange({ languages: currentLanguages.filter(l => l !== language) });
-    } else if (currentLanguages.length < raceLanguages.length + totalBonusLanguages) {
-      onChange({ languages: [...currentLanguages, language] });
+    if (picks.includes(language)) {
+      onChange({ languages: picks.filter(l => l !== language) });
+    } else if (picks.length < totalBonusLanguages) {
+      onChange({ languages: [...picks, language] });
     }
   }, [data.languages, raceLanguages, totalBonusLanguages, onChange]);
 
   const availableLanguages = languageList.map(l => l.name).filter(l => !raceLanguages.includes(l));
-  const current = data.languages?.length ? data.languages : defaultLanguages;
+  const picks = (data.languages || []).filter(l => !raceLanguages.includes(l));
+  const current = [...raceLanguages, ...picks];
   const limit = raceLanguages.length + totalBonusLanguages;
-  const canAddMoreLanguages = (data.languages?.length || defaultLanguages.length) < limit;
+  const canAddMoreLanguages = picks.length < totalBonusLanguages;
 
   return (
     <section>
@@ -66,7 +53,7 @@ export function LanguagePicker({ data, onChange }: { data: Character; onChange: 
           <h3 className="text-xs font-bold uppercase tracking-widest text-ink">{t("form.languages", "Bahasa")}</h3>
         </div>
         <span className="text-[11px] font-bold text-ink-muted">
-          {data.languages?.length || defaultLanguages.length}/{limit}
+          {current.length}/{limit}
         </span>
       </div>
       <div className="space-y-3 rounded-2xl border-2 border-border-strong bg-surface p-4">
@@ -76,7 +63,7 @@ export function LanguagePicker({ data, onChange }: { data: Character; onChange: 
               {lang}
             </span>
           ))}
-          {current.filter(l => !raceLanguages.includes(l)).map((lang) => (
+          {picks.map((lang) => (
             <button
               key={lang}
               type="button"

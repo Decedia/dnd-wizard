@@ -798,6 +798,15 @@ export const languages: SRDLanguage[] = [
   { name: "Goblin" },
   { name: "Halfling" },
   { name: "Orc" },
+  // Exotic languages: players may take these with the DM's approval.
+  { name: "Abyssal" },
+  { name: "Celestial" },
+  { name: "Deep Speech" },
+  { name: "Draconic" },
+  { name: "Infernal" },
+  { name: "Primordial" },
+  { name: "Sylvan" },
+  { name: "Undercommon" },
 ];
 
 export const backgrounds = [

@@ -24,11 +24,28 @@ function getMap(locale: string): Map<string, RaceCategory> {
 }
 
 /**
+ * Races whose names do not contain their parent's name but still belong to it.
+ */
+export const RACE_PARENT_ALIASES: Record<string, string> = {
+  Drow: "Elf",
+  "Shadar-kai": "Elf",
+  "Eladrin (Elf)": "Elf",
+  "Sea Elf": "Elf",
+  Duergar: "Dwarf",
+  "Deep Gnome (Svirfneblin)": "Gnome",
+  "Air Genasi": "Genasi",
+  "Earth Genasi": "Genasi",
+  "Fire Genasi": "Genasi",
+  "Water Genasi": "Genasi",
+};
+
+/**
  * Which category a race belongs to. Races are named either as a parent
  * ("Dwarf") or as a variant ("Hill Dwarf", "Dragonborn (Gem)"), so the
  * category is the longest known category name that the race name extends.
  */
 export function getRaceCategoryName(raceName: string, allNames: string[]): string {
+  if (RACE_PARENT_ALIASES[raceName]) return RACE_PARENT_ALIASES[raceName];
   let best: string | null = null;
   for (const candidate of allNames) {
     if (candidate === raceName) continue;

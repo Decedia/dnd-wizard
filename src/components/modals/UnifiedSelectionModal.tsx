@@ -16,7 +16,7 @@ import {
   InfoTraitList,
 } from "@/components/modals/InfoBits";
 import { RACE_ICONS } from "@/components/race-icons";
-import { buildRaceCategoryIndex, getRaceCategoryName } from "@/data/race-categories";
+import { buildRaceCategoryIndex, getRaceCategoryName, RACE_PARENT_ALIASES } from "@/data/race-categories";
 import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
 import { HumanVariantConfig, type HumanVariantConfigPayload } from "@/components/modals/HumanVariantConfig";
 import { HalfElfConfig, type HalfElfConfigPayload } from "@/components/modals/HalfElfConfig";
@@ -64,6 +64,8 @@ export interface SelectionOption {
   subclassLevel?: number;
   isRecommended?: boolean;
   recommendationText?: string;
+  /** Parent race that is only playable through one of its subraces. */
+  requiresSubrace?: boolean;
 }
 
 export interface ConfigChoice {
@@ -135,6 +137,7 @@ function isHalfElfRace(raceName: string): boolean {
 }
 
 function findParentRaceName(name: string, candidates: string[]): string | null {
+  if (RACE_PARENT_ALIASES[name]) return RACE_PARENT_ALIASES[name];
   let best: string | null = null;
   for (const candidate of candidates) {
     if (candidate === name) continue;
@@ -270,12 +273,13 @@ export function UnifiedSelectionModal<T extends SelectionType>({
         basicStats: `${race.size} • Speed ${race.speed} ft`,
         isRecommended: (race as any).recommendation?.is_recommended || false,
         recommendationText: (race as any).recommendation?.text || "",
+        requiresSubrace: race.requiresSubrace || false,
       })) as SelectionOption[];
     }
   }, [selectionType, characterSources, language]);
 
   const filteredOptions = useMemo(() => {
-    let options = allOptions;
+    let options = allOptions.filter((opt) => !opt.requiresSubrace);
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
       options = options.filter(
@@ -1183,16 +1187,25 @@ function RaceInfoPanel({ option, characterSources, language, t }: RaceInfoPanelP
         />
       </div>
 
-      {abilityIncreases.length > 0 && (
+      {(abilityIncreases.length > 0 || details?.flexibleAsi) && (
         <div>
           <InfoSectionLabel>{t("modal.abilityBonuses", "Bonus Kemampuan")}</InfoSectionLabel>
-          <div className="mt-1.5 flex flex-wrap gap-1.5">
-            {abilityIncreases.map(([stat, bonus]) => (
-              <InfoChip key={stat} emphasis>
-                +{bonus} {stat.toUpperCase()}
-              </InfoChip>
-            ))}
-          </div>
+          {abilityIncreases.length > 0 && (
+            <div className="mt-1.5 flex flex-wrap gap-1.5">
+              {abilityIncreases.map(([stat, bonus]) => (
+                <InfoChip key={stat} emphasis>
+                  +{bonus} {stat.toUpperCase()}
+                </InfoChip>
+              ))}
+            </div>
+          )}
+          {details?.flexibleAsi && (
+            <p className="mt-1.5 text-xs leading-relaxed text-ink-muted">
+              {details.flexibleAsi === "lineage"
+                ? t("abilities.flexLineage", "Beri +2 ke satu skor dan +1 ke skor lain, atau +1 ke tiga skor berbeda.")
+                : t("abilities.flexOne", "Beri +1 ke satu skor lain pilihanmu.")}
+            </p>
+          )}
         </div>
       )}
 

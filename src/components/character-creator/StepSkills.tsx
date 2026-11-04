@@ -7,6 +7,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { isRecommended } from "@/lib/recommendations";
 import { getStaticClass, getStaticRace } from "@/lib/srd-client";
 import { getProficiencyBonus, type Character } from "@/lib/storage";
+import { getRaceAsi, getRaceSkills } from "@/lib/race-grants";
 
 interface StepSkillsProps {
   data: Character;
@@ -51,8 +52,24 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
     if (data.race === "Human" && data.raceVariant === "variant" && data.variantHumanSkill) {
       granted.add(data.variantHumanSkill);
     }
+    for (const skill of getRaceSkills(data)) granted.add(skill);
     return granted;
-  }, [data.race, data.raceVariant, data.halfElfSkills, data.variantHumanSkill]);
+  }, [data.race, data.ruleset, data.raceVariant, data.halfElfSkills, data.variantHumanSkill, data.raceSkillPicks]);
+
+  // A race that lets the player pick skills (Kenku Training, Hunter's Lore).
+  const raceData = data.race ? getStaticRace(data.race, data.ruleset) : undefined;
+  const raceSkillChoice = raceData?.skillChoice;
+  const raceFixedSkills = raceData?.skillProficiencies || [];
+  const racePicks = (data.raceSkillPicks || []).filter((s) => !raceSkillChoice?.options || raceSkillChoice.options.includes(s));
+  const toggleRacePick = (skill: string) => {
+    if (!raceSkillChoice) return;
+    if (racePicks.includes(skill)) {
+      onChange({ raceSkillPicks: racePicks.filter((s) => s !== skill) });
+    } else if (racePicks.length < raceSkillChoice.count) {
+      // A class pick of the same skill would be wasted, so it is dropped.
+      onChange({ raceSkillPicks: [...racePicks, skill], skills: { ...data.skills, [skill]: false } });
+    }
+  };
 
   const allSkills = useMemo(
     () =>
@@ -110,8 +127,7 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
   const racialBonusFor = useCallback(
     (ability: string): number => {
       let bonus = 0;
-      const raceIncreases = getStaticRace(data.race, data.ruleset, "en")?.abilityScoreIncreases;
-      if (raceIncreases) bonus += raceIncreases[ability] || 0;
+      bonus += getRaceAsi(data)[ability] || 0;
       if (data.race.startsWith("Half-Elf")) {
         if ((data.halfElfAbilities || []).includes(ability)) bonus += 1;
       }
@@ -120,7 +136,7 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
       }
       return bonus;
     },
-    [data.race, data.ruleset, data.halfElfAbilities, data.variantHumanAbilities, data.raceVariant],
+    [data.race, data.ruleset, data.flexAsi, data.halfElfAbilities, data.variantHumanAbilities, data.raceVariant],
   );
 
   const formatModifier = (value: number): string => (value >= 0 ? `+${value}` : `${value}`);
@@ -187,9 +203,43 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
         </span>
       </div>
 
+      {raceSkillChoice && (
+        <div className="mb-6 rounded-2xl border-2 border-ink/30 bg-surface p-4">
+          <div className="mb-2 flex items-center justify-between">
+            <h3 className="text-sm font-bold text-ink">
+              {t("skills.raceChoiceTitle", { race: data.race }, "From your race ({race})")}
+            </h3>
+            <span className="text-sm font-black text-ink">
+              {racePicks.length} / {raceSkillChoice.count}
+            </span>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {(raceSkillChoice.options || allSkills.map((s) => s.name))
+              .filter((s) => !raceFixedSkills.includes(s))
+              .map((skill) => {
+                const picked = racePicks.includes(skill);
+                const full = !picked && racePicks.length >= raceSkillChoice.count;
+                return (
+                  <button
+                    key={skill}
+                    type="button"
+                    disabled={full || backgroundSkills.includes(skill)}
+                    onClick={() => toggleRacePick(skill)}
+                    className={`rounded-lg border-2 px-3 py-1.5 text-xs font-bold transition-colors disabled:opacity-40 ${
+                      picked ? "border-ink bg-ink text-surface" : "border-border-strong bg-surface text-ink"
+                    }`}
+                  >
+                    {skill}
+                  </button>
+                );
+              })}
+          </div>
+        </div>
+      )}
+
       <div>
         {allSkills.map(({ name, ability }) => {
-          const isProficient = !!data.skills[name];
+          const isProficient = !!data.skills[name] || raceGrantedSkills.has(name);
           const isBackgroundSkill = backgroundSkills.includes(name);
           const isAllowed = !skillChoices || skillChoices.options.includes(name);
           const atMax = !!skillChoices && selectedCount >= skillChoices.count;
