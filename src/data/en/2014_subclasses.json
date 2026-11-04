@@ -1,6 +1,6 @@
 {
  "generated": "2026-09-20T14:21:05.402Z",
- "total": 116,
+ "total": 114,
  "subclasses": [
   {
    "index": "alchemist",
@@ -139,8 +139,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "source": "EGW",
-   "book": "PHB",
+   "source": "TCE",
+   "book": "TCE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -306,8 +306,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "source": "EGW",
-   "book": "PHB",
+   "source": "TCE",
+   "book": "TCE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -447,8 +447,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "source": "EGW",
-   "book": "PHB",
+   "source": "TCE",
+   "book": "TCE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -614,8 +614,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "source": "EGW",
-   "book": "PHB",
+   "source": "TCE",
+   "book": "TCE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -732,7 +732,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -930,7 +930,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "name": "Path of Wild Magic",
@@ -1023,7 +1024,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "class": "Barbarian",
@@ -1139,7 +1141,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -1399,7 +1401,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -1476,7 +1478,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "name": "College of Eloquence",
@@ -1567,7 +1570,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "class": "Bard",
@@ -1657,7 +1661,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -1798,7 +1802,7 @@
     }
    ],
    "source": "VRGR",
-   "book": "PHB",
+   "book": "VRGR",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -1959,7 +1963,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -2050,7 +2054,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -2392,7 +2396,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "SCAG"
   },
   {
    "name": "Death Domain",
@@ -2501,7 +2506,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "DMG"
   },
   {
    "class": "Cleric",
@@ -2669,7 +2675,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -2864,7 +2870,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -3344,7 +3350,7 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "source": "SCAG",
+   "source": "PHB",
    "book": "PHB",
    "lastUpdated": "2026-09-29"
   },
@@ -3630,7 +3636,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "name": "Peace Domain",
@@ -3745,7 +3752,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "name": "Tempest",
@@ -4081,7 +4089,7 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "source": "SCAG",
+   "source": "PHB",
    "book": "PHB",
    "lastUpdated": "2026-09-29"
   },
@@ -4213,7 +4221,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "name": "War",
@@ -4380,7 +4389,7 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "source": "SCAG",
+   "source": "PHB",
    "book": "PHB",
    "lastUpdated": "2026-09-29"
   },
@@ -4498,7 +4507,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -4601,7 +4610,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "name": "Circle of Stars",
@@ -4687,150 +4697,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
-  },
-  {
-   "class": "Druid",
-   "classIndex": "druid",
-   "index": "circle-of-the-sea",
-   "name": "Circle of the Sea",
-   "flavorText": "The Circle of the Sea comprises druids who draw their power from the vast oceans and the crushing depths below. These guardians are perfectly at home in the water, commanding the shifting tides and the creatures that dwell within them.",
-   "description": "The Circle of the Sea is a druid circle that draws power from the ocean and its depths. These druids are at home in the water, and they command the tides and the creatures within them.",
-   "features": [
-    {
-     "name": "Oceanic Resilience",
-     "description": "Starting at 2nd level, you can breathe air and water, and you have a swimming speed equal to your walking speed.",
-     "level": 2,
-     "featureType": "Passive",
-     "actionType": null,
-     "uses": null,
-     "requirement": null,
-     "duration": "Permanent",
-     "endsIf": null,
-     "effect": null,
-     "onUse": null,
-     "scaling": null,
-     "summary": "You can breathe air and water, and your swimming speed equals your walking speed.",
-     "grantsSpells": false,
-     "grantsAttack": false,
-     "grantsSkills": false,
-     "grantsProficiency": false,
-     "source": {
-      "type": "subclass",
-      "name": "Circle of the Sea",
-      "level": 2
-     },
-     "book": "MPMM",
-     "lastUpdated": "2026-09-29"
-    },
-    {
-     "name": "Wrath of the Sea",
-     "description": "Starting at 2nd level, you can use your action to magically summon a watery spray that lashes out at nearby creatures. Each creature within **30 feet** of you that you can see must make a Dexterity saving throw against your druid spell save DC.\n\nOn a failed save, a creature takes **2d6** bludgeoning damage and is pushed **10 feet** away from you. On a successful save, a creature takes half as much damage and isn't pushed.",
-     "level": 2,
-     "featureType": "Active",
-     "actionType": null,
-     "uses": null,
-     "requirement": null,
-     "duration": "Instant",
-     "endsIf": null,
-     "effect": null,
-     "onUse": null,
-     "scaling": null,
-     "summary": "Use an action to deal 2d6 bludgeoning damage and push creatures 10 feet away.",
-     "grantsSpells": false,
-     "grantsAttack": false,
-     "grantsSkills": false,
-     "grantsProficiency": false,
-     "source": {
-      "type": "subclass",
-      "name": "Circle of the Sea",
-      "level": 2
-     },
-     "book": "MPMM",
-     "lastUpdated": "2026-09-29"
-    },
-    {
-     "name": "Elemental Wild Shape",
-     "description": "At 6th level, you can expend two uses of Wild Shape instead of one to transform into a water elemental or a steamweird.",
-     "level": 6,
-     "featureType": "Active",
-     "actionType": null,
-     "uses": null,
-     "requirement": null,
-     "duration": null,
-     "endsIf": null,
-     "effect": null,
-     "onUse": null,
-     "scaling": null,
-     "summary": "Expend two uses of Wild Shape to transform into a water elemental or a steamweird.",
-     "grantsSpells": false,
-     "grantsAttack": false,
-     "grantsSkills": false,
-     "grantsProficiency": false,
-     "source": {
-      "type": "subclass",
-      "name": "Circle of the Sea",
-      "level": 6
-     },
-     "book": "MPMM",
-     "lastUpdated": "2026-09-29"
-    },
-    {
-     "name": "Aquatic Master",
-     "description": "Starting at 10th level, you have advantage on attack rolls against creatures that are underwater, and creatures have disadvantage on attack rolls against you while you are underwater.",
-     "level": 10,
-     "featureType": "Passive",
-     "actionType": null,
-     "uses": null,
-     "requirement": null,
-     "duration": "Permanent",
-     "endsIf": null,
-     "effect": null,
-     "onUse": null,
-     "scaling": null,
-     "summary": "Gain advantage on attacks against underwater creatures and impose disadvantage on attacks against you while you are underwater.",
-     "grantsSpells": false,
-     "grantsAttack": true,
-     "grantsSkills": false,
-     "grantsProficiency": false,
-     "source": {
-      "type": "subclass",
-      "name": "Circle of the Sea",
-      "level": 10
-     },
-     "book": "MPMM",
-     "lastUpdated": "2026-09-29"
-    },
-    {
-     "name": "Oceanic Guardian",
-     "description": "Starting at 14th level, you can cast control water once per long rest without expending a spell slot. Additionally, you can breathe underwater indefinitely, and you have resistance to cold damage.",
-     "level": 14,
-     "featureType": "Active",
-     "actionType": null,
-     "uses": null,
-     "requirement": null,
-     "duration": null,
-     "endsIf": null,
-     "effect": null,
-     "onUse": null,
-     "scaling": null,
-     "summary": "Breathe underwater indefinitely, gain resistance to cold damage, and cast control water once per long rest without a spell slot.",
-     "grantsSpells": true,
-     "grantsAttack": false,
-     "grantsSkills": false,
-     "grantsProficiency": false,
-     "source": {
-      "type": "subclass",
-      "name": "Circle of the Sea",
-      "level": 14
-     },
-     "book": "MPMM",
-     "lastUpdated": "2026-09-29"
-    }
-   ],
-   "source": "MPMM",
-   "book": "PHB",
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "class": "Druid",
@@ -4972,7 +4840,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -5064,7 +4932,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "class": "Druid",
@@ -5606,7 +5475,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -6252,7 +6121,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -6562,7 +6431,7 @@
     }
    ],
    "source": "EGW",
-   "book": "PHB",
+   "book": "EGW",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -6951,7 +6820,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "name": "Rune Knight",
@@ -7069,7 +6939,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "class": "Fighter",
@@ -7265,7 +7136,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -7406,7 +7277,7 @@
     }
    ],
    "source": "FTD",
-   "book": "PHB",
+   "book": "FTD",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -7741,7 +7612,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "name": "Way of the Astral Self",
@@ -7810,7 +7682,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "class": "Monk",
@@ -7952,7 +7825,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -8111,7 +7984,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "PHB"
   },
   {
    "class": "Monk",
@@ -8240,7 +8114,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -8310,7 +8184,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "SCAG"
   },
   {
    "class": "Monk",
@@ -8426,7 +8301,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -8768,147 +8643,6 @@
    "lastUpdated": "2026-09-29"
   },
   {
-   "index": "draconic-disciple",
-   "name": "Draconic Disciple",
-   "class": "Paladin",
-   "description": "The Oath of the Draconic Disciple binds a paladin to the ideals of dragonkind. These paladins draw power from their draconic heritage, channeling the might of dragons through their divine oath. They seek to embody the virtues of dragonkind: strength, wisdom, and majesty.",
-   "features": [
-    {
-     "name": "Channel Divinity: Draconic Presence",
-     "level": 3,
-     "description": "As an action, you can channel the power of dragonkind to demoralize your foes. Each creature of your choice within 30 feet of you must make a Wisdom saving throw against your spell save DC. On a failed save, a creature is frightened of you for 1 minute. A frightened creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success.",
-     "featureType": "Active",
-     "actionType": "Action",
-     "uses": null,
-     "requirement": null,
-     "duration": null,
-     "endsIf": null,
-     "effect": null,
-     "onUse": null,
-     "scaling": null,
-     "summary": "Force chosen creatures within 30 feet to make a Wisdom saving throw or be frightened of you for 1 minute.",
-     "grantsSpells": false,
-     "grantsAttack": false,
-     "grantsSkills": false,
-     "grantsProficiency": false,
-     "source": {
-      "type": "subclass",
-      "name": "Draconic Disciple",
-      "level": 3
-     },
-     "book": "FTD",
-     "lastUpdated": "2026-09-29"
-    },
-    {
-     "name": "Channel Divinity: Draconic Might",
-     "level": 3,
-     "description": "As a bonus action, you can channel the power of dragonkind to augment your strength. For 1 minute, you have advantage on Strength checks, and when you deal damage with a melee weapon, you can add your Charisma modifier to the damage roll.",
-     "featureType": "Active",
-     "actionType": "Bonus Action",
-     "uses": null,
-     "requirement": null,
-     "duration": null,
-     "endsIf": null,
-     "effect": null,
-     "onUse": null,
-     "scaling": null,
-     "summary": "Gain advantage on Strength checks and add your Charisma modifier to melee weapon damage rolls for 1 minute.",
-     "grantsSpells": false,
-     "grantsAttack": false,
-     "grantsSkills": false,
-     "grantsProficiency": false,
-     "source": {
-      "type": "subclass",
-      "name": "Draconic Disciple",
-      "level": 3
-     },
-     "book": "FTD",
-     "lastUpdated": "2026-09-29"
-    },
-    {
-     "name": "Aura of the Dragon",
-     "level": 7,
-     "description": "You emanate an aura of draconic power. Whenever you or a friendly creature within 10 feet of you makes a saving throw, that creature gains a bonus to the roll equal to your Charisma modifier (minimum of **+1**). You must be conscious to grant this bonus.",
-     "featureType": "Active",
-     "actionType": null,
-     "uses": null,
-     "requirement": null,
-     "duration": null,
-     "endsIf": null,
-     "effect": null,
-     "onUse": null,
-     "scaling": null,
-     "summary": "You and friendly creatures within 10 feet gain a bonus to saving throws equal to your Charisma modifier.",
-     "grantsSpells": false,
-     "grantsAttack": false,
-     "grantsSkills": false,
-     "grantsProficiency": false,
-     "source": {
-      "type": "subclass",
-      "name": "Draconic Disciple",
-      "level": 7
-     },
-     "book": "FTD",
-     "lastUpdated": "2026-09-29"
-    },
-    {
-     "name": "Draconic Resilience",
-     "level": 15,
-     "description": "The power of dragonkind flows through you. You gain resistance to the damage type associated with your draconic ancestry.",
-     "featureType": "Passive",
-     "actionType": null,
-     "uses": null,
-     "requirement": null,
-     "duration": null,
-     "endsIf": null,
-     "effect": null,
-     "onUse": null,
-     "scaling": null,
-     "summary": "Gain resistance to the damage type associated with your draconic ancestry.",
-     "grantsSpells": false,
-     "grantsAttack": false,
-     "grantsSkills": false,
-     "grantsProficiency": false,
-     "source": {
-      "type": "subclass",
-      "name": "Draconic Disciple",
-      "level": 15
-     },
-     "book": "FTD",
-     "lastUpdated": "2026-09-29"
-    },
-    {
-     "name": "Dragon Knight",
-     "level": 20,
-     "description": "As an action, you can channel the full power of dragonkind, gaining the following benefits for 1 minute:\n\n- You have a flying speed equal to your walking speed.\n- You have resistance to all damage.\n\nOnce you use this feature, you can't use it again until you finish a long rest.",
-     "featureType": "Active",
-     "actionType": "Action",
-     "uses": null,
-     "requirement": null,
-     "duration": null,
-     "endsIf": null,
-     "effect": null,
-     "onUse": null,
-     "scaling": null,
-     "summary": "As an action, gain a flying speed equal to your walking speed and resistance to all damage for 1 minute.",
-     "grantsSpells": false,
-     "grantsAttack": false,
-     "grantsSkills": false,
-     "grantsProficiency": false,
-     "source": {
-      "type": "subclass",
-      "name": "Draconic Disciple",
-      "level": 20
-     },
-     "book": "FTD",
-     "lastUpdated": "2026-09-29"
-    }
-   ],
-   "source": "FTD",
-   "book": "PHB",
-   "lastUpdated": "2026-09-29"
-  },
-  {
    "class": "Paladin",
    "classIndex": "paladin",
    "index": "conquest",
@@ -9022,7 +8756,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -9129,7 +8863,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "class": "Paladin",
@@ -9245,7 +8980,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -9348,7 +9083,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "SCAG"
   },
   {
    "class": "Paladin",
@@ -9463,8 +9199,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "source": "XGE",
-   "book": "PHB",
+   "source": "TCE",
+   "book": "TCE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -9566,7 +9302,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "DMG"
   },
   {
    "name": "Vengeance",
@@ -9992,7 +9729,7 @@
     }
    ],
    "source": "FTD",
-   "book": "PHB",
+   "book": "FTD",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -10161,7 +9898,7 @@
     }
    ],
    "source": "TCE",
-   "book": "PHB",
+   "book": "TCE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -10257,7 +9994,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "XGE"
   },
   {
    "class": "Ranger",
@@ -10399,7 +10137,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -10659,7 +10397,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -10802,7 +10540,7 @@
     }
    ],
    "source": "TCE",
-   "book": "PHB",
+   "book": "TCE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -11260,7 +10998,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -11403,7 +11141,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -11490,7 +11228,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "class": "Rogue",
@@ -11632,7 +11371,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -11723,7 +11462,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "class": "Rogue",
@@ -11865,7 +11605,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -12151,7 +11891,7 @@
     }
    ],
    "source": "TCE",
-   "book": "PHB",
+   "book": "TCE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -12248,7 +11988,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "class": "Sorcerer",
@@ -12390,7 +12131,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -12728,7 +12469,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -12897,7 +12638,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -13530,7 +13271,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -13673,7 +13414,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -13842,93 +13583,93 @@
     }
    ],
    "source": "TCE",
-   "book": "PHB",
+   "book": "TCE",
    "lastUpdated": "2026-09-29"
   },
-{
-      "class": "Warlock",
-      "classIndex": "warlock",
-      "index": "genie",
+  {
+   "class": "Warlock",
+   "classIndex": "warlock",
+   "index": "genie",
+   "name": "The Genie",
+   "flavorText": "You have entered into a pact with one of the genies, the mighty elemental sovereigns of the Inner Planes. A genie patron is a being of immense power, capable of granting wishes and warping the very fabric of reality to suit its will.",
+   "description": "You have made a pact with one of the genies, the mighty elemental rulers of the Inner Planes. A genie patron is a powerful being that can grant wishes and bend reality to its will.",
+   "features": [
+    {
+     "name": "Genie Patron",
+     "description": "At 1st level, you choose the type of genie that is your patron: Dao (earth), Djinni (air), Efreeti (fire), or Marid (water). Your choice determines the damage type for your Elemental Gift feature and adds spells to your spell list.\n\n- Dao (Earth): Fire damage\n- Djinni (Air): Cold damage\n- Efreeti (Fire): Lightning damage\n- Marid (Water): Thunder damage\n\nYou can speak, read, and write the language of your patron's plane: Terran (Dao), Auran (Djinni), Ignan (Efreeti), or Aquan (Marid).",
+     "level": 1,
+     "choices": [
+      {
+       "name": "Dao (Earth)",
+       "description": "Fire damage; Terran language",
+       "lastUpdated": "2026-10-18"
+      },
+      {
+       "name": "Djinni (Air)",
+       "description": "Cold damage; Auran language",
+       "lastUpdated": "2026-10-18"
+      },
+      {
+       "name": "Efreeti (Fire)",
+       "description": "Lightning damage; Ignan language",
+       "lastUpdated": "2026-10-18"
+      },
+      {
+       "name": "Marid (Water)",
+       "description": "Thunder damage; Aquan language",
+       "lastUpdated": "2026-10-18"
+      }
+     ],
+     "featureType": "Active",
+     "actionType": null,
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "Choose your genie patron type to determine damage resistance, language, and added spells.",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
       "name": "The Genie",
-      "flavorText": "You have entered into a pact with one of the genies, the mighty elemental sovereigns of the Inner Planes. A genie patron is a being of immense power, capable of granting wishes and warping the very fabric of reality to suit its will.",
-      "description": "You have made a pact with one of the genies, the mighty elemental rulers of the Inner Planes. A genie patron is a powerful being that can grant wishes and bend reality to its will.",
-      "features": [
-       {
-        "name": "Genie Patron",
-        "description": "At 1st level, you choose the type of genie that is your patron: Dao (earth), Djinni (air), Efreeti (fire), or Marid (water). Your choice determines the damage type for your Elemental Gift feature and adds spells to your spell list.\n\n- Dao (Earth): Fire damage\n- Djinni (Air): Cold damage\n- Efreeti (Fire): Lightning damage\n- Marid (Water): Thunder damage\n\nYou can speak, read, and write the language of your patron's plane: Terran (Dao), Auran (Djinni), Ignan (Efreeti), or Aquan (Marid).",
-        "level": 1,
-        "choices": [
-         {
-          "name": "Dao (Earth)",
-          "description": "Fire damage; Terran language",
-          "lastUpdated": "2026-10-18"
-         },
-         {
-          "name": "Djinni (Air)",
-          "description": "Cold damage; Auran language",
-          "lastUpdated": "2026-10-18"
-         },
-         {
-          "name": "Efreeti (Fire)",
-          "description": "Lightning damage; Ignan language",
-          "lastUpdated": "2026-10-18"
-         },
-         {
-          "name": "Marid (Water)",
-          "description": "Thunder damage; Aquan language",
-          "lastUpdated": "2026-10-18"
-         }
-        ],
-        "featureType": "Active",
-        "actionType": null,
-        "uses": null,
-        "requirement": null,
-        "duration": null,
-        "endsIf": null,
-        "effect": null,
-        "onUse": null,
-        "scaling": null,
-        "summary": "Choose your genie patron type to determine damage resistance, language, and added spells.",
-        "grantsSpells": false,
-        "grantsAttack": false,
-        "grantsSkills": false,
-        "grantsProficiency": false,
-        "source": {
-         "type": "subclass",
-         "name": "The Genie",
-         "level": 1
-        },
-        "book": "TCE",
-        "lastUpdated": "2026-10-18"
-       },
-       {
-        "name": "Bonus Spells",
-        "description": "At 1st level, you learn additional spells when you reach certain levels in this class, as shown in the Genie Spells table. Each of these spells counts as a warlock spell for you, but it doesn't count against your number of warlock spells you know.\n\n1st: detect evil and good, protection from evil and good\n3rd: create food and water, phantasmal killer\n5th: creation, sending\n7th: creation, summon elemental\n9th: creation, wall of stone\n11th: creation, wish",
-        "level": 1,
-        "featureType": "Passive",
-        "actionType": null,
-        "uses": null,
-        "requirement": null,
-        "duration": null,
-        "endsIf": null,
-        "effect": null,
-        "onUse": null,
-        "scaling": null,
-        "summary": "Learn additional warlock spells at specific levels that do not count against your number of spells known.",
-        "grantsSpells": true,
-        "grantsAttack": false,
-        "grantsSkills": false,
-        "grantsProficiency": false,
-        "source": {
-         "type": "subclass",
-         "name": "The Genie",
-         "level": 1
-        },
-        "book": "TCE",
-        "lastUpdated": "2026-09-29"
-       },
-       {
-        "name": "Genie's Vessel",
+      "level": 1
+     },
+     "book": "TCE",
+     "lastUpdated": "2026-10-18"
+    },
+    {
+     "name": "Bonus Spells",
+     "description": "At 1st level, you learn additional spells when you reach certain levels in this class, as shown in the Genie Spells table. Each of these spells counts as a warlock spell for you, but it doesn't count against your number of warlock spells you know.\n\n1st: detect evil and good, protection from evil and good\n3rd: create food and water, phantasmal killer\n5th: creation, sending\n7th: creation, summon elemental\n9th: creation, wall of stone\n11th: creation, wish",
+     "level": 1,
+     "featureType": "Passive",
+     "actionType": null,
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "Learn additional warlock spells at specific levels that do not count against your number of spells known.",
+     "grantsSpells": true,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "The Genie",
+      "level": 1
+     },
+     "book": "TCE",
+     "lastUpdated": "2026-09-29"
+    },
+    {
+     "name": "Genie's Vessel",
      "description": "At 1st level, your patron gifts you a magical vessel that grants you a measure of the genie's power. The vessel is a Tiny object, and you choose the object's nature: an oil lamp, an ornate urn, a gilded chalice, or some other similarly shaped Tiny object. While you are touching the vessel, you can use it as a spellcasting focus for your warlock spells. The vessel's AC equals your spell save DC. It has a number of hit points equal to your warlock level + your proficiency bonus, and it is immune to poison and psychic damage.\n\nThe vessel grants you the following benefits:\n\n- Elemental Gift: You gain a flying speed of 30 feet, which works only while you are not wearing heavy armor.\n\n- Limited Wish: Once per long rest, you can cast a spell of 6th level or lower from the warlock spell list, requiring no spell slot or material components.",
      "level": 1,
      "featureType": "Active",
@@ -14033,7 +13774,7 @@
     }
    ],
    "source": "TCE",
-   "book": "PHB",
+   "book": "TCE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -14148,7 +13889,7 @@
     }
    ],
    "source": "VRGR",
-   "book": "PHB",
+   "book": "VRGR",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -14291,7 +14032,7 @@
     }
    ],
    "source": "SCAG",
-   "book": "PHB",
+   "book": "SCAG",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -14602,8 +14343,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "source": "XGE",
-   "book": "PHB",
+   "source": "TCE",
+   "book": "TCE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -14745,8 +14486,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "source": "TCE",
-   "book": "PHB",
+   "source": "EGW",
+   "book": "EGW",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -15434,8 +15175,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "source": "TCE",
-   "book": "PHB",
+   "source": "EGW",
+   "book": "EGW",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -15864,7 +15605,7 @@
     }
    ],
    "source": "TCE",
-   "book": "PHB",
+   "book": "TCE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -16150,7 +15891,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   }
  ]

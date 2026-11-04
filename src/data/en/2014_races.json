@@ -136,7 +136,7 @@
         "Common",
         "Goblin"
       ],
-      "source": "EGW",
+      "source": "VGTM",
       "abilityScoreIncreases": {
         "str": 2,
         "dex": 1
@@ -212,7 +212,7 @@
         "Elvish",
         "Halfling"
       ],
-      "source": "EGW",
+      "source": "ERLW",
       "abilityScoreIncreases": {
         "cha": 2,
         "dex": 1
@@ -1942,7 +1942,7 @@
         "Elvish",
         "Giant"
       ],
-      "source": "EGW",
+      "source": "VGTM",
       "abilityScoreIncreases": {
         "wis": 2,
         "str": 1
@@ -2746,7 +2746,7 @@
         "Common",
         "Goblin"
       ],
-      "source": "EGW",
+      "source": "VGTM",
       "abilityScoreIncreases": {
         "dex": 2,
         "con": 1
@@ -4660,7 +4660,7 @@
         "Common",
         "Goblin"
       ],
-      "source": "EGW",
+      "source": "VGTM",
       "abilityScoreIncreases": {
         "con": 2,
         "int": 1
@@ -4798,7 +4798,7 @@
         "Common",
         "Auran"
       ],
-      "source": "EGW",
+      "source": "VGTM",
       "abilityScoreIncreases": {
         "dex": 2,
         "wis": 1
@@ -4919,7 +4919,7 @@
         "Common",
         "Draconic"
       ],
-      "source": "EGW",
+      "source": "VGTM",
       "abilityScoreIncreases": {
         "con": 2,
         "wis": 1
@@ -5040,7 +5040,7 @@
         "Common",
         "Orc"
       ],
-      "source": "EGW",
+      "source": "VGTM",
       "abilityScoreIncreases": {
         "str": 2,
         "con": 1
@@ -5233,7 +5233,7 @@
       "languages": [
         "Common"
       ],
-      "source": "EGW",
+      "source": "ERLW",
       "choices": [
         {
           "id": "shifter-type",
@@ -5386,7 +5386,7 @@
       "languages": [
         "Common"
       ],
-      "source": "EGW",
+      "source": "VGTM",
       "abilityScoreIncreases": {
         "dex": 2,
         "cha": 1
@@ -6500,7 +6500,7 @@
         "Common",
         "Primordial"
       ],
-      "source": "EGW",
+      "source": "VGTM",
       "abilityScoreIncreases": {
         "str": 1,
         "con": 1,
@@ -6597,7 +6597,7 @@
         "Common",
         "Auran"
       ],
-      "source": "VGTM",
+      "source": "EEPC",
       "abilityScoreIncreases": {
         "dexterity": 2,
         "wisdom": 1
@@ -6933,7 +6933,7 @@
         "Common",
         "any"
       ],
-      "source": "MPMM",
+      "source": "AAG",
       "abilityScoreIncreases": {
         "dexterity": 2,
         "constitution": 1
@@ -7007,7 +7007,7 @@
         "Common",
         "any"
       ],
-      "source": "MPMM",
+      "source": "AAG",
       "abilityScoreIncreases": {
         "constitution": 2,
         "dexterity": 1
@@ -7078,7 +7078,7 @@
         "Common",
         "any"
       ],
-      "source": "MPMM",
+      "source": "AAG",
       "abilityScoreIncreases": {
         "strength": 2,
         "dexterity": 2

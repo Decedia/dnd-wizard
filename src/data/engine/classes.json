@@ -28,7 +28,7 @@
         {
           "id": "path_of_the_beast",
           "name": "Path of the Beast",
-          "book": "PHB",
+          "book": "TCE",
           "page": null
         },
         {
@@ -69,13 +69,13 @@
         {
           "id": "college_of_creation",
           "name": "College of Creation",
-          "book": "PHB",
+          "book": "TCE",
           "page": null
         },
         {
           "id": "college_of_eloquence",
           "name": "College of Eloquence",
-          "book": "PHB",
+          "book": "TCE",
           "page": null
         },
         {
@@ -128,13 +128,13 @@
         {
           "id": "arcana_domain",
           "name": "Arcana Domain",
-          "book": "PHB",
+          "book": "SCAG",
           "page": null
         },
         {
           "id": "death_domain",
           "name": "Death Domain",
-          "book": "PHB",
+          "book": "DMG",
           "page": null
         },
         {
@@ -164,7 +164,7 @@
         {
           "id": "light",
           "name": "Light",
-          "book": "SCAG",
+          "book": "PHB",
           "page": null
         },
         {
@@ -176,13 +176,13 @@
         {
           "id": "order_domain",
           "name": "Order Domain",
-          "book": "PHB",
+          "book": "TCE",
           "page": null
         },
         {
           "id": "peace_domain",
           "name": "Peace Domain",
-          "book": "PHB",
+          "book": "TCE",
           "page": null
         },
         {
@@ -194,19 +194,19 @@
         {
           "id": "trickery",
           "name": "Trickery",
-          "book": "SCAG",
+          "book": "PHB",
           "page": null
         },
         {
           "id": "twilight_domain",
           "name": "Twilight Domain",
-          "book": "PHB",
+          "book": "TCE",
           "page": null
         },
         {
           "id": "war",
           "name": "War",
-          "book": "SCAG",
+          "book": "PHB",
           "page": null
         }
       ]
@@ -229,13 +229,13 @@
         {
           "id": "circle_of_spores",
           "name": "Circle of Spores",
-          "book": "PHB",
+          "book": "TCE",
           "page": null
         },
         {
           "id": "circle_of_stars",
           "name": "Circle of Stars",
-          "book": "PHB",
+          "book": "TCE",
           "page": null
         },
         {
@@ -253,7 +253,7 @@
         {
           "id": "circle_of_wildfire",
           "name": "Circle of Wildfire",
-          "book": "PHB",
+          "book": "TCE",
           "page": null
         },
         {
@@ -318,13 +318,13 @@
         {
           "id": "psi_warrior",
           "name": "Psi Warrior",
-          "book": "PHB",
+          "book": "TCE",
           "page": null
         },
         {
           "id": "rune_knight",
           "name": "Rune Knight",
-          "book": "PHB",
+          "book": "TCE",
           "page": null
         },
         {
@@ -365,13 +365,13 @@
         {
           "id": "way_of_mercy",
           "name": "Way of Mercy",
-          "book": "PHB",
+          "book": "TCE",
           "page": null
         },
         {
           "id": "way_of_the_astral_self",
           "name": "Way of the Astral Self",
-          "book": "PHB",
+          "book": "TCE",
           "page": null
         },
         {
@@ -395,7 +395,7 @@
         {
           "id": "way_of_the_long_death",
           "name": "Way of the Long Death",
-          "book": "PHB",
+          "book": "SCAG",
           "page": null
         },
         {
@@ -442,7 +442,7 @@
         {
           "id": "oath_of_glory",
           "name": "Oath of Glory",
-          "book": "PHB",
+          "book": "TCE",
           "page": null
         },
         {
@@ -454,19 +454,19 @@
         {
           "id": "oath_of_the_crown",
           "name": "Oath of the Crown",
-          "book": "PHB",
+          "book": "SCAG",
           "page": null
         },
         {
           "id": "oath_of_the_watchers",
           "name": "Oath of the Watchers",
-          "book": "XGE",
+          "book": "TCE",
           "page": null
         },
         {
           "id": "oathbreaker",
           "name": "Oathbreaker",
-          "book": "PHB",
+          "book": "DMG",
           "page": null
         },
         {
@@ -507,7 +507,7 @@
         {
           "id": "gloom_stalker",
           "name": "Gloom Stalker",
-          "book": "PHB",
+          "book": "XGE",
           "page": null
         },
         {
@@ -572,7 +572,7 @@
         {
           "id": "phantom",
           "name": "Phantom",
-          "book": "PHB",
+          "book": "TCE",
           "page": null
         },
         {
@@ -584,7 +584,7 @@
         {
           "id": "soulknife",
           "name": "Soulknife",
-          "book": "PHB",
+          "book": "TCE",
           "page": null
         },
         {
@@ -619,7 +619,7 @@
         {
           "id": "clockwork_soul",
           "name": "Clockwork Soul",
-          "book": "PHB",
+          "book": "TCE",
           "page": null
         },
         {
@@ -737,13 +737,13 @@
         {
           "id": "bladesinging",
           "name": "Bladesinging",
-          "book": "XGE",
+          "book": "TCE",
           "page": null
         },
         {
           "id": "chronurgy_magic",
           "name": "Chronurgy Magic",
-          "book": "TCE",
+          "book": "EGW",
           "page": null
         },
         {
@@ -773,7 +773,7 @@
         {
           "id": "graviturgy_magic",
           "name": "Graviturgy Magic",
-          "book": "TCE",
+          "book": "EGW",
           "page": null
         },
         {
@@ -811,34 +811,34 @@
     {
       "id": "artificer",
       "name": "Artificer",
-      "book": "PHB",
+      "book": "TCE",
       "subclassLevel": 3,
       "source": {
-        "book": "PHB"
+        "book": "TCE"
       },
       "subclasses": [
         {
           "id": "alchemist",
           "name": "Alchemist",
-          "book": "EGW",
+          "book": "TCE",
           "page": null
         },
         {
           "id": "armorer",
           "name": "Armorer",
-          "book": "EGW",
+          "book": "TCE",
           "page": null
         },
         {
           "id": "artillerist",
           "name": "Artillerist",
-          "book": "EGW",
+          "book": "TCE",
           "page": null
         },
         {
           "id": "battle_smith",
           "name": "Battle Smith",
-          "book": "EGW",
+          "book": "TCE",
           "page": null
         }
       ]

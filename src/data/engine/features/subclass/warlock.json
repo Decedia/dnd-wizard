@@ -553,7 +553,7 @@
       "summary": "Bonus action: charm a creature, then hit it harder",
       "text": "You can use a bonus action to curse a creature within 30 feet of you. It is charmed by you for 1 hour, and you have advantage on attack rolls against it.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Warlock Hexblade 1"
       }
     },
@@ -579,7 +579,7 @@
       "summary": "+1 Con per level, medium armor, more armor at odd levels",
       "text": "You gain proficiency with medium armor and your Constitution score is increased by 1. At 3rd level and every odd level after that, you gain another increase of 1.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Warlock Hexblade 1"
       }
     },
@@ -610,7 +610,7 @@
       "summary": "A free spectral warrior that attacks anyone but you",
       "text": "You conjure a phantom warrior within your reach. It lasts for 1 minute or until it takes 30 damage, and it can attack anyone but you within 5 feet of it.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Warlock Hexblade 6"
       }
     },
@@ -651,7 +651,7 @@
       "summary": "+1 AC in armor; attacks hinder the creature you hit",
       "text": "You gain a +1 bonus to AC while wearing armor. If you hit a creature with an attack roll, you have disadvantage on all attack rolls against that creature until the end of your next turn.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Warlock Hexblade 10"
       }
     },
@@ -671,7 +671,7 @@
       "summary": "Spread the Hexblade's Curse to nearby creatures",
       "text": "You can use your reaction to apply Hexblade's Curse to any number of creatures of your choice within 60 feet of the cursed creature.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Warlock Hexblade 14"
       }
     },
@@ -710,7 +710,7 @@
       "summary": "Sacred flame at will, plus three more cleric cantrips",
       "text": "Your patron's influence has brought you the power of clerics. You learn the sacred flame cantrip, which you can cast at will without a spell slot.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Warlock The Celestial 1"
       }
     },
@@ -754,7 +754,7 @@
       "summary": "Bonus action: heal 1d8 and end charmed or frightened",
       "text": "As a bonus action, you can restore 1d8 hit points to a creature that you can see within 60 feet of you, and it ends charmed or frightened.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Warlock The Celestial 1"
       }
     },
@@ -780,7 +780,7 @@
       "summary": "Radiant resistance; add 1d6 radiant to an attack or spell",
       "text": "You have resistance to radiant damage, and you can add 1d6 radiant damage to one attack or spell you make.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Warlock The Celestial 6"
       }
     },
@@ -822,7 +822,7 @@
       "summary": "Reaction: 1d8 + Cha healing instead of a failed save",
       "text": "When you fail a saving throw, you can use your reaction to heal 1d8 + your Charisma modifier in hit points instead.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Warlock The Celestial 10"
       }
     },
@@ -868,7 +868,7 @@
       "summary": "Reaction: split 3d8 radiant with the creature that hit you",
       "text": "When you are hit by an attack, you can use your reaction to add 3d8 radiant damage to the attack, to be shared between you and the attacker.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Warlock The Celestial 14"
       }
     },
@@ -1303,7 +1303,7 @@
       "summary": "Bonus action: a terrifying form, immune to fear, nonmagical resistant",
       "text": "You can use a bonus action to assume a terrifying spectral form, which lasts until you dismiss it as a bonus action, or until you die.",
       "source": {
-        "book": "TCE",
+        "book": "VRGR",
         "reference": "Tasha's Cauldron Warlock The Undead 1"
       }
     },
@@ -1369,7 +1369,7 @@
       "summary": "Reaction: 1d8 + Cha necrotic and no healing, when hit",
       "text": "When a creature within 5 feet of you hits you with an attack, you can use your reaction to force it to make a Constitution saving throw.",
       "source": {
-        "book": "TCE",
+        "book": "VRGR",
         "reference": "Tasha's Cauldron Warlock The Undead 6"
       }
     },
@@ -1390,7 +1390,7 @@
       "summary": "You can rise from the dead and turn corpses into objects",
       "text": "At 10th level, you can keep dead creatures that die within 10 feet of you, putting them in your space.",
       "source": {
-        "book": "TCE",
+        "book": "VRGR",
         "reference": "Tasha's Cauldron Warlock The Undead 10"
       }
     },
@@ -1423,7 +1423,7 @@
       "summary": "Bonus action: project your spirit 60 ft, resistant to all damage",
       "text": "As a bonus action, you project your spirit from your body up to 60 feet away from you, gaining resistance to all damage.",
       "source": {
-        "book": "TCE",
+        "book": "VRGR",
         "reference": "Tasha's Cauldron Warlock The Undead 14"
       }
     },
@@ -1443,7 +1443,7 @@
       "summary": "Necrotic at will; temp HP when an enemy drops nearby",
       "text": "You learn the necrotic cantrip, which you can cast at will without a spell slot. When a creature within 10 feet of you that is hostile to you drops to 0 hit points, you can use your reaction to take 1d6 + your Constitution modifier in temporary hit points.",
       "source": {
-        "book": "TCE",
+        "book": "SCAG",
         "reference": "Tasha's Cauldron Warlock Undying 1"
       }
     },
@@ -1507,7 +1507,7 @@
       "summary": "Reaction: 1d8 + Con temp HP and a reroll after a failed save",
       "text": "When you fail a saving throw, you can use your reaction to gain 1d8 + your Constitution modifier in temporary hit points, and the DM must reroll the save.",
       "source": {
-        "book": "TCE",
+        "book": "SCAG",
         "reference": "Tasha's Cauldron Warlock Undying 1"
       }
     },
@@ -1538,7 +1538,7 @@
       "summary": "A Cha save halves damage you take",
       "text": "When you are damaged, you can make a Charisma saving throw with a DC of 5 + your Constitution modifier. On a success, you reduce the damage by half.",
       "source": {
-        "book": "TCE",
+        "book": "SCAG",
         "reference": "Tasha's Cauldron Warlock Undying 6"
       }
     },
@@ -1558,7 +1558,7 @@
       "summary": "Death saves get 1d4 + Con temp HP; drop to 1 on non-psychic damage",
       "text": "When you make a Death saving throw, you can choose to take 1d4 + your Constitution modifier in temporary hit points, and if you do, you automatically succeed on the save.",
       "source": {
-        "book": "TCE",
+        "book": "SCAG",
         "reference": "Tasha's Cauldron Warlock Undying 10"
       }
     }

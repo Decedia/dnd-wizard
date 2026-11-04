@@ -32,7 +32,7 @@
       "summary": "Reroll any ability check, save or attack roll",
       "text": "You have a few lucky charms. When you make an ability check, a saving throw, or an attack roll, you can reroll the die and use either roll.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Feat 81"
       }
     },
@@ -90,7 +90,7 @@
       "summary": "BA: temp HP from a slot; dragons fear you while they last",
       "text": "As a bonus action you can expend a spell slot and grow temporary hit points equal to 1d4 per spell level for 1 minute. Any dragon within 30 feet of you has disadvantage on saving throws against your spells and special effects while you have these hit points, and it takes half damage from them.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Feat 82"
       }
     },
@@ -117,7 +117,7 @@
       "summary": "Reduce damage by 1d10 plus proficiency, stacking per hit",
       "text": "When you take damage, you can use your reaction to reduce the damage by 1d10 plus your proficiency bonus. The reduced amount of damage is then temporarily reduced by 1 for each hit, so you can never have this reaction reduced to 0.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Feat 82"
       }
     },
@@ -176,7 +176,7 @@
       "summary": "Detect magic at will; darkness and faerie fire per long rest",
       "text": "You know the detect magic cantrip, which you can cast at will, and the darkness and faerie fire spells, each of which you can cast once per long rest without a spell slot.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Feat 82"
       }
     },
@@ -204,7 +204,7 @@
       "summary": "+1 Constitution and +1 hit point at every level",
       "text": "You gain a +1 bonus to Constitution, and your hit point maximum increases by 1, and by 1 again whenever you gain a level.",
       "source": {
-        "book": "TCE",
+        "book": "PHB",
         "reference": "Tasha's Cauldron Feat 82"
       }
     },
@@ -233,7 +233,7 @@
       "summary": "Advantage against poison and on death saves",
       "text": "You have advantage on saving throws against being poisoned, and you have dwarven resilience: resistance to poison damage and immunity to the poisoned condition. You also gain advantage on death saving throws.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Feat 82"
       }
     },
@@ -291,7 +291,7 @@
       "summary": "Chosen damage type forces disadvantage on its saves",
       "text": "When you damage a creature with a spell of a damage type you have chosen, the creature's saving throw against that spell is at a disadvantage.",
       "source": {
-        "book": "TCE",
+        "book": "PHB",
         "reference": "Tasha's Cauldron Feat 83"
       }
     },
@@ -327,7 +327,7 @@
       "summary": "Reaction: turn invisible and give nearby attackers disadvantage",
       "text": "When you take damage, you can use your reaction to become invisible until the end of your next turn, and any creature within 30 feet of you that can see you also has disadvantage on attack rolls against you until the end of your next turn.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Feat 83"
       }
     },
@@ -441,7 +441,7 @@
       "summary": "Once a day, teleport 30 ft; bring a willing creature at 17",
       "text": "As a bonus action you can teleport yourself up to 30 feet to an unoccupied space that you can see. You gain the use of this once per day.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Feat 83"
       }
     },
@@ -567,7 +567,7 @@
       "summary": "On a melee hit: 2d6 fire and 1d6 each turn until it stops",
       "text": "When you hit a creature with a melee attack, you can impose burning on it. The target must make a Constitution saving throw, taking 2d6 fire damage and 1d6 of it again at the end of each of its turns.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Feat 84"
       }
     },
@@ -592,7 +592,7 @@
       "summary": "Grapple as a bonus action; advantage on grappled targets",
       "text": "When you hit a creature with a melee attack, you can use a bonus action to grapple a creature that is next to you, even if the creature is two sizes larger than you. You have advantage on attack rolls against a creature that is grappled by you.",
       "source": {
-        "book": "TCE",
+        "book": "PHB",
         "reference": "Tasha's Cauldron Feat 84"
       }
     },
@@ -618,7 +618,7 @@
       "summary": "Proficiency in four languages of your choice",
       "text": "You gain proficiency in four languages of your choice.",
       "source": {
-        "book": "TCE",
+        "book": "PHB",
         "reference": "Tasha's Cauldron Feat 84"
       }
     },
@@ -638,7 +638,7 @@
       "summary": "+1 Dex; Unarmored Defense; a ki-powered BA action",
       "text": "You gain a +1 bonus to Dexterity, and you gain proficiency in the Unarmored Defense fighting style.",
       "source": {
-        "book": "TCE",
+        "book": "PHB",
         "reference": "Tasha's Cauldron Feat 84"
       }
     },
@@ -745,7 +745,7 @@
       "summary": "One extra attack of any kind, once per turn",
       "text": "You get one extra attack of any kind you make with a simple or martial weapon. This can be used only once per turn.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Feat 85"
       }
     },
@@ -790,7 +790,7 @@
       "summary": "Learn two cantrips and one 1st-level ritual spell from a chosen casting class; cast ritual spells from that class's list",
       "text": "Choose a class: bard, cleric, druid, sorcerer, warlock, or wizard. You learn two cantrips of your choice from that class's spell list. In addition, choose one 1st-level spell with the ritual tag from that class's spell list. You can cast these spells using your spellcasting ability for this feat. You can also cast any ritual spell that has this spell list; you don't need to have it prepared, but you must expend a spell slot to cast it.",
       "source": {
-        "book": "TCE",
+        "book": "PHB",
         "reference": "Tasha's Cauldron Feat 85"
       },
       "cost": [
@@ -834,7 +834,7 @@
       "summary": "Reaction: reroll a failed save",
       "text": "When you fail a saving throw, you can use your reaction to force a reroll of the same die. You must use the new roll.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Feat 85"
       }
     },
@@ -984,7 +984,7 @@
       "summary": "Druidcraft at will; longstrider and pass without trace per rest",
       "text": "You know the druidcraft cantrip, which you can cast at will, and the longstrider and pass without trace spells, each of which you can cast once per long rest without a spell slot.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Feat 85"
       }
     },
@@ -1055,7 +1055,7 @@
       "summary": "Detect magic at will; blindness and deafness per long rest",
       "text": "You know the detect magic cantrip, which you can cast at will, and the blindness and deafness spells, each of which you can cast once per long rest without a spell slot.",
       "source": {
-        "book": "TCE",
+        "book": "EEPC",
         "reference": "Tasha's Cauldron Feat 85"
       }
     }

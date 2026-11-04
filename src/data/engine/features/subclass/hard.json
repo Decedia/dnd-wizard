@@ -241,7 +241,7 @@
       "summary": "Bonus action: forbid one thing a creature can do this turn",
       "text": "As a bonus action, you whisper a message in a creature's ear. The target must make a Wisdom saving throw or, on a failure, choose one of the following effects, until the end of your next turn.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Bard College of Whispers 3"
       }
     },
@@ -265,7 +265,7 @@
       "summary": "+1 AC, Con to HP per level, and medium armor proficiency",
       "text": "You have a +1 bonus to AC and your Constitution modifier to hit points per hexblade level, because your curse grants you additional durability. You also gain proficiency with medium armor.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Warlock Hexblade 1"
       }
     },
@@ -313,7 +313,7 @@
       "summary": "Once a long rest, charm a creature for an hour",
       "text": "You can use a bonus action to mark one creature, which lasts until you finish a long rest or until you use it again. When you mark a creature, you gain advantage on Charisma checks to interact with it and on your first attack roll against it after you cast. The target makes a Charisma saving throw, and on a failure is charmed by you.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Warlock Hexblade 1"
       }
     },

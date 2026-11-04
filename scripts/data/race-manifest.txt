@@ -165,7 +165,7 @@ Water Genasi (EEPC) asi=con2,wis1 speed=30
   Amphibious
   Swim
   Call to the Wave
-Deep Gnome (EEPC) asi=int2,dex1 speed=25
+Deep Gnome (SCAG) asi=int2,dex1 speed=25
   Superior Darkvision
   Gnome Cunning
   Stone Camouflage

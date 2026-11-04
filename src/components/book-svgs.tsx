@@ -59,6 +59,32 @@ export const BookPatterns = {
       <line x1="100" y1="12" x2="100" y2="60" stroke="#fff" strokeWidth="0.8" opacity="0.12" />
     </svg>
   ),
+  DMG: (
+    <svg width="100%" height="100%" viewBox="0 0 200 72" preserveAspectRatio="xMidYMid slice">
+      <rect x="70" y="6" width="60" height="60" fill="none" stroke="#fff" strokeWidth="1.2" opacity="0.12" transform="rotate(45 100 36)" />
+      <circle cx="100" cy="36" r="12" fill="none" stroke="#fff" strokeWidth="0.8" opacity="0.12" />
+    </svg>
+  ),
+  ERLW: (
+    <svg width="100%" height="100%" viewBox="0 0 200 72" preserveAspectRatio="xMidYMid slice">
+      <path d="M20,60 L60,12 L100,60 L140,12 L180,60" fill="none" stroke="#fff" strokeWidth="1.2" opacity="0.12" />
+      <path d="M40,60 L60,36 L80,60" fill="none" stroke="#fff" strokeWidth="0.8" opacity="0.12" />
+    </svg>
+  ),
+  EEPC: (
+    <svg width="100%" height="100%" viewBox="0 0 200 72" preserveAspectRatio="xMidYMid slice">
+      <circle cx="70" cy="36" r="20" fill="none" stroke="#fff" strokeWidth="1.2" opacity="0.12" />
+      <circle cx="130" cy="36" r="20" fill="none" stroke="#fff" strokeWidth="1.2" opacity="0.12" />
+      <circle cx="100" cy="18" r="20" fill="none" stroke="#fff" strokeWidth="0.8" opacity="0.12" />
+      <circle cx="100" cy="54" r="20" fill="none" stroke="#fff" strokeWidth="0.8" opacity="0.12" />
+    </svg>
+  ),
+  AAG: (
+    <svg width="100%" height="100%" viewBox="0 0 200 72" preserveAspectRatio="xMidYMid slice">
+      <ellipse cx="100" cy="36" rx="80" ry="18" fill="none" stroke="#fff" strokeWidth="1.2" opacity="0.12" />
+      <circle cx="100" cy="36" r="10" fill="none" stroke="#fff" strokeWidth="0.8" opacity="0.12" />
+    </svg>
+  ),
   MPMM: (
     <svg width="100%" height="100%" viewBox="0 0 200 72" preserveAspectRatio="xMidYMid slice">
       <circle cx="100" cy="36" r="32" fill="none" stroke="#fff" strokeWidth="1.2" opacity="0.12" />
@@ -79,6 +105,10 @@ export const BookEmojis: Record<string, string> = {
   FTD: "🔥",
   VRGR: "🧛",
   MPMM: "👾",
+  DMG: "🎲",
+  ERLW: "⚙️",
+  EEPC: "🌪️",
+  AAG: "🚀",
 };
 
 export type BookId = keyof typeof BookPatterns;

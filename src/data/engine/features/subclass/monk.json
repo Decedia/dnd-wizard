@@ -23,7 +23,7 @@
       "summary": "Reaction: disadvantage on an adjacent attack, then hit back",
       "text": "Whenever a creature within 5 feet of you that you can see hits you with an attack, you can use your reaction to impose disadvantage on the attack roll. If the attack hits, you can make a melee spell attack against that creature.",
       "source": {
-        "book": "MTF",
+        "book": "FTD",
         "reference": "Mordenkainen's Tome of Foes Ascendant Dragon 3"
       }
     },
@@ -78,7 +78,7 @@
       "summary": "Once a day, a bonus-action 15-ft cone of your ancestry's damage",
       "text": "As a bonus action, you exhale a 15-foot cone of elemental energy, and each creature in the area makes a Constitution saving throw.",
       "source": {
-        "book": "MTF",
+        "book": "FTD",
         "reference": "Mordenkainen's Tome of Foes Ascendant Dragon 3"
       }
     },
@@ -111,7 +111,7 @@
       "summary": "Bonus action: flight for a minute, once per long rest",
       "text": "As a bonus action, you magically grow a pair of wings with a flying speed equal to your walking speed for 1 minute.",
       "source": {
-        "book": "MTF",
+        "book": "FTD",
         "reference": "Mordenkainen's Tome of Foes Ascendant Dragon 6"
       }
     },
@@ -131,7 +131,7 @@
       "summary": "Draconic Discipline also hinders checks; breath reaches 30 ft",
       "text": "At 11th level, your Draconic Discipline reaction also imposes disadvantage on the creature's ability checks.",
       "source": {
-        "book": "MTF",
+        "book": "FTD",
         "reference": "Mordenkainen's Tome of Foes Ascendant Dragon 11"
       }
     },
@@ -152,7 +152,7 @@
       "summary": "Swap to another dragon ancestry's aspect",
       "text": "You can replace your Draconic Discipline with the Aspect of another dragon ancestry, gaining its features.",
       "source": {
-        "book": "MTF",
+        "book": "FTD",
         "reference": "Mordenkainen's Tome of Foes Ascendant Dragon 17"
       }
     },
@@ -450,7 +450,7 @@
       "summary": "Sanctuary at will, plus cleric spells without slots",
       "text": "You know the sanctuary cantrip, which you can cast at will without a spell slot.",
       "source": {
-        "book": "MTF",
+        "book": "TCE",
         "reference": "Mordenkainen's Tome of Foes Way of Mercy 3"
       }
     },
@@ -540,7 +540,7 @@
       "summary": "Bonus action: spend 1 Ki to heal 1d8 + Wis",
       "text": "As a bonus action, you can touch a creature that is within 30 feet of you and spend 1 ki point, restoring it with 1d8 + your Wisdom modifier in hit points.",
       "source": {
-        "book": "MTF",
+        "book": "TCE",
         "reference": "Mordenkainen's Tome of Foes Way of Mercy 3"
       }
     },
@@ -642,7 +642,7 @@
       "summary": "Bonus action: spend 1 Ki for 1d6 + Wis necrotic",
       "text": "As a bonus action, you can touch a creature that is within 30 feet of you and spend 1 ki point, causing it to make a Wisdom saving throw.",
       "source": {
-        "book": "MTF",
+        "book": "TCE",
         "reference": "Mordenkainen's Tome of Foes Way of Mercy 3"
       }
     },
@@ -662,7 +662,7 @@
       "summary": "Healing can be scaled up by spending more ki",
       "text": "When you use Hands of Healing, you can expend additional ki points equal to 1d8 + your Wisdom modifier, and the target regains that many additional hit points.",
       "source": {
-        "book": "MTF",
+        "book": "TCE",
         "reference": "Mordenkainen's Tome of Foes Way of Mercy 6"
       }
     },
@@ -692,7 +692,7 @@
       "summary": "A flurry of up to three healing or harming bonus actions",
       "text": "When you use Flurry of Healing and Harm, make a flurry of up to three healing or harming Hand attacks.",
       "source": {
-        "book": "MTF",
+        "book": "TCE",
         "reference": "Mordenkainen's Tome of Foes Way of Mercy 11"
       }
     },
@@ -712,7 +712,7 @@
       "summary": "Healing also cures deafness; harm also hinders attacks",
       "text": "When you use Hands of Healing, you can also end the blinded or deafened condition on the target.",
       "source": {
-        "book": "MTF",
+        "book": "TCE",
         "reference": "Mordenkainen's Tome of Foes Way of Mercy 17"
       }
     },
@@ -868,7 +868,7 @@
       "summary": "Proficiency with an instrument or improvised weapon",
       "text": "You gain proficiency with one type of musical instrument or one other improvised weapon.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Monk Way of the Drunken Master 3"
       }
     },
@@ -895,7 +895,7 @@
       "summary": "Ki as a bonus action: Dodge, Disengage or a 1d8 extra strike",
       "text": "At 5th level, your ki fueled ability can be used as a bonus action.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Monk Way of the Drunken Master 3"
       }
     },
@@ -932,7 +932,7 @@
       "summary": "Being drunk adds +10 speed; later, +1 AC and dragging",
       "text": "While you are intoxicated, your walking speed increases by 10 feet.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Monk Way of the Drunken Master 6"
       }
     },
@@ -988,7 +988,7 @@
       "summary": "Reaction with advantage: succeed, take 1 HP, cut 1d8",
       "text": "When you have advantage on an attack roll, you can spend 1 ki point to instead succeed automatically.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Monk Way of the Drunken Master 11"
       }
     },
@@ -1008,7 +1008,7 @@
       "summary": "Drunken Technique improves; drunk strike deals 1d10 at 17",
       "text": "When you are drunk, you gain more ki-fueled benefits.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Monk Way of the Drunken Master 17"
       }
     },
@@ -1529,7 +1529,7 @@
       "summary": "Longsword and shortsword proficiency regardless of class",
       "text": "You gain proficiency with longswords and shortswords even if another class gives you proficiency with them.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Monk Way of the Kensei 3"
       }
     },
@@ -1554,7 +1554,7 @@
       "summary": "Doubled checks with swords, advantage on Acrobatics and Athletics",
       "text": "Your proficiency bonus is doubled for any ability check that relies on the use of a sword.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Monk Way of the Kensei 6"
       }
     },
@@ -1575,7 +1575,7 @@
       "summary": "BA: an extra attack for 1d10 damage",
       "text": "As a bonus action on your turn, you can draw a weapon that you are proficient with and make a melee attack with it.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Monk Way of the Kensei 11"
       }
     },
@@ -1595,7 +1595,7 @@
       "summary": "Sword attacks ignore cover; reroll a natural 1",
       "text": "Your attacks with a sword ignore half and three-quarters cover.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Monk Way of the Kensei 17"
       }
     },
@@ -1636,7 +1636,7 @@
       "summary": "Action: ward death, or poison a creature within 5 ft",
       "text": "As an action, you can touch a creature and give it disadvantage on death saving throws.",
       "source": {
-        "book": "TCE",
+        "book": "SCAG",
         "reference": "Tasha's Cauldron Monk Way of the Long Death 3"
       }
     },
@@ -1677,7 +1677,7 @@
       "summary": "Action: brand a creature, which flees from you",
       "text": "As an action, you can brand a creature within 5 feet of you. The target is frightened until the end of your next turn.",
       "source": {
-        "book": "TCE",
+        "book": "SCAG",
         "reference": "Tasha's Cauldron Monk Way of the Long Death 6"
       }
     },
@@ -1697,7 +1697,7 @@
       "summary": "Reroll your last failed death save; spend ki to save another",
       "text": "You always have the option to reroll the last death saving throw you make as a monk.",
       "source": {
-        "book": "TCE",
+        "book": "SCAG",
         "reference": "Tasha's Cauldron Monk Way of the Long Death 11"
       }
     },
@@ -1728,7 +1728,7 @@
       "summary": "Touch of Death can reduce to 0 HP, then spend ki to revive",
       "text": "Your Touch of Death can now reduce a creature to 0 hit points.",
       "source": {
-        "book": "TCE",
+        "book": "SCAG",
         "reference": "Tasha's Cauldron Monk Way of the Long Death 17"
       }
     },
@@ -1827,7 +1827,7 @@
       "summary": "Bonus action: a 30-ft sun bolt for 2d6 + Wis radiant",
       "text": "As a bonus action, you can hurl a mote of sunlight, causing a ranged spell attack with a range of 30 feet.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Monk Way of the Sun Soul 3"
       }
     },
@@ -1900,7 +1900,7 @@
       "summary": "Bonus action: one sun bolt hitting two creatures",
       "text": "As a bonus action, you can hurl a mote of sunlight in an arc that strikes up to two creatures within 30 feet of each other.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Monk Way of the Sun Soul 6"
       }
     },
@@ -1949,7 +1949,7 @@
       "summary": "Action: a 30-ft sunburst dealing 12d6 radiant",
       "text": "As an action, you can choose a point within 60 feet of you. A 30-foot-radius sphere of light radiates from it.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Monk Way of the Sun Soul 11"
       }
     },
@@ -1987,7 +1987,7 @@
       "summary": "Bonus action: +2 AC and saves, 10 minutes",
       "text": "As a bonus action, you gain a +2 bonus to AC and all your saving throws, and you have advantage on all Wisdom saving throws for 10 minutes.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Monk Way of the Sun Soul 17"
       }
     }

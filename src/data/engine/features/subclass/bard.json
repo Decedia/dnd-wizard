@@ -53,7 +53,7 @@
       "summary": "Bonus action: give a d6 mote for one check or save",
       "text": "You can use a bonus action to give a creature within 60 feet of you a glowing mote of light. The target gains a d6, which it can roll and add to one ability check or saving throw.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Bard College of Creation 3"
       }
     },
@@ -106,7 +106,7 @@
       "summary": "Minor illusion at will; two free cantrips at 6th",
       "text": "You learn minor illusion, which you can cast at will without a spell slot, and you learn two more cantrips at 6th level, choosing from the wizard or druid spell list.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Bard College of Creation 3"
       }
     },
@@ -139,7 +139,7 @@
       "summary": "Bonus action: animate a non-creature object for an hour",
       "text": "You can use a bonus action to bring to life an object that isn't a creature, putting it within 5 feet of you or a creature you can see.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Bard College of Creation 6"
       }
     },
@@ -172,7 +172,7 @@
       "summary": "Once a day: any bard spell without a slot, at 300 ft",
       "text": "You can use a 6th-level bard's inspire transformation to control the ebb and flow of magic. You can cast one of your prepared bard spells without a spell slot.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Bard College of Creation 14"
       }
     },
@@ -213,7 +213,7 @@
       "summary": "+1d6 to Persuasion checks, widening at higher levels",
       "text": "You have learned to speak with more persuasive power. You gain proficiency in the Persuasion skill, and whenever you make a Charisma (Persuasion) check, you can add 1d6 to the roll.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Bard College of Eloquence 3"
       }
     },
@@ -250,7 +250,7 @@
       "summary": "Reaction: a failed save becomes a fear save at disadvantage",
       "text": "When a creature within 60 feet of you that you can see that you can target with a spell makes a failed saving throw, you can use your reaction to force a Wisdom saving throw.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Bard College of Eloquence 3"
       }
     },
@@ -270,7 +270,7 @@
       "summary": "Expend spent dice for free, as many times as you like",
       "text": "Your Bardic Inspiration is more potent. Whenever a creature expends a Bardic Inspiration die, they regain 1d6.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Bard College of Eloquence 6"
       }
     },
@@ -296,7 +296,7 @@
       "summary": "Understand any spoken language; others understand you",
       "text": "You gain the ability to understand any spoken language, and creatures always understand your spoken words.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Bard College of Eloquence 6"
       }
     },
@@ -317,7 +317,7 @@
       "summary": "Spend slots to hand out more dice; targets recover a die",
       "text": "When you give a creature a Bardic Inspiration die, you can expend a spell slot to give it additional dice equal to the level of that slot.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Bard College of Eloquence 14"
       }
     },
@@ -351,7 +351,7 @@
       "summary": "Bonus action: a d8 that refunds itself when used",
       "text": "You can use a bonus action to inspire one willing creature within 60 feet of you, which then gains a Bardic Inspiration die.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Bard College of Glamour 3"
       }
     },
@@ -391,7 +391,7 @@
       "summary": "Action: charm creatures who can see and hear you",
       "text": "You can use your action to cause a creature within 60 feet that can see and hear you to be charmed by you.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Bard College of Glamour 6"
       }
     },
@@ -435,7 +435,7 @@
       "summary": "Bonus action: +2 AC and +2 Cha for a minute",
       "text": "You can use a bonus action to assume a regal presence for 1 minute, gaining a +2 bonus to Charisma checks and a +2 bonus to your AC.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Bard College of Glamour 14"
       }
     },
@@ -480,7 +480,7 @@
       "summary": "Learn a cleric cantrip and two 1st-level spells",
       "text": "You have learned a myriad of spirit tales: you gain the cantrip and two 1st-level spells from the cleric list, which are always prepared.",
       "source": {
-        "book": "PHB",
+        "book": "VRGR",
         "reference": "PHB Bard College of Spirits 3"
       }
     },
@@ -547,7 +547,7 @@
       "summary": "Bonus action: healing word, or spiritual weapon at 6th, no slot",
       "text": "You can cast the healing word or mass healing word spell without a spell slot, and at 6th level you can cast spiritual weapon without a spell slot. Neither casting requires concentration.",
       "source": {
-        "book": "PHB",
+        "book": "VRGR",
         "reference": "PHB Bard College of Spirits 3"
       }
     },
@@ -578,7 +578,7 @@
       "summary": "Each level grants another cleric cantrip or spell",
       "text": "At 6th, 8th, and 10th level, you gain one more cleric cantrip or spell of the level you gained for Spiritual Focus.",
       "source": {
-        "book": "PHB",
+        "book": "VRGR",
         "reference": "PHB Bard College of Spirits 6"
       }
     },
@@ -619,7 +619,7 @@
       "summary": "Once a long rest: spirit shroud or spirit guardians, no slot",
       "text": "You have learned to call upon spirits to protect you. Once per long rest you can cast either spirit shroud or spirit guardians without a spell slot, choosing one each time, and neither requires concentration.",
       "source": {
-        "book": "PHB",
+        "book": "VRGR",
         "reference": "PHB Bard College of Spirits 6"
       }
     },
@@ -644,7 +644,7 @@
       "summary": "Upcast spirit spells; cantrips count as 1st level",
       "text": "Your spirit spells can be cast at a higher level than normal: a cantrip counts as a 1st-level spell, and each other spirit spell counts as a level higher.",
       "source": {
-        "book": "PHB",
+        "book": "VRGR",
         "reference": "PHB Bard College of Spirits 14"
       }
     },
@@ -674,7 +674,7 @@
       "summary": "Proficiency with four swords",
       "text": "When you join the College of Swords, you gain proficiency with the scimitar, rapier, longsword, and shortsword.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Bard College of Swords 3"
       }
     },
@@ -710,7 +710,7 @@
       "summary": "Dueling fighting style: +2 damage one-handed, Persuasion",
       "text": "You adopt the Dueling fighting style.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Bard College of Swords 3"
       }
     },
@@ -753,7 +753,7 @@
       "summary": "Bonus action on a melee hit: a Blade Flourish",
       "text": "You have learned to employ special fighting techniques. When you hit with a melee weapon attack, you can use a bonus action to use one Blade Flourish of your choice.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Bard College of Swords 3"
       }
     },
@@ -774,7 +774,7 @@
       "summary": "Two attacks with the Attack action",
       "text": "You can attack twice, instead of once, whenever you take the Attack action on your turn.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Bard College of Swords 6"
       }
     },
@@ -795,7 +795,7 @@
       "summary": "Crit-only flourishes, and two flourishes per hit",
       "text": "You have learned fighting techniques that work only on a critical hit and one that works on a miss as well. When you use two Blade Flourishes, you can use two on a hit.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Bard College of Swords 14"
       }
     },

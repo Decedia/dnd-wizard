@@ -7,7 +7,15 @@
   "VGC": "Volo's Guide to Allies",
   "ERLW": "Eberron: Rising from the Last War",
   "VgtM": "Vampire's Guide to Ravenloft",
-  "MotM": "Mordenkainen's Tome of Foes"
+  "MotM": "Mordenkainen's Tome of Foes",
+  "VGTM": "Volo's Guide to Monsters",
+  "MTF": "Mordenkainen's Tome of Foes",
+  "VRGR": "Van Richten's Guide to Ravenloft",
+  "EEPC": "Elemental Evil Player's Companion",
+  "AAG": "Spelljammer: Astral Adventurer's Guide",
+  "SCAG": "Sword Coast Adventurer's Guide",
+  "MPMM": "Mordenkainen Presents: Monsters of the Multiverse",
+  "FTD": "Fizban's Treasury of Dragons"
  },
  "races": [
   {
@@ -139,13 +147,13 @@
   {
    "id": "aarakocra",
    "name": "Aarakocra",
-   "book": "PHB",
+   "book": "EEPC",
    "page": 31
   },
   {
    "id": "dragonborn",
    "name": "Dragonborn",
-   "book": "ERLW",
+   "book": "PHB",
    "page": 36,
    "variants": [
     {
@@ -172,19 +180,19 @@
   {
    "id": "githyanki",
    "name": "Githyanki",
-   "book": "ERLW",
+   "book": "MTF",
    "page": 30
   },
   {
    "id": "githzerai",
    "name": "Githzerai",
-   "book": "ERLW",
+   "book": "MTF",
    "page": 30
   },
   {
    "id": "tabaxi",
    "name": "Tabaxi",
-   "book": "PHB",
+   "book": "VGTM",
    "page": 48
   },
   {
@@ -234,13 +242,13 @@
   {
    "id": "plasmoid",
    "name": "Plasmoid",
-   "book": "ERLW",
+   "book": "AAG",
    "page": 28
   },
   {
    "id": "thri_kreen",
    "name": "Thri-kreen",
-   "book": "ERLW",
+   "book": "AAG",
    "page": 32
   },
   {
@@ -273,7 +281,7 @@
   {
    "id": "aasimar",
    "name": "Aasimar",
-   "book": "VGC",
+   "book": "VGTM",
    "page": 12,
    "variants": [
     {
@@ -293,7 +301,7 @@
   {
    "id": "bugbear",
    "name": "Bugbear",
-   "book": "VGC",
+   "book": "VGTM",
    "page": 31
   },
   {
@@ -305,31 +313,31 @@
   {
    "id": "firbolg",
    "name": "Firbolg",
-   "book": "VGC",
+   "book": "VGTM",
    "page": 46
   },
   {
    "id": "goblin",
    "name": "Goblin",
-   "book": "VGC",
+   "book": "VGTM",
    "page": 52
   },
   {
    "id": "hobgoblin",
    "name": "Hobgoblin",
-   "book": "VGC",
+   "book": "VGTM",
    "page": 58
   },
   {
    "id": "kobold",
    "name": "Kobold",
-   "book": "VGC",
+   "book": "VGTM",
    "page": 64
   },
   {
    "id": "lizardfolk",
    "name": "Lizardfolk",
-   "book": "VGC",
+   "book": "VGTM",
    "page": 68
   },
   {
@@ -365,7 +373,7 @@
   {
    "id": "triton",
    "name": "Triton",
-   "book": "VGC",
+   "book": "VGTM",
    "page": 103
   },
   {
@@ -377,25 +385,25 @@
   {
    "id": "yuan_ti_pureblood",
    "name": "Yuan-Ti Pureblood",
-   "book": "VGC",
+   "book": "VGTM",
    "page": 112
   },
   {
    "id": "dhampir",
    "name": "Dhampir",
-   "book": "VgtM",
+   "book": "VRGR",
    "page": 21
   },
   {
    "id": "hexblood",
    "name": "Hexblood",
-   "book": "VgtM",
+   "book": "VRGR",
    "page": 23
   },
   {
    "id": "reborn",
    "name": "Reborn",
-   "book": "VgtM",
+   "book": "VRGR",
    "page": 27
   },
   {
@@ -412,32 +420,32 @@
   {
    "id": "orc",
    "name": "Orc",
-   "book": "VGC",
+   "book": "VGTM",
    "page": 182,
    "note": "Darkvision, Menacing, Relentless Endurance and Savage Attacks. The app data omitted this race entirely."
   },
   {
    "id": "goliath",
    "name": "Goliath",
-   "book": "VGC",
+   "book": "VGTM",
    "page": 166
   },
   {
    "id": "kenku",
    "name": "Kenku",
-   "book": "ERLW",
+   "book": "VGTM",
    "page": 29
   },
   {
    "id": "changeling",
    "name": "Changeling",
-   "book": "VGC",
+   "book": "ERLW",
    "page": 41
   },
   {
    "id": "autognome",
    "name": "Autognome",
-   "book": "MotM",
+   "book": "AAG",
    "page": null,
    "note": "A construct race: a living automaton. Grants Darkvision."
   }

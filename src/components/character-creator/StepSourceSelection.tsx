@@ -88,6 +88,34 @@ const BOOK_SPECS: Record<
     stripColor: "#673ab7",
     patternSvg: BookPatterns.VRGR,
   },
+  DMG: {
+    name: "Dungeon Master's Guide",
+    tags: ["Subclasses", "DM rules"],
+    color: "#3e2723",
+    stripColor: "#8d6e63",
+    patternSvg: BookPatterns.DMG,
+  },
+  ERLW: {
+    name: "Eberron: Rising from the Last War",
+    tags: ["Artificer", "Races"],
+    color: "#263238",
+    stripColor: "#78909c",
+    patternSvg: BookPatterns.ERLW,
+  },
+  EEPC: {
+    name: "Elemental Evil Player's Companion",
+    tags: ["Races", "Spells"],
+    color: "#004d40",
+    stripColor: "#26a69a",
+    patternSvg: BookPatterns.EEPC,
+  },
+  AAG: {
+    name: "Spelljammer: Astral Adventurer's Guide",
+    tags: ["Races", "Space"],
+    color: "#1a237e",
+    stripColor: "#5c6bc0",
+    patternSvg: BookPatterns.AAG,
+  },
 };
 
 const ALL_BOOK_IDS = SOURCE_OPTIONS.map((s) => s.id);

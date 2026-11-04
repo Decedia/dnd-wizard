@@ -14,7 +14,7 @@ import { backgroundsData } from "@/data/backgrounds";
 import { ALIGNMENTS, SKILLS } from "@/lib/storage";
 import type { Character } from "@/lib/storage";
 
-const ALL_SOURCES = ["PHB", "EGW", "XGE", "TCE", "SCAG", "VGTM", "VRGR", "FTD"];
+const ALL_SOURCES = ["PHB", "EGW", "XGE", "TCE", "SCAG", "VGTM", "VRGR", "FTD", "MTF", "MPMM", "DMG", "ERLW", "EEPC", "AAG"];
 
 export interface ValidationResult {
   category: string;

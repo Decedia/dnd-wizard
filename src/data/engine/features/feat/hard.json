@@ -270,7 +270,7 @@
       "summary": "One melee attack per turn, +1d6 damage, Strength or Dexterity",
       "text": "You're on the offensive when using this feat. On your turn, you can make one melee attack with a weapon that you are proficient with. You gain a +1d6 bonus to the attack's damage, and you can use your choice of Strength or Dexterity for the attack's ability modifier, and the attack doesn't have to be with Strength or Dexterity.",
       "source": {
-        "book": "TCE",
+        "book": "PHB",
         "reference": "Tasha's Cauldron Feat 81"
       }
     },
@@ -314,7 +314,7 @@
       "summary": "Bonus action: heal an ally, or 4 plus twice its level with advantage",
       "text": "As a bonus action, you can heal a creature that you can see within 30 feet of you. When you do so, choose one of the following effects: The creature regains 1d6 hit points plus 4 plus its level. Or the creature regains 4 hit points plus twice its level, and you gain disadvantage on attack rolls against it until the end of your next turn.",
       "source": {
-        "book": "TCE",
+        "book": "PHB",
         "reference": "Tasha's Cauldron Feat 81"
       }
     },

@@ -1,6 +1,6 @@
 {
   "generated": "2026-09-20T14:21:05.402Z",
-  "total": 116,
+  "total": 114,
   "subclasses": [
     {
       "index": "alchemist",
@@ -139,8 +139,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "source": "EGW",
-      "book": "PHB",
+      "source": "TCE",
+      "book": "TCE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -306,8 +306,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "source": "EGW",
-      "book": "PHB",
+      "source": "TCE",
+      "book": "TCE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -447,8 +447,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "source": "EGW",
-      "book": "PHB",
+      "source": "TCE",
+      "book": "TCE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -614,8 +614,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "source": "EGW",
-      "book": "PHB",
+      "source": "TCE",
+      "book": "TCE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -732,7 +732,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -930,7 +930,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "name": "Path of Wild Magic",
@@ -1023,7 +1024,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "class": "Barbarian",
@@ -1139,7 +1141,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -1399,7 +1401,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -1476,7 +1478,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "name": "College of Eloquence",
@@ -1567,7 +1570,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "class": "Bard",
@@ -1657,7 +1661,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -1798,7 +1802,7 @@
         }
       ],
       "source": "VRGR",
-      "book": "PHB",
+      "book": "VRGR",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -1959,7 +1963,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -2050,7 +2054,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -2392,7 +2396,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "SCAG"
     },
     {
       "name": "Death Domain",
@@ -2501,7 +2506,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "DMG"
     },
     {
       "class": "Cleric",
@@ -2669,7 +2675,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -2864,7 +2870,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -3344,7 +3350,7 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "source": "SCAG",
+      "source": "PHB",
       "book": "PHB",
       "lastUpdated": "2026-09-29"
     },
@@ -3630,7 +3636,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "name": "Peace Domain",
@@ -3745,7 +3752,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "name": "Tempest",
@@ -4081,7 +4089,7 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "source": "SCAG",
+      "source": "PHB",
       "book": "PHB",
       "lastUpdated": "2026-09-29"
     },
@@ -4213,7 +4221,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "name": "War",
@@ -4380,7 +4389,7 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "source": "SCAG",
+      "source": "PHB",
       "book": "PHB",
       "lastUpdated": "2026-09-29"
     },
@@ -4498,7 +4507,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -4601,7 +4610,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "name": "Circle of Stars",
@@ -4687,150 +4697,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
-    },
-    {
-      "class": "Druid",
-      "classIndex": "druid",
-      "index": "circle-of-the-sea",
-      "name": "Circle of the Sea",
-      "flavorText": "Circle of the Sea terdiri dari para druid yang menarik kekuatan mereka dari samudra luas dan kedalaman laut yang menghimpit. Para penjaga ini merasa sangat nyaman di dalam air, mengendalikan pasang surut air laut serta makhluk-makhluk yang bersemayam di dalamnya.",
-      "description": "Circle of the Sea adalah lingkaran druid yang mengambil kekuatan dari samudra dan kedalamannya. Para druid ini sangat ahli beradaptasi di air, serta mampu mengendalikan arus pasang surut dan makhluk-makhluk di dalamnya.",
-      "features": [
-        {
-          "name": "Oceanic Resilience",
-          "description": "Mulai level 2, kamu bisa bernapas di udara dan air, serta memiliki kecepatan berenang yang setara dengan kecepatan berjalanmu.",
-          "level": 2,
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": "Permanent",
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Kamu bisa bernapas di udara maupun air, dan kecepatan berenangmu sama dengan kecepatan berjalanmu.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "subclass",
-            "name": "Circle of the Sea",
-            "level": 2
-          },
-          "book": "MPMM",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Wrath of the Sea",
-          "description": "Mulai level 2, kamu bisa menggunakan action untuk memanggil semburan air magis yang menyerang makhluk di sekitarmu. Setiap makhluk dalam jarak **30 kaki** yang bisa kamu lihat harus melakukan Dexterity saving throw melawan spell save DC druid milikmu.\n\nJika gagal, makhluk tersebut menerima **2d6** kerusakan blunt dan terdorong sejauh **10 kaki** menjauhimu. Jika berhasil, makhluk tersebut hanya menerima setengah kerusakan dan tidak terdorong.",
-          "level": 2,
-          "featureType": "Active",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": "Instant",
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Gunakan action untuk memberikan 2d6 kerusakan blunt dan mendorong makhluk sejauh 10 kaki.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "subclass",
-            "name": "Circle of the Sea",
-            "level": 2
-          },
-          "book": "MPMM",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Elemental Wild Shape",
-          "description": "Pada level 6, kamu bisa menghabiskan dua penggunaan Wild Shape sekaligus, alih-alih satu, untuk berubah menjadi water elemental atau steamweird.",
-          "level": 6,
-          "featureType": "Active",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Habiskan dua penggunaan Wild Shape untuk berubah menjadi water elemental atau steamweird.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "subclass",
-            "name": "Circle of the Sea",
-            "level": 6
-          },
-          "book": "MPMM",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Aquatic Master",
-          "description": "Mulai level 10, kamu memiliki advantage pada attack rolls terhadap makhluk yang berada di dalam air. Selain itu, makhluk lain memiliki disadvantage pada attack rolls terhadapmu selama kamu berada di dalam air.",
-          "level": 10,
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": "Permanent",
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Mendapat advantage saat menyerang makhluk di dalam air dan memberikan disadvantage bagi lawan yang menyerangmu saat kamu berada di dalam air.",
-          "grantsSpells": false,
-          "grantsAttack": true,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "subclass",
-            "name": "Circle of the Sea",
-            "level": 10
-          },
-          "book": "MPMM",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Oceanic Guardian",
-          "description": "Mulai level 14, kamu bisa merapal control water satu kali setiap long rest tanpa harus menghabiskan spell slot. Selain itu, kamu bisa bernapas di dalam air tanpa batas waktu dan memiliki resistansi terhadap kerusakan dingin.",
-          "level": 14,
-          "featureType": "Active",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Bernapas di dalam air tanpa batas, resistansi terhadap kerusakan dingin, dan bisa merapal control water sekali per long rest tanpa spell slot.",
-          "grantsSpells": true,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "subclass",
-            "name": "Circle of the Sea",
-            "level": 14
-          },
-          "book": "MPMM",
-          "lastUpdated": "2026-09-29"
-        }
-      ],
-      "source": "MPMM",
-      "book": "PHB",
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "class": "Druid",
@@ -4972,7 +4840,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -5064,7 +4932,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "class": "Druid",
@@ -5606,7 +5475,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -6252,7 +6121,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -6562,7 +6431,7 @@
         }
       ],
       "source": "EGW",
-      "book": "PHB",
+      "book": "EGW",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -6951,7 +6820,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "name": "Rune Knight",
@@ -7069,7 +6939,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "class": "Fighter",
@@ -7265,7 +7136,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -7406,7 +7277,7 @@
         }
       ],
       "source": "FTD",
-      "book": "PHB",
+      "book": "FTD",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -7741,7 +7612,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "name": "Way of the Astral Self",
@@ -7810,7 +7682,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "class": "Monk",
@@ -7952,7 +7825,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -8111,7 +7984,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "PHB"
     },
     {
       "class": "Monk",
@@ -8240,7 +8114,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -8310,7 +8184,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "SCAG"
     },
     {
       "class": "Monk",
@@ -8426,7 +8301,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -8768,147 +8643,6 @@
       "lastUpdated": "2026-09-29"
     },
     {
-      "index": "draconic-disciple",
-      "name": "Draconic Disciple",
-      "class": "Paladin",
-      "description": "Oath of the Draconic Disciple mengikat seorang paladin pada idealisme kaum naga. Para paladin ini menarik kekuatan dari warisan draconic mereka, menyalurkan keperkasaan naga melalui sumpah suci mereka. Mereka berusaha untuk mewujudkan kebajikan kaum naga: kekuatan, kebijaksanaan, dan kemegahan.",
-      "features": [
-        {
-          "name": "Channel Divinity: Draconic Presence",
-          "level": 3,
-          "description": "Sebagai sebuah action, kamu bisa menyalurkan kekuatan naga untuk menjatuhkan mental musuhmu. Setiap makhluk pilihanmu dalam jangkauan 30 kaki harus melakukan Wisdom saving throw melawan spell save DC milikmu. Jika gagal, makhluk tersebut menjadi Takut kepadamu selama 1 menit. Makhluk yang Takut dapat mengulangi saving throw ini di akhir setiap gilirannya, dan efeknya akan berakhir jika ia berhasil.",
-          "featureType": "Active",
-          "actionType": "Action",
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Memaksa makhluk pilihan dalam jangkauan 30 kaki melakukan Wisdom saving throw atau menjadi Takut kepadamu selama 1 menit.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "subclass",
-            "name": "Draconic Disciple",
-            "level": 3
-          },
-          "book": "FTD",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Channel Divinity: Draconic Might",
-          "level": 3,
-          "description": "Sebagai sebuah bonus action, kamu bisa menyalurkan kekuatan naga untuk meningkatkan kekuatan fisikmu. Selama 1 menit, kamu mendapatkan advantage pada Strength check, dan ketika kamu memberikan kerusakan dengan senjata jarak dekat, kamu bisa menambahkan modifier Karisma ke dalam roll kerusakan tersebut.",
-          "featureType": "Active",
-          "actionType": "Bonus Action",
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Memiliki advantage pada Strength checks, dan ketika kamu deal damage dengan melee weapon, kamu bisa menambahkan Charisma modifier-mu ke damage roll. (bonus action).",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "subclass",
-            "name": "Draconic Disciple",
-            "level": 3
-          },
-          "book": "FTD",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Aura of the Dragon",
-          "level": 7,
-          "description": "Kamu memancarkan aura kekuatan naga. Kapan pun kamu atau makhluk kawan dalam jarak 10 kaki melakukan saving throw, makhluk tersebut mendapatkan bonus pada roll sebesar modifier Karisma milikmu (minimal **+1**). Kamu harus dalam keadaan sadar untuk memberikan bonus ini.",
-          "featureType": "Active",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Kamu dan rekan dalam jarak 10 kaki mendapat bonus saving throw sebesar modifier Karisma milikmu.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "subclass",
-            "name": "Draconic Disciple",
-            "level": 7
-          },
-          "book": "FTD",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Draconic Resilience",
-          "level": 15,
-          "description": "Kekuatan naga mengalir di dalam dirimu. Kamu mendapatkan resistansi terhadap tipe kerusakan yang sesuai dengan leluhur nagamu.",
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Mendapatkan resistansi terhadap tipe kerusakan yang sesuai dengan leluhur nagamu.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "subclass",
-            "name": "Draconic Disciple",
-            "level": 15
-          },
-          "book": "FTD",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Dragon Knight",
-          "level": 20,
-          "description": "Sebagai sebuah action, kamu bisa menyalurkan kekuatan penuh naga untuk mendapatkan manfaat berikut selama 1 menit:\n\n- Kamu memiliki kecepatan terbang yang setara dengan kecepatan jalanmu.\n- Kamu memiliki resistansi terhadap semua jenis kerusakan.\n\nSetelah menggunakan fitur ini, kamu tidak bisa menggunakannya kembali sampai kamu menyelesaikan long rest.",
-          "featureType": "Active",
-          "actionType": "Action",
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Menggunakan action untuk mendapatkan kecepatan terbang setara kecepatan jalan dan resistansi terhadap semua kerusakan selama 1 menit.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "subclass",
-            "name": "Draconic Disciple",
-            "level": 20
-          },
-          "book": "FTD",
-          "lastUpdated": "2026-09-29"
-        }
-      ],
-      "source": "FTD",
-      "book": "PHB",
-      "lastUpdated": "2026-09-29"
-    },
-    {
       "class": "Paladin",
       "classIndex": "paladin",
       "index": "conquest",
@@ -9022,7 +8756,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -9129,7 +8863,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "class": "Paladin",
@@ -9245,7 +8980,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -9348,7 +9083,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "SCAG"
     },
     {
       "class": "Paladin",
@@ -9463,8 +9199,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "source": "XGE",
-      "book": "PHB",
+      "source": "TCE",
+      "book": "TCE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -9566,7 +9302,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "DMG"
     },
     {
       "name": "Vengeance",
@@ -9992,7 +9729,7 @@
         }
       ],
       "source": "FTD",
-      "book": "PHB",
+      "book": "FTD",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -10161,7 +9898,7 @@
         }
       ],
       "source": "TCE",
-      "book": "PHB",
+      "book": "TCE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -10257,7 +9994,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "XGE"
     },
     {
       "class": "Ranger",
@@ -10399,7 +10137,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -10659,7 +10397,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -10802,7 +10540,7 @@
         }
       ],
       "source": "TCE",
-      "book": "PHB",
+      "book": "TCE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -11260,7 +10998,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -11403,7 +11141,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -11490,7 +11228,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "class": "Rogue",
@@ -11632,7 +11371,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -11723,7 +11462,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "class": "Rogue",
@@ -11865,7 +11605,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -12151,7 +11891,7 @@
         }
       ],
       "source": "TCE",
-      "book": "PHB",
+      "book": "TCE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -12248,7 +11988,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "class": "Sorcerer",
@@ -12390,7 +12131,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -12728,7 +12469,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -12897,7 +12638,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -13530,7 +13271,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -13673,7 +13414,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -13842,7 +13583,7 @@
         }
       ],
       "source": "TCE",
-      "book": "PHB",
+      "book": "TCE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -14033,7 +13774,7 @@
         }
       ],
       "source": "TCE",
-      "book": "PHB",
+      "book": "TCE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -14148,7 +13889,7 @@
         }
       ],
       "source": "VRGR",
-      "book": "PHB",
+      "book": "VRGR",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -14291,7 +14032,7 @@
         }
       ],
       "source": "SCAG",
-      "book": "PHB",
+      "book": "SCAG",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -14602,8 +14343,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "source": "XGE",
-      "book": "PHB",
+      "source": "TCE",
+      "book": "TCE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -14745,8 +14486,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "source": "TCE",
-      "book": "PHB",
+      "source": "EGW",
+      "book": "EGW",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -15434,8 +15175,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "source": "TCE",
-      "book": "PHB",
+      "source": "EGW",
+      "book": "EGW",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -15864,7 +15605,7 @@
         }
       ],
       "source": "TCE",
-      "book": "PHB",
+      "book": "TCE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -16150,7 +15891,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     }
   ]

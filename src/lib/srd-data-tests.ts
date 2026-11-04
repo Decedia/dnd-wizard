@@ -28,7 +28,7 @@ import {
 } from "@/lib/srd-client";
 import { buildChoiceGroups } from "@/lib/character-creation";
 
-const ALL_SOURCES = ["PHB", "EGW", "XGE", "TCE", "SCAG", "VGTM", "VRGR", "FTD"];
+const ALL_SOURCES = ["PHB", "EGW", "XGE", "TCE", "SCAG", "VGTM", "VRGR", "FTD", "MTF", "MPMM", "DMG", "ERLW", "EEPC", "AAG"];
 
 export interface SrdTestResult {
   name: string;

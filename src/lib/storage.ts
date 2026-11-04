@@ -1,4 +1,4 @@
-import { getStaticClass, getStaticRace, getDomainSpells, getCircleSpells as getJsonCircleSpells, getCircleTerrainTypes as getJsonCircleTerrainTypes, getOathSpells, getWizardTraditionSpells, getSubclassFlags, getPactBoons } from "@/lib/srd-client";
+import { getStaticClass, getStaticRace, getStaticSubclasses, getDomainSpells, getCircleSpells as getJsonCircleSpells, getCircleTerrainTypes as getJsonCircleTerrainTypes, getOathSpells, getWizardTraditionSpells, getSubclassFlags, getPactBoons } from "@/lib/srd-client";
 import { computeBuffModifiers, type ActiveBuff } from "@/lib/spellEffects";
 import { getSpellMechanic } from "@/lib/spell-mechanics-accessor";
 import { determineDefaultVisibility } from "@/lib/feature-filters";
@@ -505,7 +505,36 @@ const STORAGE_KEY = "dnd-wizard-characters";
 const AUTO_BACKUP_KEY = "dnd-wizard-autobackup";
 const AUTO_BACKUP_INTERVAL = 24 * 60 * 60 * 1000;
 
+/**
+ * Sourcebook tags in the data were corrected (e.g. Bladesinging moved from XGE
+ * to TCE). A character saved before that may not list the new book, and every
+ * lookup filtered by its sources would then lose its own class, subclass or
+ * race. Add the books the character's existing picks now live in.
+ */
+function withOwnBooks(c: Character): Character {
+  const sources = (c as any).sources as string[] | undefined;
+  if (!Array.isArray(sources) || sources.length === 0) return c;
+  const books = new Set(sources);
+  const add = (book: unknown) => {
+    if (typeof book === "string" && book) books.add(book);
+  };
+  try {
+    if (c.class) {
+      add((getStaticClass(c.class, (c as any).ruleset) as any)?.source);
+      if (c.subclass) add(getStaticSubclasses(c.class, [], (c as any).ruleset).find((s) => s.name === c.subclass)?.source);
+    }
+    if (c.race) add((getStaticRace(c.race, (c as any).ruleset) as any)?.source);
+  } catch {
+    return c;
+  }
+  return books.size === sources.length ? c : ({ ...c, sources: [...books] } as Character);
+}
+
 function normalizeCharacter(c: Character): Character {
+  return withOwnBooks(normalizeCharacterFields(c));
+}
+
+function normalizeCharacterFields(c: Character): Character {
   const defaults = createEmptyCharacter();
   return {
     ...defaults,
@@ -650,7 +679,8 @@ export async function getCharacters(): Promise<Character[]> {
 export async function getCharacter(id: string): Promise<Character | undefined> {
   if (typeof window === "undefined") return undefined;
   try {
-    return await dbGetCharacter(id);
+    const found = await dbGetCharacter(id);
+    return found ? withOwnBooks(found) : found;
   } catch {
     return (await getCharacters()).find((c) => c.id === id);
   }

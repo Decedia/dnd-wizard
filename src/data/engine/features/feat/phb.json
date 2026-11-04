@@ -250,7 +250,7 @@
       ],
       "summary": "On a slashing hit: something gains disadvantage; bonus attack next turn",
       "text": "When you hit a creature with a slashing weapon, you can give either yourself or the creature disadvantage on all ability checks until the start of your next turn. You can also make an additional attack using a bonus action on your next turn.",
-      "source": { "book": "PHB", "reference": "PHB Feat 165" }
+      "source": { "book": "TCE", "reference": "PHB Feat 165" }
     },
     {
       "id": "feat.tough",
@@ -304,7 +304,7 @@
       ],
       "summary": "Move through difficult terrain without difficulty",
       "text": "You can move at your normal speed through a space occupied by a creature of your size or smaller whose movement is reduced to 0 by difficult terrain, without having difficulty on movement or triggering its opportunity attack.",
-      "source": { "book": "PHB", "reference": "PHB Feat 165" }
+      "source": { "book": "XGE", "reference": "PHB Feat 165" }
     },
     {
       "id": "feat.mobile",

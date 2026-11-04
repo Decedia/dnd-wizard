@@ -616,7 +616,7 @@
    "summary": "Spend CD: frighten a creature you can see",
    "text": "On your turn, you can use an action to frighten a creature that you can see within 60 feet of you.",
    "source": {
-    "book": "TCE",
+    "book": "XGE",
     "reference": "Tasha's Cauldron Paladin Oath of Conquest 3"
    }
   },
@@ -636,7 +636,7 @@
    "summary": "Two enemies nearby: they are frightened when you arrive",
    "text": "If you are surrounded by at least two creature enemies within 10 feet of you, the first time you enter a creature's reach on a turn, it must succeed on a Wisdom saving throw.",
    "source": {
-    "book": "TCE",
+    "book": "XGE",
     "reference": "Tasha's Cauldron Paladin Oath of Conquest 7"
    }
   },
@@ -725,7 +725,7 @@
    "summary": "Reaction: turn being frightened into advantage on all attacks",
    "text": "If you are frightened, you can use your reaction to accept the frightened condition and gain advantage on all attack rolls instead.",
    "source": {
-    "book": "TCE",
+    "book": "XGE",
     "reference": "Tasha's Cauldron Paladin Oath of Conquest 20"
    }
   },
@@ -759,7 +759,7 @@
    "summary": "Two wizard spells, always prepared",
    "text": "You learn wizard spells in addition to your paladin spells. They are always prepared.",
    "source": {
-    "book": "PHB",
+    "book": "TCE",
     "reference": "PHB Paladin Oath of Glory 3"
    }
   },
@@ -798,7 +798,7 @@
    "summary": "Spend CD: advantage on athletic checks, double jumps",
    "text": "On your turn, you can use a bonus action to gain advantage on Strength (Athletics) and Dexterity (Acrobatics) checks.",
    "source": {
-    "book": "PHB",
+    "book": "TCE",
     "reference": "PHB Paladin Oath of Glory 3"
    }
   },
@@ -840,7 +840,7 @@
    "summary": "Spend CD: a smite dealing 4d8 radiant to the target and its neighbours",
    "text": "When you hit a creature with a melee weapon attack, you can use a bonus action to cause radiant damage to the target.",
    "source": {
-    "book": "PHB",
+    "book": "TCE",
     "reference": "PHB Paladin Oath of Glory 3"
    }
   },
@@ -860,7 +860,7 @@
    "summary": "Reaction: an ally's miss becomes advantage for that turn",
    "text": "When an ally of yours within 10 feet of you misses an attack, you can use your reaction to grant that ally advantage on all attacks against the same target for the rest of that turn.",
    "source": {
-    "book": "PHB",
+    "book": "TCE",
     "reference": "PHB Paladin Oath of Glory 7"
    }
   },
@@ -897,7 +897,7 @@
    "summary": "Reaction: disadvantage on an attack against a nearby creature",
    "text": "When a creature within 5 feet of you is hit by an attack, you can use your reaction to impose disadvantage on the attack roll.",
    "source": {
-    "book": "PHB",
+    "book": "TCE",
     "reference": "PHB Paladin Oath of Glory 15"
    }
   },
@@ -918,7 +918,7 @@
    "summary": "Two extra attack rolls; Persuasion as a bonus action",
    "text": "You gain two additional attack rolls whenever you attack on your turn.",
    "source": {
-    "book": "PHB",
+    "book": "TCE",
     "reference": "PHB Paladin Oath of Glory 20"
    }
   },
@@ -962,7 +962,7 @@
    "summary": "Spend CD: charm and frighten a creature for a round",
    "text": "On your turn, you can use a bonus action to cause a creature within 30 feet of you to make a Charisma saving throw.",
    "source": {
-    "book": "TCE",
+    "book": "XGE",
     "reference": "Tasha's Cauldron Paladin Oath of Redemption 3"
    }
   },
@@ -983,7 +983,7 @@
    "summary": "Nearby enemies may only attack you or your designates",
    "text": "While you are conscious, no creature hostile to you can attack anyone else except creatures you designate.",
    "source": {
-    "book": "TCE",
+    "book": "XGE",
     "reference": "Tasha's Cauldron Paladin Oath of Redemption 7"
    }
   },
@@ -1015,7 +1015,7 @@
    "summary": "Reaction: take the damage meant for an ally nearby",
    "text": "When a creature within 10 feet of you is hit by an attack, you can use your reaction to take the attack's damage yourself.",
    "source": {
-    "book": "TCE",
+    "book": "XGE",
     "reference": "Tasha's Cauldron Paladin Oath of Redemption 15"
    }
   },
@@ -1039,7 +1039,7 @@
    "summary": "Your Emissary of Peace aura works without a Channel Divinity",
    "text": "An emissary of redemption can use the Emissary of Peace aura without expending channel divinity points.",
    "source": {
-    "book": "TCE",
+    "book": "XGE",
     "reference": "Tasha's Cauldron Paladin Oath of Redemption 20"
    }
   },
@@ -1073,7 +1073,7 @@
    "summary": "Two cleric spells, always prepared",
    "text": "You learn cleric spells in addition to your paladin spells. They are always prepared.",
    "source": {
-    "book": "PHB",
+    "book": "SCAG",
     "reference": "PHB Paladin Oath of the Crown 3"
    }
   },
@@ -1126,7 +1126,7 @@
    "summary": "Spend CD: force up to 3 visible creatures within 30 ft to save Wisdom or be tethered to you",
    "text": "As a bonus action on your turn, you target up to three creatures you can see within 30 feet. Each target must make a Wisdom saving throw. On a failed save, a target can't willingly move more than 30 feet away from you.",
    "source": {
-    "book": "XGE",
+    "book": "SCAG",
     "reference": "XGE Paladin Oath of the Crown 3"
    }
   },
@@ -1175,7 +1175,7 @@
    "summary": "Spend CD: frighten up to three creatures within 10 ft",
    "text": "On your turn, you can use an action to force each of up to three creatures within 10 feet of you to make a Wisdom saving throw.",
    "source": {
-    "book": "PHB",
+    "book": "SCAG",
     "reference": "PHB Paladin Oath of the Crown 3"
    }
   },
@@ -1195,7 +1195,7 @@
    "summary": "Reaction: move a struck ally somewhere safer",
    "text": "If an ally within 5 feet of you is hit by an attack and can see and hear you, you can use your reaction to let them use their reaction, if they have one, to move to an unoccupied space.",
    "source": {
-    "book": "PHB",
+    "book": "SCAG",
     "reference": "PHB Paladin Oath of the Crown 7"
    }
   },
@@ -1215,7 +1215,7 @@
    "summary": "Charisma modifier counts twice on Charisma checks",
    "text": "Your Charisma modifier counts twice in any charisma-based check.",
    "source": {
-    "book": "PHB",
+    "book": "SCAG",
     "reference": "PHB Paladin Oath of the Crown 15"
    }
   },
@@ -1243,7 +1243,7 @@
    "summary": "Persuasion expertise; enemies must flee your reach",
    "text": "You gain proficiency in Persuasion and can take the Persuasion action as a bonus action.",
    "source": {
-    "book": "PHB",
+    "book": "SCAG",
     "reference": "PHB Paladin Oath of the Crown 20"
    }
   },
@@ -1409,7 +1409,7 @@
    "summary": "Darkness, phantasmal force, polymorph, thunderwave, plus others",
    "text": "You have added the darkness, phantasmal force, polymorph, and thunderwave spells to your spell list from any class.",
    "source": {
-    "book": "MTF",
+    "book": "DMG",
     "reference": "Mordenkainen's Tome of Foes Oathbreaker 3"
    }
   },
@@ -1453,7 +1453,7 @@
    "summary": "Spend CD: command an undead for an hour",
    "text": "On your turn, you can use an action to force a creature to make a Wisdom saving throw.",
    "source": {
-    "book": "MTF",
+    "book": "DMG",
     "reference": "Mordenkainen's Tome of Foes Oathbreaker 3"
    }
   },
@@ -1496,7 +1496,7 @@
    "summary": "Spend CD: frighten everything within 60 ft",
    "text": "Present your holy symbol as an action, and every creature within 60 feet that can see you must make a Wisdom saving throw.",
    "source": {
-    "book": "MTF",
+    "book": "DMG",
     "reference": "Mordenkainen's Tome of Foes Oathbreaker 3"
    }
   },
@@ -1516,7 +1516,7 @@
    "summary": "Frightened enemies attack your allies at disadvantage",
    "text": "While this aura is active, a creature that is frightened of you has disadvantage on attacks against allies of yours within 30 feet of it.",
    "source": {
-    "book": "MTF",
+    "book": "DMG",
     "reference": "Mordenkainen's Tome of Foes Oathbreaker 7"
    }
   },
@@ -1541,7 +1541,7 @@
    "summary": "Reaction: succeed on a failed Wisdom save",
    "text": "When you fail a Wisdom saving throw, you can use your reaction to succeed instead.",
    "source": {
-    "book": "MTF",
+    "book": "DMG",
     "reference": "Mordenkainen's Tome of Foes Oathbreaker 15"
    }
   },
@@ -1562,7 +1562,7 @@
    "summary": "Your defensive auras add your Charisma modifier as healing",
    "text": "You have a reputation for cruelty, so the effects of Radiant Rebuke and Aura of Protection have their normal effect plus your Charisma modifier.",
    "source": {
-    "book": "MTF",
+    "book": "DMG",
     "reference": "Mordenkainen's Tome of Foes Oathbreaker 20"
    }
   },
