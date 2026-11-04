@@ -2482,7 +2482,8 @@
               "name": "Minor Illusion",
               "description": "Illusion cantrip"
             }
-          ]
+          ],
+          "spellList": "Wizard"
         }
       ]
     },
@@ -4417,7 +4418,8 @@
               "name": "Minor Illusion",
               "description": "Illusion cantrip"
             }
-          ]
+          ],
+          "spellList": "Wizard"
         }
       ],
       "recommendation": {
@@ -5921,7 +5923,7 @@
         },
         {
           "name": "Hex Magic",
-          "description": "You can cast the hex spell with this trait.\n\nStarting at 3rd level, you can also cast the blindness/deafness spell with this trait.\n\nStarting at 5th level, you can also cast the ray of enfeeblement spell with this trait.\n\nOnce you cast any of these spells with this trait, you can't cast that spell with it again until you finish a long rest. Charisma is your spellcasting ability for these spells.",
+          "description": "You can cast disguise self and hex with this trait. After you cast either spell this way, you can't cast that spell this way again until you finish a long rest. Intelligence, Wisdom or Charisma is your spellcasting ability for them (choose when you pick this race).",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -5931,7 +5933,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Cast hex, blindness/deafness, and ray of enfeeblement once per long rest each.",
+          "summary": "Cast disguise self and hex once per long rest each.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -9124,7 +9126,7 @@
         },
         {
           "name": "Innate Spellcasting",
-          "description": "You know the poison spray cantrip.\n\nAt 3rd level, you can cast suggestion once per long rest.\n\nAt 5th level, you can cast fear once per long rest.\n\nYour spellcasting ability for these spells is Charisma.",
+          "description": "You know the poison spray cantrip. You can cast animal friendship at will with this trait, targeting only snakes. From 3rd level you can also cast suggestion once per long rest with this trait. Charisma is your spellcasting ability for these spells.",
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -9134,7 +9136,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "You know the poison spray cantrip and can cast suggestion and fear.",
+          "summary": "Poison spray cantrip, animal friendship on snakes at will, suggestion once per long rest from 3rd level.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,

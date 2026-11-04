@@ -3,7 +3,8 @@ import { LANGUAGE_NAMES } from "@/data/feat-options";
 import { applyFeatGrants, decodeFeatOptions } from "./feat-grants";
 import { getRaceAsi, getRaceSkills, isFlexAsiValid } from "./race-grants";
 import { engineIdFor } from "@/lib/feature-engine";
-import { getStaticClass, getStaticRace, getStaticSubclasses, getStaticEquipments, getStaticWeapons, getStaticArmors, getStaticItems, getStaticFeat, getStaticSpells, getSubclassSpellGrants as getJsonSubclassSpellGrants } from "./srd-client";
+import { getStaticClass, getStaticRace, getStaticRaceDetails, getStaticSubclasses, getStaticEquipments, getStaticWeapons, getStaticArmors, getStaticItems, getStaticFeat, getStaticSpells } from "./srd-client";
+import { getGrantedSpellNames, grantSpells } from "./granted-spells";
 import { determineDefaultVisibility } from "./feature-filters";
 import type { CreationStep } from "./creation-types";
 import { getBackgroundData } from "@/data/backgrounds";
@@ -780,7 +781,7 @@ function getClassFeaturesAtLevel(character: Character, language: string): any[] 
 }
 
 function getRaceTraits(character: Character, language: string): any[] {
-  const race = character.race ? getStaticRace(character.race, undefined, language) : null;
+  const race = character.race ? getStaticRaceDetails(character.race, character.sources, undefined, language) : null;
   if (!race) return [];
   // A trait whose name just repeats the race is data noise, not a feature: the
   // sheet showed a row called "Human" on every human character because the race
@@ -979,7 +980,8 @@ export function applySubclassFeatures(character: Character, language = "en"): Ch
       // models tiers properly, so the suffix is dropped.
       // "Action Surge (1 use)" encodes a level tier in the name; the engine
       const cleanName = String(feature.name).replace(/\s*\((?:\d+\s*use[^)]*|\d+\s*\/\s*rest)\)\s*$/i, "").trim();
-      if (!newFeatures.some((f) => f.name === feature.name)) {
+      // A second pick of a feature (its languages, its cantrip) is not a feature of its own.
+      if (!(feature as any).choiceOnly && !newFeatures.some((f) => f.name === feature.name)) {
         newFeatures.push({
           id: `subclass-${feature.name}`.replace(/\s+/g, "-"),
           name: feature.name,
@@ -1074,12 +1076,14 @@ function applyChoiceGrants(character: Character, features: any[]): Character {
     next = { ...next, skills, expertise: [...expertise], languages: [...languages], toolProficiencies: [...tools], otherProficiencies: other.join(", ") };
   };
   for (const feature of features) {
-    const grants = feature.choiceGrants as { mode: string; fixed?: string[] } | undefined;
+    const grants = feature.choiceGrants as { mode: string; fixed?: string[]; spells?: Record<string, string> } | undefined;
     if (!grants) continue;
     if (grants.fixed?.length) add(grants.fixed, "proficiency");
     const key = feature.level != null ? `subclass-feature-${feature.level}-${feature.name}` : `subclass-feature-${feature.name}`;
     const picked = ((next as any).featureSelections?.[key] || []).flatMap((s: string) => String(s).split(", ").filter(Boolean));
-    if (picked.length) add(picked, grants.mode);
+    // An option can stand for a spell (Divine Soul's Good affinity is cure wounds).
+    const names = grants.spells ? picked.map((p: string) => grants.spells![p]).filter(Boolean) : picked;
+    if (names.length) add(names, grants.mode);
   }
   return next;
 }
@@ -1247,64 +1251,12 @@ export function resolveFeatureChoice(character: Character, choice: MissingFeatur
   return applyOptionalFeatureGrants({ ...character, featureSelections, features }, getOptionalClassFeatures(character));
 }
 
-interface SubclassSpellGrant {
-  name: string;
-  level: number;
-  srdSpellName: string;
-}
-
-function getSubclassIndexByName(className: string, subclassName: string, ruleset?: string): string | undefined {
-  const subclasses = getStaticSubclasses(className, [], ruleset);
-  const found = subclasses.find(s => s.name.toLowerCase() === subclassName.toLowerCase());
-  return found?.index;
-}
-
-function getSubclassSpellGrants(subclass: string, className: string, level: number, ruleset?: string): SubclassSpellGrant[] {
-  const subclassIndex = getSubclassIndexByName(className, subclass, ruleset);
-  if (!subclassIndex) return [];
-  const spells = getJsonSubclassSpellGrants(subclassIndex, level);
-  return spells.map(name => ({ name, level: 0, srdSpellName: name }));
-}
-
+/**
+ * Adds every spell the character gets for free at their level: subclass,
+ * race and optional-feature spells. Safe to call on every save.
+ */
 export function applySubclassSpellGrants(character: Character): Character {
-  if (!character.subclass) return character;
-  const grants = getSubclassSpellGrants(character.subclass, character.class, character.level, character.ruleset);
-  if (grants.length === 0) return character;
-
-  const allSpells = getStaticSpells(character.sources, character.ruleset);
-  const existingSpellNames = new Set((character.spells || []).map(s => s.name?.toLowerCase()));
-  const newSpells: Character["spells"] = [];
-  const newCantrips: Character["cantrips"] = [];
-
-  for (const grant of grants) {
-    if (existingSpellNames.has(grant.name.toLowerCase())) continue;
-    const srdSpell = allSpells.find(s => s.name?.toLowerCase() === grant.srdSpellName.toLowerCase());
-    if (!srdSpell) continue;
-
-    const id = `subclass-spell-${grant.name}-${grant.level}`.replace(/\s+/g, "-");
-    const spellLevel = srdSpell.level ?? 0;
-    const desc = Array.isArray(srdSpell.description) ? srdSpell.description.join("\n") : (srdSpell.description || "");
-
-    if (spellLevel === 0) {
-      newCantrips.push({ id, name: grant.name });
-    } else {
-      newSpells.push({
-        id,
-        name: grant.name,
-        level: spellLevel,
-        source: "srd" as const,
-        srdSpellName: grant.srdSpellName,
-        description: desc,
-      });
-    }
-  }
-
-  if (newSpells.length === 0 && newCantrips.length === 0) return character;
-  return {
-    ...character,
-    spells: [...(character.spells || []), ...newSpells],
-    cantrips: [...(character.cantrips || []), ...newCantrips],
-  };
+  return grantSpells(character, getGrantedSpellNames(character));
 }
 
 /**
@@ -1503,6 +1455,7 @@ export function rebuildDerived(character: Character, language = "en"): Character
     variantHumanSkill: character.variantHumanSkill,
     bonusSaves: character.bonusSaves,
     optionalClassFeatures: character.optionalClassFeatures,
+    baseSpeed: character.baseSpeed,
     appliedAsi: character.appliedAsi,
     inventory: character.inventory,
     spells: character.spells,
@@ -1647,6 +1600,7 @@ export function recreateCharacter(character: Character, language = "en"): Charac
     variantHumanSkill: character.variantHumanSkill,
     bonusSaves: [...(character.bonusSaves ?? [])],
     optionalClassFeatures: character.optionalClassFeatures,
+    baseSpeed: character.baseSpeed,
     appliedAsi: [...(character.appliedAsi ?? [])],
     spells: [...(character.spells ?? [])],
     cantrips: [...(character.cantrips ?? [])],

@@ -4,7 +4,7 @@ import { useState, useMemo, useCallback, useEffect, useRef, useLayoutEffect } fr
 import { WizardNav } from "./WizardNav";
 import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclassDetails, getSubclassFlags, getPactBoons, getStaticFeat, getStaticEquipments } from "@/lib/srd-client";
 import { SourceBadge } from "./SourceBadge";
-import { getHitDieAverage, getModifier, computeDerivedStats, getMaxBardicInspirationUses, getBardicInspirationDie, getSongOfRestDie, hasFontOfInspiration, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getOathSpellNames, getWizardTraditionSpellNames, getMaxSpellLevel, isThirdCaster, getSpellSlotTable, getFeatureValue, type Character } from "@/lib/storage";
+import { getHitDieAverage, getModifier, computeDerivedStats, getMaxBardicInspirationUses, getBardicInspirationDie, getSongOfRestDie, hasFontOfInspiration, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getOathSpellNames, getWizardTraditionSpellNames, getMaxSpellLevel, isThirdCaster, getSpellSlotTable, getFeatureValue, getHpBonusPerLevel, type Character } from "@/lib/storage";
 import { applySubclassFeatures, applySubclassSpellGrants, syncBaseFeatures } from "@/lib/character-creation";
 import { normalizeDescription } from "@/lib/level-up";
 import invocationsData from "@/data/warlock_invocations.json";
@@ -957,6 +957,30 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
           if (add > 0) draft = { ...draft, [key]: ((draft[key] as number) || 0) + add };
         }
       }
+    }
+
+    // HP per level moves with CON, and Tough, Dwarven Toughness and Draconic
+    // Resilience add to every level, the earlier ones included. New levels were
+    // rolled with the old CON modifier and no bonus; earlier levels already
+    // carry the old modifier and old bonus.
+    {
+      const newPerLevel = getModifier(draft.con) + getHpBonusPerLevel(draft);
+      const rolledPerLevel = conMod;
+      const earlierPerLevel = conMod + (startFromLevelOne ? 0 : getHpBonusPerLevel(character));
+      const newLevels = new Set([...Object.keys(hpValues).map(Number), ...(startFromLevelOne ? [1] : [])]);
+      if (draft.levelHp && Object.keys(draft.levelHp).length > 0) {
+        const adjusted: Record<number, number> = {};
+        for (const [lvlStr, hp] of Object.entries(draft.levelHp)) {
+          const lvl = Number(lvlStr);
+          adjusted[lvl] = Math.max(1, hp + newPerLevel - (newLevels.has(lvl) ? rolledPerLevel : earlierPerLevel));
+        }
+        draft.levelHp = adjusted;
+        draft.maxHp = Object.values(adjusted).reduce((sum, v) => sum + v, 0);
+      } else {
+        const earlierLevels = startFromLevelOne ? 0 : character.level || 0;
+        draft.maxHp += (newPerLevel - earlierPerLevel) * earlierLevels + (newPerLevel - rolledPerLevel) * newLevels.size;
+      }
+      draft.currentHp = draft.maxHp;
     }
 
     const spells = [...(character.spells || [])];
@@ -2476,6 +2500,7 @@ function LevelCard({
           selectionType={info.spellSelectionType}
           allKnownSpells={info.spellSelectionType === "prepare" ? (character.spells || []).filter(s => s.level > 0).map(s => `${s.name}:${s.level}`) : []}
           disabledSpells={Object.entries(allSpellSelections).filter(([l]) => Number(l) > info.level).flatMap(([, s]) => s)}
+          castingLevel={info.level}
         />
       )}
 

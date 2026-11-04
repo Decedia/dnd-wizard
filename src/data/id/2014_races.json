@@ -2482,7 +2482,8 @@
               "name": "Minor Illusion",
               "description": "Illusion cantrip"
             }
-          ]
+          ],
+          "spellList": "Wizard"
         }
       ]
     },
@@ -4417,7 +4418,8 @@
               "name": "Minor Illusion",
               "description": "Illusion cantrip"
             }
-          ]
+          ],
+          "spellList": "Wizard"
         }
       ],
       "recommendation": {
@@ -5921,7 +5923,7 @@
         },
         {
           "name": "Hex Magic",
-          "description": "Kamu bisa merapal sihir hex menggunakan fitur ini.\n\nDimulai pada level 3, kamu juga bisa merapal sihir blindness/deafness menggunakan fitur ini.\n\nDimulai pada level 5, kamu juga bisa merapal sihir ray of enfeeblement menggunakan fitur ini.\n\nSetelah kamu merapal salah satu sihir ini melalui fitur ini, kamu tidak bisa merapalkannya lagi menggunakan fitur ini sampai kamu menyelesaikan long rest. Karisma adalah kemampuan spellcasting milikmu untuk sihir-sihir ini.",
+          "description": "Kamu bisa meng-cast disguise self dan hex dengan trait ini. Setelah meng-cast salah satunya dengan cara ini, kamu tidak bisa meng-cast spell itu lagi dengan cara ini sampai selesai long rest. Intelligence, Wisdom atau Charisma adalah spellcasting ability untuk keduanya (pilih saat memilih ras ini).",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -5931,7 +5933,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Mampu merapal hex, blindness/deafness, dan ray of enfeeblement masing-masing satu kali per long rest.",
+          "summary": "Cast disguise self dan hex masing-masing sekali per long rest.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -9124,7 +9126,7 @@
         },
         {
           "name": "Innate Spellcasting",
-          "description": "Kamu menguasai cantrip poison spray.\n\nPada level 3, kamu bisa merapal suggestion satu kali setiap long rest.\n\nPada level 5, kamu bisa merapal fear satu kali setiap long rest.\n\nKemampuan spellcasting yang kamu gunakan untuk sihir-sihir ini adalah Karisma.",
+          "description": "Kamu menguasai cantrip poison spray. Kamu bisa meng-cast animal friendship sesuka hati dengan trait ini, tapi hanya pada ular. Mulai level 3 kamu juga bisa meng-cast suggestion sekali per long rest dengan trait ini. Charisma adalah spellcasting ability untuk spell-spell ini.",
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -9134,7 +9136,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Menguasai cantrip poison spray serta bisa merapal suggestion dan fear.",
+          "summary": "Cantrip poison spray, animal friendship pada ular sesuka hati, suggestion sekali per long rest mulai level 3.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,

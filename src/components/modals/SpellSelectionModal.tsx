@@ -41,7 +41,14 @@ interface SpellSelectionModalProps {
   selectionType?: "known" | "book" | "prepare";
   allKnownSpells?: string[];
   disabledSpells?: string[];
+  /** The class level these picks are for; sets how many off-school picks a third caster has. */
+  castingLevel?: number;
 }
+
+const THIRD_CASTER_SCHOOLS: Record<string, string[]> = {
+  "eldritch-knight": ["abjuration", "evocation"],
+  "arcane-trickster": ["enchantment", "illusion"],
+};
 
 export function SpellSelectionModal({
   character,
@@ -62,8 +69,9 @@ export function SpellSelectionModal({
   selectionType = "known",
   allKnownSpells = [],
   disabledSpells = [],
+  castingLevel,
 }: SpellSelectionModalProps) {
-  const { tDesc, language } = useLanguage();
+  const { t, tDesc, language } = useLanguage();
   const [activeTab, setActiveTab] = useState<"cantrips" | number>(mode === "spells" ? 1 : "cantrips");
   const [selectedSpells, setSelectedSpells] = useState<string[]>(spells);
   const [searchQuery, setSearchQuery] = useState("");
@@ -151,12 +159,28 @@ export function SpellSelectionModal({
   const earlierKnownSpellNames = new Set([...existingSpellNames, ...earlierSpellNames]);
   const disabledSpellNames = new Set((disabledSpells || []).map(s => s.split(":")[0]));
 
+  // Eldritch Knight and Arcane Trickster spells come from two schools, except
+  // one free pick at 3rd level and one more at 8th, 14th and 20th.
+  const limitSchools = THIRD_CASTER_SCHOOLS[character.subclassIndex || ""];
+  const freeSchoolPicks = [3, 8, 14, 20].filter((l) => l <= (castingLevel ?? character.level ?? 1)).length;
+  const schoolOf = (name: string) => String(allSpells.find((sp: any) => sp.name === name)?.school || "").toLowerCase();
+  const isOffSchool = (name: string) => !!limitSchools && !limitSchools.includes(schoolOf(name));
+  const knownLeveledNames = [
+    ...(existingSpells || []).map((sp) => sp.name),
+    ...(earlierSelections || []).filter((sp) => !sp.endsWith(":0")).map((sp) => sp.split(":")[0]),
+    ...(onChange ? [] : selectedSpells.filter((sp) => !sp.endsWith(":0")).map((sp) => sp.split(":")[0])),
+  ];
+  const offSchoolUsed = new Set(knownLeveledNames.filter(isOffSchool)).size;
+  const schoolBlocked = (name: string, level: number) => level > 0 && isOffSchool(name) && offSchoolUsed >= freeSchoolPicks;
+
   const isPrepareMode = selectionType === "prepare" && !onChange;
   const prepareAlreadyKnown = new Set((allKnownSpells || []).map(s => s.split(":")[0]));
 
   const toggle = (name: string, level: number) => {
     const isDisabled = disabledSpellNames.has(name);
     if (isDisabled) return;
+    const alreadyPicked = onChange ? (character.spells || []).some(s => s.name === name && s.level === level) : selectedSpells.includes(`${name}:${level}`);
+    if (!alreadyPicked && schoolBlocked(name, level)) return;
 
     if (onChange) {
       const isSelected = (character.spells || []).some(s => s.name === name && s.level === level);
@@ -220,7 +244,8 @@ export function SpellSelectionModal({
     const isDisabled = disabledSpellNames.has(sp.name);
     const isSel = level === 0 ? selectedCantripNames.has(sp.name) : selectedSpellNames.has(sp.name);
     const maxForLevel = level === 0 ? (onChange ? maxCantripsKnown : cantripCount) : (onChange ? maxSpellsKnown : count);
-    const disabled = !isSel && !isAlreadyKnown && !isDisabled && (level === 0 ? currentCantrips.length : currentSpells.length) >= maxForLevel;
+    const wrongSchool = !isSel && !isAlreadyKnown && schoolBlocked(sp.name, level);
+    const disabled = wrongSchool || (!isSel && !isAlreadyKnown && !isDisabled && (level === 0 ? currentCantrips.length : currentSpells.length) >= maxForLevel);
     const desc = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description;
     const finalDisabled = disabled || isAlreadyKnown || isDisabled;
     const spellId = `${sp.name}:${level}`;
@@ -231,6 +256,7 @@ export function SpellSelectionModal({
     if (isDisabled) subtitleParts.push("From higher level");
     else if (isAlreadyKnown) subtitleParts.push("Already known");
     else if (isSel) subtitleParts.push("Selected");
+    else if (wrongSchool) subtitleParts.push(t("spells.schoolOnly", "Must be {schools}").replace("{schools}", limitSchools!.map((x) => x[0].toUpperCase() + x.slice(1)).join(" / ")));
     else if (disabled) subtitleParts.push("Maximum reached");
     const subtitle = subtitleParts.join(" · ");
 

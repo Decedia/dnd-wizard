@@ -86,8 +86,10 @@ export interface RaceChoice {
   id: string;
   name: string;
   description?: string;
-  type: "single" | "language" | "proficiency";
+  type: "single" | "language" | "proficiency" | "cantrip";
   options?: { id: string; name: string; description?: string }[];
+  /** A cantrip pick from this class's list; options are built from the spell data. */
+  spellList?: string;
 }
 
 export interface SRDClass {
@@ -504,8 +506,8 @@ export function getStaticSubclasses(className: string, sources?: string[], rules
         index: s.index,
         name: s.name,
         description: Array.isArray(s.description) ? s.description.join("\n") : s.description || "",
-        features: (s.features || []).map((f: any) => {
-          const featChoices = subChoices[f.name];
+        features: (s.features || []).flatMap((f: any) => {
+          const featChoices = withSpellOptions(subChoices[f.name], sources, ruleset, locale);
           const out: any = {
             name: f.name,
             description: Array.isArray(f.description) ? f.description.join("\n") : f.description || "",
@@ -554,11 +556,38 @@ export function getStaticSubclasses(className: string, sources?: string[], rules
               out.choicesCount = f.choicesCount;
             }
           }
-          return out;
+          // A feature with a second pick (Blessings of Knowledge: skills, then
+          // languages) gets one choice-only entry per extra pick, at its level.
+          const extras = (featChoices?.extra || []).map((x: any) => {
+            const e = withSpellOptions(x, sources, ruleset, locale);
+            return {
+              name: e.name,
+              description: e.description || "",
+              level: f.level,
+              choiceOnly: true,
+              choices: (e.options || []).map((opt: any) => ({ name: opt.name, description: opt.description || "" })),
+              choicesCount: e.count ?? 1,
+              ...(e.grants ? { choiceGrants: e.grants } : {}),
+              source: f.source ?? undefined,
+              book: f.book ?? undefined,
+            };
+          });
+          return [out, ...extras];
         }),
         source: s.source || "PHB",
       };
     });
+}
+
+/** A choice that names a class spell list gets its options from the spell data, filtered by book. */
+function withSpellOptions(choice: any, sources?: string[], ruleset?: string, locale: string = "en"): any {
+  if (!choice?.spellList) return choice;
+  const levels: number[] = Array.isArray(choice.spellLevel) ? choice.spellLevel : [choice.spellLevel ?? 0];
+  const options = getStaticSpells(sources, ruleset, locale)
+    .filter((sp) => levels.includes(sp.level ?? 0) && (sp.classes || []).includes(choice.spellList))
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .map((sp) => ({ name: sp.name, description: `${sp.school || ""} ${(sp.level ?? 0) === 0 ? "cantrip" : `level ${sp.level}`}`.trim() }));
+  return { ...choice, options };
 }
 
 export function getStaticSubclassDetails(className: string, subclassName: string, locale: string = "en"): { name: string; description: string[]; features: { name: string; description: string[]; level?: number }[] } | null {
@@ -579,7 +608,17 @@ export function getStaticSubclassDetails(className: string, subclassName: string
 }
 
 export function getStaticRaceDetails(raceName: string, sources?: string[], ruleset?: string, locale: string = "en"): SRDRace | undefined {
-  return getStaticRace(raceName, ruleset, locale);
+  const race = getStaticRace(raceName, ruleset, locale);
+  if (!race?.choices?.some((c) => c.spellList)) return race;
+  return { ...race, choices: race.choices.map((c) => (c.spellList ? { ...c, options: getRaceCantripOptions(c.spellList, sources, ruleset, locale) } : c)) };
+}
+
+/** Every cantrip on a class list in the given books, as race choice options. Ids are name slugs. */
+export function getRaceCantripOptions(spellList: string, sources?: string[], ruleset?: string, locale: string = "en"): { id: string; name: string; description?: string }[] {
+  return getStaticSpells(sources, ruleset, locale)
+    .filter((s) => (s.level ?? 0) === 0 && (s.classes || []).includes(spellList))
+    .map((s) => ({ id: s.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""), name: s.name, description: `${s.school || ""} cantrip`.trim() }))
+    .sort((a, b) => a.name.localeCompare(b.name));
 }
 
 export function getStaticClassDetails(className: string, sources?: string[], ruleset?: string, locale: string = "en"): SRDClass | undefined {

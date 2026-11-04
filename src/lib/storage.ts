@@ -54,6 +54,8 @@ export interface Character {
   maxSorceryPoints: number;
   initiative: number;
   speed: number;
+  /** Walking speed the player set by hand; bonuses are added on top. */
+  baseSpeed?: number;
   savingThrows: Record<string, { proficient: boolean; value: number }>;
   skills: Record<string, boolean>;
   toolProficiencies: string[];
@@ -910,6 +912,27 @@ function getClassResourceValue(classData: any, resourceName: string, level: numb
  * Whether the character has a feat, matched by its engine id first and its
  * display name second, since older saves have no engineId stamped.
  */
+/** Walking speed before bonuses: the player's own base, else the race's, else 30. */
+export function getBaseSpeed(character: Pick<Character, "baseSpeed" | "race" | "ruleset">): number {
+  if (typeof character.baseSpeed === "number" && character.baseSpeed > 0) return character.baseSpeed;
+  const raceSpeed = character.race ? getStaticRace(character.race, character.ruleset)?.speed : undefined;
+  return typeof raceSpeed === "number" && raceSpeed > 0 ? raceSpeed : 30;
+}
+
+/**
+ * Hit points a character gains on top of the die and CON at every level:
+ * Tough (+2), Hill Dwarf's Dwarven Toughness (+1), Draconic Resilience (+1).
+ */
+export function getHpBonusPerLevel(character: Character): number {
+  const picks = Object.entries(character.featureSelections || {});
+  const tookTough =
+    hasFeat(character, "feat.tough") ||
+    picks.some(([key, value]) => (/^asi-feat-\d+$/.test(key) || key === "variant-human-feat") && value?.[0] === "Tough");
+  return (tookTough ? 2 : 0) +
+    (character.race === "Hill Dwarf" ? 1 : 0) +
+    (character.class === "Sorcerer" && character.subclass === "Draconic Bloodline" ? 1 : 0);
+}
+
 function hasFeat(character: Character, engineId: string): boolean {
   const name = engineId.replace(/^feat\./, "").replace(/_/g, " ");
   return (character.features ?? []).some((f) => {
@@ -975,10 +998,15 @@ export function computeDerivedStats(character: Character): Partial<Character> {
     };
   }
 
-  const initiative = getModifier(character.dex);
+  // Alert: +5 initiative.
+  const initiative = getModifier(character.dex) + (hasFeat(character, "feat.alert") ? 5 : 0);
 
   const perceptionProficient = character.skills["Perception"] ?? false;
-  const passivePerception = 10 + getModifier(character.wis) + (perceptionProficient ? profBonus : 0);
+  const perceptionExpert = perceptionProficient && (character.expertise || []).includes("Perception");
+  // Observant: +5 passive Perception.
+  const passivePerception =
+    10 + getModifier(character.wis) + (perceptionProficient ? profBonus : 0) + (perceptionExpert ? profBonus : 0) +
+    (hasFeat(character, "feat.observant") ? 5 : 0);
 
   // Fighters and rogues only cast with Eldritch Knight or Arcane Trickster.
   const castsWithoutSubclass = character.class !== "Fighter" && character.class !== "Rogue";
@@ -1113,7 +1141,8 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   // Check for Unarmored Defense features
   const hasBarbarianUnarmored = character.features?.some(f => f.name.toLowerCase().includes("unarmored defense") && f.source === "class") ?? false;
   const hasMonkUnarmored = character.features?.some(f => f.name.toLowerCase().includes("unarmored defense") && f.source === "class") ?? false;
-  const hasDraconicResilience = character.features?.some(f => f.name.toLowerCase().includes("draconic resilience")) ?? false;
+  // Dragon Hide (feat) sets unarmored AC the same way as Draconic Resilience.
+  const hasDraconicResilience = (character.features?.some(f => f.name.toLowerCase().includes("draconic resilience")) ?? false) || hasFeat(character, "feat.dragon_hide");
   const hasNaturalArmor = character.features?.some(f => f.name.toLowerCase().includes("natural armor")) ?? false;
   const hasBladesong = character.features?.some(f => f.name.toLowerCase().includes("bladesong")) ?? false;
 
@@ -1187,7 +1216,11 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   ac += acBonusFromCover;
 
   // ===== BASE SPEED =====
-  let speed = character.speed || 30;
+  // The race's walking speed, or the base the player typed; never the last
+  // derived value, which already carries the bonuses below.
+  let speed = getBaseSpeed(character);
+  if (hasFeat(character, "feat.mobile")) speed += 10;
+  if (hasFeat(character, "feat.squat_nimbleness")) speed += 5;
   // Monk unarmored movement bonus
   if (classData?.name === "Monk" && !hasArmor) {
     const umVal = getClassResourceValue(classData, "unarmoredMovement", character.level);

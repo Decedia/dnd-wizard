@@ -299,11 +299,16 @@ for (const w of choiceWant) {
   const have = data.find((s) => s.class === w.cls && subKey(s.name) === subKey(w.sub));
   if (!have) continue; // already reported as a missing subclass
   if (DEDICATED.has(`${w.cls}|${have.name}|${w.feature}`)) continue;
-  const merged = (have.features || []).map((f) => {
+  // A choice can list its options, or name a class spell list the app builds
+  // them from; `extra` adds further picks to the same feature.
+  const pick = (name, level, extra, fallback, fallbackCount) => {
+    const choices = extra && Array.isArray(extra.options) ? extra.options : extra?.spellList ? [`${extra.spellList} spell list`] : fallback;
+    const count = extra && typeof extra.count === "number" ? extra.count : fallbackCount;
+    return { name, level, choices: Array.isArray(choices) ? choices.map((c) => c.name ?? c) : null, count: count ?? 1 };
+  };
+  const merged = (have.features || []).flatMap((f) => {
     const extra = choiceExtra?.[w.cls]?.[have.name]?.[f.name];
-    const choices = extra && Array.isArray(extra.options) ? extra.options : f.choices;
-    const count = extra && typeof extra.count === "number" ? extra.count : f.choicesCount;
-    return { name: f.name, level: f.level, choices: Array.isArray(choices) ? choices.map((c) => c.name ?? c) : null, count: count ?? 1 };
+    return [pick(f.name, f.level, extra, f.choices, f.choicesCount), ...(extra?.extra || []).map((x) => pick(x.name, f.level, x))];
   });
   const wantKeys = (w.options || []).map(optKey);
   let f = merged.find((x) => x.choices?.length && featKey(x.name) === featKey(w.feature));

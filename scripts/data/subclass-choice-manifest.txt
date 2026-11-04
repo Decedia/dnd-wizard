@@ -42,11 +42,16 @@ College of Swords
 [Cleric]
 Knowledge Domain
   1 Blessings of Knowledge = skills x2
+  1 Blessings of Knowledge: Languages = languages x2
 Nature Domain
   1 Acolyte of Nature = skills x1
+  1 Acolyte of Nature: Cantrip = cantrips x1
 Arcana Domain
   1 Arcane Initiate = cantrips x2
-  17 Arcane Mastery = spells x4
+  17 Arcane Mastery = spells x1
+  17 Arcane Mastery: 7th-level spell = spells x1
+  17 Arcane Mastery: 8th-level spell = spells x1
+  17 Arcane Mastery: 9th-level spell = spells x1
 
 [Druid]
 Circle of the Land
@@ -63,6 +68,7 @@ Eldritch Knight
   3 Spellcasting = spells x3
 Arcane Archer
   3 Arcane Archer Lore = skills x1
+  3 Arcane Archer Lore: Cantrip = options x1: Prestidigitation; Druidcraft
   3 Arcane Shot = options x2: Banishing Arrow; Beguiling Arrow; Bursting Arrow; Enfeebling Arrow; Grasping Arrow; Piercing Arrow; Seeking Arrow; Shadow Arrow
 Cavalier
   3 Bonus Proficiency = skills x1
@@ -75,7 +81,8 @@ Rune Knight
 Way of the Four Elements
   3 Disciple of the Elements = options x1: Fangs of the Fire Snake; Fist of Four Thunders; Fist of Unbroken Air; Rush of the Gale Spirits; Shape the Flowing River; Sweeping Cinder Strike; Water Whip; Clench of the North Wind; Gong of the Summit; Flames of the Phoenix; Mist Stance; Ride the Wind; Breath of Winter; Eternal Mountain Defense; River of Hungry Flame; Wave of Rolling Earth
 Way of the Kensei
-  3 Path of the Kensei = weapons x2
+  3 Path of the Kensei = weapons x1
+  3 Path of the Kensei: Ranged Weapon = weapons x1
 
 [Ranger]
 Hunter
@@ -93,6 +100,7 @@ Drake Warden ?
 [Rogue]
 Mastermind
   3 Master of Intrigue = languages x2
+  3 Master of Intrigue: Gaming Set = tools x1
 
 [Sorcerer]
 Draconic Bloodline
