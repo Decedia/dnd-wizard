@@ -68,7 +68,7 @@ export function SplitSelectionCard({
           isSelected
             ? "border border-[var(--color-accent-indigo-500)] bg-[var(--color-accent-indigo-50)]"
             : disabled
-              ? "border border-[var(--color-border)] bg-[var(--color-surface)]"
+              ? "border border-[var(--color-border)] bg-[var(--color-bg)]"
               : "border border-[var(--color-border)] bg-[var(--color-surface)]"
         }`}
       >
@@ -76,7 +76,7 @@ export function SplitSelectionCard({
           type="button"
           onClick={onSelect}
           disabled={disabled}
-          className="flex-1 p-3.5 hover:bg-[var(--color-bg)]/50 transition text-left flex items-start gap-3 disabled:cursor-not-allowed"
+          className="flex-1 p-3.5 hover:bg-[var(--color-bg)]/50 transition text-left flex items-start gap-3 disabled:cursor-not-allowed disabled:opacity-45 disabled:grayscale disabled:hover:bg-transparent"
         >
           {icon && (
             <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-lg bg-[var(--color-bg)]">

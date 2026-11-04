@@ -156,11 +156,7 @@ export function HalfElfConfig({
                     }`}
                   >
                     <span className="font-semibold">{opt.name}</span>
-                    {known ? (
-                      <span className="block text-[10px] text-ink-muted mt-0.5">{t("sheet.alreadyKnown", "Already known")}</span>
-                    ) : (
-                      opt.description && <span className="block text-[10px] text-ink-muted mt-0.5">{opt.description}</span>
-                    )}
+                    {opt.description && <span className="block text-[10px] text-ink-muted mt-0.5">{opt.description}</span>}
                   </button>
                 );
               })}

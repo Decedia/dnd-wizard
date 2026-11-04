@@ -910,7 +910,6 @@ function ConfigDrawer({
                 choice={choice}
                 isSelected={selectedChoice?.id === choice.id}
                 known={!!takenSpells?.has(choice.name.toLowerCase())}
-                knownLabel={t("sheet.alreadyKnown", "Already known")}
                 onClick={() => onChoice(choice)}
               />
             ))}
@@ -926,10 +925,9 @@ interface ConfigChoiceCardProps {
   isSelected: boolean;
   /** A spell the character already has from another source. */
   known?: boolean;
-  knownLabel?: string;
   onClick: () => void;
 }
-function ConfigChoiceCard({ choice, isSelected, known = false, knownLabel, onClick }: ConfigChoiceCardProps) {
+function ConfigChoiceCard({ choice, isSelected, known = false, onClick }: ConfigChoiceCardProps) {
   return (
     <button
       type="button"
@@ -954,7 +952,7 @@ function ConfigChoiceCard({ choice, isSelected, known = false, knownLabel, onCli
             )}
           </div>
           <p className="text-xs text-[var(--color-text-secondary)] line-clamp-2 mb-2">
-            {known && !isSelected ? knownLabel : choice.description}
+            {choice.description}
           </p>
           {choice.effect && (
             <p className="text-[10px] text-[var(--color-text-muted)] font-mono">
