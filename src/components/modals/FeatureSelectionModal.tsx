@@ -5,7 +5,6 @@ import { getStaticSpells, getWizardSpellsByLevel } from "@/lib/srd-client";
 import { XIcon as X } from "@/components/icons";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
-import { useLanguage } from "@/contexts/LanguageContext";
 import { isSpellTakenElsewhere } from "@/lib/taken-spells";
 
 interface FeatureSelectionModalProps {
@@ -38,7 +37,6 @@ export function FeatureSelectionModal({
   selectedValues = [],
   takenSpells,
 }: FeatureSelectionModalProps) {
-  const { t } = useLanguage();
   const [featureSelections, setFeatureSelections] = useState<string[]>(() => selectedValues);
   const isMultiSelect = count > 1;
 
@@ -112,7 +110,7 @@ export function FeatureSelectionModal({
             <SplitSelectionCard
               key={idx}
               title={opt.name}
-              subtitle={isKnown ? t("sheet.alreadyKnown", "Already known") : opt.description}
+              subtitle={opt.description}
               icon={icon ? <span className="text-[22px] leading-none">{icon}</span> : undefined}
               badges={[]}
               isSelected={isSelected}

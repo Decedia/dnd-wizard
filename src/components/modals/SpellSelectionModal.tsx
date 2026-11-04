@@ -275,7 +275,6 @@ export function SpellSelectionModal({
     if (sp.school) subtitleParts.push(sp.school);
     if (level > 0 && sp.castingTime) subtitleParts.push(sp.castingTime);
     if (isDisabled) subtitleParts.push("From higher level");
-    else if (isAlreadyKnown) subtitleParts.push("Already known");
     else if (isSel) subtitleParts.push("Selected");
     else if (wrongSchool) subtitleParts.push(t("spells.schoolOnly", "Must be {schools}").replace("{schools}", limitSchools!.map((x) => x[0].toUpperCase() + x.slice(1)).join(" / ")));
     else if (disabled) subtitleParts.push("Maximum reached");

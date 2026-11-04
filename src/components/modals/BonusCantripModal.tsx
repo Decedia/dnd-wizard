@@ -90,7 +90,7 @@ export function BonusCantripModal({
             <SplitSelectionCard
               key={sp.name}
               title={sp.name}
-              subtitle={isKnown ? t("sheet.alreadyKnown", "Already known") : subtitleText}
+              subtitle={subtitleText}
               isSelected={isSelected}
               disabled={isKnown}
               onSelect={() => !isKnown && handleSelect(sp.name)}
