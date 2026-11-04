@@ -95,6 +95,8 @@ export interface Character {
   raceSkillPicks?: string[];
   /** Ability increases the player placed for a race with a flexible increase. */
   flexAsi?: Record<string, number>;
+  /** Saving throw proficiencies from outside the class (Resilient). */
+  bonusSaves?: string[];
   appliedAsi: number[];
   activeStates: string[];
   activeBuffs: ActiveBuff[];
@@ -960,7 +962,7 @@ export function computeDerivedStats(character: Character): Partial<Character> {
 
   const savingThrows: Record<string, { proficient: boolean; value: number }> = {};
   for (const key of ["str", "dex", "con", "int", "wis", "cha"]) {
-    const isProficient = savingThrowProfs.includes(key);
+    const isProficient = savingThrowProfs.includes(key) || (character.bonusSaves || []).includes(key);
     const abilityMod = getModifier(character[key as keyof Character] as number);
     let saveValue = isProficient ? abilityMod + profBonus : abilityMod;
     // Cover bonus to Dex saves

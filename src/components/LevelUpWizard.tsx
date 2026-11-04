@@ -9,6 +9,7 @@ import { applySubclassFeatures, applySubclassSpellGrants, syncBaseFeatures } fro
 import { normalizeDescription } from "@/lib/level-up";
 import invocationsData from "@/data/warlock_invocations.json";
 import { SpellSelectionModal } from "./modals/SpellSelectionModal";
+import { applyFeatGrants, encodeFeatOptions } from "@/lib/feat-grants";
 import { FeatSelectionModal } from "./modals/FeatSelectionModal";
 import { SubclassDetailsModal } from "./modals/SubclassDetailsModal";
 import { SubclassSelectionModal } from "./modals/SubclassSelectionModal";
@@ -544,7 +545,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
 
   const [targetLevel, setTargetLevel] = useState(Math.min(effectiveMaxLevel, Math.max(effectiveMinLevel, currentLevel + 1)));
   const [hpValues, setHpValues] = useState<Record<number, number>>({});
-  const [asiSelections, setAsiSelections] = useState<Record<number, { mode: "single" | "double" | "feat"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey; feat?: string }>>({});
+  const [asiSelections, setAsiSelections] = useState<Record<number, { mode: "single" | "double" | "feat"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey; feat?: string; featOptions?: Record<string, string> }>>({});
   const [subclassSelection, setSubclassSelection] = useState<string>(character.subclass || "");
   const [subclassIndex, setSubclassIndex] = useState<string>(character.subclassIndex || "");
 
@@ -629,7 +630,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   );
 
   const setHp = (level: number, value: number) => setHpValues((prev) => ({ ...prev, [level]: value }));
-  const setAsi = (level: number, patch: Partial<{ mode: "single" | "double" | "feat"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey; feat?: string }>) =>
+  const setAsi = (level: number, patch: Partial<{ mode: "single" | "double" | "feat"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey; feat?: string; featOptions?: Record<string, string> }>) =>
     setAsiSelections((prev) => ({ ...prev, [level]: { ...(prev[level] || { mode: "single" }), ...patch } as any }));
   const setSpells = (level: number, list: string[]) => setSpellSelections((prev) => ({ ...prev, [level]: list }));
   const setMagicalSecrets = (level: number, list: string[]) => setMagicalSecretsSelections((prev) => ({ ...prev, [level]: list }));
@@ -641,7 +642,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   const setReplacedInvocation = (level: number, invocation: string) => setReplacedInvocations((prev) => ({ ...prev, [level]: invocation }));
   const setExpertise = (level: number, list: string[]) => setExpertiseSelections((prev) => ({ ...prev, [level]: list }));
 
-  const buildAllocation = (st?: { mode: "single" | "double" | "feat"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey; feat?: string }): Record<AbilityKey, number> => {
+  const buildAllocation = (st?: { mode: "single" | "double" | "feat"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey; feat?: string; featOptions?: Record<string, string> }): Record<AbilityKey, number> => {
     const alloc: Record<AbilityKey, number> = { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 };
     if (!st) return alloc;
     if (st.mode === "single" && st.single) alloc[st.single] = 2;
@@ -720,7 +721,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     };
   }, [character, asiSelections, subclassSelection, subclassFeatureChoices, classFeatureChoices, expertiseSelections, invocationSelections, pactTomeCantrips, buildAllocation]);
 
-  const asiIsValid = (st?: { mode: "single" | "double" | "feat"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey; feat?: string }): boolean => {
+  const asiIsValid = (st?: { mode: "single" | "double" | "feat"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey; feat?: string; featOptions?: Record<string, string> }): boolean => {
     if (!st || !st.mode) return false;
     if (st.mode === "feat") return !!st.feat;
     if (st.mode === "single") return !!st.single;
@@ -919,8 +920,11 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
             featureSelections: {
               ...draft.featureSelections,
               [`asi-feat-${lvl}`]: [featData.name],
+              [`asi-feat-${lvl}-options`]: encodeFeatOptions(st.featOptions),
             },
           };
+          // Ability increases, proficiencies and spells the feat gives.
+          draft = applyFeatGrants(draft, st.feat, st.featOptions);
         }
       } else {
         const alloc = buildAllocation(st);
@@ -1404,8 +1408,8 @@ interface LevelCardProps {
   info: LevelInfo;
   hpValue: number;
   onHpChange: (v: number) => void;
-  asiSelection?: { mode: "single" | "double" | "feat"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey; feat?: string };
-  onAsiChange: (patch: Partial<{ mode: "single" | "double" | "feat"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey; feat?: string }>) => void;
+  asiSelection?: { mode: "single" | "double" | "feat"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey; feat?: string; featOptions?: Record<string, string> };
+  onAsiChange: (patch: Partial<{ mode: "single" | "double" | "feat"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey; feat?: string; featOptions?: Record<string, string> }>) => void;
   baseScores: Record<AbilityKey, number>;
   subclassSelection: string;
   onSubclassSelect: (name: string) => void;
@@ -2572,8 +2576,8 @@ function LevelCard({
             ...Object.values(character.featureSelections || {}).flat(),
           ]}
           character={wizardCharacter}
-          onSelect={(feat) => {
-            onAsiChange({ feat: feat.name });
+          onSelect={(feat, featOptions) => {
+            onAsiChange({ feat: feat.name, featOptions });
             setShowAsiFeatModal(false);
           }}
           onClose={() => setShowAsiFeatModal(false)}
