@@ -7,6 +7,7 @@ import { getStaticClass, getStaticRace, getStaticSubclasses, getStaticEquipments
 import { determineDefaultVisibility } from "./feature-filters";
 import type { CreationStep } from "./creation-types";
 import { getBackgroundData } from "@/data/backgrounds";
+import { getOptionalClassFeatures, getOptionalChoiceOptions, isReplacedFeature, optionalChoiceKey, type OptionalClassFeature } from "@/data/optional-class-features";
 
 const ARCANE_FOCUS_NAMES = ["crystal", "orb", "rod", "staff", "wand"];
 const HOLY_SYMBOL_NAMES = ["amulet", "emblem", "reliquary"];
@@ -510,8 +511,9 @@ export function getCreationSteps(character: Character): CreationStep[] {
     .map((entry) => entry.level) || [];
 
   const pendingAsiCount = asiLevels.filter((asiLevel) => !character.appliedAsi.includes(asiLevel) && asiLevel <= character.level).length;
+  const optional = getOptionalClassFeatures(character);
   const pendingLevelOneFeatures = getLevelOneFeatureChoices(character.class, character.ruleset).filter(
-    (choice) => !(choice.optional) && (character.featureSelections?.[choice.storageKey]?.length ?? 0) < (choice.count || 1)
+    (choice) => !isReplacedFeature(choice.featureName, optional) && !(choice.optional) && (character.featureSelections?.[choice.storageKey]?.length ?? 0) < (choice.count || 1)
   ).length;
   const levelCompleted =
     character.level >= 1 &&
@@ -845,7 +847,14 @@ function getRaceTraits(character: Character, language: string): any[] {
  * regenerated from the SRD data for the character's current level.
  */
 export function syncBaseFeatures(character: Character, language = "en"): Character {
-  const classFeatures = getClassFeaturesAtLevel(character, language).map((f) => ({ ...f, source: "class" as const }));
+  const optional = getOptionalClassFeatures(character);
+  const optionalFeatures = optional
+    .filter((f) => !f.hidden)
+    .map((f) => ({ name: f.name, description: f.text[language as "en" | "id"] || f.text.en, source: "class" as const } as any));
+  const classFeatures = [
+    ...getClassFeaturesAtLevel(character, language).filter((f) => !isReplacedFeature(f.name, optional)),
+    ...optionalFeatures,
+  ].map((f) => ({ ...f, source: "class" as const }));
   const raceFeatures = getRaceTraits(character, language).map((f) => ({ ...f, source: "race" as const }));
   const base = [...classFeatures, ...raceFeatures];
 
@@ -858,7 +867,7 @@ export function syncBaseFeatures(character: Character, language = "en"): Charact
     (f) =>
       !f.source ||
       f.source === "custom" ||
-      (f.source === "subclass" && subclassStillValid)
+      (f.source === "subclass" && subclassStillValid && !isReplacedFeature(f.name, optional))
   );
 
   const baseFeatures: Character["features"] = base.map((f) => {
@@ -888,7 +897,43 @@ export function syncBaseFeatures(character: Character, language = "en"): Charact
     };
   });
 
-  return { ...character, features: [...baseFeatures, ...kept] };
+  return applyOptionalFeatureGrants({ ...character, features: [...baseFeatures, ...kept] }, optional);
+}
+
+/**
+ * Adds what the optional class features give: the skill, expertise or language
+ * the player picked, and the spells the feature teaches by level. Adding to a
+ * set is idempotent, so this is safe on every sync. Turning the option off
+ * later does not take these back.
+ */
+function applyOptionalFeatureGrants(character: Character, optional: OptionalClassFeature[]): Character {
+  if (optional.length === 0) return character;
+  const skills = { ...character.skills };
+  const expertise = new Set(character.expertise || []);
+  const languages = new Set(character.languages || []);
+  const spells = [...(character.spells || [])];
+  for (const feature of optional) {
+    if (feature.choice) {
+      const picked = (character.featureSelections?.[optionalChoiceKey(feature)] || []).flatMap((v) => String(v).split(", ").filter(Boolean));
+      for (const name of picked) {
+        if (feature.choice.grants === "language") languages.add(name);
+        else {
+          skills[name] = true;
+          if (feature.choice.grants === "skill-expertise") expertise.add(name);
+        }
+      }
+    }
+    for (const [lvl, names] of Object.entries(feature.spells || {})) {
+      if (Number(lvl) > (character.level || 1)) continue;
+      for (const name of names) {
+        const spell = getStaticSpells(character.sources).find((s) => s.name === name);
+        const level = spell?.level ?? 1;
+        if (spells.some((s) => s.name === name && s.level === level)) continue;
+        spells.push({ id: `spell-${name}-${level}`.replace(/\s+/g, "-"), name, level, source: "srd", srdSpellName: name, description: normalizeDescription(spell?.description) } as any);
+      }
+    }
+  }
+  return { ...character, skills, expertise: [...expertise], languages: [...languages], spells };
 }
 
 /**
@@ -1084,6 +1129,7 @@ export function getMissingFeatureChoices(character: Character, language = "en"):
     }
   }
 
+  const optional = getOptionalClassFeatures(character);
   const classData = character.class ? getStaticClass(character.class, character.ruleset) : null;
   if (classData) {
     for (let i = 0; i < classData.levels.length; i++) {
@@ -1092,7 +1138,7 @@ export function getMissingFeatureChoices(character: Character, language = "en"):
       const levelData = classData.levels[i];
       for (const feature of (levelData.features || [])) {
         const feat = feature as any;
-        if (!feat.choices) continue;
+        if (!feat.choices || isReplacedFeature(feature.name, optional)) continue;
         const raw = feat.choices;
         const options = Array.isArray(raw?.options) ? raw.options : [];
         if (options.length === 0) continue;
@@ -1118,6 +1164,21 @@ export function getMissingFeatureChoices(character: Character, language = "en"):
         }
       }
     }
+  }
+
+  for (const feature of optional) {
+    if (!feature.choice) continue;
+    const key = optionalChoiceKey(feature);
+    if ((character.featureSelections?.[key] || []).some(Boolean)) continue;
+    missing.push({
+      featureName: feature.name,
+      description: feature.text[language as "en" | "id"] || feature.text.en,
+      options: getOptionalChoiceOptions(feature, character).map((name) => ({ name, description: "" })),
+      count: feature.choice.count,
+      level: feature.level,
+      storageKey: key,
+      source: "class",
+    });
   }
 
   return missing;
@@ -1183,7 +1244,7 @@ export function resolveFeatureChoice(character: Character, choice: MissingFeatur
     }
   }
 
-  return { ...character, featureSelections, features };
+  return applyOptionalFeatureGrants({ ...character, featureSelections, features }, getOptionalClassFeatures(character));
 }
 
 interface SubclassSpellGrant {
@@ -1365,6 +1426,13 @@ export async function finalizeCreation(character: Character, language = "en"): P
     }
   }
 
+  // Feats taken at an Ability Score Improvement while picking a starting level.
+  for (const [key, value] of Object.entries(final.featureSelections || {})) {
+    const m = key.match(/^asi-feat-(\d+)$/);
+    if (!m || !value?.[0]) continue;
+    final = applyFeatGrants(final, value[0], decodeFeatOptions(final.featureSelections?.[`asi-feat-${m[1]}-options`]));
+  }
+
   const derived = computeDerivedStats(final);
 
   const classData = getStaticClass(character.class, character.ruleset);
@@ -1434,6 +1502,7 @@ export function rebuildDerived(character: Character, language = "en"): Character
     variantHumanAbilities: character.variantHumanAbilities,
     variantHumanSkill: character.variantHumanSkill,
     bonusSaves: character.bonusSaves,
+    optionalClassFeatures: character.optionalClassFeatures,
     appliedAsi: character.appliedAsi,
     inventory: character.inventory,
     spells: character.spells,
@@ -1577,6 +1646,7 @@ export function recreateCharacter(character: Character, language = "en"): Charac
     variantHumanAbilities: character.variantHumanAbilities,
     variantHumanSkill: character.variantHumanSkill,
     bonusSaves: [...(character.bonusSaves ?? [])],
+    optionalClassFeatures: character.optionalClassFeatures,
     appliedAsi: [...(character.appliedAsi ?? [])],
     spells: [...(character.spells ?? [])],
     cantrips: [...(character.cantrips ?? [])],

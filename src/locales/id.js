@@ -982,6 +982,8 @@ export const translations = {
   "creator.contentMode.allDesc": "Membuka seluruh opsi karakter dari buku seperti Xanathar, Tasha, dan Monsters of the Multiverse.",
   "creator.contentMode.custom": "Pilih Buku Manual",
   "creator.contentMode.customDesc": "Pilih secara spesifik buku ekspansi mana yang ingin kamu aktifkan.",
+  "creator.optionalFeatures": "Optional class features dari Tasha",
+  "creator.optionalFeaturesDesc": "Menambahkan fitur opsional dari Tasha's Cauldron, sebagian menggantikan fitur dasar (misalnya Deft Explorer menggantikan Natural Explorer). Tanyakan DM-mu dulu.",
   "creator.raceOptions": "Opsi Ras",
   "creator.speed": "Kecepatan {speed} ft",
   "origin.title": "Asal",

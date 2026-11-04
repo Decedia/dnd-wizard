@@ -10,6 +10,7 @@ import { normalizeDescription } from "@/lib/level-up";
 import invocationsData from "@/data/warlock_invocations.json";
 import { SpellSelectionModal } from "./modals/SpellSelectionModal";
 import { applyFeatGrants, encodeFeatOptions } from "@/lib/feat-grants";
+import { getOptionalClassFeatures, getOptionalChoiceOptions, isReplacedFeature } from "@/data/optional-class-features";
 import { FeatSelectionModal } from "./modals/FeatSelectionModal";
 import { SubclassDetailsModal } from "./modals/SubclassDetailsModal";
 import { SubclassSelectionModal } from "./modals/SubclassSelectionModal";
@@ -207,7 +208,12 @@ function buildLevelInfos(
     const levelData = classData.levels[level - 1];
     const prevLevelData = level > 1 ? classData.levels[level - 2] : null;
 
+    // Tasha's optional features the table turned on, up to this level.
+    const optional = getOptionalClassFeatures({ ...character, level });
+    const optionalHere = optional.filter((f) => f.level === level);
+
     const features = (levelData?.features || [])
+      .filter((f: any) => !isReplacedFeature(f.name, optional))
       .filter((f: any) => {
         const src = f.source;
         if (!src) return true;
@@ -219,7 +225,11 @@ function buildLevelInfos(
       .map((f: any) => ({
         name: f.name,
         description: normalizeDescription(f.description),
-      }));
+      }))
+      .concat(optionalHere.filter((f) => !f.hidden).map((f) => ({
+        name: f.name,
+        description: f.text[language as "en" | "id"] || f.text.en,
+      })));
 
     const asi = levelData?.asi || false;
     let spellSlots = levelData?.spellSlots;
@@ -321,7 +331,7 @@ function buildLevelInfos(
                 .map((c: any) => ({ name: c.name, description: c.description || "", icon: c.icon })),
               count: (f as any).choicesCountByLevel?.[String(level)] ?? f.choicesCount ?? 1,
             });
-          } else {
+          } else if (!isReplacedFeature(f.name, optional)) {
             passiveSubclassFeatures.push({ name: f.name, description: desc, source: subclassSource });
           }
         }
@@ -333,6 +343,7 @@ function buildLevelInfos(
     const levelFeatures = classData.levels[level - 1]?.features || [];
     for (const feature of levelFeatures) {
       const f = feature as any;
+      if (isReplacedFeature(f.name, optional)) continue;
       if (f.choices && f.choices.type === "tools") {
         const tools = getStaticEquipments([], character.ruleset).filter((e: any) => e.equipment_category === "Tools");
         classFeatureChoices.push({
@@ -357,6 +368,16 @@ function buildLevelInfos(
           count: f.choices.count || 1,
         });
       }
+    }
+
+    for (const f of optionalHere) {
+      if (!f.choice) continue;
+      classFeatureChoices.push({
+        name: f.name,
+        description: f.text[language as "en" | "id"] || f.text.en,
+        options: getOptionalChoiceOptions(f, character).map((name) => ({ name, description: "" })),
+        count: f.choice.count,
+      });
     }
 
     const prevSlots = prevLevelData?.spellSlots || {};

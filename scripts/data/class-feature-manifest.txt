@@ -55,4 +55,4 @@ Optional class features (TCE)
   4 Eldritch Versatility
 [Wizard]
 Optional class features (TCE)
-  4 Cantrip Formulas
+  3 Cantrip Formulas

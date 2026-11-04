@@ -129,8 +129,9 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
     setSyncing(true);
     try {
       const synced = syncBaseFeatures(character, language);
-      onChange({ features: synced.features });
-      await saveCharacter({ ...character, features: synced.features });
+      // Optional class features can also add skills, languages and spells.
+      onChange({ features: synced.features, skills: synced.skills, expertise: synced.expertise, languages: synced.languages, spells: synced.spells });
+      await saveCharacter(synced);
 
       const missing = getMissingFeatureChoices(synced, language);
       if (missing.length > 0) {
