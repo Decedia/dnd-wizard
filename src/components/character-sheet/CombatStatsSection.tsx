@@ -6,7 +6,7 @@ import { ShieldStat } from "./styled/ShieldStat";
 import { SpeedStat } from "./styled/SpeedStat";
 import { SwordIcon as Sword, SparklesIcon as Sparkle, HeartBottleIcon as Heart, DropIcon as Drop, LightningBoltIcon as LightningBolt, ClockIcon as Clock, ShieldCheckIcon as ShieldCheck } from "@/components/icons";
 import { useLanguage } from "@/contexts/LanguageContext";
-import type { Character } from "@/lib/storage";
+import { getBaseSpeed, type Character } from "@/lib/storage";
 import { useState, useCallback } from "react";
 import { XIcon as X } from "@/components/icons";
 import { StateTracker } from "./StateTracker";
@@ -15,8 +15,8 @@ import { Dice } from "@/components/Dice";
 import { BasePopup } from "@/components/BasePopup";
 
 interface CombatStatsSectionProps {
-  character: Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed" | "isCustomHp" | "class" | "sorceryPoints" | "maxSorceryPoints" | "activeStates" | "activeBuffs" | "features" | "actionUsed" | "bonusActionUsed" | "reactionUsed" | "exhaustionLevel">;
-  onChange: (patch: Partial<Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed" | "isCustomHp" | "sorceryPoints" | "maxSorceryPoints" | "activeStates" | "activeBuffs" | "features" | "actionUsed" | "bonusActionUsed" | "reactionUsed" | "exhaustionLevel">>) => void;
+  character: Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed" | "baseSpeed" | "race" | "ruleset" | "isCustomHp" | "class" | "sorceryPoints" | "maxSorceryPoints" | "activeStates" | "activeBuffs" | "features" | "actionUsed" | "bonusActionUsed" | "reactionUsed" | "exhaustionLevel">;
+  onChange: (patch: Partial<Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed" | "baseSpeed" | "isCustomHp" | "sorceryPoints" | "maxSorceryPoints" | "activeStates" | "activeBuffs" | "features" | "actionUsed" | "bonusActionUsed" | "reactionUsed" | "exhaustionLevel">>) => void;
   editMode?: boolean;
 }
 
@@ -311,11 +311,11 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
               className="input"
             />
           </Field>
-          <Field label={t("sheet.speed", "Speed")}>
+          <Field label={t("sheet.baseSpeed", "Base speed")}>
             <input
               type="number"
-              value={character.speed}
-              onChange={(e) => onChange({ speed: Math.max(0, parseInt(e.target.value || "0", 10)) })}
+              value={getBaseSpeed(character)}
+              onChange={(e) => onChange({ baseSpeed: Math.max(0, parseInt(e.target.value || "0", 10)) })}
               onBlur={onFieldBlur}
               className="input"
             />

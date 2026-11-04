@@ -123,6 +123,7 @@ export const translations = {
   "sheet.maxHp": "HP Maksimum",
   "sheet.tempHp": "HP Sementara",
   "sheet.speed": "Kecepatan",
+  "sheet.baseSpeed": "Speed dasar",
   "sheet.sorceryPoints": "Sorcery Points",
   "sheet.maxSorceryPoints": "Sorcery Points Maksimum",
   "sheet.combatStats": "Status Combat",
