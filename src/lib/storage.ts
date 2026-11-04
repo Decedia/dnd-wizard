@@ -36,6 +36,8 @@ export interface Character {
   ac: number;
   currentHp: number;
   maxHp: number;
+  // Max HP after effects such as exhaustion 4. Derived; never saved over maxHp.
+  effectiveMaxHp?: number;
   temporaryHp: number;
   hitDiceTotal: string;
   hitDiceRemaining: number;
@@ -913,10 +915,13 @@ function getClassResourceValue(classData: any, resourceName: string, level: numb
  * display name second, since older saves have no engineId stamped.
  */
 /** Walking speed before bonuses: the player's own base, else the race's, else 30. */
-export function getBaseSpeed(character: Pick<Character, "baseSpeed" | "race" | "ruleset">): number {
+export function getBaseSpeed(character: Pick<Character, "baseSpeed" | "race" | "ruleset"> & { raceChoices?: Record<string, string> }): number {
   if (typeof character.baseSpeed === "number" && character.baseSpeed > 0) return character.baseSpeed;
   const raceSpeed = character.race ? getStaticRace(character.race, character.ruleset)?.speed : undefined;
-  return typeof raceSpeed === "number" && raceSpeed > 0 ? raceSpeed : 30;
+  const base = typeof raceSpeed === "number" && raceSpeed > 0 ? raceSpeed : 30;
+  // A wood half-elf who takes Fleet of Foot walks 35 feet.
+  const fleet = character.race?.startsWith("Half-Elf (") && character.raceChoices?.["half-elf-versatility"] === "fleet-of-foot";
+  return base + (fleet ? 5 : 0);
 }
 
 /**
@@ -1251,7 +1256,7 @@ export function computeDerivedStats(character: Character): Partial<Character> {
       return match ? parseInt(match[1], 10) : 0;
     })
     .filter((n) => n > 0)
-    .reduce((max, n) => Math.max(max, n), 0);
+    .reduce((max, n) => Math.max(max, n), character.exhaustionLevel || 0);
 
   // Speed modifications from conditions
   const speedZeroConditions = [
@@ -1394,7 +1399,9 @@ export function computeDerivedStats(character: Character): Partial<Character> {
     maxBardicInspirationUses,
     ac,
     speed,
-    maxHp: effectiveMaxHp,
+    effectiveMaxHp,
+    // Current HP can't sit above the reduced maximum.
+    ...(exhaustionLevel >= 4 && (character.currentHp || 0) > effectiveMaxHp ? { currentHp: effectiveMaxHp } : {}),
     temporaryHp: newTemporaryHp,
     buffModifiers: buffMods as any,
     // Universal grapple/shove attacks

@@ -1,6 +1,6 @@
 import { RACE_SPELLS } from "@/data/race-spells";
 import { getOptionalClassFeatures } from "@/data/optional-class-features";
-import { getCircleSpells, getDomainSpells, getOathSpells, getStaticRaceDetails, getStaticSpells, getStaticSubclasses, getSubclassSpellGrants } from "./srd-client";
+import { activeRaceChoices, getCircleSpells, getDomainSpells, getOathSpells, getStaticRaceDetails, getStaticSpells, getStaticSubclasses, getSubclassSpellGrants } from "./srd-client";
 import { normalizeDescription } from "./level-up";
 import type { Character } from "./storage";
 
@@ -39,7 +39,7 @@ export function getGrantedSpellNames(character: SpellOwner): string[] {
   if (character.class === "Druid" && character.circleTerrain) names.push(...getCircleSpells(character.circleTerrain, level));
   names.push(...upTo(RACE_SPELLS[character.race], level));
   // A cantrip the race lets the player pick (High Elf).
-  for (const choice of getStaticRaceDetails(character.race, character.sources)?.choices || []) {
+  for (const choice of activeRaceChoices(getStaticRaceDetails(character.race, character.sources)?.choices, character.raceChoices)) {
     if (!choice.spellList) continue;
     const picked = choice.options?.find((o) => o.id === character.raceChoices?.[choice.id]);
     if (picked) names.push(picked.name);

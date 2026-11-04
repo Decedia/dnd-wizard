@@ -90,6 +90,13 @@ export interface RaceChoice {
   options?: { id: string; name: string; description?: string }[];
   /** A cantrip pick from this class's list; options are built from the spell data. */
   spellList?: string;
+  /** Shown only when another choice has this value (a half-elf's cantrip needs "cantrip"). */
+  requires?: Record<string, string>;
+}
+
+/** The race choices that apply given what is picked so far. */
+export function activeRaceChoices(choices: RaceChoice[] | undefined, picked: Record<string, string> | undefined): RaceChoice[] {
+  return (choices || []).filter((c) => !c.requires || Object.entries(c.requires).every(([k, v]) => picked?.[k] === v));
 }
 
 export interface SRDClass {
@@ -557,13 +564,14 @@ export function getStaticSubclasses(className: string, sources?: string[], rules
             }
           }
           // A feature with a second pick (Blessings of Knowledge: skills, then
-          // languages) gets one choice-only entry per extra pick, at its level.
+          // languages) gets one choice-only entry per extra pick, at its own level
+          // when it sets one (Kensei weapons at 6, 11, 17), else the feature's.
           const extras = (featChoices?.extra || []).map((x: any) => {
             const e = withSpellOptions(x, sources, ruleset, locale);
             return {
               name: e.name,
               description: e.description || "",
-              level: f.level,
+              level: x.level ?? f.level,
               choiceOnly: true,
               choices: (e.options || []).map((opt: any) => ({ name: opt.name, description: opt.description || "" })),
               choicesCount: e.count ?? 1,

@@ -120,7 +120,7 @@ export function CharacterSheetPrint({ character }: CharacterSheetPrintProps) {
           </div>
           <div style={{ textAlign: "center", padding: "10px 6px", backgroundColor: S.surface, borderRadius: 8, border: `1px solid ${S.borderLight}` }}>
             <Label>HP</Label>
-            <div style={{ fontSize: 22, fontWeight: 700, color: S.success, marginTop: 2 }}>{character.currentHp}<span style={{ fontSize: 12, color: S.textMuted }}>/{character.maxHp}</span></div>
+            <div style={{ fontSize: 22, fontWeight: 700, color: S.success, marginTop: 2 }}>{character.currentHp}<span style={{ fontSize: 12, color: S.textMuted }}>/{character.effectiveMaxHp ?? character.maxHp}</span></div>
           </div>
           <div style={{ textAlign: "center", padding: "10px 6px", backgroundColor: S.surface, borderRadius: 8, border: `1px solid ${S.borderLight}` }}>
             <Label>Speed</Label>
@@ -140,10 +140,10 @@ export function CharacterSheetPrint({ character }: CharacterSheetPrintProps) {
         <div style={{ marginBottom: 16 }}>
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
             <Label>Hit Points</Label>
-            <span style={{ fontSize: 9, fontWeight: 600, color: S.textMuted }}>{character.currentHp} / {character.maxHp} {character.temporaryHp > 0 && <span style={{ color: S.info }}>(+{character.temporaryHp} temp)</span>}</span>
+            <span style={{ fontSize: 9, fontWeight: 600, color: S.textMuted }}>{character.currentHp} / {character.effectiveMaxHp ?? character.maxHp} {character.temporaryHp > 0 && <span style={{ color: S.info }}>(+{character.temporaryHp} temp)</span>}</span>
           </div>
           <div style={{ height: 10, borderRadius: 5, backgroundColor: S.surface, overflow: "hidden", border: `1px solid ${S.borderLight}` }}>
-            <div style={{ height: "100%", width: `${character.maxHp > 0 ? Math.min(100, Math.max(0, (character.currentHp / character.maxHp) * 100)) : 0}%`, backgroundColor: S.success, borderRadius: 5 }} />
+            <div style={{ height: "100%", width: `${(character.effectiveMaxHp ?? character.maxHp) > 0 ? Math.min(100, Math.max(0, (character.currentHp / (character.effectiveMaxHp ?? character.maxHp)) * 100)) : 0}%`, backgroundColor: S.success, borderRadius: 5 }} />
           </div>
         </div>
         <Divider />

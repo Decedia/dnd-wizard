@@ -552,31 +552,6 @@
           },
           "book": "SCAG",
           "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Svirfneblin Magic",
-          "description": "Kamu mewarisi kemampuan merapal sihir alami dari leluhurmu. Kemampuan ini memungkinkanmu untuk merapal nondetection pada dirimu sendiri sesuka hati, tanpa memerlukan komponen material.\n\nKamu juga bisa merapal masing-masing sihir berikut satu kali: blindness/deafness, blur, dan disguise self. Kamu akan mendapatkan kembali kemampuan untuk merapal sihir-sihir ini setelah menyelesaikan long rest.\n\nIntelligence adalah kemampuan spellcasting yang kamu gunakan untuk sihir-sihir ini.",
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Merapal nondetection sesuka hati, serta blindness/deafness, blur, dan disguise self satu kali per long rest.",
-          "grantsSpells": true,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "race",
-            "name": "Deep Gnome (Svirfneblin)",
-            "level": null
-          },
-          "book": "SCAG",
-          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -4325,33 +4300,8 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Skill Versatility",
-          "description": "Kamu mendapatkan proficiency pada dua skill pilihanmu.",
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Mendapatkan proficiency pada dua skill pilihanmu.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": true,
-          "grantsProficiency": false,
-          "source": {
-            "type": "race",
-            "name": "Half-Elf (High Elf)",
-            "level": null
-          },
-          "book": "SCAG",
-          "lastUpdated": "2026-09-29"
-        },
-        {
           "name": "High Elf Heritage",
-          "description": "Kamu menguasai satu cantrip pilihanmu dari daftar sihir wizard. Kemampuan spellcasting untuk sihir ini menggunakan Intelligence.",
+          "description": "Menggantikan Skill Versatility. Pilih satu: Elf Weapon Training (longsword, shortsword, shortbow, longbow) atau satu cantrip wizard, dirapal dengan Intelligence.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -4361,7 +4311,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Menguasai satu cantrip pilihan dari daftar sihir wizard.",
+          "summary": "Pilih elf weapon training atau satu cantrip wizard sebagai ganti dua skill.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4382,6 +4332,24 @@
       "languageDesc": "You can speak, read, and write Common, Elvish, and one extra language of your choice.",
       "source": "SCAG",
       "choices": [
+        {
+          "id": "half-elf-versatility",
+          "name": "Half-Elf Versatility",
+          "description": "Pilih satu trait elf. Ini menggantikan Skill Versatility.",
+          "type": "single",
+          "options": [
+            {
+              "id": "elf-weapon-training",
+              "name": "Elf Weapon Training",
+              "description": "Proficiency dengan longsword, shortsword, shortbow dan longbow."
+            },
+            {
+              "id": "cantrip",
+              "name": "Cantrip",
+              "description": "Satu cantrip wizard. Intelligence adalah kemampuan spellcasting untuknya."
+            }
+          ]
+        },
         {
           "id": "high-elf-cantrip",
           "name": "High Elf Cantrip",
@@ -4419,12 +4387,15 @@
               "description": "Illusion cantrip"
             }
           ],
-          "spellList": "Wizard"
+          "spellList": "Wizard",
+          "requires": {
+            "half-elf-versatility": "cantrip"
+          }
         }
       ],
       "recommendation": {
         "is_recommended": false,
-        "text": "Half-Elf condong elf dengan satu cantrip dan satu skill ekstra. Menambah lapisan pilihan spellcasting yang bisa membingungkan pemula."
+        "text": "Half-Elf condong elf yang menukar dua skill dengan elf weapon training atau satu cantrip wizard. Pilihannya sederhana."
       }
     },
     {
@@ -4432,7 +4403,7 @@
       "abilityScoreIncreases": {
         "cha": 2
       },
-      "speed": 35,
+      "speed": 30,
       "size": "Medium",
       "darkvision": {
         "range": 60
@@ -4489,33 +4460,8 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Skill Versatility",
-          "description": "Kamu mendapatkan proficiency pada dua skill pilihanmu.",
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Mendapatkan proficiency pada dua skill pilihanmu.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": true,
-          "grantsProficiency": false,
-          "source": {
-            "type": "race",
-            "name": "Half-Elf (Wood Elf)",
-            "level": null
-          },
-          "book": "SCAG",
-          "lastUpdated": "2026-09-29"
-        },
-        {
           "name": "Wood Elf Heritage",
-          "description": "Kamu memiliki proficiency dengan longsword, shortsword, shortbow, dan longbow. Kecepatan jalan dasarmu meningkat menjadi **35 kaki**.",
+          "description": "Menggantikan Skill Versatility. Pilih satu: Elf Weapon Training (longsword, shortsword, shortbow, longbow), Fleet of Foot (kecepatan jalan 35 kaki) atau Mask of the Wild (bersembunyi saat tertutup ringan oleh alam).",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -4525,7 +4471,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Mendapat proficiency senjata tertentu dan meningkatkan kecepatan jalan menjadi 35 kaki.",
+          "summary": "Pilih elf weapon training, kecepatan 35 kaki, atau Mask of the Wild sebagai ganti dua skill.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4547,8 +4493,33 @@
       "source": "SCAG",
       "recommendation": {
         "is_recommended": false,
-        "text": "Half-Elf condong elf yang cocok untuk eksplorasi alam. Movement dan Mask of the Wild mudah dipakai, tapi pemilihan subrace tetap menambah beban keputusan."
-      }
+        "text": "Half-Elf condong elf yang cocok untuk alam liar. Menukar dua skill dengan weapon training, kecepatan 35 kaki atau Mask of the Wild."
+      },
+      "choices": [
+        {
+          "id": "half-elf-versatility",
+          "name": "Half-Elf Versatility",
+          "description": "Pilih satu trait elf. Ini menggantikan Skill Versatility.",
+          "type": "single",
+          "options": [
+            {
+              "id": "elf-weapon-training",
+              "name": "Elf Weapon Training",
+              "description": "Proficiency dengan longsword, shortsword, shortbow dan longbow."
+            },
+            {
+              "id": "fleet-of-foot",
+              "name": "Fleet of Foot",
+              "description": "Kecepatan jalan dasarmu 35 kaki."
+            },
+            {
+              "id": "mask-of-the-wild",
+              "name": "Mask of the Wild",
+              "description": "Kamu bisa mencoba bersembunyi saat hanya tertutup ringan oleh dedaunan, hujan, salju, kabut atau sejenisnya."
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "Half-Elf (Drow)",
@@ -4612,33 +4583,8 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Skill Versatility",
-          "description": "Kamu mendapatkan proficiency pada dua skill pilihanmu.",
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Mendapat proficiency pada dua skill pilihanmu.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": true,
-          "grantsProficiency": false,
-          "source": {
-            "type": "race",
-            "name": "Half-Elf (Drow)",
-            "level": null
-          },
-          "book": "SCAG",
-          "lastUpdated": "2026-09-29"
-        },
-        {
           "name": "Drow Heritage",
-          "description": "Kamu menguasai cantrip dancing lights.\n\nPada level 3, kamu bisa merapal sihir faerie fire sebanyak **1** kali per long rest.\n\nPada level 5, kamu bisa merapal sihir darkness sebanyak **1** kali per long rest.\n\nKarisma adalah kemampuan spellcasting yang kamu gunakan untuk sihir-sihir ini.",
+          "description": "Menggantikan Skill Versatility. Kamu menguasai cantrip dancing lights.\n\nPada level 3, kamu bisa merapal sihir faerie fire sebanyak **1** kali per long rest.\n\nPada level 5, kamu bisa merapal sihir darkness sebanyak **1** kali per long rest.\n\nKarisma adalah kemampuan spellcasting yang kamu gunakan untuk sihir-sihir ini.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -4670,7 +4616,7 @@
       "source": "SCAG",
       "recommendation": {
         "is_recommended": false,
-        "text": "Half-Elf condong dark elf dengan innate spellcasting dan kendali kegelapan. Konsepnya kuat, tapi sunlight sensitivity dan pilihan spell menambah catatan taktis."
+        "text": "Half-Elf condong drow yang menukar dua skill dengan sihir bawaan: dancing lights, lalu faerie fire dan darkness. Tanpa sunlight sensitivity."
       }
     },
     {
@@ -4735,33 +4681,8 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Skill Versatility",
-          "description": "Kamu mendapatkan proficiency pada dua skill pilihanmu.",
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Mendapatkan proficiency pada dua skill pilihanmu.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": true,
-          "grantsProficiency": false,
-          "source": {
-            "type": "race",
-            "name": "Half-Elf (Moon Elf)",
-            "level": null
-          },
-          "book": "SCAG",
-          "lastUpdated": "2026-09-29"
-        },
-        {
           "name": "Moon Elf Heritage",
-          "description": "Kamu menguasai cantrip minor illusion.\n\nPada level 3, kamu bisa merapal sihir silent image satu kali setiap long rest.\n\nPada level 5, kamu bisa merapal sihir hypnotic pattern satu kali setiap long rest.\n\nKecerdasan adalah kemampuan spellcasting kamu untuk sihir-sihir ini.",
+          "description": "Menggantikan Skill Versatility. Pilih satu: Elf Weapon Training (longsword, shortsword, shortbow, longbow) atau satu cantrip wizard, dirapal dengan Intelligence.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -4771,7 +4692,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Menguasai cantrip minor illusion dan bisa merapal sihir tertentu seiring kenaikan level.",
+          "summary": "Pilih elf weapon training atau satu cantrip wizard sebagai ganti dua skill.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4793,8 +4714,70 @@
       "source": "SCAG",
       "recommendation": {
         "is_recommended": false,
-        "text": "Half-Elf condong elf dengan indra lebih tajam dan satu cantrip. Menambah kompleksitas spellcasting ringan pada kerangka yang sudah fleksibel."
-      }
+        "text": "Half-Elf condong elf yang menukar dua skill dengan elf weapon training atau satu cantrip wizard. Pilihannya sederhana."
+      },
+      "choices": [
+        {
+          "id": "half-elf-versatility",
+          "name": "Half-Elf Versatility",
+          "description": "Pilih satu trait elf. Ini menggantikan Skill Versatility.",
+          "type": "single",
+          "options": [
+            {
+              "id": "elf-weapon-training",
+              "name": "Elf Weapon Training",
+              "description": "Proficiency dengan longsword, shortsword, shortbow dan longbow."
+            },
+            {
+              "id": "cantrip",
+              "name": "Cantrip",
+              "description": "Satu cantrip wizard. Intelligence adalah kemampuan spellcasting untuknya."
+            }
+          ]
+        },
+        {
+          "id": "high-elf-cantrip",
+          "name": "High Elf Cantrip",
+          "description": "You know one cantrip of your choice from the wizard spell list.",
+          "type": "cantrip",
+          "options": [
+            {
+              "id": "fire-bolt",
+              "name": "Fire Bolt",
+              "description": "Evocation cantrip"
+            },
+            {
+              "id": "ray-of-frost",
+              "name": "Ray of Frost",
+              "description": "Evocation cantrip"
+            },
+            {
+              "id": "light",
+              "name": "Light",
+              "description": "Evocation cantrip"
+            },
+            {
+              "id": "mage-hand",
+              "name": "Mage Hand",
+              "description": "Conjuration cantrip"
+            },
+            {
+              "id": "prestidigitation",
+              "name": "Prestidigitation",
+              "description": "Transmutation cantrip"
+            },
+            {
+              "id": "minor-illusion",
+              "name": "Minor Illusion",
+              "description": "Illusion cantrip"
+            }
+          ],
+          "spellList": "Wizard",
+          "requires": {
+            "half-elf-versatility": "cantrip"
+          }
+        }
+      ]
     },
     {
       "name": "Half-Elf (Sun Elf)",
@@ -4858,33 +4841,8 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Skill Versatility",
-          "description": "Kamu mendapatkan proficiency pada dua skill pilihanmu.",
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Mendapatkan proficiency pada dua skill pilihanmu.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": true,
-          "grantsProficiency": false,
-          "source": {
-            "type": "race",
-            "name": "Half-Elf (Sun Elf)",
-            "level": null
-          },
-          "book": "SCAG",
-          "lastUpdated": "2026-09-29"
-        },
-        {
           "name": "Sun Elf Heritage",
-          "description": "Kamu menguasai cantrip fire bolt.\n\nPada level 3, kamu bisa merapal sihir burning hands satu kali setiap long rest.\n\nPada level 5, kamu bisa merapal sihir scorching ray satu kali setiap long rest.\n\nKecerdasan adalah kemampuan spellcasting kamu untuk sihir-sihir ini.",
+          "description": "Menggantikan Skill Versatility. Pilih satu: Elf Weapon Training (longsword, shortsword, shortbow, longbow) atau satu cantrip wizard, dirapal dengan Intelligence.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -4894,7 +4852,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Menguasai fire bolt serta bisa merapal burning hands dan scorching ray.",
+          "summary": "Pilih elf weapon training atau satu cantrip wizard sebagai ganti dua skill.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4916,8 +4874,70 @@
       "source": "SCAG",
       "recommendation": {
         "is_recommended": false,
-        "text": "Half-Elf condong elf dengan magic resistance dan bonus weapon training. Bagus untuk gish, tapi fleksibilitasnya bisa mengalihkan fokus pemain baru."
-      }
+        "text": "Half-Elf condong elf yang menukar dua skill dengan elf weapon training atau satu cantrip wizard. Pilihannya sederhana."
+      },
+      "choices": [
+        {
+          "id": "half-elf-versatility",
+          "name": "Half-Elf Versatility",
+          "description": "Pilih satu trait elf. Ini menggantikan Skill Versatility.",
+          "type": "single",
+          "options": [
+            {
+              "id": "elf-weapon-training",
+              "name": "Elf Weapon Training",
+              "description": "Proficiency dengan longsword, shortsword, shortbow dan longbow."
+            },
+            {
+              "id": "cantrip",
+              "name": "Cantrip",
+              "description": "Satu cantrip wizard. Intelligence adalah kemampuan spellcasting untuknya."
+            }
+          ]
+        },
+        {
+          "id": "high-elf-cantrip",
+          "name": "High Elf Cantrip",
+          "description": "You know one cantrip of your choice from the wizard spell list.",
+          "type": "cantrip",
+          "options": [
+            {
+              "id": "fire-bolt",
+              "name": "Fire Bolt",
+              "description": "Evocation cantrip"
+            },
+            {
+              "id": "ray-of-frost",
+              "name": "Ray of Frost",
+              "description": "Evocation cantrip"
+            },
+            {
+              "id": "light",
+              "name": "Light",
+              "description": "Evocation cantrip"
+            },
+            {
+              "id": "mage-hand",
+              "name": "Mage Hand",
+              "description": "Conjuration cantrip"
+            },
+            {
+              "id": "prestidigitation",
+              "name": "Prestidigitation",
+              "description": "Transmutation cantrip"
+            },
+            {
+              "id": "minor-illusion",
+              "name": "Minor Illusion",
+              "description": "Illusion cantrip"
+            }
+          ],
+          "spellList": "Wizard",
+          "requires": {
+            "half-elf-versatility": "cantrip"
+          }
+        }
+      ]
     },
     {
       "name": "Half-Elf (Sea Elf)",
@@ -4981,33 +5001,8 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Skill Versatility",
-          "description": "Kamu mendapatkan proficiency pada dua skill pilihanmu.",
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Mendapat proficiency pada dua skill pilihanmu.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": true,
-          "grantsProficiency": false,
-          "source": {
-            "type": "race",
-            "name": "Half-Elf (Sea Elf)",
-            "level": null
-          },
-          "book": "SCAG",
-          "lastUpdated": "2026-09-29"
-        },
-        {
           "name": "Sea Elf Heritage",
-          "description": "Kamu memiliki kecepatan renang 30 kaki dan bisa bernapas di udara maupun di dalam air. Kamu menguasai cantrip minor illusion.\n\nPada level 3, kamu bisa merapal sihir water walk satu kali setiap long rest.\n\nPada level 5, kamu bisa merapal sihir control water satu kali setiap long rest.\n\nKarisma adalah kemampuan spellcasting kamu untuk sihir-sihir ini.",
+          "description": "Menggantikan Skill Versatility. Kamu memiliki kecepatan renang 30 kaki.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -5017,8 +5012,8 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Memiliki kecepatan renang 30 kaki, bisa bernapas di udara dan air, serta bisa merapal sihir tertentu.",
-          "grantsSpells": true,
+          "summary": "Memiliki kecepatan renang 30 kaki.",
+          "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
@@ -5039,254 +5034,9 @@
       "source": "SCAG",
       "recommendation": {
         "is_recommended": false,
-        "text": "Half-Elf bertema lautan dengan swim speed dan napas amfibi. Marginal tapi tematis, paling pas saat eksplorasi air sering terjadi."
-      }
-    },
-    {
-      "name": "Half-Elf (Shadar-kai)",
-      "abilityScoreIncreases": {
-        "cha": 2
+        "text": "Half-Elf bertema lautan dengan kecepatan renang. Marginal tapi tematis, paling pas saat eksplorasi air sering terjadi."
       },
-      "speed": 30,
-      "size": "Medium",
-      "darkvision": {
-        "range": 60
-      },
-      "traits": [
-        {
-          "name": "Darkvision",
-          "description": "Kamu memiliki penglihatan superior dalam kondisi gelap maupun redup. Kamu bisa melihat dalam cahaya redup sejauh 60 kaki dari posisimu seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. Kamu tidak bisa membedakan warna dalam kegelapan, hanya gradasi warna abu-abu.",
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": "Permanent",
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Melihat dalam cahaya redup sejauh 60 kaki seperti cahaya terang, dan dalam kegelapan seperti cahaya redup.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "race",
-            "name": "Half-Elf (Shadar-kai)",
-            "level": null
-          },
-          "book": "SCAG",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Fey Ancestry",
-          "description": "Kamu memiliki advantage pada saving throws untuk melawan kondisi Terpesona, dan sihir tidak bisa membuatmu tertidur.",
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": "Permanent",
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Mendapat advantage saat saving throw melawan kondisi Terpesona dan imun terhadap sihir tidur.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "race",
-            "name": "Half-Elf (Shadar-kai)",
-            "level": null
-          },
-          "book": "SCAG",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Skill Versatility",
-          "description": "Kamu mendapatkan proficiency pada dua skill pilihanmu.",
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Mendapatkan proficiency pada dua skill pilihanmu.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": true,
-          "grantsProficiency": false,
-          "source": {
-            "type": "race",
-            "name": "Half-Elf (Shadar-kai)",
-            "level": null
-          },
-          "book": "SCAG",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Shadar-kai Heritage",
-          "description": "Kamu memiliki resistansi terhadap kerusakan nekrotik. Kamu menguasai cantrip spare the dying.\n\nPada level 3, kamu bisa menggunakan sihir ray of sickness satu kali setiap long rest.\n\nPada level 5, kamu bisa menggunakan sihir blindness/deafness satu kali setiap long rest.\n\nKarisma adalah kemampuan spellcasting kamu untuk sihir-sihir ini.",
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Resistansi terhadap kerusakan nekrotik dan kemampuan menggunakan sihir tertentu.",
-          "grantsSpells": true,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "race",
-            "name": "Half-Elf (Shadar-kai)",
-            "level": null
-          },
-          "book": "SCAG",
-          "lastUpdated": "2026-09-29"
-        }
-      ],
-      "languages": [
-        "Common",
-        "Elvish"
-      ],
-      "languageDesc": "You can speak, read, and write Common, Elvish, and one extra language of your choice.",
-      "source": "SCAG",
-      "recommendation": {
-        "is_recommended": false,
-        "text": "Half-Elf tersentuh bayangan dengan resistance dan teleportasi nekrotik. Alat taktisnya menarik, tapi mekanik bernuansa kematian kurang intuitif untuk pemula."
-      }
-    },
-    {
-      "name": "Half-Elf (Eladrin)",
-      "abilityScoreIncreases": {
-        "cha": 2
-      },
-      "speed": 30,
-      "size": "Medium",
-      "darkvision": {
-        "range": 60
-      },
-      "traits": [
-        {
-          "name": "Darkvision",
-          "description": "Kamu memiliki penglihatan superior dalam kondisi gelap maupun redup. Kamu bisa melihat dalam cahaya redup dalam jarak 60 kaki darimu seolah-olah itu adalah cahaya terang, dan dalam kegelapan seolah-olah itu adalah cahaya redup. Kamu tidak bisa membedakan warna dalam kegelapan, hanya gradasi warna abu-abu.",
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": "Permanent",
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Melihat dalam cahaya redup sejauh 60 kaki seolah terang, dan dalam kegelapan seolah cahaya redup.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "race",
-            "name": "Half-Elf (Eladrin)",
-            "level": null
-          },
-          "book": "SCAG",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Fey Ancestry",
-          "description": "Kamu memiliki advantage pada saving throws untuk melawan kondisi terpesona, dan sihir tidak bisa membuatmu tertidur.",
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": "Permanent",
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Mendapat advantage saat saving throw melawan efek terpesona, dan sihir tidak bisa membuatmu tidur.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "race",
-            "name": "Half-Elf (Eladrin)",
-            "level": null
-          },
-          "book": "SCAG",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Skill Versatility",
-          "description": "Kamu mendapatkan proficiency pada dua skill pilihanmu.",
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Mendapatkan proficiency pada dua skill pilihanmu.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": true,
-          "grantsProficiency": false,
-          "source": {
-            "type": "race",
-            "name": "Half-Elf (Eladrin)",
-            "level": null
-          },
-          "book": "SCAG",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Eladrin Heritage",
-          "description": "Kamu bisa menggunakan sihir misty step satu kali setiap long rest tanpa menghabiskan spell slot. Karisma adalah kemampuan spellcasting kamu untuk sihir ini.\n\nPilih salah satu musim: Autumn (mempesona), Winter (menakuti), Spring (teleportasi rekan), atau Summer (kerusakan api).",
-          "featureType": "Active",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Menggunakan misty step sekali per long rest dengan Karisma. Pilih musim: Autumn (pesona), Winter (takut), Spring (teleport kawan), atau Summer (kerusakan api).",
-          "grantsSpells": true,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "race",
-            "name": "Half-Elf (Eladrin)",
-            "level": null
-          },
-          "book": "SCAG",
-          "lastUpdated": "2026-09-29"
-        }
-      ],
-      "languages": [
-        "Common",
-        "Elvish"
-      ],
-      "languageDesc": "You can speak, read, and write Common, Elvish, and one extra language of your choice.",
-      "source": "SCAG",
-      "recommendation": {
-        "is_recommended": false,
-        "text": "Half-Elf tersentuh fey dengan teleport terkait musim dan charm resistance. Rasanya keren, tapi pertukaran kemampuan musiman bisa membingungkan pemain baru."
-      }
+      "swimSpeed": 30
     },
     {
       "name": "Half-Orc",

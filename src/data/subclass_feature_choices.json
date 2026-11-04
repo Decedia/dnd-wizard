@@ -1065,6 +1065,363 @@
                 "description": "Ranged weapon."
               }
             ]
+          },
+          {
+            "name": "Path of the Kensei: 6th-level Weapon",
+            "level": 6,
+            "count": 1,
+            "grants": {
+              "mode": "weapon"
+            },
+            "description": "Choose one more weapon type, melee or ranged, to be a kensei weapon. It can't be heavy or have the special property.",
+            "options": [
+              {
+                "name": "Battleaxe",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Club",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Dagger",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Flail",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Greatclub",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Handaxe",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Javelin",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Light Hammer",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Longsword",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Mace",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Morningstar",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Quarterstaff",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Rapier",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Scimitar",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Shortsword",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Sickle",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Spear",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Trident",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "War Pick",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Warhammer",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Whip",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Blowgun",
+                "description": "Ranged weapon."
+              },
+              {
+                "name": "Dart",
+                "description": "Ranged weapon."
+              },
+              {
+                "name": "Hand Crossbow",
+                "description": "Ranged weapon."
+              },
+              {
+                "name": "Light Crossbow",
+                "description": "Ranged weapon."
+              },
+              {
+                "name": "Shortbow",
+                "description": "Ranged weapon."
+              },
+              {
+                "name": "Sling",
+                "description": "Ranged weapon."
+              }
+            ]
+          },
+          {
+            "name": "Path of the Kensei: 11th-level Weapon",
+            "level": 11,
+            "count": 1,
+            "grants": {
+              "mode": "weapon"
+            },
+            "description": "Choose one more weapon type, melee or ranged, to be a kensei weapon. It can't be heavy or have the special property.",
+            "options": [
+              {
+                "name": "Battleaxe",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Club",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Dagger",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Flail",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Greatclub",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Handaxe",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Javelin",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Light Hammer",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Longsword",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Mace",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Morningstar",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Quarterstaff",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Rapier",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Scimitar",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Shortsword",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Sickle",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Spear",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Trident",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "War Pick",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Warhammer",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Whip",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Blowgun",
+                "description": "Ranged weapon."
+              },
+              {
+                "name": "Dart",
+                "description": "Ranged weapon."
+              },
+              {
+                "name": "Hand Crossbow",
+                "description": "Ranged weapon."
+              },
+              {
+                "name": "Light Crossbow",
+                "description": "Ranged weapon."
+              },
+              {
+                "name": "Shortbow",
+                "description": "Ranged weapon."
+              },
+              {
+                "name": "Sling",
+                "description": "Ranged weapon."
+              }
+            ]
+          },
+          {
+            "name": "Path of the Kensei: 17th-level Weapon",
+            "level": 17,
+            "count": 1,
+            "grants": {
+              "mode": "weapon"
+            },
+            "description": "Choose one more weapon type, melee or ranged, to be a kensei weapon. It can't be heavy or have the special property.",
+            "options": [
+              {
+                "name": "Battleaxe",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Club",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Dagger",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Flail",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Greatclub",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Handaxe",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Javelin",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Light Hammer",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Longsword",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Mace",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Morningstar",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Quarterstaff",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Rapier",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Scimitar",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Shortsword",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Sickle",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Spear",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Trident",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "War Pick",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Warhammer",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Whip",
+                "description": "Melee weapon."
+              },
+              {
+                "name": "Blowgun",
+                "description": "Ranged weapon."
+              },
+              {
+                "name": "Dart",
+                "description": "Ranged weapon."
+              },
+              {
+                "name": "Hand Crossbow",
+                "description": "Ranged weapon."
+              },
+              {
+                "name": "Light Crossbow",
+                "description": "Ranged weapon."
+              },
+              {
+                "name": "Shortbow",
+                "description": "Ranged weapon."
+              },
+              {
+                "name": "Sling",
+                "description": "Ranged weapon."
+              }
+            ]
           }
         ]
       }

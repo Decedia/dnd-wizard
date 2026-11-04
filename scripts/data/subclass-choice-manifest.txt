@@ -83,6 +83,9 @@ Way of the Four Elements
 Way of the Kensei
   3 Path of the Kensei = weapons x1
   3 Path of the Kensei: Ranged Weapon = weapons x1
+  6 Path of the Kensei: 6th-level Weapon = weapons x1
+  11 Path of the Kensei: 11th-level Weapon = weapons x1
+  17 Path of the Kensei: 17th-level Weapon = weapons x1
 
 [Ranger]
 Hunter

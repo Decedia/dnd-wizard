@@ -107,6 +107,12 @@ describe("subclass picks", () => {
     expect(f.choiceOnly).toBe(true);
   });
 
+  test("Kensei picks another weapon at 6, 11 and 17", () => {
+    const picks = sub("Monk", "Way of the Kensei", ["XGE"]).features.filter((x: any) => x.name.startsWith("Path of the Kensei")) as any[];
+    expect(picks.map((x) => x.level)).toEqual([3, 3, 6, 11, 17]);
+    expect(picks[2].choices.map((c: any) => c.name)).toEqual(expect.arrayContaining(["Longsword", "Shortbow"]));
+  });
+
   test("cantrip pickers follow the books", () => {
     const phb = sub("Cleric", "Arcana Domain", ["PHB", "SCAG"]).features.find((x: any) => x.name === "Arcane Initiate")!;
     expect(phb.choices!.map((c) => c.name)).toContain("Fire Bolt");

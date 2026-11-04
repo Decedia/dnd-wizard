@@ -15,7 +15,7 @@ import { Dice } from "@/components/Dice";
 import { BasePopup } from "@/components/BasePopup";
 
 interface CombatStatsSectionProps {
-  character: Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed" | "baseSpeed" | "race" | "ruleset" | "isCustomHp" | "class" | "sorceryPoints" | "maxSorceryPoints" | "activeStates" | "activeBuffs" | "features" | "actionUsed" | "bonusActionUsed" | "reactionUsed" | "exhaustionLevel">;
+  character: Pick<Character, "ac" | "currentHp" | "maxHp" | "effectiveMaxHp" | "temporaryHp" | "speed" | "baseSpeed" | "race" | "ruleset" | "isCustomHp" | "class" | "sorceryPoints" | "maxSorceryPoints" | "activeStates" | "activeBuffs" | "features" | "actionUsed" | "bonusActionUsed" | "reactionUsed" | "exhaustionLevel">;
   onChange: (patch: Partial<Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed" | "baseSpeed" | "isCustomHp" | "sorceryPoints" | "maxSorceryPoints" | "activeStates" | "activeBuffs" | "features" | "actionUsed" | "bonusActionUsed" | "reactionUsed" | "exhaustionLevel">>) => void;
   editMode?: boolean;
 }
@@ -23,7 +23,8 @@ interface CombatStatsSectionProps {
 export function CombatStatsSection({ character, onChange, editMode = true }: CombatStatsSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
   const { t } = useLanguage();
-  const hpPercent = character.maxHp > 0 ? Math.min(100, Math.max(0, (character.currentHp / character.maxHp) * 100)) : 0;
+  const maxHp = character.effectiveMaxHp ?? character.maxHp;
+  const hpPercent = maxHp > 0 ? Math.min(100, Math.max(0, (character.currentHp / maxHp) * 100)) : 0;
   const isSorcerer = character.class === "Sorcerer";
   const [hpModal, setHpModal] = useState<{ mode: "heal" | "damage" } | null>(null);
   const [hpAmount, setHpAmount] = useState("");
@@ -37,7 +38,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
     const amount = parseInt(hpAmount, 10);
     if (isNaN(amount) || amount <= 0) return;
     if (hpModal?.mode === "heal") {
-      onChange({ currentHp: Math.min(character.maxHp, character.currentHp + amount) });
+      onChange({ currentHp: Math.min(maxHp, character.currentHp + amount) });
     } else if (hpModal?.mode === "damage") {
       const tempHp = character.temporaryHp || 0;
       let remainingDamage = amount;
@@ -99,7 +100,7 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
             <span className="field-label-light mb-0">HP</span>
             <div className="flex items-center gap-2">
               <span className="text-[10px] font-semibold text-ink-muted">
-                {character.currentHp} / {character.maxHp}
+                {character.currentHp} / {maxHp}
               </span>
             </div>
           </div>

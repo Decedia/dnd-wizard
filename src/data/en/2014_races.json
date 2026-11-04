@@ -552,31 +552,6 @@
           },
           "book": "SCAG",
           "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Svirfneblin Magic",
-          "description": "You have inherited the innate spellcasting ability of your ancestors. This ability allows you to cast nondetection on yourself at will, without needing a material component.\n\nYou can also cast each of the following spells once with this ability: blindness/deafness, blur, and disguise self. You regain the ability to cast these spells with this ability when you finish a long rest.\n\nIntelligence is your spellcasting ability for these spells.",
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Cast nondetection at will, and cast blindness/deafness, blur, and disguise self once per long rest.",
-          "grantsSpells": true,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "race",
-            "name": "Deep Gnome (Svirfneblin)",
-            "level": null
-          },
-          "book": "SCAG",
-          "lastUpdated": "2026-09-29"
         }
       ],
       "languages": [
@@ -4325,33 +4300,8 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Skill Versatility",
-          "description": "You gain proficiency in two skills of your choice.",
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Gain proficiency in two skills of your choice.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": true,
-          "grantsProficiency": false,
-          "source": {
-            "type": "race",
-            "name": "Half-Elf (High Elf)",
-            "level": null
-          },
-          "book": "SCAG",
-          "lastUpdated": "2026-09-29"
-        },
-        {
           "name": "High Elf Heritage",
-          "description": "You know one cantrip of your choice from the wizard spell list. Intelligence is your spellcasting ability for it.",
+          "description": "Replaces Skill Versatility. Pick one: Elf Weapon Training (longsword, shortsword, shortbow, longbow) or one wizard cantrip, cast with Intelligence.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -4361,7 +4311,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Know one cantrip of your choice from the wizard spell list.",
+          "summary": "Pick elf weapon training or a wizard cantrip instead of two skills.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4382,6 +4332,24 @@
       "languageDesc": "You can speak, read, and write Common, Elvish, and one extra language of your choice.",
       "source": "SCAG",
       "choices": [
+        {
+          "id": "half-elf-versatility",
+          "name": "Half-Elf Versatility",
+          "description": "Pick one elf trait. It replaces Skill Versatility.",
+          "type": "single",
+          "options": [
+            {
+              "id": "elf-weapon-training",
+              "name": "Elf Weapon Training",
+              "description": "Proficiency with longsword, shortsword, shortbow and longbow."
+            },
+            {
+              "id": "cantrip",
+              "name": "Cantrip",
+              "description": "One wizard cantrip. Intelligence is your spellcasting ability for it."
+            }
+          ]
+        },
         {
           "id": "high-elf-cantrip",
           "name": "High Elf Cantrip",
@@ -4419,12 +4387,15 @@
               "description": "Illusion cantrip"
             }
           ],
-          "spellList": "Wizard"
+          "spellList": "Wizard",
+          "requires": {
+            "half-elf-versatility": "cantrip"
+          }
         }
       ],
       "recommendation": {
         "is_recommended": false,
-        "text": "An elf-leaning half-elf with an extra cantrip and a skill. Adds a small spellcasting choice layer that beginners may find confusing."
+        "text": "An elf-leaning half-elf that trades two skills for elf weapon training or a wizard cantrip. A simple either-or pick."
       }
     },
     {
@@ -4432,7 +4403,7 @@
       "abilityScoreIncreases": {
         "cha": 2
       },
-      "speed": 35,
+      "speed": 30,
       "size": "Medium",
       "darkvision": {
         "range": 60
@@ -4489,33 +4460,8 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Skill Versatility",
-          "description": "You gain proficiency in two skills of your choice.",
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Gain proficiency in two skills of your choice.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": true,
-          "grantsProficiency": false,
-          "source": {
-            "type": "race",
-            "name": "Half-Elf (Wood Elf)",
-            "level": null
-          },
-          "book": "SCAG",
-          "lastUpdated": "2026-09-29"
-        },
-        {
           "name": "Wood Elf Heritage",
-          "description": "You have proficiency with longsword, shortsword, shortbow, and longbow. Your base walking speed increases to **35 feet**.",
+          "description": "Replaces Skill Versatility. Pick one: Elf Weapon Training (longsword, shortsword, shortbow, longbow), Fleet of Foot (35 feet walking speed) or Mask of the Wild (hide when lightly obscured by nature).",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -4525,7 +4471,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gain proficiency with specific weapons and increase walking speed to 35 feet.",
+          "summary": "Pick elf weapon training, 35 feet speed, or Mask of the Wild instead of two skills.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4547,8 +4493,33 @@
       "source": "SCAG",
       "recommendation": {
         "is_recommended": false,
-        "text": "An elf-leaning half-elf suited to wilderness exploration. Movement and mask of the wild are easy to use, but subrace selection still adds decision weight."
-      }
+        "text": "An elf-leaning half-elf suited to the wilds. Trades two skills for weapon training, 35 feet speed or Mask of the Wild."
+      },
+      "choices": [
+        {
+          "id": "half-elf-versatility",
+          "name": "Half-Elf Versatility",
+          "description": "Pick one elf trait. It replaces Skill Versatility.",
+          "type": "single",
+          "options": [
+            {
+              "id": "elf-weapon-training",
+              "name": "Elf Weapon Training",
+              "description": "Proficiency with longsword, shortsword, shortbow and longbow."
+            },
+            {
+              "id": "fleet-of-foot",
+              "name": "Fleet of Foot",
+              "description": "Your base walking speed is 35 feet."
+            },
+            {
+              "id": "mask-of-the-wild",
+              "name": "Mask of the Wild",
+              "description": "You can try to hide when only lightly obscured by foliage, rain, snow, mist or similar."
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "Half-Elf (Drow)",
@@ -4612,33 +4583,8 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Skill Versatility",
-          "description": "You gain proficiency in two skills of your choice.",
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Gain proficiency in two skills of your choice.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": true,
-          "grantsProficiency": false,
-          "source": {
-            "type": "race",
-            "name": "Half-Elf (Drow)",
-            "level": null
-          },
-          "book": "SCAG",
-          "lastUpdated": "2026-09-29"
-        },
-        {
           "name": "Drow Heritage",
-          "description": "You know the dancing lights cantrip.\n\nAt 3rd level, you can cast the faerie fire spell **1** time per long rest.\n\nAt 5th level, you can cast the darkness spell **1** time per long rest.\n\nCharisma is your spellcasting ability for these spells.",
+          "description": "Replaces Skill Versatility. You know the dancing lights cantrip.\n\nAt 3rd level, you can cast the faerie fire spell **1** time per long rest.\n\nAt 5th level, you can cast the darkness spell **1** time per long rest.\n\nCharisma is your spellcasting ability for these spells.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -4670,7 +4616,7 @@
       "source": "SCAG",
       "recommendation": {
         "is_recommended": false,
-        "text": "A dark elf-leaning half-elf with innate spellcasting and darkness control. Strong concept, but sunlight sensitivity and spell options add tactical bookkeeping."
+        "text": "A drow-leaning half-elf that trades two skills for innate spells: dancing lights, then faerie fire and darkness. No sunlight sensitivity."
       }
     },
     {
@@ -4735,33 +4681,8 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Skill Versatility",
-          "description": "You gain proficiency in two skills of your choice.",
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Gain proficiency in two skills of your choice.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": true,
-          "grantsProficiency": false,
-          "source": {
-            "type": "race",
-            "name": "Half-Elf (Moon Elf)",
-            "level": null
-          },
-          "book": "SCAG",
-          "lastUpdated": "2026-09-29"
-        },
-        {
           "name": "Moon Elf Heritage",
-          "description": "You know the minor illusion cantrip.\n\nAt 3rd level, you can cast the silent image spell once per long rest.\n\nAt 5th level, you can cast the hypnotic pattern spell once per long rest.\n\nIntelligence is your spellcasting ability for these spells.",
+          "description": "Replaces Skill Versatility. Pick one: Elf Weapon Training (longsword, shortsword, shortbow, longbow) or one wizard cantrip, cast with Intelligence.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -4771,7 +4692,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Know the minor illusion cantrip and gain the ability to cast specific spells as you level up.",
+          "summary": "Pick elf weapon training or a wizard cantrip instead of two skills.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4793,8 +4714,70 @@
       "source": "SCAG",
       "recommendation": {
         "is_recommended": false,
-        "text": "An elf-leaning half-elf with heightened senses and a cantrip. Adds mild spellcasting complexity to an already flexible chassis."
-      }
+        "text": "An elf-leaning half-elf that trades two skills for elf weapon training or a wizard cantrip. A simple either-or pick."
+      },
+      "choices": [
+        {
+          "id": "half-elf-versatility",
+          "name": "Half-Elf Versatility",
+          "description": "Pick one elf trait. It replaces Skill Versatility.",
+          "type": "single",
+          "options": [
+            {
+              "id": "elf-weapon-training",
+              "name": "Elf Weapon Training",
+              "description": "Proficiency with longsword, shortsword, shortbow and longbow."
+            },
+            {
+              "id": "cantrip",
+              "name": "Cantrip",
+              "description": "One wizard cantrip. Intelligence is your spellcasting ability for it."
+            }
+          ]
+        },
+        {
+          "id": "high-elf-cantrip",
+          "name": "High Elf Cantrip",
+          "description": "You know one cantrip of your choice from the wizard spell list.",
+          "type": "cantrip",
+          "options": [
+            {
+              "id": "fire-bolt",
+              "name": "Fire Bolt",
+              "description": "Evocation cantrip"
+            },
+            {
+              "id": "ray-of-frost",
+              "name": "Ray of Frost",
+              "description": "Evocation cantrip"
+            },
+            {
+              "id": "light",
+              "name": "Light",
+              "description": "Evocation cantrip"
+            },
+            {
+              "id": "mage-hand",
+              "name": "Mage Hand",
+              "description": "Conjuration cantrip"
+            },
+            {
+              "id": "prestidigitation",
+              "name": "Prestidigitation",
+              "description": "Transmutation cantrip"
+            },
+            {
+              "id": "minor-illusion",
+              "name": "Minor Illusion",
+              "description": "Illusion cantrip"
+            }
+          ],
+          "spellList": "Wizard",
+          "requires": {
+            "half-elf-versatility": "cantrip"
+          }
+        }
+      ]
     },
     {
       "name": "Half-Elf (Sun Elf)",
@@ -4858,33 +4841,8 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Skill Versatility",
-          "description": "You gain proficiency in two skills of your choice.",
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Gain proficiency in two skills of your choice.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": true,
-          "grantsProficiency": false,
-          "source": {
-            "type": "race",
-            "name": "Half-Elf (Sun Elf)",
-            "level": null
-          },
-          "book": "SCAG",
-          "lastUpdated": "2026-09-29"
-        },
-        {
           "name": "Sun Elf Heritage",
-          "description": "You know the fire bolt cantrip.\n\nAt 3rd level, you can cast the burning hands spell once per long rest.\n\nAt 5th level, you can cast the scorching ray spell once per long rest.\n\nIntelligence is your spellcasting ability for these spells.",
+          "description": "Replaces Skill Versatility. Pick one: Elf Weapon Training (longsword, shortsword, shortbow, longbow) or one wizard cantrip, cast with Intelligence.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -4894,7 +4852,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Know fire bolt and can cast burning hands and scorching ray.",
+          "summary": "Pick elf weapon training or a wizard cantrip instead of two skills.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4916,8 +4874,70 @@
       "source": "SCAG",
       "recommendation": {
         "is_recommended": false,
-        "text": "An elf-leaning half-elf with magic resistance and a weapon training bonus. Good for gishes, but the flexibility can distract new players."
-      }
+        "text": "An elf-leaning half-elf that trades two skills for elf weapon training or a wizard cantrip. A simple either-or pick."
+      },
+      "choices": [
+        {
+          "id": "half-elf-versatility",
+          "name": "Half-Elf Versatility",
+          "description": "Pick one elf trait. It replaces Skill Versatility.",
+          "type": "single",
+          "options": [
+            {
+              "id": "elf-weapon-training",
+              "name": "Elf Weapon Training",
+              "description": "Proficiency with longsword, shortsword, shortbow and longbow."
+            },
+            {
+              "id": "cantrip",
+              "name": "Cantrip",
+              "description": "One wizard cantrip. Intelligence is your spellcasting ability for it."
+            }
+          ]
+        },
+        {
+          "id": "high-elf-cantrip",
+          "name": "High Elf Cantrip",
+          "description": "You know one cantrip of your choice from the wizard spell list.",
+          "type": "cantrip",
+          "options": [
+            {
+              "id": "fire-bolt",
+              "name": "Fire Bolt",
+              "description": "Evocation cantrip"
+            },
+            {
+              "id": "ray-of-frost",
+              "name": "Ray of Frost",
+              "description": "Evocation cantrip"
+            },
+            {
+              "id": "light",
+              "name": "Light",
+              "description": "Evocation cantrip"
+            },
+            {
+              "id": "mage-hand",
+              "name": "Mage Hand",
+              "description": "Conjuration cantrip"
+            },
+            {
+              "id": "prestidigitation",
+              "name": "Prestidigitation",
+              "description": "Transmutation cantrip"
+            },
+            {
+              "id": "minor-illusion",
+              "name": "Minor Illusion",
+              "description": "Illusion cantrip"
+            }
+          ],
+          "spellList": "Wizard",
+          "requires": {
+            "half-elf-versatility": "cantrip"
+          }
+        }
+      ]
     },
     {
       "name": "Half-Elf (Sea Elf)",
@@ -4981,33 +5001,8 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Skill Versatility",
-          "description": "You gain proficiency in two skills of your choice.",
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Gain proficiency in two skills of your choice.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": true,
-          "grantsProficiency": false,
-          "source": {
-            "type": "race",
-            "name": "Half-Elf (Sea Elf)",
-            "level": null
-          },
-          "book": "SCAG",
-          "lastUpdated": "2026-09-29"
-        },
-        {
           "name": "Sea Elf Heritage",
-          "description": "You have a swimming speed of 30 feet and can breathe air and water. You know the minor illusion cantrip.\n\nAt 3rd level, you can cast the water walk spell once per long rest.\n\nAt 5th level, you can cast the control water spell once per long rest.\n\nCharisma is your spellcasting ability for these spells.",
+          "description": "Replaces Skill Versatility. You have a swimming speed of 30 feet.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -5017,8 +5012,8 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gain a 30 feet swimming speed, breathe air and water, and cast specific spells.",
-          "grantsSpells": true,
+          "summary": "Gain a 30 feet swimming speed.",
+          "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
@@ -5039,254 +5034,9 @@
       "source": "SCAG",
       "recommendation": {
         "is_recommended": false,
-        "text": "An ocean-themed half-elf with swim speed and amphibious breathing. Niche but thematic, best when water exploration is frequent."
-      }
-    },
-    {
-      "name": "Half-Elf (Shadar-kai)",
-      "abilityScoreIncreases": {
-        "cha": 2
+        "text": "An ocean-themed half-elf with a swimming speed. Niche but thematic, best when water exploration is frequent."
       },
-      "speed": 30,
-      "size": "Medium",
-      "darkvision": {
-        "range": 60
-      },
-      "traits": [
-        {
-          "name": "Darkvision",
-          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": "Permanent",
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "race",
-            "name": "Half-Elf (Shadar-kai)",
-            "level": null
-          },
-          "book": "SCAG",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Fey Ancestry",
-          "description": "You have advantage on saving throws against being charmed, and magic cannot put you to sleep.",
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": "Permanent",
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Gain advantage on saving throws against being charmed, and magic cannot put you to sleep.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "race",
-            "name": "Half-Elf (Shadar-kai)",
-            "level": null
-          },
-          "book": "SCAG",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Skill Versatility",
-          "description": "You gain proficiency in two skills of your choice.",
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Gain proficiency in two skills of your choice.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": true,
-          "grantsProficiency": false,
-          "source": {
-            "type": "race",
-            "name": "Half-Elf (Shadar-kai)",
-            "level": null
-          },
-          "book": "SCAG",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Shadar-kai Heritage",
-          "description": "You have resistance to necrotic damage. You know the spare the dying cantrip.\n\nAt 3rd level, you can cast the ray of sickness spell once per long rest.\n\nAt 5th level, you can cast the blindness/deafness spell once per long rest.\n\nCharisma is your spellcasting ability for these spells.",
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Gain resistance to necrotic damage and the ability to cast specific spells.",
-          "grantsSpells": true,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "race",
-            "name": "Half-Elf (Shadar-kai)",
-            "level": null
-          },
-          "book": "SCAG",
-          "lastUpdated": "2026-09-29"
-        }
-      ],
-      "languages": [
-        "Common",
-        "Elvish"
-      ],
-      "languageDesc": "You can speak, read, and write Common, Elvish, and one extra language of your choice.",
-      "source": "SCAG",
-      "recommendation": {
-        "is_recommended": false,
-        "text": "A shadow-touched half-elf with resistance and necrotic teleportation. Interesting tactical tool, but death-tinged mechanics may be less intuitive for beginners."
-      }
-    },
-    {
-      "name": "Half-Elf (Eladrin)",
-      "abilityScoreIncreases": {
-        "cha": 2
-      },
-      "speed": 30,
-      "size": "Medium",
-      "darkvision": {
-        "range": 60
-      },
-      "traits": [
-        {
-          "name": "Darkvision",
-          "description": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.",
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": "Permanent",
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "race",
-            "name": "Half-Elf (Eladrin)",
-            "level": null
-          },
-          "book": "SCAG",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Fey Ancestry",
-          "description": "You have advantage on saving throws against being charmed, and magic cannot put you to sleep.",
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": "Permanent",
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Gain advantage on saving throws against being charmed, and magic cannot put you to sleep.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "race",
-            "name": "Half-Elf (Eladrin)",
-            "level": null
-          },
-          "book": "SCAG",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Skill Versatility",
-          "description": "You gain proficiency in two skills of your choice.",
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Gain proficiency in two skills of your choice.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": true,
-          "grantsProficiency": false,
-          "source": {
-            "type": "race",
-            "name": "Half-Elf (Eladrin)",
-            "level": null
-          },
-          "book": "SCAG",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Eladrin Heritage",
-          "description": "You can cast the misty step spell once per long rest without expending a spell slot. Charisma is your spellcasting ability for it.\n\nChoose a season: Autumn (charm), Winter (frighten), Spring (teleport ally), Summer (fire damage).",
-          "featureType": "Active",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Cast misty step once per long rest using Charisma. Choose a season: Autumn (charm), Winter (frighten), Spring (teleport ally), or Summer (fire damage).",
-          "grantsSpells": true,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "race",
-            "name": "Half-Elf (Eladrin)",
-            "level": null
-          },
-          "book": "SCAG",
-          "lastUpdated": "2026-09-29"
-        }
-      ],
-      "languages": [
-        "Common",
-        "Elvish"
-      ],
-      "languageDesc": "You can speak, read, and write Common, Elvish, and one extra language of your choice.",
-      "source": "SCAG",
-      "recommendation": {
-        "is_recommended": false,
-        "text": "A fey-touched half-elf with a season-linked teleport and charm resistance. Cool flavor, but seasonal ability swaps can confuse new players."
-      }
+      "swimSpeed": 30
     },
     {
       "name": "Half-Orc",

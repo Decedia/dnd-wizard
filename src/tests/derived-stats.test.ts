@@ -47,3 +47,18 @@ describe("HP bonus per level", () => {
     expect(getHpBonusPerLevel(make({}))).toBe(0);
   });
 });
+
+describe("exhaustion", () => {
+  test("level 4 halves max HP once, not on every recompute", () => {
+    let c = make({ maxHp: 40, currentHp: 40, exhaustionLevel: 4 });
+    for (let i = 0; i < 3; i++) c = { ...c, ...computeDerivedStats(c) };
+    expect(c.maxHp).toBe(40);
+    expect(c.effectiveMaxHp).toBe(20);
+    expect(c.currentHp).toBe(20);
+    c = { ...c, exhaustionLevel: 0, ...computeDerivedStats({ ...c, exhaustionLevel: 0 }) };
+    expect(c.effectiveMaxHp).toBe(40);
+  });
+  test("the exhaustion field halves speed at level 2", () => {
+    expect(computeDerivedStats(make({ race: "Human", exhaustionLevel: 2 })).speed).toBe(15);
+  });
+});
