@@ -980,7 +980,8 @@ export function applySubclassFeatures(character: Character, language = "en"): Ch
       // models tiers properly, so the suffix is dropped.
       // "Action Surge (1 use)" encodes a level tier in the name; the engine
       const cleanName = String(feature.name).replace(/\s*\((?:\d+\s*use[^)]*|\d+\s*\/\s*rest)\)\s*$/i, "").trim();
-      if (!newFeatures.some((f) => f.name === feature.name)) {
+      // A second pick of a feature (its languages, its cantrip) is not a feature of its own.
+      if (!(feature as any).choiceOnly && !newFeatures.some((f) => f.name === feature.name)) {
         newFeatures.push({
           id: `subclass-${feature.name}`.replace(/\s+/g, "-"),
           name: feature.name,
@@ -1075,12 +1076,14 @@ function applyChoiceGrants(character: Character, features: any[]): Character {
     next = { ...next, skills, expertise: [...expertise], languages: [...languages], toolProficiencies: [...tools], otherProficiencies: other.join(", ") };
   };
   for (const feature of features) {
-    const grants = feature.choiceGrants as { mode: string; fixed?: string[] } | undefined;
+    const grants = feature.choiceGrants as { mode: string; fixed?: string[]; spells?: Record<string, string> } | undefined;
     if (!grants) continue;
     if (grants.fixed?.length) add(grants.fixed, "proficiency");
     const key = feature.level != null ? `subclass-feature-${feature.level}-${feature.name}` : `subclass-feature-${feature.name}`;
     const picked = ((next as any).featureSelections?.[key] || []).flatMap((s: string) => String(s).split(", ").filter(Boolean));
-    if (picked.length) add(picked, grants.mode);
+    // An option can stand for a spell (Divine Soul's Good affinity is cure wounds).
+    const names = grants.spells ? picked.map((p: string) => grants.spells![p]).filter(Boolean) : picked;
+    if (names.length) add(names, grants.mode);
   }
   return next;
 }

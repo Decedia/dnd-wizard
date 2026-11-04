@@ -491,7 +491,13 @@ export function FeatSelectionModal({
                                 {t("feat.chooseOption", { label }, "-- Pilih {label} --")}
                               </option>
                               {(group.choices ?? []).map((choice) => {
-                                const taken = isValueTakenElsewhere(choice.value);
+                                // Expertise needs proficiency: one the character has, or the skill this feat gives.
+                                const needsProficiency =
+                                  group.id.replace(/_\d+$/, "") === "expertise" &&
+                                  !!character &&
+                                  (!(character.skills || {})[choice.value] || (character.expertise || []).includes(choice.value)) &&
+                                  optionSelections.skill !== choice.value;
+                                const taken = isValueTakenElsewhere(choice.value) || needsProficiency;
                                 return (
                                   <option
                                     key={choice.value}
@@ -500,7 +506,11 @@ export function FeatSelectionModal({
                                     className={taken ? "text-ink-subtle" : undefined}
                                   >
                                     {choice.label}
-                                    {taken ? ` ${t("feat.alreadyChosen", "(Sudah Dipilih)")}` : ""}
+                                    {needsProficiency
+                                      ? ` ${t("feat.notProficient", "(Not proficient)")}`
+                                      : taken
+                                        ? ` ${t("feat.alreadyChosen", "(Sudah Dipilih)")}`
+                                        : ""}
                                   </option>
                                 );
                               })}

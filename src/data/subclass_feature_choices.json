@@ -320,7 +320,7 @@
         "grants": {
           "mode": "proficiency"
         },
-        "description": "Gain proficiency in Arcana or Nature. You also learn prestidigitation or druidcraft.",
+        "description": "Gain proficiency in Arcana or Nature.",
         "options": [
           {
             "name": "Arcana",
@@ -329,6 +329,26 @@
           {
             "name": "Nature",
             "description": "Skill proficiency."
+          }
+        ],
+        "extra": [
+          {
+            "name": "Arcane Archer Lore: Cantrip",
+            "count": 1,
+            "grants": {
+              "mode": "spell"
+            },
+            "description": "Learn prestidigitation or druidcraft.",
+            "options": [
+              {
+                "name": "Prestidigitation",
+                "description": "Cantrip."
+              },
+              {
+                "name": "Druidcraft",
+                "description": "Cantrip."
+              }
+            ]
           }
         ]
       }
@@ -406,7 +426,17 @@
             "name": "Neutrality",
             "description": "Learn protection from evil and good."
           }
-        ]
+        ],
+        "grants": {
+          "mode": "spell",
+          "spells": {
+            "Good": "Cure Wounds",
+            "Evil": "Inflict Wounds",
+            "Law": "Bless",
+            "Chaos": "Bane",
+            "Neutrality": "Protection from Evil and Good"
+          }
+        }
       }
     }
   },
@@ -907,6 +937,137 @@
           }
         ]
       }
+    },
+    "Way of the Kensei": {
+      "Path of the Kensei": {
+        "count": 1,
+        "grants": {
+          "mode": "weapon"
+        },
+        "description": "Choose one melee weapon type to be a kensei weapon. It can't be heavy or have the special property.",
+        "options": [
+          {
+            "name": "Battleaxe",
+            "description": "Melee weapon."
+          },
+          {
+            "name": "Club",
+            "description": "Melee weapon."
+          },
+          {
+            "name": "Dagger",
+            "description": "Melee weapon."
+          },
+          {
+            "name": "Flail",
+            "description": "Melee weapon."
+          },
+          {
+            "name": "Greatclub",
+            "description": "Melee weapon."
+          },
+          {
+            "name": "Handaxe",
+            "description": "Melee weapon."
+          },
+          {
+            "name": "Javelin",
+            "description": "Melee weapon."
+          },
+          {
+            "name": "Light Hammer",
+            "description": "Melee weapon."
+          },
+          {
+            "name": "Longsword",
+            "description": "Melee weapon."
+          },
+          {
+            "name": "Mace",
+            "description": "Melee weapon."
+          },
+          {
+            "name": "Morningstar",
+            "description": "Melee weapon."
+          },
+          {
+            "name": "Quarterstaff",
+            "description": "Melee weapon."
+          },
+          {
+            "name": "Rapier",
+            "description": "Melee weapon."
+          },
+          {
+            "name": "Scimitar",
+            "description": "Melee weapon."
+          },
+          {
+            "name": "Shortsword",
+            "description": "Melee weapon."
+          },
+          {
+            "name": "Sickle",
+            "description": "Melee weapon."
+          },
+          {
+            "name": "Spear",
+            "description": "Melee weapon."
+          },
+          {
+            "name": "Trident",
+            "description": "Melee weapon."
+          },
+          {
+            "name": "War Pick",
+            "description": "Melee weapon."
+          },
+          {
+            "name": "Warhammer",
+            "description": "Melee weapon."
+          },
+          {
+            "name": "Whip",
+            "description": "Melee weapon."
+          }
+        ],
+        "extra": [
+          {
+            "name": "Path of the Kensei: Ranged Weapon",
+            "count": 1,
+            "grants": {
+              "mode": "weapon"
+            },
+            "description": "Choose one ranged weapon type to be a kensei weapon. It can't be heavy or have the special property.",
+            "options": [
+              {
+                "name": "Blowgun",
+                "description": "Ranged weapon."
+              },
+              {
+                "name": "Dart",
+                "description": "Ranged weapon."
+              },
+              {
+                "name": "Hand Crossbow",
+                "description": "Ranged weapon."
+              },
+              {
+                "name": "Light Crossbow",
+                "description": "Ranged weapon."
+              },
+              {
+                "name": "Shortbow",
+                "description": "Ranged weapon."
+              },
+              {
+                "name": "Sling",
+                "description": "Ranged weapon."
+              }
+            ]
+          }
+        ]
+      }
     }
   },
   "Druid": {
@@ -1041,7 +1202,7 @@
         "grants": {
           "mode": "skill-expertise"
         },
-        "description": "Choose two skills. You gain proficiency and your proficiency bonus is doubled for them. You also learn two languages.",
+        "description": "Choose two skills from Arcana, History, Nature and Religion. You gain proficiency, and your proficiency bonus is doubled for them.",
         "options": [
           {
             "name": "Arcana",
@@ -1059,6 +1220,82 @@
             "name": "Religion",
             "description": "Skill proficiency."
           }
+        ],
+        "extra": [
+          {
+            "name": "Blessings of Knowledge: Languages",
+            "count": 2,
+            "grants": {
+              "mode": "proficiency"
+            },
+            "description": "Learn two languages of your choice.",
+            "options": [
+              {
+                "name": "Abyssal",
+                "description": "Language."
+              },
+              {
+                "name": "Celestial",
+                "description": "Language."
+              },
+              {
+                "name": "Common",
+                "description": "Language."
+              },
+              {
+                "name": "Deep Speech",
+                "description": "Language."
+              },
+              {
+                "name": "Draconic",
+                "description": "Language."
+              },
+              {
+                "name": "Dwarvish",
+                "description": "Language."
+              },
+              {
+                "name": "Elvish",
+                "description": "Language."
+              },
+              {
+                "name": "Giant",
+                "description": "Language."
+              },
+              {
+                "name": "Gnomish",
+                "description": "Language."
+              },
+              {
+                "name": "Goblin",
+                "description": "Language."
+              },
+              {
+                "name": "Halfling",
+                "description": "Language."
+              },
+              {
+                "name": "Infernal",
+                "description": "Language."
+              },
+              {
+                "name": "Orc",
+                "description": "Language."
+              },
+              {
+                "name": "Primordial",
+                "description": "Language."
+              },
+              {
+                "name": "Sylvan",
+                "description": "Language."
+              },
+              {
+                "name": "Undercommon",
+                "description": "Language."
+              }
+            ]
+          }
         ]
       }
     },
@@ -1068,7 +1305,7 @@
         "grants": {
           "mode": "proficiency"
         },
-        "description": "Gain proficiency in one skill. You also learn one druid cantrip.",
+        "description": "Gain proficiency in Animal Handling, Nature or Survival.",
         "options": [
           {
             "name": "Animal Handling",
@@ -1081,6 +1318,18 @@
           {
             "name": "Survival",
             "description": "Skill proficiency."
+          }
+        ],
+        "extra": [
+          {
+            "name": "Acolyte of Nature: Cantrip",
+            "count": 1,
+            "grants": {
+              "mode": "spell"
+            },
+            "description": "Learn one druid cantrip. It counts as a cleric cantrip for you.",
+            "spellList": "Druid",
+            "spellLevel": 0
           }
         ]
       }
@@ -1095,467 +1344,47 @@
           ]
         },
         "description": "Learn two wizard cantrips. They count as cleric cantrips for you. You also gain proficiency in Arcana.",
-        "options": [
-          {
-            "name": "Acid Splash",
-            "description": "Wizard cantrip ([object Object])."
-          },
-          {
-            "name": "Blade Ward",
-            "description": "Wizard cantrip (Abjuration)."
-          },
-          {
-            "name": "Booming Blade",
-            "description": "Wizard cantrip (Evocation)."
-          },
-          {
-            "name": "Chill Touch",
-            "description": "Wizard cantrip ([object Object])."
-          },
-          {
-            "name": "Control Flames",
-            "description": "Wizard cantrip (Transmutation)."
-          },
-          {
-            "name": "Create Bonfire",
-            "description": "Wizard cantrip (Conjuration)."
-          },
-          {
-            "name": "Dancing Lights",
-            "description": "Wizard cantrip ([object Object])."
-          },
-          {
-            "name": "Fire Bolt",
-            "description": "Wizard cantrip ([object Object])."
-          },
-          {
-            "name": "Friends",
-            "description": "Wizard cantrip (Enchantment)."
-          },
-          {
-            "name": "Frostbite",
-            "description": "Wizard cantrip (Evocation)."
-          },
-          {
-            "name": "Green-Flame Blade",
-            "description": "Wizard cantrip (Evocation)."
-          },
-          {
-            "name": "Gust",
-            "description": "Wizard cantrip (Transmutation)."
-          },
-          {
-            "name": "Infestation",
-            "description": "Wizard cantrip (Conjuration)."
-          },
-          {
-            "name": "Light",
-            "description": "Wizard cantrip ([object Object])."
-          },
-          {
-            "name": "Lightning Lure",
-            "description": "Wizard cantrip (Evocation)."
-          },
-          {
-            "name": "Mage Hand",
-            "description": "Wizard cantrip ([object Object])."
-          },
-          {
-            "name": "Mending",
-            "description": "Wizard cantrip ([object Object])."
-          },
-          {
-            "name": "Message",
-            "description": "Wizard cantrip ([object Object])."
-          },
-          {
-            "name": "Mind Sliver",
-            "description": "Wizard cantrip (Enchantment)."
-          },
-          {
-            "name": "Minor Illusion",
-            "description": "Wizard cantrip ([object Object])."
-          },
-          {
-            "name": "Mold Earth",
-            "description": "Wizard cantrip (Transmutation)."
-          },
-          {
-            "name": "Poison Spray",
-            "description": "Wizard cantrip ([object Object])."
-          },
-          {
-            "name": "Prestidigitation",
-            "description": "Wizard cantrip ([object Object])."
-          },
-          {
-            "name": "Ray of Frost",
-            "description": "Wizard cantrip ([object Object])."
-          },
-          {
-            "name": "Sapping Sting",
-            "description": "Wizard cantrip (Necromancy)."
-          },
-          {
-            "name": "Shape Water",
-            "description": "Wizard cantrip (Transmutation)."
-          },
-          {
-            "name": "Shocking Grasp",
-            "description": "Wizard cantrip ([object Object])."
-          },
-          {
-            "name": "Sword Burst",
-            "description": "Wizard cantrip (Conjuration)."
-          },
-          {
-            "name": "Thunderclap",
-            "description": "Wizard cantrip (Evocation)."
-          },
-          {
-            "name": "Toll the Dead",
-            "description": "Wizard cantrip (Necromancy)."
-          },
-          {
-            "name": "True Strike",
-            "description": "Wizard cantrip ([object Object])."
-          }
-        ]
+        "spellList": "Wizard",
+        "spellLevel": 0
       },
       "Arcane Mastery": {
-        "count": 4,
+        "count": 1,
         "grants": {
           "mode": "spell"
         },
-        "description": "Choose one wizard spell each of 6th, 7th, 8th and 9th level. They are domain spells for you: always prepared, and cast as cleric spells.",
-        "options": [
-          {
-            "name": "Chain Lightning",
-            "description": "Level 6 wizard spell."
-          },
-          {
-            "name": "Circle of Death",
-            "description": "Level 6 wizard spell."
-          },
-          {
-            "name": "Contingency",
-            "description": "Level 6 wizard spell."
-          },
-          {
-            "name": "Create Homunculus",
-            "description": "Level 6 wizard spell."
-          },
-          {
-            "name": "Create Undead",
-            "description": "Level 6 wizard spell."
-          },
-          {
-            "name": "Disintegrate",
-            "description": "Level 6 wizard spell."
-          },
-          {
-            "name": "Eyebite",
-            "description": "Level 6 wizard spell."
-          },
-          {
-            "name": "Flesh to Stone",
-            "description": "Level 6 wizard spell."
-          },
-          {
-            "name": "Freezing Sphere",
-            "description": "Level 6 wizard spell."
-          },
-          {
-            "name": "Globe of Invulnerability",
-            "description": "Level 6 wizard spell."
-          },
-          {
-            "name": "Gravity Fissure",
-            "description": "Level 6 wizard spell."
-          },
-          {
-            "name": "Gravity Sinkhole",
-            "description": "Level 6 wizard spell."
-          },
-          {
-            "name": "Guards and Wards",
-            "description": "Level 6 wizard spell."
-          },
-          {
-            "name": "Instant Summons",
-            "description": "Level 6 wizard spell."
-          },
-          {
-            "name": "Investiture of Flame",
-            "description": "Level 6 wizard spell."
-          },
-          {
-            "name": "Investiture of Ice",
-            "description": "Level 6 wizard spell."
-          },
-          {
-            "name": "Investiture of Stone",
-            "description": "Level 6 wizard spell."
-          },
-          {
-            "name": "Investiture of Wind",
-            "description": "Level 6 wizard spell."
-          },
-          {
-            "name": "Irresistible Dance",
-            "description": "Level 6 wizard spell."
-          },
-          {
-            "name": "Magic Jar",
-            "description": "Level 6 wizard spell."
-          },
-          {
-            "name": "Mass Suggestion",
-            "description": "Level 6 wizard spell."
-          },
-          {
-            "name": "Mental Prison",
-            "description": "Level 6 wizard spell."
-          },
-          {
-            "name": "Move Earth",
-            "description": "Level 6 wizard spell."
-          },
-          {
-            "name": "Tasha's Otherworldly Guise",
-            "description": "Level 6 wizard spell."
-          },
-          {
-            "name": "Programmed Illusion",
-            "description": "Level 6 wizard spell."
-          },
-          {
-            "name": "Scatter",
-            "description": "Level 6 wizard spell."
-          },
-          {
-            "name": "Soul Cage",
-            "description": "Level 6 wizard spell."
-          },
-          {
-            "name": "Summon Fiend",
-            "description": "Level 6 wizard spell."
-          },
-          {
-            "name": "Sunbeam",
-            "description": "Level 6 wizard spell."
-          },
-          {
-            "name": "Tenser's Transformation",
-            "description": "Level 6 wizard spell."
-          },
-          {
-            "name": "True Seeing",
-            "description": "Level 6 wizard spell."
-          },
-          {
-            "name": "Wall of Ice",
-            "description": "Level 6 wizard spell."
-          },
-          {
-            "name": "Arcane Sword",
-            "description": "Level 7 wizard spell."
-          },
-          {
-            "name": "Crown of Stars",
-            "description": "Level 7 wizard spell."
-          },
-          {
-            "name": "Delayed Blast Fireball",
-            "description": "Level 7 wizard spell."
-          },
-          {
-            "name": "Dream of the Blue Veil",
-            "description": "Level 7 wizard spell."
-          },
-          {
-            "name": "Etherealness",
-            "description": "Level 7 wizard spell."
-          },
-          {
-            "name": "Finger of Death",
-            "description": "Level 7 wizard spell."
-          },
-          {
-            "name": "Forcecage",
-            "description": "Level 7 wizard spell."
-          },
-          {
-            "name": "Magnificent Mansion",
-            "description": "Level 7 wizard spell."
-          },
-          {
-            "name": "Mirage Arcane",
-            "description": "Level 7 wizard spell."
-          },
-          {
-            "name": "Plane Shift",
-            "description": "Level 7 wizard spell."
-          },
-          {
-            "name": "Power Word Pain",
-            "description": "Level 7 wizard spell."
-          },
-          {
-            "name": "Prismatic Spray",
-            "description": "Level 7 wizard spell."
-          },
-          {
-            "name": "Project Image",
-            "description": "Level 7 wizard spell."
-          },
-          {
-            "name": "Reverse Gravity",
-            "description": "Level 7 wizard spell."
-          },
-          {
-            "name": "Sequester",
-            "description": "Level 7 wizard spell."
-          },
-          {
-            "name": "Simulacrum",
-            "description": "Level 7 wizard spell."
-          },
-          {
-            "name": "Symbol",
-            "description": "Level 7 wizard spell."
-          },
-          {
-            "name": "Teleport",
-            "description": "Level 7 wizard spell."
-          },
-          {
-            "name": "Whirlwind",
-            "description": "Level 7 wizard spell."
-          },
-          {
-            "name": "Abi-Dalzim's Horrid Wilting",
-            "description": "Level 8 wizard spell."
-          },
-          {
-            "name": "Antimagic Field",
-            "description": "Level 8 wizard spell."
-          },
-          {
-            "name": "Antipathy/Sympathy",
-            "description": "Level 8 wizard spell."
-          },
-          {
-            "name": "Clone",
-            "description": "Level 8 wizard spell."
-          },
-          {
-            "name": "Control Weather",
-            "description": "Level 8 wizard spell."
-          },
-          {
-            "name": "Demiplane",
-            "description": "Level 8 wizard spell."
-          },
-          {
-            "name": "Dominate Monster",
-            "description": "Level 8 wizard spell."
-          },
-          {
-            "name": "Feeblemind",
-            "description": "Level 8 wizard spell."
-          },
-          {
-            "name": "Illusory Dragon",
-            "description": "Level 8 wizard spell."
-          },
-          {
-            "name": "Incendiary Cloud",
-            "description": "Level 8 wizard spell."
-          },
-          {
-            "name": "Maddening Darkness",
-            "description": "Level 8 wizard spell."
-          },
-          {
-            "name": "Maze",
-            "description": "Level 8 wizard spell."
-          },
-          {
-            "name": "Mind Blank",
-            "description": "Level 8 wizard spell."
-          },
-          {
-            "name": "Power Word Stun",
-            "description": "Level 8 wizard spell."
-          },
-          {
-            "name": "Sunburst",
-            "description": "Level 8 wizard spell."
-          },
-          {
-            "name": "Telepathy",
-            "description": "Level 8 wizard spell."
-          },
-          {
-            "name": "Astral Projection",
-            "description": "Level 9 wizard spell."
-          },
-          {
-            "name": "Blade of Disaster",
-            "description": "Level 9 wizard spell."
-          },
-          {
-            "name": "Foresight",
-            "description": "Level 9 wizard spell."
-          },
-          {
-            "name": "Gate",
-            "description": "Level 9 wizard spell."
-          },
-          {
-            "name": "Imprisonment",
-            "description": "Level 9 wizard spell."
-          },
-          {
-            "name": "Mass Polymorph",
-            "description": "Level 9 wizard spell."
-          },
-          {
-            "name": "Meteor Swarm",
-            "description": "Level 9 wizard spell."
-          },
-          {
-            "name": "Power Word Kill",
-            "description": "Level 9 wizard spell."
-          },
-          {
-            "name": "Prismatic Wall",
-            "description": "Level 9 wizard spell."
-          },
-          {
-            "name": "Psychic Scream",
-            "description": "Level 9 wizard spell."
-          },
-          {
-            "name": "Shapechange",
-            "description": "Level 9 wizard spell."
-          },
-          {
-            "name": "Time Stop",
-            "description": "Level 9 wizard spell."
-          },
-          {
-            "name": "True Polymorph",
-            "description": "Level 9 wizard spell."
-          },
-          {
-            "name": "Weird",
-            "description": "Level 9 wizard spell."
-          },
-          {
-            "name": "Wish",
-            "description": "Level 9 wizard spell."
+        "description": "Choose one 6th-level wizard spell. It is a domain spell for you: always prepared, cast as a cleric spell.",
+        "spellList": "Wizard",
+        "spellLevel": 6,
+        "extra": [
+          {
+            "name": "Arcane Mastery: 7th-level spell",
+            "count": 1,
+            "grants": {
+              "mode": "spell"
+            },
+            "spellList": "Wizard",
+            "spellLevel": 7,
+            "description": "Choose one 7th-level wizard spell. It is a domain spell for you: always prepared, cast as a cleric spell."
+          },
+          {
+            "name": "Arcane Mastery: 8th-level spell",
+            "count": 1,
+            "grants": {
+              "mode": "spell"
+            },
+            "spellList": "Wizard",
+            "spellLevel": 8,
+            "description": "Choose one 8th-level wizard spell. It is a domain spell for you: always prepared, cast as a cleric spell."
+          },
+          {
+            "name": "Arcane Mastery: 9th-level spell",
+            "count": 1,
+            "grants": {
+              "mode": "spell"
+            },
+            "spellList": "Wizard",
+            "spellLevel": 9,
+            "description": "Choose one 9th-level wizard spell. It is a domain spell for you: always prepared, cast as a cleric spell."
           }
         ]
       }
@@ -1637,6 +1466,34 @@
           {
             "name": "Undercommon",
             "description": "Language."
+          }
+        ],
+        "extra": [
+          {
+            "name": "Master of Intrigue: Gaming Set",
+            "count": 1,
+            "grants": {
+              "mode": "proficiency"
+            },
+            "description": "Gain proficiency with one gaming set.",
+            "options": [
+              {
+                "name": "Dice Set",
+                "description": "Gaming set."
+              },
+              {
+                "name": "Dragonchess Set",
+                "description": "Gaming set."
+              },
+              {
+                "name": "Playing Card Set",
+                "description": "Gaming set."
+              },
+              {
+                "name": "Three-Dragon Ante Set",
+                "description": "Gaming set."
+              }
+            ]
           }
         ]
       }

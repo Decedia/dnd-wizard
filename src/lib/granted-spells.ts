@@ -4,7 +4,7 @@ import { getCircleSpells, getDomainSpells, getOathSpells, getStaticRaceDetails, 
 import { normalizeDescription } from "./level-up";
 import type { Character } from "./storage";
 
-type SpellOwner = Pick<Character, "class" | "subclass" | "level" | "race" | "raceChoices" | "sources" | "ruleset" | "circleTerrain" | "optionalClassFeatures">;
+type SpellOwner = Pick<Character, "class" | "subclass" | "level" | "race" | "raceChoices" | "featureSelections" | "sources" | "ruleset" | "circleTerrain" | "optionalClassFeatures">;
 
 const upTo = (table: Record<string | number, string[]> | undefined, level: number) =>
   Object.entries(table || {}).flatMap(([lvl, names]) => (Number(lvl) <= level ? names : []));
@@ -19,9 +19,17 @@ export function getGrantedSpellNames(character: SpellOwner): string[] {
   const level = character.level || 1;
   const names: string[] = [];
   if (character.subclass && character.class) {
-    const index = getStaticSubclasses(character.class, [], character.ruleset).find(
+    const subclass = getStaticSubclasses(character.class, [], character.ruleset).find(
       (s) => s.name.toLowerCase() === character.subclass!.toLowerCase()
-    )?.index;
+    );
+    const index = subclass?.index;
+    // Spells picked through a subclass feature (Arcane Initiate, Divine Magic).
+    for (const f of (subclass?.features || []) as any[]) {
+      const grants = f.choiceGrants as { mode: string; spells?: Record<string, string> } | undefined;
+      if (grants?.mode !== "spell" || (f.level ?? 0) > level) continue;
+      const picked = (character.featureSelections?.[`subclass-feature-${f.level}-${f.name}`] || []).flatMap((v) => String(v).split(", ").filter(Boolean));
+      names.push(...(grants.spells ? picked.map((p) => grants.spells![p]).filter(Boolean) : picked));
+    }
     if (index) {
       if (character.class === "Cleric") names.push(...getDomainSpells(index, level));
       if (character.class === "Paladin") names.push(...getOathSpells(index, level));

@@ -951,6 +951,34 @@
         "Banishing Smite",
         "Mass Cure Wounds"
       ]
+    },
+    "lunar-sorcery": {
+      "1": [
+        "Sacred Flame",
+        "Shield",
+        "Ray of Sickness",
+        "Color Spray"
+      ],
+      "3": [
+        "Lesser Restoration",
+        "Blindness/Deafness",
+        "Alter Self"
+      ],
+      "5": [
+        "Dispel Magic",
+        "Vampiric Touch",
+        "Phantom Steed"
+      ],
+      "7": [
+        "Death Ward",
+        "Confusion",
+        "Hallucinatory Terrain"
+      ],
+      "9": [
+        "Telepathic Bond",
+        "Hold Monster",
+        "Mislead"
+      ]
     }
   },
   "subclassFlags": {

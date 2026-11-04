@@ -2476,6 +2476,7 @@ function LevelCard({
           selectionType={info.spellSelectionType}
           allKnownSpells={info.spellSelectionType === "prepare" ? (character.spells || []).filter(s => s.level > 0).map(s => `${s.name}:${s.level}`) : []}
           disabledSpells={Object.entries(allSpellSelections).filter(([l]) => Number(l) > info.level).flatMap(([, s]) => s)}
+          castingLevel={info.level}
         />
       )}
 

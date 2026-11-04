@@ -96,3 +96,53 @@ describe("High Elf cantrip", () => {
     expect(c.spells.map((s) => s.name)).toContain("Shocking Grasp");
   });
 });
+
+describe("subclass picks", () => {
+  const sub = (cls: string, name: string, sources: string[] = []) => getStaticSubclasses(cls, sources).find((s) => s.name === name)!;
+
+  test("a second pick of a feature is its own choice at the same level", () => {
+    const f = sub("Cleric", "Knowledge").features.find((x: any) => x.name === "Blessings of Knowledge: Languages") as any;
+    expect(f.level).toBe(1);
+    expect(f.choicesCount).toBe(2);
+    expect(f.choiceOnly).toBe(true);
+  });
+
+  test("cantrip pickers follow the books", () => {
+    const phb = sub("Cleric", "Arcana Domain", ["PHB", "SCAG"]).features.find((x: any) => x.name === "Arcane Initiate")!;
+    expect(phb.choices!.map((c) => c.name)).toContain("Fire Bolt");
+    expect(phb.choices!.map((c) => c.name)).not.toContain("Booming Blade");
+    const nature = sub("Cleric", "Nature").features.find((x: any) => x.name === "Acolyte of Nature: Cantrip")!;
+    expect(nature.choices!.map((c) => c.name)).toEqual(expect.arrayContaining(["Druidcraft", "Shillelagh"]));
+    expect(nature.choices!.map((c) => c.name)).not.toContain("Fire Bolt");
+  });
+
+  test("picks are granted", async () => {
+    const { applySubclassFeatures } = await import("@/lib/character-creation");
+    const knowledge = applySubclassFeatures(make({
+      class: "Cleric", subclass: "Knowledge", level: 1,
+      featureSelections: { "subclass-feature-1-Blessings of Knowledge": ["Arcana, History"], "subclass-feature-1-Blessings of Knowledge: Languages": ["Draconic, Giant"] },
+    }));
+    expect(knowledge.languages).toEqual(expect.arrayContaining(["Draconic", "Giant"]));
+    expect(knowledge.expertise).toEqual(expect.arrayContaining(["Arcana", "History"]));
+    expect(knowledge.features.map((f) => f.name)).not.toContain("Blessings of Knowledge: Languages");
+
+    const kensei = applySubclassFeatures(make({
+      class: "Monk", subclass: "Way of the Kensei", level: 3, sources: ["PHB", "XGE"],
+      featureSelections: { "subclass-feature-3-Path of the Kensei": ["Longsword"], "subclass-feature-3-Path of the Kensei: Ranged Weapon": ["Shortbow"] },
+    }));
+    expect(kensei.otherProficiencies).toContain("Longsword");
+    expect(kensei.otherProficiencies).toContain("Shortbow");
+  });
+
+  test("Divine Soul affinity gives its spell, free", async () => {
+    const { applySubclassFeatures } = await import("@/lib/character-creation");
+    const c = make({ class: "Sorcerer", subclass: "Divine Soul", level: 1, sources: ["PHB", "XGE"], featureSelections: { "subclass-feature-1-Divine Magic": ["Law"] } });
+    expect(applySubclassFeatures(c).spells.map((s) => s.name)).toContain("Bless");
+    expect(getGrantedSpellNames(c)).toContain("Bless");
+  });
+
+  test("Lunar Sorcery learns every phase's spells", () => {
+    const names = getGrantedSpellNames(make({ class: "Sorcerer", subclass: "Lunar Sorcery", level: 3, sources: ["PHB", "DSotDQ"] }));
+    expect(names).toEqual(expect.arrayContaining(["Sacred Flame", "Shield", "Ray of Sickness", "Color Spray", "Alter Self"]));
+  });
+});
