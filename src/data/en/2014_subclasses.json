@@ -1,6 +1,6 @@
 {
  "generated": "2026-09-20T14:21:05.402Z",
- "total": 116,
+ "total": 118,
  "subclasses": [
   {
    "index": "alchemist",
@@ -139,8 +139,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "source": "EGW",
-   "book": "PHB",
+   "source": "TCE",
+   "book": "TCE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -306,8 +306,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "source": "EGW",
-   "book": "PHB",
+   "source": "TCE",
+   "book": "TCE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -447,8 +447,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "source": "EGW",
-   "book": "PHB",
+   "source": "TCE",
+   "book": "TCE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -614,8 +614,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "source": "EGW",
-   "book": "PHB",
+   "source": "TCE",
+   "book": "TCE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -732,7 +732,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -930,7 +930,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "name": "Path of Wild Magic",
@@ -959,7 +960,7 @@
      "lastUpdated": "2026-09-29"
     },
     {
-     "name": "Wild Magic Surge",
+     "name": "Wild Surge",
      "level": 3,
      "featureType": "Active",
      "actionType": "Bonus Action",
@@ -972,10 +973,11 @@
       "level": 3
      },
      "book": "TCE",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
-     "name": "Bolstering Presence",
+     "name": "Bolstering Magic",
+     "description": "As an action, touch a creature (yourself included) and choose one effect. For 10 minutes, it can roll a d3 and add the number to each attack roll and ability check it makes. Or roll a d3: the creature regains one expended spell slot of that level or lower. You can use this a number of times equal to your proficiency bonus per long rest.",
      "level": 6,
      "featureType": "Active",
      "actionType": "Action",
@@ -983,15 +985,24 @@
       "total": "Proficiency Bonus",
       "recharge": "Long Rest"
      },
-     "summary": "Grant a creature a **1d3** bonus to attack rolls and ability checks, or restore a spell slot of 1st, 2nd, or 3rd level.",
-     "description": "You can harness your wild magic to bolster yourself or a companion. As an action, you can touch a creature (including yourself) and confer one of the following benefits:\n- For 10 minutes, the creature can add a **1d3** roll to any attack roll or ability check it makes.\n- Roll a **1d3** to restore one expended spell slot to the creature of a level equal to or lower than the number rolled.\n\nOnce you confer either benefit, you cannot do so again until you finish a long rest, unless you expend a use of your rage to do so.",
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "Action: touch a creature to add a d3 to its attacks and checks for 10 minutes, or restore a low-level spell slot.",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
      "source": {
       "type": "subclass",
       "name": "Path of Wild Magic",
       "level": 6
      },
      "book": "TCE",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
      "name": "Unstable Backlash",
@@ -1023,7 +1034,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "class": "Barbarian",
@@ -1139,7 +1151,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -1321,9 +1333,9 @@
     },
     {
      "name": "Warrior of the Gods",
-     "description": "At 6th level, the divine power that fuels your rage allows you to shrug off fatal blows. When you would drop to 0 hit points as a result of taking damage, you can make a Charisma saving throw (DC 5 + the damage taken). On a success, you drop to 1 hit point instead.\n\nAfter the saving throw succeeds, you can't use this feature again until you finish a long rest.",
-     "level": 6,
-     "featureType": "Active",
+     "description": "If a spell would bring you back to life (not as undead), its caster needs no material components to cast it on you.",
+     "level": 3,
+     "featureType": "Passive",
      "actionType": null,
      "uses": null,
      "requirement": null,
@@ -1332,7 +1344,36 @@
      "effect": null,
      "onUse": null,
      "scaling": null,
-     "summary": "When dropping to 0 hit points, make a Charisma saving throw (DC 5 + damage taken) to drop to 1 hit point instead.",
+     "summary": "Spells that restore you to life need no material components.",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Zealot",
+      "level": 3
+     },
+     "book": "XGE",
+     "lastUpdated": "2026-11-04"
+    },
+    {
+     "name": "Fanatical Focus",
+     "description": "Once per rage, if you fail a saving throw while raging, you can reroll it. You must use the new roll.",
+     "level": 6,
+     "featureType": "Passive",
+     "actionType": null,
+     "uses": {
+      "total": 1,
+      "recharge": "Rage"
+     },
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "Once per rage, reroll a failed saving throw.",
      "grantsSpells": false,
      "grantsAttack": false,
      "grantsSkills": false,
@@ -1343,22 +1384,25 @@
       "level": 6
      },
      "book": "XGE",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
-     "name": "Fanatical Focus",
-     "description": "At 10th level, the divine power that fuels your rage can help you push through harm. If you fail a saving throw while raging, you can reroll it, and you must use the new roll. You can use this ability only once per rage.",
+     "name": "Zealous Presence",
+     "description": "As a bonus action, you let out a battle cry. Up to ten creatures of your choice within 60 feet that can hear you gain advantage on attack rolls and saving throws until the start of your next turn. You can't use this again until you finish a long rest.",
      "level": 10,
      "featureType": "Active",
-     "actionType": null,
-     "uses": null,
+     "actionType": "Bonus Action",
+     "uses": {
+      "total": 1,
+      "recharge": "Long Rest"
+     },
      "requirement": null,
      "duration": null,
      "endsIf": null,
      "effect": null,
      "onUse": null,
      "scaling": null,
-     "summary": "Reroll a failed saving throw once per rage; you must use the new roll.",
+     "summary": "Bonus action: up to ten allies within 60 feet gain advantage on attacks and saves until your next turn.",
      "grantsSpells": false,
      "grantsAttack": false,
      "grantsSkills": false,
@@ -1369,14 +1413,14 @@
       "level": 10
      },
      "book": "XGE",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
-     "name": "Zealous Presence",
-     "description": "At 14th level, you learn to channel divine power to inspire zealotry in others. As a bonus action, you unleash a battle cry infused with divine energy. Up to ten creatures of your choice within 60 feet of you that can hear you have advantage on attack rolls and saving throws until the start of your next turn.\n\nOnce you use this feature, you can't use it again until you finish a long rest.",
+     "name": "Rage Beyond Death",
+     "description": "While raging, dropping to 0 hit points doesn't knock you unconscious. You still make death saving throws and take the normal effects of damage at 0 hit points. If you would die from failed death saving throws, you don't die until your rage ends, and then only if you still have 0 hit points.",
      "level": 14,
-     "featureType": "Active",
-     "actionType": "Bonus Action",
+     "featureType": "Passive",
+     "actionType": null,
      "uses": null,
      "requirement": null,
      "duration": null,
@@ -1384,7 +1428,7 @@
      "effect": null,
      "onUse": null,
      "scaling": null,
-     "summary": "Up to ten chosen creatures within 60 feet who can hear you gain advantage on attack rolls and saving throws until your next turn.",
+     "summary": "While raging, you stay conscious at 0 hit points and can't die until the rage ends.",
      "grantsSpells": false,
      "grantsAttack": false,
      "grantsSkills": false,
@@ -1395,12 +1439,272 @@
       "level": 14
      },
      "book": "XGE",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
+  },
+  {
+   "class": "Barbarian",
+   "classIndex": "barbarian",
+   "index": "battlerager",
+   "name": "Path of the Battlerager",
+   "flavorText": "Primal Path",
+   "description": "Dwarf barbarians who fight in spiked armor and throw themselves into the thick of battle. Only dwarves can follow this path.",
+   "features": [
+    {
+     "name": "Battlerager Armor",
+     "description": "You can use spiked armor as a weapon. While wearing it and raging, you can make one melee attack with the spikes as a bonus action against a creature within 5 feet. It deals 1d4 piercing damage and uses Strength. When you use the Attack action to grapple a creature, it takes 3 piercing damage if the grapple succeeds.",
+     "level": 3,
+     "featureType": "Active",
+     "actionType": "Bonus Action",
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "Spiked armor: bonus action spike attack (1d4 piercing) while raging; 3 piercing on a successful grapple.",
+     "grantsSpells": false,
+     "grantsAttack": true,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Path of the Battlerager",
+      "level": 3
+     },
+     "book": "SCAG",
+     "lastUpdated": "2026-11-04"
+    },
+    {
+     "name": "Reckless Abandon",
+     "description": "When you use Reckless Attack while raging, you gain temporary hit points equal to your Constitution modifier (minimum 1). They vanish when your rage ends.",
+     "level": 6,
+     "featureType": "Passive",
+     "actionType": null,
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "Reckless Attack while raging grants temporary hit points equal to your Constitution modifier.",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Path of the Battlerager",
+      "level": 6
+     },
+     "book": "SCAG",
+     "lastUpdated": "2026-11-04"
+    },
+    {
+     "name": "Battlerager Charge",
+     "description": "While raging, you can take the Dash action as a bonus action.",
+     "level": 10,
+     "featureType": "Active",
+     "actionType": "Bonus Action",
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "Dash as a bonus action while raging.",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Path of the Battlerager",
+      "level": 10
+     },
+     "book": "SCAG",
+     "lastUpdated": "2026-11-04"
+    },
+    {
+     "name": "Spiked Retribution",
+     "description": "When a creature within 5 feet hits you with a melee attack, it takes 3 piercing damage if you are raging, not incapacitated, and wearing spiked armor.",
+     "level": 14,
+     "featureType": "Passive",
+     "actionType": null,
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "Melee attackers within 5 feet take 3 piercing damage while you rage in spiked armor.",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Path of the Battlerager",
+      "level": 14
+     },
+     "book": "SCAG",
+     "lastUpdated": "2026-11-04"
+    }
+   ],
+   "source": "SCAG",
+   "book": "SCAG",
+   "lastUpdated": "2026-11-04"
+  },
+  {
+   "class": "Barbarian",
+   "classIndex": "barbarian",
+   "index": "giant",
+   "name": "Path of the Giant",
+   "flavorText": "Primal Path",
+   "description": "Barbarians who draw on the primal power of giants, growing in size and wreathing their weapons in elemental energy.",
+   "features": [
+    {
+     "name": "Giant's Power",
+     "description": "You learn to speak, read and write Giant, or another language if you already know it. You also learn one cantrip: druidcraft or thaumaturgy. Wisdom is your spellcasting ability for it.",
+     "level": 3,
+     "featureType": "Passive",
+     "actionType": null,
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "Learn Giant and one cantrip: druidcraft or thaumaturgy (Wisdom).",
+     "grantsSpells": true,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Path of the Giant",
+      "level": 3
+     },
+     "book": "BGG",
+     "lastUpdated": "2026-11-04"
+    },
+    {
+     "name": "Giant's Havoc",
+     "description": "While raging: when you hit with a ranged attack using a thrown weapon and Strength, add your Rage damage bonus to the damage. Your reach grows by 5 feet, and if you are Small or Medium you become Large when there is room.",
+     "level": 3,
+     "featureType": "Passive",
+     "actionType": null,
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "While raging: Rage damage on Strength thrown attacks, +5 feet reach, and you can become Large.",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Path of the Giant",
+      "level": 3
+     },
+     "book": "BGG",
+     "lastUpdated": "2026-11-04"
+    },
+    {
+     "name": "Elemental Cleaver",
+     "description": "When you enter your rage, choose a weapon you are holding and acid, cold, fire, lightning or thunder. While you rage, the weapon deals that damage type, deals an extra 1d6 damage of that type, gains the thrown property (20/60) and flies back to your hand after it is thrown. On later turns of the rage you can change the damage type as a bonus action.",
+     "level": 6,
+     "featureType": "Active",
+     "actionType": null,
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "While raging, your weapon deals a chosen element, +1d6 of it, and can be thrown and return.",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Path of the Giant",
+      "level": 6
+     },
+     "book": "BGG",
+     "lastUpdated": "2026-11-04"
+    },
+    {
+     "name": "Mighty Impel",
+     "description": "While raging, as a bonus action, choose a Medium or smaller creature within your reach and move it to an unoccupied space you can see within 30 feet. An unwilling creature makes a Strength saving throw against DC 8 + your proficiency bonus + your Strength modifier to resist.",
+     "level": 10,
+     "featureType": "Active",
+     "actionType": "Bonus Action",
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "Bonus action while raging: hurl a Medium or smaller creature up to 30 feet.",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Path of the Giant",
+      "level": 10
+     },
+     "book": "BGG",
+     "lastUpdated": "2026-11-04"
+    },
+    {
+     "name": "Demiurgic Colossus",
+     "description": "The reach bonus from Giant's Havoc becomes 10 feet, and you can choose to become Large or Huge. Mighty Impel can target Large or smaller creatures, and the extra damage from Elemental Cleaver becomes 2d6.",
+     "level": 14,
+     "featureType": "Passive",
+     "actionType": null,
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "+10 feet reach and Large or Huge while raging; Impel up to Large; Cleaver deals 2d6.",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Path of the Giant",
+      "level": 14
+     },
+     "book": "BGG",
+     "lastUpdated": "2026-11-04"
+    }
+   ],
+   "source": "BGG",
+   "book": "BGG",
+   "lastUpdated": "2026-11-04"
   },
   {
    "name": "College of Creation",
@@ -1476,7 +1780,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "name": "College of Eloquence",
@@ -1567,7 +1872,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "class": "Bard",
@@ -1605,18 +1911,50 @@
     },
     {
      "name": "Enthralling Performance",
-     "description": "Starting at 6th level, you can use musical or oratorial performance to weave a song of fey magic that charms your listeners.\n\nIf you perform for at least 1 minute, you can then choose a number of humanoids within 60 feet of you who watched or listened to your performance, up to a number equal to your Charisma modifier (minimum of one). Each target must succeed on a Wisdom saving throw against your spell save DC or be charmed by you.\n\nWhile charmed, the target idolates you and hinders anyone attempting to harm you, but it will not obey your orders. This effect ends on a target after 1 hour, if it takes damage, if you attack it, or if it witnesses you attacking its allies.\n\nOnce you use this feature, you can't use it again until you finish a short or long rest.",
-     "level": 6,
+     "description": "After you perform for at least 1 minute, choose humanoids that watched and listened, up to your Charisma modifier. Each must succeed on a Wisdom saving throw against your spell save DC or be charmed by you for 1 hour. While charmed this way, a target idolizes you and hinders anyone who opposes you. Once per short or long rest.",
+     "level": 3,
      "featureType": "Active",
      "actionType": null,
-     "uses": null,
+     "uses": {
+      "total": 1,
+      "recharge": "Short/Long Rest"
+     },
      "requirement": null,
      "duration": null,
      "endsIf": null,
      "effect": null,
      "onUse": null,
      "scaling": null,
-     "summary": "Perform for 1 minute to charm a number of humanoids within 60 feet equal to your Charisma modifier (minimum one) upon a failed Wisdom saving throw.",
+     "summary": "After a 1-minute performance, charm watching humanoids for 1 hour (Wisdom save).",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "College of Glamour",
+      "level": 3
+     },
+     "book": "XGE",
+     "lastUpdated": "2026-11-04"
+    },
+    {
+     "name": "Mantle of Majesty",
+     "description": "As a bonus action, you cast command without using a spell slot and take on an unearthly appearance for 1 minute (concentration). Until it ends, you can cast command as a bonus action on each of your turns without a spell slot. Creatures charmed by you automatically fail the saving throw. Once per long rest.",
+     "level": 6,
+     "featureType": "Active",
+     "actionType": "Bonus Action",
+     "uses": {
+      "total": 1,
+      "recharge": "Long Rest"
+     },
+     "requirement": null,
+     "duration": "1 minute (concentration)",
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "For 1 minute, cast command as a bonus action each turn without a slot.",
      "grantsSpells": false,
      "grantsAttack": false,
      "grantsSkills": false,
@@ -1627,22 +1965,25 @@
       "level": 6
      },
      "book": "XGE",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
-     "name": "Mantle of Majesty",
-     "description": "At 14th level, you gain the ability to cloak yourself in a fey majesty.\n\nAs a bonus action, you cast command, requiring no spell slot or material components, and you take on an appearance of unearthly beauty (as the alter self spell, but only affecting your appearance). The spell lasts for 1 minute.\n\nDuring that time, you can cast command as a bonus action on each of your turns, without expending a spell slot. Any creature charmed by you automatically fails its saving throw against the command spell you cast with this feature.\n\nOnce you use this bonus action, you can't use it again until you finish a long rest, unless you expend a spell slot of 3rd level or higher to use it again.",
+     "name": "Unbreakable Majesty",
+     "description": "As a bonus action, you take on a majestic presence for 1 minute. The first time each turn a creature attacks you, it must make a Charisma saving throw against your spell save DC. On a failure, it can't attack you this turn and must pick a new target or waste the attack. On a success, it has disadvantage on saving throws against your spells on your next turn. Once per short or long rest.",
      "level": 14,
      "featureType": "Active",
      "actionType": "Bonus Action",
-     "uses": null,
+     "uses": {
+      "total": 1,
+      "recharge": "Short/Long Rest"
+     },
      "requirement": null,
-     "duration": null,
+     "duration": "1 minute",
      "endsIf": null,
      "effect": null,
      "onUse": null,
      "scaling": null,
-     "summary": "Cast command as a bonus action for 1 minute; creatures charmed by you automatically fail their saving throws against it.",
+     "summary": "For 1 minute, attackers must pass a Charisma save or pick another target.",
      "grantsSpells": false,
      "grantsAttack": false,
      "grantsSkills": false,
@@ -1653,11 +1994,11 @@
       "level": 14
      },
      "book": "XGE",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -1717,6 +2058,32 @@
      },
      "book": "VRGR",
      "lastUpdated": "2026-09-29"
+    },
+    {
+     "name": "Guiding Whispers",
+     "description": "You learn the guidance cantrip, and it has a range of 60 feet when you cast it. It doesn't count against your cantrips known.",
+     "level": 3,
+     "featureType": "Passive",
+     "actionType": null,
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "Learn guidance with a 60-foot range.",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "College of Spirits",
+      "level": 3
+     },
+     "book": "VRGR",
+     "lastUpdated": "2026-11-04"
     },
     {
      "name": "Spiritual Focus (Improved)",
@@ -1798,7 +2165,7 @@
     }
    ],
    "source": "VRGR",
-   "book": "PHB",
+   "book": "VRGR",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -1848,11 +2215,6 @@
       {
        "name": "Two-Weapon Fighting",
        "description": "When you engage in two-weapon fighting, you can add your ability modifier to the damage of the second attack.",
-       "lastUpdated": "2026-09-29"
-      },
-      {
-       "name": "Great Weapon Fighting",
-       "description": "When you roll a 1 or 2 on a damage die for an attack you make with a melee weapon that you are wielding with two hands, you can reroll the die and must use the new roll.",
        "lastUpdated": "2026-09-29"
       }
      ],
@@ -1932,7 +2294,7 @@
      "lastUpdated": "2026-09-29"
     },
     {
-     "name": "Master Flourish",
+     "name": "Master's Flourish",
      "description": "Starting at 14th level, whenever you use a Blade Flourish option, you can roll a **d6** and use it instead of expending a Bardic Inspiration die.",
      "level": 14,
      "featureType": "Active",
@@ -1955,11 +2317,11 @@
       "level": 14
      },
      "book": "XGE",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -1998,18 +2360,50 @@
     },
     {
      "name": "Words of Terror",
-     "description": "At 6th level, you can weave words of dread to frighten a creature. If you speak to a humanoid alone for at least 1 minute, you can then attempt to seed paranoia in its mind. At the end of the conversation, the target must make a Wisdom saving throw against your spell save DC.\n\nOn a failed save, the target is frightened of you or another creature of your choice. The frightened condition lasts for 1 hour, until the target is attacked or damaged, or until the target witnesses its allies being attacked or damaged. If the target succeeds on the saving throw, the target doesn't suspect that you tried to frighten it.\n\nOnce you use this feature, you can't use it again until you finish a short or long rest.",
-     "level": 6,
+     "description": "If you speak to a humanoid alone for at least 1 minute, it must succeed on a Wisdom saving throw against your spell save DC or be frightened of you or another creature of your choice for 1 hour. It ends early if the target is attacked or damaged or sees an ally attacked or damaged. Once per short or long rest.",
+     "level": 3,
      "featureType": "Active",
      "actionType": null,
-     "uses": null,
+     "uses": {
+      "total": 1,
+      "recharge": "Short/Long Rest"
+     },
      "requirement": null,
      "duration": null,
      "endsIf": null,
      "effect": null,
      "onUse": null,
      "scaling": null,
-     "summary": "Speak alone with a humanoid for 1 minute to force a Wisdom saving throw or frighten them for 1 hour.",
+     "summary": "After 1 minute alone with a humanoid, frighten it for 1 hour (Wisdom save).",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "College of Whispers",
+      "level": 3
+     },
+     "book": "XGE",
+     "lastUpdated": "2026-11-04"
+    },
+    {
+     "name": "Mantle of Whispers",
+     "description": "When a humanoid dies within 30 feet of you, you can use your reaction to capture its shadow. As an action, you can then take on its persona for 1 hour: you look like it and know general facts about its life, though not its secrets. A creature can see through it with a Wisdom (Insight) check against your Charisma (Deception) check. Once per short or long rest.",
+     "level": 6,
+     "featureType": "Active",
+     "actionType": "Reaction",
+     "uses": {
+      "total": 1,
+      "recharge": "Short/Long Rest"
+     },
+     "requirement": null,
+     "duration": "1 hour",
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "Capture a dying humanoid's shadow and wear its persona for 1 hour.",
      "grantsSpells": false,
      "grantsAttack": false,
      "grantsSkills": false,
@@ -2020,22 +2414,25 @@
       "level": 6
      },
      "book": "XGE",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
-     "name": "Mantle of Whispers",
-     "description": "At 14th level, you gain the ability to adopt a humanoid's persona. When a humanoid dies within 30 feet of you, you can magically capture its shadow using your reaction. You retain this shadow until you use it or finish a long rest.\n\nYou can use the shadow as a disguise, as the disguise self spell, but it affects only your appearance. You can also use the shadow to gain information about the creature, as the speak with dead spell, but you can only ask one question.\n\nOnce you use this feature, you can't use it again until you finish a short or long rest.",
+     "name": "Shadow Lore",
+     "description": "As an action, you whisper to a creature within 30 feet that can hear you and shares a language with you. It must succeed on a Wisdom saving throw against your spell save DC or be charmed by you for 8 hours. It believes you know its deepest secret and obeys your commands as long as they don't put it in danger. Once per long rest.",
      "level": 14,
      "featureType": "Active",
-     "actionType": "Reaction",
-     "uses": null,
+     "actionType": "Action",
+     "uses": {
+      "total": 1,
+      "recharge": "Long Rest"
+     },
      "requirement": null,
-     "duration": null,
+     "duration": "8 hours",
      "endsIf": null,
      "effect": null,
      "onUse": null,
      "scaling": null,
-     "summary": "Use your reaction to capture the shadow of a humanoid that dies within 30 feet to use as a disguise or for questioning.",
+     "summary": "Action: charm a creature for 8 hours; it obeys you, fearing you know its secret.",
      "grantsSpells": false,
      "grantsAttack": false,
      "grantsSkills": false,
@@ -2046,11 +2443,11 @@
       "level": 14
      },
      "book": "XGE",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -2117,18 +2514,6 @@
      "name": "Additional Magical Secrets",
      "description": "At 6th level, you learn two spells of your choice from any class. A spell you choose must be a cantrip or a spell of a level you can cast, as shown on the Bard table. The chosen spells count as bard spells for you but do not count against the number of bard spells you know.",
      "level": 6,
-     "choices": [
-      {
-       "name": "spell1",
-       "description": "Choose one spell from any class.",
-       "lastUpdated": "2026-09-29"
-      },
-      {
-       "name": "spell2",
-       "description": "Choose another spell from any class.",
-       "lastUpdated": "2026-09-29"
-      }
-     ],
      "featureType": "Active",
      "actionType": null,
      "uses": null,
@@ -2392,7 +2777,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "SCAG"
   },
   {
    "name": "Death Domain",
@@ -2501,7 +2887,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "DMG"
   },
   {
    "class": "Cleric",
@@ -2512,8 +2899,8 @@
    "description": "The gods of the forge are patrons of artisans who work with metal, from a humble blacksmith to an elven smith who mithral. The gods of the forge teach that, with patience and hard work, even the most intractable metal can be transformed from a lump of iron into a beautiful object. Clerics of the forge domain are the divine embodiment of the power of the forge.",
    "features": [
     {
-     "name": "Bonus Proficiency",
-     "description": "When you choose this domain at 1st level, you gain proficiency with heavy armor and smith's tools.",
+     "name": "Bonus Proficiencies",
+     "description": "You gain proficiency with heavy armor and smith's tools.",
      "level": 1,
      "featureType": "Active",
      "actionType": null,
@@ -2524,7 +2911,7 @@
      "effect": null,
      "onUse": null,
      "scaling": null,
-     "summary": "Gain proficiency with heavy armor and smith's tools.",
+     "summary": "Proficiency with heavy armor and smith's tools.",
      "grantsSpells": false,
      "grantsAttack": false,
      "grantsSkills": true,
@@ -2535,7 +2922,7 @@
       "level": 1
      },
      "book": "XGE",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
      "name": "Blessing of the Forge",
@@ -2669,7 +3056,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -2680,32 +3067,6 @@
    "flavorText": "Divine Domain",
    "description": "Gods of the grave watch over the line between life and death. To these deities, death and the afterlife are a foundational part of the multiverse. To desecrate the peace of the dead is an abomination. Deities of the grave include Kelemvor, Wee Jas, and the ancestors of many cultures.",
    "features": [
-    {
-     "name": "Bonus Proficiency",
-     "description": "When you choose this domain at 1st level, you gain proficiency with heavy armor.",
-     "level": 1,
-     "featureType": "Active",
-     "actionType": null,
-     "uses": null,
-     "requirement": null,
-     "duration": null,
-     "endsIf": null,
-     "effect": null,
-     "onUse": null,
-     "scaling": null,
-     "summary": "Gain proficiency with heavy armor.",
-     "grantsSpells": false,
-     "grantsAttack": false,
-     "grantsSkills": true,
-     "grantsProficiency": true,
-     "source": {
-      "type": "subclass",
-      "name": "Grave Domain",
-      "level": 1
-     },
-     "book": "XGE",
-     "lastUpdated": "2026-09-29"
-    },
     {
      "name": "Circle of Mortality",
      "description": "At 1st level, you gain the ability to manipulate the line between life and death. When you would normally roll one or more dice to restore hit points to a creature at 0 hit points, you instead use the highest number possible for each die.\n\nIn addition, you learn the spare the dying cantrip, which doesn't count against your number of cantrips known. For you, it has a range of 30 feet, and you can cast it as a bonus action.",
@@ -2811,10 +3172,10 @@
      "lastUpdated": "2026-09-29"
     },
     {
-     "name": "Divine Strike",
-     "description": "At 8th level, you gain the ability to infuse your weapon strikes with divine energy. Once on each of your turns when you hit a creature with a weapon attack, you can cause the attack to deal an extra **1d8** necrotic damage.\n\nWhen you reach 14th level, the extra damage increases to **2d8**.",
+     "name": "Potent Spellcasting",
+     "description": "You add your Wisdom modifier to the damage you deal with any cleric cantrip.",
      "level": 8,
-     "featureType": "Active",
+     "featureType": "Passive",
      "actionType": null,
      "uses": null,
      "requirement": null,
@@ -2823,9 +3184,9 @@
      "effect": null,
      "onUse": null,
      "scaling": null,
-     "summary": "Once on each of your turns, deal an extra 1d8 necrotic damage when you hit a creature with a weapon attack.",
+     "summary": "Add your Wisdom modifier to cleric cantrip damage.",
      "grantsSpells": false,
-     "grantsAttack": true,
+     "grantsAttack": false,
      "grantsSkills": false,
      "grantsProficiency": false,
      "source": {
@@ -2834,7 +3195,7 @@
       "level": 8
      },
      "book": "XGE",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
      "name": "Keeper of Souls",
@@ -2864,7 +3225,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -3344,7 +3705,7 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "source": "SCAG",
+   "source": "PHB",
    "book": "PHB",
    "lastUpdated": "2026-09-29"
   },
@@ -3383,11 +3744,11 @@
      "lastUpdated": "2026-09-29"
     },
     {
-     "name": "Charm Animals and Plants",
-     "description": "Starting at 1st level, you can use your action to charm one beast or plant creature within **30 feet** of you that can see or hear you. The target must succeed on a Wisdom saving throw or be charmed by you for **1 minute** or until you or your allies damage it.",
+     "name": "Bonus Proficiency",
+     "description": "You gain proficiency with heavy armor.",
      "level": 1,
-     "featureType": "Active",
-     "actionType": "Action",
+     "featureType": "Passive",
+     "actionType": null,
      "uses": null,
      "requirement": null,
      "duration": null,
@@ -3395,18 +3756,18 @@
      "effect": null,
      "onUse": null,
      "scaling": null,
-     "summary": "Use an action to charm one beast or plant within 30 feet that can see or hear you.",
+     "summary": "Proficiency with heavy armor.",
      "grantsSpells": false,
      "grantsAttack": false,
      "grantsSkills": false,
-     "grantsProficiency": false,
+     "grantsProficiency": true,
      "source": {
       "type": "subclass",
       "name": "Nature",
       "level": 1
      },
      "book": "PHB",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
      "name": "Channel Divinity: Charm Animals and Plants",
@@ -3461,10 +3822,10 @@
      "lastUpdated": "2026-09-29"
     },
     {
-     "name": "Potent Spellcasting",
-     "description": "Starting at 8th level, you add your Wisdom modifier to the damage rolls of your cleric spells.",
+     "name": "Divine Strike",
+     "description": "Once on each of your turns when you hit a creature with a weapon attack, you can deal an extra 1d8 cold, fire or lightning damage (your choice). The extra damage becomes 2d8 at 14th level.",
      "level": 8,
-     "featureType": "Active",
+     "featureType": "Passive",
      "actionType": null,
      "uses": null,
      "requirement": null,
@@ -3473,8 +3834,8 @@
      "effect": null,
      "onUse": null,
      "scaling": null,
-     "summary": "Add your Wisdom modifier to the damage rolls of your cleric spells.",
-     "grantsSpells": true,
+     "summary": "Once per turn, a weapon hit deals an extra 1d8 cold, fire or lightning damage (2d8 at 14th level).",
+     "grantsSpells": false,
      "grantsAttack": false,
      "grantsSkills": false,
      "grantsProficiency": false,
@@ -3484,7 +3845,7 @@
       "level": 8
      },
      "book": "PHB",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
      "name": "Master of Nature",
@@ -3630,7 +3991,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "name": "Peace Domain",
@@ -3745,7 +4107,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "name": "Tempest",
@@ -3860,10 +4223,10 @@
      "lastUpdated": "2026-09-29"
     },
     {
-     "name": "Potent Spellcasting",
-     "description": "Starting at 8th level, you add your Wisdom modifier to the damage rolls of your cleric spells.",
+     "name": "Divine Strike",
+     "description": "Once on each of your turns when you hit a creature with a weapon attack, you can deal an extra 1d8 thunder damage. The extra damage becomes 2d8 at 14th level.",
      "level": 8,
-     "featureType": "Active",
+     "featureType": "Passive",
      "actionType": null,
      "uses": null,
      "requirement": null,
@@ -3872,8 +4235,8 @@
      "effect": null,
      "onUse": null,
      "scaling": null,
-     "summary": "Add your Wisdom modifier to the damage rolls of your cleric spells.",
-     "grantsSpells": true,
+     "summary": "Once per turn, a weapon hit deals an extra 1d8 thunder damage (2d8 at 14th level).",
+     "grantsSpells": false,
      "grantsAttack": false,
      "grantsSkills": false,
      "grantsProficiency": false,
@@ -3883,7 +4246,7 @@
       "level": 8
      },
      "book": "PHB",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
      "name": "Stormborn",
@@ -4003,32 +4366,6 @@
      "lastUpdated": "2026-09-29"
     },
     {
-     "name": "Potent Spellcasting",
-     "description": "Starting at 8th level, you add your Wisdom modifier to the damage rolls of your cleric spells.",
-     "level": 8,
-     "featureType": "Active",
-     "actionType": null,
-     "uses": null,
-     "requirement": null,
-     "duration": null,
-     "endsIf": null,
-     "effect": null,
-     "onUse": null,
-     "scaling": null,
-     "summary": "Add your Wisdom modifier to the damage rolls of your cleric spells.",
-     "grantsSpells": true,
-     "grantsAttack": false,
-     "grantsSkills": false,
-     "grantsProficiency": false,
-     "source": {
-      "type": "subclass",
-      "name": "Trickery",
-      "level": 8
-     },
-     "book": "SCAG",
-     "lastUpdated": "2026-09-29"
-    },
-    {
      "name": "Divine Strike",
      "description": "At 8th level, you gain the ability to infuse your weapon strikes with divine energy. Once on each of your turns when you hit a creature with a weapon attack, you can cause the attack to deal an extra **1d8** radiant damage to the target.\n\nWhen you reach 14th level, the extra damage increases to **2d8**.",
      "level": 8,
@@ -4081,7 +4418,7 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "source": "SCAG",
+   "source": "PHB",
    "book": "PHB",
    "lastUpdated": "2026-09-29"
   },
@@ -4213,7 +4550,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "name": "War",
@@ -4328,10 +4666,10 @@
      "lastUpdated": "2026-09-29"
     },
     {
-     "name": "Potent Spellcasting",
-     "description": "Starting at 8th level, you add your Wisdom modifier to the damage rolls of your cleric spells.",
+     "name": "Divine Strike",
+     "description": "Once on each of your turns when you hit a creature with a weapon attack, you can deal an extra 1d8 damage of the same type as the weapon's damage. The extra damage becomes 2d8 at 14th level.",
      "level": 8,
-     "featureType": "Active",
+     "featureType": "Passive",
      "actionType": null,
      "uses": null,
      "requirement": null,
@@ -4340,8 +4678,8 @@
      "effect": null,
      "onUse": null,
      "scaling": null,
-     "summary": "Add your Wisdom modifier to the damage rolls of your cleric spells.",
-     "grantsSpells": true,
+     "summary": "Once per turn, a weapon hit deals an extra 1d8 damage of the weapon's type (2d8 at 14th level).",
+     "grantsSpells": false,
      "grantsAttack": false,
      "grantsSkills": false,
      "grantsProficiency": false,
@@ -4350,8 +4688,8 @@
       "name": "War",
       "level": 8
      },
-     "book": "SCAG",
-     "lastUpdated": "2026-09-29"
+     "book": "PHB",
+     "lastUpdated": "2026-11-04"
     },
     {
      "name": "Avatar of Battle",
@@ -4380,7 +4718,7 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "source": "SCAG",
+   "source": "PHB",
    "book": "PHB",
    "lastUpdated": "2026-09-29"
   },
@@ -4498,7 +4836,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -4601,7 +4939,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "name": "Circle of Stars",
@@ -4687,150 +5026,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
-  },
-  {
-   "class": "Druid",
-   "classIndex": "druid",
-   "index": "circle-of-the-sea",
-   "name": "Circle of the Sea",
-   "flavorText": "The Circle of the Sea comprises druids who draw their power from the vast oceans and the crushing depths below. These guardians are perfectly at home in the water, commanding the shifting tides and the creatures that dwell within them.",
-   "description": "The Circle of the Sea is a druid circle that draws power from the ocean and its depths. These druids are at home in the water, and they command the tides and the creatures within them.",
-   "features": [
-    {
-     "name": "Oceanic Resilience",
-     "description": "Starting at 2nd level, you can breathe air and water, and you have a swimming speed equal to your walking speed.",
-     "level": 2,
-     "featureType": "Passive",
-     "actionType": null,
-     "uses": null,
-     "requirement": null,
-     "duration": "Permanent",
-     "endsIf": null,
-     "effect": null,
-     "onUse": null,
-     "scaling": null,
-     "summary": "You can breathe air and water, and your swimming speed equals your walking speed.",
-     "grantsSpells": false,
-     "grantsAttack": false,
-     "grantsSkills": false,
-     "grantsProficiency": false,
-     "source": {
-      "type": "subclass",
-      "name": "Circle of the Sea",
-      "level": 2
-     },
-     "book": "MPMM",
-     "lastUpdated": "2026-09-29"
-    },
-    {
-     "name": "Wrath of the Sea",
-     "description": "Starting at 2nd level, you can use your action to magically summon a watery spray that lashes out at nearby creatures. Each creature within **30 feet** of you that you can see must make a Dexterity saving throw against your druid spell save DC.\n\nOn a failed save, a creature takes **2d6** bludgeoning damage and is pushed **10 feet** away from you. On a successful save, a creature takes half as much damage and isn't pushed.",
-     "level": 2,
-     "featureType": "Active",
-     "actionType": null,
-     "uses": null,
-     "requirement": null,
-     "duration": "Instant",
-     "endsIf": null,
-     "effect": null,
-     "onUse": null,
-     "scaling": null,
-     "summary": "Use an action to deal 2d6 bludgeoning damage and push creatures 10 feet away.",
-     "grantsSpells": false,
-     "grantsAttack": false,
-     "grantsSkills": false,
-     "grantsProficiency": false,
-     "source": {
-      "type": "subclass",
-      "name": "Circle of the Sea",
-      "level": 2
-     },
-     "book": "MPMM",
-     "lastUpdated": "2026-09-29"
-    },
-    {
-     "name": "Elemental Wild Shape",
-     "description": "At 6th level, you can expend two uses of Wild Shape instead of one to transform into a water elemental or a steamweird.",
-     "level": 6,
-     "featureType": "Active",
-     "actionType": null,
-     "uses": null,
-     "requirement": null,
-     "duration": null,
-     "endsIf": null,
-     "effect": null,
-     "onUse": null,
-     "scaling": null,
-     "summary": "Expend two uses of Wild Shape to transform into a water elemental or a steamweird.",
-     "grantsSpells": false,
-     "grantsAttack": false,
-     "grantsSkills": false,
-     "grantsProficiency": false,
-     "source": {
-      "type": "subclass",
-      "name": "Circle of the Sea",
-      "level": 6
-     },
-     "book": "MPMM",
-     "lastUpdated": "2026-09-29"
-    },
-    {
-     "name": "Aquatic Master",
-     "description": "Starting at 10th level, you have advantage on attack rolls against creatures that are underwater, and creatures have disadvantage on attack rolls against you while you are underwater.",
-     "level": 10,
-     "featureType": "Passive",
-     "actionType": null,
-     "uses": null,
-     "requirement": null,
-     "duration": "Permanent",
-     "endsIf": null,
-     "effect": null,
-     "onUse": null,
-     "scaling": null,
-     "summary": "Gain advantage on attacks against underwater creatures and impose disadvantage on attacks against you while you are underwater.",
-     "grantsSpells": false,
-     "grantsAttack": true,
-     "grantsSkills": false,
-     "grantsProficiency": false,
-     "source": {
-      "type": "subclass",
-      "name": "Circle of the Sea",
-      "level": 10
-     },
-     "book": "MPMM",
-     "lastUpdated": "2026-09-29"
-    },
-    {
-     "name": "Oceanic Guardian",
-     "description": "Starting at 14th level, you can cast control water once per long rest without expending a spell slot. Additionally, you can breathe underwater indefinitely, and you have resistance to cold damage.",
-     "level": 14,
-     "featureType": "Active",
-     "actionType": null,
-     "uses": null,
-     "requirement": null,
-     "duration": null,
-     "endsIf": null,
-     "effect": null,
-     "onUse": null,
-     "scaling": null,
-     "summary": "Breathe underwater indefinitely, gain resistance to cold damage, and cast control water once per long rest without a spell slot.",
-     "grantsSpells": true,
-     "grantsAttack": false,
-     "grantsSkills": false,
-     "grantsProficiency": false,
-     "source": {
-      "type": "subclass",
-      "name": "Circle of the Sea",
-      "level": 14
-     },
-     "book": "MPMM",
-     "lastUpdated": "2026-09-29"
-    }
-   ],
-   "source": "MPMM",
-   "book": "PHB",
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "class": "Druid",
@@ -4972,7 +5169,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -5064,7 +5261,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "class": "Druid",
@@ -5078,13 +5276,6 @@
      "name": "Bonus Cantrip",
      "description": "When you choose this circle at 2nd level, you learn one additional druid cantrip of your choice.",
      "level": 2,
-     "choices": [
-      {
-       "name": "cantrip",
-       "description": "Choose one additional druid cantrip",
-       "lastUpdated": "2026-09-29"
-      }
-     ],
      "featureType": "Active",
      "actionType": null,
      "uses": null,
@@ -5137,13 +5328,6 @@
      "name": "Circle Spells",
      "description": "Your mystical connection to the land infuses you with the ability to cast certain spells. At 3rd, 5th, 7th, and 9th level you gain access to circle spells connected to the land where you became a druid.\n\nChoose that land\u2014arctic, coast, desert, forest, grassland, mountain, or swamp\u2014and consult the associated list of spells.\n\nOnce you gain access to a circle spell, you always have it prepared, and it doesn't count against the number of spells you can prepare each day. If you gain access to a spell that doesn't appear on the druid spell list, the spell is nonetheless a druid spell for you.",
      "level": 3,
-     "choices": [
-      {
-       "name": "terrain",
-       "description": "Choose your terrain type (arctic, coast, desert, forest, grassland, mountain, swamp, underdark)",
-       "lastUpdated": "2026-09-29"
-      }
-     ],
      "featureType": "Active",
      "actionType": null,
      "uses": null,
@@ -5483,11 +5667,6 @@
        "lastUpdated": "2026-09-29"
       },
       {
-       "name": "Mind-Scrambling Arrow",
-       "description": "The target must make a Wisdom saving throw. On a failed save, the target cannot take reactions until the start of your next turn and must roll a **d6** to determine its behavior.",
-       "lastUpdated": "2026-09-29"
-      },
-      {
        "name": "Piercing Arrow",
        "description": "You make a ranged attack with the arrow as a normal ranged attack. The arrow passes through the target to another creature.",
        "lastUpdated": "2026-09-29"
@@ -5579,6 +5758,60 @@
      "lastUpdated": "2026-09-29"
     },
     {
+     "name": "Arcane Shot Options",
+     "description": "You learn one more Arcane Shot option of your choice.",
+     "level": 7,
+     "choicesCount": 2,
+     "featureType": "Passive",
+     "actionType": null,
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "You learn one more Arcane Shot option of your choice.",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Arcane Archer",
+      "level": 7
+     },
+     "book": "XGE",
+     "lastUpdated": "2026-11-04"
+    },
+    {
+     "name": "Arcane Shot Options",
+     "description": "You learn one more Arcane Shot option of your choice.",
+     "level": 10,
+     "choicesCount": 2,
+     "featureType": "Passive",
+     "actionType": null,
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "You learn one more Arcane Shot option of your choice.",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Arcane Archer",
+      "level": 10
+     },
+     "book": "XGE",
+     "lastUpdated": "2026-11-04"
+    },
+    {
      "name": "Ever-Ready Shot",
      "description": "Starting at 15th level, your magical archery is always at the ready. You regain all expended uses of your Arcane Shot feature when you finish a short or long rest.",
      "level": 15,
@@ -5603,10 +5836,64 @@
      },
      "book": "XGE",
      "lastUpdated": "2026-09-29"
+    },
+    {
+     "name": "Arcane Shot Options",
+     "description": "You learn one more Arcane Shot option of your choice.",
+     "level": 15,
+     "choicesCount": 2,
+     "featureType": "Passive",
+     "actionType": null,
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "You learn one more Arcane Shot option of your choice.",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Arcane Archer",
+      "level": 15
+     },
+     "book": "XGE",
+     "lastUpdated": "2026-11-04"
+    },
+    {
+     "name": "Arcane Shot Options",
+     "description": "You learn one more Arcane Shot option of your choice.",
+     "level": 18,
+     "choicesCount": 2,
+     "featureType": "Passive",
+     "actionType": null,
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "You learn one more Arcane Shot option of your choice.",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Arcane Archer",
+      "level": 18
+     },
+     "book": "XGE",
+     "lastUpdated": "2026-11-04"
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -5945,6 +6232,32 @@
      "lastUpdated": "2026-09-29"
     },
     {
+     "name": "Combat Superiority",
+     "description": "You learn two more maneuvers of your choice.",
+     "level": 7,
+     "featureType": "Passive",
+     "actionType": null,
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "You learn two more maneuvers of your choice.",
+     "grantsSpells": false,
+     "grantsAttack": true,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Battle Master",
+      "level": 7
+     },
+     "book": "PHB",
+     "lastUpdated": "2026-11-04"
+    },
+    {
      "name": "Improved Combat Superiority (d10)",
      "description": "At 10th level, your superiority dice turn into **d10s**.",
      "level": 10,
@@ -5971,6 +6284,32 @@
      "lastUpdated": "2026-09-29"
     },
     {
+     "name": "Combat Superiority",
+     "description": "You learn two more maneuvers of your choice.",
+     "level": 10,
+     "featureType": "Passive",
+     "actionType": null,
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "You learn two more maneuvers of your choice.",
+     "grantsSpells": false,
+     "grantsAttack": true,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Battle Master",
+      "level": 10
+     },
+     "book": "PHB",
+     "lastUpdated": "2026-11-04"
+    },
+    {
      "name": "Relentless",
      "description": "Starting at 15th level, when you roll initiative and have no superiority dice remaining, you regain **1** superiority die.",
      "level": 15,
@@ -5995,6 +6334,32 @@
      },
      "book": "PHB",
      "lastUpdated": "2026-09-29"
+    },
+    {
+     "name": "Combat Superiority",
+     "description": "You learn two more maneuvers of your choice.",
+     "level": 15,
+     "featureType": "Passive",
+     "actionType": null,
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "You learn two more maneuvers of your choice.",
+     "grantsSpells": false,
+     "grantsAttack": true,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Battle Master",
+      "level": 15
+     },
+     "book": "PHB",
+     "lastUpdated": "2026-11-04"
     },
     {
      "name": "Improved Combat Superiority (d12)",
@@ -6252,7 +6617,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -6562,7 +6927,7 @@
     }
    ],
    "source": "EGW",
-   "book": "PHB",
+   "book": "EGW",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -6880,7 +7245,7 @@
      "lastUpdated": "2026-09-29"
     },
     {
-     "name": "Telekinetic Leap",
+     "name": "Telekinetic Adept",
      "level": 7,
      "featureType": "Active",
      "actionType": "Bonus Action",
@@ -6888,70 +7253,73 @@
       "total": 1,
       "recharge": "Short/Long Rest / 1 Psionic Die"
      },
-     "summary": "Gain a flying speed equal to twice your walking speed until the end of your current turn.",
-     "description": "As a bonus action, you can propel your body with your mind. You gain a flying speed equal to twice your walking speed until the end of the current turn.\n\nOnce you take this bonus action, you cannot do so again until you finish a short or long rest, unless you expend one Psionic Energy die to use it again.",
+     "summary": "Psi-Powered Leap (bonus-action flight) and Telekinetic Thrust (knock prone or push with Psionic Strike).",
+     "description": "You gain two ways to use your psionic power. Psi-Powered Leap: as a bonus action, you gain a flying speed equal to twice your walking speed until the end of the turn; once per short or long rest for free, or by expending a Psionic Energy die. Telekinetic Thrust: when you deal damage with Psionic Strike, you can force the target to make a Strength saving throw (DC 8 + proficiency bonus + Intelligence modifier) or be knocked prone or pushed up to 10 feet.",
      "source": {
       "type": "subclass",
       "name": "Psi Warrior",
       "level": 7
      },
      "book": "TCE",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
      "name": "Guarded Mind",
-     "level": 7,
-     "featureType": "Passive",
-     "summary": "Gain resistance to psychic damage and the ability to end the charmed or frightened conditions by expending a Psionic Energy die.",
-     "description": "The psionic energy flowing through you has bolstered your mind. You have resistance to psychic damage.\n\nMoreover, if you start your turn charmed or frightened, you can expend one Psionic Energy die to immediately end every effect on yourself subjecting you to those conditions.",
-     "source": {
-      "type": "subclass",
-      "name": "Psi Warrior",
-      "level": 7
-     },
-     "book": "TCE",
-     "lastUpdated": "2026-09-29"
-    },
-    {
-     "name": "Bulwark of Force",
      "level": 10,
-     "featureType": "Active",
-     "actionType": "Bonus Action",
-     "uses": {
-      "total": 1,
-      "recharge": "Long Rest / 1 Psionic Die"
-     },
-     "summary": "Grant yourself and allies within 30 feet half cover (+2 AC and Dex saves) for 1 minute.",
-     "description": "As a bonus action, you can shield yourself and others with telekinetic force. You choose a number of creatures within 30 feet of you equal to your Intelligence modifier (minimum of one), including yourself. For 1 minute or until you are incapacitated, the chosen creatures have half cover. Once you use this feature, you can't do so again until you finish a long rest, unless you expend a Psionic Energy die.",
+     "featureType": "Passive",
+     "summary": "Resistance to psychic damage; spend a Psionic Energy die to end charmed and frightened.",
+     "description": "You have resistance to psychic damage. If you start your turn charmed or frightened, you can expend a Psionic Energy die to end every effect on you that causes those conditions.",
      "source": {
       "type": "subclass",
       "name": "Psi Warrior",
       "level": 10
      },
      "book": "TCE",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04",
+     "actionType": null
     },
     {
-     "name": "Telekinetic Master",
+     "name": "Bulwark of Force",
      "level": 15,
      "featureType": "Active",
-     "actionType": "Action",
+     "actionType": "Bonus Action",
      "uses": {
       "total": 1,
-      "recharge": "Long Rest / 1 Psionic Die"
+      "recharge": "Long Rest"
      },
-     "summary": "Cast Telekinesis without components and make one weapon attack as a bonus action while concentrating on it.",
-     "description": "Your ability to move creatures and objects with your mind is unmatched. You can cast the Telekinesis spell without components, using Intelligence as your spellcasting ability. On each turn while you concentrate on the spell, you can make one weapon attack as a bonus action. Once you cast Telekinesis with this feature, you can't do so again until you finish a long rest, unless you expend a Psionic Energy die.",
+     "summary": "Bonus action: give half cover to allies within 30 feet for 1 minute.",
+     "description": "As a bonus action, choose creatures within 30 feet, up to your Intelligence modifier (minimum 1), yourself included. Each gains half cover for 1 minute or until you're incapacitated. Once per long rest for free, or by expending a Psionic Energy die.",
      "source": {
       "type": "subclass",
       "name": "Psi Warrior",
       "level": 15
      },
      "book": "TCE",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04",
+     "duration": "1 minute"
+    },
+    {
+     "name": "Telekinetic Master",
+     "level": 18,
+     "featureType": "Active",
+     "actionType": "Action",
+     "uses": {
+      "total": 1,
+      "recharge": "Long Rest"
+     },
+     "summary": "Cast telekinesis; while concentrating, make a weapon attack as a bonus action.",
+     "description": "You can cast telekinesis without components, using Intelligence as your spellcasting ability. Once per long rest for free, or by expending a Psionic Energy die. While concentrating on it, you can make one weapon attack as a bonus action on each of your turns.",
+     "source": {
+      "type": "subclass",
+      "name": "Psi Warrior",
+      "level": 18
+     },
+     "book": "TCE",
+     "lastUpdated": "2026-11-04"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "name": "Rune Knight",
@@ -7027,6 +7395,22 @@
      "lastUpdated": "2026-09-29"
     },
     {
+     "name": "Rune Carver",
+     "level": 7,
+     "featureType": "Passive",
+     "summary": "You learn one more rune of your choice.",
+     "description": "You learn one more rune of your choice.",
+     "source": {
+      "type": "subclass",
+      "name": "Rune Knight",
+      "level": 7
+     },
+     "book": "TCE",
+     "lastUpdated": "2026-11-04",
+     "uses": null,
+     "actionType": null
+    },
+    {
      "name": "Great Stature",
      "level": 10,
      "featureType": "Passive",
@@ -7039,6 +7423,22 @@
      },
      "book": "TCE",
      "lastUpdated": "2026-09-29"
+    },
+    {
+     "name": "Rune Carver",
+     "level": 10,
+     "featureType": "Passive",
+     "summary": "You learn one more rune of your choice.",
+     "description": "You learn one more rune of your choice.",
+     "source": {
+      "type": "subclass",
+      "name": "Rune Knight",
+      "level": 10
+     },
+     "book": "TCE",
+     "lastUpdated": "2026-11-04",
+     "uses": null,
+     "actionType": null
     },
     {
      "name": "Master of Runes",
@@ -7055,6 +7455,22 @@
      "lastUpdated": "2026-09-29"
     },
     {
+     "name": "Rune Carver",
+     "level": 15,
+     "featureType": "Passive",
+     "summary": "You learn one more rune of your choice.",
+     "description": "You learn one more rune of your choice.",
+     "source": {
+      "type": "subclass",
+      "name": "Rune Knight",
+      "level": 15
+     },
+     "book": "TCE",
+     "lastUpdated": "2026-11-04",
+     "uses": null,
+     "actionType": null
+    },
+    {
      "name": "Runic Juggernaut",
      "level": 18,
      "featureType": "Passive",
@@ -7069,7 +7485,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "class": "Fighter",
@@ -7265,8 +7682,125 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
+  },
+  {
+   "class": "Fighter",
+   "classIndex": "fighter",
+   "index": "purple-dragon-knight",
+   "name": "Purple Dragon Knight",
+   "flavorText": "Martial Archetype",
+   "description": "Knights of Cormyr who lead from the front, inspiring their allies with their own deeds in battle.",
+   "features": [
+    {
+     "name": "Rallying Cry",
+     "description": "When you use Second Wind, choose up to three allies within 60 feet that can see or hear you. Each regains hit points equal to your fighter level.",
+     "level": 3,
+     "featureType": "Passive",
+     "actionType": null,
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "Second Wind also heals up to three allies within 60 feet by your fighter level.",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Purple Dragon Knight",
+      "level": 3
+     },
+     "book": "SCAG",
+     "lastUpdated": "2026-11-04"
+    },
+    {
+     "name": "Royal Envoy",
+     "description": "You gain proficiency in Persuasion. If you already have it, choose Animal Handling, Insight, Intimidation or Performance instead. Your proficiency bonus is doubled for Persuasion checks.",
+     "level": 7,
+     "featureType": "Passive",
+     "actionType": null,
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "Persuasion proficiency with double proficiency bonus.",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": true,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Purple Dragon Knight",
+      "level": 7
+     },
+     "book": "SCAG",
+     "lastUpdated": "2026-11-04"
+    },
+    {
+     "name": "Inspiring Surge",
+     "description": "When you use Action Surge, choose one ally within 60 feet that can see or hear you. It can use its reaction to make one melee or ranged weapon attack. From 18th level you can choose two allies.",
+     "level": 10,
+     "featureType": "Passive",
+     "actionType": null,
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "Action Surge lets an ally attack with its reaction (two allies from 18th level).",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Purple Dragon Knight",
+      "level": 10
+     },
+     "book": "SCAG",
+     "lastUpdated": "2026-11-04"
+    },
+    {
+     "name": "Bulwark",
+     "description": "When you use Indomitable to reroll an Intelligence, Wisdom or Charisma saving throw and you aren't incapacitated, choose one ally within 60 feet that failed its save against the same effect. If it can see or hear you, it can reroll too.",
+     "level": 15,
+     "featureType": "Passive",
+     "actionType": null,
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "Indomitable on a mental save also lets one ally reroll the same save.",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Purple Dragon Knight",
+      "level": 15
+     },
+     "book": "SCAG",
+     "lastUpdated": "2026-11-04"
+    }
+   ],
+   "source": "SCAG",
+   "book": "SCAG",
+   "lastUpdated": "2026-11-04"
   },
   {
    "index": "ascendant-dragon",
@@ -7275,7 +7809,7 @@
    "description": "Monks of the Ascendant Dragon tradition learn to channel the elemental power of dragons through their ki. These monks can harness the destructive energy of dragonkind, unleashing it through their unarmed strikes and breath weapons.",
    "features": [
     {
-     "name": "Draconic Discipline",
+     "name": "Draconic Disciple",
      "level": 3,
      "description": "You gain the following benefits:\n- You learn the draconic language.\n- You learn **one** cantrip of your choice from the sorcerer spell list. Wisdom is your spellcasting ability for this cantrip.",
      "featureType": "Passive",
@@ -7298,7 +7832,7 @@
       "level": 3
      },
      "book": "FTD",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
      "name": "Breath of the Dragon",
@@ -7406,7 +7940,7 @@
     }
    ],
    "source": "FTD",
-   "book": "PHB",
+   "book": "FTD",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -7665,7 +8199,7 @@
      "lastUpdated": "2026-09-29"
     },
     {
-     "name": "Hands of Healing",
+     "name": "Hand of Healing",
      "level": 3,
      "featureType": "Active",
      "actionType": "Action",
@@ -7677,10 +8211,10 @@
       "level": 3
      },
      "book": "TCE",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
-     "name": "Hands of Harm",
+     "name": "Hand of Harm",
      "level": 3,
      "featureType": "Active",
      "summary": "Spend 1 ki when hitting with an unarmed strike to deal extra necrotic damage equal to your Martial Arts die + Wisdom modifier.",
@@ -7691,7 +8225,7 @@
       "level": 3
      },
      "book": "TCE",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
      "name": "Physician's Touch",
@@ -7741,7 +8275,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "name": "Way of the Astral Self",
@@ -7810,7 +8345,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "class": "Monk",
@@ -7952,7 +8488,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -7992,126 +8528,56 @@
      "lastUpdated": "2026-09-29"
     },
     {
-     "name": "Fangs of the Fire Snake",
-     "level": 3,
-     "featureType": "Active",
-     "summary": "Spend **1** ki to increase unarmed strike reach by **10** feet and deal fire damage; spend **1** more ki on hit for **1d10** extra fire damage.",
-     "description": "When you use the Attack action on your turn, you can spend **1** ki point to cause tendrils of flame to stretch out from your fists and feet. Your reach with your unarmed strikes increases by **10** feet for that action, as well as the rest of the turn. A hit with such an attack deals fire damage instead of bludgeoning damage, and if you spend **1** additional ki point when the attack hits, it deals an extra **1d10** fire damage.",
-     "source": {
-      "type": "subclass",
-      "name": "Way of the Four Elements",
-      "level": 3
-     },
-     "book": "PHB",
-     "lastUpdated": "2026-09-29"
-    },
-    {
-     "name": "Water Whip",
-     "level": 3,
-     "featureType": "Active",
-     "actionType": "Action",
-     "summary": "Spend 2 ki to deal 3d10 bludgeoning damage to a target within 30 feet, and either knock it prone or pull it 25 feet closer to you.",
-     "description": "As an action, you can spend 2 ki points to create a whip of water that shoves and pulls a creature to unbalance it. Choose a creature you can see within 30 feet of you; it must make a Dexterity saving throw. On a failed save, the creature takes **3d10** bludgeoning damage, plus an extra **1d10** for each additional ki point you spend. Additionally, you can either knock the creature prone or pull it up to 25 feet closer to you.",
-     "source": {
-      "type": "subclass",
-      "name": "Way of the Four Elements",
-      "level": 3
-     },
-     "book": "PHB",
-     "lastUpdated": "2026-09-29"
-    },
-    {
-     "name": "Fist of Four Thunders",
-     "level": 3,
-     "featureType": "Active",
-     "actionType": "Action",
-     "summary": "Spend 2 ki points to cast Thunderwave.",
-     "description": "You can spend 2 ki points to cast Thunderwave.",
-     "source": {
-      "type": "subclass",
-      "name": "Way of the Four Elements",
-      "level": 3
-     },
-     "book": "PHB",
-     "lastUpdated": "2026-09-29"
-    },
-    {
-     "name": "Sweeping Cinder Strike",
+     "name": "Disciple of the Elements",
      "level": 6,
-     "featureType": "Active",
-     "actionType": "Action",
-     "summary": "Spend 2 ki points to cast Burning Hands.",
-     "description": "You can spend 2 ki points to cast Burning Hands.",
+     "featureType": "Passive",
+     "summary": "You learn one more elemental discipline of your choice.",
+     "description": "You learn one more elemental discipline of your choice.",
      "source": {
       "type": "subclass",
       "name": "Way of the Four Elements",
       "level": 6
      },
      "book": "PHB",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04",
+     "uses": null,
+     "actionType": null
     },
     {
-     "name": "Gong of the Summit",
-     "level": 6,
-     "featureType": "Active",
-     "actionType": "Action",
-     "summary": "Spend 3 ki points to cast Shatter.",
-     "description": "You can spend 3 ki points to cast Shatter.",
-     "source": {
-      "type": "subclass",
-      "name": "Way of the Four Elements",
-      "level": 6
-     },
-     "book": "PHB",
-     "lastUpdated": "2026-09-29"
-    },
-    {
-     "name": "Flames of the Phoenix",
+     "name": "Disciple of the Elements",
      "level": 11,
-     "featureType": "Active",
-     "actionType": "Action",
-     "summary": "Spend 4 ki points to cast Fireball.",
-     "description": "You can spend 4 ki points to cast Fireball.",
+     "featureType": "Passive",
+     "summary": "You learn one more elemental discipline of your choice.",
+     "description": "You learn one more elemental discipline of your choice.",
      "source": {
       "type": "subclass",
       "name": "Way of the Four Elements",
       "level": 11
      },
      "book": "PHB",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04",
+     "uses": null,
+     "actionType": null
     },
     {
-     "name": "Ride the Wind",
-     "level": 11,
-     "featureType": "Active",
-     "actionType": "Action",
-     "summary": "Spend 4 ki points to cast Fly on yourself.",
-     "description": "You can spend 4 ki points to cast Fly, targeting yourself.",
-     "source": {
-      "type": "subclass",
-      "name": "Way of the Four Elements",
-      "level": 11
-     },
-     "book": "PHB",
-     "lastUpdated": "2026-09-29"
-    },
-    {
-     "name": "River of Hungry Flame",
+     "name": "Disciple of the Elements",
      "level": 17,
-     "featureType": "Active",
-     "actionType": "Action",
-     "summary": "Spend 5 ki points to cast Wall of Fire.",
-     "description": "You can spend 5 ki points to cast Wall of Fire.",
+     "featureType": "Passive",
+     "summary": "You learn one more elemental discipline of your choice.",
+     "description": "You learn one more elemental discipline of your choice.",
      "source": {
       "type": "subclass",
       "name": "Way of the Four Elements",
       "level": 17
      },
      "book": "PHB",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04",
+     "uses": null,
+     "actionType": null
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "PHB"
   },
   {
    "class": "Monk",
@@ -8240,7 +8706,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -8310,7 +8776,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "SCAG"
   },
   {
    "class": "Monk",
@@ -8426,7 +8893,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -8768,147 +9235,6 @@
    "lastUpdated": "2026-09-29"
   },
   {
-   "index": "draconic-disciple",
-   "name": "Draconic Disciple",
-   "class": "Paladin",
-   "description": "The Oath of the Draconic Disciple binds a paladin to the ideals of dragonkind. These paladins draw power from their draconic heritage, channeling the might of dragons through their divine oath. They seek to embody the virtues of dragonkind: strength, wisdom, and majesty.",
-   "features": [
-    {
-     "name": "Channel Divinity: Draconic Presence",
-     "level": 3,
-     "description": "As an action, you can channel the power of dragonkind to demoralize your foes. Each creature of your choice within 30 feet of you must make a Wisdom saving throw against your spell save DC. On a failed save, a creature is frightened of you for 1 minute. A frightened creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success.",
-     "featureType": "Active",
-     "actionType": "Action",
-     "uses": null,
-     "requirement": null,
-     "duration": null,
-     "endsIf": null,
-     "effect": null,
-     "onUse": null,
-     "scaling": null,
-     "summary": "Force chosen creatures within 30 feet to make a Wisdom saving throw or be frightened of you for 1 minute.",
-     "grantsSpells": false,
-     "grantsAttack": false,
-     "grantsSkills": false,
-     "grantsProficiency": false,
-     "source": {
-      "type": "subclass",
-      "name": "Draconic Disciple",
-      "level": 3
-     },
-     "book": "FTD",
-     "lastUpdated": "2026-09-29"
-    },
-    {
-     "name": "Channel Divinity: Draconic Might",
-     "level": 3,
-     "description": "As a bonus action, you can channel the power of dragonkind to augment your strength. For 1 minute, you have advantage on Strength checks, and when you deal damage with a melee weapon, you can add your Charisma modifier to the damage roll.",
-     "featureType": "Active",
-     "actionType": "Bonus Action",
-     "uses": null,
-     "requirement": null,
-     "duration": null,
-     "endsIf": null,
-     "effect": null,
-     "onUse": null,
-     "scaling": null,
-     "summary": "Gain advantage on Strength checks and add your Charisma modifier to melee weapon damage rolls for 1 minute.",
-     "grantsSpells": false,
-     "grantsAttack": false,
-     "grantsSkills": false,
-     "grantsProficiency": false,
-     "source": {
-      "type": "subclass",
-      "name": "Draconic Disciple",
-      "level": 3
-     },
-     "book": "FTD",
-     "lastUpdated": "2026-09-29"
-    },
-    {
-     "name": "Aura of the Dragon",
-     "level": 7,
-     "description": "You emanate an aura of draconic power. Whenever you or a friendly creature within 10 feet of you makes a saving throw, that creature gains a bonus to the roll equal to your Charisma modifier (minimum of **+1**). You must be conscious to grant this bonus.",
-     "featureType": "Active",
-     "actionType": null,
-     "uses": null,
-     "requirement": null,
-     "duration": null,
-     "endsIf": null,
-     "effect": null,
-     "onUse": null,
-     "scaling": null,
-     "summary": "You and friendly creatures within 10 feet gain a bonus to saving throws equal to your Charisma modifier.",
-     "grantsSpells": false,
-     "grantsAttack": false,
-     "grantsSkills": false,
-     "grantsProficiency": false,
-     "source": {
-      "type": "subclass",
-      "name": "Draconic Disciple",
-      "level": 7
-     },
-     "book": "FTD",
-     "lastUpdated": "2026-09-29"
-    },
-    {
-     "name": "Draconic Resilience",
-     "level": 15,
-     "description": "The power of dragonkind flows through you. You gain resistance to the damage type associated with your draconic ancestry.",
-     "featureType": "Passive",
-     "actionType": null,
-     "uses": null,
-     "requirement": null,
-     "duration": null,
-     "endsIf": null,
-     "effect": null,
-     "onUse": null,
-     "scaling": null,
-     "summary": "Gain resistance to the damage type associated with your draconic ancestry.",
-     "grantsSpells": false,
-     "grantsAttack": false,
-     "grantsSkills": false,
-     "grantsProficiency": false,
-     "source": {
-      "type": "subclass",
-      "name": "Draconic Disciple",
-      "level": 15
-     },
-     "book": "FTD",
-     "lastUpdated": "2026-09-29"
-    },
-    {
-     "name": "Dragon Knight",
-     "level": 20,
-     "description": "As an action, you can channel the full power of dragonkind, gaining the following benefits for 1 minute:\n\n- You have a flying speed equal to your walking speed.\n- You have resistance to all damage.\n\nOnce you use this feature, you can't use it again until you finish a long rest.",
-     "featureType": "Active",
-     "actionType": "Action",
-     "uses": null,
-     "requirement": null,
-     "duration": null,
-     "endsIf": null,
-     "effect": null,
-     "onUse": null,
-     "scaling": null,
-     "summary": "As an action, gain a flying speed equal to your walking speed and resistance to all damage for 1 minute.",
-     "grantsSpells": false,
-     "grantsAttack": false,
-     "grantsSkills": false,
-     "grantsProficiency": false,
-     "source": {
-      "type": "subclass",
-      "name": "Draconic Disciple",
-      "level": 20
-     },
-     "book": "FTD",
-     "lastUpdated": "2026-09-29"
-    }
-   ],
-   "source": "FTD",
-   "book": "PHB",
-   "lastUpdated": "2026-09-29"
-  },
-  {
    "class": "Paladin",
    "classIndex": "paladin",
    "index": "conquest",
@@ -8943,6 +9269,35 @@
      "lastUpdated": "2026-09-29"
     },
     {
+     "name": "Channel Divinity: Guided Strike",
+     "description": "When you make an attack roll, you can use your Channel Divinity to gain a +10 bonus to the roll. You decide after seeing the roll, but before knowing whether it hits.",
+     "level": 3,
+     "featureType": "Active",
+     "actionType": null,
+     "uses": {
+      "total": "Channel Divinity",
+      "recharge": "Short/Long Rest"
+     },
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "Use Channel Divinity for +10 to an attack roll.",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Oath of Conquest",
+      "level": 3
+     },
+     "book": "XGE",
+     "lastUpdated": "2026-11-04"
+    },
+    {
      "name": "Aura of Conquest",
      "description": "Starting at 7th level, you constantly emanate a menacing aura while you are not incapacitated. The aura extends 10 feet from you in every direction, but not through total cover. If a creature is frightened of you, its speed is reduced to 0 while in the aura, and that creature takes psychic damage equal to half your paladin level if it ends its turn there.\n\nAt 18th level, the aura extends to 30 feet.",
      "level": 7,
@@ -8969,11 +9324,11 @@
      "lastUpdated": "2026-09-29"
     },
     {
-     "name": "Scarred Earth",
-     "description": "Starting at 15th level, you can call on the power of your oath to strike fear into your foes. As an action, you can cause the ground in a 30-foot radius around you to become difficult terrain for 1 minute. In addition, the first time each turn that a creature moves into the area or starts its turn there, it takes **3d6** psychic damage.\n\nYou can use this feature a number of times equal to your Charisma modifier (minimum of once), and you regain all expended uses when you finish a long rest.",
+     "name": "Scornful Rebuke",
+     "description": "When a creature hits you with an attack, it takes psychic damage equal to your Charisma modifier (minimum 1), as long as you're not incapacitated.",
      "level": 15,
-     "featureType": "Active",
-     "actionType": "Action",
+     "featureType": "Passive",
+     "actionType": null,
      "uses": null,
      "requirement": null,
      "duration": null,
@@ -8981,7 +9336,7 @@
      "effect": null,
      "onUse": null,
      "scaling": null,
-     "summary": "As an action, create difficult terrain in a 30-foot radius for 1 minute; creatures entering or starting their turn there take 3d6 psychic damage.",
+     "summary": "Creatures that hit you take psychic damage equal to your Charisma modifier.",
      "grantsSpells": false,
      "grantsAttack": false,
      "grantsSkills": false,
@@ -8992,7 +9347,7 @@
       "level": 15
      },
      "book": "XGE",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
      "name": "Invincible Conqueror",
@@ -9022,7 +9377,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -9129,7 +9484,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "class": "Paladin",
@@ -9164,6 +9520,35 @@
      },
      "book": "XGE",
      "lastUpdated": "2026-09-29"
+    },
+    {
+     "name": "Channel Divinity: Rebuke the Violent",
+     "description": "When an attacker within 30 feet of you damages a creature other than you, you can use your reaction and Channel Divinity to force it to make a Wisdom saving throw. On a failure, it takes radiant damage equal to the damage it just dealt; on a success, half as much.",
+     "level": 3,
+     "featureType": "Active",
+     "actionType": "Reaction",
+     "uses": {
+      "total": "Channel Divinity",
+      "recharge": "Short/Long Rest"
+     },
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "Reaction: an attacker who hurts someone else takes radiant damage equal to what it dealt (Wisdom save for half).",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Oath of Redemption",
+      "level": 3
+     },
+     "book": "XGE",
+     "lastUpdated": "2026-11-04"
     },
     {
      "name": "Aura of the Guardian",
@@ -9245,7 +9630,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -9270,7 +9655,7 @@
      "lastUpdated": "2026-09-29"
     },
     {
-     "name": "Channel Divinity: Champion's Challenge",
+     "name": "Channel Divinity: Champion Challenge",
      "level": 3,
      "featureType": "Active",
      "actionType": "Bonus Action",
@@ -9282,7 +9667,7 @@
       "level": 3
      },
      "book": "SCAG",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
      "name": "Channel Divinity: Turn the Tide",
@@ -9315,18 +9700,19 @@
      "lastUpdated": "2026-09-29"
     },
     {
-     "name": "Unyielding Saint",
+     "name": "Unyielding Spirit",
      "level": 15,
      "featureType": "Passive",
-     "summary": "You have advantage on saving throws to avoid being paralyzed or stunned.",
-     "description": "Beginning at 15th level, you have advantage on saving throws to avoid becoming paralyzed or stunned.",
+     "summary": "Advantage on saves against being paralyzed or stunned.",
+     "description": "You have advantage on saving throws to avoid becoming paralyzed or stunned.",
      "source": {
       "type": "subclass",
       "name": "Oath of the Crown",
       "level": 15
      },
      "book": "SCAG",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04",
+     "actionType": null
     },
     {
      "name": "Exalted Champion",
@@ -9348,7 +9734,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "SCAG"
   },
   {
    "class": "Paladin",
@@ -9383,6 +9770,35 @@
      },
      "book": "XGE",
      "lastUpdated": "2026-09-29"
+    },
+    {
+     "name": "Channel Divinity: Abjure the Extraplanar",
+     "description": "As an action, you use your Channel Divinity. Each aberration, celestial, elemental, fey or fiend within 30 feet that can hear you must make a Wisdom saving throw. On a failure, it is turned for 1 minute or until it takes damage.",
+     "level": 3,
+     "featureType": "Active",
+     "actionType": "Action",
+     "uses": {
+      "total": "Channel Divinity",
+      "recharge": "Short/Long Rest"
+     },
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "Action: turn extraplanar creatures within 30 feet for 1 minute (Wisdom save).",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Oath of the Watchers",
+      "level": 3
+     },
+     "book": "TCE",
+     "lastUpdated": "2026-11-04"
     },
     {
      "name": "Aura of the Sentinel",
@@ -9463,8 +9879,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "source": "XGE",
-   "book": "PHB",
+   "source": "TCE",
+   "book": "TCE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -9566,7 +9982,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "DMG"
   },
   {
    "name": "Vengeance",
@@ -9887,19 +10304,22 @@
      "lastUpdated": "2026-09-29"
     },
     {
-     "name": "Bond of Fang and Scale",
+     "name": "Drake Companion",
+     "description": "As an action, you summon a Small drake that uses the Drake Companion stat block and scales with your proficiency bonus. It acts on your initiative and takes the Dodge action unless you use a bonus action to command it. You can summon it once per long rest for free, or by expending a spell slot of 1st level or higher. Its Draconic Essence damage type (acid, cold, fire, lightning or poison) is chosen when you summon it.",
      "level": 3,
-     "description": "Your drake's bond with you grants it resilience. While your drake is within 30 feet of you, it has a +2 bonus to AC and saving throws.",
-     "featureType": "Passive",
-     "actionType": null,
-     "uses": null,
+     "featureType": "Active",
+     "actionType": "Action",
+     "uses": {
+      "total": 1,
+      "recharge": "Long Rest"
+     },
      "requirement": null,
      "duration": null,
      "endsIf": null,
      "effect": null,
      "onUse": null,
      "scaling": null,
-     "summary": "Your drake gains a +2 bonus to AC and saving throws while it is within 30 feet of you.",
+     "summary": "Summon a drake companion that fights alongside you.",
      "grantsSpells": false,
      "grantsAttack": false,
      "grantsSkills": false,
@@ -9910,14 +10330,14 @@
       "level": 3
      },
      "book": "FTD",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
-     "name": "Drake's Breath",
+     "name": "Bond of Fang and Scale",
      "level": 7,
-     "description": "As an action, you can command your drake to exhale a 15-foot cone of elemental energy. Each creature in the area must make a Dexterity saving throw (DC 8 + your proficiency bonus + your Wisdom modifier). On a failed save, a creature takes **4d6** damage of the type associated with your drake. On a successful save, a creature takes half as much damage.\n\nOnce you use this feature, you can't use it again until you finish a short or long rest.",
-     "featureType": "Active",
-     "actionType": "Action",
+     "description": "Your drake grows to Medium size and can serve as your mount. It gains a flying speed equal to its walking speed and resistance to its Draconic Essence damage type, and its bite deals an extra 1d6 damage of that type. You also gain resistance to that damage type.",
+     "featureType": "Passive",
+     "actionType": null,
      "uses": null,
      "requirement": null,
      "duration": null,
@@ -9925,7 +10345,7 @@
      "effect": null,
      "onUse": null,
      "scaling": null,
-     "summary": "Command your drake to exhale a 15-foot cone, dealing 4d6 elemental damage on a failed Dexterity save.",
+     "summary": "Your drake becomes a flying mount; you both resist its damage type.",
      "grantsSpells": false,
      "grantsAttack": false,
      "grantsSkills": false,
@@ -9936,22 +10356,25 @@
       "level": 7
      },
      "book": "FTD",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
-     "name": "Perfected Bond",
+     "name": "Drake's Breath",
      "level": 11,
-     "description": "Your bond with your drake deepens. When you take damage while your drake is within 30 feet of you, you can use your reaction to have your drake take the damage instead.\n\nAdditionally, when you deal damage to a creature within 30 feet of your drake, you can have your drake make a bite attack against that creature as a reaction.",
+     "description": "As an action, you or your drake exhale a 30-foot cone of acid, cold, fire, lightning or poison. Each creature in it makes a Dexterity saving throw against your spell save DC, taking 8d6 damage on a failure or half on a success. The damage becomes 10d6 at 15th level. Once per long rest for free, or by expending a spell slot of 3rd level or higher.",
      "featureType": "Active",
-     "actionType": "Reaction",
-     "uses": null,
+     "actionType": "Action",
+     "uses": {
+      "total": 1,
+      "recharge": "Long Rest"
+     },
      "requirement": null,
      "duration": null,
      "endsIf": null,
      "effect": null,
      "onUse": null,
      "scaling": null,
-     "summary": "Use your reaction to have your drake take damage for you if it is within 30 feet, or have it make a bite attack when you deal damage to a creature within 30 feet of it.",
+     "summary": "Action: 30-foot cone breath, 8d6 damage (Dexterity save for half).",
      "grantsSpells": false,
      "grantsAttack": false,
      "grantsSkills": false,
@@ -9962,14 +10385,14 @@
       "level": 11
      },
      "book": "FTD",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
-     "name": "Reflexive Resistance",
+     "name": "Perfected Bond",
      "level": 15,
-     "description": "When you or your drake takes damage, you can use your reaction to grant resistance to that damage type to both you and your drake for 1 minute. Once you use this feature, you can't use it again until you finish a long rest.",
-     "featureType": "Active",
-     "actionType": "Reaction",
+     "description": "Your drake grows to Large size and can fly while you ride it, and its bite's extra damage becomes 1d6 more. When you or your drake take damage while within 30 feet of each other, the one taking damage can use its reaction to gain resistance to it, a number of times equal to your proficiency bonus per long rest.",
+     "featureType": "Passive",
+     "actionType": null,
      "uses": null,
      "requirement": null,
      "duration": null,
@@ -9977,7 +10400,7 @@
      "effect": null,
      "onUse": null,
      "scaling": null,
-     "summary": "Use your reaction to grant resistance to a damage type to you and your drake for 1 minute when either of you takes that damage.",
+     "summary": "Your drake grows Large; reactions give you both resistance to incoming damage.",
      "grantsSpells": false,
      "grantsAttack": false,
      "grantsSkills": false,
@@ -9988,11 +10411,11 @@
       "level": 15
      },
      "book": "FTD",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     }
    ],
    "source": "FTD",
-   "book": "PHB",
+   "book": "FTD",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -10161,7 +10584,7 @@
     }
    ],
    "source": "TCE",
-   "book": "PHB",
+   "book": "TCE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -10257,7 +10680,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "XGE"
   },
   {
    "class": "Ranger",
@@ -10399,7 +10823,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -10659,7 +11083,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -10802,7 +11226,7 @@
     }
    ],
    "source": "TCE",
-   "book": "PHB",
+   "book": "TCE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -11260,7 +11684,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -11403,7 +11827,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -11490,7 +11914,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "class": "Rogue",
@@ -11632,7 +12057,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -11723,7 +12148,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "class": "Rogue",
@@ -11838,19 +12264,22 @@
      "lastUpdated": "2026-09-29"
     },
     {
-     "name": "Duelist's Defense",
-     "description": "Starting at 17th level, your mastery of the blade allows you to turn defense into offense. When you are hit by a melee attack, you can use your reaction to add your proficiency bonus to your AC against that attack, potentially causing the attack to miss.",
+     "name": "Master Duelist",
+     "description": "If you miss with an attack roll, you can roll it again with advantage. Once per short or long rest.",
      "level": 17,
      "featureType": "Active",
-     "actionType": "Reaction",
-     "uses": null,
+     "actionType": null,
+     "uses": {
+      "total": 1,
+      "recharge": "Short/Long Rest"
+     },
      "requirement": null,
      "duration": null,
      "endsIf": null,
      "effect": null,
      "onUse": null,
      "scaling": null,
-     "summary": "Use your reaction when hit by a melee attack to add your proficiency bonus to your AC, potentially causing the attack to miss.",
+     "summary": "Reroll a missed attack with advantage, once per rest.",
      "grantsSpells": false,
      "grantsAttack": false,
      "grantsSkills": false,
@@ -11861,11 +12290,11 @@
       "level": 17
      },
      "book": "XGE",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -12020,7 +12449,7 @@
    "description": "An alien influence has wrapped its tendrils around your mind, giving you psionic power. You can now project that power to alter the world around you. You can also use your psionic power to cast spells.",
    "features": [
     {
-     "name": "Telepathy",
+     "name": "Telepathic Speech",
      "description": "At 1st level, you can use your action to touch a willing creature's mind and establish a telepathic link with it. Until the effect ends, you and the creature can share words, images, sounds, and other sensory messages with one another through the link. The link is broken if you and the creature are on different planes of existence or if either of you is incapacitated. The creature must be able to understand at least one language.",
      "level": 1,
      "featureType": "Active",
@@ -12043,7 +12472,7 @@
       "level": 1
      },
      "book": "TCE",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
      "name": "Psionic Spells",
@@ -12072,11 +12501,11 @@
      "lastUpdated": "2026-09-29"
     },
     {
-     "name": "Psychic Deflection",
-     "description": "At 6th level, you can use your mind to deflect attacks. When you take damage, you can use your reaction to roll **1d4** and add it to your AC until the start of your next turn, including against the triggering attack. When you use this feature, you can also choose to either gain advantage on the next attack roll you make before the end of your next turn, or impose disadvantage on the next attack roll made against you before the end of your next turn.",
+     "name": "Psychic Defenses",
+     "description": "You have resistance to psychic damage, and advantage on saving throws against being charmed or frightened.",
      "level": 6,
-     "featureType": "Active",
-     "actionType": "Reaction",
+     "featureType": "Passive",
+     "actionType": null,
      "uses": null,
      "requirement": null,
      "duration": null,
@@ -12084,7 +12513,7 @@
      "effect": null,
      "onUse": null,
      "scaling": null,
-     "summary": "Use your reaction when you take damage to add 1d4 to your AC until the start of your next turn, and either gain advantage on your next attack or impose disadvantage on the next attack against you.",
+     "summary": "Resistance to psychic damage; advantage on saves against charm and fear.",
      "grantsSpells": false,
      "grantsAttack": false,
      "grantsSkills": false,
@@ -12095,7 +12524,33 @@
       "level": 6
      },
      "book": "TCE",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
+    },
+    {
+     "name": "Psionic Sorcery",
+     "description": "When you cast a spell of 1st level or higher from your Psionic Spells feature, you can spend sorcery points equal to the spell's level instead of a spell slot. Cast this way, the spell needs no verbal or somatic components, and no material components unless they are consumed.",
+     "level": 6,
+     "featureType": "Passive",
+     "actionType": null,
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "Cast Psionic Spells with sorcery points and no verbal or somatic components.",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Aberrant Mind",
+      "level": 6
+     },
+     "book": "TCE",
+     "lastUpdated": "2026-11-04"
     },
     {
      "name": "Revelation in Flesh",
@@ -12151,7 +12606,7 @@
     }
    ],
    "source": "TCE",
-   "book": "PHB",
+   "book": "TCE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -12248,7 +12703,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "lastUpdated": "2026-09-29"
+   "lastUpdated": "2026-09-29",
+   "source": "TCE"
   },
   {
    "class": "Sorcerer",
@@ -12258,32 +12714,6 @@
    "flavorText": "Sorcerous Origin\n\nA divine soul has been touched by the grace of a divine being. The magic you wield is a gift from the gods, and you serve as a conduit for their celestial power.",
    "description": "A divine soul has been touched by the grace of a divine being. The magic you wield is a gift from the gods, and you are a conduit for their power.",
    "features": [
-    {
-     "name": "Bonus Proficiency",
-     "description": "At 1st level, you gain proficiency in the Religion skill.",
-     "level": 1,
-     "featureType": "Passive",
-     "actionType": null,
-     "uses": null,
-     "requirement": null,
-     "duration": null,
-     "endsIf": null,
-     "effect": null,
-     "onUse": null,
-     "scaling": null,
-     "summary": "You are proficient in the Religion skill.",
-     "grantsSpells": false,
-     "grantsAttack": false,
-     "grantsSkills": true,
-     "grantsProficiency": true,
-     "source": {
-      "type": "subclass",
-      "name": "Divine Soul",
-      "level": 1
-     },
-     "book": "XGE",
-     "lastUpdated": "2026-09-29"
-    },
     {
      "name": "Favored by the Gods",
      "description": "Starting at 1st level, divine power guards your destiny. If you fail a saving throw or miss with an attack roll, you can roll **2d4** and add it to the total, possibly changing the outcome. Once you use this feature, you can't use it again until you finish a short or long rest.",
@@ -12309,6 +12739,32 @@
      },
      "book": "XGE",
      "lastUpdated": "2026-09-29"
+    },
+    {
+     "name": "Divine Magic",
+     "description": "You can choose spells from the cleric spell list as well as the sorcerer list; they count as sorcerer spells for you. Choose an affinity for the source of your power: good (cure wounds), evil (inflict wounds), law (bless), chaos (bane) or neutrality (protection from evil and good). You learn that spell, and it doesn't count against your spells known.",
+     "level": 1,
+     "featureType": "Passive",
+     "actionType": null,
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "Learn cleric spells as a sorcerer, plus one bonus spell from your divine affinity.",
+     "grantsSpells": true,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Divine Soul",
+      "level": 1
+     },
+     "book": "XGE",
+     "lastUpdated": "2026-11-04"
     },
     {
      "name": "Empowered Healing",
@@ -12363,19 +12819,22 @@
      "lastUpdated": "2026-09-29"
     },
     {
-     "name": "Unnerving Defense",
-     "description": "Starting at 18th level, you can channel divine power to protect yourself from harm. When you take damage, you can use your reaction to reduce the damage by an amount equal to your sorcerer level + your Charisma modifier. If the damage is reduced to 0, the attacker takes psychic damage equal to half the damage you would have taken.",
+     "name": "Unearthly Recovery",
+     "description": "As a bonus action when you have fewer than half of your hit points, you regain hit points equal to half your hit point maximum. Once per long rest.",
      "level": 18,
      "featureType": "Active",
-     "actionType": "Reaction",
-     "uses": null,
+     "actionType": "Bonus Action",
+     "uses": {
+      "total": 1,
+      "recharge": "Long Rest"
+     },
      "requirement": null,
      "duration": null,
      "endsIf": null,
      "effect": null,
      "onUse": null,
      "scaling": null,
-     "summary": "Use a reaction to reduce incoming damage; if reduced to 0, the attacker takes psychic damage equal to half the original damage.",
+     "summary": "Bonus action below half HP: regain half your hit point maximum.",
      "grantsSpells": false,
      "grantsAttack": false,
      "grantsSkills": false,
@@ -12386,11 +12845,11 @@
       "level": 18
      },
      "book": "XGE",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -12728,7 +13187,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -12897,7 +13356,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -13042,6 +13501,181 @@
    "source": "PHB",
    "book": "PHB",
    "lastUpdated": "2026-09-29"
+  },
+  {
+   "class": "Sorcerer",
+   "classIndex": "sorcerer",
+   "index": "lunar-sorcery",
+   "name": "Lunar Sorcery",
+   "flavorText": "Sorcerous Origin",
+   "description": "Sorcerers whose magic is tied to the moons of Krynn, shifting between full, new and crescent phases.",
+   "features": [
+    {
+     "name": "Lunar Embodiment",
+     "description": "You learn extra spells tied to the Full Moon, New Moon and Crescent Moon phases as you gain sorcerer levels. They count as sorcerer spells and don't count against your spells known. After each long rest, choose your current phase.",
+     "level": 1,
+     "featureType": "Passive",
+     "actionType": null,
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "Extra spells for three moon phases; choose a phase after each long rest.",
+     "grantsSpells": true,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Lunar Sorcery",
+      "level": 1
+     },
+     "book": "DSotDQ",
+     "lastUpdated": "2026-11-04"
+    },
+    {
+     "name": "Moon Fire",
+     "description": "You learn sacred flame, which counts as a sorcerer cantrip and not against your cantrips known. When you cast it, you can target one creature, or two creatures within 5 feet of each other.",
+     "level": 1,
+     "featureType": "Passive",
+     "actionType": null,
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "Learn sacred flame; it can hit two creatures within 5 feet of each other.",
+     "grantsSpells": true,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Lunar Sorcery",
+      "level": 1
+     },
+     "book": "DSotDQ",
+     "lastUpdated": "2026-11-04"
+    },
+    {
+     "name": "Lunar Boons",
+     "description": "Your current phase lowers the sorcery point cost of Metamagic by 1 for spells of certain schools: Full Moon for abjuration and conjuration, New Moon for enchantment and necromancy, Crescent Moon for divination and transmutation. You can do this a number of times equal to your proficiency bonus per long rest.",
+     "level": 6,
+     "featureType": "Passive",
+     "actionType": null,
+     "uses": {
+      "total": "Proficiency Bonus",
+      "recharge": "Long Rest"
+     },
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "Cheaper Metamagic for spells of your phase's schools.",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Lunar Sorcery",
+      "level": 6
+     },
+     "book": "DSotDQ",
+     "lastUpdated": "2026-11-04"
+    },
+    {
+     "name": "Waxing and Waning",
+     "description": "As a bonus action, spend 1 sorcery point to change your current phase.",
+     "level": 6,
+     "featureType": "Active",
+     "actionType": "Bonus Action",
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "Bonus action, 1 sorcery point: change phase.",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Lunar Sorcery",
+      "level": 6
+     },
+     "book": "DSotDQ",
+     "lastUpdated": "2026-11-04"
+    },
+    {
+     "name": "Lunar Empowerment",
+     "description": "You gain a benefit based on your current phase. Full Moon: you shed bright light and have advantage on Intelligence (Investigation) and Wisdom (Perception) checks. New Moon: you have advantage on Dexterity (Stealth) checks, and attacks against you in dim light or darkness have disadvantage. Crescent Moon: you have resistance to necrotic and radiant damage.",
+     "level": 14,
+     "featureType": "Passive",
+     "actionType": null,
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "A passive benefit from your current phase.",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Lunar Sorcery",
+      "level": 14
+     },
+     "book": "DSotDQ",
+     "lastUpdated": "2026-11-04"
+    },
+    {
+     "name": "Lunar Phenomenon",
+     "description": "As a bonus action, unleash the power of your current phase for an effect tied to it: a radiant burst that can blind foes and heal an ally (Full Moon), a necrotic shroud that harms and slows foes (New Moon), or a teleport that leaves you resistant to damage (Crescent Moon). Once used, it returns after a long rest, or by spending 5 sorcery points.",
+     "level": 18,
+     "featureType": "Active",
+     "actionType": "Bonus Action",
+     "uses": {
+      "total": 1,
+      "recharge": "Long Rest / 5 Sorcery Points"
+     },
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "Bonus action burst tied to your current phase, once per long rest or for 5 sorcery points.",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "Lunar Sorcery",
+      "level": 18
+     },
+     "book": "DSotDQ",
+     "lastUpdated": "2026-11-04"
+    }
+   ],
+   "source": "DSotDQ",
+   "book": "DSotDQ",
+   "lastUpdated": "2026-11-04"
   },
   {
    "class": "Warlock",
@@ -13530,7 +14164,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -13673,7 +14307,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -13711,7 +14345,7 @@
      "lastUpdated": "2026-09-29"
     },
     {
-     "name": "Tentacle of the Deep",
+     "name": "Tentacle of the Deeps",
      "description": "At 1st level, you can summon a spectral tentacle that strikes at your foes. As a bonus action, you can create a 10-foot-long tentacle at a point you can see within 60 feet of you. The tentacle lasts for 1 minute or until you use this feature to create another tentacle. When you create the tentacle, you can make a melee spell attack against one creature within 10 feet of it. On a hit, the target takes **1d8** cold damage, and its speed is reduced by 10 feet until the start of your next turn.\n\nThe tentacle can attack a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.\n\nThe damage increases to **2d8** at 5th level, **3d8** at 11th level, and **4d8** at 17th level.",
      "level": 1,
      "featureType": "Active",
@@ -13734,11 +14368,37 @@
       "level": 1
      },
      "book": "TCE",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
      "name": "Gift of the Sea",
-     "description": "At 6th level, you gain a swimming speed of 40 feet, and you can breathe underwater.",
+     "description": "You gain a swimming speed of 40 feet, and you can breathe underwater.",
+     "level": 1,
+     "featureType": "Passive",
+     "actionType": null,
+     "uses": null,
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "Swimming speed 40 feet; breathe underwater.",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "The Fathomless",
+      "level": 1
+     },
+     "book": "TCE",
+     "lastUpdated": "2026-11-04"
+    },
+    {
+     "name": "Oceanic Soul",
+     "description": "You have resistance to cold damage. While you are fully submerged, any creature also fully submerged can understand your speech, and you can understand theirs.",
      "level": 6,
      "featureType": "Passive",
      "actionType": null,
@@ -13749,7 +14409,7 @@
      "effect": null,
      "onUse": null,
      "scaling": null,
-     "summary": "Gain a swimming speed of 40 feet and the ability to breathe underwater.",
+     "summary": "Resistance to cold damage; understand and be understood underwater.",
      "grantsSpells": false,
      "grantsAttack": false,
      "grantsSkills": false,
@@ -13760,14 +14420,14 @@
       "level": 6
      },
      "book": "TCE",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
-     "name": "Oceanic Soul",
-     "description": "At 10th level, you gain resistance to cold damage. In addition, while you are fully submerged in water, you can communicate simple ideas with any beast that has an innate swimming speed.",
-     "level": 10,
-     "featureType": "Passive",
-     "actionType": null,
+     "name": "Guardian Coil",
+     "description": "When you or a creature you can see takes damage within 10 feet of your Tentacle of the Deeps, you can use your reaction to reduce that damage by 1d8. The reduction becomes 2d8 at 10th level.",
+     "level": 6,
+     "featureType": "Active",
+     "actionType": "Reaction",
      "uses": null,
      "requirement": null,
      "duration": null,
@@ -13775,7 +14435,36 @@
      "effect": null,
      "onUse": null,
      "scaling": null,
-     "summary": "Gain resistance to cold damage and the ability to communicate simple ideas to swimming beasts while submerged in water.",
+     "summary": "Reaction: reduce damage near your tentacle by 1d8 (2d8 at 10th level).",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "The Fathomless",
+      "level": 6
+     },
+     "book": "TCE",
+     "lastUpdated": "2026-11-04"
+    },
+    {
+     "name": "Grasping Tentacles",
+     "description": "You learn Evard's black tentacles; it counts as a warlock spell but not against your spells known. Once per long rest you can cast it without a spell slot. Whenever you cast it, you gain temporary hit points equal to your warlock level, and damage can't break your concentration on it.",
+     "level": 10,
+     "featureType": "Active",
+     "actionType": "Action",
+     "uses": {
+      "total": 1,
+      "recharge": "Long Rest"
+     },
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "Learn Evard's black tentacles; cast it free once per long rest and gain temporary hit points.",
      "grantsSpells": false,
      "grantsAttack": false,
      "grantsSkills": false,
@@ -13786,22 +14475,25 @@
       "level": 10
      },
      "book": "TCE",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
-     "name": "Guardian Coil",
-     "description": "At 14th level, your tentacle can defend you and your allies. When you or a creature you can see within 30 feet of you takes damage, you can use your reaction to choose one of the creatures and reduce the damage by **1d8**. If you reduce the damage to 0, you can make a melee spell attack against the attacker as part of the same reaction. On a hit, the attacker takes **1d8** + your Charisma modifier cold damage.",
+     "name": "Fathomless Plunge",
+     "description": "As an action, you teleport yourself and up to five willing creatures within 30 feet of you to a body of water you have seen within 1 mile, arriving within 30 feet of each other. Once per short or long rest.",
      "level": 14,
      "featureType": "Active",
-     "actionType": "Reaction",
-     "uses": null,
+     "actionType": "Action",
+     "uses": {
+      "total": 1,
+      "recharge": "Short/Long Rest"
+     },
      "requirement": null,
      "duration": null,
      "endsIf": null,
      "effect": null,
      "onUse": null,
      "scaling": null,
-     "summary": "Use your reaction to reduce damage taken by you or a creature within 30 feet by 1d8, potentially launching a counterattack.",
+     "summary": "Action: teleport yourself and up to five allies to a body of water within 1 mile.",
      "grantsSpells": false,
      "grantsAttack": false,
      "grantsSkills": false,
@@ -13812,13 +14504,48 @@
       "level": 14
      },
      "book": "TCE",
-     "lastUpdated": "2026-09-29"
-    },
+     "lastUpdated": "2026-11-04"
+    }
+   ],
+   "source": "TCE",
+   "book": "TCE",
+   "lastUpdated": "2026-09-29"
+  },
+  {
+   "class": "Warlock",
+   "classIndex": "warlock",
+   "index": "genie",
+   "name": "The Genie",
+   "flavorText": "You have entered into a pact with one of the genies, the mighty elemental sovereigns of the Inner Planes. A genie patron is a being of immense power, capable of granting wishes and warping the very fabric of reality to suit its will.",
+   "description": "You have made a pact with one of the genies, the mighty elemental rulers of the Inner Planes. A genie patron is a powerful being that can grant wishes and bend reality to its will.",
+   "features": [
     {
-     "name": "Grasping Tentacles",
-     "description": "At 18th level, you can call forth a manifestation of the deep. You can cast the evard's black tentacles spell, requiring no spell slot or material components. When you cast the spell in this way, the area of the spell is difficult terrain for creatures other than you. Once you use this feature, you can't use it again until you finish a long rest.",
-     "level": 18,
-     "featureType": "Active",
+     "name": "Genie Patron",
+     "description": "Choose the kind of genie that is your patron. The kind sets the damage type used by your Genie's Wrath and Elemental Gift features, and adds more spells to your expanded spell list.\n\n- Dao: bludgeoning\n- Djinni: thunder\n- Efreeti: fire\n- Marid: cold",
+     "level": 1,
+     "choices": [
+      {
+       "name": "Dao",
+       "description": "Earth genie. Bludgeoning damage. Adds sanctuary, spike growth, meld into stone, stone shape and wall of stone.",
+       "lastUpdated": "2026-10-18"
+      },
+      {
+       "name": "Djinni",
+       "description": "Air genie. Thunder damage. Adds thunderwave, gust of wind, wind wall, greater invisibility and seeming.",
+       "lastUpdated": "2026-10-18"
+      },
+      {
+       "name": "Efreeti",
+       "description": "Fire genie. Fire damage. Adds burning hands, scorching ray, fireball, fire shield and flame strike.",
+       "lastUpdated": "2026-10-18"
+      },
+      {
+       "name": "Marid",
+       "description": "Water genie. Cold damage. Adds fog cloud, blur, sleet storm, control water and cone of cold.",
+       "lastUpdated": "2026-10-18"
+      }
+     ],
+     "featureType": "Passive",
      "actionType": null,
      "uses": null,
      "requirement": null,
@@ -13827,111 +14554,24 @@
      "effect": null,
      "onUse": null,
      "scaling": null,
-     "summary": "Cast Evard's Black Tentacles without a spell slot or material components; the area becomes difficult terrain for others.",
+     "summary": "Choose Dao, Djinni, Efreeti or Marid. Sets your damage type and extra patron spells.",
      "grantsSpells": false,
      "grantsAttack": false,
      "grantsSkills": false,
      "grantsProficiency": false,
      "source": {
       "type": "subclass",
-      "name": "The Fathomless",
-      "level": 18
+      "name": "The Genie",
+      "level": 1
      },
      "book": "TCE",
-     "lastUpdated": "2026-09-29"
-    }
-   ],
-   "source": "TCE",
-   "book": "PHB",
-   "lastUpdated": "2026-09-29"
-  },
-{
-      "class": "Warlock",
-      "classIndex": "warlock",
-      "index": "genie",
-      "name": "The Genie",
-      "flavorText": "You have entered into a pact with one of the genies, the mighty elemental sovereigns of the Inner Planes. A genie patron is a being of immense power, capable of granting wishes and warping the very fabric of reality to suit its will.",
-      "description": "You have made a pact with one of the genies, the mighty elemental rulers of the Inner Planes. A genie patron is a powerful being that can grant wishes and bend reality to its will.",
-      "features": [
-       {
-        "name": "Genie Patron",
-        "description": "At 1st level, you choose the type of genie that is your patron: Dao (earth), Djinni (air), Efreeti (fire), or Marid (water). Your choice determines the damage type for your Elemental Gift feature and adds spells to your spell list.\n\n- Dao (Earth): Fire damage\n- Djinni (Air): Cold damage\n- Efreeti (Fire): Lightning damage\n- Marid (Water): Thunder damage\n\nYou can speak, read, and write the language of your patron's plane: Terran (Dao), Auran (Djinni), Ignan (Efreeti), or Aquan (Marid).",
-        "level": 1,
-        "choices": [
-         {
-          "name": "Dao (Earth)",
-          "description": "Fire damage; Terran language",
-          "lastUpdated": "2026-10-18"
-         },
-         {
-          "name": "Djinni (Air)",
-          "description": "Cold damage; Auran language",
-          "lastUpdated": "2026-10-18"
-         },
-         {
-          "name": "Efreeti (Fire)",
-          "description": "Lightning damage; Ignan language",
-          "lastUpdated": "2026-10-18"
-         },
-         {
-          "name": "Marid (Water)",
-          "description": "Thunder damage; Aquan language",
-          "lastUpdated": "2026-10-18"
-         }
-        ],
-        "featureType": "Active",
-        "actionType": null,
-        "uses": null,
-        "requirement": null,
-        "duration": null,
-        "endsIf": null,
-        "effect": null,
-        "onUse": null,
-        "scaling": null,
-        "summary": "Choose your genie patron type to determine damage resistance, language, and added spells.",
-        "grantsSpells": false,
-        "grantsAttack": false,
-        "grantsSkills": false,
-        "grantsProficiency": false,
-        "source": {
-         "type": "subclass",
-         "name": "The Genie",
-         "level": 1
-        },
-        "book": "TCE",
-        "lastUpdated": "2026-10-18"
-       },
-       {
-        "name": "Bonus Spells",
-        "description": "At 1st level, you learn additional spells when you reach certain levels in this class, as shown in the Genie Spells table. Each of these spells counts as a warlock spell for you, but it doesn't count against your number of warlock spells you know.\n\n1st: detect evil and good, protection from evil and good\n3rd: create food and water, phantasmal killer\n5th: creation, sending\n7th: creation, summon elemental\n9th: creation, wall of stone\n11th: creation, wish",
-        "level": 1,
-        "featureType": "Passive",
-        "actionType": null,
-        "uses": null,
-        "requirement": null,
-        "duration": null,
-        "endsIf": null,
-        "effect": null,
-        "onUse": null,
-        "scaling": null,
-        "summary": "Learn additional warlock spells at specific levels that do not count against your number of spells known.",
-        "grantsSpells": true,
-        "grantsAttack": false,
-        "grantsSkills": false,
-        "grantsProficiency": false,
-        "source": {
-         "type": "subclass",
-         "name": "The Genie",
-         "level": 1
-        },
-        "book": "TCE",
-        "lastUpdated": "2026-09-29"
-       },
-       {
-        "name": "Genie's Vessel",
-     "description": "At 1st level, your patron gifts you a magical vessel that grants you a measure of the genie's power. The vessel is a Tiny object, and you choose the object's nature: an oil lamp, an ornate urn, a gilded chalice, or some other similarly shaped Tiny object. While you are touching the vessel, you can use it as a spellcasting focus for your warlock spells. The vessel's AC equals your spell save DC. It has a number of hit points equal to your warlock level + your proficiency bonus, and it is immune to poison and psychic damage.\n\nThe vessel grants you the following benefits:\n\n- Elemental Gift: You gain a flying speed of 30 feet, which works only while you are not wearing heavy armor.\n\n- Limited Wish: Once per long rest, you can cast a spell of 6th level or lower from the warlock spell list, requiring no spell slot or material components.",
+     "lastUpdated": "2026-11-04"
+    },
+    {
+     "name": "Expanded Spell List",
+     "description": "Your patron adds spells to the warlock spell list for you. You still choose them as spells known.\n\nEvery genie: detect evil and good (1st), phantasmal force (2nd), create food and water (3rd), phantasmal killer (4th), creation (5th), wish (9th).\n\nDao: sanctuary, spike growth, meld into stone, stone shape, wall of stone.\nDjinni: thunderwave, gust of wind, wind wall, greater invisibility, seeming.\nEfreeti: burning hands, scorching ray, fireball, fire shield, flame strike.\nMarid: fog cloud, blur, sleet storm, control water, cone of cold.",
      "level": 1,
-     "featureType": "Active",
+     "featureType": "Passive",
      "actionType": null,
      "uses": null,
      "requirement": null,
@@ -13940,7 +14580,36 @@
      "effect": null,
      "onUse": null,
      "scaling": null,
-     "summary": "Gain a magical vessel that acts as a spellcasting focus and provides a flying speed and a free 6th-level or lower warlock spell.",
+     "summary": "Extra spells to choose from, by genie kind.",
+     "grantsSpells": false,
+     "grantsAttack": false,
+     "grantsSkills": false,
+     "grantsProficiency": false,
+     "source": {
+      "type": "subclass",
+      "name": "The Genie",
+      "level": 1
+     },
+     "book": "TCE",
+     "lastUpdated": "2026-11-04"
+    },
+    {
+     "name": "Genie's Vessel",
+     "description": "Your patron gives you a Tiny magic vessel, such as a lamp or urn. You can use it as a spellcasting focus for warlock spells. Its AC equals your spell save DC, its hit points equal your warlock level + your proficiency bonus, and it is immune to poison and psychic damage.\n\nBottled Respite. As an action, you vanish into the vessel and can stay inside for up to twice your proficiency bonus in hours. You can leave early as a bonus action, and you leave if the vessel is destroyed. Once per long rest.\n\nGenie's Wrath. Once on each of your turns when you hit with an attack roll, you deal extra damage equal to your proficiency bonus, of your genie kind's damage type.",
+     "level": 1,
+     "featureType": "Active",
+     "actionType": "Action",
+     "uses": {
+      "total": 1,
+      "recharge": "Long Rest"
+     },
+     "requirement": null,
+     "duration": null,
+     "endsIf": null,
+     "effect": null,
+     "onUse": null,
+     "scaling": null,
+     "summary": "Spellcasting focus vessel. Bottled Respite: hide inside once per long rest. Genie's Wrath: +proficiency bonus damage once per turn.",
      "grantsSpells": true,
      "grantsAttack": false,
      "grantsSkills": false,
@@ -13951,22 +14620,25 @@
       "level": 1
      },
      "book": "TCE",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
      "name": "Elemental Gift",
-     "description": "Starting at 6th level, the vessel grants you resistance to a damage type based on your patron's kind: fire (Dao), cold (Djinni), lightning (Efreeti), or thunder (Marid). You also gain a flying speed of 30 feet, which works only while you are not wearing heavy armor.",
+     "description": "You have resistance to your genie kind's damage type. As a bonus action, you gain a flying speed of 30 feet for 10 minutes. You can do this a number of times equal to your proficiency bonus per long rest.",
      "level": 6,
-     "featureType": "Passive",
-     "actionType": null,
-     "uses": null,
+     "featureType": "Active",
+     "actionType": "Bonus Action",
+     "uses": {
+      "total": "Proficiency Bonus",
+      "recharge": "Long Rest"
+     },
      "requirement": null,
-     "duration": null,
+     "duration": "10 minutes",
      "endsIf": null,
      "effect": null,
      "onUse": null,
      "scaling": null,
-     "summary": "Gain resistance to a specific damage type based on your patron and a flying speed of 30 feet while not in heavy armor.",
+     "summary": "Resistance to your genie's damage type; bonus action 30 ft flight for 10 minutes.",
      "grantsSpells": false,
      "grantsAttack": false,
      "grantsSkills": false,
@@ -13977,14 +14649,14 @@
       "level": 6
      },
      "book": "TCE",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
      "name": "Sanctuary Vessel",
-     "description": "At 10th level, when you or an ally within 30 feet of you takes damage, you can use your reaction to whisk the damaged creature into your vessel.\n\nThe creature is transported to the vessel's extradimensional space, where it is safe from harm. The creature remains there until the end of your next turn or until you use this feature again.\n\nWhen the creature reappears, it appears in an unoccupied space of your choice within 30 feet of you.\n\nYou can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+     "description": "When you use Bottled Respite, you can bring up to five willing creatures you can see within 30 feet into the vessel with you. As a bonus action, you can send any number of them out. A creature that stays inside for at least 10 minutes gains the benefit of a short rest, and adds your proficiency bonus to hit points it regains by spending Hit Dice there.",
      "level": 10,
-     "featureType": "Active",
-     "actionType": "Reaction",
+     "featureType": "Passive",
+     "actionType": null,
      "uses": null,
      "requirement": null,
      "duration": null,
@@ -13992,7 +14664,7 @@
      "effect": null,
      "onUse": null,
      "scaling": null,
-     "summary": "Use your reaction to whisk yourself or an ally within 30 feet into your vessel to protect them from harm until the end of your next turn.",
+     "summary": "Bring up to five allies into your vessel; 10 minutes inside counts as a short rest.",
      "grantsSpells": false,
      "grantsAttack": false,
      "grantsSkills": false,
@@ -14003,22 +14675,25 @@
       "level": 10
      },
      "book": "TCE",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
      "name": "Limited Wish",
-     "description": "At 14th level, you can tap into the power of your genie patron to cast powerful spells.\n\nOnce per long rest, you can cast a spell of 6th level or lower from the warlock spell list, requiring no spell slot or material components.",
+     "description": "As an action, you ask your patron for a spell of 6th level or lower with a casting time of 1 action. It can come from any class's spell list. You cast it without a spell slot or material components. After you use this, you can't again until you finish 1d4 long rests.",
      "level": 14,
-     "featureType": "Passive",
-     "actionType": null,
-     "uses": null,
+     "featureType": "Active",
+     "actionType": "Action",
+     "uses": {
+      "total": 1,
+      "recharge": "1d4 Long Rests"
+     },
      "requirement": null,
      "duration": null,
      "endsIf": null,
      "effect": null,
      "onUse": null,
      "scaling": null,
-     "summary": "Cast a spell of 6th level or lower from the warlock spell list without using a spell slot or material components.",
+     "summary": "Action: cast any 6th-level or lower, 1-action spell from any class with no slot. Recharges after 1d4 long rests.",
      "grantsSpells": false,
      "grantsAttack": false,
      "grantsSkills": false,
@@ -14029,11 +14704,11 @@
       "level": 14
      },
      "book": "TCE",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     }
    ],
    "source": "TCE",
-   "book": "PHB",
+   "book": "TCE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -14148,7 +14823,7 @@
     }
    ],
    "source": "VRGR",
-   "book": "PHB",
+   "book": "VRGR",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -14186,45 +14861,22 @@
      "lastUpdated": "2026-09-29"
     },
     {
-     "name": "Undying Nature",
-     "description": "Also at 1st level, you have advantage on saving throws against disease.",
-     "level": 1,
-     "featureType": "Passive",
-     "actionType": null,
-     "uses": null,
-     "requirement": null,
-     "duration": null,
-     "endsIf": null,
-     "effect": null,
-     "onUse": null,
-     "scaling": null,
-     "summary": "You have advantage on saving throws against disease.",
-     "grantsSpells": false,
-     "grantsAttack": false,
-     "grantsSkills": false,
-     "grantsProficiency": false,
-     "source": {
-      "type": "subclass",
-      "name": "Undying",
-      "level": 1
-     },
-     "book": "SCAG",
-     "lastUpdated": "2026-09-29"
-    },
-    {
-     "name": "Beyond the Grave",
-     "description": "At 6th level, you can gain temporary hit points when you finish a short rest.",
+     "name": "Defy Death",
+     "description": "When you succeed on a death saving throw, or stabilize a creature with spare the dying, you regain hit points equal to 1d8 + your Constitution modifier (minimum 1). Once per long rest.",
      "level": 6,
      "featureType": "Passive",
      "actionType": null,
-     "uses": null,
+     "uses": {
+      "total": 1,
+      "recharge": "Long Rest"
+     },
      "requirement": null,
      "duration": null,
      "endsIf": null,
      "effect": null,
      "onUse": null,
      "scaling": null,
-     "summary": "You can gain temporary hit points when you finish a short rest.",
+     "summary": "Regain 1d8 + Constitution modifier hit points on a successful death save.",
      "grantsSpells": false,
      "grantsAttack": false,
      "grantsSkills": false,
@@ -14235,11 +14887,11 @@
       "level": 6
      },
      "book": "SCAG",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
-     "name": "Indestructible Life",
-     "description": "At 10th level, you can regain hit points when you take damage.",
+     "name": "Undying Nature",
+     "description": "You can hold your breath indefinitely, and you don't need food, water or sleep, though you still need rest. You age much more slowly: for every 10 years that pass, your body ages 1 year, and you can't be aged magically.",
      "level": 10,
      "featureType": "Passive",
      "actionType": null,
@@ -14250,7 +14902,7 @@
      "effect": null,
      "onUse": null,
      "scaling": null,
-     "summary": "You can regain hit points when you take damage.",
+     "summary": "No need for food, water, sleep or air; you age very slowly.",
      "grantsSpells": false,
      "grantsAttack": false,
      "grantsSkills": false,
@@ -14261,22 +14913,25 @@
       "level": 10
      },
      "book": "SCAG",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
-     "name": "Undying Nature",
-     "description": "At 14th level, you cannot be killed by a single attack.",
+     "name": "Indestructible Life",
+     "description": "As a bonus action, you regain hit points equal to 1d8 + your warlock level, and you can reattach a severed body part you hold against its stump. Once per short or long rest.",
      "level": 14,
-     "featureType": "Passive",
-     "actionType": null,
-     "uses": null,
+     "featureType": "Active",
+     "actionType": "Bonus Action",
+     "uses": {
+      "total": 1,
+      "recharge": "Short/Long Rest"
+     },
      "requirement": null,
      "duration": null,
      "endsIf": null,
      "effect": null,
      "onUse": null,
      "scaling": null,
-     "summary": "You cannot be killed by a single attack.",
+     "summary": "Bonus action: regain 1d8 + warlock level hit points and reattach a severed limb.",
      "grantsSpells": false,
      "grantsAttack": false,
      "grantsSkills": false,
@@ -14287,11 +14942,11 @@
       "level": 14
      },
      "book": "SCAG",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     }
    ],
    "source": "SCAG",
-   "book": "PHB",
+   "book": "SCAG",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -14446,32 +15101,6 @@
    "description": "Bladesingers are elves who have learned to combine swordplay with arcane magic. They are deadly warriors who use their magic to enhance their combat prowess.",
    "features": [
     {
-     "name": "Bonus Proficiency",
-     "description": "When you choose this tradition at 2nd level, you gain proficiency with light armor, a one-handed melee weapon of your choice, and the Performance skill if you don't already have it.",
-     "level": 2,
-     "featureType": "Active",
-     "actionType": null,
-     "uses": null,
-     "requirement": null,
-     "duration": null,
-     "endsIf": null,
-     "effect": null,
-     "onUse": null,
-     "scaling": null,
-     "summary": "Gain proficiency with light armor, one one-handed melee weapon of your choice, and the Performance skill.",
-     "grantsSpells": false,
-     "grantsAttack": false,
-     "grantsSkills": true,
-     "grantsProficiency": true,
-     "source": {
-      "type": "subclass",
-      "name": "Bladesinging",
-      "level": 2
-     },
-     "book": "XGE",
-     "lastUpdated": "2026-09-29"
-    },
-    {
      "name": "Training in War and Song",
      "description": "Starting at 2nd level, you learn to blend your magic with your weapon work. You gain proficiency with one of the following skills of your choice: Acrobatics, Athletics, History, or Performance. You also gain proficiency with one musical instrument of your choice.",
      "level": 2,
@@ -14602,8 +15231,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "source": "XGE",
-   "book": "PHB",
+   "source": "TCE",
+   "book": "TCE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -14745,8 +15374,8 @@
      "lastUpdated": "2026-09-29"
     }
    ],
-   "source": "TCE",
-   "book": "PHB",
+   "source": "EGW",
+   "book": "EGW",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -14810,7 +15439,7 @@
      "lastUpdated": "2026-09-29"
     },
     {
-     "name": "Benign Transportation",
+     "name": "Benign Transposition",
      "description": "At 6th level, you can swap places with a creature.",
      "level": 6,
      "featureType": "Passive",
@@ -14833,7 +15462,7 @@
       "level": 6
      },
      "book": "PHB",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
      "name": "Focused Conjuration",
@@ -15044,7 +15673,7 @@
    "description": "Enchanters specialize in manipulating the minds of others. They can charm, beguile, and control creatures, turning enemies into allies and bending others to their will.\n\nThe study of enchantment requires subtlety and finesse. Enchanters learn to weave spells that influence thoughts and emotions, using their abilities to avoid conflict or gain advantage in social situations.",
    "features": [
     {
-     "name": "Savant",
+     "name": "Enchantment Savant",
      "description": "At 2nd level, the gold and time you spend to copy an enchantment spell into your spellbook is halved.",
      "level": 2,
      "featureType": "Active",
@@ -15067,7 +15696,7 @@
       "level": 2
      },
      "book": "PHB",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
      "name": "Hypnotic Gaze",
@@ -15408,19 +16037,22 @@
      "lastUpdated": "2026-09-29"
     },
     {
-     "name": "Gravity Sinkhole",
-     "description": "At 14th level, you can create a devastating gravitational anomaly. As an action, you can choose a point you can see within 120 feet of you. Each creature in a 20-foot-radius sphere centered on that point must make a Constitution saving throw.\n\nOn a failed save, a creature takes **5d10** force damage and is restrained until the start of your next turn. On a successful save, a creature takes half as much damage and isn't restrained.\n\nYou can use this feature a number of times equal to your Intelligence modifier (minimum of once), and you regain all expended uses when you finish a long rest.",
+     "name": "Event Horizon",
+     "description": "As an action, you emit a field of gravity in a 30-foot radius for 1 minute (concentration). A hostile creature that starts its turn in the field makes a Strength saving throw against your spell save DC. On a failure it takes 2d10 force damage and its speed becomes 0 until its next turn starts; on a success it takes half damage, and every foot it moves this turn costs 2 extra feet. Once per long rest, or by expending a spell slot of 3rd level or higher.",
      "level": 14,
      "featureType": "Active",
      "actionType": "Action",
-     "uses": null,
+     "uses": {
+      "total": 1,
+      "recharge": "Long Rest"
+     },
      "requirement": null,
-     "duration": null,
+     "duration": "1 minute (concentration)",
      "endsIf": null,
      "effect": null,
      "onUse": null,
      "scaling": null,
-     "summary": "Create a 20-foot-radius sphere within 120 feet; creatures failing a Constitution save take 5d10 force damage and are restrained until your next turn.",
+     "summary": "Action: 30-foot gravity field; enemies take 2d10 force damage and are pinned (Strength save).",
      "grantsSpells": false,
      "grantsAttack": false,
      "grantsSkills": false,
@@ -15430,12 +16062,12 @@
       "name": "Graviturgy Magic",
       "level": 14
      },
-     "book": "TCE",
-     "lastUpdated": "2026-09-29"
+     "book": "EGW",
+     "lastUpdated": "2026-11-04"
     }
    ],
-   "source": "TCE",
-   "book": "PHB",
+   "source": "EGW",
+   "book": "EGW",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -15499,11 +16131,11 @@
      "lastUpdated": "2026-09-29"
     },
     {
-     "name": "Illusory Self",
-     "description": "At 6th level, you can create an illusory duplicate of yourself.",
+     "name": "Malleable Illusions",
+     "description": "When you cast an illusion spell with a duration of 1 minute or longer, you can use your action to change the nature of that illusion, within the spell's normal limits, as long as you can see it.",
      "level": 6,
-     "featureType": "Passive",
-     "actionType": null,
+     "featureType": "Active",
+     "actionType": "Action",
      "uses": null,
      "requirement": null,
      "duration": null,
@@ -15511,7 +16143,7 @@
      "effect": null,
      "onUse": null,
      "scaling": null,
-     "summary": "Use your reaction to create an illusory duplicate of yourself to cause an attack to miss.",
+     "summary": "Action: reshape your ongoing illusions.",
      "grantsSpells": false,
      "grantsAttack": false,
      "grantsSkills": false,
@@ -15522,7 +16154,7 @@
       "level": 6
      },
      "book": "PHB",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
      "name": "Illusory Self",
@@ -15590,7 +16222,7 @@
    "description": "Necromancers study the forces of life and death. They can animate the dead, drain life force from living creatures, and even cheat death itself.\n\nThe study of necromancy requires a strong will and a willingness to confront the darker aspects of existence. Necromancers learn to harness the power of negative energy, using it to create undead servants and protect themselves from harm.",
    "features": [
     {
-     "name": "Savant",
+     "name": "Necromancy Savant",
      "description": "At 2nd level, the gold and time you spend to copy a necromancy spell into your spellbook is halved.",
      "level": 2,
      "featureType": "Active",
@@ -15613,7 +16245,7 @@
       "level": 2
      },
      "book": "PHB",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
      "name": "Grim Harvest",
@@ -15811,7 +16443,7 @@
      "lastUpdated": "2026-09-29"
     },
     {
-     "name": "Master Scrivian",
+     "name": "Master Scrivener",
      "description": "Starting at 10th level, you can create powerful scrolls. When you finish a long rest, you can create a number of spell scrolls equal to your Intelligence modifier (minimum of one).\n\nThe scrolls must be for spells of 5th level or lower, and the spells must be in your spellbook. The scrolls cost half the normal amount of gold to create, and they last for 8 hours before becoming inert.",
      "level": 10,
      "featureType": "Active",
@@ -15834,10 +16466,10 @@
       "level": 10
      },
      "book": "TCE",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
-     "name": "One with Words",
+     "name": "One with the Word",
      "description": "At 14th level, your mastery of the written word allows you to cast spells without speaking. When you cast a wizard spell, you can cast it without verbal components.\n\nOnce you use this feature, you can't use it again until you finish a short or long rest.",
      "level": 14,
      "featureType": "Active",
@@ -15860,11 +16492,11 @@
       "level": 14
      },
      "book": "TCE",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     }
    ],
    "source": "TCE",
-   "book": "PHB",
+   "book": "TCE",
    "lastUpdated": "2026-09-29"
   },
   {
@@ -15876,7 +16508,7 @@
    "description": "Transmuters manipulate the physical world. They can change the shape and properties of objects, transform one substance into another, and even alter their own bodies.\n\nThe study of transmutation requires a deep understanding of the natural world. Transmuters learn to reshape reality at a fundamental level, using their abilities to adapt to any situation and overcome any obstacle.",
    "features": [
     {
-     "name": "Savant",
+     "name": "Transmutation Savant",
      "description": "At 2nd level, the gold and time you spend to copy a transmutation spell into your spellbook is halved.",
      "level": 2,
      "featureType": "Active",
@@ -15899,7 +16531,7 @@
       "level": 2
      },
      "book": "PHB",
-     "lastUpdated": "2026-09-29"
+     "lastUpdated": "2026-11-04"
     },
     {
      "name": "Minor Alchemy",
@@ -16150,7 +16782,7 @@
     }
    ],
    "source": "XGE",
-   "book": "PHB",
+   "book": "XGE",
    "lastUpdated": "2026-09-29"
   }
  ]

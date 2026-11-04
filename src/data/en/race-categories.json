@@ -17,6 +17,10 @@
       "flavor": "Play this if you want to be a big hairy brute who is scarily good at surprising people."
     },
     {
+      "name": "Centaur",
+      "flavor": "Play this if you want to be a horse-bodied wanderer who charges into battle with hooves and spear."
+    },
+    {
       "name": "Changeling",
       "flavor": "Play this if you want to be someone who can change their face and voice and become anyone."
     },
@@ -43,6 +47,10 @@
     {
       "name": "Firbolg",
       "flavor": "Play this if you want to be a gentle forest giant who can talk to animals and plants."
+    },
+    {
+      "name": "Genasi",
+      "flavor": "Play this if you want to be someone with elemental blood, shaped by air, earth, fire or water."
     },
     {
       "name": "Githyanki",
@@ -89,6 +97,10 @@
       "flavor": "Play this if you want to be the adaptable everyman who can grow into almost anything."
     },
     {
+      "name": "Kalashtar",
+      "flavor": "Play this if you want to be a calm dreamer linked to a spirit, who can speak mind to mind."
+    },
+    {
       "name": "Kenku",
       "flavor": "Play this if you want to be a bird-person who cannot speak their own words and can only copy sounds they have heard."
     },
@@ -101,6 +113,14 @@
       "flavor": "Play this if you want to be a cold, practical reptile-person who survives on instinct rather than feelings."
     },
     {
+      "name": "Loxodon",
+      "flavor": "Play this if you want to be a wise, elephant-like guardian with a tough hide and a useful trunk."
+    },
+    {
+      "name": "Minotaur",
+      "flavor": "Play this if you want to be a horned brawler who rams foes and never gets lost in a maze."
+    },
+    {
       "name": "Orc",
       "flavor": "Play this if you want to be a relentless brute who charges first and refuses to fall."
     },
@@ -111,6 +131,10 @@
     {
       "name": "Reborn",
       "flavor": "Play this if you want to be someone who died and came back, not quite the same as before."
+    },
+    {
+      "name": "Satyr",
+      "flavor": "Play this if you want to be a fey reveler who loves music, leaps high and shrugs off magic."
     },
     {
       "name": "Shifter",
@@ -129,8 +153,16 @@
       "flavor": "Play this if you want to be someone with demon blood, horns and fire in their veins who people distrust on sight."
     },
     {
+      "name": "Tortle",
+      "flavor": "Play this if you want to be a sturdy turtle-folk who carries a shell for armor and home."
+    },
+    {
       "name": "Triton",
       "flavor": "Play this if you want to be a proud guardian of the deep sea who is at home in the water."
+    },
+    {
+      "name": "Warforged",
+      "flavor": "Play this if you want to be a living construct built for war, now searching for a purpose."
     },
     {
       "name": "Yuan-ti Pureblood",

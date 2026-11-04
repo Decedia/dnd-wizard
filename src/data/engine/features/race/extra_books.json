@@ -186,7 +186,7 @@
    "summary": "See in dim light within 60 feet as if it were bright light",
    "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
    "source": {
-    "book": "VGC",
+    "book": "VGTM",
     "reference": "Volo's Guide to Allies Aasimar"
    }
   },
@@ -207,7 +207,7 @@
    "summary": "Resistance to radiant damage",
    "text": "You have resistance to radiant damage.",
    "source": {
-    "book": "VGC",
+    "book": "VGTM",
     "reference": "Volo's Guide to Allies Aasimar"
    }
   },
@@ -228,7 +228,7 @@
    "summary": "Resistance to necrotic damage",
    "text": "You have resistance to necrotic damage.",
    "source": {
-    "book": "VGC",
+    "book": "VGTM",
     "reference": "Volo's Guide to Allies Aasimar"
    }
   },
@@ -271,7 +271,7 @@
    "summary": "Once a long rest, heal a touched creature for 1d4 plus Cha",
    "text": "You can touch one creature, and you cast the healing hands spell on it without a spell slot. You regain the use of this trait after a long rest.",
    "source": {
-    "book": "VGC",
+    "book": "VGTM",
     "reference": "Volo's Guide to Allies Aasimar"
    }
   },
@@ -303,7 +303,7 @@
    "summary": "Cast light without a spell slot, once per long rest",
    "text": "You can cast the light cantrip without a spell slot. You regain the use of this trait after a long rest.",
    "source": {
-    "book": "VGC",
+    "book": "VGTM",
     "reference": "Volo's Guide to Allies Aasimar"
    }
   },
@@ -323,7 +323,7 @@
    "summary": "Resistance to radiant damage and an extra hit point per level",
    "text": "Protector Aasimar have resistance to radiant damage and gain 1 extra hit point whenever they gain a level.",
    "source": {
-    "book": "VGC",
+    "book": "VGTM",
     "reference": "Volo's Guide to Allies Protector Aasimar"
    }
   },
@@ -371,7 +371,7 @@
    "summary": "Once a long rest, cast hold person without a slot",
    "text": "You can cast the hold person spell without a spell slot. From 5th level you can instead cast it on yourself without a spell slot. You regain the use of this trait after a long rest.",
    "source": {
-    "book": "VGC",
+    "book": "VGTM",
     "reference": "Volo's Guide to Allies Scourge Aasimar"
    }
   },
@@ -390,7 +390,7 @@
    "summary": "See in dim light within 60 feet as if it were bright light",
    "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
    "source": {
-    "book": "VGC",
+    "book": "VGTM",
     "reference": "Volo's Guide to Allies Bugbear"
    }
   },
@@ -416,7 +416,7 @@
    "summary": "Proficiency in the Survival skill",
    "text": "You have proficiency in the Survival skill.",
    "source": {
-    "book": "VGC",
+    "book": "VGTM",
     "reference": "Volo's Guide to Allies Bugbear"
    }
   },
@@ -464,7 +464,7 @@
    "summary": "Three times a day, charge 30 feet and hit hard",
    "text": "You can use a bonus action to move up to 30 feet in a straight line toward a target and then make one melee attack against it. On a hit, the target takes 1d6 bludgeoning damage plus your Strength modifier, plus an additional 1d6 for every 10 feet you moved. You can also use your reaction to make a melee attack when you move within 10 feet of a creature, ignoring the general rule on opportunity attacks.",
    "source": {
-    "book": "VGC",
+    "book": "VGTM",
     "reference": "Volo's Guide to Allies Bugbear"
    }
   },
@@ -531,7 +531,7 @@
    "summary": "Detect magic at will, phantasmal force and muffle sound once per rest",
    "text": "You know the detect magic cantrip, which you can cast at will without a spell slot. You can also cast phantasmal force once per long rest without a spell slot, and muffle sound once per long rest without a spell slot.",
    "source": {
-    "book": "VGC",
+    "book": "VGTM",
     "reference": "Volo's Guide to Allies Firbolg"
    }
   },
@@ -571,7 +571,7 @@
    "summary": "Talk a frightened creature out of it for 24 hours",
    "text": "You can use a bonus action to speak to a creature within 30 feet of you that is frightened of you, ending the frightened condition. If you do, the creature can't become frightened of you again until 24 hours have passed.",
    "source": {
-    "book": "VGC",
+    "book": "VGTM",
     "reference": "Volo's Guide to Allies Firbolg"
    }
   },
@@ -619,7 +619,7 @@
    "summary": "Once a day, a Wisdom-saved check to end a condition on an ally",
    "text": "You can use a bonus action to touch one willing creature within 30 feet of you, ending one of the conditions below affecting it: charmed, frightened, paralyzed, petrified, blinded, deafened, or stunned. An affected creature makes a Wisdom saving throw with a DC of 5 plus your proficiency bonus plus your Wisdom modifier. You gain the use of this trait after a long rest.",
    "source": {
-    "book": "VGC",
+    "book": "VGTM",
     "reference": "Volo's Guide to Allies Firbolg"
    }
   },
@@ -638,7 +638,7 @@
    "summary": "See in dim light within 60 feet as if it were bright light",
    "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
    "source": {
-    "book": "VGC",
+    "book": "VGTM",
     "reference": "Volo's Guide to Allies Goblin"
    }
   },
@@ -657,7 +657,7 @@
    "summary": "Disengage and Hide as bonus actions; +10 ft past another goblin",
    "text": "You can take the Disengage or Hide action as a bonus action on each of your turns. Your walking speed increases by 10 feet if you move through a space occupied by another goblin.",
    "source": {
-    "book": "VGC",
+    "book": "VGTM",
     "reference": "Volo's Guide to Allies Goblin"
    }
   },
@@ -686,7 +686,7 @@
    "summary": "Dash lets you move twice your walking speed",
    "text": "When you take the Dash action on your turn, you can use your walking speed twice.",
    "source": {
-    "book": "VGC",
+    "book": "VGTM",
     "reference": "Volo's Guide to Allies Goblin"
    }
   },
@@ -705,7 +705,7 @@
    "summary": "See in dim light within 60 feet as if it were bright light",
    "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
    "source": {
-    "book": "VGC",
+    "book": "VGTM",
     "reference": "Volo's Guide to Allies Hobgoblin"
    }
   },
@@ -732,7 +732,7 @@
    "summary": "Proficiency in Stealth, Survival, light armor, shields and weapons",
    "text": "You have proficiency in the Stealth and Survival skills. You also gain proficiency with light armor, shields, light weapons, longbows and long swords.",
    "source": {
-    "book": "VGC",
+    "book": "VGTM",
     "reference": "Volo's Guide to Allies Hobgoblin"
    }
   },
@@ -774,7 +774,7 @@
    "summary": "Once a day, give an ally +1 to a roll for a minute",
    "text": "You can use a bonus action to help one ally you can see within 30 feet of you, granting them a +1 bonus to one attack roll or a +1d6 bonus to one damage roll for 1 minute. You gain the use of this trait after a long rest.",
    "source": {
-    "book": "VGC",
+    "book": "VGTM",
     "reference": "Volo's Guide to Allies Hobgoblin"
    }
   },
@@ -793,7 +793,7 @@
    "summary": "See in dim light within 60 feet as if it were bright light",
    "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
    "source": {
-    "book": "VGC",
+    "book": "VGTM",
     "reference": "Volo's Guide to Allies Kobold"
    }
   },
@@ -817,7 +817,7 @@
    "summary": "Advantage on attacks beside an ally; concentration is fragile",
    "text": "You have advantage on an attack roll against a creature if at least one of your allies is within 5 feet of the creature and the ally isn't incapacitated. You have disadvantage on any ability check or saving throw to maintain concentration on an effect if another creature that you can see is within 5 feet of you.",
    "source": {
-    "book": "VGC",
+    "book": "VGTM",
     "reference": "Volo's Guide to Allies Kobold"
    }
   },
@@ -838,7 +838,7 @@
    "summary": "Disadvantage on sight-based perception in direct sunlight",
    "text": "You have disadvantage on Wisdom (Perception) checks that rely on sight when you are within 30 feet of direct sunlight and aren't in shadow.",
    "source": {
-    "book": "VGC",
+    "book": "VGTM",
     "reference": "Volo's Guide to Allies Kobold"
    }
   },
@@ -876,7 +876,7 @@
    "summary": "Scare an adjacent hostile creature into disadvantage",
    "text": "You can use a bonus action to move 10 feet toward a hostile creature that you can see and, if you end your movement within 5 feet of it, apply disadvantage to its attack rolls until the start of your next turn, unless the target can see through the grovel.",
    "source": {
-    "book": "VGC",
+    "book": "VGTM",
     "reference": "Volo's Guide to Allies Kobold"
    }
   },
@@ -908,7 +908,7 @@
    "summary": "Hold your breath for a minute, ending if you take damage",
    "text": "You can use a bonus action to hold your breath for 1 minute. The effect ends if you do take damage. You gain the use of this trait after a short or long rest.",
    "source": {
-    "book": "VGC",
+    "book": "VGTM",
     "reference": "Volo's Guide to Allies Lizardfolk"
    }
   },
@@ -932,7 +932,7 @@
    "summary": "AC 15 plus Dex without armor; Hide as a bonus action",
    "text": "Your armor class equals 15 plus your Dexterity modifier when you aren't wearing armor. You can take the Hide action as a bonus action, and you can move up to 10 feet when you take the Hide action without provoking an opportunity attack.",
    "source": {
-    "book": "VGC",
+    "book": "VGTM",
     "reference": "Volo's Guide to Allies Lizardfolk"
    }
   },
@@ -982,7 +982,7 @@
    "summary": "Reaction tail attack for 1d4 plus Str and proficiency",
    "text": "You can make a tail attack that deals 1d4 piercing damage plus your Strength modifier, plus your proficiency bonus, against a creature within 5 feet of you. You can't make this attack more than once per turn, and you can't use it if you already used your bite on the same turn.",
    "source": {
-    "book": "VGC",
+    "book": "VGTM",
     "reference": "Volo's Guide to Allies Lizardfolk"
    }
   },
@@ -1357,7 +1357,7 @@
    "summary": "Breathe both air and water",
    "text": "You can breathe air and water.",
    "source": {
-    "book": "VGC",
+    "book": "VGTM",
     "reference": "Volo's Guide to Allies Triton"
    }
   },
@@ -1378,7 +1378,7 @@
    "summary": "Immune to the poisoned condition",
    "text": "You are immune to the poisoned condition.",
    "source": {
-    "book": "VGC",
+    "book": "VGTM",
     "reference": "Volo's Guide to Allies Triton"
    }
   },
@@ -1399,7 +1399,7 @@
    "summary": "Resistance to acid damage",
    "text": "You have resistance to acid damage.",
    "source": {
-    "book": "VGC",
+    "book": "VGTM",
     "reference": "Volo's Guide to Allies Triton"
    }
   },
@@ -1436,7 +1436,7 @@
    "summary": "Once a long rest, teleport up to 30 feet as a bonus action",
    "text": "As a bonus action, you teleport, along with anything you are carrying, up to 30 feet to an unoccupied space that you can see. You gain the use of this trait after a long rest.",
    "source": {
-    "book": "VGC",
+    "book": "VGTM",
     "reference": "Volo's Guide to Allies Triton"
    }
   },
@@ -1553,7 +1553,7 @@
    "summary": "See in dim light within 60 feet as if it were bright light",
    "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
    "source": {
-    "book": "VGC",
+    "book": "VGTM",
     "reference": "Volo's Guide to Allies Yuan-Ti Pureblood"
    }
   },
@@ -1572,7 +1572,7 @@
    "summary": "Advantage on saving throws against spells",
    "text": "You have advantage on saving throws against spells.",
    "source": {
-    "book": "VGC",
+    "book": "VGTM",
     "reference": "Volo's Guide to Allies Yuan-Ti Pureblood"
    }
   },
@@ -1599,7 +1599,7 @@
    "summary": "Immune to poison, and resistant to poison damage",
    "text": "You are immune to the poisoned condition, and you have resistance to poison damage.",
    "source": {
-    "book": "VGC",
+    "book": "VGTM",
     "reference": "Volo's Guide to Allies Yuan-Ti Pureblood"
    }
   },
@@ -1628,7 +1628,7 @@
    "summary": "Three innate spells per long rest, no slots needed",
    "text": "You can cast the detect poison and thicken blood spells, and the alter self spell, once each per long rest, without a spell slot. You can cast alter self at a higher level, with no additional effect.",
    "source": {
-    "book": "VGC",
+    "book": "VGTM",
     "reference": "Volo's Guide to Allies Yuan-Ti Pureblood"
    }
   },
@@ -1647,7 +1647,7 @@
    "summary": "See in dim light within 60 feet as if it were bright light",
    "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
    "source": {
-    "book": "VgtM",
+    "book": "VRGR",
     "reference": "Vampire's Guide to Ravenloft Dhampir"
    }
   },
@@ -1671,7 +1671,7 @@
    "summary": "Blindsight out to 30 feet",
    "text": "You have blindsight out to 30 feet.",
    "source": {
-    "book": "VgtM",
+    "book": "VRGR",
     "reference": "Vampire's Guide to Ravenloft Dhampir"
    }
   },
@@ -1708,7 +1708,7 @@
    "summary": "At 5 or fewer HP, become a wisp for a minute, losing a day of life",
    "text": "When you have 5 or fewer hit points and aren't killed outright, you can use your reaction to become a wisp for 1 minute. You reappear where you fell, and you then lose 1 day of your life, which reduces the maximum age you can reach by 1 year. If you lose the last day of your life, you die.",
    "source": {
-    "book": "VgtM",
+    "book": "VRGR",
     "reference": "Vampire's Guide to Ravenloft Dhampir"
    }
   },
@@ -1727,7 +1727,7 @@
    "summary": "See in dim light within 60 feet as if it were bright light",
    "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
    "source": {
-    "book": "VgtM",
+    "book": "VRGR",
     "reference": "Vampire's Guide to Ravenloft Hexblood"
    }
   },
@@ -1746,7 +1746,7 @@
    "summary": "Advantage on saving throws against spells",
    "text": "You have advantage on saving throws against spells.",
    "source": {
-    "book": "VgtM",
+    "book": "VRGR",
     "reference": "Vampire's Guide to Ravenloft Hexblood"
    }
   },
@@ -1778,7 +1778,7 @@
    "summary": "Once a day, transfer your curse to a willing creature",
    "text": "You can use a bonus action to transfer the curse of lycanthropy from yourself to a willing creature of your choice within 30 feet of you. The cursed creature must make a Wisdom saving throw, with a DC of 5 plus your proficiency bonus plus your Charisma modifier, becoming cursed for 1 hour or until you remove the curse. You can use this trait again after a long rest.",
    "source": {
-    "book": "VgtM",
+    "book": "VRGR",
     "reference": "Vampire's Guide to Ravenloft Hexblood"
    }
   },
@@ -1797,7 +1797,7 @@
    "summary": "Resistance to fire damage",
    "text": "You have resistance to fire damage.",
    "source": {
-    "book": "VgtM",
+    "book": "VRGR",
     "reference": "Vampire's Guide to Ravenloft Hexblood"
    }
   },
@@ -1816,7 +1816,7 @@
    "summary": "See in dim light within 60 feet as if it were bright light",
    "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
    "source": {
-    "book": "VgtM",
+    "book": "VRGR",
     "reference": "Vampire's Guide to Ravenloft Reborn"
    }
   },
@@ -1859,7 +1859,7 @@
    "summary": "Once a long rest, give a creature 1d4 plus Cha and proficiency back",
    "text": "As an action, you can give a creature you touch a number of hit points equal to 1d4 plus your Charisma modifier plus your proficiency bonus. You regain the use of this trait after a long rest.",
    "source": {
-    "book": "VgtM",
+    "book": "VRGR",
     "reference": "Vampire's Guide to Ravenloft Reborn"
    }
   },
@@ -1902,7 +1902,7 @@
    "summary": "Spend 2 hit dice a day to frighten a creature for an hour",
    "text": "When you use this feature, you can spend 2 hit dice to cause one creature of your choice to become frightened of you until the spell ends, or until you decide to end the effect. A creature can be a target of this feature only once every 24 hours.",
    "source": {
-    "book": "VgtM",
+    "book": "VRGR",
     "reference": "Vampire's Guide to Ravenloft Reborn"
    }
   },
@@ -2017,7 +2017,7 @@
    "summary": "See in dim light within 60 feet as if it were bright light",
    "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
    "source": {
-    "book": "MotM",
+    "book": "AAG",
     "reference": "Mordenkainen's Monsters of the Multiverse Autognome"
    }
   }

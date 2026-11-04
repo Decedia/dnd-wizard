@@ -785,11 +785,6 @@
     }
   },
   "wizardTraditionSpells": {
-    "divination": {
-      "14": [
-        "Foresight"
-      ]
-    },
     "transmutation": {
       "10": [
         "Polymorph"
@@ -944,6 +939,9 @@
       "requiresTerrainSelection": false
     },
     "arcane-trickster": {
+      "usesMageSpellList": true
+    },
+    "eldritch-knight": {
       "usesMageSpellList": true
     },
     "bladesinging": {

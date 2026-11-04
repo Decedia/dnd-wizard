@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { BasePopup } from "@/components/BasePopup";
 import { BookPatterns, BookEmojis, type BookId } from "@/components/book-svgs";
+import { getSourceName } from "@/components/SourceBadge";
 
 const BOOK_DESCRIPTIONS: Record<BookId, string> = {
   PHB: "The Player's Handbook is the core rulebook for D&D 5e. It contains the essential rules, character creation options, spells, and equipment every player needs.",
@@ -15,6 +16,15 @@ const BOOK_DESCRIPTIONS: Record<BookId, string> = {
   EGW: "Explorer's Guide to Wildemount introduces the Critical Role campaign setting with new races, subclasses, and lore for the continent of Wildemount.",
   FTD: "Fizban's Treasury of Dragons is a draconic-themed sourcebook with new dragon-related options, subclasses, and lore about dragons across the multiverse.",
   VRGR: "Van Richten's Guide to Ravenloft is a horror-themed sourcebook that explores the Ravenloft setting with new lineages, subclasses, and horror-themed character options.",
+  DMG: "The Dungeon Master's Guide is the core book for running the game. For players it adds the Death Domain cleric and the Oathbreaker paladin.",
+  ERLW: "Eberron: Rising from the Last War presents the Eberron setting, with races such as the changeling, kalashtar, shifter and warforged, plus dragonmarks.",
+  AAG: "Spelljammer: Astral Adventurer's Guide covers adventures in wildspace and adds the astral elf, autognome, giff, hadozee, plasmoid and thri-kreen races.",
+  EEPC: "The Elemental Evil Player's Companion adds the aarakocra, deep gnome, genasi and goliath races, and many elemental spells.",
+  BGG: "Bigby Presents: Glory of the Giants is about giants and their lore. For players it adds the Path of the Giant barbarian and giant-themed feats.",
+  DSotDQ: "Dragonlance: Shadow of the Dragon Queen is a Krynn adventure. For players it adds the kender race, the Lunar Sorcery sorcerer and backgrounds.",
+  TTP: "The Tortle Package is a short supplement that adds the tortle race.",
+  MOoT: "Mythic Odysseys of Theros presents a Greek-myth setting, with the centaur, minotaur, satyr and leonin races and new subclasses.",
+  GGR: "Guildmasters' Guide to Ravnica presents the Ravnica setting, with races such as the loxodon, centaur, minotaur, simic hybrid and vedalken.",
 };
 
 interface BookExplainerProps {
@@ -51,16 +61,7 @@ export function BookExplainer({ isOpen, onClose }: BookExplainerProps) {
             <div>
               <div className="text-sm font-bold text-[var(--color-text-primary)]">{activeTab}</div>
               <div className="text-[10px] text-[var(--color-text-muted)]">
-                {activeTab === "PHB" && "Player's Handbook"}
-                {activeTab === "XGE" && "Xanathar's Guide to Everything"}
-                {activeTab === "TCE" && "Tasha's Cauldron of Everything"}
-                {activeTab === "MTF" && "Mordenkainen's Tome of Foes"}
-                {activeTab === "VGTM" && "Volo's Guide to Monsters"}
-                {activeTab === "MPMM" && "Monsters of the Multiverse"}
-                {activeTab === "SCAG" && "Sword Coast Adventurer's Guide"}
-                {activeTab === "EGW" && "Explorer's Guide to Wildemount"}
-                {activeTab === "FTD" && "Fizban's Treasury of Dragons"}
-                {activeTab === "VRGR" && "Van Richten's Guide to Ravenloft"}
+                {getSourceName(activeTab)}
               </div>
             </div>
           </div>

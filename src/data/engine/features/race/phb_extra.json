@@ -15,7 +15,7 @@
    "summary": "A flight speed equal to your walking speed",
    "text": "You have a flight speed equal to your walking speed. You are considered to be wearing light armor for the purposes of any feat or class feature that lets you ignore light armor, such as a Druid's unarmored defense.",
    "source": {
-    "book": "PHB",
+    "book": "EEPC",
     "page": 31,
     "reference": "PHB Aarakocra"
    }
@@ -49,7 +49,7 @@
    "summary": "Unarmed strike deals 1d4 piercing plus Dex, 1d6 on a critical",
    "text": "You are considered proficient with light weapons. Your unarmed strike is your talons, dealing 1d4 piercing damage plus your Dexterity modifier. On a critical hit, the damage increases to 1d6.",
    "source": {
-    "book": "PHB",
+    "book": "EEPC",
     "page": 31,
     "reference": "PHB Aarakocra"
    }
@@ -73,7 +73,7 @@
    "summary": "Proficiency in Perception and Stealth",
    "text": "You are dexterous and have a light step. You gain proficiency in the Stealth and Perception skills.",
    "source": {
-    "book": "PHB",
+    "book": "EEPC",
     "page": 31,
     "reference": "PHB Aarakocra"
    }
@@ -93,7 +93,7 @@
    "summary": "Shield of faith at will, and mage hand once per long rest",
    "text": "You know the shield of faith cantrip, which you can cast at will without a spell slot, and you can also cast mage hand. You regain expended uses of mage hand after you finish a long rest.",
    "source": {
-    "book": "ERLW",
+    "book": "MTF",
     "page": 30,
     "reference": "Eberron Githyanki"
    }
@@ -125,7 +125,7 @@
    "summary": "Reaction: move up to 10 feet without provoking opportunity attacks",
    "text": "When you start your turn, you can move up to 10 feet, following the normal rules for your movement, and you can forgo any opportunity attacks that movement would otherwise provoke. You gain the use of this after a long rest.",
    "source": {
-    "book": "ERLW",
+    "book": "MTF",
     "page": 30,
     "reference": "Eberron Githyanki"
    }
@@ -145,7 +145,7 @@
    "summary": "See and speak with anything that can see you and shares your language",
    "text": "You can see, and can communicate with, any creature that can see you and that shares your language. In addition, you gain access to the githyanki and githzerai magic properties listed in the Monstrous Compendium, although you can cast only the githyanki and githzerai magic properties. You do not automatically know any spells.",
    "source": {
-    "book": "ERLW",
+    "book": "MTF",
     "page": 30,
     "reference": "Eberron Githyanki"
    }
@@ -165,7 +165,7 @@
    "summary": "Shield of faith at will, and mage hand once per long rest",
    "text": "You know the shield of faith cantrip, which you can cast at will without a spell slot, and you can also cast mage hand. You regain expended uses of mage hand after you finish a long rest.",
    "source": {
-    "book": "ERLW",
+    "book": "MTF",
     "page": 30,
     "reference": "Eberron Githzerai"
    }
@@ -185,7 +185,7 @@
    "summary": "Resistance to psychic damage",
    "text": "You have resistance to psychic damage.",
    "source": {
-    "book": "ERLW",
+    "book": "MTF",
     "page": 30,
     "reference": "Eberron Githzerai"
    }
@@ -205,7 +205,7 @@
    "summary": "See and speak with anything that can see you and shares your language",
    "text": "You can see, and can communicate with, any creature that can see you and that shares your language. In addition, you gain access to the githyanki and githzerai magic properties listed in the Monstrous Compendium, although you can cast only the githyanki and githzerai magic properties. You do not automatically know any spells.",
    "source": {
-    "book": "ERLW",
+    "book": "MTF",
     "page": 30,
     "reference": "Eberron Githzerai"
    }
@@ -225,7 +225,7 @@
    "summary": "Climb at your walking speed, +10 feet while climbing",
    "text": "Your walking speed increases by 10 feet while you are climbing. You also gain a climbing speed equal to your walking speed.",
    "source": {
-    "book": "PHB",
+    "book": "VGTM",
     "page": 48,
     "reference": "PHB Tabaxi"
    }
@@ -245,7 +245,7 @@
    "summary": "Choose two extra skills and two extra ability scores to raise by 1",
    "text": "You get a +1 bonus to two skills of your choice. You also get a +1 bonus to two ability scores of your choice.",
    "source": {
-    "book": "PHB",
+    "book": "VGTM",
     "page": 48,
     "reference": "PHB Tabaxi"
    }
@@ -294,7 +294,7 @@
    "summary": "Bonus action: a 5-ft nonmagical slash for Dex modifier damage",
    "text": "The attack deals slashing damage equal to your Dexterity modifier, and it is not considered magical.",
    "source": {
-    "book": "PHB",
+    "book": "VGTM",
     "page": 48,
     "reference": "PHB Tabaxi"
    }
@@ -324,7 +324,7 @@
    "summary": "Bonus action: move up to 10 feet without provoking attacks",
    "text": "You can move up to 10 feet without provoking any opportunity attack.",
    "source": {
-    "book": "PHB",
+    "book": "VGTM",
     "page": 48,
     "reference": "PHB Tabaxi"
    }
@@ -362,7 +362,7 @@
    "summary": "Bonus action: darkvision out to 60 feet for an hour",
    "text": "You have superior vision in dim light and darkness, out to 60 feet. The effect doesn't conflict with any other racial darkvision. You regain the use of this after a long rest.",
    "source": {
-    "book": "PHB",
+    "book": "VGTM",
     "page": 48,
     "reference": "PHB Tabaxi"
    }
@@ -382,7 +382,7 @@
    "summary": "See in dim light within 60 feet as if it were bright light",
    "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
    "source": {
-    "book": "PHB",
+    "book": "EEPC",
     "reference": "Volo's Guide to Monsters Aarakocra"
    }
   }

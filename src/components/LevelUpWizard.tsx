@@ -4,7 +4,7 @@ import { useState, useMemo, useCallback, useEffect, useRef, useLayoutEffect } fr
 import { WizardNav } from "./WizardNav";
 import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclassDetails, getSubclassFlags, getPactBoons, getStaticFeat, getStaticEquipments } from "@/lib/srd-client";
 import { SourceBadge } from "./SourceBadge";
-import { getHitDieAverage, getModifier, computeDerivedStats, getMaxBardicInspirationUses, getBardicInspirationDie, getSongOfRestDie, hasFontOfInspiration, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getOathSpellNames, getWarlockExpandedSpellNames, getWizardTraditionSpellNames, getMaxSpellLevel, getFeatureValue, type Character } from "@/lib/storage";
+import { getHitDieAverage, getModifier, computeDerivedStats, getMaxBardicInspirationUses, getBardicInspirationDie, getSongOfRestDie, hasFontOfInspiration, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getOathSpellNames, getWizardTraditionSpellNames, getMaxSpellLevel, isThirdCaster, getSpellSlotTable, getFeatureValue, type Character } from "@/lib/storage";
 import { applySubclassFeatures, applySubclassSpellGrants, syncBaseFeatures } from "@/lib/character-creation";
 import { normalizeDescription } from "@/lib/level-up";
 import invocationsData from "@/data/warlock_invocations.json";
@@ -223,13 +223,14 @@ function buildLevelInfos(
     const asi = levelData?.asi || false;
     let spellSlots = levelData?.spellSlots;
 
-    // Arcane Trickster uses its own spell slot progression
-    const isArcaneTricksterSubclass = subclassSelection?.toLowerCase().includes("arcane trickster");
-    if (!spellSlots && isArcaneTricksterSubclass && (classData as any)?.arcaneTricksterSpellSlots) {
-      spellSlots = (classData as any).arcaneTricksterSpellSlots[String(level)] || undefined;
+    // Eldritch Knight and Arcane Trickster use their own spell slot progression
+    const isThirdCasterSubclass = isThirdCaster(subclassSelection);
+    if (!spellSlots && isThirdCasterSubclass) {
+      spellSlots = getSpellSlotTable(classData, level, subclassSelection);
     }
 
-    const rogueWithoutArcaneTrickster = className === "Rogue" && !isArcaneTricksterSubclass;
+    // Fighters and rogues only cast with a third-caster subclass.
+    const rogueWithoutArcaneTrickster = (className === "Rogue" || className === "Fighter") && !isThirdCasterSubclass;
 
     let cantripsKnown: number | undefined;
     if (classData.cantripsKnown && !rogueWithoutArcaneTrickster) {
@@ -254,10 +255,9 @@ function buildLevelInfos(
 
     const spellsKnownByLevel: Record<string, Record<number, number>> = {
       Sorcerer: { 1: 2, 2: 3, 3: 4, 4: 5, 5: 6, 6: 7, 7: 8, 8: 9, 9: 10, 10: 11, 11: 12, 12: 12, 13: 13, 14: 13, 15: 14, 16: 14, 17: 15, 18: 15, 19: 15, 20: 15 },
-      Bard: { 1: 4, 2: 5, 3: 6, 4: 7, 5: 8, 6: 9, 7: 10, 8: 11, 9: 12, 10: 14, 11: 15, 12: 15, 13: 16, 14: 16, 15: 18, 16: 18, 17: 19, 18: 19, 19: 20, 20: 22 },
-      Warlock: { 1: 2, 2: 3, 3: 4, 4: 5, 5: 6, 6: 7, 7: 8, 8: 9, 9: 10, 10: 11, 11: 12, 12: 12, 13: 13, 14: 13, 15: 14, 16: 14, 17: 15, 18: 15, 19: 15, 20: 15 },
+      Bard: { 1: 4, 2: 5, 3: 6, 4: 7, 5: 8, 6: 9, 7: 10, 8: 11, 9: 12, 10: 14, 11: 15, 12: 15, 13: 16, 14: 18, 15: 19, 16: 19, 17: 20, 18: 22, 19: 22, 20: 22 },
+      Warlock: { 1: 2, 2: 3, 3: 4, 4: 5, 5: 6, 6: 7, 7: 8, 8: 9, 9: 10, 10: 10, 11: 11, 12: 11, 13: 12, 14: 12, 15: 13, 16: 13, 17: 14, 18: 14, 19: 15, 20: 15 },
       Ranger: { 2: 2, 3: 3, 4: 3, 5: 4, 6: 4, 7: 5, 8: 5, 9: 6, 10: 6, 11: 7, 12: 7, 13: 8, 14: 8, 15: 9, 16: 9, 17: 10, 18: 10, 19: 11, 20: 11 },
-      Paladin: { 2: 2, 3: 3, 4: 3, 5: 4, 6: 4, 7: 5, 8: 5, 9: 6, 10: 6, 11: 7, 12: 7, 13: 8, 14: 8, 15: 9, 16: 9, 17: 10, 18: 10, 19: 11, 20: 11 },
     };
     if (spellsKnown === undefined && spellsKnownByLevel[className] && spellsKnownByLevel[className][level]) {
       spellsKnown = spellsKnownByLevel[className][level];
@@ -305,11 +305,20 @@ function buildLevelInfos(
         for (const f of earnedFeatures) {
           const desc = Array.isArray(f.description) ? f.description.join(" ") : (f.description || "");
           if (f.choices && f.choices.length > 0) {
+            // When the same feature comes back at a later level (Disciple of the
+            // Elements, Combat Superiority), the options picked before are gone.
+            const pickedBefore = new Set(
+              Object.entries(character.featureSelections || {})
+                .filter(([key]) => key.startsWith("subclass-feature-") && key.endsWith(`-${f.name}`) && key !== `subclass-feature-${level}-${f.name}`)
+                .flatMap(([, v]) => (v || []).flatMap((s) => String(s).split(", ")))
+            );
             subclassFeatureChoices.push({
               name: f.name,
               description: desc,
-              options: f.choices!.map((c: any) => ({ name: c.name, description: c.description || "", icon: c.icon })),
-              count: f.choicesCount || 1,
+              options: f.choices!
+                .filter((c: any) => (!c.minLevel || c.minLevel <= level) && !pickedBefore.has(c.name))
+                .map((c: any) => ({ name: c.name, description: c.description || "", icon: c.icon })),
+              count: (f as any).choicesCountByLevel?.[String(level)] ?? f.choicesCount ?? 1,
             });
           } else {
             passiveSubclassFeatures.push({ name: f.name, description: desc, source: subclassSource });
@@ -374,14 +383,14 @@ function buildLevelInfos(
     const prevSpellsKnown = prevSpellsKnownRaw || prevSpellsKnownFromTable;
     const spellsKnownChanged = spellsKnown !== undefined && spellsKnown > prevSpellsKnown;
 
-    const isArcaneTrickster = subclassSelection?.toLowerCase().includes("arcane trickster");
+    const isArcaneTrickster = isThirdCasterSubclass;
     const maxSpellLevel = spellSlots
       ? Math.max(...Object.keys(spellSlots).map(Number))
       : getMaxSpellLevel(className, level, character.ruleset);
 
     // Spell selection count is based on class-specific rules, NEVER on slot counts
-    const isSpellsKnownCaster = ["Sorcerer", "Bard", "Warlock", "Ranger", "Paladin"].includes(className);
-    const isPrepCaster = ["Cleric", "Druid", "Artificer"].includes(className);
+    const isSpellsKnownCaster = ["Sorcerer", "Bard", "Warlock", "Ranger"].includes(className);
+    const isPrepCaster = ["Cleric", "Druid", "Artificer", "Paladin"].includes(className);
     let spellSelectionCount = isSpellsKnownCaster
       ? (spellsKnownChanged ? (spellsKnown || 0) - prevSpellsKnown : 0)
       : (className === "Wizard" ? 2 : 0);
@@ -403,11 +412,12 @@ function buildLevelInfos(
     }
 
     // Preparation casters (Cleric, Druid): prepare Wisdom mod + level spells
-    if (isPrepCaster && classData.spellcastingAbility) {
+    // A paladin has no spells before 2nd level, so nothing to prepare.
+    if (isPrepCaster && classData.spellcastingAbility && spellSlots && Object.keys(spellSlots).length > 0) {
       const abilityScore = character[classData.spellcastingAbility as keyof Character] as number;
       const abilityMod = getModifier(abilityScore || 10);
-      if (className === "Artificer") {
-        // Artificer: Intelligence modifier + half artificer level, rounded down (minimum 1)
+      if (className === "Artificer" || className === "Paladin") {
+        // Artificer and Paladin: ability modifier + half class level, rounded down (minimum 1)
         const maxPrepared = Math.max(1, abilityMod + Math.floor(level / 2));
         spellSelectionCount = maxPrepared;
       } else {
@@ -436,7 +446,7 @@ function buildLevelInfos(
     const prepAbilityScore = character[classData.spellcastingAbility as keyof Character] as number;
     const prepAbilityMod = getModifier(prepAbilityScore || 10);
     const maxPrepared = isPrepCaster && classData.spellcastingAbility
-      ? Math.max(1, className === "Artificer" ? prepAbilityMod + Math.floor(level / 2) : prepAbilityMod + level)
+      ? Math.max(1, className === "Artificer" || className === "Paladin" ? prepAbilityMod + Math.floor(level / 2) : prepAbilityMod + level)
       : undefined;
     const preparedCount = isPrepCaster && maxPrepared ? maxPrepared : undefined;
 
@@ -570,7 +580,6 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       "totem-warrior": { 3: ["Beast Sense:2", "Speak with Animals:2"] },
       "shadow": { 3: ["Minor Illusion:0"] },
       "the-celestial": { 1: ["Sacred Flame:0", "Light:0"] },
-      "dreams": { 3: ["Sleep:1"] },
       "grave": { 1: ["Spare the Dying:0"] },
     };
     return AUTO_GRANTED_SPELLS[key]?.[level] || [];
@@ -1059,27 +1068,6 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
               description: Array.isArray(spell.description) ? spell.description.join("\n") : (spell.description || ""),
             });
             if ((spell.level || 0) > 0) newPreparedIds.push(id);
-          }
-        }
-      }
-    }
-
-    if (draft.class === "Warlock" && draft.subclass) {
-      const expandedSpellNames = getWarlockExpandedSpellNames(draft);
-      const currentSpellNames = spells.map((s) => s.name?.toLowerCase());
-      for (const name of expandedSpellNames) {
-        if (!currentSpellNames.includes(name.toLowerCase())) {
-          const spell = getStaticSpells(character.sources, undefined, language).find((s) => s.name?.toLowerCase() === name.toLowerCase());
-          if (spell) {
-            const id = `spell-${spell.name}-${spell.level}`.replace(/\s+/g, "-");
-            spells.push({
-              id,
-              name: spell.name,
-              level: spell.level || 0,
-              source: "srd" as const,
-              srdSpellName: spell.name,
-              description: Array.isArray(spell.description) ? spell.description.join("\n") : (spell.description || ""),
-            });
           }
         }
       }
@@ -1986,7 +1974,7 @@ function LevelCard({
                   onClick={() => setShowSubclassModal(true)}
                   className="mt-1 w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all"
                 >
-                   {subclassSelection ? `${t("creator.selectedFeat", "Selected")}: ${subclassSelection}` : t("creator.selectSubclass", "Select Subclass")}
+                   {subclassSelection ? `${t("creator.selectedSubclass", "Selected subclass")}: ${subclassSelection}` : t("creator.selectSubclass", "Select Subclass")}
                 </button>
               </div>
             </div>
@@ -2206,10 +2194,10 @@ function LevelCard({
                    <Sparkle className="h-3.5 w-3.5 text-indigo-600" />
                    <span className="text-sm font-bold text-[var(--color-text-primary)]">{t("spell.eldritchInvocations", "Eldritch Invocations")}</span>
                  </div>
-                 <p className="text-[10px] text-[var(--color-text-muted)] mb-2">{t("spell.invocationCountHint", "Choose {count} invocation{count, plural, one {} other {s}}. Spell slots recover on short rest.", { count: invocationCount })}</p>
+                 <p className="text-[10px] text-[var(--color-text-muted)] mb-2">{t("spell.invocationCountHint", "Invocations to choose: {count}. Spell slots recover on a short rest.", { count: invocationCount })}</p>
                 <FeatureChipSelector
                   name="Eldritch Invocations"
-                  description={t("spell.chooseInvocations", "Choose {count} invocation{count, plural, one {} other {s}}", { count: invocationCount })}
+                  description={t("spell.chooseInvocations", "Invocations to choose: {count}", { count: invocationCount })}
                    options={availableInvocations.map((i) => ({
                      name: i.name,
                      description: i.available ? t("spell.availableAtLevel", "Available at level {level}", { level: info.level }) : i.reason || t("common.notAvailable", "Not available"),
@@ -2261,7 +2249,7 @@ function LevelCard({
                  <Sparkle className="h-3.5 w-3.5 text-purple-600" />
                  <span className="text-sm font-bold text-[var(--color-text-primary)]">{t("spell.magicalSecrets", "Magical Secrets")}</span>
                </div>
-               <p className="text-[10px] text-[var(--color-text-muted)] mb-2">{t("spell.magicalSecretsHint", "Choose {count} spell{count, plural, one {} other {s}} from any class", { count: info.magicalSecretsCount })}</p>
+               <p className="text-[10px] text-[var(--color-text-muted)] mb-2">{t("spell.magicalSecretsHint", "Choose {count} spells from any class", { count: info.magicalSecretsCount })}</p>
               <button
                 type="button"
                 onClick={() => setShowSpellModal(true)}
@@ -2296,7 +2284,7 @@ function LevelCard({
                  <Sparkle className="h-3.5 w-3.5 text-indigo-600" />
                  <span className="text-sm font-bold text-[var(--color-text-primary)]">{t("spell.additionalMagicalSecrets", "Additional Magical Secrets")}</span>
                </div>
-               <p className="text-[10px] text-[var(--color-text-muted)] mb-2">{t("spell.additionalMagicalSecretsHint", "Choose {count} spell{count, plural, one {} other {s}} from any class (Lore feature)", { count: info.subclassSpellSelectionCount })}</p>
+               <p className="text-[10px] text-[var(--color-text-muted)] mb-2">{t("spell.additionalMagicalSecretsHint", "Choose {count} spells from any class (Lore feature)", { count: info.subclassSpellSelectionCount })}</p>
               <button
                 type="button"
                 onClick={() => setShowSpellModal(true)}

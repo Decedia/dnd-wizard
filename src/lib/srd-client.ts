@@ -74,6 +74,16 @@ export interface SRDRace {
   source?: string;
   choices?: RaceChoice[];
   flavor?: string;
+  /** Languages the player picks on top of `languages`. */
+  extraLanguages?: number;
+  /** Skills the race always grants. */
+  skillProficiencies?: string[];
+  /** Skills the player picks; no options means any skill. */
+  skillChoice?: { count: number; options?: string[] };
+  /** "lineage": +2/+1 or +1/+1/+1 of the player's choice. "one": +1 to one other ability. */
+  flexibleAsi?: "lineage" | "one";
+  /** A parent race (Elf, Dwarf) that is only played through a subrace. */
+  requiresSubrace?: boolean;
 }
 
 export interface RaceChoice {
@@ -123,6 +133,8 @@ export interface SRDClass {
     description: string;
     features: { name: string; description: string; level?: number }[];
     expandedSpells?: Record<string, string[]>;
+    /** Extra expanded spells that depend on a subclass option, such as the Genie's kind. Keyed by option name, then class level. */
+    expandedSpellsByOption?: Record<string, Record<string, string[]>>;
   }[];
   scalingFeatures?: {
     name: string;
@@ -525,10 +537,17 @@ export function getStaticSubclasses(className: string, sources?: string[], rules
               name: opt.name,
               description: opt.description || "",
               icon: opt.icon,
+              // Lowest class level at which this option can be picked.
+              ...(opt.minLevel ? { minLevel: opt.minLevel } : {}),
             }));
             if (typeof featChoices.count === "number") {
               out.choicesCount = featChoices.count;
             }
+            // A feature repeated at later levels can pick a different number each time.
+            if (featChoices.countByLevel) out.choicesCountByLevel = featChoices.countByLevel;
+            // What a picked option gives the character: a skill, a skill with
+            // expertise, a language, a tool or a weapon proficiency.
+            if (featChoices.grants) out.choiceGrants = featChoices.grants;
           } else if (f.choices && Array.isArray(f.choices)) {
             out.choices = f.choices.map((opt: any) => ({
               name: opt.name,

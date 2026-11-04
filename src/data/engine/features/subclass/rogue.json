@@ -163,7 +163,7 @@
       ],
       "summary": "Double proficiency on Insight into intentions",
       "text": "Your proficiency bonus is doubled for any Wisdom (Insight) check to determine a creature's intentions.",
-      "source": { "book": "PHB", "reference": "PHB Rogue Inquisitive 3" }
+      "source": { "book": "XGE", "reference": "PHB Rogue Inquisitive 3" }
     },
     {
       "id": "subclass.inquisitive.eye_for_detail",
@@ -177,7 +177,7 @@
       ],
       "summary": "Investigation proficiency, doubled and with advantage on sight",
       "text": "You have proficiency in Investigation, and your proficiency bonus is doubled for ability checks that rely on your keen sight.",
-      "source": { "book": "PHB", "reference": "PHB Rogue Inquisitive 3" }
+      "source": { "book": "XGE", "reference": "PHB Rogue Inquisitive 3" }
     },
     {
       "id": "subclass.inquisitive.insightful_fighting",
@@ -191,7 +191,7 @@
       ],
       "summary": "Action: Insight check for advantage and 1d6 extra damage",
       "text": "Whenever you make an attack roll against a creature, you can use your action to make a Wisdom (Insight) check. On a success you gain advantage on that attack roll and it deals an additional 1d6 damage.",
-      "source": { "book": "PHB", "reference": "PHB Rogue Inquisitive 3" }
+      "source": { "book": "XGE", "reference": "PHB Rogue Inquisitive 3" }
     },
     {
       "id": "subclass.inquisitive.steady_eye",
@@ -205,7 +205,7 @@
       ],
       "summary": "+1 ranged attacks, ignore half cover, reroll a miss",
       "text": "You have a +1 bonus to attack rolls with any ranged weapon, and you ignore half and three-quarters cover when you do so.",
-      "source": { "book": "PHB", "reference": "PHB Rogue Inquisitive 9" }
+      "source": { "book": "XGE", "reference": "PHB Rogue Inquisitive 9" }
     },
     {
       "id": "subclass.inquisitive.unerring_eye",
@@ -219,7 +219,7 @@
       ],
       "summary": "Add Int to one attack; acquire 120 ft vision",
       "text": "You can add your Intelligence modifier to a single attack roll you make.",
-      "source": { "book": "PHB", "reference": "PHB Rogue Inquisitive 13" }
+      "source": { "book": "XGE", "reference": "PHB Rogue Inquisitive 13" }
     },
     {
       "id": "subclass.inquisitive.eye_for_weakness",
@@ -234,7 +234,7 @@
       ],
       "summary": "Action after an attack: Insight check to advantage all attacks",
       "text": "After you make an attack against a creature, you can make your action a Wisdom (Insight) check. On a success, all attacks against that creature have advantage until the end of your turn.",
-      "source": { "book": "PHB", "reference": "PHB Rogue Inquisitive 17" }
+      "source": { "book": "XGE", "reference": "PHB Rogue Inquisitive 17" }
     },
     {
       "id": "subclass.mastermind.master_of_intrigue",
@@ -249,7 +249,7 @@
       ],
       "summary": "Four skills at proficiency, doubled",
       "text": "You gain proficiency in Deception, Insight, Persuasion, and Sleight of Hand.",
-      "source": { "book": "PHB", "reference": "PHB Rogue Mastermind 3" }
+      "source": { "book": "XGE", "reference": "PHB Rogue Mastermind 3" }
     },
     {
       "id": "subclass.mastermind.master_of_tactics",
@@ -264,7 +264,7 @@
       ],
       "summary": "Doubled Charisma checks; 1d6 if 1+ minute since a rest",
       "text": "Your proficiency bonus is doubled for any ability check that relies on your Charisma and for saving throws against effects that another creature can target only with an ability check or a saving throw.",
-      "source": { "book": "PHB", "reference": "PHB Rogue Mastermind 3" }
+      "source": { "book": "XGE", "reference": "PHB Rogue Mastermind 3" }
     },
     {
       "id": "subclass.mastermind.insightful_manipulator",
@@ -278,7 +278,7 @@
       ],
       "summary": "Reaction: turn a failure against you into a failure for the creature",
       "text": "When you fail on an attack roll, ability check, or saving throw against a creature, you can use your reaction to cause it to fail instead.",
-      "source": { "book": "PHB", "reference": "PHB Rogue Mastermind 9" }
+      "source": { "book": "XGE", "reference": "PHB Rogue Mastermind 9" }
     },
     {
       "id": "subclass.mastermind.misdirection",
@@ -293,7 +293,7 @@
       ],
       "summary": "Each turn, make one nearby creature disadvantage its next roll",
       "text": "Whenever you use your action or your reaction on a turn, you can choose one creature that you can see within 30 feet of you and give it disadvantage on its next attack roll or saving throw.",
-      "source": { "book": "PHB", "reference": "PHB Rogue Mastermind 13" }
+      "source": { "book": "XGE", "reference": "PHB Rogue Mastermind 13" }
     },
     {
       "id": "subclass.mastermind.soul_of_deceit",
@@ -307,7 +307,7 @@
       ],
       "summary": "Reaction: reroll any failure against you",
       "text": "When you fail on an attack roll, ability check, or saving throw, you can use your reaction to reroll the die.",
-      "source": { "book": "PHB", "reference": "PHB Rogue Mastermind 17" }
+      "source": { "book": "XGE", "reference": "PHB Rogue Mastermind 17" }
     },
     {
       "id": "subclass.phantom.whispers_of_the_dead",
@@ -326,7 +326,7 @@
       ],
       "summary": "Bonus action: a recent spirit attacks with your help",
       "text": "As a bonus action, you focus your mind on the nearest spirit within 30 feet of you that died within the last 10 minutes.",
-      "source": { "book": "PHB", "reference": "PHB Rogue Phantom 3" }
+      "source": { "book": "TCE", "reference": "PHB Rogue Phantom 3" }
     },
     {
       "id": "subclass.phantom.wails_from_the_grave",
@@ -346,7 +346,7 @@
       ],
       "summary": "Reaction when damaged: frighten creatures within 30 ft",
       "text": "When you are damaged, you can use your reaction to emit a terrible wail heard within 30 feet of you.",
-      "source": { "book": "PHB", "reference": "PHB Rogue Phantom 3" }
+      "source": { "book": "TCE", "reference": "PHB Rogue Phantom 3" }
     },
     {
       "id": "subclass.phantom.tokens_of_the_departed",
@@ -360,7 +360,7 @@
       ],
       "summary": "Medium size; allies near you gain cover when hit",
       "text": "You are now medium, not small, and your living allies and you share a bond that permits you to give each other lasting advantage in the form of a shared hush.",
-      "source": { "book": "PHB", "reference": "PHB Rogue Phantom 9" }
+      "source": { "book": "TCE", "reference": "PHB Rogue Phantom 9" }
     },
     {
       "id": "subclass.phantom.ghost_walk",
@@ -379,7 +379,7 @@
       ],
       "summary": "Bonus action: 1 hour of misty movement through creatures",
       "text": "As a bonus action, you can vanish, mistily teleporting up to 30 feet to an unoccupied space that you can see.",
-      "source": { "book": "PHB", "reference": "PHB Rogue Phantom 13" }
+      "source": { "book": "TCE", "reference": "PHB Rogue Phantom 13" }
     },
     {
       "id": "subclass.phantom.deaths_friend",
@@ -393,7 +393,7 @@
       ],
       "summary": "Cast wraith or Wight at full hit points",
       "text": "You can cast the wraith or the wight spell without material components, and each of these creatures has full hit points.",
-      "source": { "book": "PHB", "reference": "PHB Rogue Phantom 17" }
+      "source": { "book": "TCE", "reference": "PHB Rogue Phantom 17" }
     },
     {
       "id": "subclass.scout.skirmisher",
@@ -407,7 +407,7 @@
       ],
       "summary": "Dex-modifier-based speed bonus with light armor",
       "text": "Your proficiency bonus is doubled for any ability check that relies on your agility and for saving throws against effects that another creature can target only with an ability check or a saving throw.",
-      "source": { "book": "PHB", "reference": "PHB Rogue Scout 3" }
+      "source": { "book": "XGE", "reference": "PHB Rogue Scout 3" }
     },
     {
       "id": "subclass.scout.survivalist",
@@ -424,7 +424,7 @@
       ],
       "summary": "Doubled proficiency in one or more tracking skills",
       "text": "Your proficiency bonus is doubled for any ability check that relies on one of your chosen skills.",
-      "source": { "book": "PHB", "reference": "PHB Rogue Scout 3" }
+      "source": { "book": "XGE", "reference": "PHB Rogue Scout 3" }
     },
     {
       "id": "subclass.scout.superior_mobility",
@@ -439,7 +439,7 @@
       ],
       "summary": "Advantage on initiative; +10 speed; 3x jump distance",
       "text": "You always have advantage on initiative, and your walking speed increases by 10 feet.",
-      "source": { "book": "PHB", "reference": "PHB Rogue Scout 9" }
+      "source": { "book": "XGE", "reference": "PHB Rogue Scout 9" }
     },
     {
       "id": "subclass.scout.ambush_master",
@@ -457,7 +457,7 @@
       ],
       "summary": "Attack with advantage: spend an advantage die for 1d6 more",
       "text": "If you take the Attack action on your turn and you have advantage on an attack roll against a creature, you can expend an advantage die to deal an extra 1d6 damage.",
-      "source": { "book": "PHB", "reference": "PHB Rogue Scout 13" }
+      "source": { "book": "XGE", "reference": "PHB Rogue Scout 13" }
     },
     {
       "id": "subclass.scout.sudden_strike",
@@ -471,7 +471,7 @@
       ],
       "summary": "First attack deals 2d6 through cover; Attack as a bonus action",
       "text": "Whenever you take the Attack action on your turn, the first time you attack that turn, you deal an additional 2d6 damage to one creature of your choice.",
-      "source": { "book": "PHB", "reference": "PHB Rogue Scout 17" }
+      "source": { "book": "XGE", "reference": "PHB Rogue Scout 17" }
     },
     {
       "id": "subclass.soulknife.psionic_power",
@@ -485,7 +485,7 @@
       ],
       "summary": "Hit points equal to Soulknife level plus Cha mod",
       "text": "Your hit point maximum is increased by your psionic energy dice, which equal your Soulknife level plus your Charisma modifier.",
-      "source": { "book": "PHB", "reference": "PHB Rogue Soulknife 3" }
+      "source": { "book": "TCE", "reference": "PHB Rogue Soulknife 3" }
     },
     {
       "id": "subclass.soulknife.psychic_blades",
@@ -504,7 +504,7 @@
       ],
       "summary": "Action: a psychic weapon dealing 1d6 psychic",
       "text": "You can use your action to create a tangible psionic weapon in your hand. The weapon lasts until you use your action again or until you are hit.",
-      "source": { "book": "PHB", "reference": "PHB Rogue Soulknife 3" }
+      "source": { "book": "TCE", "reference": "PHB Rogue Soulknife 3" }
     },
     {
       "id": "subclass.soulknife.soul_blades",
@@ -523,7 +523,7 @@
       ],
       "summary": "Action or bonus action: throw a psychic blade from any range",
       "text": "You can use your action to magically create a weapon in an unoccupied space within 5 feet of you. The weapon lasts until you use your action again.",
-      "source": { "book": "PHB", "reference": "PHB Rogue Soulknife 9" }
+      "source": { "book": "TCE", "reference": "PHB Rogue Soulknife 9" }
     },
     {
       "id": "subclass.soulknife.psychic_veil",
@@ -542,7 +542,7 @@
       ],
       "summary": "Bonus action: total cover and a 10-ft blink, for a minute",
       "text": "As a bonus action, you can weave a psychological veil that gives you total cover against the attacks of others.",
-      "source": { "book": "PHB", "reference": "PHB Rogue Soulknife 13" }
+      "source": { "book": "TCE", "reference": "PHB Rogue Soulknife 13" }
     },
     {
       "id": "subclass.soulknife.rend_mind",
@@ -562,7 +562,7 @@
       ],
       "summary": "Action: 2d8 psychic and magical saves fail for a minute",
       "text": "As an action, you can touch a creature within 30 feet of you and make a melee spell attack against it.",
-      "source": { "book": "PHB", "reference": "PHB Rogue Soulknife 17" }
+      "source": { "book": "TCE", "reference": "PHB Rogue Soulknife 17" }
     },
     {
       "id": "subclass.swashbuckler.fancy_footwork",
@@ -577,7 +577,7 @@
       ],
       "summary": "Acrobatics and Athletics proficiency; Dex checks doubled",
       "text": "You gain proficiency in Acrobatics and Athletics, and whenever you make a Dexterity check or a Dexterity saving throw, you can add your proficiency bonus twice.",
-      "source": { "book": "PHB", "reference": "PHB Rogue Swashbuckler 3" }
+      "source": { "book": "XGE", "reference": "PHB Rogue Swashbuckler 3" }
     },
     {
       "id": "subclass.swashbuckler.rakish_audacity",
@@ -596,7 +596,7 @@
       ],
       "summary": "Once a long rest: advantage on melee attacks within 5 ft",
       "text": "When you make a melee weapon attack on a turn, you can use your bonus action once per turn to have advantage on all melee weapon attacks against a creature within 5 feet of you.",
-      "source": { "book": "PHB", "reference": "PHB Rogue Swashbuckler 3" }
+      "source": { "book": "XGE", "reference": "PHB Rogue Swashbuckler 3" }
     },
     {
       "id": "subclass.swashbuckler.panache",
@@ -610,7 +610,7 @@
       ],
       "summary": "Bonus action: Persuade a creature into being frightened",
       "text": "You can use your bonus action to make a Charisma (Persuasion) check against a creature within 60 feet of you.",
-      "source": { "book": "PHB", "reference": "PHB Rogue Swashbuckler 9" }
+      "source": { "book": "XGE", "reference": "PHB Rogue Swashbuckler 9" }
     },
     {
       "id": "subclass.swashbuckler.elegant_maneuver",
@@ -630,7 +630,7 @@
       ],
       "summary": "On a melee hit, BA: push an attacker off you",
       "text": "When you hit a creature with a melee weapon attack, you can use your bonus action to add your proficiency bonus to any ability check another creature makes to grab you or grapple you.",
-      "source": { "book": "PHB", "reference": "PHB Rogue Swashbuckler 13" }
+      "source": { "book": "XGE", "reference": "PHB Rogue Swashbuckler 13" }
     },
     {
       "id": "subclass.swashbuckler.duelists_defense",
@@ -649,7 +649,7 @@
       ],
       "summary": "Reaction: 1d10 + Cha temp HP after a failed save",
       "text": "When you fail a saving throw, you can use your reaction to gain 1d10 + your Charisma modifier in temporary hit points.",
-      "source": { "book": "PHB", "reference": "PHB Rogue Swashbuckler 17" }
+      "source": { "book": "XGE", "reference": "PHB Rogue Swashbuckler 17" }
     },
     {
       "id": "subclass.thief.fast_hands",

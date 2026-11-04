@@ -120,7 +120,7 @@
       ],
       "summary": "Action: a psychic mote for 1d8 + Cha and no concentration",
       "text": "When you make a melee spell attack against a creature, you can use your action to hurl a mote of psychic energy at it within 60 feet of you.",
-      "source": { "book": "PHB", "reference": "PHB Bard College of Whispers 3" }
+      "source": { "book": "XGE", "reference": "PHB Bard College of Whispers 3" }
     },
     {
       "id": "subclass.college_of_whispers.words_of_terror",
@@ -140,7 +140,7 @@
       ],
       "summary": "Bonus action: 3d8 + Cha psychic that roots it",
       "text": "As a bonus action on your turn, one creature of your choice within 60 feet of you must make a Wisdom saving throw.",
-      "source": { "book": "PHB", "reference": "PHB Bard College of Whispers 6" }
+      "source": { "book": "XGE", "reference": "PHB Bard College of Whispers 6" }
     },
     {
       "id": "subclass.college_of_whispers.mantle_of_whispers",
@@ -159,7 +159,7 @@
       ],
       "summary": "Action: a sphere of stealth and shared hearing",
       "text": "As an action, you create a sphere of whispering silence 30 feet in radius centered on you.",
-      "source": { "book": "PHB", "reference": "PHB Bard College of Whispers 14" }
+      "source": { "book": "XGE", "reference": "PHB Bard College of Whispers 14" }
     },
     {
       "id": "subclass.battle_master.improved_combat_superiority",
@@ -248,7 +248,7 @@
       ],
       "summary": "The Dueling fighting style, with no two-weapon limit",
       "text": "You adopt the Dueling fighting style without its usual two-weapon limitation.",
-      "source": { "book": "PHB", "reference": "PHB Bard College of Swords 3" }
+      "source": { "book": "XGE", "reference": "PHB Bard College of Swords 3" }
     },
     {
       "id": "subclass.arcane_archer.arcane_shot_options",
@@ -262,7 +262,7 @@
       ],
       "summary": "Choose Buster, Pucker or Piercer each time you Arcane Shot",
       "text": "Each time you take Arcane Shot, you can choose one option: Buster, Pucker, or Piercer.",
-      "source": { "book": "TCE", "reference": "Tasha's Cauldron Fighter Arcane Archer 3" }
+      "source": { "book": "XGE", "reference": "Tasha's Cauldron Fighter Arcane Archer 3" }
     }
   ]
 }

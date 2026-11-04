@@ -1,4 +1,4 @@
-import { getStaticClass, getStaticRace, getDomainSpells, getCircleSpells as getJsonCircleSpells, getCircleTerrainTypes as getJsonCircleTerrainTypes, getOathSpells, getWizardTraditionSpells, getSubclassFlags, getPactBoons } from "@/lib/srd-client";
+import { getStaticClass, getStaticRace, getStaticSubclasses, getDomainSpells, getCircleSpells as getJsonCircleSpells, getCircleTerrainTypes as getJsonCircleTerrainTypes, getOathSpells, getWizardTraditionSpells, getSubclassFlags, getPactBoons } from "@/lib/srd-client";
 import { computeBuffModifiers, type ActiveBuff } from "@/lib/spellEffects";
 import { getSpellMechanic } from "@/lib/spell-mechanics-accessor";
 import { determineDefaultVisibility } from "@/lib/feature-filters";
@@ -91,6 +91,10 @@ export interface Character {
   halfElfAbilities?: string[];
   halfElfSkills?: string[];
   raceChoices?: Record<string, string>;
+  /** Skills picked from the race's own skill choice (Kenku Training, Hunter's Lore). */
+  raceSkillPicks?: string[];
+  /** Ability increases the player placed for a race with a flexible increase. */
+  flexAsi?: Record<string, number>;
   appliedAsi: number[];
   activeStates: string[];
   activeBuffs: ActiveBuff[];
@@ -327,14 +331,35 @@ export function getMaxCantripsKnown(character: Character): number {
   return cantrips;
 }
 
-export function getMaxSpellLevel(className: string, level: number, ruleset?: string): number {
+/**
+ * Third casters (Eldritch Knight, Arcane Trickster) keep their slot table on
+ * the class, outside the level table, because the rest of the class has none.
+ */
+const THIRD_CASTER_SLOT_KEYS: Record<string, string> = {
+  "arcane trickster": "arcaneTricksterSpellSlots",
+  "eldritch knight": "eldritchKnightSpellSlots",
+};
+
+export function isThirdCaster(subclass?: string | null): boolean {
+  return !!subclass && subclass.toLowerCase() in THIRD_CASTER_SLOT_KEYS;
+}
+
+/** Spell slots for a class level, including third-caster subclasses. */
+export function getSpellSlotTable(classData: any, level: number, subclass?: string | null): Record<number, number> | undefined {
+  const own = classData?.levels?.[level - 1]?.spellSlots;
+  if (own && Object.keys(own).length > 0) return own;
+  const key = subclass ? THIRD_CASTER_SLOT_KEYS[subclass.toLowerCase()] : undefined;
+  return (key && classData?.[key]?.[String(level)]) || undefined;
+}
+
+export function getMaxSpellLevel(className: string, level: number, ruleset?: string, subclass?: string | null): number {
   const classData = getStaticClass(className, ruleset);
   if (!classData?.levels) return 0;
 
-  const levelData = classData.levels[level - 1];
-  if (!levelData?.spellSlots) return 0;
+  const slots = getSpellSlotTable(classData, level, subclass);
+  if (!slots) return 0;
 
-  const levels = Object.keys(levelData.spellSlots).map(Number);
+  const levels = Object.keys(slots).map(Number);
   if (levels.length === 0) return 0;
 
   return Math.max(...levels);
@@ -505,7 +530,36 @@ const STORAGE_KEY = "dnd-wizard-characters";
 const AUTO_BACKUP_KEY = "dnd-wizard-autobackup";
 const AUTO_BACKUP_INTERVAL = 24 * 60 * 60 * 1000;
 
+/**
+ * Sourcebook tags in the data were corrected (e.g. Bladesinging moved from XGE
+ * to TCE). A character saved before that may not list the new book, and every
+ * lookup filtered by its sources would then lose its own class, subclass or
+ * race. Add the books the character's existing picks now live in.
+ */
+function withOwnBooks(c: Character): Character {
+  const sources = (c as any).sources as string[] | undefined;
+  if (!Array.isArray(sources) || sources.length === 0) return c;
+  const books = new Set(sources);
+  const add = (book: unknown) => {
+    if (typeof book === "string" && book) books.add(book);
+  };
+  try {
+    if (c.class) {
+      add((getStaticClass(c.class, (c as any).ruleset) as any)?.source);
+      if (c.subclass) add(getStaticSubclasses(c.class, [], (c as any).ruleset).find((s) => s.name === c.subclass)?.source);
+    }
+    if (c.race) add((getStaticRace(c.race, (c as any).ruleset) as any)?.source);
+  } catch {
+    return c;
+  }
+  return books.size === sources.length ? c : ({ ...c, sources: [...books] } as Character);
+}
+
 function normalizeCharacter(c: Character): Character {
+  return withOwnBooks(normalizeCharacterFields(c));
+}
+
+function normalizeCharacterFields(c: Character): Character {
   const defaults = createEmptyCharacter();
   return {
     ...defaults,
@@ -650,7 +704,8 @@ export async function getCharacters(): Promise<Character[]> {
 export async function getCharacter(id: string): Promise<Character | undefined> {
   if (typeof window === "undefined") return undefined;
   try {
-    return await dbGetCharacter(id);
+    const found = await dbGetCharacter(id);
+    return found ? withOwnBooks(found) : found;
   } catch {
     return (await getCharacters()).find((c) => c.id === id);
   }
@@ -921,7 +976,9 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   const perceptionProficient = character.skills["Perception"] ?? false;
   const passivePerception = 10 + getModifier(character.wis) + (perceptionProficient ? profBonus : 0);
 
-  const spellcastingAbility = classData?.spellcastingAbility || "";
+  // Fighters and rogues only cast with Eldritch Knight or Arcane Trickster.
+  const castsWithoutSubclass = character.class !== "Fighter" && character.class !== "Rogue";
+  const spellcastingAbility = castsWithoutSubclass || isThirdCaster(character.subclass) ? classData?.spellcastingAbility || "" : "";
   const spellcastingAbilityMod = spellcastingAbility ? getModifier(character[spellcastingAbility as keyof Character] as number) : 0;
   const spellSaveDc = 8 + profBonus + spellcastingAbilityMod;
   const spellAttackBonus = profBonus + spellcastingAbilityMod;
@@ -1388,18 +1445,33 @@ export function getOathSpellNames(character: Character): string[] {
   return getOathSpells(character.subclassIndex, character.level || 1);
 }
 
-export function getWarlockExpandedSpellNames(character: Character): string[] {
-  if (character.class !== "Warlock" || !character.subclass) return [];
+/**
+ * Spells a warlock's patron adds to the warlock spell list at the character's level.
+ * They are extra options for spells known, not spells the warlock learns for free.
+ * Keys are class levels. The Genie adds more spells by genie kind, read from the
+ * patron option the player picked (a feature named "Dao (Earth)" and so on).
+ */
+export function getWarlockExpandedSpellNames(character: Partial<Character>, subclassName?: string): string[] {
+  const sub = subclassName || character.subclass;
+  if (character.class !== "Warlock" || !sub) return [];
   const level = character.level || 1;
   const classData = getStaticClass("Warlock", character.ruleset);
-  if (!classData?.subclasses) return [];
-  const subclass = classData.subclasses.find((s) => s.name.toLowerCase() === character.subclass?.toLowerCase());
-  if (!subclass?.expandedSpells) return [];
-
+  const subclass = classData?.subclasses?.find((s) => s.name.toLowerCase() === sub.toLowerCase());
+  if (!subclass) return [];
+  const tables = [subclass.expandedSpells || {}];
+  if (subclass.expandedSpellsByOption) {
+    const picked = [
+      ...(character.features || []).map((f) => f.name),
+      ...Object.values(character.featureSelections || {}).flat(),
+    ];
+    for (const [option, table] of Object.entries(subclass.expandedSpellsByOption)) {
+      if (picked.some((name) => name === option || name.startsWith(option + " "))) tables.push(table);
+    }
+  }
   const spells: string[] = [];
-  for (const [lvlStr, lvlSpells] of Object.entries(subclass.expandedSpells)) {
-    if (level >= Number(lvlStr)) {
-      spells.push(...(lvlSpells as string[]));
+  for (const table of tables) {
+    for (const [lvlStr, lvlSpells] of Object.entries(table)) {
+      if (level >= Number(lvlStr)) spells.push(...lvlSpells);
     }
   }
   return spells;
@@ -1488,9 +1560,9 @@ export function applyLongRest(character: Character): Partial<Character> {
   // Get max spell slots from class data
   const maxSpellSlots: Record<number, number> = {};
   if (classData?.levels) {
-    const levelData = classData.levels[character.level - 1];
-    if (levelData?.spellSlots) {
-      for (const [slotLevel, count] of Object.entries(levelData.spellSlots)) {
+    const slots = getSpellSlotTable(classData, character.level, character.subclass);
+    if (slots) {
+      for (const [slotLevel, count] of Object.entries(slots)) {
         maxSpellSlots[Number(slotLevel)] = count;
       }
     }

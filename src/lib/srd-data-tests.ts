@@ -28,7 +28,7 @@ import {
 } from "@/lib/srd-client";
 import { buildChoiceGroups } from "@/lib/character-creation";
 
-const ALL_SOURCES = ["PHB", "EGW", "XGE", "TCE", "SCAG", "VGTM", "VRGR", "FTD"];
+const ALL_SOURCES = ["PHB", "EGW", "XGE", "TCE", "SCAG", "VGTM", "VRGR", "FTD", "MTF", "MPMM", "DMG", "ERLW", "EEPC", "AAG", "BGG", "DSotDQ", "TTP", "MOoT", "GGR"];
 
 export interface SrdTestResult {
   name: string;
@@ -317,7 +317,8 @@ export function runSrdDataIntegrityTests(): SrdTestReport {
     }
 
     for (const cls of getStaticClasses(ALL_SOURCES, "2014")) {
-      if (cls.spellcastingAbility) {
+      // Fighters and rogues cast from the wizard list through their subclass.
+      if (cls.spellcastingAbility && cls.name !== "Fighter" && cls.name !== "Rogue") {
         const spells = getStaticSpells(ALL_SOURCES, "2014").filter((s) => s.classes.includes(cls.name));
         if (spells.length === 0) push(cat, result(`${cls.name} spells`, "fail", "No spells available for spellcasting class"));
       }

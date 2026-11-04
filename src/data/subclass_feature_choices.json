@@ -114,6 +114,117 @@
             "name": "Trip Attack",
             "description": "Add superiority die to damage — target makes STR save or is knocked prone if Large or smaller",
             "icon": "🦵"
+          },
+          {
+            "name": "Ambush",
+            "description": "Add a superiority die to a Stealth check or initiative roll."
+          },
+          {
+            "name": "Bait and Switch",
+            "description": "Swap places with a willing ally within 5 ft; one of you adds the die to AC until your next turn."
+          },
+          {
+            "name": "Brace",
+            "description": "Reaction: attack a creature that moves into your reach, adding the die to damage."
+          },
+          {
+            "name": "Commanding Presence",
+            "description": "Add a superiority die to an Intimidation, Performance or Persuasion check."
+          },
+          {
+            "name": "Grappling Strike",
+            "description": "After hitting, grapple as a bonus action and add the die to the check."
+          },
+          {
+            "name": "Quick Toss",
+            "description": "Bonus action: throw a thrown weapon, adding the die to damage."
+          },
+          {
+            "name": "Tactical Assessment",
+            "description": "Add a superiority die to an Investigation, History or Insight check."
+          }
+        ],
+        "countByLevel": {
+          "3": 3,
+          "7": 2,
+          "10": 2,
+          "15": 2
+        }
+      },
+      "Student of War": {
+        "count": 1,
+        "grants": {
+          "mode": "proficiency"
+        },
+        "description": "Gain proficiency with one type of artisan's tools.",
+        "options": [
+          {
+            "name": "Alchemist's Supplies",
+            "description": "Artisan's tools."
+          },
+          {
+            "name": "Brewer's Supplies",
+            "description": "Artisan's tools."
+          },
+          {
+            "name": "Calligrapher's Supplies",
+            "description": "Artisan's tools."
+          },
+          {
+            "name": "Carpenter's Tools",
+            "description": "Artisan's tools."
+          },
+          {
+            "name": "Cartographer's Tools",
+            "description": "Artisan's tools."
+          },
+          {
+            "name": "Cobbler's Tools",
+            "description": "Artisan's tools."
+          },
+          {
+            "name": "Cook's Utensils",
+            "description": "Artisan's tools."
+          },
+          {
+            "name": "Glassblower's Tools",
+            "description": "Artisan's tools."
+          },
+          {
+            "name": "Jeweler's Tools",
+            "description": "Artisan's tools."
+          },
+          {
+            "name": "Leatherworker's Tools",
+            "description": "Artisan's tools."
+          },
+          {
+            "name": "Mason's Tools",
+            "description": "Artisan's tools."
+          },
+          {
+            "name": "Painter's Supplies",
+            "description": "Artisan's tools."
+          },
+          {
+            "name": "Potter's Tools",
+            "description": "Artisan's tools."
+          },
+          {
+            "name": "Smith's Tools",
+            "description": "Artisan's tools."
+          },
+          {
+            "name": "Tinker's Tools",
+            "description": "Artisan's tools."
+          },
+          {
+            "name": "Weaver's Tools",
+            "description": "Artisan's tools."
+          },
+          {
+            "name": "Woodcarver's Tools",
+            "description": "Artisan's tools."
           }
         ]
       }
@@ -140,12 +251,84 @@
             "description": "Advantage on Insight and 120 ft darkvision; reaction charm and incapacitate a creature that ends its turn within 30 feet."
           },
           {
-            "name": "Hill Rune (Level 7+)",
-            "description": "Advantage on saves against poison and resistance to poison damage; bonus action gain resistance to bludgeoning, piercing, and slashing damage for 1 minute."
+            "name": "Hill Rune",
+            "description": "Advantage on saves against poison and resistance to poison damage; bonus action gain resistance to bludgeoning, piercing, and slashing damage for 1 minute.",
+            "minLevel": 7
           },
           {
-            "name": "Storm Rune (Level 7+)",
-            "description": "Advantage on Arcana and can't be surprised; bonus action enter a prophetic state for 1 minute to grant advantage or disadvantage to rolls within 60 feet."
+            "name": "Storm Rune",
+            "description": "Advantage on Arcana and can't be surprised; bonus action enter a prophetic state for 1 minute to grant advantage or disadvantage to rolls within 60 feet.",
+            "minLevel": 7
+          }
+        ],
+        "countByLevel": {
+          "3": 2,
+          "7": 1,
+          "10": 1,
+          "15": 1
+        }
+      }
+    },
+    "Arcane Archer": {
+      "Arcane Shot Options": {
+        "count": 2,
+        "countByLevel": {
+          "3": 2,
+          "7": 1,
+          "10": 1,
+          "15": 1,
+          "18": 1
+        },
+        "description": "Choose your Arcane Shot options.",
+        "options": [
+          {
+            "name": "Banishing Arrow",
+            "description": "You banish the target you hit to a harmless demiplane until the end of your next turn. The target disappears, incapacitated. When the effect ends, the target reappears in the space it left or in the nearest unoccupied space."
+          },
+          {
+            "name": "Beguiling Arrow",
+            "description": "Your charm inflicts psychic damage and causes the target to be charmed by you."
+          },
+          {
+            "name": "Bursting Arrow",
+            "description": "The arrow creates a burst of energy that damages the target and up to two other creatures within **10 feet** of it."
+          },
+          {
+            "name": "Enfeebling Arrow",
+            "description": "The target must make a Constitution saving throw. On a failed save, the target deals only half damage with weapon attacks until the end of your next turn."
+          },
+          {
+            "name": "Grasping Arrow",
+            "description": "Vines burst from the arrow, grasping the target and up to **2** other creatures within **10 feet** of it."
+          },
+          {
+            "name": "Piercing Arrow",
+            "description": "You make a ranged attack with the arrow as a normal ranged attack. The arrow passes through the target to another creature."
+          },
+          {
+            "name": "Seeking Arrow",
+            "description": "You gain magical insight into the location of the target. You make a ranged attack with the arrow as a normal ranged attack. If the attack misses, you can use a bonus action to make a new attack against the same target."
+          },
+          {
+            "name": "Shadow Arrow",
+            "description": "You weave illusion magic into your arrow, causing the target to be blinded until the end of your next turn."
+          }
+        ]
+      },
+      "Arcane Archer Lore": {
+        "count": 1,
+        "grants": {
+          "mode": "proficiency"
+        },
+        "description": "Gain proficiency in Arcana or Nature. You also learn prestidigitation or druidcraft.",
+        "options": [
+          {
+            "name": "Arcana",
+            "description": "Skill proficiency."
+          },
+          {
+            "name": "Nature",
+            "description": "Skill proficiency."
           }
         ]
       }
@@ -194,6 +377,34 @@
           {
             "name": "Dragon Ancestor: White - Cold Damage",
             "description": "At 1st level, you choose one type of dragon as your ancestor. The damage type associated with each dragon is used by features you gain later."
+          }
+        ]
+      }
+    },
+    "Divine Soul": {
+      "Divine Magic": {
+        "count": 1,
+        "description": "Choose an affinity. You learn its spell, which counts as a sorcerer spell but not against your spells known.",
+        "options": [
+          {
+            "name": "Good",
+            "description": "Learn cure wounds."
+          },
+          {
+            "name": "Evil",
+            "description": "Learn inflict wounds."
+          },
+          {
+            "name": "Law",
+            "description": "Learn bless."
+          },
+          {
+            "name": "Chaos",
+            "description": "Learn bane."
+          },
+          {
+            "name": "Neutrality",
+            "description": "Learn protection from evil and good."
           }
         ]
       }
@@ -343,6 +554,104 @@
           }
         ]
       }
+    },
+    "Fey Wanderer": {
+      "Otherworldly Glamour": {
+        "count": 1,
+        "grants": {
+          "mode": "proficiency"
+        },
+        "description": "Add your Wisdom modifier to Charisma checks, and gain proficiency in one skill.",
+        "options": [
+          {
+            "name": "Deception",
+            "description": "Skill proficiency."
+          },
+          {
+            "name": "Performance",
+            "description": "Skill proficiency."
+          },
+          {
+            "name": "Persuasion",
+            "description": "Skill proficiency."
+          }
+        ]
+      }
+    },
+    "Drake Warden": {
+      "Draconic Gift": {
+        "count": 1,
+        "grants": {
+          "mode": "proficiency"
+        },
+        "description": "You learn thaumaturgy and one language: Draconic or another of your choice.",
+        "options": [
+          {
+            "name": "Abyssal",
+            "description": "Language."
+          },
+          {
+            "name": "Celestial",
+            "description": "Language."
+          },
+          {
+            "name": "Common",
+            "description": "Language."
+          },
+          {
+            "name": "Deep Speech",
+            "description": "Language."
+          },
+          {
+            "name": "Draconic",
+            "description": "Language."
+          },
+          {
+            "name": "Dwarvish",
+            "description": "Language."
+          },
+          {
+            "name": "Elvish",
+            "description": "Language."
+          },
+          {
+            "name": "Giant",
+            "description": "Language."
+          },
+          {
+            "name": "Gnomish",
+            "description": "Language."
+          },
+          {
+            "name": "Goblin",
+            "description": "Language."
+          },
+          {
+            "name": "Halfling",
+            "description": "Language."
+          },
+          {
+            "name": "Infernal",
+            "description": "Language."
+          },
+          {
+            "name": "Orc",
+            "description": "Language."
+          },
+          {
+            "name": "Primordial",
+            "description": "Language."
+          },
+          {
+            "name": "Sylvan",
+            "description": "Language."
+          },
+          {
+            "name": "Undercommon",
+            "description": "Language."
+          }
+        ]
+      }
     }
   },
   "Barbarian": {
@@ -439,6 +748,26 @@
           }
         ]
       }
+    },
+    "Storm Herald": {
+      "Storm Aura": {
+        "count": 1,
+        "description": "Choose the environment of your storm aura. You can change it when you gain a barbarian level.",
+        "options": [
+          {
+            "name": "Desert",
+            "description": "Creatures of your choice in your aura take fire damage when you activate it."
+          },
+          {
+            "name": "Sea",
+            "description": "Bonus action: one creature in your aura makes a Dexterity save or takes lightning damage."
+          },
+          {
+            "name": "Tundra",
+            "description": "Creatures of your choice in your aura gain temporary hit points when you activate it."
+          }
+        ]
+      }
     }
   },
   "Warlock": {
@@ -475,135 +804,106 @@
     "The Genie": {
       "Genie Patron": {
         "count": 1,
-        "description": "Choose the type of genie that is your patron. This determines your damage resistance, language, and added spells.",
+        "description": "Choose the kind of genie that is your patron. This sets your damage type and adds spells you can choose.",
         "options": [
           {
-            "name": "Dao (Earth)",
-            "description": "Fire damage; Terran language"
+            "name": "Dao",
+            "description": "Earth genie. Bludgeoning damage. Adds sanctuary, spike growth, meld into stone, stone shape and wall of stone."
           },
           {
-            "name": "Djinni (Air)",
-            "description": "Cold damage; Auran language"
+            "name": "Djinni",
+            "description": "Air genie. Thunder damage. Adds thunderwave, gust of wind, wind wall, greater invisibility and seeming."
           },
           {
-            "name": "Efreeti (Fire)",
-            "description": "Lightning damage; Ignan language"
+            "name": "Efreeti",
+            "description": "Fire genie. Fire damage. Adds burning hands, scorching ray, fireball, fire shield and flame strike."
           },
           {
-            "name": "Marid (Water)",
-            "description": "Thunder damage; Aquan language"
+            "name": "Marid",
+            "description": "Water genie. Cold damage. Adds fog cloud, blur, sleet storm, control water and cone of cold."
           }
         ]
       }
     }
   },
   "Monk": {
-    "Four Elements": {
+    "Way of the Four Elements": {
       "Disciple of the Elements": {
-        "count": 2,
-        "description": "You learn two elemental disciplines of your choice. You can spend ki to cast them.",
+        "count": 1,
+        "description": "You know Elemental Attunement and learn one more elemental discipline. You learn another at 6th, 11th and 17th level.",
         "options": [
           {
-            "name": "Clench of the North Wind",
-            "description": "Spend 1 ki to cast hold person."
-          },
-          {
             "name": "Fangs of the Fire Snake",
-            "description": "Spend 1 ki to empower your unarmed strike with fire."
+            "description": "On your Attack action, 1 ki: unarmed strikes reach 10 ft further and deal fire damage; 1 more ki on a hit adds 1d10 fire."
           },
           {
             "name": "Fist of Four Thunders",
-            "description": "Spend 1 ki to cast thunderwave."
+            "description": "2 ki: cast thunderwave."
           },
           {
             "name": "Fist of Unbroken Air",
-            "description": "Spend 1 ki to push and damage a creature."
-          },
-          {
-            "name": "Gong of the Summit",
-            "description": "Spend 3 ki to cast shatter."
-          },
-          {
-            "name": "One with the Flow",
-            "description": "Spend 3 ki to cast slow."
-          },
-          {
-            "name": "River of Hungry Flame",
-            "description": "Spend 2 ki to cast burning hands."
+            "description": "Action, 2 ki: a creature within 30 ft makes a Strength save or takes 3d10 bludgeoning, is pushed 20 ft and knocked prone. +1d10 per extra ki."
           },
           {
             "name": "Rush of the Gale Spirits",
-            "description": "Spend 2 ki to cast gust of wind."
+            "description": "2 ki: cast gust of wind."
           },
           {
             "name": "Shape the Flowing River",
-            "description": "Spend 1 ki to control water."
+            "description": "Action, 1 ki: shape water or ice in a 30 ft cube within 120 ft."
           },
           {
             "name": "Sweeping Cinder Strike",
-            "description": "Spend 1 ki to cast fang of fire."
+            "description": "2 ki: cast burning hands."
           },
           {
             "name": "Water Whip",
-            "description": "Spend 2 ki to pull and damage a creature."
+            "description": "Action, 2 ki: a creature within 30 ft makes a Dexterity save or takes 3d10 bludgeoning and is pulled 25 ft or knocked prone. +1d10 per extra ki."
           },
-          {
-            "name": "Wave of Rolling Earth",
-            "description": "Spend 3 ki to cast erupting earth."
-          }
-        ]
-      },
-      "Elemental Discipline": {
-        "count": 2,
-        "description": "You learn two additional elemental disciplines of your choice.",
-        "options": [
           {
             "name": "Clench of the North Wind",
-            "description": "Spend 1 ki to cast hold person."
-          },
-          {
-            "name": "Fangs of the Fire Snake",
-            "description": "Spend 1 ki to empower your unarmed strike with fire."
-          },
-          {
-            "name": "Fist of Four Thunders",
-            "description": "Spend 1 ki to cast thunderwave."
-          },
-          {
-            "name": "Fist of Unbroken Air",
-            "description": "Spend 1 ki to push and damage a creature."
+            "description": "3 ki: cast hold person.",
+            "minLevel": 6
           },
           {
             "name": "Gong of the Summit",
-            "description": "Spend 3 ki to cast shatter."
+            "description": "3 ki: cast shatter.",
+            "minLevel": 6
           },
           {
-            "name": "One with the Flow",
-            "description": "Spend 3 ki to cast slow."
+            "name": "Flames of the Phoenix",
+            "description": "4 ki: cast fireball.",
+            "minLevel": 11
+          },
+          {
+            "name": "Mist Stance",
+            "description": "4 ki: cast gaseous form on yourself.",
+            "minLevel": 11
+          },
+          {
+            "name": "Ride the Wind",
+            "description": "4 ki: cast fly on yourself.",
+            "minLevel": 11
+          },
+          {
+            "name": "Breath of Winter",
+            "description": "6 ki: cast cone of cold.",
+            "minLevel": 17
+          },
+          {
+            "name": "Eternal Mountain Defense",
+            "description": "5 ki: cast stoneskin on yourself.",
+            "minLevel": 17
           },
           {
             "name": "River of Hungry Flame",
-            "description": "Spend 2 ki to cast burning hands."
-          },
-          {
-            "name": "Rush of the Gale Spirits",
-            "description": "Spend 2 ki to cast gust of wind."
-          },
-          {
-            "name": "Shape the Flowing River",
-            "description": "Spend 1 ki to control water."
-          },
-          {
-            "name": "Sweeping Cinder Strike",
-            "description": "Spend 1 ki to cast fang of fire."
-          },
-          {
-            "name": "Water Whip",
-            "description": "Spend 2 ki to pull and damage a creature."
+            "description": "5 ki: cast wall of fire.",
+            "minLevel": 17
           },
           {
             "name": "Wave of Rolling Earth",
-            "description": "Spend 3 ki to cast erupting earth."
+            "description": "6 ki: cast wall of stone.",
+            "minLevel": 17
           }
         ]
       }
@@ -626,6 +926,833 @@
           {
             "name": "Dragon",
             "description": "Treat any d20 roll of 9 or lower as a 10 for Concentration checks to maintain spells, as well as Intelligence and Wisdom checks."
+          }
+        ]
+      }
+    }
+  },
+  "Artificer": {
+    "Armorer": {
+      "Armor Model": {
+        "count": 1,
+        "description": "Choose the model of your arcane armor. You can change it after a short or long rest with smith's tools.",
+        "options": [
+          {
+            "name": "Guardian",
+            "description": "Thunder gauntlets (1d8 thunder melee, target has disadvantage attacking others) and a bonus action Defensive Field for temporary hit points."
+          },
+          {
+            "name": "Infiltrator",
+            "description": "Lightning launcher (1d6 lightning ranged, extra 1d6 once per turn), +5 ft speed, and advantage on Stealth checks."
+          }
+        ]
+      }
+    }
+  },
+  "Bard": {
+    "Lore": {
+      "Bonus Proficiencies": {
+        "count": 3,
+        "grants": {
+          "mode": "proficiency"
+        },
+        "description": "Gain proficiency with three skills of your choice.",
+        "options": [
+          {
+            "name": "Acrobatics",
+            "description": "Skill proficiency."
+          },
+          {
+            "name": "Animal Handling",
+            "description": "Skill proficiency."
+          },
+          {
+            "name": "Arcana",
+            "description": "Skill proficiency."
+          },
+          {
+            "name": "Athletics",
+            "description": "Skill proficiency."
+          },
+          {
+            "name": "Deception",
+            "description": "Skill proficiency."
+          },
+          {
+            "name": "History",
+            "description": "Skill proficiency."
+          },
+          {
+            "name": "Insight",
+            "description": "Skill proficiency."
+          },
+          {
+            "name": "Intimidation",
+            "description": "Skill proficiency."
+          },
+          {
+            "name": "Investigation",
+            "description": "Skill proficiency."
+          },
+          {
+            "name": "Medicine",
+            "description": "Skill proficiency."
+          },
+          {
+            "name": "Nature",
+            "description": "Skill proficiency."
+          },
+          {
+            "name": "Perception",
+            "description": "Skill proficiency."
+          },
+          {
+            "name": "Performance",
+            "description": "Skill proficiency."
+          },
+          {
+            "name": "Persuasion",
+            "description": "Skill proficiency."
+          },
+          {
+            "name": "Religion",
+            "description": "Skill proficiency."
+          },
+          {
+            "name": "Sleight of Hand",
+            "description": "Skill proficiency."
+          },
+          {
+            "name": "Stealth",
+            "description": "Skill proficiency."
+          },
+          {
+            "name": "Survival",
+            "description": "Skill proficiency."
+          }
+        ]
+      }
+    }
+  },
+  "Cleric": {
+    "Knowledge": {
+      "Blessings of Knowledge": {
+        "count": 2,
+        "grants": {
+          "mode": "skill-expertise"
+        },
+        "description": "Choose two skills. You gain proficiency and your proficiency bonus is doubled for them. You also learn two languages.",
+        "options": [
+          {
+            "name": "Arcana",
+            "description": "Skill proficiency."
+          },
+          {
+            "name": "History",
+            "description": "Skill proficiency."
+          },
+          {
+            "name": "Nature",
+            "description": "Skill proficiency."
+          },
+          {
+            "name": "Religion",
+            "description": "Skill proficiency."
+          }
+        ]
+      }
+    },
+    "Nature": {
+      "Acolyte of Nature": {
+        "count": 1,
+        "grants": {
+          "mode": "proficiency"
+        },
+        "description": "Gain proficiency in one skill. You also learn one druid cantrip.",
+        "options": [
+          {
+            "name": "Animal Handling",
+            "description": "Skill proficiency."
+          },
+          {
+            "name": "Nature",
+            "description": "Skill proficiency."
+          },
+          {
+            "name": "Survival",
+            "description": "Skill proficiency."
+          }
+        ]
+      }
+    },
+    "Arcana Domain": {
+      "Arcane Initiate": {
+        "count": 2,
+        "grants": {
+          "mode": "spell",
+          "fixed": [
+            "Arcana"
+          ]
+        },
+        "description": "Learn two wizard cantrips. They count as cleric cantrips for you. You also gain proficiency in Arcana.",
+        "options": [
+          {
+            "name": "Acid Splash",
+            "description": "Wizard cantrip ([object Object])."
+          },
+          {
+            "name": "Blade Ward",
+            "description": "Wizard cantrip (Abjuration)."
+          },
+          {
+            "name": "Booming Blade",
+            "description": "Wizard cantrip (Evocation)."
+          },
+          {
+            "name": "Chill Touch",
+            "description": "Wizard cantrip ([object Object])."
+          },
+          {
+            "name": "Control Flames",
+            "description": "Wizard cantrip (Transmutation)."
+          },
+          {
+            "name": "Create Bonfire",
+            "description": "Wizard cantrip (Conjuration)."
+          },
+          {
+            "name": "Dancing Lights",
+            "description": "Wizard cantrip ([object Object])."
+          },
+          {
+            "name": "Fire Bolt",
+            "description": "Wizard cantrip ([object Object])."
+          },
+          {
+            "name": "Friends",
+            "description": "Wizard cantrip (Enchantment)."
+          },
+          {
+            "name": "Frostbite",
+            "description": "Wizard cantrip (Evocation)."
+          },
+          {
+            "name": "Gravity Shift",
+            "description": "Wizard cantrip (Transmutation)."
+          },
+          {
+            "name": "Green-Flame Blade",
+            "description": "Wizard cantrip (Evocation)."
+          },
+          {
+            "name": "Gust",
+            "description": "Wizard cantrip (Transmutation)."
+          },
+          {
+            "name": "Infestation",
+            "description": "Wizard cantrip (Conjuration)."
+          },
+          {
+            "name": "Light",
+            "description": "Wizard cantrip ([object Object])."
+          },
+          {
+            "name": "Lightning Lure",
+            "description": "Wizard cantrip (Evocation)."
+          },
+          {
+            "name": "Mage Hand",
+            "description": "Wizard cantrip ([object Object])."
+          },
+          {
+            "name": "Mending",
+            "description": "Wizard cantrip ([object Object])."
+          },
+          {
+            "name": "Message",
+            "description": "Wizard cantrip ([object Object])."
+          },
+          {
+            "name": "Mind Sliver",
+            "description": "Wizard cantrip (Enchantment)."
+          },
+          {
+            "name": "Minor Illusion",
+            "description": "Wizard cantrip ([object Object])."
+          },
+          {
+            "name": "Mold Earth",
+            "description": "Wizard cantrip (Transmutation)."
+          },
+          {
+            "name": "Poison Spray",
+            "description": "Wizard cantrip ([object Object])."
+          },
+          {
+            "name": "Prestidigitation",
+            "description": "Wizard cantrip ([object Object])."
+          },
+          {
+            "name": "Ray of Frost",
+            "description": "Wizard cantrip ([object Object])."
+          },
+          {
+            "name": "Sapping Sting",
+            "description": "Wizard cantrip (Necromancy)."
+          },
+          {
+            "name": "Shape Water",
+            "description": "Wizard cantrip (Transmutation)."
+          },
+          {
+            "name": "Shocking Grasp",
+            "description": "Wizard cantrip ([object Object])."
+          },
+          {
+            "name": "Sword Burst",
+            "description": "Wizard cantrip (Conjuration)."
+          },
+          {
+            "name": "Thunderclap",
+            "description": "Wizard cantrip (Evocation)."
+          },
+          {
+            "name": "Time Slipp",
+            "description": "Wizard cantrip (Transmutation)."
+          },
+          {
+            "name": "Toll the Dead",
+            "description": "Wizard cantrip (Necromancy)."
+          },
+          {
+            "name": "Touch of the Void",
+            "description": "Wizard cantrip (Evocation)."
+          },
+          {
+            "name": "True Strike",
+            "description": "Wizard cantrip ([object Object])."
+          },
+          {
+            "name": "Void Writing",
+            "description": "Wizard cantrip (Transmutation)."
+          }
+        ]
+      },
+      "Arcane Mastery": {
+        "count": 4,
+        "grants": {
+          "mode": "spell"
+        },
+        "description": "Choose one wizard spell each of 6th, 7th, 8th and 9th level. They are domain spells for you: always prepared, and cast as cleric spells.",
+        "options": [
+          {
+            "name": "Chain Lightning",
+            "description": "Level 6 wizard spell."
+          },
+          {
+            "name": "Circle of Death",
+            "description": "Level 6 wizard spell."
+          },
+          {
+            "name": "Contingency",
+            "description": "Level 6 wizard spell."
+          },
+          {
+            "name": "Create Homunculus",
+            "description": "Level 6 wizard spell."
+          },
+          {
+            "name": "Create Undead",
+            "description": "Level 6 wizard spell."
+          },
+          {
+            "name": "Disintegrate",
+            "description": "Level 6 wizard spell."
+          },
+          {
+            "name": "Eyebite",
+            "description": "Level 6 wizard spell."
+          },
+          {
+            "name": "Flesh to Stone",
+            "description": "Level 6 wizard spell."
+          },
+          {
+            "name": "Freezing Sphere",
+            "description": "Level 6 wizard spell."
+          },
+          {
+            "name": "Globe of Invulnerability",
+            "description": "Level 6 wizard spell."
+          },
+          {
+            "name": "Gravity Fissure",
+            "description": "Level 6 wizard spell."
+          },
+          {
+            "name": "Gravity Sinkhole",
+            "description": "Level 6 wizard spell."
+          },
+          {
+            "name": "Guards and Wards",
+            "description": "Level 6 wizard spell."
+          },
+          {
+            "name": "Instant Summons",
+            "description": "Level 6 wizard spell."
+          },
+          {
+            "name": "Investiture of Flame",
+            "description": "Level 6 wizard spell."
+          },
+          {
+            "name": "Investiture of Ice",
+            "description": "Level 6 wizard spell."
+          },
+          {
+            "name": "Investiture of Stone",
+            "description": "Level 6 wizard spell."
+          },
+          {
+            "name": "Investiture of Wind",
+            "description": "Level 6 wizard spell."
+          },
+          {
+            "name": "Irresistible Dance",
+            "description": "Level 6 wizard spell."
+          },
+          {
+            "name": "Magic Jar",
+            "description": "Level 6 wizard spell."
+          },
+          {
+            "name": "Mass Suggestion",
+            "description": "Level 6 wizard spell."
+          },
+          {
+            "name": "Mental Prison",
+            "description": "Level 6 wizard spell."
+          },
+          {
+            "name": "Move Earth",
+            "description": "Level 6 wizard spell."
+          },
+          {
+            "name": "Otherworldly Form",
+            "description": "Level 6 wizard spell."
+          },
+          {
+            "name": "Programmed Illusion",
+            "description": "Level 6 wizard spell."
+          },
+          {
+            "name": "Scatter",
+            "description": "Level 6 wizard spell."
+          },
+          {
+            "name": "Soul Cage",
+            "description": "Level 6 wizard spell."
+          },
+          {
+            "name": "Summon Fiend",
+            "description": "Level 6 wizard spell."
+          },
+          {
+            "name": "Sunbeam",
+            "description": "Level 6 wizard spell."
+          },
+          {
+            "name": "Tenser's Transformation",
+            "description": "Level 6 wizard spell."
+          },
+          {
+            "name": "True Seeing",
+            "description": "Level 6 wizard spell."
+          },
+          {
+            "name": "Wall of Ice",
+            "description": "Level 6 wizard spell."
+          },
+          {
+            "name": "Arcane Sword",
+            "description": "Level 7 wizard spell."
+          },
+          {
+            "name": "Concordant Crossing (UA)",
+            "description": "Level 7 wizard spell."
+          },
+          {
+            "name": "Crown of Stars",
+            "description": "Level 7 wizard spell."
+          },
+          {
+            "name": "Delayed Blast Fireball",
+            "description": "Level 7 wizard spell."
+          },
+          {
+            "name": "Dream of the Blue Veil",
+            "description": "Level 7 wizard spell."
+          },
+          {
+            "name": "Etherealness",
+            "description": "Level 7 wizard spell."
+          },
+          {
+            "name": "Finger of Death",
+            "description": "Level 7 wizard spell."
+          },
+          {
+            "name": "Forcecage",
+            "description": "Level 7 wizard spell."
+          },
+          {
+            "name": "Magnificent Mansion",
+            "description": "Level 7 wizard spell."
+          },
+          {
+            "name": "Mirage Arcane",
+            "description": "Level 7 wizard spell."
+          },
+          {
+            "name": "Plane Shift",
+            "description": "Level 7 wizard spell."
+          },
+          {
+            "name": "Power Word Pain",
+            "description": "Level 7 wizard spell."
+          },
+          {
+            "name": "Prismatic Spray",
+            "description": "Level 7 wizard spell."
+          },
+          {
+            "name": "Project Image",
+            "description": "Level 7 wizard spell."
+          },
+          {
+            "name": "Reverse Gravity",
+            "description": "Level 7 wizard spell."
+          },
+          {
+            "name": "Sequester",
+            "description": "Level 7 wizard spell."
+          },
+          {
+            "name": "Simulacrum",
+            "description": "Level 7 wizard spell."
+          },
+          {
+            "name": "Symbol",
+            "description": "Level 7 wizard spell."
+          },
+          {
+            "name": "Teleport",
+            "description": "Level 7 wizard spell."
+          },
+          {
+            "name": "Whirlwind",
+            "description": "Level 7 wizard spell."
+          },
+          {
+            "name": "Abi-Dalzim's Horrid Wilting",
+            "description": "Level 8 wizard spell."
+          },
+          {
+            "name": "Antimagic Field",
+            "description": "Level 8 wizard spell."
+          },
+          {
+            "name": "Antipathy/Sympathy",
+            "description": "Level 8 wizard spell."
+          },
+          {
+            "name": "Clone",
+            "description": "Level 8 wizard spell."
+          },
+          {
+            "name": "Control Weather",
+            "description": "Level 8 wizard spell."
+          },
+          {
+            "name": "Demiplane",
+            "description": "Level 8 wizard spell."
+          },
+          {
+            "name": "Dominate Monster",
+            "description": "Level 8 wizard spell."
+          },
+          {
+            "name": "Feeblemind",
+            "description": "Level 8 wizard spell."
+          },
+          {
+            "name": "Illusory Dragon",
+            "description": "Level 8 wizard spell."
+          },
+          {
+            "name": "Incendiary Cloud",
+            "description": "Level 8 wizard spell."
+          },
+          {
+            "name": "Maddening Darkness",
+            "description": "Level 8 wizard spell."
+          },
+          {
+            "name": "Maze",
+            "description": "Level 8 wizard spell."
+          },
+          {
+            "name": "Mind Blank",
+            "description": "Level 8 wizard spell."
+          },
+          {
+            "name": "Power Word Stun",
+            "description": "Level 8 wizard spell."
+          },
+          {
+            "name": "Sunburst",
+            "description": "Level 8 wizard spell."
+          },
+          {
+            "name": "Telepathy",
+            "description": "Level 8 wizard spell."
+          },
+          {
+            "name": "Astral Projection",
+            "description": "Level 9 wizard spell."
+          },
+          {
+            "name": "Blade of Disaster",
+            "description": "Level 9 wizard spell."
+          },
+          {
+            "name": "Foresight",
+            "description": "Level 9 wizard spell."
+          },
+          {
+            "name": "Gate",
+            "description": "Level 9 wizard spell."
+          },
+          {
+            "name": "Imprisonment",
+            "description": "Level 9 wizard spell."
+          },
+          {
+            "name": "Mass Polymorph",
+            "description": "Level 9 wizard spell."
+          },
+          {
+            "name": "Meteor Swarm",
+            "description": "Level 9 wizard spell."
+          },
+          {
+            "name": "Polar Ray",
+            "description": "Level 9 wizard spell."
+          },
+          {
+            "name": "Power Word Kill",
+            "description": "Level 9 wizard spell."
+          },
+          {
+            "name": "Prismatic Wall",
+            "description": "Level 9 wizard spell."
+          },
+          {
+            "name": "Psychic Scream",
+            "description": "Level 9 wizard spell."
+          },
+          {
+            "name": "Shapechange",
+            "description": "Level 9 wizard spell."
+          },
+          {
+            "name": "Time Stop",
+            "description": "Level 9 wizard spell."
+          },
+          {
+            "name": "True Polymorph",
+            "description": "Level 9 wizard spell."
+          },
+          {
+            "name": "Weird",
+            "description": "Level 9 wizard spell."
+          },
+          {
+            "name": "Wish",
+            "description": "Level 9 wizard spell."
+          }
+        ]
+      }
+    }
+  },
+  "Rogue": {
+    "Mastermind": {
+      "Master of Intrigue": {
+        "count": 2,
+        "grants": {
+          "mode": "proficiency",
+          "fixed": [
+            "Disguise Kit",
+            "Forgery Kit"
+          ]
+        },
+        "description": "Gain proficiency with the disguise kit, the forgery kit and one gaming set, and learn two languages.",
+        "options": [
+          {
+            "name": "Abyssal",
+            "description": "Language."
+          },
+          {
+            "name": "Celestial",
+            "description": "Language."
+          },
+          {
+            "name": "Common",
+            "description": "Language."
+          },
+          {
+            "name": "Deep Speech",
+            "description": "Language."
+          },
+          {
+            "name": "Draconic",
+            "description": "Language."
+          },
+          {
+            "name": "Dwarvish",
+            "description": "Language."
+          },
+          {
+            "name": "Elvish",
+            "description": "Language."
+          },
+          {
+            "name": "Giant",
+            "description": "Language."
+          },
+          {
+            "name": "Gnomish",
+            "description": "Language."
+          },
+          {
+            "name": "Goblin",
+            "description": "Language."
+          },
+          {
+            "name": "Halfling",
+            "description": "Language."
+          },
+          {
+            "name": "Infernal",
+            "description": "Language."
+          },
+          {
+            "name": "Orc",
+            "description": "Language."
+          },
+          {
+            "name": "Primordial",
+            "description": "Language."
+          },
+          {
+            "name": "Sylvan",
+            "description": "Language."
+          },
+          {
+            "name": "Undercommon",
+            "description": "Language."
+          }
+        ]
+      }
+    }
+  },
+  "Wizard": {
+    "Bladesinging": {
+      "Training in War and Song": {
+        "count": 1,
+        "grants": {
+          "mode": "weapon",
+          "fixed": [
+            "Performance"
+          ]
+        },
+        "description": "Gain proficiency with light armor, one one-handed melee weapon, and the Performance skill.",
+        "options": [
+          {
+            "name": "Club",
+            "description": "One-handed melee weapon."
+          },
+          {
+            "name": "Dagger",
+            "description": "One-handed melee weapon."
+          },
+          {
+            "name": "Handaxe",
+            "description": "One-handed melee weapon."
+          },
+          {
+            "name": "Javelin",
+            "description": "One-handed melee weapon."
+          },
+          {
+            "name": "Light Hammer",
+            "description": "One-handed melee weapon."
+          },
+          {
+            "name": "Mace",
+            "description": "One-handed melee weapon."
+          },
+          {
+            "name": "Sickle",
+            "description": "One-handed melee weapon."
+          },
+          {
+            "name": "Spear",
+            "description": "One-handed melee weapon."
+          },
+          {
+            "name": "Battleaxe",
+            "description": "One-handed melee weapon."
+          },
+          {
+            "name": "Flail",
+            "description": "One-handed melee weapon."
+          },
+          {
+            "name": "Longsword",
+            "description": "One-handed melee weapon."
+          },
+          {
+            "name": "Morningstar",
+            "description": "One-handed melee weapon."
+          },
+          {
+            "name": "Rapier",
+            "description": "One-handed melee weapon."
+          },
+          {
+            "name": "Scimitar",
+            "description": "One-handed melee weapon."
+          },
+          {
+            "name": "Shortsword",
+            "description": "One-handed melee weapon."
+          },
+          {
+            "name": "Trident",
+            "description": "One-handed melee weapon."
+          },
+          {
+            "name": "War Pick",
+            "description": "One-handed melee weapon."
+          },
+          {
+            "name": "Warhammer",
+            "description": "One-handed melee weapon."
+          },
+          {
+            "name": "Whip",
+            "description": "One-handed melee weapon."
           }
         ]
       }

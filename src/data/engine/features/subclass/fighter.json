@@ -17,7 +17,7 @@
       "summary": "Learn arcane archer spells, castable without slots",
       "text": "When you gain this feature, you learn two spells of 1st level that you can cast without a spell slot.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Fighter Arcane Archer 3"
       }
     },
@@ -64,7 +64,7 @@
       "summary": "Bonus action: an extra weapon attack",
       "text": "When you take the Attack action on your turn, you can make one attack with a weapon that you are proficient with as a bonus action.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Fighter Arcane Archer 3"
       }
     },
@@ -90,7 +90,7 @@
       "summary": "Spend 1 Ki per attack: extra 1d6 force, counts as magical",
       "text": "When you use a weapon that you are proficient with to attack on your turn, you can spend 1 ki point to deal an extra 1d6 force damage.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Fighter Arcane Archer 7"
       }
     },
@@ -111,7 +111,7 @@
       "summary": "A melee Arcane Shot grants your ranged attacks advantage",
       "text": "When you use Curving Shot to make a melee attack against a creature, your ranged attacks against that creature have advantage until the end of your next turn.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Fighter Arcane Archer 7"
       }
     },
@@ -144,7 +144,7 @@
       "summary": "Reaction: a failed attack is rerolled as a hit",
       "text": "When you fail an attack with a weapon that you are proficient with, you can use your reaction to make a new attack against the same target using the weapon.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Fighter Arcane Archer 15"
       }
     },
@@ -293,7 +293,7 @@
       "summary": "Proficiency with one vehicle type, more at 11 and 18",
       "text": "You gain proficiency with any type of vehicle: land, water, or air.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Fighter Cavalier 3"
       }
     },
@@ -313,7 +313,7 @@
       "summary": "Advantage on dismount saves; safe dismounts",
       "text": "While you are mounted, you have advantage on saving throws made to dismount you.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Fighter Cavalier 3"
       }
     },
@@ -344,7 +344,7 @@
       "summary": "On a melee hit: mark the creature, protecting allies",
       "text": "When you hit a creature with a melee attack, you can use a bonus action to mark it.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Fighter Cavalier 3"
       }
     },
@@ -378,7 +378,7 @@
       "summary": "Reaction: intercept and hit an attacker",
       "text": "When you or a creature within 5 feet of you is hit by an attack, you can use your reaction to move up to 15 feet without provoking opportunity attacks.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Fighter Cavalier 7"
       }
     },
@@ -411,7 +411,7 @@
       "summary": "Reaction: cover an ally struck by an adjacent enemy",
       "text": "When a creature that you can see attacks anyone other than you while you are within 5 feet of that creature, you can use your reaction to use your Interact action.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Fighter Cavalier 10"
       }
     },
@@ -432,7 +432,7 @@
       "summary": "Charge 30 ft then hit: extra 1d8 and frightened",
       "text": "If you move at least 30 feet toward a hostile creature and then hit it with a melee attack on the same turn, the target takes an additional 1d8 damage.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Fighter Cavalier 15"
       }
     },
@@ -453,7 +453,7 @@
       "summary": "Use a reaction to add Charisma modifier to AC",
       "text": "When you are hit by an attack, you can use your reaction, whether or not you have it, to add your Charisma modifier to the AC against that attack.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Fighter Cavalier 18"
       }
     },
@@ -611,7 +611,7 @@
       "summary": "Bonus action: summon a half-stat echo of yourself",
       "text": "As a bonus action, you can create an echo of yourself within 60 feet of your unoccupied space.",
       "source": {
-        "book": "TCE",
+        "book": "EGW",
         "reference": "Tasha's Cauldron Fighter Echo Knight 3"
       }
     },
@@ -652,7 +652,7 @@
       "summary": "Action: an echo that teleports to you when hurt",
       "text": "As an action, you can create an echo of yourself within 60 feet of your unoccupied space.",
       "source": {
-        "book": "TCE",
+        "book": "EGW",
         "reference": "Tasha's Cauldron Fighter Echo Knight 3"
       }
     },
@@ -672,7 +672,7 @@
       "summary": "Echoes gain +2 to attacks and damage",
       "text": "When you create an echo using this feature, it has +2 bonus to attack rolls and damage rolls.",
       "source": {
-        "book": "TCE",
+        "book": "EGW",
         "reference": "Tasha's Cauldron Fighter Echo Knight 7"
       }
     },
@@ -692,7 +692,7 @@
       "summary": "At turn start, a fallen echo is revived and drains life",
       "text": "At the start of your turn, if an echo within 10 feet of you has 0 hit points, you deal 15 necrotic damage to a creature within 5 feet of you or the echo, and the echo's hit points increase by that amount.",
       "source": {
-        "book": "TCE",
+        "book": "EGW",
         "reference": "Tasha's Cauldron Fighter Echo Knight 10"
       }
     },
@@ -712,7 +712,7 @@
       "summary": "Spend ki equal to a dead echo's HP to heal that much",
       "text": "At the start of your turn, if an echo within 10 feet of you has 0 hit points, you can spend ki points equal to its maximum hit points to regain that many hit points.",
       "source": {
-        "book": "TCE",
+        "book": "EGW",
         "reference": "Tasha's Cauldron Fighter Echo Knight 15"
       }
     },
@@ -743,7 +743,7 @@
       "summary": "You can now keep an echo between rests",
       "text": "When you finish a short or long rest, you can summon an echo that lasts until you end that rest.",
       "source": {
-        "book": "TCE",
+        "book": "EGW",
         "reference": "Tasha's Cauldron Fighter Echo Knight 18"
       }
     },
@@ -905,7 +905,7 @@
       "summary": "Hit points equal to Psi Warrior level plus Int mod",
       "text": "Your hit point maximum is increased by your psi energy dice, which equal your Psi Warrior level plus your Intelligence modifier.",
       "source": {
-        "book": "MTF",
+        "book": "TCE",
         "reference": "Mordenkainen's Tome of Foes Psi Warrior 3"
       }
     },
@@ -925,7 +925,7 @@
       "summary": "Resistance to psychic damage",
       "text": "You have resistance to psychic damage.",
       "source": {
-        "book": "MTF",
+        "book": "TCE",
         "reference": "Mordenkainen's Tome of Foes Psi Warrior 7"
       }
     },
@@ -966,7 +966,7 @@
       "summary": "Bonus action: 30-ft leap and a melee hit for 1d6 psychic",
       "text": "As a bonus action, you can teleport up to 30 feet to an unoccupied space that you can see and make one melee attack.",
       "source": {
-        "book": "MTF",
+        "book": "TCE",
         "reference": "Mordenkainen's Tome of Foes Psi Warrior 7"
       }
     },
@@ -1000,7 +1000,7 @@
       "summary": "Bonus action: 3d8 + Int psi, spendable to cut damage",
       "text": "As a bonus action, you can gain psi energy equal to 3d8 + your Intelligence modifier.",
       "source": {
-        "book": "MTF",
+        "book": "TCE",
         "reference": "Mordenkainen's Tome of Foes Psi Warrior 10"
       }
     },
@@ -1057,7 +1057,7 @@
       "summary": "Telekinetic Leap every turn, and it pushes",
       "text": "When you use Telekinetic Leap, if you hit the creature, you can push it up to 10 feet away or up to 30 feet into the air.",
       "source": {
-        "book": "MTF",
+        "book": "TCE",
         "reference": "Mordenkainen's Tome of Foes Psi Warrior 15"
       }
     },
@@ -1092,7 +1092,7 @@
       "summary": "Smith's tools and two extra languages",
       "text": "You gain proficiency with smith's tools and learn two languages of your choice from the dwarven, common, and gnomish list.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Fighter Rune Knight 3"
       }
     },
@@ -1114,7 +1114,7 @@
       "summary": "You learn two runes from the rune list, and a third at 7 and 15",
       "text": "You gain access to two runes of your choice from the rune list below. You can gain access to a third rune of your choice at 7th and 15th level.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Fighter Rune Knight 3"
       }
     },
@@ -1149,7 +1149,7 @@
       "summary": "Action: grow a size for a minute",
       "text": "As an action, you can magically grow in size from 10 to 15 feet in height and length for 1 minute.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Fighter Rune Knight 3"
       }
     },
@@ -1184,7 +1184,7 @@
       "summary": "Bonus action: +2 AC for ten minutes",
       "text": "As a bonus action, you can gain a +2 bonus to AC for 10 minutes or until you are incapacitated.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Fighter Rune Knight 7"
       }
     },
@@ -1204,7 +1204,7 @@
       "summary": "Grow another 10 ft per rest; strike the dying at 18",
       "text": "When you finish a short or long rest, you can increase your height and reach by 10 feet.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Fighter Rune Knight 10"
       }
     },
@@ -1225,7 +1225,7 @@
       "summary": "A bonus rune you can swap between rests",
       "text": "You gain a bonus rune of your choice from the rune list.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Fighter Rune Knight 15"
       }
     },
@@ -1245,7 +1245,7 @@
       "summary": "Two extra runes for life, usable without ki",
       "text": "When you finish a long rest, you can carve two additional runes into your flesh.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Fighter Rune Knight 18"
       }
     },
@@ -1281,7 +1281,7 @@
       "summary": "An artisan's tool or instrument, plus Unarmed Fighting",
       "text": "You gain proficiency with one type of artisan's tools or one musical instrument.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Fighter Samurai 3"
       }
     },
@@ -1316,7 +1316,7 @@
       "summary": "Bonus action: temp HP equal to 1 plus Fighter level",
       "text": "You can use a bonus action to gain temporary hit points equal to 1 + your fighter level.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Fighter Samurai 3"
       }
     },
@@ -1344,7 +1344,7 @@
       "summary": "Proficiency in three skills; elegant evasion at 17",
       "text": "You gain proficiency in three skills of your choice.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Fighter Samurai 7"
       }
     },
@@ -1365,7 +1365,7 @@
       "summary": "Regain half your level in ki every rest",
       "text": "When you finish a short or long rest, you can choose to regain ki points equal to half your fighter level.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Fighter Samurai 10"
       }
     },
@@ -1408,7 +1408,7 @@
       "summary": "Bonus action: a melee hit for 1d8 extra damage",
       "text": "As a bonus action, you can make one melee weapon attack using a weapon that you are proficient with.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Fighter Samurai 15"
       }
     },
@@ -1444,7 +1444,7 @@
       "summary": "Reaction: drop to 1 HP instead of dying",
       "text": "When you are reduced to 0 hit points but are not killed outright, you can use your reaction to drop to 1 hit point instead.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Fighter Samurai 18"
       }
     }

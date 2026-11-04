@@ -17,7 +17,7 @@
       ],
       "summary": "A spectral ally appears for the duration of your rage",
       "text": "When you go into a rage, you can cause a Large spectral spirit from your ancestors' afterlife to appear as a ghostly ally within your reach. The spirit lasts for the duration of your rage and is immune to being charmed, frightened, paralyzed, or knocked unconscious.",
-      "source": { "book": "PHB", "reference": "PHB Barbarian Ancestral Guardian 3" }
+      "source": { "book": "XGE", "reference": "PHB Barbarian Ancestral Guardian 3" }
     },
     {
       "id": "subclass.ancestral_guardian.spirit_shield",
@@ -32,7 +32,7 @@
       ],
       "summary": "Bonus action: move the spirit; it gains +10 AC and HP",
       "text": "You can use a bonus action to cause the spirit to move up to 30 feet to a space within your sight. If you do, the spirit's AC and hit points increase by 10 until you move the spirit again.",
-      "source": { "book": "PHB", "reference": "PHB Barbarian Ancestral Guardian 6" }
+      "source": { "book": "XGE", "reference": "PHB Barbarian Ancestral Guardian 6" }
     },
     {
       "id": "subclass.ancestral_guardian.consult_the_spirits",
@@ -51,7 +51,7 @@
       ],
       "summary": "When you fall, an ally gets advantage for one round",
       "text": "When you die, you can use your reaction to target an ally within 30 feet of you. Before you fall unconscious, the spirit appears in front of them, and they have advantage on all ability checks for the rest of the current turn.",
-      "source": { "book": "PHB", "reference": "PHB Barbarian Ancestral Guardian 10" }
+      "source": { "book": "XGE", "reference": "PHB Barbarian Ancestral Guardian 10" }
     },
     {
       "id": "subclass.ancestral_guardian.vengeful_ancestors",
@@ -66,7 +66,7 @@
       ],
       "summary": "On a raging melee hit: 2d6 necrotic and disadvantage on its attacks",
       "text": "The first time each turn that you hit a creature with a melee weapon attack while raging, you can impose disadvantage on that creature's attack rolls and deal an additional 2d6 necrotic damage.",
-      "source": { "book": "PHB", "reference": "PHB Barbarian Ancestral Guardian 14" }
+      "source": { "book": "XGE", "reference": "PHB Barbarian Ancestral Guardian 14" }
     },
     {
       "id": "subclass.berserker.frenzy",
@@ -328,7 +328,7 @@
       ],
       "summary": "While raging, 10-foot aura grants physical resistance",
       "text": "You have resistance to bludgeoning, piercing, and slashing damage while raging.",
-      "source": { "book": "PHB", "reference": "PHB Barbarian Storm Herald 3" }
+      "source": { "book": "XGE", "reference": "PHB Barbarian Storm Herald 3" }
     },
     {
       "id": "subclass.storm_herald.storm_soul",
@@ -347,7 +347,7 @@
       ],
       "summary": "Reaction: succeed on a save, a limited number of times",
       "text": "When you are failing a saving throw, you can use your reaction to succeed instead. You can use this reaction twice, but only before 10th level.",
-      "source": { "book": "PHB", "reference": "PHB Barbarian Storm Herald 6" }
+      "source": { "book": "XGE", "reference": "PHB Barbarian Storm Herald 6" }
     },
     {
       "id": "subclass.storm_herald.shielding_storm",
@@ -366,7 +366,7 @@
       ],
       "summary": "Bonus action, once a rest: a lightning shell for a minute",
       "text": "You can use a bonus action to surround yourself with lightning for 1 minute, adding +2 to your AC, immunity to magical ranged attacks, and resistance against all damage except lightning.",
-      "source": { "book": "PHB", "reference": "PHB Barbarian Storm Herald 10" }
+      "source": { "book": "XGE", "reference": "PHB Barbarian Storm Herald 10" }
     },
     {
       "id": "subclass.storm_herald.raging_storm",
@@ -390,7 +390,7 @@
       ],
       "summary": "Reaction: lightning hit an attacker who hit you, while raging",
       "text": "When you are hit by an attack while raging, you can use your reaction to make a melee weapon attack against the attacker, dealing 2d8 lightning damage.",
-      "source": { "book": "PHB", "reference": "PHB Barbarian Storm Herald 14" }
+      "source": { "book": "XGE", "reference": "PHB Barbarian Storm Herald 14" }
     },
     {
       "id": "subclass.totem_warrior.spirit_seeker",
@@ -484,7 +484,7 @@
       ],
       "summary": "On a raging hit, a bonus action gives you temp HP",
       "text": "The first time you hit a creature with a melee weapon attack on each of your turns, you can use your bonus action to gain temporary hit points equal to your Constitution modifier plus your Charisma modifier.",
-      "source": { "book": "PHB", "reference": "PHB Barbarian Zealot 3" }
+      "source": { "book": "XGE", "reference": "PHB Barbarian Zealot 3" }
     },
     {
       "id": "subclass.zealot.warrior_of_the_gods",
@@ -504,7 +504,7 @@
       ],
       "summary": "Reaction: hit an attacker who hit you",
       "text": "When a creature you can see within 60 feet of you hits you with an attack, you can use your reaction to make a melee weapon attack against it.",
-      "source": { "book": "PHB", "reference": "PHB Barbarian Zealot 6" }
+      "source": { "book": "XGE", "reference": "PHB Barbarian Zealot 6" }
     },
     {
       "id": "subclass.zealot.fanatical_focus",
@@ -518,7 +518,7 @@
       ],
       "summary": "Cleric cantrip and spells, no material components",
       "text": "Your spells are inscribed on your skin, and you can cast cleric spells without material components.",
-      "source": { "book": "PHB", "reference": "PHB Barbarian Zealot 10" }
+      "source": { "book": "XGE", "reference": "PHB Barbarian Zealot 10" }
     },
     {
       "id": "subclass.zealot.zealous_presence",
@@ -532,7 +532,7 @@
       ],
       "summary": "On raging, allies nearby gain temp HP and resist fear",
       "text": "When you enter rage, your allies within 30 feet that can see you gain temporary hit points equal to 1d8 plus your Charisma modifier.",
-      "source": { "book": "PHB", "reference": "PHB Barbarian Zealot 14" }
+      "source": { "book": "XGE", "reference": "PHB Barbarian Zealot 14" }
     }
   ]
 }

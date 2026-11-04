@@ -19,7 +19,7 @@
       "summary": "Resistance to your ancestry's damage type",
       "text": "You have resistance to the damage type of your ancestry. The ancestry, the damage type and the breath weapon you gain are tied to your variant.",
       "source": {
-        "book": "ERLW",
+        "book": "PHB",
         "page": 36,
         "reference": "Eberron Dragonborn"
       }
@@ -39,7 +39,7 @@
       "summary": "Breathe elemental energy; the damage type comes from your variant",
       "text": "Your draconic ancestry comes from the dragon type of your parent or parents. The elemental energy of your ancestry gives you the ability to breathe elemental energy.",
       "source": {
-        "book": "ERLW",
+        "book": "PHB",
         "page": 36,
         "reference": "Eberron Dragonborn"
       }
@@ -76,7 +76,7 @@
       "summary": "Reaction: drop to 1 HP instead of dying outright",
       "text": "When you have 0 hit points but are not killed outright, you can use your reaction to drop to 1 hit point instead. You gain the use of this after a long rest.",
       "source": {
-        "book": "ERLW",
+        "book": "PHB",
         "page": 36,
         "reference": "Eberron Chromatic Dragonborn"
       }
@@ -126,7 +126,7 @@
       "summary": "15-foot cone, 2d6 plus Con, Dex save for half, type from your ancestry",
       "text": "You can use this action to exhale a blast of elemental energy. The energy originates from you and replaces your normal breath, but doesn't require you to breathe first. You use your Constitution modifier to determine the damage. You can use this feature a number of times equal to your Constitution modifier, regaining all expended uses after you finish a short or long rest.",
       "source": {
-        "book": "ERLW",
+        "book": "PHB",
         "page": 36,
         "reference": "Eberron Chromatic Dragonborn"
       }
@@ -163,7 +163,7 @@
       "summary": "Reaction: drop to 1 HP instead of dying outright",
       "text": "When you have 0 hit points but are not killed outright, you can use your reaction to drop to 1 hit point instead. You gain the use of this after a long rest.",
       "source": {
-        "book": "ERLW",
+        "book": "PHB",
         "page": 37,
         "reference": "Eberron Gem Dragonborn"
       }
@@ -213,7 +213,7 @@
       "summary": "15-foot cone, 2d6 plus Con, Dex save for half, type from your gem",
       "text": "You can use this action to exhale a blast of elemental energy. The energy originates from you and replaces your normal breath, but doesn't require you to breathe first. You use your Constitution modifier to determine the damage. You can use this feature a number of times equal to your Constitution modifier, regaining all expended uses after you finish a short or long rest.",
       "source": {
-        "book": "ERLW",
+        "book": "PHB",
         "page": 37,
         "reference": "Eberron Gem Dragonborn"
       }
@@ -250,7 +250,7 @@
       "summary": "Reaction: drop to 1 HP instead of dying outright",
       "text": "When you have 0 hit points but are not killed outright, you can use your reaction to drop to 1 hit point instead. You gain the use of this after a long rest.",
       "source": {
-        "book": "ERLW",
+        "book": "PHB",
         "page": 37,
         "reference": "Eberron Metallic Dragonborn"
       }
@@ -300,7 +300,7 @@
       "summary": "15-foot cone, 2d6 plus Con, Dex save for half, type from your metal",
       "text": "You can use this action to exhale a blast of elemental energy. The energy originates from you and replaces your normal breath, but doesn't require you to breathe first. You use your Constitution modifier to determine the damage. You can use this feature a number of times equal to your Constitution modifier, regaining all expended uses after you finish a short or long rest.",
       "source": {
-        "book": "ERLW",
+        "book": "PHB",
         "page": 37,
         "reference": "Eberron Metallic Dragonborn"
       }
@@ -410,7 +410,7 @@
       "summary": "See in dim light within 60 feet as if it were bright light",
       "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
       "source": {
-        "book": "ERLW",
+        "book": "AAG",
         "page": 32,
         "reference": "Eberron Thri-kreen"
       }
@@ -447,7 +447,7 @@
       "summary": "Sense and communicate with the thoughts of one creature within 30 feet",
       "text": "You can communicate telepathically with any creature you can see within 30 feet of you. The creature doesn't need to share a language, but must be intelligent. This telepathy doesn't let you sense a creature's intentions, and it ends if you're incapacitated or killed.",
       "source": {
-        "book": "ERLW",
+        "book": "AAG",
         "page": 32,
         "reference": "Eberron Thri-kreen"
       }
@@ -474,7 +474,7 @@
       "summary": "Speak Deep Speech and one language of your choice",
       "text": "You gain an additional language, and you gain a +1 bonus to Persuasion when you use the Telephy trait to influence a creature with a language you share.",
       "source": {
-        "book": "ERLW",
+        "book": "AAG",
         "page": 32,
         "reference": "Eberron Thri-kreen"
       }
@@ -590,7 +590,7 @@
       "summary": "See in dim light within 60 feet as if it were bright light",
       "text": "You have superior vision in dim light and darkness. You have advantage on Wisdom (Perception) checks that rely on sight.",
       "source": {
-        "book": "ERLW",
+        "book": "AAG",
         "page": 28,
         "reference": "Eberron Plasmoid"
       }
@@ -616,7 +616,7 @@
       "summary": "Immune to the poisoned condition, resistant to poison damage",
       "text": "You are immune to the poisoned condition. You have resistance to poison damage.",
       "source": {
-        "book": "ERLW",
+        "book": "AAG",
         "page": 28,
         "reference": "Eberron Plasmoid"
       }
@@ -636,7 +636,7 @@
       "summary": "A flight speed equal to your walking speed",
       "text": "You can hover in mid-air by using your arms to slosh about your gaseous form, which gives you a fly speed equal to your walking speed. If you end this benefit, you fall, and you must be within 5 feet of a solid object to do so.",
       "source": {
-        "book": "ERLW",
+        "book": "AAG",
         "page": 28,
         "reference": "Eberron Plasmoid"
       }
@@ -656,7 +656,7 @@
       "summary": "Walk and stand on water as if it were solid ground",
       "text": "You can move across and stand on liquid water as if it was solid ground. However, if you immerse yourself in a body of water, you are in an area of effect of a 10-foot cube of water, after which the water surrounding you might be frozen in place.",
       "source": {
-        "book": "ERLW",
+        "book": "AAG",
         "page": 28,
         "reference": "Eberron Plasmoid"
       }

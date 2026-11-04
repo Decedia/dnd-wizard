@@ -29,7 +29,7 @@
       "summary": "Proficiency with two tools, two languages, and Arcane Recovery",
       "text": "You gain proficiency with two tools of your choice and with two languages of your choice.",
       "source": {
-        "book": "TCE",
+        "book": "SCAG",
         "reference": "Tasha's Cauldron Cleric Arcana 1"
       }
     },
@@ -63,7 +63,7 @@
       "summary": "Two abjuration spells, always prepared",
       "text": "You learn abjuration spells from the wizard list. These spells are always prepared and do not count against your number of prepared spells.",
       "source": {
-        "book": "TCE",
+        "book": "SCAG",
         "reference": "Tasha's Cauldron Cleric Arcana 1"
       }
     },
@@ -102,7 +102,7 @@
       "summary": "Spend CD: 1 hour of one damage type's resistance",
       "text": "As a magic action, you can spend channel divinity to grant a creature resistance to an acid, cold, fire, lightning, or thunder damage for 1 hour.",
       "source": {
-        "book": "TCE",
+        "book": "SCAG",
         "reference": "Tasha's Cauldron Cleric Arcana 2"
       }
     },
@@ -134,7 +134,7 @@
       "summary": "Reaction: +2 to an enemy's spell DC, forcing extra cost",
       "text": "As a reaction, when you see a creature casting a spell or using a magical item, you can use your reaction to cause the spell or item to have an increased DC for that creature.",
       "source": {
-        "book": "TCE",
+        "book": "SCAG",
         "reference": "Tasha's Cauldron Cleric Arcana 6"
       }
     },
@@ -155,7 +155,7 @@
       "summary": "Healing and necrotic spells deal extra 2d8 of their type",
       "text": "When you cast any spell with a healing or necrotic theme, the spell deals an extra 2d8 of that damage type when a creature is damaged by it.",
       "source": {
-        "book": "TCE",
+        "book": "SCAG",
         "reference": "Tasha's Cauldron Cleric Arcana 8"
       }
     },
@@ -175,7 +175,7 @@
       "summary": "Bonus action: learn the name of your last spell",
       "text": "As a bonus action, you can learn the name and level of the last spell you cast.",
       "source": {
-        "book": "TCE",
+        "book": "SCAG",
         "reference": "Tasha's Cauldron Cleric Arcana 17"
       }
     },
@@ -202,7 +202,7 @@
       "summary": "Proficiency with a gaming set and two more areas",
       "text": "You gain proficiency with two additional areas of expertise: heavy armor, medium armor, shields, or any simple weapon.",
       "source": {
-        "book": "PHB",
+        "book": "DMG",
         "reference": "PHB Cleric Death 1"
       }
     },
@@ -254,7 +254,7 @@
       "summary": "Once a day: necrotic damage; killing it heals you",
       "text": "As an action, you can make a melee spell attack with a range of 60 feet to cause 2d10 necrotic damage plus your Wisdom modifier, plus 1d10 for each cleric level above 1.",
       "source": {
-        "book": "PHB",
+        "book": "DMG",
         "reference": "PHB Cleric Death 1"
       }
     },
@@ -288,7 +288,7 @@
       "summary": "Two necromancy spells, always prepared",
       "text": "You learn necromancy spells from the wizard list.",
       "source": {
-        "book": "PHB",
+        "book": "DMG",
         "reference": "PHB Cleric Death 1"
       }
     },
@@ -343,7 +343,7 @@
       "summary": "Spend CD: 10 necrotic, which blocks healing",
       "text": "As a bonus action, you can channel divinity and make a melee spell attack with a range of 5 feet.",
       "source": {
-        "book": "PHB",
+        "book": "DMG",
         "reference": "PHB Cleric Death 2"
       }
     },
@@ -367,7 +367,7 @@
       "summary": "Disadvantage on saves against necrotic damage",
       "text": "You have disadvantage on saving throws against necrotic damage.",
       "source": {
-        "book": "PHB",
+        "book": "DMG",
         "reference": "PHB Cleric Death 6"
       }
     },
@@ -399,7 +399,7 @@
       "summary": "After a melee hit: 4d8 + Wis necrotic on a critical",
       "text": "As an action, you can make a melee weapon attack. On a hit, you can use your bonus action to channel divinity and deal an additional 4d8 necrotic damage.",
       "source": {
-        "book": "PHB",
+        "book": "DMG",
         "reference": "PHB Cleric Death 8"
       }
     },
@@ -437,7 +437,7 @@
       "summary": "Reaper works twice per rest and as a bonus action",
       "text": "You can cast Reaper twice without taking a short or long rest.",
       "source": {
-        "book": "PHB",
+        "book": "DMG",
         "reference": "PHB Cleric Death 17"
       }
     },
@@ -465,7 +465,7 @@
       "summary": "Proficiency with smith's tools and an artisan's tool",
       "text": "You gain proficiency with smith's tools and one type of artisan's tools.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Cleric Forge 1"
       }
     },
@@ -491,7 +491,7 @@
       "summary": "Bless a weapon for +1 attack and damage",
       "text": "As an action on a turn when you hit a creature with a melee attack using a weapon, you can imbue the weapon with a blessing of your choice for 1 minute.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Cleric Forge 1"
       }
     },
@@ -530,7 +530,7 @@
       "summary": "Spend CD: hand out a d10 to add to one roll",
       "text": "As a bonus action, you can channel divinity and choose a creature within 60 feet of you.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Cleric Forge 2"
       }
     },
@@ -551,7 +551,7 @@
       "summary": "Divine Strike scales faster; radiant resistance and blind immunity",
       "text": "You have resistance to radiant damage, and you are immune to being blinded.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Cleric Forge 6"
       }
     },
@@ -583,7 +583,7 @@
       "summary": "After a melee hit: 4d8 + Wis radiant on a critical",
       "text": "As an action, you can make a melee weapon attack. On a hit, you can use your bonus action to channel divinity and deal an additional 4d8 radiant damage.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Cleric Forge 8"
       }
     },
@@ -603,7 +603,7 @@
       "summary": "Divine Strike deals 4d8; immunity to fire",
       "text": "The bonus damage from your Divine Strike feature increases to 4d8.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Cleric Forge 17"
       }
     },
@@ -630,7 +630,7 @@
       "summary": "Proficiency with a gaming set and medium armor",
       "text": "You gain proficiency with two additional areas of expertise: any type of gaming set and medium armor.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Cleric Grave 1"
       }
     },
@@ -658,7 +658,7 @@
       "summary": "Medicine and Religion proficiency; aid and sanctuary as cantrips",
       "text": "You gain proficiency in the Medicine and Religion skills. You learn the sanctuary cantrip.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Cleric Grave 1"
       }
     },
@@ -678,7 +678,7 @@
       "summary": "Sense creatures at 1 HP or fewer within 30 ft",
       "text": "At will, you can detect the presence of any creature within 30 feet of you that has 1 hit point or fewer.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Cleric Grave 1"
       }
     },
@@ -721,7 +721,7 @@
       "summary": "Spend CD: halve a creature's speed and hinder it",
       "text": "As an action, you can channel divinity and cause one creature within 30 feet of you to make a Wisdom saving throw.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Cleric Grave 2"
       }
     },
@@ -762,7 +762,7 @@
       "summary": "Action: stabilise a dying ally",
       "text": "As an action, you can touch one creature that is within 10 feet of you and that has 0 hit points.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Cleric Grave 6"
       }
     },
@@ -794,7 +794,7 @@
       "summary": "After a melee hit: 4d8 + Wis necrotic on a critical",
       "text": "As an action, you can make a melee weapon attack. On a hit, you can use your bonus action to channel divinity and deal an additional 4d8 necrotic damage.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Cleric Grave 8"
       }
     },
@@ -825,7 +825,7 @@
       "summary": "Divine Strike deals 6d8 then 8d8 necrotic",
       "text": "The bonus damage from your Divine Strike feature increases to 6d8 at 6th level and 8d8 at 16th level.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Cleric Grave 17"
       }
     },
@@ -1575,7 +1575,7 @@
       "summary": "Proficiency with a gaming set and heavy armor",
       "text": "You gain proficiency with two additional areas of expertise: any type of gaming set and heavy armor.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Cleric Order 1"
       }
     },
@@ -1610,7 +1610,7 @@
       "summary": "Bonus action: command a creature to move and stand down",
       "text": "As a bonus action, you can speak a command in a strong voice.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Cleric Order 1"
       }
     },
@@ -1644,7 +1644,7 @@
       "summary": "Two abjuration spells, always prepared",
       "text": "You learn abjuration spells from the wizard list.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Cleric Order 1"
       }
     },
@@ -1690,7 +1690,7 @@
       "summary": "Spend CD: frighten a creature for a minute",
       "text": "As an action, you can channel divinity and present your holy symbol.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Cleric Order 2"
       }
     },
@@ -1710,7 +1710,7 @@
       "summary": "Immune to charmed; Voice of Authority as a reaction at 18",
       "text": "You have advantage on saving throws against being charmed.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Cleric Order 6"
       }
     },
@@ -1742,7 +1742,7 @@
       "summary": "After a melee hit: 4d8 + Wis radiant on a critical",
       "text": "As an action, you can make a melee weapon attack. On a hit, you can use your bonus action to channel divinity and deal an additional 4d8 radiant damage.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Cleric Order 8"
       }
     },
@@ -1773,7 +1773,7 @@
       "summary": "Divine Strike deals 6d8 then 8d8; hits can frighten",
       "text": "The bonus damage from your Divine Strike feature increases to 6d8 at 6th level and 8d8 at 16th level.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Cleric Order 17"
       }
     },
@@ -1794,7 +1794,7 @@
       "summary": "Charisma modifier adds to shield and simple weapon rolls",
       "text": "You can add your Charisma modifier to attack or damage rolls when you make an attack with a shield or a simple weapon.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Cleric Peace 1"
       }
     },
@@ -1833,7 +1833,7 @@
       "summary": "Action: up to three allies add 1d4 to rolls for a minute",
       "text": "As an action, you can forge a bond between up to 3 willing creatures within 30 feet of you.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Cleric Peace 1"
       }
     },
@@ -1867,7 +1867,7 @@
       "summary": "Two enchantment spells, always prepared",
       "text": "You learn enchantment spells from the wizard list.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Cleric Peace 1"
       }
     },
@@ -1907,7 +1907,7 @@
       "summary": "Spend CD: allies gain advantage on magical saves",
       "text": "As an action, you can channel divinity and spread a soothing calm.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Cleric Peace 2"
       }
     },
@@ -1939,7 +1939,7 @@
       "summary": "Reaction: take the damage meant for a bonded ally",
       "text": "When a creature within 30 feet of you that is affected by your Emboldening Bond takes damage, you can use your reaction to take the damage instead.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Cleric Peace 6"
       }
     },
@@ -1960,7 +1960,7 @@
       "summary": "Healing and enchantment spells deal extra 2d8",
       "text": "When you cast any spell with a healing or enchantment theme, the spell deals an extra 2d8 of that damage type.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Cleric Peace 8"
       }
     },
@@ -1981,7 +1981,7 @@
       "summary": "Emboldening Bond: six allies, 1d6, longer reach",
       "text": "The bonus granted by Emboldening Bond increases to 1d6, and you can forge the bond between up to 6 willing creatures.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Cleric Peace 17"
       }
     },
@@ -2380,7 +2380,7 @@
       "summary": "Armor, shield and simple weapon proficiency",
       "text": "You gain proficiency with any type of heavy armor, medium armor, shields, and simple weapons.",
       "source": {
-        "book": "VGTM",
+        "book": "TCE",
         "reference": "Vampire's Guide to Ravenloft Twilight Cleric 1"
       }
     },
@@ -2404,7 +2404,7 @@
       "summary": "Darkvision 60 ft; reaction to disadvantage adjacent attacks",
       "text": "You have darkvision out to 60 feet, and if a creature within 5 feet of you makes an attack roll against you, you can use your reaction to impose disadvantage on the attack roll.",
       "source": {
-        "book": "VGTM",
+        "book": "TCE",
         "reference": "Vampire's Guide to Ravenloft Twilight Cleric 1"
       }
     },
@@ -2424,7 +2424,7 @@
       "summary": "Twilight Sanctuary also ends frightened",
       "text": "Your Twilight Sanctuary ends the frightened condition for creatures in it.",
       "source": {
-        "book": "VGTM",
+        "book": "TCE",
         "reference": "Vampire's Guide to Ravenloft Twilight Cleric 1"
       }
     },
@@ -2458,7 +2458,7 @@
       "summary": "Two necromancy spells, always prepared",
       "text": "You learn necromancy spells from the wizard list.",
       "source": {
-        "book": "VGTM",
+        "book": "TCE",
         "reference": "Vampire's Guide to Ravenloft Twilight Cleric 1"
       }
     },
@@ -2502,7 +2502,7 @@
       "summary": "Spend CD: a 30-ft sphere that frightens creatures in it",
       "text": "As an action, you can create a 30-foot radius sphere of dim light within 60 feet of you.",
       "source": {
-        "book": "VGTM",
+        "book": "TCE",
         "reference": "Vampire's Guide to Ravenloft Twilight Cleric 2"
       }
     },
@@ -2538,7 +2538,7 @@
       "summary": "Bonus action: 1 minute of shadow and resistance",
       "text": "As a bonus action, you become invisible and gain resistance to all damage.",
       "source": {
-        "book": "VGTM",
+        "book": "TCE",
         "reference": "Vampire's Guide to Ravenloft Twilight Cleric 6"
       }
     },
@@ -2570,7 +2570,7 @@
       "summary": "After a melee hit: 4d8 + Wis necrotic on a critical",
       "text": "As an action, you can make a melee weapon attack. On a hit, you can use your bonus action to channel divinity and deal an additional 4d8 necrotic damage.",
       "source": {
-        "book": "VGTM",
+        "book": "TCE",
         "reference": "Vampire's Guide to Ravenloft Twilight Cleric 8"
       }
     },
@@ -2601,7 +2601,7 @@
       "summary": "Divine Strike deals 6d8 then 8d8 necrotic",
       "text": "The bonus damage from your Divine Strike feature increases to 6d8 at 6th level and 8d8 at 16th level.",
       "source": {
-        "book": "VGTM",
+        "book": "TCE",
         "reference": "Vampire's Guide to Ravenloft Twilight Cleric 17"
       }
     },

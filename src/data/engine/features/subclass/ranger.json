@@ -132,7 +132,7 @@
       "summary": "+1 AC, Draconic, and a dragon type for its resilience and breath",
       "text": "You gain a +1 bonus to AC and proficiency in the Draconic language. You also know one dragon's type, based on your ancestry.",
       "source": {
-        "book": "TCE",
+        "book": "FTD",
         "reference": "Tasha's Cauldron Ranger Drake Warden 3"
       }
     },
@@ -210,7 +210,7 @@
       "summary": "Spend a slot on a spell, then bonus-action force damage and push",
       "text": "On your turn, you can expend a spell slot of any level, cast a spell with that slot, and then use a bonus action to make a 60-foot melee spell attack against a creature.",
       "source": {
-        "book": "TCE",
+        "book": "FTD",
         "reference": "Tasha's Cauldron Ranger Drake Warden 3"
       }
     },
@@ -238,7 +238,7 @@
       "summary": "Breath weapon: a 15-ft cone of your dragon type, 3d6",
       "text": "You gain a magical breath weapon in a 15-foot cone. On each of your turns, you can change the damage type to any of the types your ancestry supports.",
       "source": {
-        "book": "TCE",
+        "book": "FTD",
         "reference": "Tasha's Cauldron Ranger Drake Warden 7"
       }
     },
@@ -259,7 +259,7 @@
       "summary": "Bond damage becomes 2d10; the push knocks prone",
       "text": "Your Bond of Fang and Scale attack deals 2d10 damage instead of 1d6 damage plus half the level of the spell.",
       "source": {
-        "book": "TCE",
+        "book": "FTD",
         "reference": "Tasha's Cauldron Ranger Drake Warden 11"
       }
     },
@@ -290,7 +290,7 @@
       "summary": "Resistance to a chosen damage type, relearned each rest",
       "text": "You can gain resistance to a damage type of your choice for 1 minute. You can do this whenever you finish a long rest.",
       "source": {
-        "book": "TCE",
+        "book": "FTD",
         "reference": "Tasha's Cauldron Ranger Drake Warden 15"
       }
     },
@@ -330,7 +330,7 @@
       "summary": "Weapon hits refund hit dice, boosted on low rolls",
       "text": "When you make a weapon attack against a creature, its damage is a d6 more if the d6 is 1 or 2, and you can regain expended Hit Dice equal to the number of damage dice that attack rolled.",
       "source": {
-        "book": "MTF",
+        "book": "TCE",
         "reference": "Mordenkainen's Tome of Foes Fey Wanderer 3"
       }
     },
@@ -369,7 +369,7 @@
       "summary": "Druidcraft at will, plus a free 1st-level druid spell",
       "text": "You know the druidcraft cantrip, which you can cast at will, and you know one first-level druid spell, castable without a spell slot.",
       "source": {
-        "book": "MTF",
+        "book": "TCE",
         "reference": "Mordenkainen's Tome of Foes Fey Wanderer 3"
       }
     },
@@ -394,7 +394,7 @@
       "summary": "+1 Cha, Persuasion proficiency, and bonuses vs weaker foes",
       "text": "You gain proficiency in Persuasion and your Charisma is increased by 1. You also gain a +1 bonus to Persuasion and Intimidation checks.",
       "source": {
-        "book": "MTF",
+        "book": "TCE",
         "reference": "Mordenkainen's Tome of Foes Fey Wanderer 3"
       }
     },
@@ -450,7 +450,7 @@
       "summary": "Persuade a creature to reroll a failed save",
       "text": "You can use your action to make a Charisma (Persuasion) check against a creature within 60 feet of you. On a success, you reroll its last failed save.",
       "source": {
-        "book": "MTF",
+        "book": "TCE",
         "reference": "Mordenkainen's Tome of Foes Fey Wanderer 7"
       }
     },
@@ -495,7 +495,7 @@
       "summary": "Bonus action: summon a fey sprite for an hour",
       "text": "As a bonus action, you can summon a fey spirit to an unoccupied space that you can see within 60 feet of you.",
       "source": {
-        "book": "MTF",
+        "book": "TCE",
         "reference": "Mordenkainen's Tome of Foes Fey Wanderer 11"
       }
     },
@@ -531,7 +531,7 @@
       "summary": "Reaction: turn invisible when a spell affects you",
       "text": "When you fail a save against a spell or some other magic effect, you can use your reaction to turn invisible until you attack or cast a spell.",
       "source": {
-        "book": "MTF",
+        "book": "TCE",
         "reference": "Mordenkainen's Tome of Foes Fey Wanderer 15"
       }
     },
@@ -570,7 +570,7 @@
       "summary": "Minor illusion at will, plus a free 1st-level wizard spell",
       "text": "You know the minor illusion cantrip, which you can cast at will, and you know one first-level wizard spell.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Ranger Gloom Stalker 3"
       }
     },
@@ -643,7 +643,7 @@
       "summary": "Weapon attacks deal an extra 1d6 psychic",
       "text": "You can add 1d6 psychic damage to a weapon attack that deals damage as a result of your Sneak Attack.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Ranger Gloom Stalker 3"
       }
     },
@@ -667,7 +667,7 @@
       "summary": "Darkvision 60 ft, 120 ft in shadow or dim light",
       "text": "You gain darkvision out to 60 feet, or 120 feet while you are within 30 feet of a shadow or dim light.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Ranger Gloom Stalker 3"
       }
     },
@@ -689,7 +689,7 @@
       "summary": "Immune to being frightened",
       "text": "You have immunity to the frightened condition.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Ranger Gloom Stalker 7"
       }
     },
@@ -720,7 +720,7 @@
       "summary": "One additional attack on your primary target",
       "text": "When you take the Attack action on your turn, you can make one additional attack against a creature within 5 feet of you, only if you have not already used Stalker's Flurry on this turn.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Ranger Gloom Stalker 11"
       }
     },
@@ -752,7 +752,7 @@
       "summary": "Once a day, reaction: make an attack against you miss",
       "text": "You can use your reaction, once per day, to cause a melee weapon attack that targets you to miss.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Ranger Gloom Stalker 15"
       }
     },
@@ -791,7 +791,7 @@
       "summary": "Mage hand at will; see ethereal with detect portal",
       "text": "You know the mage hand cantrip, which you can cast at will without a spell slot, and you can always detect a portal if you can see within 30 feet of it.",
       "source": {
-        "book": "MTF",
+        "book": "XGE",
         "reference": "Mordenkainen's Tome of Foes Horizon Walker 3"
       }
     },
@@ -814,7 +814,7 @@
       "summary": "On the ethereal plane, reach into the material plane to attack",
       "text": "While you are on the ethereal plane, you can use an object interaction to interact with a creature on the material plane if the distance between you and the creature is within 10 feet, your reach, or a distance equal to your reach divided by 3.",
       "source": {
-        "book": "MTF",
+        "book": "XGE",
         "reference": "Mordenkainen's Tome of Foes Horizon Walker 3"
       }
     },
@@ -847,7 +847,7 @@
       "summary": "Bonus action: 1 minute on the ethereal plane, damage resistant",
       "text": "As a bonus action, you have learned to step briefly into the ethereal plane, where you have resistance to all damage.",
       "source": {
-        "book": "MTF",
+        "book": "XGE",
         "reference": "Mordenkainen's Tome of Foes Horizon Walker 7"
       }
     },
@@ -878,7 +878,7 @@
       "summary": "On a melee hit, a bonus action hits the same target again",
       "text": "When you hit a creature with a melee weapon attack on your turn, you can use a bonus action to make one more attack against that creature.",
       "source": {
-        "book": "MTF",
+        "book": "XGE",
         "reference": "Mordenkainen's Tome of Foes Horizon Walker 11"
       }
     },
@@ -905,7 +905,7 @@
       "summary": "Bonus action: 10 ft, granting advantage on attacks this turn",
       "text": "On your turn, you can move up to 10 feet as a bonus action. If you used this movement to get within 5 feet of a creature, attacks against that creature gain advantage for the rest of the turn.",
       "source": {
-        "book": "MTF",
+        "book": "XGE",
         "reference": "Mordenkainen's Tome of Foes Horizon Walker 15"
       }
     },
@@ -1031,7 +1031,7 @@
       "summary": "Once a long rest, a Wis check reveals a creature's weakness",
       "text": "Using your action, you make a Wisdom check, and on a success you learn a special vulnerability or resistance for that creature.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Ranger Monster Slayer 3"
       }
     },
@@ -1053,7 +1053,7 @@
       "summary": "Choose a prey type and gain a bonus against it",
       "text": "You choose a type of creature to hunt. You gain Colossus Slayer on beasts and Giant Killer on giants.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Ranger Monster Slayer 3"
       }
     },
@@ -1075,7 +1075,7 @@
       "summary": "Choose a defensive tactic of your own",
       "text": "You have developed one of the following defensive tactics, which you can use any time you make an ability check or saving throw while using the Defense action.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Ranger Monster Slayer 7"
       }
     },
@@ -1096,7 +1096,7 @@
       "summary": "An extra attack with Multiattack, and a new prey benefit",
       "text": "Your mastery of the spear lets you make an additional attack when you use Multiattack.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Ranger Monster Slayer 11"
       }
     },
@@ -1132,7 +1132,7 @@
       "summary": "Reaction: hit an attacker who hit you",
       "text": "When a creature within 10 feet of you that you can see hits you with an attack, you can use your reaction to make one melee attack against that creature.",
       "source": {
-        "book": "TCE",
+        "book": "XGE",
         "reference": "Tasha's Cauldron Ranger Monster Slayer 15"
       }
     },
@@ -1171,7 +1171,7 @@
       "summary": "Druidcraft at will, plus a free 1st-level druid spell",
       "text": "You know the druidcraft cantrip, which you can cast at will without a spell slot, and you know one first-level druid spell.",
       "source": {
-        "book": "MTF",
+        "book": "TCE",
         "reference": "Mordenkainen's Tome of Foes Swarmkeeper 3"
       }
     },
@@ -1219,7 +1219,7 @@
       "summary": "At 0 HP, summon a swarm that acts immediately",
       "text": "When you are reduced to 0 hit points but are not killed outright, you can use your reaction to summon a Large swarm of tiny insectile creatures.",
       "source": {
-        "book": "MTF",
+        "book": "TCE",
         "reference": "Mordenkainen's Tome of Foes Swarmkeeper 3"
       }
     },
@@ -1264,7 +1264,7 @@
       "summary": "Your attacks frighten nearby creatures and swarm them",
       "text": "When a creature within 10 feet of you takes damage from one of your attacks, a swarm of spectral wasps appears on its body, and that creature is frightened.",
       "source": {
-        "book": "MTF",
+        "book": "TCE",
         "reference": "Mordenkainen's Tome of Foes Swarmkeeper 7"
       }
     },
@@ -1295,7 +1295,7 @@
       "summary": "The swarm becomes a real creature with its own hit points",
       "text": "The swarm has 20 hit points and an Armor Class of 12.",
       "source": {
-        "book": "MTF",
+        "book": "TCE",
         "reference": "Mordenkainen's Tome of Foes Swarmkeeper 11"
       }
     },
@@ -1335,7 +1335,7 @@
       "summary": "Reaction: teleport 30 ft and push an adjacent creature",
       "text": "When you are hit by an attack, you and your swarm can teleport up to 30 feet as a reaction.",
       "source": {
-        "book": "MTF",
+        "book": "TCE",
         "reference": "Mordenkainen's Tome of Foes Swarmkeeper 15"
       }
     }

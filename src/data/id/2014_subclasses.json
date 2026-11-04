@@ -1,6 +1,6 @@
 {
   "generated": "2026-09-20T14:21:05.402Z",
-  "total": 116,
+  "total": 118,
   "subclasses": [
     {
       "index": "alchemist",
@@ -139,8 +139,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "source": "EGW",
-      "book": "PHB",
+      "source": "TCE",
+      "book": "TCE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -306,8 +306,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "source": "EGW",
-      "book": "PHB",
+      "source": "TCE",
+      "book": "TCE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -447,8 +447,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "source": "EGW",
-      "book": "PHB",
+      "source": "TCE",
+      "book": "TCE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -614,8 +614,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "source": "EGW",
-      "book": "PHB",
+      "source": "TCE",
+      "book": "TCE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -732,7 +732,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -930,7 +930,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "name": "Path of Wild Magic",
@@ -959,7 +960,7 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Wild Magic Surge",
+          "name": "Wild Surge",
           "level": 3,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -972,10 +973,11 @@
             "level": 3
           },
           "book": "TCE",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
-          "name": "Bolstering Presence",
+          "name": "Bolstering Magic",
+          "description": "Sebagai action, sentuh satu makhluk (termasuk dirimu) dan pilih satu efek. Selama 10 menit, makhluk itu menambahkan hasil d3 ke setiap attack roll dan ability check-nya. Atau lempar d3: makhluk itu memulihkan satu spell slot yang sudah terpakai setingkat hasil itu atau lebih rendah. Bisa dipakai sebanyak proficiency bonus-mu per long rest.",
           "level": 6,
           "featureType": "Active",
           "actionType": "Action",
@@ -983,15 +985,24 @@
             "total": "Proficiency Bonus",
             "recharge": "Long Rest"
           },
-          "summary": "Berikan bonus **1d3** pada attack rolls dan ability checks kepada satu makhluk, atau pulihkan spell slot level 1, 2, atau 3.",
-          "description": "Kamu bisa memanfaatkan sihir liarmu untuk memperkuat dirimu sendiri atau rekanmu. Dengan menggunakan action, kamu bisa menyentuh satu makhluk (termasuk dirimu sendiri) dan memberikan salah satu manfaat berikut:\n- Selama 10 menit, makhluk tersebut dapat menambahkan hasil roll **1d3** ke setiap attack roll atau ability check yang dilakukannya.\n- Lakukan roll **1d3** untuk memulihkan satu spell slot yang telah terpakai milik makhluk tersebut, dengan level slot yang sama atau lebih rendah dari angka yang muncul.\n\nSetelah memberikan salah satu manfaat ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan long rest, kecuali jika kamu mengorbankan satu penggunaan rage untuk melakukannya.",
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Action: sentuh makhluk untuk menambah d3 ke serangan dan check-nya selama 10 menit, atau memulihkan spell slot tingkat rendah.",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
           "source": {
             "type": "subclass",
             "name": "Path of Wild Magic",
             "level": 6
           },
           "book": "TCE",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
           "name": "Unstable Backlash",
@@ -1023,7 +1034,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "class": "Barbarian",
@@ -1139,7 +1151,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -1321,9 +1333,9 @@
         },
         {
           "name": "Warrior of the Gods",
-          "description": "Pada level 6, kekuatan ilahi yang memicu rage milikmu memungkinkan kamu untuk mengabaikan serangan fatal. Ketika kamu seharusnya jatuh ke 0 hit points akibat menerima kerusakan, kamu bisa melakukan Charisma saving throw (DC 5 + jumlah kerusakan yang diterima). Jika berhasil, kamu tetap bertahan dengan 1 hit point sebagai gantinya.\n\nSetelah saving throw ini berhasil, kamu tidak bisa menggunakan fitur ini lagi sampai kamu menyelesaikan long rest.",
-          "level": 6,
-          "featureType": "Active",
+          "description": "Jika sebuah spell akan menghidupkanmu kembali (bukan sebagai undead), perapalnya tidak memerlukan komponen material untuk merapalkannya padamu.",
+          "level": 3,
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
@@ -1332,7 +1344,36 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Saat hit points mencapai 0, lakukan Charisma saving throw (DC 5 + kerusakan yang diterima) untuk bertahan di 1 hit point sebagai gantinya.",
+          "summary": "Spell yang menghidupkanmu kembali tidak memerlukan komponen material.",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Zealot",
+            "level": 3
+          },
+          "book": "XGE",
+          "lastUpdated": "2026-11-04"
+        },
+        {
+          "name": "Fanatical Focus",
+          "description": "Sekali per rage, jika kamu gagal saving throw saat raging, kamu bisa mengulang lemparannya. Kamu wajib memakai hasil yang baru.",
+          "level": 6,
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": {
+            "total": 1,
+            "recharge": "Rage"
+          },
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Sekali per rage, ulang saving throw yang gagal.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1343,22 +1384,25 @@
             "level": 6
           },
           "book": "XGE",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
-          "name": "Fanatical Focus",
-          "description": "Pada level 10, kekuatan ilahi yang memicu rage milikmu dapat membantumu bertahan dari bahaya. Jika kamu gagal dalam saving throw saat sedang raging, kamu bisa melempar ulang dadunya, dan kamu harus menggunakan hasil roll yang baru. Kamu hanya bisa menggunakan kemampuan ini satu kali setiap kali kamu melakukan rage.",
+          "name": "Zealous Presence",
+          "description": "Sebagai bonus action, kamu meneriakkan seruan perang. Hingga sepuluh makhluk pilihanmu dalam jarak 60 kaki yang bisa mendengarmu mendapat advantage pada attack roll dan saving throw sampai awal giliranmu berikutnya. Setelah dipakai, tunggu long rest untuk memakainya lagi.",
           "level": 10,
           "featureType": "Active",
-          "actionType": null,
-          "uses": null,
+          "actionType": "Bonus Action",
+          "uses": {
+            "total": 1,
+            "recharge": "Long Rest"
+          },
           "requirement": null,
           "duration": null,
           "endsIf": null,
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Di level 10, kekuatan ilahi yang menyalakan rage kamu dapat membantu kamu mendorong diri melewati bahaya. (action).",
+          "summary": "Bonus action: hingga sepuluh sekutu dalam 60 kaki mendapat advantage pada serangan dan saving throw sampai giliranmu berikutnya.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1369,14 +1413,14 @@
             "level": 10
           },
           "book": "XGE",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
-          "name": "Zealous Presence",
-          "description": "Pada level 14, kamu belajar menyalurkan kekuatan ilahi untuk membangkitkan semangat fanatisme pada orang lain. Sebagai bonus action, kamu melepaskan teriakan perang yang dialiri energi ilahi. Hingga sepuluh makhluk pilihanmu dalam jarak 60 kaki yang bisa mendengarmu mendapatkan advantage pada attack rolls dan saving throws hingga awal giliranmu berikutnya.\n\nSetelah menggunakan fitur ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan long rest.",
+          "name": "Rage Beyond Death",
+          "description": "Saat raging, jatuh ke 0 hit points tidak membuatmu pingsan. Kamu tetap melakukan death saving throw dan menerima efek normal dari damage di 0 hit points. Jika kamu seharusnya mati karena gagal death saving throw, kamu baru mati saat rage berakhir, dan hanya jika hit points-mu masih 0.",
           "level": 14,
-          "featureType": "Active",
-          "actionType": "Bonus Action",
+          "featureType": "Passive",
+          "actionType": null,
           "uses": null,
           "requirement": null,
           "duration": null,
@@ -1384,7 +1428,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Hingga sepuluh makhluk pilihan dalam jarak 60 kaki yang bisa mendengarmu mendapat advantage pada attack rolls dan saving throws hingga giliranmu berikutnya.",
+          "summary": "Saat raging, kamu tetap sadar di 0 hit points dan tidak bisa mati sampai rage berakhir.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1395,12 +1439,272 @@
             "level": 14
           },
           "book": "XGE",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
+    },
+    {
+      "class": "Barbarian",
+      "classIndex": "barbarian",
+      "index": "battlerager",
+      "name": "Path of the Battlerager",
+      "flavorText": "Primal Path",
+      "description": "Barbarian dwarf yang bertarung dengan armor berduri dan menerjang ke tengah pertempuran. Hanya dwarf yang bisa mengambil path ini.",
+      "features": [
+        {
+          "name": "Battlerager Armor",
+          "description": "Kamu bisa memakai spiked armor sebagai senjata. Saat memakainya dan raging, kamu bisa melakukan satu melee attack dengan durinya sebagai bonus action terhadap makhluk dalam 5 kaki. Damage-nya 1d4 piercing dan memakai Strength. Saat kamu memakai Attack action untuk grapple, target menerima 3 piercing damage jika grapple berhasil.",
+          "level": 3,
+          "featureType": "Active",
+          "actionType": "Bonus Action",
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Spiked armor: bonus action serangan duri (1d4 piercing) saat raging; 3 piercing saat grapple berhasil.",
+          "grantsSpells": false,
+          "grantsAttack": true,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Path of the Battlerager",
+            "level": 3
+          },
+          "book": "SCAG",
+          "lastUpdated": "2026-11-04"
+        },
+        {
+          "name": "Reckless Abandon",
+          "description": "Saat kamu memakai Reckless Attack ketika raging, kamu mendapat temporary hit points sebesar modifier Constitution-mu (minimal 1). Hilang saat rage berakhir.",
+          "level": 6,
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Reckless Attack saat raging memberi temporary hit points sebesar modifier Constitution.",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Path of the Battlerager",
+            "level": 6
+          },
+          "book": "SCAG",
+          "lastUpdated": "2026-11-04"
+        },
+        {
+          "name": "Battlerager Charge",
+          "description": "Saat raging, kamu bisa mengambil Dash action sebagai bonus action.",
+          "level": 10,
+          "featureType": "Active",
+          "actionType": "Bonus Action",
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Dash sebagai bonus action saat raging.",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Path of the Battlerager",
+            "level": 10
+          },
+          "book": "SCAG",
+          "lastUpdated": "2026-11-04"
+        },
+        {
+          "name": "Spiked Retribution",
+          "description": "Saat makhluk dalam 5 kaki mengenaimu dengan melee attack, makhluk itu menerima 3 piercing damage jika kamu sedang raging, tidak incapacitated, dan memakai spiked armor.",
+          "level": 14,
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Penyerang melee dalam 5 kaki menerima 3 piercing damage saat kamu raging dengan spiked armor.",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Path of the Battlerager",
+            "level": 14
+          },
+          "book": "SCAG",
+          "lastUpdated": "2026-11-04"
+        }
+      ],
+      "source": "SCAG",
+      "book": "SCAG",
+      "lastUpdated": "2026-11-04"
+    },
+    {
+      "class": "Barbarian",
+      "classIndex": "barbarian",
+      "index": "giant",
+      "name": "Path of the Giant",
+      "flavorText": "Primal Path",
+      "description": "Barbarian yang menyerap kekuatan purba para giant, tumbuh lebih besar dan menyelimuti senjatanya dengan energi elemen.",
+      "features": [
+        {
+          "name": "Giant's Power",
+          "description": "Kamu bisa berbicara, membaca, dan menulis bahasa Giant, atau bahasa lain jika sudah menguasainya. Kamu juga mempelajari satu cantrip: druidcraft atau thaumaturgy. Wisdom adalah spellcasting ability-nya.",
+          "level": 3,
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Pelajari bahasa Giant dan satu cantrip: druidcraft atau thaumaturgy (Wisdom).",
+          "grantsSpells": true,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Path of the Giant",
+            "level": 3
+          },
+          "book": "BGG",
+          "lastUpdated": "2026-11-04"
+        },
+        {
+          "name": "Giant's Havoc",
+          "description": "Saat raging: saat kamu mengenai dengan ranged attack memakai thrown weapon dan Strength, tambahkan bonus damage Rage ke damage-nya. Reach-mu bertambah 5 kaki, dan jika kamu Small atau Medium kamu menjadi Large bila ruang cukup.",
+          "level": 3,
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Saat raging: damage Rage pada thrown attack Strength, reach +5 kaki, dan kamu bisa menjadi Large.",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Path of the Giant",
+            "level": 3
+          },
+          "book": "BGG",
+          "lastUpdated": "2026-11-04"
+        },
+        {
+          "name": "Elemental Cleaver",
+          "description": "Saat mulai rage, pilih senjata yang kamu pegang dan satu jenis: acid, cold, fire, lightning, atau thunder. Selama rage, senjata itu memberi damage jenis tersebut, tambahan 1d6 damage jenis itu, mendapat properti thrown (20/60) dan kembali ke tanganmu setelah dilempar. Pada giliran berikutnya selama rage, kamu bisa mengganti jenisnya sebagai bonus action.",
+          "level": 6,
+          "featureType": "Active",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Saat raging, senjatamu memberi damage elemen pilihan, +1d6 elemen itu, dan bisa dilempar lalu kembali.",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Path of the Giant",
+            "level": 6
+          },
+          "book": "BGG",
+          "lastUpdated": "2026-11-04"
+        },
+        {
+          "name": "Mighty Impel",
+          "description": "Saat raging, sebagai bonus action, pilih makhluk Medium atau lebih kecil dalam reach-mu dan pindahkan ke ruang kosong yang terlihat dalam 30 kaki. Makhluk yang tidak bersedia melakukan Strength saving throw dengan DC 8 + proficiency bonus + modifier Strength-mu untuk menahannya.",
+          "level": 10,
+          "featureType": "Active",
+          "actionType": "Bonus Action",
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Bonus action saat raging: lempar makhluk Medium atau lebih kecil hingga 30 kaki.",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Path of the Giant",
+            "level": 10
+          },
+          "book": "BGG",
+          "lastUpdated": "2026-11-04"
+        },
+        {
+          "name": "Demiurgic Colossus",
+          "description": "Bonus reach dari Giant's Havoc menjadi 10 kaki, dan kamu bisa memilih menjadi Large atau Huge. Mighty Impel bisa menargetkan makhluk Large atau lebih kecil, dan tambahan damage Elemental Cleaver menjadi 2d6.",
+          "level": 14,
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Reach +10 kaki dan Large atau Huge saat raging; Impel hingga Large; Cleaver 2d6.",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Path of the Giant",
+            "level": 14
+          },
+          "book": "BGG",
+          "lastUpdated": "2026-11-04"
+        }
+      ],
+      "source": "BGG",
+      "book": "BGG",
+      "lastUpdated": "2026-11-04"
     },
     {
       "name": "College of Creation",
@@ -1476,7 +1780,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "name": "College of Eloquence",
@@ -1567,7 +1872,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "class": "Bard",
@@ -1605,18 +1911,50 @@
         },
         {
           "name": "Enthralling Performance",
-          "description": "Mulai level 6, kamu bisa menggunakan pertunjukan musik atau orasi untuk merangkai lagu sihir fey yang mempesona para pendengarmu.\n\nJika kamu tampil selama setidaknya 1 menit, kamu bisa memilih sejumlah humanoid dalam jangkauan 60 kaki yang melihat atau mendengar pertunjukanmu, maksimal sebanyak modifikator Karismamu (minimal satu). Setiap sasaran harus berhasil melakukan Wisdom saving throw melawan spell save DC milikmu atau akan Terpesona (charmed) olehmu.\n\nSelama Terpesona, sasaran akan mengidolakanmu dan menghalangi siapa pun yang mencoba melukaimu, tetapi ia tidak akan mematuhi perintahmu. Efek ini berakhir setelah 1 jam, jika sasaran menerima kerusakan, jika kamu menyerangnya, atau jika ia melihatmu menyerang sekutunya.\n\nSetelah menggunakan fitur ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan short atau long rest.",
-          "level": 6,
+          "description": "Setelah tampil minimal 1 menit, pilih humanoid yang menonton dan mendengarkan, sebanyak Charisma modifier-mu. Masing-masing harus berhasil Wisdom saving throw melawan spell save DC-mu atau ter-charmed olehmu selama 1 jam. Selama ter-charmed, target memujamu dan menghalangi siapa pun yang menentangmu. Sekali per short atau long rest.",
+          "level": 3,
           "featureType": "Active",
           "actionType": null,
-          "uses": null,
+          "uses": {
+            "total": 1,
+            "recharge": "Short/Long Rest"
+          },
           "requirement": null,
           "duration": null,
           "endsIf": null,
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Lakukan pertunjukan selama 1 menit untuk mempesona sejumlah humanoid dalam jangkauan 60 kaki sebanyak modifikator Karismamu (minimal satu) jika mereka gagal dalam Wisdom saving throw.",
+          "summary": "Setelah tampil 1 menit, charm humanoid yang menonton selama 1 jam (Wisdom saving throw).",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "College of Glamour",
+            "level": 3
+          },
+          "book": "XGE",
+          "lastUpdated": "2026-11-04"
+        },
+        {
+          "name": "Mantle of Majesty",
+          "description": "Sebagai bonus action, kamu merapalkan command tanpa spell slot dan berpenampilan agung selama 1 menit (concentration). Selama itu, kamu bisa merapalkan command sebagai bonus action setiap giliran tanpa spell slot. Makhluk yang ter-charmed olehmu otomatis gagal saving throw-nya. Sekali per long rest.",
+          "level": 6,
+          "featureType": "Active",
+          "actionType": "Bonus Action",
+          "uses": {
+            "total": 1,
+            "recharge": "Long Rest"
+          },
+          "requirement": null,
+          "duration": "1 minute (concentration)",
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Selama 1 menit, rapalkan command sebagai bonus action setiap giliran tanpa slot.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1627,22 +1965,25 @@
             "level": 6
           },
           "book": "XGE",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
-          "name": "Mantle of Majesty",
-          "description": "Pada level 14, kamu memperoleh kemampuan untuk menyelimuti dirimu dengan keagungan fey.\n\nSebagai bonus action, kamu merapal command tanpa membutuhkan spell slot atau komponen material, dan kamu mendapatkan penampilan kecantikan surgawi (seperti sihir alter self, tetapi hanya memengaruhi penampilanmu). Sihir ini bertahan selama 1 menit.\n\nSelama waktu tersebut, kamu bisa merapal command sebagai bonus action pada setiap giliranmu tanpa menghabiskan spell slot. Makhluk apa pun yang Terpesona olehmu otomatis gagal dalam saving throw terhadap sihir command yang kamu rapalkan dengan fitur ini.\n\nSetelah menggunakan bonus action ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan long rest, kecuali jika kamu menghabiskan spell slot level 3 atau lebih tinggi untuk menggunakannya kembali.",
+          "name": "Unbreakable Majesty",
+          "description": "Sebagai bonus action, kamu memancarkan wibawa agung selama 1 menit. Pertama kali setiap giliran sebuah makhluk menyerangmu, ia harus melakukan Charisma saving throw melawan spell save DC-mu. Jika gagal, ia tidak bisa menyerangmu giliran itu dan harus memilih target lain atau serangannya sia-sia. Jika berhasil, ia mendapat disadvantage pada saving throw melawan spell-mu di giliranmu berikutnya. Sekali per short atau long rest.",
           "level": 14,
           "featureType": "Active",
           "actionType": "Bonus Action",
-          "uses": null,
+          "uses": {
+            "total": 1,
+            "recharge": "Short/Long Rest"
+          },
           "requirement": null,
-          "duration": null,
+          "duration": "1 minute",
           "endsIf": null,
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gunakan command sebagai bonus action selama 1 menit; makhluk yang Terpesona olehmu otomatis gagal dalam saving throw terhadap sihir ini.",
+          "summary": "Selama 1 menit, penyerang harus lolos Charisma saving throw atau memilih target lain.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1653,11 +1994,11 @@
             "level": 14
           },
           "book": "XGE",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -1717,6 +2058,32 @@
           },
           "book": "VRGR",
           "lastUpdated": "2026-09-29"
+        },
+        {
+          "name": "Guiding Whispers",
+          "description": "Kamu mempelajari cantrip guidance, dan jangkauannya 60 kaki saat kamu merapalkannya. Cantrip ini tidak dihitung dalam jumlah cantrip yang kamu ketahui.",
+          "level": 3,
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Pelajari guidance dengan jangkauan 60 kaki.",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "College of Spirits",
+            "level": 3
+          },
+          "book": "VRGR",
+          "lastUpdated": "2026-11-04"
         },
         {
           "name": "Spiritual Focus (Improved)",
@@ -1798,7 +2165,7 @@
         }
       ],
       "source": "VRGR",
-      "book": "PHB",
+      "book": "VRGR",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -1848,11 +2215,6 @@
             {
               "name": "Two-Weapon Fighting",
               "description": "Saat kamu melakukan pertarungan dua senjata, kamu bisa menambahkan modifier kemampuanmu ke kerusakan dari serangan kedua.",
-              "lastUpdated": "2026-09-29"
-            },
-            {
-              "name": "Great Weapon Fighting",
-              "description": "Ketika kamu melakukan roll 1 atau 2 pada dadu kerusakan untuk serangan menggunakan senjata jarak dekat yang kamu genggam dengan dua tangan, kamu bisa melempar ulang dadu tersebut dan harus menggunakan hasil roll yang baru.",
               "lastUpdated": "2026-09-29"
             }
           ],
@@ -1932,7 +2294,7 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Master Flourish",
+          "name": "Master's Flourish",
           "description": "Mulai level 14, setiap kali kamu menggunakan opsi Blade Flourish, kamu bisa melakukan roll **d6** dan menggunakannya sebagai pengganti penggunaan dadu Bardic Inspiration.",
           "level": 14,
           "featureType": "Active",
@@ -1955,11 +2317,11 @@
             "level": 14
           },
           "book": "XGE",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -1998,18 +2360,50 @@
         },
         {
           "name": "Words of Terror",
-          "description": "Pada level 6, kamu bisa merangkai kata-kata mengerikan untuk menakuti makhluk lain. Jika kamu berbicara dengan seorang humanoid hanya berdua selama setidaknya 1 menit, kamu bisa mencoba menanamkan paranoia di pikirannya. Di akhir percakapan, sasaran harus melakukan Wisdom saving throw melawan spell save DC milikmu.\n\nJika gagal, sasaran menjadi Takut kepadamu atau kepada makhluk lain pilihanmu. Kondisi Takut ini bertahan selama 1 jam, sampai sasaran diserang atau menerima kerusakan, atau sampai sasaran melihat sekutunya diserang atau menerima kerusakan. Jika sasaran berhasil dalam saving throw, ia tidak akan curiga bahwa kamu mencoba menakutinya.\n\nSetelah menggunakan fitur ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan short atau long rest.",
-          "level": 6,
+          "description": "Jika kamu berbicara berdua saja dengan humanoid minimal 1 menit, ia harus berhasil Wisdom saving throw melawan spell save DC-mu atau frightened terhadapmu atau makhluk lain pilihanmu selama 1 jam. Efek berakhir lebih awal jika target atau sekutunya diserang atau terkena damage. Sekali per short atau long rest.",
+          "level": 3,
           "featureType": "Active",
           "actionType": null,
-          "uses": null,
+          "uses": {
+            "total": 1,
+            "recharge": "Short/Long Rest"
+          },
           "requirement": null,
           "duration": null,
           "endsIf": null,
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Bicara berdua dengan humanoid selama 1 menit untuk memaksa Wisdom saving throw atau membuat mereka Takut selama 1 jam.",
+          "summary": "Setelah 1 menit berdua dengan humanoid, buat ia frightened selama 1 jam (Wisdom saving throw).",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "College of Whispers",
+            "level": 3
+          },
+          "book": "XGE",
+          "lastUpdated": "2026-11-04"
+        },
+        {
+          "name": "Mantle of Whispers",
+          "description": "Saat humanoid mati dalam jarak 30 kaki darimu, kamu bisa memakai reaction untuk menangkap bayangannya. Lalu sebagai action, kamu bisa mengambil persona-nya selama 1 jam: wujudmu menjadi seperti dia dan kamu tahu informasi umum tentang hidupnya, tapi bukan rahasianya. Makhluk lain bisa melihat penyamaran ini dengan Wisdom (Insight) check melawan Charisma (Deception) check-mu. Sekali per short atau long rest.",
+          "level": 6,
+          "featureType": "Active",
+          "actionType": "Reaction",
+          "uses": {
+            "total": 1,
+            "recharge": "Short/Long Rest"
+          },
+          "requirement": null,
+          "duration": "1 hour",
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Tangkap bayangan humanoid yang mati dan pakai persona-nya selama 1 jam.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2020,22 +2414,25 @@
             "level": 6
           },
           "book": "XGE",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
-          "name": "Mantle of Whispers",
-          "description": "Pada level 14, kamu mendapatkan kemampuan untuk mengambil persona seorang humanoid. Ketika seorang humanoid mati dalam jarak 30 kaki darimu, kamu bisa menangkap bayangannya secara magis menggunakan reaction. Kamu menyimpan bayangan ini sampai kamu menggunakannya atau menyelesaikan long rest.\n\nKamu bisa menggunakan bayangan ini sebagai penyamaran, seperti sihir disguise self, tetapi hanya memengaruhi penampilanmu. Kamu juga bisa menggunakan bayangan ini untuk mendapatkan informasi tentang makhluk tersebut, seperti sihir speak with dead, tetapi kamu hanya bisa mengajukan satu pertanyaan.\n\nSetelah menggunakan fitur ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan short atau long rest.",
+          "name": "Shadow Lore",
+          "description": "Sebagai action, kamu berbisik pada makhluk dalam jarak 30 kaki yang bisa mendengarmu dan berbagi bahasa denganmu. Ia harus berhasil Wisdom saving throw melawan spell save DC-mu atau ter-charmed olehmu selama 8 jam. Ia yakin kamu tahu rahasia terdalamnya dan menuruti perintahmu selama tidak membahayakannya. Sekali per long rest.",
           "level": 14,
           "featureType": "Active",
-          "actionType": "Reaction",
-          "uses": null,
+          "actionType": "Action",
+          "uses": {
+            "total": 1,
+            "recharge": "Long Rest"
+          },
           "requirement": null,
-          "duration": null,
+          "duration": "8 hours",
           "endsIf": null,
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gunakan reaction untuk menangkap bayangan humanoid yang mati dalam jarak 30 kaki untuk digunakan sebagai penyamaran atau untuk interogasi.",
+          "summary": "Action: charm makhluk selama 8 jam; ia menurutimu karena takut rahasianya terbongkar.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2046,11 +2443,11 @@
             "level": 14
           },
           "book": "XGE",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -2117,18 +2514,6 @@
           "name": "Additional Magical Secrets",
           "description": "Pada level 6, kamu mempelajari dua sihir pilihanmu dari kelas mana pun. Sihir yang kamu pilih harus berupa cantrip atau sihir dengan level yang bisa kamu cast, sesuai dengan tabel Bard. Sihir-sihir ini dianggap sebagai sihir bard bagimu, tetapi tidak dihitung dalam jumlah total sihir bard yang kamu kuasai.",
           "level": 6,
-          "choices": [
-            {
-              "name": "spell1",
-              "description": "Pilih satu sihir dari kelas mana pun.",
-              "lastUpdated": "2026-09-29"
-            },
-            {
-              "name": "spell2",
-              "description": "Pilih satu sihir lain dari kelas mana pun.",
-              "lastUpdated": "2026-09-29"
-            }
-          ],
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -2392,7 +2777,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "SCAG"
     },
     {
       "name": "Death Domain",
@@ -2501,7 +2887,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "DMG"
     },
     {
       "class": "Cleric",
@@ -2512,8 +2899,8 @@
       "description": "Dewa-dewa pandai besi adalah pelindung para pengrajin logam, mulai dari pandai besi sederhana hingga pengrajin elf yang membentuk mithral. Para dewa ini mengajarkan bahwa, dengan kesabaran dan kerja keras, logam yang paling sulit sekalipun dapat diubah dari bongkahan besi menjadi objek yang indah. Cleric dari Forge Domain adalah perwujudan ilahi dari kekuatan tungku pandai besi.",
       "features": [
         {
-          "name": "Bonus Proficiency",
-          "description": "Saat kamu memilih domain ini pada level 1, kamu mendapatkan proficiency dengan heavy armor dan alat pandai besi (smith's tools).",
+          "name": "Bonus Proficiencies",
+          "description": "Kamu mendapat proficiency dengan heavy armor dan smith's tools.",
           "level": 1,
           "featureType": "Active",
           "actionType": null,
@@ -2524,7 +2911,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Mendapatkan proficiency dengan heavy armor dan alat pandai besi (smith's tools).",
+          "summary": "Proficiency dengan heavy armor dan smith's tools.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": true,
@@ -2535,7 +2922,7 @@
             "level": 1
           },
           "book": "XGE",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
           "name": "Blessing of the Forge",
@@ -2669,7 +3056,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -2680,32 +3067,6 @@
       "flavorText": "Divine Domain",
       "description": "Dewa-dewa kuburan menjaga garis batas antara hidup dan mati. Bagi para dewa ini, kematian dan alam baka adalah bagian mendasar dari multiverse. Menodai ketenangan mereka yang telah mati adalah sebuah kekejian. Dewa-dewa kuburan meliputi Kelemvor, Wee Jas, dan para leluhur dari berbagai budaya.",
       "features": [
-        {
-          "name": "Bonus Proficiency",
-          "description": "Saat kamu memilih domain ini pada level 1, kamu mendapatkan proficiency dengan heavy armor.",
-          "level": 1,
-          "featureType": "Active",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Mendapatkan proficiency untuk heavy armor.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": true,
-          "grantsProficiency": true,
-          "source": {
-            "type": "subclass",
-            "name": "Grave Domain",
-            "level": 1
-          },
-          "book": "XGE",
-          "lastUpdated": "2026-09-29"
-        },
         {
           "name": "Circle of Mortality",
           "description": "Pada level 1, kamu mendapatkan kemampuan untuk memanipulasi batas antara hidup dan mati. Ketika kamu seharusnya melakukan roll satu atau lebih dadu untuk memulihkan hit points kepada makhluk yang berada di 0 hit points, kamu bisa langsung menggunakan angka tertinggi yang mungkin muncul dari setiap dadu tersebut.\n\nSelain itu, kamu mempelajari cantrip spare the dying, yang tidak dihitung dalam jumlah cantrip yang kamu kuasai. Bagimu, sihir ini memiliki jangkauan 30 kaki dan dapat kamu rapalkan sebagai bonus action.",
@@ -2811,10 +3172,10 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Divine Strike",
-          "description": "Pada level 8, kamu memperoleh kemampuan untuk mengalirkan energi ilahi ke dalam serangan senjatamu. Sekali di setiap giliranmu, saat kamu mengenai makhluk dengan serangan senjata, kamu bisa membuat serangan tersebut memberikan tambahan **1d8** kerusakan nekrotik.\n\nKetika kamu mencapai level 14, tambahan kerusakan ini meningkat menjadi **2d8**.",
+          "name": "Potent Spellcasting",
+          "description": "Kamu menambahkan Wisdom modifier-mu ke damage dari cantrip cleric apa pun.",
           "level": 8,
-          "featureType": "Active",
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
@@ -2823,9 +3184,9 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Sekali di setiap giliranmu, berikan tambahan 1d8 kerusakan nekrotik saat kamu mengenai makhluk dengan serangan senjata.",
+          "summary": "Tambahkan Wisdom modifier ke damage cantrip cleric.",
           "grantsSpells": false,
-          "grantsAttack": true,
+          "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
           "source": {
@@ -2834,7 +3195,7 @@
             "level": 8
           },
           "book": "XGE",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
           "name": "Keeper of Souls",
@@ -2864,7 +3225,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -3344,7 +3705,7 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "source": "SCAG",
+      "source": "PHB",
       "book": "PHB",
       "lastUpdated": "2026-09-29"
     },
@@ -3383,11 +3744,11 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Charm Animals and Plants",
-          "description": "Mulai level 1, kamu bisa menggunakan action untuk mempesona satu makhluk beast atau tumbuhan dalam jarak **30 kaki** darimu yang bisa melihat atau mendengarmu. Sasaran tersebut harus berhasil melakukan Wisdom saving throw atau akan terpesona olehmu selama **1 menit**, atau sampai kamu atau sekutumu memberikan kerusakan kepadanya.",
+          "name": "Bonus Proficiency",
+          "description": "Kamu mendapat proficiency dengan heavy armor.",
           "level": 1,
-          "featureType": "Active",
-          "actionType": "Action",
+          "featureType": "Passive",
+          "actionType": null,
           "uses": null,
           "requirement": null,
           "duration": null,
@@ -3395,18 +3756,18 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gunakan action untuk mempesona satu beast atau tumbuhan dalam jarak 30 kaki yang bisa melihat atau mendengarmu.",
+          "summary": "Proficiency dengan heavy armor.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
-          "grantsProficiency": false,
+          "grantsProficiency": true,
           "source": {
             "type": "subclass",
             "name": "Nature",
             "level": 1
           },
           "book": "PHB",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
           "name": "Channel Divinity: Charm Animals and Plants",
@@ -3461,10 +3822,10 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Potent Spellcasting",
-          "description": "Mulai level 8, kamu menambahkan modifier Wisdom milikmu ke dalam rolls kerusakan dari sihir cleric yang kamu gunakan.",
+          "name": "Divine Strike",
+          "description": "Sekali setiap giliranmu saat mengenai makhluk dengan weapon attack, kamu bisa menambah 1d8 cold damage, fire damage atau lightning damage (pilihanmu). Tambahan ini menjadi 2d8 di level 14.",
           "level": 8,
-          "featureType": "Active",
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
@@ -3473,8 +3834,8 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Tambahkan modifier Wisdom milikmu ke dalam rolls kerusakan dari sihir cleric milikmu.",
-          "grantsSpells": true,
+          "summary": "Sekali per giliran, serangan senjata yang kena menambah 1d8 cold, fire atau lightning damage (2d8 di level 14).",
+          "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
@@ -3484,7 +3845,7 @@
             "level": 8
           },
           "book": "PHB",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
           "name": "Master of Nature",
@@ -3630,7 +3991,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "name": "Peace Domain",
@@ -3745,7 +4107,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "name": "Tempest",
@@ -3860,10 +4223,10 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Potent Spellcasting",
-          "description": "Mulai level 8, kamu menambahkan modifier Wisdom ke dalam rolls kerusakan dari sihir cleric yang kamu gunakan.",
+          "name": "Divine Strike",
+          "description": "Sekali setiap giliranmu saat mengenai makhluk dengan weapon attack, kamu bisa menambah 1d8 thunder damage. Tambahan ini menjadi 2d8 di level 14.",
           "level": 8,
-          "featureType": "Active",
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
@@ -3872,8 +4235,8 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Menambahkan modifier Wisdom ke dalam rolls kerusakan dari sihir cleric milikmu.",
-          "grantsSpells": true,
+          "summary": "Sekali per giliran, serangan senjata yang kena menambah 1d8 thunder damage (2d8 di level 14).",
+          "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
@@ -3883,7 +4246,7 @@
             "level": 8
           },
           "book": "PHB",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
           "name": "Stormborn",
@@ -4003,32 +4366,6 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Potent Spellcasting",
-          "description": "Mulai level 8, kamu menambahkan modifier Wisdom kamu ke dalam rolls kerusakan dari sihir cleric yang kamu gunakan.",
-          "level": 8,
-          "featureType": "Active",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Tambahkan modifier Wisdom kamu ke rolls kerusakan dari sihir cleric milikmu.",
-          "grantsSpells": true,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "subclass",
-            "name": "Trickery",
-            "level": 8
-          },
-          "book": "SCAG",
-          "lastUpdated": "2026-09-29"
-        },
-        {
           "name": "Divine Strike",
           "description": "Pada level 8, kamu mendapatkan kemampuan untuk mengisi serangan senjatamu dengan energi ilahi. Sekali di setiap giliranmu, ketika kamu berhasil mengenai makhluk dengan serangan senjata, kamu bisa memberikan tambahan kerusakan radiasi sebesar **1d8** kepada sasaran tersebut.\n\nKetika kamu mencapai level 14, tambahan kerusakan ini meningkat menjadi **2d8**.",
           "level": 8,
@@ -4081,7 +4418,7 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "source": "SCAG",
+      "source": "PHB",
       "book": "PHB",
       "lastUpdated": "2026-09-29"
     },
@@ -4213,7 +4550,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "name": "War",
@@ -4328,10 +4666,10 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Potent Spellcasting",
-          "description": "Mulai level 8, kamu menambahkan modifier Kearifan kamu ke rolls kerusakan dari sihir cleric yang kamu gunakan.",
+          "name": "Divine Strike",
+          "description": "Sekali setiap giliranmu saat mengenai makhluk dengan weapon attack, kamu bisa menambah 1d8 damage dengan tipe yang sama dengan senjatanya. Tambahan ini menjadi 2d8 di level 14.",
           "level": 8,
-          "featureType": "Active",
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
@@ -4340,8 +4678,8 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Tambahkan modifier Kearifan kamu ke rolls kerusakan dari sihir cleric milikmu.",
-          "grantsSpells": true,
+          "summary": "Sekali per giliran, serangan senjata yang kena menambah 1d8 damage setipe senjatanya (2d8 di level 14).",
+          "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
@@ -4350,8 +4688,8 @@
             "name": "War",
             "level": 8
           },
-          "book": "SCAG",
-          "lastUpdated": "2026-09-29"
+          "book": "PHB",
+          "lastUpdated": "2026-11-04"
         },
         {
           "name": "Avatar of Battle",
@@ -4380,7 +4718,7 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "source": "SCAG",
+      "source": "PHB",
       "book": "PHB",
       "lastUpdated": "2026-09-29"
     },
@@ -4498,7 +4836,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -4601,7 +4939,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "name": "Circle of Stars",
@@ -4687,150 +5026,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
-    },
-    {
-      "class": "Druid",
-      "classIndex": "druid",
-      "index": "circle-of-the-sea",
-      "name": "Circle of the Sea",
-      "flavorText": "Circle of the Sea terdiri dari para druid yang menarik kekuatan mereka dari samudra luas dan kedalaman laut yang menghimpit. Para penjaga ini merasa sangat nyaman di dalam air, mengendalikan pasang surut air laut serta makhluk-makhluk yang bersemayam di dalamnya.",
-      "description": "Circle of the Sea adalah lingkaran druid yang mengambil kekuatan dari samudra dan kedalamannya. Para druid ini sangat ahli beradaptasi di air, serta mampu mengendalikan arus pasang surut dan makhluk-makhluk di dalamnya.",
-      "features": [
-        {
-          "name": "Oceanic Resilience",
-          "description": "Mulai level 2, kamu bisa bernapas di udara dan air, serta memiliki kecepatan berenang yang setara dengan kecepatan berjalanmu.",
-          "level": 2,
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": "Permanent",
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Kamu bisa bernapas di udara maupun air, dan kecepatan berenangmu sama dengan kecepatan berjalanmu.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "subclass",
-            "name": "Circle of the Sea",
-            "level": 2
-          },
-          "book": "MPMM",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Wrath of the Sea",
-          "description": "Mulai level 2, kamu bisa menggunakan action untuk memanggil semburan air magis yang menyerang makhluk di sekitarmu. Setiap makhluk dalam jarak **30 kaki** yang bisa kamu lihat harus melakukan Dexterity saving throw melawan spell save DC druid milikmu.\n\nJika gagal, makhluk tersebut menerima **2d6** kerusakan blunt dan terdorong sejauh **10 kaki** menjauhimu. Jika berhasil, makhluk tersebut hanya menerima setengah kerusakan dan tidak terdorong.",
-          "level": 2,
-          "featureType": "Active",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": "Instant",
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Gunakan action untuk memberikan 2d6 kerusakan blunt dan mendorong makhluk sejauh 10 kaki.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "subclass",
-            "name": "Circle of the Sea",
-            "level": 2
-          },
-          "book": "MPMM",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Elemental Wild Shape",
-          "description": "Pada level 6, kamu bisa menghabiskan dua penggunaan Wild Shape sekaligus, alih-alih satu, untuk berubah menjadi water elemental atau steamweird.",
-          "level": 6,
-          "featureType": "Active",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Habiskan dua penggunaan Wild Shape untuk berubah menjadi water elemental atau steamweird.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "subclass",
-            "name": "Circle of the Sea",
-            "level": 6
-          },
-          "book": "MPMM",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Aquatic Master",
-          "description": "Mulai level 10, kamu memiliki advantage pada attack rolls terhadap makhluk yang berada di dalam air. Selain itu, makhluk lain memiliki disadvantage pada attack rolls terhadapmu selama kamu berada di dalam air.",
-          "level": 10,
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": "Permanent",
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Mendapat advantage saat menyerang makhluk di dalam air dan memberikan disadvantage bagi lawan yang menyerangmu saat kamu berada di dalam air.",
-          "grantsSpells": false,
-          "grantsAttack": true,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "subclass",
-            "name": "Circle of the Sea",
-            "level": 10
-          },
-          "book": "MPMM",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Oceanic Guardian",
-          "description": "Mulai level 14, kamu bisa merapal control water satu kali setiap long rest tanpa harus menghabiskan spell slot. Selain itu, kamu bisa bernapas di dalam air tanpa batas waktu dan memiliki resistansi terhadap kerusakan dingin.",
-          "level": 14,
-          "featureType": "Active",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Bernapas di dalam air tanpa batas, resistansi terhadap kerusakan dingin, dan bisa merapal control water sekali per long rest tanpa spell slot.",
-          "grantsSpells": true,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "subclass",
-            "name": "Circle of the Sea",
-            "level": 14
-          },
-          "book": "MPMM",
-          "lastUpdated": "2026-09-29"
-        }
-      ],
-      "source": "MPMM",
-      "book": "PHB",
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "class": "Druid",
@@ -4972,7 +5169,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -5064,7 +5261,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "class": "Druid",
@@ -5078,13 +5276,6 @@
           "name": "Bonus Cantrip",
           "description": "Saat kamu memilih lingkaran ini pada level 2, kamu mempelajari satu tambahan druid cantrip pilihanmu.",
           "level": 2,
-          "choices": [
-            {
-              "name": "cantrip",
-              "description": "Pilih satu tambahan druid cantrip",
-              "lastUpdated": "2026-09-29"
-            }
-          ],
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -5137,13 +5328,6 @@
           "name": "Circle Spells",
           "description": "Koneksi mistismu dengan alam memberimu kemampuan untuk merapal sihir tertentu. Pada level 3, 5, 7, dan 9, kamu mendapatkan akses ke Circle Spells yang terhubung dengan lahan tempat kamu menjadi seorang druid.\n\nPilihlah lahan tersebut—arctic, coast, desert, forest, grassland, mountain, atau swamp—lalu lihat daftar sihir yang terkait.\n\nSetelah kamu mendapatkan akses ke sebuah Circle Spell, sihir tersebut akan selalu dalam kondisi prepared, dan tidak dihitung dalam batas jumlah sihir yang bisa kamu prepare setiap harinya. Jika kamu mendapatkan akses ke sihir yang tidak ada dalam daftar sihir druid, sihir tersebut tetap dianggap sebagai sihir druid bagimu.",
           "level": 3,
-          "choices": [
-            {
-              "name": "terrain",
-              "description": "Pilih tipe lahanmu (arctic, coast, desert, forest, grassland, mountain, swamp, underdark)",
-              "lastUpdated": "2026-09-29"
-            }
-          ],
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -5483,11 +5667,6 @@
               "lastUpdated": "2026-09-29"
             },
             {
-              "name": "Mind-Scrambling Arrow",
-              "description": "Sasaran harus melakukan saving throw Kearifan. Jika gagal, sasaran tidak bisa menggunakan reactions hingga awal giliranmu berikutnya dan harus melakukan roll **d6** untuk menentukan perilakunya.",
-              "lastUpdated": "2026-09-29"
-            },
-            {
               "name": "Piercing Arrow",
               "description": "Kamu melakukan serangan jarak jauh dengan anak panah ini seperti serangan jarak jauh biasa. Anak panah tersebut akan menembus sasaran dan berlanjut ke makhluk lain.",
               "lastUpdated": "2026-09-29"
@@ -5579,6 +5758,60 @@
           "lastUpdated": "2026-09-29"
         },
         {
+          "name": "Arcane Shot Options",
+          "description": "Kamu mempelajari satu opsi Arcane Shot lagi pilihanmu.",
+          "level": 7,
+          "choicesCount": 2,
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Kamu mempelajari satu opsi Arcane Shot lagi pilihanmu.",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Arcane Archer",
+            "level": 7
+          },
+          "book": "XGE",
+          "lastUpdated": "2026-11-04"
+        },
+        {
+          "name": "Arcane Shot Options",
+          "description": "Kamu mempelajari satu opsi Arcane Shot lagi pilihanmu.",
+          "level": 10,
+          "choicesCount": 2,
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Kamu mempelajari satu opsi Arcane Shot lagi pilihanmu.",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Arcane Archer",
+            "level": 10
+          },
+          "book": "XGE",
+          "lastUpdated": "2026-11-04"
+        },
+        {
           "name": "Ever-Ready Shot",
           "description": "Mulai level 15, kemampuan memanah magismu selalu siap digunakan. Kamu memulihkan seluruh penggunaan fitur Arcane Shot yang telah terpakai setiap kali kamu menyelesaikan short atau long rest.",
           "level": 15,
@@ -5603,10 +5836,64 @@
           },
           "book": "XGE",
           "lastUpdated": "2026-09-29"
+        },
+        {
+          "name": "Arcane Shot Options",
+          "description": "Kamu mempelajari satu opsi Arcane Shot lagi pilihanmu.",
+          "level": 15,
+          "choicesCount": 2,
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Kamu mempelajari satu opsi Arcane Shot lagi pilihanmu.",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Arcane Archer",
+            "level": 15
+          },
+          "book": "XGE",
+          "lastUpdated": "2026-11-04"
+        },
+        {
+          "name": "Arcane Shot Options",
+          "description": "Kamu mempelajari satu opsi Arcane Shot lagi pilihanmu.",
+          "level": 18,
+          "choicesCount": 2,
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Kamu mempelajari satu opsi Arcane Shot lagi pilihanmu.",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Arcane Archer",
+            "level": 18
+          },
+          "book": "XGE",
+          "lastUpdated": "2026-11-04"
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -5945,6 +6232,32 @@
           "lastUpdated": "2026-09-29"
         },
         {
+          "name": "Combat Superiority",
+          "description": "Kamu mempelajari dua maneuver lagi pilihanmu.",
+          "level": 7,
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Kamu mempelajari dua maneuver lagi pilihanmu.",
+          "grantsSpells": false,
+          "grantsAttack": true,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Battle Master",
+            "level": 7
+          },
+          "book": "PHB",
+          "lastUpdated": "2026-11-04"
+        },
+        {
           "name": "Improved Combat Superiority (d10)",
           "description": "Pada level 10, dadu superiority milikmu berubah menjadi **d10**.",
           "level": 10,
@@ -5971,6 +6284,32 @@
           "lastUpdated": "2026-09-29"
         },
         {
+          "name": "Combat Superiority",
+          "description": "Kamu mempelajari dua maneuver lagi pilihanmu.",
+          "level": 10,
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Kamu mempelajari dua maneuver lagi pilihanmu.",
+          "grantsSpells": false,
+          "grantsAttack": true,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Battle Master",
+            "level": 10
+          },
+          "book": "PHB",
+          "lastUpdated": "2026-11-04"
+        },
+        {
           "name": "Relentless",
           "description": "Mulai level 15, ketika kamu melakukan roll initiative dan tidak memiliki dadu superiority yang tersisa, kamu mendapatkan kembali **1** dadu superiority.",
           "level": 15,
@@ -5995,6 +6334,32 @@
           },
           "book": "PHB",
           "lastUpdated": "2026-09-29"
+        },
+        {
+          "name": "Combat Superiority",
+          "description": "Kamu mempelajari dua maneuver lagi pilihanmu.",
+          "level": 15,
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Kamu mempelajari dua maneuver lagi pilihanmu.",
+          "grantsSpells": false,
+          "grantsAttack": true,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Battle Master",
+            "level": 15
+          },
+          "book": "PHB",
+          "lastUpdated": "2026-11-04"
         },
         {
           "name": "Improved Combat Superiority (d12)",
@@ -6252,7 +6617,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -6562,7 +6927,7 @@
         }
       ],
       "source": "EGW",
-      "book": "PHB",
+      "book": "EGW",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -6880,7 +7245,7 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Telekinetic Leap",
+          "name": "Telekinetic Adept",
           "level": 7,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -6888,70 +7253,73 @@
             "total": 1,
             "recharge": "Short/Long Rest / 1 Psionic Die"
           },
-          "summary": "Mendapatkan kecepatan terbang sebesar dua kali kecepatan jalanmu hingga akhir giliran ini.",
-          "description": "Sebagai bonus action, kamu bisa mendorong tubuhmu menggunakan kekuatan pikiran. Kamu mendapatkan kecepatan terbang sebesar dua kali kecepatan jalanmu sampai giliranmu saat ini berakhir.\n\nSetelah menggunakan bonus action ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan short atau long rest, kecuali kamu menghabiskan satu Psionic Energy die untuk menggunakannya kembali.",
+          "summary": "Psi-Powered Leap (terbang dengan bonus action) dan Telekinetic Thrust (jatuhkan prone atau dorong lewat Psionic Strike).",
+          "description": "Kamu mendapat dua cara memakai kekuatan psionik. Psi-Powered Leap: sebagai bonus action, kamu mendapat flying speed dua kali walking speed sampai akhir giliran; gratis sekali per short atau long rest, atau dengan memakai satu Psionic Energy die. Telekinetic Thrust: saat memberi damage dengan Psionic Strike, kamu bisa memaksa target melakukan Strength saving throw (DC 8 + proficiency bonus + Intelligence modifier) atau terjatuh prone atau terdorong hingga 10 kaki.",
           "source": {
             "type": "subclass",
             "name": "Psi Warrior",
             "level": 7
           },
           "book": "TCE",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
           "name": "Guarded Mind",
-          "level": 7,
-          "featureType": "Passive",
-          "summary": "Mendapat resistansi kerusakan psikis dan bisa menghilangkan kondisi Terpesona atau Takut dengan menghabiskan Psionic Energy die.",
-          "description": "Energi psionik yang mengalir dalam dirimu telah memperkuat pikiranmu. Kamu memiliki resistansi terhadap kerusakan psikis.\n\nSelain itu, jika kamu memulai giliranmu dalam kondisi Terpesona atau Takut, kamu bisa menghabiskan satu Psionic Energy die untuk segera mengakhiri semua efek yang menyebabkan kondisi tersebut pada dirimu.",
-          "source": {
-            "type": "subclass",
-            "name": "Psi Warrior",
-            "level": 7
-          },
-          "book": "TCE",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Bulwark of Force",
           "level": 10,
-          "featureType": "Active",
-          "actionType": "Bonus Action",
-          "uses": {
-            "total": 1,
-            "recharge": "Long Rest / 1 Psionic Die"
-          },
-          "summary": "Memberikan half cover (+2 AC dan Dex saves) untuk diri sendiri dan rekan dalam jarak 30 kaki selama 1 menit.",
-          "description": "Sebagai bonus action, kamu bisa melindungi dirimu dan orang lain dengan kekuatan telekinetik. Kamu memilih sejumlah makhluk dalam jarak 30 kaki darimu sebanyak modifier Kecerdasanmu (minimal satu makhluk), termasuk dirimu sendiri. Selama 1 menit atau sampai kamu menjadi Tidak Mampu Bertindak, makhluk-makhluk terpilih tersebut mendapatkan half cover. Setelah menggunakan fitur ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan long rest, kecuali kamu menghabiskan satu Psionic Energy die.",
+          "featureType": "Passive",
+          "summary": "Resistance terhadap psychic damage; pakai Psionic Energy die untuk mengakhiri charmed dan frightened.",
+          "description": "Kamu memiliki resistance terhadap psychic damage. Jika kamu memulai giliran dalam keadaan charmed atau frightened, kamu bisa memakai satu Psionic Energy die untuk mengakhiri semua efek penyebab kondisi itu.",
           "source": {
             "type": "subclass",
             "name": "Psi Warrior",
             "level": 10
           },
           "book": "TCE",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04",
+          "actionType": null
         },
         {
-          "name": "Telekinetic Master",
+          "name": "Bulwark of Force",
           "level": 15,
           "featureType": "Active",
-          "actionType": "Action",
+          "actionType": "Bonus Action",
           "uses": {
             "total": 1,
-            "recharge": "Long Rest / 1 Psionic Die"
+            "recharge": "Long Rest"
           },
-          "summary": "Merapal Telekinesis tanpa komponen dan bisa melakukan satu serangan senjata sebagai bonus action saat berkonsentrasi.",
-          "description": "Kemampuanmu untuk menggerakkan makhluk dan objek dengan pikiran tidak tertandingi. Kamu bisa merapal sihir Telekinesis tanpa komponen, menggunakan Kecerdasan sebagai kemampuan spellcasting-mu. Pada setiap giliran selama kamu berkonsentrasi pada sihir tersebut, kamu bisa melakukan satu serangan senjata sebagai bonus action. Setelah merapal Telekinesis dengan fitur ini, kamu tidak bisa melakukannya lagi sampai kamu menyelesaikan long rest, kecuali kamu menghabiskan satu Psionic Energy die.",
+          "summary": "Bonus action: beri half cover ke sekutu dalam 30 kaki selama 1 menit.",
+          "description": "Sebagai bonus action, pilih makhluk dalam jarak 30 kaki sebanyak Intelligence modifier-mu (minimal 1), termasuk dirimu. Masing-masing mendapat half cover selama 1 menit atau sampai kamu incapacitated. Gratis sekali per long rest, atau dengan memakai satu Psionic Energy die.",
           "source": {
             "type": "subclass",
             "name": "Psi Warrior",
             "level": 15
           },
           "book": "TCE",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04",
+          "duration": "1 minute"
+        },
+        {
+          "name": "Telekinetic Master",
+          "level": 18,
+          "featureType": "Active",
+          "actionType": "Action",
+          "uses": {
+            "total": 1,
+            "recharge": "Long Rest"
+          },
+          "summary": "Rapalkan telekinesis; selama concentration, lakukan weapon attack sebagai bonus action.",
+          "description": "Kamu bisa merapalkan telekinesis tanpa komponen, dengan Intelligence sebagai spellcasting ability. Gratis sekali per long rest, atau dengan memakai satu Psionic Energy die. Selama concentration pada spell itu, kamu bisa melakukan satu weapon attack sebagai bonus action di setiap giliranmu.",
+          "source": {
+            "type": "subclass",
+            "name": "Psi Warrior",
+            "level": 18
+          },
+          "book": "TCE",
+          "lastUpdated": "2026-11-04"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "name": "Rune Knight",
@@ -7027,6 +7395,22 @@
           "lastUpdated": "2026-09-29"
         },
         {
+          "name": "Rune Carver",
+          "level": 7,
+          "featureType": "Passive",
+          "summary": "Kamu mempelajari satu rune lagi pilihanmu.",
+          "description": "Kamu mempelajari satu rune lagi pilihanmu.",
+          "source": {
+            "type": "subclass",
+            "name": "Rune Knight",
+            "level": 7
+          },
+          "book": "TCE",
+          "lastUpdated": "2026-11-04",
+          "uses": null,
+          "actionType": null
+        },
+        {
           "name": "Great Stature",
           "level": 10,
           "featureType": "Passive",
@@ -7039,6 +7423,22 @@
           },
           "book": "TCE",
           "lastUpdated": "2026-09-29"
+        },
+        {
+          "name": "Rune Carver",
+          "level": 10,
+          "featureType": "Passive",
+          "summary": "Kamu mempelajari satu rune lagi pilihanmu.",
+          "description": "Kamu mempelajari satu rune lagi pilihanmu.",
+          "source": {
+            "type": "subclass",
+            "name": "Rune Knight",
+            "level": 10
+          },
+          "book": "TCE",
+          "lastUpdated": "2026-11-04",
+          "uses": null,
+          "actionType": null
         },
         {
           "name": "Master of Runes",
@@ -7055,6 +7455,22 @@
           "lastUpdated": "2026-09-29"
         },
         {
+          "name": "Rune Carver",
+          "level": 15,
+          "featureType": "Passive",
+          "summary": "Kamu mempelajari satu rune lagi pilihanmu.",
+          "description": "Kamu mempelajari satu rune lagi pilihanmu.",
+          "source": {
+            "type": "subclass",
+            "name": "Rune Knight",
+            "level": 15
+          },
+          "book": "TCE",
+          "lastUpdated": "2026-11-04",
+          "uses": null,
+          "actionType": null
+        },
+        {
           "name": "Runic Juggernaut",
           "level": 18,
           "featureType": "Passive",
@@ -7069,7 +7485,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "class": "Fighter",
@@ -7265,8 +7682,125 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
+    },
+    {
+      "class": "Fighter",
+      "classIndex": "fighter",
+      "index": "purple-dragon-knight",
+      "name": "Purple Dragon Knight",
+      "flavorText": "Martial Archetype",
+      "description": "Ksatria Cormyr yang memimpin dari garis depan dan menginspirasi sekutunya lewat aksinya dalam pertempuran.",
+      "features": [
+        {
+          "name": "Rallying Cry",
+          "description": "Saat kamu memakai Second Wind, pilih hingga tiga sekutu dalam 60 kaki yang bisa melihat atau mendengarmu. Masing-masing memulihkan hit points sebesar level fighter-mu.",
+          "level": 3,
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Second Wind juga memulihkan hingga tiga sekutu dalam 60 kaki sebesar level fighter-mu.",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Purple Dragon Knight",
+            "level": 3
+          },
+          "book": "SCAG",
+          "lastUpdated": "2026-11-04"
+        },
+        {
+          "name": "Royal Envoy",
+          "description": "Kamu mendapat proficiency di Persuasion. Jika sudah punya, pilih Animal Handling, Insight, Intimidation, atau Performance. Proficiency bonus-mu digandakan untuk check Persuasion.",
+          "level": 7,
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Proficiency Persuasion dengan proficiency bonus ganda.",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": true,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Purple Dragon Knight",
+            "level": 7
+          },
+          "book": "SCAG",
+          "lastUpdated": "2026-11-04"
+        },
+        {
+          "name": "Inspiring Surge",
+          "description": "Saat kamu memakai Action Surge, pilih satu sekutu dalam 60 kaki yang bisa melihat atau mendengarmu. Ia bisa memakai reaction untuk melakukan satu melee atau ranged weapon attack. Mulai level 18 kamu bisa memilih dua sekutu.",
+          "level": 10,
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Action Surge membuat satu sekutu menyerang dengan reaction-nya (dua sekutu mulai level 18).",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Purple Dragon Knight",
+            "level": 10
+          },
+          "book": "SCAG",
+          "lastUpdated": "2026-11-04"
+        },
+        {
+          "name": "Bulwark",
+          "description": "Saat kamu memakai Indomitable untuk mengulang saving throw Intelligence, Wisdom, atau Charisma dan kamu tidak incapacitated, pilih satu sekutu dalam 60 kaki yang gagal saving throw terhadap efek yang sama. Jika ia bisa melihat atau mendengarmu, ia juga bisa mengulang.",
+          "level": 15,
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Indomitable pada saving throw mental juga membuat satu sekutu mengulang saving throw yang sama.",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Purple Dragon Knight",
+            "level": 15
+          },
+          "book": "SCAG",
+          "lastUpdated": "2026-11-04"
+        }
+      ],
+      "source": "SCAG",
+      "book": "SCAG",
+      "lastUpdated": "2026-11-04"
     },
     {
       "index": "ascendant-dragon",
@@ -7275,7 +7809,7 @@
       "description": "Monk dari tradisi Ascendant Dragon belajar menyalurkan kekuatan elemental naga melalui ki mereka. Para monk ini mampu mengendalikan energi destruktif kaum naga, lalu melepaskannya melalui serangan unarmed strike maupun senjata napas.",
       "features": [
         {
-          "name": "Draconic Discipline",
+          "name": "Draconic Disciple",
           "level": 3,
           "description": "Kamu mendapatkan manfaat berikut:\n- Kamu menguasai bahasa naga.\n- Kamu mempelajari **satu** cantrip pilihanmu dari daftar sihir sorcerer. Wisdom adalah kemampuan spellcasting yang kamu gunakan untuk cantrip ini.",
           "featureType": "Passive",
@@ -7298,7 +7832,7 @@
             "level": 3
           },
           "book": "FTD",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
           "name": "Breath of the Dragon",
@@ -7406,7 +7940,7 @@
         }
       ],
       "source": "FTD",
-      "book": "PHB",
+      "book": "FTD",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -7665,7 +8199,7 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Hands of Healing",
+          "name": "Hand of Healing",
           "level": 3,
           "featureType": "Active",
           "actionType": "Action",
@@ -7677,10 +8211,10 @@
             "level": 3
           },
           "book": "TCE",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
-          "name": "Hands of Harm",
+          "name": "Hand of Harm",
           "level": 3,
           "featureType": "Active",
           "summary": "Gunakan 1 ki saat menyerang dengan unarmed strike untuk memberikan tambahan kerusakan nekrotik sebesar dadu Martial Arts + modifier Wisdom.",
@@ -7691,7 +8225,7 @@
             "level": 3
           },
           "book": "TCE",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
           "name": "Physician's Touch",
@@ -7741,7 +8275,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "name": "Way of the Astral Self",
@@ -7810,7 +8345,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "class": "Monk",
@@ -7952,7 +8488,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -7992,126 +8528,56 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Fangs of the Fire Snake",
-          "level": 3,
-          "featureType": "Active",
-          "summary": "Habiskan **1** ki untuk menambah jangkauan serangan tak bersenjata sejauh **10** kaki dan memberikan kerusakan api; habiskan **1** ki lagi saat kena untuk tambahan kerusakan api **1d10**.",
-          "description": "Saat kamu menggunakan action Attack pada giliranmu, kamu bisa menghabiskan **1** poin ki untuk memunculkan suluran api yang menjulur dari kepalan tangan dan kakimu. Jangkauan serangan tak bersenjatamu bertambah **10** kaki untuk action tersebut dan selama sisa giliranmu. Serangan ini memberikan kerusakan api, bukan kerusakan blunt. Jika kamu menghabiskan **1** poin ki tambahan saat serangan tersebut kena, serangan itu memberikan tambahan kerusakan api sebesar **1d10**.",
-          "source": {
-            "type": "subclass",
-            "name": "Way of the Four Elements",
-            "level": 3
-          },
-          "book": "PHB",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Water Whip",
-          "level": 3,
-          "featureType": "Active",
-          "actionType": "Action",
-          "summary": "Habiskan 2 ki untuk memberikan 3d10 kerusakan blunt pada sasaran dalam jarak 30 kaki, lalu buat ia terbaring atau tarik ia mendekat sejauh 25 kaki.",
-          "description": "Sebagai action, kamu bisa menghabiskan 2 poin ki untuk menciptakan cambuk air yang mendorong dan menarik makhluk untuk mengganggu keseimbangannya. Pilih satu makhluk yang bisa kamu lihat dalam jarak 30 kaki; makhluk tersebut harus melakukan Dexterity saving throw. Jika gagal, makhluk itu menerima **3d10** kerusakan blunt, ditambah ekstra **1d10** untuk setiap poin ki tambahan yang kamu habiskan. Selain itu, kamu bisa membuat makhluk tersebut menjadi Prone atau menariknya hingga 25 kaki lebih dekat ke arahmu.",
-          "source": {
-            "type": "subclass",
-            "name": "Way of the Four Elements",
-            "level": 3
-          },
-          "book": "PHB",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Fist of Four Thunders",
-          "level": 3,
-          "featureType": "Active",
-          "actionType": "Action",
-          "summary": "Habiskan 2 poin ki untuk merapal Thunderwave.",
-          "description": "Kamu bisa menghabiskan 2 poin ki untuk merapal Thunderwave.",
-          "source": {
-            "type": "subclass",
-            "name": "Way of the Four Elements",
-            "level": 3
-          },
-          "book": "PHB",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Sweeping Cinder Strike",
+          "name": "Disciple of the Elements",
           "level": 6,
-          "featureType": "Active",
-          "actionType": "Action",
-          "summary": "Habiskan 2 poin ki untuk merapal Burning Hands.",
-          "description": "Kamu bisa menghabiskan 2 poin ki untuk merapal Burning Hands.",
+          "featureType": "Passive",
+          "summary": "Kamu mempelajari satu elemental discipline lagi pilihanmu.",
+          "description": "Kamu mempelajari satu elemental discipline lagi pilihanmu.",
           "source": {
             "type": "subclass",
             "name": "Way of the Four Elements",
             "level": 6
           },
           "book": "PHB",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04",
+          "uses": null,
+          "actionType": null
         },
         {
-          "name": "Gong of the Summit",
-          "level": 6,
-          "featureType": "Active",
-          "actionType": "Action",
-          "summary": "Habiskan 3 poin ki untuk merapal Shatter.",
-          "description": "Kamu bisa menghabiskan 3 poin ki untuk merapal Shatter.",
-          "source": {
-            "type": "subclass",
-            "name": "Way of the Four Elements",
-            "level": 6
-          },
-          "book": "PHB",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Flames of the Phoenix",
+          "name": "Disciple of the Elements",
           "level": 11,
-          "featureType": "Active",
-          "actionType": "Action",
-          "summary": "Habiskan 4 ki points untuk merapal Fireball.",
-          "description": "Kamu bisa menghabiskan 4 ki points untuk merapal sihir Fireball.",
+          "featureType": "Passive",
+          "summary": "Kamu mempelajari satu elemental discipline lagi pilihanmu.",
+          "description": "Kamu mempelajari satu elemental discipline lagi pilihanmu.",
           "source": {
             "type": "subclass",
             "name": "Way of the Four Elements",
             "level": 11
           },
           "book": "PHB",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04",
+          "uses": null,
+          "actionType": null
         },
         {
-          "name": "Ride the Wind",
-          "level": 11,
-          "featureType": "Active",
-          "actionType": "Action",
-          "summary": "Habiskan 4 ki points untuk merapal Fly pada dirimu sendiri.",
-          "description": "Kamu bisa menghabiskan 4 ki points untuk merapal sihir Fly dengan menjadikan dirimu sendiri sebagai sasarannya.",
-          "source": {
-            "type": "subclass",
-            "name": "Way of the Four Elements",
-            "level": 11
-          },
-          "book": "PHB",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "River of Hungry Flame",
+          "name": "Disciple of the Elements",
           "level": 17,
-          "featureType": "Active",
-          "actionType": "Action",
-          "summary": "Habiskan 5 ki points untuk merapal Wall of Fire.",
-          "description": "Kamu bisa menghabiskan 5 ki points untuk merapal sihir Wall of Fire.",
+          "featureType": "Passive",
+          "summary": "Kamu mempelajari satu elemental discipline lagi pilihanmu.",
+          "description": "Kamu mempelajari satu elemental discipline lagi pilihanmu.",
           "source": {
             "type": "subclass",
             "name": "Way of the Four Elements",
             "level": 17
           },
           "book": "PHB",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04",
+          "uses": null,
+          "actionType": null
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "PHB"
     },
     {
       "class": "Monk",
@@ -8240,7 +8706,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -8310,7 +8776,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "SCAG"
     },
     {
       "class": "Monk",
@@ -8426,7 +8893,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -8768,147 +9235,6 @@
       "lastUpdated": "2026-09-29"
     },
     {
-      "index": "draconic-disciple",
-      "name": "Draconic Disciple",
-      "class": "Paladin",
-      "description": "Oath of the Draconic Disciple mengikat seorang paladin pada idealisme kaum naga. Para paladin ini menarik kekuatan dari warisan draconic mereka, menyalurkan keperkasaan naga melalui sumpah suci mereka. Mereka berusaha untuk mewujudkan kebajikan kaum naga: kekuatan, kebijaksanaan, dan kemegahan.",
-      "features": [
-        {
-          "name": "Channel Divinity: Draconic Presence",
-          "level": 3,
-          "description": "Sebagai sebuah action, kamu bisa menyalurkan kekuatan naga untuk menjatuhkan mental musuhmu. Setiap makhluk pilihanmu dalam jangkauan 30 kaki harus melakukan Wisdom saving throw melawan spell save DC milikmu. Jika gagal, makhluk tersebut menjadi Takut kepadamu selama 1 menit. Makhluk yang Takut dapat mengulangi saving throw ini di akhir setiap gilirannya, dan efeknya akan berakhir jika ia berhasil.",
-          "featureType": "Active",
-          "actionType": "Action",
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Memaksa makhluk pilihan dalam jangkauan 30 kaki melakukan Wisdom saving throw atau menjadi Takut kepadamu selama 1 menit.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "subclass",
-            "name": "Draconic Disciple",
-            "level": 3
-          },
-          "book": "FTD",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Channel Divinity: Draconic Might",
-          "level": 3,
-          "description": "Sebagai sebuah bonus action, kamu bisa menyalurkan kekuatan naga untuk meningkatkan kekuatan fisikmu. Selama 1 menit, kamu mendapatkan advantage pada Strength check, dan ketika kamu memberikan kerusakan dengan senjata jarak dekat, kamu bisa menambahkan modifier Karisma ke dalam roll kerusakan tersebut.",
-          "featureType": "Active",
-          "actionType": "Bonus Action",
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Memiliki advantage pada Strength checks, dan ketika kamu deal damage dengan melee weapon, kamu bisa menambahkan Charisma modifier-mu ke damage roll. (bonus action).",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "subclass",
-            "name": "Draconic Disciple",
-            "level": 3
-          },
-          "book": "FTD",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Aura of the Dragon",
-          "level": 7,
-          "description": "Kamu memancarkan aura kekuatan naga. Kapan pun kamu atau makhluk kawan dalam jarak 10 kaki melakukan saving throw, makhluk tersebut mendapatkan bonus pada roll sebesar modifier Karisma milikmu (minimal **+1**). Kamu harus dalam keadaan sadar untuk memberikan bonus ini.",
-          "featureType": "Active",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Kamu dan rekan dalam jarak 10 kaki mendapat bonus saving throw sebesar modifier Karisma milikmu.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "subclass",
-            "name": "Draconic Disciple",
-            "level": 7
-          },
-          "book": "FTD",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Draconic Resilience",
-          "level": 15,
-          "description": "Kekuatan naga mengalir di dalam dirimu. Kamu mendapatkan resistansi terhadap tipe kerusakan yang sesuai dengan leluhur nagamu.",
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Mendapatkan resistansi terhadap tipe kerusakan yang sesuai dengan leluhur nagamu.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "subclass",
-            "name": "Draconic Disciple",
-            "level": 15
-          },
-          "book": "FTD",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Dragon Knight",
-          "level": 20,
-          "description": "Sebagai sebuah action, kamu bisa menyalurkan kekuatan penuh naga untuk mendapatkan manfaat berikut selama 1 menit:\n\n- Kamu memiliki kecepatan terbang yang setara dengan kecepatan jalanmu.\n- Kamu memiliki resistansi terhadap semua jenis kerusakan.\n\nSetelah menggunakan fitur ini, kamu tidak bisa menggunakannya kembali sampai kamu menyelesaikan long rest.",
-          "featureType": "Active",
-          "actionType": "Action",
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Menggunakan action untuk mendapatkan kecepatan terbang setara kecepatan jalan dan resistansi terhadap semua kerusakan selama 1 menit.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "subclass",
-            "name": "Draconic Disciple",
-            "level": 20
-          },
-          "book": "FTD",
-          "lastUpdated": "2026-09-29"
-        }
-      ],
-      "source": "FTD",
-      "book": "PHB",
-      "lastUpdated": "2026-09-29"
-    },
-    {
       "class": "Paladin",
       "classIndex": "paladin",
       "index": "conquest",
@@ -8943,6 +9269,35 @@
           "lastUpdated": "2026-09-29"
         },
         {
+          "name": "Channel Divinity: Guided Strike",
+          "description": "Saat melakukan attack roll, kamu bisa memakai Channel Divinity untuk mendapat bonus +10 pada lemparan itu. Kamu memutuskan setelah melihat hasil lemparan, tapi sebelum tahu kena atau tidak.",
+          "level": 3,
+          "featureType": "Active",
+          "actionType": null,
+          "uses": {
+            "total": "Channel Divinity",
+            "recharge": "Short/Long Rest"
+          },
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Pakai Channel Divinity untuk +10 pada attack roll.",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Oath of Conquest",
+            "level": 3
+          },
+          "book": "XGE",
+          "lastUpdated": "2026-11-04"
+        },
+        {
           "name": "Aura of Conquest",
           "description": "Mulai level 7, kamu terus-menerus memancarkan aura mengancam selama kamu tidak dalam kondisi Tidak Mampu Bertindak. Aura ini menjangkau 10 kaki dari dirimu ke segala arah, namun tidak bisa menembus total cover. Jika ada makhluk yang Takut kepadamu, kecepatannya berkurang menjadi 0 selama berada di dalam aura, dan makhluk tersebut menerima kerusakan psikis sebesar setengah dari level Paladin kamu jika ia mengakhiri gilirannya di sana.\n\nPada level 18, jangkauan aura ini meningkat menjadi 30 kaki.",
           "level": 7,
@@ -8969,11 +9324,11 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Scared Earth",
-          "description": "Mulai level 15, kamu bisa memanggil kekuatan sumpahmu untuk menebar ketakutan pada musuh. Sebagai sebuah action, kamu bisa membuat tanah dalam radius 30 kaki di sekitarmu menjadi difficult terrain selama 1 menit. Selain itu, setiap kali dalam satu giliran ada makhluk yang bergerak masuk ke area tersebut atau memulai gilirannya di sana, ia menerima **3d6** kerusakan psikis.\n\nKamu bisa menggunakan fitur ini sebanyak jumlah modifier Karisma kamu (minimal satu kali), dan kamu mendapatkan kembali semua penggunaan yang telah terpakai setelah menyelesaikan long rest.",
+          "name": "Scornful Rebuke",
+          "description": "Saat sebuah makhluk mengenaimu dengan serangan, ia menerima psychic damage sebesar Charisma modifier-mu (minimal 1), selama kamu tidak incapacitated.",
           "level": 15,
-          "featureType": "Active",
-          "actionType": "Action",
+          "featureType": "Passive",
+          "actionType": null,
           "uses": null,
           "requirement": null,
           "duration": null,
@@ -8981,7 +9336,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gunakan action untuk menciptakan difficult terrain dalam radius 30 kaki selama 1 menit; makhluk yang masuk atau memulai giliran di sana menerima 3d6 kerusakan psikis.",
+          "summary": "Makhluk yang mengenaimu menerima psychic damage sebesar Charisma modifier-mu.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -8992,7 +9347,7 @@
             "level": 15
           },
           "book": "XGE",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
           "name": "Invincible Conqueror",
@@ -9022,7 +9377,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -9129,7 +9484,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "class": "Paladin",
@@ -9164,6 +9520,35 @@
           },
           "book": "XGE",
           "lastUpdated": "2026-09-29"
+        },
+        {
+          "name": "Channel Divinity: Rebuke the Violent",
+          "description": "Saat penyerang dalam jarak 30 kaki darimu memberi damage ke makhluk selain dirimu, kamu bisa memakai reaction dan Channel Divinity untuk memaksanya melakukan Wisdom saving throw. Jika gagal, ia menerima radiant damage sebesar damage yang baru ia berikan; jika berhasil, setengahnya.",
+          "level": 3,
+          "featureType": "Active",
+          "actionType": "Reaction",
+          "uses": {
+            "total": "Channel Divinity",
+            "recharge": "Short/Long Rest"
+          },
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Reaction: penyerang yang melukai orang lain menerima radiant damage sebesar yang ia berikan (Wisdom saving throw untuk setengah).",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Oath of Redemption",
+            "level": 3
+          },
+          "book": "XGE",
+          "lastUpdated": "2026-11-04"
         },
         {
           "name": "Aura of the Guardian",
@@ -9245,7 +9630,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -9315,18 +9700,19 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Unyielding Saint",
+          "name": "Unyielding Spirit",
           "level": 15,
           "featureType": "Passive",
-          "summary": "Kamu memiliki advantage pada saving throws untuk menghindari kondisi Lumpuh atau Pusing.",
-          "description": "Mulai level 15, kamu memiliki advantage pada saving throws untuk menghindari kondisi Lumpuh (paralyzed) atau Pusing (stunned).",
+          "summary": "Advantage pada saving throw melawan paralyzed atau stunned.",
+          "description": "Kamu mendapat advantage pada saving throw untuk menghindari paralyzed atau stunned.",
           "source": {
             "type": "subclass",
             "name": "Oath of the Crown",
             "level": 15
           },
           "book": "SCAG",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04",
+          "actionType": null
         },
         {
           "name": "Exalted Champion",
@@ -9348,7 +9734,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "SCAG"
     },
     {
       "class": "Paladin",
@@ -9383,6 +9770,35 @@
           },
           "book": "XGE",
           "lastUpdated": "2026-09-29"
+        },
+        {
+          "name": "Channel Divinity: Abjure the Extraplanar",
+          "description": "Sebagai action, kamu memakai Channel Divinity. Setiap aberration, celestial, elemental, fey atau fiend dalam jarak 30 kaki yang bisa mendengarmu harus melakukan Wisdom saving throw. Jika gagal, ia terusir (turned) selama 1 menit atau sampai menerima damage.",
+          "level": 3,
+          "featureType": "Active",
+          "actionType": "Action",
+          "uses": {
+            "total": "Channel Divinity",
+            "recharge": "Short/Long Rest"
+          },
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Action: usir makhluk luar-dimensi dalam 30 kaki selama 1 menit (Wisdom saving throw).",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Oath of the Watchers",
+            "level": 3
+          },
+          "book": "TCE",
+          "lastUpdated": "2026-11-04"
         },
         {
           "name": "Aura of the Sentinel",
@@ -9463,8 +9879,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "source": "XGE",
-      "book": "PHB",
+      "source": "TCE",
+      "book": "TCE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -9566,7 +9982,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "DMG"
     },
     {
       "name": "Vengeance",
@@ -9887,19 +10304,22 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Bond of Fang and Scale",
+          "name": "Drake Companion",
+          "description": "Sebagai action, kamu memanggil drake berukuran Small yang memakai stat block Drake Companion dan berkembang sesuai proficiency bonus-mu. Ia bertindak pada initiative-mu dan memakai action Dodge kecuali kamu memakai bonus action untuk memerintahnya. Gratis sekali per long rest, atau dengan memakai spell slot level 1 ke atas. Tipe damage Draconic Essence-nya (acid, cold, fire, lightning atau poison) dipilih saat dipanggil.",
           "level": 3,
-          "description": "Ikatan drake denganmu memberikannya ketahanan ekstra. Selama drake milikmu berada dalam jarak 30 kaki darimu, ia mendapatkan bonus +2 untuk AC dan saving throws.",
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
+          "featureType": "Active",
+          "actionType": "Action",
+          "uses": {
+            "total": 1,
+            "recharge": "Long Rest"
+          },
           "requirement": null,
           "duration": null,
           "endsIf": null,
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Drake milikmu mendapat bonus +2 untuk AC dan saving throws selama berada dalam jarak 30 kaki darimu.",
+          "summary": "Panggil drake pendamping yang bertarung bersamamu.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -9910,14 +10330,14 @@
             "level": 3
           },
           "book": "FTD",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
-          "name": "Drake's Breath",
+          "name": "Bond of Fang and Scale",
           "level": 7,
-          "description": "Sebagai sebuah action, kamu bisa memerintahkan drakemu untuk menyemburkan energi elemental dalam bentuk cone sejauh 15 kaki. Setiap makhluk di area tersebut harus melakukan Dexterity saving throw (DC 8 + bonus proficiency + modifier Wisdom milikmu). Jika gagal, makhluk tersebut menerima **4d6** kerusakan dengan tipe yang sesuai dengan jenis drakemu. Jika berhasil, makhluk tersebut hanya menerima setengah dari jumlah kerusakan tersebut.\n\nSetelah menggunakan fitur ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan short atau long rest.",
-          "featureType": "Active",
-          "actionType": "Action",
+          "description": "Drake-mu tumbuh menjadi berukuran Medium dan bisa menjadi tunggangan. Ia mendapat flying speed sebesar walking speed-nya dan resistance terhadap tipe damage Draconic Essence-nya, dan gigitannya menambah 1d6 damage tipe itu. Kamu juga mendapat resistance terhadap tipe damage tersebut.",
+          "featureType": "Passive",
+          "actionType": null,
           "uses": null,
           "requirement": null,
           "duration": null,
@@ -9925,7 +10345,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Perintahkan drakemu menyemburkan energi berbentuk cone 15 kaki, memberikan 4d6 kerusakan elemental jika gagal Dexterity save.",
+          "summary": "Drake-mu menjadi tunggangan terbang; kalian berdua resistance terhadap tipe damage-nya.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -9936,22 +10356,25 @@
             "level": 7
           },
           "book": "FTD",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
-          "name": "Perfected Bond",
+          "name": "Drake's Breath",
           "level": 11,
-          "description": "Ikatanmu dengan drake semakin mendalam. Ketika kamu menerima kerusakan sementara drakemu berada dalam jarak 30 kaki darimu, kamu bisa menggunakan reaction untuk membuat drakemu yang menerima kerusakan tersebut sebagai gantimu.\n\nSelain itu, ketika kamu memberikan kerusakan kepada makhluk yang berada dalam jarak 30 kaki dari drakemu, kamu bisa memerintahkan drakemu untuk melakukan serangan gigitan terhadap makhluk tersebut sebagai sebuah reaction.",
+          "description": "Sebagai action, kamu atau drake-mu menyemburkan cone 30 kaki berupa acid, cold, fire, lightning atau poison. Setiap makhluk di dalamnya melakukan Dexterity saving throw melawan spell save DC-mu, menerima 8d6 damage jika gagal atau setengahnya jika berhasil. Damage menjadi 10d6 di level 15. Gratis sekali per long rest, atau dengan memakai spell slot level 3 ke atas.",
           "featureType": "Active",
-          "actionType": "Reaction",
-          "uses": null,
+          "actionType": "Action",
+          "uses": {
+            "total": 1,
+            "recharge": "Long Rest"
+          },
           "requirement": null,
           "duration": null,
           "endsIf": null,
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gunakan reaction agar drakemu menerima kerusakan menggantikanmu, atau memerintahkannya melakukan serangan gigitan saat kamu melukai musuh.",
+          "summary": "Action: semburan cone 30 kaki, 8d6 damage (Dexterity saving throw untuk setengah).",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -9962,14 +10385,14 @@
             "level": 11
           },
           "book": "FTD",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
-          "name": "Reflexive Resistance",
+          "name": "Perfected Bond",
           "level": 15,
-          "description": "Ketika kamu atau drakemu menerima kerusakan, kamu bisa menggunakan reaction untuk memberikan resistance terhadap tipe kerusakan tersebut kepada dirimu dan drakemu selama 1 menit. Setelah menggunakan fitur ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan long rest.",
-          "featureType": "Active",
-          "actionType": "Reaction",
+          "description": "Drake-mu tumbuh menjadi berukuran Large dan bisa terbang saat kamu menungganginya, dan gigitannya menambah 1d6 damage lagi. Saat kamu atau drake-mu menerima damage sementara berada dalam 30 kaki satu sama lain, yang terkena bisa memakai reaction untuk mendapat resistance terhadap damage itu, sebanyak proficiency bonus-mu per long rest.",
+          "featureType": "Passive",
+          "actionType": null,
           "uses": null,
           "requirement": null,
           "duration": null,
@@ -9977,7 +10400,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gunakan reaction untuk memberi resistance tipe kerusakan tertentu kepada dirimu dan drakemu selama 1 menit.",
+          "summary": "Drake-mu menjadi Large; reaction memberi kalian resistance terhadap damage yang masuk.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -9988,11 +10411,11 @@
             "level": 15
           },
           "book": "FTD",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         }
       ],
       "source": "FTD",
-      "book": "PHB",
+      "book": "FTD",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -10161,7 +10584,7 @@
         }
       ],
       "source": "TCE",
-      "book": "PHB",
+      "book": "TCE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -10257,7 +10680,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "XGE"
     },
     {
       "class": "Ranger",
@@ -10399,7 +10823,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -10659,7 +11083,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -10802,7 +11226,7 @@
         }
       ],
       "source": "TCE",
-      "book": "PHB",
+      "book": "TCE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -11260,7 +11684,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -11403,7 +11827,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -11490,7 +11914,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "class": "Rogue",
@@ -11632,7 +12057,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -11723,7 +12148,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "class": "Rogue",
@@ -11838,19 +12264,22 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Duelist's Defense",
-          "description": "Mulai level 17, kemahiranmu dalam menggunakan pedang memungkinkanmu mengubah pertahanan menjadi serangan. Saat kamu terkena serangan jarak dekat, kamu bisa menggunakan reaction untuk menambahkan bonus proficiency ke AC kamu terhadap serangan tersebut, sehingga ada kemungkinan serangan itu menjadi meleset.",
+          "name": "Master Duelist",
+          "description": "Jika attack roll-mu meleset, kamu bisa melemparnya ulang dengan advantage. Sekali per short atau long rest.",
           "level": 17,
           "featureType": "Active",
-          "actionType": "Reaction",
-          "uses": null,
+          "actionType": null,
+          "uses": {
+            "total": 1,
+            "recharge": "Short/Long Rest"
+          },
           "requirement": null,
           "duration": null,
           "endsIf": null,
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gunakan reaction saat terkena serangan jarak dekat untuk menambah bonus proficiency ke AC kamu, sehingga serangan tersebut bisa meleset.",
+          "summary": "Ulang serangan yang meleset dengan advantage, sekali per rest.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -11861,11 +12290,11 @@
             "level": 17
           },
           "book": "XGE",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -12020,7 +12449,7 @@
       "description": "Pengaruh asing telah melilit pikiranmu, memberimu kekuatan psionik. Kini kamu bisa memproyeksikan kekuatan tersebut untuk mengubah dunia di sekitarmu. Kamu juga bisa menggunakan kekuatan psionikmu untuk merapal sihir.",
       "features": [
         {
-          "name": "Telepathy",
+          "name": "Telepathic Speech",
           "description": "Pada level 1, kamu bisa menggunakan action untuk menyentuh pikiran makhluk yang bersedia dan membangun hubungan telepatis dengannya. Hingga efek ini berakhir, kamu dan makhluk tersebut bisa saling berbagi kata-kata, gambar, suara, dan pesan sensorik lainnya melalui hubungan ini. Hubungan akan terputus jika kamu dan makhluk tersebut berada di plane eksistensi yang berbeda, atau jika salah satu dari kalian menjadi tidak mampu bertindak (incapacitated). Makhluk tersebut harus mampu memahami setidaknya satu bahasa.",
           "level": 1,
           "featureType": "Active",
@@ -12043,7 +12472,7 @@
             "level": 1
           },
           "book": "TCE",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
           "name": "Psionic Spells",
@@ -12072,11 +12501,11 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Psychic Deflection",
-          "description": "Pada level 6, kamu bisa menggunakan pikiranmu untuk menangkis serangan. Saat kamu menerima kerusakan, kamu bisa menggunakan reaction untuk melakukan roll **1d4** dan menambahkannya ke AC kamu hingga awal giliranmu berikutnya, termasuk terhadap serangan yang memicu fitur ini. Saat menggunakan fitur ini, kamu juga bisa memilih salah satu dari dua efek berikut: mendapatkan advantage pada attack roll berikutnya yang kamu lakukan sebelum akhir giliranmu selanjutnya, atau memberikan disadvantage pada attack roll berikutnya yang ditujukan kepadamu sebelum akhir giliranmu selanjutnya.",
+          "name": "Psychic Defenses",
+          "description": "Kamu memiliki resistance terhadap psychic damage, dan advantage pada saving throw melawan charmed atau frightened.",
           "level": 6,
-          "featureType": "Active",
-          "actionType": "Reaction",
+          "featureType": "Passive",
+          "actionType": null,
           "uses": null,
           "requirement": null,
           "duration": null,
@@ -12084,7 +12513,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gunakan reaction saat menerima kerusakan untuk menambah 1d4 ke AC hingga awal giliranmu berikutnya, serta mendapatkan advantage pada seranganmu atau memberi disadvantage pada serangan lawan.",
+          "summary": "Resistance terhadap psychic damage; advantage pada saving throw melawan charm dan rasa takut.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -12095,7 +12524,33 @@
             "level": 6
           },
           "book": "TCE",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
+        },
+        {
+          "name": "Psionic Sorcery",
+          "description": "Saat merapalkan spell level 1 ke atas dari fitur Psionic Spells, kamu bisa memakai sorcery points sebesar level spell itu sebagai pengganti spell slot. Jika dirapalkan begini, spell itu tidak butuh komponen verbal atau somatic, dan tidak butuh komponen material kecuali yang habis terpakai.",
+          "level": 6,
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Rapalkan Psionic Spells dengan sorcery points tanpa komponen verbal atau somatic.",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Aberrant Mind",
+            "level": 6
+          },
+          "book": "TCE",
+          "lastUpdated": "2026-11-04"
         },
         {
           "name": "Revelation in Flesh",
@@ -12151,7 +12606,7 @@
         }
       ],
       "source": "TCE",
-      "book": "PHB",
+      "book": "TCE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -12248,7 +12703,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "lastUpdated": "2026-09-29"
+      "lastUpdated": "2026-09-29",
+      "source": "TCE"
     },
     {
       "class": "Sorcerer",
@@ -12258,32 +12714,6 @@
       "flavorText": "Sorcerous Origin\n\nSeorang divine soul telah disentuh oleh anugerah makhluk ilahi. Sihir yang kamu kuasai adalah pemberian dari para dewa, dan kamu berperan sebagai saluran bagi kekuatan surgawi mereka.",
       "description": "Seorang divine soul telah disentuh oleh anugerah makhluk ilahi. Sihir yang kamu kuasai adalah pemberian dari para dewa, dan kamu adalah saluran bagi kekuatan mereka.",
       "features": [
-        {
-          "name": "Bonus Proficiency",
-          "description": "Pada level 1, kamu mendapatkan proficiency dalam skill Religion.",
-          "level": 1,
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Kamu memiliki proficiency dalam skill Religion.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": true,
-          "grantsProficiency": true,
-          "source": {
-            "type": "subclass",
-            "name": "Divine Soul",
-            "level": 1
-          },
-          "book": "XGE",
-          "lastUpdated": "2026-09-29"
-        },
         {
           "name": "Favored by the Gods",
           "description": "Mulai level 1, kekuatan ilahi menjaga takdirmu. Jika kamu gagal melakukan saving throw atau meleset saat melakukan attack roll, kamu bisa melakukan roll **2d4** dan menambahkannya ke total hasil, sehingga berpotensi mengubah hasilnya. Setelah menggunakan fitur ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan short atau long rest.",
@@ -12309,6 +12739,32 @@
           },
           "book": "XGE",
           "lastUpdated": "2026-09-29"
+        },
+        {
+          "name": "Divine Magic",
+          "description": "Kamu bisa memilih spell dari daftar spell cleric selain daftar sorcerer; bagimu spell itu dihitung sebagai spell sorcerer. Pilih afinitas sumber kekuatanmu: good (cure wounds), evil (inflict wounds), law (bless), chaos (bane) atau neutrality (protection from evil and good). Kamu mempelajari spell itu, dan tidak dihitung dalam jumlah spell yang kamu ketahui.",
+          "level": 1,
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Pelajari spell cleric sebagai sorcerer, plus satu spell bonus dari afinitas ilahimu.",
+          "grantsSpells": true,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Divine Soul",
+            "level": 1
+          },
+          "book": "XGE",
+          "lastUpdated": "2026-11-04"
         },
         {
           "name": "Empowered Healing",
@@ -12363,19 +12819,22 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Unnerving Defense",
-          "description": "Mulai level 18, kamu bisa menyalurkan kekuatan ilahi untuk melindungi dirimu dari bahaya. Saat kamu menerima kerusakan, kamu bisa menggunakan reaction untuk mengurangi jumlah kerusakan tersebut sebesar level sorcerer kamu + modifier Karisma kamu. Jika kerusakan tersebut berkurang hingga menjadi 0, penyerang akan menerima kerusakan psikis sebesar setengah dari jumlah kerusakan yang seharusnya kamu terima.",
+          "name": "Unearthly Recovery",
+          "description": "Sebagai bonus action saat hit points-mu kurang dari setengah, kamu memulihkan hit points sebesar setengah hit point maximum-mu. Sekali per long rest.",
           "level": 18,
           "featureType": "Active",
-          "actionType": "Reaction",
-          "uses": null,
+          "actionType": "Bonus Action",
+          "uses": {
+            "total": 1,
+            "recharge": "Long Rest"
+          },
           "requirement": null,
           "duration": null,
           "endsIf": null,
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gunakan reaction untuk mengurangi kerusakan yang diterima; jika kerusakan menjadi 0, penyerang terkena kerusakan psikis sebesar setengah dari kerusakan awal.",
+          "summary": "Bonus action saat HP di bawah setengah: pulihkan setengah hit point maximum.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -12386,11 +12845,11 @@
             "level": 18
           },
           "book": "XGE",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -12728,7 +13187,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -12897,7 +13356,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -13042,6 +13501,181 @@
       "source": "PHB",
       "book": "PHB",
       "lastUpdated": "2026-09-29"
+    },
+    {
+      "class": "Sorcerer",
+      "classIndex": "sorcerer",
+      "index": "lunar-sorcery",
+      "name": "Lunar Sorcery",
+      "flavorText": "Sorcerous Origin",
+      "description": "Sorcerer yang sihirnya terikat pada bulan-bulan Krynn, berganti antara fase full, new, dan crescent.",
+      "features": [
+        {
+          "name": "Lunar Embodiment",
+          "description": "Kamu mempelajari spell tambahan yang terikat pada fase Full Moon, New Moon, dan Crescent Moon seiring naik level sorcerer. Spell ini dihitung sebagai spell sorcerer dan tidak mengurangi spells known. Setiap selesai long rest, pilih fase saat ini.",
+          "level": 1,
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Spell tambahan untuk tiga fase bulan; pilih fase setiap selesai long rest.",
+          "grantsSpells": true,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Lunar Sorcery",
+            "level": 1
+          },
+          "book": "DSotDQ",
+          "lastUpdated": "2026-11-04"
+        },
+        {
+          "name": "Moon Fire",
+          "description": "Kamu mempelajari sacred flame, yang dihitung sebagai cantrip sorcerer dan tidak mengurangi cantrips known. Saat merapalkannya, kamu bisa menargetkan satu makhluk, atau dua makhluk yang berjarak maksimal 5 kaki satu sama lain.",
+          "level": 1,
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Pelajari sacred flame; bisa mengenai dua makhluk yang berjarak 5 kaki.",
+          "grantsSpells": true,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Lunar Sorcery",
+            "level": 1
+          },
+          "book": "DSotDQ",
+          "lastUpdated": "2026-11-04"
+        },
+        {
+          "name": "Lunar Boons",
+          "description": "Fase saat ini mengurangi biaya sorcery point Metamagic sebesar 1 untuk spell dari school tertentu: Full Moon untuk abjuration dan conjuration, New Moon untuk enchantment dan necromancy, Crescent Moon untuk divination dan transmutation. Bisa dipakai sebanyak proficiency bonus per long rest.",
+          "level": 6,
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": {
+            "total": "Proficiency Bonus",
+            "recharge": "Long Rest"
+          },
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Metamagic lebih murah untuk spell dari school fase saat ini.",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Lunar Sorcery",
+            "level": 6
+          },
+          "book": "DSotDQ",
+          "lastUpdated": "2026-11-04"
+        },
+        {
+          "name": "Waxing and Waning",
+          "description": "Sebagai bonus action, habiskan 1 sorcery point untuk mengganti fase saat ini.",
+          "level": 6,
+          "featureType": "Active",
+          "actionType": "Bonus Action",
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Bonus action, 1 sorcery point: ganti fase.",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Lunar Sorcery",
+            "level": 6
+          },
+          "book": "DSotDQ",
+          "lastUpdated": "2026-11-04"
+        },
+        {
+          "name": "Lunar Empowerment",
+          "description": "Kamu mendapat manfaat sesuai fase saat ini. Full Moon: kamu memancarkan bright light dan mendapat advantage pada check Intelligence (Investigation) dan Wisdom (Perception). New Moon: advantage pada check Dexterity (Stealth), dan serangan terhadapmu di dim light atau darkness mendapat disadvantage. Crescent Moon: resistance terhadap necrotic dan radiant damage.",
+          "level": 14,
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Manfaat pasif dari fase saat ini.",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Lunar Sorcery",
+            "level": 14
+          },
+          "book": "DSotDQ",
+          "lastUpdated": "2026-11-04"
+        },
+        {
+          "name": "Lunar Phenomenon",
+          "description": "Sebagai bonus action, lepaskan kekuatan fase saat ini untuk efek yang terkait: ledakan radiant yang bisa membutakan musuh dan memulihkan sekutu (Full Moon), selubung necrotic yang melukai dan memperlambat musuh (New Moon), atau teleport yang membuatmu resistant terhadap damage (Crescent Moon). Setelah dipakai, kembali setelah long rest, atau dengan menghabiskan 5 sorcery point.",
+          "level": 18,
+          "featureType": "Active",
+          "actionType": "Bonus Action",
+          "uses": {
+            "total": 1,
+            "recharge": "Long Rest / 5 Sorcery Points"
+          },
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Ledakan bonus action sesuai fase, sekali per long rest atau dengan 5 sorcery point.",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "Lunar Sorcery",
+            "level": 18
+          },
+          "book": "DSotDQ",
+          "lastUpdated": "2026-11-04"
+        }
+      ],
+      "source": "DSotDQ",
+      "book": "DSotDQ",
+      "lastUpdated": "2026-11-04"
     },
     {
       "class": "Warlock",
@@ -13530,7 +14164,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -13673,7 +14307,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -13711,7 +14345,7 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Tentacle of the Deep",
+          "name": "Tentacle of the Deeps",
           "description": "Pada level 1, kamu bisa memanggil tentakel spektral untuk menyerang musuhmu. Sebagai Bonus Action, kamu dapat menciptakan sebuah tentakel sepanjang 10 kaki di titik yang bisa kamu lihat dalam jangkauan 60 kaki. Tentakel ini bertahan selama 1 menit atau sampai kamu menggunakan fitur ini untuk menciptakan tentakel lainnya. Saat menciptakan tentakel tersebut, kamu bisa melakukan melee spell attack terhadap satu makhluk dalam jarak 10 kaki dari tentakel itu. Jika kena, sasaran menerima **1d8** kerusakan dingin, dan kecepatannya berkurang 10 kaki hingga awal giliranmu berikutnya.\n\nKamu bisa menyerang dengan tentakel ini sebanyak jumlah bonus proficiency milikmu, dan semua penggunaan yang telah terpakai akan pulih setelah kamu menyelesaikan long rest.\n\nKerusakan meningkat menjadi **2d8** pada level 5, **3d8** pada level 11, dan **4d8** pada level 17.",
           "level": 1,
           "featureType": "Active",
@@ -13734,11 +14368,37 @@
             "level": 1
           },
           "book": "TCE",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
           "name": "Gift of the Sea",
-          "description": "Pada level 6, kamu mendapatkan kecepatan berenang 40 kaki dan kamu bisa bernapas di dalam air.",
+          "description": "Kamu mendapat swimming speed 40 kaki, dan bisa bernapas di bawah air.",
+          "level": 1,
+          "featureType": "Passive",
+          "actionType": null,
+          "uses": null,
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Swimming speed 40 kaki; bernapas di bawah air.",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "The Fathomless",
+            "level": 1
+          },
+          "book": "TCE",
+          "lastUpdated": "2026-11-04"
+        },
+        {
+          "name": "Oceanic Soul",
+          "description": "Kamu memiliki resistance terhadap cold damage. Saat tenggelam sepenuhnya, makhluk lain yang juga tenggelam sepenuhnya bisa memahami ucapanmu, dan kamu memahami ucapan mereka.",
           "level": 6,
           "featureType": "Passive",
           "actionType": null,
@@ -13749,7 +14409,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Mendapatkan kecepatan berenang 40 kaki dan kemampuan untuk bernapas di dalam air.",
+          "summary": "Resistance terhadap cold damage; saling memahami ucapan di bawah air.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13760,14 +14420,14 @@
             "level": 6
           },
           "book": "TCE",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
-          "name": "Oceanic Soul",
-          "description": "Pada level 10, kamu mendapatkan resistansi terhadap kerusakan dingin. Selain itu, saat kamu menyelam sepenuhnya di dalam air, kamu bisa mengomunikasikan ide-ide sederhana kepada makhluk beast apa pun yang memiliki kecepatan berenang alami.",
-          "level": 10,
-          "featureType": "Passive",
-          "actionType": null,
+          "name": "Guardian Coil",
+          "description": "Saat kamu atau makhluk yang bisa kamu lihat menerima damage dalam jarak 10 kaki dari Tentacle of the Deeps-mu, kamu bisa memakai reaction untuk mengurangi damage itu sebesar 1d8. Pengurangan menjadi 2d8 di level 10.",
+          "level": 6,
+          "featureType": "Active",
+          "actionType": "Reaction",
           "uses": null,
           "requirement": null,
           "duration": null,
@@ -13775,7 +14435,36 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Mendapatkan resistansi terhadap kerusakan dingin dan kemampuan berkomunikasi sederhana dengan binatang air saat menyelam.",
+          "summary": "Reaction: kurangi damage di dekat tentakelmu sebesar 1d8 (2d8 di level 10).",
+          "grantsSpells": false,
+          "grantsAttack": false,
+          "grantsSkills": false,
+          "grantsProficiency": false,
+          "source": {
+            "type": "subclass",
+            "name": "The Fathomless",
+            "level": 6
+          },
+          "book": "TCE",
+          "lastUpdated": "2026-11-04"
+        },
+        {
+          "name": "Grasping Tentacles",
+          "description": "Kamu mempelajari Evard's black tentacles; dihitung sebagai spell warlock tapi tidak dalam jumlah spell yang kamu ketahui. Sekali per long rest kamu bisa merapalkannya tanpa spell slot. Setiap merapalkannya, kamu mendapat temporary hit points sebesar level warlock-mu, dan damage tidak bisa memecah concentration-mu pada spell itu.",
+          "level": 10,
+          "featureType": "Active",
+          "actionType": "Action",
+          "uses": {
+            "total": 1,
+            "recharge": "Long Rest"
+          },
+          "requirement": null,
+          "duration": null,
+          "endsIf": null,
+          "effect": null,
+          "onUse": null,
+          "scaling": null,
+          "summary": "Pelajari Evard's black tentacles; rapalkan gratis sekali per long rest dan dapat temporary hit points.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13786,22 +14475,25 @@
             "level": 10
           },
           "book": "TCE",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
-          "name": "Guardian Coil",
-          "description": "Pada level 14, tentakelmu bisa melindungi dirimu dan sekutumu. Ketika kamu atau makhluk yang bisa kamu lihat dalam jarak 30 kaki menerima kerusakan, kamu bisa menggunakan reaction untuk memilih salah satu makhluk tersebut dan mengurangi kerusakannya sebesar **1d8**. Jika kamu berhasil mengurangi kerusakan hingga menjadi 0, kamu bisa melakukan melee spell attack terhadap penyerang sebagai bagian dari reaction yang sama. Jika kena, penyerang menerima **1d8** + modifier Karisma kerusakan dingin.",
+          "name": "Fathomless Plunge",
+          "description": "Sebagai action, kamu menteleportasi dirimu dan hingga lima makhluk sukarela dalam jarak 30 kaki ke perairan yang pernah kamu lihat dalam jarak 1 mil; kalian muncul dalam jarak 30 kaki satu sama lain. Sekali per short atau long rest.",
           "level": 14,
           "featureType": "Active",
-          "actionType": "Reaction",
-          "uses": null,
+          "actionType": "Action",
+          "uses": {
+            "total": 1,
+            "recharge": "Short/Long Rest"
+          },
           "requirement": null,
           "duration": null,
           "endsIf": null,
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gunakan reaction untuk mengurangi kerusakan yang diterima dirimu atau rekan dalam jarak 30 kaki sebesar 1d8, dan berpotensi melakukan serangan balik.",
+          "summary": "Action: teleportasi dirimu dan hingga lima sekutu ke perairan dalam jarak 1 mil.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13812,37 +14504,11 @@
             "level": 14
           },
           "book": "TCE",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Grasping Tentacles",
-          "description": "Pada level 18, kamu bisa memanggil manifestasi dari kedalaman laut. Kamu dapat merapal sihir evard's black tentacles tanpa memerlukan spell slot maupun komponen material. Saat kamu merapal sihir dengan cara ini, area sihir tersebut menjadi difficult terrain bagi makhluk lain selain dirimu. Setelah menggunakan fitur ini, kamu tidak bisa menggunakannya kembali sampai kamu menyelesaikan long rest.",
-          "level": 18,
-          "featureType": "Active",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Merapal Evard's Black Tentacles tanpa spell slot atau komponen material; area tersebut menjadi difficult terrain bagi makhluk lain.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "subclass",
-            "name": "The Fathomless",
-            "level": 18
-          },
-          "book": "TCE",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         }
       ],
       "source": "TCE",
-      "book": "PHB",
+      "book": "TCE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -13855,7 +14521,7 @@
       "features": [
         {
           "name": "Genie Patron",
-          "description": "Pada level 1, kamu memilih jenis genie yang menjadi patronmu: Dao (bumi), Djinni (udara), Efreeti (api), atau Marid (air). Pilihanmu menentukan tipe kerusakan untuk fitur Elemental Gift dan menambahkan sihir ke daftar sihirmu.\n\n- Dao (Bumi): Kerusakan api\n- Djinni (Udara): Kerusakan dingin\n- Efreeti (Api): Kerusakan petir\n- Marid (Air): Kerusakan guntur\n\nKamu bisa berbicara, membaca, dan menulis bahasa bidang patronmu: Terran (Dao), Auran (Djinni), Ignan (Efreeti), atau Aquan (Marid).",
+          "description": "Pilih jenis genie yang menjadi patron-mu. Jenis ini menentukan damage type untuk fitur Genie's Wrath dan Elemental Gift, dan menambah spell ke expanded spell list-mu.\n\n- Dao: bludgeoning\n- Djinni: thunder\n- Efreeti: fire\n- Marid: cold",
           "level": 1,
           "choices": [
             {
@@ -13879,7 +14545,7 @@
               "lastUpdated": "2026-10-18"
             }
           ],
-          "featureType": "Active",
+          "featureType": "Passive",
           "actionType": null,
           "uses": null,
           "requirement": null,
@@ -13888,7 +14554,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Pilih tipe patron genie untuk menentukan resistansi kerusakan, bahasa, dan sihir tambahan.",
+          "summary": "Pilih Dao, Djinni, Efreeti, atau Marid. Menentukan damage type dan spell patron tambahan.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13899,11 +14565,11 @@
             "level": 1
           },
           "book": "TCE",
-          "lastUpdated": "2026-10-18"
+          "lastUpdated": "2026-11-04"
         },
         {
-          "name": "Bonus Spells",
-          "description": "Pada level 1, kamu mempelajari sihir tambahan saat mencapai level tertentu dalam kelas ini, sebagaimana tertera pada tabel Genie Spells. Setiap sihir ini dianggap sebagai sihir warlock bagimu, tetapi tidak dihitung dalam jumlah maksimal sihir warlock yang kamu kuasai.\n\nLevel 1: detect evil and good, protection from evil and good\nLevel 3: create food and water, phantasmal killer\nLevel 5: creation, sending\nLevel 7: creation, summon elemental\nLevel 9: creation, wall of stone\nLevel 11: creation, wish",
+          "name": "Expanded Spell List",
+          "description": "Patron-mu menambah spell ke warlock spell list untukmu. Kamu tetap memilihnya sebagai spells known.\n\nSemua genie: detect evil and good (level 1), phantasmal force (level 2), create food and water (level 3), phantasmal killer (level 4), creation (level 5), wish (level 9).\n\nDao: sanctuary, spike growth, meld into stone, stone shape, wall of stone.\nDjinni: thunderwave, gust of wind, wind wall, greater invisibility, seeming.\nEfreeti: burning hands, scorching ray, fireball, fire shield, flame strike.\nMarid: fog cloud, blur, sleet storm, control water, cone of cold.",
           "level": 1,
           "featureType": "Passive",
           "actionType": null,
@@ -13914,8 +14580,8 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Mempelajari sihir warlock tambahan pada level tertentu yang tidak mengurangi kuota jumlah sihir yang kamu kuasai.",
-          "grantsSpells": true,
+          "summary": "Spell tambahan untuk dipilih, sesuai jenis genie.",
+          "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
           "grantsProficiency": false,
@@ -13925,22 +14591,25 @@
             "level": 1
           },
           "book": "TCE",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
           "name": "Genie's Vessel",
-          "description": "Pada level 1, patronmu memberimu sebuah wadah magis yang memberikan sebagian dari kekuatan genie. Wadah ini adalah objek berukuran Tiny, dan kamu bisa memilih bentuknya: lampu minyak, guci berhias, piala emas, atau objek Tiny lainnya dengan bentuk serupa. Selama kamu menyentuh wadah tersebut, kamu bisa menggunakannya sebagai fokus sihir untuk sihir warlock milikmu. AC wadah ini sama dengan spell save DC milikmu. Wadah ini memiliki hit points sejumlah level warlock + bonus proficiency kamu, serta kebal terhadap kerusakan racun dan psikis.\n\nWadah ini memberikan manfaat berikut:\n\n- Elemental Gift: Kamu mendapatkan kecepatan terbang 30 kaki, yang hanya berfungsi selama kamu tidak memakai heavy armor.\n\n- Limited Wish: Sekali per long rest, kamu bisa merapal satu sihir level 6 atau lebih rendah dari daftar sihir warlock, tanpa memerlukan spell slot maupun komponen material.",
+          "description": "Patron-mu memberimu wadah sihir berukuran Tiny, seperti lampu atau guci. Kamu bisa memakainya sebagai spellcasting focus untuk spell warlock. AC-nya sama dengan spell save DC-mu, hit points-nya sama dengan level warlock + proficiency bonus-mu, dan kebal terhadap poison dan psychic damage.\n\nBottled Respite. Sebagai action, kamu menghilang ke dalam wadah dan bisa tinggal di dalam hingga dua kali proficiency bonus-mu dalam jam. Kamu bisa keluar lebih awal sebagai bonus action, dan kamu keluar jika wadahnya hancur. Sekali per long rest.\n\nGenie's Wrath. Sekali di setiap giliranmu saat mengenai dengan attack roll, kamu memberi tambahan damage sebesar proficiency bonus-mu, dengan damage type jenis genie-mu.",
           "level": 1,
           "featureType": "Active",
-          "actionType": null,
-          "uses": null,
+          "actionType": "Action",
+          "uses": {
+            "total": 1,
+            "recharge": "Long Rest"
+          },
           "requirement": null,
           "duration": null,
           "endsIf": null,
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Mendapatkan wadah magis yang berfungsi sebagai fokus sihir, memberikan kecepatan terbang, dan kemampuan merapal satu sihir warlock level 6 atau lebih rendah secara gratis.",
+          "summary": "Wadah spellcasting focus. Bottled Respite: bersembunyi di dalamnya sekali per long rest. Genie's Wrath: +proficiency bonus damage sekali per giliran.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13951,22 +14620,25 @@
             "level": 1
           },
           "book": "TCE",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
           "name": "Elemental Gift",
-          "description": "Mulai level 6, wadahmu memberikan resistansi terhadap tipe kerusakan berdasarkan jenis patronmu: api (Dao), dingin (Djinni), petir (Efreeti), atau guntur (Marid). Kamu juga mendapatkan kecepatan terbang 30 kaki, yang hanya berfungsi selama kamu tidak memakai heavy armor.",
+          "description": "Kamu mendapat resistance terhadap damage type jenis genie-mu. Sebagai bonus action, kamu mendapat flying speed 30 kaki selama 10 menit. Bisa dipakai sebanyak proficiency bonus per long rest.",
           "level": 6,
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
+          "featureType": "Active",
+          "actionType": "Bonus Action",
+          "uses": {
+            "total": "Proficiency Bonus",
+            "recharge": "Long Rest"
+          },
           "requirement": null,
-          "duration": null,
+          "duration": "10 minutes",
           "endsIf": null,
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Mendapatkan resistansi terhadap tipe kerusakan tertentu berdasarkan patronmu dan kecepatan terbang 30 kaki selama tidak memakai heavy armor.",
+          "summary": "Resistance terhadap damage type genie-mu; bonus action terbang 30 kaki selama 10 menit.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13977,14 +14649,14 @@
             "level": 6
           },
           "book": "TCE",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
           "name": "Sanctuary Vessel",
-          "description": "Pada level 10, ketika kamu atau rekan dalam jarak 30 kaki terkena kerusakan, kamu bisa menggunakan reaction untuk menarik makhluk yang terluka tersebut ke dalam wadahmu.\n\nMakhluk tersebut akan berpindah ke ruang extradimensional di dalam wadah, di mana ia aman dari segala bahaya. Makhluk itu akan tetap di sana hingga akhir giliranmu berikutnya atau sampai kamu menggunakan fitur ini lagi.\n\nSaat makhluk tersebut muncul kembali, ia akan muncul di ruang kosong pilihanmu dalam jarak 30 kaki darimu.\n\nKamu bisa menggunakan fitur ini sebanyak jumlah bonus proficiency kamu, dan semua penggunaan yang telah terpakai akan pulih setelah kamu menyelesaikan long rest.",
+          "description": "Saat memakai Bottled Respite, kamu bisa membawa hingga lima makhluk yang bersedia dan terlihat dalam 30 kaki ke dalam wadah bersamamu. Sebagai bonus action, kamu bisa mengeluarkan sebanyak apa pun dari mereka. Makhluk yang tinggal di dalam setidaknya 10 menit mendapat manfaat short rest, dan menambahkan proficiency bonus-mu ke hit points yang dipulihkan saat menghabiskan Hit Dice di sana.",
           "level": 10,
-          "featureType": "Active",
-          "actionType": "Reaction",
+          "featureType": "Passive",
+          "actionType": null,
           "uses": null,
           "requirement": null,
           "duration": null,
@@ -13992,7 +14664,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gunakan reaction untuk menarik dirimu atau rekan dalam jarak 30 kaki ke dalam wadahmu guna melindungi mereka dari bahaya hingga akhir giliranmu berikutnya.",
+          "summary": "Bawa hingga lima sekutu ke dalam wadah; 10 menit di dalam dihitung sebagai short rest.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14003,22 +14675,25 @@
             "level": 10
           },
           "book": "TCE",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
           "name": "Limited Wish",
-          "description": "Pada level 14, kamu bisa memanfaatkan kekuatan patron genie milikmu untuk merapal sihir yang sangat kuat.\n\nSekali per long rest, kamu bisa merapal satu sihir level 6 atau lebih rendah dari daftar sihir warlock, tanpa memerlukan spell slot maupun komponen material.",
+          "description": "Sebagai action, kamu meminta patron-mu sebuah spell level 6 atau lebih rendah dengan casting time 1 action. Spell bisa dari daftar class mana pun. Kamu merapalkannya tanpa spell slot atau komponen material. Setelah dipakai, kamu tidak bisa memakainya lagi sampai menyelesaikan 1d4 long rest.",
           "level": 14,
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
+          "featureType": "Active",
+          "actionType": "Action",
+          "uses": {
+            "total": 1,
+            "recharge": "1d4 Long Rests"
+          },
           "requirement": null,
           "duration": null,
           "endsIf": null,
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Merapal sihir level 6 atau lebih rendah dari daftar sihir warlock tanpa menggunakan spell slot atau komponen material.",
+          "summary": "Action: rapalkan spell level 6 atau lebih rendah dengan casting time 1 action dari class mana pun tanpa slot. Pulih setelah 1d4 long rest.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14029,11 +14704,11 @@
             "level": 14
           },
           "book": "TCE",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         }
       ],
       "source": "TCE",
-      "book": "PHB",
+      "book": "TCE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -14148,7 +14823,7 @@
         }
       ],
       "source": "VRGR",
-      "book": "PHB",
+      "book": "VRGR",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -14186,45 +14861,22 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Undying Nature",
-          "description": "Masih di level 1, kamu juga memiliki advantage pada saving throw untuk melawan penyakit.",
-          "level": 1,
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Kamu memiliki advantage saat melakukan saving throw melawan penyakit.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": false,
-          "grantsProficiency": false,
-          "source": {
-            "type": "subclass",
-            "name": "Undying",
-            "level": 1
-          },
-          "book": "SCAG",
-          "lastUpdated": "2026-09-29"
-        },
-        {
-          "name": "Beyond the Grave",
-          "description": "Pada level 6, kamu dapat memperoleh temporary hit points setiap kali kamu menyelesaikan short rest.",
+          "name": "Defy Death",
+          "description": "Saat kamu berhasil death saving throw, atau menstabilkan makhluk dengan spare the dying, kamu memulihkan hit points sebesar 1d8 + Constitution modifier-mu (minimal 1). Sekali per long rest.",
           "level": 6,
           "featureType": "Passive",
           "actionType": null,
-          "uses": null,
+          "uses": {
+            "total": 1,
+            "recharge": "Long Rest"
+          },
           "requirement": null,
           "duration": null,
           "endsIf": null,
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Kamu bisa mendapatkan temporary hit points setelah menyelesaikan short rest.",
+          "summary": "Pulihkan 1d8 + Constitution modifier hit points saat berhasil death saving throw.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14235,11 +14887,11 @@
             "level": 6
           },
           "book": "SCAG",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
-          "name": "Indestructible Life",
-          "description": "Pada level 10, kamu dapat memulihkan hit points ketika kamu menerima kerusakan.",
+          "name": "Undying Nature",
+          "description": "Kamu bisa menahan napas tanpa batas, dan tidak butuh makan, minum atau tidur, meski tetap butuh istirahat. Kamu menua jauh lebih lambat: setiap 10 tahun berlalu, tubuhmu hanya menua 1 tahun, dan tidak bisa dibuat menua secara magis.",
           "level": 10,
           "featureType": "Passive",
           "actionType": null,
@@ -14250,7 +14902,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Kamu bisa memulihkan hit points saat menerima kerusakan.",
+          "summary": "Tidak butuh makan, minum, tidur atau udara; menua sangat lambat.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14261,22 +14913,25 @@
             "level": 10
           },
           "book": "SCAG",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
-          "name": "Undying Nature",
-          "description": "Pada level 14, kamu tidak bisa terbunuh hanya oleh satu serangan tunggal.",
+          "name": "Indestructible Life",
+          "description": "Sebagai bonus action, kamu memulihkan hit points sebesar 1d8 + level warlock-mu, dan kamu bisa menyambung kembali bagian tubuh yang terputus yang kamu tempelkan ke tempatnya. Sekali per short atau long rest.",
           "level": 14,
-          "featureType": "Passive",
-          "actionType": null,
-          "uses": null,
+          "featureType": "Active",
+          "actionType": "Bonus Action",
+          "uses": {
+            "total": 1,
+            "recharge": "Short/Long Rest"
+          },
           "requirement": null,
           "duration": null,
           "endsIf": null,
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Kamu tidak bisa terbunuh hanya oleh satu serangan tunggal.",
+          "summary": "Bonus action: pulihkan 1d8 + level warlock hit points dan sambung anggota tubuh yang putus.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14287,11 +14942,11 @@
             "level": 14
           },
           "book": "SCAG",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         }
       ],
       "source": "SCAG",
-      "book": "PHB",
+      "book": "SCAG",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -14446,32 +15101,6 @@
       "description": "Bladesingers adalah kaum elf yang telah belajar menggabungkan teknik pedang dengan sihir arcane. Mereka adalah pejuang mematikan yang memanfaatkan sihir untuk memperkuat kemampuan tempur mereka.",
       "features": [
         {
-          "name": "Bonus Proficiency",
-          "description": "Saat kamu memilih tradisi ini pada level 2, kamu mendapatkan proficiency dengan light armor, satu senjata melee satu tangan pilihanmu, dan skill Performance jika kamu belum memilikinya.",
-          "level": 2,
-          "featureType": "Active",
-          "actionType": null,
-          "uses": null,
-          "requirement": null,
-          "duration": null,
-          "endsIf": null,
-          "effect": null,
-          "onUse": null,
-          "scaling": null,
-          "summary": "Mendapatkan proficiency untuk light armor, satu senjata melee satu tangan pilihanmu, dan skill Performance.",
-          "grantsSpells": false,
-          "grantsAttack": false,
-          "grantsSkills": true,
-          "grantsProficiency": true,
-          "source": {
-            "type": "subclass",
-            "name": "Bladesinging",
-            "level": 2
-          },
-          "book": "XGE",
-          "lastUpdated": "2026-09-29"
-        },
-        {
           "name": "Training in War and Song",
           "description": "Mulai level 2, kamu belajar memadukan sihirmu dengan kemahiran senjata. Kamu mendapatkan proficiency dalam salah satu skill pilihanmu berikut: Acrobatics, Athletics, History, atau Performance. Kamu juga mendapatkan proficiency dengan satu instrumen musik pilihanmu.",
           "level": 2,
@@ -14602,8 +15231,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "source": "XGE",
-      "book": "PHB",
+      "source": "TCE",
+      "book": "TCE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -14745,8 +15374,8 @@
           "lastUpdated": "2026-09-29"
         }
       ],
-      "source": "TCE",
-      "book": "PHB",
+      "source": "EGW",
+      "book": "EGW",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -14810,7 +15439,7 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Benign Transportation",
+          "name": "Benign Transposition",
           "description": "Pada level 6, kamu dapat bertukar posisi dengan makhluk lain.",
           "level": 6,
           "featureType": "Passive",
@@ -14833,7 +15462,7 @@
             "level": 6
           },
           "book": "PHB",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
           "name": "Focused Conjuration",
@@ -15044,7 +15673,7 @@
       "description": "Enchanter berspesialisasi dalam memanipulasi pikiran makhluk lain. Mereka mampu memikat, memperdaya, dan mengendalikan makhluk hidup, mengubah musuh menjadi sekutu dan memaksa orang lain tunduk pada kehendak mereka.\n\nStudi tentang enchantment membutuhkan kehalusan dan ketelitian. Enchanter belajar merajut sihir yang memengaruhi pikiran dan emosi, menggunakan kemampuan tersebut untuk menghindari konflik atau mendapatkan advantage dalam situasi sosial.",
       "features": [
         {
-          "name": "Savant",
+          "name": "Enchantment Savant",
           "description": "Pada level 2, jumlah emas dan waktu yang kamu habiskan untuk menyalin sihir enchantment ke dalam spellbook kamu berkurang menjadi setengahnya.",
           "level": 2,
           "featureType": "Active",
@@ -15067,7 +15696,7 @@
             "level": 2
           },
           "book": "PHB",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
           "name": "Hypnotic Gaze",
@@ -15408,19 +16037,22 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Gravity Sinkhole",
-          "description": "Pada level 14, kamu bisa menciptakan anomali gravitasi yang menghancurkan. Sebagai sebuah action, kamu bisa memilih satu titik yang bisa kamu lihat dalam jarak 120 kaki. Setiap makhluk dalam bola beradius 20 kaki yang berpusat pada titik tersebut harus melakukan Constitution saving throw.\n\nJika gagal, makhluk tersebut menerima **5d10** kerusakan kekuatan dan menjadi restrained hingga awal giliranmu berikutnya. Jika berhasil, makhluk tersebut menerima setengah dari jumlah kerusakan dan tidak menjadi restrained.\n\nKamu bisa menggunakan fitur ini sebanyak jumlah modifier Intelligence kamu (minimal satu kali), dan kamu mendapatkan kembali semua penggunaan yang telah terpakai setelah menyelesaikan long rest.",
+          "name": "Event Horizon",
+          "description": "Sebagai action, kamu memancarkan medan gravitasi radius 30 kaki selama 1 menit (concentration). Makhluk musuh yang memulai giliran di dalamnya melakukan Strength saving throw melawan spell save DC-mu. Jika gagal, ia menerima 2d10 force damage dan speed-nya menjadi 0 sampai awal giliran berikutnya; jika berhasil, ia menerima setengah damage, dan setiap kaki gerakannya giliran itu memakan 2 kaki tambahan. Sekali per long rest, atau dengan memakai spell slot level 3 ke atas.",
           "level": 14,
           "featureType": "Active",
           "actionType": "Action",
-          "uses": null,
+          "uses": {
+            "total": 1,
+            "recharge": "Long Rest"
+          },
           "requirement": null,
-          "duration": null,
+          "duration": "1 minute (concentration)",
           "endsIf": null,
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Menciptakan bola radius 20 kaki dalam jarak 120 kaki; makhluk yang gagal Constitution save menerima 5d10 kerusakan kekuatan dan terikat hingga giliranmu berikutnya.",
+          "summary": "Action: medan gravitasi 30 kaki; musuh menerima 2d10 force damage dan tertahan (Strength saving throw).",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15430,12 +16062,12 @@
             "name": "Graviturgy Magic",
             "level": 14
           },
-          "book": "TCE",
-          "lastUpdated": "2026-09-29"
+          "book": "EGW",
+          "lastUpdated": "2026-11-04"
         }
       ],
-      "source": "TCE",
-      "book": "PHB",
+      "source": "EGW",
+      "book": "EGW",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -15499,11 +16131,11 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Illusory Self",
-          "description": "Pada level 6, kamu dapat menciptakan duplikat ilusi dari dirimu sendiri.",
+          "name": "Malleable Illusions",
+          "description": "Saat merapalkan spell illusion dengan durasi 1 menit atau lebih, kamu bisa memakai action untuk mengubah wujud ilusi itu, dalam batas normal spell-nya, selama kamu bisa melihatnya.",
           "level": 6,
-          "featureType": "Passive",
-          "actionType": null,
+          "featureType": "Active",
+          "actionType": "Action",
           "uses": null,
           "requirement": null,
           "duration": null,
@@ -15511,7 +16143,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gunakan reaction untuk menciptakan duplikat ilusi dirimu agar serangan lawan meleset.",
+          "summary": "Action: ubah wujud ilusi yang sedang aktif.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15522,7 +16154,7 @@
             "level": 6
           },
           "book": "PHB",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
           "name": "Illusory Self",
@@ -15590,7 +16222,7 @@
       "description": "Necromancer mempelajari kekuatan hidup dan mati. Mereka mampu membangkitkan mayat, menguras energi kehidupan dari makhluk hidup, dan bahkan mengakali kematian itu sendiri.\n\nStudi tentang necromancy membutuhkan tekad yang kuat dan keberanian untuk menghadapi sisi tergelap dari eksistensi. Para Necromancer belajar mengendalikan kekuatan energi negatif, menggunakannya untuk menciptakan pelayan undead dan melindungi diri mereka dari bahaya.",
       "features": [
         {
-          "name": "Savant",
+          "name": "Necromancy Savant",
           "description": "Pada level 2, jumlah emas dan waktu yang kamu habiskan untuk menyalin sihir necromancy ke dalam spellbook milikmu berkurang setengahnya.",
           "level": 2,
           "featureType": "Active",
@@ -15613,7 +16245,7 @@
             "level": 2
           },
           "book": "PHB",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
           "name": "Grim Harvest",
@@ -15811,7 +16443,7 @@
           "lastUpdated": "2026-09-29"
         },
         {
-          "name": "Master Scrivian",
+          "name": "Master Scrivener",
           "description": "Mulai level 10, kamu bisa membuat scroll yang kuat. Setelah kamu menyelesaikan long rest, kamu bisa membuat sejumlah spell scroll yang setara dengan modifikator Intelligence milikmu (minimal satu).\n\nScroll tersebut harus berisi sihir level 5 atau lebih rendah, dan sihir tersebut harus sudah ada di dalam spellbook-mu. Biaya pembuatan scroll ini adalah setengah dari harga emas normal, dan scroll tersebut akan bertahan selama 8 jam sebelum menjadi tidak aktif.",
           "level": 10,
           "featureType": "Active",
@@ -15834,10 +16466,10 @@
             "level": 10
           },
           "book": "TCE",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
-          "name": "One with Words",
+          "name": "One with the Word",
           "description": "Pada level 14, penguasaanmu terhadap kata-kata tertulis memungkinkanmu merapalkan sihir tanpa berbicara. Saat kamu merapalkan sihir wizard, kamu bisa melakukannya tanpa komponen verbal.\n\nSetelah menggunakan fitur ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan short atau long rest.",
           "level": 14,
           "featureType": "Active",
@@ -15860,11 +16492,11 @@
             "level": 14
           },
           "book": "TCE",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         }
       ],
       "source": "TCE",
-      "book": "PHB",
+      "book": "TCE",
       "lastUpdated": "2026-09-29"
     },
     {
@@ -15876,7 +16508,7 @@
       "description": "Para Transmuter memanipulasi dunia fisik. Mereka dapat mengubah bentuk dan sifat benda, mengubah satu zat menjadi zat lain, bahkan mengubah tubuh mereka sendiri.\n\nStudi tentang transmutation membutuhkan pemahaman mendalam tentang alam. Para Transmuter belajar untuk membentuk ulang realitas pada tingkat mendasar, menggunakan kemampuan mereka untuk beradaptasi dalam situasi apa pun dan mengatasi rintangan apa pun.",
       "features": [
         {
-          "name": "Savant",
+          "name": "Transmutation Savant",
           "description": "Pada level 2, jumlah emas dan waktu yang kamu habiskan untuk menyalin sihir transmutation ke dalam spellbook kamu menjadi setengahnya.",
           "level": 2,
           "featureType": "Active",
@@ -15899,7 +16531,7 @@
             "level": 2
           },
           "book": "PHB",
-          "lastUpdated": "2026-09-29"
+          "lastUpdated": "2026-11-04"
         },
         {
           "name": "Minor Alchemy",
@@ -16150,7 +16782,7 @@
         }
       ],
       "source": "XGE",
-      "book": "PHB",
+      "book": "XGE",
       "lastUpdated": "2026-09-29"
     }
   ]

@@ -156,7 +156,7 @@
       "summary": "Proficiency with a scimitar and a musical instrument",
       "text": "You gain proficiency with a scimitar and with a musical instrument of your choice.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Wizard Bladesinging 2"
       }
     },
@@ -177,7 +177,7 @@
       "summary": "Charisma modifier adds to scimitar damage",
       "text": "You add your Charisma modifier to the damage roll of any attack you make with a scimitar.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Wizard Bladesinging 2"
       }
     },
@@ -220,7 +220,7 @@
       "summary": "Bonus action: crit on 18+, expert Performance",
       "text": "As a bonus action, you gain proficiency in Performance and your weapon attacks score a critical hit on a roll of 18 or higher.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Wizard Bladesinging 2"
       }
     },
@@ -241,7 +241,7 @@
       "summary": "Two attacks with the Attack action",
       "text": "You can attack twice, instead of once, whenever you take the Attack action on your turn.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Wizard Bladesinging 6"
       }
     },
@@ -281,7 +281,7 @@
       "summary": "Reaction: reroll a failed save, allies too with advantage",
       "text": "As a reaction, you can reroll a saving throw that you fail.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Wizard Bladesinging 10"
       }
     },
@@ -312,7 +312,7 @@
       "summary": "Action: up to ten allies each get a +5 bonus reaction attack",
       "text": "As an action, you must be singing to choose up to 10 willing creatures within 60 feet of you.",
       "source": {
-        "book": "PHB",
+        "book": "TCE",
         "reference": "PHB Wizard Bladesinging 14"
       }
     },
@@ -343,7 +343,7 @@
       "summary": "Bonus action: a creature rerolls a d20 and adds 1d10",
       "text": "As a bonus action, you grant a creature within your reach a re-roll. Before or after making an attack roll, saving throw, or ability check, the target can reroll the d20 and add 1d10.",
       "source": {
-        "book": "SCAG",
+        "book": "EGW",
         "reference": "Chronurgy Magic 6"
       }
     },
@@ -363,7 +363,7 @@
       "summary": "Advantage on initiative; reaction forces a reroll",
       "text": "You have advantage on initiative rolls.",
       "source": {
-        "book": "SCAG",
+        "book": "EGW",
         "reference": "Chronurgy Magic 6"
       }
     },
@@ -394,7 +394,7 @@
       "summary": "Action: negate a single effect on a creature you can see or hear",
       "text": "As an action, you can take total and precise control of a creature within your reach.",
       "source": {
-        "book": "SCAG",
+        "book": "EGW",
         "reference": "Chronurgy Magic 6"
       }
     },
@@ -415,7 +415,7 @@
       "summary": "A Ready-like reaction instead of your usual reaction",
       "text": "You can use your reaction to act as though you had taken the Ready action on your turn.",
       "source": {
-        "book": "SCAG",
+        "book": "EGW",
         "reference": "Chronurgy Magic 6"
       }
     },
@@ -446,7 +446,7 @@
       "summary": "Bonus action: a d20 reroll; a hit makes its next check hard",
       "text": "As a bonus action, you make an attack roll with a ranged weapon against a target within 90 feet of you.",
       "source": {
-        "book": "SCAG",
+        "book": "EGW",
         "reference": "Chronurgy Magic 6"
       }
     },
@@ -1048,7 +1048,7 @@
       "summary": "Spend Temporality: move a creature or object 30 ft",
       "text": "As an action, you can target a Large or smaller creature or object within 60 feet of you.",
       "source": {
-        "book": "SCAG",
+        "book": "EGW",
         "reference": "Graviturgy Magic 6"
       }
     },
@@ -1096,7 +1096,7 @@
       "summary": "Bonus action: a 30-ft gravity field, 2d6 falling damage",
       "text": "As a bonus action, you cast a 30-foot radius sphere of gravity centered on a point within range.",
       "source": {
-        "book": "SCAG",
+        "book": "EGW",
         "reference": "Graviturgy Magic 6"
       }
     },
@@ -1136,7 +1136,7 @@
       "summary": "Reaction: +1d8 AC and knockdown against an attacker",
       "text": "When a creature within 30 feet of you hits you with an attack, you can use your reaction to add 1d8 to the AC of the attacker.",
       "source": {
-        "book": "SCAG",
+        "book": "EGW",
         "reference": "Graviturgy Magic 6"
       }
     },
@@ -1183,7 +1183,7 @@
       "summary": "Bonus action: a sinkhole restrains and damages creatures",
       "text": "As a bonus action, you cast a 30-foot radius sphere centered on a point within range.",
       "source": {
-        "book": "SCAG",
+        "book": "EGW",
         "reference": "Graviturgy Magic 6"
       }
     },
@@ -1803,7 +1803,7 @@
       "summary": "Reaction: +1 AC against a projectile",
       "text": "When you are hit by a projectile from a visible creature, you can use your reaction to add 1 to your AC for that attack.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Wizard War Magic 2"
       }
     },
@@ -1823,7 +1823,7 @@
       "summary": "Reaction: move and hand out a +2 to an enemy's first attack",
       "text": "When a creature you can see starts its turn, you can use your reaction to move 10 feet as a free action.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Wizard War Magic 2"
       }
     },
@@ -1884,7 +1884,7 @@
       "summary": "Action, once a day: a free spell with +1d8 per slot level",
       "text": "As an action, you can cast any spell that you have prepared without a spell slot.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Wizard War Magic 6"
       }
     },
@@ -1904,7 +1904,7 @@
       "summary": "Instant spells ignore immunities; last-turn spell is concentration-free",
       "text": "When you cast an instant spell, it ignores any resistance or immunity to spells of the appropriate type.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Wizard War Magic 10"
       }
     },
@@ -1940,7 +1940,7 @@
       "summary": "Reaction: +5 AC for you or a nearby ally until next turn",
       "text": "When you or a creature you can see within 60 feet of you is hit by an attack, you can use your reaction to increase the target's AC by 5.",
       "source": {
-        "book": "PHB",
+        "book": "XGE",
         "reference": "PHB Wizard War Magic 14"
       }
     }

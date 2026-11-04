@@ -14,6 +14,17 @@ const SOURCE_NAMES: Record<string, string> = {
   EGW: "Explorer's Guide to Wildemount",
   FTD: "Fizban's Treasury of Dragons",
   VRGR: "Van Richten's Guide to Ravenloft",
+  VGTM: "Volo's Guide to Monsters",
+  MPMM: "Mordenkainen Presents: Monsters of the Multiverse",
+  DMG: "Dungeon Master's Guide",
+  ERLW: "Eberron: Rising from the Last War",
+  BGG: "Bigby Presents: Glory of the Giants",
+  DSotDQ: "Dragonlance: Shadow of the Dragon Queen",
+  TTP: "The Tortle Package",
+  MOoT: "Mythic Odysseys of Theros",
+  GGR: "Guildmasters' Guide to Ravnica",
+  EEPC: "Elemental Evil Player's Companion",
+  AAG: "Spelljammer: Astral Adventurer's Guide",
 };
 
 const SOURCE_COLORS: Record<string, { bgVar: string; textVar: string }> = {
@@ -59,6 +70,15 @@ export const SOURCE_OPTIONS = [
   { id: "EGW", name: "Explorer's Guide to Wildemount" },
   { id: "FTD", name: "Fizban's Treasury of Dragons" },
   { id: "VRGR", name: "Van Richten's Guide to Ravenloft" },
+  { id: "DMG", name: "Dungeon Master's Guide" },
+  { id: "ERLW", name: "Eberron: Rising from the Last War" },
+  { id: "EEPC", name: "Elemental Evil Player's Companion" },
+  { id: "AAG", name: "Spelljammer: Astral Adventurer's Guide" },
+  { id: "BGG", name: "Bigby Presents: Glory of the Giants" },
+  { id: "DSotDQ", name: "Dragonlance: Shadow of the Dragon Queen" },
+  { id: "TTP", name: "The Tortle Package" },
+  { id: "MOoT", name: "Mythic Odysseys of Theros" },
+  { id: "GGR", name: "Guildmasters' Guide to Ravnica" },
 ];
 
 export function getSourceName(source: string): string {

@@ -1,0 +1,58 @@
+# Class feature manifest — non-SRD base class features, D&D 5e 2014 rules
+#
+# SRD class features are checked against the SRD itself, so this file lists
+# only what the SRD leaves out: Tasha's Cauldron of Everything optional class
+# features. Same format as subclass-manifest.txt; the "subclass" line names
+# the group. Names and levels only, no rules text.
+
+[Barbarian]
+Optional class features (TCE)
+  3 Primal Knowledge
+  10 Primal Knowledge
+  7 Instinctive Pounce
+[Bard]
+Optional class features (TCE)
+  2 Magical Inspiration
+  4 Bardic Versatility
+[Cleric]
+Optional class features (TCE)
+  2 Harness Divine Power
+  4 Cantrip Versatility
+  8 Blessed Strikes
+[Druid]
+Optional class features (TCE)
+  2 Wild Companion
+  4 Cantrip Versatility
+[Fighter]
+Optional class features (TCE)
+  4 Martial Versatility
+[Monk]
+Optional class features (TCE)
+  2 Dedicated Weapon
+  3 Ki-Fueled Attack
+  4 Quickened Healing
+  5 Focused Aim
+[Paladin]
+Optional class features (TCE)
+  3 Harness Divine Power
+  4 Martial Versatility
+[Ranger]
+Optional class features (TCE)
+  1 Deft Explorer
+  1 Favored Foe
+  3 Primal Awareness
+  4 Martial Versatility
+  10 Nature's Veil
+[Rogue]
+Optional class features (TCE)
+  3 Steady Aim
+[Sorcerer]
+Optional class features (TCE)
+  4 Sorcerous Versatility
+  5 Magical Guidance
+[Warlock]
+Optional class features (TCE)
+  4 Eldritch Versatility
+[Wizard]
+Optional class features (TCE)
+  4 Cantrip Formulas

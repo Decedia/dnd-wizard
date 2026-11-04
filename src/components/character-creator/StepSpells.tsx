@@ -6,7 +6,7 @@ import { getStaticClass, getStaticSpells, getSubclassFlags, deduplicateSpells } 
 import { SourceBadge } from "@/components/SourceBadge";
 import { DamageBadge } from "@/components/character-sheet/DamageBadge";
 import type { Character } from "@/lib/storage";
-import { getModifier, isPreparationCaster, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getMaxSpellLevel } from "@/lib/storage";
+import { getModifier, isPreparationCaster, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getMaxSpellLevel, getWarlockExpandedSpellNames } from "@/lib/storage";
 import { StarIcon as Star } from "@/components/icons";
 import { isRecommended } from "@/lib/recommendations";
 import { getSpellSchoolStyle } from "@/lib/spell-schools";
@@ -79,8 +79,10 @@ export function StepSpells({ data, onChange }: StepSpellsProps) {
   const abilityKey = spellcastingAbility === "intelligence" ? "int" : spellcastingAbility === "wisdom" ? "wis" : spellcastingAbility === "charisma" ? "cha" : spellcastingAbility === "strength" ? "str" : spellcastingAbility === "dexterity" ? "dex" : spellcastingAbility === "constitution" ? "con" : "int";
   const abilityMod = getModifier(data[abilityKey as keyof Character] as number || 10);
 
-  const allSpells = deduplicateSpells(getStaticSpells(data.sources, data.ruleset, language).filter((s) => s.classes?.includes(data.class)));
-  const maxSpellLevel = getMaxSpellLevel(data.class, data.level, data.ruleset);
+  // A warlock patron's expanded spells join the list to choose from.
+  const patronSpells = new Set(getWarlockExpandedSpellNames(data).map((n) => n.toLowerCase()));
+  const allSpells = deduplicateSpells(getStaticSpells(data.sources, data.ruleset, language).filter((s) => s.classes?.includes(data.class) || patronSpells.has(s.name.toLowerCase())));
+  const maxSpellLevel = getMaxSpellLevel(data.class, data.level, data.ruleset, data.subclass);
 
   const { cantrips: maxCantrips, spells: maxSpells } = getSpellCountForClass(data.class, data.level, abilityMod, data.ruleset);
 

@@ -1,0 +1,109 @@
+# Subclass choice manifest — D&D 5e 2014 rules
+#
+# Every subclass feature that makes the player pick something when they gain
+# it. scripts/check-subclass-completeness.mjs checks that the app offers a
+# picker for each, with the right count and options. Names only, no rules text.
+#
+# Format:
+#   [Class]
+#   Subclass Name
+#     <level> <Feature Name> = <kind> x<count>[: Option; Option; ...]
+#
+# kind: options (a fixed named list, given after the colon), skills, cantrips,
+# spells, languages, tools, weapons, armor (the app may build these lists
+# itself, so only the picker's presence is checked).
+# A trailing " ?" means "less certain, check against the book".
+#
+# Arcane Trickster spells are not listed: the level-up wizard has its own
+# spell step for them. Eldritch Knight is listed because it has none.
+#
+# Choices made each time a feature is used (Starry Form, Form of the Beast,
+# Eldritch Cannon) are not listed: they are not build choices.
+
+[Artificer]
+Armorer
+  3 Armor Model = options x1: Guardian; Infiltrator
+
+[Barbarian]
+Totem Warrior
+  3 Totem Spirit = options x1: Bear; Eagle; Elk; Tiger; Wolf
+  6 Aspect of the Beast = options x1: Bear; Eagle; Elk; Tiger; Wolf
+  14 Totemic Attunement = options x1: Bear; Eagle; Elk; Tiger; Wolf
+Storm Herald
+  3 Storm Aura = options x1: Desert; Sea; Tundra
+
+[Bard]
+Lore
+  3 Bonus Proficiencies = skills x3
+  6 Additional Magical Secrets = spells x2
+College of Swords
+  3 Fighting Style = options x1: Dueling; Two-Weapon Fighting
+
+[Cleric]
+Knowledge Domain
+  1 Blessings of Knowledge = skills x2
+Nature Domain
+  1 Acolyte of Nature = skills x1
+Arcana Domain
+  1 Arcane Initiate = cantrips x2
+  17 Arcane Mastery = spells x4
+
+[Druid]
+Circle of the Land
+  2 Bonus Cantrip = cantrips x1
+  3 Circle Spells = options x1: Arctic; Coast; Desert; Forest; Grassland; Mountain; Swamp; Underdark
+
+[Fighter]
+Champion
+  10 Additional Fighting Style = options x1: Archery; Defense; Dueling; Great Weapon Fighting; Protection; Two-Weapon Fighting
+Battle Master
+  3 Combat Superiority = options x3: Commander's Strike; Disarming Attack; Distracting Strike; Evasive Footwork; Feinting Attack; Goading Attack; Lunging Attack; Maneuvering Attack; Menacing Attack; Parry; Precision Attack; Pushing Attack; Rally; Riposte; Sweeping Attack; Trip Attack; Ambush; Bait and Switch; Brace; Commanding Presence; Grappling Strike; Quick Toss; Tactical Assessment
+  3 Student of War = tools x1
+Eldritch Knight
+  3 Spellcasting = spells x3
+Arcane Archer
+  3 Arcane Archer Lore = skills x1
+  3 Arcane Shot = options x2: Banishing Arrow; Beguiling Arrow; Bursting Arrow; Enfeebling Arrow; Grasping Arrow; Piercing Arrow; Seeking Arrow; Shadow Arrow
+Cavalier
+  3 Bonus Proficiency = skills x1
+Samurai
+  3 Bonus Proficiency = skills x1
+Rune Knight
+  3 Rune Carver = options x2: Cloud Rune; Fire Rune; Frost Rune; Stone Rune; Hill Rune; Storm Rune
+
+[Monk]
+Way of the Four Elements
+  3 Disciple of the Elements = options x1: Fangs of the Fire Snake; Fist of Four Thunders; Fist of Unbroken Air; Rush of the Gale Spirits; Shape the Flowing River; Sweeping Cinder Strike; Water Whip; Clench of the North Wind; Gong of the Summit; Flames of the Phoenix; Mist Stance; Ride the Wind; Breath of Winter; Eternal Mountain Defense; River of Hungry Flame; Wave of Rolling Earth
+Way of the Kensei
+  3 Path of the Kensei = weapons x2
+
+[Ranger]
+Hunter
+  3 Hunter's Prey = options x1: Colossus Slayer; Giant Killer; Horde Breaker
+  7 Defensive Tactics = options x1: Escape the Horde; Multiattack Defense; Steel Will
+  11 Multiattack = options x1: Volley; Whirlwind Attack
+  15 Superior Hunter's Defense = options x1: Evasion; Stand Against the Tide; Uncanny Dodge
+Beast Master
+  3 Ranger's Companion = options x1
+Fey Wanderer
+  3 Otherworldly Glamour = skills x1
+Drake Warden ?
+  3 Draconic Gift = languages x1
+
+[Rogue]
+Mastermind
+  3 Master of Intrigue = languages x2
+
+[Sorcerer]
+Draconic Bloodline
+  1 Dragon Ancestor = options x1: Black; Blue; Brass; Bronze; Copper; Gold; Green; Red; Silver; White
+Divine Soul
+  1 Divine Magic = options x1: Good; Evil; Law; Chaos; Neutrality
+
+[Warlock]
+The Genie
+  1 Genie's Vessel = options x1: Dao; Djinni; Efreeti; Marid
+
+[Wizard]
+Bladesinging
+  2 Training in War and Song = weapons x1
