@@ -1,0 +1,767 @@
+# Subclass feature manifest — D&D 5e 2014 rules
+#
+# The reference list that scripts/check-subclass-completeness.mjs compares
+# src/data/en/2014_subclasses.json against. Names, levels and sources only:
+# no rules text, so it is safe to keep in a public repo.
+#
+# Format:
+#   [Class]
+#   Subclass Name (SOURCE)        one line per subclass
+#     <level> <Feature Name>      one line per feature, indented
+#     - <Option Name>             a pickable option or scaling row the data may
+#                                 list as its own feature; allowed, not required
+#
+# A trailing " ?" on a subclass or feature line means "less certain, check
+# against the book". Remove the "?" once someone has checked it.
+#
+# Not listed on purpose: features that only grant a spell list ("Domain
+# Spells", "Oath Spells", "Circle Spells", "<X> Magic", "Expanded Spell List")
+# and scaling-only rows such as "Additional Arcane Shot Option". The checker
+# ignores those in the data too.
+#
+# Source codes: PHB, DMG, SCAG, XGE, TCE, EGW, VRGR, FTD, BGG, DSotDQ.
+
+[Artificer]
+Alchemist (TCE)
+  3 Tool Proficiency
+  3 Experimental Elixir
+  5 Alchemical Savant
+  9 Restorative Reagents
+  15 Chemical Mastery
+Armorer (TCE)
+  3 Tools of the Trade
+  3 Arcane Armor
+  3 Armor Model
+  5 Extra Attack
+  9 Armor Modifications
+  15 Perfected Armor
+Artillerist (TCE)
+  3 Tool Proficiency
+  3 Eldritch Cannon
+  5 Arcane Firearm
+  9 Explosive Cannon
+  15 Fortified Position
+Battle Smith (TCE)
+  3 Tool Proficiency
+  3 Battle Ready
+  3 Steel Defender
+  5 Extra Attack
+  9 Arcane Jolt
+  15 Improved Defender
+
+[Barbarian]
+Path of the Berserker (PHB)
+  3 Frenzy
+  6 Mindless Rage
+  10 Intimidating Presence
+  14 Retaliation
+Path of the Totem Warrior (PHB)
+  3 Spirit Seeker
+  3 Totem Spirit
+  6 Aspect of the Beast
+  10 Spirit Walker
+  14 Totemic Attunement
+Path of the Battlerager (SCAG)
+  3 Battlerager Armor
+  6 Reckless Abandon
+  10 Battlerager Charge
+  14 Spiked Retribution
+Path of the Ancestral Guardian (XGE)
+  3 Ancestral Protectors
+  6 Spirit Shield
+  10 Consult the Spirits
+  14 Vengeful Ancestors
+Path of the Storm Herald (XGE)
+  3 Storm Aura
+  6 Storm Soul
+  10 Shielding Storm
+  14 Raging Storm
+Path of the Zealot (XGE)
+  3 Divine Fury
+  3 Warrior of the Gods
+  6 Fanatical Focus
+  10 Zealous Presence
+  14 Rage Beyond Death
+Path of the Beast (TCE)
+  3 Form of the Beast
+  6 Bestial Soul
+  10 Infectious Fury
+  14 Call the Hunt
+Path of Wild Magic (TCE)
+  3 Magic Awareness
+  3 Wild Surge
+  6 Bolstering Magic
+  10 Unstable Backlash
+  14 Controlled Surge
+Path of the Giant (BGG) ?
+  3 Giant's Power
+  3 Giant's Havoc
+  6 Elemental Cleaver
+  10 Mighty Impel
+  14 Demiurgic Colossus
+
+[Bard]
+College of Lore (PHB)
+  3 Bonus Proficiencies
+  3 Cutting Words
+  6 Additional Magical Secrets
+  14 Peerless Skill
+College of Valor (PHB)
+  3 Bonus Proficiencies
+  3 Combat Inspiration
+  6 Extra Attack
+  14 Battle Magic
+College of Glamour (XGE)
+  3 Mantle of Inspiration
+  3 Enthralling Performance
+  6 Mantle of Majesty
+  14 Unbreakable Majesty
+College of Swords (XGE)
+  3 Bonus Proficiencies
+  3 Fighting Style
+  3 Blade Flourish
+  6 Extra Attack
+  14 Master's Flourish
+College of Whispers (XGE)
+  3 Psychic Blades
+  3 Words of Terror
+  6 Mantle of Whispers
+  14 Shadow Lore
+College of Creation (TCE)
+  3 Mote of Potential
+  3 Performance of Creation
+  6 Animating Performance
+  14 Creative Crescendo
+College of Eloquence (TCE)
+  3 Silver Tongue
+  3 Unsettling Words
+  6 Unfailing Inspiration
+  6 Universal Speech
+  14 Infectious Inspiration
+College of Spirits (VRGR) ?
+  3 Guiding Whispers
+  3 Spiritual Focus
+  3 Tales from Beyond
+  6 Spirit Session
+  - Spiritual Focus (Improved)
+  14 Mystical Connection
+
+[Cleric]
+Knowledge Domain (PHB)
+  1 Blessings of Knowledge
+  2 Channel Divinity: Knowledge of the Ages
+  6 Channel Divinity: Read Thoughts
+  8 Potent Spellcasting
+  17 Visions of the Past
+Life Domain (PHB)
+  1 Bonus Proficiency
+  1 Disciple of Life
+  2 Channel Divinity: Preserve Life
+  6 Blessed Healer
+  8 Divine Strike
+  17 Supreme Healing
+Light Domain (PHB)
+  1 Bonus Cantrip
+  1 Warding Flare
+  2 Channel Divinity: Radiance of the Dawn
+  6 Improved Flare
+  8 Potent Spellcasting
+  17 Corona of Light
+Nature Domain (PHB)
+  1 Acolyte of Nature
+  1 Bonus Proficiency
+  2 Channel Divinity: Charm Animals and Plants
+  6 Dampen Elements
+  8 Divine Strike
+  17 Master of Nature
+Tempest Domain (PHB)
+  1 Bonus Proficiencies
+  1 Wrath of the Storm
+  2 Channel Divinity: Destructive Wrath
+  6 Thunderbolt Strike
+  8 Divine Strike
+  17 Stormborn
+Trickery Domain (PHB)
+  1 Blessing of the Trickster
+  2 Channel Divinity: Invoke Duplicity
+  6 Channel Divinity: Cloak of Shadows
+  8 Divine Strike
+  17 Improved Duplicity
+War Domain (PHB)
+  1 Bonus Proficiencies
+  1 War Priest
+  2 Channel Divinity: Guided Strike
+  6 Channel Divinity: War God's Blessing
+  8 Divine Strike
+  17 Avatar of Battle
+Death Domain (DMG)
+  1 Bonus Proficiency
+  1 Reaper
+  2 Channel Divinity: Touch of Death
+  6 Inescapable Destruction
+  8 Divine Strike
+  17 Improved Reaper
+Arcana Domain (SCAG)
+  1 Arcane Initiate
+  2 Channel Divinity: Arcane Abjuration
+  6 Spell Breaker
+  8 Potent Spellcasting
+  17 Arcane Mastery
+Forge Domain (XGE)
+  1 Bonus Proficiencies
+  1 Blessing of the Forge
+  2 Channel Divinity: Artisan's Blessing
+  6 Soul of the Forge
+  8 Divine Strike
+  17 Saint of Forge and Fire
+Grave Domain (XGE)
+  1 Circle of Mortality
+  1 Eyes of the Grave
+  2 Channel Divinity: Path to the Grave
+  6 Sentinel at Death's Door
+  8 Potent Spellcasting
+  17 Keeper of Souls
+Order Domain (TCE)
+  1 Bonus Proficiencies
+  1 Voice of Authority
+  2 Channel Divinity: Order's Demand
+  6 Embodiment of the Law
+  8 Divine Strike
+  17 Order's Wrath
+Peace Domain (TCE)
+  1 Implement of Peace
+  1 Emboldening Bond
+  2 Channel Divinity: Balm of Peace
+  6 Protective Bond
+  8 Potent Spellcasting
+  17 Expansive Bond
+Twilight Domain (TCE)
+  1 Bonus Proficiencies
+  1 Eyes of Night
+  1 Vigilant Blessing
+  2 Channel Divinity: Twilight Sanctuary
+  6 Steps of Night
+  8 Divine Strike
+  17 Twilight Shroud
+
+[Druid]
+Circle of the Land (PHB)
+  2 Bonus Cantrip
+  2 Natural Recovery
+  6 Land's Stride
+  10 Nature's Ward
+  14 Nature's Sanctuary
+Circle of the Moon (PHB)
+  2 Combat Wild Shape
+  2 Circle Forms
+  6 Primal Strike
+  10 Elemental Wild Shape
+  14 Thousand Forms
+Circle of Dreams (XGE)
+  2 Balm of the Summer Court
+  6 Hearth of Moonlight and Shadow
+  10 Hidden Paths
+  14 Walker in Dreams
+Circle of the Shepherd (XGE)
+  2 Speech of the Woods
+  2 Spirit Totem
+  6 Mighty Summoner
+  10 Guardian Spirit
+  14 Faithful Summons
+Circle of Spores (TCE)
+  2 Halo of Spores
+  2 Symbiotic Entity
+  6 Fungal Infestation
+  10 Spreading Spores
+  14 Fungal Body
+Circle of Stars (TCE)
+  2 Star Map
+  2 Starry Form
+  6 Cosmic Omen
+  10 Twinkling Constellations
+  14 Full of Stars
+Circle of Wildfire (TCE)
+  2 Summon Wildfire Spirit
+  6 Enhanced Bond
+  10 Cauterizing Flames
+  14 Blazing Revival
+
+[Fighter]
+Champion (PHB)
+  3 Improved Critical
+  7 Remarkable Athlete
+  10 Additional Fighting Style
+  15 Superior Critical
+  18 Survivor
+Battle Master (PHB)
+  3 Combat Superiority
+  3 Student of War
+  7 Know Your Enemy
+  10 Improved Combat Superiority
+  15 Relentless
+  18 Improved Combat Superiority
+Eldritch Knight (PHB)
+  3 Spellcasting
+  3 Weapon Bond
+  7 War Magic
+  10 Eldritch Strike
+  15 Arcane Charge
+  18 Improved War Magic
+Purple Dragon Knight (SCAG)
+  3 Rallying Cry
+  7 Royal Envoy
+  10 Inspiring Surge
+  15 Bulwark
+Arcane Archer (XGE)
+  3 Arcane Archer Lore
+  3 Arcane Shot
+  7 Magic Arrow
+  7 Curving Shot
+  15 Ever-Ready Shot
+Cavalier (XGE)
+  3 Bonus Proficiency
+  3 Born to the Saddle
+  3 Unwavering Mark
+  7 Warding Maneuver
+  10 Hold the Line
+  15 Ferocious Charger
+  18 Vigilant Defender
+Samurai (XGE)
+  3 Bonus Proficiency
+  3 Fighting Spirit
+  7 Elegant Courtier
+  10 Tireless Spirit
+  15 Rapid Strike
+  18 Strength before Death
+Echo Knight (EGW)
+  3 Manifest Echo
+  3 Unleash Incarnation
+  7 Echo Avatar
+  10 Shadow Martyr
+  15 Reclaim Potential
+  18 Legion of One
+Psi Warrior (TCE)
+  3 Psionic Power
+  7 Telekinetic Adept
+  10 Guarded Mind
+  15 Bulwark of Force
+  18 Telekinetic Master
+Rune Knight (TCE)
+  3 Bonus Proficiencies
+  3 Rune Carver
+  3 Giant's Might
+  7 Runic Shield
+  10 Great Stature
+  15 Master of Runes
+  18 Runic Juggernaut
+
+[Monk]
+Way of the Open Hand (PHB)
+  3 Open Hand Technique
+  6 Wholeness of Body
+  11 Tranquility
+  17 Quivering Palm
+Way of Shadow (PHB)
+  3 Shadow Arts
+  6 Shadow Step
+  11 Cloak of Shadows
+  17 Opportunist
+Way of the Four Elements (PHB)
+  3 Disciple of the Elements
+  - Elemental Attunement
+  - Fangs of the Fire Snake
+  - Fist of Four Thunders
+  - Fist of Unbroken Air
+  - Rush of the Gale Spirits
+  - Shape the Flowing River
+  - Sweeping Cinder Strike
+  - Water Whip
+  - Clench of the North Wind
+  - Gong of the Summit
+  - Flames of the Phoenix
+  - Mist Stance
+  - Ride the Wind
+  - Breath of Winter
+  - Eternal Mountain Defense
+  - River of Hungry Flame
+  - Wave of Rolling Earth
+Way of the Long Death (SCAG)
+  3 Touch of Death
+  6 Hour of Reaping
+  11 Mastery of Death
+  17 Touch of the Long Death
+Way of the Sun Soul (XGE)
+  3 Radiant Sun Bolt
+  6 Searing Arc Strike
+  11 Searing Sunburst
+  17 Sun Shield
+Way of the Drunken Master (XGE)
+  3 Bonus Proficiencies
+  3 Drunken Technique
+  6 Tipsy Sway
+  11 Drunkard's Luck
+  17 Intoxicated Frenzy
+Way of the Kensei (XGE)
+  3 Path of the Kensei
+  6 One with the Blade
+  11 Sharpen the Blade
+  17 Unerring Accuracy
+Way of the Astral Self (TCE)
+  3 Arms of the Astral Self
+  6 Visage of the Astral Self
+  11 Body of the Astral Self
+  17 Awakened Astral Self
+Way of Mercy (TCE)
+  3 Implements of Mercy
+  3 Hand of Healing
+  3 Hand of Harm
+  6 Physician's Touch
+  11 Flurry of Healing and Harm
+  17 Hand of Ultimate Mercy
+Way of the Ascendant Dragon (FTD) ?
+  3 Draconic Disciple
+  3 Breath of the Dragon
+  6 Wings Unfurled
+  11 Aspect of the Wyrm
+  17 Ascendant Aspect
+
+[Paladin]
+Oath of Devotion (PHB)
+  3 Channel Divinity: Sacred Weapon
+  3 Channel Divinity: Turn the Unholy
+  7 Aura of Devotion
+  15 Purity of Spirit
+  20 Holy Nimbus
+Oath of the Ancients (PHB)
+  3 Channel Divinity: Nature's Wrath
+  3 Channel Divinity: Turn the Faithless
+  7 Aura of Warding
+  15 Undying Sentinel
+  20 Elder Champion
+Oath of Vengeance (PHB)
+  3 Channel Divinity: Abjure Enemy
+  3 Channel Divinity: Vow of Enmity
+  7 Relentless Avenger
+  15 Soul of Vengeance
+  20 Avenging Angel
+Oathbreaker (DMG)
+  3 Channel Divinity: Control Undead
+  3 Channel Divinity: Dreadful Aspect
+  7 Aura of Hate
+  15 Supernatural Resistance
+  20 Dread Lord
+Oath of the Crown (SCAG)
+  3 Channel Divinity: Champion Challenge
+  3 Channel Divinity: Turn the Tide
+  7 Divine Allegiance
+  15 Unyielding Spirit
+  20 Exalted Champion
+Oath of Conquest (XGE)
+  3 Channel Divinity: Conquering Presence
+  3 Channel Divinity: Guided Strike
+  7 Aura of Conquest
+  15 Scornful Rebuke
+  20 Invincible Conqueror
+Oath of Redemption (XGE)
+  3 Channel Divinity: Emissary of Peace
+  3 Channel Divinity: Rebuke the Violent
+  7 Aura of the Guardian
+  15 Protective Spirit
+  20 Emissary of Redemption
+Oath of Glory (TCE)
+  3 Channel Divinity: Peerless Athlete
+  3 Channel Divinity: Inspiring Smite
+  7 Aura of Alacrity
+  15 Glorious Defense
+  20 Living Legend
+Oath of the Watchers (TCE)
+  3 Channel Divinity: Watcher's Will
+  3 Channel Divinity: Abjure the Extraplanar
+  7 Aura of the Sentinel
+  15 Vigilant Rebuke
+  20 Mortal Bulwark
+
+[Ranger]
+Hunter (PHB)
+  3 Hunter's Prey
+  7 Defensive Tactics
+  11 Multiattack
+  15 Superior Hunter's Defense
+Beast Master (PHB)
+  3 Ranger's Companion
+  7 Exceptional Training
+  11 Bestial Fury
+  15 Share Spells
+Gloom Stalker (XGE)
+  3 Dread Ambusher
+  3 Umbral Sight
+  7 Iron Mind
+  11 Stalker's Flurry
+  15 Shadowy Dodge
+Horizon Walker (XGE)
+  3 Detect Portal
+  3 Planar Warrior
+  7 Ethereal Step
+  11 Distant Strike
+  15 Spectral Defense
+Monster Slayer (XGE)
+  3 Hunter's Sense
+  3 Slayer's Prey
+  7 Supernatural Defense
+  11 Magic-User's Nemesis
+  15 Slayer's Counter
+Fey Wanderer (TCE)
+  3 Dreadful Strikes
+  3 Otherworldly Glamour
+  7 Beguiling Twist
+  11 Fey Reinforcements
+  15 Misty Wanderer
+Swarmkeeper (TCE)
+  3 Gathered Swarm
+  7 Writhing Tide
+  11 Mighty Swarm
+  15 Swarming Dispersal
+Drake Warden (FTD) ?
+  3 Draconic Gift
+  3 Drake Companion
+  7 Bond of Fang and Scale
+  11 Drake's Breath
+  15 Perfected Bond
+
+[Rogue]
+Thief (PHB)
+  3 Fast Hands
+  3 Second-Story Work
+  9 Supreme Sneak
+  13 Use Magic Device
+  17 Thief's Reflexes
+Assassin (PHB)
+  3 Bonus Proficiencies
+  3 Assassinate
+  9 Infiltration Expertise
+  13 Impostor
+  17 Death Strike
+Arcane Trickster (PHB)
+  3 Spellcasting
+  3 Mage Hand Legerdemain
+  9 Magical Ambush
+  13 Versatile Trickster
+  17 Spell Thief
+Mastermind (XGE)
+  3 Master of Intrigue
+  3 Master of Tactics
+  9 Insightful Manipulator
+  13 Misdirection
+  17 Soul of Deceit
+Swashbuckler (XGE)
+  3 Fancy Footwork
+  3 Rakish Audacity
+  9 Panache
+  13 Elegant Maneuver
+  17 Master Duelist
+Inquisitive (XGE)
+  3 Ear for Deceit
+  3 Eye for Detail
+  3 Insightful Fighting
+  9 Steady Eye
+  13 Unerring Eye
+  17 Eye for Weakness
+Scout (XGE)
+  3 Skirmisher
+  3 Survivalist
+  9 Superior Mobility
+  13 Ambush Master
+  17 Sudden Strike
+Phantom (TCE)
+  3 Whispers of the Dead
+  3 Wails from the Grave
+  9 Tokens of the Departed
+  13 Ghost Walk
+  17 Death's Friend
+Soulknife (TCE)
+  3 Psionic Power
+  3 Psychic Blades
+  9 Soul Blades
+  13 Psychic Veil
+  17 Rend Mind
+
+[Sorcerer]
+Draconic Bloodline (PHB)
+  1 Dragon Ancestor
+  1 Draconic Resilience
+  6 Elemental Affinity
+  14 Dragon Wings
+  18 Draconic Presence
+Wild Magic (PHB)
+  1 Wild Magic Surge
+  1 Tides of Chaos
+  6 Bend Luck
+  14 Controlled Chaos
+  18 Spell Bombardment
+Storm Sorcery (XGE)
+  1 Wind Speaker
+  1 Tempestuous Magic
+  6 Heart of the Storm
+  6 Storm Guide
+  14 Storm's Fury
+  18 Wind Soul
+Divine Soul (XGE)
+  1 Divine Magic
+  1 Favored by the Gods
+  6 Empowered Healing
+  14 Otherworldly Wings
+  18 Unearthly Recovery
+Shadow Magic (XGE)
+  1 Eyes of the Dark
+  1 Strength of the Grave
+  6 Hound of Ill Omen
+  14 Shadow Walk
+  18 Umbral Form
+Aberrant Mind (TCE)
+  1 Telepathic Speech
+  6 Psionic Sorcery
+  6 Psychic Defenses
+  14 Revelation in Flesh
+  18 Warping Implosion
+Clockwork Soul (TCE)
+  1 Restore Balance
+  6 Bastion of Law
+  14 Trance of Order
+  18 Clockwork Cavalcade
+Lunar Sorcery (DSotDQ) ?
+  1 Lunar Embodiment
+  1 Moon Fire
+  6 Lunar Boons
+  6 Waxing and Waning
+  14 Lunar Empowerment
+  18 Lunar Phenomenon
+
+[Warlock]
+The Archfey (PHB)
+  1 Fey Presence
+  6 Misty Escape
+  10 Beguiling Defenses
+  14 Dark Delirium
+The Fiend (PHB)
+  1 Dark One's Blessing
+  6 Dark One's Own Luck
+  10 Fiendish Resilience
+  14 Hurl Through Hell
+The Great Old One (PHB)
+  1 Awakened Mind
+  6 Entropic Ward
+  10 Thought Shield
+  14 Create Thrall
+The Undying (SCAG)
+  1 Among the Dead
+  6 Defy Death
+  10 Undying Nature
+  14 Indestructible Life
+The Celestial (XGE)
+  1 Bonus Cantrips
+  1 Healing Light
+  6 Radiant Soul
+  10 Celestial Resilience
+  14 Searing Vengeance
+The Hexblade (XGE)
+  1 Hexblade's Curse
+  1 Hex Warrior
+  6 Accursed Specter
+  10 Armor of Hexes
+  14 Master of Hexes
+The Fathomless (TCE)
+  1 Tentacle of the Deeps
+  1 Gift of the Sea
+  6 Oceanic Soul
+  6 Guardian Coil
+  10 Grasping Tentacles
+  14 Fathomless Plunge
+The Genie (TCE)
+  1 Genie's Vessel
+  6 Elemental Gift
+  10 Sanctuary Vessel
+  14 Limited Wish
+The Undead (VRGR)
+  1 Form of Dread
+  6 Grave Touched
+  10 Necrotic Husk
+  14 Spirit Projection
+
+[Wizard]
+School of Abjuration (PHB)
+  2 Abjuration Savant
+  2 Arcane Ward
+  6 Projected Ward
+  10 Improved Abjuration
+  14 Spell Resistance
+School of Conjuration (PHB)
+  2 Conjuration Savant
+  2 Minor Conjuration
+  6 Benign Transposition
+  10 Focused Conjuration
+  14 Durable Summons
+School of Divination (PHB)
+  2 Divination Savant
+  2 Portent
+  6 Expert Divination
+  10 The Third Eye
+  14 Greater Portent
+School of Enchantment (PHB)
+  2 Enchantment Savant
+  2 Hypnotic Gaze
+  6 Instinctive Charm
+  10 Split Enchantment
+  14 Alter Memories
+School of Evocation (PHB)
+  2 Evocation Savant
+  2 Sculpt Spells
+  6 Potent Cantrip
+  10 Empowered Evocation
+  14 Overchannel
+School of Illusion (PHB)
+  2 Illusion Savant
+  2 Improved Minor Illusion
+  6 Malleable Illusions
+  10 Illusory Self
+  14 Illusory Reality
+School of Necromancy (PHB)
+  2 Necromancy Savant
+  2 Grim Harvest
+  6 Undead Thralls
+  10 Inured to Undeath
+  14 Command Undead
+School of Transmutation (PHB)
+  2 Transmutation Savant
+  2 Minor Alchemy
+  6 Transmuter's Stone
+  10 Shapechanger
+  14 Master Transmuter
+War Magic (XGE)
+  2 Arcane Deflection
+  2 Tactical Wit
+  6 Power Surge
+  10 Durable Magic
+  14 Deflecting Shroud
+Bladesinging (TCE)
+  2 Training in War and Song
+  2 Bladesong
+  6 Extra Attack
+  10 Song of Defense
+  14 Song of Victory
+Order of Scribes (TCE)
+  2 Wizardly Quill
+  2 Awakened Spellbook
+  6 Manifest Mind
+  10 Master Scrivener
+  14 One with the Word
+Chronurgy Magic (EGW)
+  2 Chronal Shift
+  2 Temporal Awareness
+  6 Momentary Stasis
+  10 Arcane Abeyance
+  14 Convergent Future
+Graviturgy Magic (EGW)
+  2 Adjust Density
+  6 Gravity Well
+  10 Violent Attraction
+  14 Event Horizon
