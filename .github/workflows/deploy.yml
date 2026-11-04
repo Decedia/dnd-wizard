@@ -22,9 +22,14 @@ jobs:
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
       - run: bun install --frozen-lockfile
       - run: bun run typecheck
-      - run: bun test src/tests/srd-data.test.ts
+      - run: bun test src/tests/
+      - run: bun run engine:validate
+      - run: bun run data:completeness -- --strict
       - run: PAGES_BASE_PATH=/dnd-wizard bun run build
       - run: |
           cp out/index.html out/404.html
