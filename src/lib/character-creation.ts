@@ -5,7 +5,6 @@ import { getRaceAsi, getRaceSkills, isFlexAsiValid } from "./race-grants";
 import { engineIdFor } from "@/lib/feature-engine";
 import { activeRaceChoices, getStaticClass, getStaticRace, getStaticRaceDetails, getStaticSubclasses, getStaticEquipments, getStaticWeapons, getStaticArmors, getStaticItems, getStaticFeat, getStaticSpells } from "./srd-client";
 import { getGrantedSpellNames, grantSpells } from "./granted-spells";
-import { determineDefaultVisibility } from "./feature-filters";
 import type { CreationStep } from "./creation-types";
 import { getBackgroundData } from "@/data/backgrounds";
 import { getOptionalClassFeatures, getOptionalChoiceOptions, isReplacedFeature, optionalChoiceKey, type OptionalClassFeature } from "@/data/optional-class-features";
@@ -748,7 +747,6 @@ function extractFeatureFields(f: any): Record<string, any> {
     grantsAttack: f.grantsAttack ?? false,
     grantsSkills: f.grantsSkills ?? false,
     grantsProficiency: f.grantsProficiency ?? false,
-    showInSheet: f.showInSheet ?? determineDefaultVisibility(f),
   };
 }
 
@@ -907,7 +905,6 @@ export function syncBaseFeatures(character: Character, language = "en"): Charact
       grantsAttack: f.grantsAttack ?? false,
       grantsSkills: f.grantsSkills ?? false,
       grantsProficiency: f.grantsProficiency ?? false,
-    showInSheet: f.showInSheet ?? determineDefaultVisibility(f),
     };
   });
 
@@ -1019,7 +1016,6 @@ export function applySubclassFeatures(character: Character, language = "en"): Ch
               engineId: engineIdFor("subclass", subclass.name, opt.name),
               locked: true,
               ...extractFeatureFields(feature),
-              showInSheet: true,
             });
           }
         }
@@ -1256,7 +1252,6 @@ export function resolveFeatureChoice(character: Character, choice: MissingFeatur
         source: choice.source,
         locked: true,
         ...extractFeatureFields(parentFeature),
-        showInSheet: true,
       });
     }
   }

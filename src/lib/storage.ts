@@ -1,7 +1,6 @@
 import { getStaticClass, getStaticRace, getStaticSubclasses, getDomainSpells, getCircleSpells as getJsonCircleSpells, getCircleTerrainTypes as getJsonCircleTerrainTypes, getOathSpells, getWizardTraditionSpells, getSubclassFlags, getPactBoons } from "@/lib/srd-client";
 import { computeBuffModifiers, type ActiveBuff } from "@/lib/spellEffects";
 import { getSpellMechanic } from "@/lib/spell-mechanics-accessor";
-import { determineDefaultVisibility } from "@/lib/feature-filters";
 import { db, type CharacterRecord, dbGetCharacters, dbGetCharacter, dbSaveCharacter, dbDeleteCharacter, dbTouchCharacterOpened } from "@/lib/db";
 export interface Character {
   id: string;
@@ -63,7 +62,7 @@ export interface Character {
   toolProficiencies: string[];
   expertise: string[];
   passivePerception: number;
-  features: { id: string; name: string; description: string; source?: "race" | "class" | "subclass" | "custom"; locked?: boolean; /** Id of the matching entry in the combat engine dataset, stamped when the feature is created. Badges and charges are read from there, so the character sheet and the turn menu cannot disagree. Absent on custom features, which have no engine entry. */ engineId?: string; actionType?: "action" | "bonus_action" | "reaction" | "free" | "passive"; value?: string; summary?: string | null; featureType?: string | null; uses?: { total: number | string; recharge: string; current: number } | null; requirement?: string | null; duration?: string | null; endsIf?: string | null; effect?: string | null; onUse?: string | null; scaling?: string | null; grantsSpells?: boolean; grantsAttack?: boolean; grantsSkills?: boolean; grantsProficiency?: boolean; showInSheet?: boolean }[];
+  features: { id: string; name: string; description: string; source?: "race" | "class" | "subclass" | "custom"; locked?: boolean; /** Id of the matching entry in the combat engine dataset, stamped when the feature is created. Badges and charges are read from there, so the character sheet and the turn menu cannot disagree. Absent on custom features, which have no engine entry. */ engineId?: string; actionType?: "action" | "bonus_action" | "reaction" | "free" | "passive"; value?: string; summary?: string | null; featureType?: string | null; uses?: { total: number | string; recharge: string; current: number } | null; requirement?: string | null; duration?: string | null; endsIf?: string | null; effect?: string | null; onUse?: string | null; scaling?: string | null; grantsSpells?: boolean; grantsAttack?: boolean; grantsSkills?: boolean; grantsProficiency?: boolean }[];
   costumeSpells: { id: string; name: string; description: string }[];
   subclass?: string;
   subclassIndex?: string;
@@ -686,7 +685,6 @@ function normalizeCharacterFields(c: Character): Character {
         grantsAttack: (feature as any).grantsAttack ?? false,
         grantsSkills: (feature as any).grantsSkills ?? false,
         grantsProficiency: (feature as any).grantsProficiency ?? false,
-        showInSheet: (feature as any).showInSheet ?? determineDefaultVisibility(feature),
       };
     }),
   };

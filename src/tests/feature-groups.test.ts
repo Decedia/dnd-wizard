@@ -1,6 +1,6 @@
 // @ts-ignore - bun:test is provided by the Bun runtime
 import { describe, expect, test } from "bun:test";
-import { getFeatPicks, getFeaturePicks, matchesFeatureSearch, poolMax } from "@/lib/feature-groups";
+import { getAsiFeats, getFeatPicks, getFeaturePicks, matchesFeatureSearch, poolMax } from "@/lib/feature-groups";
 import { createEmptyCharacter, type Character } from "@/lib/storage";
 
 const sel = (featureSelections: Record<string, string[]>) => ({ featureSelections });
@@ -51,4 +51,9 @@ test("pool max follows the max-field naming", () => {
   const c = { ...createEmptyCharacter(), maxRages: 3, maxSuperiorityDice: 0 } as Character;
   expect(poolMax(c, "rages")).toBe(3);
   expect(poolMax(c, "superiorityDice")).toBe(null);
+});
+
+test("lists the feats taken at ASI levels in level order", () => {
+  const c = { featureSelections: { "asi-feat-8": ["Tough"], "asi-feat-4": ["Alert"], "asi-feat-4-options": ["ability=dex"], "variant-human-feat": ["Lucky"] } };
+  expect(getAsiFeats(c)).toEqual([{ level: 4, feat: "Alert" }, { level: 8, feat: "Tough" }]);
 });
