@@ -79,7 +79,7 @@ export function StepLook({ data, onChange }: StepLookProps) {
   const nameMissing = !data.name.trim();
 
   return (
-    <section className="w-full pb-32">
+    <section className="w-full">
       <div className="mb-6">
         <p className="text-[11px] font-bold uppercase tracking-widest text-ink-muted">{t("look.kicker", "Konsep")}</p>
         <h1 className="text-2xl font-black tracking-tight text-ink">{t("look.title", "Penampilan")}</h1>

@@ -57,7 +57,7 @@ export default function AdminSrdDataPage() {
   return (
     <div className="min-h-screen bg-paper">
       <AppHeader title="DND Wizard" subtitle="SRD Data Tests" showThemeToggle />
-      <main className="px-4 py-4 pb-32">
+      <main className="px-4 py-4 pb-6">
         <div className="mb-5 space-y-2">
           <Link href="/admin" className="btn btn-secondary w-full">
             {t("admin.backToAdmin", "Back to Admin")}

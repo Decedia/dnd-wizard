@@ -192,7 +192,7 @@ export default function GlossaryPage() {
     <div className="min-h-screen bg-[var(--color-paper)]">
       <AppHeader title={t("nav.glossary")} />
 
-      <main className="px-4 py-4 pb-36">
+      <main className="px-4 py-4 pb-6">
         <div className="mb-4">
           <label className="block text-xs font-semibold text-[var(--color-text-muted)] mb-1.5">
             {t("glossary.searchLabel", "Search spells, classes, schools...")}

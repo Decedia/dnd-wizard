@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo, useCallback, useEffect, useRef, useLayoutEffect } from "react";
-import { WizardNav } from "./WizardNav";
+import { WizardNav, WIZARD_NAV_SPACE } from "./WizardNav";
 import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclassDetails, getSubclassFlags, getPactBoons, getStaticFeat, getStaticEquipments } from "@/lib/srd-client";
 import { SourceBadge } from "./SourceBadge";
 import { getHitDieAverage, getModifier, computeDerivedStats, getMaxBardicInspirationUses, getBardicInspirationDie, getSongOfRestDie, hasFontOfInspiration, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getOathSpellNames, getWizardTraditionSpellNames, getMaxSpellLevel, isThirdCaster, getSpellSlotTable, getFeatureValue, getHpBonusPerLevel, type Character } from "@/lib/storage";
@@ -1386,7 +1386,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
         </div>
       )}
 
-      <main className="px-4 py-5 pb-40">
+      <main className="px-4 py-5" style={{ paddingBottom: WIZARD_NAV_SPACE }}>
         <div className="mx-auto max-w-lg space-y-4">
           {levelInfos.length > 0 && (
             <button

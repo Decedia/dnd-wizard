@@ -4,7 +4,7 @@ import { useRef, useState, useCallback, useEffect, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
-import { BottomNav } from "@/components/BottomNav";
+import { BOTTOM_NAV_SPACE } from "@/components/BottomNav";
 import { getCharacter, saveCharacter, deleteCharacter, computeDerivedStats, touchCharacterOpened, type Character } from "@/lib/storage";
 import { importCharacterFromJson } from "@/lib/character-io";
 import { advanceTurn, parseDurationToTurns } from "@/lib/spellEffects";
@@ -176,7 +176,7 @@ export function CharacterView() {
     return (
       <div className="min-h-screen bg-paper">
         <AppHeader title={t("character.sheet")} subtitle={t("character.sheet")} />
-         <main className="px-4 py-6 pb-32">
+         <main className="px-4 py-6 pb-6">
           <div className="flex flex-col items-center justify-center card border-dashed border-border-muted bg-paper py-16 text-center">
              <UserPlus size={48} color="var(--color-text-muted)" className="mb-3 opacity-40" />
             <h2 className="text-page-title mb-2">
@@ -208,7 +208,7 @@ export function CharacterView() {
       </div>
 
       <CharacterSheetProvider onFieldBlur={debouncedSave}>
-         <main className="mx-auto max-w-lg px-4 py-3 pb-32">
+         <main className="mx-auto max-w-lg px-4 py-3 pb-6">
           {activeTab === "combat" && (
             <>
               <CombatStatsSection character={character} onChange={handleChange} editMode={editMode} />
@@ -335,7 +335,7 @@ export function CharacterView() {
       </CharacterSheetProvider>
 
       {((character.spellsUsedThisTurn?.length ?? 0) > 0 || (character.featuresUsedThisTurn?.length ?? 0) > 0 || (character.activeBuffs?.length ?? 0) > 0) && (
-         <div className="fixed bottom-32 left-1/2 -translate-x-1/2 z-50">
+         <div className="fixed left-1/2 -translate-x-1/2 z-30" style={{ bottom: `calc(${BOTTOM_NAV_SPACE} + 12px)` }}>
           <button
             type="button"
             onClick={() => {
@@ -361,8 +361,6 @@ export function CharacterView() {
           </button>
         </div>
       )}
-
-      <BottomNav />
     </div>
   );
 }

@@ -106,7 +106,7 @@ export default function AdminPage() {
   return (
     <div className="min-h-screen bg-paper">
       <AppHeader title={t("app.name")} subtitle={t("admin.testLab")} showThemeToggle />
-      <main className="px-4 py-4 pb-32">
+      <main className="px-4 py-4 pb-6">
         <div className="mb-5 space-y-2">
           <Link href="/" className="btn btn-secondary w-full">
             <Home className="h-4 w-4 mr-2 inline" />
