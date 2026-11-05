@@ -552,7 +552,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
   }, [getWeaponsByCategory]);
 
   return (
-    <section className="w-full pb-32">
+    <section className="w-full">
       <div className="space-y-6">
         {/* Same guide box the skills step uses: an ink panel with the info glyph. */}
         <div className="mb-6 flex gap-3 rounded-2xl border border-ink/20 bg-ink/10 p-4">

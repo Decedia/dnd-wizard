@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { LockIcon, XIcon, GearIcon } from "@/components/icons";
 import { useDebug } from "@/lib/debug/DebugContext";
+import { WIZARD_NAV_SPACE } from "@/components/WizardNav";
 
 export function DebugButton() {
   const { enabled, unlocked, password, setPassword, login, logout } = useDebug();
@@ -48,7 +49,7 @@ export function DebugButton() {
 
   if (!enabled) {
     return (
-      <div className="fixed bottom-4 left-4 z-[9999999]">
+      <div style={{ bottom: `calc(${WIZARD_NAV_SPACE} + 8px)` }} className="fixed left-4 z-[9999999]">
         <button
           type="button"
           onClick={handleButtonClick}
@@ -111,7 +112,7 @@ export function DebugButton() {
 
   return (
     <>
-      <div className="fixed bottom-4 left-4 z-[9999999] flex items-center gap-2">
+      <div style={{ bottom: `calc(${WIZARD_NAV_SPACE} + 8px)` }} className="fixed left-4 z-[9999999] flex items-center gap-2">
         <button
           type="button"
           onClick={handleButtonClick}

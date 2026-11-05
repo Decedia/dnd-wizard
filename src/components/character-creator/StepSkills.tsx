@@ -159,7 +159,7 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
   };
 
   return (
-    <section className="w-full pb-32">
+    <section className="w-full">
       <header className="mb-4">
         <h2 className="text-base font-semibold text-ink">
           {t("creator.skills", "Skills")}

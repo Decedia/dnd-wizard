@@ -14,7 +14,7 @@ import { StepEquipment } from "@/components/character-creator/StepEquipment";
 import { StepLook } from "@/components/character-creator/StepLook";
 import { CreationOrderPicker } from "@/components/character-creator/CreationOrderPicker";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { WizardNav } from "@/components/WizardNav";
+import { WizardNav, WIZARD_NAV_SPACE } from "@/components/WizardNav";
 import {
   initializeCharacter,
   finalizeCreation,
@@ -124,7 +124,7 @@ export default function CharacterCreate() {
     <div className="min-h-screen bg-paper">
       <AppHeader title={t("creator.title", "Character Creator")} />
 
-      <main className="px-4 py-5 pb-40">
+      <main className="px-4 py-5" style={{ paddingBottom: WIZARD_NAV_SPACE }}>
         <div className="mx-auto max-w-lg">
           <ProgressIndicator currentStep={step + 1} totalSteps={totalSteps} />
           {renderStep()}
@@ -135,7 +135,11 @@ export default function CharacterCreate() {
         onBack={handleBack}
         onNext={handleNext}
         canProceed={canProceed()}
-        nextLabel={isLastStep ? t("creator.createCharacter", "Create Character") : t("common.next", "Next")}
+        nextLabel={
+          isLastStep
+            ? t("creator.createCharacter", "Create Character")
+            : t("wizard.nextStep", { step: t(`creationOrder.step.${steps[step + 1].id}`, steps[step + 1].title) }, "Next: {step}")
+        }
         showBack={step > 0}
       />
     </div>

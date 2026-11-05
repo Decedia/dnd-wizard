@@ -40,7 +40,7 @@ export default function RootLayout({
           <LanguageProvider>
             <SRDProvider>
               <DebugProvider>
-                <div className="mx-auto max-w-lg pb-36">
+                <div className="mx-auto max-w-lg">
                   {children}
                 </div>
                 <DebugButton />

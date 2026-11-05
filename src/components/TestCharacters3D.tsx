@@ -731,7 +731,7 @@ export default function TestCharacters3D() {
     <div className="min-h-screen bg-[#111111]">
       <AppHeader title="Test 3D" subtitle="Character Figures" />
 
-      <main className="mx-auto max-w-lg px-4 py-4 pb-32">
+      <main className="mx-auto max-w-lg px-4 py-4 pb-6">
         <div className="flex gap-4 overflow-x-auto pb-4">
           {CLASSES.map((cls, index) => (
             <div

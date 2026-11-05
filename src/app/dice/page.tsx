@@ -45,7 +45,7 @@ export default function DiceRoller() {
     <div className="min-h-screen bg-ink">
       <AppHeader title={t("dice.roller")} subtitle={t("dice.rollTheBones")} />
 
-      <main className="px-4 py-6 pb-32">
+      <main className="px-4 py-6 pb-6">
         <div className="mx-auto max-w-lg">
           <button
             onClick={rollAll}

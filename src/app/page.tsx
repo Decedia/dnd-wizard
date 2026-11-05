@@ -197,8 +197,7 @@ export default function Home() {
     <div className="min-h-screen bg-paper">
       <AppHeader title={t("app.name")} subtitle={t("nav.myCharacters")} showThemeToggle />
 
-      {/* pb-32 keeps the last row of content clear of the bottom nav and watermark. */}
-      <main className="px-4 py-4 pb-32">
+      <main className="px-4 py-4 pb-6">
         <div className="relative mb-4 overflow-hidden rounded-3xl border border-border-muted bg-paper-muted p-6 shadow-sm">
           <div className="pointer-events-none absolute -bottom-6 -right-5 select-none text-paper-darker" aria-hidden="true">
             <GiDragonHead size={168} />
