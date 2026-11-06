@@ -27,8 +27,7 @@ import { SpellsSection } from "@/components/character-sheet/SpellsSection";
 import { SpellcastingStatsSection } from "@/components/character-sheet/SpellcastingStatsSection";
 import { AppearanceBioSection } from "@/components/character-sheet/AppearanceBioSection";
 import { PassiveStatsSection } from "@/components/character-sheet/PassiveStatsSection";
-import { CurrencySection } from "@/components/character-sheet/CurrencySection";
-import { TrashIcon as Trash, ExportIcon as Export, UploadIcon as Upload, CheckCircleIcon as CheckCircle, UserPlusIcon as UserPlus, ClockIcon as Clock, FileJsonIcon as FileJson } from "@/components/icons";
+import { DotsThreeIcon as DotsThree, TrashIcon as Trash, ExportIcon as Export, UploadIcon as Upload, CheckCircleIcon as CheckCircle, UserPlusIcon as UserPlus, ClockIcon as Clock, FileJsonIcon as FileJson } from "@/components/icons";
 
 export function CharacterView() {
   const searchParams = useSearchParams();
@@ -60,6 +59,7 @@ export function CharacterView() {
   const [importSuccess, setImportSuccess] = useState<string | null>(null);
   const [editMode, setEditMode] = useState(false);
   const [activeTab, setActiveTab] = useState<TabId>("combat");
+  const [menuOpen, setMenuOpen] = useState(false);
   const importInputRef = useRef<HTMLInputElement | null>(null);
   const jsonImportInputRef = useRef<HTMLInputElement | null>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -197,42 +197,100 @@ export function CharacterView() {
     );
   }
 
+  // Non-casters (a Champion fighter, a barbarian) get no Spells tab unless a race or feat gave them spells.
+  const canCast = !!character.spellcastingAbility || (character.spells?.length ?? 0) > 0 || (character.cantrips?.length ?? 0) > 0;
+  const shownTab: TabId = activeTab === "spells" && !canCast ? "combat" : activeTab;
+
   return (
     <div className="min-h-screen bg-paper">
       <AppHeader title="" subtitle={t("character.sheet")} editMode={editMode} onEditModeChange={setEditMode} onSave={handleSave} />
 
       <div className="sticky top-[52px] z-30 bg-paper/90 backdrop-blur-sm border-b border-border-strong">
         <div className="mx-auto max-w-lg px-4 py-2.5">
-          <SheetTabs activeTab={activeTab} onTabChange={setActiveTab} />
+          <div className="flex items-center gap-2">
+            <div className="min-w-0 flex-1">
+              <SheetTabs activeTab={shownTab} onTabChange={setActiveTab} hidden={canCast ? [] : ["spells"]} />
+            </div>
+            <div className="relative shrink-0">
+              <button
+                type="button"
+                onClick={() => setMenuOpen((v) => !v)}
+                aria-label={t("character.moreActions", "More actions")}
+                aria-expanded={menuOpen}
+                className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)]"
+              >
+                <DotsThree className="h-5 w-5" />
+              </button>
+              {menuOpen && (
+                <>
+                  <button type="button" aria-label={t("common.close", "Close")} className="fixed inset-0 z-40 cursor-default" onClick={() => setMenuOpen(false)} />
+                  <div className="absolute right-0 top-11 z-50 w-56 overflow-hidden rounded-2xl border-2 border-[var(--color-border)] bg-[var(--color-surface)] py-1 shadow-lg">
+                    {[
+                      { key: "pdf", label: exportingPdf ? t("admin.generating") : t("character.exportPdf", "Export PDF"), Icon: Export, onClick: handleExport },
+                      { key: "json", label: t("character.exportJson", "Export JSON"), Icon: FileJson, onClick: handleExportJson },
+                      { key: "ipdf", label: t("home.importPdf"), Icon: Upload, onClick: handleImportClick },
+                      { key: "ijson", label: t("home.importJson"), Icon: FileJson, onClick: handleImportJsonClick },
+                    ].map((item) => (
+                      <button
+                        key={item.key}
+                        type="button"
+                        onClick={() => {
+                          setMenuOpen(false);
+                          item.onClick();
+                        }}
+                        className="flex w-full items-center gap-2.5 px-4 py-3 text-left text-sm font-semibold text-[var(--color-text-primary)] hover:bg-[var(--color-bg)]"
+                      >
+                        <item.Icon className="h-4 w-4" />
+                        {item.label}
+                      </button>
+                    ))}
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMenuOpen(false);
+                        handleDelete();
+                      }}
+                      className="flex w-full items-center gap-2.5 border-t-2 border-[var(--color-border)] px-4 py-3 text-left text-sm font-semibold text-[var(--color-error-600)] hover:bg-[var(--color-bg)]"
+                    >
+                      <Trash className="h-4 w-4" />
+                      {t("character.delete", "Delete Character")}
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
         </div>
       </div>
 
       <CharacterSheetProvider onFieldBlur={debouncedSave}>
          <main className="mx-auto max-w-lg px-4 py-3 pb-6">
-          {activeTab === "combat" && (
+          {shownTab === "combat" && (
             <>
               <CombatStatsSection character={character} onChange={handleChange} editMode={editMode} />
+              {/* Death saves matter only at 0 HP (or while a count is still marked). */}
+              {((character.currentHp || 0) <= 0 || (character.deathSaveSuccesses || 0) > 0 || (character.deathSaveFailures || 0) > 0) && (
+                <DeathSavesSection character={character} onChange={handleChange} editMode={editMode} />
+              )}
+              <AttacksAndSpellcastingSection character={character} onChange={handleChange} editMode={editMode} />
               <StatsSection character={character} onChange={handleChange} editMode={editMode} />
               <PassiveStatsSection character={character} />
-              <DeathSavesSection character={character} onChange={handleChange} editMode={editMode} />
               <HitDiceSection character={character} onChange={handleChange} editMode={editMode} />
-              <AttacksAndSpellcastingSection character={character} onChange={handleChange} editMode={editMode} />
             </>
           )}
-          {activeTab === "features" && (
+          {shownTab === "features" && (
             <>
               <SkillsSection character={character} onChange={handleChange} editMode={editMode} />
               <FeaturesTraitsSection character={character} onChange={handleChange} editMode={editMode} />
               <OtherProficienciesSection otherProficiencies={character.otherProficiencies} toolProficiencies={character.toolProficiencies || []} onChange={(value) => handleChange({ otherProficiencies: value })} onToolsChange={(value) => handleChange({ toolProficiencies: value })} editMode={editMode} />
             </>
           )}
-          {activeTab === "gear" && (
+          {shownTab === "gear" && (
             <>
               <InventorySection character={character} onChange={handleChange} editMode={editMode} />
-              <CurrencySection character={character} onChange={handleChange} editMode={editMode} />
             </>
           )}
-          {activeTab === "spells" && (
+          {shownTab === "spells" && (
             <>
               <SpellsSection
                 character={character}
@@ -242,7 +300,7 @@ export function CharacterView() {
               <SpellcastingStatsSection character={character} onChange={handleChange} editMode={editMode} />
             </>
           )}
-          {activeTab === "bio" && (
+          {shownTab === "bio" && (
             <>
               {character.level < 20 && (
                 <div className="mb-4">
@@ -261,55 +319,6 @@ export function CharacterView() {
           )}
 
           <div className="mt-5 space-y-2.5">
-            <div className="grid grid-cols-2 gap-2">
-              <button
-                onClick={handleExport}
-                disabled={exportingPdf}
-                className="btn btn-secondary flex items-center justify-center gap-1.5 disabled:opacity-50"
-              >
-                {exportingPdf ? (
-                  <>
-                    <span className="inline-block h-3.5 w-3.5 animate-spin rounded-full border border-ink border-t-transparent" />
-                    <span className="text-xs">{t("admin.generating")}</span>
-                  </>
-                ) : (
-                  <>
-                    <Export className="h-4 w-4" />
-                    {t("character.exportPdf", "Export PDF")}
-                  </>
-                )}
-              </button>
-              <button
-                onClick={handleExportJson}
-                className="btn btn-secondary flex items-center justify-center gap-1.5"
-              >
-                <FileJson className="h-4 w-4" />
-                {t("character.exportJson", "Export JSON")}
-              </button>
-            </div>
-            <div className="grid grid-cols-2 gap-2">
-              <button
-                onClick={handleImportClick}
-                className="btn btn-secondary flex items-center justify-center gap-1.5"
-              >
-                <Upload className="h-4 w-4" />
-                {t("home.importPdf")}
-              </button>
-              <button
-                onClick={handleImportJsonClick}
-                className="btn btn-secondary flex items-center justify-center gap-1.5"
-              >
-                <FileJson className="h-4 w-4" />
-                {t("home.importJson")}
-              </button>
-            </div>
-            <button
-              onClick={handleDelete}
-              className="w-full flex items-center justify-center gap-1.5 py-2.5 text-sm font-semibold text-[var(--color-error-600)] hover:text-[var(--color-error-700)] transition-all"
-            >
-              <Trash className="h-4 w-4" />
-              {t("character.delete", "Delete Character")}
-            </button>
             {savedAt && (
               <div className="flex items-center justify-center gap-1.5 text-xs font-semibold text-[var(--color-nav-icon)] bg-[var(--color-nav-bg)] py-2 surface">
                 <CheckCircle className="h-4 w-4" />

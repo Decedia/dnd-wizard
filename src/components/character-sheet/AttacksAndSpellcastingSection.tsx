@@ -10,6 +10,8 @@ import { SwordIcon as Sword } from "@/components/icons";
 import { DamageBadge } from "./DamageBadge";
 import { ConditionBadges } from "./ConditionBadge";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { ItemIcon } from "@/components/ItemIcon";
+import { rowText } from "@/lib/inventory";
 
 interface AttacksAndSpellcastingSectionProps {
   character: Character;
@@ -19,7 +21,7 @@ interface AttacksAndSpellcastingSectionProps {
 
 export function AttacksAndSpellcastingSection({ character, onChange, editMode = true }: AttacksAndSpellcastingSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const sneakAttack = getSneakAttackDice(character);
   const classAttacks = character.attacks.filter((a) => a.source === "class");
   const weaponAttacks = character.attacks.filter((a) => a.source === "weapon");
@@ -70,7 +72,8 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
             return (
               <div key={attack.id} className="list-row">
                 <div className="flex items-center gap-3">
-                  <span className="text-base font-bold text-[var(--color-text-primary)] flex-1">{attack.name}</span>
+                  {details && <ItemIcon icon={details.weapon.icon} item={details.weapon.itemId ?? details.weapon.name} className="h-8 w-8 shrink-0" />}
+                  <span className="text-base font-bold text-[var(--color-text-primary)] flex-1">{details ? rowText(details.weapon, language).name : attack.name}</span>
                   {details && (
                     <span className="text-sm font-bold text-ink bg-paper px-3 py-1.5 surface">
                       +{details.attackBonus} to hit ({details.abilityKey.toUpperCase()})

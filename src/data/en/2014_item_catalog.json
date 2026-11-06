@@ -8031,7 +8031,7 @@
       "type": "magic",
       "category": "Potion",
       "cost": null,
-      "weight": 0,
+      "weight": 0.5,
       "magic": {
         "kind": "potion",
         "rarity": "common",

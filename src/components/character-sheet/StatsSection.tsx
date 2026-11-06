@@ -62,14 +62,10 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
         ))}
       </div>
 
-      <div className="mt-3.5 grid grid-cols-3 gap-2.5">
+      <div className="mt-3.5 grid grid-cols-2 gap-2.5">
         <div className="stat-box-light">
           <span className="text-[10px] font-semibold text-ink-muted uppercase tracking-wider">{t("stats.prof")}</span>
           <span className="text-sm font-bold text-ink">+{character.proficiencyBonus}</span>
-        </div>
-        <div className="stat-box-light">
-          <span className="text-[10px] font-semibold text-ink-muted uppercase tracking-wider">{t("stats.init")}</span>
-          <span className="text-sm font-bold text-ink">{character.initiative >= 0 ? `+${character.initiative}` : character.initiative}</span>
         </div>
         <div className="stat-box-light flex-row items-center justify-center gap-2">
           <input
@@ -85,21 +81,17 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
 
       <div className="mt-3.5">
          <span className="text-[10px] font-semibold text-ink-muted uppercase tracking-wider block mb-2">{t("stats.savingThrows")}</span>
-        <div className="space-y-1">
+        <div className="grid grid-cols-3 gap-1.5">
           {savingThrowKeys.map((key) => {
             const st = character.savingThrows[key] ?? { proficient: false, value: 0 };
-            const abilityMod = getModifier(character[key]);
             return (
-              <div key={key} className="flex items-center justify-between px-3 py-1.5 rounded bg-[var(--color-bg)] border border-[var(--color-border)]">
-                <div className="flex items-center gap-2">
-                  <input
-                    type="checkbox"
-                    checked={st.proficient}
-                    readOnly
-                    className="checkbox h-3.5 w-3.5"
+              <div key={key} className="flex items-center justify-between gap-1 px-2 py-1.5 rounded-lg bg-[var(--color-bg)] border border-[var(--color-border)]">
+                <div className="flex items-center gap-1.5">
+                  <span
+                    aria-label={st.proficient ? t("proficiency.proficient", "Proficient") : t("proficiency.notProficientPlain", "Not proficient")}
+                    className={`inline-block h-2.5 w-2.5 rounded-full border-2 border-[var(--color-ink)] ${st.proficient ? "bg-[var(--color-ink)]" : "bg-transparent"}`}
                   />
-                  <span className="text-xs font-semibold text-ink w-8">{key.toUpperCase()}</span>
-                  <span className="text-xs text-ink-muted">{abilityMod >= 0 ? `+${abilityMod}` : abilityMod}</span>
+                  <span className="text-xs font-semibold text-ink">{key.toUpperCase()}</span>
                 </div>
                 <span className="text-sm font-bold text-ink">
                   {st.value >= 0 ? `+${st.value}` : st.value}

@@ -15,7 +15,7 @@ import { Dice } from "@/components/Dice";
 import { BasePopup } from "@/components/BasePopup";
 
 interface CombatStatsSectionProps {
-  character: Pick<Character, "ac" | "currentHp" | "maxHp" | "effectiveMaxHp" | "temporaryHp" | "speed" | "baseSpeed" | "race" | "ruleset" | "isCustomHp" | "class" | "sorceryPoints" | "maxSorceryPoints" | "activeStates" | "activeBuffs" | "features" | "actionUsed" | "bonusActionUsed" | "reactionUsed" | "exhaustionLevel">;
+  character: Pick<Character, "ac" | "currentHp" | "maxHp" | "effectiveMaxHp" | "temporaryHp" | "speed" | "baseSpeed" | "race" | "ruleset" | "isCustomHp" | "class" | "sorceryPoints" | "maxSorceryPoints" | "activeStates" | "activeBuffs" | "features" | "actionUsed" | "bonusActionUsed" | "reactionUsed" | "exhaustionLevel" | "initiative" | "hitDiceRemaining" | "hitDiceTotal" | "level">;
   onChange: (patch: Partial<Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed" | "baseSpeed" | "isCustomHp" | "sorceryPoints" | "maxSorceryPoints" | "activeStates" | "activeBuffs" | "features" | "actionUsed" | "bonusActionUsed" | "reactionUsed" | "exhaustionLevel">>) => void;
   editMode?: boolean;
 }
@@ -92,6 +92,16 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
       <div className="flex items-center justify-center gap-4 mb-3">
         <ShieldStat value={character.ac} />
         <SpeedStat value={character.speed} />
+        <div className="relative flex items-center justify-center">
+          <svg viewBox="0 0 100 100" className="h-[72px] w-[72px]" aria-hidden="true">
+            <circle cx="50" cy="50" r="44" fill="var(--color-surface)" stroke="var(--color-ink)" strokeWidth="2.5" />
+            <circle cx="50" cy="50" r="36" fill="none" stroke="var(--color-border)" strokeWidth="1" />
+          </svg>
+          <div className="absolute inset-0 flex flex-col items-center justify-center">
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-ink-muted">{t("sheet.initiativeShort", "Init")}</span>
+            <span className="text-2xl font-bold text-ink">{(character.initiative ?? 0) >= 0 ? `+${character.initiative ?? 0}` : character.initiative}</span>
+          </div>
+        </div>
       </div>
 
       <div className="space-y-2.5">
@@ -112,17 +122,9 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
           </div>
         </div>
 
-        <div>
-          <div className="flex items-center justify-between mb-1.5">
-            <span className="field-label-light mb-0">Temp HP</span>
-            <span className="text-[10px] font-semibold text-ink-muted">{character.temporaryHp}</span>
-          </div>
-          <div className="progress-track" style={{ height: "12px" }}>
-            <div
-              className="progress-fill"
-              style={{ width: character.temporaryHp > 0 ? "100%" : "0%" }}
-            />
-          </div>
+        <div className="flex items-center justify-between text-[11px] font-semibold text-ink-muted">
+          <span>{t("sheet.tempHp", "Temp HP")} {character.temporaryHp || 0}</span>
+          <span>{t("sheet.hitDiceLeft", { left: character.hitDiceRemaining ?? character.level, total: character.hitDiceTotal ?? "" }, "Hit dice {left} left ({total})")}</span>
         </div>
 
         {isSorcerer && (
@@ -209,27 +211,35 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
 
       {/* Exhaustion Level Tracker */}
       <div className="mt-4 pt-3 border-t border-[var(--color-border)]">
-        <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center justify-between gap-2">
           <span className="field-label-light mb-0">{t("combat.exhaustion")}</span>
-          <span className="text-xs font-semibold text-[var(--color-text-secondary)]">
-            {t("combat.exhaustionLevel", { level: character.exhaustionLevel || 0 })}
+          <div className="flex items-center gap-2">
+          <button
+            type="button"
+            aria-label={t("combat.exhaustionDown", "Less exhaustion")}
+            disabled={(character.exhaustionLevel || 0) <= 0}
+            onClick={() => onChange({ exhaustionLevel: Math.max(0, (character.exhaustionLevel || 0) - 1) })}
+            className="btn btn-secondary h-9 w-11 disabled:opacity-40"
+          >
+            −
+          </button>
+          <span
+            className={`flex h-9 w-12 items-center justify-center rounded-full border-2 text-sm font-bold ${
+              (character.exhaustionLevel || 0) > 0 ? "border-[var(--color-error-300)] bg-[var(--color-error-100)] text-[var(--color-error-700)]" : "border-[var(--color-border)] text-ink"
+            }`}
+          >
+            {character.exhaustionLevel || 0}/6
           </span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          {[0, 1, 2, 3, 4, 5, 6].map((level) => (
-            <button
-              key={level}
-              type="button"
-              onClick={() => onChange({ exhaustionLevel: level })}
-              className={`btn flex-1 ${
-                (character.exhaustionLevel || 0) >= level && level > 0
-                  ? "bg-[var(--color-error-100)] border-[var(--color-error-300)] text-[var(--color-error-700)]"
-                  : "btn-secondary"
-              }`}
-            >
-              {level}
-            </button>
-          ))}
+          <button
+            type="button"
+            aria-label={t("combat.exhaustionUp", "More exhaustion")}
+            disabled={(character.exhaustionLevel || 0) >= 6}
+            onClick={() => onChange({ exhaustionLevel: Math.min(6, (character.exhaustionLevel || 0) + 1) })}
+            className="btn btn-secondary h-9 w-11 disabled:opacity-40"
+          >
+            +
+          </button>
+          </div>
         </div>
         {(character.exhaustionLevel || 0) > 0 && (
           <p className="text-[10px] text-[var(--color-text-muted)] mt-1.5">
