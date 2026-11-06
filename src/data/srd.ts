@@ -760,35 +760,6 @@ export const spells: SRDSpell[] = [
   { name: "Scrying", level: 5, castingTime: "10 minutes", range: "Self", duration: "Up to 10 minutes", description: "You can see and hear a particular creature you choose that is on the same plane of existence as you.", effect: "If the target is willing, the scrying succeeds automatically. If unwilling, the target can make a Wisdom saving throw to resist.", target: "1 creature on the same plane", effectSummary: "See and hear a distant creature on the same plane", fullDescription: "See and hear a particular creature you choose that is on the same plane of existence. If the target is willing, scrying succeeds automatically. If unwilling, the target makes a Wisdom saving throw to resist. The spell can be blocked by certain materials or spells. If the target is familiar with you, they have disadvantage on the saving throw. The spell lasts up to 10 minutes." }
 ];
 
-export const equipment: SRDEquipment[] = [
-  { name: "Longsword", description: "A versatile blade of moderate length, balanced for one or two-handed use. The quintessential knightly weapon, it excels at both slashing and thrusting. Damage: [dice]1d8[/dice] [damage]slashing[/damage].", type: "weapon", category: "melee", damageDice: "1d8", damageType: "slashing" },
-  { name: "Shortbow", description: "A compact bow suitable for hunting and skirmishing. Easy to handle and quick to fire, it is a reliable weapon for those who fight at range. Damage: [dice]1d6[/dice] [damage]piercing[/damage].", type: "weapon", category: "ranged", damageDice: "1d6", damageType: "piercing" },
-  { name: "Leather Armor", description: "A breastpiece and shoulder guards of hardened leather, offering light protection while allowing full mobility. Favored by scouts and rogues, it is the simplest armor that still provides meaningful defense. Base AC 11 + Dex modifier.", type: "armor", baseAC: 11, armorType: "light", maxDexBonus: null },
-  { name: "Chain Shirt", description: "A shirt of interlocking metal rings worn as a lighter alternative to chain mail. It offers decent protection while allowing greater freedom of movement, often worn under clothing or combined with other armor. Base AC 13 + Dex (max +2).", type: "armor", baseAC: 13, armorType: "medium", maxDexBonus: 2 },
-  { name: "Chain Mail", description: "Interlocking metal rings woven into a shirt that covers the torso and arms. Heavy and durable, it provides excellent protection but is noisy and requires considerable strength to wear effectively. Base AC 16, no Dex bonus.", type: "armor", baseAC: 16, armorType: "heavy", maxDexBonus: 0 },
-  { name: "Dagger", description: "A short, double-edged blade designed for stabbing and slashing. Light and concealable, it is a versatile tool in both combat and daily life. Damage: [dice]1d4[/dice] [damage]piercing[/damage].", type: "weapon", category: "melee", damageDice: "1d4", damageType: "piercing" },
-  { name: "Shortsword", description: "A light, double-edged blade of moderate length. Well-suited for quick thrusts and cuts, it is a favored sidearm among soldiers and adventurers. Damage: [dice]1d6[/dice] [damage]piercing[/damage]. Properties: Finesse, Light.", type: "weapon", category: "melee", damageDice: "1d6", damageType: "piercing" },
-  { name: "Rapier", description: "A slender, sharply pointed sword designed for thrusting. Favored by duelists and nobles, it emphasizes speed and finesse over raw power. Damage: [dice]1d8[/dice] [damage]piercing[/damage]. Property: Finesse.", type: "weapon", category: "melee", damageDice: "1d8", damageType: "piercing" },
-  { name: "Longbow", description: "A tall bow with a powerful draw, capable of sending arrows great distances with deadly accuracy. Crafted from a single piece of quality wood, it requires strength and skill to master. Damage: [dice]1d8[/dice] [damage]piercing[/damage].", type: "weapon", category: "ranged", damageDice: "1d8", damageType: "piercing" },
-  { name: "Light Crossbow", description: "A small, simple crossbow that is easy to load and fire. Popular among travelers and militia for its reliability and ease of use. Damage: [dice]1d8[/dice] [damage]piercing[/damage].", type: "weapon", category: "ranged", damageDice: "1d8", damageType: "piercing" },
-  { name: "Handaxe", description: "A small, light axe designed for one-handed use or throwing. Its balance makes it equally effective in close combat or hurled at distant targets. Damage: [dice]1d6[/dice] [damage]slashing[/damage].", type: "weapon", category: "melee", damageDice: "1d6", damageType: "slashing" },
-  { name: "Quarterstaff", description: "A length of hardened wood, typically six to eight feet long. Simple yet effective, it can be wielded as a versatile weapon or walking aid. Damage: [dice]1d6[/dice] [damage]bludgeoning[/damage].", type: "weapon", category: "melee", damageDice: "1d6", damageType: "bludgeoning" },
-  { name: "Shield", description: "A hand-held barrier of wood or metal used to block blows. Wielded in the off-hand, it provides a quick boost to defense and can be used offensively in a shield bash. +2 AC when equipped.", type: "armor", baseAC: 2, armorType: "shield" },
-  { name: "Potion of Healing", description: "You regain [dice]2d4 + 2[/dice] hit points when you drink this potion. The potion's red liquid glimmers when agitated.", type: "item" },
-  { name: "Dungeoneer's Pack", description: "Essential gear for exploring underground. Contains: backpack, crowbar, hammer, 10 pitons, 10 torches, tinderbox, 10 days of rations, waterskin, and 50 feet of hempen rope.", type: "item" },
-  { name: "Explorer's Pack", description: "A well-rounded kit for wilderness travel. Contains: backpack, bedroll, mess kit, tinderbox, 10 torches, 10 days of rations, waterskin, and 50 feet of hempen rope.", type: "item" },
-  { name: "Burglar's Pack", description: "A curated collection of gear for the aspiring rogue. Contains: backpack, bag of 1000 ball bearings, 10 feet of string, 5 bells, 5 candles, crowbar, hammer, 10 pitons, hooded lantern, 2 flasks of oil, 5 days of rations, tinderbox, waterskin, and 50 feet of hempen rope.", type: "item" },
-  { name: "Scholar's Pack", description: "A kit for the traveling academic. Contains: backpack, book of lore, bottle of ink, ink pen, 10 sheets of parchment, little bag of sand, and a small knife.", type: "item" },
-  { name: "Diplomat's Pack", description: "A collection of items for the traveling negotiator. Contains: chest, 2 map or scroll cases, set of fine clothes, bottle of ink, ink pen, lamp, 2 flasks of oil, 5 sheets of paper, perfume, sealing wax, and soap.", type: "item" },
-  { name: "Entertainer's Pack", description: "Gear for the traveling performer. Contains: backpack, bedroll, 2 sets of costumes, 5 candles, 5 days of rations, waterskin, and a disguise kit.", type: "item" },
-  { name: "Priest's Pack", description: "A collection of items for the traveling cleric. Contains: backpack, blanket, 10 candles, alms box, 2 blocks of incense, censer, vestments, 2 days of rations, waterskin, and robes.", type: "item" },
-  { name: "Component Pouch", description: "A small, watertight leather belt pouch with compartments to hold all material components and special items needed to cast spells, except for those with a specific cost.", type: "item" },
-  { name: "Arcane Focus", description: "A special item designed to channel arcane magic. A spellcaster can use a crystal, orb, rod, staff, or wand as a spellcasting focus.", type: "item" },
-  { name: "Spellbook", description: "Essential for wizards, a leather-bound tome with 100 blank vellum pages suitable for recording spells.", type: "item" },
-  { name: "Quiver", description: "A leather or fabric container designed to hold up to 20 arrows.", type: "item" },
-  { name: "Thieves' Tools", description: "This set of tools includes a small file, a set of lock picks, a small mirror mounted on a metal handle, a set of narrow-bladed scissors, and a pair of pliers. Proficiency with these tools lets you add your proficiency bonus to any ability check you make to use them.", type: "item" },
-];
-
 export const languages: SRDLanguage[] = [
   { name: "Common" },
   { name: "Dwarvish" },
@@ -829,7 +800,6 @@ export const raceNames = races.map((r) => r.name);
 export const classNames = classes.map((c) => c.name);
 export const skillNames = skills.map((s) => s.name);
 export const spellNames = spells.map((s) => s.name);
-export const equipmentNames = equipment.map((e) => e.name);
 export const languageNames = languages.map((l) => l.name);
 
 export function getRaceData(name: string): SRDRace | undefined {
@@ -846,10 +816,6 @@ export function getSkillData(name: string): SRDSkill | undefined {
 
 export function getSpellData(name: string): SRDSpell | undefined {
   return spells.find((s) => s.name === name);
-}
-
-export function getEquipmentData(name: string): SRDEquipment | undefined {
-  return equipment.find((e) => e.name === name);
 }
 
 export function getLanguageData(name: string): SRDLanguage | undefined {

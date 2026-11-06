@@ -110,10 +110,7 @@ src/
 │   ├── 2014_spells.json        # 475+ spells
 │   ├── 2014_wizard_spells.json # 240+ wizard spells
 │   ├── 2014_arcane_trickster_spells.json
-│   ├── 2014_weapon.json        # 37 weapons
-│   ├── 2014_armor.json         # 13 armors
-│   ├── 2014_equipments.json    # 237 equipment items
-│   ├── 2014_items.json         # 549 items
+│   ├── 2014_item_catalog.json  # every item: 37 weapons, 13 armor, gear, tools, packs, 5 coins, 341 magic (id/ has names + descriptions only; loader src/data/item-catalog.ts)
 │   ├── 2014_feats.json         # 127 feats
 │   ├── subclass_spells.json    # Domain/circle/oath/wizard spell grants
 │   ├── subclass_feature_choices.json

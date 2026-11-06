@@ -1,171 +1,74 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Check, Flask, Info, MagnifyingGlass, Sword, Shield, Backpack } from "@phosphor-icons/react";
+import { Check, Flask, Info, MagnifyingGlass, Sword, Shield, Backpack, Sparkle } from "@phosphor-icons/react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { getStaticEquipments, getStaticWeapons } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
 import { BottomSheet } from "@/components/modals/BottomSheet";
-import { SourceBadge } from "@/components/SourceBadge";
-import { getMagicItems, getMundaneItem, getMundaneItems } from "@/data/items";
-import { ItemInfoPanel, type ItemInfoItem } from "@/components/modals/ItemInfoPanel";
+import { getCatalog, isConsumable, weaponHandedness, type CatalogItem } from "@/data/item-catalog";
+import { expandToRows } from "@/lib/inventory";
+import { ItemInfoPanel } from "@/components/modals/ItemInfoPanel";
 
 interface ItemSelectionModalProps {
   character: Character;
-  onAdd: (item: Character["inventory"][number]) => void;
+  /** One row, or several for a pack (a pack adds each item inside it). */
+  onAdd: (rows: Character["inventory"]) => void;
   onClose: () => void;
 }
 
-type ItemCategory = "weapons" | "armor" | "consumables" | "items";
+type ItemCategory = "weapons" | "armor" | "consumables" | "items" | "magic";
+
+function categoryOf(item: CatalogItem): ItemCategory | null {
+  if (item.type === "coin") return null; // coins are set in the coin box
+  if (item.type === "weapon") return "weapons";
+  if (item.type === "armor" || item.type === "shield") return "armor";
+  if (isConsumable(item)) return "consumables";
+  if (item.type === "magic") return "magic";
+  return "items";
+}
 
 export function ItemSelectionModal({ character, onAdd, onClose }: ItemSelectionModalProps) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [activeCategory, setActiveCategory] = useState<ItemCategory>("weapons");
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
-  const [infoItem, setInfoItem] = useState<ItemInfoItem | null>(null);
+  const [infoItem, setInfoItem] = useState<CatalogItem | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
 
-  const weapons = useMemo(
-    () => sortBySource(getStaticWeapons(character.sources ?? [])),
-    [character.sources],
-  );
+  const sources = character.sources ?? [];
+  const byCategory = useMemo(() => {
+    const groups: Record<ItemCategory, CatalogItem[]> = { weapons: [], armor: [], consumables: [], items: [], magic: [] };
+    for (const item of getCatalog(language)) {
+      const cat = categoryOf(item);
+      if (!cat) continue;
+      // Magic items are DMG; show them even when DMG is not ticked, the GM hands them out.
+      if (sources.length > 0 && !item.magic && !sources.includes(item.source)) continue;
+      groups[cat].push(item);
+    }
+    for (const list of Object.values(groups)) list.sort((a, b) => a.name.localeCompare(b.name));
+    return groups;
+  }, [language, sources]);
 
-  const armors = useMemo(
-    () =>
-      sortBySource(
-        getStaticEquipments(character.sources ?? []).filter((e) =>
-          ["Light", "Medium", "Heavy", "Shield"].includes(e.armor_category ?? ""),
-        ),
-      ),
-    [character.sources],
-  );
+  const categories: { key: ItemCategory; labelKey: string; fallback: string; Icon: typeof Sword }[] = [
+    { key: "weapons", labelKey: "items.cat.weapons", fallback: "Weapons", Icon: Sword },
+    { key: "armor", labelKey: "items.cat.armor", fallback: "Armor", Icon: Shield },
+    { key: "consumables", labelKey: "items.cat.consumables", fallback: "Consumables", Icon: Flask },
+    { key: "items", labelKey: "items.cat.items", fallback: "Gear", Icon: Backpack },
+    { key: "magic", labelKey: "items.cat.magic", fallback: "Magic", Icon: Sparkle },
+  ];
 
-  const items = useMemo(
-    () =>
-      sortBySource(
-        getStaticEquipments(character.sources ?? []).filter((e) => {
-          const cat = e.equipment_category?.toLowerCase() || "";
-          return (
-            !cat.includes("weapon") &&
-            !cat.includes("armor") &&
-            !cat.includes("shield") &&
-            !cat.includes("adventuring")
-          );
-        }),
-      ),
-    [character.sources],
-  );
-
-  const consumables = useMemo(
-    () => [
-      ...getMundaneItems("consumable"),
-      ...getMagicItems().filter((m) => m.type === "consumable"),
-    ],
-    [],
-  );
-
-  const magicInfo = (name: string) => {
-    const record = getMundaneItem(name);
-    return record && "rarity" in record
-      ? (record as { rarity: string; attunement: boolean })
-      : null;
-  };
-
-  const categories: { key: ItemCategory; labelKey: string; fallback: string; Icon: typeof Sword }[] =
-    [
-      { key: "weapons", labelKey: "items.cat.weapons", fallback: "Senjata", Icon: Sword },
-      { key: "armor", labelKey: "items.cat.armor", fallback: "Armor", Icon: Shield },
-      { key: "consumables", labelKey: "items.cat.consumables", fallback: "Habispakai", Icon: Flask },
-      { key: "items", labelKey: "items.cat.items", fallback: "Barang", Icon: Backpack },
-    ];
-
-  const currentItems =
-    activeCategory === "weapons"
-      ? weapons
-      : activeCategory === "armor"
-        ? armors
-        : activeCategory === "consumables"
-          ? consumables
-          : items;
+  const currentItems = byCategory[activeCategory];
 
   const filteredItems = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();
     if (!q) return currentItems;
     return currentItems.filter(
-      (item: any) =>
-        item.name.toLowerCase().includes(q) || (item.description || "").toLowerCase().includes(q),
+      (item) => item.name.toLowerCase().includes(q) || item.description.toLowerCase().includes(q),
     );
   }, [currentItems, searchQuery]);
 
-  const buildInventoryItem = (name: string): Character["inventory"][number] => {
-    if (activeCategory === "weapons") {
-      const w = weapons.find((x) => x.name === name)!;
-      return {
-        id: generateId(),
-        name: w.name,
-        quantity: 1,
-        equipped: false,
-        source: "srd",
-        srdItemName: w.name,
-        itemType: "weapon",
-        damageDice: w.damage?.damage_dice || "",
-        damageType: w.damage?.damage_type?.name || "",
-        category: w.category_range?.toLowerCase() === "melee" ? "melee" : "ranged",
-        description: w.description || "",
-        properties: (w.properties || []).map((p: any) => (p.name || "").toLowerCase()),
-      };
-    }
-    if (activeCategory === "armor") {
-      const a = armors.find((x) => x.name === name)!;
-      return {
-        id: generateId(),
-        name: a.name,
-        quantity: 1,
-        equipped: false,
-        source: "srd",
-        srdItemName: a.name,
-        itemType: "armor",
-        armorType: armorTypeOf(a.armor_category),
-        baseAC: a.armor_class?.base,
-        maxDexBonus: a.armor_class?.max_bonus ?? (a.armor_class?.dex_bonus ? null : 0),
-        stealthDisadvantage: !!a.stealth_disadvantage,
-        strengthRequirement: a.str_minimum ?? 0,
-        description: a.description || "",
-      };
-    }
-    if (activeCategory === "consumables") {
-      const c = consumables.find((x) => x.name === name)!;
-      const magic = magicInfo(c.name);
-      return {
-        id: generateId(),
-        name: c.name,
-        quantity: 1,
-        equipped: false,
-        source: "srd",
-        srdItemName: c.name,
-        itemType: "consumable",
-        rarity: magic?.rarity,
-        attunement: magic?.attunement ?? false,
-        effect: c.description,
-        description: c.description,
-      };
-    }
-    const i = items.find((x) => x.name === name)!;
-    return {
-      id: generateId(),
-      name: i.name,
-      quantity: 1,
-      equipped: false,
-      source: "srd",
-      srdItemName: i.name,
-      itemType: "item",
-      description: i.description || "",
-    };
-  };
-
   const handleAdd = () => {
     if (!selectedItem) return;
-    onAdd(buildInventoryItem(selectedItem));
+    onAdd(expandToRows(selectedItem, 1));
     setSelectedItem(null);
   };
 
@@ -203,7 +106,7 @@ export function ItemSelectionModal({ character, onAdd, onClose }: ItemSelectionM
     >
       {infoItem ? (
         <div className="flex-1 overflow-y-auto overscroll-contain p-4">
-          <ItemInfoPanel item={infoItem} t={t} />
+          <ItemInfoPanel item={infoItem} />
         </div>
       ) : (
         <div className="flex flex-1 flex-col overflow-hidden">
@@ -251,12 +154,11 @@ export function ItemSelectionModal({ character, onAdd, onClose }: ItemSelectionM
             )}
 
             <div className="space-y-3">
-              {filteredItems.map((item: any) => {
-                const isSelected = selectedItem === item.name;
-                const magic = magicInfo(item.name);
+              {filteredItems.map((item) => {
+                const isSelected = selectedItem === item.id;
                 return (
                   <div
-                    key={item.name}
+                    key={item.id}
                     className={`flex flex-row overflow-hidden rounded-2xl border-2 transition-all ${
                       isSelected
                         ? "border-ink bg-ink/5 shadow-sm"
@@ -265,12 +167,12 @@ export function ItemSelectionModal({ character, onAdd, onClose }: ItemSelectionM
                   >
                     <button
                       type="button"
-                      onClick={() => setSelectedItem(item.name)}
+                      onClick={() => setSelectedItem(item.id)}
                       className="flex flex-1 items-center justify-between p-4 text-left transition active:scale-[0.99]"
                     >
                       <div className="min-w-0 flex-1">
                         <h3 className="text-lg font-bold text-ink">{item.name}</h3>
-                        <ItemFacts item={item} magic={magic} />
+                        <ItemFacts item={item} />
                       </div>
                       {isSelected && <Check className="ml-2 h-5 w-5 shrink-0 text-ink" />}
                     </button>
@@ -293,45 +195,19 @@ export function ItemSelectionModal({ character, onAdd, onClose }: ItemSelectionM
   );
 }
 
-function ItemFacts({ item, magic }: { item: any; magic: { rarity: string; attunement: boolean } | null }) {
+function ItemFacts({ item }: { item: CatalogItem }) {
   const { t } = useLanguage();
   const facts: string[] = [];
-  if (item.damage?.damage_dice) {
-    facts.push(
-      `${item.damage.damage_dice}${item.damage.type ? ` ${item.damage.type.toLowerCase()}` : ""}`.trim(),
-    );
-  }
-  if (item.armor_class?.base) facts.push(`AC ${item.armor_class.base}`);
-  if (item.handedness) facts.push(t(`items.handedness.${item.handedness}`, item.handedness));
-  if (item.range) facts.push(t(`items.range.${item.range}`, item.range));
-  if (item.training) facts.push(t(`items.training.${item.training}`, item.training));
-  if (magic?.rarity) facts.push(t(`items.rarity.${magic.rarity}`, magic.rarity));
+  const w = item.weapon;
+  if (w?.damage) facts.push(`${w.damage.dice} ${w.damage.type.toLowerCase()}`);
+  if (item.armor) facts.push(item.armor.class === "shield" ? `AC +${item.armor.ac}` : `AC ${item.armor.ac}`);
+  const handedness = weaponHandedness(item);
+  if (handedness) facts.push(t(`item.handedness.${handedness}`, handedness));
+  if (w) facts.push(t(`item.range.${w.range}`, w.range), t(`item.training.${w.class}`, w.class));
+  if (!w && !item.armor) facts.push(item.category);
+  if (item.magic) facts.push(t(`items.rarity.${item.magic.rarity === "very rare" ? "veryRare" : item.magic.rarity}`, item.magic.rarity));
+  if (item.type === "pack" && item.contents) facts.push(t("item.packCount", { count: item.contents.length }, "{count} items inside"));
 
   if (facts.length === 0) return null;
   return <p className="mt-1 text-[11px] font-medium leading-relaxed text-ink-muted">{facts.join(" · ")}</p>;
-}
-
-function armorTypeOf(category: string | undefined): Character["inventory"][number]["armorType"] {
-  const value = (category || "").toLowerCase();
-  return value === "light" || value === "medium" || value === "heavy" || value === "shield"
-    ? value
-    : undefined;
-}
-
-function sortBySource<T extends { source?: string; name: string }>(items: T[]): T[] {
-  return [...items].sort((a, b) => {
-    const sa = a.source || "PHB";
-    const sb = b.source || "PHB";
-    if (sa !== sb) {
-      if (sa === "PHB") return -1;
-      if (sb === "PHB") return 1;
-      return sa.localeCompare(sb);
-    }
-    return a.name.localeCompare(b.name);
-  });
-}
-
-let idCounter = 0;
-function generateId(): string {
-  return `item-${Date.now()}-${idCounter++}`;
 }

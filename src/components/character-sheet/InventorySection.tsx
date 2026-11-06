@@ -24,6 +24,8 @@ import { CustomItemModal } from "../modals/CustomItemModal";
 import { Dice } from "@/components/Dice";
 import { SourceBadge } from "@/components/SourceBadge";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { addRows, applyItemUse, coinsFromInventory, getRowUse, rowInfo } from "@/lib/inventory";
+import { findLocalizedItem } from "@/data/item-catalog";
 import {
   CurrencyRow,
   CategoryFilter,
@@ -89,13 +91,14 @@ function canEquipItemCheck(item: Character["inventory"][number]): boolean {
 
 export function InventorySection({ character, onChange, editMode = true }: InventorySectionProps) {
   const { onFieldBlur } = useCharacterSheet();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const derived = useDerivedStats(character);
   const rageDamage = derived.rageDamage || 0;
   const isBarbarian = character.class === "Barbarian";
   const [showItemPopup, setShowItemPopup] = useState(false);
 
   const hands = getEquippedHands(character.inventory);
+  const coins = coinsFromInventory(character.inventory);
   const hasTwoHanded = hands.both !== null;
   const hasShield = character.inventory.some((i) => i.equipped && i.itemType === "armor" && i.armorType === "shield");
   const hasMainHand = hands.main !== null;
@@ -289,10 +292,14 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
   }, []);
 
   const handleReplaceItem = useCallback(
-    (oldId: string, newItem: Character["inventory"][number]) => {
-      const nextInventory = character.inventory.map((item) =>
-        item.id === oldId ? { ...newItem, id: item.id } : item
-      );
+    (oldId: string, rows: Character["inventory"]) => {
+      const index = character.inventory.findIndex((item) => item.id === oldId);
+      const rest = character.inventory.filter((item) => item.id !== oldId);
+      // A single item keeps its place in the list; a pack's items go at the end.
+      const nextInventory =
+        rows.length === 1 && index >= 0
+          ? [...rest.slice(0, index), { ...rows[0], id: oldId }, ...rest.slice(index)]
+          : addRows(rest, rows);
       const { ac, attacks } = computeEquippedEffects({ ...character, inventory: nextInventory });
       onChange({ inventory: nextInventory, ac, attacks });
       setEditingItemId(null);
@@ -301,12 +308,42 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
   );
 
   const handleAddItem = useCallback(
-    (item: Character["inventory"][number]) => {
-      const { ac, attacks } = computeEquippedEffects({ ...character, inventory: [...character.inventory, item] });
-      onChange({ inventory: [...character.inventory, item], ac, attacks });
+    (rows: Character["inventory"]) => {
+      const nextInventory = addRows(character.inventory, rows);
+      const { ac, attacks } = computeEquippedEffects({ ...character, inventory: nextInventory });
+      onChange({ inventory: nextInventory, ac, attacks });
       setShowItemPopup(false);
     },
     [character, onChange]
+  );
+
+  const [useMessage, setUseMessage] = useState<string | null>(null);
+
+  const handleUse = useCallback(
+    (rowId: string) => {
+      const row = character.inventory.find((i) => i.id === rowId);
+      const outcome = applyItemUse(character, rowId);
+      if (!row || !outcome) return;
+      const nextInventory = outcome.patch.inventory ?? character.inventory;
+      const { ac, attacks } = computeEquippedEffects({ ...character, inventory: nextInventory });
+      onChange({ ...outcome.patch, ac, attacks });
+      const { result } = outcome;
+      if (result.kind === "heal") {
+        setUseMessage(t("inventory.useHealed", { item: row.name, rolled: result.rolled, healed: result.healed }, "{item}: rolled {rolled}, regained {healed} HP."));
+      } else if (result.kind === "open") {
+        const list = result.taken
+          .map((s) => {
+            const taken = findLocalizedItem(s.id, language);
+            return taken?.type === "coin" ? `${s.quantity} ${s.id}` : `${s.quantity} ${taken?.name ?? s.id}`;
+          })
+          .join(", ");
+        setUseMessage(t("inventory.useOpened", { item: row.name, list }, "Took out of {item}: {list}."));
+      } else {
+        setUseMessage(t("inventory.useConsumed", { item: row.name, left: result.usesLeft ?? 0 }, "Used {item}. {left} left."));
+      }
+      if (!nextInventory.some((i) => i.id === rowId)) setSelectedSlotId(null);
+    },
+    [character, onChange, t, language]
   );
 
   const removeItem = useCallback(
@@ -320,7 +357,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
   );
 
   const getItemDescription = (item: Character["inventory"][number]): string => {
-    const itemInfo = item.description ? JSON.parse(item.description) : null;
+    const itemInfo = rowInfo(item);
     const parts: string[] = [];
 
     if (item.itemType === "weapon") {
@@ -386,7 +423,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
       items = items.filter((item) => {
         if (activeInventoryTab === "weapons") return item.itemType === "weapon";
         if (activeInventoryTab === "armor") return item.itemType === "armor";
-        if (activeInventoryTab === "items") return item.itemType === "item";
+        if (activeInventoryTab === "items") return item.itemType !== "weapon" && item.itemType !== "armor";
         return true;
       });
     }
@@ -398,14 +435,14 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
     for (const item of sortedInventory) {
       if (item.itemType === "weapon") counts.weapons++;
       else if (item.itemType === "armor") counts.armor++;
-      else if (item.itemType === "item") counts.items++;
+      else counts.items++;
     }
     return counts;
   }, [sortedInventory]);
 
   const mapToSlotData = useCallback(
     (item: Character["inventory"][number]): ItemSlotData => {
-      const itemInfo = item.description ? JSON.parse(item.description) : null;
+      const itemInfo = rowInfo(item);
       return {
         id: item.id,
         name: item.name || "Unnamed Item",
@@ -495,12 +532,13 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
           </span>
         </div>
 
+        {/* Coin totals come from the coin rows below. */}
         <CurrencyRow
-          copper={character.currency?.copper || 0}
-          silver={character.currency?.silver || 0}
-          electrum={character.currency?.electrum || 0}
-          gold={character.currency?.gold || 0}
-          platinum={character.currency?.platinum || 0}
+          copper={coins.copper}
+          silver={coins.silver}
+          electrum={coins.electrum}
+          gold={coins.gold}
+          platinum={coins.platinum}
         />
 
         <CategoryFilter
@@ -541,7 +579,18 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
           selectedItemId={selectedSlotId}
           onEquipToggle={handleEquipToggle}
           canEquip={canEquipItem}
+          canUse={(slot) => {
+            const original = character.inventory.find((i) => i.id === slot.id);
+            return original ? getRowUse(original) : null;
+          }}
+          onUse={(slot) => handleUse(slot.id)}
         />
+
+        {useMessage && (
+          <p role="status" className="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2 text-xs text-[var(--color-text-secondary)]">
+            {useMessage}
+          </p>
+        )}
 
         {editMode && (
           <div className="mt-4 flex gap-2">

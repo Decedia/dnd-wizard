@@ -3,6 +3,7 @@ import { LANGUAGE_NAMES } from "@/data/feat-options";
 import { applyFeatGrants, decodeFeatOptions } from "./feat-grants";
 import { getRaceAsi, getRaceSkills, isFlexAsiValid } from "./race-grants";
 import { engineIdFor } from "@/lib/feature-engine";
+import { addRows, backgroundGearRows } from "./inventory";
 import { activeRaceChoices, getStaticClass, getStaticRace, getStaticRaceDetails, getStaticSubclasses, getStaticEquipments, getStaticWeapons, getStaticArmors, getStaticItems, getStaticFeat, getStaticSpells } from "./srd-client";
 import { getGrantedSpellNames, grantSpells } from "./granted-spells";
 import type { CreationStep } from "./creation-types";
@@ -1622,6 +1623,8 @@ export function recreateCharacter(character: Character, language = "en"): Charac
     inventory: [...(character.inventory ?? [])],
     appearance: { ...(fresh.appearance ?? {}), ...(character.appearance ?? {}) },
     currency: { ...fresh.currency, ...(character.currency ?? {}) },
+    // Not yet moved into coin rows? Keep the flag off so loading moves them.
+    coinsInInventory: character.coinsInInventory ?? false,
     inspiration: character.inspiration ?? false,
   };
 
@@ -1722,17 +1725,8 @@ export function applyBackground(data: Character, newBackground: string): Partial
     // so the picker can be reopened without stacking grants.
     const oldBg = getBackgroundData(data.background);
     const newSkills = { ...data.skills };
-    let baseInventory = data.inventory;
     if (oldBg && oldBg.name !== bgData.name) {
       for (const skill of oldBg.skillProficiencies) delete newSkills[skill];
-      const oldItems = [...oldBg.equipment];
-      baseInventory = data.inventory.filter((item) => {
-        if (item.source !== "custom" || !item.isGranted) return true;
-        const idx = oldItems.indexOf(item.name);
-        if (idx === -1) return true;
-        oldItems.splice(idx, 1);
-        return false;
-      });
     }
     for (const skill of bgData.skillProficiencies) {
       newSkills[skill] = true;
@@ -1741,16 +1735,10 @@ export function applyBackground(data: Character, newBackground: string): Partial
 
     patch.toolProficiencies = bgData.toolProficiencies;
 
-    const newInventory = [...baseInventory];
-    for (const itemName of bgData.equipment) {
-      newInventory.push({
-        id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
-        name: itemName,
-        quantity: 1,
-        equipped: false,
-        source: "custom",
-        isGranted: true,
-      });
+    // Drop whatever an earlier background gave, then add this one's gear.
+    let newInventory = withoutBackgroundGear(data.inventory);
+    for (const line of bgData.equipment) {
+      newInventory = addRows(newInventory, backgroundGearRows(line, `background:${bgData.name}`));
     }
     patch.inventory = newInventory;
   } else {
@@ -1765,7 +1753,12 @@ export function applyBackground(data: Character, newBackground: string): Partial
     }
     patch.skills = newSkills;
     patch.toolProficiencies = [];
+    patch.inventory = withoutBackgroundGear(data.inventory);
   }
 
   return patch;
+}
+
+function withoutBackgroundGear(inventory: Character["inventory"]): Character["inventory"] {
+  return inventory.filter((item) => !item.grantedFrom?.startsWith("background:"));
 }

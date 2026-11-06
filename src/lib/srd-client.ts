@@ -24,21 +24,10 @@ import spellLocalesEn from "@/locales/parts/en/2014_spells.json";
 import spellLocalesId from "@/locales/parts/id/2014_spells.json";
 const spellLocalesMap = { en: spellLocalesEn, id: spellLocalesId } as const;
 
-import weaponsDataEn from "@/data/en/2014_weapon.json";
-import weaponsDataId from "@/data/id/2014_weapon.json";
-const weaponsDataMap = { en: weaponsDataEn, id: weaponsDataId } as const;
 
-import armorsDataEn from "@/data/en/2014_armor.json";
-import armorsDataId from "@/data/id/2014_armor.json";
-const armorsDataMap = { en: armorsDataEn, id: armorsDataId } as const;
 
-import itemsDataEn from "@/data/en/2014_items.json";
-import itemsDataId from "@/data/id/2014_items.json";
-const itemsDataMap = { en: itemsDataEn, id: itemsDataId } as const;
 
-import equipmentsDataEn from "@/data/en/2014_equipments.json";
-import equipmentsDataId from "@/data/id/2014_equipments.json";
-const equipmentsDataMap = { en: equipmentsDataEn, id: equipmentsDataId } as const;
+import { findLocalizedItem, getCatalog, weaponPropertyText, type CatalogItem } from "@/data/item-catalog";
 
 
 
@@ -47,7 +36,6 @@ import featsDataId from "@/data/id/2014_feats.json";
 const featsDataMap = { en: featsDataEn, id: featsDataId } as const;
 
 import subclassSpellsData from "@/data/subclass_spells.json";
-import { equipment as srdEquipment } from "@/data/srd";
 
 import races2024DataEn from "@/data/en/2024_phb.json";
 import races2024DataId from "@/data/id/2024_phb.json";
@@ -325,27 +313,9 @@ function pickLocaleData<T>(map: Record<string, T>, locale: string): T {
 }
 
 function getAllEquipment(): SRDEquipment[] {
-  return getStaticEquipments().map((detail) => {
-    const contents = detail.contents;
-    const contentsStr = Array.isArray(contents)
-      ? contents.map((c: any) => c.item?.name || c.name).filter(Boolean).join(", ")
-      : typeof contents === "string"
-        ? contents
-        : undefined;
-    const fallback = srdEquipment.find((e) => e.name === detail.name);
-    return {
-      name: detail.name,
-      description: detail.description || fallback?.description || "",
-      type: mapEquipmentCategory(detail.equipment_category),
-      category: mapWeaponCategory(detail.category_range),
-      damageDice: detail.damage?.damage_dice,
-      damageType: detail.damage?.damage_type?.name,
-      baseAC: detail.armor_class?.base,
-      armorType: mapArmorType(detail.armor_category || ""),
-      maxDexBonus: detail.armor_class?.max_bonus ?? (detail.armor_class?.dex_bonus ? null : 0),
-      contents: contentsStr,
-    };
-  });
+  return getCatalog()
+    .filter((i) => i.type !== "magic" && i.type !== "coin")
+    .map((i) => toSRDEquipment(i));
 }
 
 function getAllLanguages(): SRDLanguage[] {
@@ -667,110 +637,163 @@ export function getCachedSRDData(): SRDData | null {
   return null;
 }
 
-export function getStaticWeapons(sources?: string[], ruleset?: string, locale: string = "en"): SRDWeapon[] {
-  const weaponsData = pickLocaleData(weaponsDataMap, locale) as any;
-  const weapons = weaponsData.weapons as SRDWeapon[];
-  let filtered = weapons;
-  if (ruleset) {
-    filtered = filtered.filter((w) => (w as any).ruleset === ruleset || (!(w as any).ruleset && ruleset === "2014"));
+// Weapons, armor and gear all come from the one item catalog (src/data/item-catalog.ts).
+// These adapters keep the older SRD-shaped records the pickers read.
+
+function titleCase(value: string): string {
+  return value.charAt(0).toUpperCase() + value.slice(1);
+}
+
+function damageRef(dice: string, type: string) {
+  return { damage_dice: dice, damage_type: { index: type.toLowerCase(), name: type } };
+}
+
+function toSRDWeapon(i: CatalogItem, locale: string = "en"): SRDWeapon {
+  const w = i.weapon!;
+  return {
+    index: i.id,
+    name: i.name,
+    equipment_category: "Weapon",
+    description: i.description,
+    cost: i.cost ?? { quantity: 0, unit: "gp" },
+    weight: i.weight,
+    weapon_category: titleCase(w.class),
+    category_range: titleCase(w.range),
+    damage: w.damage ? damageRef(w.damage.dice, w.damage.type) : undefined,
+    two_handed_damage: w.versatile && w.damage ? damageRef(w.versatile, w.damage.type) : undefined,
+    properties: w.properties.map((name) => ({ index: name.toLowerCase().replace(/\s+/g, "-"), name, desc: weaponPropertyText(name, locale) })),
+    range: w.rangeFt,
+    throw_range: w.throwFt,
+    special: w.special ?? "",
+    source: i.source,
+  };
+}
+
+function toSRDArmor(i: CatalogItem): SRDArmor {
+  const a = i.armor!;
+  return {
+    index: i.id,
+    name: i.name,
+    equipment_category: "Armor",
+    description: i.description,
+    cost: i.cost ?? { quantity: 0, unit: "gp" },
+    weight: i.weight,
+    armor_category: titleCase(a.class),
+    armor_class: a.dexCap === 0 ? { base: a.ac, dex_bonus: false } : a.dexCap === null ? { base: a.ac, dex_bonus: true } : { base: a.ac, dex_bonus: true, max_bonus: a.dexCap },
+    str_minimum: a.strMin,
+    stealth_disadvantage: a.stealthDisadvantage,
+    source: i.source,
+  };
+}
+
+const EQUIPMENT_CATEGORY: Record<CatalogItem["type"], string> = {
+  weapon: "Weapon",
+  armor: "Armor",
+  shield: "Armor",
+  ammo: "Adventuring Gear",
+  gear: "Adventuring Gear",
+  container: "Adventuring Gear",
+  consumable: "Adventuring Gear",
+  pack: "Adventuring Gear",
+  tool: "Tools",
+  mount: "Mounts and Vehicles",
+  vehicle: "Mounts and Vehicles",
+  coin: "Coins",
+  magic: "Magic Items",
+};
+
+function toSRDEquipmentDetail(i: CatalogItem): SRDEquipmentDetail {
+  const base: SRDEquipmentDetail = {
+    index: i.id,
+    name: i.name,
+    equipment_category: i.type === "tool" && i.category === "Kits" ? "Adventuring Gear" : EQUIPMENT_CATEGORY[i.type],
+    description: i.description,
+    cost: i.cost ?? { quantity: 0, unit: "gp" },
+    weight: i.weight,
+    contents: i.contents?.map((c) => ({ item: { index: c.id, name: findLocalizedItem(c.id)?.name ?? c.id }, quantity: c.quantity })) ?? [],
+    source: i.source,
+  };
+  if (i.weapon) {
+    const w = toSRDWeapon(i);
+    Object.assign(base, { weapon_category: w.weapon_category, category_range: w.category_range, damage: w.damage, two_handed_damage: w.two_handed_damage, properties: w.properties, throw_range: w.throw_range });
   }
-  if (!sources || sources.length === 0) return filtered;
-  return filtered.filter((w) => sources.includes(w.source || "PHB"));
+  if (i.armor) {
+    const a = toSRDArmor(i);
+    Object.assign(base, { armor_category: a.armor_category, armor_class: a.armor_class, str_minimum: a.str_minimum, stealth_disadvantage: a.stealth_disadvantage });
+  }
+  return base;
+}
+
+function toSRDEquipment(i: CatalogItem): SRDEquipment {
+  return {
+    name: i.name,
+    description: i.description,
+    type: i.weapon ? "weapon" : i.armor ? "armor" : "item",
+    category: i.weapon?.range,
+    damageDice: i.weapon?.damage?.dice,
+    damageType: i.weapon?.damage?.type,
+    baseAC: i.armor?.ac,
+    armorType: i.armor?.class,
+    maxDexBonus: i.armor ? i.armor.dexCap : undefined,
+    contents: i.contents
+      ? i.contents.map((c) => `${c.quantity > 1 ? `${c.quantity} ` : ""}${findLocalizedItem(c.id)?.name ?? c.id}`).join(", ")
+      : undefined,
+  };
+}
+
+function bySources<T extends { source?: string }>(list: T[], sources?: string[]): T[] {
+  if (!sources || sources.length === 0) return list;
+  return list.filter((x) => sources.includes(x.source || "PHB"));
+}
+
+// The catalog is 2014 data only; a 2024 ruleset gets the same items.
+export function getStaticWeapons(sources?: string[], _ruleset?: string, locale: string = "en"): SRDWeapon[] {
+  return bySources(getCatalog(locale).filter((i) => i.weapon).map((i) => toSRDWeapon(i, locale)), sources);
 }
 
 export function getStaticWeapon(name: string, ruleset?: string, locale: string = "en"): SRDWeapon | undefined {
   return getStaticWeapons([], ruleset, locale).find((w) => w.name === name);
 }
 
-export function getStaticArmors(sources?: string[], ruleset?: string, locale: string = "en"): SRDArmor[] {
-  const armorsData = pickLocaleData(armorsDataMap, locale) as any;
-  const armors = armorsData.armors as SRDArmor[];
-  let filtered = armors;
-  if (ruleset) {
-    filtered = filtered.filter((a) => (a as any).ruleset === ruleset || (!(a as any).ruleset && ruleset === "2014"));
-  }
-  if (!sources || sources.length === 0) return filtered;
-  return filtered.filter((a) => sources.includes(a.source || "PHB"));
+export function getStaticArmors(sources?: string[], _ruleset?: string, locale: string = "en"): SRDArmor[] {
+  return bySources(getCatalog(locale).filter((i) => i.armor).map(toSRDArmor), sources);
 }
 
 export function getStaticArmor(name: string, ruleset?: string, locale: string = "en"): SRDArmor | undefined {
   return getStaticArmors([], ruleset, locale).find((a) => a.name === name);
 }
 
-export function getStaticItems(sources?: string[], ruleset?: string, locale: string = "en"): SRDItem[] {
-  const itemsData = pickLocaleData(itemsDataMap, locale) as any;
-  const items = itemsData.items as SRDItem[];
-  let filtered = items;
-  if (ruleset) {
-    filtered = filtered.filter((i) => (i as any).ruleset === ruleset || (!(i as any).ruleset && ruleset === "2014"));
-  }
-  if (!sources || sources.length === 0) return filtered;
-  return filtered.filter((i) => sources.includes(i.source || "PHB"));
+/** Every item in the catalog except coins, magic items included. */
+export function getStaticItems(sources?: string[], _ruleset?: string, locale: string = "en"): SRDItem[] {
+  return bySources(
+    getCatalog(locale)
+      .filter((i) => i.type !== "coin")
+      .map((i) => ({ index: i.id, name: i.name, equipment_category: i.magic ? i.category : EQUIPMENT_CATEGORY[i.type], description: i.description, cost: i.cost ?? { quantity: 0, unit: "gp" }, weight: i.weight, source: i.source })),
+    sources,
+  );
 }
 
 export function getStaticItem(name: string, ruleset?: string, locale: string = "en"): SRDItem | undefined {
   return getStaticItems([], ruleset, locale).find((i) => i.name === name);
 }
 
-export function getStaticEquipments(sources?: string[], ruleset?: string, locale: string = "en"): SRDEquipmentDetail[] {
-  const equipmentsData = pickLocaleData(equipmentsDataMap, locale) as any;
-  const equipments = equipmentsData.equipments as SRDEquipmentDetail[];
-  let filtered = equipments;
-  if (ruleset) {
-    filtered = filtered.filter((e) => (e as any).ruleset === ruleset || (!(e as any).ruleset && ruleset === "2014"));
-  }
-  if (!sources || sources.length === 0) return filtered;
-  return filtered.filter((e) => sources.includes(e.source || "PHB"));
+/** Mundane equipment (weapons, armor, gear, tools, packs, mounts). No magic items or coins. */
+export function getStaticEquipments(sources?: string[], _ruleset?: string, locale: string = "en"): SRDEquipmentDetail[] {
+  return bySources(
+    getCatalog(locale)
+      .filter((i) => i.type !== "magic" && i.type !== "coin")
+      .map(toSRDEquipmentDetail),
+    sources,
+  );
 }
 
 export function getStaticEquipment(name: string, ruleset?: string, locale: string = "en"): SRDEquipmentDetail | undefined {
   return getStaticEquipments([], ruleset, locale).find((e) => e.name === name);
 }
 
-function mapEquipmentCategory(category: string): "weapon" | "armor" | "item" {
-  const lower = category.toLowerCase();
-  if (lower === "weapon") return "weapon";
-  if (lower === "armor") return "armor";
-  return "item";
-}
-
-function mapArmorType(category: string): "light" | "medium" | "heavy" | "shield" | undefined {
-  if (category === "Light") return "light";
-  if (category === "Medium") return "medium";
-  if (category === "Heavy") return "heavy";
-  if (category === "Shield") return "shield";
-  return undefined;
-}
-
-function mapWeaponCategory(range: string | undefined): "melee" | "ranged" | undefined {
-  if (!range) return undefined;
-  if (range.includes("Melee")) return "melee";
-  if (range.includes("Ranged")) return "ranged";
-  return undefined;
-}
-
 export function getEquipmentData(name: string, locale: string = "en"): SRDEquipment | undefined {
-  const detail = getStaticEquipment(name, undefined, locale);
-  if (!detail) return undefined;
-  const contents = detail.contents;
-  const contentsStr = Array.isArray(contents)
-    ? contents.map((c: any) => c.item?.name || c.name).filter(Boolean).join(", ")
-    : typeof contents === "string"
-      ? contents
-      : undefined;
-  const fallback = srdEquipment.find((e) => e.name === name);
-  return {
-    name: detail.name,
-    description: detail.description || fallback?.description || "",
-    type: mapEquipmentCategory(detail.equipment_category),
-    category: mapWeaponCategory(detail.category_range),
-    damageDice: detail.damage?.damage_dice,
-    damageType: detail.damage?.damage_type?.name,
-    baseAC: detail.armor_class?.base,
-    armorType: mapArmorType(detail.armor_category || ""),
-    maxDexBonus: detail.armor_class?.max_bonus ?? (detail.armor_class?.dex_bonus ? null : 0),
-    contents: contentsStr,
-  };
+  const item = findLocalizedItem(name, locale);
+  return item && item.type !== "coin" ? toSRDEquipment(item) : undefined;
 }
 
 export function getEquipmentNames(sources?: string[], locale: string = "en"): string[] {

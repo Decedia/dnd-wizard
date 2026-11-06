@@ -1,6 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
+
+export type ItemUseAction = "heal" | "open" | "consume" | null;
 
 const CURRENCY_COLORS: Record<string, string> = {
   CP: "#b87333",
@@ -175,10 +177,15 @@ export interface ItemDetailPanelProps {
   onRemove?: (item: ItemSlotData) => void;
   visible: boolean;
   canEquip: (item: ItemSlotData) => boolean;
+  /** What "Use" does for this item, or null when it cannot be used. */
+  canUse?: (item: ItemSlotData) => ItemUseAction;
+  onUse?: (item: ItemSlotData) => void;
 }
 
-export function ItemDetailPanel({ item, onEquipToggle, onEdit, onRemove, visible, canEquip }: ItemDetailPanelProps) {
+export function ItemDetailPanel({ item, onEquipToggle, onEdit, onRemove, visible, canEquip, canUse, onUse }: ItemDetailPanelProps) {
+  const { t } = useLanguage();
   if (!item) return null;
+  const useAction = canUse ? canUse(item) : null;
 
   const infoRows: { label: string; value: string }[] = [];
 
@@ -241,6 +248,19 @@ export function ItemDetailPanel({ item, onEquipToggle, onEdit, onRemove, visible
             )}
           </div>
           <div className="flex items-center gap-1 shrink-0">
+            {useAction && onUse && (
+              <button
+                type="button"
+                onClick={() => onUse(item)}
+                className="px-2.5 py-1.5 rounded text-[11px] font-bold bg-[var(--color-ink)] text-[var(--color-surface)] transition-colors"
+              >
+                {useAction === "heal"
+                  ? t("inventory.drink", "Drink")
+                  : useAction === "open"
+                    ? t("inventory.open", "Open")
+                    : t("inventory.use", "Use")}
+              </button>
+            )}
             {canEquip(item) && (
               <button
                 type="button"
@@ -305,6 +325,8 @@ export interface InventoryGridProps {
   canEquip?: (item: ItemSlotData) => boolean;
   onEmptySlotClick?: () => void;
   lockedSlotCount?: number;
+  canUse?: (item: ItemSlotData) => ItemUseAction;
+  onUse?: (item: ItemSlotData) => void;
 }
 
 export function InventoryGrid({
@@ -318,6 +340,8 @@ export function InventoryGrid({
   canEquip = () => true,
   onEmptySlotClick,
   lockedSlotCount = 0,
+  canUse,
+  onUse,
 }: InventoryGridProps) {
   const visibleCount = showEmptySlots
     ? Math.max(totalSlots, Math.ceil(items.length / 4) * 4)
@@ -358,6 +382,8 @@ export function InventoryGrid({
           onEquipToggle={onEquipToggle || (() => {})}
           visible={detailVisible}
           canEquip={canEquip}
+          canUse={canUse}
+          onUse={onUse}
         />
       )}
     </div>
