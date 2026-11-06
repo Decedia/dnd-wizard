@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { ItemIcon } from "@/components/ItemIcon";
 import { Check, Flask, Info, MagnifyingGlass, Sword, Shield, Backpack, Sparkle } from "@phosphor-icons/react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
@@ -172,8 +173,11 @@ export function ItemSelectionModal({ character, onAdd, onClose }: ItemSelectionM
                     <button
                       type="button"
                       onClick={() => setSelectedItem(item.id)}
-                      className="flex flex-1 items-center justify-between p-4 text-left transition active:scale-[0.99]"
+                      className="flex flex-1 items-center justify-between gap-3 p-4 text-left transition active:scale-[0.99]"
                     >
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-paper-muted">
+                        <ItemIcon icon={item.icon} className="h-7 w-7" />
+                      </div>
                       <div className="min-w-0 flex-1">
                         <h3 className="flex items-center gap-2 text-lg font-bold text-ink">
                           {(() => {

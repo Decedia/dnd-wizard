@@ -1,5 +1,6 @@
 "use client";
 
+import { ItemIcon } from "@/components/ItemIcon";
 import { ReactNode } from "react";
 import { DiceText } from "@/components/DiceText";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -224,7 +225,7 @@ export function EquipmentInfoPanel({ option, t, language }: EquipmentInfoPanelPr
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-paper-muted">
-                      <span className="text-[16px] leading-none">{item.info?.icon || "📦"}</span>
+                      <span className="text-[16px] leading-none"><ItemIcon icon={item.info?.icon} item={item.name} className="h-6 w-6" /></span>
                     </div>
                     <div>
                       <h4 className="font-bold text-ink">{item.name}</h4>

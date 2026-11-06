@@ -3,6 +3,7 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { findLocalizedItem, formatCost, weaponHandedness, type CatalogItem } from "@/data/item-catalog";
 import type { ItemProficiency } from "@/lib/proficiency";
+import { ItemIcon } from "@/components/ItemIcon";
 import { ProficiencyDot } from "@/components/character-sheet/InventoryGrid";
 
 interface ItemInfoPanelProps {
@@ -49,7 +50,12 @@ export function ItemInfoPanel({ item, proficiency }: ItemInfoPanelProps) {
   return (
     <div className="space-y-4">
       <div className="rounded-2xl border-2 border-border-strong bg-surface p-4">
-        <h3 className="text-lg font-bold text-ink">{item.name}</h3>
+        <div className="flex items-center gap-3">
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-paper-muted">
+            <ItemIcon icon={item.icon} className="h-8 w-8" />
+          </div>
+          <h3 className="text-lg font-bold text-ink">{item.name}</h3>
+        </div>
         <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
           {item.source !== "PHB" && <Tag>{item.source}</Tag>}
           <Tag>{item.category}</Tag>

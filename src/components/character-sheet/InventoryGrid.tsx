@@ -1,5 +1,6 @@
 "use client";
 
+import { ItemIcon } from "@/components/ItemIcon";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export type ItemUseAction = "heal" | "open" | "consume" | null;
@@ -32,6 +33,8 @@ export interface ItemSlotData {
   id: string;
   name: string;
   icon: string;
+  /** Catalog id or name, for the item's icon. */
+  itemKey?: string;
   category: string;
   itemType: string;
   equipped: boolean;
@@ -197,7 +200,7 @@ export function ItemSlot({ item, onClick, label, showEquippedBadge = true, selec
               E
             </span>
           )}
-          <span className="text-2xl leading-none">{item.icon || "📦"}</span>
+          <span className="text-2xl leading-none"><ItemIcon icon={item.icon} item={item.itemKey} className="h-7 w-7" /></span>
           <span className="text-[9px] font-bold text-[var(--color-text-secondary)] text-center leading-tight line-clamp-2 w-full">
             {item.name}
           </span>
@@ -294,7 +297,7 @@ export function ItemDetailPanel({ item, onEquipToggle, onEdit, onRemove, visible
       <div className="p-3 mt-2 rounded-[var(--radius)] border border-[var(--color-border)] bg-[var(--color-surface)]">
         <div className="flex items-start justify-between gap-2 mb-2">
           <div className="flex items-center gap-2">
-            <span className="text-xl">{item.icon || "📦"}</span>
+            <span className="text-xl"><ItemIcon icon={item.icon} item={item.itemKey} className="h-6 w-6" /></span>
             <span className="text-sm font-bold text-[var(--color-text-primary)]">{item.name}</span>
             {item.equipped && (
               <span className="px-1.5 py-0.5 rounded bg-[var(--color-ink)] text-[var(--color-surface)] text-[9px] font-bold">
