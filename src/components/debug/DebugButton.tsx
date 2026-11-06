@@ -4,13 +4,23 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { LockIcon, XIcon, GearIcon } from "@/components/icons";
 import { useDebug } from "@/lib/debug/DebugContext";
-import { WIZARD_NAV_SPACE } from "@/components/WizardNav";
+
+// Slim tabs on the left edge, mid-screen, clear of the header and bottom bars.
+const TAB_STACK = "fixed left-0 top-1/2 -translate-y-1/2 z-[9999999] flex flex-col gap-1";
+const TAB =
+  "w-7 h-9 rounded-r-lg bg-[var(--color-surface)] border border-l-0 border-[var(--color-border)] shadow-md flex items-center justify-center opacity-70 hover:opacity-100 hover:border-[var(--color-border-active)] transition";
 
 export function DebugButton() {
   const { enabled, unlocked, password, setPassword, login, logout } = useDebug();
   const [showTerminal, setShowTerminal] = useState(false);
   const [showAuth, setShowAuth] = useState(false);
   const [localLogs, setLocalLogs] = useState<{ time: string; message: string }[]>([]);
+  // Regular users never see the login tab; open the site with ?debug to reveal it.
+  const [revealed, setRevealed] = useState(false);
+
+  useEffect(() => {
+    setRevealed(new URLSearchParams(window.location.search).has("debug"));
+  }, []);
 
   useEffect(() => {
     if (!showTerminal) return;
@@ -48,18 +58,19 @@ export function DebugButton() {
   };
 
   if (!enabled) {
+    if (!revealed) return null;
     return (
-      <div style={{ bottom: `calc(${WIZARD_NAV_SPACE} + 8px)` }} className="fixed left-4 z-[9999999]">
+      <div className={TAB_STACK}>
         <button
           type="button"
           onClick={handleButtonClick}
-          className="w-10 h-10 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] shadow-lg flex items-center justify-center hover:border-[var(--color-border-active)] transition-colors"
+          className={TAB}
           title="Debug login"
         >
-          <LockIcon className="h-5 w-5 text-[var(--color-text-muted)]" />
+          <LockIcon className="h-4 w-4 text-[var(--color-text-muted)]" />
         </button>
         {showAuth && (
-          <div className="absolute bottom-14 left-0 w-80 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl shadow-2xl p-4 space-y-3">
+          <div className="absolute left-full top-1/2 -translate-y-1/2 ml-2 w-72 max-w-[calc(100vw-3rem)] bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl shadow-2xl p-4 space-y-3">
             <div className="text-sm font-bold text-[var(--color-text-primary)]">Admin Debug Login</div>
             <input
               type="password"
@@ -112,11 +123,11 @@ export function DebugButton() {
 
   return (
     <>
-      <div style={{ bottom: `calc(${WIZARD_NAV_SPACE} + 8px)` }} className="fixed left-4 z-[9999999] flex items-center gap-2">
+      <div className={TAB_STACK}>
         <button
           type="button"
           onClick={handleButtonClick}
-          className="w-10 h-10 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] shadow-lg flex items-center justify-center hover:border-[var(--color-border-active)] transition-colors"
+          className={TAB}
           title="Open debug terminal"
         >
           <span className="text-[var(--color-text-primary)] font-mono text-xs font-bold">$</span>
@@ -124,10 +135,10 @@ export function DebugButton() {
         {isAdmin && (
           <Link
             href="/admin"
-            className="w-10 h-10 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] shadow-lg flex items-center justify-center hover:border-[var(--color-border-active)] transition-colors"
+            className={TAB}
             title="Admin Test Lab"
           >
-            <GearIcon className="h-5 w-5 text-[var(--color-text-primary)]" />
+            <GearIcon className="h-4 w-4 text-[var(--color-text-primary)]" />
           </Link>
         )}
       </div>
