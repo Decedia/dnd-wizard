@@ -1,6 +1,9 @@
 import { getStaticClass, getStaticRace, getStaticSubclasses, getDomainSpells, getCircleSpells as getJsonCircleSpells, getCircleTerrainTypes as getJsonCircleTerrainTypes, getOathSpells, getWizardTraditionSpells, getSubclassFlags, getPactBoons } from "@/lib/srd-client";
 import { computeBuffModifiers, type ActiveBuff } from "@/lib/spellEffects";
 import { getSpellMechanic } from "@/lib/spell-mechanics-accessor";
+import { coinRows, coinsFromInventory } from "@/lib/inventory";
+import { findCatalogItem } from "@/data/item-catalog";
+import { addsProficiencyToAttack } from "@/lib/proficiency";
 import { db, type CharacterRecord, dbGetCharacters, dbGetCharacter, dbSaveCharacter, dbDeleteCharacter, dbTouchCharacterOpened } from "@/lib/db";
 export interface Character {
   id: string;
@@ -66,7 +69,7 @@ export interface Character {
   costumeSpells: { id: string; name: string; description: string }[];
   subclass?: string;
   subclassIndex?: string;
-  inventory: { id: string; name: string; quantity: number; equipped: boolean; hand?: "main" | "off" | "both"; source: "srd" | "custom"; srdItemName?: string; itemType?: "weapon" | "armor" | "item" | "instrument" | "consumable"; category?: "melee" | "ranged" | string; damageDice?: string; damageType?: string; baseAC?: number; armorType?: "light" | "medium" | "heavy" | "shield"; maxDexBonus?: number | null; choiceGroupIndex?: number; choiceOptionIndex?: number; isGranted?: boolean; description?: string; properties?: string[]; ammoQuantity?: number; maxAmmo?: number; range?: { normal: number; long: number }; weight?: number | null; value?: string | null; versatileDice?: string | null; stealthDisadvantage?: boolean; strengthRequirement?: number; toolUse?: string; associatedAbility?: string; effect?: string; uses?: number; rarity?: string; attunement?: boolean; maxUses?: number; icon?: string }[];
+  inventory: { id: string; /** Catalog id (src/data/en/2014_item_catalog.json). Absent on custom items and old saves. */ itemId?: string; name: string; quantity: number; equipped: boolean; hand?: "main" | "off" | "both"; source: "srd" | "custom"; srdItemName?: string; itemType?: "weapon" | "armor" | "item" | "instrument" | "consumable" | "coin"; /** What is inside, for a pouch of coins. Using the row takes it out. */ contents?: { id: string; quantity: number }[]; category?: "melee" | "ranged" | string; damageDice?: string; damageType?: string; baseAC?: number; armorType?: "light" | "medium" | "heavy" | "shield"; maxDexBonus?: number | null; choiceGroupIndex?: number; choiceOptionIndex?: number; isGranted?: boolean; /** The class or background line this row came from (one pack line makes many rows). */ grantedFrom?: string; description?: string; properties?: string[]; ammoQuantity?: number; maxAmmo?: number; range?: { normal: number; long: number }; weight?: number | null; value?: string | null; versatileDice?: string | null; stealthDisadvantage?: boolean; strengthRequirement?: number; toolUse?: string; associatedAbility?: string; effect?: string; uses?: number; rarity?: string; attunement?: boolean; maxUses?: number; icon?: string }[];
   attacks: { id: string; name: string; attackBonus: number; damageType: string; sneakAttack?: string; source?: "weapon" | "class" | "grapple" | "shove"; classFeatureName?: string; description?: string }[];
   otherProficiencies: string;
   languages: string[];
@@ -110,7 +113,10 @@ export interface Character {
   /** Creation wizard order: story steps before ("concept") or after ("gameplay") the mechanical steps. */
   creationOrder?: "concept" | "gameplay";
   buffModifiers?: Record<string, unknown>;
+  /** Coin totals. Derived from the coin rows in `inventory`; edit those rows, not this. */
   currency: { copper: number; silver: number; electrum: number; gold: number; platinum: number };
+  /** Set once old `currency` numbers have been moved into coin rows. */
+  coinsInInventory?: boolean;
   appearance: {
     age: string;
     height: string;
@@ -491,6 +497,7 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
     variantHumanSkill: undefined,
     appliedAsi: [],
     currency: { copper: 0, silver: 0, electrum: 0, gold: 0, platinum: 0 },
+    coinsInInventory: true,
     appearance: {
       age: "",
       height: "",
@@ -566,15 +573,26 @@ function normalizeCharacter(c: Character): Character {
   return withOwnBooks(normalizeCharacterFields(c));
 }
 
+/**
+ * Coins are inventory rows. Old saves kept them only as numbers in `currency`;
+ * move those numbers into rows once, then `currency` is read from the rows.
+ */
+export function migrateCoins(c: Character): Pick<Character, "inventory" | "currency" | "coinsInInventory"> {
+  let inventory = (c.inventory || []).map((item) => {
+    if (item.itemId || item.source !== "srd") return { ...item };
+    // Old rows were matched by name; stamp the catalog id so Use and lookups work.
+    const match = findCatalogItem(item.srdItemName || item.name);
+    return match ? { ...item, itemId: match.id } : { ...item };
+  });
+  if (!c.coinsInInventory) inventory = [...inventory, ...coinRows((c as any).currency ?? {})];
+  return { inventory, currency: coinsFromInventory(inventory), coinsInInventory: true };
+}
+
 function normalizeCharacterFields(c: Character): Character {
   const defaults = createEmptyCharacter();
   return {
     ...defaults,
     ...c,
-    currency: {
-      ...defaults.currency,
-      ...(c as any).currency,
-    },
     appearance: {
       ...defaults.appearance,
       ...(c as any).appearance,
@@ -596,10 +614,7 @@ function normalizeCharacterFields(c: Character): Character {
     activeStates: (c as any).activeStates || [],
     activeBuffs: (c as any).activeBuffs || [],
     levelHp: (c as any).levelHp || {},
-    inventory: (c.inventory || []).map((item) => ({
-      ...defaults.inventory[0],
-      ...item,
-    })),
+    ...migrateCoins(c),
     spells: (c.spells || []).map((spell) => {
       const srdSpellName = spell.srdSpellName || spell.name;
       const mechanic = spell.source === "srd" ? getSpellMechanic(srdSpellName) : undefined;
@@ -711,7 +726,7 @@ export async function getCharacter(id: string): Promise<Character | undefined> {
   if (typeof window === "undefined") return undefined;
   try {
     const found = await dbGetCharacter(id);
-    return found ? withOwnBooks(found) : found;
+    return found ? withOwnBooks({ ...found, ...migrateCoins(found) }) : found;
   } catch {
     return (await getCharacters()).find((c) => c.id === id);
   }
@@ -845,7 +860,8 @@ export function computeEquippedEffects(character: Character): { ac: number; atta
     const abilityMod = getModifier(character[abilityKey as keyof Character] as number);
     const isFinesseOrRanged = weapon.category === "ranged" || weapon.name === "Dagger" || weapon.name === "Rapier" || weapon.name === "Shortsword";
     const sneakDice = isFinesseOrRanged ? getSneakAttackDice(character) : undefined;
-    const attackBonus = abilityMod + profBonus;
+    // No proficiency bonus with a weapon the character isn't proficient with.
+    const attackBonus = abilityMod + (addsProficiencyToAttack(character, weapon) ? profBonus : 0);
     const damageBonus = abilityMod;
     const damageDice = weapon.damageDice || "";
     const damageTypeName = weapon.damageType || "";
@@ -1154,8 +1170,12 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   let ac: number;
 
   // Check for Unarmored Defense features
-  const hasBarbarianUnarmored = character.features?.some(f => f.name.toLowerCase().includes("unarmored defense") && f.source === "class") ?? false;
-  const hasMonkUnarmored = character.features?.some(f => f.name.toLowerCase().includes("unarmored defense") && f.source === "class") ?? false;
+  // Both classes call it Unarmored Defense; the class decides the formula.
+  // A monk loses it with a shield, a barbarian keeps it.
+  const hasUnarmoredDefense = character.features?.some(f => f.name.toLowerCase().includes("unarmored defense") && f.source === "class") ?? false;
+  const hasShield = equippedShields.length > 0;
+  const hasBarbarianUnarmored = hasUnarmoredDefense && character.class === "Barbarian";
+  const hasMonkUnarmored = hasUnarmoredDefense && character.class === "Monk" && !hasShield;
   // Dragon Hide (feat) sets unarmored AC the same way as Draconic Resilience.
   const hasDraconicResilience = (character.features?.some(f => f.name.toLowerCase().includes("draconic resilience")) ?? false) || hasFeat(character, "feat.dragon_hide");
   const hasNaturalArmor = character.features?.some(f => f.name.toLowerCase().includes("natural armor")) ?? false;
@@ -1237,7 +1257,7 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   if (hasFeat(character, "feat.mobile")) speed += 10;
   if (hasFeat(character, "feat.squat_nimbleness")) speed += 5;
   // Monk unarmored movement bonus
-  if (classData?.name === "Monk" && !hasArmor) {
+  if (classData?.name === "Monk" && !hasArmor && equippedShields.length === 0) {
     const umVal = getClassResourceValue(classData, "unarmoredMovement", character.level);
     if (umVal && typeof umVal === "number" && umVal > 0) {
       speed += umVal;
@@ -1371,6 +1391,7 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   // ===== RETURN ALL COMPUTED VALUES =====
   return {
     proficiencyBonus: profBonus,
+    currency: coinsFromInventory(character.inventory || []),
     savingThrows,
     initiative,
     passivePerception,

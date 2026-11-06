@@ -5,7 +5,7 @@ import { Backpack, Info, Lock, Plus, CheckIcon as Check } from "@phosphor-icons/
 import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
 import { ItemBundleList } from "@/components/modals/ItemBundle";
 import { getStaticClass, getStaticWeapons, getStaticArmors, getEquipmentData } from "@/lib/srd-client";
-import { generateId } from "@/lib/storage";
+import { addRows, expandToRows, rowInfo } from "@/lib/inventory";
 import type { Character } from "@/lib/storage";
 import { buildChoiceGroups, type ChoiceGroup, type EquipmentOption } from "@/lib/character-creation";
 import {
@@ -292,7 +292,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
   }, [t]);
 
   const parseItemInfo = useCallback((item: Character["inventory"][number]) => {
-    return item.description ? JSON.parse(item.description) : null;
+    return rowInfo(item);
   }, []);
 
   const renderItemModalContent = useCallback(
@@ -382,47 +382,25 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
   const grantedItems = useMemo(() => data.inventory.filter((item) => item.isGranted), [data.inventory]);
 
   const autoGrantItems = useCallback(() => {
-    const newInventory = [...data.inventory];
-    const grantedItems: Character["inventory"][number][] = [];
+    let newInventory = [...data.inventory];
     let hasChanges = false;
 
     startingEquipment.forEach((entry: any) => {
       if (!entry.granted || !entry.items) return;
 
       entry.items.forEach((item: any) => {
-        const existing = newInventory.find(i => i.name === item.name);
-        if (!existing) {
-          const itemInfo = getItemInfo(item.name);
-          const newItem: Character["inventory"][number] = {
-            id: generateId(),
-            name: item.name,
-            quantity: item.quantity || 1,
-            equipped: false,
-            source: "srd" as const,
-            srdItemName: item.name,
-            itemType: itemInfo?.type === "weapon" ? "weapon" : itemInfo?.type === "armor" ? "armor" : itemInfo?.type === "instrument" ? "instrument" : "item",
-            description: itemInfo ? JSON.stringify(itemInfo) : "",
-            isGranted: true,
-          };
-
-          if (itemInfo?.type === "weapon") {
-            const weapon = weapons.find((w: any) => w.name === item.name);
-            newItem.damageDice = weapon?.damage?.damage_dice || "";
-            newItem.damageType = weapon?.damage?.damage_type?.name || "";
-            newItem.category = weapon?.category_range === "Melee" ? "melee" : weapon?.category_range === "Ranged" ? "ranged" : undefined;
-          }
-
-          grantedItems.push(newItem);
-          newInventory.push(newItem);
-          hasChanges = true;
-        }
+        if (newInventory.some((i) => i.isGranted && i.grantedFrom === item.name)) return;
+        // A pack becomes the items inside it.
+        const rows = expandToRows(item.name, item.quantity || 1, { isGranted: true, grantedFrom: item.name });
+        newInventory = addRows(newInventory, rows);
+        hasChanges = true;
       });
     });
 
     if (hasChanges) {
       onChange({ inventory: newInventory });
     }
-  }, [data.inventory, startingEquipment, weapons, getItemInfo, onChange]);
+  }, [data.inventory, startingEquipment, onChange]);
 
   useEffect(() => {
     autoGrantItems();
@@ -470,69 +448,26 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     const isChoiceOption = (opt: EquipmentOption) =>
       opt.isWeaponChoice || opt.isInstrumentChoice || opt.isArcaneFocusChoice || opt.isHolySymbolChoice || opt.isDruidicFocusChoice;
 
-    if (!isChoiceOption(selectedOpt)) {
-      (selectedOpt.items || []).forEach((item: any) => {
-        const itemInfo = getItemInfo(item.name);
-        newItems.push({
-          id: generateId(),
-          name: item.name,
-          quantity: item.quantity || 1,
-          equipped: false,
-          source: "srd" as const,
-          srdItemName: item.name,
-          itemType: itemInfo?.type === "weapon" ? "weapon" : itemInfo?.type === "armor" ? "armor" : itemInfo?.type === "instrument" ? "instrument" : "item",
-          description: itemInfo ? JSON.stringify(itemInfo) : "",
-          choiceGroupIndex: groupIndex,
-          choiceOptionIndex: group.options.indexOf(selectedOpt),
-        });
-      });
-    } else {
+    const optionIndex = group.options.indexOf(selectedOpt);
+    const grant = { choiceGroupIndex: groupIndex, choiceOptionIndex: optionIndex };
+
+    if (isChoiceOption(selectedOpt)) {
       const selectionCount = selectedOpt.selectionCount || 1;
-      const selections = weaponSelections.slice(0, selectionCount);
-
-      selections.forEach((weaponName) => {
-        const itemInfo = getItemInfo(weaponName);
-        const weapon = weapons.find((w: any) => w.name === weaponName);
-        newItems.push({
-          id: generateId(),
-          name: weaponName,
-          quantity: 1,
-          equipped: false,
-          source: "srd" as const,
-          srdItemName: weaponName,
-          itemType: itemInfo?.type === "weapon" ? "weapon" : itemInfo?.type === "armor" ? "armor" : itemInfo?.type === "instrument" ? "instrument" : "item",
-          description: itemInfo ? JSON.stringify(itemInfo) : "",
-          damageDice: weapon?.damage?.damage_dice || "",
-          damageType: weapon?.damage?.damage_type?.name || "",
-          category: weapon?.category_range || weapon?.weapon_category,
-          choiceGroupIndex: groupIndex,
-          choiceOptionIndex: group.options.indexOf(selectedOpt),
-        });
-      });
-
-      (selectedOpt.items || []).forEach((item: any) => {
-        const itemInfo = getItemInfo(item.name);
-        newItems.push({
-          id: generateId(),
-          name: item.name,
-          quantity: item.quantity || 1,
-          equipped: false,
-          source: "srd" as const,
-          srdItemName: item.name,
-          itemType: itemInfo?.type === "weapon" ? "weapon" : itemInfo?.type === "armor" ? "armor" : "item",
-          description: itemInfo ? JSON.stringify(itemInfo) : "",
-          choiceGroupIndex: groupIndex,
-          choiceOptionIndex: group.options.indexOf(selectedOpt),
-        });
+      weaponSelections.slice(0, selectionCount).forEach((pickedName) => {
+        newItems.push(...expandToRows(pickedName, 1, grant));
       });
     }
+    // Fixed items of the option. A pack becomes the items inside it.
+    (selectedOpt.items || []).forEach((item: any) => {
+      newItems.push(...expandToRows(item.name, item.quantity || 1, grant));
+    });
 
     if (newItems.length > 0) {
-      onChange({ inventory: [...newInventory, ...newItems] });
+      onChange({ inventory: addRows(newInventory, newItems) });
     }
 
     setModalGroup(null);
-  }, [modalGroup, data.inventory, getGroupIndex, onChange, generateId, weapons, getItemInfo]);
+  }, [modalGroup, data.inventory, getGroupIndex, onChange]);
 
   const getCategoryDamagePreview = useCallback((weaponType: string) => {
     const categoryWeapons = getWeaponsByCategory(weaponType);

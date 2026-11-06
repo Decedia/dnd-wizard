@@ -5,10 +5,11 @@ import { SectionCard } from "./SectionCard";
 import { CoinsIcon as Coins } from "@/components/icons";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
+import { COIN_BY_FIELD, coinsFromInventory, setCoinAmount } from "@/lib/inventory";
 
 interface CurrencySectionProps {
-  character: Pick<Character, "currency">;
-  onChange: (patch: Partial<Pick<Character, "currency">>) => void;
+  character: Pick<Character, "inventory">;
+  onChange: (patch: Partial<Pick<Character, "inventory" | "currency">>) => void;
   editMode?: boolean;
 }
 
@@ -24,10 +25,11 @@ export function CurrencySection({ character, onChange, editMode = true }: Curren
   const { onFieldBlur } = useCharacterSheet();
   const { t } = useLanguage();
 
-  const updateCurrency = (field: "copper" | "silver" | "electrum" | "gold" | "platinum", value: number) => {
-    onChange({
-      currency: { ...character.currency, [field]: Math.max(0, value) },
-    });
+  // Coins are inventory rows; this box edits those rows.
+  const coins = coinsFromInventory(character.inventory);
+  const updateCurrency = (field: keyof typeof coins, value: number) => {
+    const inventory = setCoinAmount(character.inventory, COIN_BY_FIELD[field], value);
+    onChange({ inventory, currency: coinsFromInventory(inventory) });
   };
 
   return (
@@ -39,13 +41,13 @@ export function CurrencySection({ character, onChange, editMode = true }: Curren
             {editMode ? (
               <input
                 type="number"
-                value={character.currency[key]}
+                value={coins[key]}
                 onChange={(e) => updateCurrency(key, parseInt(e.target.value || "0", 10))}
                 onBlur={onFieldBlur}
                 className="input w-full text-center text-sm"
               />
             ) : (
-              <span className="text-sm font-bold text-[var(--color-text-primary)]">{character.currency[key]}</span>
+              <span className="text-sm font-bold text-[var(--color-text-primary)]">{coins[key]}</span>
             )}
           </div>
         ))}

@@ -1,9 +1,17 @@
+import type { ItemStack } from "@/data/item-catalog";
+
+/** One line of background gear: a catalog item (a pouch can hold coins), or a pick-one choice. */
+export type BackgroundGear =
+  | { id: string; quantity?: number; contents?: ItemStack[] }
+  | { choice: "holy" | "instrument" | "artisan" | "gaming"; label: string };
+
 export interface BackgroundData {
   name: string;
   skillProficiencies: string[];
   toolProficiencies: string[];
   languages: number;
-  equipment: string[];
+  /** What the background gives. Ids are item catalog ids; a choice is left for the player to pick. */
+  equipment: BackgroundGear[];
   feature: { name: string; description: string; mechanics?: string };
   personalityTraits: string[];
   ideals: string[];
@@ -17,7 +25,14 @@ export const backgroundsData: BackgroundData[] = [
     skillProficiencies: ["Insight", "Religion"],
     toolProficiencies: [],
     languages: 2,
-    equipment: ["Holy symbol", "Prayer book", "5 sticks of incense", "vestments", "set of common clothes", "belt pouch containing 15 gp"],
+    equipment: [
+      { choice: "holy", label: "Holy symbol" },
+      { id: "prayer-book" },
+      { id: "stick-of-incense", quantity: 5 },
+      { id: "vestments" },
+      { id: "clothes-common" },
+      { id: "pouch", contents: [{ id: "gp", quantity: 15 }] },
+    ],
     feature: {
       name: "Shelter of the Faithful",
       description: "As an acolyte, you and your companions can expect to receive healing and care at a temple of your faith. You can also gain access to shrines and altars for spellcasting purposes.",
@@ -63,7 +78,12 @@ export const backgroundsData: BackgroundData[] = [
     skillProficiencies: ["Deception", "Sleight of Hand"],
     toolProficiencies: ["Disguise kit", "Forgery kit"],
     languages: 0,
-    equipment: ["Set of fine clothes", "disguise kit", "tools of the con of your choice", "belt pouch containing 15 gp"],
+    equipment: [
+      { id: "clothes-fine" },
+      { id: "disguise-kit" },
+      { id: "tools-of-the-con" },
+      { id: "pouch", contents: [{ id: "gp", quantity: 15 }] },
+    ],
     feature: {
       name: "False Identity",
       description: "You have created a second identity that has documentation, established acquaintances, and disguises that allow you to assume that persona.",
@@ -109,7 +129,11 @@ export const backgroundsData: BackgroundData[] = [
     skillProficiencies: ["Deception", "Stealth"],
     toolProficiencies: ["One type of gaming set", "thieves' tools"],
     languages: 0,
-    equipment: ["Crowbar", "set of dark common clothes including a hood", "belt pouch containing 15 gp"],
+    equipment: [
+      { id: "crowbar" },
+      { id: "clothes-common" },
+      { id: "pouch", contents: [{ id: "gp", quantity: 15 }] },
+    ],
     feature: {
       name: "Criminal Contact",
       description: "You have a reliable and trustworthy contact who acts as your liaison to a network of other criminals. You know how to get messages to and from your contact, even over great distances.",
@@ -155,7 +179,12 @@ export const backgroundsData: BackgroundData[] = [
     skillProficiencies: ["Acrobatics", "Performance"],
     toolProficiencies: ["Disguise kit", "one type of musical instrument"],
     languages: 0,
-    equipment: ["Musical instrument", "favor of an admirer", "costume", "belt pouch containing 15 gp"],
+    equipment: [
+      { choice: "instrument", label: "Musical instrument" },
+      { id: "favor-of-an-admirer" },
+      { id: "clothes-costume" },
+      { id: "pouch", contents: [{ id: "gp", quantity: 15 }] },
+    ],
     feature: {
       name: "By Popular Demand",
       description: "You can always find a place to perform, such as a tavern or inn. At such places, you receive free lodging and food of a modest or comfortable standard.",
@@ -201,7 +230,13 @@ export const backgroundsData: BackgroundData[] = [
     skillProficiencies: ["Animal Handling", "Survival"],
     toolProficiencies: ["One type of artisan's tools", "vehicles (land)"],
     languages: 0,
-    equipment: ["Set of artisan's tools", "shovel", "iron pot", "set of common clothes", "belt pouch containing 10 gp"],
+    equipment: [
+      { choice: "artisan", label: "Artisan's tools" },
+      { id: "shovel" },
+      { id: "pot-iron" },
+      { id: "clothes-common" },
+      { id: "pouch", contents: [{ id: "gp", quantity: 10 }] },
+    ],
     feature: {
       name: "Rustic Hospitality",
       description: "Since you are of the common folk, you can find a place to hide, rest, or hide among other commoners.",
@@ -247,7 +282,12 @@ export const backgroundsData: BackgroundData[] = [
     skillProficiencies: ["Insight", "Persuasion"],
     toolProficiencies: ["One type of artisan's tools"],
     languages: 1,
-    equipment: ["Set of artisan's tools", "letter of introduction from your guild", "set of traveler's clothes", "belt pouch containing 15 gp"],
+    equipment: [
+      { choice: "artisan", label: "Artisan's tools" },
+      { id: "letter-of-introduction" },
+      { id: "clothes-travelers" },
+      { id: "pouch", contents: [{ id: "gp", quantity: 15 }] },
+    ],
     feature: {
       name: "Guild Membership",
       description: "As an established and respected member of a guild, you can rely on certain benefits that membership provides.",
@@ -293,7 +333,13 @@ export const backgroundsData: BackgroundData[] = [
     skillProficiencies: ["Medicine", "Religion"],
     toolProficiencies: ["Herbalism kit"],
     languages: 1,
-    equipment: ["Scroll case stuffed full of notes", "winter blanket", "set of common clothes", "herbalism kit", "5 gp"],
+    equipment: [
+      { id: "scroll-case-of-notes" },
+      { id: "blanket" },
+      { id: "clothes-common" },
+      { id: "herbalism-kit" },
+      { id: "gp", quantity: 5 },
+    ],
     feature: {
       name: "Discovery",
       description: "The quiet seclusion of your extended hermitage gave you access to a unique and powerful discovery.",
@@ -339,7 +385,12 @@ export const backgroundsData: BackgroundData[] = [
     skillProficiencies: ["History", "Persuasion"],
     toolProficiencies: ["One type of gaming set"],
     languages: 1,
-    equipment: ["Set of fine clothes", "signet ring", "scroll of pedigree", "purse containing 25 gp"],
+    equipment: [
+      { id: "clothes-fine" },
+      { id: "signet-ring" },
+      { id: "scroll-of-pedigree" },
+      { id: "pouch", contents: [{ id: "gp", quantity: 25 }] },
+    ],
     feature: {
       name: "Position of Privilege",
       description: "Thanks to your birth, people are inclined to think the best of you. You are welcome in high society, and the common folk make every effort to accommodate you.",
@@ -385,7 +436,13 @@ export const backgroundsData: BackgroundData[] = [
     skillProficiencies: ["Athletics", "Survival"],
     toolProficiencies: ["One type of musical instrument"],
     languages: 1,
-    equipment: ["Staff", "hunting trap", "trophy from an animal you killed", "set of traveler's clothes", "belt pouch containing 10 gp"],
+    equipment: [
+      { id: "quarterstaff" },
+      { id: "hunting-trap" },
+      { id: "hunting-trophy" },
+      { id: "clothes-travelers" },
+      { id: "pouch", contents: [{ id: "gp", quantity: 10 }] },
+    ],
     feature: {
       name: "Wanderer",
       description: "You have an excellent memory for maps and geography, and you can always recall the general layout of terrain, settlements, and other features.",
@@ -431,7 +488,14 @@ export const backgroundsData: BackgroundData[] = [
     skillProficiencies: ["Arcana", "History"],
     toolProficiencies: [],
     languages: 2,
-    equipment: ["Bottle of black ink", "quill", "small knife", "letter from a dead colleague", "set of common clothes", "belt pouch containing 10 gp"],
+    equipment: [
+      { id: "ink-1-ounce-bottle" },
+      { id: "ink-pen" },
+      { id: "small-knife" },
+      { id: "letter-from-a-dead-colleague" },
+      { id: "clothes-common" },
+      { id: "pouch", contents: [{ id: "gp", quantity: 10 }] },
+    ],
     feature: {
       name: "Researcher",
       description: "When you attempt to learn or recall a piece of lore, if you do not know that information yourself, you often know where and from whom you can obtain it.",
@@ -477,7 +541,13 @@ export const backgroundsData: BackgroundData[] = [
     skillProficiencies: ["Athletics", "Perception"],
     toolProficiencies: ["Navigator's tools", "vehicles (water)"],
     languages: 0,
-    equipment: ["Belaying pin", "50 feet of silk rope", "lucky charm", "set of common clothes", "belt pouch containing 10 gp"],
+    equipment: [
+      { id: "club" },
+      { id: "rope-silk-50-feet" },
+      { id: "lucky-charm" },
+      { id: "clothes-common" },
+      { id: "pouch", contents: [{ id: "gp", quantity: 10 }] },
+    ],
     feature: {
       name: "Ship's Passage",
       description: "When you need to, you can secure free passage on a sailing ship for yourself and your companions.",
@@ -523,7 +593,13 @@ export const backgroundsData: BackgroundData[] = [
     skillProficiencies: ["Athletics", "Intimidation"],
     toolProficiencies: ["One type of gaming set", "vehicles (land)"],
     languages: 0,
-    equipment: ["Insignia of rank", "trophy taken from a fallen enemy", "set of bone dice or deck of cards", "set of common clothes", "belt pouch containing 10 gp"],
+    equipment: [
+      { id: "insignia-of-rank" },
+      { id: "trophy-from-a-fallen-enemy" },
+      { choice: "gaming", label: "Bone dice or deck of cards" },
+      { id: "clothes-common" },
+      { id: "pouch", contents: [{ id: "gp", quantity: 10 }] },
+    ],
     feature: {
       name: "Military Rank",
       description: "Soldiers loyal to your former military organization still recognize your influence and authority.",
@@ -569,7 +645,14 @@ export const backgroundsData: BackgroundData[] = [
     skillProficiencies: ["Sleight of Hand", "Stealth"],
     toolProficiencies: ["Disguise kit", "thieves' tools"],
     languages: 0,
-    equipment: ["Small knife", "map of the city you grew up in", "pet mouse", "token to remember your parents by", "set of common clothes", "belt pouch containing 10 gp"],
+    equipment: [
+      { id: "small-knife" },
+      { id: "map-of-your-home-city" },
+      { id: "pet-mouse" },
+      { id: "token-of-your-parents" },
+      { id: "clothes-common" },
+      { id: "pouch", contents: [{ id: "gp", quantity: 10 }] },
+    ],
 feature: {
       name: "City Secrets",
       description: "You know the secret patterns and flow to cities and can find passages through the urban sprawl that others would miss.",

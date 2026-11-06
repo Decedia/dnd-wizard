@@ -7,6 +7,8 @@ import { WeaponPickerList, type PickerEntry, type PickerGroup } from "@/componen
 import { InfoBadge, InfoCard, InfoChip, InfoProse, InfoSectionLabel, InfoStatTile } from "@/components/modals/InfoBits";
 import { backgroundsData, getBackgroundData, type BackgroundData } from "@/data/backgrounds";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { findLocalizedItem } from "@/data/item-catalog";
+import { backgroundGearLabel } from "@/lib/inventory";
 
 type TFn = ReturnType<typeof useLanguage>["t"];
 
@@ -55,6 +57,7 @@ export function buildBackgroundGroups(t: TFn): PickerGroup[] {
 }
 
 export function BackgroundInfoPanel({ bg, t }: { bg: BackgroundData; t: TFn }) {
+  const { language } = useLanguage();
   return (
     <div className="space-y-4">
       <div className="rounded-2xl border-2 border-border-strong bg-surface p-4">
@@ -87,8 +90,8 @@ export function BackgroundInfoPanel({ bg, t }: { bg: BackgroundData; t: TFn }) {
         <div>
           <InfoSectionLabel>{t("background.equipment", "Perlengkapan")}</InfoSectionLabel>
           <div className="mt-1.5 flex flex-wrap gap-1.5">
-            {bg.equipment.map((item) => (
-              <InfoChip key={item}>{item}</InfoChip>
+            {bg.equipment.map((line, i) => (
+              <InfoChip key={i}>{backgroundGearLabel(line, (id) => findLocalizedItem(id, language)?.name ?? id)}</InfoChip>
             ))}
           </div>
         </div>
