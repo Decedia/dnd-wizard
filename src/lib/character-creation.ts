@@ -3,7 +3,8 @@ import { LANGUAGE_NAMES } from "@/data/feat-options";
 import { applyFeatGrants, decodeFeatOptions } from "./feat-grants";
 import { getRaceAsi, getRaceSkills, isFlexAsiValid } from "./race-grants";
 import { engineIdFor } from "@/lib/feature-engine";
-import { addRows, backgroundGearRows } from "./inventory";
+import { addRows, backgroundGearRows, equipRow } from "./inventory";
+import { collectProficiencies, getRowProficiency } from "./proficiency";
 import { activeRaceChoices, getStaticClass, getStaticRace, getStaticRaceDetails, getStaticSubclasses, getStaticEquipments, getStaticWeapons, getStaticArmors, getStaticItems, getStaticFeat, getStaticSpells } from "./srd-client";
 import { getGrantedSpellNames, grantSpells } from "./granted-spells";
 import type { CreationStep } from "./creation-types";
@@ -1399,6 +1400,7 @@ export async function finalizeCreation(character: Character, language = "en"): P
     final = applyFeatGrants(final, value[0], decodeFeatOptions(final.featureSelections?.[`asi-feat-${m[1]}-options`]));
   }
 
+  final = { ...final, inventory: autoEquipStartingGear(final) };
   const derived = computeDerivedStats(final);
 
   const classData = getStaticClass(character.class, character.ruleset);
@@ -1761,4 +1763,38 @@ export function applyBackground(data: Character, newBackground: string): Partial
 
 function withoutBackgroundGear(inventory: Character["inventory"]): Character["inventory"] {
   return inventory.filter((item) => !item.grantedFrom?.startsWith("background:"));
+}
+
+function averageDamage(dice?: string): number {
+  const m = (dice || "").match(/^(\d+)d(\d+)/);
+  return m ? (Number(m[1]) * (Number(m[2]) + 1)) / 2 : 0;
+}
+
+/**
+ * Puts on the starting gear when nothing is equipped yet: the proficient body
+ * armor with the best AC, the strongest proficient weapon, and a shield when
+ * that weapon leaves a hand free.
+ */
+export function autoEquipStartingGear(character: Character): Character["inventory"] {
+  let inventory = character.inventory || [];
+  if (inventory.some((r) => r.equipped)) return inventory;
+  const set = collectProficiencies(character);
+  const proficient = (r: Character["inventory"][number]) => getRowProficiency(character, r, set)?.proficient === true;
+  const dex = Math.floor(((character.dex || 10) - 10) / 2);
+  const acOf = (r: Character["inventory"][number]) => (r.baseAC ?? 0) + (r.maxDexBonus === null || r.maxDexBonus === undefined ? dex : Math.min(dex, r.maxDexBonus));
+  const armor = inventory
+    .filter((r) => r.itemType === "armor" && r.armorType !== "shield" && r.baseAC !== undefined && proficient(r))
+    .sort((a, b) => acOf(b) - acOf(a))[0];
+  if (armor && acOf(armor) > 10 + dex) inventory = equipRow(inventory, armor.id).inventory;
+
+  const shield = inventory.find((r) => r.armorType === "shield" && proficient(r));
+  const weapons = inventory.filter((r) => r.itemType === "weapon" && proficient(r));
+  const twoHanded = (r: Character["inventory"][number]) => (r.properties ?? []).includes("two-handed");
+  const melee = weapons.filter((r) => r.category !== "ranged");
+  // With a shield to carry, a one-handed weapon beats a slightly bigger two-handed one.
+  const pool = (shield ? melee.filter((r) => !twoHanded(r)) : melee).length ? (shield ? melee.filter((r) => !twoHanded(r)) : melee) : weapons;
+  const weapon = [...pool].sort((a, b) => averageDamage(b.damageDice) - averageDamage(a.damageDice))[0];
+  if (weapon) inventory = equipRow(inventory, weapon.id).inventory;
+  if (shield && (!weapon || !twoHanded(weapon))) inventory = equipRow(inventory, shield.id).inventory;
+  return inventory;
 }

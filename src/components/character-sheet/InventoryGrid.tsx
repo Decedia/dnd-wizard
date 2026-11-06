@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { ItemIcon } from "@/components/ItemIcon";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -13,20 +14,14 @@ const CURRENCY_COLORS: Record<string, string> = {
   PP: "#e5e5e5",
 };
 
-const CATEGORY_ICONS: Record<string, string> = {
-  weapon: "⚔️",
-  armor: "🛡️",
-  tool: "🔧",
-  misc: "📦",
-  consumable: "🧪",
-};
-
 const CATEGORY_LABELS: Record<string, string> = {
-  weapon: "Weapons",
+  weapon: "Weapon",
   armor: "Armor",
-  tool: "Tools",
+  tool: "Tool",
   misc: "Misc",
-  consumable: "Consumables",
+  consumable: "Consumable",
+  item: "Gear",
+  instrument: "Instrument",
 };
 
 export interface ItemSlotData {
@@ -112,32 +107,57 @@ export interface CurrencyRowProps {
   electrum: number;
   gold: number;
   platinum: number;
-  onEdit?: () => void;
+  /** When set, tapping a coin lets you type a new amount. */
+  onSet?: (field: "copper" | "silver" | "electrum" | "gold" | "platinum", value: number) => void;
 }
 
-export function CurrencyRow({ copper, silver, electrum, gold, platinum, onEdit }: CurrencyRowProps) {
+export function CurrencyRow({ copper, silver, electrum, gold, platinum, onSet }: CurrencyRowProps) {
+  const { t } = useLanguage();
+  const [editing, setEditing] = useState<string | null>(null);
+  const coins = [
+    { field: "gold" as const, label: "GP", value: gold, color: CURRENCY_COLORS.GP },
+    { field: "silver" as const, label: "SP", value: silver, color: CURRENCY_COLORS.SP },
+    { field: "copper" as const, label: "CP", value: copper, color: CURRENCY_COLORS.CP },
+    { field: "electrum" as const, label: "EP", value: electrum, color: CURRENCY_COLORS.EP },
+    { field: "platinum" as const, label: "PP", value: platinum, color: CURRENCY_COLORS.PP },
+  ];
   return (
-    <div className="flex items-center gap-2 overflow-x-auto pb-1" onClick={onEdit}>
-      {[
-        { label: "CP", value: copper, color: CURRENCY_COLORS.CP },
-        { label: "SP", value: silver, color: CURRENCY_COLORS.SP },
-        { label: "EP", value: electrum, color: CURRENCY_COLORS.EP },
-        { label: "GP", value: gold, color: CURRENCY_COLORS.GP },
-        { label: "PP", value: platinum, color: CURRENCY_COLORS.PP },
-      ].map((curr) => (
-        <button
-          key={curr.label}
-          type="button"
-          className="flex items-center gap-1.5 px-2 py-1.5 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-active)] transition-colors shrink-0"
-        >
-          <span
-            className="w-2.5 h-2.5 rounded-full shrink-0"
-            style={{ backgroundColor: curr.color }}
+    <div className="grid grid-cols-5 gap-1.5">
+      {coins.map((coin) =>
+        editing === coin.field && onSet ? (
+          <input
+            key={coin.field}
+            type="number"
+            inputMode="numeric"
+            min={0}
+            autoFocus
+            defaultValue={coin.value}
+            aria-label={coin.label}
+            onBlur={(e) => {
+              onSet(coin.field, parseInt(e.target.value || "0", 10));
+              setEditing(null);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") (e.target as HTMLInputElement).blur();
+            }}
+            className="h-11 w-full rounded-xl border-2 border-[var(--color-ink)] bg-[var(--color-surface)] px-2 text-center text-xs font-bold text-[var(--color-text-primary)]"
           />
-          <span className="text-[10px] font-bold text-[var(--color-text-muted)]">{curr.label}</span>
-          <span className="text-xs font-bold text-[var(--color-text-primary)]">{curr.value}</span>
-        </button>
-      ))}
+        ) : (
+          <button
+            key={coin.field}
+            type="button"
+            onClick={() => onSet && setEditing(coin.field)}
+            aria-label={onSet ? t("inventory.editCoin", { coin: coin.label }, "Edit {coin}") : coin.label}
+            className="flex h-11 min-w-0 flex-col items-center justify-center rounded-xl border-2 border-[var(--color-border)] bg-[var(--color-surface)] px-1 transition-colors hover:border-[var(--color-border-active)]"
+          >
+            <span className="flex items-center gap-1 text-[9px] font-bold text-[var(--color-text-muted)]">
+              <span className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: coin.color }} />
+              {coin.label}
+            </span>
+            <span className="max-w-full truncate text-sm font-bold leading-tight text-[var(--color-text-primary)]">{coin.value}</span>
+          </button>
+        ),
+      )}
     </div>
   );
 }
@@ -148,7 +168,15 @@ export interface CategoryFilterProps {
   onSelect: (cat: string) => void;
 }
 
+const FILTER_LABELS: Record<string, [string, string]> = {
+  all: ["inventory.filter.all", "All"],
+  weapons: ["inventory.filter.weapons", "Weapons"],
+  armor: ["inventory.filter.armor", "Armor"],
+  items: ["inventory.filter.items", "Items"],
+};
+
 export function CategoryFilter({ categories, active, onSelect }: CategoryFilterProps) {
+  const { t } = useLanguage();
   return (
     <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-hide">
       {categories.map((cat) => (
@@ -162,7 +190,7 @@ export function CategoryFilter({ categories, active, onSelect }: CategoryFilterP
               : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
           }`}
         >
-          {cat === "all" ? "All" : CATEGORY_LABELS[cat] || cat}
+          {FILTER_LABELS[cat] ? t(FILTER_LABELS[cat][0], FILTER_LABELS[cat][1]) : CATEGORY_LABELS[cat] || cat}
         </button>
       ))}
     </div>
@@ -177,12 +205,14 @@ export interface ItemSlotProps {
   selected?: boolean;
 }
 
+/** One square inventory slot. Every slot is the same size; the count sits in a corner badge. */
 export function ItemSlot({ item, onClick, label, showEquippedBadge = true, selected = false }: ItemSlotProps) {
   return (
     <button
       type="button"
       onClick={onClick}
-      className={`aspect-square rounded-[8px] border-2 flex flex-col items-center justify-center gap-1 p-1.5 transition-all relative ${
+      aria-label={item ? item.name : undefined}
+      className={`relative aspect-square w-full min-w-0 overflow-hidden rounded-[8px] border-2 flex flex-col items-center justify-center gap-1 px-1 transition-all ${
         item
           ? item.equipped
             ? "border-[var(--color-ink)] bg-[var(--color-ink)]/10"
@@ -200,19 +230,18 @@ export function ItemSlot({ item, onClick, label, showEquippedBadge = true, selec
               E
             </span>
           )}
-          <span className="text-2xl leading-none"><ItemIcon icon={item.icon} item={item.itemKey} className="h-7 w-7" /></span>
-          <span className="text-[9px] font-bold text-[var(--color-text-secondary)] text-center leading-tight line-clamp-2 w-full">
+          <ItemIcon icon={item.icon} item={item.itemKey} className="h-7 w-7 shrink-0" />
+          <span className="h-[22px] w-full text-[9px] font-bold text-[var(--color-text-secondary)] text-center leading-[11px] line-clamp-2">
             {item.name}
           </span>
-          {item.quantity && item.quantity > 1 && (
-            <span className="text-[10px] font-bold text-[var(--color-text-muted)]">x{item.quantity}</span>
+          {item.quantity !== undefined && item.quantity > 1 && (
+            <span className="absolute bottom-1 right-1 min-w-[18px] h-4 px-1 rounded-full bg-[var(--color-ink)] text-[var(--color-surface)] text-[9px] font-bold flex items-center justify-center leading-none">
+              x{item.quantity}
+            </span>
           )}
         </>
       ) : (
-        <>
-          <span className="text-2xl text-[var(--color-text-muted)] leading-none">{label || "+"}</span>
-          {label && <span className="text-[9px] font-bold text-[var(--color-text-muted)]">{label}</span>}
-        </>
+        <span className="text-2xl text-[var(--color-text-muted)] leading-none">{label || "+"}</span>
       )}
     </button>
   );
@@ -223,15 +252,24 @@ export interface ItemDetailPanelProps {
   onEquipToggle: (item: ItemSlotData) => void;
   onEdit?: (item: ItemSlotData) => void;
   onRemove?: (item: ItemSlotData) => void;
-  visible: boolean;
+  onClose: () => void;
   canEquip: (item: ItemSlotData) => boolean;
   /** What "Use" does for this item, or null when it cannot be used. */
   canUse?: (item: ItemSlotData) => ItemUseAction;
   onUse?: (item: ItemSlotData) => void;
+  /** A line shown after Use, such as "Healed 7 HP". */
+  message?: string | null;
 }
 
-export function ItemDetailPanel({ item, onEquipToggle, onEdit, onRemove, visible, canEquip, canUse, onUse }: ItemDetailPanelProps) {
+/** Item details in a sheet that slides up over the grid, with big action buttons. */
+export function ItemDetailPanel({ item, onEquipToggle, onEdit, onRemove, onClose, canEquip, canUse, onUse, message }: ItemDetailPanelProps) {
   const { t } = useLanguage();
+  useEffect(() => {
+    if (!item) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [item, onClose]);
   if (!item) return null;
   const useAction = canUse ? canUse(item) : null;
   const profText = proficiencyText(t, item);
@@ -282,80 +320,54 @@ export function ItemDetailPanel({ item, onEquipToggle, onEdit, onRemove, visible
   if (item.value) {
     infoRows.push({ label: "Value", value: item.value });
   }
-  if (item.weight !== null && item.weight !== undefined) {
+  if (item.weight) {
     infoRows.push({ label: "Weight", value: `${item.weight} lb` });
   }
 
+  const kind = [CATEGORY_LABELS[item.itemType] || item.itemType, item.equipped ? t("inventory.equipped", "Equipped") : null, item.quantity && item.quantity > 1 ? `x${item.quantity}` : null]
+    .filter(Boolean)
+    .join(" · ");
+  const actions: { key: string; label: string; onClick: () => void; primary?: boolean; danger?: boolean }[] = [];
+  if (useAction && onUse)
+    actions.push({
+      key: "use",
+      primary: true,
+      onClick: () => onUse(item),
+      label: useAction === "heal" ? t("inventory.drink", "Drink") : useAction === "open" ? t("inventory.open", "Open") : t("inventory.use", "Use"),
+    });
+  if (canEquip(item))
+    actions.push({
+      key: "equip",
+      primary: !useAction,
+      onClick: () => onEquipToggle(item),
+      label: item.equipped ? t("inventory.unequip", "Unequip") : t("inventory.equip", "Equip"),
+    });
+  if (onEdit) actions.push({ key: "edit", onClick: () => onEdit(item), label: t("button.edit", "Edit") });
+  if (onRemove) actions.push({ key: "remove", danger: true, onClick: () => onRemove(item), label: t("inventory.remove", "Remove") });
+
   return (
-    <div
-      className="overflow-hidden transition-all duration-200 ease-in-out"
-      style={{
-        maxHeight: visible ? "640px" : "0px",
-        opacity: visible ? 1 : 0,
-      }}
-    >
-      <div className="p-3 mt-2 rounded-[var(--radius)] border border-[var(--color-border)] bg-[var(--color-surface)]">
-        <div className="flex items-start justify-between gap-2 mb-2">
-          <div className="flex items-center gap-2">
-            <span className="text-xl"><ItemIcon icon={item.icon} item={item.itemKey} className="h-6 w-6" /></span>
-            <span className="text-sm font-bold text-[var(--color-text-primary)]">{item.name}</span>
-            {item.equipped && (
-              <span className="px-1.5 py-0.5 rounded bg-[var(--color-ink)] text-[var(--color-surface)] text-[9px] font-bold">
-                EQUIPPED
-              </span>
-            )}
+    <div className="fixed inset-0 z-50 flex flex-col justify-end" role="dialog" aria-modal="true" aria-label={item.name}>
+      <button type="button" aria-label={t("common.close", "Close")} onClick={onClose} className="absolute inset-0 bg-black/45" />
+      <div
+        className="relative mx-auto w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-t-[22px] bg-[var(--color-surface)] px-4 pt-2.5"
+        style={{ paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 20px)" }}
+      >
+        <div className="mx-auto mb-3 h-1.5 w-10 rounded-full bg-[var(--color-border)]" />
+        <div className="flex items-center gap-3">
+          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[14px] border-2 border-[var(--color-ink)]">
+            <ItemIcon icon={item.icon} item={item.itemKey} className="h-9 w-9" />
           </div>
-          <div className="flex items-center gap-1 shrink-0">
-            {useAction && onUse && (
-              <button
-                type="button"
-                onClick={() => onUse(item)}
-                className="px-2.5 py-1.5 rounded text-[11px] font-bold bg-[var(--color-ink)] text-[var(--color-surface)] transition-colors"
-              >
-                {useAction === "heal"
-                  ? t("inventory.drink", "Drink")
-                  : useAction === "open"
-                    ? t("inventory.open", "Open")
-                    : t("inventory.use", "Use")}
-              </button>
-            )}
-            {canEquip(item) && (
-              <button
-                type="button"
-                onClick={() => onEquipToggle(item)}
-                className={`px-2.5 py-1.5 rounded text-[11px] font-bold transition-colors ${
-                  item.equipped
-                    ? "bg-[var(--color-ink)] text-[var(--color-surface)]"
-                    : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)]"
-                }`}
-              >
-                {item.equipped ? "Unequip" : "Equip"}
-              </button>
-            )}
-            {onEdit && (
-              <button
-                type="button"
-                onClick={() => onEdit(item)}
-                className="px-2 py-1.5 rounded text-[11px] font-bold bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)] transition-colors"
-              >
-                Edit
-              </button>
-            )}
-            {onRemove && (
-              <button
-                type="button"
-                onClick={() => onRemove(item)}
-                className="px-2 py-1.5 rounded text-[11px] font-bold text-[var(--color-error-500)] hover:bg-[var(--color-error-50)] transition-colors"
-              >
-                Remove
-              </button>
-            )}
+          <div className="min-w-0 flex-1">
+            <h3 className="text-lg font-bold leading-tight text-[var(--color-text-primary)]">{item.name}</h3>
+            <p className="text-xs font-semibold text-[var(--color-text-muted)]">{kind}</p>
           </div>
         </div>
         {profText && (
           <p
-            className={`mb-2 flex items-start gap-1.5 text-[11px] leading-relaxed ${
-              item.proficiency?.proficient ? "text-[var(--color-text-secondary)]" : "text-[var(--color-warning-600)] font-semibold"
+            className={`mt-3 flex items-start gap-2 rounded-xl border-2 p-2.5 text-xs leading-relaxed ${
+              item.proficiency?.proficient
+                ? "border-[var(--color-border)] text-[var(--color-text-secondary)]"
+                : "border-[var(--color-warning-500)]/40 bg-[var(--color-warning-500)]/10 font-semibold text-[var(--color-warning-600)]"
             }`}
           >
             <ProficiencyDot proficient={!!item.proficiency?.proficient} className="mt-0.5" />
@@ -363,19 +375,42 @@ export function ItemDetailPanel({ item, onEquipToggle, onEdit, onRemove, visible
           </p>
         )}
         {infoRows.length > 0 && (
-          <div className="grid grid-cols-2 gap-x-4 gap-y-1.5">
+          <div className="mt-3 grid grid-cols-3 gap-1.5">
             {infoRows.map((row) => (
-              <div key={row.label} className="flex items-center gap-1">
-                <span className="text-[10px] font-bold text-[var(--color-text-muted)]">{row.label}:</span>
-                <span className="text-[11px] text-[var(--color-text-primary)]">{row.value}</span>
+              <div key={row.label} className="min-w-0 rounded-xl border-2 border-[var(--color-border)] px-2 py-1.5">
+                <span className="block text-[9px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">{row.label}</span>
+                <span className="block break-words text-xs font-bold text-[var(--color-text-primary)]">{row.value}</span>
               </div>
             ))}
           </div>
         )}
         {item.description && (
-          <p className="mt-2 text-[11px] text-[var(--color-text-secondary)] leading-relaxed line-clamp-3">
-            {item.description}
+          <p className="mt-3 whitespace-pre-line text-xs leading-relaxed text-[var(--color-text-secondary)]">{item.description}</p>
+        )}
+        {message && (
+          <p role="status" className="mt-3 rounded-xl border-2 border-[var(--color-border)] px-3 py-2 text-xs font-semibold text-[var(--color-text-primary)]">
+            {message}
           </p>
+        )}
+        {actions.length > 0 && (
+          <div className={`mt-4 grid gap-2 ${actions.length === 1 ? "grid-cols-1" : "grid-cols-2"}`}>
+            {actions.map((a) => (
+              <button
+                key={a.key}
+                type="button"
+                onClick={a.onClick}
+                className={`h-12 rounded-full border-2 text-sm font-bold transition-colors ${
+                  a.primary
+                    ? "border-[var(--color-ink)] bg-[var(--color-ink)] text-[var(--color-surface)]"
+                    : a.danger
+                      ? "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-error-600)]"
+                      : "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)]"
+                }`}
+              >
+                {a.label}
+              </button>
+            ))}
+          </div>
         )}
       </div>
     </div>
@@ -384,76 +419,23 @@ export function ItemDetailPanel({ item, onEquipToggle, onEdit, onRemove, visible
 
 export interface InventoryGridProps {
   items: ItemSlotData[];
-  totalSlots?: number;
-  onItemClick: (item: ItemSlotData | null, index: number) => void;
+  onItemClick: (item: ItemSlotData) => void;
   selectedItemId?: string | null;
-  onEquipToggle?: (item: ItemSlotData) => void;
+  /** Empty slots after the items: enough to finish the row, plus one more row. */
   showEmptySlots?: boolean;
-  emptySlotLabel?: string;
-  canEquip?: (item: ItemSlotData) => boolean;
   onEmptySlotClick?: () => void;
-  lockedSlotCount?: number;
-  canUse?: (item: ItemSlotData) => ItemUseAction;
-  onUse?: (item: ItemSlotData) => void;
 }
 
-export function InventoryGrid({
-  items,
-  totalSlots = 20,
-  onItemClick,
-  selectedItemId,
-  onEquipToggle,
-  showEmptySlots = true,
-  emptySlotLabel,
-  canEquip = () => true,
-  onEmptySlotClick,
-  lockedSlotCount = 0,
-  canUse,
-  onUse,
-}: InventoryGridProps) {
-  const visibleCount = showEmptySlots
-    ? Math.max(totalSlots, Math.ceil(items.length / 4) * 4)
-    : items.length;
-  const slots: (ItemSlotData | null)[] = [];
-  for (let i = 0; i < visibleCount; i++) {
-    slots.push(i < items.length ? items[i] : null);
-  }
-
-  const selectedItem = items.find((i) => i.id === selectedItemId) || null;
-  const detailVisible = !!selectedItemId;
-
-  const handleSlotClick = (item: ItemSlotData | null, index: number) => {
-    if (!item) {
-      onEmptySlotClick?.();
-      return;
-    }
-    onItemClick(item, index);
-  };
-
+export function InventoryGrid({ items, onItemClick, selectedItemId, showEmptySlots = true, onEmptySlotClick }: InventoryGridProps) {
+  const empties = showEmptySlots ? ((4 - (items.length % 4)) % 4) + 4 : 0;
   return (
-    <div>
-      <div className="grid grid-cols-4 gap-[6px]">
-        {slots.map((item, index) => (
-          <ItemSlot
-            key={item?.id || `empty-${index}`}
-            item={item}
-            onClick={() => handleSlotClick(item, index)}
-            label={!item && index < lockedSlotCount ? "🔒" : (emptySlotLabel || (index < lockedSlotCount ? "?" : "+"))}
-            showEquippedBadge={index >= lockedSlotCount}
-            selected={!!item && item.id === selectedItemId}
-          />
-        ))}
-      </div>
-      {selectedItem && (
-        <ItemDetailPanel
-          item={selectedItem}
-          onEquipToggle={onEquipToggle || (() => {})}
-          visible={detailVisible}
-          canEquip={canEquip}
-          canUse={canUse}
-          onUse={onUse}
-        />
-      )}
+    <div className="grid grid-cols-4 gap-[6px]">
+      {items.map((item) => (
+        <ItemSlot key={item.id} item={item} onClick={() => onItemClick(item)} selected={item.id === selectedItemId} />
+      ))}
+      {Array.from({ length: empties }, (_, i) => (
+        <ItemSlot key={`empty-${i}`} item={null} onClick={() => onEmptySlotClick?.()} />
+      ))}
     </div>
   );
 }

@@ -3,6 +3,7 @@
 import {
   COIN_IDS,
   findCatalogItem,
+  findLocalizedItem,
   formatCost,
   isConsumable,
   type CatalogItem,
@@ -383,4 +384,34 @@ export function equipRow(inventory: InventoryRow[], id: string): { inventory: In
     return r;
   });
   return { inventory: next, removed: inventory.filter((r) => off.has(r.id)).map((r) => r.name) };
+}
+
+// ---------------------------------------------------------------------------
+// Display
+
+/**
+ * Name and description in the reader's language. Catalog rows store English
+ * text; a row the player renamed keeps its own name.
+ */
+export function rowText(row: InventoryRow, locale: string): { name: string; description: string } {
+  const info = rowInfo(row);
+  const description = String(info.description || "");
+  if (locale === "en" || !row.itemId || row.source !== "srd") return { name: row.name, description };
+  const base = findCatalogItem(row.itemId);
+  const local = findLocalizedItem(row.itemId, locale);
+  if (!base || !local) return { name: row.name, description };
+  return {
+    name: row.name === base.name ? local.name : row.name,
+    description: description === base.description ? local.description : description,
+  };
+}
+
+/** Total pounds carried, coins included (50 coins weigh a pound). */
+export function carriedWeight(inventory: InventoryRow[]): number {
+  let total = 0;
+  for (const row of inventory) {
+    const each = row.weight ?? findCatalogItem(row.itemId ?? row.srdItemName ?? row.name)?.weight ?? 0;
+    total += (each || 0) * (row.quantity || 1);
+  }
+  return Math.round(total * 10) / 10;
 }

@@ -285,9 +285,15 @@ export function clampAbilityScore(score: number): number {
   return Math.min(Math.max(score, 1), MAX_ABILITY_SCORE);
 }
 
+/** Fighters and rogues cast only as an Eldritch Knight or Arcane Trickster. */
+export function castsSpells(character: Pick<Character, "class" | "subclass">): boolean {
+  if (character.class === "Fighter" || character.class === "Rogue") return isThirdCaster(character.subclass);
+  return true;
+}
+
 export function getMaxSpellsKnown(character: Character): number {
   const classData = getStaticClass(character.class, character.ruleset);
-  if (!classData) return 0;
+  if (!classData || !castsSpells(character)) return 0;
 
   const level = character.level || 1;
   const className = character.class;
@@ -327,7 +333,7 @@ export function getMaxSpellsKnown(character: Character): number {
 
 export function getMaxCantripsKnown(character: Character): number {
   const classData = getStaticClass(character.class, character.ruleset);
-  if (!classData?.cantripsKnown) return 0;
+  if (!classData?.cantripsKnown || !castsSpells(character)) return 0;
 
   const level = character.level || 1;
 
@@ -1438,8 +1444,11 @@ export function computeDerivedStats(character: Character): Partial<Character> {
     temporaryHp: newTemporaryHp,
     buffModifiers: buffMods as any,
     // Universal grapple/shove attacks
+    // Weapon and class attacks always follow what is equipped now; saved
+    // copies from older versions or imports are replaced.
     attacks: [
-      ...character.attacks,
+      ...computeEquippedEffects(character).attacks,
+      ...(character.attacks || []).filter((a) => a.source !== "weapon" && a.source !== "class"),
       ...(character.attacks?.some(a => a.source === "grapple") ? [] : [{
         id: "grapple",
         name: "Grapple",

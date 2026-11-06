@@ -24,8 +24,11 @@ import { CustomItemModal } from "../modals/CustomItemModal";
 import { Dice } from "@/components/Dice";
 import { SourceBadge } from "@/components/SourceBadge";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { addRows, applyItemUse, coinsFromInventory, equipRow, getRowUse, rowInfo } from "@/lib/inventory";
+import { addRows, applyItemUse, carriedWeight, COIN_BY_FIELD, coinsFromInventory, equipRow, getRowUse, isCoinRow, rowInfo, rowText, setCoinAmount } from "@/lib/inventory";
 import { findLocalizedItem } from "@/data/item-catalog";
+import { ItemIcon } from "@/components/ItemIcon";
+
+const signed = (n: number) => (n >= 0 ? `+${n}` : `${n}`);
 import { addsProficiencyToAttack, collectProficiencies, getRowProficiency } from "@/lib/proficiency";
 import { getWeaponAttackDetails } from "@/lib/weapon-attacks";
 import {
@@ -346,8 +349,10 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
     }
   };
 
+  // Coins live in the coin bar, not the grid. Equipped gear comes first.
   const sortedInventory = useMemo(() => {
-    return [...character.inventory].sort((a, b) => {
+    return character.inventory.filter((row) => !isCoinRow(row)).sort((a, b) => {
+      if (a.equipped !== b.equipped) return a.equipped ? -1 : 1;
       if (a.source !== b.source) {
         if (a.source === "custom") return -1;
         if (b.source === "custom") return 1;
@@ -387,6 +392,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
   const mapToSlotData = useCallback(
     (item: Character["inventory"][number]): ItemSlotData => {
       const itemInfo = rowInfo(item);
+      const text = rowText(item, language);
       const proficiency = getRowProficiency(character, item, profSet);
       const attack = item.itemType === "weapon" ? getWeaponAttackDetails(character, { id: item.id } as Character["attacks"][number]) : null;
       return {
@@ -395,14 +401,14 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
         attackBonusIfProficient: attack && proficiency && !proficiency.proficient ? attack.attackBonus + profBonusNow : undefined,
         profBonus: profBonusNow,
         id: item.id,
-        name: item.name || "Unnamed Item",
+        name: text.name || "Unnamed Item",
         icon: (itemInfo as any)?.icon || "",
         itemKey: item.itemId ?? item.srdItemName ?? item.name,
         category: item.category || "misc",
         itemType: item.itemType || "item",
         equipped: item.equipped,
         quantity: item.quantity,
-        description: itemInfo?.description || item.description || "",
+        description: text.description,
         damageDice: item.damageDice,
         damageType: item.damageType,
         properties: item.properties,
@@ -425,20 +431,30 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
         choiceOptionIndex: item.choiceOptionIndex,
       };
     },
-    [character, profSet, profBonusNow]
+    [character, profSet, profBonusNow, language]
   );
 
   const slotItems = useMemo(() => filteredInventory.map(mapToSlotData), [filteredInventory, mapToSlotData]);
 
-  const handleSlotClick = useCallback(
-    (slotItem: ItemSlotData | null) => {
-      if (!slotItem) return;
-      setSelectedSlotId(slotItem.id);
-    },
-    []
-  );
+  const allSlotItems = useMemo(() => sortedInventory.map(mapToSlotData), [sortedInventory, mapToSlotData]);
+  const selectedItem = allSlotItems.find((i) => i.id === selectedSlotId) || null;
+  const carried = carriedWeight(character.inventory);
+  const capacity = (character.str || 10) * 15;
 
-  const selectedItem = slotItems.find((i) => i.id === selectedSlotId) || null;
+  // Armor, main hand, off hand: what the hand rules in equipRow decide.
+  const wornSlots = useMemo(() => {
+    const equipped = allSlotItems.filter((i) => i.equipped);
+    const armor = equipped.find((i) => i.itemType === "armor" && i.armorType !== "shield");
+    const both = equipped.find((i) => i.hand === "both");
+    const main = both ?? equipped.find((i) => i.hand === "main") ?? equipped.find((i) => i.itemType === "weapon" && !i.hand);
+    const off = both ? undefined : equipped.find((i) => i.armorType === "shield") ?? equipped.find((i) => i.hand === "off");
+    const weaponStat = (i?: ItemSlotData) => (i && i.attackBonus !== undefined ? `${signed(i.attackBonus)} · ${i.damageDice || ""}`.trim() : "");
+    return [
+      { key: "armor", label: t("inventory.slot.armor", "Armor"), item: armor, stat: armor ? `AC ${armor.baseAC ?? ""}` : "" },
+      { key: "main", label: both ? t("inventory.slot.both", "Both hands") : t("inventory.slot.main", "Main hand"), item: main, stat: weaponStat(main) },
+      { key: "off", label: t("inventory.slot.off", "Off hand"), item: both ? undefined : off, stat: off?.armorType === "shield" ? "+2 AC" : weaponStat(off) },
+    ];
+  }, [allSlotItems, t]);
 
   const handleEquipToggle = useCallback(
     (slotItem: ItemSlotData) => {
@@ -472,20 +488,63 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
   return (
     <SectionCard id="inventory" title={t("section.inventory")} icon={<Backpack className="h-5 w-5" />}>
       <div className="space-y-3">
-        <div className="flex items-center justify-between">
-          <span className="text-[11px] font-bold text-[var(--color-text-muted)]">
-            {slotItems.length} / 20 slots
-          </span>
+        <div className="space-y-1.5">
+          <div className="flex items-baseline justify-between">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">{t("inventory.carrying", "Carrying")}</span>
+            <span className={`text-xs font-bold ${carried > capacity ? "text-[var(--color-error-600)]" : "text-[var(--color-text-primary)]"}`}>
+              {carried} <span className="text-[var(--color-text-muted)]">/ {capacity} lb</span>
+            </span>
+          </div>
+          <div className="h-2 overflow-hidden rounded-full bg-[var(--color-border)]/50">
+            <div
+              className={`h-2 rounded-full ${carried > capacity ? "bg-[var(--color-error-500)]" : "bg-[var(--color-ink)]"}`}
+              style={{ width: `${Math.min(100, Math.round((carried / Math.max(1, capacity)) * 100))}%` }}
+            />
+          </div>
         </div>
 
-        {/* Coin totals come from the coin rows below. */}
+        {/* Coins are inventory rows; tapping a coin edits its row. */}
         <CurrencyRow
           copper={coins.copper}
           silver={coins.silver}
           electrum={coins.electrum}
           gold={coins.gold}
           platinum={coins.platinum}
+          onSet={(field, value) => {
+            const inventory = setCoinAmount(character.inventory, COIN_BY_FIELD[field], value);
+            onChange({ inventory, currency: coinsFromInventory(inventory) });
+          }}
         />
+
+        <div className="space-y-1.5">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">
+            {t("inventory.wornHeld", { ac: derived.ac ?? character.ac }, "Worn and held · AC {ac}")}
+          </span>
+          <div className="grid grid-cols-3 gap-1.5">
+            {wornSlots.map((slot) => (
+              <button
+                key={slot.key}
+                type="button"
+                onClick={() => slot.item && setSelectedSlotId(slot.item.id)}
+                disabled={!slot.item}
+                className={`flex min-w-0 flex-col items-center gap-0.5 rounded-xl border-2 px-1 py-2 ${
+                  slot.item ? "border-[var(--color-ink)] bg-[var(--color-ink)]/5" : "border-dashed border-[var(--color-border)] bg-[var(--color-bg)]"
+                }`}
+              >
+                <span className="text-[9px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">{slot.label}</span>
+                {slot.item ? (
+                  <>
+                    <ItemIcon icon={slot.item.icon} item={slot.item.itemKey} className="h-8 w-8" />
+                    <span className="w-full truncate text-center text-[11px] font-bold text-[var(--color-text-primary)]">{slot.item.name}</span>
+                    <span className="text-[10px] font-bold text-[var(--color-text-secondary)]">{slot.stat}</span>
+                  </>
+                ) : (
+                  <span className="py-3 text-[11px] font-semibold text-[var(--color-text-muted)]">{t("inventory.empty", "Empty")}</span>
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
 
         <CategoryFilter
           categories={["all", "weapons", "armor", "items"]}
@@ -495,9 +554,24 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
 
         <InventoryGrid
           items={slotItems}
-          totalSlots={20}
-          onItemClick={handleSlotClick}
+          onItemClick={(slot) => {
+            setUseMessage(null);
+            setSelectedSlotId(slot.id);
+          }}
           selectedItemId={selectedSlotId}
+          showEmptySlots={editMode}
+          onEmptySlotClick={handleAddSrdItem}
+        />
+
+        {useMessage && !selectedItem && (
+          <p role="status" className="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2 text-xs text-[var(--color-text-secondary)]">
+            {useMessage}
+          </p>
+        )}
+
+        <ItemDetailPanel
+          item={selectedItem}
+          onClose={() => setSelectedSlotId(null)}
           onEquipToggle={handleEquipToggle}
           canEquip={canEquipItem}
           canUse={(slot) => {
@@ -505,13 +579,10 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
             return original ? getRowUse(original) : null;
           }}
           onUse={(slot) => handleUse(slot.id)}
+          onEdit={editMode ? handleEdit : undefined}
+          onRemove={handleRemove}
+          message={useMessage}
         />
-
-        {useMessage && (
-          <p role="status" className="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2 text-xs text-[var(--color-text-secondary)]">
-            {useMessage}
-          </p>
-        )}
 
         {editMode && (
           <div className="mt-4 flex gap-2">
