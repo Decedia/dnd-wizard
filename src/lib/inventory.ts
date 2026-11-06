@@ -287,3 +287,69 @@ export function backgroundGearLabel(
   if (findCatalogItem(line.id)?.type === "coin") return `${line.quantity ?? 1} ${line.id}`;
   return line.quantity && line.quantity > 1 ? `${name} ×${line.quantity}` : name;
 }
+
+// ---------------------------------------------------------------------------
+// Equipping: two hands, one body
+
+type Hand = "main" | "off" | "both";
+
+function handling(row: InventoryRow): "two-handed" | "one-hand" {
+  const props = row.properties ?? [];
+  return props.includes("two-handed") ? "two-handed" : "one-hand";
+}
+
+const isShield = (r: InventoryRow) => r.itemType === "armor" && r.armorType === "shield";
+const isBodyArmor = (r: InventoryRow) => r.itemType === "armor" && r.armorType !== "shield";
+
+/**
+ * Equips one row and takes off whatever it pushes out. A shield needs the off
+ * hand, a two-handed weapon needs both, and a new weapon in a full main hand
+ * replaces the old one. Returns the names of what was taken off.
+ */
+export function equipRow(inventory: InventoryRow[], id: string): { inventory: InventoryRow[]; removed: string[] } {
+  const row = inventory.find((r) => r.id === id);
+  if (!row || row.equipped) return { inventory, removed: [] };
+  const off = new Set<string>();
+  let hand: Hand | undefined;
+
+  const held = inventory.filter((r) => r.equipped && r.id !== id);
+  const inHand = (h: Hand) => held.find((r) => r.itemType === "weapon" && r.hand === h);
+
+  if (isBodyArmor(row)) {
+    held.filter(isBodyArmor).forEach((r) => off.add(r.id));
+  } else if (isShield(row)) {
+    held.filter(isShield).forEach((r) => off.add(r.id));
+    const both = inHand("both");
+    const offHand = inHand("off");
+    if (both) off.add(both.id);
+    if (offHand) off.add(offHand.id);
+  } else if (row.itemType === "weapon") {
+    if (handling(row) === "two-handed") {
+      hand = "both";
+      held.filter((r) => r.itemType === "weapon" || isShield(r)).forEach((r) => off.add(r.id));
+    } else {
+      const both = inHand("both");
+      const main = inHand("main");
+      const offHand = inHand("off");
+      const shield = held.some(isShield);
+      if (both) {
+        off.add(both.id);
+        hand = "main";
+      } else if (!main) {
+        hand = "main";
+      } else if (!offHand && !shield) {
+        hand = "off";
+      } else {
+        off.add(main.id);
+        hand = "main";
+      }
+    }
+  }
+
+  const next = inventory.map((r) => {
+    if (r.id === id) return { ...r, equipped: true, hand };
+    if (off.has(r.id)) return { ...r, equipped: false, hand: undefined };
+    return r;
+  });
+  return { inventory: next, removed: inventory.filter((r) => off.has(r.id)).map((r) => r.name) };
+}

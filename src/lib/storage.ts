@@ -3,6 +3,7 @@ import { computeBuffModifiers, type ActiveBuff } from "@/lib/spellEffects";
 import { getSpellMechanic } from "@/lib/spell-mechanics-accessor";
 import { coinRows, coinsFromInventory } from "@/lib/inventory";
 import { findCatalogItem } from "@/data/item-catalog";
+import { addsProficiencyToAttack } from "@/lib/proficiency";
 import { db, type CharacterRecord, dbGetCharacters, dbGetCharacter, dbSaveCharacter, dbDeleteCharacter, dbTouchCharacterOpened } from "@/lib/db";
 export interface Character {
   id: string;
@@ -859,7 +860,8 @@ export function computeEquippedEffects(character: Character): { ac: number; atta
     const abilityMod = getModifier(character[abilityKey as keyof Character] as number);
     const isFinesseOrRanged = weapon.category === "ranged" || weapon.name === "Dagger" || weapon.name === "Rapier" || weapon.name === "Shortsword";
     const sneakDice = isFinesseOrRanged ? getSneakAttackDice(character) : undefined;
-    const attackBonus = abilityMod + profBonus;
+    // No proficiency bonus with a weapon the character isn't proficient with.
+    const attackBonus = abilityMod + (addsProficiencyToAttack(character, weapon) ? profBonus : 0);
     const damageBonus = abilityMod;
     const damageDice = weapon.damageDice || "";
     const damageTypeName = weapon.damageType || "";
@@ -1168,8 +1170,12 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   let ac: number;
 
   // Check for Unarmored Defense features
-  const hasBarbarianUnarmored = character.features?.some(f => f.name.toLowerCase().includes("unarmored defense") && f.source === "class") ?? false;
-  const hasMonkUnarmored = character.features?.some(f => f.name.toLowerCase().includes("unarmored defense") && f.source === "class") ?? false;
+  // Both classes call it Unarmored Defense; the class decides the formula.
+  // A monk loses it with a shield, a barbarian keeps it.
+  const hasUnarmoredDefense = character.features?.some(f => f.name.toLowerCase().includes("unarmored defense") && f.source === "class") ?? false;
+  const hasShield = equippedShields.length > 0;
+  const hasBarbarianUnarmored = hasUnarmoredDefense && character.class === "Barbarian";
+  const hasMonkUnarmored = hasUnarmoredDefense && character.class === "Monk" && !hasShield;
   // Dragon Hide (feat) sets unarmored AC the same way as Draconic Resilience.
   const hasDraconicResilience = (character.features?.some(f => f.name.toLowerCase().includes("draconic resilience")) ?? false) || hasFeat(character, "feat.dragon_hide");
   const hasNaturalArmor = character.features?.some(f => f.name.toLowerCase().includes("natural armor")) ?? false;
@@ -1251,7 +1257,7 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   if (hasFeat(character, "feat.mobile")) speed += 10;
   if (hasFeat(character, "feat.squat_nimbleness")) speed += 5;
   // Monk unarmored movement bonus
-  if (classData?.name === "Monk" && !hasArmor) {
+  if (classData?.name === "Monk" && !hasArmor && equippedShields.length === 0) {
     const umVal = getClassResourceValue(classData, "unarmoredMovement", character.level);
     if (umVal && typeof umVal === "number" && umVal > 0) {
       speed += umVal;

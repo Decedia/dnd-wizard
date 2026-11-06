@@ -24,8 +24,10 @@ import { CustomItemModal } from "../modals/CustomItemModal";
 import { Dice } from "@/components/Dice";
 import { SourceBadge } from "@/components/SourceBadge";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { addRows, applyItemUse, coinsFromInventory, getRowUse, rowInfo } from "@/lib/inventory";
+import { addRows, applyItemUse, coinsFromInventory, equipRow, getRowUse, rowInfo } from "@/lib/inventory";
 import { findLocalizedItem } from "@/data/item-catalog";
+import { addsProficiencyToAttack, collectProficiencies, getRowProficiency } from "@/lib/proficiency";
+import { getWeaponAttackDetails } from "@/lib/weapon-attacks";
 import {
   CurrencyRow,
   CategoryFilter,
@@ -101,8 +103,6 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
   const coins = coinsFromInventory(character.inventory);
   const hasTwoHanded = hands.both !== null;
   const hasShield = character.inventory.some((i) => i.equipped && i.itemType === "armor" && i.armorType === "shield");
-  const hasMainHand = hands.main !== null;
-  const hasOffHand = hands.off !== null;
 
   const updateItem = useCallback(
     (id: string, patch: Partial<Character["inventory"][number]>) => {
@@ -115,58 +115,23 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
     [character, onChange]
   );
 
+  const [useMessage, setUseMessage] = useState<string | null>(null);
+
   const toggleEquip = useCallback(
     (id: string) => {
       const item = character.inventory.find((i) => i.id === id);
       if (!item) return;
-
-      if (!item.equipped) {
-        if (item.itemType === "armor") {
-          if (item.armorType === "shield") {
-            if (hasTwoHanded) return;
-            const nextInventory = character.inventory.map((i) =>
-              i.id === id ? { ...i, equipped: true } : i.itemType === "armor" && i.armorType === "shield" ? { ...i, equipped: false } : i
-            );
-            const { ac, attacks } = computeEquippedEffects({ ...character, inventory: nextInventory });
-            onChange({ inventory: nextInventory, ac, attacks });
-          } else {
-            const nextInventory = character.inventory.map((i) =>
-              i.id === id ? { ...i, equipped: true } : i.itemType === "armor" && i.armorType !== "shield" ? { ...i, equipped: false } : i
-            );
-            const { ac, attacks } = computeEquippedEffects({ ...character, inventory: nextInventory });
-            onChange({ inventory: nextInventory, ac, attacks });
-          }
-        } else if (item.itemType === "weapon") {
-          const handling = getWeaponHandling(item);
-
-          if (handling === "two-handed") {
-            const nextInventory = character.inventory.map((i) => {
-              if (i.id === id) return { ...i, equipped: true, hand: "both" as const };
-              if (i.equipped && i.itemType === "armor" && i.armorType === "shield") return { ...i, equipped: false };
-              if (i.equipped && i.itemType === "weapon") return { ...i, equipped: false, hand: undefined };
-              return i;
-            });
-            const { ac, attacks } = computeEquippedEffects({ ...character, inventory: nextInventory });
-            onChange({ inventory: nextInventory, ac, attacks });
-          } else {
-            if (!hasMainHand && !hasTwoHanded) {
-              updateItem(id, { equipped: true, hand: "main" });
-            } else if (!hasOffHand && !hasTwoHanded && !hasShield) {
-              updateItem(id, { equipped: true, hand: "off" });
-            } else if (!hasMainHand) {
-              updateItem(id, { equipped: true, hand: "main" });
-            } else {
-              updateItem(id, { equipped: true, hand: "main" });
-            }
-          }
-        } else {
-          updateItem(id, { equipped: true });
-        }
-      } else {
+      if (item.equipped) {
         updateItem(id, { equipped: false, hand: undefined });
+        return;
       }
+      // equipRow frees the hands or body slot the item needs.
+      const { inventory: nextInventory, removed } = equipRow(character.inventory, id);
+      const { ac, attacks } = computeEquippedEffects({ ...character, inventory: nextInventory });
+      onChange({ inventory: nextInventory, ac, attacks });
+      setUseMessage(removed.length > 0 ? t("inventory.unequippedFor", { removed: removed.join(", "), item: item.name }, "Took off {removed} to equip {item}.") : null);
     },
-    [character, onChange, updateItem, hasTwoHanded, hasShield, hasMainHand, hasOffHand]
+    [character, onChange, updateItem, t]
   );
 
   const setHand = useCallback(
@@ -226,7 +191,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
       abilityKey = item.category === "ranged" ? "dex" : "str";
     }
     const abilityMod = getModifier(character[abilityKey as keyof Character] as number);
-    const attackBonus = abilityMod + profBonus;
+    const attackBonus = abilityMod + (addsProficiencyToAttack(character, item) ? profBonus : 0);
     const rageBonus = isBarbarian && abilityKey === "str" ? rageDamage : 0;
     const damageBonus = abilityMod + rageBonus;
     return {
@@ -316,8 +281,6 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
     },
     [character, onChange]
   );
-
-  const [useMessage, setUseMessage] = useState<string | null>(null);
 
   const handleUse = useCallback(
     (rowId: string) => {
@@ -440,10 +403,19 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
     return counts;
   }, [sortedInventory]);
 
+  const profSet = useMemo(() => collectProficiencies(character), [character]);
+  const profBonusNow = getProficiencyBonus(character.level);
+
   const mapToSlotData = useCallback(
     (item: Character["inventory"][number]): ItemSlotData => {
       const itemInfo = rowInfo(item);
+      const proficiency = getRowProficiency(character, item, profSet);
+      const attack = item.itemType === "weapon" ? getWeaponAttackDetails(character, { id: item.id } as Character["attacks"][number]) : null;
       return {
+        proficiency,
+        attackBonus: attack?.attackBonus,
+        attackBonusIfProficient: attack && proficiency && !proficiency.proficient ? attack.attackBonus + profBonusNow : undefined,
+        profBonus: profBonusNow,
         id: item.id,
         name: item.name || "Unnamed Item",
         icon: (itemInfo as any)?.icon || "📦",
@@ -474,7 +446,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
         choiceOptionIndex: item.choiceOptionIndex,
       };
     },
-    []
+    [character, profSet, profBonusNow]
   );
 
   const activeConsumables = useMemo(

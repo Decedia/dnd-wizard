@@ -8,6 +8,8 @@ import { BottomSheet } from "@/components/modals/BottomSheet";
 import { getCatalog, isConsumable, weaponHandedness, type CatalogItem } from "@/data/item-catalog";
 import { expandToRows } from "@/lib/inventory";
 import { ItemInfoPanel } from "@/components/modals/ItemInfoPanel";
+import { ProficiencyDot } from "@/components/character-sheet/InventoryGrid";
+import { collectProficiencies, getItemProficiency } from "@/lib/proficiency";
 
 interface ItemSelectionModalProps {
   character: Character;
@@ -35,6 +37,8 @@ export function ItemSelectionModal({ character, onAdd, onClose }: ItemSelectionM
   const [searchQuery, setSearchQuery] = useState("");
 
   const sources = character.sources ?? [];
+  const profSet = useMemo(() => collectProficiencies(character), [character]);
+  const profOf = (item: CatalogItem) => getItemProficiency(character, item, profSet);
   const byCategory = useMemo(() => {
     const groups: Record<ItemCategory, CatalogItem[]> = { weapons: [], armor: [], consumables: [], items: [], magic: [] };
     for (const item of getCatalog(language)) {
@@ -106,7 +110,7 @@ export function ItemSelectionModal({ character, onAdd, onClose }: ItemSelectionM
     >
       {infoItem ? (
         <div className="flex-1 overflow-y-auto overscroll-contain p-4">
-          <ItemInfoPanel item={infoItem} />
+          <ItemInfoPanel item={infoItem} proficiency={profOf(infoItem)} />
         </div>
       ) : (
         <div className="flex flex-1 flex-col overflow-hidden">
@@ -171,7 +175,13 @@ export function ItemSelectionModal({ character, onAdd, onClose }: ItemSelectionM
                       className="flex flex-1 items-center justify-between p-4 text-left transition active:scale-[0.99]"
                     >
                       <div className="min-w-0 flex-1">
-                        <h3 className="text-lg font-bold text-ink">{item.name}</h3>
+                        <h3 className="flex items-center gap-2 text-lg font-bold text-ink">
+                          {(() => {
+                            const p = profOf(item);
+                            return p ? <ProficiencyDot proficient={p.proficient} /> : null;
+                          })()}
+                          {item.name}
+                        </h3>
                         <ItemFacts item={item} />
                       </div>
                       {isSelected && <Check className="ml-2 h-5 w-5 shrink-0 text-ink" />}

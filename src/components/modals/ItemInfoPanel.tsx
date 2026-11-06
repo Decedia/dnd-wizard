@@ -2,9 +2,13 @@
 
 import { useLanguage } from "@/contexts/LanguageContext";
 import { findLocalizedItem, formatCost, weaponHandedness, type CatalogItem } from "@/data/item-catalog";
+import type { ItemProficiency } from "@/lib/proficiency";
+import { ProficiencyDot } from "@/components/character-sheet/InventoryGrid";
 
 interface ItemInfoPanelProps {
   item: CatalogItem;
+  /** The viewing character's proficiency with it; null or absent hides the line. */
+  proficiency?: ItemProficiency | null;
 }
 
 const RARITY_KEY: Record<string, string> = { "very rare": "veryRare" };
@@ -34,7 +38,7 @@ function Stat({ label, value, note }: { label: string; value: string; note?: str
 }
 
 /** Full details of one catalog item, shown from the item picker's info button. */
-export function ItemInfoPanel({ item }: ItemInfoPanelProps) {
+export function ItemInfoPanel({ item, proficiency }: ItemInfoPanelProps) {
   const { t: tr, language } = useLanguage();
   const w = item.weapon;
   const a = item.armor;
@@ -54,6 +58,29 @@ export function ItemInfoPanel({ item }: ItemInfoPanelProps) {
           {handedness && <Tag>{tr(`item.handedness.${handedness}`, handedness)}</Tag>}
         </div>
       </div>
+
+      {proficiency && (
+        <p
+          className={`flex items-start gap-1.5 rounded-xl border-2 p-3 text-xs leading-relaxed ${
+            proficiency.proficient ? "border-border-strong bg-surface text-ink" : "border-warning-500/40 bg-warning-500/10 font-semibold text-warning-600"
+          }`}
+        >
+          <ProficiencyDot proficient={proficiency.proficient} className="mt-0.5" />
+          <span>
+            {proficiency.kind === "weapon"
+              ? proficiency.proficient
+                ? tr("proficiency.weaponYesShort", "Proficient: add your proficiency bonus to attack rolls.")
+                : tr("proficiency.weaponNo", "Not proficient: you don't add your proficiency bonus to attack rolls with it.")
+              : proficiency.kind === "tool"
+                ? proficiency.proficient
+                  ? tr("proficiency.toolYesShort", "Proficient: add your proficiency bonus to checks with it.")
+                  : tr("proficiency.toolNo", "Not proficient: checks with it use only your ability modifier.")
+                : proficiency.proficient
+                  ? tr("proficiency.armorYes", "Proficient: you wear it with no penalty.")
+                  : tr("proficiency.armorNo", "Not proficient: while you wear it you have disadvantage on any ability check, saving throw or attack roll that uses Strength or Dexterity, and you can't cast spells.")}
+          </span>
+        </p>
+      )}
 
       {(w?.damage || a) && (
         <div className="grid grid-cols-2 gap-2">

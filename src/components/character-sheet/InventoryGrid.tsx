@@ -57,6 +57,50 @@ export interface ItemSlotData {
   isGranted?: boolean;
   choiceGroupIndex?: number;
   choiceOptionIndex?: number;
+  /** Null when proficiency doesn't apply (gear) or can't be told. */
+  proficiency?: { kind: "weapon" | "armor" | "shield" | "tool"; proficient: boolean } | null;
+  attackBonus?: number;
+  /** Set only when not proficient: what the attack would be with proficiency. */
+  attackBonusIfProficient?: number;
+  profBonus?: number;
+}
+
+const signed = (n: number) => (n >= 0 ? `+${n}` : `${n}`);
+
+/** ● proficient, ○ not proficient: the same bubbles the paper sheet uses for skills. */
+export function ProficiencyDot({ proficient, className = "" }: { proficient: boolean; className?: string }) {
+  const { t } = useLanguage();
+  return (
+    <span
+      role="img"
+      aria-label={proficient ? t("proficiency.proficient", "Proficient") : t("proficiency.notProficient", "Not proficient")}
+      className={`inline-block w-2.5 h-2.5 rounded-full shrink-0 ${
+        proficient
+          ? "bg-[var(--color-ink)]"
+          : "border-2 border-[var(--color-warning-500)] bg-transparent"
+      } ${className}`}
+    />
+  );
+}
+
+/** The rule text shown with the dot in the item details. */
+function proficiencyText(t: ReturnType<typeof useLanguage>["t"], item: ItemSlotData): string | null {
+  const p = item.proficiency;
+  if (!p) return null;
+  const pb = item.profBonus ?? 2;
+  if (p.kind === "weapon") {
+    return p.proficient
+      ? t("proficiency.weaponYes", { pb: signed(pb) }, "Proficient: you add your proficiency bonus ({pb}) to attack rolls with it.")
+      : t("proficiency.weaponNo", "Not proficient: you don't add your proficiency bonus to attack rolls with it.");
+  }
+  if (p.kind === "armor" || p.kind === "shield") {
+    return p.proficient
+      ? t("proficiency.armorYes", "Proficient: you wear it with no penalty.")
+      : t("proficiency.armorNo", "Not proficient: while you wear it you have disadvantage on any ability check, saving throw or attack roll that uses Strength or Dexterity, and you can't cast spells.");
+  }
+  return p.proficient
+    ? t("proficiency.toolYes", { pb: signed(pb) }, "Proficient: add your proficiency bonus ({pb}) to ability checks you make with it.")
+    : t("proficiency.toolNo", "Not proficient: checks with it use only your ability modifier.");
 }
 
 export interface CurrencyRowProps {
@@ -147,6 +191,7 @@ export function ItemSlot({ item, onClick, label, showEquippedBadge = true, selec
     >
       {item ? (
         <>
+          {item.proficiency && <ProficiencyDot proficient={item.proficiency.proficient} className="absolute top-1.5 left-1.5" />}
           {showEquippedBadge && item.equipped && (
             <span className="absolute top-1 right-1 w-4 h-4 rounded-full bg-[var(--color-ink)] text-[var(--color-surface)] text-[8px] font-bold flex items-center justify-center leading-none">
               E
@@ -186,10 +231,20 @@ export function ItemDetailPanel({ item, onEquipToggle, onEdit, onRemove, visible
   const { t } = useLanguage();
   if (!item) return null;
   const useAction = canUse ? canUse(item) : null;
+  const profText = proficiencyText(t, item);
 
   const infoRows: { label: string; value: string }[] = [];
 
   if (item.itemType === "weapon") {
+    if (item.attackBonus !== undefined) {
+      infoRows.push({
+        label: t("proficiency.attack", "Attack"),
+        value:
+          item.attackBonusIfProficient !== undefined
+            ? t("proficiency.attackIfProficient", { bonus: signed(item.attackBonus), full: signed(item.attackBonusIfProficient) }, "{bonus} ({full} if proficient)")
+            : signed(item.attackBonus),
+      });
+    }
     infoRows.push({ label: "Type", value: item.category || "melee" });
     infoRows.push({ label: "Damage", value: `${item.damageDice || "—"} ${item.damageType || ""}`.trim() });
     if (item.properties && item.properties.length > 0) {
@@ -232,7 +287,7 @@ export function ItemDetailPanel({ item, onEquipToggle, onEdit, onRemove, visible
     <div
       className="overflow-hidden transition-all duration-200 ease-in-out"
       style={{
-        maxHeight: visible ? "300px" : "0px",
+        maxHeight: visible ? "640px" : "0px",
         opacity: visible ? 1 : 0,
       }}
     >
@@ -294,6 +349,16 @@ export function ItemDetailPanel({ item, onEquipToggle, onEdit, onRemove, visible
             )}
           </div>
         </div>
+        {profText && (
+          <p
+            className={`mb-2 flex items-start gap-1.5 text-[11px] leading-relaxed ${
+              item.proficiency?.proficient ? "text-[var(--color-text-secondary)]" : "text-[var(--color-warning-600)] font-semibold"
+            }`}
+          >
+            <ProficiencyDot proficient={!!item.proficiency?.proficient} className="mt-0.5" />
+            <span>{profText}</span>
+          </p>
+        )}
         {infoRows.length > 0 && (
           <div className="grid grid-cols-2 gap-x-4 gap-y-1.5">
             {infoRows.map((row) => (
