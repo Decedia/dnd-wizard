@@ -179,9 +179,9 @@ export type UseResult =
 export function getRowUse(row: InventoryRow): "heal" | "open" | "consume" | null {
   if (row.contents && row.contents.length > 0) return "open";
   const item = findCatalogItem(row.itemId ?? row.srdItemName ?? row.name);
-  if (!item?.use) return null;
-  if (item.use.action === "open") return null; // nothing inside any more
-  return item.use.action;
+  if (item?.use) return item.use.action === "open" ? null : item.use.action; // an opened pouch has nothing left
+  // Any other consumable (a custom one, oil, a scroll) is used up one at a time.
+  return row.itemType === "consumable" || (item && isConsumable(item)) ? "consume" : null;
 }
 
 /** Rolls "2d4+2" style dice. `random` returns [0, 1). */
@@ -264,11 +264,42 @@ export function rowInfo(row: InventoryRow): Record<string, any> {
 
 type BackgroundGearLine = { id: string; quantity?: number; contents?: ItemStack[] } | { choice: string; label: string };
 
+const SWAP_HINT = "Your background lets you pick which one. Add your pick from the item list and remove this row.";
+
+/** Text and icon for a background's "pick one" gear row, in our own words. */
+const CHOICE_INFO: Record<string, { icon: string; description: string }> = {
+  holy: {
+    icon: "GiHolySymbol",
+    description: `A sign of your faith, such as an amulet, a carved emblem or a small reliquary. A cleric or paladin can hold it to channel divine magic. ${SWAP_HINT}`,
+  },
+  instrument: {
+    icon: "GiGuitar",
+    description: `An instrument you know how to play, such as a lute, flute, drum or lyre. ${SWAP_HINT}`,
+  },
+  artisan: {
+    icon: "GiAnvil",
+    description: `The tools of the trade you learned, such as a smith's hammer and tongs or a weaver's loom. ${SWAP_HINT}`,
+  },
+  gaming: {
+    icon: "GiDiceSixFacesFive",
+    description: `A set of carved bone dice or a worn deck of cards, good for passing the time and parting fools from their coin. ${SWAP_HINT}`,
+  },
+};
+
+/** Fills in text and icon for a granted "pick one" row that has none (rows made before they had any). */
+export function withChoiceInfo(row: InventoryRow): InventoryRow {
+  if (row.source !== "custom" || !row.isGranted || row.description) return row;
+  const name = row.name.toLowerCase();
+  const choice = /holy symbol/.test(name) ? "holy" : /instrument/.test(name) ? "instrument" : /artisan/.test(name) ? "artisan" : /dice|cards/.test(name) ? "gaming" : null;
+  return choice ? { ...row, ...CHOICE_INFO[choice] } : row;
+}
+
 /** Rows for one background gear line. A choice becomes a row the player replaces with their pick. */
 export function backgroundGearRows(line: BackgroundGearLine, grantedFrom: string): InventoryRow[] {
   const extra = { isGranted: true, grantedFrom };
   if ("choice" in line) {
-    return [{ id: newRowId(), name: line.label, quantity: 1, equipped: false, source: "custom", itemType: "item", ...extra }];
+    const info = CHOICE_INFO[line.choice];
+    return [{ id: newRowId(), name: line.label, quantity: 1, equipped: false, source: "custom", itemType: "item", ...info, ...extra }];
   }
   const rows = expandToRows(line.id, line.quantity ?? 1, extra);
   if (line.contents && rows.length === 1) rows[0] = { ...rows[0], contents: line.contents };

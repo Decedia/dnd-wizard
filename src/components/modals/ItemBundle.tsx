@@ -1,5 +1,6 @@
 "use client";
 
+import { ItemIcon } from "@/components/ItemIcon";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export interface BundleItem {
@@ -51,7 +52,7 @@ export function ItemBundleList({
             className="flex items-center gap-3 rounded-xl border-2 border-border-strong bg-surface p-2.5"
           >
             <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-paper-muted">
-              <span className="text-[18px] leading-none">{info?.icon || "📦"}</span>
+              <span className="text-[18px] leading-none"><ItemIcon icon={info?.icon} item={item.name} className="h-6 w-6" /></span>
             </div>
             <div className="min-w-0 flex-1">
               <h4 className="text-sm font-semibold text-ink">{item.name}</h4>

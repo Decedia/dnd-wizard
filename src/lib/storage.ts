@@ -1,7 +1,7 @@
 import { getStaticClass, getStaticRace, getStaticSubclasses, getDomainSpells, getCircleSpells as getJsonCircleSpells, getCircleTerrainTypes as getJsonCircleTerrainTypes, getOathSpells, getWizardTraditionSpells, getSubclassFlags, getPactBoons } from "@/lib/srd-client";
 import { computeBuffModifiers, type ActiveBuff } from "@/lib/spellEffects";
 import { getSpellMechanic } from "@/lib/spell-mechanics-accessor";
-import { coinRows, coinsFromInventory } from "@/lib/inventory";
+import { coinRows, coinsFromInventory, withChoiceInfo } from "@/lib/inventory";
 import { findCatalogItem } from "@/data/item-catalog";
 import { addsProficiencyToAttack } from "@/lib/proficiency";
 import { db, type CharacterRecord, dbGetCharacters, dbGetCharacter, dbSaveCharacter, dbDeleteCharacter, dbTouchCharacterOpened } from "@/lib/db";
@@ -578,7 +578,9 @@ function normalizeCharacter(c: Character): Character {
  * move those numbers into rows once, then `currency` is read from the rows.
  */
 export function migrateCoins(c: Character): Pick<Character, "inventory" | "currency" | "coinsInInventory"> {
-  let inventory = (c.inventory || []).map((item) => {
+  let inventory = (c.inventory || []).map((row) => {
+    // Consumables are used, not equipped; old saves may have them equipped.
+    const item = withChoiceInfo(row.itemType === "consumable" && row.equipped ? { ...row, equipped: false } : row);
     if (item.itemId || item.source !== "srd") return { ...item };
     // Old rows were matched by name; stamp the catalog id so Use and lookups work.
     const match = findCatalogItem(item.srdItemName || item.name);

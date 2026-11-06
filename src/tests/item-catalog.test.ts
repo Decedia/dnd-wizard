@@ -9,9 +9,11 @@ import {
   backgroundGearLabel,
   coinsFromInventory,
   expandToRows,
+  backgroundGearRows,
   getRowUse,
   setCoinAmount,
 } from "@/lib/inventory";
+import { ITEM_ICONS } from "@/components/item-icon-map";
 import { applyBackground } from "@/lib/character-creation";
 import { computeEquippedEffects, createEmptyCharacter, migrateCoins, type Character } from "@/lib/storage";
 import { getStaticArmors, getStaticWeapons } from "@/lib/srd-client";
@@ -24,6 +26,21 @@ const CHOICE_NAMES = new Set(["Arcane Focus", "Musical Instrument"]);
 
 describe("item catalog", () => {
   const catalog = getCatalog();
+
+  test("every item has its own bundled icon and a description", () => {
+    for (const item of catalog) {
+      expect(ITEM_ICONS[item.icon ?? ""]).toBeDefined();
+      expect(item.description.length).toBeGreaterThan(0);
+    }
+  });
+
+  test("pick-one background rows have text and an icon", () => {
+    for (const choice of ["holy", "instrument", "artisan", "gaming"]) {
+      const [r] = backgroundGearRows({ choice, label: choice }, "background:x");
+      expect(r.description!.length).toBeGreaterThan(20);
+      expect(ITEM_ICONS[r.icon!]).toBeDefined();
+    }
+  });
 
   test("ids are unique and every pack item exists", () => {
     const ids = catalog.map((i) => i.id);
@@ -181,6 +198,24 @@ describe("using items", () => {
     expect(kit).toMatchObject({ uses: 10, maxUses: 10 });
     const used = applyItemUse(make({ inventory: [kit] }), kit.id)!;
     expect(used.result).toEqual({ kind: "consume", usesLeft: 9 });
+  });
+
+  test("every consumable can be used, and the last one leaves", () => {
+    for (const item of getCatalog().filter((i) => i.type === "consumable")) {
+      const [r] = expandToRows(item.id, 1);
+      expect(getRowUse(r)).not.toBeNull();
+    }
+    const custom = { id: "c1", name: "Homemade Tonic", quantity: 1, equipped: false, source: "custom" as const, itemType: "consumable" as const };
+    expect(applyItemUse(make({ inventory: [custom] }), "c1")!.patch.inventory).toEqual([]);
+  });
+
+  test("old saves unequip consumables and fill in pick-one rows", () => {
+    const [oil] = expandToRows("Oil (flask)");
+    const dice = { id: "d1", name: "Bone dice or deck of cards", quantity: 1, equipped: false, source: "custom" as const, isGranted: true };
+    const { inventory } = migrateCoins(make({ inventory: [{ ...oil, itemType: "consumable", equipped: true }, dice], coinsInInventory: true }));
+    expect(inventory[0].equipped).toBe(false);
+    expect(inventory[1].description).toContain("bone dice");
+    expect(inventory[1].icon).toBe("GiDiceSixFacesFive");
   });
 
   test("a sword cannot be used", () => {
