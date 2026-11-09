@@ -1533,4 +1533,8 @@ export const translations = {
   "modal.classGroupFlavor.martial": "No spells. You fight with weapons, fists and clever tricks.",
   "modal.classGroupFlavor.half": "Fight up close and cast a few helpful spells.",
   "modal.classGroupFlavor.full": "Spells are your main power. Easier to fall in a fight.",
+  "origin.kicker": "Gameplay",
+  "origin.introHint": "Your class, race and background decide your stats and skills. Tap a card to see the options.",
+  "origin.sectionClassRace": "Class & race",
+  "origin.sectionBackground": "Background",
 };

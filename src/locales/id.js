@@ -1612,4 +1612,8 @@ export const translations = {
   "modal.classGroupFlavor.martial": "Tanpa spell. Bertarung dengan senjata, tangan kosong, dan trik cerdik.",
   "modal.classGroupFlavor.half": "Bertarung jarak dekat dan memakai beberapa spell pendukung.",
   "modal.classGroupFlavor.full": "Spell adalah kekuatan utamamu. Lebih mudah jatuh saat bertarung.",
+  "origin.kicker": "Gameplay",
+  "origin.introHint": "Class, ras, dan latar belakang menentukan stat dan skill-mu. Ketuk kartu untuk melihat pilihannya.",
+  "origin.sectionClassRace": "Class & ras",
+  "origin.sectionBackground": "Latar belakang",
 };

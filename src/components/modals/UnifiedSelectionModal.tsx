@@ -105,7 +105,7 @@ function slugify(name: string): string {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
-const CLASS_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
+export const CLASS_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
   Barbarian: BarbarianIcon,
   Bard: MusicNotesIcon,
   Cleric: ClericIcon,

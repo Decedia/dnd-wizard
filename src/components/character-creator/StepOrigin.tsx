@@ -2,46 +2,46 @@
 
 import { encodeFeatOptions } from "@/lib/feat-grants";
 import { useState, useCallback } from "react";
-import { Sword, Users, CaretRight, Person, Sparkle, Shield, Leaf, Hand, Brain, Skull, Flame, Lightning, Hammer, Scroll } from "@phosphor-icons/react";
+import { Sword, Users, CaretRight, Scroll, Info } from "@phosphor-icons/react";
 import { getStaticClasses, getStaticRaces, type SRDClass, type SRDRace } from "@/lib/srd-client";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
 import { ClassSelectionModal } from "../modals/ClassSelectionModal";
 import { RaceSelectionModal } from "../modals/RaceSelectionModal";
-import { FieldState } from "@/components/ui/FieldState";
+import { CLASS_ICONS } from "../modals/UnifiedSelectionModal";
+import { RACE_ICONS } from "@/components/race-icons";
 import { BackgroundSelectionModal, backgroundStatLine } from "../modals/BackgroundSelectionModal";
 import { LanguagePicker } from "./LanguagePicker";
 import { getBackgroundData } from "@/data/backgrounds";
 import { applyBackground } from "@/lib/character-creation";
 
-const CLASS_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
-  Barbarian: Sparkle,
-  Bard: Sparkle,
-  Cleric: Shield,
-  Druid: Leaf,
-  Fighter: Sword,
-  Monk: Hand,
-  Paladin: Shield,
-  Ranger: Sparkle,
-  Rogue: Sparkle,
-  Sorcerer: Sparkle,
-  Warlock: Skull,
-  Wizard: Sparkle,
-  Artificer: Brain,
-};
+function SectionHeader({ icon, children }: { icon: React.ReactNode; children: React.ReactNode }) {
+  return (
+    <div className="mb-3 flex items-center gap-2">
+      {icon}
+      <h3 className="text-xs font-bold uppercase tracking-widest text-ink">{children}</h3>
+    </div>
+  );
+}
 
-const RACE_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
-  Human: Person,
-  Elf: Person,
-  Dwarf: Person,
-  Halfling: Person,
-  Dragonborn: Person,
-  Gnome: Person,
-  "Half-Elf": Person,
-  "Half-Orc": Person,
-  Tiefling: Person,
-  "Variant Human": Person,
-};
+/** One tap-to-choose row, styled like the other creator panels. */
+function PickRow({ label, title, subtitle, icon, chosen, onClick }: { label: string; title: string; subtitle: string; icon: React.ReactNode; chosen: boolean; onClick: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`flex w-full items-center gap-3 rounded-2xl border-2 bg-surface p-4 text-left transition active:scale-[0.98] ${chosen ? "border-ink" : "border-border-strong hover:border-ink/40"}`}
+    >
+      <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${chosen ? "bg-ink text-surface" : "bg-ink/10 text-ink"}`}>{icon}</div>
+      <div className="min-w-0 flex-1">
+        <p className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">{label}</p>
+        <h4 className={`text-lg font-bold leading-tight ${chosen ? "text-ink" : "text-ink-muted"}`}>{title}</h4>
+        <p className="mt-0.5 line-clamp-2 text-xs leading-relaxed text-ink-muted">{subtitle}</p>
+      </div>
+      <CaretRight size={20} weight="bold" className="shrink-0 text-ink-muted" />
+    </button>
+  );
+}
 
 interface StepOriginProps {
   data: Character;
@@ -197,83 +197,54 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
   const isFormComplete = data.class && data.race;
 
   return (
-    <div className="space-y-3">
+    <section className="w-full">
       <div className="mb-6">
-        <h1 className="text-2xl font-black text-[var(--color-text-primary)] tracking-tight">{t("origin.title", "Identitas & Asal")}</h1>
-        <p className="text-sm text-[var(--color-text-secondary)] mt-1 leading-relaxed">{t("origin.hintBackground", "Tentukan kelas, ras, dan latar belakang pahlawanmu.")}</p>
+        <p className="text-[11px] font-bold uppercase tracking-widest text-ink-muted">{t("origin.kicker", "Gameplay")}</p>
+        <h1 className="text-2xl font-black tracking-tight text-ink">{t("origin.title", "Identitas & Asal")}</h1>
       </div>
 
-      <div className="mb-8">
-        <h2 className="text-xs font-bold tracking-widest text-[var(--color-text-secondary)] mb-3">{t("creator.selectClassRace", "CHOOSE CLASS & RACE")}</h2>
-        {/* Class Card */}
-        <FieldState
-          value={data.class}
-          label={t("form.class", "Class")}
-          required
-        >
-          <div
-            onClick={() => setClassModalOpen(true)}
-            className="group border-2 border-dashed border-[var(--color-border)] hover:border-[var(--color-accent-indigo-500)] bg-[var(--color-surface)] rounded-2xl p-4 flex items-center gap-4 cursor-pointer active:scale-[0.98] transition-all mb-3"
-          >
-            <div className="h-12 w-12 rounded-xl bg-[var(--color-accent-indigo-50)] text-[var(--color-accent-indigo-600)] flex items-center justify-center shrink-0">
-              {data.class ? (() => { const Icon = CLASS_ICONS[data.class] || Sword; return <Icon className="h-6 w-6" />; })() : <Sword className="h-6 w-6" />}
-            </div>
-            <div className="flex-1">
-              <h3 className="font-bold text-[var(--color-text-primary)] text-lg">{data.class || t("origin.selectClass", "Pilih Kelas")}</h3>
-              <p className="text-xs text-[var(--color-text-secondary)] line-clamp-2">{data.class ? truncate(selectedClass?.flavor || data.class) : t("origin.classExamples", "Fighter, Wizard, Rogue...")}</p>
-            </div>
-            <CaretRight className="text-[var(--color-text-muted)] group-hover:text-[var(--color-accent-indigo-500)] transition-colors h-5 w-5" />
-          </div>
-        </FieldState>
+      <div className="space-y-6">
+        <div className="flex gap-3 rounded-2xl border border-ink/20 bg-ink/10 p-4">
+          <Info size={18} weight="bold" className="mt-0.5 shrink-0 text-ink" />
+          <p className="text-xs leading-relaxed text-ink/80">
+            {t("origin.introHint", "Your class, race and background decide your stats and skills. Tap a card to see the options.")}
+          </p>
+        </div>
 
-        {/* Race Card */}
-        <FieldState
-          value={data.race}
-          label={t("form.race", "Race")}
-          required
-        >
-          <div
-            onClick={() => setRaceModalOpen(true)}
-            className="group border-2 border-dashed border-[var(--color-border)] hover:border-[var(--color-accent-teal-500)] bg-[var(--color-surface)] rounded-2xl p-4 flex items-center gap-4 cursor-pointer active:scale-[0.98] transition-all"
-          >
-            <div className="h-12 w-12 rounded-xl bg-[var(--color-accent-teal-50)] text-[var(--color-accent-teal-600)] flex items-center justify-center shrink-0">
-              {data.race ? (() => { const Icon = RACE_ICONS[data.race] || Users; return <Icon className="h-6 w-6" />; })() : <Users className="h-6 w-6" />}
-            </div>
-            <div className="flex-1">
-              <h3 className="font-bold text-[var(--color-text-primary)] text-lg">{data.race ? (data.race === "Human" && data.raceVariant === "variant" ? t("origin.variantHuman", "Variant Human") : data.race) : t("origin.selectRace", "Pilih Ras")}</h3>
-              <p className="text-xs text-[var(--color-text-secondary)] line-clamp-2">{data.race ? truncate(selectedRace?.flavor || (selectedRace as any)?.recommendation?.text || data.race) : t("origin.raceExamples", "Manusia, Elf, Dwarf...")}</p>
-            </div>
-            <CaretRight className="text-[var(--color-text-muted)] group-hover:text-[var(--color-accent-teal-500)] transition-colors h-5 w-5" />
+        <section>
+          <SectionHeader icon={<Sword size={14} weight="bold" className="text-ink" />}>{t("origin.sectionClassRace", "Class & race")}</SectionHeader>
+          <div className="space-y-3">
+            <PickRow
+              label={`${t("form.class", "Class")} *`}
+              title={data.class || t("origin.selectClass", "Pilih Kelas")}
+              subtitle={data.class ? truncate(selectedClass?.flavor || data.class) : t("origin.classExamples", "Fighter, Wizard, Rogue...")}
+              icon={(() => { const Icon = (data.class && CLASS_ICONS[data.class]) || Sword; return <Icon className="h-6 w-6" />; })()}
+              chosen={!!data.class}
+              onClick={() => setClassModalOpen(true)}
+            />
+            <PickRow
+              label={`${t("form.race", "Race")} *`}
+              title={data.race ? (data.race === "Human" && data.raceVariant === "variant" ? t("origin.variantHuman", "Variant Human") : data.race) : t("origin.selectRace", "Pilih Ras")}
+              subtitle={data.race ? truncate(selectedRace?.flavor || (selectedRace as any)?.recommendation?.text || data.race) : t("origin.raceExamples", "Manusia, Elf, Dwarf...")}
+              icon={(() => { const Icon = (data.race && RACE_ICONS[data.race]) || Users; return <Icon className="h-6 w-6" />; })()}
+              chosen={!!data.race}
+              onClick={() => setRaceModalOpen(true)}
+            />
           </div>
-        </FieldState>
-      </div>
+        </section>
 
-      <div className="mb-8">
-        <h2 className="text-xs font-bold tracking-widest text-[var(--color-text-secondary)] mb-3">{t("origin.selectBackground", "PILIH LATAR BELAKANG")}</h2>
-        <FieldState
-          value={data.background}
-          label={t("form.background", "Background")}
-          required
-        >
-          <div
+        <section>
+          <SectionHeader icon={<Scroll size={14} weight="bold" className="text-ink" />}>{t("origin.sectionBackground", "Background")}</SectionHeader>
+          <PickRow
+            label={`${t("form.background", "Background")} *`}
+            title={data.background || t("origin.chooseBackground", "Pilih Latar Belakang")}
+            subtitle={selectedBackground ? backgroundStatLine(selectedBackground, t) : t("origin.backgroundExamples", "Acolyte, Soldier, Sage...")}
+            icon={<Scroll className="h-6 w-6" />}
+            chosen={!!data.background}
             onClick={() => setBackgroundModalOpen(true)}
-            className="group border-2 border-dashed border-[var(--color-border)] hover:border-[var(--color-border-active)] bg-[var(--color-surface)] rounded-2xl p-4 flex items-center gap-4 cursor-pointer active:scale-[0.98] transition-all"
-          >
-            <div className="h-12 w-12 rounded-xl bg-ink/10 text-ink flex items-center justify-center shrink-0">
-              <Scroll className="h-6 w-6" />
-            </div>
-            <div className="flex-1">
-              <h3 className="font-bold text-[var(--color-text-primary)] text-lg">{data.background || t("origin.chooseBackground", "Pilih Latar Belakang")}</h3>
-              <p className="text-xs text-[var(--color-text-secondary)] line-clamp-2">
-                {selectedBackground ? backgroundStatLine(selectedBackground, t) : t("origin.backgroundExamples", "Acolyte, Soldier, Sage...")}
-              </p>
-            </div>
-            <CaretRight className="text-[var(--color-text-muted)] transition-colors h-5 w-5" />
-          </div>
-        </FieldState>
-      </div>
+          />
+        </section>
 
-      <div className="mb-8">
         <LanguagePicker data={data} onChange={onChange} />
       </div>
 
@@ -307,6 +278,6 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
           currentCharacter={data}
         />
       )}
-    </div>
+    </section>
   );
 }
