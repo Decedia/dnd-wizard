@@ -56,7 +56,7 @@ import { isRecommended } from "@/lib/recommendations";
 import { GiDiceTwentyFacesTwenty } from "react-icons/gi";
 import { getStaticFeats } from "@/lib/srd-client";
 import { getFeatOptionGroups } from "@/data/feat-options";
-import { SUBCLASS_PICKS, FIGHTING_STYLE_PICKS, asiPicks, spellPicks, topPicks, type Why } from "@/lib/level-up-picks";
+import { SUBCLASS_PICKS, FIGHTING_STYLE_PICKS, METAMAGIC_PICKS, MANEUVER_PICKS, INVOCATION_PICKS, asiPicks, expertisePicks, spellPicks, topPicks, type Pick as SuggestedPick, type Why } from "@/lib/level-up-picks";
 import { PickCards, type PickCard } from "./level-up/PickCards";
 
 function slugify(name: string): string {
@@ -1459,7 +1459,8 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     }
   };
 
-  const pactBoon = Object.values(classFeatureChoices).map((choices) => choices["Pact Boon"]).find(Boolean) || "";
+  // The boon picked in this level-up, or the one saved at an earlier level.
+  const pactBoon = Object.values(classFeatureChoices).map((choices) => choices["Pact Boon"]).find(Boolean) || character.featureSelections?.["pact-boon"]?.[0] || "";
 
   // One screen per level-up moment and per choice, then a recap.
   // A jump of several levels puts all free gains on one screen and all new
@@ -1623,15 +1624,61 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       }];
     }
     if (part === "features") {
-      const style = info.classFeatureChoices?.find((fc) => fc.name === "Fighting Style");
-      if (!style) return [];
-      const picks = topPicks(FIGHTING_STYLE_PICKS[character.class], style.options.map((o) => o.name));
-      const current = classFeatureChoices[lvl]?.["Fighting Style"];
-      return [{
-        label: t("levelUp.flow.suggestedStyle", "Suggested fighting styles"),
-        cards: picks.map((p) => ({ key: p.name, title: p.name, why: whyText(p.why), selected: current === p.name })),
-        onPick: (name) => setClassFeatureChoices((prev) => ({ ...prev, [lvl]: { ...(prev[lvl] || {}), "Fighting Style": name } })),
-      }];
+      type Group = { label: string; cards: PickCard[]; onPick: (key: string) => void };
+      const groups: Group[] = [];
+      // One group for a feature choice; picks are kept as a ", " joined string like the full picker does.
+      const add = (fc: NonNullable<LevelInfo["classFeatureChoices"]>[number] | undefined, isSubclass: boolean, list: SuggestedPick[] | undefined, title: string) => {
+        if (!fc) return;
+        const state = isSubclass ? subclassFeatureChoices : classFeatureChoices;
+        const setState = isSubclass ? setSubclassFeatureChoices : setClassFeatureChoices;
+        const current = (state[lvl]?.[fc.name] || "").split(", ").filter(Boolean);
+        const count = fc.count || 1;
+        const picks = topPicks(list, fc.options.map((o) => o.name));
+        groups.push({
+          label: title,
+          cards: picks.map((p) => ({ key: p.name, title: p.name, why: whyText(p.why), selected: current.includes(p.name), disabled: count > 1 && current.length >= count })),
+          onPick: (name) => {
+            const next = count === 1 ? [name] : current.includes(name) ? current.filter((x) => x !== name) : current.length < count ? [...current, name] : current;
+            setState((prev) => ({ ...prev, [lvl]: { ...(prev[lvl] || {}), [fc.name]: next.join(", ") } }));
+          },
+        });
+      };
+      const classChoice = (name: string) => info.classFeatureChoices?.find((fc) => fc.name === name);
+      add(classChoice("Fighting Style"), false, FIGHTING_STYLE_PICKS[character.class], t("levelUp.flow.suggestedStyle", "Suggested fighting styles"));
+      add(classChoice("Metamagic"), false, METAMAGIC_PICKS, t("levelUp.flow.suggestedMetamagic", "Suggested metamagic"));
+      add(classChoice("Expertise"), false, expertisePicks(character.class), t("levelUp.flow.suggestedExpertise", "Suggested expertise"));
+      if (subclassSelection) add(info.subclassFeatureChoices?.find((fc) => fc.name === "Combat Superiority"), true, MANEUVER_PICKS, t("levelUp.flow.suggestedManeuvers", "Suggested maneuvers"));
+      if (info.expertise && info.expertise.count > 0) {
+        const { count, availableOptions } = info.expertise;
+        const current = expertiseSelections[lvl] || [];
+        groups.push({
+          label: t("levelUp.flow.suggestedExpertise", "Suggested expertise"),
+          cards: topPicks(expertisePicks(character.class), availableOptions).map((p) => ({ key: p.name, title: p.name, why: whyText(p.why), selected: current.includes(p.name), disabled: current.length >= count })),
+          onPick: (name) => setExpertise(lvl, current.includes(name) ? current.filter((x) => x !== name) : current.length < count ? [...current, name] : current),
+        });
+      }
+      const invocations = classChoice("Eldritch Invocations");
+      if (invocations && character.class === "Warlock" && lvl >= 2) {
+        const count = invocations.count || 1;
+        const current = invocationSelections[lvl] || [];
+        const knowsEldritchBlast =
+          (character.cantrips || []).some((c) => c.name === "Eldritch Blast") ||
+          (character.spells || []).some((sp) => sp.name === "Eldritch Blast") ||
+          Object.entries(spellSelections).some(([l, list]) => Number(l) <= lvl && list.includes("Eldritch Blast:0"));
+        const known = new Set([
+          ...(character.featureSelections?.["warlock-invocations"] || []),
+          ...Object.entries(invocationSelections).filter(([l]) => Number(l) !== lvl).flatMap(([, list]) => list || []),
+        ]);
+        const open = getAvailableInvocations(lvl, pactBoon, current, knowsEldritchBlast, character.sources, usesOptionalClassFeatures(character))
+          .filter((i) => i.available && !known.has(i.name))
+          .map((i) => i.name);
+        groups.push({
+          label: t("levelUp.flow.suggestedInvocations", "Suggested invocations"),
+          cards: topPicks(INVOCATION_PICKS, open).map((p) => ({ key: p.name, title: p.name, why: whyText(p.why), selected: current.includes(p.name), disabled: current.length >= count })),
+          onPick: (name) => setInvocations(lvl, current.includes(name) ? current.filter((x) => x !== name) : current.length < count ? [...current, name] : current),
+        });
+      }
+      return groups.filter((g) => g.cards.length > 0);
     }
     if (part === "spells" && info.hasSpellSelection && !["Fighter", "Rogue"].includes(character.class)) {
       const mine = spellSelections[lvl] || [];

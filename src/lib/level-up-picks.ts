@@ -259,3 +259,57 @@ export function topPicks(list: Pick[] | undefined, available: string[], max = 3)
   const set = new Set(available);
   return (list || []).filter((p) => set.has(p.name)).slice(0, max);
 }
+
+/** Sorcerer Metamagic that is easy to get value from. */
+export const METAMAGIC_PICKS: Pick[] = [
+  { name: "Twinned Spell", why: { en: "Aim a one-target spell at two targets at once.", id: "Arahkan spell satu target ke dua target sekaligus." } },
+  { name: "Quickened Spell", why: { en: "Cast a spell as a bonus action, then still use a cantrip.", id: "Pakai spell sebagai bonus action, lalu masih bisa pakai cantrip." } },
+  { name: "Empowered Spell", why: { en: "Reroll low damage dice. Costs only 1 sorcery point.", id: "Lempar ulang dadu damage yang rendah. Hanya 1 sorcery point." } },
+  { name: "Subtle Spell", why: { en: "Cast with no words or gestures, so nobody notices.", id: "Pakai spell tanpa kata atau gerakan, jadi tidak ada yang sadar." } },
+  { name: "Heightened Spell", why: { en: "One target has a harder time resisting your spell.", id: "Satu target lebih sulit melawan spellmu." } },
+];
+
+/** Battle Master maneuvers that work with any weapon. */
+export const MANEUVER_PICKS: Pick[] = [
+  { name: "Precision Attack", why: { en: "Add a die to an attack roll to turn a miss into a hit.", id: "Tambahkan dadu ke lemparan serangan agar yang meleset jadi kena." } },
+  { name: "Trip Attack", why: { en: "Extra damage, and the enemy may fall down.", id: "Damage tambahan, dan musuh bisa terjatuh." } },
+  { name: "Riposte", why: { en: "When an enemy misses you, hit back right away.", id: "Saat musuh meleset, langsung balas serang." } },
+  { name: "Menacing Attack", why: { en: "Extra damage, and the enemy may become frightened.", id: "Damage tambahan, dan musuh bisa jadi ketakutan." } },
+  { name: "Pushing Attack", why: { en: "Extra damage, and you may push the enemy 15 feet away.", id: "Damage tambahan, dan musuh bisa terdorong 15 kaki." } },
+  { name: "Parry", why: { en: "Reduce the damage of a melee hit against you.", id: "Kurangi damage serangan jarak dekat yang mengenaimu." } },
+];
+
+/** Warlock invocations in order of preference. Ones the character can't take yet are skipped. */
+export const INVOCATION_PICKS: Pick[] = [
+  { name: "Thirsting Blade", why: { en: "Attack twice with your pact weapon each turn.", id: "Serang dua kali dengan pact weapon tiap giliran." } },
+  { name: "Agonizing Blast", why: { en: "Add your Charisma modifier to Eldritch Blast damage.", id: "Tambahkan modifier Charisma ke damage Eldritch Blast." } },
+  { name: "Devil's Sight", why: { en: "See in darkness, even magical darkness, out to 120 feet.", id: "Melihat dalam gelap, bahkan gelap sihir, sampai 120 kaki." } },
+  { name: "Repelling Blast", why: { en: "Eldritch Blast pushes the target 10 feet away.", id: "Eldritch Blast mendorong target 10 kaki." } },
+  { name: "Armor of Shadows", why: { en: "Cast Mage Armor on yourself any time, for free.", id: "Pakai Mage Armor pada dirimu kapan saja, gratis." } },
+  { name: "Fiendish Vigor", why: { en: "Give yourself temporary HP any time, for free.", id: "Beri dirimu HP sementara kapan saja, gratis." } },
+  { name: "Mask of Many Faces", why: { en: "Change how you look any time, for free.", id: "Ubah penampilanmu kapan saja, gratis." } },
+];
+
+const EXPERTISE_WHY: Record<string, Why> = {
+  "Stealth": { en: "Sneak and hide much more reliably.", id: "Menyelinap dan bersembunyi jauh lebih andal." },
+  "Thieves' Tools": { en: "Open locks and disarm traps much more reliably.", id: "Membuka kunci dan menjinakkan jebakan jauh lebih andal." },
+  "Perception": { en: "Spot hidden enemies and traps. The most rolled skill.", id: "Melihat musuh dan jebakan tersembunyi. Skill yang paling sering dilempar." },
+  "Persuasion": { en: "Talk people into helping you.", id: "Membujuk orang agar membantumu." },
+  "Deception": { en: "Lie and bluff convincingly.", id: "Berbohong dan menggertak dengan meyakinkan." },
+  "Acrobatics": { en: "Keep your balance and slip out of grabs.", id: "Menjaga keseimbangan dan lepas dari cengkeraman." },
+  "Sleight of Hand": { en: "Pick pockets and hide small things.", id: "Mencopet dan menyembunyikan benda kecil." },
+  "Performance": { en: "Impress a crowd with your art.", id: "Memukau penonton dengan senimu." },
+  "Insight": { en: "Tell when someone is lying.", id: "Tahu saat seseorang berbohong." },
+  "Athletics": { en: "Climb, jump, grapple and shove.", id: "Memanjat, melompat, mencengkeram, dan mendorong." },
+};
+
+const EXPERTISE_ORDER: Record<string, string[]> = {
+  Rogue: ["Stealth", "Thieves' Tools", "Perception", "Acrobatics", "Sleight of Hand", "Deception", "Insight", "Athletics"],
+  Bard: ["Persuasion", "Perception", "Deception", "Performance", "Stealth", "Insight", "Athletics"],
+};
+
+/** Expertise suggestions for a class; only skills the character is proficient in will show. */
+export function expertisePicks(className: string): Pick[] {
+  const order = EXPERTISE_ORDER[className] || ["Perception", "Stealth", "Persuasion", "Athletics", "Insight", "Deception"];
+  return order.map((name) => ({ name, why: EXPERTISE_WHY[name] }));
+}
