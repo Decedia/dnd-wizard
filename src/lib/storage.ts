@@ -226,7 +226,7 @@ export function getFeatureValue(featureName: string, character: Character): stri
   }
 
   if (lower.includes("song of rest") && classData.name === "Bard") {
-    return getSongOfRestDie(character);
+    return level >= 2 ? getSongOfRestDie(character) : undefined;
   }
 
   if (lower.includes("rage uses")) {
@@ -241,7 +241,7 @@ export function getFeatureValue(featureName: string, character: Character): stri
 
   if (lower.includes("ki points")) {
     const points = classData.kiPoints?.[String(level)];
-    return points !== undefined ? String(points) : undefined;
+    return points ? String(points) : undefined;
   }
 
   if (lower.includes("martial arts")) {
@@ -256,26 +256,28 @@ export function getFeatureValue(featureName: string, character: Character): stri
 
   if (lower.includes("sorcery points")) {
     const points = classData.sorceryPoints?.[String(level)];
-    return points !== undefined ? String(points) : undefined;
+    return points ? String(points) : undefined;
   }
 
   if (lower.includes("action surge") && classData.name === "Fighter") {
-    return "1/short rest";
+    const uses = (classData as any).actionSurgeUses?.[String(level)];
+    return uses ? `${uses}/short rest` : undefined;
   }
 
   if (lower.includes("indomitable")) {
     const uses = classData.indomitableUses?.[String(level)];
-    return uses !== undefined ? `${uses}/long rest` : undefined;
+    return uses ? `${uses}/long rest` : undefined;
   }
 
   if (lower.includes("channel divinity")) {
     const uses = classData.channelDivinityUses?.[String(level)];
-    return uses !== undefined ? `${uses}/short rest` : undefined;
+    return uses ? `${uses}/short rest` : undefined;
   }
 
   if (lower.includes("wild shape")) {
     const uses = classData.wildShapeUses?.[String(level)];
-    return uses !== undefined ? `${uses}/short rest` : undefined;
+    if (uses === "Unlimited") return "Unlimited";
+    return uses ? `${uses}/short rest` : undefined;
   }
 
   return undefined;

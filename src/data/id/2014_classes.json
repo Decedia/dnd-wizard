@@ -538,33 +538,6 @@
               },
               "book": "PHB",
               "lastUpdated": "2026-09-29"
-            },
-            {
-              "name": "Primal Knowledge",
-              "description": "Kamu telah belajar menggunakan rage untuk meningkatkan kemampuanmu. Kapan pun kamu melakukan ability check menggunakan proficiency skill atau tool yang kamu miliki, kamu bisa membiarkan rage memperkuat pengecekan tersebut. Kamu mendapatkan proficiency pada satu skill atau tool pilihanmu, atau jika kamu sudah mahir dalam semua skill dan tool yang ada di permainan, kamu sebagai gantinya mendapatkan expertise pada satu skill atau tool yang sudah kamu kuasai. Fitur ini dianggap sebagai proficiency untuk keperluan fitur Expertise.",
-              "type": "feature",
-              "optional": true,
-              "featureType": "Active",
-              "actionType": null,
-              "uses": null,
-              "requirement": null,
-              "duration": null,
-              "endsIf": null,
-              "effect": null,
-              "onUse": null,
-              "scaling": null,
-              "summary": "Gunakan rage untuk memperkuat ability checks yang menggunakan kemahiran skill atau tool.",
-              "grantsSpells": false,
-              "grantsAttack": false,
-              "grantsSkills": true,
-              "grantsProficiency": false,
-              "source": {
-                "type": "class",
-                "name": "Barbarian",
-                "level": 10
-              },
-              "book": "PHB",
-              "lastUpdated": "2026-09-29"
             }
           ],
           "asi": false,
@@ -5127,8 +5100,8 @@
         "15": 2,
         "16": 2,
         "17": 2,
-        "18": "Unlimited",
-        "19": "Unlimited",
+        "18": 2,
+        "19": 2,
         "20": "Unlimited"
       },
       "description": "Kamu tahu Druidic, bahasa rahasia druids. Kamu bisa berbicara bahasa itu dan menggunakannya untuk meninggalkan pesan tersembunyi. Kamu dan orang lain yang tahu bahasa ini otomatis menemukan pesan seperti itu. Orang lain menemukan keberadaan pesan dengan successful DC 15 Wisdom (Perception) check tetapi tidak bisa memecahkannya tanpa magic. \n \n\n \nMenggunakan divine essence dari alam itu sendiri, kamu bisa cast spell untuk membentuk essence itu sesuai keinginanmu. \n \n#### Cantrips \n \nDi level 1, kamu tahu dua cantrips sesuai pilihanmu dari druid spell list. Kamu mempelajari druid cantrips tambahan sesuai pilihanmu di level yang lebih tinggi, seperti yang ditunjukkan di kolom Cantrips Known dari tabel Druid. \n \n#### Preparing and Casting Spells \n \nTabel Druid menunjukkan berapa spell slots yang kamu miliki untuk cast spellmu level 1 dan lebih tinggi. Untuk cast salah satu druid spells ini, kamu harus menghabiskan slot dari level spell atau lebih tinggi. Kamu mendapatkan kembali semua spell slots yang dihabiskan saat kamu menyelesaikan long rest. \n \nKamu menyiapkan daftar druid spells yang tersedia untuk kamu cast, memilih dari druid spell list. Saat kamu melakukannya, pilih jumlah druid spells sebesar Wisdom modifiermu + druid levelmu (minimal satu spell). Spell harus pada level yang kamu miliki spell slots. \n \nSebagai contoh, jika kamu adalah druid level 3, kamu memiliki empat spell slot level 1 dan dua spell slot level 2. Dengan Wisdom 16, daftar prepared spellsmu bisa mencakup enam spell level 1 atau 2, dalam kombinasi apapun. Jika kamu menyiapkan spell level 1 cure wounds, kamu bisa mencapinya menggunakan spell slot level 1 atau 2. Casting spell tidak menghapusnya dari daftar prepared spellsmu. \n \nKamu juga bisa mengubah daftar prepared spellsmu saat kamu menyelesaikan long rest. Menyiapkan daftar druid spells baru memerlukan waktu yang dihabiskan untuk doa dan meditasi: setidaknya 1 menit per spell level untuk setiap spell di daftarmu. \n \n\n \nWisdom adalah spellcasting ability untuk druid spellsmu, karena magicmu draws upon yo...",
@@ -5322,7 +5295,7 @@
                   },
                   {
                     "name": "Blind Fighting",
-                    "description": "Gain blindsight while you can see",
+                    "description": "Dapatkan blindsight sejauh 10 feet",
                     "icon": "😵"
                   },
                   {
@@ -13147,76 +13120,7 @@
         },
         {
           "level": 18,
-          "features": [],
-          "asi": false,
-          "spellSlots": {
-            "5": 4
-          }
-        },
-        {
-          "level": 19,
           "features": [
-            {
-              "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar 2, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar 1. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui 20 menggunakan fitur ini.",
-              "type": "feature",
-              "featureType": "Passive",
-              "actionType": null,
-              "uses": null,
-              "requirement": null,
-              "duration": "Permanent",
-              "endsIf": null,
-              "effect": null,
-              "onUse": null,
-              "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Meningkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1 pada level 4, 8, 12, 16, dan 19.",
-              "grantsSpells": false,
-              "grantsAttack": false,
-              "grantsSkills": false,
-              "grantsProficiency": false,
-              "source": {
-                "type": "class",
-                "name": "Warlock",
-                "level": 19
-              },
-              "book": "PHB",
-              "lastUpdated": "2026-09-29"
-            }
-          ],
-          "asi": true,
-          "spellSlots": {
-            "5": 4
-          }
-        },
-        {
-          "level": 20,
-          "features": [
-            {
-              "name": "Eldritch Master",
-              "description": "Pada level 20, kamu bisa mengerahkan cadangan kekuatan mistis dari dalam dirimu sambil memohon bantuan patron untuk memulihkan spell slot yang telah terpakai. Kamu dapat menghabiskan waktu 1 menit untuk memohon bantuan patron guna memulihkan seluruh spell slot dari fitur Pact Magic milikmu.\n\nSetelah kamu memulihkan spell slot menggunakan fitur ini, kamu harus menyelesaikan long rest terlebih dahulu sebelum bisa menggunakannya kembali.",
-              "type": "feature",
-              "featureType": "Active",
-              "actionType": null,
-              "uses": null,
-              "requirement": null,
-              "duration": null,
-              "endsIf": null,
-              "effect": null,
-              "onUse": null,
-              "scaling": null,
-              "summary": "Gunakan waktu 1 menit untuk memohon bantuan patron agar bisa memulihkan semua spell slot Pact Magic yang telah terpakai.",
-              "grantsSpells": false,
-              "grantsAttack": false,
-              "grantsSkills": false,
-              "grantsProficiency": false,
-              "source": {
-                "type": "class",
-                "name": "Warlock",
-                "level": 20
-              },
-              "book": "PHB",
-              "lastUpdated": "2026-09-29"
-            },
             {
               "name": "Eldritch Invocations",
               "description": "Melalui studimu tentang ilmu okultisme, kamu telah menemukan eldritch invocations, yaitu potongan pengetahuan terlarang yang memberimu kemampuan magis permanen.\n\nPada level 2, kamu mendapatkan dua eldritch invocations pilihanmu. Opsi invocation tersedia di bagian akhir deskripsi kelas. Saat kamu mencapai level Warlock tertentu, kamu akan mendapatkan tambahan invocation pilihanmu, sebagaimana tertera pada kolom Invocations Known di tabel Warlock.\n\nSelain itu, setiap kali kamu naik level di kelas ini, kamu bisa memilih salah satu invocation yang sudah kamu kuasai dan menggantinya dengan invocation lain yang bisa kamu pelajari pada level tersebut.",
@@ -13288,6 +13192,76 @@
               "onUse": null,
               "scaling": null,
               "summary": "Dapatkan potongan pengetahuan terlarang yang memberimu kemampuan magis permanen.",
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "source": {
+                "type": "class",
+                "name": "Warlock",
+                "level": 18
+              },
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
+            }
+          ],
+          "asi": false,
+          "spellSlots": {
+            "5": 4
+          }
+        },
+        {
+          "level": 19,
+          "features": [
+            {
+              "name": "Ability Score Improvement",
+              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar 2, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar 1. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui 20 menggunakan fitur ini.",
+              "type": "feature",
+              "featureType": "Passive",
+              "actionType": null,
+              "uses": null,
+              "requirement": null,
+              "duration": "Permanent",
+              "endsIf": null,
+              "effect": null,
+              "onUse": null,
+              "scaling": "Granted multiple times at class-specific levels",
+              "summary": "Meningkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1 pada level 4, 8, 12, 16, dan 19.",
+              "grantsSpells": false,
+              "grantsAttack": false,
+              "grantsSkills": false,
+              "grantsProficiency": false,
+              "source": {
+                "type": "class",
+                "name": "Warlock",
+                "level": 19
+              },
+              "book": "PHB",
+              "lastUpdated": "2026-09-29"
+            }
+          ],
+          "asi": true,
+          "spellSlots": {
+            "5": 4
+          }
+        },
+        {
+          "level": 20,
+          "features": [
+            {
+              "name": "Eldritch Master",
+              "description": "Pada level 20, kamu bisa mengerahkan cadangan kekuatan mistis dari dalam dirimu sambil memohon bantuan patron untuk memulihkan spell slot yang telah terpakai. Kamu dapat menghabiskan waktu 1 menit untuk memohon bantuan patron guna memulihkan seluruh spell slot dari fitur Pact Magic milikmu.\n\nSetelah kamu memulihkan spell slot menggunakan fitur ini, kamu harus menyelesaikan long rest terlebih dahulu sebelum bisa menggunakannya kembali.",
+              "type": "feature",
+              "featureType": "Active",
+              "actionType": null,
+              "uses": null,
+              "requirement": null,
+              "duration": null,
+              "endsIf": null,
+              "effect": null,
+              "onUse": null,
+              "scaling": null,
+              "summary": "Gunakan waktu 1 menit untuk memohon bantuan patron agar bisa memulihkan semua spell slot Pact Magic yang telah terpakai.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -13651,9 +13625,9 @@
         "1": 0,
         "2": 2,
         "3": 2,
-        "4": 3,
+        "4": 2,
         "5": 3,
-        "6": 4,
+        "6": 3,
         "7": 4,
         "8": 4,
         "9": 5,

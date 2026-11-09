@@ -4,14 +4,14 @@ import { useState, useMemo, useCallback, useEffect, useRef, useLayoutEffect } fr
 import { WizardNav, WIZARD_NAV_SPACE } from "./WizardNav";
 import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclassDetails, getSubclassFlags, getPactBoons, getStaticFeat, getStaticEquipments } from "@/lib/srd-client";
 import { SourceBadge } from "./SourceBadge";
-import { getHitDieAverage, getModifier, computeDerivedStats, getMaxBardicInspirationUses, getBardicInspirationDie, getSongOfRestDie, hasFontOfInspiration, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getOathSpellNames, getWizardTraditionSpellNames, getMaxSpellLevel, isThirdCaster, getSpellSlotTable, getFeatureValue, getHpBonusPerLevel, type Character } from "@/lib/storage";
+import { getHitDieAverage, getModifier, computeDerivedStats, getMaxBardicInspirationUses, getBardicInspirationDie, hasFontOfInspiration, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getOathSpellNames, getWizardTraditionSpellNames, getMaxSpellLevel, isThirdCaster, getSpellSlotTable, getFeatureValue, getHpBonusPerLevel, type Character } from "@/lib/storage";
 import { applySubclassFeatures, applySubclassSpellGrants, syncBaseFeatures } from "@/lib/character-creation";
 import { normalizeDescription } from "@/lib/level-up";
 import invocationsData from "@/data/warlock_invocations.json";
 import { SpellSelectionModal } from "./modals/SpellSelectionModal";
 import { applyFeatGrants, encodeFeatOptions } from "@/lib/feat-grants";
 import { REPEATABLE_FEATS } from "@/lib/feature-groups";
-import { getOptionalClassFeatures, getOptionalChoiceOptions, isReplacedFeature } from "@/data/optional-class-features";
+import { getOptionalClassFeatures, getOptionalChoiceOptions, isReplacedFeature, usesOptionalClassFeatures } from "@/data/optional-class-features";
 import { FeatSelectionModal } from "./modals/FeatSelectionModal";
 import { getTakenSpellNames } from "@/lib/taken-spells";
 import { SubclassDetailsModal } from "./modals/SubclassDetailsModal";
@@ -84,7 +84,7 @@ interface InvocationPrerequisite {
 
 const invocationPrereqs: Record<string, InvocationPrerequisite> = (invocationsData as any).invocations || {};
 
-function getAvailableInvocations(level: number, pactBoon: string, knownInvocations: string[]): { name: string; available: boolean; reason?: string }[] {
+function getAvailableInvocations(level: number, pactBoon: string, knownInvocations: string[], knowsEldritchBlast: boolean): { name: string; available: boolean; reason?: string }[] {
   const allInvocations = Object.keys(invocationPrereqs);
   return allInvocations.map((name) => {
     const prereq = invocationPrereqs[name];
@@ -95,6 +95,7 @@ function getAvailableInvocations(level: number, pactBoon: string, knownInvocatio
       if (req.includes("pact of the blade") && pactBoon !== "Pact of the Blade") return { name, available: false, reason: "Requires Pact of the Blade" };
       if (req.includes("pact of the chain") && pactBoon !== "Pact of the Chain") return { name, available: false, reason: "Requires Pact of the Chain" };
       if (req.includes("pact of the tome") && pactBoon !== "Pact of the Tome") return { name, available: false, reason: "Requires Pact of the Tome" };
+      if (req.includes("eldritch blast") && !knowsEldritchBlast) return { name, available: false, reason: "Requires the Eldritch Blast cantrip" };
     }
     return { name, available: true };
   });
@@ -179,6 +180,39 @@ interface LevelInfo {
   expertise?: { count: number; selected: string[]; availableOptions: string[] };
 }
 
+type ChoiceOption = { name: string; description: string; icon?: string };
+
+// Tasha's fighting styles each class may add when the table uses optional class features.
+// Blessed Warrior and Druidic Warrior are left out: they teach cantrips the wizard can't grant yet.
+const TCE_FIGHTING_STYLES: Record<string, string[]> = {
+  Fighter: ["Blind Fighting", "Interception", "Superior Technique", "Thrown Weapon Fighting", "Unarmed Fighting"],
+  Paladin: ["Blind Fighting", "Interception"],
+  Ranger: ["Blind Fighting", "Thrown Weapon Fighting"],
+};
+
+function fightingStyleOptions(className: string, options: ChoiceOption[], usesTasha: boolean, language: string): ChoiceOption[] {
+  const allTasha = new Set(Object.values(TCE_FIGHTING_STYLES).flat());
+  const base = options.filter((o) => !allTasha.has(o.name));
+  if (!usesTasha) return base;
+  const fighterStyles = getStaticClass("Fighter", undefined, undefined, language)?.levels[0]?.features.find((f: any) => f.name === "Fighting Style") as any;
+  const tasha = (TCE_FIGHTING_STYLES[className] || []).map((name) => {
+    const opt = (fighterStyles?.choices?.options || []).find((o: any) => (typeof o === "string" ? o : o.name) === name);
+    return opt && typeof opt !== "string" ? { name, description: opt.description || "", icon: opt.icon } : { name, description: "" };
+  });
+  return [...base, ...tasha].sort((a, b) => a.name.localeCompare(b.name));
+}
+
+// Expertise doubles a proficiency you already have: skills you are proficient in, or a rogue's thieves' tools.
+function expertiseOptions(className: string, options: ChoiceOption[], character: Character): ChoiceOption[] {
+  const skills = character.skills || {};
+  const has = new Set(character.expertise || []);
+  const proficient = Object.keys(skills).filter((name) => skills[name] && !has.has(name));
+  const names = className === "Rogue" && !has.has("Thieves' Tools") ? [...proficient, "Thieves' Tools"] : proficient;
+  // Skills may not be picked yet when the level step comes first; offer the full list then.
+  if (proficient.length === 0) return options;
+  return names.sort().map((name) => options.find((o) => o.name === name) || { name, description: "" });
+}
+
 function getProficiencyBonus(level: number): number {
   if (level <= 4) return 2;
   if (level <= 8) return 3;
@@ -187,7 +221,7 @@ function getProficiencyBonus(level: number): number {
   return 6;
 }
 
-function buildLevelInfos(
+export function buildLevelInfos(
   character: Character,
   targetLevel: number,
   classData: ReturnType<typeof getStaticClass>,
@@ -280,9 +314,6 @@ function buildLevelInfos(
 
     if (className === "Bard") {
       classFeatures.push({ name: "Bardic Inspiration", value: `${getBardicInspirationDie({ ...character, level } as Character)}` });
-      classFeatures.push({ name: "Song of Rest", value: `${getSongOfRestDie({ ...character, level } as Character)}` });
-      const chaMod = getModifier(character.cha);
-      classFeatures.push({ name: "Bardic Inspiration Uses", value: `${Math.max(1, chaMod)}` });
     }
 
     const featureNames = [
@@ -352,6 +383,8 @@ function buildLevelInfos(
     for (const feature of levelFeatures) {
       const f = feature as any;
       if (isReplacedFeature(f.name, optional)) continue;
+      // Magical Secrets has its own picker below.
+      if (f.name === "Magical Secrets") continue;
       if (f.choices && f.choices.type === "tools") {
         const tools = getStaticEquipments([], character.ruleset).filter((e: any) => e.equipment_category === "Tools");
         classFeatureChoices.push({
@@ -365,14 +398,17 @@ function buildLevelInfos(
           count: f.choices.count || 1,
         });
       } else if (f.choices && f.choices.options && f.choices.options.length > 0) {
+        let options = f.choices.options.map((opt: any) => ({
+          name: typeof opt === "string" ? opt : opt.name,
+          description: typeof opt === "string" ? "" : (opt.description || ""),
+          icon: typeof opt === "string" ? undefined : opt.icon,
+        }));
+        if (f.name === "Fighting Style") options = fightingStyleOptions(className, options, usesOptionalClassFeatures(character), language);
+        if (f.name === "Expertise") options = expertiseOptions(className, options, character);
         classFeatureChoices.push({
           name: f.name,
           description: f.description || "",
-          options: f.choices.options.map((opt: any) => ({
-            name: typeof opt === "string" ? opt : opt.name,
-            description: typeof opt === "string" ? "" : (opt.description || ""),
-            icon: typeof opt === "string" ? undefined : opt.icon,
-          })),
+          options,
           count: f.choices.count || 1,
         });
       }
@@ -460,7 +496,11 @@ function buildLevelInfos(
     const isSorcerer = className === "Sorcerer";
     const magicalSecretsLevels = [10, 14, 18];
     const magicalSecretsCount = isBard && magicalSecretsLevels.includes(level) ? 2 : 0;
-    const canReplaceSpell = (isBard || isSorcerer) && level > 1 && (character.spells || []).length > 0;
+    // Magical Secrets spells are part of the Spells Known column, not extra.
+    if (magicalSecretsCount > 0) spellSelectionCount = Math.max(0, spellSelectionCount - magicalSecretsCount);
+    // Classes that learn a fixed list of spells may swap one of them each level.
+    const swapsSpells = isBard || isSorcerer || className === "Warlock" || className === "Ranger" || isThirdCasterSubclass;
+    const canReplaceSpell = swapsSpells && level > 1 && (character.spells || []).some((s) => s.level > 0);
     const subclassFlags = getSubclassFlagsByName(className, subclassSelection || "", character.sources, language);
     const isLoreBard = isBard && subclassFlags.grantsMagicalSecrets;
     const subclassSpellSelectionCount = isLoreBard && level === 6 ? 2 : 0;
@@ -512,7 +552,9 @@ function buildLevelInfos(
       }
     }
 
-    const allFeatures = [...features, ...passiveSubclassFeatures];
+    // A subclass feature with the same name as a class feature (Oath Spells) replaces it here.
+    const subclassNames = new Set(passiveSubclassFeatures.map((f) => f.name));
+    const allFeatures = [...features.filter((f) => !subclassNames.has(f.name)), ...passiveSubclassFeatures];
 
     infos.push({
       level,
@@ -537,7 +579,9 @@ function buildLevelInfos(
       magicalSecretsCount,
       canReplaceSpell,
       subclassSpellSelectionCount,
-      circleTerrainSelection: className === "Druid" && subclassFlags.requiresTerrainSelection && [3, 5, 7, 9].includes(level),
+      // The land is chosen once (at 3rd level); ask only if it is still missing.
+      circleTerrainSelection: className === "Druid" && subclassFlags.requiresTerrainSelection && !character.circleTerrain &&
+        level === [3, 5, 7, 9].find((l) => l >= loopStart),
       bonusCantripSelection: className === "Druid" && subclassFlags.requiresTerrainSelection && level === 2,
       spellbookTotal: spellbookTotal,
       maxPrepared: maxPrepared,
@@ -653,9 +697,18 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     prevTargetLevelRef.current = targetLevel;
   }, [targetLevel]);
 
-  const levelInfos = useMemo(
+  const baseLevelInfos = useMemo(
     () => buildLevelInfos(character, targetLevel, classData, subclassSelection, currentLevel, !!startFromLevelOne, language),
     [character, targetLevel, classData, subclassSelection, currentLevel, startFromLevelOne, language]
+  );
+  // A replaced spell is swapped for a new one, so that level picks one more spell.
+  const levelInfos = useMemo(
+    () => baseLevelInfos.map((info) =>
+      replacedSpells[info.level]
+        ? { ...info, hasSpellSelection: true, spellSelectionCount: info.spellSelectionCount + 1 }
+        : info
+    ),
+    [baseLevelInfos, replacedSpells]
   );
 
   const setHp = (level: number, value: number) => setHpValues((prev) => ({ ...prev, [level]: value }));
@@ -1170,7 +1223,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     }
 
     if (draft.class === "Druid" && draft.subclassIndex && getSubclassFlags(draft.subclassIndex).requiresTerrainSelection) {
-      const selectedTerrain = circleTerrainSelections[targetLevel] || draft.circleTerrain;
+      const selectedTerrain = Object.values(circleTerrainSelections).filter(Boolean).pop() || draft.circleTerrain;
       if (selectedTerrain) {
         draft.circleTerrain = selectedTerrain;
         const circleSpellNames = getCircleSpells(selectedTerrain, draft.level);
@@ -2268,7 +2321,11 @@ function LevelCard({
             if (!invocationFeature) return null;
             const currentInvocations = invocationSelections;
             const invocationCount = invocationFeature.count || 1;
-            const availableInvocations = getAvailableInvocations(info.level, pactBoon || "", currentInvocations);
+            const knowsEldritchBlast =
+              (character.cantrips || []).some((c) => c.name === "Eldritch Blast") ||
+              (character.spells || []).some((sp) => sp.name === "Eldritch Blast") ||
+              Object.entries(allSpellSelections || {}).some(([l, list]) => Number(l) <= info.level && list.includes("Eldritch Blast:0"));
+            const availableInvocations = getAvailableInvocations(info.level, pactBoon || "", currentInvocations, knowsEldritchBlast);
             const priorInvocations = Object.entries(allInvocationSelections || {}).filter(([l]) => Number(l) < info.level).flatMap(([, invs]) => invs);
             const hasPriorInvocations = info.level > 2 && priorInvocations.length > 0;
 
