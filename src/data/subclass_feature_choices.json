@@ -801,36 +801,6 @@
     }
   },
   "Warlock": {
-    "Fiend": {
-      "Fiendish Resilience": {
-        "options": [
-          {
-            "name": "Acid",
-            "description": "You gain resistance to acid damage."
-          },
-          {
-            "name": "Cold",
-            "description": "You gain resistance to cold damage."
-          },
-          {
-            "name": "Fire",
-            "description": "You gain resistance to fire damage."
-          },
-          {
-            "name": "Lightning",
-            "description": "You gain resistance to lightning damage."
-          },
-          {
-            "name": "Thunder",
-            "description": "You gain resistance to thunder damage."
-          },
-          {
-            "name": "Poison",
-            "description": "You gain resistance to poison damage."
-          }
-        ]
-      }
-    },
     "The Genie": {
       "Genie Patron": {
         "count": 1,

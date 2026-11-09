@@ -4,6 +4,10 @@
       "level": 0,
       "requires": "eldritch blast cantrip"
     },
+    "Armor of Shadows": {
+      "level": 0,
+      "requires": null
+    },
     "Ascendant Step": {
       "level": 9,
       "requires": null
@@ -11,6 +15,14 @@
     "Aspect of the Moon": {
       "level": 0,
       "requires": "Pact of the Tome"
+    },
+    "Beast Speech": {
+      "level": 0,
+      "requires": null
+    },
+    "Beguiling Influence": {
+      "level": 0,
+      "requires": null
     },
     "Bewitching Whispers": {
       "level": 7,
