@@ -4,7 +4,7 @@ import { useState, useMemo, useCallback, useEffect, useRef, useLayoutEffect } fr
 import { WizardNav, WIZARD_NAV_SPACE } from "./WizardNav";
 import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclassDetails, getSubclassFlags, getPactBoons, getStaticFeat, getStaticEquipments, getStaticRace } from "@/lib/srd-client";
 import { SourceBadge } from "./SourceBadge";
-import { getHitDieAverage, getModifier, computeDerivedStats, getMaxBardicInspirationUses, getBardicInspirationDie, hasFontOfInspiration, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getOathSpellNames, getWizardTraditionSpellNames, getMaxSpellLevel, isThirdCaster, getSpellSlotTable, getFeatureValue, getWarlockExpandedSpellNames, getHpBonusPerLevel, type Character } from "@/lib/storage";
+import { getHitDieAverage, getModifier, computeDerivedStats, getMaxBardicInspirationUses, getBardicInspirationDie, hasFontOfInspiration, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getOathSpellNames, getWizardTraditionSpellNames, getMaxSpellLevel, isThirdCaster, getSpellSlotTable, getFeatureValue, getWarlockExpandedSpellNames, getHpBonusPerLevel, castsSpells, type Character } from "@/lib/storage";
 import { applySubclassFeatures, applySubclassSpellGrants, syncBaseFeatures } from "@/lib/character-creation";
 import { normalizeDescription } from "@/lib/level-up";
 import invocationsData from "@/data/warlock_invocations.json";
@@ -53,6 +53,7 @@ import { InfoIcon } from "@/components/icons";
 import { BasePopup } from "@/components/BasePopup";
 import { useSRD } from "@/contexts/SRDContext";
 import { isRecommended } from "@/lib/recommendations";
+import { GiDiceTwentyFacesTwenty } from "react-icons/gi";
 
 function slugify(name: string): string {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
@@ -629,6 +630,35 @@ export function buildLevelInfos(
   return infos;
 }
 
+/** One screen of the game-style level-up: the free gains, one kind of choice, or the recap. */
+export type LevelPart = "moment" | "subclass" | "asi" | "features" | "spells";
+
+/** The choice screens a level needs, in the order the wizard shows them. */
+export function levelParts(info: LevelInfo, subclassSelection: string, className: string): LevelPart[] {
+  const parts: LevelPart[] = [];
+  if (info.subclassOptions && info.subclassOptions.length > 0) parts.push("subclass");
+  if (info.asi) parts.push("asi");
+  const features =
+    (!!info.subclassFeatureChoices?.length && !!subclassSelection) ||
+    !!info.classFeatureChoices?.length ||
+    (!!info.expertise && info.expertise.count > 0) ||
+    (className === "Wizard" && info.level === 18) ||
+    (className === "Warlock" && info.level === 3) ||
+    info.circleTerrainSelection;
+  if (features) parts.push("features");
+  if (info.hasSpellSelection || info.magicalSecretsCount > 0 || info.subclassSpellSelectionCount > 0 || info.canReplaceSpell || info.bonusCantripSelection) parts.push("spells");
+  return parts;
+}
+
+/** Which screen an unfinished task (by its section id) belongs to. */
+export function partOfSection(sectionId: string): LevelPart {
+  if (sectionId.startsWith("hp-")) return "moment";
+  if (sectionId.startsWith("asi-")) return "asi";
+  if (sectionId.startsWith("subclass-fc-") || sectionId.startsWith("class-fc-") || sectionId.startsWith("expertise-")) return "features";
+  if (sectionId.startsWith("subclass-")) return "subclass";
+  return "spells";
+}
+
 export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLevel, title, subtitle, startFromLevelOne }: LevelUpWizardProps) {
   const { language, tDesc } = useLanguage();
   const dict = language === "id" ? idTranslations : enTranslations;
@@ -653,7 +683,12 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   const effectiveMaxLevel = maxLevel ?? 20;
 
   const [targetLevel, setTargetLevel] = useState(Math.min(effectiveMaxLevel, Math.max(effectiveMinLevel, currentLevel + 1)));
-  const [hpValues, setHpValues] = useState<Record<number, number>>({});
+  // New levels start at the average roll, so a new player never has to type HP.
+  const [hpValues, setHpValues] = useState<Record<number, number>>(() => {
+    const init: Record<number, number> = {};
+    for (let lvl = currentLevel + 1; lvl <= targetLevel; lvl++) init[lvl] = averageHp;
+    return init;
+  });
   const [asiSelections, setAsiSelections] = useState<Record<number, { mode: "single" | "double" | "feat"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey; feat?: string; featOptions?: Record<string, string> }>>({});
   const [subclassSelection, setSubclassSelection] = useState<string>(character.subclass || "");
   const [subclassIndex, setSubclassIndex] = useState<string>(character.subclassIndex || "");
@@ -678,6 +713,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   const [pactTomeCantrips, setPactTomeCantrips] = useState<string[]>([]);
   const [expertiseSelections, setExpertiseSelections] = useState<Record<number, string[]>>({});
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [stepIdx, setStepIdx] = useState(0);
   const [showNotifPanel, setShowNotifPanel] = useState(false);
   const prevTargetLevelRef = useRef(targetLevel);
   const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
@@ -1409,10 +1445,186 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     const newLevel = Math.max(effectiveMinLevel, Math.min(effectiveMaxLevel, targetLevel + delta));
     if (newLevel !== targetLevel) {
       setTargetLevel(newLevel);
+      setHpValues((prev) => {
+        const next: Record<number, number> = {};
+        for (const [lvl, v] of Object.entries(prev)) if (Number(lvl) <= newLevel) next[Number(lvl)] = v;
+        for (let lvl = currentLevel + 1; lvl <= newLevel; lvl++) if (!next[lvl]) next[lvl] = averageHp;
+        return next;
+      });
+      setStepIdx(0);
     }
   };
 
   const pactBoon = Object.values(classFeatureChoices).map((choices) => choices["Pact Boon"]).find(Boolean) || "";
+
+  // One screen per level-up moment and per choice, then a recap.
+  const steps = useMemo(() => {
+    const list: { level: number; part: LevelPart | "recap" }[] = [];
+    for (const info of levelInfos) {
+      list.push({ level: info.level, part: "moment" });
+      for (const part of levelParts(info, subclassSelection, character.class)) list.push({ level: info.level, part });
+    }
+    list.push({ level: 0, part: "recap" });
+    return list;
+  }, [levelInfos, subclassSelection, character.class]);
+  const idx = Math.min(stepIdx, steps.length - 1);
+  const step = steps[idx];
+  const stepInfo = levelInfos.find((info) => info.level === step.level);
+  const stepComplete = step.part === "recap"
+    ? allLevelsComplete
+    : !unfinishedItems.some((item) => item.level === step.level && partOfSection(item.sectionId) === step.part);
+  const goTo = (i: number) => {
+    setStepIdx(Math.max(0, Math.min(steps.length - 1, i)));
+    if (typeof window !== "undefined") window.scrollTo({ top: 0 });
+  };
+  const stepIndexOf = (level: number, part: LevelPart) => {
+    const i = steps.findIndex((s) => s.level === level && s.part === part);
+    return i >= 0 ? i : steps.findIndex((s) => s.level === level);
+  };
+
+  // Live stats for the sticky character card.
+  const before = useMemo(() => computeDerivedStats(character), [character]);
+  const preview = useMemo(() => {
+    const scores = baseScores();
+    (Object.keys(scores) as AbilityKey[]).forEach((k) => { scores[k] = Math.min(20, scores[k]); });
+    const gained = Object.entries(hpValues)
+      .filter(([lvl]) => Number(lvl) <= targetLevel && !(startFromLevelOne && Number(lvl) === 1))
+      .reduce((sum, [, v]) => sum + (v || 0), 0);
+    const startHp = startFromLevelOne ? hitDie + conMod : character.maxHp || 0;
+    const hp = startHp + gained + (getModifier(scores.con) - conMod) * targetLevel;
+    const derived = computeDerivedStats({ ...character, ...scores, level: targetLevel });
+    return { hp, ac: derived.ac ?? character.ac, atk: derived.spellAttackBonus ?? 0, dc: derived.spellSaveDc ?? 0 };
+  }, [baseScores, hpValues, targetLevel, startFromLevelOne, hitDie, conMod, character]);
+  const showSpellStats = castsSpells({ class: character.class, subclass: subclassSelection || character.subclass });
+
+  const partTitle = (part: LevelPart | "recap") => ({
+    moment: t("levelUp.flow.momentTitle", "Level up!"),
+    subclass: t("levelUp.flow.subclassTitle", "Pick your subclass"),
+    asi: t("levelUp.flow.asiTitle", "Grow stronger"),
+    features: t("levelUp.flow.featuresTitle", "Choose your class features"),
+    spells: t("levelUp.flow.spellsTitle", "Learn new spells"),
+    recap: t("levelUp.flow.recapTitle", "Check your choices"),
+  })[part];
+  const partHint = (part: LevelPart | "recap") => ({
+    moment: t("levelUp.flow.momentHint", "You got stronger. These come for free."),
+    subclass: t("levelUp.flow.subclassHint", "Your subclass is your specialty. It gives you extra powers as you level up."),
+    asi: t("levelUp.flow.asiHint", "Add +2 to one ability, +1 to two abilities, or take a feat instead."),
+    features: t("levelUp.flow.featuresHint", "Your class lets you decide how this feature works."),
+    spells: t("levelUp.flow.spellsHint", "Pick the spells your character learns at this level."),
+    recap: t("levelUp.flow.recapHint", "Tap any row to change it, then save."),
+  })[part];
+
+  const recapLabel = (part: LevelPart) => ({
+    moment: t("sheet.hitPoints", "Hit Points"),
+    subclass: t("levelUp.flow.recapSubclass", "Subclass"),
+    asi: t("levelUp.flow.recapAsi", "Ability scores"),
+    features: t("levelUp.flow.recapFeatures", "Features"),
+    spells: t("levelUp.flow.recapSpells", "Spells"),
+  })[part];
+  const recapSummary = (level: number, part: LevelPart): string => {
+    if (part === "moment") {
+      if (startFromLevelOne && level === 1) return `${hitDie + conMod} HP`;
+      return t("levelUp.flow.hpGain", "+{hp} HP", { hp: hpValues[level] || 0 });
+    }
+    if (part === "subclass") return subclassSelection || "—";
+    if (part === "asi") {
+      const st = asiSelections[level];
+      if (!st) return "—";
+      if (st.mode === "feat") return st.feat || "—";
+      if (st.mode === "single" && st.single) return `+2 ${st.single.toUpperCase()}`;
+      if (st.mode === "double" && st.d1 && st.d2) return `+1 ${st.d1.toUpperCase()}, +1 ${st.d2.toUpperCase()}`;
+      return "—";
+    }
+    const strip = (list: string[]) => list.map((x) => x.split(":")[0]);
+    if (part === "features") {
+      const picks = [
+        ...Object.values(subclassFeatureChoices[level] || {}),
+        ...Object.values(classFeatureChoices[level] || {}),
+        ...(expertiseSelections[level] || []),
+        ...(invocationSelections[level] || []),
+        circleTerrainSelections[level] || "",
+      ].filter(Boolean);
+      return picks.join(", ") || "—";
+    }
+    const picks = [
+      ...strip(spellSelections[level] || []),
+      ...strip(magicalSecretsSelections[level] || []),
+      ...strip(subclassSpellSelections[level] || []),
+      bonusCantripSelections[level] || "",
+    ].filter(Boolean);
+    return picks.join(", ") || "—";
+  };
+
+  const rollHp = (level: number) => {
+    const die = Math.floor(Math.random() * hitDie) + 1;
+    setHp(level, Math.max(1, die + conMod));
+  };
+
+  const renderLevelCard = (info: LevelInfo, part: LevelPart) => (
+    <LevelCard
+      part={part}
+      info={info}
+      hpValue={hpValues[info.level] || 0}
+      onHpChange={(v) => setHp(info.level, v)}
+      asiSelection={asiSelections[info.level]}
+      onAsiChange={(patch) => setAsi(info.level, patch)}
+      baseScores={baseScores(info.level)}
+      subclassSelection={subclassSelection}
+      onSubclassSelect={handleSubclassSelect}
+      subclassFeatureChoices={subclassFeatureChoices[info.level] || {}}
+      onSubclassFeatureChoice={(name, value) =>
+        setSubclassFeatureChoices((prev) => ({
+          ...prev,
+          [info.level]: { ...(prev[info.level] || {}), [name]: value },
+        }))
+      }
+      classFeatureChoices={classFeatureChoices[info.level] || {}}
+      onClassFeatureChoice={(name, value) =>
+        setClassFeatureChoices((prev) => ({
+          ...prev,
+          [info.level]: { ...(prev[info.level] || {}), [name]: value },
+        }))
+      }
+      spells={spellSelections[info.level] || []}
+      onSpellsChange={(list) => setSpells(info.level, list)}
+      magicalSecretsSpells={magicalSecretsSelections[info.level] || []}
+      onMagicalSecretsChange={(list) => setMagicalSecrets(info.level, list)}
+      subclassSpellSelections={subclassSpellSelections[info.level] || []}
+      onSubclassSpellSelectionsChange={(list) => setSubclassSpells(info.level, list)}
+      replacedSpell={replacedSpells[info.level] || ""}
+      onReplacedSpellChange={(id) => setReplacedSpell(info.level, id)}
+      circleTerrain={circleTerrainSelections[info.level] || ""}
+      onCircleTerrainChange={(terrain) => setCircleTerrain(info.level, terrain)}
+      bonusCantrip={bonusCantripSelections[info.level] || ""}
+      onBonusCantripChange={(cantrip) => setBonusCantrip(info.level, cantrip)}
+      character={{ ...character, subclassIndex: (subclassSelection || character.subclass || '').toLowerCase().replace(/\s+/g, '-') }}
+      hitDie={hitDie}
+      diceType={diceType}
+      conMod={conMod}
+      averageHp={averageHp}
+      startFromLevelOne={startFromLevelOne}
+      wizardCharacter={wizardCharacter}
+      allSpellSelections={spellSelections}
+      invocationSelections={invocationSelections[info.level] || []}
+      onInvocationsChange={(list) => setInvocations(info.level, list)}
+      replacedInvocation={replacedInvocations[info.level] || ""}
+      onReplacedInvocationChange={(inv) => setReplacedInvocation(info.level, inv)}
+      pactTomeCantrips={pactTomeCantrips}
+      onPactTomeCantripsChange={setPactTomeCantrips}
+      expertise={expertiseSelections[info.level] || []}
+      onExpertiseChange={(list) => setExpertise(info.level, list)}
+      allInvocationSelections={invocationSelections}
+      pactBoon={pactBoon}
+      sectionRefs={sectionRefs}
+      takenSpells={takenSpells}
+      allAsiFeats={Object.entries(asiSelections).flatMap(([l, st]) => (st?.mode === "feat" && st.feat ? [{ level: Number(l), feat: st.feat }] : []))}
+    />
+  );
+
+  const choiceSteps = steps.filter((s) => s.level === step.level && s.part !== "moment");
+  const choiceNumber = choiceSteps.findIndex((s) => s.part === step.part) + 1;
+  const isLast = idx === steps.length - 1;
+  const nextIsRecap = steps[idx + 1]?.part === "recap";
 
   return (
     <div className="min-h-screen bg-[var(--color-bg)]">
@@ -1442,6 +1654,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
             </div>
           )}
           {subtitle && <div className="text-[10px] text-[var(--color-text-muted)] text-center mt-0.5">{subtitle}</div>}
+          {idx === 0 && (
           <div className="mt-3 flex items-center justify-center gap-4">
             <button
               type="button"
@@ -1464,7 +1677,18 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
               <Plus className="h-4 w-4" />
             </button>
           </div>
+          )}
         </div>
+        <StatCard
+          hp={preview.hp}
+          ac={preview.ac}
+          atk={showSpellStats ? preview.atk : undefined}
+          dc={showSpellStats ? preview.dc : undefined}
+          before={startFromLevelOne ? undefined : { hp: character.maxHp || 0, ac: before.ac ?? character.ac, atk: before.spellAttackBonus ?? 0, dc: before.spellSaveDc ?? 0 }}
+          name={character.name}
+          subtitle={`${character.class}${subclassSelection ? ` · ${subclassSelection}` : ""} · ${t("levelUp.flow.levelN", "Level {level}", { level: targetLevel })}`}
+          t={t}
+        />
       </div>
 
       {showNotifPanel && (
@@ -1491,6 +1715,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
                      type="button"
                       onClick={() => {
                         setShowNotifPanel(false);
+                        goTo(stepIndexOf(item.level, partOfSection(item.sectionId)));
                         setTimeout(() => {
                           const el = sectionRefs.current[item.sectionId];
                           if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -1509,97 +1734,140 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
 
       <main className="px-4 py-5" style={{ paddingBottom: WIZARD_NAV_SPACE }}>
         <div className="mx-auto max-w-lg space-y-4">
-          {levelInfos.length > 0 && (
-            <button
-              type="button"
-              onClick={rollAllHp}
-               className="w-full py-2.5 text-xs font-semibold rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all"
-             >
-               {t("levelUp.rollAllHp", "🎲 Roll All HP")}
-             </button>
-           )}
-
-           {levelInfos.map((info) => (
-            <div
-              key={info.level}
-              ref={(el) => { sectionRefs.current[`level-card-${info.level}`] = el; }}
-            >
-            <LevelCard
-              info={info}
-              hpValue={hpValues[info.level] || 0}
-              onHpChange={(v) => setHp(info.level, v)}
-              asiSelection={asiSelections[info.level]}
-              onAsiChange={(patch) => setAsi(info.level, patch)}
-              baseScores={baseScores(info.level)}
-              subclassSelection={subclassSelection}
-              onSubclassSelect={handleSubclassSelect}
-              subclassFeatureChoices={subclassFeatureChoices[info.level] || {}}
-              onSubclassFeatureChoice={(name, value) =>
-                setSubclassFeatureChoices((prev) => ({
-                  ...prev,
-                  [info.level]: { ...(prev[info.level] || {}), [name]: value },
-                }))
-              }
-              classFeatureChoices={classFeatureChoices[info.level] || {}}
-              onClassFeatureChoice={(name, value) =>
-                setClassFeatureChoices((prev) => ({
-                  ...prev,
-                  [info.level]: { ...(prev[info.level] || {}), [name]: value },
-                }))
-              }
-              spells={spellSelections[info.level] || []}
-              onSpellsChange={(list) => setSpells(info.level, list)}
-              magicalSecretsSpells={magicalSecretsSelections[info.level] || []}
-              onMagicalSecretsChange={(list) => setMagicalSecrets(info.level, list)}
-              subclassSpellSelections={subclassSpellSelections[info.level] || []}
-              onSubclassSpellSelectionsChange={(list) => setSubclassSpells(info.level, list)}
-              replacedSpell={replacedSpells[info.level] || ""}
-              onReplacedSpellChange={(id) => setReplacedSpell(info.level, id)}
-              circleTerrain={circleTerrainSelections[info.level] || ""}
-              onCircleTerrainChange={(terrain) => setCircleTerrain(info.level, terrain)}
-              bonusCantrip={bonusCantripSelections[info.level] || ""}
-              onBonusCantripChange={(cantrip) => setBonusCantrip(info.level, cantrip)}
-              character={{ ...character, subclassIndex: (subclassSelection || character.subclass || '').toLowerCase().replace(/\s+/g, '-') }}
-               hitDie={hitDie}
-              diceType={diceType}
-              conMod={conMod}
-              averageHp={averageHp}
-              startFromLevelOne={startFromLevelOne}
-              wizardCharacter={wizardCharacter}
-              allSpellSelections={spellSelections}
-              invocationSelections={invocationSelections[info.level] || []}
-              onInvocationsChange={(list) => setInvocations(info.level, list)}
-              replacedInvocation={replacedInvocations[info.level] || ""}
-              onReplacedInvocationChange={(inv) => setReplacedInvocation(info.level, inv)}
-               pactTomeCantrips={pactTomeCantrips}
-               onPactTomeCantripsChange={setPactTomeCantrips}
-               expertise={expertiseSelections[info.level] || []}
-               onExpertiseChange={(list) => setExpertise(info.level, list)}
-                allInvocationSelections={invocationSelections}
-                pactBoon={pactBoon}
-                 sectionRefs={sectionRefs}
-                 takenSpells={takenSpells}
-                 allAsiFeats={Object.entries(asiSelections).flatMap(([l, st]) => (st?.mode === "feat" && st.feat ? [{ level: Number(l), feat: st.feat }] : []))}
-             />
-            </div>
-          ))}
+          {step.part === "recap" ? (
+            <>
+              <div>
+                <h2 className="text-xl font-bold text-[var(--color-text-primary)]">{partTitle("recap")}</h2>
+                <p className="mt-1 text-xs text-[var(--color-text-secondary)]">{partHint("recap")}</p>
+              </div>
+              {levelInfos.map((info) => (
+                <div key={info.level} className="rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)]">
+                  <div className="px-4 pt-3 pb-1 text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">
+                    {t("levelUp.flow.levelN", "Level {level}", { level: info.level })}
+                  </div>
+                  {(["moment", ...levelParts(info, subclassSelection, character.class)] as LevelPart[]).map((part) => {
+                    const open = unfinishedItems.some((item) => item.level === info.level && partOfSection(item.sectionId) === part);
+                    return (
+                      <button
+                        key={part}
+                        type="button"
+                        onClick={() => goTo(stepIndexOf(info.level, part))}
+                        className="flex w-full items-center gap-3 border-t border-[var(--color-border)] px-4 py-2.5 text-left first-of-type:border-t-0 hover:bg-[var(--color-bg)]"
+                      >
+                        <span className="w-24 shrink-0 text-xs font-semibold text-[var(--color-text-secondary)]">
+                          {recapLabel(part)}
+                        </span>
+                        <span className={`min-w-0 flex-1 truncate text-xs ${open ? "font-semibold text-red-500" : "text-[var(--color-text-primary)]"}`}>
+                          {open ? t("levelUp.flow.notDone", "Not picked yet") : recapSummary(info.level, part)}
+                        </span>
+                        <span className="text-[10px] font-semibold text-[var(--color-text-muted)]">{t("common.change", "Change")}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              ))}
+            </>
+          ) : stepInfo && step.part === "moment" ? (
+            <>
+              <div className="rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-6 text-center">
+                <GiDiceTwentyFacesTwenty className="mx-auto h-12 w-12 text-[var(--color-text-primary)] levelup-pop" aria-hidden="true" />
+                <div className="mt-2 text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--color-text-muted)]">{partTitle("moment")}</div>
+                <div className="text-3xl font-bold text-[var(--color-text-primary)]">{t("levelUp.flow.levelN", "Level {level}", { level: stepInfo.level })}</div>
+                <p className="mt-1 text-xs text-[var(--color-text-secondary)]">{startFromLevelOne && stepInfo.level === 1 ? t("levelUp.flow.startHint", "Here is what your class gives you at level 1.") : partHint("moment")}</p>
+                {!(startFromLevelOne && stepInfo.level === 1) && (
+                  <div className="mt-4 flex items-center justify-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setHp(stepInfo.level, averageHp)}
+                      className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors ${hpValues[stepInfo.level] === averageHp ? "border-[var(--color-ink)] bg-[var(--color-ink)] text-[var(--color-paper)]" : "border-[var(--color-border)] text-[var(--color-text-primary)]"}`}
+                    >
+                      {t("levelUp.flow.takeAverage", "Take average (+{hp} HP)", { hp: averageHp })}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => rollHp(stepInfo.level)}
+                      className="rounded-full border border-[var(--color-border)] px-3 py-1.5 text-xs font-semibold text-[var(--color-text-primary)] transition-colors hover:border-[var(--color-border-active)]"
+                    >
+                      {t("levelUp.flow.rollInstead", "Roll d{die} instead", { die: hitDie })}
+                    </button>
+                  </div>
+                )}
+              </div>
+              {renderLevelCard(stepInfo, "moment")}
+              {choiceSteps.length > 0 && (
+                <div className="rounded-[var(--radius-md)] border border-dashed border-[var(--color-border)] px-4 py-3">
+                  <div className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">{t("levelUp.flow.upNext", "Up next")}</div>
+                  <div className="mt-1 text-xs text-[var(--color-text-primary)]">
+                    {choiceSteps.map((s) => partTitle(s.part)).join(" · ")}
+                  </div>
+                </div>
+              )}
+            </>
+          ) : stepInfo ? (
+            <>
+              <div>
+                <div className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">
+                  {t("levelUp.flow.choiceOf", "Choice {n} of {total} · Level {level}", { n: choiceNumber, total: choiceSteps.length, level: stepInfo.level })}
+                </div>
+                <h2 className="text-xl font-bold text-[var(--color-text-primary)]">{partTitle(step.part)}</h2>
+                <p className="mt-1 text-xs text-[var(--color-text-secondary)]">{partHint(step.part)}</p>
+              </div>
+              {renderLevelCard(stepInfo, step.part as LevelPart)}
+            </>
+          ) : null}
         </div>
       </main>
 
       <WizardNav
-        onBack={onCancel}
-        onNext={handleFinish}
-        backLabel={t("wizard.cancel", "Cancel")}
-        nextLabel={t("levelUp.complete", "Complete")}
-        canProceed={allLevelsComplete}
+        onBack={idx === 0 ? onCancel : () => goTo(idx - 1)}
+        onNext={isLast ? handleFinish : () => goTo(idx + 1)}
+        backLabel={idx === 0 ? t("wizard.cancel", "Cancel") : t("common.back", "Back")}
+        nextLabel={isLast ? t("levelUp.flow.save", "Save character") : nextIsRecap ? t("levelUp.flow.review", "Review") : t("common.next", "Next")}
+        blockedLabel={step.part === "recap" ? t("levelUp.flow.finishPicks", "Finish the red rows first") : undefined}
+        canProceed={stepComplete}
         showBack={true}
       />
     </div>
   );
 }
 
+/** Sticky character card. A stat glows when its value changes. */
+function StatCard({ hp, ac, atk, dc, before, name, subtitle, t }: {
+  hp: number; ac: number; atk?: number; dc?: number;
+  before?: { hp: number; ac: number; atk: number; dc: number };
+  name?: string; subtitle: string;
+  t: (key: string, fb?: string, params?: Record<string, string | number>) => string;
+}) {
+  const stats: { key: string; label: string; value: string; diff: number }[] = [
+    { key: "hp", label: t("levelUp.flow.hp", "HP"), value: String(hp), diff: before ? hp - before.hp : 0 },
+    { key: "ac", label: t("levelUp.flow.ac", "AC"), value: String(ac), diff: before ? ac - before.ac : 0 },
+  ];
+  if (atk !== undefined) stats.push({ key: "atk", label: t("levelUp.flow.spellAttack", "Spell atk"), value: `${atk >= 0 ? "+" : ""}${atk}`, diff: before ? atk - before.atk : 0 });
+  if (dc !== undefined) stats.push({ key: "dc", label: t("levelUp.flow.saveDc", "Save DC"), value: String(dc), diff: before ? dc - before.dc : 0 });
+  return (
+    <div className="border-t border-[var(--color-border)]">
+      <div className="mx-auto flex max-w-lg items-center gap-3 px-4 py-2">
+        <div className="min-w-0 flex-1">
+          <div className="truncate text-xs font-bold text-[var(--color-text-primary)]">{name || "—"}</div>
+          <div className="truncate text-[10px] text-[var(--color-text-muted)]">{subtitle}</div>
+        </div>
+        {stats.map((s) => (
+          <div key={s.key} className="text-center">
+            <div key={s.value} className="stat-glow rounded px-1 text-sm font-bold text-[var(--color-text-primary)]">{s.value}</div>
+            <div className="text-[9px] uppercase tracking-wider text-[var(--color-text-muted)]">
+              {s.label}{s.diff !== 0 && <span className={s.diff > 0 ? "text-green-600" : "text-red-500"}> {s.diff > 0 ? "+" : ""}{s.diff}</span>}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 interface LevelCardProps {
   info: LevelInfo;
+  /** Show only this screen's sections. Leave out to show the whole level. */
+  part?: LevelPart;
   hpValue: number;
   onHpChange: (v: number) => void;
   asiSelection?: { mode: "single" | "double" | "feat"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey; feat?: string; featOptions?: Record<string, string> };
@@ -1693,7 +1961,10 @@ function LevelCard({
   sectionRefs,
   takenSpells,
   allAsiFeats,
+  part,
 }: LevelCardProps) {
+    const show = (p: LevelPart) => !part || part === p;
+    const spellsPart: LevelPart = levelParts(info, subclassSelection, character.class).includes("spells") ? "spells" : "moment";
     const { language, tDesc } = useLanguage();
     const dict = language === "id" ? idTranslations : enTranslations;
     const t = useCallback((key: string, fb?: string, params?: Record<string, string | number>) => {
@@ -1844,6 +2115,7 @@ function LevelCard({
         </div>
 
         <div className="space-y-2.5">
+          {show("moment") && (
           <div ref={setSectionRef(`hp-${lvl}`)} className={`flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)] ${!isHpComplete && !(lvl === 1 && startFromLevelOne) ? "border border-red-400 bg-red-50/30" : ""}`}>
             <Heart className={`h-4 w-4 ${!isHpComplete && !(lvl === 1 && startFromLevelOne) ? "text-red-400" : "text-[var(--color-text-muted)]"}`} />
             <div className="flex-1">
@@ -1866,7 +2138,9 @@ function LevelCard({
               />
             )}
           </div>
+          )}
 
+           {show("moment") && (
            <div className="flex items-center gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
              <Star className="h-4 w-4 text-[var(--color-text-muted)]" />
              <div className="flex-1">
@@ -1874,8 +2148,9 @@ function LevelCard({
                <div className="text-xs text-[var(--color-text-primary)]">+{info.proficiencyBonus}</div>
              </div>
            </div>
+           )}
 
-           {info.expertise && info.expertise.count > 0 && (() => {
+           {show("features") && info.expertise && info.expertise.count > 0 && (() => {
              const expCount = info.expertise.count;
              const selectedCount = expertise.length;
              const isComplete = selectedCount >= expCount;
@@ -1906,7 +2181,7 @@ function LevelCard({
              );
            })()}
 
-          {info.classFeatures.length > 0 && (
+          {show("moment") && info.classFeatures.length > 0 && (
             <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
               <Sword className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
               <div className="flex-1">
@@ -1922,7 +2197,7 @@ function LevelCard({
             </div>
           )}
 
-            {info.features.length > 0 && (
+            {show("moment") && info.features.length > 0 && (
               <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
                 <Lightning className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
                 <div className="flex-1">
@@ -1965,7 +2240,7 @@ function LevelCard({
               </div>
             )}
 
-            {info.asi && (
+            {show("asi") && info.asi && (
               <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
                 <ChartBar className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
                 <div className="flex-1">
@@ -1990,7 +2265,7 @@ function LevelCard({
               </div>
             )}
 
-          {info.spellSlots && (
+          {show("moment") && info.spellSlots && (
             <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
               <Sparkle className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
               <div className="flex-1">
@@ -1998,7 +2273,7 @@ function LevelCard({
                 <div className="flex flex-wrap gap-1.5 mt-1">
                   {Object.entries(info.spellSlots).map(([level, count]) => (
                     <span key={level} className="text-[10px] font-bold text-[var(--color-text-primary)] bg-[var(--color-surface)] border border-[var(--color-border)] px-2 py-0.5 rounded-full">
-                      {level}st: {count}
+                      {level}{Number(level) === 1 ? "st" : Number(level) === 2 ? "nd" : Number(level) === 3 ? "rd" : "th"}: {count}
                     </span>
                   ))}
                 </div>
@@ -2006,7 +2281,7 @@ function LevelCard({
             </div>
           )}
 
-          {info.cantripsKnown !== undefined && (() => {
+          {show(spellsPart) && info.cantripsKnown !== undefined && (() => {
             const lvlSpells = (allSpellSelections || {})[lvl] || [];
             const selectedCantrips = lvlSpells.filter((s: string) => s.endsWith(":0")).length;
             const higherCantrips = Object.entries(allSpellSelections || {})
@@ -2046,7 +2321,7 @@ function LevelCard({
             );
           })()}
 
-          {info.spellsKnown !== undefined && (() => {
+          {show(spellsPart) && info.spellsKnown !== undefined && (() => {
             const lvlSpells = (allSpellSelections || {})[lvl] || [];
             const selectedSpells = lvlSpells.filter((s: string) => !s.endsWith(":0")).length;
             const higherSpells = Object.entries(allSpellSelections || {})
@@ -2089,7 +2364,7 @@ function LevelCard({
             );
           })()}
 
-          {info.spellbookTotal !== undefined && (() => {
+          {show(spellsPart) && info.spellbookTotal !== undefined && (() => {
             const lvlSpells = (allSpellSelections || {})[lvl] || [];
             const selectedSpells = lvlSpells.filter((s: string) => !s.endsWith(":0")).length;
             const higherSpells = Object.entries(allSpellSelections || {})
@@ -2128,7 +2403,7 @@ function LevelCard({
             );
           })()}
 
-          {info.maxPrepared !== undefined && (() => {
+          {show(spellsPart) && info.maxPrepared !== undefined && (() => {
             const lvlSpells = (allSpellSelections || {})[lvl] || [];
             const selectedSpells = lvlSpells.filter((s: string) => !s.endsWith(":0")).length;
             const higherSpells = Object.entries(allSpellSelections || {})
@@ -2167,7 +2442,7 @@ function LevelCard({
             );
           })()}
 
-          {info.subclassOptions && (
+          {show("subclass") && info.subclassOptions && (
             <div className="flex items-start gap-3 p-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)]">
               <Crown className="h-4 w-4 text-[var(--color-text-muted)] mt-0.5" />
               <div className="flex-1">
@@ -2183,7 +2458,7 @@ function LevelCard({
             </div>
           )}
 
-          {(info.subclassFeatureChoices && info.subclassFeatureChoices.length > 0 && subclassSelection) || (info.classFeatureChoices && info.classFeatureChoices.length > 0) ? (
+          {show("features") && ((info.subclassFeatureChoices && info.subclassFeatureChoices.length > 0 && subclassSelection) || (info.classFeatureChoices && info.classFeatureChoices.length > 0)) ? (
             <div className="space-y-3">
               {info.subclassFeatureChoices && info.subclassFeatureChoices.length > 0 && subclassSelection && (
                 info.subclassFeatureChoices.map((fc) => (
@@ -2302,7 +2577,7 @@ function LevelCard({
             </div>
           ) : null}
 
-          {character.class === "Wizard" && info.level === 18 && (() => {
+          {show("features") && character.class === "Wizard" && info.level === 18 && (() => {
             const spellMasterySelection = classFeatureChoices["Spell Mastery"] || "";
             return (
               <div className="p-3 rounded-lg border border-amber-300 bg-amber-50/30">
@@ -2323,7 +2598,7 @@ function LevelCard({
             );
           })()}
 
-          {character.class === "Warlock" && info.level === 3 && subclassSelection && (() => {
+          {show("features") && character.class === "Warlock" && info.level === 3 && subclassSelection && (() => {
             const pactBoon = classFeatureChoices["Pact Boon"] || "";
             return (
               <div className="p-3 rounded-lg border border-purple-300 bg-purple-50/30">
@@ -2374,7 +2649,7 @@ function LevelCard({
             );
           })()}
 
-          {character.class === "Warlock" && info.level >= 3 && !subclassSelection && (
+          {show("features") && character.class === "Warlock" && info.level >= 3 && !subclassSelection && (
             <div className="p-3 rounded-lg border border-purple-300 bg-purple-50/30">
               <div className="flex items-center gap-2 mb-1">
                 <Crown className="h-3.5 w-3.5 text-purple-600" />
@@ -2384,7 +2659,7 @@ function LevelCard({
             </div>
           )}
 
-          {character.class === "Warlock" && info.level >= 2 && (() => {
+          {show("features") && character.class === "Warlock" && info.level >= 2 && (() => {
             const invocationFeature = info.classFeatureChoices?.find(fc => fc.name === "Eldritch Invocations");
             if (!invocationFeature) return null;
             const currentInvocations = invocationSelections;
@@ -2453,7 +2728,7 @@ function LevelCard({
             );
           })()}
 
-          {info.magicalSecretsCount > 0 && (
+          {show("spells") && info.magicalSecretsCount > 0 && (
             <div className="p-3 rounded-lg border border-purple-300 bg-purple-50/30">
                <div className="flex items-center gap-2 mb-1">
                  <Sparkle className="h-3.5 w-3.5 text-purple-600" />
@@ -2488,7 +2763,7 @@ function LevelCard({
             </div>
           )}
 
-          {info.subclassSpellSelectionCount > 0 && (
+          {show("spells") && info.subclassSpellSelectionCount > 0 && (
             <div className="p-3 rounded-lg border border-indigo-300 bg-indigo-50/30">
                <div className="flex items-center gap-2 mb-1">
                  <Sparkle className="h-3.5 w-3.5 text-indigo-600" />
@@ -2523,7 +2798,7 @@ function LevelCard({
             </div>
           )}
 
-          {info.canReplaceSpell && (
+          {show("spells") && info.canReplaceSpell && (
             <div className="p-3 rounded-lg border border-orange-300 bg-orange-50/30">
                <div className="flex items-center gap-2 mb-1">
                  <Book className="h-3.5 w-3.5 text-orange-600" />
@@ -2560,7 +2835,7 @@ function LevelCard({
             </div>
           )}
 
-          {info.bonusCantripSelection && (
+          {show("spells") && info.bonusCantripSelection && (
             <div className="p-3 rounded-lg border border-teal-300 bg-teal-50/30">
                <div className="flex items-center gap-2 mb-1">
                  <MagicWand className="h-3.5 w-3.5 text-teal-600" />
@@ -2578,7 +2853,7 @@ function LevelCard({
             </div>
           )}
 
-          {info.circleTerrainSelection && (
+          {show("features") && info.circleTerrainSelection && (
             <div className="p-3 rounded-lg border border-green-300 bg-green-50/30">
               <div className="flex items-center gap-2 mb-1">
                 <Leaf className="h-3.5 w-3.5 text-green-600" />
