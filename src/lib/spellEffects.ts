@@ -348,14 +348,6 @@ export const BUFF_DEFINITIONS: Record<string, BuffDefinition> = {
     concentration: true,
     effects: [{ type: "damage_bonus", value: 3, description: "3d6 necrotic damage, heal half" }],
   },
-  "malicious-smite": {
-    id: "malicious-smite",
-    name: "Malicious Smite",
-    level: 6,
-    classes: ["Paladin"],
-    concentration: true,
-    effects: [{ type: "damage_bonus", value: 4, description: "+4d6 necrotic damage on next hit" }],
-  },
   "sunbeam": {
     id: "sunbeam",
     name: "Sunbeam",
@@ -699,14 +691,6 @@ export const BUFF_DEFINITIONS: Record<string, BuffDefinition> = {
     classes: ["Bard", "Druid", "Sorcerer", "Wizard"],
     concentration: false,
     effects: [{ type: "damage_bonus", value: 2, description: "2d8 thunder damage in 15ft cube" }],
-  },
-  "frost-fingers": {
-    id: "frost-fingers",
-    name: "Frost Fingers",
-    level: 1,
-    classes: ["Wizard"],
-    concentration: false,
-    effects: [{ type: "damage_bonus", value: 2, description: "2d8 cold damage in 15ft cone" }],
   },
   "color-spray": {
     id: "color-spray",
