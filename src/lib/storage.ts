@@ -5,6 +5,7 @@ import { coinRows, coinsFromInventory, withChoiceInfo } from "@/lib/inventory";
 import { findCatalogItem } from "@/data/item-catalog";
 import { addsProficiencyToAttack } from "@/lib/proficiency";
 import { db, type CharacterRecord, dbGetCharacters, dbGetCharacter, dbSaveCharacter, dbDeleteCharacter, dbTouchCharacterOpened } from "@/lib/db";
+import { SAVE_VERSION, upgradeSave } from "./save-upgrade";
 export interface Character {
   id: string;
   name: string;
@@ -58,6 +59,8 @@ export interface Character {
   maxSorceryPoints: number;
   initiative: number;
   speed: number;
+  /** Which one-time save upgrades have run (see save-upgrade.ts). */
+  saveVersion?: number;
   /** Walking speed the player set by hand; bonuses are added on top. */
   baseSpeed?: number;
   savingThrows: Record<string, { proficient: boolean; value: number }>;
@@ -481,6 +484,7 @@ export function createEmptyCharacter(overrides: Partial<Character> = {}): Charac
     bonusActionUsed: false,
     reactionUsed: false,
     exhaustionLevel: 0,
+    saveVersion: SAVE_VERSION,
     rages: 0,
     maxRages: 0,
     rageDamage: 0,
@@ -599,7 +603,7 @@ function withOwnBooks(c: Character): Character {
 }
 
 function normalizeCharacter(c: Character): Character {
-  return withOwnBooks(normalizeCharacterFields(c));
+  return upgradeSave(withOwnBooks(normalizeCharacterFields(c)));
 }
 
 /**
@@ -757,7 +761,7 @@ export async function getCharacter(id: string): Promise<Character | undefined> {
   if (typeof window === "undefined") return undefined;
   try {
     const found = await dbGetCharacter(id);
-    return found ? withOwnBooks({ ...found, ...migrateCoins(found) }) : found;
+    return found ? upgradeSave(withOwnBooks({ ...found, ...migrateCoins(found) })) : found;
   } catch {
     return (await getCharacters()).find((c) => c.id === id);
   }
