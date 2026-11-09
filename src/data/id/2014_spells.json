@@ -1292,7 +1292,7 @@
         "materialDesc": null
       },
       "ritual": false,
-      "duration": "1 hour",
+      "duration": "Up to 1 hour",
       "concentration": false,
       "casting_time": "1 action",
       "level": 0,
@@ -1909,7 +1909,7 @@
         "materialDesc": null
       },
       "ritual": false,
-      "duration": "1 minute",
+      "duration": "Up to 1 minute",
       "concentration": false,
       "casting_time": "1 action",
       "level": 0,
@@ -2572,7 +2572,7 @@
       "higher_level": [
         "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d6 for each slot level above 1st."
       ],
-      "range": "Self",
+      "range": "Self (15-foot cone)",
       "components": {
         "verbal": true,
         "somatic": true,
@@ -2910,7 +2910,7 @@
       "higher_level": [
         "When you cast this spell using a spell slot of 2nd level or higher, roll an additional 2d10 for each slot level above 1st."
       ],
-      "range": "Self",
+      "range": "Self (15-foot cone)",
       "components": {
         "verbal": true,
         "somatic": true,
@@ -3779,7 +3779,8 @@
       },
       "classes": [
         "Druid",
-        "Artificer"
+        "Artificer",
+        "Bard"
       ],
       "subclasses": [
         "Lore"
@@ -5683,7 +5684,7 @@
       "higher_level": [
         "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d8 for each slot level above 1st."
       ],
-      "range": "Self",
+      "range": "Self (15-foot cube)",
       "components": {
         "verbal": true,
         "somatic": true,
@@ -7348,8 +7349,7 @@
       "classes": [
         "Cleric",
         "Druid",
-        "Ranger",
-        "Artificer"
+        "Ranger"
       ],
       "subclasses": [
         "Lore"
@@ -7562,7 +7562,7 @@
       "desc": [
         "A line of strong wind 60 feet long and 10 feet wide blasts from you in a direction you choose for the spell's duration. Each creature that starts its turn in the line must succeed on a strength saving throw or be pushed 15 feet away from you in a direction following the line. Any creature in the line must spend 2 feet of movement for every 1 foot it moves when moving closer to you. The gust disperses gas or vapor, and it extinguishes candles, torches, and similar unprotected flames in the area. It causes protected flames, such as those of lanterns, to dance wildly and has a 50 percent chance to extinguish them. As a bonus action on each of your turns before the spell ends, you can change the direction in which the line blasts from you."
       ],
-      "range": "Self",
+      "range": "Self (60-foot line)",
       "components": {
         "verbal": true,
         "somatic": true,
@@ -8416,8 +8416,7 @@
       "classes": [
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Artificer"
+        "Wizard"
       ],
       "subclasses": [
         "Lore",
@@ -8548,8 +8547,7 @@
       },
       "classes": [
         "Druid",
-        "Ranger",
-        "Artificer"
+        "Ranger"
       ],
       "subclasses": [
         "Lore",
@@ -10227,7 +10225,6 @@
       },
       "classes": [
         "Cleric",
-        "Druid",
         "Paladin",
         "Artificer"
       ],
@@ -10455,7 +10452,7 @@
       "desc": [
         "You project a phantasmal image of a creature's worst fears. Each creature in a 30-foot cone must succeed on a wisdom saving throw or drop whatever it is holding and become frightened for the duration. While frightened by this spell, a creature must take the Dash action and move away from you by the safest available route on each of its turns, unless there is nowhere to move. If the creature ends its turn in a location where it doesn't have line of sight to you, the creature can make a wisdom saving throw. On a successful save, the spell ends for that creature."
       ],
-      "range": "Self",
+      "range": "Self (30-foot cone)",
       "components": {
         "verbal": true,
         "somatic": true,
@@ -10762,7 +10759,7 @@
       },
       "material": "Incense and powdered diamond worth at least 200 gp, which the spell consumes.",
       "ritual": false,
-      "duration": "Until dispelled",
+      "duration": "Until dispelled or triggered",
       "concentration": false,
       "casting_time": "1 hour",
       "level": 3,
@@ -11001,7 +10998,7 @@
       "higher_level": [
         "When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd."
       ],
-      "range": "Self",
+      "range": "Self (100-foot line)",
       "components": {
         "verbal": true,
         "somatic": true,
@@ -11117,8 +11114,7 @@
         "Cleric",
         "Paladin",
         "Warlock",
-        "Wizard",
-        "Artificer"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -11279,7 +11275,8 @@
         "url": "/api/2014/magic-schools/transmutation"
       },
       "classes": [
-        "Cleric"
+        "Cleric",
+        "Druid"
       ],
       "subclasses": [
         "Lore",
@@ -11458,7 +11455,7 @@
       "ritual": false,
       "duration": "Instantaneous",
       "concentration": false,
-      "casting_time": "1 action",
+      "casting_time": "1 action or 8 hours",
       "level": 3,
       "school": {
         "index": "transmutation",
@@ -11478,7 +11475,7 @@
       "updated_at": "2026-04-01T20:35:39.217Z",
       "description": "Sihir ini menyalurkan vitalitas ke tanaman dalam jangkauan 150 kaki. Ada dua cara penggunaan sihir ini, yang memberikan manfaat instan atau jangka panjang:\n\n- Jika kamu merapal sihir ini menggunakan 1 Action, pilih sebuah titik dalam jangkauan. Semua tanaman normal dalam radius 100 kaki yang berpusat pada titik tersebut menjadi lebat dan tumbuh liar. Makhluk yang bergerak melewati area ini harus menghabiskan 4 kaki pergerakan untuk setiap 1 kaki yang ditempuh. Kamu bisa mengecualikan satu atau lebih area dengan ukuran berapa pun di dalam jangkauan sihir agar tidak terkena efek ini.\n- Jika kamu merapal sihir ini selama 8 jam, kamu menyuburkan tanah tersebut. Semua tanaman dalam radius setengah mil yang berpusat pada titik dalam jangkauan menjadi subur selama 1 tahun. Tanaman tersebut akan menghasilkan jumlah pangan dua kali lipat dari biasanya saat dipanen.",
       "higherLevel": [],
-      "castingTime": "1 action",
+      "castingTime": "1 action or 8 hours",
       "source": "PHB",
       "effectSummary": "Sihir alam serbaguna yang bisa menciptakan medan sulit secara instan dengan menumbuhkan tanaman, atau menyuburkan tanah selama beberapa jam untuk melipatgandakan hasil pangan.",
       "fullDescription": "Sihir ini menyalurkan vitalitas ke tanaman dalam jangkauan 150 kaki. Ada dua cara penggunaan sihir ini, yang memberikan manfaat instan atau jangka panjang:\n\n- Jika kamu merapal sihir ini menggunakan 1 Action, pilih sebuah titik dalam jangkauan. Semua tanaman normal dalam radius 100 kaki yang berpusat pada titik tersebut menjadi lebat dan tumbuh liar. Makhluk yang bergerak melewati area ini harus menghabiskan 4 kaki pergerakan untuk setiap 1 kaki yang ditempuh. Kamu bisa mengecualikan satu atau lebih area dengan ukuran berapa pun di dalam jangkauan sihir agar tidak terkena efek ini.\n- Jika kamu merapal sihir ini selama 8 jam, kamu menyuburkan tanah tersebut. Semua tanaman dalam radius setengah mil yang berpusat pada titik dalam jangkauan menjadi subur selama 1 tahun. Tanaman tersebut akan menghasilkan jumlah pangan dua kali lipat dari biasanya saat dipanen.",
@@ -11655,9 +11652,9 @@
       "casting_time": "1 action",
       "level": 3,
       "school": {
-        "index": "conjuration",
-        "name": "Conjuration",
-        "url": "/api/2014/magic-schools/conjuration"
+        "index": "necromancy",
+        "name": "Necromancy",
+        "url": "/api/2014/magic-schools/necromancy"
       },
       "classes": [
         "Cleric",
@@ -11714,8 +11711,7 @@
       "classes": [
         "Bard",
         "Cleric",
-        "Wizard",
-        "Artificer"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -11834,8 +11830,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Artificer"
+        "Wizard"
       ],
       "subclasses": [
         "Lore",
@@ -11916,7 +11911,7 @@
       "desc": [
         "You imbue plants within 30 feet of you with limited sentience and animation, giving them the ability to communicate with you and follow your simple commands. You can question plants about events in the spell's area within the past day, gaining information about creatures that have passed, weather, and other circumstances. You can also turn difficult terrain caused by plant growth (such as thickets and undergrowth) into ordinary terrain that lasts for the duration. Or you can turn ordinary terrain where plants are present into difficult terrain that lasts for the duration, causing vines and branches to hinder pursuers, for example. Plants might be able to perform other tasks on your behalf, at the DM's discretion. The spell doesn't enable plants to uproot themselves and move about, but they can freely move branches, tendrils, and stalks. If a plant creature is in the area, you can communicate with it as if you shared a common language, but you gain no magical ability to influence it. This spell can cause the plants created by the entangle spell to release a restrained creature."
       ],
-      "range": "Self",
+      "range": "Self (30-foot radius)",
       "components": {
         "verbal": true,
         "somatic": true,
@@ -11972,7 +11967,7 @@
       "higher_level": [
         "When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d8 for each slot level above 3rd."
       ],
-      "range": "Self",
+      "range": "Self (15-foot radius)",
       "components": {
         "verbal": true,
         "somatic": true,
@@ -12327,7 +12322,7 @@
       "desc": [
         "A 10-foot-radius immobile dome of force springs into existence around and above you and remains stationary for the duration. The spell ends if you leave its area. Nine creatures of Medium size or smaller can fit inside the dome with you. The spell fails if its area includes a larger creature or more than nine creatures. Creatures and objects within the dome when you cast this spell can move through it freely. All other creatures and objects are barred from passing through it. Spells and other magical effects can't extend through the dome or be cast through it. The atmosphere inside the space is comfortable and dry, regardless of the weather outside. Until the spell ends, you can command the interior to become dimly lit or dark. The dome is opaque from the outside, of any color you choose, but it is transparent from the inside."
       ],
-      "range": "Self",
+      "range": "Self (10-foot radius hemisphere)",
       "components": {
         "verbal": true,
         "somatic": true,
@@ -12443,8 +12438,7 @@
         "Cleric",
         "Sorcerer",
         "Warlock",
-        "Wizard",
-        "Artificer"
+        "Wizard"
       ],
       "subclasses": [
         "Lore"
@@ -12822,7 +12816,6 @@
         "url": "/api/2014/magic-schools/divination"
       },
       "classes": [
-        "Cleric",
         "Wizard",
         "Artificer"
       ],
@@ -13481,7 +13474,7 @@
         "url": "/api/2014/magic-schools/divination"
       },
       "classes": [
-        "Druid"
+        "Cleric"
       ],
       "subclasses": [
         "Land"
@@ -14318,8 +14311,7 @@
         "Bard",
         "Druid",
         "Sorcerer",
-        "Wizard",
-        "Artificer"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/polymorph",
@@ -14970,7 +14962,7 @@
       "desc": [
         "A shimmering barrier extends out from you in a 10-foot radius and moves with you, remaining centered on you and hedging out creatures other than undead and constructs. The barrier lasts for the duration. The barrier prevents an affected creature from passing or reaching through. An affected creature can cast spells or make attacks with ranged or reach weapons through the barrier. If you move so that an affected creature is forced to pass through the barrier, the spell ends."
       ],
-      "range": "Self",
+      "range": "Self (10-foot radius)",
       "components": {
         "verbal": true,
         "somatic": true,
@@ -15299,7 +15291,7 @@
       "higher_level": [
         "When you cast this spell using a spell slot of 6th level or higher, the damage increases by 1d8 for each slot level above 5th."
       ],
-      "range": "Self",
+      "range": "Self (60-foot cone)",
       "components": {
         "verbal": true,
         "somatic": true,
@@ -16582,9 +16574,9 @@
         "size": 30
       },
       "school": {
-        "index": "conjuration",
-        "name": "Conjuration",
-        "url": "/api/2014/magic-schools/conjuration"
+        "index": "evocation",
+        "name": "Evocation",
+        "url": "/api/2014/magic-schools/evocation"
       },
       "classes": [
         "Bard",
@@ -18457,7 +18449,7 @@
       "higher_level": [
         "When you cast this spell using a spell slot of 7th level or higher, the barrier blocks spells of one level higher for each slot level above 6th."
       ],
-      "range": "Self",
+      "range": "Self (10-foot radius)",
       "components": {
         "verbal": true,
         "somatic": true,
@@ -19569,7 +19561,7 @@
       "desc": [
         "A beam of brilliant light flashes out from your hand in a 5-foot-wide, 60-foot-long line. Each creature in the line must make a constitution saving throw. On a failed save, a creature takes 6d8 radiant damage and is blinded until your next turn. On a successful save, it takes half as much damage and isn't blinded by this spell. Undead and oozes have disadvantage on this saving throw. You can create a new line of radiance as your action on any turn until the spell ends. For the duration, a mote of brilliant radiance shines in your hand. It sheds bright light in a 30-foot radius and dim light for an additional 30 feet. This light is sunlight."
       ],
-      "range": "Self",
+      "range": "Self (60-foot line)",
       "components": {
         "verbal": true,
         "somatic": true,
@@ -20389,7 +20381,7 @@
         "materialDesc": null
       },
       "ritual": false,
-      "duration": "8 hours",
+      "duration": "Up to 8 hours",
       "concentration": false,
       "casting_time": "1 action",
       "level": 7,
@@ -20644,8 +20636,7 @@
       },
       "classes": [
         "Bard",
-        "Wizard",
-        "Artificer"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/magnificent-mansion",
@@ -20834,7 +20825,7 @@
         "**7. Violet.** On a failed save, the target is blinded. It must then make a wisdom saving throw at the start of your next turn. A successful save ends the blindness. If it fails that save, the creature is transported to another plane of existence of the DM's choosing and is no longer blinded. (Typically, a creature that is on a plane that isn't its home plane is banished home, while other creatures are usually cast into the Astral or Ethereal planes.)",
         "**8. Special.** The target is struck by two rays. Roll twice more, rerolling any 8."
       ],
-      "range": "Self",
+      "range": "Self (60-foot cone)",
       "components": {
         "verbal": true,
         "somatic": true,
@@ -21220,7 +21211,7 @@
       },
       "material": "Mercury, phosphorus, and powdered diamond and opal with a total value of at least 1,000 gp, which the spell consumes.",
       "ritual": false,
-      "duration": "Until dispelled",
+      "duration": "Until dispelled or triggered",
       "concentration": false,
       "casting_time": "1 minute",
       "level": 7,
@@ -21293,8 +21284,7 @@
       "classes": [
         "Bard",
         "Sorcerer",
-        "Wizard",
-        "Artificer"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/teleport",
@@ -21456,7 +21446,7 @@
         "**Creatures and Objects.** A creature or object summoned or created by magic temporarily winks out of existence in the sphere. Such a creature instantly reappears once the space the creature occupied is no longer within the sphere.",
         "**Dispel Magic.** Spells and magical effects such as dispel magic have no effect on the sphere. Likewise, the spheres created by different antimagic field spells don't nullify each other."
       ],
-      "range": "Self",
+      "range": "Self (10-foot radius sphere)",
       "components": {
         "verbal": true,
         "somatic": true,
@@ -21480,8 +21470,7 @@
       },
       "classes": [
         "Cleric",
-        "Wizard",
-        "Artificer"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/antimagic-field",
@@ -21613,7 +21602,7 @@
       "desc": [
         "You take control of the weather within 5 miles of you for the duration. You must be outdoors to cast this spell. Moving to a place where you don't have a clear path to the sky ends the spell early. When you cast the spell, you change the current weather conditions, which are determined by the DM based on the climate and season. You can change precipitation, temperature, and wind. It takes 1d4 x 10 minutes for the new conditions to take effect. Once they do so, you can change the conditions again. When the spell ends, the weather gradually returns to normal. When you change the weather conditions, find a current condition on the following tables and change its stage by one, up or down. When changing the wind, you can change its direction."
       ],
-      "range": "Self",
+      "range": "Self (5-mile radius)",
       "components": {
         "verbal": true,
         "somatic": true,
@@ -21914,8 +21903,7 @@
       },
       "classes": [
         "Bard",
-        "Warlock",
-        "Artificer"
+        "Warlock"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/glibness",
@@ -22659,13 +22647,12 @@
         "9": "700"
       },
       "school": {
-        "index": "conjuration",
-        "name": "Conjuration",
-        "url": "/api/2014/magic-schools/conjuration"
+        "index": "evocation",
+        "name": "Evocation",
+        "url": "/api/2014/magic-schools/evocation"
       },
       "classes": [
-        "Cleric",
-        "Artificer"
+        "Cleric"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/mass-heal",
@@ -22773,8 +22760,7 @@
       },
       "classes": [
         "Sorcerer",
-        "Wizard",
-        "Artificer"
+        "Wizard"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/meteor-swarm",
@@ -23227,8 +23213,7 @@
       },
       "classes": [
         "Cleric",
-        "Druid",
-        "Artificer"
+        "Druid"
       ],
       "subclasses": [],
       "url": "/api/2014/spells/true-resurrection",
