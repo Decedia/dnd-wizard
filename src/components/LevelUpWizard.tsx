@@ -54,6 +54,10 @@ import { BasePopup } from "@/components/BasePopup";
 import { useSRD } from "@/contexts/SRDContext";
 import { isRecommended } from "@/lib/recommendations";
 import { GiDiceTwentyFacesTwenty } from "react-icons/gi";
+import { getStaticFeats } from "@/lib/srd-client";
+import { getFeatOptionGroups } from "@/data/feat-options";
+import { SUBCLASS_PICKS, FIGHTING_STYLE_PICKS, asiPicks, spellPicks, topPicks, type Why } from "@/lib/level-up-picks";
+import { PickCards, type PickCard } from "./level-up/PickCards";
 
 function slugify(name: string): string {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
@@ -1574,6 +1578,122 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     setHp(level, Math.max(1, die + conMod));
   };
 
+  // "Pick 1 of 3" cards above the full picker.
+  const [showAllFor, setShowAllFor] = useState<Record<string, boolean>>({});
+  const whyText = (why: Why) => (language === "id" ? why.id : why.en);
+  const featNames = useMemo(() => {
+    const owned = new Set((character.features || []).map((f) => f.name));
+    return getStaticFeats(character.sources, character.ruleset)
+      .map((f) => f.name)
+      .filter((name) => !owned.has(name) && getFeatOptionGroups(name).length === 0);
+  }, [character.features, character.sources, character.ruleset]);
+  const classSpellList = useMemo(
+    () => getStaticSpells(character.sources, character.ruleset).filter((s) => s.classes?.includes(character.class)),
+    [character.sources, character.ruleset, character.class]
+  );
+
+  /** The suggestion groups for one level's screen; an empty list hides the cards. */
+  const pickGroups = (info: LevelInfo, part: LevelPart): { label: string; cards: PickCard[]; onPick: (key: string) => void }[] => {
+    const lvl = info.level;
+    const label = t("levelUp.flow.suggested", "Suggested for you");
+    if (part === "subclass" && info.subclassOptions?.length) {
+      const picks = topPicks(SUBCLASS_PICKS[character.class], info.subclassOptions.map((o) => o.name));
+      return [{ label, cards: picks.map((p) => ({ key: p.name, title: p.name, why: whyText(p.why), selected: subclassSelection === p.name })), onPick: handleSubclassSelect }];
+    }
+    if (part === "asi" && info.asi) {
+      const takenElsewhere = new Set(Object.entries(asiSelections).filter(([l, st]) => Number(l) !== lvl && st?.mode === "feat").map(([, st]) => st.feat));
+      const picks = asiPicks(character.class, baseScores(lvl), featNames.filter((f) => !takenElsewhere.has(f)));
+      const st = asiSelections[lvl];
+      const keyOf = (p: (typeof picks)[number]) => (p.kind === "single" ? `single:${p.ability}` : p.kind === "double" ? `double:${p.d1}:${p.d2}` : `feat:${p.feat}`);
+      const titleOf = (p: (typeof picks)[number]) =>
+        p.kind === "single" ? `+2 ${p.ability.toUpperCase()}` : p.kind === "double" ? `+1 ${p.d1.toUpperCase()}, +1 ${p.d2.toUpperCase()}` : p.feat;
+      const isSel = (p: (typeof picks)[number]) =>
+        !!st && (p.kind === "single" ? st.mode === "single" && st.single === p.ability
+          : p.kind === "double" ? st.mode === "double" && ((st.d1 === p.d1 && st.d2 === p.d2) || (st.d1 === p.d2 && st.d2 === p.d1))
+          : st.mode === "feat" && st.feat === p.feat);
+      return [{
+        label,
+        cards: picks.map((p) => ({ key: keyOf(p), title: titleOf(p), tag: p.kind === "feat" ? t("levelUp.flow.feat", "Feat") : undefined, why: whyText(p.why), selected: isSel(p) })),
+        onPick: (key) => {
+          const [kind, a, b] = key.split(":");
+          if (kind === "single") setAsi(lvl, { mode: "single", single: a as AbilityKey, d1: undefined, d2: undefined, feat: undefined, featOptions: undefined });
+          else if (kind === "double") setAsi(lvl, { mode: "double", d1: a as AbilityKey, d2: b as AbilityKey, single: undefined, feat: undefined, featOptions: undefined });
+          else setAsi(lvl, { mode: "feat", feat: key.slice(5), single: undefined, d1: undefined, d2: undefined, featOptions: undefined });
+        },
+      }];
+    }
+    if (part === "features") {
+      const style = info.classFeatureChoices?.find((fc) => fc.name === "Fighting Style");
+      if (!style) return [];
+      const picks = topPicks(FIGHTING_STYLE_PICKS[character.class], style.options.map((o) => o.name));
+      const current = classFeatureChoices[lvl]?.["Fighting Style"];
+      return [{
+        label: t("levelUp.flow.suggestedStyle", "Suggested fighting styles"),
+        cards: picks.map((p) => ({ key: p.name, title: p.name, why: whyText(p.why), selected: current === p.name })),
+        onPick: (name) => setClassFeatureChoices((prev) => ({ ...prev, [lvl]: { ...(prev[lvl] || {}), "Fighting Style": name } })),
+      }];
+    }
+    if (part === "spells" && info.hasSpellSelection && !["Fighter", "Rogue"].includes(character.class)) {
+      const mine = spellSelections[lvl] || [];
+      const own = new Set(mine.map((x) => x.split(":")[0].toLowerCase()));
+      const free = classSpellList.filter((sp) => (sp.level === 0 || sp.level <= info.maxSpellLevel) && (own.has(sp.name.toLowerCase()) || !takenSpells.has(sp.name.toLowerCase())));
+      const groups: { label: string; cards: PickCard[]; onPick: (key: string) => void }[] = [];
+      const toggle = (key: string, isCantrip: boolean, limit: number) => {
+        const has = mine.includes(key);
+        const sameKind = mine.filter((x) => x.endsWith(":0") === isCantrip).length;
+        if (has) setSpells(lvl, mine.filter((x) => x !== key));
+        else if (sameKind < limit) setSpells(lvl, [...mine, key]);
+      };
+      const build = (isCantrip: boolean, limit: number, title: string) => {
+        if (limit <= 0) return;
+        const picks = spellPicks(free.filter((sp) => (sp.level === 0) === isCantrip));
+        const full = mine.filter((x) => x.endsWith(":0") === isCantrip).length >= limit;
+        groups.push({
+          label: title,
+          cards: picks.map((p) => {
+            const key = `${p.name}:${p.level}`;
+            return { key, title: p.name, tag: p.level === 0 ? t("levelUp.flow.cantrip", "Cantrip") : t("levelUp.flow.spellLevel", "Level {n} spell", { n: p.level }), why: whyText(p.why), selected: mine.includes(key), disabled: full };
+          }),
+          onPick: (key) => toggle(key, isCantrip, limit),
+        });
+      };
+      build(true, info.cantripSelectionCount, t("levelUp.flow.suggestedCantrips", "Suggested cantrips"));
+      build(false, info.spellSelectionCount, t("levelUp.flow.suggestedSpells", "Suggested spells"));
+      return groups.filter((g) => g.cards.length > 0);
+    }
+    return [];
+  };
+
+  /** Cards, then the full picker: folded behind "See all options" for one-pick screens. */
+  const renderChoice = (info: LevelInfo, part: LevelPart) => {
+    const groups = pickGroups(info, part);
+    const key = `${info.level}-${part}`;
+    const onePick = part === "subclass" || part === "asi";
+    const pickedOther = onePick && !unfinishedItems.some((item) => item.level === info.level && partOfSection(item.sectionId) === part) && !groups.some((g) => g.cards.some((c) => c.selected));
+    const fold = onePick && groups.length > 0 && !showAllFor[key] && !pickedOther;
+    return (
+      <div className="space-y-3">
+        {groups.map((g) => <PickCards key={g.label} label={g.label} cards={g.cards} onPick={g.onPick} />)}
+        {fold ? (
+          <button
+            type="button"
+            onClick={() => setShowAllFor((prev) => ({ ...prev, [key]: true }))}
+            className="w-full rounded-[var(--radius-md)] border border-dashed border-[var(--color-border)] py-2.5 text-xs font-semibold text-[var(--color-text-secondary)] hover:border-[var(--color-border-active)]"
+          >
+            {t("levelUp.flow.seeAll", "See all options")}
+          </button>
+        ) : (
+          <>
+            {groups.length > 0 && (
+              <div className="pt-1 text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">{t("levelUp.flow.allOptions", "All options")}</div>
+            )}
+            {renderLevelCard(info, part)}
+          </>
+        )}
+      </div>
+    );
+  };
+
   const renderLevelCard = (info: LevelInfo, part: LevelPart) => (
     <LevelCard
       part={part}
@@ -1845,7 +1965,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
                     : partHint(step.part)}
                 </p>
               </div>
-              {stepInfos.map((info) => <div key={info.level}>{renderLevelCard(info, step.part as LevelPart)}</div>)}
+              {stepInfos.map((info) => <div key={info.level}>{renderChoice(info, step.part as LevelPart)}</div>)}
             </>
           ) : null}
         </div>

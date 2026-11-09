@@ -1516,4 +1516,13 @@ export const translations = {
   "levelUp.flow.rollAll": "Roll d{die} for each level",
   "levelUp.flow.stepOf": "Step {n} of {total} · {levels}",
   "levelUp.flow.spellsJumpHint": "Pick the spells your character learns, level by level from the top.",
+  "levelUp.flow.suggested": "Suggested for you",
+  "levelUp.flow.suggestedStyle": "Suggested fighting styles",
+  "levelUp.flow.suggestedCantrips": "Suggested cantrips",
+  "levelUp.flow.suggestedSpells": "Suggested spells",
+  "levelUp.flow.feat": "Feat",
+  "levelUp.flow.cantrip": "Cantrip",
+  "levelUp.flow.spellLevel": "Level {n} spell",
+  "levelUp.flow.seeAll": "See all options",
+  "levelUp.flow.allOptions": "All options",
 };

@@ -1595,4 +1595,13 @@ export const translations = {
   "levelUp.flow.rollAll": "Lempar d{die} untuk tiap level",
   "levelUp.flow.stepOf": "Langkah {n} dari {total} · {levels}",
   "levelUp.flow.spellsJumpHint": "Pilih spell yang dipelajari karaktermu, level demi level dari atas.",
+  "levelUp.flow.suggested": "Saran untukmu",
+  "levelUp.flow.suggestedStyle": "Saran fighting style",
+  "levelUp.flow.suggestedCantrips": "Saran cantrip",
+  "levelUp.flow.suggestedSpells": "Saran spell",
+  "levelUp.flow.feat": "Feat",
+  "levelUp.flow.cantrip": "Cantrip",
+  "levelUp.flow.spellLevel": "Spell level {n}",
+  "levelUp.flow.seeAll": "Lihat semua pilihan",
+  "levelUp.flow.allOptions": "Semua pilihan",
 };
