@@ -40,6 +40,7 @@ Optional class features (TCE)
 Optional class features (TCE)
   1 Deft Explorer
   1 Favored Foe
+  2 Spellcasting Focus
   3 Primal Awareness
   4 Martial Versatility
   10 Nature's Veil

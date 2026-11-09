@@ -512,6 +512,8 @@ export function getStaticSubclasses(className: string, sources?: string[], rules
               icon: opt.icon,
               // Lowest class level at which this option can be picked.
               ...(opt.minLevel ? { minLevel: opt.minLevel } : {}),
+              // A Tasha's optional class feature option: only offered when the table uses them.
+              ...(opt.optional ? { optional: true } : {}),
             }));
             if (typeof featChoices.count === "number") {
               out.choicesCount = featChoices.count;

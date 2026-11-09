@@ -4,7 +4,7 @@ import { useState, useMemo, useCallback, useEffect, useRef, useLayoutEffect } fr
 import { WizardNav, WIZARD_NAV_SPACE } from "./WizardNav";
 import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclassDetails, getSubclassFlags, getPactBoons, getStaticFeat, getStaticEquipments } from "@/lib/srd-client";
 import { SourceBadge } from "./SourceBadge";
-import { getHitDieAverage, getModifier, computeDerivedStats, getMaxBardicInspirationUses, getBardicInspirationDie, hasFontOfInspiration, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getOathSpellNames, getWizardTraditionSpellNames, getMaxSpellLevel, isThirdCaster, getSpellSlotTable, getFeatureValue, getHpBonusPerLevel, type Character } from "@/lib/storage";
+import { getHitDieAverage, getModifier, computeDerivedStats, getMaxBardicInspirationUses, getBardicInspirationDie, hasFontOfInspiration, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getOathSpellNames, getWizardTraditionSpellNames, getMaxSpellLevel, isThirdCaster, getSpellSlotTable, getFeatureValue, getWarlockExpandedSpellNames, getHpBonusPerLevel, type Character } from "@/lib/storage";
 import { applySubclassFeatures, applySubclassSpellGrants, syncBaseFeatures } from "@/lib/character-creation";
 import { normalizeDescription } from "@/lib/level-up";
 import invocationsData from "@/data/warlock_invocations.json";
@@ -80,12 +80,19 @@ const ABILITIES: { key: AbilityKey; label: string; full: string }[] = [
 interface InvocationPrerequisite {
   level: number;
   requires?: string;
+  source?: string;
 }
 
 const invocationPrereqs: Record<string, InvocationPrerequisite> = (invocationsData as any).invocations || {};
 
-function getAvailableInvocations(level: number, pactBoon: string, knownInvocations: string[], knowsEldritchBlast: boolean): { name: string; available: boolean; reason?: string }[] {
-  const allInvocations = Object.keys(invocationPrereqs);
+function getAvailableInvocations(level: number, pactBoon: string, knownInvocations: string[], knowsEldritchBlast: boolean, sources: string[] | undefined, usesTasha: boolean): { name: string; available: boolean; reason?: string }[] {
+  // Xanathar's invocations need that book; Tasha's ones are optional class features.
+  const allInvocations = Object.keys(invocationPrereqs).filter((name) => {
+    const src = invocationPrereqs[name]?.source;
+    if (!src) return true;
+    if (src === "TCE") return usesTasha;
+    return !sources || sources.length === 0 || sources.includes(src);
+  });
   return allInvocations.map((name) => {
     const prereq = invocationPrereqs[name];
     if (!prereq) return { name, available: true };
@@ -95,6 +102,7 @@ function getAvailableInvocations(level: number, pactBoon: string, knownInvocatio
       if (req.includes("pact of the blade") && pactBoon !== "Pact of the Blade") return { name, available: false, reason: "Requires Pact of the Blade" };
       if (req.includes("pact of the chain") && pactBoon !== "Pact of the Chain") return { name, available: false, reason: "Requires Pact of the Chain" };
       if (req.includes("pact of the tome") && pactBoon !== "Pact of the Tome") return { name, available: false, reason: "Requires Pact of the Tome" };
+      if (req.includes("pact of the talisman") && pactBoon !== "Pact of the Talisman") return { name, available: false, reason: "Requires Pact of the Talisman" };
       if (req.includes("eldritch blast") && !knowsEldritchBlast) return { name, available: false, reason: "Requires the Eldritch Blast cantrip" };
     }
     return { name, available: true };
@@ -211,6 +219,19 @@ function expertiseOptions(className: string, options: ChoiceOption[], character:
   // Skills may not be picked yet when the level step comes first; offer the full list then.
   if (proficient.length === 0) return options;
   return names.sort().map((name) => options.find((o) => o.name === name) || { name, description: "" });
+}
+
+// Mystic Arcanum: any warlock spell of that level from the character's books, plus the patron's expanded spells.
+function mysticArcanumOptions(featureName: string, options: ChoiceOption[], character: Character, subclass: string, language: string): ChoiceOption[] {
+  const spellLevel = Number(featureName.match(/\((\d)/)?.[1]);
+  if (!spellLevel) return options;
+  const all = getStaticSpells(character.sources, character.ruleset, language);
+  const expanded = new Set(getWarlockExpandedSpellNames(character, subclass));
+  const names = new Set(
+    all.filter((sp) => sp.level === spellLevel && ((sp.classes || []).includes("Warlock") || expanded.has(sp.name))).map((sp) => sp.name)
+  );
+  for (const o of options) names.add(o.name);
+  return [...names].sort().map((name) => options.find((o) => o.name === name) || { name, description: all.find((sp) => sp.name === name)?.school || "" });
 }
 
 function getProficiencyBonus(level: number): number {
@@ -338,6 +359,7 @@ export function buildLevelInfos(
       : undefined;
 
     const subclassFeatureChoices: { name: string; description: string; options: { name: string; description: string }[]; count?: number }[] = [];
+    const usesTasha = usesOptionalClassFeatures(character);
     const passiveSubclassFeatures: { name: string; description: string; source?: string }[] = [];
     if (subclassSelection && level >= unlockLevel) {
       const selectedSubclass = subclasses.find((s) => s.name === subclassSelection);
@@ -366,7 +388,7 @@ export function buildLevelInfos(
               name: f.name,
               description: desc,
               options: f.choices!
-                .filter((c: any) => (!c.minLevel || c.minLevel <= level) && !pickedBefore.has(c.name))
+                .filter((c: any) => (!c.minLevel || c.minLevel <= level) && !pickedBefore.has(c.name) && (!c.optional || usesTasha))
                 .map((c: any) => ({ name: c.name, description: c.description || "", icon: c.icon })),
               count: (f as any).choicesCountByLevel?.[String(level)] ?? f.choicesCount ?? 1,
             });
@@ -405,6 +427,7 @@ export function buildLevelInfos(
         }));
         if (f.name === "Fighting Style") options = fightingStyleOptions(className, options, usesOptionalClassFeatures(character), language);
         if (f.name === "Expertise") options = expertiseOptions(className, options, character);
+        if (f.name.startsWith("Mystic Arcanum")) options = mysticArcanumOptions(f.name, options, { ...character, level }, subclassSelection, language);
         classFeatureChoices.push({
           name: f.name,
           description: f.description || "",
@@ -2266,7 +2289,7 @@ function LevelCard({
                  <p className="text-[10px] text-[var(--color-text-muted)] mb-2">{t("spell.pactBoonGift", "Your patron bestows a gift. Choose one.")}</p>
                 <button
                   type="button"
-                  onClick={() => { setFeatureSelections([]); setShowFeaturePopup({ name: "Pact Boon", description: "", options: getPactBoons().map(b => ({ name: b.name, description: b.description })), isSubclass: false, count: 1 }); }}
+                  onClick={() => { setFeatureSelections([]); setShowFeaturePopup({ name: "Pact Boon", description: "", options: getPactBoons().filter((b: any) => b.source !== "TCE" || usesOptionalClassFeatures(character)).map(b => ({ name: b.name, description: b.description })), isSubclass: false, count: 1 }); }}
                   className="w-full py-2 px-3 text-xs font-semibold rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] transition-all text-left flex items-center justify-between"
                 >
                    <span>{pactBoon || t("levelUp.selectPactBoon", "Select Pact Boon...")}</span>
@@ -2284,8 +2307,8 @@ function LevelCard({
                       ))}
                     </div>
                     <FeatureChipSelector
-                       name="Bonus Cantrip"
-                       description={t("spell.bonusCantripHint", "Choose one additional druid cantrip (does not count against cantrip limit)")}
+                       name="Book of Shadows"
+                       description={t("spell.pactTomeCantripsHint", "Choose three cantrips from any class. They don't count against your cantrips known.")}
                       options={getStaticSpells(character.sources, undefined, language)
                         .filter((s) => s.level === 0 && !pactTomeCantrips.includes(s.name))
                         .map((s) => ({ name: s.name, description: s.school || "" }))}
@@ -2325,7 +2348,7 @@ function LevelCard({
               (character.cantrips || []).some((c) => c.name === "Eldritch Blast") ||
               (character.spells || []).some((sp) => sp.name === "Eldritch Blast") ||
               Object.entries(allSpellSelections || {}).some(([l, list]) => Number(l) <= info.level && list.includes("Eldritch Blast:0"));
-            const availableInvocations = getAvailableInvocations(info.level, pactBoon || "", currentInvocations, knowsEldritchBlast);
+            const availableInvocations = getAvailableInvocations(info.level, pactBoon || "", currentInvocations, knowsEldritchBlast, character.sources, usesOptionalClassFeatures(character));
             const priorInvocations = Object.entries(allInvocationSelections || {}).filter(([l]) => Number(l) < info.level).flatMap(([, invs]) => invs);
             const hasPriorInvocations = info.level > 2 && priorInvocations.length > 0;
 

@@ -1369,6 +1369,7 @@ export const translations = {
   "levelUp.asiFeatPrefix": "Feat: {feat}",
   "spell.chooseCantripsFromAnyClass": "Pilih 3 Cantrips dari Kelas Manapun:",
   "spell.bonusCantripHint": "Pilih satu cantrip druid tambahan (tidak dihitung terhadap batas cantrip)",
+  "spell.pactTomeCantripsHint": "Pilih tiga cantrip dari class mana pun. Tidak dihitung dalam cantrips known.",
   "spell.signatureSpells": "Sihir Tanda Tangan",
   "bonusCantrip.choose": "Pilih Bonus Cantrip",
   "spell.familiarForms": "Bentuk familiar khusus tersedia: imp, pseudodragon, quasit, sprite",

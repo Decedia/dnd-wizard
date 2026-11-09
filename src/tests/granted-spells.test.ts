@@ -108,7 +108,7 @@ describe("subclass picks", () => {
   });
 
   test("Kensei picks another weapon at 6, 11 and 17", () => {
-    const picks = sub("Monk", "Way of the Kensei", ["XGE"]).features.filter((x: any) => x.name.startsWith("Path of the Kensei")) as any[];
+    const picks = sub("Monk", "Way of the Kensei", ["XGE"]).features.filter((x: any) => x.name.startsWith("Path of the Kensei") && x.name !== "Path of the Kensei: Tool") as any[];
     expect(picks.map((x) => x.level)).toEqual([3, 3, 6, 11, 17]);
     expect(picks[2].choices.map((c: any) => c.name)).toEqual(expect.arrayContaining(["Longsword", "Shortbow"]));
   });
