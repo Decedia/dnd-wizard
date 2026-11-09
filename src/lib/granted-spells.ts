@@ -3,6 +3,8 @@ import { getOptionalClassFeatures } from "@/data/optional-class-features";
 import { activeRaceChoices, getCircleSpells, getDomainSpells, getOathSpells, getStaticRaceDetails, getStaticSpells, getStaticSubclasses, getSubclassSpellGrants } from "./srd-client";
 import { normalizeDescription } from "./level-up";
 import type { Character } from "./storage";
+import { FEAT_FIXED_GRANTS, decodeFeatOptions } from "./feat-grants";
+import { getFeatOptionGroups } from "@/data/feat-options";
 
 type SpellOwner = Pick<Character, "class" | "subclass" | "level" | "race" | "raceChoices" | "featureSelections" | "sources" | "ruleset" | "circleTerrain" | "optionalClassFeatures">;
 
@@ -72,6 +74,7 @@ export function grantSpells(character: Character, names: string[]): Character {
         source: "srd",
         srdSpellName: spell.name,
         description: normalizeDescription(spell.description),
+        granted: true,
       } as Character["spells"][number]);
     }
     if (level === 0 && !has(cantrips, spell.name)) cantrips.push({ id: `cantrip-${spell.name}`.replace(/\s+/g, "-"), name: spell.name });
@@ -82,4 +85,95 @@ export function grantSpells(character: Character, names: string[]): Character {
 export function isGrantedSpell(character: SpellOwner, name: string | undefined): boolean {
   if (!name) return false;
   return getGrantedSpellNames(character).some((n) => n.toLowerCase() === name.toLowerCase());
+}
+
+/**
+ * Keeps the free spells in step with where they come from: adds what the
+ * character now gets, and removes spells marked as given whose source is gone
+ * (a lower level, another subclass, race or terrain). A spell the player has
+ * that a source now gives is marked, so it goes too if that source is lost.
+ */
+export function syncGrantedSpells(character: Character): Character {
+  const grantedNames = getGrantedSpellNames(character);
+  const names = new Set(grantedNames.map((n) => n.toLowerCase()));
+  const isLost = (s: Character["spells"][number]) => !!s.granted && !names.has(s.name.toLowerCase());
+  const spells = (character.spells || [])
+    .filter((s) => !isLost(s))
+    .map((s) => (!s.granted && names.has(s.name.toLowerCase()) ? { ...s, granted: true } : s));
+  if (spells.length === (character.spells || []).length && spells.every((s, i) => s === character.spells[i])) {
+    return grantSpells(character, grantedNames);
+  }
+  const removed = (character.spells || []).filter(isLost);
+  const removedIds = new Set(removed.map((s) => s.id));
+  const keptNames = new Set(spells.map((s) => s.name.toLowerCase()));
+  const goneNames = new Set(removed.map((s) => s.name.toLowerCase()).filter((n) => !keptNames.has(n)));
+  return grantSpells(
+    {
+      ...character,
+      spells,
+      cantrips: (character.cantrips || []).filter((c) => !goneNames.has((c.name || "").toLowerCase())),
+      preparedSpells: (character.preparedSpells || []).filter((id) => !removedIds.has(id)),
+    },
+    grantedNames
+  );
+}
+
+export interface FreeCast {
+  name: string;
+  /** The rest that gives the cast back. */
+  rest: "long" | "short";
+}
+
+/** Race and feat spells cast at will, so they have no free cast to track. */
+const AT_WILL: Record<string, string[]> = {
+  "Yuan-ti Pureblood": ["Animal Friendship"],
+  "Drow High Magic": ["Detect Magic"],
+  "Svirfneblin Magic": ["Nondetection"],
+};
+/** Spells whose free cast comes back on a short rest too. */
+const SHORT_REST: Record<string, string[]> = {
+  Firbolg: ["Detect Magic", "Disguise Self"],
+  "Fey Teleportation": ["Misty Step"],
+};
+/** Feats whose spell picks are not cast free (Ritual Caster casts rituals). */
+const NO_FREE_CAST = new Set(["Ritual Caster"]);
+
+/** Feats the character took, with their saved picks. */
+function takenFeats(character: Pick<Character, "featureSelections" | "features">): Map<string, Record<string, string>> {
+  const selections = character.featureSelections || {};
+  const taken = new Map<string, Record<string, string>>();
+  for (const [key, values] of Object.entries(selections)) {
+    if (!/^asi-feat-\d+$/.test(key) && key !== "variant-human-feat") continue;
+    const name = values?.[0];
+    if (name) taken.set(name, { ...taken.get(name), ...decodeFeatOptions(selections[`${key}-options`]) });
+  }
+  for (const f of character.features || []) {
+    if (f.name && FEAT_FIXED_GRANTS[f.name] && !taken.has(f.name)) taken.set(f.name, {});
+  }
+  return taken;
+}
+
+/**
+ * Leveled spells a race trait or a feat lets the character cast once without
+ * a spell slot, until the next long rest (a short rest for a few). Cantrips
+ * and at-will spells are left out.
+ */
+export function getFreeCastSpells(character: SpellOwner & Pick<Character, "features">): FreeCast[] {
+  const level = character.level || 1;
+  const out: FreeCast[] = [];
+  const add = (name: string, source: string) => {
+    if (AT_WILL[source]?.includes(name)) return;
+    if (out.some((c) => c.name.toLowerCase() === name.toLowerCase())) return;
+    out.push({ name, rest: SHORT_REST[source]?.includes(name) ? "short" : "long" });
+  };
+  for (const name of upTo(RACE_SPELLS[character.race], level)) add(name, character.race);
+  for (const [feat, options] of takenFeats(character)) {
+    if (NO_FREE_CAST.has(feat)) continue;
+    for (const name of FEAT_FIXED_GRANTS[feat]?.spells || []) add(name, feat);
+    for (const group of getFeatOptionGroups(feat)) {
+      if (group.type === "spell" && options[group.id]) add(options[group.id], feat);
+    }
+  }
+  const all = getStaticSpells([], character.ruleset);
+  return out.filter((c) => (all.find((s) => s.name.toLowerCase() === c.name.toLowerCase())?.level ?? 0) > 0);
 }

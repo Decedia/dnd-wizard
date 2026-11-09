@@ -28,6 +28,9 @@ import { SpellcastingStatsSection } from "@/components/character-sheet/Spellcast
 import { AppearanceBioSection } from "@/components/character-sheet/AppearanceBioSection";
 import { PassiveStatsSection } from "@/components/character-sheet/PassiveStatsSection";
 import { DotsThreeIcon as DotsThree, TrashIcon as Trash, ExportIcon as Export, UploadIcon as Upload, CheckCircleIcon as CheckCircle, UserPlusIcon as UserPlus, ClockIcon as Clock, FileJsonIcon as FileJson } from "@/components/icons";
+import { syncGrantedSpells } from "@/lib/granted-spells";
+
+const GRANT_SOURCES = ["race", "class", "subclass", "level", "raceChoices", "circleTerrain", "optionalClassFeatures", "sources", "featureSelections"] as const;
 
 export function CharacterView() {
   const searchParams = useSearchParams();
@@ -164,6 +167,8 @@ export function CharacterView() {
       if (!prev) return prev;
       let next = { ...prev, ...patch };
       next = { ...next, ...applyConChangeToHp(prev, next, patch) };
+      // A new race, class, subclass or level changes which spells come free.
+      if (GRANT_SOURCES.some((k) => k in patch)) next = syncGrantedSpells(next);
       try {
         const derived = computeDerivedStats(next);
         return { ...next, ...derived };
