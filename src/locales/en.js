@@ -1498,7 +1498,6 @@ export const translations = {
   "levelUp.flow.takeAverage": "Take average (+{hp} HP)",
   "levelUp.flow.rollInstead": "Roll d{die} instead",
   "levelUp.flow.upNext": "Up next",
-  "levelUp.flow.choiceOf": "Choice {n} of {total} · Level {level}",
   "levelUp.flow.save": "Save character",
   "levelUp.flow.review": "Review",
   "levelUp.flow.finishPicks": "Finish the red rows first",
@@ -1511,4 +1510,10 @@ export const translations = {
   "levelUp.flow.recapFeatures": "Features",
   "levelUp.flow.recapSpells": "Spells",
   "levelUp.flow.startHint": "Here is what your class gives you at level 1.",
+  "levelUp.flow.levelsN": "Levels {from}–{to}",
+  "levelUp.flow.jumpHint": "You gained {count} levels. Everything below comes for free.",
+  "levelUp.flow.takeAverageAll": "Take average (+{hp} HP each level)",
+  "levelUp.flow.rollAll": "Roll d{die} for each level",
+  "levelUp.flow.stepOf": "Step {n} of {total} · {levels}",
+  "levelUp.flow.spellsJumpHint": "Pick the spells your character learns, level by level from the top.",
 };

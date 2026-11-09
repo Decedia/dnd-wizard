@@ -1458,28 +1458,42 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   const pactBoon = Object.values(classFeatureChoices).map((choices) => choices["Pact Boon"]).find(Boolean) || "";
 
   // One screen per level-up moment and per choice, then a recap.
+  // A jump of several levels puts all free gains on one screen and all new
+  // spells on one screen at the end; the other choices stay one per level.
   const steps = useMemo(() => {
-    const list: { level: number; part: LevelPart | "recap" }[] = [];
-    for (const info of levelInfos) {
-      list.push({ level: info.level, part: "moment" });
-      for (const part of levelParts(info, subclassSelection, character.class)) list.push({ level: info.level, part });
+    const list: { levels: number[]; part: LevelPart | "recap" }[] = [];
+    const jump = levelInfos.length > 1;
+    if (jump) {
+      list.push({ levels: levelInfos.map((info) => info.level), part: "moment" });
+      for (const info of levelInfos) {
+        for (const part of levelParts(info, subclassSelection, character.class)) {
+          if (part !== "spells") list.push({ levels: [info.level], part });
+        }
+      }
+      const spellLevels = levelInfos.filter((info) => levelParts(info, subclassSelection, character.class).includes("spells")).map((info) => info.level);
+      if (spellLevels.length > 0) list.push({ levels: spellLevels, part: "spells" });
+    } else {
+      for (const info of levelInfos) {
+        list.push({ levels: [info.level], part: "moment" });
+        for (const part of levelParts(info, subclassSelection, character.class)) list.push({ levels: [info.level], part });
+      }
     }
-    list.push({ level: 0, part: "recap" });
+    list.push({ levels: [], part: "recap" });
     return list;
   }, [levelInfos, subclassSelection, character.class]);
   const idx = Math.min(stepIdx, steps.length - 1);
   const step = steps[idx];
-  const stepInfo = levelInfos.find((info) => info.level === step.level);
+  const stepInfos = levelInfos.filter((info) => step.levels.includes(info.level));
   const stepComplete = step.part === "recap"
     ? allLevelsComplete
-    : !unfinishedItems.some((item) => item.level === step.level && partOfSection(item.sectionId) === step.part);
+    : !unfinishedItems.some((item) => step.levels.includes(item.level) && partOfSection(item.sectionId) === step.part);
   const goTo = (i: number) => {
     setStepIdx(Math.max(0, Math.min(steps.length - 1, i)));
     if (typeof window !== "undefined") window.scrollTo({ top: 0 });
   };
   const stepIndexOf = (level: number, part: LevelPart) => {
-    const i = steps.findIndex((s) => s.level === level && s.part === part);
-    return i >= 0 ? i : steps.findIndex((s) => s.level === level);
+    const i = steps.findIndex((s) => s.levels.includes(level) && s.part === part);
+    return i >= 0 ? i : steps.findIndex((s) => s.levels.includes(level));
   };
 
   // Live stats for the sticky character card.
@@ -1621,8 +1635,15 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     />
   );
 
-  const choiceSteps = steps.filter((s) => s.level === step.level && s.part !== "moment");
-  const choiceNumber = choiceSteps.findIndex((s) => s.part === step.part) + 1;
+  const upNext = [...new Set(steps.slice(idx + 1).filter((s) => s.part !== "recap" && s.part !== "moment").map((s) => partTitle(s.part)))];
+  const levelsLabel = (levels: number[]) =>
+    levels.length > 1
+      ? t("levelUp.flow.levelsN", "Levels {from}–{to}", { from: levels[0], to: levels[levels.length - 1] })
+      : t("levelUp.flow.levelN", "Level {level}", { level: levels[0] });
+  const firstLevel = step.levels[0];
+  const isStart = !!startFromLevelOne && step.levels.length === 1 && firstLevel === 1;
+  const hpLevels = step.levels.filter((lvl) => !(startFromLevelOne && lvl === 1));
+  const allAverage = hpLevels.length > 0 && hpLevels.every((lvl) => hpValues[lvl] === averageHp);
   const isLast = idx === steps.length - 1;
   const nextIsRecap = steps[idx + 1]?.part === "recap";
 
@@ -1767,52 +1788,64 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
                 </div>
               ))}
             </>
-          ) : stepInfo && step.part === "moment" ? (
+          ) : stepInfos.length > 0 && step.part === "moment" ? (
             <>
               <div className="rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-6 text-center">
                 <GiDiceTwentyFacesTwenty className="mx-auto h-12 w-12 text-[var(--color-text-primary)] levelup-pop" aria-hidden="true" />
                 <div className="mt-2 text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--color-text-muted)]">{partTitle("moment")}</div>
-                <div className="text-3xl font-bold text-[var(--color-text-primary)]">{t("levelUp.flow.levelN", "Level {level}", { level: stepInfo.level })}</div>
-                <p className="mt-1 text-xs text-[var(--color-text-secondary)]">{startFromLevelOne && stepInfo.level === 1 ? t("levelUp.flow.startHint", "Here is what your class gives you at level 1.") : partHint("moment")}</p>
-                {!(startFromLevelOne && stepInfo.level === 1) && (
-                  <div className="mt-4 flex items-center justify-center gap-2">
+                <div className="text-3xl font-bold text-[var(--color-text-primary)]">{t("levelUp.flow.levelN", "Level {level}", { level: step.levels[step.levels.length - 1] })}</div>
+                <p className="mt-1 text-xs text-[var(--color-text-secondary)]">
+                  {isStart
+                    ? t("levelUp.flow.startHint", "Here is what your class gives you at level 1.")
+                    : step.levels.length > 1
+                      ? t("levelUp.flow.jumpHint", "You gained {count} levels. Everything below comes for free.", { count: step.levels.length })
+                      : partHint("moment")}
+                </p>
+                {hpLevels.length > 0 && (
+                  <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
                     <button
                       type="button"
-                      onClick={() => setHp(stepInfo.level, averageHp)}
-                      className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors ${hpValues[stepInfo.level] === averageHp ? "border-[var(--color-ink)] bg-[var(--color-ink)] text-[var(--color-paper)]" : "border-[var(--color-border)] text-[var(--color-text-primary)]"}`}
+                      onClick={() => hpLevels.forEach((lvl) => setHp(lvl, averageHp))}
+                      className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors ${allAverage ? "border-[var(--color-ink)] bg-[var(--color-ink)] text-[var(--color-paper)]" : "border-[var(--color-border)] text-[var(--color-text-primary)]"}`}
                     >
-                      {t("levelUp.flow.takeAverage", "Take average (+{hp} HP)", { hp: averageHp })}
+                      {hpLevels.length > 1
+                        ? t("levelUp.flow.takeAverageAll", "Take average (+{hp} HP each level)", { hp: averageHp })
+                        : t("levelUp.flow.takeAverage", "Take average (+{hp} HP)", { hp: averageHp })}
                     </button>
                     <button
                       type="button"
-                      onClick={() => rollHp(stepInfo.level)}
+                      onClick={() => hpLevels.forEach((lvl) => rollHp(lvl))}
                       className="rounded-full border border-[var(--color-border)] px-3 py-1.5 text-xs font-semibold text-[var(--color-text-primary)] transition-colors hover:border-[var(--color-border-active)]"
                     >
-                      {t("levelUp.flow.rollInstead", "Roll d{die} instead", { die: hitDie })}
+                      {hpLevels.length > 1
+                        ? t("levelUp.flow.rollAll", "Roll d{die} for each level", { die: hitDie })
+                        : t("levelUp.flow.rollInstead", "Roll d{die} instead", { die: hitDie })}
                     </button>
                   </div>
                 )}
               </div>
-              {renderLevelCard(stepInfo, "moment")}
-              {choiceSteps.length > 0 && (
+              {stepInfos.map((info) => <div key={info.level}>{renderLevelCard(info, "moment")}</div>)}
+              {upNext.length > 0 && (
                 <div className="rounded-[var(--radius-md)] border border-dashed border-[var(--color-border)] px-4 py-3">
                   <div className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">{t("levelUp.flow.upNext", "Up next")}</div>
-                  <div className="mt-1 text-xs text-[var(--color-text-primary)]">
-                    {choiceSteps.map((s) => partTitle(s.part)).join(" · ")}
-                  </div>
+                  <div className="mt-1 text-xs text-[var(--color-text-primary)]">{upNext.join(" · ")}</div>
                 </div>
               )}
             </>
-          ) : stepInfo ? (
+          ) : stepInfos.length > 0 ? (
             <>
               <div>
                 <div className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">
-                  {t("levelUp.flow.choiceOf", "Choice {n} of {total} · Level {level}", { n: choiceNumber, total: choiceSteps.length, level: stepInfo.level })}
+                  {t("levelUp.flow.stepOf", "Step {n} of {total} · {levels}", { n: idx + 1, total: steps.length, levels: levelsLabel(step.levels) })}
                 </div>
                 <h2 className="text-xl font-bold text-[var(--color-text-primary)]">{partTitle(step.part)}</h2>
-                <p className="mt-1 text-xs text-[var(--color-text-secondary)]">{partHint(step.part)}</p>
+                <p className="mt-1 text-xs text-[var(--color-text-secondary)]">
+                  {step.part === "spells" && step.levels.length > 1
+                    ? t("levelUp.flow.spellsJumpHint", "Pick the spells your character learns, level by level from the top.")
+                    : partHint(step.part)}
+                </p>
               </div>
-              {renderLevelCard(stepInfo, step.part as LevelPart)}
+              {stepInfos.map((info) => <div key={info.level}>{renderLevelCard(info, step.part as LevelPart)}</div>)}
             </>
           ) : null}
         </div>

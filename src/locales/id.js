@@ -1577,7 +1577,6 @@ export const translations = {
   "levelUp.flow.takeAverage": "Ambil rata-rata (+{hp} HP)",
   "levelUp.flow.rollInstead": "Lempar d{die}",
   "levelUp.flow.upNext": "Selanjutnya",
-  "levelUp.flow.choiceOf": "Pilihan {n} dari {total} · Level {level}",
   "levelUp.flow.save": "Simpan karakter",
   "levelUp.flow.review": "Tinjau",
   "levelUp.flow.finishPicks": "Selesaikan baris merah dulu",
@@ -1590,4 +1589,10 @@ export const translations = {
   "levelUp.flow.recapFeatures": "Fitur",
   "levelUp.flow.recapSpells": "Spell",
   "levelUp.flow.startHint": "Ini yang diberikan class-mu di level 1.",
+  "levelUp.flow.levelsN": "Level {from}–{to}",
+  "levelUp.flow.jumpHint": "Kamu naik {count} level. Semua di bawah ini gratis.",
+  "levelUp.flow.takeAverageAll": "Ambil rata-rata (+{hp} HP tiap level)",
+  "levelUp.flow.rollAll": "Lempar d{die} untuk tiap level",
+  "levelUp.flow.stepOf": "Langkah {n} dari {total} · {levels}",
+  "levelUp.flow.spellsJumpHint": "Pilih spell yang dipelajari karaktermu, level demi level dari atas.",
 };
