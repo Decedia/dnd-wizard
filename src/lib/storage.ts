@@ -6,6 +6,7 @@ import { findCatalogItem } from "@/data/item-catalog";
 import { addsProficiencyToAttack } from "@/lib/proficiency";
 import { db, type CharacterRecord, dbGetCharacters, dbGetCharacter, dbSaveCharacter, dbDeleteCharacter, dbTouchCharacterOpened } from "@/lib/db";
 import { SAVE_VERSION, upgradeSave } from "./save-upgrade";
+import { getFreeCastSpells } from "./granted-spells";
 export interface Character {
   id: string;
   name: string;
@@ -59,6 +60,8 @@ export interface Character {
   maxSorceryPoints: number;
   initiative: number;
   speed: number;
+  /** Race and feat spells whose free cast (no slot) is used until the next rest, by lowercase name. */
+  freeCastsUsed?: string[];
   /** Which one-time save upgrades have run (see save-upgrade.ts). */
   saveVersion?: number;
   /** Walking speed the player set by hand; bonuses are added on top. */
@@ -76,7 +79,7 @@ export interface Character {
   attacks: { id: string; name: string; attackBonus: number; damageType: string; sneakAttack?: string; source?: "weapon" | "class" | "grapple" | "shove"; classFeatureName?: string; description?: string }[];
   otherProficiencies: string;
   languages: string[];
-  spells: { id: string; name: string; level: number; source: "srd" | "custom"; srdSpellName?: string; damageDice?: string; damageType?: string; description?: string; summary?: string; grantsFeatureId?: string }[];
+  spells: { id: string; name: string; level: number; source: "srd" | "custom"; srdSpellName?: string; damageDice?: string; damageType?: string; description?: string; summary?: string; grantsFeatureId?: string; /** Given free by subclass, race or an optional feature; removed when that source is gone. */ granted?: boolean }[];
   spellcastingAbility: string;
   spellSaveDc: number;
   spellAttackBonus: number;
@@ -1599,9 +1602,12 @@ export function getWizardTraditionSpellNames(character: Character): string[] {
 
 export function applyShortRest(character: Character): Partial<Character> {
   const classData = getStaticClass(character.class, character.ruleset);
+  const shortRestCasts = new Set(getFreeCastSpells(character).filter((c) => c.rest === "short").map((c) => c.name.toLowerCase()));
   const draft: Partial<Character> = {
     // Hit Dice recovery: can spend up to half level (min 1)
     hitDiceRemaining: Math.min(character.level, character.hitDiceRemaining + Math.max(1, Math.floor(character.level / 2))),
+    // Firbolg Magic and Fey Teleportation come back on a short rest.
+    freeCastsUsed: (character.freeCastsUsed || []).filter((n) => !shortRestCasts.has(n)),
   };
 
   // Warlock: recover all Pact Magic spell slots on short rest
@@ -1711,6 +1717,7 @@ export function applyLongRest(character: Character): Partial<Character> {
     sorceryPoints: character.maxSorceryPoints || 0,
     bardicInspirationUses: character.maxBardicInspirationUses || 0,
     arcaneRecoveryUsed: false,
+    freeCastsUsed: [],
     // Reset combat actions on long rest
     actionUsed: false,
     bonusActionUsed: false,

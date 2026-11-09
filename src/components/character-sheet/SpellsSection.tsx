@@ -5,7 +5,7 @@ import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { useSRD } from "@/contexts/SRDContext";
 import type { Character } from "@/lib/storage";
-import { getGrantedSpellNames } from "@/lib/granted-spells";
+import { getFreeCastSpells, getGrantedSpellNames } from "@/lib/granted-spells";
 import { getModifier, getMaxPreparedSpells, isPreparationCaster, getMaxSpellsKnown, getMaxCantripsKnown, getMaxSpellLevel } from "@/lib/storage";
 import { getStaticSpells, deduplicateSpells } from "@/lib/srd-client";
 import { LightningIcon as Lightning, PlusIcon as Plus, CheckIcon as Check, CircleIcon as Circle, XIcon as X, ClockIcon as Clock, SparklesIcon as Sparkle, CaretRightIcon as CaretRight } from "@/components/icons";
@@ -74,6 +74,14 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
   // Subclass, race and optional-feature spells: always prepared, never counted.
   const grantedSpells = useMemo(() => new Set(getGrantedSpellNames(character).map((n) => n.toLowerCase())), [character]);
   const isGranted = (name?: string) => !!name && grantedSpells.has(name.toLowerCase());
+  // Race and feat spells cast once without a slot until the next rest.
+  const freeCasts = useMemo(() => getFreeCastSpells(character), [character]);
+  const freeCastFor = (name?: string) => (name ? freeCasts.find((c) => c.name.toLowerCase() === name.toLowerCase()) : undefined);
+  const toggleFreeCast = (name: string) => {
+    const key = name.toLowerCase();
+    const used = character.freeCastsUsed || [];
+    onChange({ freeCastsUsed: used.includes(key) ? used.filter((n) => n !== key) : [...used, key] });
+  };
   const currentSpellsKnown = (character.spells || []).filter(s => s.level > 0 && !isGranted(s.name)).length;
   const currentCantripsKnown = (character.spells || []).filter(s => s.level === 0 && !isGranted(s.name)).length;
   const preparedCount = (character.preparedSpells || []).filter(id => {
@@ -567,6 +575,25 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                       {spellPrepared ? t("spells.prepared") : t("spells.prepare")}
                     </button>
                   )}
+                  {(() => {
+                    const free = spell.level > 0 ? freeCastFor(spell.name) : undefined;
+                    if (!free) return null;
+                    const used = (character.freeCastsUsed || []).includes(spell.name.toLowerCase());
+                    return (
+                      <button
+                        type="button"
+                        onClick={(e) => { e.stopPropagation(); toggleFreeCast(spell.name); }}
+                        className={`px-2 py-1 text-[10px] font-bold rounded transition-colors border ${
+                          used
+                            ? "bg-[var(--color-bg)] text-[var(--color-text-muted)] border-[var(--color-border)] line-through"
+                            : "bg-[var(--color-accent-indigo-600)] text-[var(--color-surface)] border-transparent"
+                        }`}
+                        title={free.rest === "short" ? t("spells.freeCastShortHint", "Cast once without a spell slot. Comes back after a short or long rest.") : t("spells.freeCastHint", "Cast once without a spell slot. Comes back after a long rest.")}
+                      >
+                        {used ? t("spells.freeCastUsed", "Free cast used") : t("spells.freeCast", "Free cast")}
+                      </button>
+                    );
+                  })()}
                   <button
                     type="button"
                     onClick={(e) => { e.stopPropagation(); toggleSpellUsed(spell.id, buffDef, spell.duration); }}

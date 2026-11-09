@@ -6,7 +6,7 @@ import { engineIdFor } from "@/lib/feature-engine";
 import { addRows, backgroundGearRows, equipRow } from "./inventory";
 import { collectProficiencies, getRowProficiency } from "./proficiency";
 import { activeRaceChoices, getStaticClass, getStaticRace, getStaticRaceDetails, getStaticSubclasses, getStaticEquipments, getStaticWeapons, getStaticArmors, getStaticItems, getStaticFeat, getStaticSpells } from "./srd-client";
-import { getGrantedSpellNames, grantSpells } from "./granted-spells";
+import { syncGrantedSpells } from "./granted-spells";
 import type { CreationStep } from "./creation-types";
 import { getBackgroundData } from "@/data/backgrounds";
 import { getOptionalClassFeatures, getOptionalChoiceOptions, isReplacedFeature, optionalChoiceKey, type OptionalClassFeature } from "@/data/optional-class-features";
@@ -1262,11 +1262,12 @@ export function resolveFeatureChoice(character: Character, choice: MissingFeatur
 }
 
 /**
- * Adds every spell the character gets for free at their level: subclass,
- * race and optional-feature spells. Safe to call on every save.
+ * Adds every spell the character gets for free at their level (subclass,
+ * race and optional-feature spells) and drops given spells whose source is
+ * gone. Safe to call on every save.
  */
 export function applySubclassSpellGrants(character: Character): Character {
-  return grantSpells(character, getGrantedSpellNames(character));
+  return syncGrantedSpells(character);
 }
 
 /**
