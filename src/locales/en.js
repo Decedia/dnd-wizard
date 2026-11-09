@@ -1367,6 +1367,7 @@ export const translations = {
   "levelUp.asiFeatPrefix": "Feat: {feat}",
   "spell.chooseCantripsFromAnyClass": "Choose 3 Cantrips from Any Class:",
   "spell.bonusCantripHint": "Choose one additional druid cantrip (does not count against cantrip limit)",
+  "spell.pactTomeCantripsHint": "Choose three cantrips from any class. They don't count against your cantrips known.",
   "spell.signatureSpells": "Signature Spells",
   "bonusCantrip.choose": "Choose Bonus Cantrip",
   "spell.familiarForms": "Special familiar forms available: imp, pseudodragon, quasit, sprite",

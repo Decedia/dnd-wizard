@@ -14,7 +14,8 @@
     },
     "Aspect of the Moon": {
       "level": 0,
-      "requires": "Pact of the Tome"
+      "requires": "Pact of the Tome",
+      "source": "XGE"
     },
     "Beast Speech": {
       "level": 0,
@@ -28,6 +29,11 @@
       "level": 7,
       "requires": null
     },
+    "Bond of the Talisman": {
+      "level": 12,
+      "requires": "Pact of the Talisman",
+      "source": "TCE"
+    },
     "Book of Ancient Secrets": {
       "level": 0,
       "requires": "Pact of the Tome"
@@ -35,6 +41,11 @@
     "Chains of Carceri": {
       "level": 15,
       "requires": "Pact of the Chain"
+    },
+    "Cloak of Flies": {
+      "level": 5,
+      "requires": null,
+      "source": "XGE"
     },
     "Devil's Sight": {
       "level": 0,
@@ -46,7 +57,8 @@
     },
     "Eldritch Mind": {
       "level": 0,
-      "requires": null
+      "requires": null,
+      "source": "TCE"
     },
     "Eldritch Sight": {
       "level": 0,
@@ -54,7 +66,8 @@
     },
     "Eldritch Smite": {
       "level": 5,
-      "requires": "Pact of the Blade"
+      "requires": "Pact of the Blade",
+      "source": "XGE"
     },
     "Eldritch Spear": {
       "level": 0,
@@ -66,7 +79,8 @@
     },
     "Far Scribe": {
       "level": 5,
-      "requires": "Pact of the Tome"
+      "requires": "Pact of the Tome",
+      "source": "TCE"
     },
     "Fiendish Vigor": {
       "level": 0,
@@ -78,35 +92,43 @@
     },
     "Ghostly Gaze": {
       "level": 7,
-      "requires": null
+      "requires": null,
+      "source": "XGE"
     },
     "Gift of the Depths": {
       "level": 5,
-      "requires": null
+      "requires": null,
+      "source": "XGE"
     },
     "Gift of the Ever-Living Ones": {
       "level": 0,
-      "requires": "Pact of the Chain"
+      "requires": "Pact of the Chain",
+      "source": "XGE"
     },
     "Gift of the Protectors": {
       "level": 9,
-      "requires": "Pact of the Tome"
+      "requires": "Pact of the Tome",
+      "source": "TCE"
     },
     "Grasp of Hadar": {
       "level": 0,
-      "requires": "eldritch blast cantrip"
+      "requires": "eldritch blast cantrip",
+      "source": "XGE"
     },
     "Improved Pact Weapon": {
       "level": 0,
-      "requires": "Pact of the Blade"
+      "requires": "Pact of the Blade",
+      "source": "XGE"
     },
     "Investment of the Chain Master": {
       "level": 0,
-      "requires": "Pact of the Chain"
+      "requires": "Pact of the Chain",
+      "source": "TCE"
     },
     "Lance of Lethargy": {
       "level": 0,
-      "requires": "eldritch blast cantrip"
+      "requires": "eldritch blast cantrip",
+      "source": "XGE"
     },
     "Lifedrinker": {
       "level": 12,
@@ -114,7 +136,8 @@
     },
     "Maddening Hex": {
       "level": 5,
-      "requires": "hex spell or warlock feature that curses"
+      "requires": "hex spell or warlock feature that curses",
+      "source": "XGE"
     },
     "Mask of Many Faces": {
       "level": 0,
@@ -144,9 +167,20 @@
       "level": 9,
       "requires": null
     },
+    "Protection of the Talisman": {
+      "level": 7,
+      "requires": "Pact of the Talisman",
+      "source": "TCE"
+    },
+    "Rebuke of the Talisman": {
+      "level": 0,
+      "requires": "Pact of the Talisman",
+      "source": "TCE"
+    },
     "Relentless Hex": {
       "level": 7,
-      "requires": "hex spell or warlock feature that curses"
+      "requires": "hex spell or warlock feature that curses",
+      "source": "XGE"
     },
     "Repelling Blast": {
       "level": 0,
@@ -158,7 +192,8 @@
     },
     "Shroud of Shadow": {
       "level": 15,
-      "requires": null
+      "requires": null,
+      "source": "XGE"
     },
     "Sign of Ill Omen": {
       "level": 5,
@@ -174,15 +209,18 @@
     },
     "Tomb of Levistus": {
       "level": 5,
-      "requires": null
+      "requires": null,
+      "source": "XGE"
     },
     "Trickster's Escape": {
       "level": 7,
-      "requires": null
+      "requires": null,
+      "source": "XGE"
     },
     "Undying Servitude": {
       "level": 5,
-      "requires": null
+      "requires": null,
+      "source": "TCE"
     },
     "Visions of Distant Realms": {
       "level": 15,

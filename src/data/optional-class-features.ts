@@ -109,6 +109,10 @@ export const OPTIONAL_CLASS_FEATURES: OptionalClassFeature[] = [
     en: "Replaces Favored Enemy. When you hit a creature, you can mark it as your favored foe for 1 minute (concentration). The first time each turn you hit it, add 1d4 damage (1d6 at 6th level, 1d8 at 14th). Proficiency bonus times per long rest.",
     id: "Menggantikan Favored Enemy. Saat mengenai makhluk, kamu bisa menandainya sebagai musuh pilihan selama 1 menit (concentration). Pertama kali tiap giliran kamu mengenainya, tambahkan 1d4 damage (1d6 di level 6, 1d8 di level 14). Sebanyak proficiency bonus per long rest.",
   } },
+  { className: "Ranger", level: 2, name: "Spellcasting Focus", text: {
+    en: "You can use a druidic focus as a spellcasting focus for your ranger spells.",
+    id: "Kamu bisa memakai druidic focus sebagai spellcasting focus untuk spell ranger-mu.",
+  } },
   { className: "Ranger", level: 3, name: "Primal Awareness", replaces: ["Primeval Awareness"], text: {
     en: "Replaces Primeval Awareness. You learn extra spells that don't count against your spells known: speak with animals (3rd), beast sense (5th), speak with plants (9th), locate creature (13th) and commune with nature (17th). Cast each once per long rest without a slot.",
     id: "Menggantikan Primeval Awareness. Kamu mempelajari spell tambahan yang tidak dihitung dalam spells known: speak with animals (level 3), beast sense (5), speak with plants (9), locate creature (13), dan commune with nature (17). Cast masing-masing sekali per long rest tanpa slot.",

@@ -117,31 +117,38 @@
           },
           {
             "name": "Ambush",
-            "description": "Add a superiority die to a Stealth check or initiative roll."
+            "description": "Add a superiority die to a Stealth check or initiative roll.",
+            "optional": true
           },
           {
             "name": "Bait and Switch",
-            "description": "Swap places with a willing ally within 5 ft; one of you adds the die to AC until your next turn."
+            "description": "Swap places with a willing ally within 5 ft; one of you adds the die to AC until your next turn.",
+            "optional": true
           },
           {
             "name": "Brace",
-            "description": "Reaction: attack a creature that moves into your reach, adding the die to damage."
+            "description": "Reaction: attack a creature that moves into your reach, adding the die to damage.",
+            "optional": true
           },
           {
             "name": "Commanding Presence",
-            "description": "Add a superiority die to an Intimidation, Performance or Persuasion check."
+            "description": "Add a superiority die to an Intimidation, Performance or Persuasion check.",
+            "optional": true
           },
           {
             "name": "Grappling Strike",
-            "description": "After hitting, grapple as a bonus action and add the die to the check."
+            "description": "After hitting, grapple as a bonus action and add the die to the check.",
+            "optional": true
           },
           {
             "name": "Quick Toss",
-            "description": "Bonus action: throw a thrown weapon, adding the die to damage."
+            "description": "Bonus action: throw a thrown weapon, adding the die to damage.",
+            "optional": true
           },
           {
             "name": "Tactical Assessment",
-            "description": "Add a superiority die to an Investigation, History or Insight check."
+            "description": "Add a superiority die to an Investigation, History or Insight check.",
+            "optional": true
           }
         ],
         "countByLevel": {
@@ -352,6 +359,37 @@
           }
         ]
       }
+    },
+    "Purple Dragon Knight": {
+      "Royal Envoy": {
+        "count": 1,
+        "grants": {
+          "mode": "proficiency"
+        },
+        "description": "Gain proficiency in Persuasion. If you already have it, pick Animal Handling, Insight, Intimidation or Performance instead.",
+        "options": [
+          {
+            "name": "Persuasion",
+            "description": "Skill proficiency."
+          },
+          {
+            "name": "Animal Handling",
+            "description": "Skill proficiency."
+          },
+          {
+            "name": "Insight",
+            "description": "Skill proficiency."
+          },
+          {
+            "name": "Intimidation",
+            "description": "Skill proficiency."
+          },
+          {
+            "name": "Performance",
+            "description": "Skill proficiency."
+          }
+        ]
+      }
     }
   },
   "Sorcerer": {
@@ -531,30 +569,6 @@
             "description": "Medium beast, CR 1/4. AC 11 (natural armor), HP 11 (2d8+2), Speed 40 ft. Charge: if moving 20 ft. straight toward a target and hitting with a tusk attack, target takes extra 1d6 slashing damage. Tusk: +3 to hit, 1d6+1 slashing damage."
           },
           {
-            "name": "Lion",
-            "description": "Large beast, CR 1/4. AC 12, HP 26 (4d10+4), Speed 50 ft. Keen Smell: advantage on Perception checks using smell. Pack Tactics: advantage on attack rolls when an ally is within 5 ft. of the target. Bite: +5 to hit, 1d8+3 piercing. Claw: +5 to hit, 1d6+3 slashing."
-          },
-          {
-            "name": "Tiger",
-            "description": "Large beast, CR 1/4. AC 12, HP 37 (5d10+10), Speed 40 ft. Keen Smell: advantage on Perception checks using smell. Darkvision 60 ft. Pounce: if moving 20 ft. straight toward a creature and hitting with a claw attack, target must succeed on DC 13 Strength save or be knocked prone. Bite: +5 to hit, 1d10+3 piercing. Claw: +5 to hit, 1d8+3 slashing."
-          },
-          {
-            "name": "Bear (Black)",
-            "description": "Medium beast, CR 1/4. AC 11 (natural armor), HP 19 (3d8+6), Speed 40 ft., climb 30 ft. Keen Smell: advantage on Perception checks using smell. Multiattack: two attacks, one with bite and one with claws. Bite: +3 to hit, 1d6+2 piercing. Claws: +3 to hit, 2d4+2 slashing."
-          },
-          {
-            "name": "Crocodile",
-            "description": "Large beast, CR 1/2. AC 12 (natural armor), HP 15 (2d10+4), Speed 20 ft., swim 30 ft. Hold Breath: can hold breath for 15 minutes. Bite: +4 to hit, 1d10+2 piercing damage. If target is a creature, it must succeed on DC 12 Strength save or be grappled (escape DC 12)."
-          },
-          {
-            "name": "Giant Goat",
-            "description": "Large beast, CR 1/2. AC 11 (natural armor), HP 19 (3d10+3), Speed 40 ft. Charge: if moving 20 ft. straight toward a target and hitting with a ram attack, target takes extra 2d4 bludgeoning damage. Sure-Footed: advantage on Strength and Dexterity saving throws against effects that would knock it prone. Ram: +4 to hit, 2d4+2 bludgeoning."
-          },
-          {
-            "name": "Reef Shark",
-            "description": "Medium beast, CR 1/2. AC 12 (natural armor), HP 22 (4d8+4), Speed 0 ft., swim 40 ft. Pack Tactics: advantage on attack rolls when an ally is within 5 ft. of the target. Water Breathing: can breathe only underwater. Bite: +4 to hit, 1d8+2 piercing."
-          },
-          {
             "name": "Giant Wolf Spider",
             "description": "Medium beast, CR 1/4. AC 13, HP 11 (2d8+2), Speed 40 ft., climb 40 ft. Spider Climb: can climb difficult surfaces. Web Sense: while in contact with a web, knows the exact location of any other creature in contact with the same web. Darkvision 30 ft. Bite: +3 to hit, 1d6+1 piercing plus 2d8 poison damage (DC 11 Con save for half)."
           },
@@ -563,24 +577,23 @@
             "description": "Medium beast, CR 1/4. AC 10, HP 13 (2d8+4), Speed 30 ft., burrow 10 ft. Keen Smell: advantage on Perception checks using smell. Multiattack: two attacks, one with bite and one with claws. Bite: +2 to hit, 1d6 piercing. Claws: +2 to hit, 2d4 slashing."
           },
           {
-            "name": "Axe Beak",
-            "description": "Large beast, CR 1/4. AC 11, HP 19 (3d10+3), Speed 50 ft. Beak: +4 to hit, 1d8+2 piercing damage."
-          },
-          {
-            "name": "Elk",
-            "description": "Large beast, CR 1/4. AC 10, HP 13 (2d10+2), Speed 50 ft. Charge: if moving 20 ft. straight toward a target and hitting with a ram attack, target takes extra 1d6 bludgeoning damage. Ram: +3 to hit, 1d6+1 bludgeoning. Hooves: +3 to hit, 2d4+1 bludgeoning."
-          },
-          {
             "name": "Deer",
             "description": "Medium beast, CR 0. AC 13, HP 4 (1d8), Speed 50 ft. Bite: +2 to hit, 1d4 piercing damage."
           },
           {
-            "name": "Riding Horse",
-            "description": "Large beast, CR 1/4. AC 10, HP 13 (2d10+2), Speed 60 ft. Hooves: +2 to hit, 2d4+1 bludgeoning damage."
+            "name": "Primal Companion: Beast of the Land",
+            "optional": true,
+            "description": "Tasha's option. A Medium primal beast bound to you. AC 13 + your proficiency bonus, HP 5 + five times your ranger level, speed 40 ft. and climb 40 ft. Charge: after moving 20 ft. straight at a target and hitting, it deals an extra 1d6 and can knock the target prone. Maul: 1d8 + 2 + your proficiency bonus slashing. It acts on your turn; you spend a bonus action to have it attack."
           },
           {
-            "name": "Camel",
-            "description": "Large beast, CR 1/8. AC 9, HP 15 (2d10+4), Speed 50 ft. Bite: +2 to hit, 1d4 bludgeoning damage."
+            "name": "Primal Companion: Beast of the Sea",
+            "optional": true,
+            "description": "Tasha's option. A Medium primal beast that breathes air and water. AC 13 + your proficiency bonus, HP 5 + five times your ranger level, speed 5 ft. and swim 60 ft. Binding Strike: 1d6 + 2 + your proficiency bonus piercing or bludgeoning, and the target can be grappled. It acts on your turn; you spend a bonus action to have it attack."
+          },
+          {
+            "name": "Primal Companion: Beast of the Sky",
+            "optional": true,
+            "description": "Tasha's option. A Small primal beast that flies. AC 13 + your proficiency bonus, HP 4 + four times your ranger level, speed 10 ft. and fly 60 ft. Flyby: it doesn't provoke opportunity attacks when it flies away. Shred: 1d4 + 3 + your proficiency bonus slashing. It acts on your turn; you spend a bonus action to have it attack."
           }
         ]
       }
@@ -1037,6 +1050,24 @@
             ]
           },
           {
+            "name": "Path of the Kensei: Tool",
+            "count": 1,
+            "grants": {
+              "mode": "proficiency"
+            },
+            "description": "Gain proficiency with calligrapher's supplies or painter's supplies.",
+            "options": [
+              {
+                "name": "Calligrapher's Supplies",
+                "description": "Artisan's tools."
+              },
+              {
+                "name": "Painter's Supplies",
+                "description": "Artisan's tools."
+              }
+            ]
+          },
+          {
             "name": "Path of the Kensei: 6th-level Weapon",
             "level": 6,
             "count": 1,
@@ -1397,28 +1428,7 @@
       }
     }
   },
-  "Druid": {
-    "Circle of Stars": {
-      "Starry Form": {
-        "count": 1,
-        "description": "Choose your active starry constellation when entering Starry Form.",
-        "options": [
-          {
-            "name": "Archer",
-            "description": "Make a ranged spell attack as a bonus action (range 60 ft) dealing 1d8 + Wisdom modifier radiant damage."
-          },
-          {
-            "name": "Chalice",
-            "description": "Whenever you cast a spell using a spell slot that restores hit points, you or another creature within 30 ft regains 1d8 + Wisdom modifier hit points."
-          },
-          {
-            "name": "Dragon",
-            "description": "Treat any d20 roll of 9 or lower as a 10 for Concentration checks to maintain spells, as well as Intelligence and Wisdom checks."
-          }
-        ]
-      }
-    }
-  },
+  "Druid": {},
   "Artificer": {
     "Armorer": {
       "Armor Model": {
