@@ -26,23 +26,34 @@ export function LanguagePicker({ data, onChange }: { data: Character; onChange: 
   const raceBonusLanguages = getRaceBonusLanguages(data.race, data.ruleset);
   const backgroundLanguageCount = getBackgroundData(data.background)?.languages || 0;
   const totalBonusLanguages = raceBonusLanguages + backgroundLanguageCount;
+  // Languages a class or subclass pick gives (Blessings of Knowledge, Draconic
+  // Gift) show as fixed, don't use up a race or background pick, and aren't
+  // offered again.
+  const allLanguages = new Set(languageList.map((l) => l.name));
+  const fromFeatures = [...new Set(
+    Object.values(data.featureSelections || {})
+      .flat()
+      .flatMap((v) => String(v).split(", "))
+      .filter((v) => allLanguages.has(v) && !raceLanguages.includes(v))
+  )];
+  const fixed = [...raceLanguages, ...fromFeatures];
 
   const handleLanguageToggle = useCallback((language: string) => {
-    if (raceLanguages.includes(language)) return;
-    // Store only the player's own picks; the race's languages are added at finalize.
-    const picks = (data.languages || []).filter(l => !raceLanguages.includes(l));
+    if (fixed.includes(language)) return;
+    // Store the player's own picks (plus feature languages); the race's are added at finalize.
+    const picks = (data.languages || []).filter(l => !fixed.includes(l));
 
     if (picks.includes(language)) {
-      onChange({ languages: picks.filter(l => l !== language) });
+      onChange({ languages: [...fromFeatures, ...picks.filter(l => l !== language)] });
     } else if (picks.length < totalBonusLanguages) {
-      onChange({ languages: [...picks, language] });
+      onChange({ languages: [...fromFeatures, ...picks, language] });
     }
-  }, [data.languages, raceLanguages, totalBonusLanguages, onChange]);
+  }, [data.languages, fixed, fromFeatures, totalBonusLanguages, onChange]);
 
-  const availableLanguages = languageList.map(l => l.name).filter(l => !raceLanguages.includes(l));
-  const picks = (data.languages || []).filter(l => !raceLanguages.includes(l));
-  const current = [...raceLanguages, ...picks];
-  const limit = raceLanguages.length + totalBonusLanguages;
+  const availableLanguages = languageList.map(l => l.name).filter(l => !fixed.includes(l));
+  const picks = (data.languages || []).filter(l => !fixed.includes(l));
+  const current = [...fixed, ...picks];
+  const limit = fixed.length + totalBonusLanguages;
   const canAddMoreLanguages = picks.length < totalBonusLanguages;
 
   return (
@@ -58,7 +69,7 @@ export function LanguagePicker({ data, onChange }: { data: Character; onChange: 
       </div>
       <div className="space-y-3 rounded-2xl border-2 border-border-strong bg-surface p-4">
         <div className="flex flex-wrap gap-2">
-          {raceLanguages.map((lang) => (
+          {fixed.map((lang) => (
             <span key={lang} className="inline-flex items-center rounded-lg bg-ink px-2.5 py-1 text-xs font-bold text-surface">
               {lang}
             </span>

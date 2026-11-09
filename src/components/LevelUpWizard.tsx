@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useCallback, useEffect, useRef, useLayoutEffect } from "react";
 import { WizardNav, WIZARD_NAV_SPACE } from "./WizardNav";
-import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclassDetails, getSubclassFlags, getPactBoons, getStaticFeat, getStaticEquipments } from "@/lib/srd-client";
+import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclassDetails, getSubclassFlags, getPactBoons, getStaticFeat, getStaticEquipments, getStaticRace } from "@/lib/srd-client";
 import { SourceBadge } from "./SourceBadge";
 import { getHitDieAverage, getModifier, computeDerivedStats, getMaxBardicInspirationUses, getBardicInspirationDie, hasFontOfInspiration, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getOathSpellNames, getWizardTraditionSpellNames, getMaxSpellLevel, isThirdCaster, getSpellSlotTable, getFeatureValue, getWarlockExpandedSpellNames, getHpBonusPerLevel, type Character } from "@/lib/storage";
 import { applySubclassFeatures, applySubclassSpellGrants, syncBaseFeatures } from "@/lib/character-creation";
@@ -361,6 +361,12 @@ export function buildLevelInfos(
     const subclassFeatureChoices: { name: string; description: string; options: { name: string; description: string }[]; count?: number }[] = [];
     const usesTasha = usesOptionalClassFeatures(character);
     const passiveSubclassFeatures: { name: string; description: string; source?: string }[] = [];
+    // A language pick (Blessings of Knowledge, Draconic Gift) skips languages the
+    // character already speaks from race, background or another pick.
+    const knownLanguages = new Set([
+      ...(character.languages || []),
+      ...(getStaticRace(character.race, character.ruleset)?.languages || []),
+    ]);
     if (subclassSelection && level >= unlockLevel) {
       const selectedSubclass = subclasses.find((s) => s.name === subclassSelection);
       if (selectedSubclass) {
@@ -388,7 +394,7 @@ export function buildLevelInfos(
               name: f.name,
               description: desc,
               options: f.choices!
-                .filter((c: any) => (!c.minLevel || c.minLevel <= level) && !pickedBefore.has(c.name) && (!c.optional || usesTasha))
+                .filter((c: any) => (!c.minLevel || c.minLevel <= level) && !pickedBefore.has(c.name) && !knownLanguages.has(c.name) && (!c.optional || usesTasha))
                 .map((c: any) => ({ name: c.name, description: c.description || "", icon: c.icon })),
               count: (f as any).choicesCountByLevel?.[String(level)] ?? f.choicesCount ?? 1,
             });
