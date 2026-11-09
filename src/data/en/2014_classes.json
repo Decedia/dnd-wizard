@@ -11119,7 +11119,7 @@
                     "description": "Spend 1 sorcery point to cast without somatic or verbal components."
                   },
                   {
-                    "name": "Twin Spell",
+                    "name": "Twinned Spell",
                     "description": "Spend sorcery points equal to spell level to target a second creature with a spell."
                   }
                 ]
@@ -11338,7 +11338,7 @@
                     "description": "Spend 1 sorcery point to cast without somatic or verbal components."
                   },
                   {
-                    "name": "Twin Spell",
+                    "name": "Twinned Spell",
                     "description": "Spend sorcery points equal to spell level to target a second creature with a spell."
                   }
                 ]
@@ -11581,7 +11581,7 @@
                     "description": "Spend 1 sorcery point to cast without somatic or verbal components."
                   },
                   {
-                    "name": "Twin Spell",
+                    "name": "Twinned Spell",
                     "description": "Spend sorcery points equal to spell level to target a second creature with a spell."
                   }
                 ]
