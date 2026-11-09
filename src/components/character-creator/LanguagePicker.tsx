@@ -1,6 +1,5 @@
 "use client";
 
-import { useCallback } from "react";
 import { Translate } from "@phosphor-icons/react";
 import { getBackgroundData } from "@/data/backgrounds";
 import { getStaticRace } from "@/lib/srd-client";
@@ -38,7 +37,7 @@ export function LanguagePicker({ data, onChange }: { data: Character; onChange: 
   )];
   const fixed = [...raceLanguages, ...fromFeatures];
 
-  const handleLanguageToggle = useCallback((language: string) => {
+  const handleLanguageToggle = (language: string) => {
     if (fixed.includes(language)) return;
     // Store the player's own picks (plus feature languages); the race's are added at finalize.
     const picks = (data.languages || []).filter(l => !fixed.includes(l));
@@ -48,7 +47,7 @@ export function LanguagePicker({ data, onChange }: { data: Character; onChange: 
     } else if (picks.length < totalBonusLanguages) {
       onChange({ languages: [...fromFeatures, ...picks, language] });
     }
-  }, [data.languages, fixed, fromFeatures, totalBonusLanguages, onChange]);
+  };
 
   const availableLanguages = languageList.map(l => l.name).filter(l => !fixed.includes(l));
   const picks = (data.languages || []).filter(l => !fixed.includes(l));

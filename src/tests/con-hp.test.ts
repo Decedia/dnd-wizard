@@ -1,3 +1,4 @@
+// @ts-ignore - bun:test is provided by the Bun runtime
 import { describe, expect, it } from "bun:test";
 import { applyConChangeToHp, type Character } from "@/lib/storage";
 
