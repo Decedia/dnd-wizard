@@ -405,6 +405,27 @@ export function getMaxHpFromLevelHp(levelHp: Record<number, number> | undefined)
   return Object.values(levelHp).reduce((sum, v) => sum + (v || 0), 0);
 }
 
+/**
+ * A CON change made on the sheet moves max HP by the change in modifier at
+ * every level, as the rules say. Level-up handles its own CON changes. A
+ * custom max HP, or a patch that sets max HP itself, is left alone. Per-level
+ * values shift without clamping, so typing through a low score and back
+ * returns to the same HP; only the total keeps 1 HP per level.
+ */
+export function applyConChangeToHp(prev: Character, next: Character, patch: Partial<Character>): Partial<Character> {
+  if (patch.con === undefined || "maxHp" in patch || "levelHp" in patch || next.isCustomHp) return {};
+  if (!Number.isFinite(prev.con) || !Number.isFinite(next.con)) return {};
+  const delta = getModifier(next.con) - getModifier(prev.con);
+  if (!delta) return {};
+  const level = Math.max(1, next.level || 1);
+  const levelHp = next.levelHp && Object.keys(next.levelHp).length > 0
+    ? Object.fromEntries(Object.entries(next.levelHp).map(([lvl, hp]) => [lvl, (hp || 0) + delta]))
+    : undefined;
+  const maxHp = Math.max(level, levelHp ? getMaxHpFromLevelHp(levelHp) : (next.maxHp || 0) + delta * level);
+  const currentHp = Math.min(maxHp, Math.max(0, (next.currentHp || 0) + (maxHp - (next.maxHp || 0))));
+  return { ...(levelHp ? { levelHp } : {}), maxHp, currentHp };
+}
+
 export function getMaxExpertiseCount(character: Character): number {
   if (character.class !== "Rogue") return 0;
   const classData = getStaticClass("Rogue", character.ruleset);
