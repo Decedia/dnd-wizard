@@ -29,6 +29,9 @@ import {
   MagnifyingGlassIcon as MagnifyingGlass,
   StarIcon as Star,
   UsersIcon as Users,
+  SwordIcon as ClassGroupSword,
+  ShieldIcon as ClassGroupShield,
+  MagicWandIcon as ClassGroupWand,
   BarbarianIcon,
   MusicNotesIcon,
   ClericIcon,
@@ -192,6 +195,15 @@ function groupRacesByParent(
     );
 }
 
+/** Class list groups by how much a class leans on magic, for new players. Unlisted classes fall into "other". */
+const CLASS_GROUPS: { key: string; members: string[]; Icon: React.ComponentType<{ className?: string }> }[] = [
+  { key: "martial", members: ["Barbarian", "Fighter", "Monk", "Rogue"], Icon: ClassGroupSword },
+  { key: "half", members: ["Paladin", "Ranger", "Artificer"], Icon: ClassGroupShield },
+  { key: "full", members: ["Bard", "Cleric", "Druid", "Sorcerer", "Warlock", "Wizard"], Icon: ClassGroupWand },
+];
+
+type ListGroup = { key: string; label: string; flavor: string; icon: React.ReactNode; options: SelectionOption[] };
+
 export function UnifiedSelectionModal<T extends SelectionType>({
   isOpen,
   onClose,
@@ -251,6 +263,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
         subclassCount: subclassNames.length,
         subclassNames,
         subclassLevel: cls.subclassLevel || 3,
+        basicStats: `${t("modal.hitDie", "Hit die")} d${cls.hitDie || 8} • ${subclassNames.length} ${t("modal.subclasses", "Subclasses")}`,
         isRecommended: (cls as any).recommendation?.is_recommended || false,
         recommendationText: (cls as any).recommendation?.text || "",
       };
@@ -277,7 +290,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
         requiresSubrace: race.requiresSubrace || false,
       })) as SelectionOption[];
     }
-  }, [selectionType, characterSources, language]);
+  }, [selectionType, characterSources, language, t]);
 
   const filteredOptions = useMemo(() => {
     let options = allOptions.filter((opt) => !opt.requiresSubrace);
@@ -307,6 +320,31 @@ export function UnifiedSelectionModal<T extends SelectionType>({
         : [],
     [selectionType, filteredOptions, allOptions],
   );
+
+  const listGroups = useMemo<ListGroup[]>(() => {
+    if (selectionType === "race") {
+      return raceGroups.map((g) => ({
+        key: g.groupName,
+        label: g.groupName,
+        flavor: g.options[0]?.description || "",
+        icon: <Users className="h-5 w-5" />,
+        options: g.options,
+      }));
+    }
+    const grouped = new Set(CLASS_GROUPS.flatMap((g) => g.members));
+    const groups: ListGroup[] = CLASS_GROUPS.map((g) => ({
+      key: g.key,
+      label: t(`modal.classGroup.${g.key}`, g.key),
+      flavor: t(`modal.classGroupFlavor.${g.key}`, ""),
+      icon: <g.Icon className="h-5 w-5" />,
+      options: g.members.map((name) => filteredOptions.find((o) => o.name === name)).filter((o): o is SelectionOption => !!o),
+    }));
+    const others = filteredOptions.filter((o) => !grouped.has(o.name));
+    if (others.length > 0) {
+      groups.push({ key: "other", label: t("modal.classGroup.other", "Other"), flavor: "", icon: <ClassGroupSword className="h-5 w-5" />, options: others });
+    }
+    return groups.filter((g) => g.options.length > 0);
+  }, [selectionType, raceGroups, filteredOptions, t]);
 
   const handleItemClick = useCallback(
     (option: SelectionOption) => {
@@ -413,7 +451,9 @@ export function UnifiedSelectionModal<T extends SelectionType>({
 
   const title =
     step === "info" && infoItem
-      ? t("modal.raceInfo", "Info Ras")
+      ? selectionType === "class"
+        ? t("modal.classInfo", "Class Info")
+        : t("modal.raceInfo", "Info Ras")
       : selectionType === "class"
         ? t("modal.selectClass", "Choose Your Class")
         : t("modal.selectRace", "Choose Your Race");
@@ -421,7 +461,9 @@ export function UnifiedSelectionModal<T extends SelectionType>({
     step === "config"
       ? `${t("common.confirm")} ${configChoice ? configChoice.name : t("common.selection", "Selection")}`
       : step === "info"
-        ? t("modal.selectThisRace", "Pilih Ras Ini")
+        ? selectionType === "class"
+          ? t("weaponPicker.selectThis", "Pilih Ini")
+          : t("modal.selectThisRace", "Pilih Ras Ini")
         : previewItem
           ? t("common.confirmSelection", "Confirm Selection")
           : t("modal.selectOption", "Select an Option");
@@ -534,8 +576,10 @@ export function UnifiedSelectionModal<T extends SelectionType>({
       {!showInfo && stickyHeader}
 
       {(step === "list" || showInfo) && (
-        <div className="flex-1 min-h-0 space-y-3 overflow-y-auto overscroll-contain p-4 pb-8">
-          {showInfo ? (
+        <div key={showInfo ? "info" : "list"} className="flex-1 min-h-0 space-y-3 overflow-y-auto overscroll-contain p-4 pb-8">
+          {showInfo && selectionType === "class" ? (
+            <ClassInfoPanel option={infoItem.option} />
+          ) : showInfo ? (
             <RaceInfoPanel
               option={infoItem.option}
               characterSources={characterSources}
@@ -552,18 +596,18 @@ export function UnifiedSelectionModal<T extends SelectionType>({
               </p>
             )}
 
-          {selectionType === "race" ? (
+          {listGroups.length > 0 ? (
             <div className="space-y-3">
-              {raceGroups.map((group) => {
+              {listGroups.map((group) => {
                 const isGroupSelected = group.options.some(
                   (opt) => previewItem?.name === opt.name
                 );
-                const groupFlavor = group.options[0]?.description || "";
+                const groupFlavor = group.flavor;
                 return (
                   <details
-                    key={group.groupName}
-                    open={openGroups.includes(group.groupName)}
-                    onToggle={(e) => handleGroupToggle(group.groupName, e.currentTarget.open)}
+                    key={group.key}
+                    open={searchQuery.trim() !== "" || openGroups.includes(group.key)}
+                    onToggle={(e) => handleGroupToggle(group.key, e.currentTarget.open)}
                     className={`group overflow-hidden rounded-2xl border-2 shadow-sm [&::-webkit-details-marker]:hidden ${
                       isGroupSelected ? "border-ink" : "border-border-strong"
                     }`}
@@ -579,10 +623,10 @@ export function UnifiedSelectionModal<T extends SelectionType>({
                             isGroupSelected ? "bg-ink text-surface" : "bg-ink/10 text-ink"
                           }`}
                         >
-                          <Users className="h-5 w-5" />
+                          {group.icon}
                         </div>
                         <div className="min-w-0">
-                          <h3 className="text-lg font-bold text-ink">{group.groupName}</h3>
+                          <h3 className="text-lg font-bold text-ink">{group.label}</h3>
                           {groupFlavor && (
                             <p className="mt-0.5 text-[11px] leading-relaxed text-ink-muted">
                               {groupFlavor}
@@ -617,7 +661,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
                           >
                             <button
                               type="button"
-                              onClick={() => handleRaceOptionClick(opt, group.groupName)}
+                              onClick={() => handleRaceOptionClick(opt, group.key)}
                               aria-label={t("modal.selectRaceOption", { race: opt.name }, "Pilih {race}")}
                               className="flex flex-1 items-center justify-between p-3 text-left transition active:scale-[0.98]"
                             >
@@ -635,6 +679,9 @@ export function UnifiedSelectionModal<T extends SelectionType>({
                                     </span>
                                   )}
                                 </div>
+                                {selectionType === "class" && opt.description && (
+                                  <p className="mt-1 text-xs leading-relaxed text-ink-muted">{opt.description}</p>
+                                )}
                               </div>
 
                               <div
@@ -650,7 +697,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
 
                             <button
                               type="button"
-                              onClick={() => handleOpenRaceInfo(opt, group.groupName)}
+                              onClick={() => handleOpenRaceInfo(opt, group.key)}
                               aria-label={t("modal.raceInfoButton", { race: opt.name }, "Info {race}")}
                               className="flex w-12 shrink-0 items-center justify-center border-l-2 border-border-muted text-ink-muted transition hover:bg-ink/5 hover:text-ink active:scale-90"
                             >
