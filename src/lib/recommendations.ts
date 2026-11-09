@@ -1,3 +1,5 @@
+import { SUBCLASS_PICKS } from "@/lib/level-up-picks";
+
 export const RECOMMENDED_CLASSES = new Set([
   "Fighter",
   "Rogue",
@@ -13,20 +15,10 @@ export const RECOMMENDED_RACES = new Set([
   "Halfling",
 ]);
 
-export const RECOMMENDED_SUBCLASSES: Record<string, Set<string>> = {
-  Fighter: new Set(["Champion", "Battle Master"]),
-  Rogue: new Set(["Thief", "Assassin"]),
-  Cleric: new Set(["Life Domain", "Knowledge Domain"]),
-  Wizard: new Set(["School of Evocation"]),
-  Warlock: new Set(["The Fiend"]),
-  Bard: new Set(["College of Lore", "College of Valor"]),
-  Druid: new Set(["Circle of the Land"]),
-  Sorcerer: new Set(["Draconic Bloodline"]),
-  Paladin: new Set(["Oath of Devotion", "Oath of Redemption"]),
-  Ranger: new Set(["Hunter"]),
-  Barbarian: new Set(["Path of the Berserker"]),
-  Monk: new Set(["Way of the Open Hand"]),
-};
+// The first two level-up suggestions per class, so the badges and the suggestion cards agree.
+export const RECOMMENDED_SUBCLASSES: Record<string, Set<string>> = Object.fromEntries(
+  Object.entries(SUBCLASS_PICKS).map(([cls, picks]) => [cls, new Set(picks.slice(0, 2).map((p) => p.name))])
+);
 
 export const RECOMMENDED_SPELLS = new Set([
   "Magic Missile",

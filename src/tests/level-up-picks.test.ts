@@ -2,7 +2,16 @@
 import { describe, expect, test } from "bun:test";
 import { getStaticClass, getStaticFeats, getStaticSpells, getStaticSubclasses } from "@/lib/srd-client";
 import { getFeatOptionGroups } from "@/data/feat-options";
-import { FEAT_WHY, FIGHTING_STYLE_PICKS, SPELL_WHY, SUBCLASS_PICKS, asiPicks, spellPicks } from "@/lib/level-up-picks";
+import { FEAT_WHY, FIGHTING_STYLE_PICKS, INVOCATION_PICKS, MANEUVER_PICKS, METAMAGIC_PICKS, SPELL_WHY, SUBCLASS_PICKS, asiPicks, expertisePicks, spellPicks } from "@/lib/level-up-picks";
+import { buildLevelInfos } from "@/components/LevelUpWizard";
+import { isRecommended } from "@/lib/recommendations";
+import invocationsData from "@/data/warlock_invocations.json";
+
+function levelInfos(cls: string, sub: string) {
+  const character = { id: "t", name: "t", class: cls, race: "Human", level: 0, ruleset: "2014", sources: ["PHB"], abilities: { str: 10, dex: 10, con: 10, int: 10, wis: 10, cha: 10 }, skills: {}, features: [], spells: [], cantrips: [] } as any;
+  return buildLevelInfos(character, 20, getStaticClass(cls, undefined, undefined, "en") as any, sub, 0, true, "en");
+}
+const missing = (picks: { name: string }[], names: string[]) => picks.map((p) => p.name).filter((n) => !names.includes(n));
 
 // A suggestion whose name is not in the data would never show, so these lock
 // every suggested name to the data it is matched against.
@@ -24,6 +33,32 @@ describe("level-up suggestions name real options", () => {
   test("every suggested spell exists", () => {
     const names = new Set(getStaticSpells(undefined, "2014").map((s) => s.name));
     for (const name of Object.keys(SPELL_WHY)) expect(names.has(name) ? name : `missing ${name}`).toBe(name);
+  });
+
+  test("every suggested metamagic exists", () => {
+    const fc = levelInfos("Sorcerer", "Draconic").flatMap((i) => i.classFeatureChoices || []).find((c) => c.name === "Metamagic");
+    expect(missing(METAMAGIC_PICKS, fc!.options.map((o) => o.name))).toEqual([]);
+  });
+
+  test("every suggested maneuver exists", () => {
+    const fc = levelInfos("Fighter", "Battle Master").flatMap((i) => i.subclassFeatureChoices || []).find((c) => c.name === "Combat Superiority");
+    expect(missing(MANEUVER_PICKS, fc!.options.map((o) => o.name))).toEqual([]);
+  });
+
+  test("every suggested invocation exists", () => {
+    expect(missing(INVOCATION_PICKS, Object.keys((invocationsData as any).invocations))).toEqual([]);
+  });
+
+  test("every suggested expertise is a skill the class can pick", () => {
+    for (const cls of ["Rogue", "Bard"]) {
+      const fc = levelInfos(cls, cls === "Rogue" ? "Thief" : "Lore").flatMap((i) => i.classFeatureChoices || []).find((c) => c.name === "Expertise");
+      expect(missing(expertisePicks(cls), fc!.options.map((o) => o.name))).toEqual([]);
+    }
+  });
+
+  test("subclass badges use the same names as the data", () => {
+    expect(isRecommended("subclass", "Life", "Cleric")).toBe(true);
+    expect(isRecommended("subclass", "Champion", "Fighter")).toBe(true);
   });
 
   test("every suggested feat exists and needs no extra choice", () => {
