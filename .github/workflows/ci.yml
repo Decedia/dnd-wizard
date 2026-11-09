@@ -23,4 +23,5 @@ jobs:
       - run: bun run typecheck
       - run: bun test src/tests/
       - run: bun run engine:validate
+      - run: bun run engine:test
       - run: bun run data:completeness -- --strict

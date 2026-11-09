@@ -53,3 +53,15 @@ describe("book class options", () => {
     expect(subChoice(run("Druid", "Circle of Stars", TASHA), 2, "Starry Form")).toBeUndefined();
   });
 });
+
+describe("repeat picks", () => {
+  it("Metamagic at 10 skips the options saved at 3", () => {
+    const infos = run("Sorcerer", "Draconic Bloodline", {
+      featureSelections: { "class-feature-3-Metamagic": ["Twinned Spell, Quickened Spell"] },
+    });
+    const later = names(classChoice(infos, 10, "Metamagic"));
+    expect(later).not.toContain("Twinned Spell");
+    expect(later).not.toContain("Quickened Spell");
+    expect(names(classChoice(infos, 3, "Metamagic"))).toContain("Twinned Spell");
+  });
+});

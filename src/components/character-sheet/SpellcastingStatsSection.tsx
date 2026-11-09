@@ -48,7 +48,7 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
     });
   };
 
-  const useSpellSlot = (level: number) => {
+  const spendSpellSlot = (level: number) => {
     const total = character.spellSlots[level] ?? 0;
     const expended = character.spellSlotsExpended[level] ?? 0;
     if (expended < total) {
@@ -127,7 +127,7 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
                       <span className="text-sm text-[var(--color-text-primary)]">{total}</span>
                       <button
                         type="button"
-                        onClick={() => useSpellSlot(Number(level))}
+                        onClick={() => spendSpellSlot(Number(level))}
                         disabled={remaining <= 0}
                         className={`px-2.5 py-1 text-[10px] font-bold rounded transition-colors ${
                           remaining > 0

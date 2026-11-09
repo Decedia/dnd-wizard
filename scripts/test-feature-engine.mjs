@@ -292,7 +292,17 @@ console.log("\nrebuild resilience (read from the source, since character-creatio
   // the ability scores the player set already include it.
   check("recreateCharacter carries variantHumanAbilities as a choice", /variantHumanAbilities: character\.variantHumanAbilities/.test(recreate));
   check("recreateCharacter never adds to the Variant Human abilities", !/abilities\)\s*\+\s*1/.test(recreate));
-  check("recreateCharacter filters saving throws out of tool proficiencies", /saving throw/i.test(recreate));
+  // The class data's tools field used to hold saving throws, weapons and
+  // shields too. recreateCharacter now copies it as it is, so the data itself
+  // must stay clean.
+  const pollutedTools = ["en", "id"].flatMap((loc) =>
+    JSON.parse(readFileSync(path.join(ROOT, "src", "data", loc, "2014_classes.json"), "utf8")).classes.flatMap((c) =>
+      (c.proficiencies?.tools ?? [])
+        .filter((t) => /saving|throw|lemparan|weapon|senjata|shield|perisai|armor|zirah/i.test(t))
+        .map((t) => `${loc} ${c.name}: ${t}`)
+    )
+  );
+  check("class tool proficiencies hold no saving throws, weapons or armor", pollutedTools.length === 0, pollutedTools.join(", "));
   check("recreateCharacter resets in-play state", /exhaustionLevel: 0/.test(recreate) && /spellSlotsExpended: Object\.fromEntries/.test(recreate));
   check("recreateCharacter unions race languages rather than replacing them", /grantedLanguages/.test(recreate) && /chosenLanguages/.test(recreate));
 
@@ -469,7 +479,9 @@ console.log("\ndice-bearing text goes through DiceText\n");
   );
 
   const feats = readFileSync(path.join(ROOT, "src", "components", "character-sheet", "FeaturesTraitsSection.tsx"), "utf8");
-  check("the feature summary renders through DiceText", /<DiceText text=\{summary\} \/>/.test(feats));
+  // A list row clamps its summary to two lines, and DiceText renders a block,
+  // so the row keeps plain text (like the inventory grid); the popup shows dice.
+  check("the feature list row keeps plain text for its two-line clamp", /line-clamp-2">\{r\.summary\}</.test(feats));
   check("the popup summary renders through DiceText", /<DiceText text=\{selectedFeature\.summary\} \/>/.test(feats));
   check("detail rows render through DiceText", /<DiceText text=\{row\.value\} \/>/.test(feats));
   check("DiceText is wrapped in a div, since it renders a block", !/<p[^>]*><DiceText/.test(feats) && !/<span[^>]*><DiceText/.test(feats));

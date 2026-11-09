@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useCallback, useEffect, useRef, useLayoutEffect } from "react";
 import { WizardNav, WIZARD_NAV_SPACE } from "./WizardNav";
-import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclassDetails, getSubclassFlags, getPactBoons, getStaticFeat, getStaticEquipments } from "@/lib/srd-client";
+import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclassDetails, getSubclassFlags, getPactBoons, getStaticFeat, getStaticEquipments, getStaticRace } from "@/lib/srd-client";
 import { SourceBadge } from "./SourceBadge";
 import { getHitDieAverage, getModifier, computeDerivedStats, getMaxBardicInspirationUses, getBardicInspirationDie, hasFontOfInspiration, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getOathSpellNames, getWizardTraditionSpellNames, getMaxSpellLevel, isThirdCaster, getSpellSlotTable, getFeatureValue, getWarlockExpandedSpellNames, getHpBonusPerLevel, type Character } from "@/lib/storage";
 import { applySubclassFeatures, applySubclassSpellGrants, syncBaseFeatures } from "@/lib/character-creation";
@@ -361,6 +361,12 @@ export function buildLevelInfos(
     const subclassFeatureChoices: { name: string; description: string; options: { name: string; description: string }[]; count?: number }[] = [];
     const usesTasha = usesOptionalClassFeatures(character);
     const passiveSubclassFeatures: { name: string; description: string; source?: string }[] = [];
+    // A language pick (Blessings of Knowledge, Draconic Gift) skips languages the
+    // character already speaks from race, background or another pick.
+    const knownLanguages = new Set([
+      ...(character.languages || []),
+      ...(getStaticRace(character.race, character.ruleset)?.languages || []),
+    ]);
     if (subclassSelection && level >= unlockLevel) {
       const selectedSubclass = subclasses.find((s) => s.name === subclassSelection);
       if (selectedSubclass) {
@@ -388,7 +394,7 @@ export function buildLevelInfos(
               name: f.name,
               description: desc,
               options: f.choices!
-                .filter((c: any) => (!c.minLevel || c.minLevel <= level) && !pickedBefore.has(c.name) && (!c.optional || usesTasha))
+                .filter((c: any) => (!c.minLevel || c.minLevel <= level) && !pickedBefore.has(c.name) && !knownLanguages.has(c.name) && (!c.optional || usesTasha))
                 .map((c: any) => ({ name: c.name, description: c.description || "", icon: c.icon })),
               count: (f as any).choicesCountByLevel?.[String(level)] ?? f.choicesCount ?? 1,
             });
@@ -428,6 +434,13 @@ export function buildLevelInfos(
         if (f.name === "Fighting Style") options = fightingStyleOptions(className, options, usesOptionalClassFeatures(character), language);
         if (f.name === "Expertise") options = expertiseOptions(className, options, character);
         if (f.name.startsWith("Mystic Arcanum")) options = mysticArcanumOptions(f.name, options, { ...character, level }, subclassSelection, language);
+        // Metamagic and other repeat picks skip what earlier level-ups saved.
+        const pickedBefore = new Set(
+          Object.entries(character.featureSelections || {})
+            .filter(([key]) => key !== `class-feature-${level}-${f.name}` && key.match(/^class-feature-\d+-(.*)$/)?.[1] === f.name)
+            .flatMap(([, v]) => (v || []).flatMap((x) => String(x).split(", ")))
+        );
+        if (pickedBefore.size) options = options.filter((o: ChoiceOption) => !pickedBefore.has(o.name));
         classFeatureChoices.push({
           name: f.name,
           description: f.description || "",
@@ -725,14 +738,46 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     [character, targetLevel, classData, subclassSelection, currentLevel, startFromLevelOne, language]
   );
   // A replaced spell is swapped for a new one, so that level picks one more spell.
-  const levelInfos = useMemo(
-    () => baseLevelInfos.map((info) =>
-      replacedSpells[info.level]
-        ? { ...info, hasSpellSelection: true, spellSelectionCount: info.spellSelectionCount + 1 }
-        : info
-    ),
-    [baseLevelInfos, replacedSpells]
-  );
+  // A feature that comes back at a later level (maneuvers, disciplines, Metamagic,
+  // Expertise) hides what other levels of this same level-up already picked, so a
+  // character made above the pick level can't take one option twice.
+  const levelInfos = useMemo(() => {
+    const base = (name: string) => name.split(":")[0];
+    const pickedElsewhere = (state: Record<number, Record<string, string>>, level: number, name: string) =>
+      new Set(
+        Object.entries(state)
+          .filter(([lvl]) => Number(lvl) !== level)
+          .flatMap(([, choices]) =>
+            Object.entries(choices || {})
+              .filter(([n]) => base(n) === base(name))
+              .flatMap(([, v]) => String(v || "").split(", ").filter(Boolean))
+          )
+      );
+    const withoutOthers = (
+      list: LevelInfo["classFeatureChoices"],
+      state: Record<number, Record<string, string>>,
+      level: number
+    ) =>
+      list?.map((fc) => {
+        const taken = pickedElsewhere(state, level, fc.name);
+        return taken.size ? { ...fc, options: fc.options.filter((o) => !taken.has(o.name)) } : fc;
+      });
+    return baseLevelInfos.map((info) => {
+      const expertiseTaken = new Set(
+        Object.entries(expertiseSelections).filter(([lvl]) => Number(lvl) !== info.level).flatMap(([, list]) => list || [])
+      );
+      return {
+        ...info,
+        ...(replacedSpells[info.level] ? { hasSpellSelection: true, spellSelectionCount: info.spellSelectionCount + 1 } : {}),
+        subclassFeatureChoices: withoutOthers(info.subclassFeatureChoices, subclassFeatureChoices, info.level),
+        classFeatureChoices: withoutOthers(info.classFeatureChoices, classFeatureChoices, info.level),
+        expertise: info.expertise && {
+          ...info.expertise,
+          availableOptions: info.expertise.availableOptions.filter((o) => !expertiseTaken.has(o)),
+        },
+      };
+    });
+  }, [baseLevelInfos, replacedSpells, subclassFeatureChoices, classFeatureChoices, expertiseSelections]);
 
   const setHp = (level: number, value: number) => setHpValues((prev) => ({ ...prev, [level]: value }));
   const setAsi = (level: number, patch: Partial<{ mode: "single" | "double" | "feat"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey; feat?: string; featOptions?: Record<string, string> }>) =>

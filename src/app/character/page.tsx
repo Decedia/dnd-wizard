@@ -5,7 +5,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { AppHeader } from "@/components/AppHeader";
 import { BOTTOM_NAV_SPACE } from "@/components/BottomNav";
-import { getCharacter, saveCharacter, deleteCharacter, computeDerivedStats, touchCharacterOpened, type Character } from "@/lib/storage";
+import { getCharacter, saveCharacter, deleteCharacter, computeDerivedStats, touchCharacterOpened, applyConChangeToHp, type Character } from "@/lib/storage";
 import { importCharacterFromJson } from "@/lib/character-io";
 import { advanceTurn, parseDurationToTurns } from "@/lib/spellEffects";
 import { useSRD } from "@/contexts/SRDContext";
@@ -162,7 +162,8 @@ export function CharacterView() {
   const handleChange = useCallback((patch: Partial<Character>) => {
     setCharacter((prev) => {
       if (!prev) return prev;
-      const next = { ...prev, ...patch };
+      let next = { ...prev, ...patch };
+      next = { ...next, ...applyConChangeToHp(prev, next, patch) };
       try {
         const derived = computeDerivedStats(next);
         return { ...next, ...derived };
