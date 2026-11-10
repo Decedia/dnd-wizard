@@ -56,10 +56,11 @@ describe("turn menu", () => {
     expect(lowestOpenSlot(cleric, 1)).toBeNull();
   });
 
-  test("features are a reading list; attacks and basic actions are always there", () => {
+  test("tabled features become options; attacks and basic actions are always there", () => {
     const barbarian = { ...base, class: "Barbarian", subclass: "Berserker", features: [{ id: "class-Rage", name: "Rage", description: "", source: "class" }, { id: "class-Primal Path feature", name: "Path feature", description: "", source: "class" }, { id: "class-Extra Attack", name: "Extra Attack", description: "", source: "class" }] };
     const menu = buildTurnMenu(barbarian, spells);
-    expect(menu.features.map((f) => f.name)).toEqual(["Rage"]);
+    expect(menu.features).toEqual([]);
+    expect(find(menu, "Rage")?.slot).toBe("bonus");
     expect(menu.attacksPerAction).toBe(2);
     expect(attacksPerAction({ class: "Fighter", level: 11, features: barbarian.features })).toBe(3);
     expect(menu.options.some((o) => o.key === "basic:dodge" && o.slot === "action")).toBe(true);

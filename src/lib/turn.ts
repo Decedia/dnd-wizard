@@ -7,11 +7,13 @@ import { getWeaponAttackDetails } from "@/lib/weapon-attacks";
 import { equipRow, heldInHands, unequipRow, type Hand, type InventoryRow } from "@/lib/inventory";
 import { getFreeCastSpells, getGrantedSpellNames } from "@/lib/granted-spells";
 import { advanceTurn, parseDurationToTurns } from "@/lib/spellEffects";
+import { ruleFor, ruleKey, usesMax, type FeatureWhen, type PoolField } from "@/data/turn-features";
 
-export type TurnSlot = "action" | "bonus" | "reaction";
-export type TurnGroup = "attack" | "spell" | "basic";
+/** "free" takes none of the three: it rides on something else (a hit, a failed save). */
+export type TurnSlot = "action" | "bonus" | "reaction" | "free";
+export type TurnGroup = "attack" | "spell" | "feature" | "basic";
 /** Why an option cannot be used; the panel turns it into a sentence. */
-export type TurnBlock = "noSlot";
+export type TurnBlock = "noSlot" | "empty" | "actionFirst";
 
 export interface TurnOption {
   key: string;
@@ -33,6 +35,10 @@ export interface TurnOption {
   cost?: { key: string; values: Record<string, string | number> };
   concentration?: boolean;
   blocked?: TurnBlock;
+  /** When a feature applies ("when you hit"); locale key `turn.when.*`. */
+  when?: FeatureWhen;
+  /** The player picks how much of this pool to spend (Lay on Hands). */
+  amount?: { field: PoolField; max: number };
   /** Fields to write when the option is used (the slot flag is added by `optionPatch`). */
   spend: Partial<Character>;
 }
@@ -47,7 +53,7 @@ export interface TurnMenu {
 
 type SrdSpell = { name: string; description?: string | string[]; level?: number; castingTime?: string; casting_time?: string; duration?: string; concentration?: boolean; effectSummary?: string; summary?: string; damage?: any; saveType?: string | null };
 
-const SLOT_FLAG: Record<TurnSlot, "actionUsed" | "bonusActionUsed" | "reactionUsed"> = {
+const SLOT_FLAG: Partial<Record<TurnSlot, "actionUsed" | "bonusActionUsed" | "reactionUsed">> = {
   action: "actionUsed",
   bonus: "bonusActionUsed",
   reaction: "reactionUsed",
@@ -225,17 +231,79 @@ function spellOptions(character: Character, srdSpells: SrdSpell[]): TurnOption[]
 // Rows that only say "you get a subclass feature here" or are handled elsewhere on the sheet.
 const NOT_A_TURN_FEATURE = /feature$|^Ability Score Improvement|^Spellcasting|^Pact Magic|^Extra Attack|^Proficienc|^Languages?$|^Hit Points/i;
 
-/**
- * Class, subclass and race features, as a reading list. They are not given a
- * slot or a cost here: the combat rules data (src/data/engine) has wrong
- * entries (Divine Sense as a reaction, Rage that needs you to be raging), so
- * showing its slots would teach wrong rules. A checked table replaces this.
- */
-function featureList(character: Character): TurnMenu["features"] {
+const turnFeatures = (character: Character) => {
   const seen = new Set<string>();
-  return (character.features || [])
-    .filter((f) => !!f.name?.trim() && !NOT_A_TURN_FEATURE.test(f.name) && !seen.has(f.name) && !!seen.add(f.name))
+  return (character.features || []).filter((f) => !!f.name?.trim() && !NOT_A_TURN_FEATURE.test(f.name) && !seen.has(f.name) && !!seen.add(f.name));
+};
+
+/**
+ * Features the player uses on a turn, from the hand-checked table in
+ * src/data/turn-features.ts: the slot each takes and what it spends. The
+ * combat engine data (src/data/engine) is not used; it has wrong entries.
+ */
+function featureOptions(character: Character): TurnOption[] {
+  const out: TurnOption[] = [];
+  const names = (character.features || []).map((f) => f.name || "");
+  for (const feature of turnFeatures(character)) {
+    const rule = ruleFor(character, feature.name);
+    if (!rule) continue;
+    const option: TurnOption = {
+      key: `feature:${feature.id}`,
+      slot: rule.bonusWith && names.some((n) => rule.bonusWith!.test(n)) ? "bonus" : rule.slot,
+      group: "feature",
+      name: feature.name,
+      summary: feature.description || "",
+      detail: feature.description || undefined,
+      when: rule.when,
+      spend: {},
+    };
+    if (rule.pool) {
+      const left = Number((character as any)[rule.pool.field]) || 0;
+      option.cost = { key: `turn.cost.${rule.pool.field}`, values: { amount: rule.pool.amount, left } };
+      if (left < rule.pool.amount) option.blocked = "empty";
+      else (option.spend as any)[rule.pool.field] = left - rule.pool.amount;
+    } else if (rule.variablePool) {
+      const left = Number((character as any)[rule.variablePool]) || 0;
+      option.cost = { key: `turn.cost.${rule.variablePool}`, values: { amount: "", left } };
+      if (left <= 0) option.blocked = "empty";
+      else option.amount = { field: rule.variablePool, max: left };
+    } else if (rule.uses) {
+      const key = ruleKey(rule);
+      const max = usesMax(rule, character);
+      const used = character.featureUses?.[key] ?? 0;
+      option.cost = { key: "turn.cost.uses", values: { left: Math.max(0, max - used), max } };
+      if (used >= max) option.blocked = "empty";
+      else option.spend.featureUses = { ...(character.featureUses || {}), [key]: used + 1 };
+    } else if (rule.spellSlot) {
+      const open = lowestOpenSlot(character, 1);
+      if (open === null) option.blocked = "noSlot";
+      else {
+        option.cost = { key: "turn.cost.slot", values: { level: open } };
+        option.spend.spellSlotsExpended = { ...(character.spellSlotsExpended || {}), [open]: (character.spellSlotsExpended?.[open] ?? 0) + 1 };
+      }
+    }
+    if (rule.restoresAction) {
+      // The helper tracks one action at a time, so the extra one is taken after the first.
+      if (!character.actionUsed && !option.blocked) option.blocked = "actionFirst";
+      option.spend.actionUsed = false;
+    }
+    out.push(option);
+  }
+  return out;
+}
+
+/** Features with no entry in the table: always on, or not something done on a turn. A reading list. */
+function featureList(character: Character): TurnMenu["features"] {
+  return turnFeatures(character)
+    .filter((f) => !ruleFor(character, f.name))
     .map((f) => ({ id: f.id, name: f.name, description: f.description || "" }));
+}
+
+/** Spending a chosen amount of a pool (Lay on Hands). */
+export function amountPatch(character: Character, option: TurnOption, amount: number): Partial<Character> {
+  if (!option.amount) return optionPatch(option);
+  const spent = Math.max(1, Math.min(option.amount.max, Math.floor(amount)));
+  return { ...optionPatch(option), [option.amount.field]: option.amount.max - spent } as Partial<Character>;
 }
 
 export function buildTurnMenu(character: Character, srdSpells: SrdSpell[]): TurnMenu {
@@ -250,7 +318,7 @@ export function buildTurnMenu(character: Character, srdSpells: SrdSpell[]): Turn
     spend: {},
   }));
   return {
-    options: [...attackOptions(character), ...spellOptions(character, srdSpells), ...basics],
+    options: [...attackOptions(character), ...spellOptions(character, srdSpells), ...featureOptions(character), ...basics],
     features: featureList(character),
     attacksPerAction: attacksPerAction(character),
     speed: character.speed || 30,
@@ -258,12 +326,14 @@ export function buildTurnMenu(character: Character, srdSpells: SrdSpell[]): Turn
 }
 
 export function isSlotUsed(character: Pick<Character, "actionUsed" | "bonusActionUsed" | "reactionUsed">, slot: TurnSlot): boolean {
-  return !!character[SLOT_FLAG[slot]];
+  const flag = SLOT_FLAG[slot];
+  return !!flag && !!character[flag];
 }
 
 /** Using an option spends its slot and whatever it costs. */
 export function optionPatch(option: TurnOption): Partial<Character> {
-  return { ...option.spend, [SLOT_FLAG[option.slot]]: true };
+  const flag = SLOT_FLAG[option.slot];
+  return flag ? { ...option.spend, [flag]: true } : { ...option.spend };
 }
 
 /** A new turn: action, bonus action, movement and reaction all come back. */

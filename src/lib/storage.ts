@@ -68,6 +68,8 @@ export interface Character {
   speed: number;
   /** Race and feat spells whose free cast (no slot) is used until the next rest, by lowercase name. */
   freeCastsUsed?: string[];
+  /** Uses spent of features that count their own uses (Second Wind), by rule key from turn-features. */
+  featureUses?: Record<string, number>;
   /** Which one-time save upgrades have run (see save-upgrade.ts). */
   saveVersion?: number;
   /** Walking speed the player set by hand; bonuses are added on top. */

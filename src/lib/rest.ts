@@ -4,6 +4,7 @@ import { getFreeCastSpells } from "./granted-spells";
 import { getStaticClass } from "./srd-client";
 import { getModifier, type Character } from "./storage";
 import { endEncounterPatch } from "./turn";
+import { featureUsesAfterRest } from "@/data/turn-features";
 
 export type RestKind = "short" | "long";
 
@@ -68,6 +69,7 @@ export function shortRestPatch(character: Character, hitDiceSpent = 0, healed = 
     currentHp: Math.min(maxHpNow(character), (character.currentHp || 0) + (spent > 0 ? Math.max(0, healed) : 0)),
     hitDiceRemaining: num(character, "hitDiceRemaining") - spent,
     freeCastsUsed: (character.freeCastsUsed || []).filter((n) => !shortCasts.has(n)),
+    featureUses: featureUsesAfterRest(character.featureUses, "short"),
   };
   for (const pool of POOLS) {
     if (num(character, pool.max) > 0 && refillsOn(character, pool, "short")) (patch as any)[pool.field] = num(character, pool.max);
@@ -97,6 +99,7 @@ export function longRestPatch(character: Character): Partial<Character> {
     exhaustionLevel: Math.max(0, (character.exhaustionLevel || 0) - 1),
     arcaneRecoveryUsed: false,
     freeCastsUsed: [],
+    featureUses: {},
     spellsUsedThisTurn: [],
     featuresUsedThisTurn: [],
     activeBuffs: [],

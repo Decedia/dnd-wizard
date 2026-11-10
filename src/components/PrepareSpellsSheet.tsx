@@ -33,10 +33,10 @@ export function PrepareSpellsSheet({ spells, prepared, limit, onChange, onClose 
       className="!mb-4 !max-h-[86vh]"
       footer={
         <div className="flex items-center gap-2 px-4 py-3">
-          <button type="button" onClick={() => onChange(fillPrepared(spells, [...chosen], limit))} disabled={full || chosen.size >= spells.length} className="btn-secondary flex-1 text-xs disabled:opacity-40">
+          <button type="button" onClick={() => onChange(fillPrepared(spells, [...chosen], limit))} disabled={full || chosen.size >= spells.length} className="btn btn-secondary flex-1 disabled:opacity-40">
             {t("prepare.suggest", "Fill for me")}
           </button>
-          <button type="button" onClick={onClose} className="btn-primary flex-1 text-xs">
+          <button type="button" onClick={onClose} className="btn btn-primary flex-1">
             {t("prepare.done", "Done")}
           </button>
         </div>
