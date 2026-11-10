@@ -7,6 +7,8 @@ import { TurnHands } from "./TurnHands";
 import { SwingTracker } from "./SwingTracker";
 import { WildShapeCard, WildShapePicker } from "./WildShape";
 import { Timers } from "./Timers";
+import { HealSheet } from "./HealSheet";
+import { featureHealing, type Healing } from "@/lib/healing";
 import { roundsText } from "@/lib/timers";
 import { moveTip, suggestPicks, type Pick, type Situation } from "@/lib/turn-suggest";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -60,6 +62,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
   // The Wild Shape option waiting for a beast to be picked.
   const [shaping, setShaping] = useState<TurnOption | null>(null);
   const mustPrepare = needsPrepare(character);
+  const [healing, setHealing] = useState<{ name: string; heal: Healing } | null>(null);
   const [last, setLast] = useState<{ name: string; undo: Partial<Character> } | null>(null);
 
   // Feature summaries in the reader's language; the rules data itself is English only.
@@ -105,6 +108,8 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
     for (const key of Object.keys(patch)) undo[key] = (character as any)[key] ?? (key.endsWith("Used") ? false : undefined);
     setLast({ name: nameOf(o), undo: undo as Partial<Character> });
     onChange(patch);
+    const heal = amount !== undefined ? featureHealing(character, o.name, amount) : o.heal;
+    if (heal) setHealing({ name: nameOf(o), heal });
   };
 
   const chip = (label: string, used: boolean, toggle: () => void, Icon: React.ComponentType<{ className?: string }>) => (
@@ -356,6 +361,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
           </div>
         </BottomSheet>
       )}
+      {healing && <HealSheet name={healing.name} heal={healing.heal} character={character} onChange={onChange} onClose={() => setHealing(null)} />}
       {amountFor && (
         <BottomSheet isOpen onClose={() => setAmountFor(null)} title={amountFor.option.name} className="!mb-4">
           <div className="space-y-4 px-4 py-4">

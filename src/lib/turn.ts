@@ -10,6 +10,7 @@ import { advanceTurn, parseDurationToTurns } from "@/lib/spellEffects";
 import { ruleFor, ruleKey, usesMax, type FeatureWhen, type PoolField } from "@/data/turn-features";
 import { beastByName, type Beast } from "@/data/wild-shapes";
 import { spellDamageBonuses, type SpellDamageBonus } from "@/lib/spell-damage-bonus";
+import { featureHealing, healingBonusLines, spellHealing, type Healing } from "@/lib/healing";
 import { concentrationTimer, expiredTimerPatch, featureRounds, featureTimerId, RAGE_TIMER, spellRounds, spellTimerId, startTimer, WILD_SHAPE_TIMER } from "@/lib/timers";
 
 /** "free" takes none of the three: it rides on something else (a hit, a failed save). */
@@ -44,6 +45,8 @@ export interface TurnOption {
   spellLevel?: number;
   /** Spell school as in the spell data ("Evocation"). */
   school?: string;
+  /** What it heals, when it heals (the panel asks who and adds the HP). */
+  heal?: Healing;
   /** Casting this ends the concentration spell named here. */
   endsConcentration?: string;
   /** Rounds the spell or feature lasts once used (a timer starts). */
@@ -255,6 +258,7 @@ function spellOptions(character: Character, srdSpells: SrdSpell[]): TurnOption[]
       saveDc: srd?.saveType ? character.spellSaveDc || undefined : undefined,
       spend: { spellsUsedThisTurn: [...(character.spellsUsedThisTurn || []).filter((id) => id !== spell.id), spell.id] },
     };
+    let castLevel = level;
     const rounds = spellRounds(srd?.duration, !!srd?.concentration);
     if (rounds) {
       option.lastsRounds = rounds;
@@ -271,10 +275,16 @@ function spellOptions(character: Character, srdSpells: SrdSpell[]): TurnOption[]
         if (open === null) {
           option.blocked = "noSlot";
         } else {
+          castLevel = open;
           option.cost = { key: "turn.cost.slot", values: { level: open } };
           option.spend.spellSlotsExpended = { ...(character.spellSlotsExpended || {}), [open]: (character.spellSlotsExpended?.[open] ?? 0) + 1 };
         }
       }
+    }
+    const heal = srd ? spellHealing(character, { name: srd.name, level, heal_at_slot_level: srd.heal_at_slot_level }, castLevel) : null;
+    if (heal) {
+      option.heal = heal;
+      option.damageBonuses = [...(option.damageBonuses || []), ...healingBonusLines(heal)];
     }
     out.push(option);
   }
@@ -348,6 +358,8 @@ function featureOptions(character: Character): TurnOption[] {
       if (!character.actionUsed && !option.blocked) option.blocked = "actionFirst";
       option.spend.actionUsed = false;
     }
+    const heal = featureHealing(character, feature.name);
+    if (heal) option.heal = heal;
     const rounds = featureRounds(character, feature.name);
     if (rounds && !option.blocked) {
       option.lastsRounds = rounds;

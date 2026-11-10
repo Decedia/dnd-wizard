@@ -5,7 +5,7 @@ import { BottomSheet } from "@/components/modals/BottomSheet";
 import { PrepareSpellsSheet } from "@/components/PrepareSpellsSheet";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { preparableSpells } from "@/lib/prepared-spells";
-import { hitDieSides, longRestPatch, restGains, rollHitDice, shortRestPatch, type RestKind } from "@/lib/rest";
+import { arcaneRecoveryBudget, hitDieSides, longRestPatch, recoverableSlots, restGains, rollHitDice, shortRestPatch, type RestKind } from "@/lib/rest";
 import { getMaxPreparedSpells, getModifier, isPreparationCaster, type Character } from "@/lib/storage";
 
 interface RestSheetProps {
@@ -23,6 +23,10 @@ export function RestSheet({ character, kind, onChange, onClose }: RestSheetProps
   const [dice, setDice] = useState(0);
   const [done, setDone] = useState<{ rolls: number[]; healed: number } | null>(null);
   const [preparing, setPreparing] = useState(false);
+  const [recover, setRecover] = useState<Record<number, number>>({});
+  const budget = kind === "short" ? arcaneRecoveryBudget(character) : 0;
+  const slots = budget > 0 ? recoverableSlots(character) : [];
+  const used = Object.entries(recover).reduce((sum, [lvl, n]) => sum + Number(lvl) * n, 0);
   // The gains are read once, before the rest is applied, so the list stays on screen.
   const [gains] = useState(() => restGains(character, kind));
 
@@ -40,7 +44,7 @@ export function RestSheet({ character, kind, onChange, onClose }: RestSheetProps
     }
     const roll = rollHitDice(character, dice);
     const healed = Math.min(roll.healed, maxHp - (character.currentHp || 0));
-    onChange(shortRestPatch(character, dice, roll.healed));
+    onChange(shortRestPatch(character, dice, roll.healed, recover));
     setDone({ rolls: roll.rolls, healed });
   };
 
@@ -120,6 +124,28 @@ export function RestSheet({ character, kind, onChange, onClose }: RestSheetProps
                     {hurt ? t("rest.hitDice.none", "No hit dice left. A long rest gives some back.") : t("rest.hitDice.full", "You are at full HP, so there is nothing to heal.")}
                   </p>
                 )}
+              </div>
+            )}
+
+            {slots.length > 0 && (
+              <div className="rounded-[var(--radius-md)] border border-[var(--color-border)] px-3 py-3">
+                <div className="text-sm font-bold text-[var(--color-text-primary)]">{t("rest.arcane.title", "Arcane Recovery")}</div>
+                <p className="mt-0.5 text-xs text-[var(--color-text-secondary)]">
+                  {t("rest.arcane.hint", { budget, left: budget - used }, "Get back spent slots whose levels add up to {budget} or less (no 6th level or higher). Once per long rest. {left} left.")}
+                </p>
+                <div className="mt-2 space-y-2">
+                  {slots.map((slot) => {
+                    const n = recover[slot.level] || 0;
+                    return (
+                      <div key={slot.level} className="flex items-center gap-3">
+                        <span className="w-24 text-xs font-semibold text-[var(--color-text-primary)]">{t("rest.arcane.level", { level: slot.level, spent: slot.spent }, "Level {level} ({spent} spent)")}</span>
+                        <button type="button" aria-label="-1" onClick={() => setRecover((r) => ({ ...r, [slot.level]: Math.max(0, n - 1) }))} disabled={n <= 0} className="btn btn-secondary h-9 w-11 !px-0 disabled:opacity-40">−</button>
+                        <span className="w-6 text-center text-lg font-bold text-[var(--color-text-primary)]">{n}</span>
+                        <button type="button" aria-label="+1" onClick={() => setRecover((r) => ({ ...r, [slot.level]: n + 1 }))} disabled={n >= slot.spent || used + slot.level > budget} className="btn btn-secondary h-9 w-11 !px-0 disabled:opacity-40">+</button>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             )}
 

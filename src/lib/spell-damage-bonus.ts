@@ -21,8 +21,9 @@ export interface SpellDamageBonus {
   source: string;
   ability: Ability;
   value: number;
-  /** "roll": once per casting, on one damage roll. "beam": on every beam (Agonizing Blast). */
-  per: "roll" | "beam";
+  /** "roll": once per casting, on one damage roll. "beam": on every beam (Agonizing Blast).
+   *  "heal" and "maxDice": healing bonuses (Disciple of Life, Supreme Healing), see healing.ts. */
+  per: "roll" | "beam" | "heal" | "maxDice";
 }
 
 const DAMAGE_TYPES = ["acid", "cold", "fire", "force", "lightning", "necrotic", "poison", "psychic", "radiant", "thunder"];
