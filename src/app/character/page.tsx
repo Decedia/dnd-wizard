@@ -15,6 +15,8 @@ import { SheetTabs, type TabId } from "@/components/character-sheet/SheetTabs";
 import { LevelXpSection } from "@/components/character-sheet/LevelXpSection";
 import { IdentitySection } from "@/components/character-sheet/IdentitySection";
 import { StatsSection } from "@/components/character-sheet/StatsSection";
+import { TurnPanel } from "@/components/character-sheet/TurnPanel";
+import { startTurnPatch, endTurnPatch } from "@/lib/turn";
 import { CombatStatsSection } from "@/components/character-sheet/CombatStatsSection";
 import { DeathSavesSection } from "@/components/character-sheet/DeathSavesSection";
 import { HitDiceSection } from "@/components/character-sheet/HitDiceSection";
@@ -40,6 +42,7 @@ export function CharacterView() {
   const { t, language } = useLanguage();
 
   const [character, setCharacter] = useState<Character | null>(null);
+  const [turnOpen, setTurnOpen] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -178,6 +181,14 @@ export function CharacterView() {
     });
   }, []);
 
+  const openTurn = () => {
+    if (character && !character.turnActive) handleChange(startTurnPatch(character));
+    setTurnOpen(true);
+  };
+  const endTurn = () => {
+    if (character) handleChange(endTurnPatch(character, srdData?.spells || []));
+  };
+
   if (!character) {
     return (
       <div className="min-h-screen bg-paper">
@@ -273,7 +284,7 @@ export function CharacterView() {
          <main className="mx-auto max-w-lg px-4 py-3 pb-6">
           {shownTab === "combat" && (
             <>
-              <CombatStatsSection character={character} onChange={handleChange} editMode={editMode} />
+              <CombatStatsSection character={character} onChange={handleChange} editMode={editMode} onOpenTurn={openTurn} />
               {/* Death saves matter only at 0 HP (or while a count is still marked). */}
               {((character.currentHp || 0) <= 0 || (character.deathSaveSuccesses || 0) > 0 || (character.deathSaveFailures || 0) > 0) && (
                 <DeathSavesSection character={character} onChange={handleChange} editMode={editMode} />
@@ -349,26 +360,21 @@ export function CharacterView() {
         </main>
       </CharacterSheetProvider>
 
-      {((character.spellsUsedThisTurn?.length ?? 0) > 0 || (character.featuresUsedThisTurn?.length ?? 0) > 0 || (character.activeBuffs?.length ?? 0) > 0) && (
+      {turnOpen && (
+        <TurnPanel
+          character={character}
+          srdSpells={srdData?.spells || []}
+          onChange={handleChange}
+          onEndTurn={() => { endTurn(); setTurnOpen(false); }}
+          onClose={() => setTurnOpen(false)}
+        />
+      )}
+
+      {!turnOpen && ((character.spellsUsedThisTurn?.length ?? 0) > 0 || (character.featuresUsedThisTurn?.length ?? 0) > 0 || (character.activeBuffs?.length ?? 0) > 0 || character.turnActive) && (
          <div className="fixed left-1/2 -translate-x-1/2 z-30" style={{ bottom: `calc(${BOTTOM_NAV_SPACE} + 12px)` }}>
           <button
             type="button"
-            onClick={() => {
-              const currentUsed = character.spellsUsedThisTurn || [];
-              const srdSpells = srdData?.spells || [];
-              const keptInUse: string[] = [];
-              for (const spellId of currentUsed) {
-                const charSpell = (character.spells || []).find(s => s.id === spellId);
-                if (!charSpell) continue;
-                const srdSpell = charSpell.srdSpellName ? srdSpells.find(sp => sp.name === charSpell.srdSpellName) : undefined;
-                const duration = srdSpell?.duration || "";
-                const turns = duration ? parseDurationToTurns(duration) : null;
-                if (turns !== null && turns > 1) {
-                  keptInUse.push(spellId);
-                }
-              }
-              handleChange({ spellsUsedThisTurn: keptInUse, featuresUsedThisTurn: [], activeBuffs: advanceTurn(character.activeBuffs || []) });
-            }}
+            onClick={endTurn}
             className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-[var(--color-ink)] text-[var(--color-surface)] shadow-lg hover:opacity-90 transition-all"
           >
             <Clock className="h-4 w-4" />

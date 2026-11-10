@@ -15,12 +15,14 @@ import { Dice } from "@/components/Dice";
 import { BasePopup } from "@/components/BasePopup";
 
 interface CombatStatsSectionProps {
-  character: Pick<Character, "ac" | "currentHp" | "maxHp" | "effectiveMaxHp" | "temporaryHp" | "speed" | "baseSpeed" | "race" | "ruleset" | "isCustomHp" | "class" | "sorceryPoints" | "maxSorceryPoints" | "activeStates" | "activeBuffs" | "features" | "actionUsed" | "bonusActionUsed" | "reactionUsed" | "exhaustionLevel" | "initiative" | "hitDiceRemaining" | "hitDiceTotal" | "level">;
+  character: Pick<Character, "turnRound" | "turnActive" | "ac" | "currentHp" | "maxHp" | "effectiveMaxHp" | "temporaryHp" | "speed" | "baseSpeed" | "race" | "ruleset" | "isCustomHp" | "class" | "sorceryPoints" | "maxSorceryPoints" | "activeStates" | "activeBuffs" | "features" | "actionUsed" | "bonusActionUsed" | "reactionUsed" | "exhaustionLevel" | "initiative" | "hitDiceRemaining" | "hitDiceTotal" | "level">;
   onChange: (patch: Partial<Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed" | "baseSpeed" | "isCustomHp" | "sorceryPoints" | "maxSorceryPoints" | "activeStates" | "activeBuffs" | "features" | "actionUsed" | "bonusActionUsed" | "reactionUsed" | "exhaustionLevel">>) => void;
   editMode?: boolean;
+  /** Opens the turn panel; starts a new turn when none is running. */
+  onOpenTurn?: () => void;
 }
 
-export function CombatStatsSection({ character, onChange, editMode = true }: CombatStatsSectionProps) {
+export function CombatStatsSection({ character, onChange, editMode = true, onOpenTurn }: CombatStatsSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
   const { t } = useLanguage();
   const maxHp = character.effectiveMaxHp ?? character.maxHp;
@@ -167,46 +169,37 @@ export function CombatStatsSection({ character, onChange, editMode = true }: Com
         </button>
       </div>
 
-      {/* Combat Action Tracker */}
+      {/* Turn tracker: opens the turn panel */}
       <div className="mt-4 pt-3 border-t border-[var(--color-border)]">
-        <div className="grid grid-cols-3 gap-3">
+        <div className="flex items-center justify-between gap-3">
+          <div className="min-w-0">
+            <div className="text-xs font-bold text-[var(--color-text-primary)]">
+              {character.turnRound ? t("turn.round", { round: character.turnRound }, "Round {round}") : t("turn.notStarted", "Fight not started")}
+            </div>
+            <div className="mt-1 flex items-center gap-1.5">
+              {([
+                [t("spell.action"), character.actionUsed],
+                [t("spell.bonusAction"), character.bonusActionUsed],
+                [t("spell.reaction"), character.reactionUsed],
+              ] as [string, boolean][]).map(([label, used]) => (
+                <span
+                  key={label}
+                  className={`rounded-full border px-1.5 py-0.5 text-[10px] font-semibold ${used ? "border-[var(--color-border)] text-[var(--color-text-muted)] line-through" : "border-[var(--color-border-active)] text-[var(--color-text-primary)]"}`}
+                >
+                  {label}
+                </span>
+              ))}
+            </div>
+          </div>
           <button
             type="button"
-            onClick={() => onChange({ actionUsed: !character.actionUsed })}
-            className={`flex flex-col items-center gap-1 py-2 rounded-full transition-all ${
-              character.actionUsed
-                ? "bg-[var(--color-success-500)] text-white border border-[var(--color-success-500)]"
-                : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-            }`}
+            onClick={onOpenTurn}
+            className="shrink-0 rounded-full bg-[var(--color-ink)] px-4 py-2.5 text-xs font-bold text-[var(--color-surface)] hover:opacity-90"
           >
-            <LightningBolt className="h-5 w-5" />
-            <span className="text-[10px] font-bold">{t("spell.action")}</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => onChange({ bonusActionUsed: !character.bonusActionUsed })}
-            className={`flex flex-col items-center gap-1 py-2 rounded-full transition-all ${
-              character.bonusActionUsed
-                ? "bg-[var(--color-info-500)] text-white border border-[var(--color-info-500)]"
-                : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-            }`}
-          >
-            <Clock className="h-5 w-5" />
-            <span className="text-[10px] font-bold">{t("spell.bonusAction")}</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => onChange({ reactionUsed: !character.reactionUsed })}
-            className={`flex flex-col items-center gap-1 py-2 rounded-full transition-all ${
-              character.reactionUsed
-                ? "bg-[var(--color-warning-500)] text-white border border-[var(--color-warning-500)]"
-                : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-            }`}
-          >
-            <ShieldCheck className="h-5 w-5" />
-            <span className="text-[10px] font-bold">{t("spell.reaction")}</span>
+            {character.turnActive ? t("turn.continue", "Continue turn") : t("turn.start", "Start my turn")}
           </button>
         </div>
+        {!character.turnRound && <p className="mt-2 text-[11px] text-[var(--color-text-muted)]">{t("turn.cardHint", "Shows everything you can do this turn, one tap each.")}</p>}
       </div>
 
       {/* Exhaustion Level Tracker */}
