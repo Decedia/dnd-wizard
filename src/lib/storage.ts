@@ -137,6 +137,8 @@ export interface Character {
   buffModifiers?: Record<string, unknown>;
   /** Coin totals. Derived from the coin rows in `inventory`; edit those rows, not this. */
   currency: { copper: number; silver: number; electrum: number; gold: number; platinum: number };
+  /** Creation only: gear or gold instead, and extra gold for a higher starting level (see starting-gold.ts). */
+  startingGold?: { mode: "gear" | "gold"; gold: number; extra: number };
   /** Set once old `currency` numbers have been moved into coin rows. */
   coinsInInventory?: boolean;
   appearance: {

@@ -5,6 +5,7 @@ import { applyFeatGrants, decodeFeatOptions } from "./feat-grants";
 import { getRaceAsi, getRaceSkills, isFlexAsiValid } from "./race-grants";
 import { engineIdFor } from "@/lib/feature-engine";
 import { addRows, backgroundGearRows, equipRow } from "./inventory";
+import { applyStartingGold, startingGoldOf } from "./starting-gold";
 import { collectProficiencies, getRowProficiency } from "./proficiency";
 import { activeRaceChoices, getStaticClass, getStaticRace, getStaticRaceDetails, getStaticSubclasses, getStaticEquipments, getStaticWeapons, getStaticArmors, getStaticItems, getStaticFeat, getStaticSpells } from "./srd-client";
 import { syncGrantedSpells } from "./granted-spells";
@@ -519,7 +520,7 @@ export function getCreationSteps(character: Character): CreationStep[] {
     && isFlexAsiValid(raceData, character.flexAsi);
   const raceSkillsDone = !raceData?.skillChoice || getRaceSkills(character).length >= (raceData.skillProficiencies?.length || 0) + raceData.skillChoice.count;
   const skillsCompleted = raceSkillsDone && (!classData?.skillChoices || Object.entries(character.skills || {}).filter(([name, proficient]) => proficient && classData.skillChoices.options.includes(name) && !getRaceSkills(character).includes(name)).length >= classData.skillChoices.count);
-  const equipmentCompleted = character.inventory.length > 0 && isEquipmentComplete(character, classData);
+  const equipmentCompleted = (character.inventory.length > 0 || startingGoldOf(character).mode === "gold") && isEquipmentComplete(character, classData);
 
   const asiLevels = classData?.levels
     .map((lvl, idx) => ({ level: idx + 1, asi: !!lvl.asi }))
@@ -631,6 +632,7 @@ export function getCreationSteps(character: Character): CreationStep[] {
 }
 
 function isEquipmentComplete(character: Character, classData: ReturnType<typeof getStaticClass> | null): boolean {
+  if (startingGoldOf(character).mode === "gold") return true;
   if (!classData?.startingEquipment) return character.inventory.length > 0;
 
   const choiceGroups = buildChoiceGroups(classData.startingEquipment, character.ruleset);
@@ -1402,7 +1404,9 @@ export async function finalizeCreation(character: Character, language = "en"): P
     final = applyFeatGrants(final, value[0], decodeFeatOptions(final.featureSelections?.[`asi-feat-${m[1]}-options`]));
   }
 
-  final = { ...final, inventory: autoEquipStartingGear(final) };
+  // Gold instead of gear, and extra gold for a higher starting level.
+  final = applyStartingGold(final);
+  final = { ...final, inventory: autoEquipStartingGear(final), startingGold: undefined };
   const derived = computeDerivedStats(final);
 
   const classData = getStaticClass(character.class, character.ruleset);
