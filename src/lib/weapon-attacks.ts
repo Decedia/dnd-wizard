@@ -1,5 +1,6 @@
 import { getModifier, getProficiencyBonus, type Character } from "./storage";
 import { addsProficiencyToAttack } from "./proficiency";
+import { isFinesseOrRanged, weaponAbility } from "./inventory";
 
 /**
  * Attack and damage numbers for an equipped weapon attack, as the sheet shows
@@ -11,12 +12,10 @@ export function getWeaponAttackDetails(character: Character, attack: Character["
   if (!weapon || weapon.itemType !== "weapon") return null;
   const profBonus = getProficiencyBonus(character.level);
   const isBarbarian = character.class === "Barbarian";
-  const isFinesseOrRanged = weapon.category === "ranged" || weapon.name === "Dagger" || weapon.name === "Rapier" || weapon.name === "Shortsword";
+  const finesseOrRanged = isFinesseOrRanged(weapon);
   const strMod = getModifier(character.str);
   const dexMod = getModifier(character.dex);
-  let abilityKey: "str" | "dex";
-  if (isFinesseOrRanged) abilityKey = dexMod >= strMod ? "dex" : "str";
-  else abilityKey = weapon.category === "ranged" ? "dex" : "str";
+  const abilityKey = weaponAbility(weapon, strMod, dexMod);
   const abilityMod = getModifier(character[abilityKey] as number);
   return {
     weapon,
@@ -26,7 +25,7 @@ export function getWeaponAttackDetails(character: Character, attack: Character["
     damageType: weapon.damageType || "",
     abilityKey,
     abilityMod,
-    isFinesseOrRanged,
+    isFinesseOrRanged: finesseOrRanged,
     strMod,
     dexMod,
     rageBonus: isBarbarian && abilityKey === "str" ? rageDamage : 0,

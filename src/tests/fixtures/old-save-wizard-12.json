@@ -1,0 +1,925 @@
+{
+ "id": "801c1204-9d6c-423b-a1f0-cadeee1b8c4c",
+ "name": "Old Save Wizard",
+ "playerName": "",
+ "race": "Human",
+ "class": "Wizard",
+ "level": 12,
+ "background": "Noble",
+ "alignment": "Chaotic Evil",
+ "gender": "female",
+ "experiencePoints": 0,
+ "maxExperiencePoints": 300,
+ "isCustomHp": false,
+ "levelHp": {
+  "1": 6,
+  "2": 8,
+  "3": 8,
+  "4": 7,
+  "5": 6,
+  "6": 5,
+  "7": 5,
+  "8": 8,
+  "9": 7,
+  "10": 3,
+  "11": 8,
+  "12": 6
+ },
+ "personalityTrait1": "",
+ "personalityTrait2": "",
+ "ideal": "",
+ "bond": "",
+ "flaw": "",
+ "abilityMethod": "pointbuy",
+ "str": 10,
+ "dex": 11,
+ "con": 17,
+ "int": 17,
+ "wis": 14,
+ "cha": 12,
+ "inspiration": false,
+ "proficiencyBonus": 4,
+ "ac": 10,
+ "currentHp": 77,
+ "maxHp": 77,
+ "temporaryHp": 0,
+ "hitDiceTotal": "12d6",
+ "hitDiceRemaining": 12,
+ "deathSaveSuccesses": 0,
+ "deathSaveFailures": 0,
+ "actionUsed": false,
+ "bonusActionUsed": false,
+ "reactionUsed": false,
+ "exhaustionLevel": 0,
+ "rages": 0,
+ "maxRages": 0,
+ "rageDamage": 0,
+ "sorceryPoints": 0,
+ "maxSorceryPoints": 0,
+ "initiative": 0,
+ "speed": 30,
+ "savingThrows": {
+  "str": {
+   "proficient": false,
+   "value": 0
+  },
+  "dex": {
+   "proficient": false,
+   "value": 0
+  },
+  "con": {
+   "proficient": false,
+   "value": 3
+  },
+  "int": {
+   "proficient": true,
+   "value": 7
+  },
+  "wis": {
+   "proficient": true,
+   "value": 6
+  },
+  "cha": {
+   "proficient": false,
+   "value": 1
+  }
+ },
+ "skills": {
+  "Arcana": true,
+  "History": true,
+  "Persuasion": true,
+  "Investigation": true,
+  "Religion": false,
+  "Medicine": false,
+  "Insight": true
+ },
+ "toolProficiencies": [
+  "One type of gaming set"
+ ],
+ "expertise": [],
+ "passivePerception": 12,
+ "features": [
+  {
+   "id": "base-class-Spellcasting:-Wizard",
+   "name": "Spellcasting: Wizard",
+   "description": "As a student of arcane magic, you have a spellbook containing spells that show the first glimmerings of your true power.",
+   "source": "class",
+   "locked": true,
+   "summary": "You possess a spellbook containing arcane spells that represent your growing power.",
+   "featureType": "Passive",
+   "actionType": null,
+   "uses": null,
+   "requirement": null,
+   "duration": null,
+   "endsIf": null,
+   "onUse": null,
+   "scaling": null,
+   "grantsSpells": true,
+   "grantsAttack": false,
+   "grantsSkills": false,
+   "grantsProficiency": false,
+   "showInSheet": true
+  },
+  {
+   "id": "base-class-Arcane-Recovery",
+   "name": "Arcane Recovery",
+   "description": "You have learned to regain some of your magical energy by studying your spellbook. Once per day when you finish a short rest, you can choose expended spell slots to recover. The spell slots can have a combined level that is equal to or less than half your wizard level (rounded up), and none of the slots can be 6th level or higher.\n\nFor example, if you're a 4th-level wizard, you can recover up to two levels worth of spell slots. You can recover either a 2nd-level spell slot or two 1st-level spell slots.",
+   "source": "class",
+   "engineId": "class.wizard.arcane_recovery",
+   "locked": true,
+   "summary": "Recover expended spell slots with a combined level up to half your wizard level (rounded up) after a short rest.",
+   "featureType": "Active",
+   "actionType": "Special",
+   "uses": {
+    "total": 1,
+    "recharge": "Long Rest"
+   },
+   "requirement": "Must finish a short rest, recovered slots cannot be 6th level or higher",
+   "duration": null,
+   "endsIf": null,
+   "onUse": "Recover expended spell slots with combined level up to half your Wizard level rounded up",
+   "scaling": "Recovery pool grows as your Wizard level increases",
+   "grantsSpells": false,
+   "grantsAttack": false,
+   "grantsSkills": false,
+   "grantsProficiency": false,
+   "showInSheet": true
+  },
+  {
+   "id": "base-class-Ability-Score-Improvement",
+   "name": "Ability Score Improvement",
+   "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
+   "source": "class",
+   "engineId": "class.wizard.ability_score_improvement",
+   "locked": true,
+   "summary": "Increase one ability score by **2** or two ability scores by **1**.",
+   "featureType": "Passive",
+   "actionType": null,
+   "uses": null,
+   "requirement": null,
+   "duration": "Permanent",
+   "endsIf": null,
+   "onUse": null,
+   "scaling": "Granted multiple times at class-specific levels",
+   "grantsSpells": false,
+   "grantsAttack": false,
+   "grantsSkills": false,
+   "grantsProficiency": false,
+   "showInSheet": false
+  },
+  {
+   "id": "base-class-Ability-Score-Improvement",
+   "name": "Ability Score Improvement",
+   "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
+   "source": "class",
+   "engineId": "class.wizard.ability_score_improvement",
+   "locked": true,
+   "summary": "Increase one ability score by **2** or two ability scores by **1**.",
+   "featureType": "Passive",
+   "actionType": null,
+   "uses": null,
+   "requirement": null,
+   "duration": "Permanent",
+   "endsIf": null,
+   "onUse": null,
+   "scaling": "Granted multiple times at class-specific levels",
+   "grantsSpells": false,
+   "grantsAttack": false,
+   "grantsSkills": false,
+   "grantsProficiency": false,
+   "showInSheet": false
+  },
+  {
+   "id": "base-class-Ability-Score-Improvement",
+   "name": "Ability Score Improvement",
+   "description": "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by **2**, or you can increase two ability scores of your choice by **1**. As normal, you can't increase an ability score above **20** using this feature.",
+   "source": "class",
+   "engineId": "class.wizard.ability_score_improvement",
+   "locked": true,
+   "summary": "Increase one ability score by **2** or two ability scores by **1**.",
+   "featureType": "Passive",
+   "actionType": null,
+   "uses": null,
+   "requirement": null,
+   "duration": "Permanent",
+   "endsIf": null,
+   "onUse": null,
+   "scaling": "Granted multiple times at class-specific levels",
+   "grantsSpells": false,
+   "grantsAttack": false,
+   "grantsSkills": false,
+   "grantsProficiency": false,
+   "showInSheet": false
+  },
+  {
+   "id": "base-race-Variant-Human",
+   "name": "Variant Human",
+   "description": "Gain +1 to two abilities, one skill, and one feat",
+   "source": "race",
+   "locked": true,
+   "summary": "Gain +1 to two abilities, one skill, and one feat",
+   "featureType": null,
+   "actionType": null,
+   "uses": null,
+   "requirement": null,
+   "duration": null,
+   "endsIf": null,
+   "onUse": null,
+   "scaling": null,
+   "grantsSpells": false,
+   "grantsAttack": false,
+   "grantsSkills": false,
+   "grantsProficiency": false,
+   "showInSheet": true
+  },
+  {
+   "id": "base-race-Elemental-Adept",
+   "name": "Elemental Adept",
+   "description": "Pick a damage type. Your spells of that type ignore resistance to it, and you treat 1s on their damage dice as 2s. Can be taken more than once.",
+   "source": "race",
+   "engineId": "feat.elemental_adept",
+   "locked": true,
+   "summary": "Pick a damage type. Your spells of that type ignore resistance to it, and you treat 1s on their damage dice as 2s. Can be taken more than once.",
+   "featureType": null,
+   "actionType": null,
+   "uses": null,
+   "requirement": null,
+   "duration": null,
+   "endsIf": null,
+   "onUse": null,
+   "scaling": null,
+   "grantsSpells": false,
+   "grantsAttack": false,
+   "grantsSkills": false,
+   "grantsProficiency": false,
+   "showInSheet": true
+  },
+  {
+   "id": "feat-War-Caster",
+   "name": "War Caster",
+   "description": "Advantage on concentration saves; cast somatic spells with your hands full; cast a spell as an opportunity attack.",
+   "source": "custom"
+  },
+  {
+   "id": "subclass-Evocation-Savant",
+   "name": "Evocation Savant",
+   "description": "Beginning when you select this school at 2nd level, the gold and time you must spend to copy an evocation spell into your spellbook is halved.",
+   "source": "subclass",
+   "engineId": "subclass.evocation.evocation_savant",
+   "locked": true,
+   "summary": "The gold cost and time required to copy an evocation spell into your spellbook is halved.",
+   "featureType": "Active",
+   "actionType": null,
+   "uses": null,
+   "requirement": null,
+   "duration": null,
+   "endsIf": null,
+   "onUse": null,
+   "scaling": null,
+   "grantsSpells": false,
+   "grantsAttack": false,
+   "grantsSkills": false,
+   "grantsProficiency": false,
+   "showInSheet": true
+  },
+  {
+   "id": "subclass-Sculpt-Spells",
+   "name": "Sculpt Spells",
+   "description": "Beginning at 2nd level, you can create pockets of relative safety within the effects of your evocation spells. When you cast an evocation spell that affects other creatures that you can see, you can choose a number of them equal to **1 + the spell's level**. The chosen creatures automatically succeed on their saving throws against the spell, and they take no damage if they would normally take half damage on a successful save.",
+   "source": "subclass",
+   "engineId": "subclass.evocation.sculpt_spells",
+   "locked": true,
+   "summary": "Choose a number of creatures equal to 1 + the spell's level to automatically succeed on their saving throws and take no damage from your evocation spell.",
+   "featureType": "Active",
+   "actionType": null,
+   "uses": null,
+   "requirement": null,
+   "duration": null,
+   "endsIf": null,
+   "onUse": null,
+   "scaling": null,
+   "grantsSpells": true,
+   "grantsAttack": false,
+   "grantsSkills": false,
+   "grantsProficiency": false,
+   "showInSheet": true
+  },
+  {
+   "id": "subclass-Potent-Cantrip",
+   "name": "Potent Cantrip",
+   "description": "Starting at 6th level, your damaging cantrips affect even creatures that avoid the brunt of the effect. When a creature succeeds on a saving throw against your cantrip, the creature takes half the cantrip's damage (if any) but suffers no additional effect from the cantrip.",
+   "source": "subclass",
+   "engineId": "subclass.evocation.potent_cantrip",
+   "locked": true,
+   "summary": "Creatures that succeed on a saving throw against your damaging cantrips still take half of the cantrip's damage.",
+   "featureType": "Passive",
+   "actionType": null,
+   "uses": null,
+   "requirement": null,
+   "duration": null,
+   "endsIf": null,
+   "onUse": null,
+   "scaling": null,
+   "grantsSpells": false,
+   "grantsAttack": false,
+   "grantsSkills": false,
+   "grantsProficiency": false,
+   "showInSheet": true
+  },
+  {
+   "id": "subclass-Empowered-Evocation",
+   "name": "Empowered Evocation",
+   "description": "Beginning at 10th level, you can add your Intelligence modifier to one damage roll of any wizard evocation spell you cast.",
+   "source": "subclass",
+   "engineId": "subclass.evocation.empowered_evocation",
+   "locked": true,
+   "summary": "Add your Intelligence modifier to one damage roll of any wizard evocation spell you cast.",
+   "featureType": "Active",
+   "actionType": null,
+   "uses": null,
+   "requirement": null,
+   "duration": null,
+   "endsIf": null,
+   "onUse": null,
+   "scaling": null,
+   "grantsSpells": false,
+   "grantsAttack": false,
+   "grantsSkills": false,
+   "grantsProficiency": false,
+   "showInSheet": true
+  },
+  {
+   "id": "87abc3ab-5111-4b12-8747-7255518cb490",
+   "name": "",
+   "description": ""
+  },
+  {
+   "id": "feat-Spell-Sniper",
+   "name": "Spell Sniper",
+   "description": "Spells that need an attack roll have double range and ignore half and three-quarters cover. Learn one cantrip that needs an attack roll.",
+   "source": "custom"
+  }
+ ],
+ "costumeSpells": [],
+ "subclass": "Evocation",
+ "inventory": [
+  {
+   "id": "04ffd17f-5acc-40a2-a72c-814c9ac1266f",
+   "name": "Set of fine clothes",
+   "quantity": 1,
+   "equipped": false,
+   "source": "custom",
+   "isGranted": true
+  },
+  {
+   "id": "e7df1eb3-db01-4df3-b653-06d23d59d159",
+   "name": "signet ring",
+   "quantity": 1,
+   "equipped": false,
+   "source": "custom",
+   "isGranted": true
+  },
+  {
+   "id": "88065454-f619-4769-af18-e2f66a245890",
+   "name": "scroll of pedigree",
+   "quantity": 1,
+   "equipped": false,
+   "source": "custom",
+   "isGranted": true
+  },
+  {
+   "id": "db4f03c8-595c-46b2-bb9f-f70bcfa9faa1",
+   "name": "Spellbook",
+   "quantity": 1,
+   "equipped": false,
+   "source": "srd",
+   "srdItemName": "Spellbook",
+   "itemType": "item",
+   "description": "{\"type\":\"item\",\"description\":\"Essential for wizards, a spellbook is a leather-bound tome with 100 blank vellum pages suitable for recording spells.\",\"maxDex\":0,\"contents\":\"\",\"icon\":\"\ud83d\udce6\"}",
+   "isGranted": true,
+   "itemId": "spellbook"
+  },
+  {
+   "id": "7d6cca12-ff06-4b58-8ddb-9832a1aa9f63",
+   "name": "Quarterstaff",
+   "quantity": 1,
+   "equipped": true,
+   "source": "srd",
+   "srdItemName": "Quarterstaff",
+   "itemType": "weapon",
+   "description": "{\"type\":\"weapon\",\"damageDice\":\"1d6\",\"damageType\":\"Bludgeoning\",\"properties\":[\"Versatile\",\"Monk\"],\"category\":\"Melee\",\"description\":\"A length of hardened wood, typically six to eight feet long. Simple yet effective, it can be wielded as a versatile weapon or walking aid.\",\"icon\":\"\u2694\ufe0f\"}",
+   "choiceGroupIndex": 1,
+   "choiceOptionIndex": 0,
+   "itemId": "quarterstaff",
+   "hand": "main"
+  },
+  {
+   "id": "f57c1036-de28-4c15-b953-f8964f87a584",
+   "name": "Wand",
+   "quantity": 1,
+   "equipped": false,
+   "source": "srd",
+   "srdItemName": "Wand",
+   "itemType": "item",
+   "description": "{\"type\":\"item\",\"description\":\"An arcane focus is a special item--an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item--designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus.\",\"maxDex\":0,\"contents\":\"\",\"icon\":\"\ud83d\udce6\"}",
+   "damageDice": "",
+   "damageType": "",
+   "choiceGroupIndex": 2,
+   "choiceOptionIndex": 1,
+   "itemId": "wand"
+  },
+  {
+   "id": "b2d4a482-a385-461b-8ce8-dcdc8d47fe9c",
+   "name": "Arcane Focus",
+   "quantity": 1,
+   "equipped": false,
+   "source": "srd",
+   "srdItemName": "Arcane Focus",
+   "itemType": "item",
+   "description": "{\"type\":\"item\",\"description\":\"An arcane focus is a special item designed to channel arcane magic. A spellcaster can use a crystal, orb, rod, staff, or wand as an arcane focus.\",\"maxDex\":0,\"contents\":\"\",\"icon\":\"\ud83d\udce6\"}",
+   "choiceGroupIndex": 2,
+   "choiceOptionIndex": 1
+  },
+  {
+   "id": "20e7da3a-8836-4818-b20a-3bbc718a7571",
+   "name": "Scholar's Pack",
+   "quantity": 1,
+   "equipped": false,
+   "source": "srd",
+   "srdItemName": "Scholar's Pack",
+   "itemType": "item",
+   "description": "{\"type\":\"item\",\"description\":\"A kit for the traveling academic, including a backpack, book of lore, ink, ink pen, parchment, sand, and a small knife.\",\"maxDex\":0,\"contents\":\"Backpack, Book, Ink (1 ounce bottle), Ink pen, Parchment (one sheet), Little bag of sand, Small knife\",\"icon\":\"\ud83d\udce6\"}",
+   "choiceGroupIndex": 3,
+   "choiceOptionIndex": 0,
+   "itemId": "scholars-pack"
+  }
+ ],
+ "attacks": [
+  {
+   "id": "7d6cca12-ff06-4b58-8ddb-9832a1aa9f63",
+   "name": "Quarterstaff",
+   "attackBonus": 4,
+   "damageType": "+0",
+   "description": "+4 to hit, +0",
+   "source": "weapon"
+  },
+  {
+   "id": "grapple",
+   "name": "Grapple",
+   "attackBonus": 4,
+   "damageType": "",
+   "source": "grapple",
+   "description": "Special melee attack. Athletics vs target's Athletics or Acrobatics. On success, target is Grappled (speed 0, can't benefit from speed bonuses). Escape: Athletics or Acrobatics vs your Athletics DC."
+  },
+  {
+   "id": "shove",
+   "name": "Shove",
+   "attackBonus": 4,
+   "damageType": "",
+   "source": "shove",
+   "description": "Special melee attack. Athletics vs target's Athletics or Acrobatics. On success, target is either knocked Prone or pushed 5 feet away from you."
+  }
+ ],
+ "otherProficiencies": "",
+ "languages": [
+  "Common"
+ ],
+ "spells": [
+  {
+   "id": "spell-Fire-Bolt-0",
+   "name": "Fire Bolt",
+   "level": 0,
+   "source": "srd",
+   "srdSpellName": "Fire Bolt",
+   "description": "As 1 action, you hurl a mote of fire at a creature or object within 120 feet. Make a ranged spell attack against the target. On a hit, the target takes **1d10** fire damage. A flammable object hit by this spell ignites if it isn't being worn or carried.\n\nThis spell's damage increases as you grow in power:\n- 5th level: **2d10**\n- 11th level: **3d10**\n- 17th level: **4d10**"
+  },
+  {
+   "id": "spell-Ray-of-Frost-0",
+   "name": "Ray of Frost",
+   "level": 0,
+   "source": "srd",
+   "srdSpellName": "Ray of Frost",
+   "description": "As an action, a frigid beam of blue-white light streaks toward a creature within 60 feet. Make a ranged spell attack against the target. On a hit, it takes **1d8** cold damage, and its speed is reduced by 10 feet until the start of your next turn. The spell has a duration of Instantaneous.\n\nThe spell's damage increases by **1d8** when you reach 5th level (**2d8**), 11th level (**3d8**), and 17th level (**4d8**)."
+  },
+  {
+   "id": "spell-Poison-Spray-0",
+   "name": "Poison Spray",
+   "level": 0,
+   "source": "srd",
+   "srdSpellName": "Poison Spray",
+   "description": "As 1 action, you extend your hand toward a creature you can see within 10 feet and project a puff of noxious gas from your palm. The creature must succeed on a Constitution saving throw or take **1d12** poison damage.\n\nThis spell's damage increases by **1d12** when you reach 5th level (**2d12**), 11th level (**3d12**), and 17th level (**4d12**)."
+  },
+  {
+   "id": "spell-Magic-Missile-1",
+   "name": "Magic Missile",
+   "level": 1,
+   "source": "srd",
+   "srdSpellName": "Magic Missile",
+   "description": "As an action, you create three glowing darts of magical force. Each dart hits a creature of your choice that you can see within 120 feet. A dart deals **1d4 + 1** force damage to its target. The darts all strike simultaneously, and you can direct them to hit one creature or several.\n\nAt higher levels, the damage increases as follows:\n- 2nd level: **4d4 + 4**\n- 3rd level: **5d4 + 5**\n- 4th level: **6d4 + 6**\n- 5th level: **7d4 + 7**\n- 6th level: **8d4 + 8**\n- 7th level: **9d4 + 9**\n- 8th level: **10d4 + 10**\n- 9th level: **11d4 + 11**"
+  },
+  {
+   "id": "spell-Color-Spray-1",
+   "name": "Color Spray",
+   "level": 1,
+   "source": "srd",
+   "srdSpellName": "Color Spray",
+   "description": "As an action, you release a dazzling array of flashing, colored light from your hand. Roll **6d10**; the total represents the number of hit points of creatures this spell can affect. Creatures within a 15-foot cone originating from you are affected in ascending order of their current hit points, ignoring unconscious creatures and those that cannot see.\n\nStarting with the creature that has the lowest current hit points, each affected creature is blinded until the spell ends. Subtract each creature's hit points from the total before moving to the creature with the next lowest hit points. A creature's hit points must be equal to or less than the remaining total for that creature to be affected."
+  },
+  {
+   "id": "spell-Witch-Bolt-1",
+   "name": "Witch Bolt",
+   "level": 1,
+   "source": "srd",
+   "srdSpellName": "Witch Bolt",
+   "description": "A beam of crackling, blue energy lurches toward a creature within 30 feet, forming a sustained arc of lightning between you and the target. Make a ranged spell attack against it. On a hit, the target takes **1d12** lightning damage. For the duration (Concentration, up to 1 minute), you can use your action on each of your turns to automatically deal **1d12** lightning damage to the target."
+  },
+  {
+   "id": "spell-Thunderwave-1",
+   "name": "Thunderwave",
+   "level": 1,
+   "source": "srd",
+   "srdSpellName": "Thunderwave",
+   "description": "As 1 action, a wave of thunderous force sweeps out from you. Each creature in a 15-foot cube originating from you must make a Constitution saving throw. \n\n- On a failed save, a creature takes **2d8** thunder damage and is pushed 10 feet away from you.\n- On a successful save, the creature takes half as much damage and isn't pushed.\n\nIn addition, unsecured objects that are completely within the area of effect are automatically pushed 10 feet away from you, and the spell emits a thunderous boom audible out to 300 feet."
+  },
+  {
+   "id": "spell-Ray-of-Sickness-1",
+   "name": "Ray of Sickness",
+   "level": 1,
+   "source": "srd",
+   "srdSpellName": "Ray of Sickness",
+   "description": "As part of the casting, a sickly greenish ray of sickening energy lashes out toward a creature within 60 feet. You must make a ranged spell attack against the target. On a hit, the target takes **2d8** poison damage and must make a Constitution saving throw. On a failed save, the target is also poisoned until the end of your next turn. The spell has a duration of Instantaneous."
+  },
+  {
+   "id": "spell-Chromatic-Orb-1",
+   "name": "Chromatic Orb",
+   "level": 1,
+   "source": "srd",
+   "srdSpellName": "Chromatic Orb",
+   "description": "You hurl a 4-inch-diameter sphere of energy at a creature that you can see within 90 feet. You choose acid, cold, fire, lightning, poison, or thunder for the type of orb you create, and then make a ranged spell attack against the target. If the hit, the target takes **3d8** damage of the type you chose. This spell has an instantaneous duration."
+  },
+  {
+   "id": "spell-Protection-from-Evil-and-Good-1",
+   "name": "Protection from Evil and Good",
+   "level": 1,
+   "source": "srd",
+   "srdSpellName": "Protection from Evil and Good",
+   "description": "As an action, you touch one willing creature, and until the spell ends (up to 10 minutes), they are protected against aberrations, celestials, elementals, fey, fiends, and undead.\n\nThe protection grants several benefits:\n- Creatures of those types have disadvantage on attack rolls against the target.\n- The target cannot be charmed, frightened, or possessed by them.\n- If the target is already charmed, frightened, or possessed by such a creature, the target has advantage on any new saving throw against the relevant effect."
+  },
+  {
+   "id": "spell-Sleep-1",
+   "name": "Sleep",
+   "level": 1,
+   "source": "srd",
+   "srdSpellName": "Sleep",
+   "description": "As an action, you send creatures into a magical slumber. Roll **5d8**; the total is how many hit points of creatures this spell can affect. Creatures within 20 feet of a point you choose within 90 feet are affected in ascending order of their current hit points (ignoring unconscious creatures).\n\nStarting with the creature that has the lowest current hit points, each creature affected by this spell falls unconscious until the spell ends (up to 1 minute), the sleeper takes damage, or someone uses an action to shake or slap the sleeper awake. Subtract each creature's hit points from the total before moving on to the creature with the next lowest hit points. A creature's hit points must be equal to or less than the remaining total for that creature to be affected.\n\nUndead and creatures immune to being charmed aren't affected by this spell."
+  },
+  {
+   "id": "spell-Charm-Person-1",
+   "name": "Charm Person",
+   "level": 1,
+   "source": "srd",
+   "srdSpellName": "Charm Person",
+   "description": "Using 1 action, you attempt to charm a humanoid you can see within 30 feet. It must make a Wisdom saving throw, and does so with advantage if you or your companions are fighting it. If it fails the saving throw, it is charmed by you for a duration of 1 hour, or until the spell ends early because you or your companions do anything harmful to it. The charmed creature regards you as a friendly acquaintance. When the spell ends, the creature knows it was charmed by you."
+  },
+  {
+   "id": "spell-Illusory-Script-1",
+   "name": "Illusory Script",
+   "level": 1,
+   "source": "srd",
+   "srdSpellName": "Illusory Script",
+   "description": "Using 1 minute to cast this spell, you write on parchment, paper, or another suitable writing material and imbue it with a potent illusion that lasts for 10 days. \n\n- To you and any creatures you designate when you cast the spell, the writing appears normal, written in your hand, and conveys your intended meaning.\n- To all others, the writing appears as an unintelligible unknown or magical script, or you can cause it to appear as an entirely different message in a different hand and language that you know.\n- If the spell is dispelled, both the original script and the illusion disappear.\n- A creature with truesight can read the hidden message.\n\nThis spell has a range of touch and requires somatic and material components."
+  },
+  {
+   "id": "spell-Acid-Splash-0",
+   "name": "Acid Splash",
+   "level": 0,
+   "source": "srd",
+   "srdSpellName": "Acid Splash",
+   "description": "As an action, you hurl a bubble of acid. Choose one creature within 60 feet, or choose two creatures within 60 feet that are within 5 feet of each other. A target must succeed on a Dexterity saving throw or take **1d6** acid damage.\n\nThis spell's damage increases as you reach higher levels:\n- 5th level: **2d6**\n- 11th level: **3d6**\n- 17th level: **4d6**"
+  },
+  {
+   "id": "spell-Acid-Arrow-2",
+   "name": "Acid Arrow",
+   "level": 2,
+   "source": "srd",
+   "srdSpellName": "Acid Arrow",
+   "description": "As an action, you launch a shimmering green arrow toward a target within 90 feet that bursts in a spray of acid. Make a ranged spell attack against the target. On a hit, the target takes **4d4** acid damage immediately and **2d4** acid damage at the end of its next turn. On a miss, the arrow splashes the target with acid for half as much of the initial damage and no damage at the end of its next turn. This spell has an instantaneous duration and requires verbal, somatic, and material components."
+  },
+  {
+   "id": "spell-Cloud-of-Daggers-2",
+   "name": "Cloud of Daggers",
+   "level": 2,
+   "source": "srd",
+   "srdSpellName": "Cloud of Daggers",
+   "description": "You fill the air with spinning daggers in a cube 5 feet on each side, centered on a point you choose within 60 feet. A creature takes **4d4** slashing damage when it enters the spell's area for the first time on a turn or starts its turn there. This effect lasts for a duration of Concentration, up to 1 minute."
+  },
+  {
+   "id": "spell-Fireball-3",
+   "name": "Fireball",
+   "level": 3,
+   "source": "srd",
+   "srdSpellName": "Fireball",
+   "description": "As an action, you flash a bright streak from your pointing finger to a point you choose within 150 feet, where it blossoms with a low roar into an explosion of flame. Each creature in a 20-foot-radius sphere centered on that point must make a Dexterity saving throw. A target takes **8d6** fire damage on a failed save, or half as much damage on a successful one.\n\nThe fire spreads around corners and ignites flammable objects in the area that aren't being worn or carried. This spell has a duration of instantaneous and requires verbal, somatic, and material components."
+  },
+  {
+   "id": "spell-Counterspell-3",
+   "name": "Counterspell",
+   "level": 3,
+   "source": "srd",
+   "srdSpellName": "Counterspell",
+   "description": "As a reaction, you attempt to interrupt a creature within 60 feet in the process of casting a spell. The effect depends on the level of the spell being cast:\n\n- If the creature is casting a spell of 3rd level or lower, the spell fails and has no effect.\n- If it is casting a spell of 4th level or higher, you must make an ability check using your spellcasting ability. The DC equals 10 + the spell's level. On a success, the creature's spell fails and has no effect.\n\nThis spell has a casting time of 1 reaction, a range of 60 feet, and an instantaneous duration, requiring only a somatic component."
+  },
+  {
+   "id": "spell-Lightning-Bolt-3",
+   "name": "Lightning Bolt",
+   "level": 3,
+   "source": "srd",
+   "srdSpellName": "Lightning Bolt",
+   "description": "As 1 action, a stroke of lightning forming a line 100 feet long and 5 feet wide blasts out from you in a direction you choose. Each creature in the line must make a Dexterity saving throw. A creature takes **8d6** lightning damage on a failed save, or half as much damage on a successful one.\n\nThe lightning ignites flammable objects in the area that aren't being worn or carried. This spell has a range of Self and an instantaneous duration."
+  },
+  {
+   "id": "spell-Bestow-Curse-3",
+   "name": "Bestow Curse",
+   "level": 3,
+   "source": "srd",
+   "srdSpellName": "Bestow Curse",
+   "description": "As an action, you touch a creature, and that creature must succeed on a Wisdom saving throw or become cursed for the duration of up to 1 minute. When you cast this spell, choose the nature of the curse from the following options:\n\n- Choose one ability score. While cursed, the target has disadvantage on ability checks and saving throws made with that ability score.\n\n- While cursed, the target has disadvantage on attack rolls against you.\n\n- While cursed, the target must make a Wisdom saving throw at the start of each of its turns. If it fails, it wastes its action that turn doing nothing.\n\n- While the target is cursed, your attacks and spells deal an extra **1d8** necrotic damage to the target.\n\nA remove curse spell ends this effect. At the GM's option, you may choose an alternative curse effect, but it should be no more powerful than those described above. The GM has final say on such a curse's effect."
+  },
+  {
+   "id": "spell-Ice-Storm-4",
+   "name": "Ice Storm",
+   "level": 4,
+   "source": "srd",
+   "srdSpellName": "Ice Storm",
+   "description": "As an action, you call down a hail of rock-hard ice that pounds the ground in a 20-foot-radius, 40-foot-high cylinder centered on a point within 300 feet. Each creature in the cylinder must make a Dexterity saving throw.\n\n- A creature takes **2d8** bludgeoning damage and **4d6** cold damage on a failed save, or half as much damage on a successful one.\n- Hailstones turn the storm's area of effect into difficult terrain until the end of your next turn."
+  },
+  {
+   "id": "spell-Wall-of-Fire-4",
+   "name": "Wall of Fire",
+   "level": 4,
+   "source": "srd",
+   "srdSpellName": "Wall of Fire",
+   "description": "Using 1 action, you create a wall of fire on a solid surface within 120 feet. You can make the wall up to 60 feet long, 20 feet high, and 1 foot thick, or a ringed wall up to 20 feet in diameter, 20 feet high, and 1 foot thick. The wall is opaque and lasts for a duration of up to 1 minute.\n\nWhen the wall appears, each creature within its area must make a Dexterity saving throw. On a failed save, a creature takes **5d8** fire damage, or half as much damage on a successful save.\n\nOne side of the wall, selected by you when you cast this spell, deals **5d8** fire damage to each creature that ends its turn within 10 feet of that side or inside the wall. A creature takes the same damage when it enters the wall for the first time on a turn or ends its turn there. The other side of the wall deals no damage."
+  },
+  {
+   "id": "spell-Black-Tentacles-4",
+   "name": "Black Tentacles",
+   "level": 4,
+   "source": "srd",
+   "srdSpellName": "Black Tentacles",
+   "description": "As an action, squirming, ebony tentacles fill a 20-foot square on ground that you can see within 90 feet. For the duration of up to 1 minute, these tentacles turn the ground in the area into difficult terrain.\n\n- When a creature enters the affected area for the first time on a turn or starts its turn there, the creature must succeed on a Dexterity saving throw or take **3d6** bludgeoning damage and be restrained by the tentacles until the spell ends.\n- A creature that starts its turn in the area and is already restrained by the tentacles takes **3d6** bludgeoning damage.\n- A creature restrained by the tentacles can use its action to make a Strength or Dexterity check (its choice) against your spell save DC. On a success, it frees itself."
+  },
+  {
+   "id": "spell-Blight-4",
+   "name": "Blight",
+   "level": 4,
+   "source": "srd",
+   "srdSpellName": "Blight",
+   "description": "As an action, necromantic energy washes over a creature of your choice that you can see within 30 feet, draining moisture and vitality from it. The target must make a Constitution saving throw.\n\n- The target takes **8d8** necrotic damage on a failed save, or half as much damage on a successful one. The spell has no effect on undead or constructs.\n- If you target a plant creature or a magical plant, it makes the saving throw with disadvantage, and the spell deals maximum damage to it.\n- If you target a nonmagical plant that isn't a creature, such as a tree or shrub, it doesn't make a saving throw; it simply withers and dies."
+  },
+  {
+   "id": "spell-Dominate-Person-5",
+   "name": "Dominate Person",
+   "level": 5,
+   "source": "srd",
+   "srdSpellName": "Dominate Person",
+   "description": "Using 1 action, you attempt to beguile a humanoid that you can see within 60 feet. It must succeed on a Wisdom saving throw or be charmed by you for the duration of up to 1 minute. If you or creatures that are friendly to you are fighting it, it has advantage on the saving throw.\n\nWhile the target is charmed, you have a telepathic link with it as long as the two of you are on the same plane of existence. You can use this telepathic link to issue commands to the creature while you are conscious (no action required), which it does its best to obey. You can specify a simple and general course of action, such as \"Attack that creature,\" \"Run over there,\" or \"Fetch that object.\" If the creature completes the order and doesn't receive further direction from you, it defends and preserves itself to the best of its ability.\n\nYou can use your action to take total and precise control of the target. Until the end of your next turn, the creature takes only the actions you choose, and doesn't do anything that you don't allow it to do. During this time you can also cause the creature to use a reaction, but this requires you to use your own reaction as well.\n\nEach time the target takes damage, it makes a new Wisdom saving throw against the spell. If the saving throw succeeds, the spell ends."
+  },
+  {
+   "id": "spell-Cloudkill-5",
+   "name": "Cloudkill",
+   "level": 5,
+   "source": "srd",
+   "srdSpellName": "Cloudkill",
+   "description": "As an action, you create a 20-foot-radius sphere of poisonous, yellow-green fog centered on a point you choose within 120 feet. The fog spreads around corners and lasts for a duration of up to 10 minutes, or until strong wind disperses the fog, ending the spell. Its area is heavily obscured.\n\nWhen a creature enters the spell's area for the first time on a turn or starts its turn there, that creature must make a Constitution saving throw. The creature takes **5d8** poison damage on a failed save, or half as much damage on a successful one. Creatures are affected even if they hold their breath or don't need to breathe.\n\nThe fog moves 10 feet away from you at the start of each of your turns, rolling along the surface of the ground. The vapors, being heavier than air, sink to the lowest level of the land, even pouring down openings."
+  },
+  {
+   "id": "spell-Shocking-Grasp-0",
+   "name": "Shocking Grasp",
+   "level": 0,
+   "source": "srd",
+   "srdSpellName": "Shocking Grasp",
+   "description": "As an action, lightning springs from your hand to deliver a shock to a creature you try to touch within touch range. Make a melee spell attack against the target. You have advantage on the attack roll if the target is wearing armor made of metal.\n\nOn a hit, the target takes **1d8** lightning damage, and it can't take reactions until the start of its next turn. The spell's damage increases as you reach higher levels:\n- 5th level: **2d8**\n- 11th level: **3d8**\n- 17th level: **4d8**"
+  },
+  {
+   "id": "spell-Arcane-Hand-5",
+   "name": "Arcane Hand",
+   "level": 5,
+   "source": "srd",
+   "srdSpellName": "Arcane Hand",
+   "description": "As an action, you create a Large hand of shimmering, translucent force in an unoccupied space you can see within 120 feet. The hand lasts for up to 1 minute and mimics your movements. It is an object with AC 20 and hit points equal to your hit point maximum; the spell ends if it drops to 0 hit points. It has a Strength of 26 (+8) and a Dexterity of 10 (+0), and it does not fill its space.\n\nUpon casting and as a bonus action on subsequent turns, you can move the hand up to 60 feet and use one of the following effects:\n\n- Clenched Fist: The hand strikes one creature or object within 5 feet. Make a melee spell attack using your statistics. On a hit, the target takes **4d8** force damage.\n- Forceful Hand: The hand attempts to push a creature within 5 feet. Make a check with the hand's Strength contested by the target's Strength (Athletics) check. You have advantage if the target is Medium or smaller. On a success, the target is pushed 5 feet plus 5 times your spellcasting ability modifier.\n- Grasping Hand: The hand attempts to grapple a Huge or smaller creature within 5 feet using the hand's Strength score. You have advantage if the target is Medium or smaller. While grappling, you can use a bonus action to crush the target for bludgeoning damage equal to **2d6** + your spellcasting ability modifier.\n- Interposing Hand: The hand stays between you and a chosen creature, providing you with half cover. Targets with a Strength score less than or equal to the hand's Strength cannot move through its space. Targets with a higher Strength score can move through, but the space is difficult terrain."
+  },
+  {
+   "id": "spell-Modify-Memory-5",
+   "name": "Modify Memory",
+   "level": 5,
+   "source": "srd",
+   "srdSpellName": "Modify Memory",
+   "description": "As an action, you attempt to reshape another creature's memories. One creature that you can see within 30 feet must make a Wisdom saving throw. If you are fighting the creature, it has advantage on the saving throw. On a failed save, the target becomes charmed by you for the duration of up to 1 minute. The charmed target is incapacitated and unaware of its surroundings, though it can still hear you. If it takes any damage or is targeted by another spell, this spell ends, and none of the target's memories are modified.\n\nWhile this charm lasts, you can affect the target's memory of an event that it experienced within the last 24 hours and that lasted no more than 10 minutes. You can:\n- Permanently eliminate all memory of the event.\n- Allow the target to recall the event with perfect clarity and exacting detail.\n- Change its memory of the details of the event.\n- Create a memory of some other event.\n\nYou must speak to the target to describe how its memories are affected, and it must be able to understand your language for the modified memories to take root. Its mind fills in any gaps in the details of your description. If the spell ends before you have finished describing the modified memories, the creature's memory isn't altered. Otherwise, the modified memories take hold when the spell ends.\n\nA modified memory doesn't necessarily affect how a creature behaves, particularly if the memory contradicts the creature's natural inclinations, alignment, or beliefs. An illogical modified memory, such as implanting a memory of how much the creature enjoyed dousing itself in acid, is dismissed, perhaps as a bad dream. The GM might deem a modified memory too nonsensical to affect a creature in a significant manner.\n\nA remove curse or greater restoration spell cast on the target restores the creature's true memory."
+  },
+  {
+   "id": "spell-Freezing-Sphere-6",
+   "name": "Freezing Sphere",
+   "level": 6,
+   "source": "srd",
+   "srdSpellName": "Freezing Sphere",
+   "description": "As an action, you streak a frigid globe of cold energy from your fingertips to a point of your choice within 300 feet, where it explodes in a 60-foot-radius sphere. Each creature within the area must make a Constitution saving throw. On a failed save, a creature takes **10d6** cold damage, or half as much damage on a successful save.\n\nIf the globe strikes a body of water or a liquid that is principally water (not including water-based creatures), it freezes the liquid to a depth of 6 inches over an area 30 feet square. This ice lasts for 1 minute. Creatures that were swimming on the surface of frozen water are trapped in the ice. A trapped creature can use an action to make a Strength check against your spell save DC to break free.\n\nYou can refrain from firing the globe after completing the spell. A small globe about the size of a sling stone, cool to the touch, appears in your hand. At any time, you or a creature you give the globe to can throw the globe (to a range of 40 feet) or hurl it with a sling (to the sling's normal range). It shatters on impact, with the same effect as the normal casting of the spell. You can also set the globe down without shattering it. After 1 minute, if the globe hasn't already shattered, it explodes."
+  },
+  {
+   "id": "spell-Disintegrate-6",
+   "name": "Disintegrate",
+   "level": 6,
+   "source": "srd",
+   "srdSpellName": "Disintegrate",
+   "description": "As an action, you fire a thin green ray from your pointing finger to a target you can see within 60 feet. The target can be a creature, an object, or a creation of magical force, such as a wall created by wall of force.\n\n- A creature targeted by this spell must make a Dexterity saving throw. On a failed save, the target takes **10d6 + 40** force damage. If this damage reduces the target to 0 hit points, it is disintegrated.\n- A disintegrated creature and everything it is wearing and carrying, except magic items, are reduced to a pile of fine gray dust. The creature can be restored to life only by means of a true resurrection or a wish spell.\n- This spell automatically disintegrates a Large or smaller nonmagical object or a creation of magical force. If the target is a Huge or larger object or creation of force, this spell disintegrates a 10-foot-cube portion of it.\n- A magic item is unaffected by this spell."
+  },
+  {
+   "id": "spell-Circle-of-Death-6",
+   "name": "Circle of Death",
+   "level": 6,
+   "source": "srd",
+   "srdSpellName": "Circle of Death",
+   "description": "As an action, a sphere of negative energy ripples out in a 60-foot radius sphere from a point within 150 feet. Each creature in that area must make a Constitution saving throw. A target takes **8d6** necrotic damage on a failed save, or half as much damage on a successful one."
+  },
+  {
+   "id": "spell-Globe-of-Invulnerability-6",
+   "name": "Globe of Invulnerability",
+   "level": 6,
+   "source": "srd",
+   "srdSpellName": "Globe of Invulnerability",
+   "description": "As an action, an immobile, faintly shimmering barrier springs into existence in a 10-foot radius around you and remains for a duration of up to 1 minute.\n\nAny spell of 5th level or lower cast from outside the barrier can't affect creatures or objects within it, even if the spell is cast using a higher level spell slot. Such a spell can target creatures and objects within the barrier, but the spell has no effect on them. Similarly, the area within the barrier is excluded from the areas affected by such spells."
+  },
+  {
+   "id": "spell-Eldritch-Blast-0",
+   "name": "Eldritch Blast",
+   "level": 0,
+   "source": "srd",
+   "srdSpellName": "Eldritch Blast",
+   "description": "As 1 action, you send a beam of crackling energy toward a creature within 120 feet. Make a ranged spell attack against the target. On a hit, the target takes **1d10** force damage.\n\nThe spell creates more than one beam when you reach higher levels:\n- Two beams at 5th level\n- Three beams at 11th level\n- Four beams at 17th level\n\nYou can direct the beams at the same target or at different ones, making a separate attack roll for each beam."
+  }
+ ],
+ "spellcastingAbility": "int",
+ "spellSaveDc": 15,
+ "spellAttackBonus": 7,
+ "cantrips": [
+  {
+   "id": "cantrip-Fire-Bolt",
+   "name": "Fire Bolt"
+  },
+  {
+   "id": "cantrip-Ray-of-Frost",
+   "name": "Ray of Frost"
+  },
+  {
+   "id": "cantrip-Poison-Spray",
+   "name": "Poison Spray"
+  },
+  {
+   "id": "cantrip-Acid-Splash",
+   "name": "Acid Splash"
+  },
+  {
+   "id": "cantrip-Shocking-Grasp",
+   "name": "Shocking Grasp"
+  },
+  {
+   "id": "cantrip-Eldritch-Blast",
+   "name": "Eldritch Blast"
+  }
+ ],
+ "spellSlots": {
+  "1": 4,
+  "2": 3,
+  "3": 3,
+  "4": 3,
+  "5": 2
+ },
+ "spellSlotsExpended": {
+  "1": 0,
+  "2": 0,
+  "3": 0,
+  "4": 0,
+  "5": 0
+ },
+ "spellsUsedThisTurn": [],
+ "featuresUsedThisTurn": [],
+ "activeStates": [],
+ "activeBuffs": [],
+ "sources": [
+  "PHB"
+ ],
+ "ruleset": "2014",
+ "preparedSpells": [],
+ "domainSpells": [],
+ "circleTerrain": "",
+ "circleSpells": [],
+ "bonusCantrips": [],
+ "bardicInspirationUses": 0,
+ "maxBardicInspirationUses": 0,
+ "magicalSecretsSpells": [],
+ "featureSelections": {
+  "variant-human-feat": [
+   "Elemental Adept"
+  ],
+  "variant-human-feat-options": [
+   "damage_type=acid"
+  ],
+  "asi-feat-4": [
+   "Elemental Adept"
+  ],
+  "asi-feat-4-options": [
+   "damage_type=cold"
+  ],
+  "asi-feat-8": [
+   "War Caster"
+  ],
+  "asi-feat-8-options": [],
+  "asi-feat-12": [
+   "Spell Sniper"
+  ],
+  "asi-feat-12-options": [
+   "cantrip=Eldritch Blast"
+  ]
+ },
+ "variantHumanAbilities": [
+  "int",
+  "con"
+ ],
+ "variantHumanSkill": "Arcana",
+ "appliedAsi": [
+  4,
+  8,
+  12
+ ],
+ "currency": {
+  "copper": 0,
+  "silver": 0,
+  "electrum": 0,
+  "gold": 0,
+  "platinum": 0
+ },
+ "appearance": {
+  "age": "",
+  "height": "",
+  "weight": "",
+  "eyes": "",
+  "skin": "",
+  "hair": "",
+  "characterAppearance": "",
+  "personality": "",
+  "backstory": "",
+  "alliesOrganizations": "",
+  "additionalFeaturesTraits": "",
+  "treasure": ""
+ },
+ "createdAt": 1793806964039,
+ "updatedAt": 1793985298100,
+ "kiPoints": 0,
+ "maxKiPoints": 0,
+ "channelDivinityUses": 0,
+ "maxChannelDivinityUses": 0,
+ "actionSurgeUses": 0,
+ "maxActionSurgeUses": 0,
+ "indomitableUses": 0,
+ "maxIndomitableUses": 0,
+ "layOnHandsPool": 0,
+ "maxLayOnHandsPool": 0,
+ "wildShapeUses": 0,
+ "luckPoints": 0,
+ "superiorityDice": 0,
+ "arcanePool": 0,
+ "maxWildShapeUses": 0,
+ "invocationsKnown": 0,
+ "maxInvocationsKnown": 0,
+ "spellbookSpells": 28,
+ "maxSpellbookSpells": 28,
+ "arcaneRecoveryUsed": false,
+ "bardicInspirationDie": "d6",
+ "raceVariant": "variant",
+ "raceChoices": {},
+ "subclassIndex": "evocation",
+ "bonusSaves": [],
+ "maxSuperiorityDice": 0,
+ "effectiveMaxHp": 77,
+ "buffModifiers": {
+  "acBonus": 0,
+  "tempHpBonus": 0,
+  "speedBonus": 0,
+  "flySpeed": null,
+  "swimSpeed": null,
+  "burrowSpeed": null,
+  "darkvisionRange": null,
+  "resistances": [],
+  "advantageSaves": [],
+  "advantageChecks": [],
+  "damageBonus": 0,
+  "attackBonus": 0,
+  "disadvantageAttacks": false
+ },
+ "lastOpenedAt": 1794246838102,
+ "coinsInInventory": true,
+ "saveVersion": 1,
+ "turnActive": true,
+ "turnRound": 1,
+ "moveUsed": false
+}

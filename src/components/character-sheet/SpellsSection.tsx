@@ -6,6 +6,8 @@ import { SectionCard } from "./SectionCard";
 import { useSRD } from "@/contexts/SRDContext";
 import type { Character } from "@/lib/storage";
 import { getFreeCastSpells, getGrantedSpellNames } from "@/lib/granted-spells";
+import { preparableSpells } from "@/lib/prepared-spells";
+import { PrepareSpellsSheet } from "@/components/PrepareSpellsSheet";
 import { getModifier, getMaxPreparedSpells, isPreparationCaster, getMaxSpellsKnown, getMaxCantripsKnown, getMaxSpellLevel } from "@/lib/storage";
 import { getStaticSpells, deduplicateSpells } from "@/lib/srd-client";
 import { LightningIcon as Lightning, PlusIcon as Plus, CheckIcon as Check, CircleIcon as Circle, XIcon as X, ClockIcon as Clock, SparklesIcon as Sparkle, CaretRightIcon as CaretRight } from "@/components/icons";
@@ -64,6 +66,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
   const srdSpells = data?.spells || [];
   const [showSpellModal, setShowSpellModal] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
+  const [preparing, setPreparing] = useState(false);
   const [selectedSpell, setSelectedSpell] = useState<UnifiedSpell | null>(null);
 
   const preparationCaster = isPreparationCaster(character);
@@ -350,6 +353,18 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
         <div className="mb-4 surface bg-paper-muted px-4 py-3">
           <span className="text-sm font-bold text-ink">{t("sheet.preparedSpells")}: {preparedCount}/{maxPrepared}</span>
           <span className="text-xs text-ink ml-2">{t("sheet.spellcastingModHint")}</span>
+          <button type="button" onClick={() => setPreparing(true)} className="mt-2 block rounded-full bg-[var(--color-ink)] px-4 py-2 text-xs font-bold text-[var(--color-surface)]">
+            {t("prepare.title", "Prepare spells")}
+          </button>
+          {preparing && (
+            <PrepareSpellsSheet
+              spells={preparableSpells(character)}
+              prepared={character.preparedSpells || []}
+              limit={maxPrepared}
+              onChange={(preparedSpells) => onChange({ preparedSpells })}
+              onClose={() => setPreparing(false)}
+            />
+          )}
         </div>
       )}
       {!preparationCaster && maxSpellsKnown > 0 && (

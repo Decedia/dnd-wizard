@@ -4,7 +4,9 @@ import { useState, useMemo, useCallback, useEffect, useRef, useLayoutEffect } fr
 import { WizardNav, WIZARD_NAV_SPACE } from "./WizardNav";
 import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclassDetails, getSubclassFlags, getPactBoons, getStaticFeat, getStaticEquipments, getStaticRace } from "@/lib/srd-client";
 import { SourceBadge } from "./SourceBadge";
-import { getHitDieAverage, getModifier, computeDerivedStats, getMaxBardicInspirationUses, getBardicInspirationDie, hasFontOfInspiration, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getOathSpellNames, getWizardTraditionSpellNames, getMaxSpellLevel, isThirdCaster, getSpellSlotTable, getFeatureValue, getWarlockExpandedSpellNames, getHpBonusPerLevel, castsSpells, type Character } from "@/lib/storage";
+import { getHitDieAverage, getModifier, computeDerivedStats, getMaxBardicInspirationUses, getBardicInspirationDie, hasFontOfInspiration, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getOathSpellNames, getWizardTraditionSpellNames, getMaxSpellLevel, isThirdCaster, getSpellSlotTable, getFeatureValue, getWarlockExpandedSpellNames, getHpBonusPerLevel, castsSpells, getMaxPreparedSpells, isPreparationCaster, type Character } from "@/lib/storage";
+import { fillPrepared, preparableSpells } from "@/lib/prepared-spells";
+import { PrepareSpellsSheet } from "@/components/PrepareSpellsSheet";
 import { applySubclassFeatures, applySubclassSpellGrants, syncBaseFeatures } from "@/lib/character-creation";
 import { normalizeDescription } from "@/lib/level-up";
 import invocationsData from "@/data/warlock_invocations.json";
@@ -711,6 +713,9 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   const [subclassFeatureChoices, setSubclassFeatureChoices] = useState<Record<number, Record<string, string>>>({});
   const [classFeatureChoices, setClassFeatureChoices] = useState<Record<number, Record<string, string>>>({});
   const [spellSelections, setSpellSelections] = useState<Record<number, string[]>>({});
+  // The Wizard's prepared list as edited on the recap; null keeps the suggested set.
+  const [preparedOverride, setPreparedOverride] = useState<string[] | null>(null);
+  const [preparingOpen, setPreparingOpen] = useState(false);
   const [magicalSecretsSelections, setMagicalSecretsSelections] = useState<Record<number, string[]>>({});
   const [subclassSpellSelections, setSubclassSpellSelections] = useState<Record<number, string[]>>({});
   const [circleTerrainSelections, setCircleTerrainSelections] = useState<Record<number, string>>({});
@@ -1427,8 +1432,12 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       }
     }
 
-    if (["Cleric", "Druid", "Artificer"].includes(draft.class)) {
-      draft.preparedSpells = [...(character.preparedSpells || []), ...newPreparedIds];
+    if (prepPlan) {
+      // Wizard: spells go into the book; which are ready is its own pick.
+      const owned = new Set(spells.map((sp) => sp.id));
+      draft.preparedSpells = (preparedOverride ?? prepPlan.suggested).filter((id) => owned.has(id));
+    } else if (isPreparationCaster(draft)) {
+      draft.preparedSpells = [...new Set([...(character.preparedSpells || []), ...newPreparedIds])];
     }
 
     let finalChar = applySubclassFeatures(draft, language);
@@ -1518,6 +1527,30 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     const derived = computeDerivedStats({ ...character, ...scores, level: targetLevel });
     return { hp, ac: derived.ac ?? character.ac, atk: derived.spellAttackBonus ?? 0, dc: derived.spellSaveDc ?? 0 };
   }, [baseScores, hpValues, targetLevel, startFromLevelOne, hitDie, conMod, character]);
+  // A Wizard learns spells into the spellbook and separately chooses which are
+  // ready. The recap shows that list, filled in, so it is never left empty.
+  const prepPlan = (() => {
+    if (character.class !== "Wizard") return null;
+    const base = preparableSpells(character);
+    const have = new Set(base.map((sp) => `${sp.name}:${sp.level}`));
+    const added: typeof base = [];
+    for (const list of Object.values(spellSelections)) {
+      for (const entry of list) {
+        const [name, levelStr] = entry.split(":");
+        const level = Number(levelStr);
+        if (!(level > 0) || have.has(entry)) continue;
+        have.add(entry);
+        added.push({ id: `spell-${name}-${level}`.replace(/\s+/g, "-"), name, level });
+      }
+    }
+    const spells = [...base, ...added];
+    const scores = baseScores();
+    (Object.keys(scores) as AbilityKey[]).forEach((k) => { scores[k] = Math.min(20, scores[k]); });
+    const limit = getMaxPreparedSpells({ ...character, ...scores, level: targetLevel });
+    const suggested = fillPrepared(spells, [...(character.preparedSpells || []), ...added.map((a) => a.id)], limit);
+    return { spells, limit, suggested };
+  })();
+  const preparedNow = prepPlan ? (preparedOverride ?? prepPlan.suggested).filter((id) => prepPlan.spells.some((sp) => sp.id === id)) : [];
   const showSpellStats = castsSpells({ class: character.class, subclass: subclassSelection || character.subclass });
 
   const partTitle = (part: LevelPart | "recap") => ({
@@ -1958,6 +1991,30 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
                   })}
                 </div>
               ))}
+              {prepPlan && prepPlan.spells.length > 0 && (
+                <div className="rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)]">
+                  <div className="px-4 pt-3 pb-1 text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">
+                    {t("levelUp.flow.recapPreparedTitle", "Spells ready to cast")}
+                  </div>
+                  <button type="button" onClick={() => setPreparingOpen(true)} className="flex w-full items-center gap-3 px-4 py-2.5 text-left hover:bg-[var(--color-bg)]">
+                    <span className="w-24 shrink-0 text-xs font-semibold text-[var(--color-text-secondary)]">{t("levelUp.flow.recapPrepared", "Prepared spells")}</span>
+                    <span className="min-w-0 flex-1 text-xs text-[var(--color-text-primary)]">
+                      {t("prepare.count", "{count} of {max} ready", { count: preparedNow.length, max: prepPlan.limit })}
+                      <span className="block text-[11px] text-[var(--color-text-muted)]">{t("levelUp.flow.recapPreparedHint", "We picked a set for you. Tap to change it.")}</span>
+                    </span>
+                    <span className="text-[10px] font-semibold text-[var(--color-text-muted)]">{t("common.change", "Change")}</span>
+                  </button>
+                  {preparingOpen && (
+                    <PrepareSpellsSheet
+                      spells={prepPlan.spells}
+                      prepared={preparedNow}
+                      limit={prepPlan.limit}
+                      onChange={setPreparedOverride}
+                      onClose={() => setPreparingOpen(false)}
+                    />
+                  )}
+                </div>
+              )}
             </>
           ) : stepInfos.length > 0 && step.part === "moment" ? (
             <>
