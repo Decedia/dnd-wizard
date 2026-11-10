@@ -59,20 +59,20 @@ export function RestSheet({ character, kind, onChange, onClose }: RestSheetProps
   const footer = done ? (
     <div className="flex items-center gap-2 px-4 py-3">
       {canPrepare && (
-        <button type="button" onClick={() => setPreparing(true)} className="btn-secondary flex-1 text-xs">
+        <button type="button" onClick={() => setPreparing(true)} className="btn btn-secondary flex-1">
           {t("rest.changeSpells", "Change spells")}
         </button>
       )}
-      <button type="button" onClick={onClose} className="btn-primary flex-1 text-xs">
+      <button type="button" onClick={onClose} className="btn btn-primary flex-1">
         {canPrepare ? t("rest.keepSpells", "Keep them") : t("prepare.done", "Done")}
       </button>
     </div>
   ) : (
     <div className="flex items-center gap-2 px-4 py-3">
-      <button type="button" onClick={onClose} className="btn-secondary flex-1 text-xs">
+      <button type="button" onClick={onClose} className="btn btn-secondary flex-1">
         {t("common.cancel", "Cancel")}
       </button>
-      <button type="button" onClick={rest} className="btn-primary flex-1 text-xs">
+      <button type="button" onClick={rest} className="btn btn-primary flex-1">
         {t(`rest.${kind}.confirm`)}
       </button>
     </div>

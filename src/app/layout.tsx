@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import { BottomNav } from "@/components/BottomNav";
 import { SRDProvider } from "@/contexts/SRDContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
@@ -8,10 +8,12 @@ import { DebugProvider } from "@/lib/debug/DebugContext";
 import { DebugButton } from "@/components/debug/DebugButton";
 import "./globals.css";
 
-const inter = Inter({
+// Inter (variable, Latin) ships with the app, so the build never downloads it.
+const inter = localFont({
+  src: "./fonts/inter-latin.woff2",
   variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: "100 900",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
