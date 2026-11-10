@@ -99,6 +99,7 @@ export function longRestPatch(character: Character): Partial<Character> {
     exhaustionLevel: Math.max(0, (character.exhaustionLevel || 0) - 1),
     arcaneRecoveryUsed: false,
     freeCastsUsed: [],
+    wildShape: undefined,
     featureUses: {},
     spellsUsedThisTurn: [],
     featuresUsedThisTurn: [],

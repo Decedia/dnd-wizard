@@ -8,12 +8,13 @@ import { equipRow, heldInHands, unequipRow, type Hand, type InventoryRow } from 
 import { getFreeCastSpells, getGrantedSpellNames } from "@/lib/granted-spells";
 import { advanceTurn, parseDurationToTurns } from "@/lib/spellEffects";
 import { ruleFor, ruleKey, usesMax, type FeatureWhen, type PoolField } from "@/data/turn-features";
+import { beastByName, type Beast } from "@/data/wild-shapes";
 
 /** "free" takes none of the three: it rides on something else (a hit, a failed save). */
 export type TurnSlot = "action" | "bonus" | "reaction" | "free";
 export type TurnGroup = "attack" | "spell" | "feature" | "basic";
 /** Why an option cannot be used; the panel turns it into a sentence. */
-export type TurnBlock = "noSlot" | "empty" | "actionFirst" | "raging" | "notRaging";
+export type TurnBlock = "noSlot" | "empty" | "actionFirst" | "raging" | "notRaging" | "shaped";
 
 export interface TurnOption {
   key: string;
@@ -319,7 +320,10 @@ function featureOptions(character: Character): TurnOption[] {
       option.spend.activeStates = [...(character.activeStates || []), "raging"];
     }
     if (rule.when === "whileRaging" && !isRaging(character) && !option.blocked) option.blocked = "notRaging";
+    if (/^\^Wild Shape/.test(rule.name.source) && character.wildShape && !option.blocked) option.blocked = "shaped";
     if (rule.restoresAction) {
+      // A new Attack action starts its own count of swings.
+      option.spend.swings = [];
       // The helper tracks one action at a time, so the extra one is taken after the first.
       if (!character.actionUsed && !option.blocked) option.blocked = "actionFirst";
       option.spend.actionUsed = false;
@@ -343,6 +347,23 @@ export function amountPatch(character: Character, option: TurnOption, amount: nu
   return { ...optionPatch(option), [option.amount.field]: option.amount.max - spent } as Partial<Character>;
 }
 
+/** The beast form the character is in, if any. */
+export const currentBeast = (character: Pick<Character, "wildShape">): Beast | undefined => (character.wildShape ? beastByName(character.wildShape.form) : undefined);
+
+function beastAttackOptions(beast: Beast): TurnOption[] {
+  return beast.attacks.map((a, i) => ({
+    key: `beast:${i}`,
+    slot: "action" as const,
+    group: "attack" as const,
+    name: a.name,
+    summary: a.note || "",
+    toHit: a.toHit,
+    damage: `${a.damage} damage`,
+    tags: ["melee"],
+    spend: {},
+  }));
+}
+
 export function buildTurnMenu(character: Character, srdSpells: SrdSpell[]): TurnMenu {
   const basics: TurnOption[] = BASIC_ACTIONS.map((b) => ({
     key: `basic:${b.id}`,
@@ -354,11 +375,19 @@ export function buildTurnMenu(character: Character, srdSpells: SrdSpell[]): Turn
     summaryKey: `turn.basic.${b.id}.hint`,
     spend: {},
   }));
+  const beast = currentBeast(character);
+  // In beast form the beast's attacks replace the character's, and spells cannot be cast (until Beast Spells at 18).
+  const beastSpells = (character.features || []).some((f) => /^Beast Spells/.test(f.name || ""));
   return {
-    options: [...attackOptions(character), ...spellOptions(character, srdSpells), ...featureOptions(character), ...basics],
+    options: [
+      ...(beast ? beastAttackOptions(beast) : attackOptions(character)),
+      ...(beast && !beastSpells ? [] : spellOptions(character, srdSpells)),
+      ...featureOptions(character),
+      ...basics,
+    ],
     features: featureList(character),
-    attacksPerAction: attacksPerAction(character),
-    speed: character.speed || 30,
+    attacksPerAction: beast ? beast.multiattack : attacksPerAction(character),
+    speed: beast ? beast.speed || beast.swim || beast.fly || 30 : character.speed || 30,
   };
 }
 
@@ -375,7 +404,7 @@ export function optionPatch(option: TurnOption): Partial<Character> {
 
 /** A new turn: action, bonus action, movement and reaction all come back. */
 export function startTurnPatch(character: Pick<Character, "turnRound">): Partial<Character> {
-  return { turnActive: true, turnRound: (character.turnRound || 0) + 1, actionUsed: false, bonusActionUsed: false, reactionUsed: false, moveUsed: false, objectInteractionUsed: false };
+  return { turnActive: true, turnRound: (character.turnRound || 0) + 1, actionUsed: false, bonusActionUsed: false, reactionUsed: false, moveUsed: false, objectInteractionUsed: false, swings: [] };
 }
 
 /**
@@ -392,12 +421,12 @@ export function endTurnPatch(character: Character, srdSpells: SrdSpell[]): Parti
     const turns = srd?.duration ? parseDurationToTurns(srd.duration) : null;
     if (turns !== null && turns > 1) kept.push(spellId);
   }
-  return { turnActive: false, actionUsed: false, bonusActionUsed: false, moveUsed: false, objectInteractionUsed: false, spellsUsedThisTurn: kept, featuresUsedThisTurn: [], activeBuffs: advanceTurn(character.activeBuffs || []) };
+  return { turnActive: false, actionUsed: false, bonusActionUsed: false, moveUsed: false, objectInteractionUsed: false, swings: [], spellsUsedThisTurn: kept, featuresUsedThisTurn: [], activeBuffs: advanceTurn(character.activeBuffs || []) };
 }
 
 /** The fight is over: the round counter starts again, rage and the quick taps end. */
 export function endEncounterPatch(character?: Pick<Character, "activeStates">): Partial<Character> {
-  const patch: Partial<Character> = { turnActive: false, turnRound: 0, actionUsed: false, bonusActionUsed: false, reactionUsed: false, moveUsed: false, objectInteractionUsed: false, turnSituation: undefined };
+  const patch: Partial<Character> = { turnActive: false, turnRound: 0, actionUsed: false, bonusActionUsed: false, reactionUsed: false, moveUsed: false, objectInteractionUsed: false, turnSituation: undefined, swings: [] };
   if (character && isRaging(character)) patch.activeStates = (character.activeStates || []).filter((s) => s !== "raging");
   return patch;
 }
@@ -477,4 +506,95 @@ export function changeHands(
   if (cost.interaction) patch.objectInteractionUsed = true;
   if (cost.action) patch.actionUsed = true;
   return { patch, cost, removed };
+}
+
+// ---------------------------------------------------------------------------
+// The Attack action, one swing at a time
+
+export type SwingResult = "hit" | "crit" | "miss";
+
+/** A weapon attack option (not a spell, not the off-hand bonus attack). */
+export const isSwingOption = (o: TurnOption) => o.group === "attack" && o.slot === "action";
+
+/** Swings left in this Attack action; 0 when no Attack action is going on. */
+export function swingsLeft(character: Pick<Character, "swings">, perAction: number): number {
+  const swings = character.swings || [];
+  if (swings.length === 0) return 0;
+  return Math.max(0, perAction - swings.length);
+}
+
+/**
+ * Starts the Attack action with a swing, or adds the next swing to it.
+ * The first swing takes the action; the rest of the Extra Attack swings are part of it.
+ */
+export function swingPatch(character: Character, option: TurnOption): Partial<Character> {
+  const swings = character.swings || [];
+  const next = [...swings.filter((s) => s.result !== "pending"), { key: option.key, name: option.nameKey ? "" : option.name, result: "pending" as const }];
+  return swings.length === 0 ? { ...optionPatch(option), swings: next } : { swings: next };
+}
+
+export function swingResultPatch(character: Character, index: number, result: SwingResult): Partial<Character> {
+  return { swings: (character.swings || []).map((s, i) => (i === index ? { ...s, result } : s)) };
+}
+
+/** Doubles every die in a damage line, for a critical hit: "1d8 + 3" becomes "2d8 + 3". */
+export function critDamage(damage: string): string {
+  return damage.replace(/(\d+)d(\d+)/g, (_, n, d) => `${Number(n) * 2}d${d}`);
+}
+
+export interface SmiteChoice {
+  level: number;
+  /** Radiant dice, already doubled on a crit. */
+  dice: string;
+}
+
+/**
+ * Divine Smite after a melee weapon hit: 2d8 radiant for a 1st-level slot,
+ * +1d8 per slot level above 1st, at most 5d8 (6d8 against undead or a
+ * fiend); every die doubles on a critical hit. One choice per open slot level.
+ */
+export function smiteChoices(character: Character, crit: boolean): SmiteChoice[] {
+  if (!(character.features || []).some((f) => /^Divine Smite/.test(f.name || ""))) return [];
+  const out: SmiteChoice[] = [];
+  for (let level = 1; level <= 9; level++) {
+    const total = character.spellSlots?.[level] ?? 0;
+    if (total - (character.spellSlotsExpended?.[level] ?? 0) <= 0) continue;
+    const count = Math.min(5, 1 + level) * (crit ? 2 : 1);
+    out.push({ level, dice: `${count}d8` });
+  }
+  return out;
+}
+
+export function smitePatch(character: Character, index: number, level: number): Partial<Character> {
+  return {
+    spellSlotsExpended: { ...(character.spellSlotsExpended || {}), [level]: (character.spellSlotsExpended?.[level] ?? 0) + 1 },
+    swings: (character.swings || []).map((s, i) => (i === index ? { ...s, smite: level } : s)),
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Wild Shape
+
+/** Turning into a beast: the Wild Shape option's cost plus the form at full HP. */
+export function wildShapePatch(option: TurnOption, beast: Beast): Partial<Character> {
+  return { ...optionPatch(option), wildShape: { form: beast.name, hp: beast.hp }, swings: [] };
+}
+
+/**
+ * Damage to the beast form. At 0 HP the druid changes back, and damage
+ * left over carries to the druid's own HP. Negative damage heals the form.
+ */
+export function wildDamagePatch(character: Character, amount: number): { patch: Partial<Character>; reverted: boolean; carried: number } {
+  const shape = character.wildShape;
+  const beast = currentBeast(character);
+  if (!shape || !beast) return { patch: {}, reverted: false, carried: 0 };
+  const hp = shape.hp - amount;
+  if (hp > 0) return { patch: { wildShape: { ...shape, hp: Math.min(beast.hp, hp) } }, reverted: false, carried: 0 };
+  const carried = -hp;
+  return { patch: { wildShape: undefined, currentHp: Math.max(0, (character.currentHp || 0) - carried), swings: [] }, reverted: true, carried };
+}
+
+/** Changing back early takes a bonus action during the druid's turn. */
+export function leaveShapePatch(character: Pick<Character, "turnActive">): Partial<Character> {
+  return character.turnActive ? { wildShape: undefined, bonusActionUsed: true, swings: [] } : { wildShape: undefined, swings: [] };
 }
