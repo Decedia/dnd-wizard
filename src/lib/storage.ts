@@ -51,6 +51,10 @@ export interface Character {
   actionUsed: boolean;
   bonusActionUsed: boolean;
   reactionUsed: boolean;
+  /** Turn panel: movement spent this turn, whether a turn is running, and the round number of the fight. */
+  moveUsed?: boolean;
+  turnActive?: boolean;
+  turnRound?: number;
   // Exhaustion
   exhaustionLevel: number;
   rages: number;
