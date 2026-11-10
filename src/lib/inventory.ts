@@ -82,6 +82,45 @@ export function rowFromCatalog(item: CatalogItem, quantity = 1, extra: Partial<I
   return { ...row, ...extra };
 }
 
+/** Stats that always follow the catalog, so a row saved by an older version can't drift. */
+const CATALOG_STAT_KEYS = [
+  "itemType", "category", "damageDice", "damageType", "properties", "versatileDice", "range",
+  "armorType", "baseAC", "maxDexBonus", "stealthDisadvantage", "strengthRequirement",
+] as const satisfies readonly (keyof InventoryRow)[];
+
+/**
+ * A catalog row with its weapon and armor stats read fresh from the catalog.
+ * Old saves kept those stats as JSON text in the description, or not at all.
+ * Custom rows (no catalog id) are returned untouched.
+ */
+export function withCatalogStats(row: InventoryRow): InventoryRow {
+  const item = row.itemId ? findCatalogItem(row.itemId) : undefined;
+  if (!item || item.type === "coin") return row;
+  const fresh = rowFromCatalog(item);
+  const next: InventoryRow = { ...row };
+  for (const key of CATALOG_STAT_KEYS) {
+    if (fresh[key] !== undefined) (next as any)[key] = fresh[key];
+  }
+  if (typeof row.description === "string" && row.description.trimStart().startsWith("{")) {
+    next.description = fresh.description;
+    if (fresh.icon) next.icon = fresh.icon;
+  }
+  if (next.weight === undefined) next.weight = fresh.weight;
+  return next;
+}
+
+/** A weapon that may use Dexterity: ranged, or with the finesse property. */
+export function isFinesseOrRanged(row: InventoryRow): boolean {
+  return row.category === "ranged" || (row.properties || []).some((p) => p.toLowerCase() === "finesse");
+}
+
+/** The ability a weapon attacks with: Dexterity for ranged, the better of the two for finesse, else Strength. */
+export function weaponAbility(row: InventoryRow, strMod: number, dexMod: number): "str" | "dex" {
+  const finesse = (row.properties || []).some((p) => p.toLowerCase() === "finesse");
+  if (finesse) return dexMod >= strMod ? "dex" : "str";
+  return row.category === "ranged" ? "dex" : "str";
+}
+
 /**
  * Rows for `quantity` of an item. A pack becomes the items inside it, so an
  * explorer's pack adds a backpack, a bedroll, ten torches and so on.

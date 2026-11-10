@@ -5,7 +5,9 @@ import { BottomSheet } from "@/components/modals/BottomSheet";
 import { RichInline } from "@/components/RichText";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getStaticClass, getStaticSubclassDetails } from "@/lib/srd-client";
-import type { Character } from "@/lib/storage";
+import { getMaxPreparedSpells, type Character } from "@/lib/storage";
+import { needsPrepare, preparableSpells } from "@/lib/prepared-spells";
+import { PrepareSpellsSheet } from "@/components/PrepareSpellsSheet";
 import { buildTurnMenu, endEncounterPatch, isSlotUsed, optionPatch, type TurnGroup, type TurnOption, type TurnSlot } from "@/lib/turn";
 import { CheckIcon as Check, LightningBoltIcon as LightningBolt, ClockIcon as Clock, ShieldCheckIcon as ShieldCheck, CaretDownIcon as ChevronDown } from "@/components/icons";
 import { GiRun } from "react-icons/gi";
@@ -27,6 +29,8 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
   const menu = useMemo(() => buildTurnMenu(character, srdSpells), [character, srdSpells]);
   const [openBasics, setOpenBasics] = useState<Partial<Record<TurnSlot, boolean>>>({});
   const [showFeatures, setShowFeatures] = useState(true);
+  const [preparing, setPreparing] = useState(false);
+  const mustPrepare = needsPrepare(character);
   const [last, setLast] = useState<{ name: string; undo: Partial<Character> } | null>(null);
 
   // Feature summaries in the reader's language; the rules data itself is English only.
@@ -144,9 +148,25 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
       </div>
 
       <div className="space-y-5 px-4 py-4">
+        {mustPrepare && (
+          <div className="rounded-[var(--radius-md)] border border-amber-500/60 bg-amber-500/10 px-3 py-3">
+            <div className="text-sm font-bold text-[var(--color-text-primary)]">{t("turn.prepare.title", "No spells ready")}</div>
+            <p className="mt-0.5 text-xs leading-relaxed text-[var(--color-text-secondary)]">{t("turn.prepare.hint", "Your class chooses which spells are ready each day. Until you do, only cantrips show here.")}</p>
+            <button type="button" onClick={() => setPreparing(true)} className="mt-2 rounded-full bg-[var(--color-ink)] px-4 py-2 text-xs font-bold text-[var(--color-surface)]">
+              {t("prepare.title", "Prepare spells")}
+            </button>
+          </div>
+        )}
         {SLOTS.map((slot) => {
           const options = menu.options.filter((o) => o.slot === slot);
-          if (options.length === 0) return null;
+          if (options.length === 0) {
+            return (
+              <section key={slot}>
+                <h3 className="text-sm font-bold text-[var(--color-text-primary)]">{t(`turn.slot.${slot}`)}</h3>
+                <p className="mt-1 text-[11px] text-[var(--color-text-muted)]">{t(`turn.slot.${slot}.none`)}</p>
+              </section>
+            );
+          }
           const used = isSlotUsed(character, slot);
           const basics = options.filter((o) => o.group === "basic");
           return (
@@ -207,6 +227,15 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
           </section>
         )}
       </div>
+      {preparing && (
+        <PrepareSpellsSheet
+          spells={preparableSpells(character)}
+          prepared={character.preparedSpells || []}
+          limit={getMaxPreparedSpells(character)}
+          onChange={(preparedSpells) => onChange({ preparedSpells })}
+          onClose={() => setPreparing(false)}
+        />
+      )}
     </BottomSheet>
   );
 }

@@ -188,7 +188,7 @@ const NOT_A_TURN_FEATURE = /feature$|^Ability Score Improvement|^Spellcasting|^P
 function featureList(character: Character): TurnMenu["features"] {
   const seen = new Set<string>();
   return (character.features || [])
-    .filter((f) => !NOT_A_TURN_FEATURE.test(f.name) && !seen.has(f.name) && !!seen.add(f.name))
+    .filter((f) => !!f.name?.trim() && !NOT_A_TURN_FEATURE.test(f.name) && !seen.has(f.name) && !!seen.add(f.name))
     .map((f) => ({ id: f.id, name: f.name, description: f.description || "" }));
 }
 

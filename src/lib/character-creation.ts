@@ -1,4 +1,5 @@
-import { createEmptyCharacter, saveCharacter, computeDerivedStats, generateId, getFeatureValue, getMaxHpFromLevelHp, getSpellSlotTable, SKILLS, type Character } from "./storage";
+import { createEmptyCharacter, saveCharacter, computeDerivedStats, generateId, getFeatureValue, getMaxHpFromLevelHp, getSpellSlotTable, isPreparationCaster, SKILLS, type Character } from "./storage";
+import { suggestPrepared } from "./prepared-spells";
 import { LANGUAGE_NAMES } from "@/data/feat-options";
 import { applyFeatGrants, decodeFeatOptions } from "./feat-grants";
 import { getRaceAsi, getRaceSkills, isFlexAsiValid } from "./race-grants";
@@ -1413,6 +1414,9 @@ export async function finalizeCreation(character: Character, language = "en"): P
     spellSlots: Object.keys(spellSlots).length > 0 ? spellSlots : final.spellSlots,
     spellSlotsExpended: Object.keys(spellSlots).length > 0 ? Object.fromEntries(Object.keys(spellSlots).map(k => [k, 0])) : final.spellSlotsExpended,
   };
+  // A preparing caster starts with a full, legal prepared list (a Wizard's
+  // book holds more spells than can be ready at once).
+  if (isPreparationCaster(finalCharacter)) finalCharacter.preparedSpells = suggestPrepared(finalCharacter);
   await saveCharacter(finalCharacter);
   return finalCharacter;
 }

@@ -6,6 +6,8 @@ import { SectionCard } from "./SectionCard";
 import { useSRD } from "@/contexts/SRDContext";
 import type { Character } from "@/lib/storage";
 import { getFreeCastSpells, getGrantedSpellNames } from "@/lib/granted-spells";
+import { preparableSpells } from "@/lib/prepared-spells";
+import { PrepareSpellsSheet } from "@/components/PrepareSpellsSheet";
 import { getModifier, getMaxPreparedSpells, isPreparationCaster, getMaxSpellsKnown, getMaxCantripsKnown, getMaxSpellLevel } from "@/lib/storage";
 import { getStaticSpells, deduplicateSpells } from "@/lib/srd-client";
 import { LightningIcon as Lightning, PlusIcon as Plus, CheckIcon as Check, CircleIcon as Circle, XIcon as X, ClockIcon as Clock, SparklesIcon as Sparkle, CaretRightIcon as CaretRight } from "@/components/icons";
@@ -64,9 +66,11 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
   const srdSpells = data?.spells || [];
   const [showSpellModal, setShowSpellModal] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
+  const [preparing, setPreparing] = useState(false);
   const [selectedSpell, setSelectedSpell] = useState<UnifiedSpell | null>(null);
 
   const preparationCaster = isPreparationCaster(character);
+  const preparableCount = preparationCaster ? preparableSpells(character).length : 0;
   const maxPrepared = getMaxPreparedSpells(character);
   const maxSpellsKnown = getMaxSpellsKnown(character);
   const maxCantripsKnown = getMaxCantripsKnown(character);
@@ -348,8 +352,36 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
     <SectionCard id="spells" title={t("section.spells")} icon={<Lightning className="h-5 w-5" />}>
       {preparationCaster && (
         <div className="mb-4 surface bg-paper-muted px-4 py-3">
-          <span className="text-sm font-bold text-ink">{t("sheet.preparedSpells")}: {preparedCount}/{maxPrepared}</span>
-          <span className="text-xs text-ink ml-2">{t("sheet.spellcastingModHint")}</span>
+          <button
+            type="button"
+            onClick={() => setPreparing(true)}
+            className={`flex w-full items-center justify-between gap-3 rounded-[var(--radius-md)] border px-4 py-3 text-left transition-colors ${
+              preparedCount < Math.min(maxPrepared, preparableCount)
+                ? "border-amber-500/70 bg-amber-500/10"
+                : "border-[var(--color-border)] bg-[var(--color-surface)]"
+            }`}
+          >
+            <span className="min-w-0">
+              <span className="block text-sm font-bold text-ink">{t("prepare.title", "Prepare spells")}</span>
+              <span className="block text-xs text-ink">
+                {preparedCount < Math.min(maxPrepared, preparableCount)
+                  ? t("prepare.status.open", { count: preparedCount, max: maxPrepared, left: Math.min(maxPrepared, preparableCount) - preparedCount }, "{count} of {max} ready · {left} more to pick")
+                  : t("prepare.count", { count: preparedCount, max: maxPrepared }, "{count} of {max} ready")}
+              </span>
+            </span>
+            <span className="shrink-0 rounded-full bg-[var(--color-ink)] px-3 py-1.5 text-xs font-bold text-[var(--color-surface)]">
+              {preparedCount === 0 ? t("prepare.choose", "Choose") : t("common.change", "Change")}
+            </span>
+          </button>
+          {preparing && (
+            <PrepareSpellsSheet
+              spells={preparableSpells(character)}
+              prepared={character.preparedSpells || []}
+              limit={maxPrepared}
+              onChange={(preparedSpells) => onChange({ preparedSpells })}
+              onClose={() => setPreparing(false)}
+            />
+          )}
         </div>
       )}
       {!preparationCaster && maxSpellsKnown > 0 && (

@@ -24,7 +24,7 @@ import { CustomItemModal } from "../modals/CustomItemModal";
 import { Dice } from "@/components/Dice";
 import { SourceBadge } from "@/components/SourceBadge";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { addRows, applyItemUse, carriedWeight, COIN_BY_FIELD, coinsFromInventory, equipRow, getRowUse, isCoinRow, rowInfo, rowText, setCoinAmount } from "@/lib/inventory";
+import { addRows, applyItemUse, carriedWeight, COIN_BY_FIELD, coinsFromInventory, equipRow, getRowUse, isCoinRow, rowInfo, weaponAbility, rowText, setCoinAmount } from "@/lib/inventory";
 import { findLocalizedItem } from "@/data/item-catalog";
 import { ItemIcon } from "@/components/ItemIcon";
 
@@ -162,15 +162,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
   const getWeaponStats = (item: Character["inventory"][number]): { attackBonus: string; damage: string; ability: string; damageBonus: number; rageBonus: number } | null => {
     if (item.itemType !== "weapon") return null;
     const profBonus = getProficiencyBonus(character.level);
-    const isFinesseOrRanged = item.category === "ranged" || item.name === "Dagger" || item.name === "Rapier" || item.name === "Shortsword";
-    let abilityKey: "str" | "dex";
-    if (isFinesseOrRanged) {
-      const strMod = getModifier(character.str);
-      const dexMod = getModifier(character.dex);
-      abilityKey = dexMod >= strMod ? "dex" : "str";
-    } else {
-      abilityKey = item.category === "ranged" ? "dex" : "str";
-    }
+    const abilityKey = weaponAbility(item, getModifier(character.str), getModifier(character.dex));
     const abilityMod = getModifier(character[abilityKey as keyof Character] as number);
     const attackBonus = abilityMod + (addsProficiencyToAttack(character, item) ? profBonus : 0);
     const rageBonus = isBarbarian && abilityKey === "str" ? rageDamage : 0;

@@ -1,7 +1,7 @@
 import { getStaticClass, getStaticRace, getStaticSubclasses, getDomainSpells, getCircleSpells as getJsonCircleSpells, getCircleTerrainTypes as getJsonCircleTerrainTypes, getOathSpells, getWizardTraditionSpells, getSubclassFlags, getPactBoons } from "@/lib/srd-client";
 import { computeBuffModifiers, type ActiveBuff } from "@/lib/spellEffects";
 import { getSpellMechanic } from "@/lib/spell-mechanics-accessor";
-import { coinRows, coinsFromInventory, withChoiceInfo } from "@/lib/inventory";
+import { coinRows, coinsFromInventory, isFinesseOrRanged, weaponAbility, withCatalogStats, withChoiceInfo } from "@/lib/inventory";
 import { findCatalogItem } from "@/data/item-catalog";
 import { addsProficiencyToAttack } from "@/lib/proficiency";
 import { db, type CharacterRecord, dbGetCharacters, dbGetCharacter, dbSaveCharacter, dbDeleteCharacter, dbTouchCharacterOpened } from "@/lib/db";
@@ -609,7 +609,7 @@ function withOwnBooks(c: Character): Character {
   return books.size === sources.length ? c : ({ ...c, sources: [...books] } as Character);
 }
 
-function normalizeCharacter(c: Character): Character {
+export function normalizeCharacter(c: Character): Character {
   return upgradeSave(withOwnBooks(normalizeCharacterFields(c)));
 }
 
@@ -621,10 +621,10 @@ export function migrateCoins(c: Character): Pick<Character, "inventory" | "curre
   let inventory = (c.inventory || []).map((row) => {
     // Consumables are used, not equipped; old saves may have them equipped.
     const item = withChoiceInfo(row.itemType === "consumable" && row.equipped ? { ...row, equipped: false } : row);
-    if (item.itemId || item.source !== "srd") return { ...item };
+    if (item.itemId || item.source !== "srd") return withCatalogStats({ ...item });
     // Old rows were matched by name; stamp the catalog id so Use and lookups work.
     const match = findCatalogItem(item.srdItemName || item.name);
-    return match ? { ...item, itemId: match.id } : { ...item };
+    return match ? withCatalogStats({ ...item, itemId: match.id }) : { ...item };
   });
   if (!c.coinsInInventory) inventory = [...inventory, ...coinRows((c as any).currency ?? {})];
   return { inventory, currency: coinsFromInventory(inventory), coinsInInventory: true };
@@ -695,7 +695,8 @@ function normalizeCharacterFields(c: Character): Character {
     costumeSpells: (c.costumeSpells || []).map((cs) => ({ ...cs })),
     variantHumanAbilities: (c as any).variantHumanAbilities,
     variantHumanSkill: (c as any).variantHumanSkill,
-    features: (c.features || []).map((feature) => {
+    // A row with no name and no text is an abandoned "Add feature" tap.
+    features: (c.features || []).filter((f) => f.name?.trim() || f.description?.trim()).map((feature) => {
       const description = feature.description || "";
       const actionType = (feature as any).actionType;
       const uses = (feature as any).uses;
@@ -898,10 +899,9 @@ export function computeEquippedEffects(character: Character): { ac: number; atta
 
   const profBonus = getProficiencyBonus(character.level);
   const weaponAttacks: Character["attacks"] = equippedWeapons.map((weapon) => {
-    const abilityKey = weapon.category === "ranged" ? "dex" : "str";
+    const abilityKey = weaponAbility(weapon, getModifier(character.str), getModifier(character.dex));
     const abilityMod = getModifier(character[abilityKey as keyof Character] as number);
-    const isFinesseOrRanged = weapon.category === "ranged" || weapon.name === "Dagger" || weapon.name === "Rapier" || weapon.name === "Shortsword";
-    const sneakDice = isFinesseOrRanged ? getSneakAttackDice(character) : undefined;
+    const sneakDice = isFinesseOrRanged(weapon) ? getSneakAttackDice(character) : undefined;
     // No proficiency bonus with a weapon the character isn't proficient with.
     const attackBonus = abilityMod + (addsProficiencyToAttack(character, weapon) ? profBonus : 0);
     const damageBonus = abilityMod;
@@ -1500,8 +1500,27 @@ export function computeDerivedStats(character: Character): Partial<Character> {
         description: "Special melee attack. Athletics vs target's Athletics or Acrobatics. On success, target is either knocked Prone or pushed 5 feet away from you."
       }]),
     ],
+    ...slotsForLevel(character, classData),
     ...clampedAbilities,
   };
+}
+
+/**
+ * Spell slots always follow the class table for the current level, so a
+ * level-up, an import or an old save can never leave them behind. What is
+ * spent is kept, capped at the new total. Non-casters keep what they have.
+ */
+function slotsForLevel(character: Character, classData: any): Pick<Character, "spellSlots" | "spellSlotsExpended"> | Record<string, never> {
+  const table = getSpellSlotTable(classData, character.level || 1, character.subclass);
+  if (!table || Object.keys(table).length === 0) return {};
+  const spent = character.spellSlotsExpended || {};
+  const spellSlots: Record<number, number> = {};
+  const spellSlotsExpended: Record<number, number> = {};
+  for (const [level, count] of Object.entries(table)) {
+    spellSlots[Number(level)] = count as number;
+    spellSlotsExpended[Number(level)] = Math.min(count as number, Math.max(0, spent[Number(level)] || 0));
+  }
+  return { spellSlots, spellSlotsExpended };
 }
 
 export function getMaxPreparedSpells(character: Character): number {
