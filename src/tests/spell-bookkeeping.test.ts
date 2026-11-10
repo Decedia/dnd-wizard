@@ -1,7 +1,8 @@
 // @ts-ignore - bun:test is provided by the Bun runtime
 import { describe, expect, test } from "bun:test";
 import { getFreeCastSpells, syncGrantedSpells } from "@/lib/granted-spells";
-import { applyLongRest, applyShortRest, createEmptyCharacter, type Character } from "@/lib/storage";
+import { createEmptyCharacter, type Character } from "@/lib/storage";
+import { longRestPatch as applyLongRest, shortRestPatch as applyShortRest } from "@/lib/rest";
 import mechanics from "@/data/en/2014_spell_mechanics.json";
 import { getStaticSpells } from "@/lib/srd-client";
 

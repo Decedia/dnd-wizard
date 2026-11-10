@@ -1,5 +1,7 @@
 "use client";
 
+import { GiCampfire, GiNightSleep } from "react-icons/gi";
+
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { ShieldStat } from "./styled/ShieldStat";
@@ -20,9 +22,10 @@ interface CombatStatsSectionProps {
   editMode?: boolean;
   /** Opens the turn panel; starts a new turn when none is running. */
   onOpenTurn?: () => void;
+  onRest?: (kind: "short" | "long") => void;
 }
 
-export function CombatStatsSection({ character, onChange, editMode = true, onOpenTurn }: CombatStatsSectionProps) {
+export function CombatStatsSection({ character, onChange, editMode = true, onOpenTurn, onRest }: CombatStatsSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
   const { t } = useLanguage();
   const maxHp = character.effectiveMaxHp ?? character.maxHp;
@@ -201,6 +204,25 @@ export function CombatStatsSection({ character, onChange, editMode = true, onOpe
         </div>
         {!character.turnRound && <p className="mt-2 text-[11px] text-[var(--color-text-muted)]">{t("turn.cardHint", "Shows everything you can do this turn, one tap each.")}</p>}
       </div>
+
+      {onRest && (
+        <div className="mt-3 grid grid-cols-2 gap-2">
+          {(["short", "long"] as const).map((kind) => (
+            <button
+              key={kind}
+              type="button"
+              onClick={() => onRest(kind)}
+              className="flex items-center justify-center gap-2 rounded-[var(--radius-md)] border border-[var(--color-border)] px-3 py-2.5 text-xs font-bold text-[var(--color-text-primary)] hover:border-[var(--color-border-active)]"
+            >
+              {kind === "short" ? <GiCampfire className="h-4 w-4" aria-hidden="true" /> : <GiNightSleep className="h-4 w-4" aria-hidden="true" />}
+              <span>
+                {t(`rest.${kind}.title`)}
+                <span className="block text-[10px] font-semibold text-[var(--color-text-muted)]">{t(`rest.${kind}.time`)}</span>
+              </span>
+            </button>
+          ))}
+        </div>
+      )}
 
       {/* Exhaustion Level Tracker */}
       <div className="mt-4 pt-3 border-t border-[var(--color-border)]">
