@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo, useEffect, useCallback } from "react";
+import { averageGold, goldFormula, higherLevelRoll, rollGold, startingGoldOf, wealthRoll, type GoldRoll } from "@/lib/starting-gold";
 import { Backpack, Info, Lock, Plus, CheckIcon as Check } from "@phosphor-icons/react";
 import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
 import { ItemBundleList } from "@/components/modals/ItemBundle";
@@ -380,6 +381,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
     [t],
   );
 
+  const goldInstead = startingGoldOf(data).mode === "gold";
   const grantedItems = useMemo(() => data.inventory.filter((item) => item.isGranted), [data.inventory]);
 
   const autoGrantItems = useCallback(() => {
@@ -497,7 +499,8 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
             {t("creator.equipmentHint", "Choose your character's starting equipment. Your class determines what you can choose from — weapons, armor, and adventuring gear.")}
           </p>
         </div>
-        {grantedItems.length > 0 && (
+        <StartingGoldPanel data={data} onChange={onChange} />
+        {!goldInstead && grantedItems.length > 0 && (
           <section>
             <div className="mb-3 flex items-center gap-2">
               <Lock size={14} weight="bold" className="text-ink" />
@@ -531,7 +534,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
           </section>
         )}
 
-          <section>
+          {!goldInstead && <section>
             <div className="mb-3 flex items-center gap-2">
               <Backpack size={14} weight="bold" className="text-ink" />
               <h3 className="text-xs font-bold uppercase tracking-widest text-ink">
@@ -572,7 +575,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
               });
             })}
           </div>
-        </section>
+        </section>}
       </div>
 
       {modalGroup && (
@@ -584,6 +587,56 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
           character={data}
           requireChoice={true}
         />
+      )}
+    </section>
+  );
+}
+/** Gear or gold instead, and extra gold when the character starts above level 1. */
+function StartingGoldPanel({ data, onChange }: { data: Character; onChange: (patch: Partial<Character>) => void }) {
+  const { t } = useLanguage();
+  const choice = startingGoldOf(data);
+  const wealth = wealthRoll(data.class);
+  const extraRoll = higherLevelRoll(data.level || 1);
+  const [rolled, setRolled] = useState<{ gold?: number[]; extra?: number[] }>({});
+  if (!wealth && !extraRoll) return null;
+  const save = (patch: Partial<typeof choice>) => onChange({ startingGold: { ...choice, ...patch } });
+
+  const amountRow = (key: "gold" | "extra", roll: GoldRoll) => (
+    <div className="mt-2 flex flex-wrap items-center gap-2">
+      <span className="text-2xl font-bold text-ink">{choice[key].toLocaleString()} gp</span>
+      <button type="button" onClick={() => { const r = rollGold(roll); setRolled((x) => ({ ...x, [key]: r.rolls })); save({ [key]: r.total }); }} className="btn btn-secondary h-9">
+        {t("gold.roll", "Roll")}
+      </button>
+      <button type="button" onClick={() => { setRolled((x) => ({ ...x, [key]: undefined })); save({ [key]: averageGold(roll) }); }} className="btn btn-secondary h-9">
+        {t("gold.usual", "Usual amount")}
+      </button>
+      {rolled[key] && <span className="w-full text-[11px] text-ink/60">{t("gold.rolled", { rolls: rolled[key]!.join(", ") }, "Rolled {rolls}")}</span>}
+    </div>
+  );
+
+  return (
+    <section className="space-y-3">
+      {wealth && (
+        <div className="rounded-2xl border border-ink/15 p-4">
+          <h3 className="text-sm font-bold text-ink">{t("gold.title", "Gear or gold?")}</h3>
+          <p className="mt-1 text-xs leading-relaxed text-ink/70">
+            {t("gold.hint", { formula: goldFormula(wealth) }, "Take your class and background gear, or skip all of it and take {formula} to buy your own. New players: take the gear.")}
+          </p>
+          <div className="mt-3 flex gap-2">
+            <button type="button" onClick={() => save({ mode: "gear" })} className={`btn flex-1 ${choice.mode === "gear" ? "btn-primary" : "btn-secondary"}`}>{t("gold.gear", "Take the gear")}</button>
+            <button type="button" onClick={() => save({ mode: "gold" })} className={`btn flex-1 ${choice.mode === "gold" ? "btn-primary" : "btn-secondary"}`}>{t("gold.gold", "Take gold")}</button>
+          </div>
+          {choice.mode === "gold" && amountRow("gold", wealth)}
+        </div>
+      )}
+      {extraRoll && (
+        <div className="rounded-2xl border border-ink/15 p-4">
+          <h3 className="text-sm font-bold text-ink">{t("gold.extraTitle", { level: data.level }, "Extra gold for level {level}")}</h3>
+          <p className="mt-1 text-xs leading-relaxed text-ink/70">
+            {t("gold.extraHint", { formula: goldFormula(extraRoll) }, "A character who starts above level 1 has saved some treasure: {formula}. Ask your DM about magic items too.")}
+          </p>
+          {amountRow("extra", extraRoll)}
+        </div>
       )}
     </section>
   );
