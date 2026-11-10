@@ -16,6 +16,7 @@ import { LevelXpSection } from "@/components/character-sheet/LevelXpSection";
 import { IdentitySection } from "@/components/character-sheet/IdentitySection";
 import { StatsSection } from "@/components/character-sheet/StatsSection";
 import { TurnPanel } from "@/components/character-sheet/TurnPanel";
+import { RestSheet } from "@/components/character-sheet/RestSheet";
 import { startTurnPatch, endTurnPatch } from "@/lib/turn";
 import { CombatStatsSection } from "@/components/character-sheet/CombatStatsSection";
 import { DeathSavesSection } from "@/components/character-sheet/DeathSavesSection";
@@ -43,6 +44,7 @@ export function CharacterView() {
 
   const [character, setCharacter] = useState<Character | null>(null);
   const [turnOpen, setTurnOpen] = useState(false);
+  const [restKind, setRestKind] = useState<"short" | "long" | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -83,6 +85,32 @@ export function CharacterView() {
     return () => clearTimeout(timeoutRef.current ?? undefined);
   }, []);
 
+  // Every change is saved shortly after it happens. Taps (a rest, a spent
+  // slot, the turn panel) never blur a field, so saving on blur alone lost them.
+  const loadedRef = useRef(false);
+  useEffect(() => {
+    if (!character) return;
+    // The first value is the one just read from storage.
+    if (!loadedRef.current) {
+      loadedRef.current = true;
+      return;
+    }
+    const timer = setTimeout(() => { if (loadedRef.current) saveCharacter(character); }, 400);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [character]);
+  // Leaving the page inside that short wait must not drop the last change.
+  const latestRef = useRef(character);
+  useEffect(() => {
+    latestRef.current = character;
+  }, [character]);
+  useEffect(() => {
+    return () => {
+      if (loadedRef.current && latestRef.current) saveCharacter(latestRef.current);
+    };
+  }, []);
+
   useEffect(() => {
     if (importSuccess) {
       timeoutRef.current = setTimeout(() => setImportSuccess(null), 4000);
@@ -100,6 +128,9 @@ export function CharacterView() {
 
   const handleDelete = useCallback(async () => {
     if (character && window.confirm(t("delete.confirm", { "char.name": character.name || t("home.unnamedHero") } as any))) {
+      // Stop the autosave from writing the deleted character back.
+      loadedRef.current = false;
+      latestRef.current = null;
       await deleteCharacter(character.id);
       router.push("/");
     }
@@ -284,7 +315,7 @@ export function CharacterView() {
          <main className="mx-auto max-w-lg px-4 py-3 pb-6">
           {shownTab === "combat" && (
             <>
-              <CombatStatsSection character={character} onChange={handleChange} editMode={editMode} onOpenTurn={openTurn} />
+              <CombatStatsSection character={character} onChange={handleChange} editMode={editMode} onOpenTurn={openTurn} onRest={setRestKind} />
               {/* Death saves matter only at 0 HP (or while a count is still marked). */}
               {((character.currentHp || 0) <= 0 || (character.deathSaveSuccesses || 0) > 0 || (character.deathSaveFailures || 0) > 0) && (
                 <DeathSavesSection character={character} onChange={handleChange} editMode={editMode} />
@@ -359,6 +390,10 @@ export function CharacterView() {
           </div>
         </main>
       </CharacterSheetProvider>
+
+      {restKind && (
+        <RestSheet character={character} kind={restKind} onChange={handleChange} onClose={() => setRestKind(null)} />
+      )}
 
       {turnOpen && (
         <TurnPanel
