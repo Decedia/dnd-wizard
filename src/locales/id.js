@@ -119,6 +119,8 @@ export const translations = {
   "turn.slot.reaction.none": "Tidak ada yang memakai reaksi saat ini.",
   "turn.prepare.title": "Belum ada mantra yang siap",
   "turn.prepare.hint": "Kelasmu memilih mantra mana yang siap setiap hari. Sebelum dipilih, hanya cantrip yang tampil di sini.",
+  "prepare.status.open": "{count} dari {max} siap · {left} lagi bisa dipilih",
+  "prepare.choose": "Pilih",
   "prepare.title": "Siapkan mantra",
   "prepare.count": "{count} dari {max} siap",
   "prepare.hint": "Kamu hanya bisa merapal mantra yang sudah disiapkan. Ganti setelah istirahat panjang.",

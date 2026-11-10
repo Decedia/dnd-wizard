@@ -661,6 +661,8 @@ export const translations = {
   "turn.slot.reaction.none": "Nothing you have uses a reaction right now.",
   "turn.prepare.title": "No spells ready",
   "turn.prepare.hint": "Your class chooses which spells are ready each day. Until you do, only cantrips show here.",
+  "prepare.status.open": "{count} of {max} ready · {left} more to pick",
+  "prepare.choose": "Choose",
   "prepare.title": "Prepare spells",
   "prepare.count": "{count} of {max} ready",
   "prepare.hint": "You can only cast the spells you have ready. Change them after a long rest.",

@@ -70,6 +70,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
   const [selectedSpell, setSelectedSpell] = useState<UnifiedSpell | null>(null);
 
   const preparationCaster = isPreparationCaster(character);
+  const preparableCount = preparationCaster ? preparableSpells(character).length : 0;
   const maxPrepared = getMaxPreparedSpells(character);
   const maxSpellsKnown = getMaxSpellsKnown(character);
   const maxCantripsKnown = getMaxCantripsKnown(character);
@@ -351,10 +352,26 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
     <SectionCard id="spells" title={t("section.spells")} icon={<Lightning className="h-5 w-5" />}>
       {preparationCaster && (
         <div className="mb-4 surface bg-paper-muted px-4 py-3">
-          <span className="text-sm font-bold text-ink">{t("sheet.preparedSpells")}: {preparedCount}/{maxPrepared}</span>
-          <span className="text-xs text-ink ml-2">{t("sheet.spellcastingModHint")}</span>
-          <button type="button" onClick={() => setPreparing(true)} className="mt-2 block rounded-full bg-[var(--color-ink)] px-4 py-2 text-xs font-bold text-[var(--color-surface)]">
-            {t("prepare.title", "Prepare spells")}
+          <button
+            type="button"
+            onClick={() => setPreparing(true)}
+            className={`flex w-full items-center justify-between gap-3 rounded-[var(--radius-md)] border px-4 py-3 text-left transition-colors ${
+              preparedCount < Math.min(maxPrepared, preparableCount)
+                ? "border-amber-500/70 bg-amber-500/10"
+                : "border-[var(--color-border)] bg-[var(--color-surface)]"
+            }`}
+          >
+            <span className="min-w-0">
+              <span className="block text-sm font-bold text-ink">{t("prepare.title", "Prepare spells")}</span>
+              <span className="block text-xs text-ink">
+                {preparedCount < Math.min(maxPrepared, preparableCount)
+                  ? t("prepare.status.open", { count: preparedCount, max: maxPrepared, left: Math.min(maxPrepared, preparableCount) - preparedCount }, "{count} of {max} ready · {left} more to pick")
+                  : t("prepare.count", { count: preparedCount, max: maxPrepared }, "{count} of {max} ready")}
+              </span>
+            </span>
+            <span className="shrink-0 rounded-full bg-[var(--color-ink)] px-3 py-1.5 text-xs font-bold text-[var(--color-surface)]">
+              {preparedCount === 0 ? t("prepare.choose", "Choose") : t("common.change", "Change")}
+            </span>
           </button>
           {preparing && (
             <PrepareSpellsSheet
