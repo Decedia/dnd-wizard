@@ -6,7 +6,7 @@ import { getStaticSpells, getStaticFeats, getStaticClasses, getStaticRaces, getS
 import { AppHeader } from "@/components/AppHeader";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { ArrowsUpDownIcon as FilterIcon } from "@/components/icons";
-import { DiceText } from "@/components/DiceText";
+import { RichText, RichInline } from "@/components/RichText";
 import { CaretRight } from "@phosphor-icons/react";
 import { getStatBadgeStyle, getSchoolBadgeStyle } from "@/lib/badge-styles";
 
@@ -313,7 +313,7 @@ export default function GlossaryPage() {
                   {/* Summary Text */}
                   {summary && (
                     <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed line-clamp-3">
-                      {summary}
+                      <RichInline text={summary} />
                     </p>
                   )}
                 </div>
@@ -431,7 +431,7 @@ export default function GlossaryPage() {
                 {selectedSpell.flavorText && (
                   <p className="text-sm italic leading-relaxed text-[var(--color-text-muted)]">{selectedSpell.flavorText}</p>
                 )}
-                {selectedSpell.description && <DiceText text={selectedSpell.description} />}
+                {selectedSpell.description && <RichText text={selectedSpell.description} />}
                 {(() => {
                   const subs = getStaticSubclasses(selectedSpell.name, undefined, undefined, language);
                   if (!subs.length) return null;
@@ -446,7 +446,7 @@ export default function GlossaryPage() {
                           {sub.flavorText && (
                             <p className="mt-0.5 text-xs italic leading-relaxed text-[var(--color-text-muted)]">{sub.flavorText}</p>
                           )}
-                          {sub.description && <DiceText text={sub.description} />}
+                          {sub.description && <RichText text={sub.description} />}
                         </div>
                       ))}
                     </div>
@@ -461,9 +461,9 @@ export default function GlossaryPage() {
                   <div key={trait.name}>
                     <div className="text-sm font-semibold text-[var(--color-text-primary)]">{trait.name}</div>
                     {trait.summary && (
-                      <p className="mt-0.5 text-xs text-[var(--color-text-muted)]">{trait.summary}</p>
+                      <p className="mt-0.5 text-xs text-[var(--color-text-muted)]"><RichInline text={trait.summary} /></p>
                     )}
-                    {trait.description && <DiceText text={trait.description} />}
+                    {trait.description && <RichText text={trait.description} />}
                   </div>
                 ))}
               </div>
@@ -473,7 +473,7 @@ export default function GlossaryPage() {
               <>
                 {selectedSpell.summary && (
                   <p className="text-xs text-[var(--color-text-muted)] italic leading-relaxed">
-                    {selectedSpell.summary}
+                    <RichInline text={selectedSpell.summary} />
                   </p>
                 )}
                 {selectedSpell.source && (
@@ -486,7 +486,7 @@ export default function GlossaryPage() {
                     {t("glossary.prerequisites", "Prerequisites")}: {selectedSpell.prerequisites}
                   </p>
                 )}
-                {selectedSpell.description && <DiceText text={selectedSpell.description} />}
+                {selectedSpell.description && <RichText text={selectedSpell.description} />}
               </>
             )}
 
@@ -510,7 +510,7 @@ export default function GlossaryPage() {
             {selectedSpell.lastUpdated && (
               <p className="text-[10px] text-[var(--color-text-muted)]">{t("glossary.lastUpdated")}: {selectedSpell.lastUpdated}</p>
             )}
-            <DiceText text={getFullDescription(selectedSpell)} />
+            <RichText text={getFullDescription(selectedSpell)} />
             <div className="flex flex-wrap gap-2 pt-1">
               <span className="rounded-full border border-[var(--color-border)] bg-[var(--color-bg)] px-2.5 py-1 text-[10px] font-semibold text-[var(--color-text-secondary)]">
                 {t("glossary.level", "Level")} {selectedSpell.level}

@@ -6,6 +6,7 @@ import { isRecommended } from "@/lib/recommendations";
 import { MagnifyingGlassIcon as MagnifyingGlass, CrownIcon as Crown } from "@/components/icons";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
+import { SubclassInfo } from "@/components/SubclassInfo";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 interface SubclassSelectionModalProps {
@@ -111,17 +112,6 @@ export function SubclassSelectionModal({
           <p className="text-sm text-[var(--color-text-muted)] text-center py-6">No subclasses found.</p>
         )}
         {filteredOptions.map((opt) => {
-          const modalContent = (() => {
-            const details = getStaticSubclassDetails(characterClass, opt.name, language);
-            const descKey = `subclass.desc.${characterClass.toLowerCase()}-${slugify(opt.name)}`;
-            const translatedDesc = tDesc(descKey, opt.description);
-            const parts = [translatedDesc];
-            if (details?.features && details.features.length > 0) {
-              parts.push("\n\nFEATURES\n" + details.features.map((f: any) => `• ${f.name} (Lv ${f.level || "?"}): ${(f.description || [""]).join(" ")}`).join("\n"));
-            }
-            return parts.join("\n");
-          })();
-
           return (
             <SplitSelectionCard
               key={opt.name}
@@ -135,11 +125,7 @@ export function SubclassSelectionModal({
                 setPreviewSubclass(opt.name);
               }}
               infoType="modal"
-              modalContent={
-                <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">
-                  {modalContent}
-                </p>
-              }
+              modalContent={<SubclassInfo characterClass={characterClass} subclass={opt.name} description={opt.description} />}
             />
           );
         })}

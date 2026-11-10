@@ -2,7 +2,7 @@
  * Shared text hygiene applied to model output before it is written.
  *
  * The enhancement passes deliberately do not reject a unit over formatting: the
- * official SRD text itself mixes `*` and `-` list markers, and DiceText renders
+ * official SRD text itself mixes `*` and `-` list markers, and RichText renders
  * both. Normalising is cheaper and safer than throwing the unit away, and it keeps
  * the enhanced corpus internally consistent.
  */
@@ -17,7 +17,7 @@ export function normalizeMarkdown(text) {
 }
 
 /**
- * Converts `1. item` to `- item`. DiceText treats an ordered list as ordered
+ * Converts `1. item` to `- item`. RichText treats an ordered list as ordered
  * markup, so a numbered list in a rules text renders as a numbered list where
  * every other block is bulleted; dashes keep the whole corpus uniform.
  */

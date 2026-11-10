@@ -8,7 +8,7 @@ files a string belongs in), inline dice rendering, bullet syntax, native element
 tokens, modal layout, data-file hygiene (never JSON round-trip the hand-formatted feat files),
 and the checks required before finishing.
 
-The short version: localize everything with `t()`, render dice through `DiceText`, use `- ` and
+The short version: localize everything with `t()`, render dice through `RichText`, use `- ` and
 `1. ` bullets one per line, native HTML elements with theme tokens only, and verify with
 `bun typecheck && bun lint && bun test src/tests/srd-data.test.ts && npx next build`.
 

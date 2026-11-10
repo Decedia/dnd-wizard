@@ -6,6 +6,7 @@ import { XIcon as X } from "@/components/icons";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
 import { isSpellTakenElsewhere } from "@/lib/taken-spells";
+import { RichText } from "@/components/RichText";
 
 interface FeatureSelectionModalProps {
   isOpen: boolean;
@@ -98,7 +99,7 @@ export function FeatureSelectionModal({
   return (
     <BottomSheet isOpen={isOpen} onClose={handleCancel} title={name} footer={stickyFooter} showHeader={false}>
       <div className="px-4 pt-4 pb-2 space-y-3">
-        {description && <p className="text-xs text-[var(--color-text-secondary)] mb-3">{description}</p>}
+        {description && <RichText text={description} className="mb-3 text-xs text-[var(--color-text-secondary)]" />}
         {options.map((opt, idx) => {
           const isSelected = isMultiSelect ? featureSelections.includes(opt.name) : false;
           const isMaxed = isMultiSelect && !isSelected && featureSelections.length >= count;
@@ -119,7 +120,7 @@ export function FeatureSelectionModal({
               infoType="modal"
               modalContent={
                 <div>
-                  <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line mb-2">{opt.description}</p>
+                  <RichText text={opt.description} className="mb-2 text-xs text-[var(--color-text-secondary)]" />
                   {isUnavailable && opt.unavailableReason && (
                     <p className="text-[11px] text-[var(--color-error-600)]">{opt.unavailableReason}</p>
                   )}

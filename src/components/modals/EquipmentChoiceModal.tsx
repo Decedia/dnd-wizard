@@ -7,6 +7,7 @@ import { BottomSheet } from "@/components/modals/BottomSheet";
 import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
 import type { ChoiceGroup, EquipmentOption } from "@/lib/character-creation";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { RichText } from "@/components/RichText";
 
 interface WeaponOption {
   name: string;
@@ -298,7 +299,7 @@ export function EquipmentChoiceModal({
                         modalContent={
                           <div className="space-y-3">
                             {weapon.description && (
-                              <p className="text-xs leading-relaxed text-ink-muted">{weapon.description}</p>
+                              <RichText text={weapon.description} className="text-xs text-ink-muted" />
                             )}
                             {weapon.statSummary && (
                               <p className="text-xs font-medium text-ink">{weapon.statSummary}</p>

@@ -5,6 +5,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
 import { getTakenSpellNames } from "@/lib/taken-spells";
 import { activeRaceChoices, type RaceChoice } from "@/lib/srd-client";
+import { RichInline } from "@/components/RichText";
 
 const ABILITY_OPTIONS = [
   { id: "str", label: "STR" },
@@ -156,7 +157,7 @@ export function HalfElfConfig({
                     }`}
                   >
                     <span className="font-semibold">{opt.name}</span>
-                    {opt.description && <span className="block text-[10px] text-ink-muted mt-0.5">{opt.description}</span>}
+                    {opt.description && <span className="block text-[10px] text-ink-muted mt-0.5"><RichInline text={opt.description} /></span>}
                   </button>
                 );
               })}

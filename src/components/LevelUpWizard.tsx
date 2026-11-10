@@ -52,6 +52,8 @@ import {
 import { InfoIcon } from "@/components/icons";
 import { BasePopup } from "@/components/BasePopup";
 import { useSRD } from "@/contexts/SRDContext";
+import { RichText, RichInline } from "@/components/RichText";
+import { toPlainText } from "@/lib/rich-text";
 import { isRecommended } from "@/lib/recommendations";
 import { GiDiceTwentyFacesTwenty } from "react-icons/gi";
 import { getStaticFeats } from "@/lib/srd-client";
@@ -166,7 +168,7 @@ interface LevelInfo {
   level: number;
   hp: { hitDie: number; conMod: number; average: number };
   proficiencyBonus: number;
-  features: { name: string; description: string; source?: string }[];
+  features: { name: string; description: string; summary?: string; source?: string }[];
   asi: boolean;
   spellSlots?: Record<number, number>;
   cantripsKnown?: number;
@@ -287,10 +289,12 @@ export function buildLevelInfos(
       .map((f: any) => ({
         name: f.name,
         description: normalizeDescription(f.description),
+        summary: (typeof f.summary === "string" ? f.summary : undefined) as string | undefined,
       }))
       .concat(optionalHere.filter((f) => !f.hidden).map((f) => ({
         name: f.name,
         description: f.text[language as "en" | "id"] || f.text.en,
+        summary: undefined,
       })));
 
     const asi = levelData?.asi || false;
@@ -2321,9 +2325,9 @@ function LevelCard({
             <div className="flex-1">
                <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">{t("sheet.hitPoints", "Hit Points")}</div>
               <div className="text-xs text-[var(--color-text-primary)]">
-                 {lvl === 1 && startFromLevelOne
+                 <RichInline text={lvl === 1 && startFromLevelOne
                    ? `${hitDie} + ${conMod >= 0 ? conMod : `-${Math.abs(conMod)}`} = ${hitDie + conMod} HP (${t("common.automatic", "automatic")})`
-                  : `d${hitDie} + ${conMod >= 0 ? conMod : `-${Math.abs(conMod)}`} (avg: ${averageHp})`}
+                  : `d${hitDie} ${conMod >= 0 ? `+ ${conMod}` : `- ${Math.abs(conMod)}`} (avg: ${averageHp})`} />
               </div>
             </div>
             {lvl === 1 && startFromLevelOne ? (
@@ -2427,12 +2431,15 @@ function LevelCard({
                                       <XIcon className="h-4 w-4" />
                                     </button>
                                   </div>
-                                  <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{(() => { const rawDesc = Array.isArray(f.description) ? f.description.join("\n") : f.description; return infoState.descKey ? tDesc(infoState.descKey, rawDesc) : rawDesc; })()}</p>
+                                  <RichText text={infoState.descKey ? tDesc(infoState.descKey, toPlainText(f.description)) : f.description} className="max-h-[60vh] overflow-y-auto text-xs text-[var(--color-text-secondary)]" />
                                    <button type="button" onClick={() => setInfoState(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">{t("wizard.gotIt", "Got it")}</button>
                                 </div>
                               </div>
                             )}
                          </div>
+                         {(f.summary || f.description) && (
+                           <p className={`mt-0.5 text-xs leading-relaxed text-[var(--color-text-secondary)] ${f.summary ? "" : "line-clamp-2"}`}><RichInline text={f.summary || f.description} /></p>
+                         )}
                       </div>
                     ))}
                   </div>
@@ -2685,7 +2692,7 @@ function LevelCard({
                                   <XIcon className="h-4 w-4" />
                                 </button>
                               </div>
-                              <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{(() => { const rawDesc = Array.isArray(fc.description) ? fc.description.join("\n") : fc.description; return infoState.descKey ? tDesc(infoState.descKey, rawDesc) : rawDesc; })()}</p>
+                              <RichText text={infoState.descKey ? tDesc(infoState.descKey, toPlainText(fc.description)) : fc.description} className="max-h-[60vh] overflow-y-auto text-xs text-[var(--color-text-secondary)]" />
                               <button type="button" onClick={() => setInfoState(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">{t("wizard.gotIt", "Got it")}</button>
                             </div>
                           </div>
@@ -2742,7 +2749,7 @@ function LevelCard({
                                       <XIcon className="h-4 w-4" />
                                     </button>
                                   </div>
-                                  <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{(() => { const rawDesc = Array.isArray(fc.description) ? fc.description.join("\n") : fc.description; return infoState.descKey ? tDesc(infoState.descKey, rawDesc) : rawDesc; })()}</p>
+                                  <RichText text={infoState.descKey ? tDesc(infoState.descKey, toPlainText(fc.description)) : fc.description} className="max-h-[60vh] overflow-y-auto text-xs text-[var(--color-text-secondary)]" />
                                    <button type="button" onClick={() => setInfoState(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">{t("wizard.gotIt", "Got it")}</button>
                                 </div>
                               </div>

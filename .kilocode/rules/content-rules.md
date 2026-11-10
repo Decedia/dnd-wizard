@@ -43,68 +43,48 @@ alongside it — two texts per entry reads as a bug and the old one translated b
 
 ## 2. Dice render inline
 
-All dice in prose must flow through the `DiceText` chip pipeline. Do not hand-write dice as
-plain text, `<code>`, or bold.
+All rules text goes through `RichText` (blocks) or `RichInline` (one line, e.g. a clamped card
+subtitle), both in `src/components/RichText.tsx`. Do not hand-write dice as plain text,
+`<code>`, or bold.
 
-- The recognized shapes are `ndn` (`2d6`), `dn` (`d20`) and `nd` (`2d`), matching
-  `DICE_SHAPE` at `src/components/DiceText.tsx:25`.
-- To support a new shape, extend `DICE_SHAPE` — never add a second, ad-hoc regex. New text
-  surfaces should import `highlightDice` (as `src/components/FormattedDescription.tsx:5` does).
-- The word boundaries on `DICE_SHAPE` are load-bearing: the trailing `(?![\w-])` stops
-  `"3-dimensional"` matching as `"3d"`.
+- The matcher lives in `src/lib/rich-text.ts` (`DICE`, `TOKEN_RE`). Recognized shapes are
+  `ndn` (`2d6`), `dn` (`d20`), a plural (`d10s`) and a flat modifier (`2d6 + 4`).
+- To support a new shape, extend `DICE` — never add a second, ad-hoc regex.
+- `src/tests/rich-text.test.ts` locks the behaviour; add a case when you extend a matcher.
 - `src/components/character-sheet/DamageExtractor.tsx:14` has its own pattern and is
   **out of scope** — it feeds damage calculation, so changing it changes numbers, not looks.
 
 ---
 
-## 3. Ability, skill, damage and status badges
+## 3. Damage, saving throw and condition badges
 
-Prose that mentions an ability, a saving throw, a skill, a damage type, or a status condition
-must render as a colour-coded badge with an icon, not plain text. `DiceText` already does this,
-so **the rule is simply to route text through it** — never hand-write these as plain text or
-your own `<span>`.
-
-The handling is word-order sensitive, and getting it wrong is the usual failure:
+Prose that mentions a damage type, a saving throw or a condition renders as a badge with an
+icon. `RichText` already does this, so **the rule is simply to route text through it** — never
+hand-write these as plain text or your own `<span>`.
 
 | What is said | What happens |
 | --- | --- |
-| `Charisma saving throw` | Badge, coloured by Charisma |
-| `Charisma saving throws` | Same badge — the trailing `s` is optional (`throws?`) |
-| `Dexterity saving throw` | Badge, coloured by Dexterity |
-| `Athletics`, `Stealth`, any listed skill | Badge on its own, coloured by the governing ability |
-| `fire damage`, `1d8 necrotic damage` | Damage badge, coloured by the damage type, with its icon |
-| `frightened`, `stunned`, any listed status | Status badge with its icon |
-| `Charisma` alone | **Not** a badge — only `… saving throw(s)` is |
-| `fire` alone | **Not** a badge — only `… damage` is |
+| `fire damage`, `kerusakan api` | Damage badge, coloured by the damage type, with its icon |
+| `fire or cold damage` | One badge per type |
+| `Charisma saving throw(s)`, `saving throw Konstitusi` | Saving throw badge |
+| `frightened`, `lumpuh`, any listed condition | Condition badge with its icon |
+| `30 feet`, `1 minute`, `DC 15`, `bonus action`, `short rest` | Bold, no badge |
+| `Charisma` or a skill name alone | Plain text |
+| `fire` alone | Plain text — only `… damage` / `kerusakan …` is a badge |
 
-The plural matters: the SRD data writes "saving throws" about half the time, and a regex pinned
-to the singular `throw` silently skips those.
-
-The word boundaries are load-bearing and match on the surrounding words, not just the term:
-
-- `SAVING_THROW_RE` — `src/components/DiceText.tsx:97`
-- `DAMAGE_TYPE_RE` — `src/components/DiceText.tsx:95` (requires the word `damage`)
-- `SKILL_RE` — `src/components/DiceText.tsx:98`
-- `STATUS_RE` — `src/components/DiceText.tsx:96`
-
-To add a term, extend the relevant list (`DAMAGE_TYPES`, `STATUSES`, `SKILLS`, `ABILITIES`) and
-the colour/icon maps beside it. Never add a second ad-hoc matcher.
-
-**Known violation, do not copy it:** `getAbilityBadgeStyle` at `src/components/DiceText.tsx:168`
-uses raw palette colours (`bg-red-100`, `dark:bg-emerald-500/20`) instead of theme tokens, which
-breaks rule 5. New badge colours must use theme tokens; fixing the existing ones is tracked
-separately so this file does not claim a compliance the code does not have.
+English and Indonesian words are matched together, because the Indonesian data keeps many
+terms in English. To add a term, extend the word maps in `src/lib/rich-text.ts`
+(`DAMAGE_WORDS`, `ABILITY_WORDS`, `CONDITION_WORDS`, `TERMS`). Badge colours come from theme
+tokens (`src/lib/damage-types.ts`); never use raw palette colours.
 
 ---
 
 ## 4. Bullets
 
 - Use `- ` or `* ` for unordered and `1. `, `2. ` for ordered. **One item per line.**
-  Parsed at `src/components/DiceText.tsx:196-197` and
-  `src/components/FormattedDescription.tsx:54,63`.
-- A blank line separates paragraphs. Keep a bullet block homogeneous — do not mix `-` and
-  `1.` markers inside one block, because `FormattedDescription` picks one style for the whole
-  paragraph (`FormattedDescription.tsx:92-93`).
+  Parsed by `parseBlocks` in `src/lib/rich-text.ts`.
+- A new line starts a new paragraph. Keep a bullet block homogeneous — do not mix `-` and
+  `1.` markers inside one block.
 - If content will be parsed, don't pre-wrap it in `<ul>`/`<ol>` — the renderers build the list.
 - Provide a `summary` when you add a trait; `RaceInfoPanel` prefers it over the longer
   `description`.

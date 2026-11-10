@@ -1,6 +1,6 @@
 "use client";
 
-import { FormattedDescription } from "@/components/FormattedDescription";
+import { RichText } from "@/components/RichText";
 
 interface DescriptionTextProps {
   children: React.ReactNode;
@@ -10,7 +10,7 @@ interface DescriptionTextProps {
 export function DescriptionText({ children, className }: DescriptionTextProps) {
   if (typeof children === "string") {
     return (
-      <FormattedDescription className={className}>{children}</FormattedDescription>
+      <RichText text={children} className={`text-xs text-[var(--color-text-secondary)] ${className || ""}`} />
     );
   }
 

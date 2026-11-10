@@ -5,6 +5,7 @@ import { findLocalizedItem, formatCost, weaponHandedness, type CatalogItem } fro
 import type { ItemProficiency } from "@/lib/proficiency";
 import { ItemIcon } from "@/components/ItemIcon";
 import { ProficiencyDot } from "@/components/character-sheet/InventoryGrid";
+import { RichText } from "@/components/RichText";
 
 interface ItemInfoPanelProps {
   item: CatalogItem;
@@ -153,7 +154,7 @@ export function ItemInfoPanel({ item, proficiency }: ItemInfoPanelProps) {
         </div>
       )}
 
-      {item.description && <p className="whitespace-pre-line text-xs leading-relaxed text-ink-muted">{item.description}</p>}
+      {item.description && <RichText text={item.description} className="text-xs text-ink-muted" />}
 
       <div className="grid grid-cols-2 gap-2">
         <Stat label={tr("items.cost", "Cost")} value={cost ? `${cost}${item.bundle ? ` / ${item.bundle}` : ""}` : "—"} />

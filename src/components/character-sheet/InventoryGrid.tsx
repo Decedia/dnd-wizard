@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { ItemIcon } from "@/components/ItemIcon";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { RichText } from "@/components/RichText";
 
 export type ItemUseAction = "heal" | "open" | "consume" | null;
 
@@ -385,7 +386,7 @@ export function ItemDetailPanel({ item, onEquipToggle, onEdit, onRemove, onClose
           </div>
         )}
         {item.description && (
-          <p className="mt-3 whitespace-pre-line text-xs leading-relaxed text-[var(--color-text-secondary)]">{item.description}</p>
+          <RichText text={item.description} className="mt-3 text-xs text-[var(--color-text-secondary)]" />
         )}
         {message && (
           <p role="status" className="mt-3 rounded-xl border-2 border-[var(--color-border)] px-3 py-2 text-xs font-semibold text-[var(--color-text-primary)]">

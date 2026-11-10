@@ -16,7 +16,7 @@ import { getSpellMechanic } from "@/lib/spell-mechanics-accessor";
 import { getStatBadgeStyle, getSchoolBadgeStyle } from "@/lib/badge-styles";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { BottomSheet } from "@/components/modals/BottomSheet";
-import { DiceText } from "@/components/DiceText";
+import { RichText, RichInline } from "@/components/RichText";
 import { buildDataset, findEngineFeature } from "@/data/engine/index";
 import { getFeatSpellSelections, type SpellGrantSelection } from "@/lib/feat-spell-grants";
 import { getTakenSpellNames } from "@/lib/taken-spells";
@@ -548,7 +548,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                 {/* Summary Text */}
                 {summary && (
                   <div className="text-sm text-[var(--color-text-secondary)] leading-relaxed line-clamp-3 [&>p]:line-clamp-3">
-                    <DiceText text={summary} />
+                    <RichText text={summary} />
                   </div>
                 )}
               </div>
@@ -678,7 +678,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
         >
           <div className="px-4 py-4 space-y-3">
             {selectedSpell.effectSummary && (
-              <p className="text-xs text-[var(--color-text-muted)] italic leading-relaxed">{selectedSpell.effectSummary}</p>
+              <p className="text-xs text-[var(--color-text-muted)] italic leading-relaxed"><RichInline text={selectedSpell.effectSummary} /></p>
             )}
             {(selectedSpell.mechanics_badges || []).length > 0 && (
               <div className="flex flex-wrap gap-1.5">
@@ -696,7 +696,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
             {selectedSpell.lastUpdated && (
               <p className="text-[10px] text-[var(--color-text-muted)]">{t("glossary.lastUpdated")}: {selectedSpell.lastUpdated}</p>
             )}
-            <DiceText text={selectedSpell.description || ""} />
+            <RichText text={selectedSpell.description || ""} />
             <div className="flex flex-wrap gap-2 pt-1">
               <span className="rounded-full border border-[var(--color-border)] bg-[var(--color-bg)] px-2.5 py-1 text-[10px] font-semibold text-[var(--color-text-secondary)]">
                 {t("glossary.level", "Level")} {selectedSpell.level}

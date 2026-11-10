@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { XIcon as X, InfoIcon as Info } from "@/components/icons";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { RichInline } from "@/components/RichText";
 
 export interface BasePopupProps {
   isOpen: boolean;
@@ -75,13 +76,13 @@ export function BasePopup({
 
         {showInfo && infoDescription && (
           <div className="px-4 py-3 border-b border-[var(--color-border)] bg-[var(--color-bg)]">
-            <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed">{infoDescription}</p>
+            <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed"><RichInline text={infoDescription} /></p>
           </div>
         )}
 
         {description && !showInfo && (
           <div className="px-4 py-3 border-b border-[var(--color-border)]">
-            <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed">{description}</p>
+            <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed"><RichInline text={description} /></p>
           </div>
         )}
 

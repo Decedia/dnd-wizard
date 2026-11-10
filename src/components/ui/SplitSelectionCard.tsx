@@ -8,6 +8,7 @@ import {
 } from "@/components/icons";
 import { BasePopup } from "@/components/BasePopup";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { RichInline } from "@/components/RichText";
 
 export interface SplitSelectionCardProps {
   title: string;
@@ -103,7 +104,7 @@ export function SplitSelectionCard({
                   clampSubtitle ? "line-clamp-2" : ""
                 }`}
               >
-                {subtitle}
+                <RichInline text={subtitle} />
               </p>
             )}
           </div>

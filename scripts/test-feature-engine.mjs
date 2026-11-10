@@ -423,9 +423,9 @@ console.log("\nrecreate keeps player features and drops stub rows\n");
 
 // --- dice text must reach the badge renderer --------------------------------
 // Dice in the locale data was rendering as plain text because the render sites
-// bypassed DiceText, even though every one of the 6000-odd notations in the data
+// bypassed RichText, even though every one of the 6000-odd notations in the data
 // is already parseable.
-console.log("\ndice-bearing text goes through DiceText\n");
+console.log("\ndice-bearing text goes through RichText\n");
 {
   const finder = readFileSync(path.join(ROOT, "scripts", "find-dice-renders.mjs"), "utf8");
   check("a finder exists for plain-text dice renders", finder.includes("DICE_BEARING_SUFFIX"));
@@ -479,19 +479,19 @@ console.log("\ndice-bearing text goes through DiceText\n");
   );
 
   const feats = readFileSync(path.join(ROOT, "src", "components", "character-sheet", "FeaturesTraitsSection.tsx"), "utf8");
-  // A list row clamps its summary to two lines, and DiceText renders a block,
+  // A list row clamps its summary to two lines, and RichText renders a block,
   // so the row keeps plain text (like the inventory grid); the popup shows dice.
-  check("the feature list row keeps plain text for its two-line clamp", /line-clamp-2">\{r\.summary\}</.test(feats));
-  check("the popup summary renders through DiceText", /<DiceText text=\{selectedFeature\.summary\} \/>/.test(feats));
-  check("detail rows render through DiceText", /<DiceText text=\{row\.value\} \/>/.test(feats));
-  check("DiceText is wrapped in a div, since it renders a block", !/<p[^>]*><DiceText/.test(feats) && !/<span[^>]*><DiceText/.test(feats));
+  check("the feature list row stays inline for its two-line clamp", /line-clamp-2"><RichInline text=\{r\.summary\} \/></.test(feats));
+  check("the popup summary renders through RichText", /<RichText text=\{selectedFeature\.summary\} \/>/.test(feats));
+  check("detail rows render through RichText", /<RichText text=\{row\.value\} \/>/.test(feats));
+  check("RichText is wrapped in a div, since it renders a block", !/<p[^>]*><RichText/.test(feats) && !/<span[^>]*><RichText/.test(feats));
 
   const spells = readFileSync(path.join(ROOT, "src", "components", "character-sheet", "SpellsSection.tsx"), "utf8");
-  check("the spell summary renders through DiceText", /<DiceText text=\{summary\} \/>/.test(spells));
+  check("the spell summary renders through RichText", /<RichText text=\{summary\} \/>/.test(spells));
 
   // Layout-locked sites must not have been rewritten.
   const inv = readFileSync(path.join(ROOT, "src", "components", "character-sheet", "InventoryGrid.tsx"), "utf8");
-  check("the inventory grid keeps plain text for its tight rows", !inv.includes("DiceText"));
+  check("the inventory grid keeps plain text for its tight rows", !inv.includes("RichInline"));
 }
 
 // --- the sheet must read real pools, not fabricated zeros ---------------------

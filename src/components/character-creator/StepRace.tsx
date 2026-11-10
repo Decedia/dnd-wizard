@@ -7,6 +7,7 @@ import { SourceBadge } from "../SourceBadge";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
 import { RaceSelectionModal } from "../modals/RaceSelectionModal";
+import { RichInline } from "@/components/RichText";
 
 interface StepRaceProps {
   data: Character;
@@ -103,7 +104,7 @@ export function StepRace({ data, onChange }: StepRaceProps) {
               <div key={choice.id} className="space-y-1">
                 <div className="text-xs font-semibold text-[var(--color-text-primary)]">{choice.name}</div>
                 {choice.description && (
-                  <div className="text-[10px] text-[var(--color-text-secondary)]">{choice.description}</div>
+                  <div className="text-[10px] text-[var(--color-text-secondary)]"><RichInline text={choice.description} /></div>
                 )}
                 {choice.type === "single" && choice.options && (
                   <div className="flex flex-wrap gap-1.5 mt-1">
