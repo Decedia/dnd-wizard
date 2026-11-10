@@ -19,6 +19,8 @@ import { getStatBadgeStyle, getSchoolBadgeStyle } from "@/lib/badge-styles";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { RichText, RichInline } from "@/components/RichText";
+import { SpellDamageBonusLines } from "@/components/SpellDamageBonus";
+import { spellDamageBonuses } from "@/lib/spell-damage-bonus";
 import { buildDataset, findEngineFeature } from "@/data/engine/index";
 import { getFeatSpellSelections, type SpellGrantSelection } from "@/lib/feat-spell-grants";
 import { getTakenSpellNames } from "@/lib/taken-spells";
@@ -249,6 +251,9 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
     if (level === 3) return "3rd";
     return `${level}th`;
   };
+
+  const bonusesOf = (spell: UnifiedSpell) =>
+    spellDamageBonuses(character, { name: spell.srdSpellName || spell.name, level: spell.level, school: spell.school, classes: spell.classes, damageType: spell.damageType, description: spell.description });
 
   const getSummary = (spell: UnifiedSpell) => {
     if (spell.effectSummary) return spell.effectSummary;
@@ -573,6 +578,10 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                   </div>
                 )}
 
+                {bonusesOf(spell).length > 0 && (
+                  <div className="mb-2"><SpellDamageBonusLines bonuses={bonusesOf(spell)} /></div>
+                )}
+
                 {spell.duration && (
                   <span className="block text-[10px] text-[var(--color-text-muted)] mb-2">⏱ {spell.duration}</span>
                 )}
@@ -728,6 +737,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
             {selectedSpell.lastUpdated && (
               <p className="text-[10px] text-[var(--color-text-muted)]">{t("glossary.lastUpdated")}: {selectedSpell.lastUpdated}</p>
             )}
+            <SpellDamageBonusLines bonuses={bonusesOf(selectedSpell)} />
             <RichText text={selectedSpell.description || ""} />
             <div className="flex flex-wrap gap-2 pt-1">
               <span className="rounded-full border border-[var(--color-border)] bg-[var(--color-bg)] px-2.5 py-1 text-[10px] font-semibold text-[var(--color-text-secondary)]">

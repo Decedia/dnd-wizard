@@ -18,6 +18,7 @@ import { CheckIcon as Check, LightningBoltIcon as LightningBolt, ClockIcon as Cl
 import { GiRun } from "react-icons/gi";
 import { getSpellSchoolStyle } from "@/lib/spell-schools";
 import { getSchoolBadgeStyle } from "@/lib/badge-styles";
+import { SpellDamageBonusLines } from "@/components/SpellDamageBonus";
 
 interface TurnPanelProps {
   character: Character;
@@ -165,6 +166,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
               <RichInline text={text} />
             </span>
           )}
+          <SpellDamageBonusLines bonuses={o.damageBonuses} />
           {pick && <span className="mt-1 block text-xs font-semibold leading-snug text-[var(--color-text-primary)]">{t(`turn.why.${pick.why}`, pick.values || {})}</span>}
           {reason && <span className="mt-0.5 block text-[11px] font-semibold text-[var(--color-text-muted)]">{reason}</span>}
         </button>

@@ -9,6 +9,7 @@ import { getFreeCastSpells, getGrantedSpellNames } from "@/lib/granted-spells";
 import { advanceTurn, parseDurationToTurns } from "@/lib/spellEffects";
 import { ruleFor, ruleKey, usesMax, type FeatureWhen, type PoolField } from "@/data/turn-features";
 import { beastByName, type Beast } from "@/data/wild-shapes";
+import { spellDamageBonuses, type SpellDamageBonus } from "@/lib/spell-damage-bonus";
 
 /** "free" takes none of the three: it rides on something else (a hit, a failed save). */
 export type TurnSlot = "action" | "bonus" | "reaction" | "free";
@@ -42,6 +43,8 @@ export interface TurnOption {
   spellLevel?: number;
   /** Spell school as in the spell data ("Evocation"). */
   school?: string;
+  /** Feature bonuses to the spell's damage (Empowered Evocation, Agonizing Blast). */
+  damageBonuses?: SpellDamageBonus[];
   /** When a feature applies ("when you hit"); locale key `turn.when.*`. */
   when?: FeatureWhen;
   /** The player picks how much of this pool to spend (Lay on Hands). */
@@ -58,7 +61,7 @@ export interface TurnMenu {
   speed: number;
 }
 
-type SrdSpell = { name: string; description?: string | string[]; level?: number; castingTime?: string; casting_time?: string; duration?: string; concentration?: boolean; effectSummary?: string; summary?: string; damage?: any; saveType?: string | null; range?: string; area_of_effect?: unknown; heal_at_slot_level?: unknown; attackType?: string; attack_type?: string; onHit?: string | null; school?: string };
+type SrdSpell = { name: string; description?: string | string[]; level?: number; castingTime?: string; casting_time?: string; duration?: string; concentration?: boolean; effectSummary?: string; summary?: string; damage?: any; saveType?: string | null; range?: string; area_of_effect?: unknown; heal_at_slot_level?: unknown; attackType?: string; attack_type?: string; onHit?: string | null; school?: string; classes?: string[] };
 
 export const isRaging = (character: Pick<Character, "activeStates">) => (character.activeStates || []).includes("raging");
 const rageBonus = (character: Character) => (isRaging(character) ? character.rageDamage || 0 : 0);
@@ -242,6 +245,7 @@ function spellOptions(character: Character, srdSpells: SrdSpell[]): TurnOption[]
       tags: spellTags(srd, spell.srdSpellName || spell.name),
       spellLevel: level,
       school: srd?.school || undefined,
+      damageBonuses: srd ? spellDamageBonuses(character, { name: srd.name, level, school: srd.school, classes: srd.classes, damageType: srd.damage?.damageType, description: srd.description }) : undefined,
       saveDc: srd?.saveType ? character.spellSaveDc || undefined : undefined,
       spend: { spellsUsedThisTurn: [...(character.spellsUsedThisTurn || []).filter((id) => id !== spell.id), spell.id] },
     };
