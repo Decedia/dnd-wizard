@@ -69,7 +69,7 @@ describe("turn menu", () => {
 
 describe("turn start and end", () => {
   test("start gives everything back and counts the round", () => {
-    expect(startTurnPatch({ turnRound: 2 })).toEqual({ turnActive: true, turnRound: 3, actionUsed: false, bonusActionUsed: false, reactionUsed: false, moveUsed: false });
+    expect(startTurnPatch({ turnRound: 2 })).toEqual({ turnActive: true, turnRound: 3, actionUsed: false, bonusActionUsed: false, reactionUsed: false, moveUsed: false, objectInteractionUsed: false });
   });
 
   test("end keeps the reaction as it is", () => {

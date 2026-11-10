@@ -1,7 +1,7 @@
 import { getStaticClass, getStaticRace, getStaticSubclasses, getDomainSpells, getCircleSpells as getJsonCircleSpells, getCircleTerrainTypes as getJsonCircleTerrainTypes, getOathSpells, getWizardTraditionSpells, getSubclassFlags, getPactBoons } from "@/lib/srd-client";
 import { computeBuffModifiers, type ActiveBuff } from "@/lib/spellEffects";
 import { getSpellMechanic } from "@/lib/spell-mechanics-accessor";
-import { coinRows, coinsFromInventory, isFinesseOrRanged, weaponAbility, withCatalogStats, withChoiceInfo } from "@/lib/inventory";
+import { coinRows, coinsFromInventory, isFinesseOrRanged, weaponAbility, weaponDamageDice, withCatalogStats, withChoiceInfo } from "@/lib/inventory";
 import { findCatalogItem } from "@/data/item-catalog";
 import { addsProficiencyToAttack } from "@/lib/proficiency";
 import { db, type CharacterRecord, dbGetCharacters, dbGetCharacter, dbSaveCharacter, dbDeleteCharacter, dbTouchCharacterOpened } from "@/lib/db";
@@ -53,6 +53,8 @@ export interface Character {
   reactionUsed: boolean;
   /** Turn panel: movement spent this turn, whether a turn is running, and the round number of the fight. */
   moveUsed?: boolean;
+  /** The one free object interaction of the turn (draw or stow a weapon) is spent. */
+  objectInteractionUsed?: boolean;
   turnActive?: boolean;
   turnRound?: number;
   // Exhaustion
@@ -906,7 +908,7 @@ export function computeEquippedEffects(character: Character): { ac: number; atta
     // No proficiency bonus with a weapon the character isn't proficient with.
     const attackBonus = abilityMod + (addsProficiencyToAttack(character, weapon) ? profBonus : 0);
     const damageBonus = abilityMod;
-    const damageDice = weapon.damageDice || "";
+    const damageDice = weaponDamageDice(weapon);
     const damageTypeName = weapon.damageType || "";
     const damageText = [damageDice, damageBonus >= 0 ? `+${damageBonus}` : `${damageBonus}`, damageTypeName].filter(Boolean).join(" ");
     return {
