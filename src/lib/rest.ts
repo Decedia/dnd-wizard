@@ -61,7 +61,7 @@ export function rollHitDice(character: Character, count: number, random: () => n
  * A short rest (about an hour). The player may spend hit dice to heal;
  * `hitDiceSpent` and `healed` carry that roll.
  */
-export function shortRestPatch(character: Character, hitDiceSpent = 0, healed = 0): Partial<Character> {
+export function shortRestPatch(character: Character, hitDiceSpent = 0, healed = 0, recovered: Record<number, number> = {}): Partial<Character> {
   const spent = Math.max(0, Math.min(hitDiceSpent, num(character, "hitDiceRemaining")));
   const shortCasts = new Set(getFreeCastSpells(character).filter((c) => c.rest === "short").map((c) => c.name.toLowerCase()));
   const patch: Partial<Character> = {
@@ -76,6 +76,15 @@ export function shortRestPatch(character: Character, hitDiceSpent = 0, healed = 
   }
   // Pact Magic slots come back on a short rest.
   if (character.class === "Warlock") patch.spellSlotsExpended = zeroSpent(character);
+  // Arcane Recovery (Wizard): chosen slots come back, once per long rest.
+  const picked = Object.entries(recovered).filter(([, n]) => n > 0);
+  const levels = picked.reduce((sum, [lvl, n]) => sum + Number(lvl) * n, 0);
+  if (picked.length > 0 && levels <= arcaneRecoveryBudget(character) && picked.every(([lvl]) => Number(lvl) <= 5)) {
+    const spent = { ...(character.spellSlotsExpended || {}) } as Record<number, number>;
+    for (const [lvl, n] of picked) spent[Number(lvl)] = Math.max(0, (spent[Number(lvl)] || 0) - n);
+    patch.spellSlotsExpended = spent;
+    patch.arcaneRecoveryUsed = true;
+  }
   // Sorcerous Restoration (Sorcerer 20): 4 sorcery points.
   if (character.class === "Sorcerer" && character.level >= 20) {
     patch.sorceryPoints = Math.min(num(character, "maxSorceryPoints"), num(character, "sorceryPoints") + 4);
@@ -109,6 +118,22 @@ export function longRestPatch(character: Character): Partial<Character> {
     if (num(character, pool.max) > 0) (patch as any)[pool.field] = num(character, pool.max);
   }
   return patch;
+}
+
+/**
+ * Arcane Recovery: once per long rest, on a short rest, a wizard gets back
+ * spent slots whose levels add up to half the wizard level (rounded up).
+ * No slot of 6th level or higher. 0 when it is not available now.
+ */
+export function arcaneRecoveryBudget(character: Character): number {
+  if (character.class !== "Wizard" || character.arcaneRecoveryUsed) return 0;
+  return Math.ceil((character.level || 1) / 2);
+}
+
+/** Spent slots Arcane Recovery can bring back, by level (1st to 5th). */
+export function recoverableSlots(character: Character): { level: number; spent: number }[] {
+  const spent = (character.spellSlotsExpended || {}) as Record<number, number>;
+  return [1, 2, 3, 4, 5].map((level) => ({ level, spent: spent[level] || 0 })).filter((s) => s.spent > 0);
 }
 
 export interface RestGain {

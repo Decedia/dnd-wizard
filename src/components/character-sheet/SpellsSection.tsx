@@ -21,6 +21,7 @@ import { BottomSheet } from "@/components/modals/BottomSheet";
 import { RichText, RichInline } from "@/components/RichText";
 import { SpellDamageBonusLines } from "@/components/SpellDamageBonus";
 import { spellRounds, spellTimerId, startTimer } from "@/lib/timers";
+import { healingBonusLines, spellHealing } from "@/lib/healing";
 import { spellDamageBonuses } from "@/lib/spell-damage-bonus";
 import { buildDataset, findEngineFeature } from "@/data/engine/index";
 import { getFeatSpellSelections, type SpellGrantSelection } from "@/lib/feat-spell-grants";
@@ -251,8 +252,10 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
     return `${level}th`;
   };
 
-  const bonusesOf = (spell: UnifiedSpell) =>
-    spellDamageBonuses(character, { name: spell.srdSpellName || spell.name, level: spell.level, school: spell.school, classes: spell.classes, damageType: spell.damageType, description: spell.description });
+  const bonusesOf = (spell: UnifiedSpell) => [
+    ...spellDamageBonuses(character, { name: spell.srdSpellName || spell.name, level: spell.level, school: spell.school, classes: spell.classes, damageType: spell.damageType, description: spell.description }),
+    ...healingBonusLines(spellHealing(character, { name: spell.srdSpellName || spell.name, level: spell.level, heal_at_slot_level: (srdSpells.find((sp) => sp.name === (spell.srdSpellName || spell.name)) as { heal_at_slot_level?: unknown } | undefined)?.heal_at_slot_level }, spell.level)),
+  ];
 
   const getSummary = (spell: UnifiedSpell) => {
     if (spell.effectSummary) return spell.effectSummary;
