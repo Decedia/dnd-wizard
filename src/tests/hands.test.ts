@@ -4,7 +4,7 @@ import { equipRow, handChoices, heldInHands, rowFromCatalog, weaponDamageDice, t
 import { findCatalogItem } from "@/data/item-catalog";
 import { computeDerivedStats, createEmptyCharacter, type Character } from "@/lib/storage";
 import { getStaticSpells } from "@/lib/srd-client";
-import { buildTurnMenu, changeHands, handChangeCost, startTurnPatch } from "@/lib/turn";
+import { buildTurnMenu, changeHands, handChangeCost, isSwingOption, startTurnPatch, swingPatch } from "@/lib/turn";
 
 const item = (id: string, over: Partial<InventoryRow> = {}): InventoryRow => ({ ...rowFromCatalog(findCatalogItem(id)!), id, ...over });
 const bag = () => [item("longsword"), item("shortsword"), item("dagger"), item("greatsword"), item("shield"), item("scimitar")];
@@ -148,6 +148,17 @@ describe("off-hand attack", () => {
     const inv = equipRow(equipRow(bag(), "longsword", "main").inventory, "dagger", "off").inventory;
     expect(offhand(menuFor(inv))).toBeUndefined();
     expect(offhand(menuFor(inv, { features: [{ id: "f", name: "Dual Wielder", description: "" }] as any }))).toBeDefined();
+  });
+
+  test("it opens only after the Attack action, and closes on the next turn", () => {
+    const inv = equipRow(equipRow(bag(), "shortsword", "main").inventory, "dagger", "off").inventory;
+    let c = apply(make(inv), startTurnPatch(make(inv)));
+    expect(offhand(buildTurnMenu(c, spells))!.blocked).toBe("attackFirst");
+    const main = buildTurnMenu(c, spells).options.find((o) => isSwingOption(o) && o.name === "Shortsword")!;
+    c = apply(c, swingPatch(c, main));
+    expect(offhand(buildTurnMenu(c, spells))!.blocked).toBeUndefined();
+    c = apply(c, startTurnPatch(c));
+    expect(offhand(buildTurnMenu(c, spells))!.blocked).toBe("attackFirst");
   });
 
   test("a shield in the off hand gives none", () => {

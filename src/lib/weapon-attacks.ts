@@ -2,16 +2,19 @@ import { getModifier, getProficiencyBonus, type Character } from "./storage";
 import { addsProficiencyToAttack } from "./proficiency";
 import { isFinesseOrRanged, weaponAbility, weaponDamageDice } from "./inventory";
 
+export const isRaging = (character: Pick<Character, "activeStates">) => (character.activeStates || []).includes("raging");
+
 /**
- * Attack and damage numbers for an equipped weapon attack, as the sheet shows
- * them. `rageDamage` is the Barbarian's current rage bonus (0 when not raging).
+ * Attack and damage numbers for an equipped weapon attack, as the sheet and the
+ * turn helper show them. Rage damage is added only while the Barbarian is raging
+ * (`rageDamage` defaults to the saved rage bonus for the character's level).
  * Returns null when the attack isn't a weapon in the inventory.
  */
-export function getWeaponAttackDetails(character: Character, attack: Character["attacks"][number], rageDamage = 0) {
+export function getWeaponAttackDetails(character: Character, attack: Character["attacks"][number], rageDamage = character.rageDamage || 0) {
   const weapon = character.inventory.find((i) => i.id === attack.id);
   if (!weapon || weapon.itemType !== "weapon") return null;
   const profBonus = getProficiencyBonus(character.level);
-  const isBarbarian = character.class === "Barbarian";
+  const rage = character.class === "Barbarian" && isRaging(character) ? rageDamage : 0;
   const finesseOrRanged = isFinesseOrRanged(weapon);
   const strMod = getModifier(character.str);
   const dexMod = getModifier(character.dex);
@@ -21,13 +24,13 @@ export function getWeaponAttackDetails(character: Character, attack: Character["
     weapon,
     attackBonus: abilityMod + (addsProficiencyToAttack(character, weapon) ? profBonus : 0),
     damageDice: weaponDamageDice(weapon),
-    damageBonus: abilityMod + (isBarbarian && abilityKey === "str" ? rageDamage : 0),
+    damageBonus: abilityMod + (abilityKey === "str" ? rage : 0),
     damageType: weapon.damageType || "",
     abilityKey,
     abilityMod,
     isFinesseOrRanged: finesseOrRanged,
     strMod,
     dexMod,
-    rageBonus: isBarbarian && abilityKey === "str" ? rageDamage : 0,
+    rageBonus: abilityKey === "str" ? rage : 0,
   };
 }

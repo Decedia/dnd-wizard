@@ -90,6 +90,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
     if (o.blocked === "raging") return t("turn.block.raging", "You are already raging.");
     if (o.blocked === "notRaging") return t("turn.block.notRaging", "Only while you rage. Use Rage first.");
     if (slotUsed) return t(`turn.block.used.${o.slot}`);
+    if (o.blocked === "attackFirst") return t("turn.block.attackFirst", "Attack with your other weapon first (Attack action), then this bonus attack opens.");
     if (o.blocked === "actionFirst") return t("turn.block.actionFirst", "Use your action first, then tap this to get it back.");
     return null;
   };
