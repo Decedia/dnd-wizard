@@ -11,7 +11,7 @@ import { applySubclassFeatures, applySubclassSpellGrants, syncBaseFeatures } fro
 import { normalizeDescription } from "@/lib/level-up";
 import invocationsData from "@/data/warlock_invocations.json";
 import { SpellSelectionModal } from "./modals/SpellSelectionModal";
-import { applyFeatGrants, encodeFeatOptions } from "@/lib/feat-grants";
+import { applyFeatGrants, encodeFeatOptions, featAbilityIncreases } from "@/lib/feat-grants";
 import { REPEATABLE_FEATS } from "@/lib/feature-groups";
 import { getOptionalClassFeatures, getOptionalChoiceOptions, isReplacedFeature, usesOptionalClassFeatures } from "@/data/optional-class-features";
 import { FeatSelectionModal } from "./modals/FeatSelectionModal";
@@ -848,6 +848,11 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     if (st.mode === "double") {
       if (st.d1) alloc[st.d1] = 1;
       if (st.d2) alloc[st.d2] = 1;
+    }
+    // A feat's +1 (Resilient, Actor, half feats) counts for previews and later picks.
+    // When the level-up is saved, applyFeatGrants adds it, not this allocation.
+    if (st.mode === "feat" && st.feat) {
+      for (const [k, v] of Object.entries(featAbilityIncreases(st.feat, st.featOptions))) alloc[k as AbilityKey] += v;
     }
     return alloc;
   };

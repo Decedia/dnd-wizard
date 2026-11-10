@@ -3,7 +3,7 @@
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import type { Character } from "@/lib/storage";
-import { computeEquippedEffects, getModifier, getProficiencyBonus } from "@/lib/storage";
+import { computeEquippedEffects, getProficiencyBonus } from "@/lib/storage";
 import { useDerivedStats } from "@/lib/useCharacterStats";
 import { useCallback, useState, useMemo } from "react";
 import {
@@ -24,14 +24,14 @@ import { CustomItemModal } from "../modals/CustomItemModal";
 import { Dice } from "@/components/Dice";
 import { SourceBadge } from "@/components/SourceBadge";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { addRows, applyItemUse, carriedWeight, COIN_BY_FIELD, coinsFromInventory, equipRow, getRowUse, handChoices, isCoinRow, rowInfo, weaponAbility, weaponDamageDice, rowText, setCoinAmount, type Hand as HandSide } from "@/lib/inventory";
+import { addRows, applyItemUse, carriedWeight, COIN_BY_FIELD, coinsFromInventory, equipRow, getRowUse, handChoices, isCoinRow, rowInfo, rowText, setCoinAmount, type Hand as HandSide } from "@/lib/inventory";
 import { changeHands } from "@/lib/turn";
 import { HandChoiceSheet } from "./HandChoiceSheet";
 import { findLocalizedItem } from "@/data/item-catalog";
 import { ItemIcon } from "@/components/ItemIcon";
 
 const signed = (n: number) => (n >= 0 ? `+${n}` : `${n}`);
-import { addsProficiencyToAttack, collectProficiencies, getRowProficiency } from "@/lib/proficiency";
+import { collectProficiencies, getRowProficiency } from "@/lib/proficiency";
 import { getWeaponAttackDetails } from "@/lib/weapon-attacks";
 import {
   CurrencyRow,
@@ -78,8 +78,6 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
   const { onFieldBlur } = useCharacterSheet();
   const { t, language } = useLanguage();
   const derived = useDerivedStats(character);
-  const rageDamage = derived.rageDamage || 0;
-  const isBarbarian = character.class === "Barbarian";
   const [showItemPopup, setShowItemPopup] = useState(false);
 
   const hands = getEquippedHands(character.inventory);
@@ -157,23 +155,6 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
     },
     [character.inventory]
   );
-
-  const getWeaponStats = (item: Character["inventory"][number]): { attackBonus: string; damage: string; ability: string; damageBonus: number; rageBonus: number } | null => {
-    if (item.itemType !== "weapon") return null;
-    const profBonus = getProficiencyBonus(character.level);
-    const abilityKey = weaponAbility(item, getModifier(character.str), getModifier(character.dex));
-    const abilityMod = getModifier(character[abilityKey as keyof Character] as number);
-    const attackBonus = abilityMod + (addsProficiencyToAttack(character, item) ? profBonus : 0);
-    const rageBonus = isBarbarian && abilityKey === "str" ? rageDamage : 0;
-    const damageBonus = abilityMod + rageBonus;
-    return {
-      attackBonus: attackBonus >= 0 ? `+${attackBonus}` : `${attackBonus}`,
-      damage: `${weaponDamageDice(item)} ${item.damageType || ""}`.trim(),
-      ability: abilityKey.toUpperCase(),
-      damageBonus,
-      rageBonus,
-    };
-  };
 
   const [editingItemId, setEditingItemId] = useState<string | null>(null);
   const [showCustomItemModal, setShowCustomItemModal] = useState(false);

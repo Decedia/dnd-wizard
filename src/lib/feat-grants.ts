@@ -58,6 +58,20 @@ export function decodeFeatOptions(entries: string[] | undefined): Record<string,
   return out;
 }
 
+/** The ability increases a feat gives with these picks, e.g. { con: 1 } for Resilient (Constitution). */
+export function featAbilityIncreases(featName: string, options: Record<string, string> = {}): Record<string, number> {
+  const out: Record<string, number> = {};
+  const add = (ability: string, amount: number) => {
+    if (ABILITY_KEYS.includes(ability)) out[ability] = (out[ability] || 0) + amount;
+  };
+  for (const [ability, amount] of Object.entries(FEAT_FIXED_GRANTS[featName]?.asi || {})) add(ability, amount);
+  for (const group of getFeatOptionGroups(featName)) {
+    const value = options[group.id];
+    if (value && group.id.replace(/_\d+$/, "") === "ability") add(value, 1);
+  }
+  return out;
+}
+
 /**
  * Applies a feat's ability increases, proficiencies, languages and spells.
  * Ability increases add to the stored scores, so call this once per feat, at
@@ -74,7 +88,7 @@ export function applyFeatGrants(character: Character, featName: string, options:
     const current = scores[ability] ?? ((character as any)[ability] as number) ?? 10;
     scores[ability] = Math.min(MAX_SCORE, current + amount);
   };
-  for (const [ability, amount] of Object.entries(fixed.asi || {})) raise(ability, amount);
+  for (const [ability, amount] of Object.entries(featAbilityIncreases(featName, options))) raise(ability, amount);
 
   const skills = { ...character.skills };
   const expertise = new Set(character.expertise || []);
@@ -95,7 +109,6 @@ export function applyFeatGrants(character: Character, featName: string, options:
     if (group.type === "spell") {
       spellNames.push(value);
     } else if (base === "ability") {
-      raise(value, 1);
       if (featName === "Resilient") saves.add(value);
     } else if (base === "expertise") {
       skills[value] = true;

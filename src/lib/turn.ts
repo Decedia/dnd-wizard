@@ -3,7 +3,7 @@
 // end a turn. Pure functions, so the panel only renders.
 import type { Character } from "@/lib/storage";
 import { getModifier, getProficiencyBonus, isPreparationCaster } from "@/lib/storage";
-import { getWeaponAttackDetails } from "@/lib/weapon-attacks";
+import { getWeaponAttackDetails, isRaging } from "@/lib/weapon-attacks";
 import { equipRow, heldInHands, unequipRow, type Hand, type InventoryRow } from "@/lib/inventory";
 import { getFreeCastSpells, getGrantedSpellNames } from "@/lib/granted-spells";
 import { advanceTurn, parseDurationToTurns } from "@/lib/spellEffects";
@@ -15,7 +15,7 @@ import { spellDamageBonuses, type SpellDamageBonus } from "@/lib/spell-damage-bo
 export type TurnSlot = "action" | "bonus" | "reaction" | "free";
 export type TurnGroup = "attack" | "spell" | "feature" | "basic";
 /** Why an option cannot be used; the panel turns it into a sentence. */
-export type TurnBlock = "noSlot" | "empty" | "actionFirst" | "raging" | "notRaging" | "shaped";
+export type TurnBlock = "noSlot" | "empty" | "actionFirst" | "attackFirst" | "raging" | "notRaging" | "shaped";
 
 export interface TurnOption {
   key: string;
@@ -63,8 +63,7 @@ export interface TurnMenu {
 
 type SrdSpell = { name: string; description?: string | string[]; level?: number; castingTime?: string; casting_time?: string; duration?: string; concentration?: boolean; effectSummary?: string; summary?: string; damage?: any; saveType?: string | null; range?: string; area_of_effect?: unknown; heal_at_slot_level?: unknown; attackType?: string; attack_type?: string; onHit?: string | null; school?: string; classes?: string[] };
 
-export const isRaging = (character: Pick<Character, "activeStates">) => (character.activeStates || []).includes("raging");
-const rageBonus = (character: Character) => (isRaging(character) ? character.rageDamage || 0 : 0);
+export { isRaging };
 
 /** What a spell does, read from its rules data. */
 export function spellTags(srd: SrdSpell | undefined, name: string): string[] {
@@ -152,7 +151,7 @@ function offHandAttack(character: Character): TurnOption | null {
   const dualWielder = names.some((n) => n === "dual wielder");
   if (!dualWielder && !(hasProp(main, "light") && hasProp(off, "light"))) return null;
   const attack = (character.attacks || []).find((a) => a.id === off.id);
-  const details = attack && getWeaponAttackDetails(character, attack, rageBonus(character));
+  const details = attack && getWeaponAttackDetails(character, attack);
   if (!details) return null;
   const style = names.some((n) => n.includes("two-weapon fighting")) || JSON.stringify(character.featureSelections || {}).includes("Two-Weapon Fighting");
   const bonus = style ? details.damageBonus : Math.min(0, details.damageBonus);
@@ -167,6 +166,8 @@ function offHandAttack(character: Character): TurnOption | null {
     toHit: details.attackBonus,
     damage: `${details.damageDice} ${signed(bonus)} ${details.damageType} damage`.replace(" + 0 ", " "),
     detail: weaponDetail(off),
+    // The bonus attack comes after taking the Attack action with the other hand.
+    blocked: character.attackedThisTurn ? undefined : "attackFirst",
     spend: {},
   };
 }
@@ -176,7 +177,7 @@ function attackOptions(character: Character): TurnOption[] {
   const prof = getProficiencyBonus(character.level);
   for (const attack of character.attacks || []) {
     if (attack.source === "grapple" || attack.source === "shove") continue;
-    const details = attack.source === "weapon" ? getWeaponAttackDetails(character, attack, rageBonus(character)) : null;
+    const details = attack.source === "weapon" ? getWeaponAttackDetails(character, attack) : null;
     if (attack.source === "weapon" && !details) continue;
     const ranged = !!details && details.weapon.category === "ranged";
     out.push({
@@ -411,7 +412,7 @@ export function optionPatch(option: TurnOption): Partial<Character> {
 
 /** A new turn: action, bonus action, movement and reaction all come back. */
 export function startTurnPatch(character: Pick<Character, "turnRound">): Partial<Character> {
-  return { turnActive: true, turnRound: (character.turnRound || 0) + 1, actionUsed: false, bonusActionUsed: false, reactionUsed: false, moveUsed: false, objectInteractionUsed: false, swings: [] };
+  return { turnActive: true, turnRound: (character.turnRound || 0) + 1, actionUsed: false, bonusActionUsed: false, reactionUsed: false, moveUsed: false, objectInteractionUsed: false, swings: [], attackedThisTurn: false };
 }
 
 /**
@@ -428,12 +429,12 @@ export function endTurnPatch(character: Character, srdSpells: SrdSpell[]): Parti
     const turns = srd?.duration ? parseDurationToTurns(srd.duration) : null;
     if (turns !== null && turns > 1) kept.push(spellId);
   }
-  return { turnActive: false, actionUsed: false, bonusActionUsed: false, moveUsed: false, objectInteractionUsed: false, swings: [], spellsUsedThisTurn: kept, featuresUsedThisTurn: [], activeBuffs: advanceTurn(character.activeBuffs || []) };
+  return { turnActive: false, actionUsed: false, bonusActionUsed: false, moveUsed: false, objectInteractionUsed: false, swings: [], attackedThisTurn: false, spellsUsedThisTurn: kept, featuresUsedThisTurn: [], activeBuffs: advanceTurn(character.activeBuffs || []) };
 }
 
 /** The fight is over: the round counter starts again, rage and the quick taps end. */
 export function endEncounterPatch(character?: Pick<Character, "activeStates">): Partial<Character> {
-  const patch: Partial<Character> = { turnActive: false, turnRound: 0, actionUsed: false, bonusActionUsed: false, reactionUsed: false, moveUsed: false, objectInteractionUsed: false, turnSituation: undefined, swings: [] };
+  const patch: Partial<Character> = { turnActive: false, turnRound: 0, actionUsed: false, bonusActionUsed: false, reactionUsed: false, moveUsed: false, objectInteractionUsed: false, turnSituation: undefined, swings: [], attackedThisTurn: false };
   if (character && isRaging(character)) patch.activeStates = (character.activeStates || []).filter((s) => s !== "raging");
   return patch;
 }
@@ -537,7 +538,7 @@ export function swingsLeft(character: Pick<Character, "swings">, perAction: numb
 export function swingPatch(character: Character, option: TurnOption): Partial<Character> {
   const swings = character.swings || [];
   const next = [...swings.filter((s) => s.result !== "pending"), { key: option.key, name: option.nameKey ? "" : option.name, result: "pending" as const }];
-  return swings.length === 0 ? { ...optionPatch(option), swings: next } : { swings: next };
+  return swings.length === 0 ? { ...optionPatch(option), swings: next, attackedThisTurn: true } : { swings: next, attackedThisTurn: true };
 }
 
 export function swingResultPatch(character: Character, index: number, result: SwingResult): Partial<Character> {

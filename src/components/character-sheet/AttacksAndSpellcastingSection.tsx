@@ -1,6 +1,6 @@
 "use client";
 
-import { getWeaponAttackDetails as weaponAttackDetails } from "@/lib/weapon-attacks";
+import { getWeaponAttackDetails as weaponAttackDetails, isRaging } from "@/lib/weapon-attacks";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import type { Character } from "@/lib/storage";
@@ -31,7 +31,7 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
   const isBarbarian = character.class === "Barbarian";
   const isPaladin = character.class === "Paladin";
 
-  const getWeaponAttackDetails = (attack: Character["attacks"][number]) => weaponAttackDetails(character, attack, rageDamage);
+  const getWeaponAttackDetails = (attack: Character["attacks"][number]) => weaponAttackDetails(character, attack, rageDamage || undefined);
 
   return (
     <SectionCard id="attacks" title={t("section.attacks")} icon={<Sword className="h-5 w-5" />}>
@@ -42,7 +42,8 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
       )}
       {isBarbarian && rageDamage > 0 && (
         <div className="mb-4 surface bg-paper-muted px-4 py-3">
-          <span className="text-sm font-bold text-ink">Rage Damage: +{rageDamage}</span>
+          <span className="text-sm font-bold text-ink">{t("attacks.rageDamage", { n: rageDamage }, "Rage Damage: +{n}")}</span>
+          {!isRaging(character) && <span className="mt-0.5 block text-xs text-[var(--color-text-muted)]">{t("attacks.rageOnlyWhileRaging", "Added to Strength weapon damage only while raging.")}</span>}
         </div>
       )}
       {classAttacks.length > 0 && (
