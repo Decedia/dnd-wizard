@@ -4,6 +4,7 @@
 import type { Character } from "@/lib/storage";
 import { getModifier, getProficiencyBonus, isPreparationCaster } from "@/lib/storage";
 import { getWeaponAttackDetails } from "@/lib/weapon-attacks";
+import { equipRow, heldInHands, unequipRow, type Hand, type InventoryRow } from "@/lib/inventory";
 import { getFreeCastSpells, getGrantedSpellNames } from "@/lib/granted-spells";
 import { advanceTurn, parseDurationToTurns } from "@/lib/spellEffects";
 
@@ -22,6 +23,8 @@ export interface TurnOption {
   /** One line of rules text; a locale key for basic actions. */
   summary: string;
   summaryKey?: string;
+  /** The full rules text for the info sheet, when there is more than the one line. */
+  detail?: string;
   /** Numbers for an attack or a spell, e.g. "+5 to hit" and "1d8 + 3 slashing damage". */
   toHit?: number;
   damage?: string;
@@ -42,7 +45,7 @@ export interface TurnMenu {
   speed: number;
 }
 
-type SrdSpell = { name: string; level?: number; castingTime?: string; casting_time?: string; duration?: string; concentration?: boolean; effectSummary?: string; summary?: string; damage?: any; saveType?: string | null };
+type SrdSpell = { name: string; description?: string | string[]; level?: number; castingTime?: string; casting_time?: string; duration?: string; concentration?: boolean; effectSummary?: string; summary?: string; damage?: any; saveType?: string | null };
 
 const SLOT_FLAG: Record<TurnSlot, "actionUsed" | "bonusActionUsed" | "reactionUsed"> = {
   action: "actionUsed",
@@ -90,6 +93,45 @@ export function lowestOpenSlot(character: Pick<Character, "spellSlots" | "spellS
   return null;
 }
 
+const hasProp = (row: InventoryRow, prop: string) => (row.properties || []).some((p) => p.toLowerCase() === prop);
+
+function weaponDetail(weapon: InventoryRow): string {
+  const text = weapon.description && !weapon.description.trimStart().startsWith("{") ? weapon.description : "";
+  const props = (weapon.properties || []).join(", ");
+  return [text, props].filter(Boolean).join("\n\n");
+}
+
+/**
+ * Two-weapon fighting: with a light melee weapon in each hand, the off-hand
+ * weapon attacks once as a bonus action, after an attack with the other one.
+ * Its damage gets no ability bonus (a penalty still counts) unless the
+ * character has the Two-Weapon Fighting style. Dual Wielder drops "light".
+ */
+function offHandAttack(character: Character): TurnOption | null {
+  const { main, off } = heldInHands(character.inventory || []);
+  if (!main || !off || off.itemType !== "weapon" || main.category === "ranged" || off.category === "ranged") return null;
+  const names = (character.features || []).map((f) => f.name.toLowerCase());
+  const dualWielder = names.some((n) => n === "dual wielder");
+  if (!dualWielder && !(hasProp(main, "light") && hasProp(off, "light"))) return null;
+  const attack = (character.attacks || []).find((a) => a.id === off.id);
+  const details = attack && getWeaponAttackDetails(character, attack, character.rageDamage || 0);
+  if (!details) return null;
+  const style = names.some((n) => n.includes("two-weapon fighting")) || JSON.stringify(character.featureSelections || {}).includes("Two-Weapon Fighting");
+  const bonus = style ? details.damageBonus : Math.min(0, details.damageBonus);
+  return {
+    key: `offhand:${off.id}`,
+    slot: "bonus",
+    group: "attack",
+    name: off.name,
+    summary: "",
+    summaryKey: "turn.offhand.hint",
+    toHit: details.attackBonus,
+    damage: `${details.damageDice} ${signed(bonus)} ${details.damageType} damage`.replace(" + 0 ", " "),
+    detail: weaponDetail(off),
+    spend: {},
+  };
+}
+
 function attackOptions(character: Character): TurnOption[] {
   const out: TurnOption[] = [];
   const prof = getProficiencyBonus(character.level);
@@ -105,9 +147,12 @@ function attackOptions(character: Character): TurnOption[] {
       summary: details ? "" : attack.description || "",
       toHit: details ? details.attackBonus : attack.attackBonus,
       damage: details && details.damageDice ? `${details.damageDice} ${signed(details.damageBonus)} ${details.damageType} damage`.replace(" + 0 ", " ") : attack.damageType ? `${attack.damageType} damage` : undefined,
+      detail: details ? weaponDetail(details.weapon) : attack.description || undefined,
       spend: {},
     });
   }
+  const offHand = offHandAttack(character);
+  if (offHand) out.push(offHand);
   const str = getModifier(character.str);
   out.push({
     key: "attack:unarmed",
@@ -153,6 +198,7 @@ function spellOptions(character: Character, srdSpells: SrdSpell[]): TurnOption[]
       group: "spell",
       name: spell.name,
       summary: srd?.effectSummary || srd?.summary || "",
+      detail: ("description" in spell && typeof spell.description === "string" && spell.description) || (Array.isArray(srd?.description) ? srd!.description.join("\n\n") : srd?.description) || undefined,
       concentration: !!srd?.concentration,
       saveDc: srd?.saveType ? character.spellSaveDc || undefined : undefined,
       spend: { spellsUsedThisTurn: [...(character.spellsUsedThisTurn || []).filter((id) => id !== spell.id), spell.id] },
@@ -222,7 +268,7 @@ export function optionPatch(option: TurnOption): Partial<Character> {
 
 /** A new turn: action, bonus action, movement and reaction all come back. */
 export function startTurnPatch(character: Pick<Character, "turnRound">): Partial<Character> {
-  return { turnActive: true, turnRound: (character.turnRound || 0) + 1, actionUsed: false, bonusActionUsed: false, reactionUsed: false, moveUsed: false };
+  return { turnActive: true, turnRound: (character.turnRound || 0) + 1, actionUsed: false, bonusActionUsed: false, reactionUsed: false, moveUsed: false, objectInteractionUsed: false };
 }
 
 /**
@@ -239,10 +285,87 @@ export function endTurnPatch(character: Character, srdSpells: SrdSpell[]): Parti
     const turns = srd?.duration ? parseDurationToTurns(srd.duration) : null;
     if (turns !== null && turns > 1) kept.push(spellId);
   }
-  return { turnActive: false, actionUsed: false, bonusActionUsed: false, moveUsed: false, spellsUsedThisTurn: kept, featuresUsedThisTurn: [], activeBuffs: advanceTurn(character.activeBuffs || []) };
+  return { turnActive: false, actionUsed: false, bonusActionUsed: false, moveUsed: false, objectInteractionUsed: false, spellsUsedThisTurn: kept, featuresUsedThisTurn: [], activeBuffs: advanceTurn(character.activeBuffs || []) };
 }
 
 /** The fight is over: the round counter starts again. */
 export function endEncounterPatch(): Partial<Character> {
-  return { turnActive: false, turnRound: 0, actionUsed: false, bonusActionUsed: false, reactionUsed: false, moveUsed: false };
+  return { turnActive: false, turnRound: 0, actionUsed: false, bonusActionUsed: false, reactionUsed: false, moveUsed: false, objectInteractionUsed: false };
+}
+
+// ---------------------------------------------------------------------------
+// Changing what is in the hands, at the rulebook's cost
+
+export interface HandChangeCost {
+  /** The one free object interaction of the turn is spent on this. */
+  interaction: boolean;
+  /** It also takes the action (a second draw or stow, or a shield). */
+  action: boolean;
+  /** Not possible this turn: it would need an action that is gone, or two of them. */
+  blocked: boolean;
+}
+
+const FREE: HandChangeCost = { interaction: false, action: false, blocked: false };
+const isWeapon = (r: InventoryRow) => r.itemType === "weapon";
+const isShieldRow = (r: InventoryRow) => r.itemType === "armor" && r.armorType === "shield";
+
+/**
+ * What a change of held items costs during the character's turn.
+ * - Drawing or stowing one weapon is the turn's free object interaction.
+ * - Each further draw or stow takes the action (Use an Object).
+ * - Putting on or taking off a shield takes the action.
+ * - Dropping a weapon is free, and so is changing grip on one already held.
+ * Outside a turn nothing is charged.
+ */
+export function handChangeCost(
+  character: Pick<Character, "turnActive" | "actionUsed" | "objectInteractionUsed">,
+  before: InventoryRow[],
+  after: InventoryRow[],
+  droppedIds: string[] = [],
+): HandChangeCost {
+  if (!character.turnActive) return FREE;
+  const was = new Map(before.map((r) => [r.id, !!r.equipped]));
+  const now = new Map(after.map((r) => [r.id, !!r.equipped]));
+  let interactions = 0;
+  let shields = 0;
+  for (const row of after) {
+    const changed = was.get(row.id) !== now.get(row.id);
+    if (!changed) continue;
+    if (isShieldRow(row)) shields++;
+    else if (isWeapon(row) && !(was.get(row.id) && droppedIds.includes(row.id))) interactions++;
+  }
+  if (interactions === 0 && shields === 0) return FREE;
+  const free = interactions > 0 && !character.objectInteractionUsed;
+  const actions = interactions - (free ? 1 : 0) + shields;
+  return { interaction: free, action: actions > 0, blocked: actions > 1 || (actions === 1 && !!character.actionUsed) };
+}
+
+/**
+ * Puts `id` in a hand (or empties the hand when `id` is null) and charges the
+ * turn for it. `drop` lets go of the weapon being replaced instead of stowing
+ * it. Returns null patch when the turn cannot pay.
+ */
+export function changeHands(
+  character: Character,
+  id: string | null,
+  hand: Hand,
+  drop = false,
+): { patch: Partial<Character> | null; cost: HandChangeCost; removed: string[] } {
+  const before = character.inventory || [];
+  let after = before;
+  if (id) {
+    after = equipRow(before, id, hand).inventory;
+  } else {
+    const held = heldInHands(before);
+    const target = hand === "off" ? held.off : held.main;
+    if (target) after = unequipRow(before, target.id);
+  }
+  const removedRows = before.filter((r) => r.equipped && !after.find((a) => a.id === r.id)?.equipped);
+  const cost = handChangeCost(character, before, after, drop ? removedRows.filter(isWeapon).map((r) => r.id) : []);
+  const removed = removedRows.map((r) => r.name);
+  if (cost.blocked) return { patch: null, cost, removed };
+  const patch: Partial<Character> = { inventory: after };
+  if (cost.interaction) patch.objectInteractionUsed = true;
+  if (cost.action) patch.actionUsed = true;
+  return { patch, cost, removed };
 }

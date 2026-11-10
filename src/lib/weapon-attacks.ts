@@ -1,6 +1,6 @@
 import { getModifier, getProficiencyBonus, type Character } from "./storage";
 import { addsProficiencyToAttack } from "./proficiency";
-import { isFinesseOrRanged, weaponAbility } from "./inventory";
+import { isFinesseOrRanged, weaponAbility, weaponDamageDice } from "./inventory";
 
 /**
  * Attack and damage numbers for an equipped weapon attack, as the sheet shows
@@ -20,7 +20,7 @@ export function getWeaponAttackDetails(character: Character, attack: Character["
   return {
     weapon,
     attackBonus: abilityMod + (addsProficiencyToAttack(character, weapon) ? profBonus : 0),
-    damageDice: weapon.damageDice || "",
+    damageDice: weaponDamageDice(weapon),
     damageBonus: abilityMod + (isBarbarian && abilityKey === "str" ? rageDamage : 0),
     damageType: weapon.damageType || "",
     abilityKey,

@@ -362,42 +362,82 @@ export function backgroundGearLabel(
 // ---------------------------------------------------------------------------
 // Equipping: two hands, one body
 
-type Hand = "main" | "off" | "both";
+export type Hand = "main" | "off" | "both";
+
+const hasProp = (row: InventoryRow, prop: string) => (row.properties ?? []).some((p) => p.toLowerCase() === prop);
 
 function handling(row: InventoryRow): "two-handed" | "one-hand" {
-  const props = row.properties ?? [];
-  return props.includes("two-handed") ? "two-handed" : "one-hand";
+  return hasProp(row, "two-handed") ? "two-handed" : "one-hand";
 }
 
 const isShield = (r: InventoryRow) => r.itemType === "armor" && r.armorType === "shield";
 const isBodyArmor = (r: InventoryRow) => r.itemType === "armor" && r.armorType !== "shield";
 
 /**
+ * The hands a weapon can be held in. One-handed: either hand. Versatile: either
+ * hand, or both for its bigger damage die. Two-handed: both only.
+ */
+export function handChoices(row: InventoryRow): Hand[] {
+  if (row.itemType !== "weapon") return [];
+  if (handling(row) === "two-handed") return ["both"];
+  return row.versatileDice ? ["main", "off", "both"] : ["main", "off"];
+}
+
+/** The damage die in use: a versatile weapon held in both hands uses its bigger die. */
+export function weaponDamageDice(row: InventoryRow): string {
+  return (row.hand === "both" && row.versatileDice) || row.damageDice || "";
+}
+
+/** What is in each hand right now. A two-handed grip fills `main` and marks `twoHanded`. */
+export function heldInHands(inventory: InventoryRow[]): { main?: InventoryRow; off?: InventoryRow; twoHanded: boolean } {
+  const equipped = inventory.filter((r) => r.equipped);
+  const both = equipped.find((r) => r.itemType === "weapon" && r.hand === "both");
+  if (both) return { main: both, twoHanded: true };
+  return {
+    main: equipped.find((r) => r.itemType === "weapon" && r.hand === "main") ?? equipped.find((r) => r.itemType === "weapon" && !r.hand),
+    off: equipped.find(isShield) ?? equipped.find((r) => r.itemType === "weapon" && r.hand === "off"),
+    twoHanded: false,
+  };
+}
+
+/**
  * Equips one row and takes off whatever it pushes out. A shield needs the off
  * hand, a two-handed weapon needs both, and a new weapon in a full main hand
- * replaces the old one. Returns the names of what was taken off.
+ * replaces the old one. `wanted` puts a weapon in the hand the player chose
+ * (also for a weapon already held, to change its grip). Returns the names of
+ * what was taken off.
  */
-export function equipRow(inventory: InventoryRow[], id: string): { inventory: InventoryRow[]; removed: string[] } {
+export function equipRow(inventory: InventoryRow[], id: string, wanted?: Hand): { inventory: InventoryRow[]; removed: string[] } {
   const row = inventory.find((r) => r.id === id);
-  if (!row || row.equipped) return { inventory, removed: [] };
+  if (!row) return { inventory, removed: [] };
+  const choice = wanted && handChoices(row).includes(wanted) ? wanted : undefined;
+  if (row.equipped && (!choice || choice === row.hand)) return { inventory, removed: [] };
   const off = new Set<string>();
   let hand: Hand | undefined;
 
   const held = inventory.filter((r) => r.equipped && r.id !== id);
   const inHand = (h: Hand) => held.find((r) => r.itemType === "weapon" && r.hand === h);
+  const drop = (r: InventoryRow | undefined) => r && off.add(r.id);
 
   if (isBodyArmor(row)) {
-    held.filter(isBodyArmor).forEach((r) => off.add(r.id));
+    held.filter(isBodyArmor).forEach(drop);
   } else if (isShield(row)) {
-    held.filter(isShield).forEach((r) => off.add(r.id));
-    const both = inHand("both");
-    const offHand = inHand("off");
-    if (both) off.add(both.id);
-    if (offHand) off.add(offHand.id);
+    held.filter(isShield).forEach(drop);
+    drop(inHand("both"));
+    drop(inHand("off"));
   } else if (row.itemType === "weapon") {
-    if (handling(row) === "two-handed") {
+    if (handling(row) === "two-handed" || choice === "both") {
       hand = "both";
-      held.filter((r) => r.itemType === "weapon" || isShield(r)).forEach((r) => off.add(r.id));
+      held.filter((r) => r.itemType === "weapon" || isShield(r)).forEach(drop);
+    } else if (choice === "main") {
+      hand = "main";
+      drop(inHand("main"));
+      drop(inHand("both"));
+    } else if (choice === "off") {
+      hand = "off";
+      drop(inHand("off"));
+      drop(inHand("both"));
+      held.filter(isShield).forEach(drop);
     } else {
       const both = inHand("both");
       const main = inHand("main");
@@ -423,6 +463,11 @@ export function equipRow(inventory: InventoryRow[], id: string): { inventory: In
     return r;
   });
   return { inventory: next, removed: inventory.filter((r) => off.has(r.id)).map((r) => r.name) };
+}
+
+/** Takes one row off. */
+export function unequipRow(inventory: InventoryRow[], id: string): InventoryRow[] {
+  return inventory.map((r) => (r.id === id ? { ...r, equipped: false, hand: undefined } : r));
 }
 
 // ---------------------------------------------------------------------------

@@ -24,7 +24,9 @@ import { CustomItemModal } from "../modals/CustomItemModal";
 import { Dice } from "@/components/Dice";
 import { SourceBadge } from "@/components/SourceBadge";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { addRows, applyItemUse, carriedWeight, COIN_BY_FIELD, coinsFromInventory, equipRow, getRowUse, isCoinRow, rowInfo, weaponAbility, rowText, setCoinAmount } from "@/lib/inventory";
+import { addRows, applyItemUse, carriedWeight, COIN_BY_FIELD, coinsFromInventory, equipRow, getRowUse, handChoices, isCoinRow, rowInfo, weaponAbility, weaponDamageDice, rowText, setCoinAmount, type Hand as HandSide } from "@/lib/inventory";
+import { changeHands } from "@/lib/turn";
+import { HandChoiceSheet } from "./HandChoiceSheet";
 import { findLocalizedItem } from "@/data/item-catalog";
 import { ItemIcon } from "@/components/ItemIcon";
 
@@ -82,8 +84,6 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
 
   const hands = getEquippedHands(character.inventory);
   const coins = coinsFromInventory(character.inventory);
-  const hasTwoHanded = hands.both !== null;
-  const hasShield = character.inventory.some((i) => i.equipped && i.itemType === "armor" && i.armorType === "shield");
 
   const updateItem = useCallback(
     (id: string, patch: Partial<Character["inventory"][number]>) => {
@@ -98,57 +98,56 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
 
   const [useMessage, setUseMessage] = useState<string | null>(null);
 
+  // The weapon waiting for a hand choice, if any.
+  const [handPick, setHandPick] = useState<string | null>(null);
+
+  /**
+   * Weapons and shields go through changeHands, which also charges the turn
+   * when one is running (free object interaction, then the action).
+   */
+  const changeHeld = useCallback(
+    (id: string | null, hand: HandSide, name: string) => {
+      const { patch, cost, removed } = changeHands(character, id, hand);
+      if (!patch) {
+        setUseMessage(t("hands.blocked", "Not possible this turn: it needs your action, and that is already used."));
+        return;
+      }
+      onChange(patch);
+      const parts: string[] = [];
+      if (id && removed.length > 0) parts.push(t("inventory.unequippedFor", { removed: removed.join(", "), item: name }, "Took off {removed} to equip {item}."));
+      if (cost.action) parts.push(t("hands.cost.action", "Used your action."));
+      else if (cost.interaction) parts.push(t("hands.cost.free", "Used your free object interaction for this turn."));
+      setUseMessage(parts.length > 0 ? parts.join(" ") : null);
+    },
+    [character, onChange, t]
+  );
+
   const toggleEquip = useCallback(
     (id: string) => {
       const item = character.inventory.find((i) => i.id === id);
       if (!item) return;
+      const inHands = item.itemType === "weapon" || item.armorType === "shield";
       if (item.equipped) {
-        updateItem(id, { equipped: false, hand: undefined });
+        if (inHands) changeHeld(null, item.hand === "off" || item.armorType === "shield" ? "off" : "main", item.name);
+        else updateItem(id, { equipped: false, hand: undefined });
         return;
       }
-      // equipRow frees the hands or body slot the item needs.
+      // A one-handed or versatile weapon: the player picks the hand.
+      if (handChoices(item).length > 1) {
+        setHandPick(id);
+        return;
+      }
+      if (inHands) {
+        changeHeld(id, handChoices(item)[0] ?? "off", item.name);
+        return;
+      }
+      // equipRow frees the body slot the item needs.
       const { inventory: nextInventory, removed } = equipRow(character.inventory, id);
       const { ac, attacks } = computeEquippedEffects({ ...character, inventory: nextInventory });
       onChange({ inventory: nextInventory, ac, attacks });
       setUseMessage(removed.length > 0 ? t("inventory.unequippedFor", { removed: removed.join(", "), item: item.name }, "Took off {removed} to equip {item}.") : null);
     },
-    [character, onChange, updateItem, t]
-  );
-
-  const setHand = useCallback(
-    (id: string, hand: HandSlot) => {
-      const item = character.inventory.find((i) => i.id === id);
-      if (!item || !item.equipped) return;
-
-      if (hand === "both") {
-        const nextInventory = character.inventory.map((i) => {
-          if (i.id === id) return { ...i, hand: "both" as const };
-          if (i.equipped && i.itemType === "armor" && i.armorType === "shield") return { ...i, equipped: false };
-          if (i.equipped && i.itemType === "weapon" && i.id !== id) return { ...i, equipped: false, hand: undefined };
-          return i;
-        });
-        const { ac, attacks } = computeEquippedEffects({ ...character, inventory: nextInventory });
-        onChange({ inventory: nextInventory, ac, attacks });
-      } else if (hand === "main") {
-        const nextInventory = character.inventory.map((i) => {
-          if (i.id === id) return { ...i, hand: "main" as const };
-          if (i.hand === "main") return { ...i, equipped: false, hand: undefined };
-          return i;
-        });
-        const { ac, attacks } = computeEquippedEffects({ ...character, inventory: nextInventory });
-        onChange({ inventory: nextInventory, ac, attacks });
-      } else if (hand === "off") {
-        if (hasTwoHanded || hasShield) return;
-        const nextInventory = character.inventory.map((i) => {
-          if (i.id === id) return { ...i, hand: "off" as const };
-          if (i.hand === "off") return { ...i, equipped: false, hand: undefined };
-          return i;
-        });
-        const { ac, attacks } = computeEquippedEffects({ ...character, inventory: nextInventory });
-        onChange({ inventory: nextInventory, ac, attacks });
-      }
-    },
-    [character, onChange, hasTwoHanded, hasShield]
+    [character, onChange, updateItem, changeHeld, t]
   );
 
   const canEquipItem = useCallback(
@@ -169,7 +168,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
     const damageBonus = abilityMod + rageBonus;
     return {
       attackBonus: attackBonus >= 0 ? `+${attackBonus}` : `${attackBonus}`,
-      damage: `${item.damageDice || ""} ${item.damageType || ""}`.trim(),
+      damage: `${weaponDamageDice(item)} ${item.damageType || ""}`.trim(),
       ability: abilityKey.toUpperCase(),
       damageBonus,
       rageBonus,
@@ -555,6 +554,18 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
           onEmptySlotClick={handleAddSrdItem}
         />
 
+        {handPick && (() => {
+          const item = character.inventory.find((i) => i.id === handPick);
+          if (!item) return null;
+          return (
+            <HandChoiceSheet
+              item={item}
+              inventory={character.inventory}
+              onPick={(hand) => { setHandPick(null); changeHeld(item.id, hand, item.name); }}
+              onClose={() => setHandPick(null)}
+            />
+          );
+        })()}
         {useMessage && !selectedItem && (
           <p role="status" className="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2 text-xs text-[var(--color-text-secondary)]">
             {useMessage}

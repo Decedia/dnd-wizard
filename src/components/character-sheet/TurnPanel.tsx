@@ -2,7 +2,8 @@
 
 import { useMemo, useState } from "react";
 import { BottomSheet } from "@/components/modals/BottomSheet";
-import { RichInline } from "@/components/RichText";
+import { RichInline, RichText } from "@/components/RichText";
+import { TurnHands } from "./TurnHands";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getStaticClass, getStaticSubclassDetails } from "@/lib/srd-client";
 import { getMaxPreparedSpells, type Character } from "@/lib/storage";
@@ -30,6 +31,8 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
   const [openBasics, setOpenBasics] = useState<Partial<Record<TurnSlot, boolean>>>({});
   const [showFeatures, setShowFeatures] = useState(true);
   const [preparing, setPreparing] = useState(false);
+  // The row whose full text is open.
+  const [info, setInfo] = useState<{ title: string; meta?: string; text: string } | null>(null);
   const mustPrepare = needsPrepare(character);
   const [last, setLast] = useState<{ name: string; undo: Partial<Character> } | null>(null);
 
@@ -45,12 +48,12 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
 
   const nameOf = (o: TurnOption) => (o.nameKey ? t(o.nameKey) : o.name);
   const textOf = (o: TurnOption) => {
-    if (o.summaryKey) return t(o.summaryKey);
     const parts: string[] = [];
     if (o.toHit !== undefined) parts.push(t("turn.toHit", { bonus: signed(o.toHit) }, "{bonus} to hit"));
     if (o.damage) parts.push(o.damage);
     if (o.saveDc) parts.push(t("turn.saveDc", { dc: o.saveDc }, "Save DC {dc}"));
-    return [parts.join(" · "), o.summary].filter(Boolean).join(parts.length && o.summary ? ". " : "");
+    const summary = o.summaryKey ? t(o.summaryKey) : o.summary;
+    return [parts.join(" · "), summary].filter(Boolean).join(parts.length && summary ? ". " : "");
   };
   const costOf = (o: TurnOption) => {
     if (!o.cost) return null;
@@ -84,30 +87,44 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
     </button>
   );
 
+  const infoButton = (title: string, text: string, meta?: string) => (
+    <button
+      type="button"
+      aria-label={t("turn.info", { name: title }, "Full text: {name}")}
+      onClick={() => setInfo({ title, text, meta })}
+      className="flex w-10 shrink-0 items-center justify-center border-l border-[var(--color-border)] text-sm font-bold text-[var(--color-text-secondary)] hover:bg-[var(--color-bg)]"
+    >
+      i
+    </button>
+  );
+
   const row = (o: TurnOption, slotUsed: boolean) => {
     const reason = reasonOf(o, slotUsed);
     const cost = costOf(o);
     const text = textOf(o);
+    const full = o.detail || (o.summaryKey ? t(o.summaryKey) : o.summary);
     return (
-      <button
-        key={o.key}
-        type="button"
-        disabled={!!reason}
-        onClick={() => use(o)}
-        className="w-full rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2 text-left transition-colors hover:border-[var(--color-border-active)] disabled:opacity-45 disabled:hover:border-[var(--color-border)]"
-      >
-        <span className="flex flex-wrap items-center gap-x-2 gap-y-0.5">
-          <span className="text-sm font-bold text-[var(--color-text-primary)]">{nameOf(o)}</span>
-          {cost && <span className="rounded-full bg-[var(--color-bg)] px-1.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)]">{cost}</span>}
-          {o.concentration && <span className="rounded-full border border-dashed border-[var(--color-border-active)] px-1.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)]">{t("turn.concentration", "Concentration")}</span>}
-        </span>
-        {text && (
-          <span className="mt-0.5 block text-xs leading-relaxed text-[var(--color-text-secondary)] line-clamp-3">
-            <RichInline text={text} />
+      <div key={o.key} className="flex overflow-hidden rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] transition-colors hover:border-[var(--color-border-active)]">
+        <button
+          type="button"
+          disabled={!!reason}
+          onClick={() => use(o)}
+          className="min-w-0 flex-1 px-3 py-2 text-left disabled:opacity-45"
+        >
+          <span className="flex flex-wrap items-center gap-x-2 gap-y-0.5">
+            <span className="text-sm font-bold text-[var(--color-text-primary)]">{nameOf(o)}</span>
+            {cost && <span className="rounded-full bg-[var(--color-bg)] px-1.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)]">{cost}</span>}
+            {o.concentration && <span className="rounded-full border border-dashed border-[var(--color-border-active)] px-1.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)]">{t("turn.concentration", "Concentration")}</span>}
           </span>
-        )}
-        {reason && <span className="mt-0.5 block text-[11px] font-semibold text-[var(--color-text-muted)]">{reason}</span>}
-      </button>
+          {text && (
+            <span className="mt-0.5 block text-xs leading-relaxed text-[var(--color-text-secondary)] line-clamp-3">
+              <RichInline text={text} />
+            </span>
+          )}
+          {reason && <span className="mt-0.5 block text-[11px] font-semibold text-[var(--color-text-muted)]">{reason}</span>}
+        </button>
+        {full && infoButton(nameOf(o), full, [cost, text && o.detail ? text : null].filter(Boolean).join(" · ") || undefined)}
+      </div>
     );
   };
 
@@ -157,6 +174,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
             </button>
           </div>
         )}
+        <TurnHands character={character} onChange={onChange} />
         {SLOTS.map((slot) => {
           const options = menu.options.filter((o) => o.slot === slot);
           if (options.length === 0) {
@@ -216,9 +234,12 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
                 {menu.features.map((f) => {
                   const text = localSummary.get(f.name) || f.description;
                   return (
-                    <div key={f.id} className="rounded-[var(--radius-md)] border border-[var(--color-border)] px-3 py-2">
-                      <div className="text-sm font-bold text-[var(--color-text-primary)]">{f.name}</div>
-                      {text && <div className="mt-0.5 text-xs leading-relaxed text-[var(--color-text-secondary)] line-clamp-3"><RichInline text={text} /></div>}
+                    <div key={f.id} className="flex overflow-hidden rounded-[var(--radius-md)] border border-[var(--color-border)]">
+                      <div className="min-w-0 flex-1 px-3 py-2">
+                        <div className="text-sm font-bold text-[var(--color-text-primary)]">{f.name}</div>
+                        {text && <div className="mt-0.5 text-xs leading-relaxed text-[var(--color-text-secondary)] line-clamp-3"><RichInline text={text} /></div>}
+                      </div>
+                      {(f.description || text) && infoButton(f.name, f.description || text)}
                     </div>
                   );
                 })}
@@ -227,6 +248,14 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
           </section>
         )}
       </div>
+      {info && (
+        <BottomSheet isOpen onClose={() => setInfo(null)} title={info.title} className="!mb-4 !max-h-[86vh]">
+          <div className="space-y-2 px-4 py-4">
+            {info.meta && <div className="text-xs font-semibold text-[var(--color-text-secondary)]"><RichInline text={info.meta} /></div>}
+            <div className="text-sm leading-relaxed text-[var(--color-text-primary)]"><RichText text={info.text} /></div>
+          </div>
+        </BottomSheet>
+      )}
       {preparing && (
         <PrepareSpellsSheet
           spells={preparableSpells(character)}
