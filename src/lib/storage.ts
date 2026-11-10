@@ -57,6 +57,8 @@ export interface Character {
   objectInteractionUsed?: boolean;
   turnActive?: boolean;
   turnRound?: number;
+  /** Quick taps in the turn helper: an enemy next to you, a group of enemies, an enemy almost down. Cleared when the fight ends. */
+  turnSituation?: { near?: boolean; many?: boolean; low?: boolean };
   // Exhaustion
   exhaustionLevel: number;
   rages: number;
