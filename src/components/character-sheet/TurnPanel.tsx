@@ -9,7 +9,7 @@ import { getStaticClass, getStaticSubclassDetails } from "@/lib/srd-client";
 import { getMaxPreparedSpells, type Character } from "@/lib/storage";
 import { needsPrepare, preparableSpells } from "@/lib/prepared-spells";
 import { PrepareSpellsSheet } from "@/components/PrepareSpellsSheet";
-import { buildTurnMenu, endEncounterPatch, isSlotUsed, optionPatch, type TurnGroup, type TurnOption, type TurnSlot } from "@/lib/turn";
+import { amountPatch, buildTurnMenu, endEncounterPatch, isSlotUsed, optionPatch, type TurnGroup, type TurnOption, type TurnSlot } from "@/lib/turn";
 import { CheckIcon as Check, LightningBoltIcon as LightningBolt, ClockIcon as Clock, ShieldCheckIcon as ShieldCheck, CaretDownIcon as ChevronDown } from "@/components/icons";
 import { GiRun } from "react-icons/gi";
 
@@ -21,8 +21,8 @@ interface TurnPanelProps {
   onClose: () => void;
 }
 
-const SLOTS: TurnSlot[] = ["action", "bonus", "reaction"];
-const GROUPS: TurnGroup[] = ["attack", "spell", "basic"];
+const SLOTS: TurnSlot[] = ["action", "bonus", "reaction", "free"];
+const GROUPS: TurnGroup[] = ["attack", "spell", "feature"];
 const signed = (n: number) => (n >= 0 ? `+${n}` : `${n}`);
 
 export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }: TurnPanelProps) {
@@ -33,6 +33,8 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
   const [preparing, setPreparing] = useState(false);
   // The row whose full text is open.
   const [info, setInfo] = useState<{ title: string; meta?: string; text: string } | null>(null);
+  // The feature whose amount is being chosen (Lay on Hands).
+  const [amountFor, setAmountFor] = useState<{ option: TurnOption; value: number } | null>(null);
   const mustPrepare = needsPrepare(character);
   const [last, setLast] = useState<{ name: string; undo: Partial<Character> } | null>(null);
 
@@ -52,7 +54,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
     if (o.toHit !== undefined) parts.push(t("turn.toHit", { bonus: signed(o.toHit) }, "{bonus} to hit"));
     if (o.damage) parts.push(o.damage);
     if (o.saveDc) parts.push(t("turn.saveDc", { dc: o.saveDc }, "Save DC {dc}"));
-    const summary = o.summaryKey ? t(o.summaryKey) : o.summary;
+    const summary = o.summaryKey ? t(o.summaryKey) : (o.group === "feature" && localSummary.get(o.name)) || o.summary;
     return [parts.join(" · "), summary].filter(Boolean).join(parts.length && summary ? ". " : "");
   };
   const costOf = (o: TurnOption) => {
@@ -61,12 +63,15 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
   };
   const reasonOf = (o: TurnOption, slotUsed: boolean) => {
     if (o.blocked === "noSlot") return t("turn.block.noSlot", "No spell slot left");
+    if (o.blocked === "empty") return t("turn.block.empty", "None left. It comes back after a rest.");
     if (slotUsed) return t(`turn.block.used.${o.slot}`);
+    if (o.blocked === "actionFirst") return t("turn.block.actionFirst", "Use your action first, then tap this to get it back.");
     return null;
   };
 
-  const use = (o: TurnOption) => {
-    const patch = optionPatch(o);
+  const use = (o: TurnOption, amount?: number) => {
+    if (o.amount && amount === undefined) return setAmountFor({ option: o, value: 1 });
+    const patch = amount === undefined ? optionPatch(o) : amountPatch(character, o, amount);
     const undo: Record<string, unknown> = {};
     for (const key of Object.keys(patch)) undo[key] = (character as any)[key] ?? (key.endsWith("Used") ? false : undefined);
     setLast({ name: nameOf(o), undo: undo as Partial<Character> });
@@ -114,6 +119,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
           <span className="flex flex-wrap items-center gap-x-2 gap-y-0.5">
             <span className="text-sm font-bold text-[var(--color-text-primary)]">{nameOf(o)}</span>
             {cost && <span className="rounded-full bg-[var(--color-bg)] px-1.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)]">{cost}</span>}
+            {o.when && <span className="rounded-full border border-[var(--color-border)] px-1.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)]">{t(`turn.when.${o.when}`)}</span>}
             {o.concentration && <span className="rounded-full border border-dashed border-[var(--color-border-active)] px-1.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)]">{t("turn.concentration", "Concentration")}</span>}
           </span>
           {text && (
@@ -123,7 +129,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
           )}
           {reason && <span className="mt-0.5 block text-[11px] font-semibold text-[var(--color-text-muted)]">{reason}</span>}
         </button>
-        {full && infoButton(nameOf(o), full, [cost, text && o.detail ? text : null].filter(Boolean).join(" · ") || undefined)}
+        {full && infoButton(nameOf(o), full, [cost, o.when ? t(`turn.when.${o.when}`) : null, text && o.detail && o.group !== "feature" ? text : null].filter(Boolean).join(" · ") || undefined)}
       </div>
     );
   };
@@ -178,6 +184,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
         {SLOTS.map((slot) => {
           const options = menu.options.filter((o) => o.slot === slot);
           if (options.length === 0) {
+            if (slot === "free") return null;
             return (
               <section key={slot}>
                 <h3 className="text-sm font-bold text-[var(--color-text-primary)]">{t(`turn.slot.${slot}`)}</h3>
@@ -191,11 +198,11 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
             <section key={slot}>
               <div className="mb-2 flex items-baseline justify-between">
                 <h3 className="text-sm font-bold text-[var(--color-text-primary)]">{t(`turn.slot.${slot}`)}</h3>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">{used ? t("turn.state.used", "Used") : t("turn.state.ready", "Ready")}</span>
+                {slot !== "free" && <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">{used ? t("turn.state.used", "Used") : t("turn.state.ready", "Ready")}</span>}
               </div>
               <p className="mb-2 text-[11px] text-[var(--color-text-muted)]">{t(`turn.slot.${slot}.hint`)}</p>
               <div className="space-y-3">
-                {GROUPS.filter((g) => g !== "basic").map((group) => {
+                {GROUPS.map((group) => {
                   const rows = options.filter((o) => o.group === group);
                   if (rows.length === 0) return null;
                   return (
@@ -225,10 +232,10 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
         {menu.features.length > 0 && (
           <section>
             <button type="button" onClick={() => setShowFeatures((v) => !v)} className="flex w-full items-center justify-between text-sm font-bold text-[var(--color-text-primary)]">
-              <span>{t("turn.features", "Your features")} ({menu.features.length})</span>
+              <span>{t("turn.features", "Always on")} ({menu.features.length})</span>
               <ChevronDown className={`h-4 w-4 transition-transform ${showFeatures ? "rotate-180" : ""}`} />
             </button>
-            <p className="mt-1 text-[11px] text-[var(--color-text-muted)]">{t("turn.features.hint", "Not tracked here yet. Read when each one applies, and spend uses on the Features tab.")}</p>
+            <p className="mt-1 text-[11px] text-[var(--color-text-muted)]">{t("turn.features.hint", "Nothing to tap. These work on their own, or outside a fight.")}</p>
             {showFeatures && (
               <div className="mt-2 space-y-1.5">
                 {menu.features.map((f) => {
@@ -253,6 +260,22 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
           <div className="space-y-2 px-4 py-4">
             {info.meta && <div className="text-xs font-semibold text-[var(--color-text-secondary)]"><RichInline text={info.meta} /></div>}
             <div className="text-sm leading-relaxed text-[var(--color-text-primary)]"><RichText text={info.text} /></div>
+          </div>
+        </BottomSheet>
+      )}
+      {amountFor && (
+        <BottomSheet isOpen onClose={() => setAmountFor(null)} title={amountFor.option.name} className="!mb-4">
+          <div className="space-y-4 px-4 py-4">
+            <p className="text-xs text-[var(--color-text-secondary)]">{t("turn.amount.hint", { max: amountFor.option.amount!.max }, "How much do you spend? You have {max} left.")}</p>
+            <div className="flex items-center justify-center gap-4">
+              <button type="button" aria-label="-1" onClick={() => setAmountFor((a) => a && { ...a, value: Math.max(1, a.value - 1) })} className="h-11 w-11 rounded-full border border-[var(--color-border)] text-lg font-bold text-[var(--color-text-primary)]">−</button>
+              <span className="min-w-[3ch] text-center text-2xl font-bold text-[var(--color-text-primary)]">{amountFor.value}</span>
+              <button type="button" aria-label="+1" onClick={() => setAmountFor((a) => a && { ...a, value: Math.min(a.option.amount!.max, a.value + 1) })} className="h-11 w-11 rounded-full border border-[var(--color-border)] text-lg font-bold text-[var(--color-text-primary)]">+</button>
+              <button type="button" onClick={() => setAmountFor((a) => a && { ...a, value: Math.min(a.option.amount!.max, a.value + 5) })} className="rounded-full border border-[var(--color-border)] px-3 py-2 text-xs font-semibold text-[var(--color-text-secondary)]">+5</button>
+            </div>
+            <button type="button" onClick={() => { use(amountFor.option, amountFor.value); setAmountFor(null); }} className="w-full rounded-full bg-[var(--color-ink)] py-2.5 text-sm font-bold text-[var(--color-surface)]">
+              {t("turn.amount.use", { amount: amountFor.value }, "Spend {amount}")}
+            </button>
           </div>
         </BottomSheet>
       )}
