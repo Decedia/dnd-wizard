@@ -370,6 +370,8 @@ export const translations = {
   "wild.why.Giant Crocodile": "Dua serangan besar, dan menahan satu musuh.",
   "wild.why.Mammoth": "HP terbanyak dari semua wujud di sini.",
   "wild.why.Tyrannosaurus Rex": "Wujud terbesar. Dua serangan dahsyat.",
+  "spell.bonus.roll": "{n} ke satu lemparan damage · {source}",
+  "spell.bonus.beam": "{n} damage di setiap sinar · {source}",
   "turn.title": "Giliranmu · Ronde {round}",
   "turn.start": "Mulai giliranku",
   "turn.continue": "Lanjutkan giliran",

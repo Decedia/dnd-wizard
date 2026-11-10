@@ -882,6 +882,8 @@ export const translations = {
   "wild.line": "AC {ac} · {hp} HP",
   "wild.multi": "{count} attacks a turn",
   "turn.block.shaped": "You are already in beast form.",
+  "spell.bonus.roll": "{n} to one damage roll · {source}",
+  "spell.bonus.beam": "{n} damage on every beam · {source}",
   "turn.title": "Your turn · Round {round}",
   "turn.start": "Start my turn",
   "turn.continue": "Continue turn",
