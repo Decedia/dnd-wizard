@@ -206,19 +206,16 @@ export function CombatStatsSection({ character, onChange, editMode = true, onOpe
       </div>
 
       {onRest && (
-        <div className="mt-3 grid grid-cols-2 gap-2">
+        <div className="mt-3 flex items-center justify-center gap-3">
           {(["short", "long"] as const).map((kind) => (
             <button
               key={kind}
               type="button"
               onClick={() => onRest(kind)}
-              className="flex items-center justify-center gap-2 rounded-[var(--radius-md)] border border-[var(--color-border)] px-3 py-2.5 text-xs font-bold text-[var(--color-text-primary)] hover:border-[var(--color-border-active)]"
+              className="flex items-center gap-2 rounded-full border border-[var(--color-border)] px-4 py-2 text-[var(--color-text-primary)] transition-all hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
             >
               {kind === "short" ? <GiCampfire className="h-4 w-4" aria-hidden="true" /> : <GiNightSleep className="h-4 w-4" aria-hidden="true" />}
-              <span>
-                {t(`rest.${kind}.title`)}
-                <span className="block text-[10px] font-semibold text-[var(--color-text-muted)]">{t(`rest.${kind}.time`)}</span>
-              </span>
+              <span className="whitespace-nowrap text-xs font-semibold">{t(`rest.${kind}.title`)}</span>
             </button>
           ))}
         </div>
