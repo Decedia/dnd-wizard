@@ -1,7 +1,7 @@
 /**
  * Finds every place a string is rendered as plain text where that string can
  * contain dice, and reports it. With --fix it rewrites the render to go through
- * DiceText, which badges the dice, damage types, statuses, abilities and skills.
+ * RichText, which badges the dice, damage types, statuses, abilities and skills.
  *
  *   node scripts/find-dice-renders.mjs          report
  *   node scripts/find-dice-renders.mjs --fix    rewrite the JSX
@@ -44,9 +44,9 @@ const edits = new Map();
 for (const rel of TARGETS) {
   const full = path.join(ROOT, rel);
   let source = readFileSync(full, "utf8");
-  // No file-level skip: a file that already imports DiceText is exactly where
+  // No file-level skip: a file that already imports RichText is exactly where
   // leftover plain-text sites hide.
-  const alreadyImports = /from ["']@\/components\/DiceText["']/.test(source);
+  const alreadyImports = /from ["']@\/components\/RichText["']/.test(source);
 
   const lines = source.split("\n");
   lines.forEach((line, i) => {
@@ -56,7 +56,7 @@ for (const rel of TARGETS) {
       const ident = m[1];
       const leaf = ident.split(".").pop();
       if (!DICE_BEARING_SUFFIX.includes(leaf)) continue;
-      if (/DiceText/.test(line)) continue;
+      if (/RichText/.test(line)) continue;
 
       // The expression must be a standalone JSX child, not part of a template
       // literal, a ternary or a prop. This is the difference between a safe
@@ -70,7 +70,7 @@ for (const rel of TARGETS) {
       if (/`|[?]|>=|<=|==|&&|\|\|/.test(line)) return;
       // A prop, e.g. description={x}
       if (/=\s*$/.test(before)) return;
-      // DiceText renders a block element, so it cannot go inside a tight flex
+      // RichText renders a block element, so it cannot go inside a tight flex
       // row or the print view's inline-styled markup. Those keep plain text and
       // are listed rather than silently rewritten.
       const layoutLocked =
@@ -91,22 +91,22 @@ for (const rel of TARGETS) {
 
 console.log(`\nplain-text renders of dice-bearing text: ${findings.length}\n`);
 for (const f of findings) {
-  const mark = f.layoutLocked ? "  (layout-locked: DiceText renders a block)" : "";
+  const mark = f.layoutLocked ? "  (layout-locked: RichText renders a block)" : "";
   console.log(`  ${f.rel}:${f.line}  {${f.ident}}${mark}`);
   console.log(`      ${f.text}`);
 }
 console.log("");
 
 if (!FIX || findings.length === 0) {
-  console.log("run with --fix to wrap them in DiceText");
+  console.log("run with --fix to wrap them in RichText");
   console.log("");
   process.exit(0);
 }
 
-// Rewrite each line: the expression becomes <DiceText text={ident} />, keeping the
+// Rewrite each line: the expression becomes <RichText text={ident} />, keeping the
 // surrounding element and its classes. Only the innermost text node is replaced,
 // so an element like <p className="...">{summary}</p> becomes
-// <p className="..."><DiceText text={summary} /></p>.
+// <p className="..."><RichText text={summary} /></p>.
 const byFile = new Map();
 for (const f of findings) {
   if (!byFile.has(f.rel)) byFile.set(f.rel, []);
@@ -121,12 +121,12 @@ for (const [rel, list] of byFile) {
     // Escape the dots in a member expression, and anchor on the first
     // occurrence on the line so a second {x.value} is not rewritten twice.
     const pattern = new RegExp(`\\{\\s*${f.ident.replace(/\./g, "\\.")}\\s*\\}`);
-    lines[f.index] = lines[f.index].replace(pattern, `<DiceText text={${f.ident}} />`);
+    lines[f.index] = lines[f.index].replace(pattern, `<RichText text={${f.ident}} />`);
   }
   source = lines.join("\n");
   // Add the import if it is missing.
-  if (!/from ["']@\/components\/DiceText["']/.test(source)) {
-    const importLine = `import { DiceText } from "@/components/DiceText";\n`;
+  if (!/from ["']@\/components\/RichText["']/.test(source)) {
+    const importLine = `import { RichText } from "@/components/RichText";\n`;
     const lastImport = source.lastIndexOf("\nimport ");
     const insertAt = source.indexOf("\n", lastImport + 1);
     source = source.slice(0, insertAt + 1) + importLine + source.slice(insertAt + 1);

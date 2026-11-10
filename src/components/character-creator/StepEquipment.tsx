@@ -17,6 +17,7 @@ import { SwordIcon as Sword, DaggerIcon as Dagger, BowArrowIcon as BowArrow, Cro
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useDebugLogger } from "@/lib/debug/DebugContext";
 import { EquipmentSelectionModal } from "@/components/modals/EquipmentSelectionModal";
+import { RichText } from "@/components/RichText";
 
 const weaponTypeIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   martial_melee: Sword,
@@ -370,7 +371,7 @@ export function StepEquipment({ data, onChange }: StepEquipmentProps) {
           {itemInfo.description && (
             <div>
               <InfoSectionLabel>{t("equipment.itemDetails", "Detail Item")}</InfoSectionLabel>
-              <p className="mt-1 text-xs leading-relaxed text-ink-muted">{itemInfo.description}</p>
+              <RichText text={itemInfo.description} className="mt-1 text-xs text-ink-muted" />
             </div>
           )}
         </div>

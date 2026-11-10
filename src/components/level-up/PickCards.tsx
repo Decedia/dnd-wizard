@@ -1,6 +1,7 @@
 "use client";
 
 import { CheckIcon as Check } from "@/components/icons";
+import { RichInline } from "@/components/RichText";
 
 export type PickCard = {
   key: string;
@@ -42,7 +43,7 @@ export function PickCards({ label, cards, onPick }: { label: string; cards: Pick
               <span className="text-sm font-bold text-[var(--color-text-primary)]">{card.title}</span>
               {card.tag && <span className="text-[10px] font-semibold text-[var(--color-text-muted)]">{card.tag}</span>}
             </span>
-            <span className="mt-0.5 block text-xs text-[var(--color-text-secondary)]">{card.why}</span>
+            <span className="mt-0.5 block text-xs text-[var(--color-text-secondary)]"><RichInline text={card.why} /></span>
           </span>
         </button>
       ))}

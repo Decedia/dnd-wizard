@@ -22,6 +22,7 @@ import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
 import { HumanVariantConfig, type HumanVariantConfigPayload } from "@/components/modals/HumanVariantConfig";
 import { HalfElfConfig, type HalfElfConfigPayload } from "@/components/modals/HalfElfConfig";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { RichText, RichInline } from "@/components/RichText";
 import {
   CheckIcon as Check,
   CaretRightIcon as ChevronRight,
@@ -680,7 +681,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
                                   )}
                                 </div>
                                 {selectionType === "class" && opt.description && (
-                                  <p className="mt-1 text-xs leading-relaxed text-ink-muted">{opt.description}</p>
+                                  <p className="mt-1 text-xs leading-relaxed text-ink-muted"><RichInline text={opt.description} /></p>
                                 )}
                               </div>
 
@@ -837,9 +838,7 @@ function SelectionCard({
         selectionType === "class" ? (
           <ClassInfoPanel option={option} />
         ) : (
-          <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">
-            {option.description}
-          </p>
+          <RichText text={option.description} className="text-xs text-[var(--color-text-secondary)]" />
         )
       }
     />
@@ -999,7 +998,7 @@ function ConfigChoiceCard({ choice, isSelected, known = false, onClick }: Config
             )}
           </div>
           <p className="text-xs text-[var(--color-text-secondary)] line-clamp-2 mb-2">
-            {choice.description}
+            <RichInline text={choice.description} />
           </p>
           {choice.effect && (
             <p className="text-[10px] text-[var(--color-text-muted)] font-mono">

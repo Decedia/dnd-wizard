@@ -3,6 +3,7 @@
 import { SourceBadge } from "../SourceBadge";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { RichText } from "@/components/RichText";
 
 interface FeatModalProps {
   feat: {
@@ -30,9 +31,7 @@ export function FeatModal({ feat, onClose }: FeatModalProps) {
             <SourceBadge source={feat.source} size="sm" />
           </div>
         )}
-        <div className="text-sm text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">
-          {tDesc(`feat.desc.${feat.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`, feat.description)}
-        </div>
+        <RichText text={tDesc(`feat.desc.${feat.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`, feat.description)} />
         <div className="pt-2">
           <button
             type="button"

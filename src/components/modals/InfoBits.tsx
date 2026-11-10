@@ -2,7 +2,7 @@
 
 import { ItemIcon } from "@/components/ItemIcon";
 import { ReactNode } from "react";
-import { DiceText } from "@/components/DiceText";
+import { RichText, RichInline } from "@/components/RichText";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 interface InfoSectionLabelProps {
@@ -40,7 +40,7 @@ export function InfoCallout({ label, children }: { label: ReactNode; children: R
   return (
     <div className="rounded-2xl border-2 border-ink bg-ink/5 p-4">
       <InfoSectionLabel>{label}</InfoSectionLabel>
-      <p className="mt-1 text-sm font-bold leading-relaxed text-ink">{children}</p>
+      <p className="mt-1 text-sm font-bold leading-relaxed text-ink">{typeof children === "string" ? <RichInline text={children} /> : children}</p>
     </div>
   );
 }
@@ -88,7 +88,7 @@ interface InfoProseProps {
 export function InfoProse({ text, className = "" }: InfoProseProps) {
   return (
     <div className={className}>
-      <DiceText text={text} />
+      <RichText text={text} />
     </div>
   );
 }
@@ -112,7 +112,7 @@ export function InfoTraitList({
         >
           <h4 className="text-sm font-bold text-ink">{trait.name}</h4>
           <div className="mt-1">
-            <DiceText text={trait.summary || trait.description || ""} />
+            <RichText text={trait.summary || trait.description || ""} />
           </div>
         </div>
       ))}
@@ -229,7 +229,7 @@ export function EquipmentInfoPanel({ option, t, language }: EquipmentInfoPanelPr
                     </div>
                     <div>
                       <h4 className="font-bold text-ink">{item.name}</h4>
-                      <p className="text-xs text-ink-muted">{item.info?.description}</p>
+                      <p className="text-xs text-ink-muted"><RichInline text={item.info?.description} /></p>
                     </div>
                   </div>
                   {item.quantity > 1 && (

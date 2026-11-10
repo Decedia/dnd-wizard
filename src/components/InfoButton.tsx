@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { InfoIcon as Info } from "@/components/icons";
 import { BasePopup } from "./BasePopup";
-import { FormattedDescription } from "./FormattedDescription";
+import { RichText } from "@/components/RichText";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 interface InfoButtonProps {
@@ -43,7 +43,7 @@ export function InfoButton({ title, description, descKey }: InfoButtonProps) {
         onConfirm={() => setShow(false)}
         showFooter={true}
       >
-        <FormattedDescription>{localized}</FormattedDescription>
+        <RichText text={localized} className="text-xs text-[var(--color-text-secondary)]" />
       </BasePopup>
     </>
   );
@@ -73,7 +73,7 @@ export function DescriptionModal({ title, content, onClose, children, showConfir
       onConfirm={onConfirm}
       showFooter={!!showConfirm && !!onConfirm}
     >
-      {children || <FormattedDescription>{text}</FormattedDescription>}
+      {children || <RichText text={text} className="text-xs text-[var(--color-text-secondary)]" />}
     </BasePopup>
   );
 }

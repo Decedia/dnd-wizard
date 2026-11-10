@@ -8,6 +8,8 @@ import { isRecommended } from "@/lib/recommendations";
 import { GroupedList } from "@/components/GroupedList";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
+import { RichText } from "@/components/RichText";
+import { toPlainText } from "@/lib/rich-text";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
 import { getMaxSpellLevel, getWarlockExpandedSpellNames } from "@/lib/storage";
@@ -296,14 +298,14 @@ export function SpellSelectionModal({
         onSelect={() => !isAlreadyKnown && !isDisabled && toggle(sp.name, level)}
         infoType="modal"
         modalContent={
-          <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">
-            {(() => {
-              const rawDesc = Array.isArray(sp.description) ? sp.description.join(" ") : sp.description;
-              const translatedDesc = tDesc(`spell.desc.${slugify(sp.name)}`, rawDesc);
+          <RichText
+            className="text-xs text-[var(--color-text-secondary)]"
+            text={(() => {
+              const translatedDesc = tDesc(`spell.desc.${slugify(sp.name)}`, toPlainText(sp.description));
               const s = (sp as any).effectSummary || (sp as any).summary || "";
-              return s ? `${s}\n\n${translatedDesc}` : translatedDesc;
+              return s ? `${s}\n${translatedDesc}` : translatedDesc;
             })()}
-          </p>
+          />
         }
       />
     );

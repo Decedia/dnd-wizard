@@ -4,7 +4,7 @@ import { useCallback } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { getStaticRaces, getStaticClasses, getStaticRace, getStaticClass } from "@/lib/srd-client";
-import { DiceText } from "@/components/DiceText";
+import { RichText, RichInline } from "@/components/RichText";
 import { SourceBadge } from "../SourceBadge";
 import { languageNames } from "@/data/srd";
 import { ALIGNMENTS } from "@/lib/storage";
@@ -236,7 +236,7 @@ export function IdentitySection({ character, onChange, editMode = true }: Identi
               <div>
                 <span className="field-label-light">{t("form.classSummary", "CLASS SUMMARY")}</span>
                 <p className="mt-1.5 text-sm italic leading-relaxed text-[var(--color-text-secondary)]">
-                  {selectedClass.flavor}
+                  <RichInline text={selectedClass.flavor} />
                 </p>
               </div>
             )}
@@ -251,11 +251,11 @@ export function IdentitySection({ character, onChange, editMode = true }: Identi
                     <div key={trait.name}>
                       <div className="text-sm font-semibold text-ink">{trait.name}</div>
                       {trait.summary && (
-                        <p className="mt-0.5 text-sm text-[var(--color-text-muted)]">{trait.summary}</p>
+                        <p className="mt-0.5 text-sm text-[var(--color-text-muted)]"><RichInline text={trait.summary} /></p>
                       )}
                       {trait.description && (
                         <div className="mt-1 text-sm leading-relaxed text-ink">
-                          <DiceText text={trait.description} />
+                          <RichText text={trait.description} />
                         </div>
                       )}
                     </div>

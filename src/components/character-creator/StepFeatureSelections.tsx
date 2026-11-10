@@ -8,6 +8,7 @@ import { SourceBadge } from "../SourceBadge";
 import type { Character } from "@/lib/storage";
 import { InfoIcon, XIcon as XIcon } from "@/components/icons";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { RichText } from "@/components/RichText";
 
 interface FeatureSelection {
   featureName: string;
@@ -131,7 +132,7 @@ export function StepFeatureSelections({ data, onChange, selections }: StepFeatur
                              <XIcon className="h-4 w-4" />
                            </button>
                          </div>
-                         <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{selection.description}</p>
+                         <RichText text={selection.description} className="max-h-[60vh] overflow-y-auto text-xs text-[var(--color-text-secondary)]" />
                          <button type="button" onClick={() => setInfoState(null)} className="mt-3 w-full py-2 rounded-lg bg-[var(--color-ink)] text-[var(--color-surface)] text-sm font-semibold">Got it</button>
                        </div>
                      </div>

@@ -8,6 +8,7 @@ import { SplitSelectionCard } from "@/components/ui/SplitSelectionCard";
 import { getSpellSchoolStyle } from "@/lib/spell-schools";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { isSpellTakenElsewhere } from "@/lib/taken-spells";
+import { RichText } from "@/components/RichText";
 
 interface BonusCantripModalProps {
   isOpen: boolean;
@@ -95,7 +96,7 @@ export function BonusCantripModal({
               disabled={isKnown}
               onSelect={() => !isKnown && handleSelect(sp.name)}
               infoType="modal"
-              modalContent={<p className="text-xs text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line">{desc}</p>}
+              modalContent={<RichText text={desc} className="text-xs text-[var(--color-text-secondary)]" />}
             />
           );
         })}

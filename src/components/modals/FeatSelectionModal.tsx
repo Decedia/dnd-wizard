@@ -24,6 +24,7 @@ import { isRecommended } from "@/lib/recommendations";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { InfoBadge, InfoCallout, InfoCard, InfoProse } from "@/components/modals/InfoBits";
+import { RichInline } from "@/components/RichText";
 
 interface FeatSelectionModalProps {
   onSelect: (feat: SRDFeat, optionSelections?: Record<string, string>) => void;
@@ -387,7 +388,7 @@ export function FeatSelectionModal({
                             </span>
                           );
                         })()}
-                        <p className="mt-1 line-clamp-2 text-xs text-ink-muted">{feat.description}</p>
+                        <p className="mt-1 line-clamp-2 text-xs text-ink-muted"><RichInline text={feat.description} /></p>
                         {sourceLabel && sourceLabel !== "PHB" && (
                           <span className="mt-1 inline-block rounded bg-paper-muted px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-ink-muted">
                             {sourceLabel}
