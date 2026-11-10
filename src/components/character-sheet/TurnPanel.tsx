@@ -6,6 +6,8 @@ import { RichInline, RichText } from "@/components/RichText";
 import { TurnHands } from "./TurnHands";
 import { SwingTracker } from "./SwingTracker";
 import { WildShapeCard, WildShapePicker } from "./WildShape";
+import { Timers } from "./Timers";
+import { roundsText } from "@/lib/timers";
 import { moveTip, suggestPicks, type Pick, type Situation } from "@/lib/turn-suggest";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getStaticClass, getStaticSubclassDetails } from "@/lib/srd-client";
@@ -160,6 +162,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
             {cost && <span className="rounded-full bg-[var(--color-bg)] px-1.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)]">{cost}</span>}
             {o.when && <span className="rounded-full border border-[var(--color-border)] px-1.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)]">{t(`turn.when.${o.when}`)}</span>}
             {o.school && schoolChip(o.school)}
+            {o.lastsRounds && (() => { const d = roundsText(o.lastsRounds); return <span className="rounded-full border border-[var(--color-border)] px-1.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)]">{t("turn.lasts", { time: t(`timer.span.${d.unit}`, { n: d.n }) })}</span>; })()}
             {o.concentration && <span className="rounded-full border border-dashed border-[var(--color-border-active)] px-1.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)]">{t("turn.concentration", "Concentration")}</span>}
           </span>
           {text && (
@@ -168,6 +171,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
             </span>
           )}
           <SpellDamageBonusLines bonuses={o.damageBonuses} />
+          {o.endsConcentration && <span className="mt-1 block text-xs font-semibold text-[var(--color-warning-700)]">{t("turn.endsConc", { name: o.endsConcentration })}</span>}
           {pick && <span className="mt-1 block text-xs font-semibold leading-snug text-[var(--color-text-primary)]">{t(`turn.why.${pick.why}`, pick.values || {})}</span>}
           {reason && <span className="mt-0.5 block text-[11px] font-semibold text-[var(--color-text-muted)]">{reason}</span>}
         </button>
@@ -214,6 +218,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
 
       <div className="space-y-5 px-4 py-4">
         <WildShapeCard character={character} onChange={onChange} />
+        <Timers character={character} onChange={onChange} />
         <SwingTracker character={character} menu={menu} nameOf={nameOf} onUse={(o) => use(o)} onChange={onChange} />
         {mustPrepare && (
           <div className="rounded-[var(--radius-md)] border border-amber-500/60 bg-amber-500/10 px-3 py-3">

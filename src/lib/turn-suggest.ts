@@ -3,6 +3,7 @@
 // taps the player sets (an enemy next to you, a group of enemies, an enemy
 // almost down). Plain rules of thumb for new players, no AI. Each pick
 // carries a one-line reason, a locale key under `turn.why.*`.
+import { concentrationTimer } from "@/lib/timers";
 import type { Character } from "@/lib/storage";
 import type { TurnMenu, TurnOption } from "@/lib/turn";
 
@@ -25,6 +26,8 @@ const hurt = (c: Character) => (c.currentHp || 0) < Math.max(1, c.effectiveMaxHp
 
 /** The concentration spell the character cast in an earlier turn of this fight and still holds. */
 export function concentratingOn(character: Character, srdSpells: SrdSpell[]): string | null {
+  const timer = concentrationTimer(character);
+  if (timer) return timer.name;
   for (const id of character.spellsUsedThisTurn || []) {
     const spell = (character.spells || []).find((s) => s.id === id);
     const srd = spell && srdSpells.find((s) => s.name === (spell.srdSpellName || spell.name));

@@ -10,6 +10,7 @@ import { advanceTurn, parseDurationToTurns } from "@/lib/spellEffects";
 import { ruleFor, ruleKey, usesMax, type FeatureWhen, type PoolField } from "@/data/turn-features";
 import { beastByName, type Beast } from "@/data/wild-shapes";
 import { spellDamageBonuses, type SpellDamageBonus } from "@/lib/spell-damage-bonus";
+import { concentrationTimer, expiredTimerPatch, featureRounds, featureTimerId, RAGE_TIMER, spellRounds, spellTimerId, startTimer, WILD_SHAPE_TIMER } from "@/lib/timers";
 
 /** "free" takes none of the three: it rides on something else (a hit, a failed save). */
 export type TurnSlot = "action" | "bonus" | "reaction" | "free";
@@ -43,6 +44,10 @@ export interface TurnOption {
   spellLevel?: number;
   /** Spell school as in the spell data ("Evocation"). */
   school?: string;
+  /** Casting this ends the concentration spell named here. */
+  endsConcentration?: string;
+  /** Rounds the spell or feature lasts once used (a timer starts). */
+  lastsRounds?: number;
   /** Feature bonuses to the spell's damage (Empowered Evocation, Agonizing Blast). */
   damageBonuses?: SpellDamageBonus[];
   /** When a feature applies ("when you hit"); locale key `turn.when.*`. */
@@ -250,6 +255,13 @@ function spellOptions(character: Character, srdSpells: SrdSpell[]): TurnOption[]
       saveDc: srd?.saveType ? character.spellSaveDc || undefined : undefined,
       spend: { spellsUsedThisTurn: [...(character.spellsUsedThisTurn || []).filter((id) => id !== spell.id), spell.id] },
     };
+    const rounds = spellRounds(srd?.duration, !!srd?.concentration);
+    if (rounds) {
+      option.lastsRounds = rounds;
+      option.spend.activeBuffs = startTimer(character.activeBuffs || [], { spellId: spellTimerId(spell.srdSpellName || spell.name), name: spell.name, concentration: !!srd?.concentration, turnsRemaining: rounds });
+    }
+    const current = concentrationTimer(character);
+    if (srd?.concentration && current && current.spellId !== spellTimerId(spell.srdSpellName || spell.name)) option.endsConcentration = current.name;
     if (level > 0) {
       if (free && !freeUsed.has(lookup)) {
         option.cost = { key: "turn.cost.freeCast", values: {} };
@@ -335,6 +347,11 @@ function featureOptions(character: Character): TurnOption[] {
       // The helper tracks one action at a time, so the extra one is taken after the first.
       if (!character.actionUsed && !option.blocked) option.blocked = "actionFirst";
       option.spend.actionUsed = false;
+    }
+    const rounds = featureRounds(character, feature.name);
+    if (rounds && !option.blocked) {
+      option.lastsRounds = rounds;
+      option.spend.activeBuffs = startTimer(character.activeBuffs || [], { spellId: featureTimerId(feature.name), name: feature.name, concentration: false, turnsRemaining: rounds });
     }
     out.push(option);
   }
@@ -429,13 +446,16 @@ export function endTurnPatch(character: Character, srdSpells: SrdSpell[]): Parti
     const turns = srd?.duration ? parseDurationToTurns(srd.duration) : null;
     if (turns !== null && turns > 1) kept.push(spellId);
   }
-  return { turnActive: false, actionUsed: false, bonusActionUsed: false, moveUsed: false, objectInteractionUsed: false, swings: [], attackedThisTurn: false, spellsUsedThisTurn: kept, featuresUsedThisTurn: [], activeBuffs: advanceTurn(character.activeBuffs || []) };
+  const before = character.activeBuffs || [];
+  const after = advanceTurn(before);
+  return { turnActive: false, actionUsed: false, bonusActionUsed: false, moveUsed: false, objectInteractionUsed: false, swings: [], attackedThisTurn: false, spellsUsedThisTurn: kept, featuresUsedThisTurn: [], activeBuffs: after, ...expiredTimerPatch(character, before, after) };
 }
 
 /** The fight is over: the round counter starts again, rage and the quick taps end. */
-export function endEncounterPatch(character?: Pick<Character, "activeStates">): Partial<Character> {
+export function endEncounterPatch(character?: Pick<Character, "activeStates" | "activeBuffs">): Partial<Character> {
   const patch: Partial<Character> = { turnActive: false, turnRound: 0, actionUsed: false, bonusActionUsed: false, reactionUsed: false, moveUsed: false, objectInteractionUsed: false, turnSituation: undefined, swings: [], attackedThisTurn: false };
   if (character && isRaging(character)) patch.activeStates = (character.activeStates || []).filter((s) => s !== "raging");
+  if (character?.activeBuffs?.some((b) => b.spellId === RAGE_TIMER)) patch.activeBuffs = character.activeBuffs.filter((b) => b.spellId !== RAGE_TIMER);
   return patch;
 }
 
@@ -599,10 +619,13 @@ export function wildDamagePatch(character: Character, amount: number): { patch: 
   const hp = shape.hp - amount;
   if (hp > 0) return { patch: { wildShape: { ...shape, hp: Math.min(beast.hp, hp) } }, reverted: false, carried: 0 };
   const carried = -hp;
-  return { patch: { wildShape: undefined, currentHp: Math.max(0, (character.currentHp || 0) - carried), swings: [] }, reverted: true, carried };
+  return { patch: { wildShape: undefined, currentHp: Math.max(0, (character.currentHp || 0) - carried), swings: [], activeBuffs: withoutTimer(character, WILD_SHAPE_TIMER) }, reverted: true, carried };
 }
 
 /** Changing back early takes a bonus action during the druid's turn. */
-export function leaveShapePatch(character: Pick<Character, "turnActive">): Partial<Character> {
-  return character.turnActive ? { wildShape: undefined, bonusActionUsed: true, swings: [] } : { wildShape: undefined, swings: [] };
+export function leaveShapePatch(character: Pick<Character, "turnActive"> & Partial<Pick<Character, "activeBuffs">>): Partial<Character> {
+  const base = { wildShape: undefined, swings: [], activeBuffs: withoutTimer(character, WILD_SHAPE_TIMER) };
+  return character.turnActive ? { ...base, bonusActionUsed: true } : base;
 }
+
+const withoutTimer = (character: Partial<Pick<Character, "activeBuffs">>, id: string) => (character.activeBuffs || []).filter((b) => b.spellId !== id);
