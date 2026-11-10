@@ -44,6 +44,14 @@ describe("suggestions", () => {
     expect(top(wizard(), {}, "reaction").option.name).toBe("Shield");
   });
 
+  test("spell rows carry their school", () => {
+    const menu = buildTurnMenu(wizard(), spells);
+    const all = menu.options;
+    expect(all.find((o) => o.name === "Fireball")?.school).toBe("Evocation");
+    expect(all.find((o) => o.name === "Shield")?.school).toBe("Abjuration");
+    expect(all.find((o) => o.name === "Misty Step")?.school).toBe("Conjuration");
+  });
+
   test("a hurt wizard next to an enemy teleports away", () => {
     const pick = top(wizard({ currentHp: 10 }), { near: true }, "bonus");
     expect(pick.option.name).toBe("Misty Step");

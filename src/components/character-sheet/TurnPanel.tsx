@@ -16,6 +16,8 @@ import { PrepareSpellsSheet } from "@/components/PrepareSpellsSheet";
 import { amountPatch, isSwingOption, swingPatch, wildShapePatch, buildTurnMenu, endEncounterPatch, isSlotUsed, optionPatch, type TurnGroup, type TurnOption, type TurnSlot } from "@/lib/turn";
 import { CheckIcon as Check, LightningBoltIcon as LightningBolt, ClockIcon as Clock, ShieldCheckIcon as ShieldCheck, CaretDownIcon as ChevronDown } from "@/components/icons";
 import { GiRun } from "react-icons/gi";
+import { getSpellSchoolStyle } from "@/lib/spell-schools";
+import { getSchoolBadgeStyle } from "@/lib/badge-styles";
 
 interface TurnPanelProps {
   character: Character;
@@ -126,6 +128,17 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
     </button>
   );
 
+  const schoolChip = (school: string) => {
+    const style = getSpellSchoolStyle(school);
+    const Icon = style?.icon;
+    return (
+      <span style={getSchoolBadgeStyle(school)} className="inline-flex items-center gap-1 rounded-full border border-[var(--color-border)] px-1.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)]">
+        {Icon && <Icon className="h-3 w-3" />}
+        {t(`spellSchool.${school}`, school)}
+      </span>
+    );
+  };
+
   const row = (o: TurnOption, slotUsed: boolean, pick?: Pick, best = false) => {
     const reason = reasonOf(o, slotUsed);
     const cost = costOf(o);
@@ -144,6 +157,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
             <span className="text-sm font-bold text-[var(--color-text-primary)]">{nameOf(o)}</span>
             {cost && <span className="rounded-full bg-[var(--color-bg)] px-1.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)]">{cost}</span>}
             {o.when && <span className="rounded-full border border-[var(--color-border)] px-1.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)]">{t(`turn.when.${o.when}`)}</span>}
+            {o.school && schoolChip(o.school)}
             {o.concentration && <span className="rounded-full border border-dashed border-[var(--color-border-active)] px-1.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)]">{t("turn.concentration", "Concentration")}</span>}
           </span>
           {text && (
@@ -154,7 +168,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
           {pick && <span className="mt-1 block text-xs font-semibold leading-snug text-[var(--color-text-primary)]">{t(`turn.why.${pick.why}`, pick.values || {})}</span>}
           {reason && <span className="mt-0.5 block text-[11px] font-semibold text-[var(--color-text-muted)]">{reason}</span>}
         </button>
-        {full && infoButton(nameOf(o), full, [cost, o.when ? t(`turn.when.${o.when}`) : null, text && o.detail && o.group !== "feature" ? text : null].filter(Boolean).join(" · ") || undefined)}
+        {full && infoButton(nameOf(o), full, [cost, o.school ? t(`spellSchool.${o.school}`, o.school) : null, o.when ? t(`turn.when.${o.when}`) : null, text && o.detail && o.group !== "feature" ? text : null].filter(Boolean).join(" · ") || undefined)}
       </div>
     );
   };
