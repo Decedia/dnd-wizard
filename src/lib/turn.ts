@@ -13,7 +13,7 @@ import { ruleFor, ruleKey, usesMax, type FeatureWhen, type PoolField } from "@/d
 export type TurnSlot = "action" | "bonus" | "reaction" | "free";
 export type TurnGroup = "attack" | "spell" | "feature" | "basic";
 /** Why an option cannot be used; the panel turns it into a sentence. */
-export type TurnBlock = "noSlot" | "empty" | "actionFirst";
+export type TurnBlock = "noSlot" | "empty" | "actionFirst" | "raging" | "notRaging";
 
 export interface TurnOption {
   key: string;
@@ -35,6 +35,10 @@ export interface TurnOption {
   cost?: { key: string; values: Record<string, string | number> };
   concentration?: boolean;
   blocked?: TurnBlock;
+  /** What the option does, for suggestions: melee, ranged, area, heal, damage, control, escape, ... */
+  tags?: string[];
+  /** Spell level (0 for a cantrip). */
+  spellLevel?: number;
   /** When a feature applies ("when you hit"); locale key `turn.when.*`. */
   when?: FeatureWhen;
   /** The player picks how much of this pool to spend (Lay on Hands). */
@@ -51,7 +55,29 @@ export interface TurnMenu {
   speed: number;
 }
 
-type SrdSpell = { name: string; description?: string | string[]; level?: number; castingTime?: string; casting_time?: string; duration?: string; concentration?: boolean; effectSummary?: string; summary?: string; damage?: any; saveType?: string | null };
+type SrdSpell = { name: string; description?: string | string[]; level?: number; castingTime?: string; casting_time?: string; duration?: string; concentration?: boolean; effectSummary?: string; summary?: string; damage?: any; saveType?: string | null; range?: string; area_of_effect?: unknown; heal_at_slot_level?: unknown; attackType?: string; attack_type?: string; onHit?: string | null };
+
+export const isRaging = (character: Pick<Character, "activeStates">) => (character.activeStates || []).includes("raging");
+const rageBonus = (character: Character) => (isRaging(character) ? character.rageDamage || 0 : 0);
+
+/** What a spell does, read from its rules data. */
+export function spellTags(srd: SrdSpell | undefined, name: string): string[] {
+  const tags: string[] = [];
+  if (!srd) return tags;
+  const text = Array.isArray(srd.description) ? srd.description.join(" ") : srd.description || "";
+  const range = (srd.range || "").toLowerCase();
+  const dice = srd.damage && typeof srd.damage === "object" ? srd.damage.damageDice || srd.damage.damageType || srd.damage.damage_type : srd.damage;
+  if (srd.heal_at_slot_level || /regains? (a number of )?hit points/i.test(text)) tags.push("heal");
+  else if (dice) tags.push("damage");
+  if (srd.area_of_effect || /\d+-foot[- ](cube|cone|sphere|line|radius)/.test(range)) tags.push("area");
+  if (srd.saveType && srd.saveType !== "None" && !dice) tags.push("control");
+  if ((srd.attackType || srd.attack_type) === "melee" || range === "touch") tags.push("touch");
+  if (/automatically hits/i.test(srd.onHit || "")) tags.push("autoHit");
+  if (/^(Misty Step|Thunder Step|Dimension Door|Expeditious Retreat|Blink)$/.test(name)) tags.push("escape");
+  if (/^(Hunter's Mark|Hex|Spiritual Weapon|Spirit Shroud)$/.test(name)) tags.push("mark");
+  if (/Smite$/.test(name)) tags.push("smite");
+  return tags;
+}
 
 const SLOT_FLAG: Partial<Record<TurnSlot, "actionUsed" | "bonusActionUsed" | "reactionUsed">> = {
   action: "actionUsed",
@@ -120,12 +146,13 @@ function offHandAttack(character: Character): TurnOption | null {
   const dualWielder = names.some((n) => n === "dual wielder");
   if (!dualWielder && !(hasProp(main, "light") && hasProp(off, "light"))) return null;
   const attack = (character.attacks || []).find((a) => a.id === off.id);
-  const details = attack && getWeaponAttackDetails(character, attack, character.rageDamage || 0);
+  const details = attack && getWeaponAttackDetails(character, attack, rageBonus(character));
   if (!details) return null;
   const style = names.some((n) => n.includes("two-weapon fighting")) || JSON.stringify(character.featureSelections || {}).includes("Two-Weapon Fighting");
   const bonus = style ? details.damageBonus : Math.min(0, details.damageBonus);
   return {
     key: `offhand:${off.id}`,
+    tags: ["melee", "offhand"],
     slot: "bonus",
     group: "attack",
     name: off.name,
@@ -143,10 +170,12 @@ function attackOptions(character: Character): TurnOption[] {
   const prof = getProficiencyBonus(character.level);
   for (const attack of character.attacks || []) {
     if (attack.source === "grapple" || attack.source === "shove") continue;
-    const details = attack.source === "weapon" ? getWeaponAttackDetails(character, attack, character.rageDamage || 0) : null;
+    const details = attack.source === "weapon" ? getWeaponAttackDetails(character, attack, rageBonus(character)) : null;
     if (attack.source === "weapon" && !details) continue;
+    const ranged = !!details && details.weapon.category === "ranged";
     out.push({
       key: `attack:${attack.id}`,
+      tags: [ranged ? "ranged" : "melee"],
       slot: "action",
       group: "attack",
       name: attack.name,
@@ -162,6 +191,7 @@ function attackOptions(character: Character): TurnOption[] {
   const str = getModifier(character.str);
   out.push({
     key: "attack:unarmed",
+    tags: ["melee", "weak"],
     slot: "action",
     group: "attack",
     name: "",
@@ -206,6 +236,8 @@ function spellOptions(character: Character, srdSpells: SrdSpell[]): TurnOption[]
       summary: srd?.effectSummary || srd?.summary || "",
       detail: ("description" in spell && typeof spell.description === "string" && spell.description) || (Array.isArray(srd?.description) ? srd!.description.join("\n\n") : srd?.description) || undefined,
       concentration: !!srd?.concentration,
+      tags: spellTags(srd, spell.srdSpellName || spell.name),
+      spellLevel: level,
       saveDc: srd?.saveType ? character.spellSaveDc || undefined : undefined,
       spend: { spellsUsedThisTurn: [...(character.spellsUsedThisTurn || []).filter((id) => id !== spell.id), spell.id] },
     };
@@ -282,6 +314,11 @@ function featureOptions(character: Character): TurnOption[] {
         option.spend.spellSlotsExpended = { ...(character.spellSlotsExpended || {}), [open]: (character.spellSlotsExpended?.[open] ?? 0) + 1 };
       }
     }
+    if (/^\^Rage\$$/.test(rule.name.source)) {
+      if (isRaging(character)) option.blocked = "raging";
+      option.spend.activeStates = [...(character.activeStates || []), "raging"];
+    }
+    if (rule.when === "whileRaging" && !isRaging(character) && !option.blocked) option.blocked = "notRaging";
     if (rule.restoresAction) {
       // The helper tracks one action at a time, so the extra one is taken after the first.
       if (!character.actionUsed && !option.blocked) option.blocked = "actionFirst";
@@ -358,9 +395,11 @@ export function endTurnPatch(character: Character, srdSpells: SrdSpell[]): Parti
   return { turnActive: false, actionUsed: false, bonusActionUsed: false, moveUsed: false, objectInteractionUsed: false, spellsUsedThisTurn: kept, featuresUsedThisTurn: [], activeBuffs: advanceTurn(character.activeBuffs || []) };
 }
 
-/** The fight is over: the round counter starts again. */
-export function endEncounterPatch(): Partial<Character> {
-  return { turnActive: false, turnRound: 0, actionUsed: false, bonusActionUsed: false, reactionUsed: false, moveUsed: false, objectInteractionUsed: false };
+/** The fight is over: the round counter starts again, rage and the quick taps end. */
+export function endEncounterPatch(character?: Pick<Character, "activeStates">): Partial<Character> {
+  const patch: Partial<Character> = { turnActive: false, turnRound: 0, actionUsed: false, bonusActionUsed: false, reactionUsed: false, moveUsed: false, objectInteractionUsed: false, turnSituation: undefined };
+  if (character && isRaging(character)) patch.activeStates = (character.activeStates || []).filter((s) => s !== "raging");
+  return patch;
 }
 
 // ---------------------------------------------------------------------------

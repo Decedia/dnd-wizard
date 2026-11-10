@@ -65,7 +65,7 @@ export function shortRestPatch(character: Character, hitDiceSpent = 0, healed = 
   const spent = Math.max(0, Math.min(hitDiceSpent, num(character, "hitDiceRemaining")));
   const shortCasts = new Set(getFreeCastSpells(character).filter((c) => c.rest === "short").map((c) => c.name.toLowerCase()));
   const patch: Partial<Character> = {
-    ...endEncounterPatch(),
+    ...endEncounterPatch(character),
     currentHp: Math.min(maxHpNow(character), (character.currentHp || 0) + (spent > 0 ? Math.max(0, healed) : 0)),
     hitDiceRemaining: num(character, "hitDiceRemaining") - spent,
     freeCastsUsed: (character.freeCastsUsed || []).filter((n) => !shortCasts.has(n)),
@@ -87,7 +87,7 @@ export function shortRestPatch(character: Character, hitDiceSpent = 0, healed = 
 export function longRestPatch(character: Character): Partial<Character> {
   const level = character.level || 1;
   const patch: Partial<Character> = {
-    ...endEncounterPatch(),
+    ...endEncounterPatch(character),
     currentHp: character.maxHp || 0,
     temporaryHp: 0,
     // Spent hit dice come back up to half the total (at least one), not all.

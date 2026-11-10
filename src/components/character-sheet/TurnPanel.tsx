@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { RichInline, RichText } from "@/components/RichText";
 import { TurnHands } from "./TurnHands";
+import { moveTip, suggestPicks, type Pick, type Situation } from "@/lib/turn-suggest";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getStaticClass, getStaticSubclassDetails } from "@/lib/srd-client";
 import { getMaxPreparedSpells, type Character } from "@/lib/storage";
@@ -35,6 +36,19 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
   const [info, setInfo] = useState<{ title: string; meta?: string; text: string } | null>(null);
   // The feature whose amount is being chosen (Lay on Hands).
   const [amountFor, setAmountFor] = useState<{ option: TurnOption; value: number } | null>(null);
+  // Suggest (best pick per slot) or every option. Remembered per character on this device.
+  const modeKey = `dnd-turn-mode:${character.id}`;
+  const [mode, setModeState] = useState<"suggest" | "all">(() => {
+    try { return localStorage.getItem(modeKey) === "all" ? "all" : "suggest"; } catch { return "suggest"; }
+  });
+  const setMode = (m: "suggest" | "all") => {
+    setModeState(m);
+    try { localStorage.setItem(modeKey, m); } catch { /* storage blocked: keep it for this visit */ }
+  };
+  const [seeAll, setSeeAll] = useState<Partial<Record<TurnSlot, boolean>>>({});
+  const sit: Situation = character.turnSituation || {};
+  const toggleSit = (k: keyof Situation) => onChange({ turnSituation: { ...sit, [k]: !sit[k] } });
+  const picks = mode === "suggest" ? suggestPicks(character, menu, srdSpells, sit) : null;
   const mustPrepare = needsPrepare(character);
   const [last, setLast] = useState<{ name: string; undo: Partial<Character> } | null>(null);
 
@@ -64,6 +78,8 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
   const reasonOf = (o: TurnOption, slotUsed: boolean) => {
     if (o.blocked === "noSlot") return t("turn.block.noSlot", "No spell slot left");
     if (o.blocked === "empty") return t("turn.block.empty", "None left. It comes back after a rest.");
+    if (o.blocked === "raging") return t("turn.block.raging", "You are already raging.");
+    if (o.blocked === "notRaging") return t("turn.block.notRaging", "Only while you rage. Use Rage first.");
     if (slotUsed) return t(`turn.block.used.${o.slot}`);
     if (o.blocked === "actionFirst") return t("turn.block.actionFirst", "Use your action first, then tap this to get it back.");
     return null;
@@ -103,19 +119,20 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
     </button>
   );
 
-  const row = (o: TurnOption, slotUsed: boolean) => {
+  const row = (o: TurnOption, slotUsed: boolean, pick?: Pick, best = false) => {
     const reason = reasonOf(o, slotUsed);
     const cost = costOf(o);
     const text = textOf(o);
     const full = o.detail || (o.summaryKey ? t(o.summaryKey) : o.summary);
     return (
-      <div key={o.key} className="flex overflow-hidden rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] transition-colors hover:border-[var(--color-border-active)]">
+      <div key={o.key} className={`flex overflow-hidden rounded-[var(--radius-md)] border bg-[var(--color-surface)] transition-colors hover:border-[var(--color-border-active)] ${best ? "border-2 border-[var(--color-ink)]" : "border-[var(--color-border)]"}`}>
         <button
           type="button"
           disabled={!!reason}
           onClick={() => use(o)}
           className="min-w-0 flex-1 px-3 py-2 text-left disabled:opacity-45"
         >
+          {best && <span className="mb-0.5 block text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">{t("turn.best", "Best pick")}</span>}
           <span className="flex flex-wrap items-center gap-x-2 gap-y-0.5">
             <span className="text-sm font-bold text-[var(--color-text-primary)]">{nameOf(o)}</span>
             {cost && <span className="rounded-full bg-[var(--color-bg)] px-1.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)]">{cost}</span>}
@@ -127,6 +144,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
               <RichInline text={text} />
             </span>
           )}
+          {pick && <span className="mt-1 block text-xs font-semibold leading-snug text-[var(--color-text-primary)]">{t(`turn.why.${pick.why}`, pick.values || {})}</span>}
           {reason && <span className="mt-0.5 block text-[11px] font-semibold text-[var(--color-text-muted)]">{reason}</span>}
         </button>
         {full && infoButton(nameOf(o), full, [cost, o.when ? t(`turn.when.${o.when}`) : null, text && o.detail && o.group !== "feature" ? text : null].filter(Boolean).join(" · ") || undefined)}
@@ -138,7 +156,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
     <div className="flex items-center gap-2 px-4 py-3">
       <button
         type="button"
-        onClick={() => { onChange(endEncounterPatch()); onClose(); }}
+        onClick={() => { onChange(endEncounterPatch(character)); onClose(); }}
         className="rounded-full border border-[var(--color-border)] px-3 py-2.5 text-xs font-semibold text-[var(--color-text-secondary)]"
       >
         {t("turn.endFight", "End fight")}
@@ -180,6 +198,27 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
             </button>
           </div>
         )}
+        <div className="space-y-2">
+          <div className="flex rounded-full border border-[var(--color-border)] p-0.5 text-xs font-bold">
+            {(["suggest", "all"] as const).map((m) => (
+              <button key={m} type="button" aria-pressed={mode === m} onClick={() => setMode(m)} className={`flex-1 rounded-full py-1.5 ${mode === m ? "bg-[var(--color-ink)] text-[var(--color-surface)]" : "text-[var(--color-text-secondary)]"}`}>
+                {t(`turn.mode.${m}`)}
+              </button>
+            ))}
+          </div>
+          {mode === "suggest" && (
+            <>
+              <div className="flex flex-wrap gap-1.5">
+                {(["near", "many", "low"] as const).map((k) => (
+                  <button key={k} type="button" aria-pressed={!!sit[k]} onClick={() => toggleSit(k)} className={`rounded-full border px-3 py-1.5 text-[11px] font-semibold ${sit[k] ? "border-[var(--color-ink)] bg-[var(--color-ink)] text-[var(--color-surface)]" : "border-[var(--color-border)] text-[var(--color-text-secondary)]"}`}>
+                    {t(`turn.sit.${k}`)}
+                  </button>
+                ))}
+              </div>
+              <p className="text-xs leading-relaxed text-[var(--color-text-secondary)]">{t(moveTip(menu, character, sit), { speed: menu.speed })}</p>
+            </>
+          )}
+        </div>
         <TurnHands character={character} onChange={onChange} />
         {SLOTS.map((slot) => {
           const options = menu.options.filter((o) => o.slot === slot);
@@ -194,6 +233,32 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
           }
           const used = isSlotUsed(character, slot);
           const basics = options.filter((o) => o.group === "basic");
+          const fullList = () => (
+              <div className="space-y-3">
+              {GROUPS.map((group) => {
+                const rows = options.filter((o) => o.group === group);
+                if (rows.length === 0) return null;
+                return (
+                  <div key={group} className="space-y-1.5">
+                    <div className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">
+                      {t(`turn.group.${group}`)}
+                      {group === "attack" && menu.attacksPerAction > 1 && <span className="ml-1 normal-case tracking-normal">· {t("turn.extraAttack", { count: menu.attacksPerAction }, "{count} attacks with one action")}</span>}
+                    </div>
+                    {rows.map((o) => row(o, used))}
+                  </div>
+                );
+              })}
+              {basics.length > 0 && (
+                <div className="space-y-1.5">
+                  <button type="button" onClick={() => setOpenBasics((s) => ({ ...s, [slot]: !s[slot] }))} className="flex w-full items-center justify-between text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">
+                    <span>{t("turn.group.basic")} ({basics.length})</span>
+                    <ChevronDown className={`h-4 w-4 transition-transform ${openBasics[slot] ? "rotate-180" : ""}`} />
+                  </button>
+                  {openBasics[slot] && basics.map((o) => row(o, used))}
+                </div>
+              )}
+            </div>
+          );
           return (
             <section key={slot}>
               <div className="mb-2 flex items-baseline justify-between">
@@ -201,30 +266,27 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
                 {slot !== "free" && <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">{used ? t("turn.state.used", "Used") : t("turn.state.ready", "Ready")}</span>}
               </div>
               <p className="mb-2 text-[11px] text-[var(--color-text-muted)]">{t(`turn.slot.${slot}.hint`)}</p>
-              <div className="space-y-3">
-                {GROUPS.map((group) => {
-                  const rows = options.filter((o) => o.group === group);
-                  if (rows.length === 0) return null;
-                  return (
-                    <div key={group} className="space-y-1.5">
-                      <div className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">
-                        {t(`turn.group.${group}`)}
-                        {group === "attack" && menu.attacksPerAction > 1 && <span className="ml-1 normal-case tracking-normal">· {t("turn.extraAttack", { count: menu.attacksPerAction }, "{count} attacks with one action")}</span>}
+              {picks && slot !== "free" ? (
+                <div className="space-y-1.5">
+                  {used ? <p className="text-[11px] font-semibold text-[var(--color-text-muted)]">{t(`turn.block.used.${slot}`)}</p> : picks[slot as "action" | "bonus" | "reaction"].length === 0 ? (
+                    <p className="text-[11px] text-[var(--color-text-muted)]">{t("turn.suggest.none", "Nothing stands out right now. See all options below.")}</p>
+                  ) : (
+                    picks[slot as "action" | "bonus" | "reaction"].slice(0, 3).filter((pk, i) => i === 0 || pk.score >= 30).map((pk, i) => (
+                      <div key={pk.option.key}>
+                        {i === 1 && <div className="mb-1.5 mt-2 text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">{t("turn.alsoGood", "Also good")}</div>}
+                        {row(pk.option, used, pk, i === 0)}
                       </div>
-                      {rows.map((o) => row(o, used))}
-                    </div>
-                  );
-                })}
-                {basics.length > 0 && (
-                  <div className="space-y-1.5">
-                    <button type="button" onClick={() => setOpenBasics((s) => ({ ...s, [slot]: !s[slot] }))} className="flex w-full items-center justify-between text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">
-                      <span>{t("turn.group.basic")} ({basics.length})</span>
-                      <ChevronDown className={`h-4 w-4 transition-transform ${openBasics[slot] ? "rotate-180" : ""}`} />
-                    </button>
-                    {openBasics[slot] && basics.map((o) => row(o, used))}
-                  </div>
-                )}
-              </div>
+                    ))
+                  )}
+                  <button type="button" onClick={() => setSeeAll((s) => ({ ...s, [slot]: !s[slot] }))} className="flex w-full items-center justify-between pt-1 text-[11px] font-bold text-[var(--color-text-secondary)]">
+                    <span>{t("turn.seeAll", { count: options.length }, "See all options ({count})")}</span>
+                    <ChevronDown className={`h-4 w-4 transition-transform ${seeAll[slot] ? "rotate-180" : ""}`} />
+                  </button>
+                  {seeAll[slot] && fullList()}
+                </div>
+              ) : (
+                fullList()
+              )}
             </section>
           );
         })}
@@ -268,12 +330,12 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
           <div className="space-y-4 px-4 py-4">
             <p className="text-xs text-[var(--color-text-secondary)]">{t("turn.amount.hint", { max: amountFor.option.amount!.max }, "How much do you spend? You have {max} left.")}</p>
             <div className="flex items-center justify-center gap-4">
-              <button type="button" aria-label="-1" onClick={() => setAmountFor((a) => a && { ...a, value: Math.max(1, a.value - 1) })} className="h-11 w-11 rounded-full border border-[var(--color-border)] text-lg font-bold text-[var(--color-text-primary)]">−</button>
+              <button type="button" aria-label="-1" onClick={() => setAmountFor((a) => a && { ...a, value: Math.max(1, a.value - 1) })} className="btn btn-secondary h-9 w-11 !px-0">−</button>
               <span className="min-w-[3ch] text-center text-2xl font-bold text-[var(--color-text-primary)]">{amountFor.value}</span>
-              <button type="button" aria-label="+1" onClick={() => setAmountFor((a) => a && { ...a, value: Math.min(a.option.amount!.max, a.value + 1) })} className="h-11 w-11 rounded-full border border-[var(--color-border)] text-lg font-bold text-[var(--color-text-primary)]">+</button>
-              <button type="button" onClick={() => setAmountFor((a) => a && { ...a, value: Math.min(a.option.amount!.max, a.value + 5) })} className="rounded-full border border-[var(--color-border)] px-3 py-2 text-xs font-semibold text-[var(--color-text-secondary)]">+5</button>
+              <button type="button" aria-label="+1" onClick={() => setAmountFor((a) => a && { ...a, value: Math.min(a.option.amount!.max, a.value + 1) })} className="btn btn-secondary h-9 w-11 !px-0">+</button>
+              <button type="button" onClick={() => setAmountFor((a) => a && { ...a, value: Math.min(a.option.amount!.max, a.value + 5) })} className="btn btn-secondary h-9">+5</button>
             </div>
-            <button type="button" onClick={() => { use(amountFor.option, amountFor.value); setAmountFor(null); }} className="w-full rounded-full bg-[var(--color-ink)] py-2.5 text-sm font-bold text-[var(--color-surface)]">
+            <button type="button" onClick={() => { use(amountFor.option, amountFor.value); setAmountFor(null); }} className="btn btn-primary w-full">
               {t("turn.amount.use", { amount: amountFor.value }, "Spend {amount}")}
             </button>
           </div>
