@@ -110,9 +110,9 @@ export function RestSheet({ character, kind, onChange, onClose }: RestSheetProps
                 </p>
                 {diceLeft > 0 && hurt ? (
                   <div className="mt-2 flex items-center gap-3">
-                    <button type="button" aria-label={t("rest.hitDice.less", "One less")} onClick={() => setDice((d) => Math.max(0, d - 1))} disabled={dice <= 0} className="h-9 w-9 rounded-full border border-[var(--color-border)] text-lg font-bold disabled:opacity-40">−</button>
+                    <button type="button" aria-label={t("rest.hitDice.less", "One less")} onClick={() => setDice((d) => Math.max(0, d - 1))} disabled={dice <= 0} className="btn btn-secondary h-9 w-11 !px-0 disabled:opacity-40">−</button>
                     <span className="w-8 text-center text-xl font-bold text-[var(--color-text-primary)]">{dice}</span>
-                    <button type="button" aria-label={t("rest.hitDice.more", "One more")} onClick={() => setDice((d) => Math.min(diceLeft, d + 1))} disabled={dice >= diceLeft} className="h-9 w-9 rounded-full border border-[var(--color-border)] text-lg font-bold disabled:opacity-40">+</button>
+                    <button type="button" aria-label={t("rest.hitDice.more", "One more")} onClick={() => setDice((d) => Math.min(diceLeft, d + 1))} disabled={dice >= diceLeft} className="btn btn-secondary h-9 w-11 !px-0 disabled:opacity-40">+</button>
                     <span className="text-[11px] text-[var(--color-text-muted)]">{t("rest.hitDice.hp", { hp: character.currentHp || 0, max: maxHp }, "HP {hp} / {max}")}</span>
                   </div>
                 ) : (

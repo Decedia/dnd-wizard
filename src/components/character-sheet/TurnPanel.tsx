@@ -330,12 +330,12 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
           <div className="space-y-4 px-4 py-4">
             <p className="text-xs text-[var(--color-text-secondary)]">{t("turn.amount.hint", { max: amountFor.option.amount!.max }, "How much do you spend? You have {max} left.")}</p>
             <div className="flex items-center justify-center gap-4">
-              <button type="button" aria-label="-1" onClick={() => setAmountFor((a) => a && { ...a, value: Math.max(1, a.value - 1) })} className="h-11 w-11 rounded-full border border-[var(--color-border)] text-lg font-bold text-[var(--color-text-primary)]">−</button>
+              <button type="button" aria-label="-1" onClick={() => setAmountFor((a) => a && { ...a, value: Math.max(1, a.value - 1) })} className="btn btn-secondary h-9 w-11 !px-0">−</button>
               <span className="min-w-[3ch] text-center text-2xl font-bold text-[var(--color-text-primary)]">{amountFor.value}</span>
-              <button type="button" aria-label="+1" onClick={() => setAmountFor((a) => a && { ...a, value: Math.min(a.option.amount!.max, a.value + 1) })} className="h-11 w-11 rounded-full border border-[var(--color-border)] text-lg font-bold text-[var(--color-text-primary)]">+</button>
-              <button type="button" onClick={() => setAmountFor((a) => a && { ...a, value: Math.min(a.option.amount!.max, a.value + 5) })} className="rounded-full border border-[var(--color-border)] px-3 py-2 text-xs font-semibold text-[var(--color-text-secondary)]">+5</button>
+              <button type="button" aria-label="+1" onClick={() => setAmountFor((a) => a && { ...a, value: Math.min(a.option.amount!.max, a.value + 1) })} className="btn btn-secondary h-9 w-11 !px-0">+</button>
+              <button type="button" onClick={() => setAmountFor((a) => a && { ...a, value: Math.min(a.option.amount!.max, a.value + 5) })} className="btn btn-secondary h-9">+5</button>
             </div>
-            <button type="button" onClick={() => { use(amountFor.option, amountFor.value); setAmountFor(null); }} className="w-full rounded-full bg-[var(--color-ink)] py-2.5 text-sm font-bold text-[var(--color-surface)]">
+            <button type="button" onClick={() => { use(amountFor.option, amountFor.value); setAmountFor(null); }} className="btn btn-primary w-full">
               {t("turn.amount.use", { amount: amountFor.value }, "Spend {amount}")}
             </button>
           </div>
