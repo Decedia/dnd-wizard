@@ -12,6 +12,7 @@ import { getBaseSpeed, type Character } from "@/lib/storage";
 import { useState, useCallback } from "react";
 import { XIcon as X } from "@/components/icons";
 import { StateTracker } from "./StateTracker";
+import { Timers } from "./Timers";
 import { BuffTracker } from "./BuffTracker";
 import { Dice } from "@/components/Dice";
 import { BasePopup } from "@/components/BasePopup";
@@ -285,7 +286,8 @@ export function CombatStatsSection({ character, onChange, editMode = true, onOpe
         editMode={editMode}
       />
 
-      <BuffTracker
+      {!editMode && <Timers character={character as Character} onChange={onChange as (patch: Partial<Character>) => void} className="mt-3" />}
+      {editMode && <BuffTracker
         activeBuffs={character.activeBuffs || []}
         onToggleBuff={(spellId, name, concentration) => {
           const current = character.activeBuffs || [];
@@ -303,7 +305,7 @@ export function CombatStatsSection({ character, onChange, editMode = true, onOpe
         editMode={editMode}
         className="mt-3"
         filterClass={character.class}
-      />
+      />}
 
       {editMode && (
         <div className="grid grid-cols-2 gap-2.5 mt-3.5">

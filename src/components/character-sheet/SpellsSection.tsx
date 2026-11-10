@@ -20,6 +20,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { RichText, RichInline } from "@/components/RichText";
 import { SpellDamageBonusLines } from "@/components/SpellDamageBonus";
+import { spellRounds, spellTimerId, startTimer } from "@/lib/timers";
 import { spellDamageBonuses } from "@/lib/spell-damage-bonus";
 import { buildDataset, findEngineFeature } from "@/data/engine/index";
 import { getFeatSpellSelections, type SpellGrantSelection } from "@/lib/feat-spell-grants";
@@ -43,6 +44,7 @@ interface UnifiedSpell {
   description?: string;
   duration?: string;
   school?: string;
+  concentration?: boolean;
   effectSummary?: string;
   mechanic?: ReturnType<typeof getSpellMechanic>;
   ritual?: boolean;
@@ -125,6 +127,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
         duration,
         srdSource,
         school,
+        concentration: !!(srdSpell as any)?.concentration,
         classes,
         mechanics_badges: (srdSpell as any)?.mechanics_badges || [],
         lastUpdated: (srdSpell as any)?.lastUpdated || "",
@@ -194,25 +197,21 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
     }
   }, [character.preparedSpells, onChange]);
 
-  const toggleSpellUsed = useCallback((spellId: string, buffDef?: BuffDefinition, duration?: string) => {
+  const toggleSpellUsed = useCallback((spellId: string, buffDef?: BuffDefinition, duration?: string, spellName?: string, concentration?: boolean) => {
     const currentUsed = character.spellsUsedThisTurn || [];
     const isUsed = currentUsed.includes(spellId);
+    const timerId = buffDef ? buffDef.id : spellName ? spellTimerId(spellName) : null;
+    const currentBuffs = character.activeBuffs || [];
     if (isUsed) {
-      onChange({ spellsUsedThisTurn: currentUsed.filter(id => id !== spellId) });
-      if (buffDef) {
-        const currentBuffs = character.activeBuffs || [];
-        onChange({ activeBuffs: currentBuffs.filter(b => b.spellId !== buffDef.id) });
-      }
-    } else {
-      onChange({ spellsUsedThisTurn: [...currentUsed, spellId] });
-      if (buffDef) {
-        const currentBuffs = character.activeBuffs || [];
-        if (!currentBuffs.some(b => b.spellId === buffDef.id)) {
-          const turnsRemaining = duration ? parseDurationToTurns(duration) : null;
-          onChange({ activeBuffs: [...currentBuffs, { spellId: buffDef.id, name: buffDef.name, concentration: buffDef.concentration, turnsRemaining }] });
-        }
-      }
+      onChange({ spellsUsedThisTurn: currentUsed.filter(id => id !== spellId), ...(timerId ? { activeBuffs: currentBuffs.filter(b => b.spellId !== timerId) } : {}) });
+      return;
     }
+    const conc = buffDef ? buffDef.concentration : !!concentration;
+    const rounds = spellRounds(duration, conc);
+    const timer = timerId && (rounds || buffDef) && !currentBuffs.some(b => b.spellId === timerId)
+      ? startTimer(currentBuffs, { spellId: timerId, name: buffDef?.name || spellName || "", concentration: conc, turnsRemaining: rounds })
+      : null;
+    onChange({ spellsUsedThisTurn: [...currentUsed, spellId], ...(timer ? { activeBuffs: timer } : {}) });
   }, [character.spellsUsedThisTurn, character.activeBuffs, onChange]);
 
   const resetSpellsUsed = useCallback(() => {
@@ -637,7 +636,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                   })()}
                   <button
                     type="button"
-                    onClick={(e) => { e.stopPropagation(); toggleSpellUsed(spell.id, buffDef, spell.duration); }}
+                    onClick={(e) => { e.stopPropagation(); toggleSpellUsed(spell.id, buffDef, spell.duration, spell.srdSpellName || spell.name, spell.concentration); }}
                     className={`flex items-center gap-1 px-2 py-1 text-[10px] font-bold rounded transition-colors ${
                       spellUsed
                         ? "bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)]"

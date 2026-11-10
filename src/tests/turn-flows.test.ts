@@ -89,7 +89,7 @@ describe("wild shape", () => {
   });
 
   test("changing back takes the bonus action on your turn; a long rest ends the form", () => {
-    expect(leaveShapePatch({ turnActive: true })).toEqual({ wildShape: undefined, bonusActionUsed: true, swings: [] });
+    expect(leaveShapePatch({ turnActive: true })).toEqual({ wildShape: undefined, bonusActionUsed: true, swings: [], activeBuffs: [] });
     expect(longRestPatch(make({ wildShape: { form: "Wolf", hp: 3 } })).wildShape).toBeUndefined();
   });
 });

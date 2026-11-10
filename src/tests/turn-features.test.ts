@@ -44,7 +44,7 @@ describe("features in the turn menu", () => {
     const c = make({ class: "Barbarian", level: 3, rages: 3, maxRages: 3 }, ["Rage", "Unarmored Defense", "Reckless Attack"]);
     const rage = option(c, "Rage")!;
     expect(rage.slot).toBe("bonus");
-    expect(optionPatch(rage)).toEqual({ rages: 2, activeStates: ["raging"], bonusActionUsed: true });
+    expect(optionPatch(rage)).toEqual({ rages: 2, activeStates: ["raging"], bonusActionUsed: true, activeBuffs: [{ spellId: "feature:rage", name: "Rage", concentration: false, turnsRemaining: 10 }] });
     expect(option({ ...c, rages: 0 }, "Rage")!.blocked).toBe("empty");
     // Free features take no slot; untabled ones stay in the reading list.
     expect(optionPatch(option(c, "Reckless Attack")!)).toEqual({});
