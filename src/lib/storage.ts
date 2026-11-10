@@ -57,6 +57,10 @@ export interface Character {
   objectInteractionUsed?: boolean;
   turnActive?: boolean;
   turnRound?: number;
+  /** Wild Shape: the beast form the druid is in and the form's HP left. */
+  wildShape?: { form: string; hp: number };
+  /** This turn's weapon swings with the Attack action, in order; "pending" until the player taps Hit, Crit or Miss. */
+  swings?: { key: string; name: string; result: "pending" | "hit" | "crit" | "miss"; smite?: number }[];
   /** Quick taps in the turn helper: an enemy next to you, a group of enemies, an enemy almost down. Cleared when the fight ends. */
   turnSituation?: { near?: boolean; many?: boolean; low?: boolean };
   // Exhaustion

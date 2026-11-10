@@ -4,13 +4,16 @@ import { useMemo, useState } from "react";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { RichInline, RichText } from "@/components/RichText";
 import { TurnHands } from "./TurnHands";
+import { SwingTracker } from "./SwingTracker";
+import { WildShapeCard, WildShapePicker } from "./WildShape";
 import { moveTip, suggestPicks, type Pick, type Situation } from "@/lib/turn-suggest";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getStaticClass, getStaticSubclassDetails } from "@/lib/srd-client";
 import { getMaxPreparedSpells, type Character } from "@/lib/storage";
+import type { Beast } from "@/data/wild-shapes";
 import { needsPrepare, preparableSpells } from "@/lib/prepared-spells";
 import { PrepareSpellsSheet } from "@/components/PrepareSpellsSheet";
-import { amountPatch, buildTurnMenu, endEncounterPatch, isSlotUsed, optionPatch, type TurnGroup, type TurnOption, type TurnSlot } from "@/lib/turn";
+import { amountPatch, isSwingOption, swingPatch, wildShapePatch, buildTurnMenu, endEncounterPatch, isSlotUsed, optionPatch, type TurnGroup, type TurnOption, type TurnSlot } from "@/lib/turn";
 import { CheckIcon as Check, LightningBoltIcon as LightningBolt, ClockIcon as Clock, ShieldCheckIcon as ShieldCheck, CaretDownIcon as ChevronDown } from "@/components/icons";
 import { GiRun } from "react-icons/gi";
 
@@ -49,6 +52,8 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
   const sit: Situation = character.turnSituation || {};
   const toggleSit = (k: keyof Situation) => onChange({ turnSituation: { ...sit, [k]: !sit[k] } });
   const picks = mode === "suggest" ? suggestPicks(character, menu, srdSpells, sit) : null;
+  // The Wild Shape option waiting for a beast to be picked.
+  const [shaping, setShaping] = useState<TurnOption | null>(null);
   const mustPrepare = needsPrepare(character);
   const [last, setLast] = useState<{ name: string; undo: Partial<Character> } | null>(null);
 
@@ -78,6 +83,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
   const reasonOf = (o: TurnOption, slotUsed: boolean) => {
     if (o.blocked === "noSlot") return t("turn.block.noSlot", "No spell slot left");
     if (o.blocked === "empty") return t("turn.block.empty", "None left. It comes back after a rest.");
+    if (o.blocked === "shaped") return t("turn.block.shaped", "You are already in beast form.");
     if (o.blocked === "raging") return t("turn.block.raging", "You are already raging.");
     if (o.blocked === "notRaging") return t("turn.block.notRaging", "Only while you rage. Use Rage first.");
     if (slotUsed) return t(`turn.block.used.${o.slot}`);
@@ -85,9 +91,10 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
     return null;
   };
 
-  const use = (o: TurnOption, amount?: number) => {
+  const use = (o: TurnOption, amount?: number, form?: Beast) => {
     if (o.amount && amount === undefined) return setAmountFor({ option: o, value: 1 });
-    const patch = amount === undefined ? optionPatch(o) : amountPatch(character, o, amount);
+    if (o.group === "feature" && /^Wild Shape/.test(o.name) && !form) return setShaping(o);
+    const patch = form ? wildShapePatch(o, form) : amount !== undefined ? amountPatch(character, o, amount) : isSwingOption(o) ? swingPatch(character, o) : optionPatch(o);
     const undo: Record<string, unknown> = {};
     for (const key of Object.keys(patch)) undo[key] = (character as any)[key] ?? (key.endsWith("Used") ? false : undefined);
     setLast({ name: nameOf(o), undo: undo as Partial<Character> });
@@ -189,6 +196,8 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
       </div>
 
       <div className="space-y-5 px-4 py-4">
+        <WildShapeCard character={character} onChange={onChange} />
+        <SwingTracker character={character} menu={menu} nameOf={nameOf} onUse={(o) => use(o)} onChange={onChange} />
         {mustPrepare && (
           <div className="rounded-[var(--radius-md)] border border-amber-500/60 bg-amber-500/10 px-3 py-3">
             <div className="text-sm font-bold text-[var(--color-text-primary)]">{t("turn.prepare.title", "No spells ready")}</div>
@@ -219,7 +228,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
             </>
           )}
         </div>
-        <TurnHands character={character} onChange={onChange} />
+        {!character.wildShape && <TurnHands character={character} onChange={onChange} />}
         {SLOTS.map((slot) => {
           const options = menu.options.filter((o) => o.slot === slot);
           if (options.length === 0) {
@@ -340,6 +349,13 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
             </button>
           </div>
         </BottomSheet>
+      )}
+      {shaping && (
+        <WildShapePicker
+          character={character}
+          onPick={(beast) => { use(shaping, undefined, beast); setShaping(null); }}
+          onClose={() => setShaping(null)}
+        />
       )}
       {preparing && (
         <PrepareSpellsSheet

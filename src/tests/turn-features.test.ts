@@ -66,7 +66,7 @@ describe("features in the turn menu", () => {
     expect(option(c, "Action Surge")!.blocked).toBe("actionFirst");
     const surge = option({ ...c, actionUsed: true }, "Action Surge")!;
     expect(surge.blocked).toBeUndefined();
-    expect(optionPatch(surge)).toEqual({ actionSurgeUses: 0, actionUsed: false });
+    expect(optionPatch(surge)).toEqual({ actionSurgeUses: 0, swings: [], actionUsed: false });
   });
 
   test("Divine Smite spends the lowest open slot and takes no action", () => {
