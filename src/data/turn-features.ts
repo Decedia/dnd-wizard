@@ -44,6 +44,8 @@ export interface FeatureRule {
   oncePerTurn?: boolean;
   /** A condition the player checks, shown as one line. Locale key `turn.cond.<condition>`. */
   condition?: string;
+  /** The damage dice it adds when used on a hit ("1d8"), by character level. */
+  dice?: (c: Character) => string;
 }
 
 const mod = (score: number | undefined) => Math.floor(((score ?? 10) - 10) / 2);
@@ -52,6 +54,9 @@ const prof = (c: Character) => 2 + Math.floor(((c.level || 1) - 1) / 4);
 const WIS = (c: Character) => atLeast1(mod(c.wis));
 const CHA = (c: Character) => atLeast1(mod(c.cha));
 const INT = (c: Character) => atLeast1(mod(c.int));
+const lvl = (c: Character) => c.level || 1;
+/** Dice that grow at set levels: byLevel([[1, "1d4"], [6, "1d6"]]). */
+const byLevel = (steps: [number, string][]) => (c: Character) => steps.filter(([from]) => lvl(c) >= from).pop()?.[1] ?? steps[0][1];
 const CON = (c: Character) => atLeast1(mod(c.con));
 
 const cd = { field: "channelDivinityUses", amount: 1 } as const;
@@ -77,7 +82,7 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Rage$/, slot: "bonus", pool: { field: "rages", amount: 1 } },
   { name: /^Reckless Attack/, slot: "free", when: "firstAttack" },
   { name: /^Frenzy/, slot: "bonus", when: "whileRaging" },
-  { name: /^Divine Fury/, slot: "free", when: "onHit", oncePerTurn: true, condition: "firstHit" },
+  { name: /^Divine Fury/, slot: "free", when: "onHit", oncePerTurn: true, condition: "firstHit", dice: (c) => `1d6+${Math.floor(lvl(c) / 2)}` },
   { name: /^Intimidating Presence/, slot: "action" },
   { name: /^Retaliation/, slot: "reaction", when: "onDamage" },
   { name: /^Spirit Shield/, slot: "reaction", when: "whileRaging" },
@@ -94,7 +99,7 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Countercharm/, slot: "action" },
   { name: /^Cutting Words/, slot: "reaction", pool: bardic },
   { name: /^Blade Flourish/, slot: "free", when: "onHit", pool: bardic, oncePerTurn: true },
-  { name: /^Psychic Blades/, slot: "free", when: "onHit", pool: bardic, oncePerTurn: true, only: (c) => c.class === "Bard" },
+  { name: /^Psychic Blades/, slot: "free", when: "onHit", pool: bardic, oncePerTurn: true, dice: byLevel([[1, "2d6"], [5, "3d6"], [10, "5d6"], [15, "8d6"]]), only: (c) => c.class === "Bard" },
   { name: /^Unsettling Words/, slot: "bonus", pool: bardic },
   { name: /^Mantle of Inspiration/, slot: "bonus", pool: bardic },
   { name: /^Tales from Beyond/, slot: "bonus", pool: bardic },
@@ -114,8 +119,8 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Steps of Night/, slot: "bonus", uses: { max: prof, per: "long" } },
   { name: /^Blessing of the Trickster/, slot: "action" },
   { name: /^Corona of Light/, slot: "action" },
-  { name: /^Divine Strike/, slot: "free", when: "onHit", oncePerTurn: true, condition: "weapon" },
-  { name: /^Blessed Strikes/, slot: "free", when: "onHit", oncePerTurn: true, condition: "cantripOrWeapon" },
+  { name: /^Divine Strike/, slot: "free", when: "onHit", oncePerTurn: true, condition: "weapon", dice: byLevel([[1, "1d8"], [14, "2d8"]]) },
+  { name: /^Blessed Strikes/, slot: "free", when: "onHit", oncePerTurn: true, condition: "cantripOrWeapon", dice: () => "1d8" },
   { name: /^Embodiment of the Law/, slot: "free", when: "onCast", uses: { max: WIS, per: "long" } },
 
   // ----- Druid -----
@@ -197,13 +202,13 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Planar Warrior/, slot: "bonus" },
   { name: /^Slayer's Prey/, slot: "bonus" },
   { name: /^Hunter's Sense/, slot: "action", uses: { max: WIS, per: "long" } },
-  { name: /^Dreadful Strikes/, slot: "free", when: "onHit", oncePerTurn: true },
-  { name: /^Gathered Swarm/, slot: "free", when: "onHit", oncePerTurn: true },
+  { name: /^Dreadful Strikes/, slot: "free", when: "onHit", oncePerTurn: true, dice: byLevel([[1, "1d4"], [11, "1d6"]]) },
+  { name: /^Gathered Swarm/, slot: "free", when: "onHit", oncePerTurn: true, dice: byLevel([[1, "1d6"], [11, "1d8"]]) },
   { name: /^Stalker's Flurry/, slot: "free", when: "onMiss" },
   { name: /^Ethereal Step/, slot: "bonus", uses: short1 },
   { name: /^(Shadowy Dodge|Spectral Defense|Slayer's Counter|Beguiling Twist)/, slot: "reaction" },
-  { name: /^Favored Foe/, slot: "free", when: "onHit", uses: { max: prof, per: "long" } },
-  { name: /^Dread Ambusher/, slot: "free", when: "onHit", oncePerTurn: true, condition: "firstTurn" },
+  { name: /^Favored Foe/, slot: "free", when: "onHit", uses: { max: prof, per: "long" }, dice: byLevel([[1, "1d4"], [6, "1d6"], [14, "1d8"]]) },
+  { name: /^Dread Ambusher/, slot: "free", when: "onHit", oncePerTurn: true, condition: "firstTurn", dice: () => "1d8" },
   { name: /^Misty Wanderer/, slot: "bonus", uses: { max: WIS, per: "long" } },
   { name: /^Swarming Dispersal/, slot: "reaction", when: "onDamage", uses: { max: prof, per: "long" } },
   { name: /^Drake Companion/, slot: "action", uses: long1 },
@@ -220,7 +225,7 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Skirmisher/, slot: "reaction" },
   { name: /^Panache/, slot: "action" },
   { name: /^Misdirection/, slot: "reaction" },
-  { name: /^Wails from the Grave/, slot: "free", when: "onHit", uses: { max: prof, per: "long" } },
+  { name: /^Wails from the Grave/, slot: "free", when: "onHit", uses: { max: prof, per: "long" }, dice: (c) => `${Math.ceil(Math.ceil(lvl(c) / 2) / 2)}d6` },
   { name: /^Death Strike/, slot: "free", when: "onHit", oncePerTurn: true, condition: "surprised" },
   { name: /^Master Duelist/, slot: "free", when: "onMiss", uses: short1 },
   { name: /^Spell Thief/, slot: "reaction", uses: long1 },
@@ -290,7 +295,7 @@ export const FEATURE_RULES: FeatureRule[] = [
   // ----- Artificer -----
   { name: /^Flash of Genius/, slot: "reaction", uses: { max: INT, per: "long" } },
   { name: /^Magical Tinkering/, slot: "action" },
-  { name: /^Arcane Jolt/, slot: "free", when: "onHit", uses: { max: INT, per: "long" }, oncePerTurn: true },
+  { name: /^Arcane Jolt/, slot: "free", when: "onHit", uses: { max: INT, per: "long" }, oncePerTurn: true, dice: byLevel([[1, "2d6"], [15, "4d6"]]) },
   { name: /^Eldritch Cannon/, slot: "action" },
   { name: /^Steel Defender/, slot: "bonus" },
 
@@ -434,7 +439,7 @@ export const SUB_OPTIONS: SubOptionGroup[] = [
     feature: "Hunter's Prey",
     picked: true,
     options: [
-      { name: "Colossus Slayer", key: "colossusSlayer", slot: "free", when: "onHit", oncePerTurn: true, condition: "hurt", summary: "Your weapon hit deals 1d8 extra damage." },
+      { name: "Colossus Slayer", key: "colossusSlayer", slot: "free", when: "onHit", oncePerTurn: true, condition: "hurt", dice: () => "1d8", summary: "Your weapon hit deals 1d8 extra damage." },
       { name: "Giant Killer", key: "giantKiller", slot: "reaction", when: "whenAttacked", condition: "largeNear", summary: "When a Large or bigger creature within 5 feet attacks you, attack it right after." },
       { name: "Horde Breaker", key: "hordeBreaker", slot: "free", when: "afterAttack", oncePerTurn: true, condition: "nextToTarget", summary: "Make one more weapon attack against a different creature within 5 feet of the first target." },
     ],
