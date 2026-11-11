@@ -290,7 +290,7 @@ export const INVOCATION_PICKS: Pick[] = [
   { name: "Mask of Many Faces", why: { en: "Change how you look any time, for free.", id: "Ubah penampilanmu kapan saja, gratis." } },
 ];
 
-const EXPERTISE_WHY: Record<string, Why> = {
+export const EXPERTISE_WHY: Record<string, Why> = {
   "Stealth": { en: "Sneak and hide much more reliably.", id: "Menyelinap dan bersembunyi jauh lebih andal." },
   "Thieves' Tools": { en: "Open locks and disarm traps much more reliably.", id: "Membuka kunci dan menjinakkan jebakan jauh lebih andal." },
   "Perception": { en: "Spot hidden enemies and traps. The most rolled skill.", id: "Melihat musuh dan jebakan tersembunyi. Skill yang paling sering dilempar." },

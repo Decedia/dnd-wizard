@@ -42,11 +42,8 @@ export function FeatureChipSelector({
   };
 
   const handleModalSelect = (value: string) => {
-    const newValues = value
-      .split(", ")
-      .filter((v) => v && !selectedValues.includes(v))
-      .slice(0, maxCount - selectedValues.length);
-    onChange([...selectedValues, ...newValues]);
+    // The picker returns the whole selection, so taking one out there removes it here too.
+    onChange(value.split(", ").filter(Boolean).slice(0, maxCount));
   };
 
   const availableOptions = options.filter((opt) => !selectedValues.includes(opt.name));
