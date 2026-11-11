@@ -1008,6 +1008,7 @@ export const translations = {
   "turn.sub.standAgainstTheTide": "When a creature misses you in melee, make it repeat the attack against another creature of your choice.",
   "turn.sub.uncannyDodgeHunter": "Halve the damage of one attack that hits you.",
   "swing.critExtra": "{names}: roll {dice} more.",
+  "turn.cond.cantripOrWeapon": "When a cantrip or a weapon attack deals damage.",
   "turn.title": "Your turn · Round {round}",
   "turn.start": "Start my turn",
   "turn.continue": "Continue turn",

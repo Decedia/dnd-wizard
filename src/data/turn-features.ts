@@ -115,6 +115,7 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Blessing of the Trickster/, slot: "action" },
   { name: /^Corona of Light/, slot: "action" },
   { name: /^Divine Strike/, slot: "free", when: "onHit", oncePerTurn: true, condition: "weapon" },
+  { name: /^Blessed Strikes/, slot: "free", when: "onHit", oncePerTurn: true, condition: "cantripOrWeapon" },
   { name: /^Embodiment of the Law/, slot: "free", when: "onCast", uses: { max: WIS, per: "long" } },
 
   // ----- Druid -----
@@ -201,6 +202,7 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Stalker's Flurry/, slot: "free", when: "onMiss" },
   { name: /^Ethereal Step/, slot: "bonus", uses: short1 },
   { name: /^(Shadowy Dodge|Spectral Defense|Slayer's Counter|Beguiling Twist)/, slot: "reaction" },
+  { name: /^Favored Foe/, slot: "free", when: "onHit", uses: { max: prof, per: "long" } },
   { name: /^Dread Ambusher/, slot: "free", when: "onHit", oncePerTurn: true, condition: "firstTurn" },
   { name: /^Misty Wanderer/, slot: "bonus", uses: { max: WIS, per: "long" } },
   { name: /^Swarming Dispersal/, slot: "reaction", when: "onDamage", uses: { max: prof, per: "long" } },

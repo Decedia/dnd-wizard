@@ -491,6 +491,7 @@ export const translations = {
   "turn.sub.standAgainstTheTide": "Saat makhluk meleset menyerangmu dengan melee, paksa ia mengulang serangan ke makhluk lain pilihanmu.",
   "turn.sub.uncannyDodgeHunter": "Kurangi setengah damage dari satu serangan yang mengenaimu.",
   "swing.critExtra": "{names}: lempar {dice} lagi.",
+  "turn.cond.cantripOrWeapon": "Saat cantrip atau serangan senjata memberi damage.",
   "turn.title": "Giliranmu · Ronde {round}",
   "turn.start": "Mulai giliranku",
   "turn.continue": "Lanjutkan giliran",
