@@ -22,7 +22,7 @@ import { CheckIcon as Check, LightningBoltIcon as LightningBolt, ClockIcon as Cl
 import { GiRun } from "react-icons/gi";
 import { getSpellSchoolStyle } from "@/lib/spell-schools";
 import { getSchoolBadgeStyle } from "@/lib/badge-styles";
-import { SpellDamageBonusLines } from "@/components/SpellDamageBonus";
+import { SpellDamageBonusLines, SpellDamageLine } from "@/components/SpellDamageBonus";
 
 interface TurnPanelProps {
   character: Character;
@@ -180,6 +180,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
             </span>
           )}
           {o.condition && !reason && <span className="mt-0.5 block text-[11px] font-semibold text-[var(--color-text-primary)]">{t(`turn.cond.${o.condition}`)}</span>}
+          <SpellDamageLine parts={o.spellDamage} />
           <SpellDamageBonusLines bonuses={o.damageBonuses} />
           {o.endsConcentration && <span className="mt-1 block text-xs font-semibold text-[var(--color-warning-700)]">{t("turn.endsConc", { name: o.endsConcentration })}</span>}
           {pick && <span className="mt-1 block text-xs font-semibold leading-snug text-[var(--color-text-primary)]">{t(`turn.why.${pick.why}`, pick.values || {})}</span>}

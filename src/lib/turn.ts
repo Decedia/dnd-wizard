@@ -11,6 +11,7 @@ import { ruleFor, ruleKey, SUB_OPTIONS, subOptionsFor, usesMax, type FeatureRule
 import { getFeaturePicks } from "@/lib/feature-groups";
 import { beastByName, type Beast } from "@/data/wild-shapes";
 import { spellDamageBonuses, type SpellDamageBonus } from "@/lib/spell-damage-bonus";
+import { characterSpellDamage, dealsDirectDamage, type DamagePart } from "@/lib/spell-dice";
 import { featureHealing, healingBonusLines, spellHealing, type Healing } from "@/lib/healing";
 import { concentrationTimer, expiredTimerPatch, featureRounds, featureTimerId, RAGE_TIMER, spellRounds, spellTimerId, startTimer, WILD_SHAPE_TIMER } from "@/lib/timers";
 
@@ -55,6 +56,8 @@ export interface TurnOption {
   lastsRounds?: number;
   /** Feature bonuses to the spell's damage (Empowered Evocation, Agonizing Blast). */
   damageBonuses?: SpellDamageBonus[];
+  /** The spell's damage at the slot it will use, bonuses added. */
+  spellDamage?: DamagePart[] | null;
   /** When a feature applies ("when you hit"); locale key `turn.when.*`. */
   when?: FeatureWhen;
   /** Once per turn: greyed out after a tap until End turn. */
@@ -85,7 +88,9 @@ export function spellTags(srd: SrdSpell | undefined, name: string): string[] {
   if (!srd) return tags;
   const text = Array.isArray(srd.description) ? srd.description.join(" ") : srd.description || "";
   const range = (srd.range || "").toLowerCase();
-  const dice = srd.damage && typeof srd.damage === "object" ? srd.damage.damageDice || srd.damage.damageType || srd.damage.damage_type : srd.damage;
+  const dataDice = srd.damage && typeof srd.damage === "object" ? srd.damage.damageDice || srd.damage.damageType || srd.damage.damage_type : srd.damage;
+  // The checked dice table wins over the spell data (Sleep has "damage" dice that are hit points).
+  const dice = dealsDirectDamage(name) ?? dataDice;
   if (srd.heal_at_slot_level || /regains? (a number of )?hit points/i.test(text)) tags.push("heal");
   else if (dice) tags.push("damage");
   if (srd.area_of_effect || /\d+-foot[- ](cube|cone|sphere|line|radius)/.test(range)) tags.push("area");
@@ -287,6 +292,7 @@ function spellOptions(character: Character, srdSpells: SrdSpell[]): TurnOption[]
         }
       }
     }
+    if (srd && option.damageBonuses) option.spellDamage = characterSpellDamage(character, { name: srd.name, level, school: srd.school, classes: srd.classes }, castLevel, option.damageBonuses);
     const heal = srd ? spellHealing(character, { name: srd.name, level, heal_at_slot_level: srd.heal_at_slot_level }, castLevel) : null;
     if (heal) {
       option.heal = heal;
