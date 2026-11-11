@@ -13,6 +13,8 @@ import { saveCharacter } from "@/lib/storage";
 import type { Character } from "@/lib/storage";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getStatBadgeStyle } from "@/lib/badge-styles";
+import { removeFeature, restoreFeature, saveFeatureEdit, type FeatureDraft } from "@/lib/feature-edit";
+import { FeatureEditSheet } from "./FeatureEditSheet";
 import { ruleFor, ruleKey, usesMax, type FeatureRule, type PoolField } from "@/data/turn-features";
 import { featureRounds, roundsText } from "@/lib/timers";
 import { BottomSheet } from "@/components/modals/BottomSheet";
@@ -63,19 +65,36 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
   const feats = useMemo(() => getStaticFeats([], character.ruleset, language), [character.ruleset, language]);
   const popupFeat = feats.find((f) => f.name === popupFeatName) || null;
 
-  const addItem = () => {
-    onChange({
-      features: [
-        ...character.features,
-        { id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`, name: "", description: "" },
-      ],
-    });
+  // The add/change form: null when closed, "new" to add, or the feature being changed.
+  const [editing, setEditing] = useState<"new" | { id: string; draft: FeatureDraft; fromRules: boolean } | null>(null);
+  const [confirmRemove, setConfirmRemove] = useState(false);
+  const [restoreOpen, setRestoreOpen] = useState(false);
+  const removedNames = character.removedFeatures || [];
+
+  const saveEdit = (draft: FeatureDraft) => {
+    onChange(saveFeatureEdit(character, editing && editing !== "new" ? editing.id : null, draft));
+    setEditing(null);
   };
 
-  const removeItem = (id: string) => {
-    onChange({
-      features: character.features.filter((f) => f.id !== id),
-    });
+  const startEdit = (feature: any) => {
+    // The stored row, not the display copy: its text is what the player wrote.
+    const stored = character.features.find((f) => f.id === feature.id) || feature;
+    const fromRules = !!stored.source && stored.source !== "custom";
+    setSelectedFeature(null);
+    setEditing({ id: stored.id, fromRules, draft: { name: stored.name, description: fromRules ? feature.description || stored.description || "" : stored.description || "", turn: stored.turn ?? null } });
+  };
+
+  const removeSelected = () => {
+    if (!selectedFeature) return;
+    onChange(removeFeature(character, selectedFeature.id));
+    setConfirmRemove(false);
+    setSelectedFeature(null);
+  };
+
+  const restore = (name: string) => {
+    const next = restoreFeature(character, name, language);
+    onChange({ features: next.features, removedFeatures: next.removedFeatures, skills: next.skills, expertise: next.expertise, languages: next.languages, spells: next.spells });
+    if (removedNames.length <= 1) setRestoreOpen(false);
   };
 
   const handleSyncFeatures = async () => {
@@ -573,7 +592,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
           <div className="absolute right-0 top-12 z-20 w-52 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-1.5 shadow-lg">
             <button
               type="button"
-              onClick={() => { setFeatureMenuOpen(false); addItem(); }}
+              onClick={() => { setFeatureMenuOpen(false); setEditing("new"); }}
               className="flex w-full items-center gap-2 min-h-[44px] px-3 rounded-lg text-left text-sm text-[var(--color-text-primary)] hover:bg-[var(--color-paper-muted)]"
             >
               <Plus size={16} />
@@ -587,6 +606,15 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
             >
               {syncing ? t("features.syncing") : t("features.syncWithSrd")}
             </button>
+            {removedNames.length > 0 && (
+              <button
+                type="button"
+                onClick={() => { setFeatureMenuOpen(false); setRestoreOpen(true); }}
+                className="flex w-full items-center min-h-[44px] px-3 rounded-lg text-left text-sm text-[var(--color-text-primary)] hover:bg-[var(--color-paper-muted)]"
+              >
+                {t("features.restoreRemoved", { count: removedNames.length }, "Removed features ({count})")}
+              </button>
+            )}
           </div>
         )}
         <div className="mt-3 flex gap-1.5 overflow-x-auto pb-0.5">
@@ -764,9 +792,29 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
           return (
             <BottomSheet
               isOpen={!!selectedFeature}
-              onClose={() => setSelectedFeature(null)}
+              onClose={() => { setSelectedFeature(null); setConfirmRemove(false); }}
               title={selectedFeature.name}
               showHeader={true}
+              footer={editMode ? (
+                confirmRemove ? (
+                  <div className="space-y-2 px-4 py-3">
+                    <p className="text-xs text-[var(--color-text-secondary)]">
+                      {sourceKind(selectedFeature) && sourceKind(selectedFeature) !== "custom"
+                        ? t("featureEdit.removeRuleWarn", "It stays off after level-ups. You can put it back from the ⋯ menu.")
+                        : t("featureEdit.removeOwnWarn", "Your feature is deleted for good.")}
+                    </p>
+                    <div className="flex items-center gap-2">
+                      <button type="button" onClick={() => setConfirmRemove(false)} className="btn btn-secondary flex-1">{t("common.cancel", "Cancel")}</button>
+                      <button type="button" onClick={removeSelected} className="btn btn-primary flex-1">{t("featureEdit.removeConfirm", "Remove it")}</button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-2 px-4 py-3">
+                    <button type="button" onClick={() => setConfirmRemove(true)} className="btn btn-secondary flex-1">{t("featureEdit.remove", "Remove")}</button>
+                    <button type="button" onClick={() => startEdit(selectedFeature)} className="btn btn-primary flex-1">{t("featureEdit.edit", "Change")}</button>
+                  </div>
+                )
+              ) : undefined}
             >
               <div className="px-4 py-4 space-y-3">
                 {(selectedFeature.summary || "") && (
@@ -827,6 +875,27 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
             </BottomSheet>
           );
         })()}
+       {editing && (
+         <FeatureEditSheet
+           initial={editing === "new" ? undefined : editing.draft}
+           fromRules={editing !== "new" && editing.fromRules}
+           onSave={saveEdit}
+           onClose={() => setEditing(null)}
+         />
+       )}
+       {restoreOpen && removedNames.length > 0 && (
+         <BottomSheet isOpen onClose={() => setRestoreOpen(false)} title={t("features.removedTitle", "Removed features")}>
+           <div className="px-4 py-3">
+             <p className="mb-2 text-xs text-[var(--color-text-muted)]">{t("features.removedHint", "Put one back as the rules give it. Your own version with the same name is replaced.")}</p>
+             {removedNames.map((name) => (
+               <div key={name} className="flex items-center justify-between gap-2 border-t border-[var(--color-border-muted)] py-2.5 first:border-t-0">
+                 <span className="text-sm font-semibold text-[var(--color-text-primary)]">{name}</span>
+                 <button type="button" onClick={() => restore(name)} className="btn btn-secondary">{t("features.restore", "Put back")}</button>
+               </div>
+             ))}
+           </div>
+         </BottomSheet>
+       )}
        {currentChoice && (
          <FeatureSelectionModal
            isOpen={!!currentChoice}

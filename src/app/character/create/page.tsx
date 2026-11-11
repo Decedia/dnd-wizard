@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { CaretRight, Lightning, ListNumbers } from "@phosphor-icons/react";
@@ -25,6 +25,8 @@ import {
   syncBaseFeatures,
   type Character,
 } from "@/lib/character-creation";
+import { getCharacter, saveCharacter } from "@/lib/storage";
+import { classRebuildDraft, finishClassRebuild } from "@/lib/rebuild";
 
 export default function CharacterCreate() {
   const router = useRouter();
@@ -33,8 +35,28 @@ export default function CharacterCreate() {
   const [step, setStep] = useState(0);
   // Quick create or the full walk-through; asked once when the page opens.
   const [chosen, setChosen] = useState(false);
+  // Picking the class again for a saved character (?rebuild=<id>): the old one, kept until the new one is saved.
+  const [rebuildFrom, setRebuildFrom] = useState<Character | null>(null);
+  useEffect(() => {
+    const id = new URLSearchParams(window.location.search).get("rebuild");
+    if (!id) return;
+    let cancelled = false;
+    getCharacter(id).then((old) => {
+      if (cancelled || !old) return;
+      const draft = classRebuildDraft(old);
+      setRebuildFrom(old);
+      setCharacter(draft);
+      setChosen(true);
+      setStep(Math.max(0, getCreationSteps(draft).findIndex((s) => s.id === "origin")));
+    });
+    return () => { cancelled = true; };
+  }, []);
 
-  const steps = useMemo(() => getCreationSteps(character), [character]);
+  // A class change keeps the gear the character carries, so there's no gear step.
+  const steps = useMemo(
+    () => getCreationSteps(character).filter((s) => !(character.rebuildOf && s.type === "equipment")),
+    [character]
+  );
   const totalSteps = steps.length;
   const currentStep = steps[step];
   const isLastStep = step === totalSteps - 1;
@@ -51,6 +73,14 @@ export default function CharacterCreate() {
     });
   }, [language]);
 
+  const finishCreation = useCallback(async (draft: Character) => {
+    const final = await finalizeCreation(draft, language);
+    if (!rebuildFrom) return final;
+    const rebuilt = finishClassRebuild(rebuildFrom, final);
+    await saveCharacter(rebuilt);
+    return rebuilt;
+  }, [language, rebuildFrom]);
+
   const canProceed = useCallback((): boolean => {
     if (!currentStep) return false;
     if (!currentStep.required) return true;
@@ -60,17 +90,18 @@ export default function CharacterCreate() {
   const handleNext = useCallback(async () => {
     if (!canProceed()) return;
     if (isLastStep) {
-      const final = await finalizeCreation(character, language);
+      const final = await finishCreation(character);
       router.replace(`/character?id=${final.id}`);
     } else {
       setStep((s) => s + 1);
     }
-  }, [canProceed, isLastStep, character, router, language]);
+  }, [canProceed, isLastStep, character, router, finishCreation]);
 
   const handleBack = useCallback(() => {
     if (step > 0) setStep((s) => s - 1);
+    else if (rebuildFrom) router.replace(`/character?id=${rebuildFrom.id}`);
     else setChosen(false);
-  }, [step]);
+  }, [step, rebuildFrom, router]);
 
   const renderStep = useCallback(() => {
     if (!currentStep) return null;
@@ -152,14 +183,18 @@ export default function CharacterCreate() {
         character={character}
         onCancel={() => setStep((s) => Math.max(0, s - 1))}
         onComplete={async (updated) => {
-        const final = await finalizeCreation(updated, language);
-        router.replace(`/character?id=${final.id}`);
+          const final = await finishCreation(updated);
+          router.replace(`/character?id=${final.id}`);
         }}
         minLevel={1}
-        maxLevel={10}
-        title={t("creator.startingLevel")}
-        subtitle={t("creator.startingLevelHint", "Choose your starting level and roll HP")}
+        maxLevel={Math.max(10, character.rebuildOf?.level ?? 1)}
+        initialLevel={character.rebuildOf?.level}
+        title={character.rebuildOf ? t("rebuild.classLevelTitle", "Back to your level") : t("creator.startingLevel")}
+        subtitle={character.rebuildOf
+          ? t("rebuild.classLevelHint", { level: character.rebuildOf.level }, "Level back up to {level} with your new class")
+          : t("creator.startingLevelHint", "Choose your starting level and roll HP")}
         startFromLevelOne
+        suggestAll={!!character.rebuildOf}
       />
     );
   }

@@ -176,6 +176,14 @@ interface LevelUpWizardProps {
   auto?: boolean;
   autoView?: React.ReactNode;
   onAutoStuck?: () => void;
+  /**
+   * Picking the subclass again on a finished character: only the subclass
+   * screens show (subclass, its feature picks, its spells), HP stays as it is,
+   * and ability scores and class picks are left alone.
+   */
+  subclassOnly?: boolean;
+  /** A header button that fills every open pick with its top suggestion. */
+  suggestAll?: boolean;
 }
 
 interface LevelInfo {
@@ -681,7 +689,7 @@ export function partOfSection(sectionId: string): LevelPart {
   return "spells";
 }
 
-export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLevel, title, subtitle, startFromLevelOne, initialLevel, auto, autoView, onAutoStuck }: LevelUpWizardProps) {
+export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLevel, title, subtitle, startFromLevelOne, initialLevel, auto, autoView, onAutoStuck, subclassOnly, suggestAll }: LevelUpWizardProps) {
   const { language, tDesc } = useLanguage();
   const dict = language === "id" ? idTranslations : enTranslations;
   const t = useCallback((key: string, fb?: string, params?: Record<string, string | number>) => {
@@ -823,7 +831,18 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
         const taken = pickedElsewhere(state, level, fc.name);
         return taken.size ? { ...fc, options: fc.options.filter((o) => !taken.has(o.name)) } : fc;
       });
-    return baseLevelInfos.map((info) => {
+    // Subclass only: every choice that isn't the subclass's own is left as it is.
+    const onlySubclass = (info: LevelInfo): LevelInfo => ({
+      ...info,
+      asi: false,
+      classFeatureChoices: undefined,
+      expertise: undefined,
+      magicalSecretsCount: 0,
+      canReplaceSpell: false,
+      hasSpellSelection: isThirdCaster(subclassSelection) && info.hasSpellSelection,
+    });
+    return baseLevelInfos.map((raw) => {
+      const info = subclassOnly ? onlySubclass(raw) : raw;
       const expertiseTaken = new Set(
         Object.entries(expertiseSelections).filter(([lvl]) => Number(lvl) !== info.level).flatMap(([, list]) => list || [])
       );
@@ -838,7 +857,10 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
         },
       };
     });
-  }, [baseLevelInfos, replacedSpells, subclassFeatureChoices, classFeatureChoices, expertiseSelections]);
+  }, [baseLevelInfos, replacedSpells, subclassFeatureChoices, classFeatureChoices, expertiseSelections, subclassOnly, subclassSelection]);
+  // The class name the screens are worked out with; the Warlock's and Wizard's
+  // own class screens don't show when only the subclass is picked again.
+  const partsClass = subclassOnly ? "" : character.class;
 
   const setHp = (level: number, value: number) => setHpValues((prev) => ({ ...prev, [level]: value }));
   const setAsi = (level: number, patch: Partial<{ mode: "single" | "double" | "feat"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey; feat?: string; featOptions?: Record<string, string> }>) =>
@@ -1506,21 +1528,21 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     if (jump) {
       list.push({ levels: levelInfos.map((info) => info.level), part: "moment" });
       for (const info of levelInfos) {
-        for (const part of levelParts(info, subclassSelection, character.class)) {
+        for (const part of levelParts(info, subclassSelection, partsClass)) {
           if (part !== "spells") list.push({ levels: [info.level], part });
         }
       }
-      const spellLevels = levelInfos.filter((info) => levelParts(info, subclassSelection, character.class).includes("spells")).map((info) => info.level);
+      const spellLevels = levelInfos.filter((info) => levelParts(info, subclassSelection, partsClass).includes("spells")).map((info) => info.level);
       if (spellLevels.length > 0) list.push({ levels: spellLevels, part: "spells" });
     } else {
       for (const info of levelInfos) {
         list.push({ levels: [info.level], part: "moment" });
-        for (const part of levelParts(info, subclassSelection, character.class)) list.push({ levels: [info.level], part });
+        for (const part of levelParts(info, subclassSelection, partsClass)) list.push({ levels: [info.level], part });
       }
     }
     list.push({ levels: [], part: "recap" });
     return list;
-  }, [levelInfos, subclassSelection, character.class]);
+  }, [levelInfos, subclassSelection, partsClass]);
   const idx = Math.min(stepIdx, steps.length - 1);
   const step = steps[idx];
   const stepInfos = levelInfos.filter((info) => step.levels.includes(info.level));
@@ -1547,8 +1569,8 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     const startHp = startFromLevelOne ? hitDie + conMod : character.maxHp || 0;
     const hp = startHp + gained + (getModifier(scores.con) - conMod) * targetLevel;
     const derived = computeDerivedStats({ ...character, ...scores, level: targetLevel });
-    return { hp, ac: derived.ac ?? character.ac, atk: derived.spellAttackBonus ?? 0, dc: derived.spellSaveDc ?? 0 };
-  }, [baseScores, hpValues, targetLevel, startFromLevelOne, hitDie, conMod, character]);
+    return { hp: subclassOnly ? character.maxHp || 0 : hp, ac: derived.ac ?? character.ac, atk: derived.spellAttackBonus ?? 0, dc: derived.spellSaveDc ?? 0 };
+  }, [baseScores, hpValues, targetLevel, startFromLevelOne, hitDie, conMod, character, subclassOnly]);
   // A Wizard learns spells into the spellbook and separately chooses which are
   // ready. The recap shows that list, filled in, so it is never left empty.
   const prepPlan = (() => {
@@ -1576,7 +1598,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   const showSpellStats = castsSpells({ class: character.class, subclass: subclassSelection || character.subclass });
 
   const partTitle = (part: LevelPart | "recap") => ({
-    moment: t("levelUp.flow.momentTitle", "Level up!"),
+    moment: subclassOnly ? t("rebuild.subclassTitle", "Change subclass") : t("levelUp.flow.momentTitle", "Level up!"),
     subclass: t("levelUp.flow.subclassTitle", "Pick your subclass"),
     asi: t("levelUp.flow.asiTitle", "Grow stronger"),
     features: t("levelUp.flow.featuresTitle", "Choose your class features"),
@@ -1803,6 +1825,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   const renderLevelCard = (info: LevelInfo, part: LevelPart) => (
     <LevelCard
       part={part}
+      subclassOnly={subclassOnly}
       info={info}
       hpValue={hpValues[info.level] || 0}
       onHpChange={(v) => setHp(info.level, v)}
@@ -2010,6 +2033,22 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     return () => clearTimeout(timer);
   });
 
+  // "Fill with suggestions": the same picks as quick create, then the recap to check them.
+  const [fillOn, setFillOn] = useState(false);
+  const fillPasses = useRef(0);
+  useEffect(() => {
+    if (!fillOn) return;
+    const timer = setTimeout(() => {
+      const changed = fillPasses.current++ < 10 && autoFillPass();
+      if (!changed) {
+        setFillOn(false);
+        setStepIdx(steps.length - 1);
+        if (typeof window !== "undefined") window.scrollTo({ top: 0 });
+      }
+    }, 30);
+    return () => clearTimeout(timer);
+  });
+
   if (autoOn) return <>{autoView}</>;
 
   const upNext = [...new Set(steps.slice(idx + 1).filter((s) => s.part !== "recap" && s.part !== "moment").map((s) => partTitle(s.part)))];
@@ -2052,7 +2091,19 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
             </div>
           )}
           {subtitle && <div className="text-[10px] text-[var(--color-text-muted)] text-center mt-0.5">{subtitle}</div>}
-          {idx === 0 && (
+          {suggestAll && step.part !== "recap" && (
+            <div className="mt-2 flex justify-center">
+              <button
+                type="button"
+                disabled={fillOn}
+                onClick={() => { fillPasses.current = 0; setFillOn(true); }}
+                className="btn btn-secondary px-3 py-1.5 text-xs"
+              >
+                {fillOn ? t("levelUp.flow.filling", "Filling…") : t("levelUp.flow.fillSuggestions", "Fill with suggestions")}
+              </button>
+            </div>
+          )}
+          {idx === 0 && !subclassOnly && (
           <div className="mt-3 flex items-center justify-center gap-4">
             <button
               type="button"
@@ -2138,12 +2189,12 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
                 <h2 className="text-xl font-bold text-[var(--color-text-primary)]">{partTitle("recap")}</h2>
                 <p className="mt-1 text-xs text-[var(--color-text-secondary)]">{partHint("recap")}</p>
               </div>
-              {levelInfos.map((info) => (
+              {levelInfos.filter((info) => !subclassOnly || levelParts(info, subclassSelection, partsClass).length > 0).map((info) => (
                 <div key={info.level} className="rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)]">
                   <div className="px-4 pt-3 pb-1 text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">
                     {t("levelUp.flow.levelN", "Level {level}", { level: info.level })}
                   </div>
-                  {(["moment", ...levelParts(info, subclassSelection, character.class)] as LevelPart[]).map((part) => {
+                  {([...(subclassOnly ? [] : ["moment"]), ...levelParts(info, subclassSelection, partsClass)] as LevelPart[]).map((part) => {
                     const open = unfinishedItems.some((item) => item.level === info.level && partOfSection(item.sectionId) === part);
                     return (
                       <button
@@ -2196,13 +2247,23 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
                 <div className="mt-2 text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--color-text-muted)]">{partTitle("moment")}</div>
                 <div className="text-3xl font-bold text-[var(--color-text-primary)]">{t("levelUp.flow.levelN", "Level {level}", { level: step.levels[step.levels.length - 1] })}</div>
                 <p className="mt-1 text-xs text-[var(--color-text-secondary)]">
-                  {isStart
+                  {subclassOnly
+                    ? t("levelUp.flow.subclassOnlyHint", "Pick your subclass again, then its choices from level {from} to {to}. Everything else stays as it is.", { from: step.levels[0], to: step.levels[step.levels.length - 1] })
+                    : isStart
                     ? t("levelUp.flow.startHint", "Here is what your class gives you at level 1.")
                     : step.levels.length > 1
                       ? t("levelUp.flow.jumpHint", "You gained {count} levels. Everything below comes for free.", { count: step.levels.length })
                       : partHint("moment")}
                 </p>
-                {hpLevels.length > 0 && (
+                {subclassOnly ? (
+                  <div className="mt-4">
+                    <div className="flex flex-wrap items-center justify-center gap-2 opacity-40" aria-hidden="true">
+                      <span className="rounded-full border border-[var(--color-border)] px-3 py-1.5 text-xs font-semibold text-[var(--color-text-primary)]">{t("levelUp.flow.takeAverage", "Take average (+{hp} HP)", { hp: averageHp })}</span>
+                      <span className="rounded-full border border-[var(--color-border)] px-3 py-1.5 text-xs font-semibold text-[var(--color-text-primary)]">{t("levelUp.flow.rollInstead", "Roll d{die} instead", { die: hitDie })}</span>
+                    </div>
+                    <p className="mt-2 text-xs font-semibold text-[var(--color-text-secondary)]">{t("levelUp.flow.hpKept", "HP stays at {hp}. A new subclass doesn't change it.", { hp: character.maxHp || 0 })}</p>
+                  </div>
+                ) : hpLevels.length > 0 && (
                   <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
                     <button
                       type="button"
@@ -2225,7 +2286,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
                   </div>
                 )}
               </div>
-              {stepInfos.map((info) => <div key={info.level}>{renderLevelCard(info, "moment")}</div>)}
+              {!subclassOnly && stepInfos.map((info) => <div key={info.level}>{renderLevelCard(info, "moment")}</div>)}
               {upNext.length > 0 && (
                 <div className="rounded-[var(--radius-md)] border border-dashed border-[var(--color-border)] px-4 py-3">
                   <div className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">{t("levelUp.flow.upNext", "Up next")}</div>
@@ -2302,6 +2363,8 @@ interface LevelCardProps {
   info: LevelInfo;
   /** Show only this screen's sections. Leave out to show the whole level. */
   part?: LevelPart;
+  /** Only the subclass's own choices; class spell lists and class picks hide. */
+  subclassOnly?: boolean;
   hpValue: number;
   onHpChange: (v: number) => void;
   asiSelection?: { mode: "single" | "double" | "feat"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey; feat?: string; featOptions?: Record<string, string> };
@@ -2396,8 +2459,11 @@ function LevelCard({
   takenSpells,
   allAsiFeats,
   part,
+  subclassOnly,
 }: LevelCardProps) {
     const show = (p: LevelPart) => !part || part === p;
+    // Picking the subclass again: the class's own spells and picks stay as they are.
+    const classSpells = !subclassOnly || info.hasSpellSelection;
     const spellsPart: LevelPart = levelParts(info, subclassSelection, character.class).includes("spells") ? "spells" : "moment";
     const { language, tDesc } = useLanguage();
     const dict = language === "id" ? idTranslations : enTranslations;
@@ -2718,7 +2784,7 @@ function LevelCard({
             </div>
           )}
 
-          {show(spellsPart) && info.cantripsKnown !== undefined && (() => {
+          {show(spellsPart) && classSpells && info.cantripsKnown !== undefined && (() => {
             const lvlSpells = (allSpellSelections || {})[lvl] || [];
             const selectedCantrips = lvlSpells.filter((s: string) => s.endsWith(":0")).length;
             const higherCantrips = Object.entries(allSpellSelections || {})
@@ -2758,7 +2824,7 @@ function LevelCard({
             );
           })()}
 
-          {show(spellsPart) && info.spellsKnown !== undefined && (() => {
+          {show(spellsPart) && classSpells && info.spellsKnown !== undefined && (() => {
             const lvlSpells = (allSpellSelections || {})[lvl] || [];
             const selectedSpells = lvlSpells.filter((s: string) => !s.endsWith(":0")).length;
             const higherSpells = Object.entries(allSpellSelections || {})
@@ -2801,7 +2867,7 @@ function LevelCard({
             );
           })()}
 
-          {show(spellsPart) && info.spellbookTotal !== undefined && (() => {
+          {show(spellsPart) && classSpells && info.spellbookTotal !== undefined && (() => {
             const lvlSpells = (allSpellSelections || {})[lvl] || [];
             const selectedSpells = lvlSpells.filter((s: string) => !s.endsWith(":0")).length;
             const higherSpells = Object.entries(allSpellSelections || {})
@@ -2840,7 +2906,7 @@ function LevelCard({
             );
           })()}
 
-          {show(spellsPart) && info.maxPrepared !== undefined && (() => {
+          {show(spellsPart) && classSpells && info.maxPrepared !== undefined && (() => {
             const lvlSpells = (allSpellSelections || {})[lvl] || [];
             const selectedSpells = lvlSpells.filter((s: string) => !s.endsWith(":0")).length;
             const higherSpells = Object.entries(allSpellSelections || {})
@@ -3014,7 +3080,7 @@ function LevelCard({
             </div>
           ) : null}
 
-          {show("features") && character.class === "Wizard" && info.level === 18 && (() => {
+          {show("features") && !subclassOnly && character.class === "Wizard" && info.level === 18 && (() => {
             const spellMasterySelection = classFeatureChoices["Spell Mastery"] || "";
             return (
               <div className="p-3 rounded-lg border border-amber-300 bg-amber-50/30">
@@ -3035,7 +3101,7 @@ function LevelCard({
             );
           })()}
 
-          {show("features") && character.class === "Warlock" && info.level === 3 && subclassSelection && (() => {
+          {show("features") && !subclassOnly && character.class === "Warlock" && info.level === 3 && subclassSelection && (() => {
             const pactBoon = classFeatureChoices["Pact Boon"] || "";
             return (
               <div className="p-3 rounded-lg border border-purple-300 bg-purple-50/30">
@@ -3086,7 +3152,7 @@ function LevelCard({
             );
           })()}
 
-          {show("features") && character.class === "Warlock" && info.level >= 3 && !subclassSelection && (
+          {show("features") && !subclassOnly && character.class === "Warlock" && info.level >= 3 && !subclassSelection && (
             <div className="p-3 rounded-lg border border-purple-300 bg-purple-50/30">
               <div className="flex items-center gap-2 mb-1">
                 <Crown className="h-3.5 w-3.5 text-purple-600" />
@@ -3096,7 +3162,7 @@ function LevelCard({
             </div>
           )}
 
-          {show("features") && character.class === "Warlock" && info.level >= 2 && (() => {
+          {show("features") && !subclassOnly && character.class === "Warlock" && info.level >= 2 && (() => {
             const invocationFeature = info.classFeatureChoices?.find(fc => fc.name === "Eldritch Invocations");
             if (!invocationFeature) return null;
             const currentInvocations = invocationSelections;

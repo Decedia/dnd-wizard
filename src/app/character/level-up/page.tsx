@@ -5,6 +5,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { getCharacter, saveCharacter, computeDerivedStats, type Character } from "@/lib/storage";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { LevelUpWizard } from "@/components/LevelUpWizard";
+import { withLevelSnapshot } from "@/lib/level-snapshot";
 
 export function LevelUpPage() {
   const searchParams = useSearchParams();
@@ -30,7 +31,8 @@ export function LevelUpPage() {
   }, [id]);
 
   const handleComplete = async (updated: Character) => {
-    await saveCharacter(updated);
+    // The character from before, so the sheet can undo this level-up.
+    await saveCharacter(character ? withLevelSnapshot(character, updated) : updated);
     router.replace(`/character?id=${updated.id}`);
   };
 

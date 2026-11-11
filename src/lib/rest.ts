@@ -70,7 +70,7 @@ export function shortRestPatch(character: Character, hitDiceSpent = 0, healed = 
     currentHp: Math.min(maxHpNow(character), (character.currentHp || 0) + (spent > 0 ? Math.max(0, healed) : 0)),
     hitDiceRemaining: num(character, "hitDiceRemaining") - spent,
     freeCastsUsed: (character.freeCastsUsed || []).filter((n) => !shortCasts.has(n)),
-    featureUses: featureUsesAfterRest(character.featureUses, "short"),
+    featureUses: featureUsesAfterRest(character.featureUses, "short", character),
   };
   for (const pool of POOLS) {
     if (num(character, pool.max) > 0 && refillsOn(character, pool, "short")) (patch as any)[pool.field] = num(character, pool.max);
