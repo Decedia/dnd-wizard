@@ -11,12 +11,15 @@ import { BonusCantripModal } from "../modals/BonusCantripModal";
 import { SpellMasteryModal } from "../modals/SpellMasteryModal";
 import { SignatureSpellsModal } from "../modals/SignatureSpellsModal";
 import { BasePopup } from "@/components/BasePopup";
+import { OptionPicker } from "../modals/OptionPicker";
+import { optionLine } from "@/lib/option-line";
+import { optionIcon } from "@/components/option-icons";
 import { ABILITIES } from "./level-infos";
 import { useLevelCard } from "./level-card-state";
 
 /** Pop-ups opened from a level card: subclass, spells, ability scores, feats and other pickers. */
 export function LevelCardModals() {
-  const { info, asiSelection, onAsiChange, baseScores, subclassSelection, onSubclassSelect, subclassFeatureChoices, onSubclassFeatureChoice, classFeatureChoices, onClassFeatureChoice, spells, onSpellsChange, magicalSecretsSpells, onMagicalSecretsChange, subclassSpellSelections, onSubclassSpellSelectionsChange, onReplacedSpellChange, circleTerrain, onCircleTerrainChange, bonusCantrip, onBonusCantripChange, character, wizardCharacter, allSpellSelections, onReplacedInvocationChange, expertise, onExpertiseChange, takenSpells, allAsiFeats, t, showSubclassDetails, setShowSubclassDetails, showSubclassModal, setShowSubclassModal, showSpellModal, setShowSpellModal, spellModalMode, showTerrainModal, setShowTerrainModal, showBonusCantripModal, setShowBonusCantripModal, showFeaturePopup, setShowFeaturePopup, setFeatureSelections, setShowHumanoidPopup, setHumanoidSelections, showSpellMasteryModal, setShowSpellMasteryModal, spellMasterySelections, setSpellMasterySelections, showSignatureSpellsModal, setShowSignatureSpellsModal, signatureSpellsSelections, setSignatureSpellsSelections, showAsiModal, setShowAsiModal, asiAllocation, showAsiFeatModal, setShowAsiFeatModal, showExpertiseModal, setShowExpertiseModal, lvl, totalAsiPoints, canApplyAsi, allocateAsiPoint, removeAsiPoint, applyAsi } = useLevelCard();
+  const { language, info, asiSelection, onAsiChange, baseScores, subclassSelection, onSubclassSelect, subclassFeatureChoices, onSubclassFeatureChoice, classFeatureChoices, onClassFeatureChoice, spells, onSpellsChange, magicalSecretsSpells, onMagicalSecretsChange, subclassSpellSelections, onSubclassSpellSelectionsChange, onReplacedSpellChange, circleTerrain, onCircleTerrainChange, bonusCantrip, onBonusCantripChange, character, wizardCharacter, allSpellSelections, onReplacedInvocationChange, expertise, onExpertiseChange, takenSpells, allAsiFeats, t, showSubclassDetails, setShowSubclassDetails, showSubclassModal, setShowSubclassModal, showSpellModal, setShowSpellModal, spellModalMode, showTerrainModal, setShowTerrainModal, showBonusCantripModal, setShowBonusCantripModal, showFeaturePopup, setShowFeaturePopup, setFeatureSelections, setShowHumanoidPopup, setHumanoidSelections, showSpellMasteryModal, setShowSpellMasteryModal, spellMasterySelections, setSpellMasterySelections, showSignatureSpellsModal, setShowSignatureSpellsModal, signatureSpellsSelections, setSignatureSpellsSelections, showAsiModal, setShowAsiModal, asiAllocation, showAsiFeatModal, setShowAsiFeatModal, showExpertiseModal, setShowExpertiseModal, lvl, totalAsiPoints, canApplyAsi, allocateAsiPoint, removeAsiPoint, applyAsi } = useLevelCard();
   return (
     <>
 
@@ -287,39 +290,16 @@ export function LevelCardModals() {
       )}
 
       {showExpertiseModal && info.expertise && (
-        <BasePopup isOpen={showExpertiseModal} onClose={() => setShowExpertiseModal(false)} title={t("creator.selectExpertise", "Select Expertise")}>
-          <div className="space-y-2">
-            <p className="text-xs text-[var(--color-text-secondary)]">{t("creator.expertiseHint", "Choose")} {info.expertise.count} {t("creator.skill", "skill")}{info.expertise.count !== 1 ? t("creator.skillPlural", "s") : ""} {t("creator.toDoubleProficiency", "to double your proficiency bonus.")}</p>
-            <div className="space-y-1.5 max-h-64 overflow-y-auto">
-              {(info.expertise.availableOptions || []).map((skill) => {
-                const isSelected = expertise.includes(skill);
-                const isDisabled = !isSelected && expertise.length >= info.expertise!.count;
-                return (
-                  <label
-                    key={skill}
-                    className={`flex items-center gap-3 p-2.5 rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] cursor-pointer transition-all ${isDisabled ? "opacity-40" : "hover:border-[var(--color-border-active)]"}`}
-                  >
-                    <input
-                      type="checkbox"
-                      checked={isSelected}
-                      onChange={() => {
-                        if (isSelected) {
-                          onExpertiseChange(expertise.filter((s) => s !== skill));
-                        } else if (expertise.length < info.expertise!.count) {
-                          onExpertiseChange([...expertise, skill]);
-                        }
-                      }}
-                      disabled={isDisabled}
-                      className="checkbox"
-                    />
-                    <span className="text-sm font-bold text-[var(--color-text-primary)]">{skill}</span>
-                     {isSelected && <span className="badge text-ink bg-paper-muted ml-auto">{t("common.expertiseBadge", "EXPERTISE")}</span>}
-                  </label>
-                );
-              })}
-            </div>
-          </div>
-        </BasePopup>
+        <OptionPicker
+          isOpen={showExpertiseModal}
+          onClose={() => setShowExpertiseModal(false)}
+          title={t("creator.selectExpertise", "Select Expertise")}
+          hint={t("creator.expertiseHintCount", "Pick {count}. Your proficiency bonus counts twice on these.", { count: info.expertise.count })}
+          options={(info.expertise.availableOptions || []).map((skill) => ({ name: skill, line: optionLine("Expertise", { name: skill }, language), Icon: optionIcon("Expertise", skill) }))}
+          count={info.expertise.count}
+          selected={expertise}
+          onPick={onExpertiseChange}
+        />
       )}
     </>
   );
