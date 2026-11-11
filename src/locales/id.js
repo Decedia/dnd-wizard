@@ -525,6 +525,7 @@ export const translations = {
   "quick.ready": "Siap main",
   "quick.creating": "Membuat",
   "quick.levelBadge": "Level {level}",
+  "turn.cond.cantripOrWeapon": "Saat cantrip atau serangan senjata memberi damage.",
   "turn.title": "Giliranmu · Ronde {round}",
   "turn.start": "Mulai giliranku",
   "turn.continue": "Lanjutkan giliran",

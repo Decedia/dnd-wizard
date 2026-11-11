@@ -1042,6 +1042,7 @@ export const translations = {
   "quick.ready": "Ready to play",
   "quick.creating": "Creating",
   "quick.levelBadge": "Level {level}",
+  "turn.cond.cantripOrWeapon": "When a cantrip or a weapon attack deals damage.",
   "turn.title": "Your turn · Round {round}",
   "turn.start": "Start my turn",
   "turn.continue": "Continue turn",
