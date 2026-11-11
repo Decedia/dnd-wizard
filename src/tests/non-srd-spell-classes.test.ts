@@ -33,3 +33,15 @@ for (const [locale, data] of [["en", enSpells], ["id", idSpells]] as const) {
     });
   });
 }
+
+test("non-SRD spell text lives only in the spell data, written in our own words", () => {
+  // The locale files used to carry book text over the top of the data; it must not come back.
+  const en = require("@/locales/parts/en/2014_spells.json") as Record<string, string>;
+  const id = require("@/locales/parts/id/2014_spells.json") as Record<string, string>;
+  const indexes = new Set(((enSpells as any).spells as any[]).filter((s) => checked[s.name]).map((s) => s.index));
+  const overrides = [...Object.keys(en), ...Object.keys(id)].filter((k) => {
+    const m = k.match(/^2014_spells\.([^.]+)\.(description|effectSummary|fullDescription)$/);
+    return m && indexes.has(m[1]);
+  });
+  expect(overrides).toEqual([]);
+});
