@@ -21,7 +21,8 @@ import { RichDice, RichText, RichInline } from "@/components/RichText";
 import { SpellDamageBonusLines, SpellDamageLine } from "@/components/SpellDamageBonus";
 import { characterSpellDamage } from "@/lib/spell-dice";
 import { spellRounds, spellTimerId, startTimer } from "@/lib/timers";
-import { healingBonusLines, spellHealing } from "@/lib/healing";
+import { healingBonusLines, healSelfPatch, spellHealing } from "@/lib/healing";
+import { rollGroups } from "@/components/dice/roll-flow";
 import { spellDamageBonuses } from "@/lib/spell-damage-bonus";
 import { useDice } from "@/contexts/DiceContext";
 import { d20Group, damageGroup, partsFor, spellDamageGroups } from "@/lib/dice-roll";
@@ -276,7 +277,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
     return (
       <button
         type="button"
-        onClick={(e) => { e.stopPropagation(); dice.roll(spell.name, groups); }}
+        onClick={(e) => { e.stopPropagation(); rollGroups(dice, { hit: t("swing.result.hit", "Hit"), crit: t("swing.result.crit", "Crit"), miss: t("swing.result.miss", "Miss"), me: t("dice.healMe", "Heal me"), other: t("dice.healOther", "Someone else"), heal: t("dice.heal", "Healing") }, spell.name, groups, (total) => onChange(healSelfPatch(character, total))); }}
         className="btn btn-secondary mb-2 inline-flex items-center gap-1.5 !px-3 !py-1 text-xs"
       >
         <GiRollingDices className="h-3.5 w-3.5" aria-hidden="true" />

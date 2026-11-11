@@ -1,18 +1,29 @@
 "use client";
 
-import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from "react";
+import { createContext, useCallback, useContext, useMemo, useRef, useState, type ReactNode } from "react";
 import { GiRollingDices } from "react-icons/gi";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { DiceTray, type RollRequest, type RollResult } from "@/components/dice/DiceTray";
+import { DiceTray, type RollChoice, type RollRequest, type RollResult } from "@/components/dice/DiceTray";
 import type { RollGroup } from "@/lib/dice-roll";
+
+export interface RollOptions {
+  /** Close the tray by itself a moment after the dice land (nothing left to decide). */
+  autoClose?: boolean;
+  /** Buttons shown once the dice land, such as Hit / Crit / Miss after a to-hit roll. */
+  choices?: RollChoice[];
+}
 
 interface DiceApi {
   /**
    * Opens the tray and throws these groups ("To hit" 1d20+7, "Damage" 1d8+4).
    * `onDone` gets each group's total and die values when the dice land.
    */
-  roll: (title: string, groups: RollGroup[], onDone?: (result: RollResult) => void) => void;
+  roll: (title: string, groups: RollGroup[], onDone?: (result: RollResult) => void, options?: RollOptions) => void;
+  close: () => void;
 }
+
+/** How long the result stays on screen before an auto-closing tray hides. */
+const AUTO_CLOSE_MS = 1500;
 
 const DiceContext = createContext<DiceApi | null>(null);
 
@@ -24,12 +35,26 @@ export function DiceProvider({ children }: { children: ReactNode }) {
   const { t } = useLanguage();
   const [open, setOpen] = useState(false);
   const [request, setRequest] = useState<RollRequest | null>(null);
-  const roll = useCallback((title: string, groups: RollGroup[], onDone?: (result: RollResult) => void) => {
+  const seq = useRef(0);
+  const close = useCallback(() => setOpen(false), []);
+  const roll = useCallback((title: string, groups: RollGroup[], onDone?: (result: RollResult) => void, options: RollOptions = {}) => {
     if (!groups.length) return;
+    const mine = ++seq.current;
+    let closed = false;
+    const done = (result: RollResult) => {
+      onDone?.(result);
+      // Only the first landing closes the tray, and only if no newer roll took its place.
+      if (options.autoClose && !closed) {
+        closed = true;
+        setTimeout(() => {
+          if (seq.current === mine) setOpen(false);
+        }, AUTO_CLOSE_MS);
+      }
+    };
     setOpen(true);
-    setRequest((prev) => ({ seq: (prev?.seq ?? 0) + 1, title, groups, onDone }));
+    setRequest({ seq: mine, title, groups, onDone: done, choices: options.choices });
   }, []);
-  const api = useMemo(() => ({ roll }), [roll]);
+  const api = useMemo(() => ({ roll, close }), [roll, close]);
 
   return (
     <DiceContext.Provider value={api}>

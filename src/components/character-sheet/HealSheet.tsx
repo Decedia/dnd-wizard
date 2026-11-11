@@ -36,7 +36,7 @@ export function HealSheet({ name, heal, character, onChange, onClose }: { name: 
               const group = tray && damageGroup(t("dice.heal", "Healing"), heal.dice, partsFor(heal.bonus, heal.parts));
               if (tray && group) {
                 // Each landing (and "Roll again") sets the amount; the player still picks who gets it.
-                tray.roll(name, [group], (result) => { setRolls(result[0]?.values || []); setAmount(Math.max(0, result[0]?.total ?? 0)); });
+                tray.roll(name, [group], (result) => { setRolls(result[0]?.values || []); setAmount(Math.max(0, result[0]?.total ?? 0)); }, { autoClose: true });
                 return;
               }
               const r = rollHealing(heal); setRolls(r.rolls); setAmount(r.total);

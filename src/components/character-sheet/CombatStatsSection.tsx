@@ -421,7 +421,7 @@ export function CombatStatsSection({ character, onChange, editMode = true, onOpe
                     const st = character.savingThrows?.con ?? { proficient: false, value: 0 };
                     // A Constitution save; War Caster gives advantage on it.
                     const group = { ...d20Group(label, st.value, saveParts(character, "con", st.proficient)), ...(isWarCaster ? { mode: "adv" as const } : {}) };
-                    dice?.roll(t("dice.concentration", "Concentration"), [group], (result) => setConcentrationCheck({ damage, roll: result[0]?.total }));
+                    dice?.roll(t("dice.concentration", "Concentration"), [group], (result) => setConcentrationCheck({ damage, roll: result[0]?.total }), { autoClose: true });
                   }}
                   className="btn btn-secondary inline-flex w-full items-center justify-center gap-1.5 !py-1.5 text-xs"
                 >

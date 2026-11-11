@@ -277,7 +277,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
       if (drunk) return;
       drunk = true;
       handleUse(rowId, Math.max(0, result[0]?.total ?? 0));
-    });
+    }, { autoClose: true });
   };
 
   const removeItem = useCallback(

@@ -15,6 +15,7 @@ import { rowText } from "@/lib/inventory";
 import { Overridable } from "./Overridable";
 import { useDice } from "@/contexts/DiceContext";
 import { d20Group, damageGroup, type RollGroup } from "@/lib/dice-roll";
+import { rollGroups } from "@/components/dice/roll-flow";
 
 
 interface AttacksAndSpellcastingSectionProps {
@@ -110,11 +111,11 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
                         const groups = [d20Group(t("dice.toHit", "To hit"), details.attackBonus, details.attackParts), damage].filter((g): g is RollGroup => !!g);
                         return (
                           <div className="flex gap-2 pt-1">
-                            <button type="button" onClick={() => dice.roll(name, groups)} className="btn btn-primary !px-3 !py-1.5 text-xs">
+                            <button type="button" onClick={() => rollGroups(dice, { hit: t("swing.result.hit", "Hit"), crit: t("swing.result.crit", "Crit"), miss: t("swing.result.miss", "Miss"), me: t("dice.healMe", "Heal me"), other: t("dice.healOther", "Someone else"), heal: t("dice.heal", "Healing") }, name, groups)} className="btn btn-primary !px-3 !py-1.5 text-xs">
                               {t("dice.rollAttack", "Roll attack")}
                             </button>
                             {damage && (
-                              <button type="button" onClick={() => dice.roll(name, [damage])} className="btn btn-secondary !px-3 !py-1.5 text-xs">
+                              <button type="button" onClick={() => rollGroups(dice, { hit: t("swing.result.hit", "Hit"), crit: t("swing.result.crit", "Crit"), miss: t("swing.result.miss", "Miss"), me: t("dice.healMe", "Heal me"), other: t("dice.healOther", "Someone else"), heal: t("dice.heal", "Healing") }, name, [damage])} className="btn btn-secondary !px-3 !py-1.5 text-xs">
                                 {t("dice.rollDamage", "Roll damage")}
                               </button>
                             )}

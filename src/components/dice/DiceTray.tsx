@@ -19,10 +19,18 @@ interface Entry {
 /** Each group's total and die values, once the dice land. */
 export type RollResult = { total: number; values: number[] }[];
 
+/** A button shown once the dice land (Hit / Crit / Miss). */
+export interface RollChoice {
+  label: string;
+  primary?: boolean;
+  onPick: () => void;
+}
+
 export interface RollRequest {
   seq: number;
   title: string;
   groups: RollGroup[];
+  choices?: RollChoice[];
   /** Called each time this roll lands (again after "Roll again"). */
   onDone?: (result: RollResult) => void;
 }
@@ -58,6 +66,7 @@ export function DiceTray({ open, onClose, request }: { open: boolean; onClose: (
   const handled = useRef(0);
   const pending = useRef<RollRequest | null>(null);
   const onDone = useRef<RollRequest["onDone"]>(undefined);
+  const [choices, setChoices] = useState<RollChoice[]>([]);
 
   // "+ 3 DEX", "+ 3 proficiency", "+ 2 Rage".
   const sourceName = useCallback(
@@ -114,9 +123,10 @@ export function DiceTray({ open, onClose, request }: { open: boolean; onClose: (
   }, []);
 
   const start = useCallback(
-    (newTitle: string, groups: RollGroup[], done?: RollRequest["onDone"]) => {
+    (newTitle: string, groups: RollGroup[], done?: RollRequest["onDone"], picks: RollChoice[] = []) => {
       if (!engine) return;
       onDone.current = done;
+      setChoices(picks);
       engine.remove(allIds(entries));
       const list = groups.map((g) => makeEntry(engine, g, mode));
       rollSeq.current++;
@@ -134,7 +144,7 @@ export function DiceTray({ open, onClose, request }: { open: boolean; onClose: (
     if (!ready || !next) return;
     handled.current = next.seq;
     pending.current = null;
-    start(next.title, next.groups, next.onDone);
+    start(next.title, next.groups, next.onDone, next.choices);
   }, [request, ready, start]);
 
   const throwOne = (kind: DieKind) => {
@@ -143,6 +153,7 @@ export function DiceTray({ open, onClose, request }: { open: boolean; onClose: (
     const free = t("dice.free", "Dice");
     const keep = title === free ? entries : [];
     onDone.current = undefined;
+    setChoices([]);
     if (title !== free) engine.remove(allIds(entries));
     const entry = makeEntry(engine, { label: kind, dice: [kind], mod: 0, d20Test: kind === "d20" }, mode);
     rollSeq.current++;
@@ -159,6 +170,7 @@ export function DiceTray({ open, onClose, request }: { open: boolean; onClose: (
 
   const clear = () => {
     onDone.current = undefined;
+    setChoices([]);
     engine?.remove(allIds(entries));
     setEntries([]);
     setTitle("");
@@ -308,6 +320,24 @@ export function DiceTray({ open, onClose, request }: { open: boolean; onClose: (
             </div>
           )}
         </div>
+
+        {allDone && choices.length > 0 && (
+          <div className="flex gap-2 px-4 pt-2">
+            {choices.map((c) => (
+              <button
+                key={c.label}
+                type="button"
+                onClick={() => {
+                  setChoices([]);
+                  c.onPick();
+                }}
+                className={`btn flex-1 !py-2 text-sm ${c.primary ? "btn-primary" : "btn-secondary"}`}
+              >
+                {c.label}
+              </button>
+            ))}
+          </div>
+        )}
 
         <div className="flex items-center gap-1.5 px-4 pt-2" role="group" aria-label={t("dice.d20Mode", "d20 rolls")}>
           <span className="mr-1 text-[11px] font-bold text-[var(--color-text-muted)]">d20</span>
