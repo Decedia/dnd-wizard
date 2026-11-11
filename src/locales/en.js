@@ -1185,7 +1185,7 @@ export const translations = {
   "features.groupRace": "Race",
   "features.groupFeats": "Feats",
   "features.groupOther": "Other",
-  "features.tapToSpend": "Tap a dot to spend",
+  "features.tapToSpend": "Tap a token to spend",
   "features.byLevel": "By level",
   "features.featCount": "{count} taken",
   "features.filterAll": "All",

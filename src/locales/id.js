@@ -1217,7 +1217,7 @@ export const translations = {
   "features.groupRace": "Ras",
   "features.groupFeats": "Feat",
   "features.groupOther": "Lainnya",
-  "features.tapToSpend": "Ketuk titik untuk memakai",
+  "features.tapToSpend": "Ketuk token untuk memakai",
   "features.byLevel": "Urut level",
   "features.featCount": "{count} diambil",
   "features.filterAll": "Semua",

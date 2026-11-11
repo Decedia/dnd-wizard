@@ -16,6 +16,7 @@ import { getStatBadgeStyle } from "@/lib/badge-styles";
 import { ruleFor, ruleKey, usesMax, type FeatureRule, type PoolField } from "@/data/turn-features";
 import { featureRounds, roundsText } from "@/lib/timers";
 import { BottomSheet } from "@/components/modals/BottomSheet";
+import { ResourceToken } from "@/components/ResourceToken";
 import { RichText, RichInline } from "@/components/RichText";
 import { FEATURE_GROUP_ORDER, getAsiFeats, getFeatPicks, getFeaturePicks, matchesFeatureSearch, poolMax, type FeatureGroup } from "@/lib/feature-groups";
 
@@ -491,19 +492,18 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                         type="button"
                         aria-label={t(spent ? "features.restoreUse" : "features.spendUse", { name: feature.name }, spent ? "Restore a use of {name}" : "Spend a use of {name}")}
                         onClick={() => setTrack(pool, spent ? pool.current + 1 : pool.current - 1)}
-                        className={`h-8 w-8 rounded-full transition-colors ${
-                          spent
-                            ? "border-[1.5px] border-dashed border-[var(--color-border-strong,#B8B2A7)] bg-[var(--color-surface)]"
-                            : "border-[1.5px] border-[var(--color-accent-indigo-500)] bg-[var(--color-accent-indigo-500)]"
-                        }`}
-                      />
+                        className="rounded-full p-0.5 transition-transform active:scale-90"
+                      >
+                        <ResourceToken resource={pool.kind === "pool" ? pool.field : undefined} filled={!spent} />
+                      </button>
                     );
                   })}
                 </div>
               ) : (
                 <div className="flex items-center gap-2">
-                  <button type="button" aria-label={t("features.spendUse", { name: feature.name }, "Spend a use of {name}")} onClick={() => setTrack(pool, pool.current - 1)} className="h-8 w-8 rounded-full border border-[var(--color-border)] font-bold text-[var(--color-text-secondary)]">−</button>
-                  <button type="button" aria-label={t("features.restoreUse", { name: feature.name }, "Restore a use of {name}")} onClick={() => setTrack(pool, pool.current + 1)} className="h-8 w-8 rounded-full border border-[var(--color-border)] font-bold text-[var(--color-text-secondary)]">+</button>
+                  <ResourceToken resource={pool.kind === "pool" ? pool.field : undefined} filled={pool.current > 0} />
+                  <button type="button" aria-label={t("features.spendUse", { name: feature.name }, "Spend a use of {name}")} disabled={pool.current <= 0} onClick={() => setTrack(pool, pool.current - 1)} className="btn btn-secondary">−</button>
+                  <button type="button" aria-label={t("features.restoreUse", { name: feature.name }, "Restore a use of {name}")} disabled={pool.current >= pool.max} onClick={() => setTrack(pool, pool.current + 1)} className="btn btn-secondary">+</button>
                 </div>
               )
             ) : (
