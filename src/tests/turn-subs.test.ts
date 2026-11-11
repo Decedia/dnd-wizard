@@ -2,7 +2,7 @@
 import { describe, expect, test } from "bun:test";
 import { readFileSync } from "node:fs";
 import { SUB_OPTIONS } from "@/data/turn-features";
-import { buildTurnMenu, optionPatch } from "@/lib/turn";
+import { buildTurnMenu, critExtraDice, endTurnPatch, optionPatch } from "@/lib/turn";
 import { shortRestPatch, longRestPatch } from "@/lib/rest";
 import { computeDerivedStats, createEmptyCharacter, type Character } from "@/lib/storage";
 import { getStaticSpells } from "@/lib/srd-client";
@@ -145,6 +145,8 @@ test("every sub-option names a real pick in the app data", () => {
   const known = new Set<string>([
     ...choices.Fighter["Battle Master"]["Combat Superiority"].options.map((o: any) => o.name),
     ...choices.Fighter["Rune Knight"]["Rune Carver"].options.map((o: any) => o.name),
+    // Hunter picks are saved as "Hunter's Prey: Colossus Slayer".
+    ...Object.values(choices.Ranger.Hunter).flatMap((f: any) => f.options.map((o: any) => o.name.split(": ").pop())),
   ]);
   const classes = readFileSync("src/data/en/2014_classes.json", "utf8");
   const feats = readFileSync("src/data/feat-options.ts", "utf8");
@@ -180,5 +182,41 @@ describe("spell dice bonuses", () => {
   test("Hexblade's Curse: proficiency bonus against the cursed target", () => {
     const hex = make({ class: "Warlock", level: 5 }, ["Hexblade's Curse"]);
     expect(lines(hex, "Eldritch Blast")).toContain("Hexblade's Curse 3 target");
+  });
+});
+
+describe("once per turn", () => {
+  const hunter = make({ class: "Ranger", subclass: "Hunter", level: 11 }, ["Hunter's Prey", "Multiattack", "Defensive Tactics", "Sneak Attack"], {
+    "subclass-feature-3-Hunter's Prey": ["Hunter's Prey: Colossus Slayer"],
+    "subclass-feature-11-Multiattack": ["Multiattack: Volley"],
+    "subclass-feature-7-Defensive Tactics": ["Defensive Tactics: Steel Will"],
+  });
+
+  test("Colossus Slayer is a free row that greys out until End turn", () => {
+    const row = find(hunter, "Colossus Slayer")!;
+    expect(row.slot).toBe("free");
+    expect(row.oncePerTurn).toBe(true);
+    expect(row.condition).toBe("hurt");
+    const used = apply(hunter, "Colossus Slayer");
+    expect(find(used, "Colossus Slayer")!.blocked).toBe("usedThisTurn");
+    const next = { ...used, ...endTurnPatch(used, []) } as Character;
+    expect(find(next, "Colossus Slayer")!.blocked).toBeUndefined();
+    expect(find(hunter, "Giant Killer")).toBeUndefined();
+  });
+
+  test("Hunter picks: Volley is an action, a passive pick stays in the read-only list", () => {
+    expect(find(hunter, "Volley")!.slot).toBe("action");
+    expect(buildTurnMenu(hunter, []).features.map((f) => f.name)).toContain("Defensive Tactics");
+  });
+
+  test("ready on-hit rows come first, used ones last", () => {
+    const names = options(apply(hunter, "Sneak Attack")).filter((o) => o.slot === "free").map((o) => o.name);
+    expect(names.indexOf("Colossus Slayer")).toBeLessThan(names.indexOf("Sneak Attack"));
+  });
+
+  test("Brutal Critical and Savage Attacks add weapon dice on a crit", () => {
+    const orc = make({ class: "Barbarian", race: "Half-Orc", level: 13 }, ["Brutal Critical (2 dice)", "Savage Attacks"]);
+    expect(critExtraDice(orc, "1d12 + 4 slashing")).toEqual({ dice: "3d12", sources: ["Brutal Critical", "Savage Attacks"] });
+    expect(critExtraDice(hunter, "1d8 + 3 piercing")).toBeNull();
   });
 });

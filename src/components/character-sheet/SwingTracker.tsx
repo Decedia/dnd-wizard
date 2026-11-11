@@ -3,7 +3,7 @@
 import { RichInline } from "@/components/RichText";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
-import { critDamage, isSwingOption, smiteChoices, smitePatch, swingPatch, swingResultPatch, swingsLeft, type SwingResult, type TurnMenu, type TurnOption } from "@/lib/turn";
+import { critDamage, critExtraDice, isSwingOption, ON_HIT_WHEN, smiteChoices, smitePatch, swingPatch, swingResultPatch, swingsLeft, type SwingResult, type TurnMenu, type TurnOption } from "@/lib/turn";
 
 interface SwingTrackerProps {
   character: Character;
@@ -15,7 +15,6 @@ interface SwingTrackerProps {
 }
 
 const RESULTS: SwingResult[] = ["hit", "crit", "miss"];
-const ON_HIT = new Set(["onHit", "oncePerTurn", "onCritOrKill"]);
 
 /** The Attack action swing by swing: Hit / Crit / Miss, damage, a smite after a hit, and the swings left. */
 export function SwingTracker({ character, menu, nameOf, onUse, onChange }: SwingTrackerProps) {
@@ -26,7 +25,7 @@ export function SwingTracker({ character, menu, nameOf, onUse, onChange }: Swing
   const left = swingsLeft(character, menu.attacksPerAction);
   const pending = swings.some((s) => s.result === "pending");
   const lastHit = [...swings].reverse().find((s) => s.result === "hit" || s.result === "crit");
-  const onHit = lastHit ? menu.options.filter((o) => o.slot === "free" && o.when && ON_HIT.has(o.when) && !o.blocked && !/^Divine Smite/.test(o.name)) : [];
+  const onHit = lastHit ? menu.options.filter((o) => o.slot === "free" && o.when && ON_HIT_WHEN.has(o.when) && !o.blocked && !/^Divine Smite/.test(o.name)) : [];
   const weapons = menu.options.filter((o) => isSwingOption(o) && !o.blocked);
 
   return (
@@ -43,6 +42,7 @@ export function SwingTracker({ character, menu, nameOf, onUse, onChange }: Swing
           const name = o ? nameOf(o) : s.name;
           const hit = s.result === "hit" || s.result === "crit";
           const damage = o?.damage ? (s.result === "crit" ? critDamage(o.damage) : o.damage) : null;
+          const extra = s.result === "crit" && o?.damage && o.tags?.includes("melee") ? critExtraDice(character, o.damage) : null;
           const smites = hit && s.smite === undefined && o?.tags?.includes("melee") ? smiteChoices(character, s.result === "crit") : [];
           return (
             <li key={i} className="rounded-[var(--radius-sm)] bg-[var(--color-bg)] px-3 py-2">
@@ -67,6 +67,11 @@ export function SwingTracker({ character, menu, nameOf, onUse, onChange }: Swing
                     <p className="mt-0.5 text-xs text-[var(--color-text-secondary)]">
                       <RichInline text={t("swing.damage", { damage }, "Roll {damage}.")} />
                       {s.result === "crit" && <span> {t("swing.critHint", "A crit doubles the dice, not the bonus.")}</span>}
+                    </p>
+                  )}
+                  {extra && (
+                    <p className="mt-0.5 text-xs font-semibold text-[var(--color-text-primary)]">
+                      <RichInline text={t("swing.critExtra", { dice: extra.dice, names: extra.sources.join(", ") }, "{names}: roll {dice} more.")} />
                     </p>
                   )}
                   {s.result === "miss" && <p className="mt-0.5 text-xs text-[var(--color-text-secondary)]">{t("swing.missHint", "No damage. On to the next one.")}</p>}
@@ -104,6 +109,13 @@ export function SwingTracker({ character, menu, nameOf, onUse, onChange }: Swing
               </button>
             ))}
           </div>
+          {onHit.some((o) => o.condition) && (
+            <ul className="mt-1 space-y-0.5">
+              {onHit.filter((o) => o.condition).map((o) => (
+                <li key={o.key} className="text-[11px] text-[var(--color-text-secondary)]"><span className="font-semibold text-[var(--color-text-primary)]">{nameOf(o)}:</span> {t(`turn.cond.${o.condition}`)}</li>
+              ))}
+            </ul>
+          )}
         </div>
       )}
 
