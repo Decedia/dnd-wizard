@@ -1,7 +1,9 @@
 "use client";
 
 import { RichInline } from "@/components/RichText";
+import { useEffect, useRef } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { rollAndClose, rollAttack, rollSummary } from "@/components/dice/roll-flow";
 import { useDice } from "@/contexts/DiceContext";
 import { critGroup, d20Group, damageGroup, groupFrom, type RollGroup } from "@/lib/dice-roll";
 import type { Character } from "@/lib/storage";
@@ -14,14 +16,21 @@ interface SwingTrackerProps {
   /** Uses an option through the panel, so Undo works. */
   onUse: (o: TurnOption) => void;
   onChange: (patch: Partial<Character>) => void;
+  /** A roll the tracker made and took, for the line under the turn chips. */
+  onRolled?: (name: string, text: string) => void;
 }
 
 const RESULTS: SwingResult[] = ["hit", "crit", "miss"];
 
 /** The Attack action swing by swing: Hit / Crit / Miss, damage, a smite after a hit, and the swings left. */
-export function SwingTracker({ character, menu, nameOf, onUse, onChange }: SwingTrackerProps) {
+export function SwingTracker({ character, menu, nameOf, onUse, onChange, onRolled }: SwingTrackerProps) {
   const { t } = useLanguage();
   const dice = useDice();
+  // Rolls land seconds after the tap; they patch the newest character, not the one at the tap.
+  const latest = useRef(character);
+  useEffect(() => {
+    latest.current = character;
+  }, [character]);
   const swings = character.swings || [];
   if (swings.length === 0) return null;
   const byKey = new Map(menu.options.map((o) => [o.key, o]));
@@ -30,6 +39,31 @@ export function SwingTracker({ character, menu, nameOf, onUse, onChange }: Swing
   const lastHit = [...swings].reverse().find((s) => s.result === "hit" || s.result === "crit");
   const onHit = lastHit ? menu.options.filter((o) => o.slot === "free" && o.when && ON_HIT_WHEN.has(o.when) && !o.blocked && !/^Divine Smite/.test(o.name)) : [];
   const weapons = menu.options.filter((o) => isSwingOption(o) && !o.blocked);
+
+  const setSwing = (i: number, patch: Partial<NonNullable<Character["swings"]>[number]>) =>
+    onChange({ swings: (latest.current.swings || []).map((x, j) => (j === i ? { ...x, ...patch } : x)) });
+
+  /** Damage for swing `i` after a hit or crit: the weapon with its bonus sources, crit dice doubled, smite dice. */
+  const damageGroups = (o: TurnOption | undefined, result: string, smite?: number): RollGroup[] => {
+    const label = result === "crit" ? t("dice.critDamage", "Crit damage") : t("dice.damage", "Damage");
+    const base = o?.damageRoll ? damageGroup(label, o.damageRoll.dice, o.damageRoll.parts) : o?.damage ? groupFrom(label, result === "crit" ? critDamage(o.damage) : o.damage) : null;
+    const extra = result === "crit" && o?.damage && o.tags?.includes("melee") ? critExtraDice(character, o.damage) : null;
+    return [
+      base && o?.damageRoll && result === "crit" ? critGroup(base) : base,
+      extra ? groupFrom(extra.sources.join(", "), extra.dice) : null,
+      smite ? groupFrom(t("dice.smite", "Smite"), `${Math.min(5, 1 + smite) * (result === "crit" ? 2 : 1)}d8`) : null,
+    ].filter((g): g is RollGroup => !!g);
+  };
+
+  /** Rolls damage, keeps the total on the swing and closes the tray. */
+  const rollDamage = (i: number, name: string, groups: RollGroup[], add = false) => {
+    if (!dice || !groups.length) return;
+    rollAndClose(dice, name, groups, (res) => {
+      const total = res.reduce((a, r) => a + r.total, 0);
+      setSwing(i, { damage: (add ? latest.current.swings?.[i]?.damage || 0 : 0) + total });
+      onRolled?.(name, rollSummary(groups, res));
+    });
+  };
 
   return (
     <section className="rounded-[var(--radius-md)] border-2 border-[var(--color-ink)] px-3 py-3">
@@ -57,13 +91,29 @@ export function SwingTracker({ character, menu, nameOf, onUse, onChange }: Swing
                 <>
                   <p className="mt-0.5 text-[11px] text-[var(--color-text-muted)]">{t("swing.roll", "Roll to hit, then tap what happened.")}</p>
                   {dice && o?.toHit !== undefined && (
-                    <button type="button" onClick={() => dice.roll(name, [d20Group(t("dice.toHit", "To hit"), o.toHit!, o.toHitParts)])} className="btn btn-secondary mt-1.5 w-full !py-1.5 text-xs">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        rollAttack(dice, { hit: t("swing.result.hit", "Hit"), crit: t("swing.result.crit", "Crit"), miss: t("swing.result.miss", "Miss") }, {
+                          name,
+                          toHit: d20Group(t("dice.toHit", "To hit"), o.toHit!, o.toHitParts),
+                          damage: damageGroups(o, "hit"),
+                          critExtra: damageGroups(o, "crit").slice(1),
+                          onResult: (r) => onChange(swingResultPatch(latest.current, i, r)),
+                          onDamage: (gs, res) => {
+                            setSwing(i, { damage: res.reduce((a, x) => a + x.total, 0) });
+                            onRolled?.(name, rollSummary(gs, res));
+                          },
+                        })
+                      }
+                      className="btn btn-primary mt-1.5 w-full !py-1.5 text-xs"
+                    >
                       {t("dice.rollToHit", { bonus: `${o.toHit >= 0 ? "+" : ""}${o.toHit}` }, "Roll to hit (d20 {bonus})")}
                     </button>
                   )}
                   <div className="mt-1.5 flex gap-2">
                     {RESULTS.map((r) => (
-                      <button key={r} type="button" onClick={() => onChange(swingResultPatch(character, i, r))} className={`btn flex-1 ${r === "hit" ? "btn-primary" : "btn-secondary"}`}>
+                      <button key={r} type="button" onClick={() => onChange(swingResultPatch(character, i, r))} className="btn btn-secondary flex-1">
                         {t(`swing.result.${r}`)}
                       </button>
                     ))}
@@ -71,32 +121,32 @@ export function SwingTracker({ character, menu, nameOf, onUse, onChange }: Swing
                 </>
               ) : (
                 <>
-                  {hit && damage && (
+                  {hit && s.damage !== undefined && (
+                    <p className="mt-0.5 flex items-center justify-between gap-2 text-xs font-semibold text-[var(--color-text-primary)]">
+                      <span>{t("swing.damageDone", { n: s.damage }, "{n} damage")}</span>
+                      {dice && (
+                        <button type="button" onClick={() => rollDamage(i, name, damageGroups(o, s.result, s.smite))} className="font-bold underline">
+                          {t("dice.again", "Roll again")}
+                        </button>
+                      )}
+                    </p>
+                  )}
+                  {hit && s.damage === undefined && damage && (
                     <p className="mt-0.5 text-xs text-[var(--color-text-secondary)]">
                       <RichInline text={t("swing.damage", { damage }, "Roll {damage}.")} />
                       {s.result === "crit" && <span> {t("swing.critHint", "A crit doubles the dice, not the bonus.")}</span>}
                     </p>
                   )}
-                  {extra && (
+                  {hit && s.damage === undefined && extra && (
                     <p className="mt-0.5 text-xs font-semibold text-[var(--color-text-primary)]">
                       <RichInline text={t("swing.critExtra", { dice: extra.dice, names: extra.sources.join(", ") }, "{names}: roll {dice} more.")} />
                     </p>
                   )}
-                  {dice && hit && damage && (() => {
-                    const label = s.result === "crit" ? t("dice.critDamage", "Crit damage") : t("dice.damage", "Damage");
-                    // The weapon's dice with each bonus's source; a crit doubles the dice, not the bonus.
-                    const base = o?.damageRoll ? damageGroup(label, o.damageRoll.dice, o.damageRoll.parts) : null;
-                    const groups = [
-                      base ? (s.result === "crit" ? critGroup(base) : base) : groupFrom(label, damage),
-                      extra ? groupFrom(extra.sources.join(", "), extra.dice) : null,
-                      s.smite ? groupFrom(t("dice.smite", "Smite"), `${Math.min(5, 1 + s.smite) * (s.result === "crit" ? 2 : 1)}d8`) : null,
-                    ].filter((g): g is RollGroup => !!g);
-                    return groups.length > 0 && (
-                      <button type="button" onClick={() => dice.roll(name, groups)} className="btn btn-primary mt-1.5 w-full !py-1.5 text-xs">
-                        {t("dice.rollDamage", "Roll damage")}
-                      </button>
-                    );
-                  })()}
+                  {dice && hit && s.damage === undefined && damageGroups(o, s.result, s.smite).length > 0 && (
+                    <button type="button" onClick={() => rollDamage(i, name, damageGroups(o, s.result, s.smite))} className="btn btn-primary mt-1.5 w-full !py-1.5 text-xs">
+                      {t("dice.rollDamage", "Roll damage")}
+                    </button>
+                  )}
                   {s.result === "miss" && <p className="mt-0.5 text-xs text-[var(--color-text-secondary)]">{t("swing.missHint", "No damage. On to the next one.")}</p>}
                   {!!s.smite && <p className="mt-0.5 text-xs font-semibold text-[var(--color-text-primary)]"><RichInline text={t("swing.smited", { level: s.smite, dice: `${Math.min(5, 1 + s.smite) * (s.result === "crit" ? 2 : 1)}d8` }, "Smite with a level {level} slot: add {dice} radiant damage.")} /></p>}
                   {smites.length > 0 && (
@@ -104,7 +154,16 @@ export function SwingTracker({ character, menu, nameOf, onUse, onChange }: Swing
                       <p className="text-[11px] font-semibold text-[var(--color-text-primary)]">{t("swing.smiteAsk", "Smite? Spend a spell slot for extra radiant damage.")}</p>
                       <div className="mt-1.5 flex flex-wrap gap-1.5">
                         {smites.map((c) => (
-                          <button key={c.level} type="button" onClick={() => onChange(smitePatch(character, i, c.level))} className="btn btn-secondary !px-3 !py-1.5 text-xs">
+                          <button
+                            key={c.level}
+                            type="button"
+                            onClick={() => {
+                              onChange(smitePatch(character, i, c.level));
+                              // Damage already rolled: roll the smite dice on top of it.
+                              if (s.damage !== undefined) rollDamage(i, name, [groupFrom(t("dice.smite", "Smite"), c.dice)].filter((g): g is RollGroup => !!g), true);
+                            }}
+                            className="btn btn-secondary !px-3 !py-1.5 text-xs"
+                          >
                             {t("swing.smiteLevel", { level: c.level, dice: c.dice }, "Level {level} · {dice}")}
                           </button>
                         ))}

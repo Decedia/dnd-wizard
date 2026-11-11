@@ -33,7 +33,7 @@ export function DeathSavesSection({ character, onChange, editMode = true }: Deat
       else if (roll >= 10) onChange({ deathSaveSuccesses: Math.min(3, (character.deathSaveSuccesses || 0) + 1) });
       else onChange({ deathSaveFailures: Math.min(3, (character.deathSaveFailures || 0) + (roll <= 1 ? 2 : 1)) });
       onFieldBlur();
-    });
+    }, { autoClose: true });
   };
 
   const renderDot = (filled: boolean, color: string) => (

@@ -60,7 +60,7 @@ export function RestSheet({ character, kind, onChange, onClose }: RestSheetProps
         rolled.current = true;
         const rolls = result[0]?.values || [];
         finish({ rolls, healed: rolls.reduce((sum, r) => sum + Math.max(0, r + con), 0) });
-      });
+      }, { autoClose: true });
       return;
     }
     finish(rollHitDice(character, dice));

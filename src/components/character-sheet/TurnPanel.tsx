@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { RichDice, RichInline, RichText } from "@/components/RichText";
 import { TurnHands } from "./TurnHands";
@@ -8,7 +8,7 @@ import { SwingTracker } from "./SwingTracker";
 import { WildShapeCard, WildShapePicker } from "./WildShape";
 import { Timers } from "./Timers";
 import { HealSheet } from "./HealSheet";
-import { featureHealing, type Healing } from "@/lib/healing";
+import { featureHealing, healSelfPatch, type Healing } from "@/lib/healing";
 import { roundsText } from "@/lib/timers";
 import { moveTip, suggestPicks, type Pick, type Situation } from "@/lib/turn-suggest";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -17,7 +17,7 @@ import { getMaxPreparedSpells, type Character } from "@/lib/storage";
 import type { Beast } from "@/data/wild-shapes";
 import { needsPrepare, preparableSpells } from "@/lib/prepared-spells";
 import { PrepareSpellsSheet } from "@/components/PrepareSpellsSheet";
-import { amountPatch, isSwingOption, swingPatch, wildShapePatch, buildTurnMenu, endEncounterPatch, isSlotUsed, optionPatch, type TurnGroup, type TurnOption, type TurnSlot } from "@/lib/turn";
+import { amountPatch, critExtraDice, isSwingOption, swingPatch, swingResultPatch, wildShapePatch, buildTurnMenu, endEncounterPatch, isSlotUsed, optionPatch, type TurnGroup, type TurnOption, type TurnSlot } from "@/lib/turn";
 import { CheckIcon as Check, LightningBoltIcon as LightningBolt, ClockIcon as Clock, ShieldCheckIcon as ShieldCheck, CaretDownIcon as ChevronDown } from "@/components/icons";
 import { GiRun } from "react-icons/gi";
 import { getSpellSchoolStyle } from "@/lib/spell-schools";
@@ -26,6 +26,9 @@ import { SpellDamageBonusLines, SpellDamageLine } from "@/components/SpellDamage
 import { useDice } from "@/contexts/DiceContext";
 import { optionRollGroups } from "@/lib/turn-rolls";
 import { GiRollingDices } from "react-icons/gi";
+import { groupFrom, groupText, type RollGroup } from "@/lib/dice-roll";
+import { rollAndClose, rollAttack, rollHealing, rollSummary, type HitResult } from "@/components/dice/roll-flow";
+import type { RollResult } from "@/components/dice/DiceTray";
 
 interface TurnPanelProps {
   character: Character;
@@ -68,6 +71,13 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
   const mustPrepare = needsPrepare(character);
   const [healing, setHealing] = useState<{ name: string; heal: Healing } | null>(null);
   const [last, setLast] = useState<{ name: string; undo: Partial<Character> } | null>(null);
+  // The last roll the panel made and took, shown under the turn chips: "Fireball: Damage fire 23".
+  const [rolled, setRolled] = useState<{ name: string; text: string; again?: () => void } | null>(null);
+  // Rolls land seconds after the tap; by then the character may have changed, so they read the newest one.
+  const latest = useRef(character);
+  useEffect(() => {
+    latest.current = character;
+  }, [character]);
 
   // Feature summaries in the reader's language; the rules data itself is English only.
   const localSummary = useMemo(() => {
@@ -107,7 +117,8 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
     return null;
   };
 
-  const use = (o: TurnOption, amount?: number, form?: Beast) => {
+  /** Uses an option. `quiet` skips the heal sheet, for a tap that rolls the healing itself. */
+  const takeOption = (o: TurnOption, amount?: number, form?: Beast, quiet = false) => {
     if (o.amount && amount === undefined) return setAmountFor({ option: o, value: 1 });
     if (o.group === "feature" && /^Wild Shape/.test(o.name) && !form) return setShaping(o);
     const patch = form ? wildShapePatch(o, form) : amount !== undefined ? amountPatch(character, o, amount) : isSwingOption(o) ? swingPatch(character, o) : optionPatch(o);
@@ -116,7 +127,68 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
     setLast({ name: nameOf(o), undo: undo as Partial<Character> });
     onChange(patch);
     const heal = amount !== undefined ? featureHealing(character, o.name, amount) : o.heal;
-    if (heal) setHealing({ name: nameOf(o), heal });
+    if (heal && !quiet) setHealing({ name: nameOf(o), heal });
+  };
+
+  const rollLabels = { toHit: t("dice.toHit", "To hit"), damage: t("dice.damage", "Damage"), heal: t("dice.heal", "Healing") };
+  const hitLabels: Record<HitResult, string> = { hit: t("swing.result.hit", "Hit"), crit: t("swing.result.crit", "Crit"), miss: t("swing.result.miss", "Miss") };
+  const rollsOf = (o: TurnOption) => (dice && !o.amount ? optionRollGroups(o, nameOf(o), rollLabels) : []);
+
+  /** Damage that was rolled and taken, with a way to roll it again if the dice went wrong. */
+  const showDamage = (name: string, groups: RollGroup[], result: RollResult) =>
+    setRolled({ name, text: rollSummary(groups, result), again: () => dice && rollAndClose(dice, name, groups, (res) => showDamage(name, groups, res)) });
+
+  /**
+   * One tap: use the option (spend the action, slot or use), roll its dice and take the result.
+   * Attacks wait for the DM's hit or miss in the tray; everything else closes the tray by itself.
+   */
+  const rollOption = (o: TurnOption) => {
+    const groups = rollsOf(o);
+    if (!dice || !groups.length) return takeOption(o);
+    const name = nameOf(o);
+    const swingIndex = isSwingOption(o) ? (swingPatch(character, o).swings?.length ?? 1) - 1 : -1;
+    takeOption(o, undefined, undefined, true);
+    const toHit = groups.find((g) => g.d20Test);
+    if (toHit) {
+      const extra = o.tags?.includes("melee") && o.damage ? critExtraDice(character, o.damage) : null;
+      const extraGroup = extra ? groupFrom(extra.sources.join(", "), extra.dice) : null;
+      rollAttack(dice, hitLabels, {
+        name,
+        toHit,
+        damage: groups.filter((g) => !g.d20Test),
+        critExtra: extraGroup ? [extraGroup] : [],
+        onResult: (result) => {
+          if (swingIndex >= 0) onChange(swingResultPatch(latest.current, swingIndex, result));
+          if (result === "miss") setRolled({ name, text: hitLabels.miss });
+        },
+        onDamage: (gs, res) => {
+          // A swing keeps its own "Roll again" in the attack list, so the line here only shows the result.
+          if (swingIndex >= 0) setRolled({ name, text: rollSummary(gs, res) });
+          else showDamage(name, gs, res);
+          if (swingIndex >= 0) onChange({ swings: (latest.current.swings || []).map((s, i) => (i === swingIndex ? { ...s, damage: res.reduce((a, r) => a + r.total, 0) } : s)) });
+        },
+      });
+      return;
+    }
+    const heal = o.heal;
+    const healGroup = heal ? groups.find((g) => g.label === rollLabels.heal) : undefined;
+    if (heal && healGroup) {
+      rollHealing(dice, { me: t("dice.healMe", "Heal me"), other: t("dice.healOther", "Someone else") }, {
+        name,
+        group: healGroup,
+        selfOnly: heal.selfOnly,
+        onMe: (total) => {
+          onChange(healSelfPatch(latest.current, total));
+          setRolled({ name, text: t("dice.healedMe", { n: total }, "You got {n} HP back") });
+        },
+        onOther: (total) => {
+          if (heal.selfWhenOther) onChange(healSelfPatch(latest.current, heal.selfWhenOther));
+          setRolled({ name, text: t("dice.healedOther", { n: total }, "Heals {n} (they add it to their sheet)") });
+        },
+      });
+      return;
+    }
+    rollAndClose(dice, name, groups, (res) => showDamage(name, groups, res));
   };
 
   const chip = (label: string, used: boolean, toggle: () => void, Icon: React.ComponentType<{ className?: string }>) => (
@@ -138,9 +210,9 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
       type="button"
       aria-label={t("turn.info", { name: title }, "Full text: {name}")}
       onClick={() => setInfo({ title, text, meta })}
-      className="flex w-10 shrink-0 items-center justify-center border-l border-[var(--color-border)] text-sm font-bold text-[var(--color-text-secondary)] hover:bg-[var(--color-bg)]"
+      className="btn btn-secondary !px-3 !py-1.5 text-xs"
     >
-      i
+      {t("turn.infoShort", "Info")}
     </button>
   );
 
@@ -160,14 +232,14 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
     const cost = costOf(o);
     const text = textOf(o);
     const full = o.detail || (o.summaryKey ? t(o.summaryKey, o.summary || undefined) : o.summary);
-    const rolls = dice ? optionRollGroups(o, nameOf(o), { toHit: t("dice.toHit", "To hit"), damage: t("dice.damage", "Damage"), heal: t("dice.heal", "Healing") }) : [];
+    const rolls = rollsOf(o);
     return (
-      <div key={o.key} className={`flex overflow-hidden rounded-[var(--radius-md)] border bg-[var(--color-surface)] transition-colors hover:border-[var(--color-border-active)] ${best ? "border-2 border-[var(--color-ink)]" : "border-[var(--color-border)]"}`}>
+      <div key={o.key} className={`overflow-hidden rounded-[var(--radius-md)] border bg-[var(--color-surface)] transition-colors hover:border-[var(--color-border-active)] ${best ? "border-2 border-[var(--color-ink)]" : "border-[var(--color-border)]"}`}>
         <button
           type="button"
           disabled={!!reason}
-          onClick={() => use(o)}
-          className="min-w-0 flex-1 px-3 py-2 text-left disabled:opacity-45"
+          onClick={() => takeOption(o)}
+          className="block w-full min-w-0 px-3 py-2 text-left disabled:opacity-45"
         >
           {best && <span className="mb-0.5 block text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">{t("turn.best", "Best pick")}</span>}
           <span className="flex flex-wrap items-center gap-x-2 gap-y-0.5">
@@ -193,17 +265,23 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
           {pick && <span className="mt-1 block text-xs font-semibold leading-snug text-[var(--color-text-primary)]">{t(`turn.why.${pick.why}`, pick.values || {})}</span>}
           {reason && <span className="mt-0.5 block text-[11px] font-semibold text-[var(--color-text-muted)]">{reason}</span>}
         </button>
-        {dice && rolls.length > 0 && (
-          <button
-            type="button"
-            aria-label={t("dice.rollName", { name: nameOf(o) }, "Roll {name}")}
-            onClick={() => dice.roll(nameOf(o), rolls)}
-            className="flex w-10 shrink-0 items-center justify-center border-l border-[var(--color-border)] text-[var(--color-text-secondary)] hover:bg-[var(--color-bg)]"
-          >
-            <GiRollingDices className="h-4 w-4" aria-hidden="true" />
-          </button>
+        {(rolls.length > 0 || full) && (
+          <div className="flex flex-wrap items-center gap-2 px-3 pb-2.5">
+            {rolls.length > 0 && (
+              <button
+                type="button"
+                disabled={!!reason}
+                aria-label={t("dice.rollName", { name: nameOf(o) }, "Roll {name}")}
+                onClick={() => rollOption(o)}
+                className="btn btn-primary inline-flex items-center gap-1.5 !px-4 !py-1.5 text-xs disabled:opacity-40"
+              >
+                <GiRollingDices className="h-4 w-4" aria-hidden="true" />
+                {t("dice.rollDice", { dice: groupText(rolls[0]) }, "Roll {dice}")}
+              </button>
+            )}
+            {full && infoButton(nameOf(o), full, [cost, o.school ? t(`spellSchool.${o.school}`, o.school) : null, o.when ? t(`turn.when.${o.when}`) : null, text && o.detail && o.group !== "feature" ? text : null].filter(Boolean).join(" · ") || undefined)}
+          </div>
         )}
-        {full && infoButton(nameOf(o), full, [cost, o.school ? t(`spellSchool.${o.school}`, o.school) : null, o.when ? t(`turn.when.${o.when}`) : null, text && o.detail && o.group !== "feature" ? text : null].filter(Boolean).join(" · ") || undefined)}
       </div>
     );
   };
@@ -232,6 +310,16 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
           {chip(t("turn.move", { speed: menu.speed }, "Move {speed} ft"), !!character.moveUsed, () => onChange({ moveUsed: !character.moveUsed }), GiRun)}
           {chip(t("spell.reaction"), !!character.reactionUsed, () => onChange({ reactionUsed: !character.reactionUsed }), ShieldCheck)}
         </div>
+        {rolled && (
+          <div className="flex items-center justify-between gap-2 rounded-[var(--radius-sm)] border border-[var(--color-ink)] px-3 py-1.5 text-xs text-[var(--color-text-primary)]">
+            <span className="min-w-0 font-semibold">{rolled.name}: {rolled.text}</span>
+            {rolled.again && (
+              <button type="button" onClick={rolled.again} className="shrink-0 font-bold underline">
+                {t("dice.again", "Roll again")}
+              </button>
+            )}
+          </div>
+        )}
         {last ? (
           <div className="flex items-center justify-between gap-2 rounded-[var(--radius-sm)] bg-[var(--color-bg)] px-3 py-1.5 text-xs text-[var(--color-text-secondary)]">
             <span className="min-w-0 truncate">{t("turn.used", { name: last.name }, "Used: {name}")}</span>
@@ -247,7 +335,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
       <div className="space-y-5 px-4 py-4">
         <WildShapeCard character={character} onChange={onChange} />
         <Timers character={character} onChange={onChange} />
-        <SwingTracker character={character} menu={menu} nameOf={nameOf} onUse={(o) => use(o)} onChange={onChange} />
+        <SwingTracker character={character} menu={menu} nameOf={nameOf} onUse={(o) => (rollsOf(o).length ? rollOption(o) : takeOption(o))} onChange={onChange} onRolled={(name, text) => setRolled({ name, text })} />
         {mustPrepare && (
           <div className="rounded-[var(--radius-md)] border border-amber-500/60 bg-amber-500/10 px-3 py-3">
             <div className="text-sm font-bold text-[var(--color-text-primary)]">{t("turn.prepare.title", "No spells ready")}</div>
@@ -362,12 +450,10 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
                 {menu.features.map((f) => {
                   const text = localSummary.get(f.name) || f.description;
                   return (
-                    <div key={f.id} className="flex overflow-hidden rounded-[var(--radius-md)] border border-[var(--color-border)]">
-                      <div className="min-w-0 flex-1 px-3 py-2">
-                        <div className="text-sm font-bold text-[var(--color-text-primary)]">{f.name}</div>
-                        {text && <div className="mt-0.5 text-xs leading-relaxed text-[var(--color-text-secondary)] line-clamp-3"><RichDice title={f.name}><RichInline text={text} /></RichDice></div>}
-                      </div>
-                      {(f.description || text) && infoButton(f.name, f.description || text)}
+                    <div key={f.id} className="rounded-[var(--radius-md)] border border-[var(--color-border)] px-3 py-2">
+                      <div className="text-sm font-bold text-[var(--color-text-primary)]">{f.name}</div>
+                      {text && <div className="mt-0.5 text-xs leading-relaxed text-[var(--color-text-secondary)] line-clamp-3"><RichDice title={f.name}><RichInline text={text} /></RichDice></div>}
+                      {(f.description || text) && <div className="mt-1.5">{infoButton(f.name, f.description || text)}</div>}
                     </div>
                   );
                 })}
@@ -397,7 +483,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
               <button type="button" aria-label="+1" onClick={() => setAmountFor((a) => a && { ...a, value: Math.min(a.option.amount!.max, a.value + 1) })} className="btn btn-secondary h-9 w-11 !px-0">+</button>
               <button type="button" onClick={() => setAmountFor((a) => a && { ...a, value: Math.min(a.option.amount!.max, a.value + 5) })} className="btn btn-secondary h-9">+5</button>
             </div>
-            <button type="button" onClick={() => { use(amountFor.option, amountFor.value); setAmountFor(null); }} className="btn btn-primary w-full">
+            <button type="button" onClick={() => { takeOption(amountFor.option, amountFor.value); setAmountFor(null); }} className="btn btn-primary w-full">
               {t("turn.amount.use", { amount: amountFor.value }, "Spend {amount}")}
             </button>
           </div>
@@ -406,7 +492,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
       {shaping && (
         <WildShapePicker
           character={character}
-          onPick={(beast) => { use(shaping, undefined, beast); setShaping(null); }}
+          onPick={(beast) => { takeOption(shaping, undefined, beast); setShaping(null); }}
           onClose={() => setShaping(null)}
         />
       )}
