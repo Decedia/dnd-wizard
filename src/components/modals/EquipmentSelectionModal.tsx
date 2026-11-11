@@ -422,7 +422,6 @@ export function EquipmentSelectionModal({
     if (isOpen) {
       document.body.style.overflow = "hidden";
       // Reset modal state when opening - standard modal pattern
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       const initial = currentSelection ? allOptions.find(o => o.equipmentOption === currentSelection) || null : null;
       setStep(soloChoice ? "pick" : "list");
       setSelectedOption(soloChoice ?? initial);

@@ -1,6 +1,6 @@
 // @ts-ignore - bun:test is provided by the Bun runtime
 import { describe, expect, test } from "bun:test";
-import { equipRow, handChoices, heldInHands, rowFromCatalog, weaponDamageDice, type InventoryRow } from "@/lib/inventory";
+import { carriedWeight, equipRow, handChoices, heldInHands, rowFromCatalog, weaponDamageDice, type InventoryRow } from "@/lib/inventory";
 import { findCatalogItem } from "@/data/item-catalog";
 import { computeDerivedStats, createEmptyCharacter, type Character } from "@/lib/storage";
 import { getStaticSpells } from "@/lib/srd-client";
@@ -99,6 +99,20 @@ describe("what a weapon change costs", () => {
     const c = inTurn(equipRow(bag(), "longsword", "main").inventory);
     expect(changeHands(c, "scimitar", "main").cost).toEqual({ interaction: true, action: true, blocked: false });
     expect(changeHands(c, "scimitar", "main", true).cost).toEqual({ interaction: true, action: false, blocked: false });
+  });
+
+  test("a dropped weapon lies on the ground: not carried, back in the pack or a hand when picked up", () => {
+    const c = inTurn(equipRow(bag(), "longsword", "main").inventory);
+    const before = carriedWeight(c.inventory);
+    const after = apply(c, changeHands(c, "scimitar", "main", true).patch!);
+    const sword = after.inventory.find((r) => r.id === "longsword")!;
+    expect(sword.onGround).toBe(true);
+    expect(sword.equipped).toBe(false);
+    expect(carriedWeight(after.inventory)).toBe(before - (sword.weight ?? 3));
+    expect(equipRow(after.inventory, "longsword", "main").inventory.find((r) => r.id === "longsword")?.onGround).toBeUndefined();
+    // Put away instead of dropped: still carried.
+    const stowed = apply(c, changeHands(c, "scimitar", "main").patch!);
+    expect(stowed.inventory.find((r) => r.id === "longsword")?.onGround).toBeUndefined();
   });
 
   test("a swap that needs the action is blocked once the action is used", () => {

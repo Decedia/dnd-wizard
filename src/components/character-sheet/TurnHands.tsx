@@ -130,7 +130,7 @@ export function TurnHands({ character, onChange }: TurnHandsProps) {
                   </span>
                   <span className="min-w-0 flex-1">
                     <span className="block truncate text-sm font-bold text-[var(--color-text-primary)]">
-                      {row ? row.name : t("hands.putAway", { name: current?.name ?? "" }, "Put away {name}")}
+                      {row ? (row.onGround ? t("hands.fromGround", { name: row.name }, "{name} (pick up from the ground)") : row.name) : t("hands.putAway", { name: current?.name ?? "" }, "Put away {name}")}
                     </span>
                     {row && (
                       <span className="block text-[11px] text-[var(--color-text-muted)]">

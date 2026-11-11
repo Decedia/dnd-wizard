@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect, useMemo, useCallback, type ReactNode } from "react";
+import { useStored, writeStored } from "@/lib/use-stored";
 
 type Theme = "light" | "dark";
 
@@ -16,24 +17,16 @@ export function useTheme() {
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>("light");
+  const saved = useStored("dnd-theme");
+  const theme: Theme = saved === "dark" ? "dark" : "light";
 
   useEffect(() => {
-    const saved = localStorage.getItem("dnd-theme") as Theme | null;
-    if (saved) {
-      setTheme(saved);
-      document.documentElement.setAttribute("data-theme", saved);
-    }
-  }, []);
+    if (saved) document.documentElement.setAttribute("data-theme", saved);
+  }, [saved]);
 
   const toggleTheme = useCallback(() => {
-    setTheme((prev) => {
-      const next = prev === "light" ? "dark" : "light";
-      localStorage.setItem("dnd-theme", next);
-      document.documentElement.setAttribute("data-theme", next);
-      return next;
-    });
-  }, []);
+    writeStored("dnd-theme", theme === "light" ? "dark" : "light");
+  }, [theme]);
 
   const value = useMemo(() => ({ theme, toggleTheme }), [theme, toggleTheme]);
 

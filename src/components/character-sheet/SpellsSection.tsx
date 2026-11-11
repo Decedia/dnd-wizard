@@ -203,7 +203,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
       ? startTimer(currentBuffs, { spellId: timerId, name: buffDef?.name || spellName || "", concentration: conc, turnsRemaining: rounds })
       : null;
     onChange({ spellsUsedThisTurn: [...currentUsed, spellId], ...(timer ? { activeBuffs: timer } : {}) });
-  }, [character.spellsUsedThisTurn, character.activeBuffs, onChange]);
+  }, [character, onChange]);
 
   const resetSpellsUsed = useCallback(() => {
     const currentUsed = character.spellsUsedThisTurn || [];
@@ -220,7 +220,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
       }
     }
     onChange({ spellsUsedThisTurn: keptInUse, activeBuffs: advanceTurn(character.activeBuffs || []) });
-  }, [onChange, character.activeBuffs, character.spells, srdSpells]);
+  }, [onChange, character, srdSpells]);
 
   const removeSpell = useCallback((id: string) => {
     onChange({

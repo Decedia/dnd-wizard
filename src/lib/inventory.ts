@@ -458,7 +458,7 @@ export function equipRow(inventory: InventoryRow[], id: string, wanted?: Hand): 
   }
 
   const next = inventory.map((r) => {
-    if (r.id === id) return { ...r, equipped: true, hand };
+    if (r.id === id) return { ...r, equipped: true, hand, onGround: undefined };
     if (off.has(r.id)) return { ...r, equipped: false, hand: undefined };
     return r;
   });
@@ -494,6 +494,7 @@ export function rowText(row: InventoryRow, locale: string): { name: string; desc
 export function carriedWeight(inventory: InventoryRow[]): number {
   let total = 0;
   for (const row of inventory) {
+    if (row.onGround) continue;
     const each = row.weight ?? findCatalogItem(row.itemId ?? row.srdItemName ?? row.name)?.weight ?? 0;
     total += (each || 0) * (row.quantity || 1);
   }

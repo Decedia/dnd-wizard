@@ -54,7 +54,7 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
     }
     for (const skill of getRaceSkills(data)) granted.add(skill);
     return granted;
-  }, [data.race, data.ruleset, data.raceVariant, data.halfElfSkills, data.variantHumanSkill, data.raceSkillPicks]);
+  }, [data]);
 
   // A race that lets the player pick skills (Kenku Training, Hunter's Lore).
   const raceData = data.race ? getStaticRace(data.race, data.ruleset) : undefined;
@@ -136,7 +136,7 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
       }
       return bonus;
     },
-    [data.race, data.ruleset, data.flexAsi, data.halfElfAbilities, data.variantHumanAbilities, data.raceVariant],
+    [data],
   );
 
   const formatModifier = (value: number): string => (value >= 0 ? `+${value}` : `${value}`);

@@ -72,7 +72,7 @@ export function CombatStatsSection({ character, onChange, editMode = true, onOpe
     }
     setHpModal(null);
     setHpAmount("");
-  }, [hpModal, hpAmount, character, onChange, hasConcentration]);
+  }, [hpModal, hpAmount, character, onChange, hasConcentration, maxHp]);
 
   return (
     <SectionCard id="combat-stats" title={t("section.combatStats", "Combat Stats")} icon={<Sword className="h-5 w-5" />}>
