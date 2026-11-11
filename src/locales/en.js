@@ -985,6 +985,7 @@ export const translations = {
   "turn.flex.createName": "Get a level {level} slot back",
   "turn.flex.convertName": "Turn a level {level} slot into points",
   "turn.cost.sorceryPointsByLevel": "1 per spell level · {left} left",
+  "turn.cost.kiChoose": "Ki you choose · {left} left",
   "turn.title": "Your turn · Round {round}",
   "turn.start": "Start my turn",
   "turn.continue": "Continue turn",

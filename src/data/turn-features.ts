@@ -78,6 +78,12 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Retaliation/, slot: "reaction", when: "onDamage" },
   { name: /^Spirit Shield/, slot: "reaction", when: "whileRaging" },
   { name: /^Zealous Presence/, slot: "bonus", uses: long1 },
+  { name: /^Fanatical Focus/, slot: "free", when: "onFailSave" },
+  { name: /^Battlerager Charge/, slot: "bonus", when: "whileRaging" },
+  { name: /^Storm Aura/, slot: "bonus", when: "whileRaging" },
+  { name: /^Unstable Backlash/, slot: "reaction", when: "whileRaging" },
+  { name: /^Call the Hunt/, slot: "free", when: "whileRaging", uses: { max: prof, per: "long" } },
+  { name: /^Mighty Impel/, slot: "bonus", when: "whileRaging" },
 
   // ----- Bard -----
   { name: /^Bardic Inspiration/, slot: "bonus", pool: bardic },
@@ -87,6 +93,10 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Psychic Blades/, slot: "free", when: "onHit", pool: bardic, only: (c) => c.class === "Bard" },
   { name: /^Unsettling Words/, slot: "bonus", pool: bardic },
   { name: /^Mantle of Inspiration/, slot: "bonus", pool: bardic },
+  { name: /^Tales from Beyond/, slot: "bonus", pool: bardic },
+  { name: /^Mantle of Majesty/, slot: "bonus", uses: long1 },
+  { name: /^Unbreakable Majesty/, slot: "bonus", uses: short1 },
+  { name: /^Mantle of Whispers/, slot: "reaction", uses: short1 },
 
   // ----- Cleric -----
   { name: /^War Priest/, slot: "bonus", when: "afterAttack", uses: { max: WIS, per: "long" } },
@@ -98,6 +108,9 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Sentinel at Death's Door/, slot: "reaction", uses: { max: WIS, per: "long" } },
   { name: /^Emboldening Bond/, slot: "action", uses: { max: prof, per: "long" } },
   { name: /^Steps of Night/, slot: "bonus", uses: { max: prof, per: "long" } },
+  { name: /^Blessing of the Trickster/, slot: "action" },
+  { name: /^Corona of Light/, slot: "action" },
+  { name: /^Embodiment of the Law/, slot: "free", when: "onCast", uses: { max: WIS, per: "long" } },
 
   // ----- Druid -----
   { name: /^Wild Shape/, slot: "action", pool: wild, bonusWith: /^Combat Wild Shape/ },
@@ -108,6 +121,10 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Spirit Totem/, slot: "bonus", uses: short1 },
   { name: /^Hidden Paths/, slot: "bonus", uses: { max: WIS, per: "long" } },
   { name: /^Cosmic Omen/, slot: "reaction", uses: { max: prof, per: "long" } },
+  { name: /^Fungal Infestation/, slot: "reaction", uses: { max: WIS, per: "long" } },
+  { name: /^Cauterizing Flames/, slot: "reaction", uses: { max: prof, per: "long" } },
+  { name: /^Blazing Revival/, slot: "free", when: "atZeroHp", uses: long1 },
+  { name: /^Balm of the Summer Court/, slot: "bonus" },
 
   // ----- Fighter -----
   { name: /^Second Wind/, slot: "bonus", uses: short1 },
@@ -148,6 +165,14 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Cloak of Shadows/, slot: "action" },
   { name: /^Opportunist/, slot: "reaction" },
   { name: /^Drunkard's Luck/, slot: "free", pool: ki(2) },
+  { name: /^Diamond Soul/, slot: "free", when: "onFailSave", pool: ki(1) },
+  { name: /^Tipsy Sway/, slot: "reaction", when: "whenAttacked", pool: ki(1) },
+  { name: /^Touch of the Long Death/, slot: "action", variablePool: "kiPoints" },
+  { name: /^Hand of Ultimate Mercy/, slot: "action", pool: ki(5) },
+  { name: /^Searing Sunburst/, slot: "action" },
+  { name: /^Sun Shield/, slot: "reaction", when: "onDamage" },
+  { name: /^Breath of the Dragon/, slot: "free", when: "afterAttack", uses: { max: prof, per: "long" }, orPool: ki(2) },
+  { name: /^Wings Unfurled/, slot: "free", uses: { max: prof, per: "long" } },
 
   // ----- Paladin -----
   { name: /^Divine Sense/, slot: "action", uses: { max: (c) => 1 + CHA(c), per: "long" } },
@@ -156,7 +181,9 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Cleansing Touch/, slot: "action", uses: { max: CHA, per: "long" } },
   { name: /^Glorious Defense/, slot: "reaction", when: "whenAttacked", uses: { max: CHA, per: "long" } },
   { name: /^Vigilant Rebuke/, slot: "reaction" },
-  { name: /^(Holy Nimbus|Elder Champion|Avenging Angel)/, slot: "action", uses: long1 },
+  { name: /^(Holy Nimbus|Elder Champion|Avenging Angel|Invincible Conqueror|Dread Lord)/, slot: "action", uses: long1 },
+  { name: /^(Living Legend|Mortal Bulwark)/, slot: "bonus", uses: long1 },
+  { name: /^(Soul of Vengeance|Divine Allegiance|Aura of the Guardian)/, slot: "reaction" },
 
   // ----- Ranger -----
   { name: /^Primeval Awareness/, slot: "action", spellSlot: true },
@@ -168,7 +195,11 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Gathered Swarm/, slot: "free", when: "onHit" },
   { name: /^Stalker's Flurry/, slot: "free", when: "onMiss" },
   { name: /^Ethereal Step/, slot: "bonus", uses: short1 },
-  { name: /^(Shadowy Dodge|Spectral Defense|Slayer's Counter)/, slot: "reaction" },
+  { name: /^(Shadowy Dodge|Spectral Defense|Slayer's Counter|Beguiling Twist)/, slot: "reaction" },
+  { name: /^Misty Wanderer/, slot: "bonus", uses: { max: WIS, per: "long" } },
+  { name: /^Swarming Dispersal/, slot: "reaction", when: "onDamage", uses: { max: prof, per: "long" } },
+  { name: /^Drake Companion/, slot: "action", uses: long1 },
+  { name: /^Drake's Breath/, slot: "action", uses: long1 },
 
   // ----- Rogue -----
   { name: /^Sneak Attack/, slot: "free", when: "oncePerTurn" },
@@ -182,6 +213,12 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Panache/, slot: "action" },
   { name: /^Misdirection/, slot: "reaction" },
   { name: /^Wails from the Grave/, slot: "free", when: "onHit", uses: { max: prof, per: "long" } },
+  { name: /^Master Duelist/, slot: "free", when: "onMiss", uses: short1 },
+  { name: /^Spell Thief/, slot: "reaction", uses: long1 },
+  { name: /^Unerring Eye/, slot: "action", uses: { max: WIS, per: "long" } },
+  { name: /^Ghost Walk/, slot: "bonus", uses: long1 },
+  { name: /^Psychic Veil/, slot: "action", uses: long1 },
+  { name: /^Rend Mind/, slot: "free", when: "onHit", uses: long1 },
 
   // ----- Sorcerer -----
   { name: /^Favored by the Gods/, slot: "free", when: "onFailSave", uses: short1 },
@@ -195,6 +232,11 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Restore Balance/, slot: "reaction", uses: { max: prof, per: "long" } },
   { name: /^Tempestuous Magic/, slot: "bonus", when: "afterCast" },
   { name: /^Storm's Fury/, slot: "reaction", when: "onDamage" },
+  { name: /^Revelation in Flesh/, slot: "bonus", pool: sp(1) },
+  { name: /^Warping Implosion/, slot: "action", uses: long1 },
+  { name: /^Trance of Order/, slot: "bonus", uses: long1 },
+  { name: /^Clockwork Cavalcade/, slot: "action", uses: long1 },
+  { name: /^Umbral Form/, slot: "bonus", pool: sp(6) },
 
   // ----- Warlock -----
   { name: /^Fey Presence/, slot: "action", uses: short1 },
@@ -207,6 +249,14 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Dark Delirium/, slot: "action", uses: short1 },
   { name: /^Tentacle of the Deeps/, slot: "bonus", uses: { max: prof, per: "long" } },
   { name: /^Form of Dread/, slot: "bonus", uses: { max: prof, per: "long" } },
+  { name: /^Armor of Hexes/, slot: "reaction", when: "whenAttacked" },
+  { name: /^Guardian Coil/, slot: "reaction", when: "onDamage" },
+  { name: /^Grasping Tentacles/, slot: "action", uses: long1 },
+  { name: /^Fathomless Plunge/, slot: "action", uses: short1 },
+  { name: /^Elemental Gift/, slot: "bonus", uses: { max: prof, per: "long" } },
+  { name: /^Genie's Vessel/, slot: "action", uses: long1 },
+  { name: /^(Searing Vengeance|Necrotic Husk)/, slot: "free", when: "atZeroHp", uses: long1 },
+  { name: /^Indestructible Life/, slot: "bonus", uses: short1 },
 
   // ----- Wizard -----
   { name: /^Portent/, slot: "free", when: "onAttackRoll", uses: { max: (c) => ((c.level || 1) >= 14 ? 3 : 2), per: "long" } },
@@ -224,6 +274,9 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Violent Attraction/, slot: "reaction", uses: { max: INT, per: "long" } },
   { name: /^Manifest Mind/, slot: "bonus" },
   { name: /^Bladesong/, slot: "bonus", uses: { max: prof, per: "long" } },
+  { name: /^Illusory Reality/, slot: "bonus" },
+  { name: /^Event Horizon/, slot: "action", uses: long1 },
+  { name: /^Convergent Future/, slot: "reaction" },
 
   // ----- Artificer -----
   { name: /^Flash of Genius/, slot: "reaction", uses: { max: INT, per: "long" } },
@@ -252,6 +305,10 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Stone's Endurance/, slot: "reaction", when: "onDamage", uses: short1 },
   { name: /^Grovel, Cower, and Beg/, slot: "action", uses: short1 },
   { name: /^Hammering Horns/, slot: "bonus", when: "afterAttack" },
+  { name: /^Radiant Soul/, slot: "action", uses: long1, only: (c) => /Aasimar/.test(c.race || "") },
+  { name: /^Chromatic Breath Weapon/, slot: "action", uses: { max: prof, per: "long" } },
+  { name: /^Metallic Breath Weapon/, slot: "action", uses: long1 },
+  { name: /^Third Eye/, slot: "action", uses: short1 },
 
   // ----- Feats -----
   { name: /^Lucky$/, slot: "free", when: "onAttackRoll", pool: { field: "luckPoints", amount: 1 }, only: (c) => (c.maxLuckPoints || 0) > 0 },
@@ -289,6 +346,8 @@ export interface SubOptionGroup {
   feature: string;
   /** Only the options the player picked for the feature (Metamagic, maneuvers, runes); else all of them. */
   picked: boolean;
+  /** Only for characters this returns true for (a Soulknife's Psionic Power is a different feature). */
+  only?: (c: Character) => boolean;
   options: SubOption[];
 }
 
@@ -361,6 +420,7 @@ export const SUB_OPTIONS: SubOptionGroup[] = [
   {
     feature: "Psionic Power",
     picked: false,
+    only: (c) => c.class === "Fighter",
     options: [
       { name: "Protective Field", key: "protectiveField", slot: "reaction", when: "onDamage", pool: psi, summary: "Reduce the damage to you or a creature within 30 feet by a psionic die plus your INT modifier." },
       { name: "Psionic Strike", key: "psionicStrike", slot: "free", when: "onHit", pool: psi, summary: "Once per turn, deal extra force damage: a psionic die plus your INT modifier." },
@@ -372,6 +432,7 @@ export const SUB_OPTIONS: SubOptionGroup[] = [
 
 /** The sub-options this character can use for one feature. */
 export function subOptionsFor(character: Character, group: SubOptionGroup, picks: string[]): SubOption[] {
+  if (group.only && !group.only(character)) return [];
   return group.options.filter((o) => (!group.picked || picks.includes(o.name)) && (!o.minLevel || (character.level || 1) >= o.minLevel));
 }
 
