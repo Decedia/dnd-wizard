@@ -96,6 +96,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
     if (o.blocked === "slotsFull") return t("turn.block.slotsFull", "No spent slot of this level to get back.");
     if (o.blocked === "raging") return t("turn.block.raging", "You are already raging.");
     if (o.blocked === "notRaging") return t("turn.block.notRaging", "Only while you rage. Use Rage first.");
+    if (o.blocked === "usedThisTurn") return t("turn.block.usedThisTurn", "Used this turn. Ready again next turn.");
     if (slotUsed) return t(`turn.block.used.${o.slot}`);
     if (o.blocked === "attackFirst") return t("turn.block.attackFirst", "Attack with your other weapon first (Attack action), then this bonus attack opens.");
     if (o.blocked === "actionFirst") return t("turn.block.actionFirst", "Use your action first, then tap this to get it back.");
@@ -168,6 +169,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
             <span className="text-sm font-bold text-[var(--color-text-primary)]">{nameOf(o)}</span>
             {cost && <span className="rounded-full bg-[var(--color-bg)] px-1.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)]">{cost}</span>}
             {o.when && <span className="rounded-full border border-[var(--color-border)] px-1.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)]">{t(`turn.when.${o.when}`)}</span>}
+            {o.oncePerTurn && <span className="rounded-full border border-[var(--color-border)] px-1.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)]">{t("turn.when.oncePerTurn", "Once per turn")}</span>}
             {o.school && schoolChip(o.school)}
             {o.lastsRounds && (() => { const d = roundsText(o.lastsRounds); return <span className="rounded-full border border-[var(--color-border)] px-1.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)]">{t("turn.lasts", { time: t(`timer.span.${d.unit}`, { n: d.n }) })}</span>; })()}
             {o.concentration && <span className="rounded-full border border-dashed border-[var(--color-border-active)] px-1.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)]">{t("turn.concentration", "Concentration")}</span>}
@@ -177,6 +179,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
               <RichInline text={text} />
             </span>
           )}
+          {o.condition && !reason && <span className="mt-0.5 block text-[11px] font-semibold text-[var(--color-text-primary)]">{t(`turn.cond.${o.condition}`)}</span>}
           <SpellDamageBonusLines bonuses={o.damageBonuses} />
           {o.endsConcentration && <span className="mt-1 block text-xs font-semibold text-[var(--color-warning-700)]">{t("turn.endsConc", { name: o.endsConcentration })}</span>}
           {pick && <span className="mt-1 block text-xs font-semibold leading-snug text-[var(--color-text-primary)]">{t(`turn.why.${pick.why}`, pick.values || {})}</span>}

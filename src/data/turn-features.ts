@@ -40,6 +40,10 @@ export interface FeatureRule {
   bonusWith?: RegExp;
   /** Only for characters this returns true for (same name, different rule). */
   only?: (c: Character) => boolean;
+  /** Usable once per turn: greyed out after a tap until End turn. */
+  oncePerTurn?: boolean;
+  /** A condition the player checks, shown as one line. Locale key `turn.cond.<condition>`. */
+  condition?: string;
 }
 
 const mod = (score: number | undefined) => Math.floor(((score ?? 10) - 10) / 2);
@@ -73,7 +77,7 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Rage$/, slot: "bonus", pool: { field: "rages", amount: 1 } },
   { name: /^Reckless Attack/, slot: "free", when: "firstAttack" },
   { name: /^Frenzy/, slot: "bonus", when: "whileRaging" },
-  { name: /^Divine Fury/, slot: "free", when: "onHit" },
+  { name: /^Divine Fury/, slot: "free", when: "onHit", oncePerTurn: true, condition: "firstHit" },
   { name: /^Intimidating Presence/, slot: "action" },
   { name: /^Retaliation/, slot: "reaction", when: "onDamage" },
   { name: /^Spirit Shield/, slot: "reaction", when: "whileRaging" },
@@ -89,8 +93,8 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Bardic Inspiration/, slot: "bonus", pool: bardic },
   { name: /^Countercharm/, slot: "action" },
   { name: /^Cutting Words/, slot: "reaction", pool: bardic },
-  { name: /^Blade Flourish/, slot: "free", when: "onHit", pool: bardic },
-  { name: /^Psychic Blades/, slot: "free", when: "onHit", pool: bardic, only: (c) => c.class === "Bard" },
+  { name: /^Blade Flourish/, slot: "free", when: "onHit", pool: bardic, oncePerTurn: true },
+  { name: /^Psychic Blades/, slot: "free", when: "onHit", pool: bardic, oncePerTurn: true, only: (c) => c.class === "Bard" },
   { name: /^Unsettling Words/, slot: "bonus", pool: bardic },
   { name: /^Mantle of Inspiration/, slot: "bonus", pool: bardic },
   { name: /^Tales from Beyond/, slot: "bonus", pool: bardic },
@@ -110,6 +114,7 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Steps of Night/, slot: "bonus", uses: { max: prof, per: "long" } },
   { name: /^Blessing of the Trickster/, slot: "action" },
   { name: /^Corona of Light/, slot: "action" },
+  { name: /^Divine Strike/, slot: "free", when: "onHit", oncePerTurn: true, condition: "weapon" },
   { name: /^Embodiment of the Law/, slot: "free", when: "onCast", uses: { max: WIS, per: "long" } },
 
   // ----- Druid -----
@@ -137,7 +142,7 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Unleash Incarnation/, slot: "free", when: "afterAttack", uses: { max: CON, per: "long" } },
   { name: /^Giant's Might/, slot: "bonus", uses: { max: prof, per: "long" } },
   { name: /^Warding Maneuver/, slot: "reaction", uses: { max: CON, per: "long" } },
-  { name: /^Arcane Shot$/, slot: "free", when: "onHit", uses: { max: 2, per: "short" } },
+  { name: /^Arcane Shot$/, slot: "free", when: "onHit", uses: { max: 2, per: "short" }, oncePerTurn: true },
   { name: /^Runic Shield/, slot: "reaction", when: "whenAttacked", uses: { max: prof, per: "long" } },
   { name: /^Telekinetic Adept/, slot: "bonus", uses: short1, orPool: { field: "psionicDice", amount: 1 } },
   { name: /^Guarded Mind/, slot: "free", pool: { field: "psionicDice", amount: 1 } },
@@ -159,7 +164,7 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Shadow Arts/, slot: "action", pool: ki(2) },
   { name: /^Shadow Step/, slot: "bonus" },
   { name: /^Hand of Healing/, slot: "action", pool: ki(1) },
-  { name: /^Hand of Harm/, slot: "free", when: "onHit", pool: ki(1) },
+  { name: /^Hand of Harm/, slot: "free", when: "onHit", pool: ki(1), oncePerTurn: true, condition: "unarmed" },
   { name: /^Searing Arc Strike/, slot: "bonus", when: "afterAttack", pool: ki(2) },
   { name: /^Arms of the Astral Self/, slot: "bonus", pool: ki(1) },
   { name: /^Cloak of Shadows/, slot: "action" },
@@ -191,18 +196,19 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Planar Warrior/, slot: "bonus" },
   { name: /^Slayer's Prey/, slot: "bonus" },
   { name: /^Hunter's Sense/, slot: "action", uses: { max: WIS, per: "long" } },
-  { name: /^Dreadful Strikes/, slot: "free", when: "onHit" },
-  { name: /^Gathered Swarm/, slot: "free", when: "onHit" },
+  { name: /^Dreadful Strikes/, slot: "free", when: "onHit", oncePerTurn: true },
+  { name: /^Gathered Swarm/, slot: "free", when: "onHit", oncePerTurn: true },
   { name: /^Stalker's Flurry/, slot: "free", when: "onMiss" },
   { name: /^Ethereal Step/, slot: "bonus", uses: short1 },
   { name: /^(Shadowy Dodge|Spectral Defense|Slayer's Counter|Beguiling Twist)/, slot: "reaction" },
+  { name: /^Dread Ambusher/, slot: "free", when: "onHit", oncePerTurn: true, condition: "firstTurn" },
   { name: /^Misty Wanderer/, slot: "bonus", uses: { max: WIS, per: "long" } },
   { name: /^Swarming Dispersal/, slot: "reaction", when: "onDamage", uses: { max: prof, per: "long" } },
   { name: /^Drake Companion/, slot: "action", uses: long1 },
   { name: /^Drake's Breath/, slot: "action", uses: long1 },
 
   // ----- Rogue -----
-  { name: /^Sneak Attack/, slot: "free", when: "oncePerTurn" },
+  { name: /^Sneak Attack/, slot: "free", when: "onHit", oncePerTurn: true, condition: "sneakAttack" },
   { name: /^Cunning Action/, slot: "bonus" },
   { name: /^Fast Hands/, slot: "bonus" },
   { name: /^Uncanny Dodge/, slot: "reaction", when: "whenAttacked" },
@@ -213,6 +219,7 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Panache/, slot: "action" },
   { name: /^Misdirection/, slot: "reaction" },
   { name: /^Wails from the Grave/, slot: "free", when: "onHit", uses: { max: prof, per: "long" } },
+  { name: /^Death Strike/, slot: "free", when: "onHit", oncePerTurn: true, condition: "surprised" },
   { name: /^Master Duelist/, slot: "free", when: "onMiss", uses: short1 },
   { name: /^Spell Thief/, slot: "reaction", uses: long1 },
   { name: /^Unerring Eye/, slot: "action", uses: { max: WIS, per: "long" } },
@@ -245,7 +252,7 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Entropic Ward/, slot: "reaction", when: "whenAttacked", uses: short1 },
   { name: /^Hexblade's Curse/, slot: "bonus", uses: short1 },
   { name: /^Healing Light/, slot: "bonus", uses: { max: (c) => 1 + (c.level || 1), per: "long" } },
-  { name: /^Hurl Through Hell/, slot: "free", when: "onHit", uses: long1 },
+  { name: /^Hurl Through Hell/, slot: "free", when: "onHit", uses: long1, oncePerTurn: true },
   { name: /^Dark Delirium/, slot: "action", uses: short1 },
   { name: /^Tentacle of the Deeps/, slot: "bonus", uses: { max: prof, per: "long" } },
   { name: /^Form of Dread/, slot: "bonus", uses: { max: prof, per: "long" } },
@@ -281,7 +288,7 @@ export const FEATURE_RULES: FeatureRule[] = [
   // ----- Artificer -----
   { name: /^Flash of Genius/, slot: "reaction", uses: { max: INT, per: "long" } },
   { name: /^Magical Tinkering/, slot: "action" },
-  { name: /^Arcane Jolt/, slot: "free", when: "onHit", uses: { max: INT, per: "long" } },
+  { name: /^Arcane Jolt/, slot: "free", when: "onHit", uses: { max: INT, per: "long" }, oncePerTurn: true },
   { name: /^Eldritch Cannon/, slot: "action" },
   { name: /^Steel Defender/, slot: "bonus" },
 
@@ -325,6 +332,10 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Healer$/, slot: "action" },
   { name: /^Telekinetic$/, slot: "bonus" },
   { name: /^Second Chance/, slot: "reaction", when: "whenAttacked", uses: short1 },
+  { name: /^Savage Attacker/, slot: "free", when: "onHit", oncePerTurn: true, condition: "rerollDamage" },
+  { name: /^Crusher/, slot: "free", when: "onHit", oncePerTurn: true, condition: "bludgeoning" },
+  { name: /^Piercer/, slot: "free", when: "onHit", oncePerTurn: true, condition: "piercing" },
+  { name: /^Slasher/, slot: "free", when: "onHit", oncePerTurn: true, condition: "slashing" },
 ];
 
 /**
@@ -418,12 +429,38 @@ export const SUB_OPTIONS: SubOptionGroup[] = [
     ],
   },
   {
+    feature: "Hunter's Prey",
+    picked: true,
+    options: [
+      { name: "Colossus Slayer", key: "colossusSlayer", slot: "free", when: "onHit", oncePerTurn: true, condition: "hurt", summary: "Your weapon hit deals 1d8 extra damage." },
+      { name: "Giant Killer", key: "giantKiller", slot: "reaction", when: "whenAttacked", condition: "largeNear", summary: "When a Large or bigger creature within 5 feet attacks you, attack it right after." },
+      { name: "Horde Breaker", key: "hordeBreaker", slot: "free", when: "afterAttack", oncePerTurn: true, condition: "nextToTarget", summary: "Make one more weapon attack against a different creature within 5 feet of the first target." },
+    ],
+  },
+  {
+    feature: "Multiattack",
+    picked: true,
+    only: (c) => c.class === "Ranger",
+    options: [
+      { name: "Volley", key: "volley", slot: "action", summary: "Make a ranged attack against every creature within 10 feet of a point you can see." },
+      { name: "Whirlwind Attack", key: "whirlwindAttack", slot: "action", summary: "Make a melee attack against every creature within 5 feet of you." },
+    ],
+  },
+  {
+    feature: "Superior Hunter's Defense",
+    picked: true,
+    options: [
+      { name: "Stand Against the Tide", key: "standAgainstTheTide", slot: "reaction", when: "whenAttacked", summary: "When a creature misses you in melee, make it repeat the attack against another creature of your choice." },
+      { name: "Uncanny Dodge", key: "uncannyDodgeHunter", slot: "reaction", when: "onDamage", summary: "Halve the damage of one attack that hits you." },
+    ],
+  },
+  {
     feature: "Psionic Power",
     picked: false,
     only: (c) => c.class === "Fighter",
     options: [
       { name: "Protective Field", key: "protectiveField", slot: "reaction", when: "onDamage", pool: psi, summary: "Reduce the damage to you or a creature within 30 feet by a psionic die plus your INT modifier." },
-      { name: "Psionic Strike", key: "psionicStrike", slot: "free", when: "onHit", pool: psi, summary: "Once per turn, deal extra force damage: a psionic die plus your INT modifier." },
+      { name: "Psionic Strike", key: "psionicStrike", slot: "free", when: "onHit", pool: psi, oncePerTurn: true, summary: "Once per turn, deal extra force damage: a psionic die plus your INT modifier." },
       { name: "Telekinetic Movement", key: "telekineticMovement", slot: "action", uses: short1, orPool: psi, summary: "Move an object or a willing creature up to 30 feet." },
       { name: "Recover a psionic die", key: "psionicRecover", slot: "bonus", uses: short1, gain: "psionicDice", summary: "Get one psionic die back. Once per short rest." },
     ],
@@ -433,7 +470,9 @@ export const SUB_OPTIONS: SubOptionGroup[] = [
 /** The sub-options this character can use for one feature. */
 export function subOptionsFor(character: Character, group: SubOptionGroup, picks: string[]): SubOption[] {
   if (group.only && !group.only(character)) return [];
-  return group.options.filter((o) => (!group.picked || picks.includes(o.name)) && (!o.minLevel || (character.level || 1) >= o.minLevel));
+  // Picks are saved as "Feature: Option" for some features (Hunter's Prey: Colossus Slayer).
+  const picked = (name: string) => picks.includes(name) || picks.some((p) => p.endsWith(`: ${name}`));
+  return group.options.filter((o) => (!group.picked || picked(o.name)) && (!o.minLevel || (character.level || 1) >= o.minLevel));
 }
 
 /** A stable key for a rule's own uses, from its pattern. */

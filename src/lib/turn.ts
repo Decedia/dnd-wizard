@@ -18,7 +18,7 @@ import { concentrationTimer, expiredTimerPatch, featureRounds, featureTimerId, R
 export type TurnSlot = "action" | "bonus" | "reaction" | "free";
 export type TurnGroup = "attack" | "spell" | "feature" | "basic";
 /** Why an option cannot be used; the panel turns it into a sentence. */
-export type TurnBlock = "noSlot" | "empty" | "actionFirst" | "attackFirst" | "raging" | "notRaging" | "shaped" | "full" | "slotsFull";
+export type TurnBlock = "noSlot" | "empty" | "actionFirst" | "attackFirst" | "raging" | "notRaging" | "shaped" | "full" | "slotsFull" | "usedThisTurn";
 
 export interface TurnOption {
   key: string;
@@ -57,6 +57,10 @@ export interface TurnOption {
   damageBonuses?: SpellDamageBonus[];
   /** When a feature applies ("when you hit"); locale key `turn.when.*`. */
   when?: FeatureWhen;
+  /** Once per turn: greyed out after a tap until End turn. */
+  oncePerTurn?: boolean;
+  /** A condition the player checks before using it; locale key `turn.cond.*`. */
+  condition?: string;
   /** The player picks how much of this pool to spend (Lay on Hands). */
   amount?: { field: PoolField; max: number };
   /** Fields to write when the option is used (the slot flag is added by `optionPatch`). */
@@ -304,6 +308,9 @@ const turnFeatures = (character: Character) => {
 /** Pools a feature can spend; the option shows what is left. */
 const poolLeft = (character: Character, field: PoolField) => Number((character as any)[field]) || 0;
 
+/** Features that apply when an attack hits. */
+export const ON_HIT_WHEN = new Set<FeatureWhen>(["onHit", "oncePerTurn", "onCritOrKill"]);
+
 /** One turn option from a hand-checked rule: the slot it takes and what it spends. */
 function ruleOption(character: Character, rule: FeatureRule | SubOption, base: Pick<TurnOption, "key" | "name" | "summary" | "summaryKey" | "detail">, slot: TurnSlot): TurnOption {
   const option: TurnOption = { ...base, slot, group: "feature", when: rule.when, spend: {} };
@@ -342,6 +349,14 @@ function ruleOption(character: Character, rule: FeatureRule | SubOption, base: P
       option.spend.spellSlotsExpended = { ...(character.spellSlotsExpended || {}), [open]: (character.spellSlotsExpended?.[open] ?? 0) + 1 };
     }
   }
+  if (rule.oncePerTurn) {
+    option.oncePerTurn = true;
+    const mark = `turn:${ruleKey(rule)}`;
+    const usedThisTurn = character.featuresUsedThisTurn || [];
+    if (usedThisTurn.includes(mark)) option.blocked = "usedThisTurn";
+    else option.spend.featuresUsedThisTurn = [...usedThisTurn, mark];
+  }
+  if (rule.condition) option.condition = rule.condition;
   if (rule.gain && !option.blocked) {
     const max = Number((character as any)[`max${rule.gain[0].toUpperCase()}${rule.gain.slice(1)}`]) || 0;
     const left = poolLeft(character, rule.gain);
@@ -447,7 +462,9 @@ function featureOptions(character: Character): TurnOption[] {
     }
     out.push(option);
   }
-  return out;
+  // Ready on-hit features first, so after a hit the unused ones are at the top; spent ones last.
+  const rank = (o: TurnOption) => (o.blocked ? 2 : o.when && ON_HIT_WHEN.has(o.when) ? 0 : 1);
+  return out.map((o, i) => ({ o, i })).sort((a, b) => rank(a.o) - rank(b.o) || a.i - b.i).map((x) => x.o);
 }
 
 /** Features with no entry in the table: always on, or not something done on a turn. A reading list. */
@@ -660,6 +677,22 @@ export function swingResultPatch(character: Character, index: number, result: Sw
 /** Doubles every die in a damage line, for a critical hit: "1d8 + 3" becomes "2d8 + 3". */
 export function critDamage(damage: string): string {
   return damage.replace(/(\d+)d(\d+)/g, (_, n, d) => `${Number(n) * 2}d${d}`);
+}
+
+/**
+ * Extra weapon dice on a melee crit: Brutal Critical (1, 2 or 3 dice) and
+ * the half-orc's Savage Attacks (1 die). Returns the dice to add and who gives them.
+ */
+export function critExtraDice(character: Pick<Character, "features">, damage: string): { dice: string; sources: string[] } | null {
+  const die = damage.match(/\d+d(\d+)/)?.[1];
+  if (!die) return null;
+  let count = 0;
+  const sources: string[] = [];
+  const names = (character.features || []).map((f) => f.name || "");
+  const brutal = Math.max(0, ...names.map((n) => Number(n.match(/^Brutal Critical \((\d)/)?.[1] || 0)));
+  if (brutal > 0) { count += brutal; sources.push("Brutal Critical"); }
+  if (names.some((n) => /^Savage Attacks$/.test(n))) { count += 1; sources.push("Savage Attacks"); }
+  return count > 0 ? { dice: `${count}d${die}`, sources } : null;
 }
 
 export interface SmiteChoice {
