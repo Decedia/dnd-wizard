@@ -1,5 +1,6 @@
 "use client";
 
+import { Overridable } from "./Overridable";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { SparklesIcon as Sparkle } from "@/components/icons";
@@ -80,28 +81,14 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
         </Field>
         <div className="grid grid-cols-2 gap-3">
           <Field label={t("spellcasting.saveDc")}>
-            {editMode ? (
-              <input
-                type="number"
-                value={character.spellSaveDc}
-                readOnly
-                className="input bg-paper-muted"
-              />
-            ) : (
-              <span className="text-sm font-bold text-ink">{character.spellSaveDc}</span>
-            )}
+            <Overridable id="spellSaveDc" label={t("spellcasting.saveDc")} editMode={editMode} className="text-sm font-bold text-ink">
+              {character.spellSaveDc}
+            </Overridable>
           </Field>
           <Field label={t("spellcasting.attackBonus")}>
-            {editMode ? (
-              <input
-                type="number"
-                value={character.spellAttackBonus}
-                readOnly
-                className="input bg-paper-muted"
-              />
-            ) : (
-              <span className="text-sm font-bold text-ink">{character.spellAttackBonus >= 0 ? `+${character.spellAttackBonus}` : character.spellAttackBonus}</span>
-            )}
+            <Overridable id="spellAttackBonus" label={t("spellcasting.attackBonus")} signed editMode={editMode} className="text-sm font-bold text-ink">
+              {character.spellAttackBonus >= 0 ? `+${character.spellAttackBonus}` : character.spellAttackBonus}
+            </Overridable>
           </Field>
         </div>
       </div>

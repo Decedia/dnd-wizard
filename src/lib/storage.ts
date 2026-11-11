@@ -1,3 +1,4 @@
+import { overrideOf, withOverride, type NumberOverride } from "./overrides";
 import { getStaticClass, getStaticRace, getStaticSubclasses, getDomainSpells, getCircleSpells as getJsonCircleSpells, getCircleTerrainTypes as getJsonCircleTerrainTypes, getOathSpells, getWizardTraditionSpells, getSubclassFlags, getPactBoons } from "@/lib/srd-client";
 import { computeBuffModifiers, type ActiveBuff } from "@/lib/spellEffects";
 import { getSpellMechanic } from "@/lib/spell-mechanics-accessor";
@@ -92,6 +93,8 @@ export interface Character {
   removedFeatures?: string[];
   /** The character as it was just before the last level-up, for "Undo level-up". */
   levelUpSnapshot?: LevelUpSnapshot;
+  /** Numbers set by hand (AC, saves, skills...), by key; they win over the rules. See overrides.ts. */
+  overrides?: Record<string, NumberOverride>;
   /** Creation only: this draft picks the class again for a character at this level. */
   rebuildOf?: { level: number };
   costumeSpells: { id: string; name: string; description: string }[];
@@ -1065,6 +1068,24 @@ function normaliseFeatureName(name: string | undefined): string {
     .replace(/^_|_$/g, "");
 }
 
+/** Every level's HP added up, or null for an old save that has no HP per level. */
+export function ruleMaxHp(character: Pick<Character, "levelHp" | "level">): number | null {
+  const levels = character.levelHp ? Object.keys(character.levelHp).length : 0;
+  return levels >= (character.level || 1) ? getMaxHpFromLevelHp(character.levelHp) : null;
+}
+
+/**
+ * The HP maximum with a number set by hand. "Add" needs the per-level HP to
+ * add to (adding to the saved maximum would add again on every change).
+ */
+function hpMaxOf(character: Character): number {
+  const o = overrideOf(character, "maxHp");
+  if (!o) return character.maxHp || 0;
+  if (o.mode === "set") return o.value;
+  const rule = ruleMaxHp(character);
+  return rule === null ? character.maxHp || 0 : rule + o.value;
+}
+
 export function computeDerivedStats(character: Character): Partial<Character> {
   // Clamp ability scores to max 20
   const clampedAbilities: Partial<Character> = {};
@@ -1106,6 +1127,7 @@ export function computeDerivedStats(character: Character): Partial<Character> {
     const abilityMod = getModifier(character[key as keyof Character] as number);
     let saveValue = isProficient ? abilityMod + profBonus : abilityMod;
     // Cover bonus to Dex saves
+    saveValue = withOverride(character, `save:${key}`, saveValue);
     if (key === "dex") saveValue += dexSaveBonusFromCover;
     savingThrows[key] = {
       proficient: isProficient,
@@ -1114,16 +1136,16 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   }
 
   // Alert: +5 initiative.
-  const initiative = getModifier(character.dex) + (hasFeat(character, "Alert") ? 5 : 0);
+  const initiative = withOverride(character, "initiative", getModifier(character.dex) + (hasFeat(character, "Alert") ? 5 : 0));
 
-  const passivePerception = getPassiveScore(character, "Perception");
+  const passivePerception = withOverride(character, "passive:Perception", getPassiveScore(character, "Perception"));
 
   // Fighters and rogues only cast with Eldritch Knight or Arcane Trickster.
   const castsWithoutSubclass = character.class !== "Fighter" && character.class !== "Rogue";
   const spellcastingAbility = castsWithoutSubclass || isThirdCaster(character.subclass) ? classData?.spellcastingAbility || "" : "";
   const spellcastingAbilityMod = spellcastingAbility ? getModifier(character[spellcastingAbility as keyof Character] as number) : 0;
-  const spellSaveDc = 8 + profBonus + spellcastingAbilityMod;
-  const spellAttackBonus = profBonus + spellcastingAbilityMod;
+  const spellSaveDc = withOverride(character, "spellSaveDc", 8 + profBonus + spellcastingAbilityMod);
+  const spellAttackBonus = withOverride(character, "spellAttackBonus", profBonus + spellcastingAbilityMod);
 
   const hitDie = classData?.hitDie || 10;
   const hitDiceTotal = `${character.level}d${hitDie}`;
@@ -1345,6 +1367,8 @@ export function computeDerivedStats(character: Character): Partial<Character> {
 
   // Buff modifiers
   const buffMods = computeBuffModifiers(character.activeBuffs || []);
+  // A number set by hand wins over the rules; spells (Shield) and cover still add on top.
+  ac = withOverride(character, "ac", ac);
   ac += buffMods.acBonus;
 
   // Cover AC bonus
@@ -1363,6 +1387,7 @@ export function computeDerivedStats(character: Character): Partial<Character> {
       speed += umVal;
     }
   }
+  speed = withOverride(character, "speed", speed);
   // Buff speed bonus
   speed += buffMods.speedBonus;
 
@@ -1459,7 +1484,7 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   }
 
   // Apply exhaustion HP max reduction (level 4 halves max HP)
-  const baseMaxHp = character.maxHp || 0;
+  const baseMaxHp = hpMaxOf(character);
   const effectiveMaxHp = exhaustionLevel >= 4 ? Math.floor(baseMaxHp / 2) : baseMaxHp;
 
   // Cover tracking
@@ -1534,6 +1559,7 @@ export function computeDerivedStats(character: Character): Partial<Character> {
     ac,
     speed,
     effectiveMaxHp,
+    ...(overrideOf(character, "maxHp") ? { maxHp: baseMaxHp, ...((character.currentHp || 0) > baseMaxHp ? { currentHp: baseMaxHp } : {}) } : {}),
     // Current HP can't sit above the reduced maximum.
     ...(exhaustionLevel >= 4 && (character.currentHp || 0) > effectiveMaxHp ? { currentHp: effectiveMaxHp } : {}),
     temporaryHp: newTemporaryHp,

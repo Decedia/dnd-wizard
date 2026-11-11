@@ -12,6 +12,7 @@ import { ConditionBadges } from "./ConditionBadge";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { ItemIcon } from "@/components/ItemIcon";
 import { rowText } from "@/lib/inventory";
+import { Overridable } from "./Overridable";
 
 interface AttacksAndSpellcastingSectionProps {
   character: Character;
@@ -77,7 +78,10 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
                   <span className="text-base font-bold text-[var(--color-text-primary)] flex-1">{details ? rowText(details.weapon, language).name : attack.name}</span>
                   {details && (
                     <span className="text-sm font-bold text-ink bg-paper px-3 py-1.5 surface">
-                      +{details.attackBonus} to hit ({details.abilityKey.toUpperCase()})
+                      <Overridable id={`attack:${details.weapon.id}`} label={t("override.toHit", { name: rowText(details.weapon, language).name }, "{name} to hit")} signed editMode={editMode}>
+                        +{details.attackBonus}
+                      </Overridable>{" "}
+                      to hit ({details.abilityKey.toUpperCase()})
                     </span>
                   )}
                 </div>

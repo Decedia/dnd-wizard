@@ -6,6 +6,8 @@ import { SectionCard } from "./SectionCard";
 import { skills as srdSkills } from "@/data/srd";
 import { getStaticClass } from "@/lib/srd-client";
 import { getModifier, getProficiencyBonus, type Character } from "@/lib/storage";
+import { skillBonus } from "@/lib/skill-bonus";
+import { Overridable } from "./Overridable";
 import { getBackgroundData } from "@/data/backgrounds";
 import { StarIcon as Star, XIcon as X, ListChecksIcon as ListChecks, CircleIcon as Circle, InfoIcon } from "@/components/icons";
 import { isRecommended } from "@/lib/recommendations";
@@ -69,8 +71,7 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
           const mod = getModifier(score);
           const isProficient = character.skills[name] ?? false;
           const isExpert = character.expertise?.includes(name) ?? false;
-          const profMultiplier = isExpert ? 2 : 1;
-          const total = isProficient ? mod + (profBonus * profMultiplier) : mod;
+          const total = skillBonus(character, name, ability);
           const allowed = isSkillAllowed(name);
           const isBgSkill = isBackgroundSkill(name);
           const alreadyProficient = isAlreadyProficient(name);
@@ -98,9 +99,9 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
                     <span className="text-[10px] text-ink-muted font-medium">{ability.toUpperCase()} {mod >= 0 ? `+${mod}` : mod}</span>
                   </div>
                   <div className="flex items-center gap-2 shrink-0">
-                    <span className={`text-xs font-semibold ${isProficient ? "text-ink" : "text-ink-muted"}`}>
+                    <Overridable id={`skill:${name}`} label={name} signed editMode={editMode} className={`text-xs font-semibold ${isProficient ? "text-ink" : "text-ink-muted"}`}>
                       {total >= 0 ? `+${total}` : total}
-                    </span>
+                    </Overridable>
                     <input
                       type="checkbox"
                       checked={isProficient}
@@ -124,9 +125,9 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
                      <span className="text-[10px] text-ink-muted font-medium">{ability.toUpperCase()} {mod >= 0 ? `+${mod}` : mod}</span>
                   </div>
                   <div className="flex items-center gap-2 shrink-0">
-                    <span className={`text-xs font-semibold ${isProficient ? "text-ink" : "text-ink-muted"}`}>
+                    <Overridable id={`skill:${name}`} label={name} signed editMode={editMode} className={`text-xs font-semibold ${isProficient ? "text-ink" : "text-ink-muted"}`}>
                       {total >= 0 ? `+${total}` : total}
-                    </span>
+                    </Overridable>
                     {(isProficient || isExpert) && (
                       <div className="relative">
                         <button type="button" onClick={() => setInfoSkill(infoSkill === name ? null : name)} className="shrink-0 h-8 w-8 flex items-center justify-center rounded-full border border-[var(--color-border)] text-ink-muted hover:text-ink hover:border-[var(--color-border-active)] transition-all">
@@ -154,12 +155,11 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
       {editMode && (
         <div className="mt-3">
            <span className="field-label-light">{t("skills.passiveWisdomPerception")}</span>
-          <input
-            type="number"
-            value={character.passivePerception}
-            readOnly
-            className="input max-w-[120px]"
-          />
+          <div>
+            <Overridable id="passive:Perception" label={t("skills.passiveWisdomPerception")} editMode={editMode} className="text-lg font-bold text-ink">
+              {character.passivePerception}
+            </Overridable>
+          </div>
         </div>
       )}
     </SectionCard>

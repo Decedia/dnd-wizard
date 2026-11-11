@@ -5,34 +5,37 @@ import { EyeIcon as Eye, EarIcon as Ear, ShieldIcon as Shield, BrainIcon as Brai
 import type { Character } from "@/lib/storage";
 import { getPassiveScore } from "@/lib/storage";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { withOverride } from "@/lib/overrides";
+import { Overridable } from "./Overridable";
 
 interface PassiveStatsSectionProps {
-  character: Pick<Character, "level" | "wis" | "int" | "skills" | "expertise" | "features" | "passivePerception">;
+  character: Pick<Character, "level" | "wis" | "int" | "skills" | "expertise" | "features" | "passivePerception" | "overrides">;
+  editMode?: boolean;
 }
 
-export function PassiveStatsSection({ character }: PassiveStatsSectionProps) {
+export function PassiveStatsSection({ character, editMode }: PassiveStatsSectionProps) {
   const { t } = useLanguage();
   // Same rules as the derived stats: expertise and Observant count.
-  const passivePerception = getPassiveScore(character, "Perception");
-  const passiveInsight = getPassiveScore(character, "Insight");
-  const passiveInvestigation = getPassiveScore(character, "Investigation");
+  const passivePerception = withOverride(character, "passive:Perception", getPassiveScore(character, "Perception"));
+  const passiveInsight = withOverride(character, "passive:Insight", getPassiveScore(character, "Insight"));
+  const passiveInvestigation = withOverride(character, "passive:Investigation", getPassiveScore(character, "Investigation"));
 
   return (
     <SectionCard id="passive-stats" title={t("section.passiveStats")} icon={<Eye className="h-5 w-5" />}>
       <div className="grid grid-cols-3 gap-2">
         <div className="flex flex-col items-center gap-0.5 p-2 bg-[var(--color-bg)] rounded-[var(--radius-md)]">
           <Eye className="h-4 w-4 text-[var(--color-text-muted)]" />
-          <span className="text-lg font-bold text-[var(--color-text-primary)]">{passivePerception}</span>
+          <Overridable id="passive:Perception" label={t("override.passive", { skill: t("sheet.perception") }, "Passive {skill}")} editMode={editMode} className="text-lg font-bold text-[var(--color-text-primary)]">{passivePerception}</Overridable>
           <span className="text-[10px] font-medium text-[var(--color-text-muted)] uppercase tracking-wide">{t("sheet.perception")}</span>
         </div>
         <div className="flex flex-col items-center gap-0.5 p-2 bg-[var(--color-bg)] rounded-[var(--radius-md)]">
           <Ear className="h-4 w-4 text-[var(--color-text-muted)]" />
-          <span className="text-lg font-bold text-[var(--color-text-primary)]">{passiveInsight}</span>
+          <Overridable id="passive:Insight" label={t("override.passive", { skill: t("sheet.insight") }, "Passive {skill}")} editMode={editMode} className="text-lg font-bold text-[var(--color-text-primary)]">{passiveInsight}</Overridable>
           <span className="text-[10px] font-medium text-[var(--color-text-muted)] uppercase tracking-wide">{t("sheet.insight")}</span>
         </div>
         <div className="flex flex-col items-center gap-0.5 p-2 bg-[var(--color-bg)] rounded-[var(--radius-md)]">
           <Brain className="h-4 w-4 text-[var(--color-text-muted)]" />
-          <span className="text-lg font-bold text-[var(--color-text-primary)]">{passiveInvestigation}</span>
+          <Overridable id="passive:Investigation" label={t("override.passive", { skill: t("sheet.investigation") }, "Passive {skill}")} editMode={editMode} className="text-lg font-bold text-[var(--color-text-primary)]">{passiveInvestigation}</Overridable>
           <span className="text-[10px] font-medium text-[var(--color-text-muted)] uppercase tracking-wide">{t("sheet.investigation")}</span>
         </div>
       </div>
