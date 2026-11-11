@@ -1,3 +1,4 @@
+// @ts-ignore - bun:test is provided by the Bun runtime
 import { describe, expect, test } from "bun:test";
 import { featPicks } from "@/lib/level-up-picks";
 
