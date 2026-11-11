@@ -23,6 +23,9 @@ import { characterSpellDamage } from "@/lib/spell-dice";
 import { spellRounds, spellTimerId, startTimer } from "@/lib/timers";
 import { healingBonusLines, spellHealing } from "@/lib/healing";
 import { spellDamageBonuses } from "@/lib/spell-damage-bonus";
+import { useDice } from "@/contexts/DiceContext";
+import { d20Group, spellDamageGroups } from "@/lib/dice-roll";
+import { GiRollingDices } from "react-icons/gi";
 
 interface SpellsSectionProps {
   character: Character;
@@ -252,6 +255,31 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
   const damageOf = (spell: UnifiedSpell) =>
     characterSpellDamage(character, { name: spell.srdSpellName || spell.name, level: spell.level, school: spell.school, classes: spell.classes, damageType: spell.damageType, description: spell.description });
 
+  const dice = useDice();
+  // To hit (spell attacks) and damage on the cast, for the dice tray.
+  const rollGroupsOf = (spell: UnifiedSpell) => {
+    const srd = srdSpells.find((sp) => sp.name === (spell.srdSpellName || spell.name)) as { attackType?: string; attack_type?: string } | undefined;
+    return [
+      ...(srd && (srd.attackType || srd.attack_type) ? [d20Group(t("dice.toHit", "To hit"), character.spellAttackBonus ?? 0)] : []),
+      ...spellDamageGroups(damageOf(spell) || [], t("dice.damage", "Damage")),
+    ];
+  };
+  const rollButton = (spell: UnifiedSpell) => {
+    if (!dice) return null;
+    const groups = rollGroupsOf(spell);
+    if (!groups.length) return null;
+    return (
+      <button
+        type="button"
+        onClick={(e) => { e.stopPropagation(); dice.roll(spell.name, groups); }}
+        className="btn btn-secondary mb-2 inline-flex items-center gap-1.5 !px-3 !py-1 text-xs"
+      >
+        <GiRollingDices className="h-3.5 w-3.5" aria-hidden="true" />
+        {t("dice.roll", "Roll")}
+      </button>
+    );
+  };
+
   const getSummary = (spell: UnifiedSpell) => {
     if (spell.effectSummary) return spell.effectSummary;
     const desc = spell.description || "";
@@ -380,6 +408,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                 {(bonusesOf(spell).length > 0 || damageOf(spell)) && (
                   <div className="mb-2"><SpellDamageLine parts={damageOf(spell)} /><SpellDamageBonusLines bonuses={bonusesOf(spell)} /></div>
                 )}
+                {!editMode && rollButton(spell)}
 
                 {spell.duration && (
                   <span className="block text-[10px] text-[var(--color-text-muted)] mb-2">⏱ {spell.duration}</span>
@@ -538,6 +567,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
             )}
             <SpellDamageLine parts={damageOf(selectedSpell)} />
             <SpellDamageBonusLines bonuses={bonusesOf(selectedSpell)} />
+            {rollButton(selectedSpell)}
             <RichText text={selectedSpell.description || ""} />
             <div className="flex flex-wrap gap-2 pt-1">
               <span className="rounded-full border border-[var(--color-border)] bg-[var(--color-bg)] px-2.5 py-1 text-[10px] font-semibold text-[var(--color-text-secondary)]">

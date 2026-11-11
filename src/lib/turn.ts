@@ -58,6 +58,8 @@ export interface TurnOption {
   damageBonuses?: SpellDamageBonus[];
   /** The spell's damage at the slot it will use, bonuses added. */
   spellDamage?: DamagePart[] | null;
+  /** The spell's attack bonus, for spells that make an attack roll. */
+  spellAttack?: number;
   /** When a feature applies ("when you hit"); locale key `turn.when.*`. */
   when?: FeatureWhen;
   /** Once per turn: greyed out after a tap until End turn. */
@@ -267,6 +269,7 @@ function spellOptions(character: Character, srdSpells: SrdSpell[]): TurnOption[]
       school: srd?.school || undefined,
       damageBonuses: srd ? spellDamageBonuses(character, { name: srd.name, level, school: srd.school, classes: srd.classes, damageType: srd.damage?.damageType, description: srd.description }) : undefined,
       saveDc: srd?.saveType ? character.spellSaveDc || undefined : undefined,
+      spellAttack: srd && (srd.attackType || srd.attack_type) ? character.spellAttackBonus ?? 0 : undefined,
       spend: { spellsUsedThisTurn: [...(character.spellsUsedThisTurn || []).filter((id) => id !== spell.id), spell.id] },
     };
     let castLevel = level;

@@ -381,6 +381,31 @@
 }
 
 @layer components {
+  /* Number over a die in the dice tray (placed by src/components/dice/engine.ts). */
+  .dice-chip {
+    position: absolute;
+    left: 0;
+    top: 0;
+    min-width: 26px;
+    padding: 2px 7px;
+    border-radius: 999px;
+    background: var(--color-ink);
+    color: var(--color-paper);
+    font-size: 12px;
+    font-weight: 800;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.15s;
+    pointer-events: none;
+  }
+  .dice-chip-dropped {
+    background: var(--color-surface);
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+    text-decoration: line-through;
+  }
+
   .surface {
     background-color: var(--color-surface);
     color: var(--color-text-primary);

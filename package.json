@@ -20,6 +20,7 @@
     "@react-pdf/renderer": "^4.9.0",
     "@vitalets/google-translate-api": "^9.2.1",
     "axios": "^1.6.0",
+    "cannon-es": "0.20.0",
     "dexie": "^4.4.5",
     "dotenv": "^18.0.2",
     "html2canvas": "^1.4.1",
