@@ -4,6 +4,7 @@ import { GiCampfire, GiNightSleep } from "react-icons/gi";
 
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
+import { Overridable } from "./Overridable";
 import { ShieldStat } from "./styled/ShieldStat";
 import { SpeedStat } from "./styled/SpeedStat";
 import { SwordIcon as Sword, SparklesIcon as Sparkle, HeartBottleIcon as Heart, DropIcon as Drop, LightningBoltIcon as LightningBolt, ClockIcon as Clock, ShieldCheckIcon as ShieldCheck } from "@/components/icons";
@@ -96,8 +97,13 @@ export function CombatStatsSection({ character, onChange, editMode = true, onOpe
       )}
 
       <div className="flex items-center justify-center gap-4 mb-3">
-        <ShieldStat value={character.ac} />
-        <SpeedStat value={character.speed} />
+        <Overridable id="ac" label={t("sheet.armorClass", "Armor Class")} editMode={editMode} className="no-underline">
+          <ShieldStat value={character.ac} />
+        </Overridable>
+        <Overridable id="speed" label={t("sheet.speed", "Speed")} editMode={editMode} className="no-underline">
+          <SpeedStat value={character.speed} />
+        </Overridable>
+        <Overridable id="initiative" label={t("sheet.initiative", "Initiative")} signed editMode={editMode} className="no-underline">
         <div className="relative flex items-center justify-center">
           <svg viewBox="0 0 100 100" className="h-[72px] w-[72px]" aria-hidden="true">
             <circle cx="50" cy="50" r="44" fill="var(--color-surface)" stroke="var(--color-ink)" strokeWidth="2.5" />
@@ -108,6 +114,7 @@ export function CombatStatsSection({ character, onChange, editMode = true, onOpe
             <span className="text-2xl font-bold text-ink">{(character.initiative ?? 0) >= 0 ? `+${character.initiative ?? 0}` : character.initiative}</span>
           </div>
         </div>
+        </Overridable>
       </div>
 
       <div className="space-y-2.5">
@@ -116,7 +123,7 @@ export function CombatStatsSection({ character, onChange, editMode = true, onOpe
             <span className="field-label-light mb-0">HP</span>
             <div className="flex items-center gap-2">
               <span className="text-[10px] font-semibold text-ink-muted">
-                {character.currentHp} / {maxHp}
+                {character.currentHp} / <Overridable id="maxHp" label={t("override.maxHp", "Max HP")} editMode={editMode}>{maxHp}</Overridable>
               </span>
             </div>
           </div>

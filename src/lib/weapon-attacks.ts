@@ -1,5 +1,6 @@
 import { getModifier, getProficiencyBonus, type Character } from "./storage";
 import { addsProficiencyToAttack } from "./proficiency";
+import { withOverride } from "./overrides";
 import { isFinesseOrRanged, weaponAbility, weaponDamageDice } from "./inventory";
 
 export const isRaging = (character: Pick<Character, "activeStates">) => (character.activeStates || []).includes("raging");
@@ -22,7 +23,8 @@ export function getWeaponAttackDetails(character: Character, attack: Character["
   const abilityMod = getModifier(character[abilityKey] as number);
   return {
     weapon,
-    attackBonus: abilityMod + (addsProficiencyToAttack(character, weapon) ? profBonus : 0),
+    // A to-hit set by hand (a +1 weapon, a DM ruling) wins.
+    attackBonus: withOverride(character, `attack:${weapon.id}`, abilityMod + (addsProficiencyToAttack(character, weapon) ? profBonus : 0)),
     damageDice: weaponDamageDice(weapon),
     damageBonus: abilityMod + (abilityKey === "str" ? rage : 0),
     damageType: weapon.damageType || "",

@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
+import { Overridable } from "./Overridable";
 import { getModifier } from "@/lib/storage";
 import { AbilityScoreBlock } from "./styled/AbilityScoreBlock";
 import { ChartBarIcon as ChartBar, StarIcon as Star } from "@/components/icons";
@@ -93,9 +94,9 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
                   />
                   <span className="text-xs font-semibold text-ink">{key.toUpperCase()}</span>
                 </div>
-                <span className="text-sm font-bold text-ink">
+                <Overridable id={`save:${key}`} label={t("override.save", { ability: key.toUpperCase() }, "{ability} saving throw")} signed editMode={editMode} className="text-sm font-bold text-ink">
                   {st.value >= 0 ? `+${st.value}` : st.value}
-                </span>
+                </Overridable>
               </div>
             );
           })}

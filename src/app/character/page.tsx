@@ -10,7 +10,8 @@ import { importCharacterFromJson } from "@/lib/character-io";
 import { advanceTurn, parseDurationToTurns } from "@/lib/spellEffects";
 import { useSRD } from "@/contexts/SRDContext";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { CharacterSheetProvider } from "@/components/character-sheet/CharacterSheetContext";
+import { CharacterSheetProvider, type OverrideRequest } from "@/components/character-sheet/CharacterSheetContext";
+import { OverrideSheet } from "@/components/character-sheet/OverrideSheet";
 import { SheetTabs, type TabId } from "@/components/character-sheet/SheetTabs";
 import { LevelXpSection } from "@/components/character-sheet/LevelXpSection";
 import { IdentitySection } from "@/components/character-sheet/IdentitySection";
@@ -48,6 +49,7 @@ export function CharacterView() {
   const [turnOpen, setTurnOpen] = useState(false);
   const [restKind, setRestKind] = useState<"short" | "long" | null>(null);
   const [undoOpen, setUndoOpen] = useState(false);
+  const [overrideReq, setOverrideReq] = useState<OverrideRequest | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -316,7 +318,7 @@ export function CharacterView() {
         </div>
       </div>
 
-      <CharacterSheetProvider onFieldBlur={debouncedSave}>
+      <CharacterSheetProvider onFieldBlur={debouncedSave} editOverride={setOverrideReq} overridden={character.overrides}>
          <main className="mx-auto max-w-lg px-4 py-3 pb-6">
           {shownTab === "combat" && (
             <>
@@ -327,7 +329,7 @@ export function CharacterView() {
               )}
               <AttacksAndSpellcastingSection character={character} onChange={handleChange} editMode={editMode} />
               <StatsSection character={character} onChange={handleChange} editMode={editMode} />
-              <PassiveStatsSection character={character} />
+              <PassiveStatsSection character={character} editMode={editMode} />
               <HitDiceSection character={character} onChange={handleChange} editMode={editMode} />
             </>
           )}
@@ -436,6 +438,10 @@ export function CharacterView() {
             <p>{t("levelUndo.kept", "Gear, coins, notes and backstory stay as they are now.")}</p>
           </div>
         </BottomSheet>
+      )}
+
+      {overrideReq && (
+        <OverrideSheet key={overrideReq.key} character={character} request={overrideReq} onChange={handleChange} onClose={() => setOverrideReq(null)} />
       )}
 
       {restKind && (
