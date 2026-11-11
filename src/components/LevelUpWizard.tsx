@@ -6,6 +6,8 @@ import { getStaticClass, getStaticSubclasses, getStaticSpells, getStaticSubclass
 import { SourceBadge } from "./SourceBadge";
 import { getHitDieAverage, getModifier, computeDerivedStats, getMaxBardicInspirationUses, getBardicInspirationDie, hasFontOfInspiration, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getOathSpellNames, getWizardTraditionSpellNames, getMaxSpellLevel, isThirdCaster, getSpellSlotTable, getFeatureValue, getWarlockExpandedSpellNames, getHpBonusPerLevel, castsSpells, getMaxPreparedSpells, isPreparationCaster, type Character } from "@/lib/storage";
 import { fillPrepared, preparableSpells } from "@/lib/prepared-spells";
+import { spellChoicePool, THIRD_CASTER_SCHOOLS } from "@/lib/spell-pool";
+import { quickSpellOrder, QUICK_SPELL_ORDER } from "@/lib/quick-create";
 import { PrepareSpellsSheet } from "@/components/PrepareSpellsSheet";
 import { applySubclassFeatures, applySubclassSpellGrants, syncBaseFeatures } from "@/lib/character-creation";
 import { normalizeDescription } from "@/lib/level-up";
@@ -164,6 +166,16 @@ interface LevelUpWizardProps {
   title?: string;
   subtitle?: string;
   startFromLevelOne?: boolean;
+  /** Level to aim for on open (creation starts at level 1 otherwise). */
+  initialLevel?: number;
+  /**
+   * Quick create: take the top suggestion for every choice and finish on its
+   * own, showing `autoView` meanwhile. If some choice can't be filled,
+   * `onAutoStuck` is called and the normal screens show so the player can finish.
+   */
+  auto?: boolean;
+  autoView?: React.ReactNode;
+  onAutoStuck?: () => void;
 }
 
 interface LevelInfo {
@@ -669,7 +681,7 @@ export function partOfSection(sectionId: string): LevelPart {
   return "spells";
 }
 
-export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLevel, title, subtitle, startFromLevelOne }: LevelUpWizardProps) {
+export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLevel, title, subtitle, startFromLevelOne, initialLevel, auto, autoView, onAutoStuck }: LevelUpWizardProps) {
   const { language, tDesc } = useLanguage();
   const dict = language === "id" ? idTranslations : enTranslations;
   const t = useCallback((key: string, fb?: string, params?: Record<string, string | number>) => {
@@ -692,7 +704,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   const effectiveMinLevel = minLevel ?? currentLevel + 1;
   const effectiveMaxLevel = maxLevel ?? 20;
 
-  const [targetLevel, setTargetLevel] = useState(Math.min(effectiveMaxLevel, Math.max(effectiveMinLevel, currentLevel + 1)));
+  const [targetLevel, setTargetLevel] = useState(Math.min(effectiveMaxLevel, Math.max(effectiveMinLevel, initialLevel ?? currentLevel + 1)));
   // New levels start at the average roll, so a new player never has to type HP.
   const [hpValues, setHpValues] = useState<Record<number, number>>(() => {
     const init: Record<number, number> = {};
@@ -1369,8 +1381,9 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     }
 
     if (draft.class === "Druid" && draft.subclassIndex && getSubclassFlags(draft.subclassIndex).requiresTerrainSelection) {
-      const selectedBonusCantrip = bonusCantripSelections[targetLevel];
-      if (selectedBonusCantrip && !draft.bonusCantrips.includes(selectedBonusCantrip)) {
+      // Picked at level 2, which a jump from level 1 to 3 passes through.
+      for (const selectedBonusCantrip of Object.values(bonusCantripSelections)) {
+      if (selectedBonusCantrip && !(draft.bonusCantrips || []).includes(selectedBonusCantrip)) {
         const spell = getStaticSpells(character.sources, undefined, language).find((s) => s.name?.toLowerCase() === selectedBonusCantrip.toLowerCase());
         if (spell) {
           const id = `spell-${spell.name}-${spell.level}`.replace(/\s+/g, "-");
@@ -1384,8 +1397,12 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
               description: Array.isArray(spell.description) ? spell.description.join("\n") : (spell.description || ""),
             });
           }
+          if (!cantrips.some((c) => c.name.toLowerCase() === spell.name.toLowerCase())) {
+            cantrips.push({ id: `cantrip-${spell.name}`.replace(/\s+/g, "-"), name: spell.name });
+          }
           draft.bonusCantrips = [...(draft.bonusCantrips || []), spell.name];
         }
+      }
       }
     }
         }
@@ -1843,6 +1860,157 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       allAsiFeats={Object.entries(asiSelections).flatMap(([l, st]) => (st?.mode === "feat" && st.feat ? [{ level: Number(l), feat: st.feat }] : []))}
     />
   );
+
+  // Quick create: fill every open choice with its top suggestion, one pass per
+  // render (a pick can open new choices, like a subclass's own options), then finish.
+  const [autoOn, setAutoOn] = useState(!!auto);
+  const autoPasses = useRef(0);
+  const autoFinished = useRef(false);
+  /** One round of picks; true when anything was picked. */
+  function autoFillPass(): boolean {
+    let changed = false;
+    const cls = character.class;
+    const sub = subclassSelection;
+    const used = new Set(takenSpells);
+    // Options can carry a prefix or suffix ("Dragon Ancestor: Red - Fire Damage"), so match whole words.
+    const firstOf = (order: string[], names: string[], count: number) => {
+      const escape = (o: string) => o.replace(/[.*+?^$()|[\]\\{}]/g, "\\$&");
+      const has = (n: string, o: string) => n === o || new RegExp(`(^|[\\s:(])${escape(o)}($|[\\s,)-])`).test(n);
+      const rank = (n: string) => {
+        const i = order.findIndex((o) => has(n, o));
+        return i < 0 ? order.length : i;
+      };
+      return [...names].sort((a, b) => rank(a) - rank(b)).slice(0, count);
+    };
+    const SUB_CHOICE_ORDER: Record<string, string[]> = {
+      "Combat Superiority": MANEUVER_PICKS.map((p) => p.name),
+      "Hunter's Prey": ["Colossus Slayer"],
+      "Defensive Tactics": ["Multiattack Defense"],
+      "Totem Spirit": ["Bear"],
+      "Dragon Ancestor": ["Red", "Gold"],
+    };
+    const CLASS_CHOICE_ORDER: Record<string, string[]> = {
+      "Fighting Style": (FIGHTING_STYLE_PICKS[cls] || []).map((p) => p.name),
+      Metamagic: METAMAGIC_PICKS.map((p) => p.name),
+      Expertise: expertisePicks(cls).map((p) => p.name),
+      "Pact Boon": sub === "Hexblade" ? ["Pact of the Blade"] : ["Pact of the Tome", "Pact of the Blade"],
+      "Favored Enemy": ["Undead", "Fiends", "Humanoids", "Monstrosities"],
+      "Natural Explorer": ["Forest"],
+    };
+    // Spells picked earlier in this pass, by level, so later picks see them (Agonizing Blast needs Eldritch Blast).
+    const pickedNow: Record<number, string[]> = {};
+    for (const info of levelInfos) {
+      const lvl = info.level;
+      if (info.subclassOptions?.length && !sub) {
+        const names = info.subclassOptions.map((o) => o.name);
+        handleSubclassSelect(topPicks(SUBCLASS_PICKS[cls], names)[0]?.name || names[0]);
+        return true;
+      }
+      if (info.asi && !asiIsValid(asiSelections[lvl])) {
+        const p = asiPicks(cls, baseScores(lvl), featNames)[0];
+        if (p?.kind === "single") setAsi(lvl, { mode: "single", single: p.ability });
+        else if (p?.kind === "double") setAsi(lvl, { mode: "double", d1: p.d1, d2: p.d2 });
+        else if (p?.kind === "feat") setAsi(lvl, { mode: "feat", feat: p.feat });
+        changed = true;
+      }
+      for (const [isSubclass, list] of [[false, info.classFeatureChoices], [true, info.subclassFeatureChoices]] as const) {
+        for (const fc of list || []) {
+          if (fc.name === "Eldritch Invocations" || isFeatureSelected(lvl, fc.name, isSubclass)) continue;
+          const options = fc.name === "Pact Boon"
+            ? getPactBoons().filter((b: any) => b.source !== "TCE" || usesOptionalClassFeatures(character)).map((b: any) => b.name)
+            : fc.options.map((o) => o.name);
+          const orders = isSubclass ? SUB_CHOICE_ORDER : CLASS_CHOICE_ORDER;
+          const order = orders[fc.name] || Object.entries(orders).find(([k]) => fc.name.startsWith(k))?.[1] || [];
+          const picks = firstOf(order, options, fc.count || 1);
+          if (picks.length === 0) continue;
+          const setState = isSubclass ? setSubclassFeatureChoices : setClassFeatureChoices;
+          setState((prev) => ({ ...prev, [lvl]: { ...(prev[lvl] || {}), [fc.name]: picks.join(", ") } }));
+          changed = true;
+        }
+      }
+      if (info.expertise && info.expertise.count > 0 && (expertiseSelections[lvl] || []).length < info.expertise.count) {
+        setExpertise(lvl, firstOf(expertisePicks(cls).map((p) => p.name), info.expertise.availableOptions, info.expertise.count));
+        changed = true;
+      }
+      const invocations = info.classFeatureChoices?.find((fc) => fc.name === "Eldritch Invocations");
+      if (invocations && cls === "Warlock" && lvl >= 2 && !(invocationSelections[lvl] || []).length && (pactBoon || lvl < 3)) {
+        const knowsEldritchBlast = [...Object.entries(spellSelections), ...Object.entries(pickedNow)].some(([l, picks]) => Number(l) <= lvl && picks.includes("Eldritch Blast:0"));
+        const known = new Set(Object.entries(invocationSelections).filter(([l]) => Number(l) !== lvl).flatMap(([, picks]) => picks || []));
+        const open = getAvailableInvocations(lvl, pactBoon, [], knowsEldritchBlast, character.sources, usesOptionalClassFeatures(character))
+          .filter((i) => i.available && !known.has(i.name))
+          .map((i) => i.name);
+        const picks = firstOf(INVOCATION_PICKS.map((p) => p.name), open, invocations.count || 1);
+        if (picks.length) {
+          setInvocations(lvl, picks);
+          changed = true;
+        }
+      }
+      if (info.hasSpellSelection) {
+        const mine = spellSelections[lvl] || [];
+        mine.forEach((x) => used.add(x.split(":")[0].toLowerCase()));
+        const cantripsHave = mine.filter((x) => x.endsWith(":0")).length;
+        const spellsHave = mine.length - cantripsHave;
+        if (cantripsHave < info.cantripSelectionCount || spellsHave < info.spellSelectionCount) {
+          const schools = THIRD_CASTER_SCHOOLS[(sub || "").toLowerCase().replace(/\s+/g, "-")];
+          const pool = spellChoicePool(
+            { ...character, subclass: sub, subclassIndex: (sub || "").toLowerCase().replace(/\s+/g, "-"), level: lvl },
+            { subclass: sub, maxLevel: info.maxSpellLevel, selectionType: info.spellSelectionType, castingLevel: lvl, language }
+          ).filter((sp: any) => !used.has(sp.name.toLowerCase()) && (sp.level === 0 || !schools || schools.includes(String(sp.school || "").toLowerCase())));
+          const pickNames = (isCantrip: boolean, n: number) => {
+            if (n <= 0) return [];
+            const of = pool.filter((sp: any) => (sp.level === 0) === isCantrip) as { name: string; level: number }[];
+            return quickSpellOrder(of).slice(0, n).map((sp) => `${sp.name}:${sp.level}`);
+          };
+          const add = [...pickNames(true, info.cantripSelectionCount - cantripsHave), ...pickNames(false, info.spellSelectionCount - spellsHave)];
+          add.forEach((x) => used.add(x.split(":")[0].toLowerCase()));
+          if (add.length) {
+            pickedNow[lvl] = add;
+            setSpells(lvl, [...mine, ...add]);
+            changed = true;
+          }
+        }
+      }
+      if (info.circleTerrainSelection && !circleTerrainSelections[lvl]) {
+        const terrains = getCircleTerrainTypes();
+        setCircleTerrain(lvl, terrains.includes("forest") ? "forest" : terrains[0]);
+        changed = true;
+      }
+      if (info.bonusCantripSelection && !bonusCantripSelections[lvl]) {
+        const names = getStaticSpells(character.sources, character.ruleset).filter((sp) => sp.level === 0 && sp.classes?.includes("Druid") && !used.has(sp.name.toLowerCase())).map((sp) => sp.name);
+        const pick = firstOf(QUICK_SPELL_ORDER, names, 1)[0];
+        if (pick) {
+          used.add(pick.toLowerCase());
+          setBonusCantrip(lvl, pick);
+          changed = true;
+        }
+      }
+    }
+    if (pactBoon === "Pact of the Tome" && pactTomeCantrips.length < 3) {
+      const names = getStaticSpells(character.sources, character.ruleset).filter((sp) => sp.level === 0 && !used.has(sp.name.toLowerCase())).map((sp) => sp.name);
+      setPactTomeCantrips(firstOf(["Guidance", "Sacred Flame", "Toll the Dead", "Mage Hand", "Prestidigitation", "Thaumaturgy"], [...new Set(names)], 3));
+      changed = true;
+    }
+    return changed;
+  }
+
+  useEffect(() => {
+    if (!autoOn || autoFinished.current) return;
+    const timer = setTimeout(() => {
+      if (autoPasses.current++ > 8) {
+        setAutoOn(false);
+        onAutoStuck?.();
+        return;
+      }
+      const changed = autoFillPass();
+      if (!changed && allLevelsComplete) {
+        autoFinished.current = true;
+        handleFinish();
+      }
+    }, 30);
+    return () => clearTimeout(timer);
+  });
+
+  if (autoOn) return <>{autoView}</>;
 
   const upNext = [...new Set(steps.slice(idx + 1).filter((s) => s.part !== "recap" && s.part !== "moment").map((s) => partTitle(s.part)))];
   const levelsLabel = (levels: number[]) =>

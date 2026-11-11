@@ -4,8 +4,7 @@ import { useCallback } from "react";
 import { Info, User, Eye, Scroll, DiceFive } from "@phosphor-icons/react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
-import raceData from "@/data/raceNames.json";
-import classData from "@/data/classNames.json";
+import { randomName } from "@/lib/random-name";
 
 interface StepLookProps {
   data: Character;
@@ -58,22 +57,7 @@ export function StepLook({ data, onChange }: StepLookProps) {
   // Moved from the Origin step. Falls back to human/fighter pools when race or
   // class is not chosen yet (concept-first order).
   const handleRandomName = useCallback(() => {
-    const raceParam = data.race ? data.race.toLowerCase() : "human";
-    const classParam = data.class ? data.class.toLowerCase() : "fighter";
-    const racePool = raceData[raceParam as keyof typeof raceData] || raceData.human;
-    const classPool = classData[classParam as keyof typeof classData] || classData.fighter;
-
-    const randomFirst = racePool.first[Math.floor(Math.random() * racePool.first.length)];
-    const randomLast = racePool.last[Math.floor(Math.random() * racePool.last.length)];
-    const randomTitle = classPool.titles[Math.floor(Math.random() * classPool.titles.length)];
-
-    const formatRoll = Math.random();
-    let generatedName = randomFirst;
-    if (formatRoll > 0.6) generatedName = `${randomFirst} ${randomLast}`;
-    else if (formatRoll > 0.3) generatedName = `${randomFirst} ${randomTitle}`;
-    else generatedName = `${randomFirst} ${randomLast} ${randomTitle}`;
-
-    onChange({ name: generatedName });
+    onChange({ name: randomName(data.race, data.class) });
   }, [data.race, data.class, onChange]);
 
   const nameMissing = !data.name.trim();

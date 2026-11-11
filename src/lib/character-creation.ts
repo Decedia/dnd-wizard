@@ -1,9 +1,9 @@
 import { createEmptyCharacter, saveCharacter, computeDerivedStats, generateId, getFeatureValue, getMaxHpFromLevelHp, getSpellSlotTable, isPreparationCaster, SKILLS, type Character } from "./storage";
 import { suggestPrepared } from "./prepared-spells";
 import { LANGUAGE_NAMES } from "@/data/feat-options";
-import { applyFeatGrants, decodeFeatOptions } from "./feat-grants";
+import { applyFeatGrants, decodeFeatOptions, encodeFeatOptions } from "./feat-grants";
 import { getRaceAsi, getRaceSkills, isFlexAsiValid } from "./race-grants";
-import { addRows, backgroundGearRows, equipRow } from "./inventory";
+import { addRows, backgroundGearRows, equipRow, weaponAbility } from "./inventory";
 import { applyStartingGold, startingGoldOf } from "./starting-gold";
 import { collectProficiencies, getRowProficiency } from "./proficiency";
 import { activeRaceChoices, getStaticClass, getStaticRace, getStaticRaceDetails, getStaticSubclasses, getStaticEquipments, getStaticWeapons, getStaticArmors, getStaticItems, getStaticFeat, getStaticSpells } from "./srd-client";
@@ -1714,6 +1714,110 @@ export function recreateCharacter(character: Character, language = "en"): Charac
  * proficiencies and starting equipment. Switching or clearing the background
  * removes the old background's skills (and, when switching, its granted items).
  */
+/**
+ * What picking a race in the race picker changes: the race, its variant or
+ * sub-choice, Variant Human and Half-Elf picks (undoing the old race's), and
+ * a Variant Human feat row.
+ */
+export function racePatch(data: Character, payload: { name: string; configChoice?: any }): Partial<Character> {
+  const raceName = payload.name;
+  const isVariant = payload.configChoice?.featureData?.choiceType === "variant";
+  const nextRaceChoices = { ...data.raceChoices };
+  if (payload.configChoice?.parentChoiceId && payload.configChoice?.featureData?.id) {
+    nextRaceChoices[payload.configChoice.parentChoiceId] = payload.configChoice.featureData.id;
+  }
+
+  const isHalfElf = raceName.startsWith("Half-Elf");
+  // A half-elf variant's elf trait and cantrip are race choices; the old
+  // picks go so switching variant or trait leaves nothing stale.
+  delete nextRaceChoices["half-elf-versatility"];
+  if (isHalfElf) {
+    delete nextRaceChoices["high-elf-cantrip"];
+    Object.assign(nextRaceChoices, payload.configChoice?.featureData?.choices || {});
+  }
+  const oldAbilities = data.variantHumanAbilities || [];
+  const newAbilities = isVariant ? (payload.configChoice?.featureData?.abilities || []) : [];
+  const oldSkill = data.variantHumanSkill;
+  const newSkill = isVariant ? payload.configChoice?.featureData?.skill : undefined;
+  const oldFeat = data.featureSelections?.["variant-human-feat"]?.[0];
+  const newFeat = isVariant ? payload.configChoice?.featureData?.feat : undefined;
+
+  // Half-Elf mirrors the variant human pattern: undo what was previously
+  // applied, then apply the new picks.
+  const oldHalfElfAbilities = data.halfElfAbilities || [];
+  const newHalfElfAbilities = isHalfElf ? (payload.configChoice?.featureData?.abilities || []) : [];
+  const oldHalfElfSkills = data.halfElfSkills || [];
+  const newHalfElfSkills = isHalfElf ? (payload.configChoice?.featureData?.skills || []) : [];
+
+  const abilityPatch: Record<string, number> = {};
+  for (const ab of [...oldAbilities, ...oldHalfElfAbilities]) {
+    if (abilityPatch[ab] !== undefined) continue;
+    abilityPatch[ab] = ((data[ab as keyof Character] as number) || 10) - 1;
+  }
+  for (const ab of [...newAbilities, ...newHalfElfAbilities]) {
+    if (abilityPatch[ab] !== undefined) continue;
+    abilityPatch[ab] = ((data[ab as keyof Character] as number) || 10) + 1;
+  }
+
+  const nextSkills: Record<string, boolean> = { ...data.skills };
+  if (newSkill && !nextSkills[newSkill]) nextSkills[newSkill] = true;
+  for (const skill of newHalfElfSkills) nextSkills[skill] = true;
+  for (const skill of oldHalfElfSkills) {
+    if (newHalfElfSkills.includes(skill)) continue;
+    delete nextSkills[skill];
+  }
+  const skillPatch: Record<string, any> = { skills: nextSkills };
+
+  const featPatch: Record<string, any> = { features: data.features };
+  if (newFeat && !data.features.some((f) => f.name === newFeat)) {
+        const featData = getStaticFeat(newFeat);
+    if (featData) {
+      featPatch.features = [
+        ...data.features,
+        {
+          id: `feat-${newFeat}`.replace(/\s+/g, "-"),
+          name: featData.name,
+          description: featData.description,
+          summary: featData.summary || null,
+          source: "race" as const,
+          locked: true,
+        },
+      ];
+    }
+  }
+  if (!newFeat && oldFeat) {
+    featPatch.features = data.features.filter((f) => f.name !== oldFeat);
+  }
+
+  return {
+    race: raceName,
+    raceVariant: isVariant ? "variant" : undefined,
+    raceChoices: nextRaceChoices,
+    ...(isVariant ? {
+      variantHumanAbilities: newAbilities,
+      variantHumanSkill: newSkill,
+      featureSelections: {
+        ...data.featureSelections,
+        "variant-human-feat": newFeat ? [newFeat] : [],
+        "variant-human-feat-options": newFeat ? encodeFeatOptions(payload.configChoice?.featureData?.featOptions) : [],
+      },
+    } : { 
+      variantHumanAbilities: undefined, 
+      variantHumanSkill: undefined, 
+      featureSelections: { ...data.featureSelections, "variant-human-feat": [], "variant-human-feat-options": [] } 
+    }),
+    // Half-Elf selections are stored on the character so the abilities step
+    // and the final rebuild can see them, and are cleared when leaving the
+    // race so a stale +1 cannot linger.
+    ...(isHalfElf
+      ? { halfElfAbilities: newHalfElfAbilities, halfElfSkills: newHalfElfSkills }
+      : { halfElfAbilities: undefined, halfElfSkills: undefined }),
+    ...abilityPatch,
+    ...skillPatch,
+    ...featPatch,
+  };
+}
+
 export function applyBackground(data: Character, newBackground: string): Partial<Character> {
   const bgData = getBackgroundData(newBackground);
   const patch: Partial<Character> = { background: newBackground };
@@ -1787,9 +1891,17 @@ export function autoEquipStartingGear(character: Character): Character["inventor
   const weapons = inventory.filter((r) => r.itemType === "weapon" && proficient(r));
   const twoHanded = (r: Character["inventory"][number]) => (r.properties ?? []).includes("two-handed");
   const melee = weapons.filter((r) => r.category !== "ranged");
+  const ranged = weapons.filter((r) => r.category === "ranged");
+  // An archer (Archery fighting style) holds the bow; everyone else a melee weapon.
+  const archer = Object.entries(character.featureSelections || {}).some(([k, v]) => k.includes("Fighting Style") && (v || []).includes("Archery"));
   // With a shield to carry, a one-handed weapon beats a slightly bigger two-handed one.
-  const pool = (shield ? melee.filter((r) => !twoHanded(r)) : melee).length ? (shield ? melee.filter((r) => !twoHanded(r)) : melee) : weapons;
-  const weapon = [...pool].sort((a, b) => averageDamage(b.damageDice) - averageDamage(a.damageDice))[0];
+  const pool = archer && ranged.length && !shield
+    ? ranged
+    : (shield ? melee.filter((r) => !twoHanded(r)) : melee).length ? (shield ? melee.filter((r) => !twoHanded(r)) : melee) : weapons;
+  // Damage plus the ability the weapon swings with, so a Dexterity character takes the shortsword over the staff.
+  const strMod = Math.floor(((character.str || 10) - 10) / 2);
+  const hit = (r: Character["inventory"][number]) => averageDamage(r.damageDice) + (weaponAbility(r, strMod, dex) === "dex" ? dex : strMod);
+  const weapon = [...pool].sort((a, b) => hit(b) - hit(a))[0];
   if (weapon) inventory = equipRow(inventory, weapon.id).inventory;
   if (shield && (!weapon || !twoHanded(weapon))) inventory = equipRow(inventory, shield.id).inventory;
   return inventory;

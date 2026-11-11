@@ -1,6 +1,5 @@
 "use client";
 
-import { encodeFeatOptions } from "@/lib/feat-grants";
 import { useState, useCallback } from "react";
 import { Sword, Users, CaretRight, Scroll, Info } from "@phosphor-icons/react";
 import { getStaticClasses, getStaticRaces, type SRDClass, type SRDRace } from "@/lib/srd-client";
@@ -13,7 +12,7 @@ import { RACE_ICONS } from "@/components/race-icons";
 import { BackgroundSelectionModal, backgroundStatLine } from "../modals/BackgroundSelectionModal";
 import { LanguagePicker } from "./LanguagePicker";
 import { getBackgroundData } from "@/data/backgrounds";
-import { applyBackground } from "@/lib/character-creation";
+import { applyBackground, racePatch } from "@/lib/character-creation";
 
 function SectionHeader({ icon, children }: { icon: React.ReactNode; children: React.ReactNode }) {
   return (
@@ -25,7 +24,7 @@ function SectionHeader({ icon, children }: { icon: React.ReactNode; children: Re
 }
 
 /** One tap-to-choose row, styled like the other creator panels. */
-function PickRow({ label, title, subtitle, icon, chosen, onClick }: { label: string; title: string; subtitle: string; icon: React.ReactNode; chosen: boolean; onClick: () => void }) {
+export function PickRow({ label, title, subtitle, icon, chosen, onClick }: { label: string; title: string; subtitle: string; icon: React.ReactNode; chosen: boolean; onClick: () => void }) {
   return (
     <button
       type="button"
@@ -92,103 +91,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
 
   const handleRaceSelect = useCallback(
     (payload: any) => {
-      const raceName = payload.name;
-      const isVariant = payload.configChoice?.featureData?.choiceType === "variant";
-      const nextRaceChoices = { ...data.raceChoices };
-      if (payload.configChoice?.parentChoiceId && payload.configChoice?.featureData?.id) {
-        nextRaceChoices[payload.configChoice.parentChoiceId] = payload.configChoice.featureData.id;
-      }
-
-      const isHalfElf = raceName.startsWith("Half-Elf");
-      // A half-elf variant's elf trait and cantrip are race choices; the old
-      // picks go so switching variant or trait leaves nothing stale.
-      delete nextRaceChoices["half-elf-versatility"];
-      if (isHalfElf) {
-        delete nextRaceChoices["high-elf-cantrip"];
-        Object.assign(nextRaceChoices, payload.configChoice?.featureData?.choices || {});
-      }
-      const oldAbilities = data.variantHumanAbilities || [];
-      const newAbilities = isVariant ? (payload.configChoice?.featureData?.abilities || []) : [];
-      const oldSkill = data.variantHumanSkill;
-      const newSkill = isVariant ? payload.configChoice?.featureData?.skill : undefined;
-      const oldFeat = data.featureSelections?.["variant-human-feat"]?.[0];
-      const newFeat = isVariant ? payload.configChoice?.featureData?.feat : undefined;
-
-      // Half-Elf mirrors the variant human pattern: undo what was previously
-      // applied, then apply the new picks.
-      const oldHalfElfAbilities = data.halfElfAbilities || [];
-      const newHalfElfAbilities = isHalfElf ? (payload.configChoice?.featureData?.abilities || []) : [];
-      const oldHalfElfSkills = data.halfElfSkills || [];
-      const newHalfElfSkills = isHalfElf ? (payload.configChoice?.featureData?.skills || []) : [];
-
-      const abilityPatch: Record<string, number> = {};
-      for (const ab of [...oldAbilities, ...oldHalfElfAbilities]) {
-        if (abilityPatch[ab] !== undefined) continue;
-        abilityPatch[ab] = ((data[ab as keyof Character] as number) || 10) - 1;
-      }
-      for (const ab of [...newAbilities, ...newHalfElfAbilities]) {
-        if (abilityPatch[ab] !== undefined) continue;
-        abilityPatch[ab] = ((data[ab as keyof Character] as number) || 10) + 1;
-      }
-
-      const nextSkills: Record<string, boolean> = { ...data.skills };
-      if (newSkill && !nextSkills[newSkill]) nextSkills[newSkill] = true;
-      for (const skill of newHalfElfSkills) nextSkills[skill] = true;
-      for (const skill of oldHalfElfSkills) {
-        if (newHalfElfSkills.includes(skill)) continue;
-        delete nextSkills[skill];
-      }
-      const skillPatch: Record<string, any> = { skills: nextSkills };
-
-      const featPatch: Record<string, any> = { features: data.features };
-      if (newFeat && !data.features.some((f) => f.name === newFeat)) {
-        const { getStaticFeat } = require("@/lib/srd-client");
-        const featData = getStaticFeat(newFeat);
-        if (featData) {
-          featPatch.features = [
-            ...data.features,
-            {
-              id: `feat-${newFeat}`.replace(/\s+/g, "-"),
-              name: featData.name,
-              description: featData.description,
-              summary: featData.summary || null,
-              source: "race" as const,
-              locked: true,
-            },
-          ];
-        }
-      }
-      if (!newFeat && oldFeat) {
-        featPatch.features = data.features.filter((f) => f.name !== oldFeat);
-      }
-
-      onChange({
-        race: raceName,
-        raceVariant: isVariant ? "variant" : undefined,
-        raceChoices: nextRaceChoices,
-        ...(isVariant ? {
-          variantHumanAbilities: newAbilities,
-          variantHumanSkill: newSkill,
-          featureSelections: {
-            ...data.featureSelections,
-            "variant-human-feat": newFeat ? [newFeat] : [],
-            "variant-human-feat-options": newFeat ? encodeFeatOptions(payload.configChoice?.featureData?.featOptions) : [],
-          },
-        } : { 
-          variantHumanAbilities: undefined, 
-          variantHumanSkill: undefined, 
-          featureSelections: { ...data.featureSelections, "variant-human-feat": [], "variant-human-feat-options": [] } 
-        }),
-        // Half-Elf selections are stored on the character so the abilities step
-        // and the final rebuild can see them, and are cleared when leaving the
-        // race so a stale +1 cannot linger.
-        ...(isHalfElf
-          ? { halfElfAbilities: newHalfElfAbilities, halfElfSkills: newHalfElfSkills }
-          : { halfElfAbilities: undefined, halfElfSkills: undefined }),
-        ...abilityPatch,
-        ...skillPatch,
-        ...featPatch,
-      });
+      onChange(racePatch(data, payload));
       setRaceModalOpen(false);
     },
     [data, onChange]
