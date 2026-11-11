@@ -9,11 +9,11 @@ export type FeatureSlot = "action" | "bonus" | "reaction" | "free";
 /** When a feature applies, shown as one short line. Locale keys `turn.when.*`. */
 export type FeatureWhen =
   | "onHit" | "onAttackRoll" | "afterAttack" | "afterDash" | "firstAttack" | "onFailSave" | "onDamage"
-  | "whenAttacked" | "onMiss" | "whileRaging" | "afterCast" | "atZeroHp" | "onCritOrKill" | "oncePerTurn";
+  | "whenAttacked" | "onMiss" | "whileRaging" | "afterCast" | "atZeroHp" | "onCritOrKill" | "oncePerTurn" | "onCast";
 
 export type PoolField =
   | "rages" | "kiPoints" | "channelDivinityUses" | "actionSurgeUses" | "indomitableUses" | "layOnHandsPool"
-  | "wildShapeUses" | "sorceryPoints" | "bardicInspirationUses" | "superiorityDice" | "luckPoints";
+  | "wildShapeUses" | "sorceryPoints" | "bardicInspirationUses" | "superiorityDice" | "luckPoints" | "psionicDice";
 
 type Count = number | ((c: Character) => number);
 
@@ -28,6 +28,10 @@ export interface FeatureRule {
   variablePool?: PoolField;
   /** Its own uses, counted in `character.featureUses` and refilled on a rest. */
   uses?: { max: Count; per: "short" | "long" };
+  /** When its own uses are gone, it can still be used by spending this pool (Psi Warrior). */
+  orPool?: { field: PoolField; amount: number };
+  /** Using it gives one back to this pool, up to its maximum (Psi Warrior's recovery). */
+  gain?: PoolField;
   /** Spends the lowest open spell slot. */
   spellSlot?: boolean;
   /** Action Surge: the action comes back. */
@@ -117,6 +121,11 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Giant's Might/, slot: "bonus", uses: { max: prof, per: "long" } },
   { name: /^Warding Maneuver/, slot: "reaction", uses: { max: CON, per: "long" } },
   { name: /^Arcane Shot$/, slot: "free", when: "onHit", uses: { max: 2, per: "short" } },
+  { name: /^Runic Shield/, slot: "reaction", when: "whenAttacked", uses: { max: prof, per: "long" } },
+  { name: /^Telekinetic Adept/, slot: "bonus", uses: short1, orPool: { field: "psionicDice", amount: 1 } },
+  { name: /^Guarded Mind/, slot: "free", pool: { field: "psionicDice", amount: 1 } },
+  { name: /^Bulwark of Force/, slot: "bonus", uses: long1, orPool: { field: "psionicDice", amount: 1 } },
+  { name: /^Telekinetic Master/, slot: "action", uses: long1, orPool: { field: "psionicDice", amount: 1 } },
 
   // ----- Monk -----
   { name: /^Flurry of Blows/, slot: "bonus", when: "afterAttack", pool: ki(1) },
@@ -257,16 +266,121 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Mage Slayer/, slot: "reaction" },
   { name: /^Defensive Duelist/, slot: "reaction", when: "whenAttacked" },
   { name: /^Healer$/, slot: "action" },
-  { name: /^Telekinetic/, slot: "bonus" },
+  { name: /^Telekinetic$/, slot: "bonus" },
   { name: /^Second Chance/, slot: "reaction", when: "whenAttacked", uses: short1 },
 ];
 
-/** A stable key for a rule's own uses, from its pattern. */
-export function ruleKey(rule: FeatureRule): string {
-  return rule.name.source;
+/**
+ * Options inside one feature: the Metamagic, maneuvers and runes the player
+ * picked, and the parts of Psionic Power. Each becomes its own row in the turn
+ * helper. `summary` is our own one-line text; the Indonesian is under
+ * `turn.sub.<key>` in the locale files.
+ */
+export interface SubOption extends Omit<FeatureRule, "name" | "bonusWith" | "only"> {
+  name: string;
+  key: string;
+  summary: string;
+  /** Only from this character level. */
+  minLevel?: number;
 }
 
-export function usesMax(rule: FeatureRule, character: Character): number {
+export interface SubOptionGroup {
+  /** The feature on the sheet these belong to. */
+  feature: string;
+  /** Only the options the player picked for the feature (Metamagic, maneuvers, runes); else all of them. */
+  picked: boolean;
+  options: SubOption[];
+}
+
+const die = { field: "superiorityDice", amount: 1 } as const;
+const psi = { field: "psionicDice", amount: 1 } as const;
+const maneuver = (name: string, key: string, slot: FeatureSlot, summary: string, when?: FeatureWhen): SubOption => ({ name, key, slot, when, pool: die, summary });
+const metamagic = (name: string, key: string, points: number, summary: string): SubOption => ({ name, key, slot: "free", when: "onCast", pool: sp(points), summary });
+/** Each rune: once per short rest, twice from level 15 (Master of Runes). */
+const runeUses = { max: (c: Character) => ((c.level || 1) >= 15 ? 2 : 1), per: "short" } as const;
+const rune = (name: string, key: string, slot: FeatureSlot, summary: string, when?: FeatureWhen): SubOption => ({ name, key, slot, when, uses: runeUses, summary });
+
+export const SUB_OPTIONS: SubOptionGroup[] = [
+  {
+    feature: "Metamagic",
+    picked: true,
+    options: [
+      metamagic("Careful Spell", "careful", 1, "Creatures you choose automatically succeed on the spell's saving throw."),
+      metamagic("Distant Spell", "distant", 1, "Double the spell's range. A touch spell reaches 30 feet."),
+      metamagic("Empowered Spell", "empowered", 1, "Reroll some damage dice (up to your CHA modifier) and keep the new rolls."),
+      metamagic("Extended Spell", "extended", 1, "Double the spell's duration, up to 24 hours."),
+      metamagic("Heightened Spell", "heightened", 3, "One target has disadvantage on its first save against the spell."),
+      metamagic("Quickened Spell", "quickened", 2, "Cast a spell that takes an action as a bonus action instead."),
+      metamagic("Subtle Spell", "subtle", 1, "Cast the spell with no words and no gestures."),
+      { name: "Twinned Spell", key: "twinned", slot: "free", when: "onCast", variablePool: "sorceryPoints", summary: "A spell that targets one creature also targets a second one. Costs points equal to the spell's level (1 for a cantrip)." },
+      metamagic("Seeking Spell", "seeking", 2, "Reroll the d20 of a spell attack that missed."),
+      metamagic("Transmuted Spell", "transmuted", 1, "Change the damage type to acid, cold, fire, lightning, poison or thunder."),
+    ],
+  },
+  {
+    feature: "Combat Superiority",
+    picked: true,
+    options: [
+      maneuver("Commander's Strike", "commandersStrike", "bonus", "Give up one of your attacks: an ally uses its reaction to attack and adds your die to the damage."),
+      maneuver("Disarming Attack", "disarmingAttack", "free", "Add the die to the damage. The target makes a STR save or drops one item it holds.", "onHit"),
+      maneuver("Distracting Strike", "distractingStrike", "free", "Add the die to the damage. The next ally's attack on the target has advantage.", "onHit"),
+      maneuver("Evasive Footwork", "evasiveFootwork", "free", "When you move, add the die to your AC until you stop."),
+      maneuver("Feinting Attack", "feintingAttack", "bonus", "Advantage on your next attack against a creature within 5 feet. Add the die to the damage if it hits."),
+      maneuver("Goading Attack", "goadingAttack", "free", "Add the die to the damage. The target makes a WIS save or has disadvantage attacking anyone but you.", "onHit"),
+      maneuver("Lunging Attack", "lungingAttack", "free", "Reach 5 feet further with one melee attack. Add the die to the damage if it hits.", "onAttackRoll"),
+      maneuver("Maneuvering Attack", "maneuveringAttack", "free", "Add the die to the damage. An ally can use its reaction to move half its speed without opportunity attacks.", "onHit"),
+      maneuver("Menacing Attack", "menacingAttack", "free", "Add the die to the damage. The target makes a WIS save or is frightened of you until your next turn ends.", "onHit"),
+      maneuver("Parry", "parry", "reaction", "When a melee attack hits you, reduce the damage by the die plus your DEX modifier.", "onDamage"),
+      maneuver("Precision Attack", "precisionAttack", "free", "Add the die to an attack roll, before or after you roll.", "onAttackRoll"),
+      maneuver("Pushing Attack", "pushingAttack", "free", "Add the die to the damage. A Large or smaller target makes a STR save or is pushed 15 feet.", "onHit"),
+      maneuver("Rally", "rally", "bonus", "An ally who can hear you gains temporary HP equal to the die plus your CHA modifier."),
+      maneuver("Riposte", "riposte", "reaction", "When a creature misses you in melee, attack it and add the die to the damage.", "whenAttacked"),
+      maneuver("Sweeping Attack", "sweepingAttack", "free", "Another creature within 5 feet takes the die as damage if your attack roll would hit it.", "onHit"),
+      maneuver("Trip Attack", "tripAttack", "free", "Add the die to the damage. A Large or smaller target makes a STR save or falls prone.", "onHit"),
+      maneuver("Ambush", "ambush", "free", "Add the die to a Stealth check or an initiative roll."),
+      maneuver("Bait and Switch", "baitAndSwitch", "free", "Swap places with an ally within 5 feet. One of you adds the die to AC until your next turn starts."),
+      maneuver("Brace", "brace", "reaction", "When a creature moves into your reach, attack it and add the die to the damage."),
+      maneuver("Commanding Presence", "commandingPresence", "free", "Add the die to an Intimidation, Performance or Persuasion check."),
+      maneuver("Grappling Strike", "grapplingStrike", "bonus", "Right after a melee hit, try to grapple the target and add the die to the check.", "afterAttack"),
+      maneuver("Quick Toss", "quickToss", "bonus", "Draw and throw a thrown weapon. Add the die to the damage if it hits."),
+      maneuver("Tactical Assessment", "tacticalAssessment", "free", "Add the die to an Investigation, History or Insight check."),
+    ],
+  },
+  {
+    feature: "Rune Carver",
+    picked: true,
+    options: [
+      rune("Cloud Rune", "cloudRune", "reaction", "When you or a creature within 30 feet is hit, the hit goes to another creature you choose instead.", "whenAttacked"),
+      rune("Fire Rune", "fireRune", "free", "The target takes 2d6 fire damage at the start of each of its turns and is restrained (STR save ends).", "onHit"),
+      rune("Frost Rune", "frostRune", "bonus", "+2 to STR and CON checks and saves for 10 minutes."),
+      rune("Stone Rune", "stoneRune", "reaction", "A creature ending its turn within 30 feet makes a WIS save or is charmed and cannot move."),
+      rune("Hill Rune", "hillRune", "bonus", "Resistance to bludgeoning, piercing and slashing damage for 1 minute."),
+      rune("Storm Rune", "stormRune", "bonus", "For 1 minute, use your reaction to give advantage or disadvantage to a roll near you."),
+    ],
+  },
+  {
+    feature: "Psionic Power",
+    picked: false,
+    options: [
+      { name: "Protective Field", key: "protectiveField", slot: "reaction", when: "onDamage", pool: psi, summary: "Reduce the damage to you or a creature within 30 feet by a psionic die plus your INT modifier." },
+      { name: "Psionic Strike", key: "psionicStrike", slot: "free", when: "onHit", pool: psi, summary: "Once per turn, deal extra force damage: a psionic die plus your INT modifier." },
+      { name: "Telekinetic Movement", key: "telekineticMovement", slot: "action", uses: short1, orPool: psi, summary: "Move an object or a willing creature up to 30 feet." },
+      { name: "Recover a psionic die", key: "psionicRecover", slot: "bonus", uses: short1, gain: "psionicDice", summary: "Get one psionic die back. Once per short rest." },
+    ],
+  },
+];
+
+/** The sub-options this character can use for one feature. */
+export function subOptionsFor(character: Character, group: SubOptionGroup, picks: string[]): SubOption[] {
+  return group.options.filter((o) => (!group.picked || picks.includes(o.name)) && (!o.minLevel || (character.level || 1) >= o.minLevel));
+}
+
+/** A stable key for a rule's own uses, from its pattern. */
+export function ruleKey(rule: FeatureRule | SubOption): string {
+  return "key" in rule ? `sub:${rule.key}` : rule.name.source;
+}
+
+export function usesMax(rule: FeatureRule | SubOption, character: Character): number {
   if (!rule.uses) return 0;
   return Math.max(1, typeof rule.uses.max === "function" ? rule.uses.max(character) : rule.uses.max);
 }
@@ -279,6 +393,9 @@ export function ruleFor(character: Character, featureName: string): FeatureRule 
 /** Counted uses that a rest gives back: all of them on a long rest, the short-rest ones on a short rest. */
 export function featureUsesAfterRest(used: Record<string, number> | undefined, kind: "short" | "long"): Record<string, number> {
   if (kind === "long" || !used) return {};
-  const shortKeys = new Set(FEATURE_RULES.filter((r) => r.uses?.per === "short").map(ruleKey));
+  const shortKeys = new Set([
+    ...FEATURE_RULES.filter((r) => r.uses?.per === "short").map(ruleKey),
+    ...SUB_OPTIONS.flatMap((g) => g.options).filter((o) => o.uses?.per === "short").map(ruleKey),
+  ]);
   return Object.fromEntries(Object.entries(used).filter(([key]) => !shortKeys.has(key)));
 }

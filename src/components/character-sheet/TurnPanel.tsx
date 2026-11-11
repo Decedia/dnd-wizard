@@ -75,13 +75,13 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
     return map;
   }, [character.class, character.subclass, character.ruleset, language]);
 
-  const nameOf = (o: TurnOption) => (o.nameKey ? t(o.nameKey) : o.name);
+  const nameOf = (o: TurnOption) => (o.nameKey ? t(o.nameKey, o.nameValues ?? {}) : o.name);
   const textOf = (o: TurnOption) => {
     const parts: string[] = [];
     if (o.toHit !== undefined) parts.push(t("turn.toHit", { bonus: signed(o.toHit) }, "{bonus} to hit"));
     if (o.damage) parts.push(o.damage);
     if (o.saveDc) parts.push(t("turn.saveDc", { dc: o.saveDc }, "Save DC {dc}"));
-    const summary = o.summaryKey ? t(o.summaryKey) : (o.group === "feature" && localSummary.get(o.name)) || o.summary;
+    const summary = o.summaryKey ? t(o.summaryKey, o.summary || undefined) : (o.group === "feature" && localSummary.get(o.name)) || o.summary;
     return [parts.join(" · "), summary].filter(Boolean).join(parts.length && summary ? ". " : "");
   };
   const costOf = (o: TurnOption) => {
@@ -92,6 +92,8 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
     if (o.blocked === "noSlot") return t("turn.block.noSlot", "No spell slot left");
     if (o.blocked === "empty") return t("turn.block.empty", "None left. It comes back after a rest.");
     if (o.blocked === "shaped") return t("turn.block.shaped", "You are already in beast form.");
+    if (o.blocked === "full") return t("turn.block.full", "Already full.");
+    if (o.blocked === "slotsFull") return t("turn.block.slotsFull", "No spent slot of this level to get back.");
     if (o.blocked === "raging") return t("turn.block.raging", "You are already raging.");
     if (o.blocked === "notRaging") return t("turn.block.notRaging", "Only while you rage. Use Rage first.");
     if (slotUsed) return t(`turn.block.used.${o.slot}`);
@@ -152,7 +154,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
     const reason = reasonOf(o, slotUsed);
     const cost = costOf(o);
     const text = textOf(o);
-    const full = o.detail || (o.summaryKey ? t(o.summaryKey) : o.summary);
+    const full = o.detail || (o.summaryKey ? t(o.summaryKey, o.summary || undefined) : o.summary);
     return (
       <div key={o.key} className={`flex overflow-hidden rounded-[var(--radius-md)] border bg-[var(--color-surface)] transition-colors hover:border-[var(--color-border-active)] ${best ? "border-2 border-[var(--color-ink)]" : "border-[var(--color-border)]"}`}>
         <button

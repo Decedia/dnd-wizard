@@ -21,6 +21,7 @@ const POOLS: { field: keyof Character; max: keyof Character; rest: RestKind; lab
   { field: "sorceryPoints", max: "maxSorceryPoints", rest: "long", label: "sorceryPoints" },
   { field: "bardicInspirationUses", max: "maxBardicInspirationUses", rest: "long", label: "bardicInspiration" },
   { field: "luckPoints", max: "maxLuckPoints", rest: "long", label: "luckPoints" },
+  { field: "psionicDice", max: "maxPsionicDice", rest: "long", label: "psionicDice" },
 ];
 
 const num = (character: Character, field: keyof Character) => (typeof character[field] === "number" ? (character[field] as number) : 0);

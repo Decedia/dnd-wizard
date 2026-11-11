@@ -176,6 +176,9 @@ export interface Character {
   /** Battle Master: superiority dice, regained on a short rest. */
   superiorityDice?: number;
   maxSuperiorityDice?: number;
+  /** Psi Warrior: Psionic Energy dice (2 x proficiency bonus), regained on a long rest. */
+  psionicDice?: number;
+  maxPsionicDice?: number;
   /** Artificer Arcane Pool (Tasha's Cauldron). */
   arcanePool?: number;
   maxWildShapeUses?: number;
@@ -957,7 +960,7 @@ export function getClassGrantedAttacks(character: Character): { id: string; name
   if (!classData) return [];
   const attacks: { id: string; name: string; attackBonus: number; damageType: string; sneakAttack?: string; source: "class"; classFeatureName: string }[] = [];
   const profBonus = getProficiencyBonus(character.level);
-  for (const feature of classData.features) {
+  for (const feature of classData.features ?? []) {
     if (feature.type === "attack") {
       if (feature.name === "Sneak Attack") {
         const sneakDice = getSneakAttackDice(character);
@@ -1229,6 +1232,9 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   wildShapeUses = keepPool(character.wildShapeUses, character.maxWildShapeUses, maxWildShapeUses);
   sorceryPoints = keepPool(character.sorceryPoints, character.maxSorceryPoints, maxSorceryPoints);
   superiorityDice = keepPool(character.superiorityDice, character.maxSuperiorityDice, maxSuperiorityDice);
+  // Psi Warrior (Tasha's), level 3: psionic dice equal to twice the proficiency bonus.
+  const maxPsionicDice = character.class === "Fighter" && character.subclass === "Psi Warrior" && (character.level || 1) >= 3 ? 2 * getProficiencyBonus(character.level || 1) : 0;
+  const psionicDice = keepPool(character.psionicDice, character.maxPsionicDice, maxPsionicDice);
   bardicInspirationUses = keepPool(character.bardicInspirationUses, character.maxBardicInspirationUses, maxBardicInspirationUses);
   const maxLuckPoints = luckPoints;
   luckPoints = keepPool(character.luckPoints, character.maxLuckPoints, maxLuckPoints);
@@ -1492,6 +1498,8 @@ export function computeDerivedStats(character: Character): Partial<Character> {
     maxLuckPoints,
     superiorityDice,
     maxSuperiorityDice,
+    psionicDice,
+    maxPsionicDice,
     sorceryPoints,
     maxSorceryPoints,
     invocationsKnown,
