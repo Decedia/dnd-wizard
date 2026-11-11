@@ -11276,7 +11276,8 @@
       },
       "classes": [
         "Cleric",
-        "Druid"
+        "Druid",
+        "Ranger"
       ],
       "subclasses": [
         "Lore",
@@ -11486,59 +11487,6 @@
       "onSuccessfulSave": null,
       "ongoingEffect": null,
       "escapeCondition": null,
-      "immunities": null,
-      "upcastEffect": null
-    },
-    {
-      "higher_level": [],
-      "index": "protection-from-energy",
-      "name": "Protection From Energy",
-      "desc": [
-        "For the duration, the willing creature you touch has resistance to one damage type of your choice: acid, cold, fire, lightning, or thunder."
-      ],
-      "range": "Touch",
-      "components": {
-        "verbal": true,
-        "somatic": true,
-        "material": false,
-        "materialDesc": null
-      },
-      "ritual": false,
-      "duration": "Up to 1 hour",
-      "concentration": true,
-      "casting_time": "1 action",
-      "level": 3,
-      "school": {
-        "index": "abjuration",
-        "name": "Abjuration",
-        "url": "/api/2014/magic-schools/abjuration"
-      },
-      "classes": [
-        "Cleric",
-        "Druid",
-        "Ranger",
-        "Sorcerer",
-        "Wizard"
-      ],
-      "subclasses": [
-        "Lore",
-        "Land"
-      ],
-      "url": "/api/2014/spells/protection-from-energy",
-      "updated_at": "2026-04-01T20:35:39.217Z",
-      "description": "Sebagai sebuah Action, kamu menyentuh makhluk yang bersedia. Selama durasi hingga 1 jam, makhluk tersebut memiliki resistansi terhadap satu tipe kerusakan pilihanmu: asam, dingin, api, petir, atau guntur.",
-      "higherLevel": [],
-      "castingTime": "1 action",
-      "source": "PHB",
-      "effectSummary": "Sihir pelindung yang memberikan resistansi terhadap satu tipe kerusakan elemental tertentu kepada makhluk yang disentuh selama satu jam.",
-      "fullDescription": "Sebagai sebuah Action, kamu menyentuh makhluk yang bersedia. Selama durasi hingga 1 jam, makhluk tersebut memiliki resistansi terhadap satu tipe kerusakan pilihanmu: asam, dingin, api, petir, atau guntur.",
-      "actionType": "Action",
-      "onHit": null,
-      "saveType": null,
-      "onFailedSave": null,
-      "onSuccessfulSave": null,
-      "ongoingEffect": null,
-      "escapeCondition": "Effect ends when duration expires",
       "immunities": null,
       "upcastEffect": null
     },
@@ -23462,7 +23410,7 @@
         "url": "/api/2014/magic-schools/abjuration"
       },
       "classes": [
-        "Artificer",
+        "Cleric",
         "Paladin"
       ],
       "source": "PHB",
@@ -23504,7 +23452,7 @@
         "url": "/api/2014/magic-schools/abjuration"
       },
       "classes": [
-        "Artificer",
+        "Cleric",
         "Paladin"
       ],
       "source": "PHB",
@@ -23547,6 +23495,7 @@
       },
       "classes": [
         "Artificer",
+        "Druid",
         "Paladin",
         "Ranger"
       ],
@@ -23635,7 +23584,8 @@
         "url": "/api/2014/magic-schools/evocation"
       },
       "classes": [
-        "Artificer",
+        "Cleric",
+        "Druid",
         "Paladin"
       ],
       "source": "PHB",

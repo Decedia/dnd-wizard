@@ -1,0 +1,816 @@
+{
+ "_note": "Class lists of the non-SRD 2014 spells, checked by hand against the books (PHB, XGE, TCE, SCAG, EGW, FTD, SCC), including the class additions from Tasha's Cauldron. Edit only with the book open.",
+ "classes": {
+  "Blade Ward": [
+   "Bard",
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Booming Blade": [
+   "Artificer",
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Control Flames": [
+   "Druid",
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Create Bonfire": [
+   "Artificer",
+   "Druid",
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Friends": [
+   "Bard",
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Frostbite": [
+   "Artificer",
+   "Druid",
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Green-Flame Blade": [
+   "Artificer",
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Gust": [
+   "Druid",
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Infestation": [
+   "Druid",
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Lightning Lure": [
+   "Artificer",
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Magic Stone": [
+   "Artificer",
+   "Druid",
+   "Warlock"
+  ],
+  "Mind Sliver": [
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Mold Earth": [
+   "Druid",
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Primal Savagery": [
+   "Druid"
+  ],
+  "Sapping Sting": [
+   "Wizard"
+  ],
+  "Shape Water": [
+   "Druid",
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Sword Burst": [
+   "Artificer",
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Thorn Whip": [
+   "Artificer",
+   "Druid"
+  ],
+  "Thunderclap": [
+   "Artificer",
+   "Bard",
+   "Druid",
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Toll the Dead": [
+   "Cleric",
+   "Warlock",
+   "Wizard"
+  ],
+  "Word of Radiance": [
+   "Cleric"
+  ],
+  "Absorb Elements": [
+   "Artificer",
+   "Druid",
+   "Ranger",
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Armor of Agathys": [
+   "Warlock"
+  ],
+  "Arms of Hadar": [
+   "Warlock"
+  ],
+  "Beast Bond": [
+   "Druid",
+   "Ranger"
+  ],
+  "Catapult": [
+   "Artificer",
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Cause Fear": [
+   "Warlock",
+   "Wizard"
+  ],
+  "Ceremony": [
+   "Cleric",
+   "Paladin"
+  ],
+  "Chaos Bolt": [
+   "Sorcerer"
+  ],
+  "Chromatic Orb": [
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Compelled Duel": [
+   "Paladin"
+  ],
+  "Dissonant Whispers": [
+   "Bard"
+  ],
+  "Earth Tremor": [
+   "Bard",
+   "Druid",
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Ensnaring Strike": [
+   "Ranger"
+  ],
+  "Gift of Alacrity": [
+   "Wizard"
+  ],
+  "Hail of Thorns": [
+   "Ranger"
+  ],
+  "Hex": [
+   "Warlock"
+  ],
+  "Ice Knife": [
+   "Druid",
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Magnify Gravity": [
+   "Wizard"
+  ],
+  "Ray of Sickness": [
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Searing Smite": [
+   "Paladin"
+  ],
+  "Silvery Barbs": [
+   "Bard",
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Snare": [
+   "Artificer",
+   "Druid",
+   "Ranger",
+   "Wizard"
+  ],
+  "Tasha's Caustic Brew": [
+   "Artificer",
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Thunderous Smite": [
+   "Paladin"
+  ],
+  "Witch Bolt": [
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Wrathful Smite": [
+   "Paladin"
+  ],
+  "Zephyr Strike": [
+   "Ranger"
+  ],
+  "Aganazzar's Scorcher": [
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Beast Sense": [
+   "Druid",
+   "Ranger"
+  ],
+  "Borrowed Knowledge": [
+   "Bard",
+   "Cleric",
+   "Warlock",
+   "Wizard"
+  ],
+  "Cloud of Daggers": [
+   "Bard",
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Cordon of Arrows": [
+   "Ranger"
+  ],
+  "Crown of Madness": [
+   "Bard",
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Dragon's Breath": [
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Dust Devil": [
+   "Druid",
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Earthbind": [
+   "Druid",
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Fortune's Favor": [
+   "Wizard"
+  ],
+  "Healing Spirit": [
+   "Druid",
+   "Ranger"
+  ],
+  "Immovable Object": [
+   "Wizard"
+  ],
+  "Kinetic Jaunt": [
+   "Artificer",
+   "Bard",
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Maximilian's Earthen Grasp": [
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Mind Spike": [
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Nathair's Mischief": [
+   "Bard",
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Phantasmal Force": [
+   "Bard",
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Pyrotechnics": [
+   "Artificer",
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Rime's Binding Ice": [
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Shadow Blade": [
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Skywrite": [
+   "Artificer",
+   "Bard",
+   "Druid",
+   "Wizard"
+  ],
+  "Snilloc's Snowball Swarm": [
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Summon Beast": [
+   "Druid",
+   "Ranger"
+  ],
+  "Tasha's Mind Whip": [
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Vortex Warp": [
+   "Artificer",
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Warding Wind": [
+   "Bard",
+   "Druid",
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Wither and Bloom": [
+   "Druid",
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Wristpocket": [
+   "Wizard"
+  ],
+  "Ashardalon's Stride": [
+   "Artificer",
+   "Ranger",
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Aura of Vitality": [
+   "Cleric",
+   "Druid",
+   "Paladin"
+  ],
+  "Blinding Smite": [
+   "Paladin"
+  ],
+  "Catnap": [
+   "Artificer",
+   "Bard",
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Conjure Barrage": [
+   "Ranger"
+  ],
+  "Crusader's Mantle": [
+   "Paladin"
+  ],
+  "Elemental Weapon": [
+   "Artificer",
+   "Druid",
+   "Paladin",
+   "Ranger"
+  ],
+  "Enemies Abound": [
+   "Bard",
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Erupting Earth": [
+   "Druid",
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Feign Death": [
+   "Bard",
+   "Cleric",
+   "Druid",
+   "Wizard"
+  ],
+  "Flame Arrows": [
+   "Artificer",
+   "Druid",
+   "Ranger",
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Hunger of Hadar": [
+   "Warlock"
+  ],
+  "Intellect Fortress": [
+   "Artificer",
+   "Bard",
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Life Transference": [
+   "Cleric",
+   "Wizard"
+  ],
+  "Lightning Arrow": [
+   "Ranger"
+  ],
+  "Melf's Minute Meteors": [
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Pulse Wave": [
+   "Wizard"
+  ],
+  "Spirit Shroud": [
+   "Cleric",
+   "Paladin",
+   "Warlock",
+   "Wizard"
+  ],
+  "Summon Fey": [
+   "Druid",
+   "Ranger",
+   "Warlock",
+   "Wizard"
+  ],
+  "Summon Lesser Demons": [
+   "Warlock",
+   "Wizard"
+  ],
+  "Summon Shadowspawn": [
+   "Warlock",
+   "Wizard"
+  ],
+  "Summon Undead": [
+   "Warlock",
+   "Wizard"
+  ],
+  "Thunder Step": [
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Tidal Wave": [
+   "Druid",
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Tiny Servant": [
+   "Artificer",
+   "Wizard"
+  ],
+  "Wall of Sand": [
+   "Wizard"
+  ],
+  "Wall of Water": [
+   "Druid",
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Aura of Life": [
+   "Cleric",
+   "Paladin"
+  ],
+  "Aura of Purity": [
+   "Cleric",
+   "Paladin"
+  ],
+  "Charm Monster": [
+   "Bard",
+   "Druid",
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Elemental Bane": [
+   "Druid",
+   "Warlock",
+   "Wizard"
+  ],
+  "Find Greater Steed": [
+   "Paladin"
+  ],
+  "Grasping Vine": [
+   "Druid",
+   "Ranger"
+  ],
+  "Gravity Sinkhole": [
+   "Wizard"
+  ],
+  "Guardian of Nature": [
+   "Druid",
+   "Ranger"
+  ],
+  "Raulothim's Psychic Lance": [
+   "Bard",
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Shadow of Moil": [
+   "Warlock"
+  ],
+  "Sickening Radiance": [
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Staggering Smite": [
+   "Paladin"
+  ],
+  "Storm Sphere": [
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Summon Aberration": [
+   "Warlock",
+   "Wizard"
+  ],
+  "Summon Construct": [
+   "Artificer",
+   "Wizard"
+  ],
+  "Summon Elemental": [
+   "Druid",
+   "Ranger",
+   "Wizard"
+  ],
+  "Summon Greater Demon": [
+   "Warlock",
+   "Wizard"
+  ],
+  "Vitriolic Sphere": [
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Watery Sphere": [
+   "Druid",
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Banishing Smite": [
+   "Paladin"
+  ],
+  "Circle of Power": [
+   "Paladin"
+  ],
+  "Conjure Volley": [
+   "Ranger"
+  ],
+  "Control Winds": [
+   "Druid",
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Danse Macabre": [
+   "Warlock",
+   "Wizard"
+  ],
+  "Dawn": [
+   "Cleric",
+   "Wizard"
+  ],
+  "Destructive Wave": [
+   "Paladin"
+  ],
+  "Enervation": [
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Far Step": [
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Holy Weapon": [
+   "Cleric",
+   "Paladin"
+  ],
+  "Immolation": [
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Infernal Calling": [
+   "Warlock",
+   "Wizard"
+  ],
+  "Maelstrom": [
+   "Druid"
+  ],
+  "Negative Energy Flood": [
+   "Warlock",
+   "Wizard"
+  ],
+  "Skill Empowerment": [
+   "Artificer",
+   "Bard",
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Steel Wind Strike": [
+   "Ranger",
+   "Wizard"
+  ],
+  "Summon Celestial": [
+   "Cleric",
+   "Paladin"
+  ],
+  "Summon Draconic Spirit": [
+   "Druid",
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Swift Quiver": [
+   "Ranger"
+  ],
+  "Synaptic Static": [
+   "Bard",
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Temporal Shunt": [
+   "Wizard"
+  ],
+  "Transmute Rock": [
+   "Artificer",
+   "Druid",
+   "Wizard"
+  ],
+  "Wall of Light": [
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Arcane Gate": [
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Bones of the Earth": [
+   "Druid"
+  ],
+  "Create Homunculus": [
+   "Wizard"
+  ],
+  "Druid Grove": [
+   "Druid"
+  ],
+  "Fizban's Platinum Shield": [
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Gravity Fissure": [
+   "Wizard"
+  ],
+  "Investiture of Flame": [
+   "Druid",
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Investiture of Ice": [
+   "Druid",
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Investiture of Stone": [
+   "Druid",
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Investiture of Wind": [
+   "Druid",
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Mental Prison": [
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Primordial Ward": [
+   "Druid"
+  ],
+  "Scatter": [
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Soul Cage": [
+   "Warlock",
+   "Wizard"
+  ],
+  "Summon Fiend": [
+   "Warlock",
+   "Wizard"
+  ],
+  "Tasha's Otherworldly Guise": [
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Tenser's Transformation": [
+   "Wizard"
+  ],
+  "Crown of Stars": [
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Draconic Transformation": [
+   "Druid",
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Dream of the Blue Veil": [
+   "Bard",
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Power Word Pain": [
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Temple of the Gods": [
+   "Cleric"
+  ],
+  "Tether Essence": [
+   "Wizard"
+  ],
+  "Whirlwind": [
+   "Druid",
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Abi-Dalzim's Horrid Wilting": [
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Dark Star": [
+   "Wizard"
+  ],
+  "Illusory Dragon": [
+   "Wizard"
+  ],
+  "Maddening Darkness": [
+   "Warlock",
+   "Wizard"
+  ],
+  "Mighty Fortress": [
+   "Wizard"
+  ],
+  "Reality Break": [
+   "Wizard"
+  ],
+  "Telepathy": [
+   "Wizard"
+  ],
+  "Tsunami": [
+   "Druid"
+  ],
+  "Blade of Disaster": [
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Invulnerability": [
+   "Wizard"
+  ],
+  "Mass Polymorph": [
+   "Bard",
+   "Sorcerer",
+   "Wizard"
+  ],
+  "Power Word Heal": [
+   "Bard",
+   "Cleric"
+  ],
+  "Psychic Scream": [
+   "Bard",
+   "Sorcerer",
+   "Warlock",
+   "Wizard"
+  ],
+  "Ravenous Void": [
+   "Wizard"
+  ],
+  "Time Ravage": [
+   "Wizard"
+  ]
+ }
+}
