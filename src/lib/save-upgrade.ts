@@ -3,7 +3,7 @@ import { getStaticClass } from "./srd-client";
 import { computeDerivedStats, getHpBonusPerLevel, getMaxHpFromLevelHp, getModifier, type Character } from "./storage";
 
 /** Bump when a new one-time upgrade step is added below. */
-export const SAVE_VERSION = 1;
+export const SAVE_VERSION = 2;
 
 const ABILITY_KEYS = ["str", "dex", "con", "int", "wis", "cha"] as const;
 
@@ -14,11 +14,15 @@ const ABILITY_KEYS = ["str", "dex", "con", "int", "wis", "cha"] as const;
  */
 export function upgradeSave(character: Character): Character {
   if ((character.saveVersion ?? 0) >= SAVE_VERSION) return character;
+  const from = character.saveVersion ?? 0;
   let next = { ...character };
-  next = restoreExhaustionHalvedHp(next);
-  next = addMissingHpBonus(next);
-  next = keepTypedSpeed(next);
-  next = addMissingFeatGrants(next);
+  if (from < 1) {
+    next = restoreExhaustionHalvedHp(next);
+    next = addMissingHpBonus(next);
+    next = keepTypedSpeed(next);
+    next = addMissingFeatGrants(next);
+  }
+  if (from < 2) next = addLevelUpExpertise(next);
   return { ...next, saveVersion: SAVE_VERSION };
 }
 
@@ -125,4 +129,18 @@ function addMissingFeatGrants(c: Character): Character {
   }
   const scores = Object.fromEntries(ABILITY_KEYS.map((k) => [k, c[k]]));
   return { ...next, ...scores };
+}
+
+/**
+ * Expertise picked at a level-up used to be kept only as a pick
+ * ("expertise-6-Stealth"), so the sheet never doubled the bonus. It joins the
+ * character's expertise.
+ */
+function addLevelUpExpertise(c: Character): Character {
+  const picked = Object.entries(c.featureSelections || {})
+    .filter(([key]) => /^expertise-\d+-/.test(key))
+    .flatMap(([, v]) => v || []);
+  if (!picked.length) return c;
+  const expertise = [...new Set([...(c.expertise || []), ...picked])];
+  return expertise.length === (c.expertise || []).length ? c : { ...c, expertise };
 }

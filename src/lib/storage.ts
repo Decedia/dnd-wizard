@@ -1,4 +1,5 @@
 import { overrideOf, withOverride, type NumberOverride } from "./overrides";
+import type { LevelPicks } from "./level-choices";
 import { getStaticClass, getStaticRace, getStaticSubclasses, getDomainSpells, getCircleSpells as getJsonCircleSpells, getCircleTerrainTypes as getJsonCircleTerrainTypes, getOathSpells, getWizardTraditionSpells, getSubclassFlags, getPactBoons } from "@/lib/srd-client";
 import { computeBuffModifiers, type ActiveBuff } from "@/lib/spellEffects";
 import { getSpellMechanic } from "@/lib/spell-mechanics-accessor";
@@ -97,6 +98,8 @@ export interface Character {
   overrides?: Record<string, NumberOverride>;
   /** Creation only: this draft picks the class again for a character at this level. */
   rebuildOf?: { level: number };
+  /** Each level's picks as the level-up wizard took them (src/lib/level-choices.ts). */
+  levelChoices?: Record<number, LevelPicks>;
   costumeSpells: { id: string; name: string; description: string }[];
   subclass?: string;
   subclassIndex?: string;
@@ -667,7 +670,7 @@ export interface LevelUpSnapshot {
   /** The level the character was at before. */
   level: number;
   /** What made it: a level-up (default) or picking the class or subclass again. */
-  kind?: "levelUp" | "class" | "subclass";
+  kind?: "levelUp" | "class" | "subclass" | "choice";
   at: number;
   character: Omit<Character, "levelUpSnapshot">;
 }
