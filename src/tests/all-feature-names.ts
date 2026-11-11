@@ -1,3 +1,4 @@
+import { OPTIONAL_CLASS_FEATURES } from "@/data/optional-class-features";
 import { getStaticClasses, getStaticSubclasses, getStaticSubclassDetails, getStaticRaces, getStaticFeats } from "@/lib/srd-client";
 export function allFeatureNames(): string[] {
   const names = new Set<string>();
@@ -13,5 +14,7 @@ export function allFeatureNames(): string[] {
     for (const sr of race.subraces || []) for (const tr of sr.traits || []) names.add(typeof tr === "string" ? tr : tr.name);
   }
   for (const feat of getStaticFeats() as any[]) names.add(feat.name);
+  // Tasha's optional class features, offered when the player turns them on.
+  for (const f of OPTIONAL_CLASS_FEATURES) names.add(f.name);
   return [...names].filter(Boolean);
 }

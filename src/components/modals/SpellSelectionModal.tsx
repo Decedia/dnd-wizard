@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import { getStaticSpells, getClassSpells, getSubclassFlags, deduplicateSpells } from "@/lib/srd-client";
+import { getStaticSpells } from "@/lib/srd-client";
+import { spellChoicePool, THIRD_CASTER_SCHOOLS } from "@/lib/spell-pool";
 import { SourceBadge } from "@/components/SourceBadge";
 import { CheckIcon as Check, MagnifyingGlassIcon as MagnifyingGlass } from "@/components/icons";
 import { isRecommended } from "@/lib/recommendations";
@@ -12,7 +13,7 @@ import { RichText } from "@/components/RichText";
 import { toPlainText } from "@/lib/rich-text";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
-import { getMaxSpellLevel, getWarlockExpandedSpellNames } from "@/lib/storage";
+import { getMaxSpellLevel } from "@/lib/storage";
 import { getGrantedSpellNames } from "@/lib/granted-spells";
 import { getTakenSpellNames, isSpellTakenElsewhere } from "@/lib/taken-spells";
 
@@ -51,10 +52,6 @@ interface SpellSelectionModalProps {
   takenSpells?: Set<string>;
 }
 
-const THIRD_CASTER_SCHOOLS: Record<string, string[]> = {
-  "eldritch-knight": ["abjuration", "evocation"],
-  "arcane-trickster": ["enchantment", "illusion"],
-};
 
 export function SpellSelectionModal({
   character,
@@ -95,15 +92,7 @@ export function SpellSelectionModal({
     };
   }, []);
 
-  const atFlags = character.subclassIndex ? getSubclassFlags(character.subclassIndex) : {};
-  const isArcaneTrickster = atFlags.usesMageSpellList;
   const effectiveMaxLevel = onChange ? (maxLevel ?? getMaxSpellLevel(character.class, character.level, character.ruleset, subclassSelection || character.subclass)) : (maxLevel || 0);
-  // A warlock patron's expanded spells join the list to choose from; the max
-  // spell level filter below already gates them by level.
-  const patronSpells = new Set(getWarlockExpandedSpellNames({ ...character, level: 20 }, subclassSelection || character.subclass).map((n) => n.toLowerCase()));
-  const classSpells = isArcaneTrickster
-    ? getClassSpells("arcane-trickster", language)
-    : [];
   // Spells the character gets free (domain, oath, race) aren't worth a pick.
   // A wizard can still copy one into the spellbook.
   const grantedNames = new Set(
@@ -111,10 +100,7 @@ export function SpellSelectionModal({
       ? []
       : getGrantedSpellNames({ ...character, subclass: subclassSelection || character.subclass, level: castingLevel ?? character.level }).map((n) => n.toLowerCase())
   );
-  const allSpells = (classSpells.length > 0
-    ? deduplicateSpells(classSpells.filter((s: any) => s.level === 0 || s.level <= effectiveMaxLevel))
-    : deduplicateSpells(getStaticSpells(character.sources, character.ruleset, language).filter((s) => (s.classes?.includes(character.class) || patronSpells.has(s.name.toLowerCase())) && (s.level === 0 || s.level <= effectiveMaxLevel)))
-  ).filter((s: any) => !grantedNames.has(String(s.name).toLowerCase()));
+  const allSpells = spellChoicePool(character, { subclass: subclassSelection, maxLevel: effectiveMaxLevel, selectionType, castingLevel, language });
 
   const existingCantripNames = new Set((character.cantrips || []).map(c => c.name));
   const earlierSpellNames = new Set((earlierSelections || []).map(s => s.split(":")[0]));
