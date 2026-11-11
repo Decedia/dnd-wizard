@@ -125,6 +125,12 @@ describe("Psi Warrior", () => {
     expect(twice.psionicDice).toBe(3);
   });
 
+  test("a Soulknife's Psionic Power is not the Psi Warrior's", () => {
+    const rogue = make({ class: "Rogue", subclass: "Soulknife", level: 3, int: 14 }, ["Psionic Power"]);
+    expect(find(rogue, "Psionic Strike")).toBeUndefined();
+    expect(buildTurnMenu(rogue, []).features.map((f) => f.name)).toContain("Psionic Power");
+  });
+
   test("recovering a die: blocked while full, once per short rest", () => {
     expect(find(psi, "Recover a psionic die")!.blocked).toBe("full");
     const spent = apply(apply(psi, "Psionic Strike"), "Psionic Strike");

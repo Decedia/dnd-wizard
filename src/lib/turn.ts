@@ -314,7 +314,8 @@ function ruleOption(character: Character, rule: FeatureRule | SubOption, base: P
     else (option.spend as any)[rule.pool.field] = left - rule.pool.amount;
   } else if (rule.variablePool) {
     const left = poolLeft(character, rule.variablePool);
-    option.cost = { key: rule.variablePool === "sorceryPoints" ? "turn.cost.sorceryPointsByLevel" : `turn.cost.${rule.variablePool}`, values: { amount: "", left } };
+    const costKey = rule.variablePool === "sorceryPoints" ? "turn.cost.sorceryPointsByLevel" : rule.variablePool === "kiPoints" ? "turn.cost.kiChoose" : `turn.cost.${rule.variablePool}`;
+    option.cost = { key: costKey, values: { amount: "", left } };
     if (left <= 0) option.blocked = "empty";
     else option.amount = { field: rule.variablePool, max: left };
   } else if (rule.uses) {

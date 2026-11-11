@@ -468,6 +468,7 @@ export const translations = {
   "turn.flex.createName": "Ambil kembali slot level {level}",
   "turn.flex.convertName": "Ubah slot level {level} jadi point",
   "turn.cost.sorceryPointsByLevel": "1 per level mantra · sisa {left}",
+  "turn.cost.kiChoose": "Ki pilihanmu · sisa {left}",
   "turn.title": "Giliranmu · Ronde {round}",
   "turn.start": "Mulai giliranku",
   "turn.continue": "Lanjutkan giliran",
