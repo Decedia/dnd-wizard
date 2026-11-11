@@ -1,6 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { useDice } from "@/contexts/DiceContext";
+import type { DieKind } from "@/lib/dice-roll";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { PrepareSpellsSheet } from "@/components/PrepareSpellsSheet";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -20,6 +22,8 @@ const signed = (n: number) => (n >= 0 ? `+${n}` : `${n}`);
 /** Confirm a short or long rest, see what comes back, then take it. */
 export function RestSheet({ character, kind, onChange, onClose }: RestSheetProps) {
   const { t } = useLanguage();
+  const tray = useDice();
+  const rolled = useRef(false);
   const [dice, setDice] = useState(0);
   const [done, setDone] = useState<{ rolls: number[]; healed: number } | null>(null);
   const [preparing, setPreparing] = useState(false);
@@ -42,10 +46,24 @@ export function RestSheet({ character, kind, onChange, onClose }: RestSheetProps
       setDone({ rolls: [], healed: 0 });
       return;
     }
-    const roll = rollHitDice(character, dice);
-    const healed = Math.min(roll.healed, maxHp - (character.currentHp || 0));
-    onChange(shortRestPatch(character, dice, roll.healed, recover));
-    setDone({ rolls: roll.rolls, healed });
+    const finish = (roll: { rolls: number[]; healed: number }) => {
+      const healed = Math.min(roll.healed, maxHp - (character.currentHp || 0));
+      onChange(shortRestPatch(character, dice, roll.healed, recover));
+      setDone({ rolls: roll.rolls, healed });
+    };
+    if (dice > 0 && tray) {
+      // The hit dice are thrown in the tray; the rest is taken once they land (once, even after "Roll again").
+      const kind = `d${hitDieSides(character)}` as DieKind;
+      const group = { label: t("rest.hitDice.title", "Spend hit dice to heal"), dice: Array.from({ length: dice }, () => kind), mod: dice * con, parts: [{ source: "@con", value: dice * con }] };
+      tray.roll(t("rest.short.title", "Short rest"), [group], (result) => {
+        if (rolled.current) return;
+        rolled.current = true;
+        const rolls = result[0]?.values || [];
+        finish({ rolls, healed: rolls.reduce((sum, r) => sum + Math.max(0, r + con), 0) });
+      });
+      return;
+    }
+    finish(rollHitDice(character, dice));
   };
 
   if (preparing) {

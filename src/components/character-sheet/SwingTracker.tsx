@@ -3,7 +3,7 @@
 import { RichInline } from "@/components/RichText";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useDice } from "@/contexts/DiceContext";
-import { d20Group, groupFrom, type RollGroup } from "@/lib/dice-roll";
+import { critGroup, d20Group, damageGroup, groupFrom, type RollGroup } from "@/lib/dice-roll";
 import type { Character } from "@/lib/storage";
 import { critDamage, critExtraDice, isSwingOption, ON_HIT_WHEN, smiteChoices, smitePatch, swingPatch, swingResultPatch, swingsLeft, type SwingResult, type TurnMenu, type TurnOption } from "@/lib/turn";
 
@@ -57,7 +57,7 @@ export function SwingTracker({ character, menu, nameOf, onUse, onChange }: Swing
                 <>
                   <p className="mt-0.5 text-[11px] text-[var(--color-text-muted)]">{t("swing.roll", "Roll to hit, then tap what happened.")}</p>
                   {dice && o?.toHit !== undefined && (
-                    <button type="button" onClick={() => dice.roll(name, [d20Group(t("dice.toHit", "To hit"), o.toHit!)])} className="btn btn-secondary mt-1.5 w-full !py-1.5 text-xs">
+                    <button type="button" onClick={() => dice.roll(name, [d20Group(t("dice.toHit", "To hit"), o.toHit!, o.toHitParts)])} className="btn btn-secondary mt-1.5 w-full !py-1.5 text-xs">
                       {t("dice.rollToHit", { bonus: `${o.toHit >= 0 ? "+" : ""}${o.toHit}` }, "Roll to hit (d20 {bonus})")}
                     </button>
                   )}
@@ -83,8 +83,11 @@ export function SwingTracker({ character, menu, nameOf, onUse, onChange }: Swing
                     </p>
                   )}
                   {dice && hit && damage && (() => {
+                    const label = s.result === "crit" ? t("dice.critDamage", "Crit damage") : t("dice.damage", "Damage");
+                    // The weapon's dice with each bonus's source; a crit doubles the dice, not the bonus.
+                    const base = o?.damageRoll ? damageGroup(label, o.damageRoll.dice, o.damageRoll.parts) : null;
                     const groups = [
-                      groupFrom(s.result === "crit" ? t("dice.critDamage", "Crit damage") : t("dice.damage", "Damage"), damage),
+                      base ? (s.result === "crit" ? critGroup(base) : base) : groupFrom(label, damage),
                       extra ? groupFrom(extra.sources.join(", "), extra.dice) : null,
                       s.smite ? groupFrom(t("dice.smite", "Smite"), `${Math.min(5, 1 + s.smite) * (s.result === "crit" ? 2 : 1)}d8`) : null,
                     ].filter((g): g is RollGroup => !!g);

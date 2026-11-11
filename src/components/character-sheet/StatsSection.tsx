@@ -2,6 +2,7 @@
 
 import { useMemo } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
+import type { Character } from "@/lib/storage";
 import { SectionCard } from "./SectionCard";
 import { Overridable } from "./Overridable";
 import { getModifier } from "@/lib/storage";
@@ -9,6 +10,9 @@ import { AbilityScoreBlock } from "./styled/AbilityScoreBlock";
 import { ChartBarIcon as ChartBar, StarIcon as Star } from "@/components/icons";
 import { isRecommended } from "@/lib/recommendations";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { abilityCheckParts, saveParts } from "@/lib/roll-parts";
+import { useDice } from "@/contexts/DiceContext";
+import { d20Group, sumParts } from "@/lib/dice-roll";
 
 const STATS = [
   { key: "str", label: "STR" },
@@ -32,6 +36,9 @@ interface StatsSectionProps {
     proficiencyBonus: number;
     initiative: number;
     savingThrows: Record<string, { proficient: boolean; value: number }>;
+    level?: number;
+    activeStates?: string[];
+    overrides?: Character["overrides"];
   };
   onChange: (patch: Partial<StatsSectionProps["character"]>) => void;
   editMode?: boolean;
@@ -40,6 +47,7 @@ interface StatsSectionProps {
 export function StatsSection({ character, onChange, editMode = true }: StatsSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
   const { t } = useLanguage();
+  const dice = useDice();
 
   const sortedStats = useMemo(() => {
     return [...STATS].sort((a, b) => (isRecommended("stat", b.label, character.class) ? 1 : 0) - (isRecommended("stat", a.label, character.class) ? 1 : 0));
@@ -59,6 +67,12 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
             onBlur={onFieldBlur}
             editMode={editMode}
             recommended={isRecommended("stat", label, character.class)}
+            rollLabel={t("dice.check", { ability: key.toUpperCase() }, "{ability} check")}
+            onRoll={dice ? () => {
+              const name = t("dice.check", { ability: key.toUpperCase() }, "{ability} check");
+              const parts = abilityCheckParts(character, key);
+              dice.roll(name, [d20Group(name, sumParts(parts), parts)]);
+            } : undefined}
           />
         ))}
       </div>
@@ -94,7 +108,7 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
                   />
                   <span className="text-xs font-semibold text-ink">{key.toUpperCase()}</span>
                 </div>
-                <Overridable id={`save:${key}`} label={t("override.save", { ability: key.toUpperCase() }, "{ability} saving throw")} signed editMode={editMode} roll={st.value} className="text-sm font-bold text-ink">
+                <Overridable id={`save:${key}`} label={t("override.save", { ability: key.toUpperCase() }, "{ability} saving throw")} signed editMode={editMode} roll={st.value} rollParts={saveParts(character, key, st.proficient)} className="text-sm font-bold text-ink">
                   {st.value >= 0 ? `+${st.value}` : st.value}
                 </Overridable>
               </div>

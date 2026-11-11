@@ -5,6 +5,9 @@ import { SectionCard } from "./SectionCard";
 import { SkullIcon as Skull, CircleIcon as Circle, CheckIcon as Check, XIcon as X } from "@/components/icons";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
+import { useDice } from "@/contexts/DiceContext";
+import { d20Group } from "@/lib/dice-roll";
+import { GiRollingDices } from "react-icons/gi";
 
 interface DeathSavesSectionProps {
   character: Pick<Character, "deathSaveSuccesses" | "deathSaveFailures" | "currentHp" | "maxHp">;
@@ -15,6 +18,23 @@ interface DeathSavesSectionProps {
 export function DeathSavesSection({ character, onChange, editMode = true }: DeathSavesSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
   const { t } = useLanguage();
+  const dice = useDice();
+
+  // A death save: 10 or more is a success, a 1 counts two failures, a 20 brings you back with 1 HP.
+  const rollDeathSave = () => {
+    if (!dice) return;
+    let counted = false;
+    const name = t("section.deathSaves");
+    dice.roll(name, [d20Group(name, 0)], (result) => {
+      if (counted) return;
+      counted = true;
+      const roll = result[0]?.total ?? 0;
+      if (roll >= 20) onChange({ currentHp: 1, deathSaveSuccesses: 0, deathSaveFailures: 0 });
+      else if (roll >= 10) onChange({ deathSaveSuccesses: Math.min(3, (character.deathSaveSuccesses || 0) + 1) });
+      else onChange({ deathSaveFailures: Math.min(3, (character.deathSaveFailures || 0) + (roll <= 1 ? 2 : 1)) });
+      onFieldBlur();
+    });
+  };
 
   const renderDot = (filled: boolean, color: string) => (
     <span
@@ -58,6 +78,15 @@ export function DeathSavesSection({ character, onChange, editMode = true }: Deat
   return (
     <SectionCard id="death-saves" title={t("section.deathSaves")} icon={<Skull className="h-5 w-5" />}>
       <div className="flex flex-col items-center gap-4">
+        {dice && !editMode && (character.deathSaveSuccesses || 0) < 3 && (character.deathSaveFailures || 0) < 3 && (
+          <div className="w-full text-center">
+            <button type="button" onClick={rollDeathSave} className="btn btn-primary inline-flex items-center gap-1.5">
+              <GiRollingDices className="h-4 w-4" aria-hidden="true" />
+              {t("dice.rollDeathSave", "Roll death save")}
+            </button>
+            <p className="mt-1 text-[11px] text-[var(--color-text-muted)]">{t("dice.deathSaveHint", "10 or more is a success. A 1 counts as two failures. A 20 brings you back with 1 HP.")}</p>
+          </div>
+        )}
         <div className="flex items-center gap-3">
           <button
             type="button"

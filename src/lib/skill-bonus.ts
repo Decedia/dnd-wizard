@@ -1,12 +1,11 @@
-import { getModifier, getPassiveScore, getProficiencyBonus, type Character } from "./storage";
+import { getPassiveScore, type Character } from "./storage";
 import { withOverride } from "./overrides";
+import { ruleSkillParts } from "./roll-parts";
+import { sumParts } from "./dice-roll";
 
 /** A skill's bonus by the rules: ability modifier, plus proficiency (twice with expertise). */
 export function ruleSkillBonus(character: Character, skill: string, ability: string): number {
-  const mod = getModifier(character[ability as keyof Character] as number);
-  if (!character.skills?.[skill]) return mod;
-  const prof = getProficiencyBonus(character.level || 1);
-  return mod + (character.expertise?.includes(skill) ? prof * 2 : prof);
+  return sumParts(ruleSkillParts(character, skill, ability));
 }
 
 /** The skill bonus the sheet shows: a number set by hand wins. */

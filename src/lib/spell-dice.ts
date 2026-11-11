@@ -1,6 +1,7 @@
 import { NO_DAMAGE_LINE, SPELL_DICE, type DicePart, type DiceWhen } from "@/data/spell-dice";
 import { spellDamageBonuses, type SpellDamageBonus, type SpellForBonus } from "@/lib/spell-damage-bonus";
-import { spellcastingMod } from "@/lib/healing";
+import { spellcastingMod, spellcastingSource } from "@/lib/healing";
+import type { BonusPart } from "@/lib/dice-roll";
 import type { Character } from "@/lib/storage";
 
 /** Dice as counts per die size plus a flat number: "2d8+1d6+3" is {8: 2, 6: 1} and 3. */
@@ -51,6 +52,8 @@ export interface DamagePart {
   /** Separate rolls of these dice (rays, darts, beams). 1 for one roll. */
   count: number;
   when?: DiceWhen;
+  /** Where the flat bonus of one roll comes from (the spellcasting modifier, Empowered Evocation). */
+  bonuses?: BonusPart[];
 }
 
 export interface CastContext {
@@ -60,6 +63,8 @@ export interface CastContext {
   characterLevel: number;
   /** Spellcasting ability modifier, for spells that add it. */
   mod: number;
+  /** Which ability `mod` is, as a roll source ("@wis"). */
+  modSource?: string;
 }
 
 export const hasDiceTable = (name: string) => name in SPELL_DICE;
@@ -74,16 +79,20 @@ export function dealsDirectDamage(name: string): boolean | undefined {
   return parts ? parts.some((p) => p.when !== "hit") : undefined;
 }
 
-function resolvePart(part: DicePart, spellLevel: number, ctx: CastContext): { pool: Pool; count: number } {
+function resolvePart(part: DicePart, spellLevel: number, ctx: CastContext): { pool: Pool; count: number; bonuses: BonusPart[] } {
   const above = Math.max(0, ctx.slot - spellLevel);
   let pool = parseDice(part.at?.[ctx.slot] ?? part.dice);
   if (part.up && !part.at) pool = addPools(pool, parseDice(part.up), Math.floor(above / (part.every || 1)));
   const tier = cantripTier(ctx.characterLevel);
   if (part.cantrip === true) pool = scalePool(pool, tier);
   if (part.cantrip === "late") pool = scalePool(pool, tier - 1);
-  if (part.mod) pool = addPools(pool, { dice: {}, flat: ctx.mod });
+  const bonuses: BonusPart[] = [];
+  if (part.mod) {
+    pool = addPools(pool, { dice: {}, flat: ctx.mod });
+    bonuses.push({ source: ctx.modSource || "@other", value: ctx.mod });
+  }
   const count = part.beams ? tier : (part.count || 1) + (part.countUp || 0) * above;
-  return { pool, count };
+  return { pool, count, bonuses };
 }
 
 const typeMatches = (type: string, wanted?: string[]) => !wanted?.length || type.split("|").some((t) => wanted.includes(t)) || type === "choice";
@@ -102,20 +111,27 @@ export function spellDamage(name: string, spellLevel: number, ctx: CastContext, 
   for (const bonus of bonuses) {
     const extra = bonus.dice ? parseDice(bonus.dice.split(" ")[0]) : { dice: {}, flat: bonus.value };
     if (bonus.per === "beam") {
-      for (const r of resolved) if (r.part.beams) r.pool = addPools(r.pool, extra);
+      for (const r of resolved) if (r.part.beams) {
+        r.pool = addPools(r.pool, extra);
+        if (!bonus.dice) r.bonuses.push({ source: bonus.source, value: bonus.value });
+      }
     } else if (bonus.per === "roll") {
       const target = resolved.find((r) => r.count === 1 && r.part.when !== "hurt" && typeMatches(r.part.type, bonus.types) && !isEmpty(r.pool));
       if (!target) continue;
       target.pool = addPools(target.pool, extra);
+      if (!bonus.dice) target.bonuses.push({ source: bonus.source, value: bonus.value });
       // Toll the Dead: the bigger die is the same roll, so it gets the bonus too.
-      for (const r of resolved) if (r.part.when === "hurt") r.pool = addPools(r.pool, extra);
+      for (const r of resolved) if (r.part.when === "hurt") {
+        r.pool = addPools(r.pool, extra);
+        if (!bonus.dice) r.bonuses.push({ source: bonus.source, value: bonus.value });
+      }
     }
   }
 
-  return resolved.filter((r) => !isEmpty(r.pool)).map((r) => ({ dice: formatDice(r.pool), type: r.part.type, count: r.count, ...(r.part.when ? { when: r.part.when } : {}) }));
+  return resolved.filter((r) => !isEmpty(r.pool)).map((r) => ({ dice: formatDice(r.pool), type: r.part.type, count: r.count, ...(r.part.when ? { when: r.part.when } : {}), ...(r.bonuses.length ? { bonuses: r.bonuses } : {}) }));
 }
 
 /** The character's damage line for a spell cast at `slot` (its own level when left out), bonuses included. */
 export function characterSpellDamage(character: Character, spell: SpellForBonus, slot = spell.level, bonuses: SpellDamageBonus[] = spellDamageBonuses(character, spell)): DamagePart[] | null {
-  return spellDamage(spell.name, spell.level, { slot: Math.max(slot, spell.level), characterLevel: character.level || 1, mod: spellcastingMod(character) }, bonuses);
+  return spellDamage(spell.name, spell.level, { slot: Math.max(slot, spell.level), characterLevel: character.level || 1, mod: spellcastingMod(character), modSource: spellcastingSource(character) }, bonuses);
 }

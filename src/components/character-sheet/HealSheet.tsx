@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { BottomSheet } from "@/components/modals/BottomSheet";
+import { useDice } from "@/contexts/DiceContext";
+import { damageGroup, partsFor } from "@/lib/dice-roll";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { averageHealing, healSelfPatch, rollHealing, type Healing } from "@/lib/healing";
 import type { Character } from "@/lib/storage";
@@ -9,6 +11,7 @@ import type { Character } from "@/lib/storage";
 /** After a healing spell or feature: how much it heals, and who gets it. */
 export function HealSheet({ name, heal, character, onChange, onClose }: { name: string; heal: Healing; character: Character; onChange: (patch: Partial<Character>) => void; onClose: () => void }) {
   const { t } = useLanguage();
+  const tray = useDice();
   const [amount, setAmount] = useState(() => averageHealing(heal));
   const [rolls, setRolls] = useState<number[] | null>(null);
   const formula = [heal.dice ? (heal.maxDice ? t("heal.maxDice", { dice: heal.dice }, "{dice} at max") : heal.dice) : "", heal.bonus ? (heal.dice ? `+ ${heal.bonus}` : String(heal.bonus)) : ""].filter(Boolean).join(" ");
@@ -29,7 +32,15 @@ export function HealSheet({ name, heal, character, onChange, onClose }: { name: 
           <span className="min-w-[3ch] text-center text-2xl font-bold text-[var(--color-text-primary)]">{amount}</span>
           <button type="button" aria-label="+1" onClick={() => setAmount((a) => a + 1)} className="btn btn-secondary h-9 w-11 !px-0">+</button>
           {heal.dice && !heal.maxDice && (
-            <button type="button" onClick={() => { const r = rollHealing(heal); setRolls(r.rolls); setAmount(r.total); }} className="btn btn-secondary h-9">{t("heal.roll", "Roll")}</button>
+            <button type="button" onClick={() => {
+              const group = tray && damageGroup(t("dice.heal", "Healing"), heal.dice, partsFor(heal.bonus, heal.parts));
+              if (tray && group) {
+                // Each landing (and "Roll again") sets the amount; the player still picks who gets it.
+                tray.roll(name, [group], (result) => { setRolls(result[0]?.values || []); setAmount(Math.max(0, result[0]?.total ?? 0)); });
+                return;
+              }
+              const r = rollHealing(heal); setRolls(r.rolls); setAmount(r.total);
+            }} className="btn btn-secondary h-9">{t("heal.roll", "Roll")}</button>
           )}
         </div>
         {rolls && <p className="text-[11px] text-[var(--color-text-muted)]">{t("heal.rolled", { rolls: rolls.join(", ") }, "Rolled {rolls}")}</p>}

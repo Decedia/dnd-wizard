@@ -12,6 +12,7 @@ import { getBackgroundData } from "@/data/backgrounds";
 import { StarIcon as Star, XIcon as X, ListChecksIcon as ListChecks, CircleIcon as Circle, InfoIcon } from "@/components/icons";
 import { isRecommended } from "@/lib/recommendations";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { skillParts } from "@/lib/roll-parts";
 
 interface SkillsSectionProps {
   character: Character & { passivePerception: number };
@@ -125,7 +126,7 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
                      <span className="text-[10px] text-ink-muted font-medium">{ability.toUpperCase()} {mod >= 0 ? `+${mod}` : mod}</span>
                   </div>
                   <div className="flex items-center gap-2 shrink-0">
-                    <Overridable id={`skill:${name}`} label={name} signed editMode={editMode} roll={total} className={`text-xs font-semibold ${isProficient ? "text-ink" : "text-ink-muted"}`}>
+                    <Overridable id={`skill:${name}`} label={name} signed editMode={editMode} roll={total} rollParts={skillParts(character, name, ability)} className={`text-xs font-semibold ${isProficient ? "text-ink" : "text-ink-muted"}`}>
                       {total >= 0 ? `+${total}` : total}
                     </Overridable>
                     {(isProficient || isExpert) && (

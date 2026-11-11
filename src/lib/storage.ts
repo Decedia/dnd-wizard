@@ -9,6 +9,8 @@ import { addsProficiencyToAttack } from "@/lib/proficiency";
 import { db, type CharacterRecord, dbGetCharacters, dbGetCharacter, dbSaveCharacter, dbDeleteCharacter, dbTouchCharacterOpened } from "@/lib/db";
 import { SAVE_VERSION, upgradeSave } from "./save-upgrade";
 import { getFreeCastSpells } from "./granted-spells";
+import { initiativeParts, saveParts, spellAttackParts } from "./roll-parts";
+import { sumParts } from "./dice-roll";
 export interface Character {
   id: string;
   name: string;
@@ -1057,7 +1059,7 @@ export function getPassiveScore(
 }
 
 /** Whether the character has taken a feat, by its name ("Heavy Armor Master"). */
-function hasFeat(character: Character, featName: string): boolean {
+export function hasFeat(character: Character, featName: string): boolean {
   const name = normaliseFeatureName(featName);
   return (character.features ?? []).some((f) => normaliseFeatureName(f.name) === name);
 }
@@ -1127,19 +1129,15 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   const savingThrows: Record<string, { proficient: boolean; value: number }> = {};
   for (const key of ["str", "dex", "con", "int", "wis", "cha"]) {
     const isProficient = savingThrowProfs.includes(key) || (character.bonusSaves || []).includes(key);
-    const abilityMod = getModifier(character[key as keyof Character] as number);
-    let saveValue = isProficient ? abilityMod + profBonus : abilityMod;
-    // Cover bonus to Dex saves
-    saveValue = withOverride(character, `save:${key}`, saveValue);
-    if (key === "dex") saveValue += dexSaveBonusFromCover;
+    // Ability, proficiency, a number set by hand, then cover on Dexterity saves.
     savingThrows[key] = {
       proficient: isProficient,
-      value: saveValue,
+      value: sumParts(saveParts(character, key, isProficient)),
     };
   }
 
-  // Alert: +5 initiative.
-  const initiative = withOverride(character, "initiative", getModifier(character.dex) + (hasFeat(character, "Alert") ? 5 : 0));
+  // Dexterity, +5 with Alert.
+  const initiative = sumParts(initiativeParts(character));
 
   const passivePerception = withOverride(character, "passive:Perception", getPassiveScore(character, "Perception"));
 
@@ -1148,7 +1146,7 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   const spellcastingAbility = castsWithoutSubclass || isThirdCaster(character.subclass) ? classData?.spellcastingAbility || "" : "";
   const spellcastingAbilityMod = spellcastingAbility ? getModifier(character[spellcastingAbility as keyof Character] as number) : 0;
   const spellSaveDc = withOverride(character, "spellSaveDc", 8 + profBonus + spellcastingAbilityMod);
-  const spellAttackBonus = withOverride(character, "spellAttackBonus", profBonus + spellcastingAbilityMod);
+  const spellAttackBonus = sumParts(spellAttackParts(character, spellcastingAbility));
 
   const hitDie = classData?.hitDie || 10;
   const hitDiceTotal = `${character.level}d${hitDie}`;

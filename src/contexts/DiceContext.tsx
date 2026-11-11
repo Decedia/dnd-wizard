@@ -3,12 +3,15 @@
 import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from "react";
 import { GiRollingDices } from "react-icons/gi";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { DiceTray, type RollRequest } from "@/components/dice/DiceTray";
+import { DiceTray, type RollRequest, type RollResult } from "@/components/dice/DiceTray";
 import type { RollGroup } from "@/lib/dice-roll";
 
 interface DiceApi {
-  /** Opens the tray and throws these groups ("To hit" 1d20+7, "Damage" 1d8+4). */
-  roll: (title: string, groups: RollGroup[]) => void;
+  /**
+   * Opens the tray and throws these groups ("To hit" 1d20+7, "Damage" 1d8+4).
+   * `onDone` gets each group's total and die values when the dice land.
+   */
+  roll: (title: string, groups: RollGroup[], onDone?: (result: RollResult) => void) => void;
 }
 
 const DiceContext = createContext<DiceApi | null>(null);
@@ -21,10 +24,10 @@ export function DiceProvider({ children }: { children: ReactNode }) {
   const { t } = useLanguage();
   const [open, setOpen] = useState(false);
   const [request, setRequest] = useState<RollRequest | null>(null);
-  const roll = useCallback((title: string, groups: RollGroup[]) => {
+  const roll = useCallback((title: string, groups: RollGroup[], onDone?: (result: RollResult) => void) => {
     if (!groups.length) return;
     setOpen(true);
-    setRequest((prev) => ({ seq: (prev?.seq ?? 0) + 1, title, groups }));
+    setRequest((prev) => ({ seq: (prev?.seq ?? 0) + 1, title, groups, onDone }));
   }, []);
   const api = useMemo(() => ({ roll }), [roll]);
 

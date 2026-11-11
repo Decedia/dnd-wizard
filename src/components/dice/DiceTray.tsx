@@ -16,10 +16,15 @@ interface Entry {
   mode: D20Mode;
   slots: Slot[];
 }
+/** Each group's total and die values, once the dice land. */
+export type RollResult = { total: number; values: number[] }[];
+
 export interface RollRequest {
   seq: number;
   title: string;
   groups: RollGroup[];
+  /** Called each time this roll lands (again after "Roll again"). */
+  onDone?: (result: RollResult) => void;
 }
 
 const GLYPH: Record<DieKind, string> = {
@@ -52,6 +57,18 @@ export function DiceTray({ open, onClose, request }: { open: boolean; onClose: (
   const logged = useRef(0);
   const handled = useRef(0);
   const pending = useRef<RollRequest | null>(null);
+  const onDone = useRef<RollRequest["onDone"]>(undefined);
+
+  // "+ 3 DEX", "+ 3 proficiency", "+ 2 Rage".
+  const sourceName = useCallback(
+    (source: string) => {
+      if (!source.startsWith("@")) return source;
+      const key = source.slice(1);
+      if (["str", "dex", "con", "int", "wis", "cha"].includes(key)) return key.toUpperCase();
+      return t(`dice.src.${key}`, key);
+    },
+    [t],
+  );
 
   // Load three.js and the physics only when the tray first opens.
   useEffect(() => {
@@ -85,7 +102,8 @@ export function DiceTray({ open, onClose, request }: { open: boolean; onClose: (
 
   const allIds = (list: Entry[]) => list.flatMap((e) => e.slots.flatMap((s) => s.ids));
 
-  const makeEntry = useCallback((dice: DiceEngine, group: RollGroup, d20Mode: D20Mode): Entry => {
+  const makeEntry = useCallback((dice: DiceEngine, group: RollGroup, trayMode: D20Mode): Entry => {
+    const d20Mode = group.mode && group.mode !== "normal" ? group.mode : trayMode;
     const twoD20 = group.d20Test && d20Mode !== "normal" && group.dice.length === 1 && group.dice[0] === "d20";
     const kinds: DieKind[] = twoD20 ? ["d20", "d20"] : group.dice;
     return {
@@ -96,8 +114,9 @@ export function DiceTray({ open, onClose, request }: { open: boolean; onClose: (
   }, []);
 
   const start = useCallback(
-    (newTitle: string, groups: RollGroup[]) => {
+    (newTitle: string, groups: RollGroup[], done?: RollRequest["onDone"]) => {
       if (!engine) return;
+      onDone.current = done;
       engine.remove(allIds(entries));
       const list = groups.map((g) => makeEntry(engine, g, mode));
       rollSeq.current++;
@@ -115,7 +134,7 @@ export function DiceTray({ open, onClose, request }: { open: boolean; onClose: (
     if (!ready || !next) return;
     handled.current = next.seq;
     pending.current = null;
-    start(next.title, next.groups);
+    start(next.title, next.groups, next.onDone);
   }, [request, ready, start]);
 
   const throwOne = (kind: DieKind) => {
@@ -123,6 +142,7 @@ export function DiceTray({ open, onClose, request }: { open: boolean; onClose: (
     // A free throw starts its own roll unless the tray already holds free dice.
     const free = t("dice.free", "Dice");
     const keep = title === free ? entries : [];
+    onDone.current = undefined;
     if (title !== free) engine.remove(allIds(entries));
     const entry = makeEntry(engine, { label: kind, dice: [kind], mod: 0, d20Test: kind === "d20" }, mode);
     rollSeq.current++;
@@ -138,6 +158,7 @@ export function DiceTray({ open, onClose, request }: { open: boolean; onClose: (
   };
 
   const clear = () => {
+    onDone.current = undefined;
     engine?.remove(allIds(entries));
     setEntries([]);
     setTitle("");
@@ -190,6 +211,7 @@ export function DiceTray({ open, onClose, request }: { open: boolean; onClose: (
       logged.current = rollSeq.current;
       const text = results.map((r) => (results.length > 1 ? `${r.entry.group.label} ${r.total}` : String(r.total))).join(" · ");
       setHistory((h) => [{ key: rollSeq.current, title: title || results.map((r) => r.entry.group.label).join(", "), text }, ...h].slice(0, 8));
+      onDone.current?.(results.map((r) => ({ total: r.total ?? 0, values: r.values })));
     }
   }, [engine, results, allDone, title]);
 
@@ -201,13 +223,39 @@ export function DiceTray({ open, onClose, request }: { open: boolean; onClose: (
   };
   const single = results.length === 1 ? results[0] : null;
 
+  // Before the dice land: "1d20 + 3 DEX + 3 proficiency". After: "14 + 3 DEX + 3 proficiency",
+  // with the d20 that does not count (advantage, disadvantage) struck through.
+  const breakdown = (r: (typeof results)[number]) => {
+    if (!r.done) return <>{groupText(r.entry.group, sourceName)}</>;
+    const drop = droppedIndex(r.entry.group, r.values, r.entry.mode);
+    const signed = (n: number) => `${n > 0 ? "+" : "−"} ${Math.abs(n)}`;
+    const parts = r.entry.group.parts?.length ? r.entry.group.parts : r.entry.group.mod ? [{ source: "@other", value: r.entry.group.mod }] : [];
+    return (
+      <>
+        {r.values.map((v, i) => (
+          <span key={i}>
+            {i > 0 && (r.entry.mode !== "normal" ? " / " : " + ")}
+            <span className={i === drop ? "line-through opacity-60" : "font-semibold text-[var(--color-text-primary)]"}>{v}</span>
+          </span>
+        ))}
+        <span> ({groupText({ ...r.entry.group, mod: 0, parts: [] })})</span>
+        {parts.filter((p) => p.value).map((p, i) => (
+          <span key={`p${i}`}>
+            {" "}
+            {signed(p.value)} <span className="font-semibold text-[var(--color-text-primary)]">{sourceName(p.source)}</span>
+          </span>
+        ))}
+      </>
+    );
+  };
+
   return (
     <>
-      {open && <button type="button" aria-label={t("common.close", "Close")} className="fixed inset-0 z-[69] bg-black/20 md:hidden" onClick={onClose} />}
+      {open && <button type="button" aria-label={t("common.close", "Close")} className="fixed inset-0 z-[1000001] bg-black/20 md:hidden" onClick={onClose} />}
       <aside
         aria-label={t("dice.tray", "Dice tray")}
         aria-hidden={!open}
-        className={`fixed inset-y-0 right-0 z-[70] flex w-[min(420px,92vw)] flex-col border-l border-[var(--color-border)] bg-[var(--color-surface)] shadow-2xl transition-transform duration-200 motion-reduce:transition-none ${open ? "translate-x-0" : "pointer-events-none translate-x-[104%]"}`}
+        className={`fixed inset-y-0 right-0 z-[1000002] flex w-[min(420px,92vw)] flex-col border-l border-[var(--color-border)] bg-[var(--color-surface)] shadow-2xl transition-transform duration-200 motion-reduce:transition-none ${open ? "translate-x-0" : "pointer-events-none translate-x-[104%]"}`}
         style={{ paddingTop: "env(safe-area-inset-top, 0px)", paddingBottom: "env(safe-area-inset-bottom, 0px)", paddingRight: "env(safe-area-inset-right, 0px)" }}
       >
         <div className="flex items-center gap-2 px-4 pb-2 pt-3">
@@ -240,8 +288,7 @@ export function DiceTray({ open, onClose, request }: { open: boolean; onClose: (
                 <b className="font-bold text-[var(--color-text-primary)]">{title || single.entry.group.label}</b>
                 {d20Note(single) && <span className="font-bold text-[var(--color-text-primary)]"> · {d20Note(single)}</span>}
                 <br />
-                {groupText(single.entry.group)}
-                {single.done && single.values.length > 1 && ` · ${single.values.join(" + ")}`}
+                {breakdown(single)}
               </span>
             </div>
           ) : (
@@ -250,9 +297,11 @@ export function DiceTray({ open, onClose, request }: { open: boolean; onClose: (
               {results.map((r, i) => (
                 <div key={i} className="flex items-baseline gap-3">
                   <span className={`w-12 text-2xl font-extrabold tabular-nums ${r.done ? "text-[var(--color-text-primary)]" : "text-[var(--color-text-muted)]"}`}>{r.done ? r.total : "…"}</span>
-                  <span className="min-w-0 flex-1 truncate text-xs text-[var(--color-text-muted)]">
+                  <span className="min-w-0 flex-1 text-xs leading-snug text-[var(--color-text-muted)]">
                     <b className="font-bold text-[var(--color-text-primary)]">{r.entry.group.label}</b>
-                    {d20Note(r) && <span className="font-bold text-[var(--color-text-primary)]"> · {d20Note(r)}</span>} · {groupText(r.entry.group)}
+                    {d20Note(r) && <span className="font-bold text-[var(--color-text-primary)]"> · {d20Note(r)}</span>}
+                    <br />
+                    {breakdown(r)}
                   </span>
                 </div>
               ))}

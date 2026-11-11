@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { BottomSheet } from "@/components/modals/BottomSheet";
-import { RichInline, RichText } from "@/components/RichText";
+import { RichDice, RichInline, RichText } from "@/components/RichText";
 import { TurnHands } from "./TurnHands";
 import { SwingTracker } from "./SwingTracker";
 import { WildShapeCard, WildShapePicker } from "./WildShape";
@@ -24,7 +24,7 @@ import { getSpellSchoolStyle } from "@/lib/spell-schools";
 import { getSchoolBadgeStyle } from "@/lib/badge-styles";
 import { SpellDamageBonusLines, SpellDamageLine } from "@/components/SpellDamageBonus";
 import { useDice } from "@/contexts/DiceContext";
-import { d20Group, spellDamageGroups } from "@/lib/dice-roll";
+import { optionRollGroups } from "@/lib/turn-rolls";
 import { GiRollingDices } from "react-icons/gi";
 
 interface TurnPanelProps {
@@ -160,6 +160,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
     const cost = costOf(o);
     const text = textOf(o);
     const full = o.detail || (o.summaryKey ? t(o.summaryKey, o.summary || undefined) : o.summary);
+    const rolls = dice ? optionRollGroups(o, nameOf(o), { toHit: t("dice.toHit", "To hit"), damage: t("dice.damage", "Damage"), heal: t("dice.heal", "Healing") }) : [];
     return (
       <div key={o.key} className={`flex overflow-hidden rounded-[var(--radius-md)] border bg-[var(--color-surface)] transition-colors hover:border-[var(--color-border-active)] ${best ? "border-2 border-[var(--color-ink)]" : "border-[var(--color-border)]"}`}>
         <button
@@ -180,27 +181,23 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
           </span>
           {text && (
             <span className="mt-0.5 block text-xs leading-relaxed text-[var(--color-text-secondary)] line-clamp-3">
-              <RichInline text={text} />
+              <RichDice off><RichInline text={text} /></RichDice>
             </span>
           )}
           {o.condition && !reason && <span className="mt-0.5 block text-[11px] font-semibold text-[var(--color-text-primary)]">{t(`turn.cond.${o.condition}`)}</span>}
-          <SpellDamageLine parts={o.spellDamage} />
-          <SpellDamageBonusLines bonuses={o.damageBonuses} />
+          <RichDice off>
+            <SpellDamageLine parts={o.spellDamage} />
+            <SpellDamageBonusLines bonuses={o.damageBonuses} />
+          </RichDice>
           {o.endsConcentration && <span className="mt-1 block text-xs font-semibold text-[var(--color-warning-700)]">{t("turn.endsConc", { name: o.endsConcentration })}</span>}
           {pick && <span className="mt-1 block text-xs font-semibold leading-snug text-[var(--color-text-primary)]">{t(`turn.why.${pick.why}`, pick.values || {})}</span>}
           {reason && <span className="mt-0.5 block text-[11px] font-semibold text-[var(--color-text-muted)]">{reason}</span>}
         </button>
-        {dice && (o.spellDamage?.some((p) => !p.when) || o.spellAttack !== undefined) && (
+        {dice && rolls.length > 0 && (
           <button
             type="button"
             aria-label={t("dice.rollName", { name: nameOf(o) }, "Roll {name}")}
-            onClick={() => {
-              const groups = [
-                ...(o.spellAttack !== undefined ? [d20Group(t("dice.toHit", "To hit"), o.spellAttack)] : []),
-                ...spellDamageGroups(o.spellDamage || [], t("dice.damage", "Damage")),
-              ];
-              dice.roll(nameOf(o), groups);
-            }}
+            onClick={() => dice.roll(nameOf(o), rolls)}
             className="flex w-10 shrink-0 items-center justify-center border-l border-[var(--color-border)] text-[var(--color-text-secondary)] hover:bg-[var(--color-bg)]"
           >
             <GiRollingDices className="h-4 w-4" aria-hidden="true" />
@@ -368,7 +365,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
                     <div key={f.id} className="flex overflow-hidden rounded-[var(--radius-md)] border border-[var(--color-border)]">
                       <div className="min-w-0 flex-1 px-3 py-2">
                         <div className="text-sm font-bold text-[var(--color-text-primary)]">{f.name}</div>
-                        {text && <div className="mt-0.5 text-xs leading-relaxed text-[var(--color-text-secondary)] line-clamp-3"><RichInline text={text} /></div>}
+                        {text && <div className="mt-0.5 text-xs leading-relaxed text-[var(--color-text-secondary)] line-clamp-3"><RichDice title={f.name}><RichInline text={text} /></RichDice></div>}
                       </div>
                       {(f.description || text) && infoButton(f.name, f.description || text)}
                     </div>
@@ -382,8 +379,10 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
       {info && (
         <BottomSheet isOpen onClose={() => setInfo(null)} title={info.title} className="!mb-4 !max-h-[86vh]">
           <div className="space-y-2 px-4 py-4">
-            {info.meta && <div className="text-xs font-semibold text-[var(--color-text-secondary)]"><RichInline text={info.meta} /></div>}
-            <div className="text-sm leading-relaxed text-[var(--color-text-primary)]"><RichText text={info.text} /></div>
+            <RichDice title={info.title}>
+              {info.meta && <div className="text-xs font-semibold text-[var(--color-text-secondary)]"><RichInline text={info.meta} /></div>}
+              <div className="text-sm leading-relaxed text-[var(--color-text-primary)]"><RichText text={info.text} /></div>
+            </RichDice>
           </div>
         </BottomSheet>
       )}

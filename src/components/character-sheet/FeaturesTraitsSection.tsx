@@ -19,7 +19,7 @@ import { ruleFor, ruleKey, usesMax, type FeatureRule, type PoolField } from "@/d
 import { featureRounds, roundsText } from "@/lib/timers";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { ResourceToken } from "@/components/ResourceToken";
-import { RichText, RichInline } from "@/components/RichText";
+import { RichDice, RichText, RichInline } from "@/components/RichText";
 import { FEATURE_GROUP_ORDER, getAsiFeats, getFeatPicks, getFeaturePicks, matchesFeatureSearch, poolMax, type FeatureGroup } from "@/lib/feature-groups";
 
 /**
@@ -466,7 +466,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
             </span>
           </span>
           {r.summary && (
-            <span className="mt-0.5 block text-[13px] leading-snug text-[var(--color-text-secondary)] line-clamp-2"><RichInline text={r.summary} /></span>
+            <span className="mt-0.5 block text-[13px] leading-snug text-[var(--color-text-secondary)] line-clamp-2"><RichDice off><RichInline text={r.summary} /></RichDice></span>
           )}
           {badges.length > 0 && (
             <span className="mt-1.5 flex flex-wrap gap-1">
@@ -818,7 +818,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
             >
               <div className="px-4 py-4 space-y-3">
                 {(selectedFeature.summary || "") && (
-                  <div className="text-xs text-[var(--color-text-muted)] italic leading-relaxed"><RichText text={selectedFeature.summary} /></div>
+                  <div className="text-xs text-[var(--color-text-muted)] italic leading-relaxed"><RichDice title={selectedFeature.name}><RichText text={selectedFeature.summary} /></RichDice></div>
                 )}
                 {badges.length > 0 && (
                   <div className="flex flex-wrap gap-1.5">
@@ -836,7 +836,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                 {(selectedFeature as any).lastUpdated && (
                   <p className="text-[10px] text-[var(--color-text-muted)]">{t("glossary.lastUpdated")}: {(selectedFeature as any).lastUpdated}</p>
                 )}
-                <RichText text={selectedFeature.description || ""} />
+                <RichDice title={selectedFeature.name}><RichText text={selectedFeature.description || ""} /></RichDice>
                 <div className="flex flex-wrap gap-2 pt-1">
                   {sheetLevel !== null && (
                     <span className="rounded-full border border-[var(--color-border)] bg-[var(--color-bg)] px-2.5 py-1 text-[10px] font-semibold text-[var(--color-text-secondary)]">

@@ -246,6 +246,12 @@ function spendOne(inventory: InventoryRow[], row: InventoryRow): InventoryRow[] 
     : inventory.map((r) => (r.id === row.id ? { ...r, quantity } : r));
 }
 
+/** What a healing item heals ("2d4+2"), or "0". */
+export function healDiceOf(row: InventoryRow): string {
+  const item = findCatalogItem(row.itemId ?? row.srdItemName ?? row.name);
+  return item?.use?.action === "heal" ? item.use.dice : "0";
+}
+
 /**
  * Uses one item: a healing potion heals and is used up, a pouch gives what is
  * inside it, anything else used up loses one. Returns the character patch.
@@ -254,6 +260,8 @@ export function applyItemUse(
   character: Pick<Character, "inventory" | "currentHp" | "maxHp" | "effectiveMaxHp">,
   rowId: string,
   random: () => number = Math.random,
+  /** The healing already rolled (in the dice tray); rolled here when left out. */
+  rolledHeal?: number,
 ): { patch: Partial<Character>; result: UseResult } | null {
   const row = character.inventory.find((r) => r.id === rowId);
   if (!row) return null;
@@ -266,8 +274,7 @@ export function applyItemUse(
   }
   if (action === "heal") {
     const item = findCatalogItem(row.itemId ?? row.srdItemName ?? row.name)!;
-    const dice = item.use?.action === "heal" ? item.use.dice : "0";
-    const rolled = rollDice(dice, random);
+    const rolled = rolledHeal ?? rollDice(healDiceOf(row), random);
     const max = character.effectiveMaxHp ?? character.maxHp;
     const currentHp = Math.min(max, (character.currentHp || 0) + rolled);
     return {

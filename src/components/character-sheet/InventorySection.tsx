@@ -6,6 +6,8 @@ import type { Character } from "@/lib/storage";
 import { computeEquippedEffects, getProficiencyBonus } from "@/lib/storage";
 import { useDerivedStats } from "@/lib/useCharacterStats";
 import { useCallback, useState, useMemo } from "react";
+import { useDice } from "@/contexts/DiceContext";
+import { parseRoll, partsFor } from "@/lib/dice-roll";
 import {
   BackpackIcon as Backpack,
   PlusIcon as Plus,
@@ -21,10 +23,9 @@ import { InfoButton } from "@/components/InfoButton";
 import { DamageBadge, DamageTypeLabel } from "./DamageBadge";
 import { ItemSelectionModal } from "../modals/ItemSelectionModal";
 import { CustomItemModal } from "../modals/CustomItemModal";
-import { Dice } from "@/components/Dice";
 import { SourceBadge } from "@/components/SourceBadge";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { addRows, applyItemUse, carriedWeight, COIN_BY_FIELD, coinsFromInventory, equipRow, getRowUse, handChoices, isCoinRow, rowInfo, rowText, setCoinAmount, type Hand as HandSide } from "@/lib/inventory";
+import { addRows, applyItemUse, carriedWeight, healDiceOf, COIN_BY_FIELD, coinsFromInventory, equipRow, getRowUse, handChoices, isCoinRow, rowInfo, rowText, setCoinAmount, type Hand as HandSide } from "@/lib/inventory";
 import { changeHands } from "@/lib/turn";
 import { HandChoiceSheet } from "./HandChoiceSheet";
 import { findLocalizedItem } from "@/data/item-catalog";
@@ -235,10 +236,11 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
     [character, onChange]
   );
 
+  const dice = useDice();
   const handleUse = useCallback(
-    (rowId: string) => {
+    (rowId: string, rolledHeal?: number) => {
       const row = character.inventory.find((i) => i.id === rowId);
-      const outcome = applyItemUse(character, rowId);
+      const outcome = applyItemUse(character, rowId, Math.random, rolledHeal);
       if (!row || !outcome) return;
       const nextInventory = outcome.patch.inventory ?? character.inventory;
       const { ac, attacks } = computeEquippedEffects({ ...character, inventory: nextInventory });
@@ -261,6 +263,22 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
     },
     [character, onChange, t, language]
   );
+
+  // A healing potion is rolled in the dice tray first, and drunk once the dice land.
+  const drinkOrUse = (rowId: string) => {
+    const row = character.inventory.find((i) => i.id === rowId);
+    const parsed = row && dice && getRowUse(row) === "heal" ? parseRoll(healDiceOf(row)) : null;
+    if (!row || !dice || !parsed) {
+      handleUse(rowId);
+      return;
+    }
+    let drunk = false;
+    dice.roll(row.name, [{ label: t("dice.heal", "Healing"), dice: parsed.dice, mod: parsed.mod, parts: partsFor(parsed.mod, [{ source: row.name, value: parsed.mod }]) }], (result) => {
+      if (drunk) return;
+      drunk = true;
+      handleUse(rowId, Math.max(0, result[0]?.total ?? 0));
+    });
+  };
 
   const removeItem = useCallback(
     (id: string) => {
@@ -563,7 +581,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
             const original = character.inventory.find((i) => i.id === slot.id);
             return original ? getRowUse(original) : null;
           }}
-          onUse={(slot) => handleUse(slot.id)}
+          onUse={(slot) => drinkOrUse(slot.id)}
           onPickUp={(slot) => updateItem(slot.id, { onGround: undefined })}
           onEdit={editMode ? handleEdit : undefined}
           onRemove={handleRemove}

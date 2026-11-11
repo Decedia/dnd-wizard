@@ -14,7 +14,8 @@ import { ItemIcon } from "@/components/ItemIcon";
 import { rowText } from "@/lib/inventory";
 import { Overridable } from "./Overridable";
 import { useDice } from "@/contexts/DiceContext";
-import { d20Group, groupFrom, type RollGroup } from "@/lib/dice-roll";
+import { d20Group, damageGroup, type RollGroup } from "@/lib/dice-roll";
+
 
 interface AttacksAndSpellcastingSectionProps {
   character: Character;
@@ -81,7 +82,7 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
                   <span className="text-base font-bold text-[var(--color-text-primary)] flex-1">{details ? rowText(details.weapon, language).name : attack.name}</span>
                   {details && (
                     <span className="text-sm font-bold text-ink bg-paper px-3 py-1.5 surface">
-                      <Overridable id={`attack:${details.weapon.id}`} label={t("override.toHit", { name: rowText(details.weapon, language).name }, "{name} to hit")} signed editMode={editMode} roll={details.attackBonus}>
+                      <Overridable id={`attack:${details.weapon.id}`} label={t("override.toHit", { name: rowText(details.weapon, language).name }, "{name} to hit")} signed editMode={editMode} roll={details.attackBonus} rollParts={details.attackParts}>
                         +{details.attackBonus}
                       </Overridable>{" "}
                       to hit ({details.abilityKey.toUpperCase()})
@@ -105,8 +106,8 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
                       <span className="text-sm text-[var(--color-text-secondary)] font-medium">({details.abilityKey.toUpperCase()} modifier)</span>
                       {dice && !editMode && details.damageDice && (() => {
                         const name = rowText(details.weapon, language).name;
-                        const damage = groupFrom(t("dice.damage", "Damage"), `${details.damageDice}${details.damageBonus >= 0 ? "+" : ""}${details.damageBonus}`);
-                        const groups = [d20Group(t("dice.toHit", "To hit"), details.attackBonus), damage].filter((g): g is RollGroup => !!g);
+                        const damage = damageGroup(t("dice.damage", "Damage"), details.damageDice, details.damageParts);
+                        const groups = [d20Group(t("dice.toHit", "To hit"), details.attackBonus, details.attackParts), damage].filter((g): g is RollGroup => !!g);
                         return (
                           <div className="flex gap-2 pt-1">
                             <button type="button" onClick={() => dice.roll(name, groups)} className="btn btn-primary !px-3 !py-1.5 text-xs">
