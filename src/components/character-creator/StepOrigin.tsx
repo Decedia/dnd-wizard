@@ -128,7 +128,15 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
             <PickRow
               label={`${t("form.race", "Race")} *`}
               title={data.race ? (data.race === "Human" && data.raceVariant === "variant" ? t("origin.variantHuman", "Variant Human") : data.race) : t("origin.selectRace", "Pilih Ras")}
-              subtitle={data.race ? truncate(selectedRace?.flavor || (selectedRace as any)?.recommendation?.text || data.race) : t("origin.raceExamples", "Manusia, Elf, Dwarf...")}
+              subtitle={data.race
+                ? data.race === "Human" && data.raceVariant === "variant"
+                  ? [
+                      (data.variantHumanAbilities || []).map((ab) => `+1 ${ab.toUpperCase()}`).join(", "),
+                      data.variantHumanSkill,
+                      data.featureSelections?.["variant-human-feat"]?.[0],
+                    ].filter(Boolean).join(" · ")
+                  : truncate(selectedRace?.flavor || (selectedRace as any)?.recommendation?.text || data.race)
+                : t("origin.raceExamples", "Manusia, Elf, Dwarf...")}
               icon={(() => { const Icon = (data.race && RACE_ICONS[data.race]) || Users; return <Icon className="h-6 w-6" />; })()}
               chosen={!!data.race}
               onClick={() => setRaceModalOpen(true)}

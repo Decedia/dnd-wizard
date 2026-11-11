@@ -1,13 +1,22 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
-import { CheckIcon as Check, CaretRightIcon as ChevronRight } from "@/components/icons";
+import { useState, useMemo, useEffect, useEffectEvent } from "react";
 import { FeatSelectionModal } from "@/components/modals/FeatSelectionModal";
 import { getStaticFeats } from "@/lib/srd-client";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { SRDFeat } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
 import { getTakenSpellNames } from "@/lib/taken-spells";
+import { meetsPrerequisites } from "@/lib/feat-requirements";
+import { featPicks } from "@/lib/level-up-picks";
+import { PickCards, type PickCard } from "@/components/level-up/PickCards";
+
+const SKILL_OPTIONS = [
+  "Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception",
+  "History", "Insight", "Intimidation", "Investigation", "Medicine",
+  "Nature", "Perception", "Performance", "Persuasion", "Religion",
+  "Sleight of Hand", "Stealth", "Survival",
+];
 
 const ABILITY_OPTIONS = [
   { id: "str", label: "STR" },
@@ -19,7 +28,6 @@ const ABILITY_OPTIONS = [
 ];
 
 export interface HumanVariantConfigPayload {
-  enabled: boolean;
   abilities: string[];
   skill: string | undefined;
   feat: string | undefined;
@@ -27,7 +35,6 @@ export interface HumanVariantConfigPayload {
 }
 
 interface HumanVariantConfigProps {
-  initialEnabled?: boolean;
   initialAbilities?: string[];
   initialSkill?: string;
   initialFeat?: string;
@@ -38,8 +45,8 @@ interface HumanVariantConfigProps {
   onChange: (payload: HumanVariantConfigPayload) => void;
 }
 
+/** Variant Human picks, laid out like the Half-Elf panel: two abilities, one skill, one feat. */
 export function HumanVariantConfig({
-  initialEnabled = false,
   initialAbilities = [],
   initialSkill,
   initialFeat,
@@ -50,96 +57,67 @@ export function HumanVariantConfig({
   onChange,
 }: HumanVariantConfigProps) {
   const { t, language } = useLanguage();
-  const [enabled, setEnabled] = useState(initialEnabled);
   const [abilities, setAbilities] = useState<string[]>(initialAbilities);
   const [skill, setSkill] = useState<string | undefined>(initialSkill);
   const [feat, setFeat] = useState<string | undefined>(initialFeat);
   const [featOptions, setFeatOptions] = useState<Record<string, string> | undefined>(initialFeatOptions);
   const [featModalOpen, setFeatModalOpen] = useState(false);
-  const feats = useMemo(() => getStaticFeats([], undefined, "en"), []);
 
+  // onChange is new on every parent render, so it is read as an effect event.
+  const report = useEffectEvent((payload: HumanVariantConfigPayload) => onChange(payload));
   useEffect(() => {
-    onChange({ enabled, abilities, skill, feat, featOptions });
-  }, [enabled, abilities, skill, feat, featOptions, onChange]);
+    report({ abilities, skill, feat, featOptions });
+  }, [abilities, skill, feat, featOptions]);
+
+  // Skills from the class or background stay pickable but are flagged.
+  // This race's own earlier pick is not counted as already known.
+  const alreadyKnown = new Set<string>(
+    Object.entries(character?.skills || {})
+      .filter(([name, proficient]) => proficient && name !== character?.variantHumanSkill)
+      .map(([name]) => name),
+  );
+
+  // The earlier Variant Human feat shows as taken elsewhere; it stays pickable here.
+  const blocked = disabledFeats.filter((name) => name !== initialFeat);
+
+  const cards = useMemo<PickCard[]>(() => {
+    const open = getStaticFeats(sources || [], undefined, "en")
+      .map((f) => f.name)
+      .filter((name) => !blocked.includes(name) && (!character || meetsPrerequisites(character as Character, name)));
+    return featPicks(character?.class, open).map((p) => ({
+      key: p.name,
+      title: p.name,
+      why: language === "id" ? p.why.id : p.why.en,
+      selected: feat === p.name,
+    }));
+  }, [sources, blocked, character, feat, language]);
+  const featFromCards = !feat || cards.some((c) => c.key === feat);
 
   const toggleAbility = (abilityId: string) => {
     setAbilities((prev) => {
-      let next: string[];
-      if (prev.includes(abilityId)) {
-        next = prev.filter((a) => a !== abilityId);
-      } else if (prev.length < 2) {
-        next = [...prev, abilityId];
-      } else {
-        next = [prev[1], abilityId];
-      }
-      return next;
+      if (prev.includes(abilityId)) return prev.filter((a) => a !== abilityId);
+      if (prev.length < 2) return [...prev, abilityId];
+      return [prev[1], abilityId];
     });
   };
 
-  const selectSkill = (skillName: string) => {
-    setSkill((prev) => (prev === skillName ? undefined : skillName));
+  const pickCard = (name: string) => {
+    setFeat((prev) => (prev === name ? undefined : name));
+    setFeatOptions(undefined);
   };
-
-  const selectFeat = (featName: string) => {
-    setFeat((prev) => (prev === featName ? undefined : featName));
-  };
-
-  const toggleEnabled = () => {
-    setEnabled((prev) => {
-      const next = !prev;
-      if (!next) {
-        setAbilities([]);
-        setSkill(undefined);
-        setFeat(undefined);
-      }
-      return next;
-    });
-  };
-
-  if (!enabled) {
-    return (
-      <div className="px-4 py-3 border-b border-[var(--color-border)] bg-[var(--color-bg)]">
-        <label className="flex items-center gap-2 cursor-pointer">
-          <input
-            type="checkbox"
-            checked={enabled}
-            onChange={toggleEnabled}
-            className="h-4 w-4 rounded border-[var(--color-border)] text-[var(--color-accent-indigo-600)] focus:ring-[var(--color-accent-indigo-500)]"
-          />
-          <span className="text-sm font-medium text-[var(--color-text-primary)]">
-            {t("modal.enableVariantHuman", "Enable Variant Human")}
-          </span>
-        </label>
-          <p className="text-xs text-[var(--color-text-secondary)] mt-1">
-            {t("modal.variantHumanHint", "When enabled, you gain +1 to two abilities, one skill proficiency, and one feat.")}
-          </p>
-      </div>
-    );
-  }
 
   return (
     <div className="flex flex-col">
-      <div className="px-4 py-3 border-b border-[var(--color-border)] bg-[var(--color-bg)]">
-        <label className="flex items-center gap-2 cursor-pointer">
-          <input
-            type="checkbox"
-            checked={enabled}
-            onChange={toggleEnabled}
-            className="h-4 w-4 rounded border-[var(--color-border)] text-[var(--color-accent-indigo-600)] focus:ring-[var(--color-accent-indigo-500)]"
-          />
-          <span className="text-sm font-medium text-[var(--color-text-primary)]">
-            {t("modal.enableVariantHuman", "Enable Variant Human")}
-          </span>
-        </label>
-          <p className="text-xs text-[var(--color-text-secondary)] mt-1">
-            {t("modal.variantHumanHint", "When enabled, you gain +1 to two abilities, one skill proficiency, and one feat.")}
-          </p>
+      <div className="px-4 py-3 border-b border-border-strong bg-paper">
+        <p className="text-xs text-ink-muted">
+          {t("modal.variantHumanDescription", "You gain +1 to two different ability scores of your choice, proficiency in one skill of your choice, and one feat of your choice.")}
+        </p>
       </div>
 
       <div className="p-4 space-y-4">
-        <div className="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-3">
-          <div className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wider mb-2">
-            {t("modal.plusOneToTwoAbilities", "+1 to Two Abilities")}
+        <div className="rounded-xl border-2 border-border-strong bg-surface p-3">
+          <div className="text-xs font-medium uppercase tracking-wider text-ink-muted mb-2">
+            {t("modal.plusOneToTwoAbilities", "+1 on Two Abilities")}
           </div>
           <div className="grid grid-cols-3 gap-1.5">
             {ABILITY_OPTIONS.map((ability) => {
@@ -149,10 +127,8 @@ export function HumanVariantConfig({
                   key={ability.id}
                   type="button"
                   onClick={() => toggleAbility(ability.id)}
-                  className={`p-2 text-center rounded-lg border text-xs font-bold uppercase transition-all ${
-                    isSelected
-                      ? "border-[var(--color-accent-indigo-500)] bg-[var(--color-accent-indigo-50)] text-[var(--color-accent-indigo-700)]"
-                      : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                  className={`p-2 text-center rounded-lg border-2 text-xs font-bold uppercase transition-all active:scale-[0.98] ${
+                    isSelected ? "border-ink bg-ink/10 text-ink" : "border-border-strong text-ink hover:border-ink/40"
                   }`}
                 >
                   {ability.label}
@@ -160,67 +136,54 @@ export function HumanVariantConfig({
               );
             })}
           </div>
-          <div className="text-[10px] text-[var(--color-text-muted)] mt-1.5">
+          <div className="text-[10px] text-ink-muted mt-1.5">
             {abilities.length === 0
               ? t("modal.select2Abilities", "Select 2 abilities")
               : abilities.length === 1
-              ? t("modal.oneAbilitySelected", "1 ability selected")
-              : t("modal.twoAbilitiesSelected", "2 abilities selected")}
+                ? t("modal.oneAbilitySelected", "1 ability selected")
+                : t("modal.twoAbilitiesSelected", "2 abilities selected")}
           </div>
         </div>
 
-        <div className="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-3">
-          <div className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wider mb-2">
+        <div className="rounded-xl border-2 border-border-strong bg-surface p-3">
+          <div className="text-xs font-medium uppercase tracking-wider text-ink-muted mb-2">
             {t("origin.skillProficiency", "Skill Proficiency")}
           </div>
           <div className="grid grid-cols-2 gap-1.5">
-            {[
-              "Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception",
-              "History", "Insight", "Intimidation", "Investigation", "Medicine",
-              "Nature", "Perception", "Performance", "Persuasion", "Religion",
-              "Sleight of Hand", "Stealth", "Survival",
-            ].map((skillName) => {
+            {SKILL_OPTIONS.map((skillName) => {
               const isSelected = skill === skillName;
+              const known = alreadyKnown.has(skillName) && !isSelected;
               return (
                 <button
                   key={skillName}
                   type="button"
-                  onClick={() => selectSkill(skillName)}
-                  className={`p-1.5 text-left rounded-lg border text-xs font-semibold transition-all ${
-                    isSelected
-                      ? "border-[var(--color-accent-indigo-500)] bg-[var(--color-accent-indigo-50)] text-[var(--color-accent-indigo-700)]"
-                      : "border-[var(--color-border)] hover:border-[var(--color-border-active)]"
+                  onClick={() => setSkill((prev) => (prev === skillName ? undefined : skillName))}
+                  className={`p-1.5 text-left rounded-lg border-2 text-xs font-semibold transition-all active:scale-[0.98] ${
+                    isSelected ? "border-ink bg-ink/10 text-ink" : "border-border-strong text-ink hover:border-ink/40"
                   }`}
                 >
                   {skillName}
+                  {known && <span className="ml-1 text-ink-subtle">•</span>}
                 </button>
               );
             })}
           </div>
+          <div className="text-[10px] text-ink-muted mt-1.5">
+            {alreadyKnown.size > 0
+              ? t("modal.skillKnownHint", "• = you already have it from your class or background.")
+              : skill
+                ? t("modal.oneSkillSelected", "1 skill selected")
+                : t("modal.select1Skill", "Select 1 skill")}
+          </div>
         </div>
 
-        <div className="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-3">
-          <div className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wider mb-2">
-            {t("feat.feat", "Feat")}
-          </div>
-          {feat && (
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-sm font-semibold text-[var(--color-text-primary)]">{feat}</span>
-              <button
-                type="button"
-                onClick={() => selectFeat(undefined as any)}
-                className="text-xs text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]"
-              >
-                {t("creator.change", "Change")}
-              </button>
-            </div>
+        <div className="rounded-xl border-2 border-border-strong bg-surface p-3 space-y-3">
+          <PickCards label={t("modal.suggestedFeats", "Suggested feats")} cards={cards} onPick={pickCard} />
+          {feat && !featFromCards && (
+            <div className="rounded-lg border-2 border-ink bg-ink/10 p-2 text-sm font-bold text-ink">{feat}</div>
           )}
-          <button
-            type="button"
-            onClick={() => setFeatModalOpen(true)}
-            className="btn btn-secondary w-full text-sm"
-          >
-            {feat ? t("creator.changeFeat", "Change Feat") : t("creator.chooseFeat", "Choose Feat")}
+          <button type="button" onClick={() => setFeatModalOpen(true)} className="btn btn-secondary w-full">
+            {t("levelUp.flow.seeAllFeats", "See all feats")}
           </button>
         </div>
       </div>
@@ -229,7 +192,7 @@ export function HumanVariantConfig({
         <FeatSelectionModal
           selectedFeat={feat}
           sources={sources || []}
-          disabledFeats={disabledFeats}
+          disabledFeats={blocked}
           character={character as Character}
           takenSpells={(() => {
             // This feat's own picks stay pickable when it is changed.
@@ -238,7 +201,7 @@ export function HumanVariantConfig({
             return new Set([...getTakenSpellNames({ ...(character as Character), featureSelections: rest })].filter((n) => !own.has(n)));
           })()}
           onSelect={(selected: SRDFeat, selectedOptions?: Record<string, string>) => {
-            selectFeat(selected.name);
+            setFeat(selected.name);
             setFeatOptions(
               selectedOptions && Object.keys(selectedOptions).length > 0 ? selectedOptions : undefined,
             );

@@ -254,6 +254,13 @@ export function spellPicks(available: { name: string; level: number }[], max = 3
     .slice(0, max);
 }
 
+/** Up to three feats for a class (its strong picks, then ones that suit anyone), from those still open. */
+export function featPicks(className: string | undefined, available: string[]): Pick[] {
+  const order = [...(CLASS_FEATS[className || ""] || []), "Lucky", "Tough", "Alert"];
+  const names = order.filter((f, i) => order.indexOf(f) === i);
+  return topPicks(names.map((name) => ({ name, why: FEAT_WHY[name] || { en: "A strong feat for your class.", id: "Feat yang kuat untuk class-mu." } })), available);
+}
+
 /** Up to `max` suggestions from a list of names that can be picked. */
 export function topPicks(list: Pick[] | undefined, available: string[], max = 3): Pick[] {
   const set = new Set(available);
