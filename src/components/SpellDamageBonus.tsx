@@ -11,7 +11,7 @@ export function SpellDamageBonusLines({ bonuses }: { bonuses?: SpellDamageBonus[
     <span className="mt-1 flex flex-col gap-0.5">
       {bonuses.map((b) => (
         <span key={b.source} className="text-xs font-semibold text-[var(--color-text-primary)]">
-          {t(`spell.bonus.${b.per}`, { n: b.value > 0 ? `+${b.value}` : String(b.value), source: b.source })}
+          {t(`spell.bonus.${b.per}`, { n: b.dice ? `+${b.dice}` : b.value > 0 ? `+${b.value}` : String(b.value), source: b.source })}
         </span>
       ))}
     </span>

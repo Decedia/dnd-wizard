@@ -3,7 +3,7 @@
 import type { IconType } from "react-icons";
 import {
   GiCheckedShield, GiClover, GiSparkles, GiFlame, GiHolySymbol, GiLightningArc, GiMusicalNotes,
-  GiPawPrint, GiRollingDices, GiStarSwirl, GiYinYang,
+  GiBrain, GiPawPrint, GiRollingDices, GiStarSwirl, GiYinYang,
 } from "react-icons/gi";
 
 /** The Game Icon of each resource; a feature's own uses get sparkles. */
@@ -18,6 +18,7 @@ const ICON: Record<string, IconType> = {
   bardicInspirationUses: GiMusicalNotes,
   superiorityDice: GiRollingDices,
   luckPoints: GiClover,
+  psionicDice: GiBrain,
 };
 
 interface ResourceTokenProps {

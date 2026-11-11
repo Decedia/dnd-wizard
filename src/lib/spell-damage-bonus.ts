@@ -1,4 +1,4 @@
-import { getModifier, type Character } from "@/lib/storage";
+import { getModifier, getProficiencyBonus, type Character } from "@/lib/storage";
 
 /**
  * Class features that add an ability modifier to a spell's damage. The app shows the
@@ -21,9 +21,12 @@ export interface SpellDamageBonus {
   source: string;
   ability: Ability;
   value: number;
+  /** Extra dice instead of a flat number ("1d8 radiant"). */
+  dice?: string;
   /** "roll": once per casting, on one damage roll. "beam": on every beam (Agonizing Blast).
-   *  "heal" and "maxDice": healing bonuses (Disciple of Life, Supreme Healing), see healing.ts. */
-  per: "roll" | "beam" | "heal" | "maxDice";
+   *  "oncePerTurn": extra dice once per turn (Blessed Strikes). "target": only against one
+   *  creature (Hexblade's Curse). "heal" and "maxDice": healing bonuses, see healing.ts. */
+  per: "roll" | "beam" | "oncePerTurn" | "target" | "heal" | "maxDice";
 }
 
 const DAMAGE_TYPES = ["acid", "cold", "fire", "force", "lightning", "necrotic", "poison", "psychic", "radiant", "thunder"];
@@ -87,5 +90,12 @@ export function spellDamageBonuses(character: Character, spell: SpellForBonus): 
   // (Aasimar also has a racial "Radiant Soul" that does something else, so check the class.)
   if (character.class === "Warlock" && has(names, "Radiant Soul") && damageTypesOf(spell).some((t) => t === "radiant" || t === "fire")) add("Radiant Soul", "cha");
 
-  return out.filter((b) => b.value !== 0);
+  // Cleric, Tasha's option at level 8: +1d8 radiant once per turn on cantrip damage.
+  if (has(names, "Blessed Strikes") && spell.level === 0) out.push({ source: "Blessed Strikes", ability: "wis", value: 0, dice: "1d8 radiant", per: "oncePerTurn" });
+  // Artificer, Artillerist level 5: an artificer spell cast through the Arcane Firearm adds 1d8 to one damage roll.
+  if (has(names, "Arcane Firearm") && onClassList(spell, "Artificer")) out.push({ source: "Arcane Firearm", ability: "int", value: 0, dice: "1d8", per: "roll" });
+  // Warlock, Hexblade level 1: damage rolls against the cursed target add the proficiency bonus.
+  if (character.class === "Warlock" && has(names, "Hexblade's Curse")) out.push({ source: "Hexblade's Curse", ability: "cha", value: getProficiencyBonus(character.level || 1), per: "target" });
+
+  return out.filter((b) => b.value !== 0 || b.dice);
 }

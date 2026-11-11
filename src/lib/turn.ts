@@ -7,7 +7,8 @@ import { getWeaponAttackDetails, isRaging } from "@/lib/weapon-attacks";
 import { equipRow, heldInHands, unequipRow, type Hand, type InventoryRow } from "@/lib/inventory";
 import { getFreeCastSpells, getGrantedSpellNames } from "@/lib/granted-spells";
 import { advanceTurn, parseDurationToTurns } from "@/lib/spellEffects";
-import { ruleFor, ruleKey, usesMax, type FeatureWhen, type PoolField } from "@/data/turn-features";
+import { ruleFor, ruleKey, SUB_OPTIONS, subOptionsFor, usesMax, type FeatureRule, type FeatureWhen, type PoolField, type SubOption } from "@/data/turn-features";
+import { getFeaturePicks } from "@/lib/feature-groups";
 import { beastByName, type Beast } from "@/data/wild-shapes";
 import { spellDamageBonuses, type SpellDamageBonus } from "@/lib/spell-damage-bonus";
 import { featureHealing, healingBonusLines, spellHealing, type Healing } from "@/lib/healing";
@@ -17,7 +18,7 @@ import { concentrationTimer, expiredTimerPatch, featureRounds, featureTimerId, R
 export type TurnSlot = "action" | "bonus" | "reaction" | "free";
 export type TurnGroup = "attack" | "spell" | "feature" | "basic";
 /** Why an option cannot be used; the panel turns it into a sentence. */
-export type TurnBlock = "noSlot" | "empty" | "actionFirst" | "attackFirst" | "raging" | "notRaging" | "shaped";
+export type TurnBlock = "noSlot" | "empty" | "actionFirst" | "attackFirst" | "raging" | "notRaging" | "shaped" | "full" | "slotsFull";
 
 export interface TurnOption {
   key: string;
@@ -26,6 +27,7 @@ export interface TurnOption {
   /** Display name, or a locale key when `nameKey` is set (basic actions). */
   name: string;
   nameKey?: string;
+  nameValues?: Record<string, string | number>;
   /** One line of rules text; a locale key for basic actions. */
   summary: string;
   summaryKey?: string;
@@ -299,6 +301,108 @@ const turnFeatures = (character: Character) => {
   return (character.features || []).filter((f) => !!f.name?.trim() && !NOT_A_TURN_FEATURE.test(f.name) && !seen.has(f.name) && !!seen.add(f.name));
 };
 
+/** Pools a feature can spend; the option shows what is left. */
+const poolLeft = (character: Character, field: PoolField) => Number((character as any)[field]) || 0;
+
+/** One turn option from a hand-checked rule: the slot it takes and what it spends. */
+function ruleOption(character: Character, rule: FeatureRule | SubOption, base: Pick<TurnOption, "key" | "name" | "summary" | "summaryKey" | "detail">, slot: TurnSlot): TurnOption {
+  const option: TurnOption = { ...base, slot, group: "feature", when: rule.when, spend: {} };
+  if (rule.pool) {
+    const left = poolLeft(character, rule.pool.field);
+    option.cost = { key: `turn.cost.${rule.pool.field}`, values: { amount: rule.pool.amount, left } };
+    if (left < rule.pool.amount) option.blocked = "empty";
+    else (option.spend as any)[rule.pool.field] = left - rule.pool.amount;
+  } else if (rule.variablePool) {
+    const left = poolLeft(character, rule.variablePool);
+    option.cost = { key: rule.variablePool === "sorceryPoints" ? "turn.cost.sorceryPointsByLevel" : `turn.cost.${rule.variablePool}`, values: { amount: "", left } };
+    if (left <= 0) option.blocked = "empty";
+    else option.amount = { field: rule.variablePool, max: left };
+  } else if (rule.uses) {
+    const key = ruleKey(rule);
+    const max = usesMax(rule, character);
+    const used = character.featureUses?.[key] ?? 0;
+    const orLeft = rule.orPool ? poolLeft(character, rule.orPool.field) : 0;
+    if (used < max) {
+      option.cost = { key: "turn.cost.uses", values: { left: Math.max(0, max - used), max } };
+      option.spend.featureUses = { ...(character.featureUses || {}), [key]: used + 1 };
+    } else if (rule.orPool && orLeft >= rule.orPool.amount) {
+      // The free use is gone, so it costs a die from the pool instead.
+      option.cost = { key: `turn.cost.${rule.orPool.field}`, values: { amount: rule.orPool.amount, left: orLeft } };
+      (option.spend as any)[rule.orPool.field] = orLeft - rule.orPool.amount;
+    } else {
+      option.cost = { key: "turn.cost.uses", values: { left: 0, max } };
+      option.blocked = "empty";
+    }
+  } else if (rule.spellSlot) {
+    const open = lowestOpenSlot(character, 1);
+    if (open === null) option.blocked = "noSlot";
+    else {
+      option.cost = { key: "turn.cost.slot", values: { level: open } };
+      option.spend.spellSlotsExpended = { ...(character.spellSlotsExpended || {}), [open]: (character.spellSlotsExpended?.[open] ?? 0) + 1 };
+    }
+  }
+  if (rule.gain && !option.blocked) {
+    const max = Number((character as any)[`max${rule.gain[0].toUpperCase()}${rule.gain.slice(1)}`]) || 0;
+    const left = poolLeft(character, rule.gain);
+    if (left >= max) option.blocked = "full";
+    else (option.spend as any)[rule.gain] = left + 1;
+  }
+  return option;
+}
+
+/** Sub-options (Metamagic, maneuvers, runes, Psionic Power) for the features that have them. */
+function subOptions(character: Character, feature: { id: string; name: string }): TurnOption[] | null {
+  const group = SUB_OPTIONS.find((g) => g.feature === feature.name);
+  if (!group) return null;
+  const subs = subOptionsFor(character, group, getFeaturePicks(character, feature.name));
+  if (subs.length === 0) return null;
+  return subs.map((o) => ruleOption(character, o, { key: `sub:${feature.id}:${o.key}`, name: o.name, summary: o.summary, summaryKey: `turn.sub.${o.key}` }, o.slot));
+}
+
+/** Sorcery points for spell slots: the slot costs on the Creating Spell Slots table (1st-5th level). */
+const SLOT_COST: Record<number, number> = { 1: 2, 2: 3, 3: 5, 4: 6, 5: 7 };
+
+/** Flexible Casting (Sorcerer): a spent slot back for sorcery points, or a slot turned into points. Both a bonus action. */
+function flexibleCastingOptions(character: Character, featureName: string): TurnOption[] {
+  const points = character.sorceryPoints || 0;
+  const maxPoints = character.maxSorceryPoints || 0;
+  const out: TurnOption[] = [];
+  const levels = Object.keys(character.spellSlots || {}).map(Number).filter((l) => (character.spellSlots?.[l] ?? 0) > 0).sort((a, b) => a - b);
+  if (/Creating/i.test(featureName)) {
+    for (const level of levels.filter((l) => SLOT_COST[l])) {
+      const spent = character.spellSlotsExpended?.[level] ?? 0;
+      const cost = SLOT_COST[level];
+      const option: TurnOption = {
+        key: `flex:create:${level}`, slot: "bonus", group: "feature", name: featureName,
+        nameKey: "turn.flex.createName", nameValues: { level },
+        summary: "Get a spent spell slot back by paying sorcery points (up to level 5).", summaryKey: "turn.flex.create",
+        cost: { key: "turn.cost.flexCreate", values: { level, amount: cost, left: points } },
+        spend: { sorceryPoints: points - cost, spellSlotsExpended: { ...(character.spellSlotsExpended || {}), [level]: spent - 1 } },
+      };
+      if (points < cost) option.blocked = "empty";
+      else if (spent <= 0) option.blocked = "slotsFull";
+      out.push(option);
+    }
+  } else {
+    for (const level of levels) {
+      const spent = character.spellSlotsExpended?.[level] ?? 0;
+      const option: TurnOption = {
+        key: `flex:convert:${level}`, slot: "bonus", group: "feature", name: featureName,
+        nameKey: "turn.flex.convertName", nameValues: { level },
+        summary: "Turn an unspent spell slot into sorcery points equal to its level.", summaryKey: "turn.flex.convert",
+        cost: { key: "turn.cost.flexConvert", values: { level, amount: level, left: points } },
+        spend: { sorceryPoints: Math.min(maxPoints, points + level), spellSlotsExpended: { ...(character.spellSlotsExpended || {}), [level]: spent + 1 } },
+      };
+      if ((character.spellSlots?.[level] ?? 0) - spent <= 0) option.blocked = "noSlot";
+      else if (points >= maxPoints) option.blocked = "full";
+      out.push(option);
+    }
+  }
+  // Only the levels that work right now; when none does, one row says why.
+  const open = out.filter((o) => !o.blocked);
+  return open.length > 0 ? open : out.slice(0, 1);
+}
+
 /**
  * Features the player uses on a turn, from the hand-checked table in
  * src/data/turn-features.ts: the slot each takes and what it spends.
@@ -307,43 +411,19 @@ function featureOptions(character: Character): TurnOption[] {
   const out: TurnOption[] = [];
   const names = (character.features || []).map((f) => f.name || "");
   for (const feature of turnFeatures(character)) {
+    if (/^Flexible Casting/.test(feature.name)) {
+      out.push(...flexibleCastingOptions(character, feature.name));
+      continue;
+    }
+    const subs = subOptions(character, feature);
+    if (subs) {
+      out.push(...subs);
+      continue;
+    }
     const rule = ruleFor(character, feature.name);
     if (!rule) continue;
-    const option: TurnOption = {
-      key: `feature:${feature.id}`,
-      slot: rule.bonusWith && names.some((n) => rule.bonusWith!.test(n)) ? "bonus" : rule.slot,
-      group: "feature",
-      name: feature.name,
-      summary: feature.description || "",
-      detail: feature.description || undefined,
-      when: rule.when,
-      spend: {},
-    };
-    if (rule.pool) {
-      const left = Number((character as any)[rule.pool.field]) || 0;
-      option.cost = { key: `turn.cost.${rule.pool.field}`, values: { amount: rule.pool.amount, left } };
-      if (left < rule.pool.amount) option.blocked = "empty";
-      else (option.spend as any)[rule.pool.field] = left - rule.pool.amount;
-    } else if (rule.variablePool) {
-      const left = Number((character as any)[rule.variablePool]) || 0;
-      option.cost = { key: `turn.cost.${rule.variablePool}`, values: { amount: "", left } };
-      if (left <= 0) option.blocked = "empty";
-      else option.amount = { field: rule.variablePool, max: left };
-    } else if (rule.uses) {
-      const key = ruleKey(rule);
-      const max = usesMax(rule, character);
-      const used = character.featureUses?.[key] ?? 0;
-      option.cost = { key: "turn.cost.uses", values: { left: Math.max(0, max - used), max } };
-      if (used >= max) option.blocked = "empty";
-      else option.spend.featureUses = { ...(character.featureUses || {}), [key]: used + 1 };
-    } else if (rule.spellSlot) {
-      const open = lowestOpenSlot(character, 1);
-      if (open === null) option.blocked = "noSlot";
-      else {
-        option.cost = { key: "turn.cost.slot", values: { level: open } };
-        option.spend.spellSlotsExpended = { ...(character.spellSlotsExpended || {}), [open]: (character.spellSlotsExpended?.[open] ?? 0) + 1 };
-      }
-    }
+    const slot = rule.bonusWith && names.some((n) => rule.bonusWith!.test(n)) ? "bonus" : rule.slot;
+    const option = ruleOption(character, rule, { key: `feature:${feature.id}`, name: feature.name, summary: feature.description || "", detail: feature.description || undefined }, slot);
     if (/^\^Rage\$$/.test(rule.name.source)) {
       if (isRaging(character)) option.blocked = "raging";
       option.spend.activeStates = [...(character.activeStates || []), "raging"];
@@ -372,7 +452,7 @@ function featureOptions(character: Character): TurnOption[] {
 /** Features with no entry in the table: always on, or not something done on a turn. A reading list. */
 function featureList(character: Character): TurnMenu["features"] {
   return turnFeatures(character)
-    .filter((f) => !ruleFor(character, f.name))
+    .filter((f) => !ruleFor(character, f.name) && !/^Flexible Casting/.test(f.name) && !subOptions(character, f))
     .map((f) => ({ id: f.id, name: f.name, description: f.description || "" }));
 }
 
