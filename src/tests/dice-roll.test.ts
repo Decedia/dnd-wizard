@@ -1,7 +1,7 @@
 // @ts-ignore - bun:test is provided by the Bun runtime
 import { describe, expect, test } from "bun:test";
 import { Vector3 } from "three";
-import { dieValue, droppedIndex, groupText, groupTotal, parseRoll, spellDamageGroups } from "@/lib/dice-roll";
+import { critGroup, d20Group, damageGroup, dieValue, droppedIndex, groupText, groupTotal, parseRoll, partsFor, spellDamageGroups } from "@/lib/dice-roll";
 import { dieShape, topValue, type ShapeKind } from "@/components/dice/shapes";
 
 describe("parseRoll", () => {
@@ -54,8 +54,23 @@ describe("counting", () => {
         { dice: "2d6", type: "fire", count: 1, when: "laterTurn" },
       ],
       "Damage",
+      "Magic Missile",
     );
-    expect(groups).toEqual([{ label: "Damage force", dice: ["d4", "d4", "d4"], mod: 3 }]);
+    expect(groups).toEqual([{ label: "Damage force", dice: ["d4", "d4", "d4"], mod: 3, parts: [{ source: "Magic Missile", value: 3 }] }]);
+  });
+  test("spell damage bonuses keep their source", () => {
+    const [g] = spellDamageGroups([{ dice: "8d6+4", type: "fire", count: 1, bonuses: [{ source: "Empowered Evocation", value: 4 }] }], "Damage", "Fireball");
+    expect(g.parts).toEqual([{ source: "Empowered Evocation", value: 4 }]);
+  });
+  test("bonus parts", () => {
+    expect(partsFor(7, [{ source: "@dex", value: 4 }, { source: "@prof", value: 3 }])).toEqual([{ source: "@dex", value: 4 }, { source: "@prof", value: 3 }]);
+    expect(partsFor(5, [{ source: "@str", value: 3 }, { source: "Rage", value: 0 }])).toEqual([{ source: "@str", value: 3 }, { source: "@other", value: 2 }]);
+    const g = d20Group("To hit", 6, [{ source: "@str", value: 3 }, { source: "@prof", value: 3 }]);
+    expect(groupText(g, (s) => s.replace("@", "").toUpperCase())).toBe("1d20 + 3 STR + 3 PROF");
+    const dmg = damageGroup("Damage", "1d8", [{ source: "@str", value: 3 }, { source: "Rage", value: 2 }])!;
+    expect(dmg.mod).toBe(5);
+    expect(critGroup(dmg).dice).toEqual(["d8", "d8"]);
+    expect(critGroup(dmg).mod).toBe(5);
   });
 });
 

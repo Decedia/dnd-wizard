@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useDice } from "@/contexts/DiceContext";
-import { d20Group } from "@/lib/dice-roll";
+import { d20Group, type BonusPart } from "@/lib/dice-roll";
 
 /** The dot on a number set by hand. */
 export function OverrideDot({ id }: { id: string }) {
@@ -17,9 +17,10 @@ export function OverrideDot({ id }: { id: string }) {
 /**
  * Wraps a number on the sheet. In edit mode a tap opens the "set by hand"
  * sheet; a number set by hand carries a dot in both modes. With `roll` (a d20
- * bonus), a tap outside edit mode throws d20 + that bonus in the dice tray.
+ * bonus), a tap outside edit mode throws d20 + that bonus in the dice tray;
+ * `rollParts` says where the bonus comes from.
  */
-export function Overridable({ id, label, signed, editMode, roll, children, className = "" }: { id: string; label: string; signed?: boolean; editMode?: boolean; roll?: number; children: ReactNode; className?: string }) {
+export function Overridable({ id, label, signed, editMode, roll, rollParts, children, className = "" }: { id: string; label: string; signed?: boolean; editMode?: boolean; roll?: number; rollParts?: BonusPart[]; children: ReactNode; className?: string }) {
   const { editOverride } = useCharacterSheet();
   const { t } = useLanguage();
   const dice = useDice();
@@ -27,7 +28,7 @@ export function Overridable({ id, label, signed, editMode, roll, children, class
     return (
       <button
         type="button"
-        onClick={() => dice.roll(label, [d20Group(label, roll)])}
+        onClick={() => dice.roll(label, [d20Group(label, roll, rollParts)])}
         aria-label={t("dice.rollName", { name: label }, "Roll {name}")}
         className={`relative inline-flex items-center gap-1 rounded-md px-1 -mx-1 hover:bg-[var(--color-bg)] active:scale-95 transition-transform ${className}`}
       >

@@ -15,11 +15,14 @@ import { XIcon as X } from "@/components/icons";
 import { StateTracker } from "./StateTracker";
 import { Timers } from "./Timers";
 import { BuffTracker } from "./BuffTracker";
-import { Dice } from "@/components/Dice";
 import { BasePopup } from "@/components/BasePopup";
+import { initiativeParts, saveParts } from "@/lib/roll-parts";
+import { useDice } from "@/contexts/DiceContext";
+import { d20Group } from "@/lib/dice-roll";
+import { GiRollingDices } from "react-icons/gi";
 
 interface CombatStatsSectionProps {
-  character: Pick<Character, "turnRound" | "turnActive" | "ac" | "currentHp" | "maxHp" | "effectiveMaxHp" | "temporaryHp" | "speed" | "baseSpeed" | "race" | "ruleset" | "isCustomHp" | "class" | "sorceryPoints" | "maxSorceryPoints" | "activeStates" | "activeBuffs" | "features" | "actionUsed" | "bonusActionUsed" | "reactionUsed" | "exhaustionLevel" | "initiative" | "hitDiceRemaining" | "hitDiceTotal" | "level">;
+  character: Pick<Character, "turnRound" | "turnActive" | "ac" | "currentHp" | "maxHp" | "effectiveMaxHp" | "temporaryHp" | "speed" | "baseSpeed" | "race" | "ruleset" | "isCustomHp" | "class" | "sorceryPoints" | "maxSorceryPoints" | "activeStates" | "activeBuffs" | "features" | "actionUsed" | "bonusActionUsed" | "reactionUsed" | "exhaustionLevel" | "initiative" | "hitDiceRemaining" | "hitDiceTotal" | "level" | "dex" | "con" | "savingThrows" | "overrides">;
   onChange: (patch: Partial<Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed" | "baseSpeed" | "isCustomHp" | "sorceryPoints" | "maxSorceryPoints" | "activeStates" | "activeBuffs" | "features" | "actionUsed" | "bonusActionUsed" | "reactionUsed" | "exhaustionLevel">>) => void;
   editMode?: boolean;
   /** Opens the turn panel; starts a new turn when none is running. */
@@ -39,6 +42,7 @@ export function CombatStatsSection({ character, onChange, editMode = true, onOpe
 
   // Check if character has active concentration spells
   const hasConcentration = (character.activeBuffs || []).some((b) => b.concentration);
+  const dice = useDice();
   const isWarCaster = (character.features || []).some((f) => f.name.toLowerCase().includes("war caster"));
 
   const handleHpAction = useCallback(() => {
@@ -103,7 +107,7 @@ export function CombatStatsSection({ character, onChange, editMode = true, onOpe
         <Overridable id="speed" label={t("sheet.speed", "Speed")} editMode={editMode} className="no-underline">
           <SpeedStat value={character.speed} />
         </Overridable>
-        <Overridable id="initiative" label={t("sheet.initiative", "Initiative")} signed editMode={editMode} roll={character.initiative ?? 0} className="no-underline">
+        <Overridable id="initiative" label={t("sheet.initiative", "Initiative")} signed editMode={editMode} roll={character.initiative ?? 0} rollParts={initiativeParts(character)} className="no-underline">
         <div className="relative flex items-center justify-center">
           <svg viewBox="0 0 100 100" className="h-[72px] w-[72px]" aria-hidden="true">
             <circle cx="50" cy="50" r="44" fill="var(--color-surface)" stroke="var(--color-ink)" strokeWidth="2.5" />
@@ -408,7 +412,22 @@ export function CombatStatsSection({ character, onChange, editMode = true, onOpe
                  </span>
               </div>
               <div className="mt-2">
-                <Dice type="d20" size={56} advantage={isWarCaster ? "advantage" : "normal"} onRoll={(roll) => setConcentrationCheck({ damage: parseInt(hpAmount || "0", 10), roll })} />
+                <button
+                  type="button"
+                  disabled={!dice}
+                  onClick={() => {
+                    const damage = parseInt(hpAmount || "0", 10);
+                    const label = t("override.save", { ability: "CON" }, "{ability} saving throw");
+                    const st = character.savingThrows?.con ?? { proficient: false, value: 0 };
+                    // A Constitution save; War Caster gives advantage on it.
+                    const group = { ...d20Group(label, st.value, saveParts(character, "con", st.proficient)), ...(isWarCaster ? { mode: "adv" as const } : {}) };
+                    dice?.roll(t("dice.concentration", "Concentration"), [group], (result) => setConcentrationCheck({ damage, roll: result[0]?.total }));
+                  }}
+                  className="btn btn-secondary inline-flex w-full items-center justify-center gap-1.5 !py-1.5 text-xs"
+                >
+                  <GiRollingDices className="h-4 w-4" aria-hidden="true" />
+                  {t("dice.rollConSave", "Roll CON save")}
+                </button>
                  {isWarCaster && <p className="text-center text-[10px] text-[var(--color-success-600)] mt-1">{t("combat.warCasterAdvantage")}</p>}
               </div>
             </div>
@@ -418,7 +437,7 @@ export function CombatStatsSection({ character, onChange, editMode = true, onOpe
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-xs">🎲</span>
                 <span className="text-[10px] font-semibold text-[var(--color-warning-700)]">
-                  Rolled: {concentrationCheck.roll}
+                  {t("dice.concRolled", { roll: concentrationCheck.roll ?? "", dc: Math.max(10, Math.floor(concentrationCheck.damage / 2)) }, "Rolled {roll} against DC {dc}.")}
                 </span>
               </div>
               <div className="flex gap-2">

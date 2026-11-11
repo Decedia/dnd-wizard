@@ -17,14 +17,15 @@ import { getSpellMechanic } from "@/lib/spell-mechanics-accessor";
 import { getStatBadgeStyle, getSchoolBadgeStyle } from "@/lib/badge-styles";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { BottomSheet } from "@/components/modals/BottomSheet";
-import { RichText, RichInline } from "@/components/RichText";
+import { RichDice, RichText, RichInline } from "@/components/RichText";
 import { SpellDamageBonusLines, SpellDamageLine } from "@/components/SpellDamageBonus";
 import { characterSpellDamage } from "@/lib/spell-dice";
 import { spellRounds, spellTimerId, startTimer } from "@/lib/timers";
 import { healingBonusLines, spellHealing } from "@/lib/healing";
 import { spellDamageBonuses } from "@/lib/spell-damage-bonus";
 import { useDice } from "@/contexts/DiceContext";
-import { d20Group, spellDamageGroups } from "@/lib/dice-roll";
+import { d20Group, damageGroup, partsFor, spellDamageGroups } from "@/lib/dice-roll";
+import { spellAttackParts } from "@/lib/roll-parts";
 import { GiRollingDices } from "react-icons/gi";
 
 interface SpellsSectionProps {
@@ -258,10 +259,14 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
   const dice = useDice();
   // To hit (spell attacks) and damage on the cast, for the dice tray.
   const rollGroupsOf = (spell: UnifiedSpell) => {
-    const srd = srdSpells.find((sp) => sp.name === (spell.srdSpellName || spell.name)) as { attackType?: string; attack_type?: string } | undefined;
+    const name = spell.srdSpellName || spell.name;
+    const srd = srdSpells.find((sp) => sp.name === name) as { attackType?: string; attack_type?: string; heal_at_slot_level?: unknown } | undefined;
+    const heal = spellHealing(character, { name, level: spell.level, heal_at_slot_level: srd?.heal_at_slot_level }, spell.level);
+    const healGroup = heal?.dice && !heal.maxDice ? damageGroup(t("dice.heal", "Healing"), heal.dice, partsFor(heal.bonus, heal.parts)) : null;
     return [
-      ...(srd && (srd.attackType || srd.attack_type) ? [d20Group(t("dice.toHit", "To hit"), character.spellAttackBonus ?? 0)] : []),
-      ...spellDamageGroups(damageOf(spell) || [], t("dice.damage", "Damage")),
+      ...(srd && (srd.attackType || srd.attack_type) ? [d20Group(t("dice.toHit", "To hit"), character.spellAttackBonus ?? 0, spellAttackParts(character))] : []),
+      ...spellDamageGroups(damageOf(spell) || [], t("dice.damage", "Damage"), spell.name),
+      ...(healGroup ? [healGroup] : []),
     ];
   };
   const rollButton = (spell: UnifiedSpell) => {
@@ -417,7 +422,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                 {/* Summary Text */}
                 {summary && (
                   <div className="text-sm text-[var(--color-text-secondary)] leading-relaxed line-clamp-3 [&>p]:line-clamp-3">
-                    <RichText text={summary} />
+                    <RichDice title={spell.name}><RichText text={summary} /></RichDice>
                   </div>
                 )}
               </div>
@@ -547,7 +552,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
         >
           <div className="px-4 py-4 space-y-3">
             {selectedSpell.effectSummary && (
-              <p className="text-xs text-[var(--color-text-muted)] italic leading-relaxed"><RichInline text={selectedSpell.effectSummary} /></p>
+              <p className="text-xs text-[var(--color-text-muted)] italic leading-relaxed"><RichDice title={selectedSpell.name}><RichInline text={selectedSpell.effectSummary} /></RichDice></p>
             )}
             {(selectedSpell.mechanics_badges || []).length > 0 && (
               <div className="flex flex-wrap gap-1.5">
@@ -568,7 +573,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
             <SpellDamageLine parts={damageOf(selectedSpell)} />
             <SpellDamageBonusLines bonuses={bonusesOf(selectedSpell)} />
             {rollButton(selectedSpell)}
-            <RichText text={selectedSpell.description || ""} />
+            <RichDice title={selectedSpell.name}><RichText text={selectedSpell.description || ""} /></RichDice>
             <div className="flex flex-wrap gap-2 pt-1">
               <span className="rounded-full border border-[var(--color-border)] bg-[var(--color-bg)] px-2.5 py-1 text-[10px] font-semibold text-[var(--color-text-secondary)]">
                 {t("glossary.level", "Level")} {selectedSpell.level}

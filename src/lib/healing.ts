@@ -1,5 +1,6 @@
 import { getModifier, type Character } from "@/lib/storage";
 import type { SpellDamageBonus } from "@/lib/spell-damage-bonus";
+import type { BonusPart } from "@/lib/dice-roll";
 
 /**
  * How much a healing spell or feature heals, so a tap in the turn helper can
@@ -19,6 +20,8 @@ export interface Healing {
   selfWhenOther?: number;
   /** Where the bonus comes from, for the sheet ("Disciple of Life +4"). */
   notes: { source: string; value: number }[];
+  /** All of `bonus`, part by part, for the dice tray (the modifier, the level, the notes). */
+  parts?: BonusPart[];
 }
 
 export interface HealingSpell {
@@ -34,10 +37,15 @@ const ABILITY_BY_CLASS: Record<string, "int" | "wis" | "cha"> = {
 const has = (character: Character, name: string) =>
   (character.features || []).some((f) => (f.name || "").startsWith(name));
 
+const spellcastingKey = (character: Character) => (character.spellcastingAbility as "int" | "wis" | "cha") || ABILITY_BY_CLASS[character.class || ""];
+
 export function spellcastingMod(character: Character): number {
-  const key = (character.spellcastingAbility as "int" | "wis" | "cha") || ABILITY_BY_CLASS[character.class || ""];
+  const key = spellcastingKey(character);
   return key ? getModifier((character[key] as number) ?? 10) : 0;
 }
+
+/** The spellcasting ability as a roll source ("@wis"). */
+export const spellcastingSource = (character: Character) => `@${spellcastingKey(character) || "other"}`;
 
 /** Spells that give temporary or extra max HP are not healing (False Life, Aid). */
 const NOT_HEALING = new Set(["False Life", "Aid"]);
@@ -53,7 +61,11 @@ export function spellHealing(character: Character, spell: HealingSpell, slotLeve
   const dice = (/(\d+d\d+)/.exec(formula) || [])[1] || "";
   const fixed = /^\s*(\d+)\s*$/.test(formula) ? Number(formula) : 0;
   const flat = /\+\s*(\d+)/.exec(formula);
-  let bonus = fixed + (/MOD/.test(formula) ? spellcastingMod(character) : flat ? Number(flat[1]) : 0);
+  const parts: BonusPart[] = [];
+  if (fixed) parts.push({ source: spell.name, value: fixed });
+  if (/MOD/.test(formula)) parts.push({ source: spellcastingSource(character), value: spellcastingMod(character) });
+  else if (flat) parts.push({ source: spell.name, value: Number(flat[1]) });
+  let bonus = parts.reduce((a, p) => a + p.value, 0);
   const notes: Healing["notes"] = [];
   const level = Math.max(slotLevel, spell.level);
   // Life Domain, level 1: healing spells of 1st level or higher heal 2 + the spell's level more.
@@ -61,7 +73,7 @@ export function spellHealing(character: Character, spell: HealingSpell, slotLeve
     bonus += 2 + level;
     notes.push({ source: "Disciple of Life", value: 2 + level });
   }
-  const healing: Healing = { dice, bonus, notes };
+  const healing: Healing = { dice, bonus, notes, parts: [...parts, ...notes] };
   // Life Domain, level 17: use the highest number for each die.
   if (has(character, "Supreme Healing") && dice) healing.maxDice = true;
   // Life Domain, level 6: healing someone else with a 1st-level or higher spell heals you 2 + the spell's level.
@@ -72,12 +84,12 @@ export function spellHealing(character: Character, spell: HealingSpell, slotLeve
 /** Healing for a feature tap, or null when the feature does not heal. `amount` is the Lay on Hands pick. */
 export function featureHealing(character: Character, featureName: string, amount?: number): Healing | null {
   const level = character.level || 1;
-  if (/^Second Wind/.test(featureName)) return { dice: "1d10", bonus: level, selfOnly: true, notes: [] };
+  if (/^Second Wind/.test(featureName)) return { dice: "1d10", bonus: level, selfOnly: true, notes: [], parts: [{ source: "@level", value: level }] };
   if (/^Wholeness of Body/.test(featureName)) return { dice: "", bonus: 3 * level, selfOnly: true, notes: [] };
   if (/^Lay on Hands/.test(featureName) && amount) return { dice: "", bonus: amount, notes: [] };
   if (/^Hand of Healing/.test(featureName)) {
     const die = level >= 17 ? 10 : level >= 11 ? 8 : level >= 5 ? 6 : 4;
-    return { dice: `1d${die}`, bonus: getModifier(character.wis ?? 10), notes: [] };
+    return { dice: `1d${die}`, bonus: getModifier(character.wis ?? 10), notes: [], parts: [{ source: "@wis", value: getModifier(character.wis ?? 10) }] };
   }
   return null;
 }

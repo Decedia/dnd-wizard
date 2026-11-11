@@ -1,6 +1,7 @@
 import { getModifier, getProficiencyBonus, type Character } from "./storage";
 import { addsProficiencyToAttack } from "./proficiency";
-import { withOverride } from "./overrides";
+import { withOverrideParts } from "./roll-parts";
+import { sumParts, type BonusPart } from "./dice-roll";
 import { isFinesseOrRanged, weaponAbility, weaponDamageDice } from "./inventory";
 
 export const isRaging = (character: Pick<Character, "activeStates">) => (character.activeStates || []).includes("raging");
@@ -21,12 +22,19 @@ export function getWeaponAttackDetails(character: Character, attack: Character["
   const dexMod = getModifier(character.dex);
   const abilityKey = weaponAbility(weapon, strMod, dexMod);
   const abilityMod = getModifier(character[abilityKey] as number);
+  // A to-hit set by hand (a +1 weapon, a DM ruling) wins.
+  const attackParts = withOverrideParts(character, `attack:${weapon.id}`, [
+    { source: `@${abilityKey}`, value: abilityMod },
+    ...(addsProficiencyToAttack(character, weapon) ? [{ source: "@prof", value: profBonus }] : []),
+  ]);
+  const damageParts: BonusPart[] = [{ source: `@${abilityKey}`, value: abilityMod }, ...(abilityKey === "str" && rage ? [{ source: "Rage", value: rage }] : [])];
   return {
     weapon,
-    // A to-hit set by hand (a +1 weapon, a DM ruling) wins.
-    attackBonus: withOverride(character, `attack:${weapon.id}`, abilityMod + (addsProficiencyToAttack(character, weapon) ? profBonus : 0)),
+    attackBonus: sumParts(attackParts),
+    attackParts,
     damageDice: weaponDamageDice(weapon),
-    damageBonus: abilityMod + (abilityKey === "str" ? rage : 0),
+    damageBonus: sumParts(damageParts),
+    damageParts,
     damageType: weapon.damageType || "",
     abilityKey,
     abilityMod,

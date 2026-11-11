@@ -6,13 +6,28 @@
 export const DIE_KINDS = ["d4", "d6", "d8", "d10", "d12", "d20", "d100"] as const;
 export type DieKind = (typeof DIE_KINDS)[number];
 
+/**
+ * Where part of a flat bonus comes from. `source` is a name shown as it is
+ * ("Empowered Evocation", "Rage") or a token starting with "@" that the tray
+ * turns into words: "@str".."@cha" (ability modifier), "@prof", "@expertise",
+ * "@byHand" (a number set by hand), "@other".
+ */
+export interface BonusPart {
+  source: string;
+  value: number;
+}
+
 /** One line of a roll: "To hit" is 1d20+7, "Damage" is 8d6+4. */
 export interface RollGroup {
   label: string;
   dice: DieKind[];
   mod: number;
+  /** Where `mod` comes from, part by part; they add up to `mod`. */
+  parts?: BonusPart[];
   /** An attack roll, ability check or saving throw: advantage and disadvantage apply to it. */
   d20Test?: boolean;
+  /** Advantage or disadvantage the roll always has (War Caster on concentration), whatever the tray is set to. */
+  mode?: D20Mode;
 }
 
 export type D20Mode = "normal" | "adv" | "dis";
@@ -51,8 +66,29 @@ export function parseRoll(text: string): { dice: DieKind[]; mod: number } | null
   return { dice: all, mod: mod * times };
 }
 
-/** An attack roll, check or save: one d20 plus a bonus. */
-export const d20Group = (label: string, bonus: number): RollGroup => ({ label, dice: ["d20"], mod: bonus, d20Test: true });
+/**
+ * Parts that add up to `total`: zero parts are left out, and anything the
+ * parts do not explain goes into one "@other" part.
+ */
+export function partsFor(total: number, parts: BonusPart[] = []): BonusPart[] {
+  const out = parts.filter((p) => p.value !== 0);
+  const rest = total - out.reduce((a, p) => a + p.value, 0);
+  if (rest !== 0) out.push({ source: "@other", value: rest });
+  return out;
+}
+
+export const sumParts = (parts: BonusPart[]) => parts.reduce((a, p) => a + p.value, 0);
+
+/** An attack roll, check or save: one d20 plus a bonus, with where the bonus comes from. */
+export const d20Group = (label: string, bonus: number, parts?: BonusPart[]): RollGroup => ({ label, dice: ["d20"], mod: bonus, d20Test: true, parts: partsFor(bonus, parts) });
+
+/** Dice from text ("1d8", "2d6") plus bonus parts (ability, Rage), or null when the text has no dice. */
+export function damageGroup(label: string, diceText: string, parts: BonusPart[] = []): RollGroup | null {
+  const parsed = parseRoll(diceText);
+  if (!parsed) return null;
+  const mod = parsed.mod + sumParts(parts);
+  return { label, dice: parsed.dice, mod, parts: partsFor(mod, parts) };
+}
 
 /** A group from text, or null when the text has no dice. */
 export function groupFrom(label: string, text: string): RollGroup | null {
@@ -91,20 +127,28 @@ export function droppedIndex(group: RollGroup, values: number[], mode: D20Mode):
   return 1 - keep;
 }
 
-/** "1d20 + 7", "8d6 + 4", "1d100". */
-export function groupText(group: RollGroup): string {
+/**
+ * "1d20 + 7", "8d6 + 4", "1d100". With parts and a `name` for their sources:
+ * "1d20 + 3 STR + 3 proficiency".
+ */
+export function groupText(group: RollGroup, name?: (source: string) => string): string {
   const counts = new Map<string, number>();
   for (const d of group.dice) counts.set(d, (counts.get(d) || 0) + 1);
   const dice = [...counts].map(([k, n]) => `${n}${k}`).join(" + ");
-  return group.mod ? `${dice} ${group.mod > 0 ? "+" : "−"} ${Math.abs(group.mod)}` : dice;
+  const signed = (n: number) => `${n > 0 ? "+" : "−"} ${Math.abs(n)}`;
+  if (name && group.parts?.length) return [dice, ...group.parts.filter((p) => p.value).map((p) => `${signed(p.value)} ${name(p.source)}`)].join(" ");
+  return group.mod ? `${dice} ${signed(group.mod)}` : dice;
 }
+
+/** Doubles the dice of a damage group for a critical hit; the bonus stays. */
+export const critGroup = (group: RollGroup, label = group.label): RollGroup => ({ ...group, label, dice: [...group.dice, ...group.dice] });
 
 /**
  * Groups for a spell's damage line: the parts dealt on the cast, one group
  * each ("8d6+4 fire"); rays and darts repeat their dice and bonus.
  * Parts for later turns, other targets or weapon hits are left out.
  */
-export function spellDamageGroups(parts: { dice: string; type: string; count: number; when?: string }[], label: string): RollGroup[] {
+export function spellDamageGroups(parts: { dice: string; type: string; count: number; when?: string; bonuses?: BonusPart[] }[], label: string, spellName?: string): RollGroup[] {
   const out: RollGroup[] = [];
   for (const part of parts) {
     if (part.when) continue;
@@ -113,7 +157,11 @@ export function spellDamageGroups(parts: { dice: string; type: string; count: nu
     const dice: DieKind[] = [];
     for (let i = 0; i < part.count; i++) dice.push(...parsed.dice);
     const type = part.type && !["choice", "random"].includes(part.type) ? ` ${part.type.split("|")[0]}` : "";
-    out.push({ label: `${label}${type}`, dice, mod: parsed.mod * part.count });
+    const mod = parsed.mod * part.count;
+    // What the spell itself adds (Magic Missile's +1 a dart) is named after the spell.
+    const named = (part.bonuses || []).map((b) => ({ source: b.source, value: b.value * part.count }));
+    const own = mod - sumParts(named);
+    out.push({ label: `${label}${type}`, dice, mod, parts: partsFor(mod, own && spellName ? [...named, { source: spellName, value: own }] : named) });
   }
   return out;
 }

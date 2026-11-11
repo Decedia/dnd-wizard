@@ -1,4 +1,7 @@
-import { useMemo } from "react";
+import { createContext, useContext, useMemo, type ReactNode } from "react";
+import { useDice } from "@/contexts/DiceContext";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { groupFrom } from "@/lib/dice-roll";
 import { GiDiceTwentyFacesTwenty as DiceIcon } from "react-icons/gi";
 import {
   ShieldCheckIcon,
@@ -36,10 +39,54 @@ const CONDITION_ICON: Record<string, Icon> = {
   unconscious: MoonIcon,
 };
 
+/**
+ * Dice badges are Roll buttons on a page with a dice tray. `title` names the roll
+ * (the feature or item the text belongs to); `off` keeps them plain inside
+ * something that is itself a button.
+ */
+const DiceBadgeContext = createContext<{ title?: string; off?: boolean }>({});
+
+/** Names the rolls of the dice badges inside, or (`off`) keeps them from being buttons. */
+export function RichDice({ title, off, children }: { title?: string; off?: boolean; children: ReactNode }) {
+  const outer = useContext(DiceBadgeContext);
+  const value = useMemo(() => ({ title: title ?? outer.title, off: off ?? outer.off }), [title, off, outer.title, outer.off]);
+  return <DiceBadgeContext.Provider value={value}>{children}</DiceBadgeContext.Provider>;
+}
+
 // Sized in em so a badge follows the text it sits in (text-xs or text-sm).
 const BADGE = "mx-px inline-flex items-center gap-[0.25em] whitespace-nowrap rounded-[0.4em] px-[0.4em] py-[0.05em] align-baseline text-[0.92em] font-semibold leading-[1.45]";
 const ICON = "h-[1em] w-[1em] shrink-0";
 const NEUTRAL = "border border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text-primary)]";
+
+function DiceBadge({ value }: { value: string }) {
+  const dice = useDice();
+  const { t } = useLanguage();
+  const { title, off } = useContext(DiceBadgeContext);
+  const group = dice && !off ? groupFrom(value, value) : null;
+  if (!dice || !group) {
+    return (
+      <span className={`${BADGE} ${NEUTRAL} font-bold tabular-nums`}>
+        <DiceIcon className={ICON} />
+        {value}
+      </span>
+    );
+  }
+  const name = title || t("dice.free", "Dice");
+  return (
+    <button
+      type="button"
+      onClick={(e) => {
+        e.stopPropagation();
+        dice.roll(name, [group]);
+      }}
+      aria-label={t("dice.rollName", { name: `${name} ${value}` }, "Roll {name}")}
+      className={`${BADGE} ${NEUTRAL} cursor-pointer font-bold tabular-nums underline decoration-dotted underline-offset-2 hover:border-[var(--color-border-active)]`}
+    >
+      <DiceIcon className={ICON} />
+      {value}
+    </button>
+  );
+}
 
 function Token({ token }: { token: InlineToken }) {
   switch (token.type) {
@@ -49,12 +96,7 @@ function Token({ token }: { token: InlineToken }) {
     case "term":
       return <strong className="font-semibold text-[var(--color-text-primary)]">{token.value}</strong>;
     case "dice":
-      return (
-        <span className={`${BADGE} ${NEUTRAL} font-bold tabular-nums`}>
-          <DiceIcon className={ICON} />
-          {token.value}
-        </span>
-      );
+      return <DiceBadge value={token.value} />;
     case "damage": {
       const style = getDamageTypeStyle(token.damage);
       if (!style) return <>{token.value}</>;

@@ -6,6 +6,7 @@ import { SectionCard } from "./SectionCard";
 import { SparklesIcon as Sparkle } from "@/components/icons";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
+import { spellAttackParts } from "@/lib/roll-parts";
 
 interface SpellcastingStatsSectionProps {
   character: Character;
@@ -86,7 +87,7 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
             </Overridable>
           </Field>
           <Field label={t("spellcasting.attackBonus")}>
-            <Overridable id="spellAttackBonus" label={t("spellcasting.attackBonus")} signed editMode={editMode} roll={character.spellAttackBonus} className="text-sm font-bold text-ink">
+            <Overridable id="spellAttackBonus" label={t("spellcasting.attackBonus")} signed editMode={editMode} roll={character.spellAttackBonus} rollParts={spellAttackParts(character)} className="text-sm font-bold text-ink">
               {character.spellAttackBonus >= 0 ? `+${character.spellAttackBonus}` : character.spellAttackBonus}
             </Overridable>
           </Field>

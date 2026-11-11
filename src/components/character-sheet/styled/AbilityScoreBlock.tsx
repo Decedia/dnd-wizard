@@ -12,13 +12,15 @@ interface AbilityScoreBlockProps {
   recommended?: boolean;
 }
 
-export function AbilityScoreBlock({ label, value, onChange, onBlur, editMode, recommended }: AbilityScoreBlockProps) {
+export function AbilityScoreBlock({ label, value, onChange, onBlur, editMode, recommended, onRoll, rollLabel }: AbilityScoreBlockProps & { onRoll?: () => void; rollLabel?: string }) {
   const [editing, setEditing] = useState(false);
   const mod = Math.floor((value - 10) / 2);
 
   if (!editMode) {
+    // With a dice tray, a tap rolls an ability check.
+    const Box = onRoll ? "button" : "div";
     return (
-      <div className="stat-box-light">
+      <Box {...(onRoll ? { type: "button" as const, onClick: onRoll, "aria-label": rollLabel } : {})} className="stat-box-light transition-transform active:scale-95">
         <span className="text-[10px] font-semibold text-ink-muted uppercase tracking-wider flex items-center gap-1">
           {label}
           {recommended && <Star className="h-3 w-3 text-amber-500" />}
@@ -27,7 +29,7 @@ export function AbilityScoreBlock({ label, value, onChange, onBlur, editMode, re
           {mod >= 0 ? `+${mod}` : mod}
         </span>
         <span className="text-[10px] font-semibold text-ink-muted mt-0.5">{value}</span>
-      </div>
+      </Box>
     );
   }
 

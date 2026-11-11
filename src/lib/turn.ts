@@ -2,7 +2,9 @@
 // and reaction right now, and the patches that start a turn, use an option and
 // end a turn. Pure functions, so the panel only renders.
 import type { Character } from "@/lib/storage";
-import { getModifier, getProficiencyBonus, isPreparationCaster } from "@/lib/storage";
+import { getFeatureValue, getModifier, getProficiencyBonus, isPreparationCaster } from "@/lib/storage";
+import type { BonusPart } from "@/lib/dice-roll";
+import { spellAttackParts } from "@/lib/roll-parts";
 import { getWeaponAttackDetails, isRaging } from "@/lib/weapon-attacks";
 import { equipRow, heldInHands, unequipRow, type Hand, type InventoryRow } from "@/lib/inventory";
 import { getFreeCastSpells, getGrantedSpellNames } from "@/lib/granted-spells";
@@ -36,7 +38,13 @@ export interface TurnOption {
   detail?: string;
   /** Numbers for an attack or a spell, e.g. "+5 to hit" and "1d8 + 3 slashing damage". */
   toHit?: number;
+  /** Where the to-hit bonus comes from ("@dex", "@prof"). */
+  toHitParts?: BonusPart[];
   damage?: string;
+  /** The damage as dice plus bonus parts, for the dice tray ("1d8", +3 STR, +2 Rage). */
+  damageRoll?: { dice: string; parts: BonusPart[]; type: string };
+  /** Dice a feature rolls (Sneak Attack 3d6, a superiority die, a Bardic Inspiration die). */
+  featureDice?: string;
   saveDc?: number;
   /** What using it spends, as locale key + values. */
   cost?: { key: string; values: Record<string, string | number> };
@@ -60,6 +68,7 @@ export interface TurnOption {
   spellDamage?: DamagePart[] | null;
   /** The spell's attack bonus, for spells that make an attack roll. */
   spellAttack?: number;
+  spellAttackParts?: BonusPart[];
   /** When a feature applies ("when you hit"); locale key `turn.when.*`. */
   when?: FeatureWhen;
   /** Once per turn: greyed out after a tap until End turn. */
@@ -176,6 +185,8 @@ function offHandAttack(character: Character): TurnOption | null {
   if (!details) return null;
   const style = names.some((n) => n.includes("two-weapon fighting")) || JSON.stringify(character.featureSelections || {}).includes("Two-Weapon Fighting");
   const bonus = style ? details.damageBonus : Math.min(0, details.damageBonus);
+  // Without the style only a penalty counts, so the parts are dropped when the bonus is positive.
+  const parts = style ? details.damageParts : bonus < 0 ? details.damageParts : [];
   return {
     key: `offhand:${off.id}`,
     tags: ["melee", "offhand"],
@@ -185,7 +196,9 @@ function offHandAttack(character: Character): TurnOption | null {
     summary: "",
     summaryKey: "turn.offhand.hint",
     toHit: details.attackBonus,
+    toHitParts: details.attackParts,
     damage: `${details.damageDice} ${signed(bonus)} ${details.damageType} damage`.replace(" + 0 ", " "),
+    damageRoll: details.damageDice ? { dice: details.damageDice, parts, type: details.damageType } : undefined,
     detail: weaponDetail(off),
     // The bonus attack comes after taking the Attack action with the other hand.
     blocked: character.attackedThisTurn ? undefined : "attackFirst",
@@ -209,6 +222,8 @@ function attackOptions(character: Character): TurnOption[] {
       name: attack.name,
       summary: details ? "" : attack.description || "",
       toHit: details ? details.attackBonus : attack.attackBonus,
+      toHitParts: details?.attackParts,
+      damageRoll: details?.damageDice ? { dice: details.damageDice, parts: details.damageParts, type: details.damageType } : undefined,
       damage: details && details.damageDice ? `${details.damageDice} ${signed(details.damageBonus)} ${details.damageType} damage`.replace(" + 0 ", " ") : attack.damageType ? `${attack.damageType} damage` : undefined,
       detail: details ? weaponDetail(details.weapon) : attack.description || undefined,
       spend: {},
@@ -226,6 +241,7 @@ function attackOptions(character: Character): TurnOption[] {
     nameKey: "turn.unarmed",
     summary: "",
     toHit: str + prof,
+    toHitParts: [{ source: "@str", value: str }, { source: "@prof", value: prof }],
     damage: `${Math.max(0, 1 + str)} bludgeoning damage`,
     spend: {},
   });
@@ -270,6 +286,7 @@ function spellOptions(character: Character, srdSpells: SrdSpell[]): TurnOption[]
       damageBonuses: srd ? spellDamageBonuses(character, { name: srd.name, level, school: srd.school, classes: srd.classes, damageType: srd.damage?.damageType, description: srd.description }) : undefined,
       saveDc: srd?.saveType ? character.spellSaveDc || undefined : undefined,
       spellAttack: srd && (srd.attackType || srd.attack_type) ? character.spellAttackBonus ?? 0 : undefined,
+      spellAttackParts: srd && (srd.attackType || srd.attack_type) ? spellAttackParts(character) : undefined,
       spend: { spellsUsedThisTurn: [...(character.spellsUsedThisTurn || []).filter((id) => id !== spell.id), spell.id] },
     };
     let castLevel = level;
@@ -321,8 +338,25 @@ const poolLeft = (character: Character, field: PoolField) => Number((character a
 export const ON_HIT_WHEN = new Set<FeatureWhen>(["onHit", "oncePerTurn", "onCritOrKill"]);
 
 /** One turn option from a hand-checked rule: the slot it takes and what it spends. */
+/**
+ * The dice a feature rolls, when it rolls some: a die from its pool
+ * (superiority, psionic, Bardic Inspiration) or a die that grows with level
+ * (Sneak Attack, Martial Arts, Song of Rest).
+ */
+export function featureDice(character: Character, name: string, pool?: PoolField): string | undefined {
+  const level = character.level || 1;
+  if (pool === "superiorityDice") return `1d${level >= 18 ? 12 : level >= 10 ? 10 : 8}`;
+  if (pool === "psionicDice") return `1d${level >= 17 ? 12 : level >= 11 ? 10 : level >= 5 ? 8 : 6}`;
+  if (pool === "bardicInspirationUses" || /^Bardic Inspiration/.test(name)) return `1${character.bardicInspirationDie || "d6"}`;
+  const value = getFeatureValue(name, character);
+  const m = value && /^(\d*)d(\d+)$/.exec(value);
+  return m ? `${m[1] || 1}d${m[2]}` : undefined;
+}
+
 function ruleOption(character: Character, rule: FeatureRule | SubOption, base: Pick<TurnOption, "key" | "name" | "summary" | "summaryKey" | "detail">, slot: TurnSlot): TurnOption {
   const option: TurnOption = { ...base, slot, group: "feature", when: rule.when, spend: {} };
+  const dice = featureDice(character, base.name, rule.pool?.field ?? rule.orPool?.field);
+  if (dice) option.featureDice = dice;
   if (rule.pool) {
     const left = poolLeft(character, rule.pool.field);
     option.cost = { key: `turn.cost.${rule.pool.field}`, values: { amount: rule.pool.amount, left } };
@@ -493,6 +527,14 @@ export function amountPatch(character: Character, option: TurnOption, amount: nu
 /** The beast form the character is in, if any. */
 export const currentBeast = (character: Pick<Character, "wildShape">): Beast | undefined => (character.wildShape ? beastByName(character.wildShape.form) : undefined);
 
+/** "2d4 + 2 piercing" as dice plus the beast's own bonus. */
+function beastDamageRoll(damage: string): TurnOption["damageRoll"] {
+  const m = /^\s*(\d+d\d+)\s*(?:([+−-])\s*(\d+))?\s*(.*)$/.exec(damage);
+  if (!m) return undefined;
+  const bonus = m[3] ? Number(m[3]) * (m[2] === "+" ? 1 : -1) : 0;
+  return { dice: m[1], parts: bonus ? [{ source: "@beast", value: bonus }] : [], type: m[4].trim() };
+}
+
 function beastAttackOptions(beast: Beast): TurnOption[] {
   return beast.attacks.map((a, i) => ({
     key: `beast:${i}`,
@@ -501,7 +543,9 @@ function beastAttackOptions(beast: Beast): TurnOption[] {
     name: a.name,
     summary: a.note || "",
     toHit: a.toHit,
+    toHitParts: [{ source: "@beast", value: a.toHit }],
     damage: `${a.damage} damage`,
+    damageRoll: beastDamageRoll(a.damage),
     tags: ["melee"],
     spend: {},
   }));
