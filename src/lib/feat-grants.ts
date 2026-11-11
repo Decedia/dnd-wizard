@@ -161,3 +161,61 @@ export function applyFeatGrants(character: Character, featName: string, options:
     cantrips,
   };
 }
+
+/**
+ * Takes back what applyFeatGrants gave for a feat: its ability increases,
+ * proficiencies, languages, save and spells. Used when a level's feat is
+ * picked again.
+ */
+export function removeFeatGrants(character: Character, featName: string, options: Record<string, string> = {}): Character {
+  const fixed = FEAT_FIXED_GRANTS[featName] || {};
+  const scores: Record<string, number> = {};
+  for (const [ability, amount] of Object.entries(featAbilityIncreases(featName, options))) {
+    if (!ABILITY_KEYS.includes(ability)) continue;
+    scores[ability] = Math.max(1, ((character as any)[ability] as number ?? 10) - amount);
+  }
+
+  const skills = { ...character.skills };
+  const expertise = new Set(character.expertise || []);
+  const languages = new Set(character.languages || []);
+  const tools = new Set(character.toolProficiencies || []);
+  let other = (character.otherProficiencies || "").split(/,\s*/).filter(Boolean);
+  const saves = new Set(character.bonusSaves || []);
+  const spellNames = new Set<string>(fixed.spells || []);
+  const skillNames = new Set<string>(SKILLS.map((s) => s.name));
+
+  for (const name of fixed.languages || []) languages.delete(name);
+  for (const name of fixed.tools || []) tools.delete(name);
+  other = other.filter((p) => !(fixed.proficiencies || []).includes(p));
+
+  for (const group of getFeatOptionGroups(featName)) {
+    const value = options[group.id];
+    if (!value) continue;
+    const base = group.id.replace(/_\d+$/, "");
+    if (group.type === "spell") spellNames.add(value);
+    else if (base === "ability") { if (featName === "Resilient") saves.delete(value); }
+    else if (base === "expertise") expertise.delete(value);
+    else if (base === "skill" || base === "skill_or_tool") {
+      if (skillNames.has(value)) { delete skills[value]; expertise.delete(value); }
+      else tools.delete(value);
+    } else if (base === "tool") tools.delete(value);
+    else if (base === "language") languages.delete(value);
+    else if (base === "weapon") other = other.filter((p) => p !== value);
+  }
+
+  const spells = (character.spells || []).filter((s) => !spellNames.has(s.name));
+  const kept = new Set(spells.map((s) => s.id));
+  return {
+    ...character,
+    ...scores,
+    skills,
+    expertise: [...expertise],
+    languages: [...languages],
+    toolProficiencies: [...tools],
+    otherProficiencies: other.join(", "),
+    bonusSaves: [...saves],
+    spells,
+    cantrips: (character.cantrips || []).filter((c) => !spellNames.has(c.name)),
+    preparedSpells: (character.preparedSpells || []).filter((id) => kept.has(id)),
+  };
+}

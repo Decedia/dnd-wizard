@@ -5,6 +5,7 @@ import { getRaceAsi } from "./race-grants";
 import { decodeFeatOptions, featAbilityIncreases } from "./feat-grants";
 import { withSnapshot } from "./level-snapshot";
 import { getGrantedSpellNames, syncGrantedSpells } from "./granted-spells";
+import { levelUpIncreases } from "./level-choices";
 
 /** The level a class picks its subclass at (Cleric 1, Wizard 2, most 3). */
 export function subclassLevelOf(character: Pick<Character, "class" | "ruleset">): number {
@@ -31,11 +32,18 @@ export function subclassRewind(character: Character): Character {
     subclassIndex: undefined,
     features: (character.features || []).filter((f) => f.source !== "subclass"),
     featureSelections,
+    levelChoices: withoutSubclassPicks(character.levelChoices),
   };
   // An Eldritch Knight's or Arcane Trickster's spells come from the subclass.
   if (isThirdCaster(character.subclass)) next = withoutChosenSpells(next);
   if (isLand(character)) next = { ...next, circleTerrain: "", circleSpells: [], bonusCantrips: [] };
   return syncGrantedSpells(next);
+}
+
+/** The level log without the subclass's own picks. */
+function withoutSubclassPicks(log: Character["levelChoices"]): Character["levelChoices"] {
+  if (!log) return log;
+  return Object.fromEntries(Object.entries(log).map(([lvl, { subclassFeatures: _f, subclassSpells: _s, ...rest }]) => [lvl, rest]));
 }
 
 /** Only the free spells stay (race, feats' grants); the ones the player learned go. */
@@ -67,6 +75,13 @@ export function applySubclassRebuild(before: Character, wizardResult: Character,
     subclass: wizardResult.subclass,
     subclassIndex: wizardResult.subclassIndex,
     featureSelections: { ...rewound.featureSelections, ...subclassPicks },
+    // The new subclass's picks join each level's log.
+    levelChoices: Object.fromEntries(
+      [...new Set([...Object.keys(rewound.levelChoices || {}), ...Object.keys(wizardResult.levelChoices || {})])].map((lvl) => {
+        const fresh = wizardResult.levelChoices?.[Number(lvl)];
+        return [lvl, { ...rewound.levelChoices?.[Number(lvl)], ...(fresh?.subclassFeatures ? { subclassFeatures: fresh.subclassFeatures } : {}), ...(fresh?.subclassSpells ? { subclassSpells: fresh.subclassSpells } : {}) }];
+      })
+    ),
     // Skills, languages and tools a subclass pick gives (Blessings of Knowledge).
     skills: { ...rewound.skills, ...wizardResult.skills },
     expertise: [...new Set([...(rewound.expertise || []), ...(wizardResult.expertise || [])])],
@@ -104,10 +119,14 @@ export function classRebuildDraft(old: Character): Character {
   const raceBonus = getRaceAsi(old);
   const vhFeat = old.featureSelections?.["variant-human-feat"]?.[0];
   const featBonus = vhFeat ? featAbilityIncreases(vhFeat, decodeFeatOptions(old.featureSelections?.["variant-human-feat-options"])) : {};
+  // Increases from level-ups (and the Barbarian's level 20 +4) go too; the new class earns its own.
+  const levelUp = levelUpIncreases(old);
+  const capstone: Record<string, number> = old.class === "Barbarian" && (old.level || 1) >= 20 ? { str: 4, con: 4 } : {};
   const scores = Object.fromEntries(
     ABILITIES.map((k) => {
       const vh = (old.variantHumanAbilities || []).includes(k) ? 1 : 0;
-      return [k, Math.max(3, (old[k] || 10) - (raceBonus[k] || 0) - (featBonus[k] || 0) - vh)];
+      const levelUps = (levelUp[k] || 0) + (capstone[k] || 0);
+      return [k, Math.max(3, (old[k] || 10) - (raceBonus[k] || 0) - (featBonus[k] || 0) - vh - levelUps)];
     })
   ) as Record<(typeof ABILITIES)[number], number>;
   const raceSelections = Object.fromEntries(Object.entries(old.featureSelections || {}).filter(([key]) => key.startsWith("variant-human-feat")));

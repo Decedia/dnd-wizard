@@ -23,7 +23,7 @@ const navItems = [
   },
 ];
 
-const WIZARD_PATHS = ["/character/create", "/character/level-up", "/character/quick", "/character/subclass"];
+const WIZARD_PATHS = ["/character/create", "/character/level-up", "/character/quick", "/character/subclass", "/character/choices"];
 
 /** Height the docked nav takes, for content and floating buttons to clear it. */
 export const BOTTOM_NAV_SPACE = "calc(4.25rem + env(safe-area-inset-bottom))";

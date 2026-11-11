@@ -11,6 +11,7 @@ import { advanceTurn, parseDurationToTurns } from "@/lib/spellEffects";
 import { useSRD } from "@/contexts/SRDContext";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { CharacterSheetProvider, type OverrideRequest } from "@/components/character-sheet/CharacterSheetContext";
+import { ChoicesSection } from "@/components/character-sheet/ChoicesSection";
 import { OverrideSheet } from "@/components/character-sheet/OverrideSheet";
 import { SheetTabs, type TabId } from "@/components/character-sheet/SheetTabs";
 import { LevelXpSection } from "@/components/character-sheet/LevelXpSection";
@@ -370,7 +371,9 @@ export function CharacterView() {
               {undoSnap && (
                 <div className="mb-4">
                   <button type="button" onClick={() => setUndoOpen(true)} className="btn btn-secondary w-full">
-                    {undoSnap.kind === "class" || undoSnap.kind === "subclass"
+                    {undoSnap.kind === "choice"
+                      ? t("levelUndo.button.choice", "Undo the last change of picks")
+                      : undoSnap.kind === "class" || undoSnap.kind === "subclass"
                       ? t(`levelUndo.button.${undoSnap.kind}`, { name: undoSnap.kind === "class" ? undoSnap.character.class : undoSnap.character.subclass || "" }, "Undo change (back to {name})")
                       : t("levelUndo.button", { level: undoSnap.level }, "Undo level-up (back to level {level})")}
                   </button>
@@ -378,6 +381,7 @@ export function CharacterView() {
               )}
               <IdentitySection character={character} onChange={handleChange} editMode={editMode} />
               <LevelXpSection character={character} onChange={handleChange} editMode={editMode} />
+              {editMode && <ChoicesSection character={character} />}
               <AppearanceBioSection character={character} onChange={handleChange} editMode={editMode} />
             </>
           )}
@@ -411,7 +415,7 @@ export function CharacterView() {
         <BottomSheet
           isOpen
           onClose={() => setUndoOpen(false)}
-          title={undoSnap.kind === "class" || undoSnap.kind === "subclass" ? t("levelUndo.titleChange", "Undo the change") : t("levelUndo.title", "Undo level-up")}
+          title={undoSnap.kind === "class" || undoSnap.kind === "subclass" || undoSnap.kind === "choice" ? t("levelUndo.titleChange", "Undo the change") : t("levelUndo.title", "Undo level-up")}
           footer={
             <div className="flex items-center gap-2 px-4 py-3">
               <button type="button" onClick={() => setUndoOpen(false)} className="btn btn-secondary flex-1">{t("common.cancel", "Cancel")}</button>
@@ -431,7 +435,9 @@ export function CharacterView() {
         >
           <div className="space-y-2 px-4 py-4 text-sm text-[var(--color-text-secondary)]">
             <p>
-              {undoSnap.kind === "class" || undoSnap.kind === "subclass"
+              {undoSnap.kind === "choice"
+                ? t("levelUndo.bodyChoice", { name: character.name }, "{name}'s picks go back to how they were before the last change.")
+                : undoSnap.kind === "class" || undoSnap.kind === "subclass"
                 ? t("levelUndo.bodyChange", { name: character.name, was: undoSnap.kind === "class" ? undoSnap.character.class : undoSnap.character.subclass || "" }, "{name} goes back to being a {was}, with the picks, HP and spells from before.")
                 : t("levelUndo.body", { name: character.name, level: undoSnap.level }, "{name} goes back to level {level}, with the picks, HP and spells from before the level-up.")}
             </p>
