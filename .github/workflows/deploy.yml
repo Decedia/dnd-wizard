@@ -28,7 +28,6 @@ jobs:
       - run: bun install --frozen-lockfile
       - run: bun run typecheck
       - run: bun test src/tests/
-      - run: bun run engine:validate
       - run: bun run data:completeness -- --strict
       - run: PAGES_BASE_PATH=/dnd-wizard bun run build
       - run: |

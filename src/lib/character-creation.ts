@@ -3,7 +3,6 @@ import { suggestPrepared } from "./prepared-spells";
 import { LANGUAGE_NAMES } from "@/data/feat-options";
 import { applyFeatGrants, decodeFeatOptions } from "./feat-grants";
 import { getRaceAsi, getRaceSkills, isFlexAsiValid } from "./race-grants";
-import { engineIdFor } from "@/lib/feature-engine";
 import { addRows, backgroundGearRows, equipRow } from "./inventory";
 import { applyStartingGold, startingGoldOf } from "./starting-gold";
 import { collectProficiencies, getRowProficiency } from "./proficiency";
@@ -769,7 +768,7 @@ function extractFeatureFields(f: any): Record<string, any> {
 const PLACEHOLDER_FEATURE =
   /^(?:[a-z]+\s+)*(?:feature|features|college|domain|circle|archetype|tradition|origin|patron|specialist|path|primal path|sacred oath)$/i;
 
-/** "Action Surge (1 use)" encodes a level tier in the name; the engine has tiers. */
+/** "Action Surge (1 use)" encodes a level tier in the name; the sheet shows the plain name. */
 const TIER_SUFFIX = /\s*\((?:\d+\s*use[^)]*|\d+\s*\/\s*rest)\)\s*$/i;
 
 function isPlaceholderFeature(name: string | undefined): boolean {
@@ -894,7 +893,6 @@ export function syncBaseFeatures(character: Character, language = "en"): Charact
       name: f.name,
       description: f.description,
       source: f.source,
-      engineId: engineIdFor(f.source as "class" | "race", character.class, f.name),
       locked: true,
       value: featureValue,
       summary: f.summary ?? null,
@@ -992,9 +990,6 @@ export function applySubclassFeatures(character: Character, language = "en"): Ch
     if (feature.choices && feature.choices.length > 0) {
       const key = feature.level != null ? `subclass-feature-${feature.level}-${feature.name}` : `subclass-feature-${feature.name}`;
       const selected = (character as any).featureSelections?.[key];
-      // models tiers properly, so the suffix is dropped.
-      // "Action Surge (1 use)" encodes a level tier in the name; the engine
-      const cleanName = String(feature.name).replace(/\s*\((?:\d+\s*use[^)]*|\d+\s*\/\s*rest)\)\s*$/i, "").trim();
       // A second pick of a feature (its languages, its cantrip) is not a feature of its own.
       if (!(feature as any).choiceOnly && !newFeatures.some((f) => f.name === feature.name)) {
         newFeatures.push({
@@ -1002,7 +997,6 @@ export function applySubclassFeatures(character: Character, language = "en"): Ch
           name: feature.name,
           description: normalizeDescription(feature.description),
           source: "subclass" as const,
-          engineId: engineIdFor("subclass", subclass.name, feature.name),
           locked: true,
           ...extractFeatureFields(feature),
         });
@@ -1018,7 +1012,6 @@ export function applySubclassFeatures(character: Character, language = "en"): Ch
               name: opt.name,
               description: normalizeDescription(opt.description),
               source: "subclass" as const,
-              engineId: engineIdFor("subclass", subclass.name, opt.name),
               locked: true,
               ...extractFeatureFields(feature),
             });
@@ -1026,16 +1019,12 @@ export function applySubclassFeatures(character: Character, language = "en"): Ch
         }
       }
     } else {
-      // models tiers properly, so the suffix is dropped.
-      // "Action Surge (1 use)" encodes a level tier in the name; the engine
-      const cleanName = String(feature.name).replace(/\s*\((?:\d+\s*use[^)]*|\d+\s*\/\s*rest)\)\s*$/i, "").trim();
       if (!newFeatures.some((f) => f.name === feature.name)) {
         newFeatures.push({
           id: `subclass-${feature.name}`.replace(/\s+/g, "-"),
           name: feature.name,
           description: normalizeDescription(feature.description),
           source: "subclass" as const,
-          engineId: engineIdFor("subclass", subclass.name, feature.name),
           locked: true,
           ...extractFeatureFields(feature),
         });
@@ -1384,7 +1373,6 @@ export async function finalizeCreation(character: Character, language = "en"): P
             ...final.features,
             {
               id: `feat-${featName}`.replace(/\s+/g, "-"),
-              engineId: engineIdFor("feat", "Feat", featName),
               name: featData.name,
               description: featData.description,
               summary: featData.summary || null,
@@ -1658,7 +1646,6 @@ export function recreateCharacter(character: Character, language = "en"): Charac
       name: localised.name,
       description: normalizeDescription(localised.description),
       summary: localised.summary ?? null,
-      engineId: engineIdFor("feat", "Feat", localised.name) ?? f.engineId,
     };
   });
 
