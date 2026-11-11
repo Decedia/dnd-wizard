@@ -13,6 +13,7 @@ import subclassesDataId from "@/data/id/2014_subclasses.json";
 const subclassesDataMap = { en: subclassesDataEn, id: subclassesDataId } as const;
 
 import subclassChoicesData from "@/data/subclass_feature_choices.json";
+import subclassChoiceTextId from "@/data/id/subclass_feature_choices_text.json";
 
 import spellsDataEn from "@/data/en/2014_spells.json";
 import spellsDataId from "@/data/id/2014_spells.json";
@@ -555,8 +556,20 @@ export function getStaticSubclasses(className: string, sources?: string[], rules
     });
 }
 
+/** Subclass pick text in the reader's language; names stay as saved (they are the picks). */
+function localizeChoice(choice: any, locale: string): any {
+  if (!choice || locale !== "id") return choice;
+  const tr = (s?: string) => (s && (subclassChoiceTextId as Record<string, string>)[s]) || s;
+  return {
+    ...choice,
+    description: tr(choice.description),
+    options: choice.options?.map((o: any) => ({ ...o, description: tr(o.description) })),
+  };
+}
+
 /** A choice that names a class spell list gets its options from the spell data, filtered by book. */
-function withSpellOptions(choice: any, sources?: string[], ruleset?: string, locale: string = "en"): any {
+function withSpellOptions(raw: any, sources?: string[], ruleset?: string, locale: string = "en"): any {
+  const choice = localizeChoice(raw, locale);
   if (!choice?.spellList) return choice;
   const levels: number[] = Array.isArray(choice.spellLevel) ? choice.spellLevel : [choice.spellLevel ?? 0];
   const options = getStaticSpells(sources, ruleset, locale)

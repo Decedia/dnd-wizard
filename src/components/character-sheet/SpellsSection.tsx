@@ -18,7 +18,8 @@ import { getStatBadgeStyle, getSchoolBadgeStyle } from "@/lib/badge-styles";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { RichText, RichInline } from "@/components/RichText";
-import { SpellDamageBonusLines } from "@/components/SpellDamageBonus";
+import { SpellDamageBonusLines, SpellDamageLine } from "@/components/SpellDamageBonus";
+import { characterSpellDamage } from "@/lib/spell-dice";
 import { spellRounds, spellTimerId, startTimer } from "@/lib/timers";
 import { healingBonusLines, spellHealing } from "@/lib/healing";
 import { spellDamageBonuses } from "@/lib/spell-damage-bonus";
@@ -247,6 +248,10 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
     ...healingBonusLines(spellHealing(character, { name: spell.srdSpellName || spell.name, level: spell.level, heal_at_slot_level: (srdSpells.find((sp) => sp.name === (spell.srdSpellName || spell.name)) as { heal_at_slot_level?: unknown } | undefined)?.heal_at_slot_level }, spell.level)),
   ];
 
+  // Damage at the spell's own level; the turn panel shows it at the slot you will use.
+  const damageOf = (spell: UnifiedSpell) =>
+    characterSpellDamage(character, { name: spell.srdSpellName || spell.name, level: spell.level, school: spell.school, classes: spell.classes, damageType: spell.damageType, description: spell.description });
+
   const getSummary = (spell: UnifiedSpell) => {
     if (spell.effectSummary) return spell.effectSummary;
     const desc = spell.description || "";
@@ -372,8 +377,8 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                   </div>
                 )}
 
-                {bonusesOf(spell).length > 0 && (
-                  <div className="mb-2"><SpellDamageBonusLines bonuses={bonusesOf(spell)} /></div>
+                {(bonusesOf(spell).length > 0 || damageOf(spell)) && (
+                  <div className="mb-2"><SpellDamageLine parts={damageOf(spell)} /><SpellDamageBonusLines bonuses={bonusesOf(spell)} /></div>
                 )}
 
                 {spell.duration && (
@@ -531,6 +536,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
             {selectedSpell.lastUpdated && (
               <p className="text-[10px] text-[var(--color-text-muted)]">{t("glossary.lastUpdated")}: {selectedSpell.lastUpdated}</p>
             )}
+            <SpellDamageLine parts={damageOf(selectedSpell)} />
             <SpellDamageBonusLines bonuses={bonusesOf(selectedSpell)} />
             <RichText text={selectedSpell.description || ""} />
             <div className="flex flex-wrap gap-2 pt-1">

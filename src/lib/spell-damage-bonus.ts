@@ -1,4 +1,5 @@
 import { getModifier, getProficiencyBonus, type Character } from "@/lib/storage";
+import { NO_DAMAGE_LINE, SPELL_DICE } from "@/data/spell-dice";
 
 /**
  * Class features that add an ability modifier to a spell's damage. The app shows the
@@ -27,6 +28,8 @@ export interface SpellDamageBonus {
    *  "oncePerTurn": extra dice once per turn (Blessed Strikes). "target": only against one
    *  creature (Hexblade's Curse). "heal" and "maxDice": healing bonuses, see healing.ts. */
   per: "roll" | "beam" | "oncePerTurn" | "target" | "heal" | "maxDice";
+  /** Only adds to damage of these types (Elemental Affinity, Radiant Soul). */
+  types?: string[];
 }
 
 const DAMAGE_TYPES = ["acid", "cold", "fire", "force", "lightning", "necrotic", "poison", "psychic", "radiant", "thunder"];
@@ -35,6 +38,8 @@ const textOf = (spell: SpellForBonus) => (Array.isArray(spell.description) ? spe
 
 /** True when the spell rolls dice for damage (some spell data has no damage field, so read the text too). */
 export function dealsDamage(spell: SpellForBonus): boolean {
+  if (spell.name in SPELL_DICE) return true;
+  if (NO_DAMAGE_LINE.has(spell.name)) return false;
   if (spell.damageType) return true;
   return /\b\d+d\d+\b[^.]*?\bdamage\b/i.test(textOf(spell));
 }
@@ -74,8 +79,8 @@ export function spellDamageBonuses(character: Character, spell: SpellForBonus): 
   if (!dealsDamage(spell)) return [];
   const names = ownedNames(character);
   const out: SpellDamageBonus[] = [];
-  const add = (source: string, ability: Ability, per: SpellDamageBonus["per"] = "roll") =>
-    out.push({ source, ability, value: getModifier(character[ability] ?? 10), per });
+  const add = (source: string, ability: Ability, per: SpellDamageBonus["per"] = "roll", types?: string[]) =>
+    out.push({ source, ability, value: getModifier(character[ability] ?? 10), per, ...(types ? { types } : {}) });
 
   // Wizard, School of Evocation, level 10: a wizard evocation spell adds INT to one damage roll.
   if (has(names, "Empowered Evocation") && spell.school === "Evocation" && onClassList(spell, "Wizard")) add("Empowered Evocation", "int");
@@ -85,10 +90,10 @@ export function spellDamageBonuses(character: Character, spell: SpellForBonus): 
   if (has(names, "Potent Spellcasting") && spell.level === 0 && onClassList(spell, "Cleric")) add("Potent Spellcasting", "wis");
   // Sorcerer, Draconic Bloodline, level 6: CHA on one roll of a spell of the ancestor's damage type.
   const ancestor = character.class === "Sorcerer" && has(names, "Elemental Affinity") ? dragonAncestorType(character) : null;
-  if (ancestor && damageTypesOf(spell).includes(ancestor)) add("Elemental Affinity", "cha");
+  if (ancestor && damageTypesOf(spell).includes(ancestor)) add("Elemental Affinity", "cha", "roll", [ancestor]);
   // Warlock, The Celestial, level 6: CHA on one radiant or fire damage roll.
   // (Aasimar also has a racial "Radiant Soul" that does something else, so check the class.)
-  if (character.class === "Warlock" && has(names, "Radiant Soul") && damageTypesOf(spell).some((t) => t === "radiant" || t === "fire")) add("Radiant Soul", "cha");
+  if (character.class === "Warlock" && has(names, "Radiant Soul") && damageTypesOf(spell).some((t) => t === "radiant" || t === "fire")) add("Radiant Soul", "cha", "roll", ["radiant", "fire"]);
 
   // Cleric, Tasha's option at level 8: +1d8 radiant once per turn on cantrip damage.
   if (has(names, "Blessed Strikes") && spell.level === 0) out.push({ source: "Blessed Strikes", ability: "wis", value: 0, dice: "1d8 radiant", per: "oncePerTurn" });

@@ -26,7 +26,13 @@ export interface Beast {
   attacks: BeastAttack[];
   /** Why pick it, in plain words. Locale key `wild.why.<name>` overrides it. */
   why: string;
+  burrow?: number;
+  /** Circle of the Moon at level 10: an elemental, which takes two uses of Wild Shape. */
+  elemental?: boolean;
 }
+
+/** Wild Shape uses a form takes. */
+export const shapeUses = (b: Beast) => (b.elemental ? 2 : 1);
 
 export const BEASTS: Beast[] = [
   { name: "Wolf", cr: 0.25, ac: 13, hp: 11, speed: 40, multiattack: 1, attacks: [{ name: "Bite", toHit: 4, damage: "2d4 + 2 piercing", note: "DC 11 Strength save or the target falls prone." }], why: "Fast, and it knocks enemies down. Advantage when a friend is next to the target." },
@@ -61,6 +67,14 @@ export const BEASTS: Beast[] = [
   { name: "Tyrannosaurus Rex", cr: 8, ac: 13, hp: 136, speed: 50, multiattack: 2, attacks: [{ name: "Bite", toHit: 10, damage: "4d12 + 7 piercing", note: "The target is grappled (escape DC 17)." }, { name: "Tail", toHit: 10, damage: "3d8 + 7 bludgeoning" }], why: "The biggest form there is. Two massive attacks." },
 ];
 
+/** Elemental Wild Shape (Circle of the Moon, level 10), from the SRD 5.1 elementals. */
+export const ELEMENTALS: Beast[] = [
+  { name: "Air Elemental", cr: 5, ac: 15, hp: 90, speed: 0, fly: 90, multiattack: 2, elemental: true, attacks: [{ name: "Slam", toHit: 8, damage: "2d8 + 5 bludgeoning" }], why: "Flies fast and hovers. Whirlwind (recharge 4-6) flings enemies 20 ft." },
+  { name: "Earth Elemental", cr: 5, ac: 17, hp: 126, speed: 30, burrow: 30, multiattack: 2, elemental: true, attacks: [{ name: "Slam", toHit: 8, damage: "2d8 + 5 bludgeoning" }], why: "The toughest: AC 17, lots of HP, and it moves through earth and stone." },
+  { name: "Fire Elemental", cr: 5, ac: 13, hp: 102, speed: 50, multiattack: 2, elemental: true, attacks: [{ name: "Touch", toHit: 6, damage: "2d6 + 3 fire", note: "A flammable target catches fire: 1d10 fire at the start of each of its turns until it puts it out." }], why: "Fast, sets enemies on fire, and anyone who touches it gets burned." },
+  { name: "Water Elemental", cr: 5, ac: 14, hp: 114, speed: 30, swim: 90, multiattack: 2, elemental: true, attacks: [{ name: "Slam", toHit: 7, damage: "2d8 + 4 bludgeoning" }], why: "Whelm (recharge 4-6) grabs and drowns enemies around it." },
+];
+
 const isMoon = (c: Pick<Character, "subclass" | "features">) =>
   /moon/i.test(c.subclass || "") || (c.features || []).some((f) => /^Combat Wild Shape|^Circle Forms/.test(f.name || ""));
 
@@ -79,10 +93,11 @@ export function wildShapeLimits(character: Pick<Character, "level" | "subclass" 
 /** Beasts this druid can turn into now, toughest first. */
 export function beastsFor(character: Pick<Character, "level" | "subclass" | "features">): Beast[] {
   const lim = wildShapeLimits(character);
-  return BEASTS.filter((b) => b.cr <= lim.cr && (lim.swim || !b.swim) && (lim.fly || !b.fly)).sort((a, b) => b.cr - a.cr || b.hp - a.hp);
+  const beasts = BEASTS.filter((b) => b.cr <= lim.cr && (lim.swim || !b.swim) && (lim.fly || !b.fly)).sort((a, b) => b.cr - a.cr || b.hp - a.hp);
+  return isMoon(character) && (character.level || 1) >= 10 ? [...ELEMENTALS, ...beasts] : beasts;
 }
 
-export const beastByName = (name: string) => BEASTS.find((b) => b.name === name);
+export const beastByName = (name: string) => BEASTS.find((b) => b.name === name) ?? ELEMENTALS.find((b) => b.name === name);
 
 export function crText(cr: number): string {
   return cr === 0.25 ? "1/4" : cr === 0.5 ? "1/2" : String(cr);
