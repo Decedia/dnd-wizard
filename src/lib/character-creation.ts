@@ -1,4 +1,4 @@
-import { createEmptyCharacter, saveCharacter, computeDerivedStats, generateId, getFeatureValue, getMaxHpFromLevelHp, getSpellSlotTable, isPreparationCaster, SKILLS, type Character } from "./storage";
+import { applyConChangeToHp, createEmptyCharacter, saveCharacter, computeDerivedStats, generateId, getFeatureValue, getMaxHpFromLevelHp, getSpellSlotTable, isPreparationCaster, SKILLS, type Character } from "./storage";
 import { suggestPrepared } from "./prepared-spells";
 import { LANGUAGE_NAMES } from "@/data/feat-options";
 import { applyFeatGrants, decodeFeatOptions, encodeFeatOptions } from "./feat-grants";
@@ -1412,6 +1412,10 @@ export async function finalizeCreation(character: Character, language = "en"): P
     if (!m || !value?.[0]) continue;
     final = applyFeatGrants(final, value[0], decodeFeatOptions(final.featureSelections?.[`asi-feat-${m[1]}-options`]));
   }
+
+  // HP was rolled with the CON before the race's bonus (and a feat's) was added,
+  // so a Dwarf or Human lost a point of HP per level. Count the final CON.
+  final = { ...final, ...applyConChangeToHp(character, final, { con: final.con }) };
 
   // Gold instead of gear, and extra gold for a higher starting level.
   final = applyStartingGold(final);

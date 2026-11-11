@@ -1,4 +1,4 @@
-import type { Character } from "./storage";
+import type { Character, LevelUpSnapshot } from "./storage";
 
 /**
  * Fields that are not about the level: changes made to them after a level-up
@@ -13,14 +13,27 @@ const KEEP_ON_UNDO = [
 /** The level-up result, carrying the character as it was before, for one undo. */
 export function withLevelSnapshot(before: Character, after: Character): Character {
   if ((after.level || 1) <= (before.level || 1)) return after;
-  const { levelUpSnapshot: _older, ...plain } = before;
-  return { ...after, levelUpSnapshot: { level: before.level || 1, at: Date.now(), character: plain } };
+  return withSnapshot(before, after, "levelUp");
 }
 
-/** The character from before the last level-up, keeping the non-level fields as they are now. */
-export function undoLevelUp(current: Character): Character | null {
+/** A big change (level-up, new class or subclass), carrying the character from before for one undo. */
+export function withSnapshot(before: Character, after: Character, kind: NonNullable<LevelUpSnapshot["kind"]>): Character {
+  const { levelUpSnapshot: _older, ...plain } = before;
+  return { ...after, levelUpSnapshot: { level: before.level || 1, kind, at: Date.now(), character: plain } };
+}
+
+/** The last change that can be undone, if any. */
+export function undoableChange(current: Character): LevelUpSnapshot | null {
   const snap = current.levelUpSnapshot;
-  if (!snap || snap.level >= (current.level || 1)) return null;
+  if (!snap) return null;
+  if ((snap.kind ?? "levelUp") === "levelUp" && snap.level >= (current.level || 1)) return null;
+  return snap;
+}
+
+/** The character from before the last level-up (or class or subclass change), keeping the non-level fields as they are now. */
+export function undoLevelUp(current: Character): Character | null {
+  const snap = undoableChange(current);
+  if (!snap) return null;
   const kept = Object.fromEntries(KEEP_ON_UNDO.map((k) => [k, current[k]])) as Partial<Character>;
   // Features the player made or removed by hand since stay that way.
   const removed = new Set(current.removedFeatures || []);

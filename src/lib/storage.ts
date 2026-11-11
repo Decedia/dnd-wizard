@@ -92,6 +92,8 @@ export interface Character {
   removedFeatures?: string[];
   /** The character as it was just before the last level-up, for "Undo level-up". */
   levelUpSnapshot?: LevelUpSnapshot;
+  /** Creation only: this draft picks the class again for a character at this level. */
+  rebuildOf?: { level: number };
   costumeSpells: { id: string; name: string; description: string }[];
   subclass?: string;
   subclassIndex?: string;
@@ -661,6 +663,8 @@ export interface CustomFeatureTurn {
 export interface LevelUpSnapshot {
   /** The level the character was at before. */
   level: number;
+  /** What made it: a level-up (default) or picking the class or subclass again. */
+  kind?: "levelUp" | "class" | "subclass";
   at: number;
   character: Omit<Character, "levelUpSnapshot">;
 }

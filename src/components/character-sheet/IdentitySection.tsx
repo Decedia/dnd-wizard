@@ -1,9 +1,11 @@
 "use client";
 
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
+import { useRouter } from "next/navigation";
+import { BottomSheet } from "@/components/modals/BottomSheet";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
-import { getStaticRaces, getStaticClasses, getStaticRace, getStaticClass } from "@/lib/srd-client";
+import { getStaticRaces, getStaticRace, getStaticClass } from "@/lib/srd-client";
 import { RichText, RichInline } from "@/components/RichText";
 import { SourceBadge } from "../SourceBadge";
 import { languageNames } from "@/data/srd";
@@ -13,6 +15,8 @@ import { UserIcon as User } from "@/components/icons";
 
 interface IdentitySectionProps {
   character: {
+    id: string;
+    subclass?: string;
     name: string;
     playerName: string;
     gender?: string;
@@ -46,8 +50,9 @@ export function IdentitySection({ character, onChange, editMode = true }: Identi
   const { t, language } = useLanguage();
   const races = getStaticRaces(character.sources, character.ruleset, language);
   const raceNames = races.map((r) => r.name);
-  const classes = getStaticClasses([], character.ruleset, language);
-  const classNames = classes.map((c) => c.name);
+  const router = useRouter();
+  // Changing class or subclass rebuilds the character in a wizard; this pop-up says so first.
+  const [rebuild, setRebuild] = useState<"class" | "subclass" | null>(null);
 
   // The selected class and race carry their own reference text. Surfaces it here so
   // the enhanced descriptions and racial traits are reachable from the sheet.
@@ -67,6 +72,38 @@ export function IdentitySection({ character, onChange, editMode = true }: Identi
       : [...current, lang];
     onChange({ languages: next });
   }, [character.languages, onChange]);
+
+  const rebuildSheet = rebuild && (
+    <BottomSheet
+      isOpen
+      onClose={() => setRebuild(null)}
+      title={rebuild === "class" ? t("rebuild.classTitle", "Change class") : t("rebuild.subclassTitle", "Change subclass")}
+      footer={
+        <div className="flex items-center gap-2 px-4 py-3">
+          <button type="button" onClick={() => setRebuild(null)} className="btn btn-secondary flex-1">{t("common.cancel", "Cancel")}</button>
+          <button
+            type="button"
+            onClick={() => router.push(rebuild === "class" ? `/character/create?rebuild=${character.id}` : `/character/subclass?id=${character.id}`)}
+            className="btn btn-primary flex-1"
+          >
+            {t("rebuild.go", "Continue")}
+          </button>
+        </div>
+      }
+    >
+      <div className="space-y-2 px-4 py-4 text-sm text-[var(--color-text-secondary)]">
+        {rebuild === "class" ? (
+          <>
+            <p>{t("rebuild.classBody", { level: character.level }, "This rebuilds your character. You'll go to the creation pages with your name, look, personality, race and background kept. Then you level back up to level {level}.")}</p>
+            <p>{t("rebuild.classKept", "Gear and coins stay. Ability scores start without your race's bonus, which is added back. If they include increases from level-ups, lower them so they aren't counted twice.")}</p>
+          </>
+        ) : (
+          <p>{t("rebuild.subclassBody", { from: selectedClass?.subclassLevel ?? 3 }, "You'll go through the level-up steps again from level {from}, but only the subclass picks. HP, ability scores and class picks stay as they are.")}</p>
+        )}
+        <p>{t("rebuild.undoHint", "Nothing changes until you save. You can undo it on the Bio tab afterwards.")}</p>
+      </div>
+    </BottomSheet>
+  );
 
   return (
     <SectionCard id="identity" title={t("character.identity", "Identity")} icon={<User className="h-5 w-5" />}>
@@ -118,19 +155,18 @@ export function IdentitySection({ character, onChange, editMode = true }: Identi
                 </select>
               </Field>
               <Field label={t("form.class", "CLASS")} className="pl-3">
-                <select
-                  value={character.class}
-                  onChange={(e) => onChange({ class: e.target.value })}
-                  onBlur={() => {}}
-                  className="input"
-                >
-                  <option value="">{t("creator.selectClass", "Select class")}</option>
-                  {classNames.map((c) => (
-                    <option key={c} value={c}>{translateClass(c)}</option>
-                  ))}
-                </select>
+                <button type="button" onClick={() => setRebuild("class")} className="input text-left">
+                  {character.class ? translateClass(character.class) : t("creator.selectClass", "Select class")}
+                </button>
               </Field>
             </div>
+            {character.level >= (selectedClass?.subclassLevel ?? 3) && (
+              <Field label={t("form.subclassLabel", "Subclass")}>
+                <button type="button" onClick={() => setRebuild("subclass")} className="input text-left">
+                  {character.subclass || t("creator.selectSubclass", "Select Subclass")}
+                </button>
+              </Field>
+            )}
             <div className="grid grid-cols-2 divide-x divide-border-strong">
               <Field label={t("form.background", "BACKGROUND")}>
                 <input
@@ -266,6 +302,7 @@ export function IdentitySection({ character, onChange, editMode = true }: Identi
           </div>
         )}
       </div>
+      {rebuildSheet}
     </SectionCard>
   );
 }

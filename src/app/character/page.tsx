@@ -32,7 +32,7 @@ import { AppearanceBioSection } from "@/components/character-sheet/AppearanceBio
 import { PassiveStatsSection } from "@/components/character-sheet/PassiveStatsSection";
 import { DotsThreeIcon as DotsThree, TrashIcon as Trash, ExportIcon as Export, UploadIcon as Upload, CheckCircleIcon as CheckCircle, UserPlusIcon as UserPlus, ClockIcon as Clock, FileJsonIcon as FileJson } from "@/components/icons";
 import { syncGrantedSpells } from "@/lib/granted-spells";
-import { undoLevelUp } from "@/lib/level-snapshot";
+import { undoLevelUp, undoableChange } from "@/lib/level-snapshot";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 
 const GRANT_SOURCES = ["race", "class", "subclass", "level", "raceChoices", "circleTerrain", "optionalClassFeatures", "sources", "featureSelections"] as const;
@@ -215,6 +215,8 @@ export function CharacterView() {
     });
   }, []);
 
+  const undoSnap = character ? undoableChange(character) : null;
+
   const openTurn = () => {
     if (character && !character.turnActive) handleChange(startTurnPatch(character));
     setTurnOpen(true);
@@ -363,10 +365,12 @@ export function CharacterView() {
                   </button>
                 </div>
               )}
-              {character.levelUpSnapshot && character.levelUpSnapshot.level < character.level && (
+              {undoSnap && (
                 <div className="mb-4">
                   <button type="button" onClick={() => setUndoOpen(true)} className="btn btn-secondary w-full">
-                    {t("levelUndo.button", { level: character.levelUpSnapshot.level }, "Undo level-up (back to level {level})")}
+                    {undoSnap.kind === "class" || undoSnap.kind === "subclass"
+                      ? t(`levelUndo.button.${undoSnap.kind}`, { name: undoSnap.kind === "class" ? undoSnap.character.class : undoSnap.character.subclass || "" }, "Undo change (back to {name})")
+                      : t("levelUndo.button", { level: undoSnap.level }, "Undo level-up (back to level {level})")}
                   </button>
                 </div>
               )}
@@ -401,11 +405,11 @@ export function CharacterView() {
         </main>
       </CharacterSheetProvider>
 
-      {undoOpen && character.levelUpSnapshot && (
+      {undoOpen && undoSnap && (
         <BottomSheet
           isOpen
           onClose={() => setUndoOpen(false)}
-          title={t("levelUndo.title", "Undo level-up")}
+          title={undoSnap.kind === "class" || undoSnap.kind === "subclass" ? t("levelUndo.titleChange", "Undo the change") : t("levelUndo.title", "Undo level-up")}
           footer={
             <div className="flex items-center gap-2 px-4 py-3">
               <button type="button" onClick={() => setUndoOpen(false)} className="btn btn-secondary flex-1">{t("common.cancel", "Cancel")}</button>
@@ -424,7 +428,11 @@ export function CharacterView() {
           }
         >
           <div className="space-y-2 px-4 py-4 text-sm text-[var(--color-text-secondary)]">
-            <p>{t("levelUndo.body", { name: character.name, level: character.levelUpSnapshot.level }, "{name} goes back to level {level}, with the picks, HP and spells from before the level-up.")}</p>
+            <p>
+              {undoSnap.kind === "class" || undoSnap.kind === "subclass"
+                ? t("levelUndo.bodyChange", { name: character.name, was: undoSnap.kind === "class" ? undoSnap.character.class : undoSnap.character.subclass || "" }, "{name} goes back to being a {was}, with the picks, HP and spells from before.")
+                : t("levelUndo.body", { name: character.name, level: undoSnap.level }, "{name} goes back to level {level}, with the picks, HP and spells from before the level-up.")}
+            </p>
             <p>{t("levelUndo.kept", "Gear, coins, notes and backstory stay as they are now.")}</p>
           </div>
         </BottomSheet>
