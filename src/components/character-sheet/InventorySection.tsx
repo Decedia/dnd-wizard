@@ -379,6 +379,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
         category: item.category || "misc",
         itemType: item.itemType || "item",
         equipped: item.equipped,
+        onGround: item.onGround,
         quantity: item.quantity,
         description: text.description,
         damageDice: item.damageDice,
@@ -563,6 +564,7 @@ export function InventorySection({ character, onChange, editMode = true }: Inven
             return original ? getRowUse(original) : null;
           }}
           onUse={(slot) => handleUse(slot.id)}
+          onPickUp={(slot) => updateItem(slot.id, { onGround: undefined })}
           onEdit={editMode ? handleEdit : undefined}
           onRemove={handleRemove}
           message={useMessage}

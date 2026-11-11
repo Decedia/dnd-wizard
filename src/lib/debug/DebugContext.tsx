@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useCallback, useEffect, useRef } from "react";
+import { useStored, writeStored } from "@/lib/use-stored";
 
 const ADMIN_PASSWORD = "1997a";
 const STORAGE_KEY = "admin_debug_enabled";
@@ -26,27 +27,14 @@ interface DebugContextValue {
 const DebugContext = createContext<DebugContextValue | undefined>(undefined);
 
 export function DebugProvider({ children }: { children: React.ReactNode }) {
-  const [enabled, setEnabled] = useState<boolean>(false);
-  const [unlocked, setUnlocked] = useState<boolean>(false);
+  // Logged in stays on across visits; unlocked and enabled go together.
+  const enabled = useStored(STORAGE_KEY) === "1";
+  const unlocked = enabled;
+  const setEnabled = useCallback((on: boolean) => writeStored(STORAGE_KEY, on ? "1" : "0"), []);
   const [password, setPassword] = useState<string>("");
   const [logs, setLogs] = useState<DebugEntry[]>([]);
   const logsEndRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored === "1") {
-        setEnabled(true);
-        setUnlocked(true);
-      }
-    } catch {}
-  }, []);
-
-  useEffect(() => {
-    try {
-      localStorage.setItem(STORAGE_KEY, enabled ? "1" : "0");
-    } catch {}
-  }, [enabled]);
 
   useEffect(() => {
     if (!enabled) return;
@@ -80,7 +68,6 @@ export function DebugProvider({ children }: { children: React.ReactNode }) {
 
   const login = useCallback(() => {
     if (password === ADMIN_PASSWORD) {
-      setUnlocked(true);
       setEnabled(true);
       setPassword("");
       return true;
@@ -89,7 +76,6 @@ export function DebugProvider({ children }: { children: React.ReactNode }) {
   }, [password]);
 
   const logout = useCallback(() => {
-    setUnlocked(false);
     setEnabled(false);
     setPassword("");
   }, []);

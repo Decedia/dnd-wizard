@@ -639,7 +639,9 @@ export function changeHands(
   const cost = handChangeCost(character, before, after, drop ? removedRows.filter(isWeapon).map((r) => r.id) : []);
   const removed = removedRows.map((r) => r.name);
   if (cost.blocked) return { patch: null, cost, removed };
-  const patch: Partial<Character> = { inventory: after };
+  // A dropped weapon lies on the ground until picked up (it isn't carried any more).
+  const dropped = new Set(drop ? removedRows.filter(isWeapon).map((r) => r.id) : []);
+  const patch: Partial<Character> = { inventory: dropped.size ? after.map((r) => (dropped.has(r.id) ? { ...r, onGround: true } : r)) : after };
   if (cost.interaction) patch.objectInteractionUsed = true;
   if (cost.action) patch.actionUsed = true;
   return { patch, cost, removed };

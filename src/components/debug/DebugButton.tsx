@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { LockIcon, XIcon, GearIcon } from "@/components/icons";
 import { useDebug } from "@/lib/debug/DebugContext";
+import { useQueryFlag } from "@/lib/use-stored";
 
 // Slim tabs on the left edge, mid-screen, clear of the header and bottom bars.
 const TAB_STACK = "fixed left-0 top-1/2 -translate-y-1/2 z-[9999999] flex flex-col gap-1";
@@ -16,11 +17,7 @@ export function DebugButton() {
   const [showAuth, setShowAuth] = useState(false);
   const [localLogs, setLocalLogs] = useState<{ time: string; message: string }[]>([]);
   // Regular users never see the login tab; open the site with ?debug to reveal it.
-  const [revealed, setRevealed] = useState(false);
-
-  useEffect(() => {
-    setRevealed(new URLSearchParams(window.location.search).has("debug"));
-  }, []);
+  const revealed = useQueryFlag("debug");
 
   useEffect(() => {
     if (!showTerminal) return;

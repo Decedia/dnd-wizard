@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useEffectEvent } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
 import { getTakenSpellNames } from "@/lib/taken-spells";
@@ -55,10 +55,6 @@ export function HalfElfConfig({
   const [skills, setSkills] = useState<string[]>(variant ? [] : initialSkills);
   const [picks, setPicks] = useState<Record<string, string>>(initialChoices);
   const shownChoices = activeRaceChoices(raceChoices, picks);
-  const raceChoicesRef = useRef(raceChoices);
-  raceChoicesRef.current = raceChoices;
-  const onChangeRef = useRef(onChange);
-  onChangeRef.current = onChange;
 
   // Skills already granted by the class or background stay available here but
   // are flagged, so a player can see they already have the proficiency.
@@ -70,14 +66,16 @@ export function HalfElfConfig({
       .map(([name]) => name),
   );
 
+  // Drop a pick whose choice no longer applies (the cantrip after switching
+  // to weapon training). raceChoices and onChange are new on every parent
+  // render, so they are read as an effect event, not as dependencies.
+  const report = useEffectEvent((a: string[], s: string[], p: Record<string, string>) => {
+    const active = new Set(activeRaceChoices(raceChoices, p).map((c) => c.id));
+    const choices = Object.fromEntries(Object.entries(p).filter(([id]) => active.has(id)));
+    onChange({ abilities: a, skills: s, choices });
+  });
   useEffect(() => {
-    // Drop a pick whose choice no longer applies (the cantrip after switching
-    // to weapon training).
-    // raceChoices and onChange are new on every parent render, so they are
-    // read through refs; depending on them would report on every render.
-    const active = new Set(activeRaceChoices(raceChoicesRef.current, picks).map((c) => c.id));
-    const choices = Object.fromEntries(Object.entries(picks).filter(([id]) => active.has(id)));
-    onChangeRef.current({ abilities, skills, choices });
+    report(abilities, skills, picks);
   }, [abilities, skills, picks]);
 
   const toggleAbility = (abilityId: string) => {

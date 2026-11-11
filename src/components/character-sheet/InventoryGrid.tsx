@@ -51,6 +51,7 @@ export interface ItemSlotData {
   value?: string | null;
   weight?: number | null;
   hand?: "main" | "off" | "both";
+  onGround?: boolean;
   range?: { normal: number; long: number };
   versatileDice?: string | null;
   isGranted?: boolean;
@@ -226,6 +227,11 @@ export function ItemSlot({ item, onClick, label, showEquippedBadge = true, selec
       {item ? (
         <>
           {item.proficiency && <ProficiencyDot proficient={item.proficiency.proficient} className="absolute top-1.5 left-1.5" />}
+          {item.onGround && (
+            <span className="absolute top-1 right-1 rounded-full border border-[var(--color-ink)] bg-[var(--color-surface)] px-1 text-[7px] font-bold uppercase leading-[12px] text-[var(--color-ink)]">
+              {"↓"}
+            </span>
+          )}
           {showEquippedBadge && item.equipped && (
             <span className="absolute top-1 right-1 w-4 h-4 rounded-full bg-[var(--color-ink)] text-[var(--color-surface)] text-[8px] font-bold flex items-center justify-center leading-none">
               E
@@ -258,12 +264,14 @@ export interface ItemDetailPanelProps {
   /** What "Use" does for this item, or null when it cannot be used. */
   canUse?: (item: ItemSlotData) => ItemUseAction;
   onUse?: (item: ItemSlotData) => void;
+  /** A dropped item: back into the pack. */
+  onPickUp?: (item: ItemSlotData) => void;
   /** A line shown after Use, such as "Healed 7 HP". */
   message?: string | null;
 }
 
 /** Item details in a sheet that slides up over the grid, with big action buttons. */
-export function ItemDetailPanel({ item, onEquipToggle, onEdit, onRemove, onClose, canEquip, canUse, onUse, message }: ItemDetailPanelProps) {
+export function ItemDetailPanel({ item, onEquipToggle, onEdit, onRemove, onClose, canEquip, canUse, onUse, onPickUp, message }: ItemDetailPanelProps) {
   const { t } = useLanguage();
   useEffect(() => {
     if (!item) return;
@@ -325,7 +333,7 @@ export function ItemDetailPanel({ item, onEquipToggle, onEdit, onRemove, onClose
     infoRows.push({ label: "Weight", value: `${item.weight} lb` });
   }
 
-  const kind = [CATEGORY_LABELS[item.itemType] || item.itemType, item.equipped ? t("inventory.equipped", "Equipped") : null, item.quantity && item.quantity > 1 ? `x${item.quantity}` : null]
+  const kind = [CATEGORY_LABELS[item.itemType] || item.itemType, item.equipped ? t("inventory.equipped", "Equipped") : null, item.onGround ? t("inventory.onGround", "On the ground") : null, item.quantity && item.quantity > 1 ? `x${item.quantity}` : null]
     .filter(Boolean)
     .join(" · ");
   const actions: { key: string; label: string; onClick: () => void; primary?: boolean; danger?: boolean }[] = [];
@@ -336,6 +344,8 @@ export function ItemDetailPanel({ item, onEquipToggle, onEdit, onRemove, onClose
       onClick: () => onUse(item),
       label: useAction === "heal" ? t("inventory.drink", "Drink") : useAction === "open" ? t("inventory.open", "Open") : t("inventory.use", "Use"),
     });
+  if (item.onGround && onPickUp)
+    actions.push({ key: "pickUp", primary: true, onClick: () => onPickUp(item), label: t("inventory.pickUp", "Pick up") });
   if (canEquip(item))
     actions.push({
       key: "equip",

@@ -3,6 +3,7 @@
 import { createContext, useContext, useState, useEffect, useMemo, useCallback, type ReactNode } from "react";
 import { translations as enTranslations } from "@/locales/en";
 import { translations as idTranslations } from "@/locales/id";
+import { useStored, writeStored } from "@/lib/use-stored";
 
 export type Language = "en" | "id";
 
@@ -87,18 +88,10 @@ function interpolate(template: string, params?: Record<string, string | number>)
 }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<Language>("en");
-
-  useEffect(() => {
-    const saved = localStorage.getItem("dnd-an-language") as Language | null;
-    if (saved === "en" || saved === "id") {
-      setLanguageState(saved);
-    }
-  }, []);
+  const language: Language = useStored("dnd-an-language") === "id" ? "id" : "en";
 
   const setLanguage = useCallback((lang: Language) => {
-    setLanguageState(lang);
-    localStorage.setItem("dnd-an-language", lang);
+    writeStored("dnd-an-language", lang);
   }, []);
 
   const t = useCallback(
