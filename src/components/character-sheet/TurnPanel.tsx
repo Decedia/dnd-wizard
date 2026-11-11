@@ -17,7 +17,7 @@ import { getMaxPreparedSpells, type Character } from "@/lib/storage";
 import type { Beast } from "@/data/wild-shapes";
 import { needsPrepare, preparableSpells } from "@/lib/prepared-spells";
 import { PrepareSpellsSheet } from "@/components/PrepareSpellsSheet";
-import { amountPatch, critExtraDice, isSwingOption, swingPatch, swingResultPatch, wildShapePatch, buildTurnMenu, endEncounterPatch, isSlotUsed, optionPatch, type TurnGroup, type TurnOption, type TurnSlot } from "@/lib/turn";
+import { addsHitDamage, amountPatch, critDamage, critExtraDice, lastHitIndex, swingExtraPatch, isSwingOption, swingPatch, swingResultPatch, wildShapePatch, buildTurnMenu, endEncounterPatch, isSlotUsed, optionPatch, type TurnGroup, type TurnOption, type TurnSlot } from "@/lib/turn";
 import { CheckIcon as Check, LightningBoltIcon as LightningBolt, ClockIcon as Clock, ShieldCheckIcon as ShieldCheck, CaretDownIcon as ChevronDown } from "@/components/icons";
 import { GiRun } from "react-icons/gi";
 import { getSpellSchoolStyle } from "@/lib/spell-schools";
@@ -139,10 +139,34 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
     setRolled({ name, text: rollSummary(groups, result), again: () => dice && rollAndClose(dice, name, groups, (res) => showDamage(name, groups, res)) });
 
   /**
+   * A feature that adds damage to a hit (Colossus Slayer, Sneak Attack): its dice join that swing.
+   * Damage not rolled yet rolls them with the weapon; damage already rolled gets them added on top.
+   */
+  const addToHit = (o: TurnOption, index: number) => {
+    const name = nameOf(o);
+    const extra = o.featureDice!;
+    const swing = (character.swings || [])[index];
+    takeOption(o, undefined, undefined, true);
+    onChange(swingExtraPatch(character, index, name, extra));
+    // Undo takes the dice off the swing too.
+    setLast((l) => (l ? { ...l, undo: { ...l.undo, swings: character.swings } } : l));
+    if (!dice || swing?.damage === undefined) return;
+    const group = groupFrom(name, swing.result === "crit" ? critDamage(extra) : extra);
+    if (!group) return;
+    rollAndClose(dice, name, [group], (res) => {
+      const add = res[0]?.total ?? 0;
+      onChange({ swings: (latest.current.swings || []).map((s, i) => (i === index ? { ...s, damage: (s.damage || 0) + add } : s)) });
+      setRolled({ name, text: rollSummary([group], res) });
+    });
+  };
+
+  /**
    * One tap: use the option (spend the action, slot or use), roll its dice and take the result.
    * Attacks wait for the DM's hit or miss in the tray; everything else closes the tray by itself.
    */
   const rollOption = (o: TurnOption) => {
+    const hitIndex = addsHitDamage(o) ? lastHitIndex(character) : -1;
+    if (hitIndex >= 0) return addToHit(o, hitIndex);
     const groups = rollsOf(o);
     if (!dice || !groups.length) return takeOption(o);
     const name = nameOf(o);

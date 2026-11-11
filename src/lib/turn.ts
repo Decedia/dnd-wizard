@@ -355,7 +355,7 @@ export function featureDice(character: Character, name: string, pool?: PoolField
 
 function ruleOption(character: Character, rule: FeatureRule | SubOption, base: Pick<TurnOption, "key" | "name" | "summary" | "summaryKey" | "detail">, slot: TurnSlot): TurnOption {
   const option: TurnOption = { ...base, slot, group: "feature", when: rule.when, spend: {} };
-  const dice = featureDice(character, base.name, rule.pool?.field ?? rule.orPool?.field);
+  const dice = rule.dice?.(character) ?? featureDice(character, base.name, rule.pool?.field ?? rule.orPool?.field);
   if (dice) option.featureDice = dice;
   if (rule.pool) {
     const left = poolLeft(character, rule.pool.field);
@@ -727,6 +727,21 @@ export function swingPatch(character: Character, option: TurnOption): Partial<Ch
 
 export function swingResultPatch(character: Character, index: number, result: SwingResult): Partial<Character> {
   return { swings: (character.swings || []).map((s, i) => (i === index ? { ...s, result } : s)) };
+}
+
+/** The newest swing that hit or crit this turn, or -1. */
+export function lastHitIndex(character: Character): number {
+  const swings = character.swings || [];
+  for (let i = swings.length - 1; i >= 0; i--) if (swings[i].result === "hit" || swings[i].result === "crit") return i;
+  return -1;
+}
+
+/** A feature that adds damage on a hit (Colossus Slayer, Sneak Attack): it rolls with that swing's damage. */
+export const addsHitDamage = (o: TurnOption) => o.group === "feature" && o.slot === "free" && !!o.when && ON_HIT_WHEN.has(o.when) && !!o.featureDice && !o.amount;
+
+/** Puts a feature's damage dice on swing `index`, so its damage roll (and Roll again) includes them. */
+export function swingExtraPatch(character: Character, index: number, name: string, dice: string): Partial<Character> {
+  return { swings: (character.swings || []).map((s, i) => (i === index ? { ...s, extras: [...(s.extras || []), { name, dice }] } : s)) };
 }
 
 /** Doubles every die in a damage line, for a critical hit: "1d8 + 3" becomes "2d8 + 3". */

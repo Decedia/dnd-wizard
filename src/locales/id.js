@@ -708,6 +708,7 @@ export const translations = {
   "dice.healedMe": "kamu dapat {n} HP kembali",
   "dice.healedOther": "menyembuhkan {n} (mereka catat di lembar mereka)",
   "swing.damageDone": "{n} kerusakan",
+  "swing.extra": "{name}: tambah {dice}.",
   "turn.title": "Giliranmu · Ronde {round}",
   "turn.start": "Mulai giliranku",
   "turn.continue": "Lanjutkan giliran",

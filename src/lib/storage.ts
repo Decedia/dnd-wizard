@@ -66,7 +66,7 @@ export interface Character {
   /** True once the Attack action was taken this turn (unlocks the off-hand bonus attack). */
   attackedThisTurn?: boolean;
   /** This turn's weapon swings with the Attack action, in order; "pending" until the player taps Hit, Crit or Miss. */
-  swings?: { key: string; name: string; result: "pending" | "hit" | "crit" | "miss"; smite?: number; /** Damage rolled in the dice tray for this swing. */ damage?: number }[];
+  swings?: { key: string; name: string; result: "pending" | "hit" | "crit" | "miss"; smite?: number; /** Damage rolled in the dice tray for this swing. */ damage?: number; /** Damage a feature adds on this hit (Colossus Slayer 1d8). */ extras?: { name: string; dice: string }[] }[];
   /** Quick taps in the turn helper: an enemy next to you, a group of enemies, an enemy almost down. Cleared when the fight ends. */
   turnSituation?: { near?: boolean; many?: boolean; low?: boolean };
   // Exhaustion

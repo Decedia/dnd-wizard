@@ -1225,6 +1225,7 @@ export const translations = {
   "dice.healedMe": "you got {n} HP back",
   "dice.healedOther": "heals {n} (they add it to their sheet)",
   "swing.damageDone": "{n} damage",
+  "swing.extra": "{name}: add {dice}.",
   "turn.title": "Your turn · Round {round}",
   "turn.start": "Start my turn",
   "turn.continue": "Continue turn",
