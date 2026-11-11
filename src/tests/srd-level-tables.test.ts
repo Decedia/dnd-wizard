@@ -5,7 +5,7 @@ import enClasses from "@/data/en/2014_classes.json";
 import idClasses from "@/data/id/2014_classes.json";
 import enSubclasses from "@/data/en/2014_subclasses.json";
 import invocations from "@/data/warlock_invocations.json";
-import { buildLevelInfos } from "@/components/LevelUpWizard";
+import { buildLevelInfos } from "@/components/level-up/level-infos";
 import { getStaticClass } from "@/lib/srd-client";
 
 // Locks the 2014 class tables to the SRD 5.1 text, level by level, so they never need a manual re-check.

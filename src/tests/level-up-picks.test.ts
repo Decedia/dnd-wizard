@@ -3,7 +3,7 @@ import { describe, expect, test } from "bun:test";
 import { getStaticClass, getStaticFeats, getStaticSpells, getStaticSubclasses } from "@/lib/srd-client";
 import { getFeatOptionGroups } from "@/data/feat-options";
 import { FEAT_WHY, FIGHTING_STYLE_PICKS, INVOCATION_PICKS, MANEUVER_PICKS, METAMAGIC_PICKS, SPELL_WHY, SUBCLASS_PICKS, asiPicks, expertisePicks, spellPicks } from "@/lib/level-up-picks";
-import { buildLevelInfos } from "@/components/LevelUpWizard";
+import { buildLevelInfos } from "@/components/level-up/level-infos";
 import { isRecommended } from "@/lib/recommendations";
 import invocationsData from "@/data/warlock_invocations.json";
 

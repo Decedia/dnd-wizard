@@ -1,6 +1,6 @@
 // @ts-ignore - bun:test is provided by the Bun runtime
 import { describe, it, expect } from "bun:test";
-import { buildLevelInfos } from "@/components/LevelUpWizard";
+import { buildLevelInfos } from "@/components/level-up/level-infos";
 import { getStaticClass, getStaticSubclasses } from "@/lib/srd-client";
 import invocations from "@/data/warlock_invocations.json";
 
