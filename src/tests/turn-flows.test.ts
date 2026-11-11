@@ -65,6 +65,20 @@ describe("wild shape", () => {
     expect(beastsFor({ level: 6, subclass: "Moon", features: [] }).map((b) => b.name)).not.toContain("Giant Eagle"); // flies: level 8
   });
 
+  test("a level 10 Moon druid can become an elemental for two uses", () => {
+    expect(beastsFor({ level: 9, subclass: "Moon", features: [] }).some((b) => b.elemental)).toBe(false);
+    expect(beastsFor({ level: 10, subclass: "Land", features: [] }).some((b) => b.elemental)).toBe(false);
+    const forms = beastsFor({ level: 10, subclass: "Circle of the Moon", features: [] }).filter((b) => b.elemental).map((b) => b.name);
+    expect(forms).toEqual(["Air Elemental", "Earth Elemental", "Fire Elemental", "Water Elemental"]);
+    const druid = make({ class: "Druid", subclass: "Moon", level: 10, wildShapeUses: 2, maxWildShapeUses: 2, currentHp: 60 }, ["Wild Shape", "Combat Wild Shape", "Elemental Wild Shape"]);
+    const ws = buildTurnMenu(druid, []).options.find((o) => o.name === "Wild Shape")!;
+    const earth = beastsFor(druid).find((b) => b.name === "Earth Elemental")!;
+    const c = apply(druid, wildShapePatch(ws, earth));
+    expect(c.wildShapeUses).toBe(0);
+    expect(c.wildShape).toEqual({ form: "Earth Elemental", hp: 126 });
+    expect(buildTurnMenu(c, []).attacksPerAction).toBe(2);
+  });
+
   test("turning into a brown bear: its attacks, Multiattack, no spells; damage carries over at 0", () => {
     const druid = make({ class: "Druid", subclass: "Moon", level: 2, wildShapeUses: 2, maxWildShapeUses: 2, currentHp: 18, cantrips: [{ id: "c", name: "Produce Flame" }] as any }, ["Wild Shape", "Combat Wild Shape"]);
     const ws = buildTurnMenu(druid, []).options.find((o) => o.name === "Wild Shape")!;

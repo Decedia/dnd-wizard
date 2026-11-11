@@ -730,9 +730,11 @@ export function smitePatch(character: Character, index: number, level: number): 
 // ---------------------------------------------------------------------------
 // Wild Shape
 
-/** Turning into a beast: the Wild Shape option's cost plus the form at full HP. */
+/** Turning into a beast: the Wild Shape option's cost plus the form at full HP. An elemental takes a second use. */
 export function wildShapePatch(option: TurnOption, beast: Beast): Partial<Character> {
-  return { ...optionPatch(option), wildShape: { form: beast.name, hp: beast.hp }, swings: [] };
+  const patch: Partial<Character> = { ...optionPatch(option), wildShape: { form: beast.name, hp: beast.hp }, swings: [] };
+  if (beast.elemental && typeof patch.wildShapeUses === "number") patch.wildShapeUses = Math.max(0, patch.wildShapeUses - 1);
+  return patch;
 }
 
 /**
