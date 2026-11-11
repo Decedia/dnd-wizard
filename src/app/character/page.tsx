@@ -32,7 +32,6 @@ import { AppearanceBioSection } from "@/components/character-sheet/AppearanceBio
 import { PassiveStatsSection } from "@/components/character-sheet/PassiveStatsSection";
 import { DotsThreeIcon as DotsThree, TrashIcon as Trash, ExportIcon as Export, UploadIcon as Upload, CheckCircleIcon as CheckCircle, UserPlusIcon as UserPlus, ClockIcon as Clock, FileJsonIcon as FileJson } from "@/components/icons";
 import { syncGrantedSpells } from "@/lib/granted-spells";
-import { changeSubclass } from "@/lib/character-creation";
 import { undoLevelUp } from "@/lib/level-snapshot";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 
@@ -371,7 +370,7 @@ export function CharacterView() {
                   </button>
                 </div>
               )}
-              <IdentitySection character={character} onChange={handleChange} editMode={editMode} onSubclassChange={(name) => handleChange(changeSubclass(character, name, language))} />
+              <IdentitySection character={character} onChange={handleChange} editMode={editMode} />
               <LevelXpSection character={character} onChange={handleChange} editMode={editMode} />
               <AppearanceBioSection character={character} onChange={handleChange} editMode={editMode} />
             </>

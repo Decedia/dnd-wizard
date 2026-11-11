@@ -3,7 +3,7 @@
 import { useCallback } from "react";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
-import { getStaticRaces, getStaticClasses, getStaticRace, getStaticClass, getStaticSubclasses } from "@/lib/srd-client";
+import { getStaticRaces, getStaticClasses, getStaticRace, getStaticClass } from "@/lib/srd-client";
 import { RichText, RichInline } from "@/components/RichText";
 import { SourceBadge } from "../SourceBadge";
 import { languageNames } from "@/data/srd";
@@ -18,7 +18,6 @@ interface IdentitySectionProps {
     gender?: string;
     race: string;
     class: string;
-    subclass?: string;
     level: number;
     background: string;
     alignment: string;
@@ -40,11 +39,9 @@ interface IdentitySectionProps {
   };
   onChange: (patch: Partial<IdentitySectionProps["character"]>) => void;
   editMode?: boolean;
-  /** Swaps the subclass with its features and free spells. */
-  onSubclassChange?: (subclass: string) => void;
 }
 
-export function IdentitySection({ character, onChange, editMode = true, onSubclassChange }: IdentitySectionProps) {
+export function IdentitySection({ character, onChange, editMode = true }: IdentitySectionProps) {
   const { onFieldBlur } = useCharacterSheet();
   const { t, language } = useLanguage();
   const races = getStaticRaces(character.sources, character.ruleset, language);
@@ -56,9 +53,6 @@ export function IdentitySection({ character, onChange, editMode = true, onSubcla
   // the enhanced descriptions and racial traits are reachable from the sheet.
   const selectedRace = character.race ? getStaticRace(character.race, undefined, language) : undefined;
   const selectedClass = character.class ? getStaticClass(character.class, character.ruleset, undefined, language) : undefined;
-  const subclassOptions = character.class && onSubclassChange && character.level >= (selectedClass?.subclassLevel ?? 3)
-    ? getStaticSubclasses(character.class, character.sources, character.ruleset, language)
-    : [];
   const raceTraits = (selectedRace?.traits || []).filter((trait: any) => (trait.summary || trait.description) as string);
 
   const translateRace = (name: string) => t(`race.${name}`, name);
@@ -137,23 +131,6 @@ export function IdentitySection({ character, onChange, editMode = true, onSubcla
                 </select>
               </Field>
             </div>
-            {subclassOptions.length > 0 && (
-              <Field label={t("form.subclass", "Subclass")}>
-                <select
-                  value={character.subclass || ""}
-                  onChange={(e) => onSubclassChange?.(e.target.value)}
-                  className="input"
-                >
-                  <option value="">{t("creator.selectSubclass", "Select subclass")}</option>
-                  {subclassOptions.map((s) => (
-                    <option key={s.name} value={s.name}>{s.name}</option>
-                  ))}
-                </select>
-                <p className="mt-1 text-xs text-[var(--color-text-muted)]">
-                  {t("form.subclassHint", "Changing it swaps the subclass features and free spells. New picks show on the Features tab.")}
-                </p>
-              </Field>
-            )}
             <div className="grid grid-cols-2 divide-x divide-border-strong">
               <Field label={t("form.background", "BACKGROUND")}>
                 <input

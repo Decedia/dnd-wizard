@@ -552,8 +552,6 @@ export const translations = {
   "features.removedTitle": "Fitur yang dihapus",
   "features.removedHint": "Kembalikan seperti aturan memberikannya. Versimu dengan nama yang sama akan diganti.",
   "features.restore": "Kembalikan",
-  "form.subclass": "Subclass",
-  "form.subclassHint": "Menggantinya menukar fitur dan mantra gratis subclass. Pilihan baru muncul di tab Fitur.",
   "levelUndo.button": "Batalkan naik level (kembali ke level {level})",
   "levelUndo.title": "Batalkan naik level",
   "levelUndo.confirm": "Batalkan",

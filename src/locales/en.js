@@ -1069,8 +1069,6 @@ export const translations = {
   "features.removedTitle": "Removed features",
   "features.removedHint": "Put one back as the rules give it. Your own version with the same name is replaced.",
   "features.restore": "Put back",
-  "form.subclass": "Subclass",
-  "form.subclassHint": "Changing it swaps the subclass features and free spells. New picks show on the Features tab.",
   "levelUndo.button": "Undo level-up (back to level {level})",
   "levelUndo.title": "Undo level-up",
   "levelUndo.confirm": "Undo it",
