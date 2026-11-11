@@ -489,15 +489,33 @@ export function usesMax(rule: FeatureRule | SubOption, character: Character): nu
 
 /** The rule for a feature name on this character, if it is one the player uses on a turn. */
 export function ruleFor(character: Character, featureName: string): FeatureRule | undefined {
-  return FEATURE_RULES.find((r) => r.name.test(featureName) && (!r.only || r.only(character)));
+  return FEATURE_RULES.find((r) => r.name.test(featureName) && (!r.only || r.only(character))) ?? customRule(character, featureName);
+}
+
+const escapeRegExp = (text: string) => text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+/** The rule a player gave their own feature, when the table has none for that name. */
+function customRule(character: Character, featureName: string): FeatureRule | undefined {
+  const turn = (character.features || []).find((f) => f.source === "custom" && f.name === featureName)?.turn;
+  if (!turn) return undefined;
+  return {
+    name: new RegExp(`^${escapeRegExp(featureName)}$`),
+    slot: turn.slot,
+    ...(turn.uses && turn.uses.max > 0 ? { uses: { max: turn.uses.max, per: turn.uses.per } } : {}),
+  };
 }
 
 /** Counted uses that a rest gives back: all of them on a long rest, the short-rest ones on a short rest. */
-export function featureUsesAfterRest(used: Record<string, number> | undefined, kind: "short" | "long"): Record<string, number> {
+export function featureUsesAfterRest(used: Record<string, number> | undefined, kind: "short" | "long", character?: Character): Record<string, number> {
   if (kind === "long" || !used) return {};
+  const custom = (character?.features || [])
+    .filter((f) => f.source === "custom" && f.turn?.uses?.per === "short")
+    .map((f) => (character ? customRule(character, f.name) : undefined))
+    .filter((r): r is FeatureRule => !!r);
   const shortKeys = new Set([
     ...FEATURE_RULES.filter((r) => r.uses?.per === "short").map(ruleKey),
     ...SUB_OPTIONS.flatMap((g) => g.options).filter((o) => o.uses?.per === "short").map(ruleKey),
+    ...custom.map(ruleKey),
   ]);
   return Object.fromEntries(Object.entries(used).filter(([key]) => !shortKeys.has(key)));
 }

@@ -911,7 +911,10 @@ export function syncBaseFeatures(character: Character, language = "en"): Charact
     };
   });
 
-  return applyOptionalFeatureGrants({ ...character, features: [...baseFeatures, ...kept] }, optional);
+  // Features the player removed by hand stay removed; their own features always stay.
+  const removed = new Set(character.removedFeatures || []);
+  const features = [...baseFeatures, ...kept].filter((f) => f.source === "custom" || !removed.has(f.name));
+  return applyOptionalFeatureGrants({ ...character, features }, optional);
 }
 
 /**
@@ -1260,6 +1263,24 @@ export function resolveFeatureChoice(character: Character, choice: MissingFeatur
  */
 export function applySubclassSpellGrants(character: Character): Character {
   return syncGrantedSpells(character);
+}
+
+/**
+ * Swaps the subclass on a finished character: the old subclass's features and
+ * free spells go, the new one's come in for every level already reached. Its
+ * picks (a fighting style, a totem) show as "Pick" on the Features tab.
+ */
+export function changeSubclass(character: Character, subclassName: string, language = "en"): Character {
+  const sub = getStaticSubclasses(character.class, character.sources, character.ruleset, language).find((s) => s.name === subclassName);
+  let next: Character = {
+    ...character,
+    subclass: sub?.name || undefined,
+    subclassIndex: sub?.index,
+    features: (character.features || []).filter((f) => f.source !== "subclass"),
+  };
+  next = applySubclassFeatures(next, language);
+  next = syncGrantedSpells(next);
+  return syncBaseFeatures(next, language);
 }
 
 /**

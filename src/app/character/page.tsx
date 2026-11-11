@@ -32,6 +32,9 @@ import { AppearanceBioSection } from "@/components/character-sheet/AppearanceBio
 import { PassiveStatsSection } from "@/components/character-sheet/PassiveStatsSection";
 import { DotsThreeIcon as DotsThree, TrashIcon as Trash, ExportIcon as Export, UploadIcon as Upload, CheckCircleIcon as CheckCircle, UserPlusIcon as UserPlus, ClockIcon as Clock, FileJsonIcon as FileJson } from "@/components/icons";
 import { syncGrantedSpells } from "@/lib/granted-spells";
+import { changeSubclass } from "@/lib/character-creation";
+import { undoLevelUp } from "@/lib/level-snapshot";
+import { BottomSheet } from "@/components/modals/BottomSheet";
 
 const GRANT_SOURCES = ["race", "class", "subclass", "level", "raceChoices", "circleTerrain", "optionalClassFeatures", "sources", "featureSelections"] as const;
 
@@ -45,6 +48,7 @@ export function CharacterView() {
   const [character, setCharacter] = useState<Character | null>(null);
   const [turnOpen, setTurnOpen] = useState(false);
   const [restKind, setRestKind] = useState<"short" | "long" | null>(null);
+  const [undoOpen, setUndoOpen] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -360,7 +364,14 @@ export function CharacterView() {
                   </button>
                 </div>
               )}
-              <IdentitySection character={character} onChange={handleChange} editMode={editMode} />
+              {character.levelUpSnapshot && character.levelUpSnapshot.level < character.level && (
+                <div className="mb-4">
+                  <button type="button" onClick={() => setUndoOpen(true)} className="btn btn-secondary w-full">
+                    {t("levelUndo.button", { level: character.levelUpSnapshot.level }, "Undo level-up (back to level {level})")}
+                  </button>
+                </div>
+              )}
+              <IdentitySection character={character} onChange={handleChange} editMode={editMode} onSubclassChange={(name) => handleChange(changeSubclass(character, name, language))} />
               <LevelXpSection character={character} onChange={handleChange} editMode={editMode} />
               <AppearanceBioSection character={character} onChange={handleChange} editMode={editMode} />
             </>
@@ -390,6 +401,35 @@ export function CharacterView() {
           </div>
         </main>
       </CharacterSheetProvider>
+
+      {undoOpen && character.levelUpSnapshot && (
+        <BottomSheet
+          isOpen
+          onClose={() => setUndoOpen(false)}
+          title={t("levelUndo.title", "Undo level-up")}
+          footer={
+            <div className="flex items-center gap-2 px-4 py-3">
+              <button type="button" onClick={() => setUndoOpen(false)} className="btn btn-secondary flex-1">{t("common.cancel", "Cancel")}</button>
+              <button
+                type="button"
+                onClick={() => {
+                  const restored = undoLevelUp(character);
+                  if (restored) handleChange(restored);
+                  setUndoOpen(false);
+                }}
+                className="btn btn-primary flex-1"
+              >
+                {t("levelUndo.confirm", "Undo it")}
+              </button>
+            </div>
+          }
+        >
+          <div className="space-y-2 px-4 py-4 text-sm text-[var(--color-text-secondary)]">
+            <p>{t("levelUndo.body", { name: character.name, level: character.levelUpSnapshot.level }, "{name} goes back to level {level}, with the picks, HP and spells from before the level-up.")}</p>
+            <p>{t("levelUndo.kept", "Gear, coins, notes and backstory stay as they are now.")}</p>
+          </div>
+        </BottomSheet>
+      )}
 
       {restKind && (
         <RestSheet character={character} kind={restKind} onChange={handleChange} onClose={() => setRestKind(null)} />

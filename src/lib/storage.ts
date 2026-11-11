@@ -87,7 +87,11 @@ export interface Character {
   toolProficiencies: string[];
   expertise: string[];
   passivePerception: number;
-  features: { id: string; name: string; description: string; source?: "race" | "class" | "subclass" | "custom"; locked?: boolean; actionType?: "action" | "bonus_action" | "reaction" | "free" | "passive"; value?: string; summary?: string | null; featureType?: string | null; uses?: { total: number | string; recharge: string; current: number } | null; requirement?: string | null; duration?: string | null; endsIf?: string | null; effect?: string | null; onUse?: string | null; scaling?: string | null; grantsSpells?: boolean; grantsAttack?: boolean; grantsSkills?: boolean; grantsProficiency?: boolean }[];
+  features: { id: string; name: string; description: string; source?: "race" | "class" | "subclass" | "custom"; locked?: boolean; actionType?: "action" | "bonus_action" | "reaction" | "free" | "passive"; value?: string; summary?: string | null; featureType?: string | null; uses?: { total: number | string; recharge: string; current: number } | null; requirement?: string | null; duration?: string | null; endsIf?: string | null; effect?: string | null; onUse?: string | null; scaling?: string | null; grantsSpells?: boolean; grantsAttack?: boolean; grantsSkills?: boolean; grantsProficiency?: boolean; /** A custom feature's turn use, set by the player: what it takes and how often. */ turn?: CustomFeatureTurn | null; /** Made or changed by the player on the sheet (not a feat or a rule feature). */ byPlayer?: boolean }[];
+  /** Rule features the player removed by hand (by name); syncing and level-up leave them out. */
+  removedFeatures?: string[];
+  /** The character as it was just before the last level-up, for "Undo level-up". */
+  levelUpSnapshot?: LevelUpSnapshot;
   costumeSpells: { id: string; name: string; description: string }[];
   subclass?: string;
   subclassIndex?: string;
@@ -646,6 +650,19 @@ export function migrateCoins(c: Character): Pick<Character, "inventory" | "curre
   });
   if (!c.coinsInInventory) inventory = [...inventory, ...coinRows((c as any).currency ?? {})];
   return { inventory, currency: coinsFromInventory(inventory), coinsInInventory: true };
+}
+
+export interface CustomFeatureTurn {
+  slot: "action" | "bonus" | "reaction" | "free";
+  /** Uses before a rest gives them back; absent means no limit. */
+  uses?: { max: number; per: "short" | "long" };
+}
+
+export interface LevelUpSnapshot {
+  /** The level the character was at before. */
+  level: number;
+  at: number;
+  character: Omit<Character, "levelUpSnapshot">;
 }
 
 function normalizeCharacterFields(c: Character): Character {
