@@ -23,6 +23,9 @@ import { GiRun } from "react-icons/gi";
 import { getSpellSchoolStyle } from "@/lib/spell-schools";
 import { getSchoolBadgeStyle } from "@/lib/badge-styles";
 import { SpellDamageBonusLines, SpellDamageLine } from "@/components/SpellDamageBonus";
+import { useDice } from "@/contexts/DiceContext";
+import { d20Group, spellDamageGroups } from "@/lib/dice-roll";
+import { GiRollingDices } from "react-icons/gi";
 
 interface TurnPanelProps {
   character: Character;
@@ -38,6 +41,7 @@ const signed = (n: number) => (n >= 0 ? `+${n}` : `${n}`);
 
 export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }: TurnPanelProps) {
   const { t, language } = useLanguage();
+  const dice = useDice();
   const menu = useMemo(() => buildTurnMenu(character, srdSpells), [character, srdSpells]);
   const [openBasics, setOpenBasics] = useState<Partial<Record<TurnSlot, boolean>>>({});
   const [showFeatures, setShowFeatures] = useState(true);
@@ -186,6 +190,22 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
           {pick && <span className="mt-1 block text-xs font-semibold leading-snug text-[var(--color-text-primary)]">{t(`turn.why.${pick.why}`, pick.values || {})}</span>}
           {reason && <span className="mt-0.5 block text-[11px] font-semibold text-[var(--color-text-muted)]">{reason}</span>}
         </button>
+        {dice && (o.spellDamage?.some((p) => !p.when) || o.spellAttack !== undefined) && (
+          <button
+            type="button"
+            aria-label={t("dice.rollName", { name: nameOf(o) }, "Roll {name}")}
+            onClick={() => {
+              const groups = [
+                ...(o.spellAttack !== undefined ? [d20Group(t("dice.toHit", "To hit"), o.spellAttack)] : []),
+                ...spellDamageGroups(o.spellDamage || [], t("dice.damage", "Damage")),
+              ];
+              dice.roll(nameOf(o), groups);
+            }}
+            className="flex w-10 shrink-0 items-center justify-center border-l border-[var(--color-border)] text-[var(--color-text-secondary)] hover:bg-[var(--color-bg)]"
+          >
+            <GiRollingDices className="h-4 w-4" aria-hidden="true" />
+          </button>
+        )}
         {full && infoButton(nameOf(o), full, [cost, o.school ? t(`spellSchool.${o.school}`, o.school) : null, o.when ? t(`turn.when.${o.when}`) : null, text && o.detail && o.group !== "feature" ? text : null].filter(Boolean).join(" · ") || undefined)}
       </div>
     );

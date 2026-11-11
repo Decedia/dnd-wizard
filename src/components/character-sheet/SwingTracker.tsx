@@ -2,6 +2,8 @@
 
 import { RichInline } from "@/components/RichText";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useDice } from "@/contexts/DiceContext";
+import { d20Group, groupFrom, type RollGroup } from "@/lib/dice-roll";
 import type { Character } from "@/lib/storage";
 import { critDamage, critExtraDice, isSwingOption, ON_HIT_WHEN, smiteChoices, smitePatch, swingPatch, swingResultPatch, swingsLeft, type SwingResult, type TurnMenu, type TurnOption } from "@/lib/turn";
 
@@ -19,6 +21,7 @@ const RESULTS: SwingResult[] = ["hit", "crit", "miss"];
 /** The Attack action swing by swing: Hit / Crit / Miss, damage, a smite after a hit, and the swings left. */
 export function SwingTracker({ character, menu, nameOf, onUse, onChange }: SwingTrackerProps) {
   const { t } = useLanguage();
+  const dice = useDice();
   const swings = character.swings || [];
   if (swings.length === 0) return null;
   const byKey = new Map(menu.options.map((o) => [o.key, o]));
@@ -53,6 +56,11 @@ export function SwingTracker({ character, menu, nameOf, onUse, onChange }: Swing
               {s.result === "pending" ? (
                 <>
                   <p className="mt-0.5 text-[11px] text-[var(--color-text-muted)]">{t("swing.roll", "Roll to hit, then tap what happened.")}</p>
+                  {dice && o?.toHit !== undefined && (
+                    <button type="button" onClick={() => dice.roll(name, [d20Group(t("dice.toHit", "To hit"), o.toHit!)])} className="btn btn-secondary mt-1.5 w-full !py-1.5 text-xs">
+                      {t("dice.rollToHit", { bonus: `${o.toHit >= 0 ? "+" : ""}${o.toHit}` }, "Roll to hit (d20 {bonus})")}
+                    </button>
+                  )}
                   <div className="mt-1.5 flex gap-2">
                     {RESULTS.map((r) => (
                       <button key={r} type="button" onClick={() => onChange(swingResultPatch(character, i, r))} className={`btn flex-1 ${r === "hit" ? "btn-primary" : "btn-secondary"}`}>
@@ -74,6 +82,18 @@ export function SwingTracker({ character, menu, nameOf, onUse, onChange }: Swing
                       <RichInline text={t("swing.critExtra", { dice: extra.dice, names: extra.sources.join(", ") }, "{names}: roll {dice} more.")} />
                     </p>
                   )}
+                  {dice && hit && damage && (() => {
+                    const groups = [
+                      groupFrom(s.result === "crit" ? t("dice.critDamage", "Crit damage") : t("dice.damage", "Damage"), damage),
+                      extra ? groupFrom(extra.sources.join(", "), extra.dice) : null,
+                      s.smite ? groupFrom(t("dice.smite", "Smite"), `${Math.min(5, 1 + s.smite) * (s.result === "crit" ? 2 : 1)}d8`) : null,
+                    ].filter((g): g is RollGroup => !!g);
+                    return groups.length > 0 && (
+                      <button type="button" onClick={() => dice.roll(name, groups)} className="btn btn-primary mt-1.5 w-full !py-1.5 text-xs">
+                        {t("dice.rollDamage", "Roll damage")}
+                      </button>
+                    );
+                  })()}
                   {s.result === "miss" && <p className="mt-0.5 text-xs text-[var(--color-text-secondary)]">{t("swing.missHint", "No damage. On to the next one.")}</p>}
                   {!!s.smite && <p className="mt-0.5 text-xs font-semibold text-[var(--color-text-primary)]"><RichInline text={t("swing.smited", { level: s.smite, dice: `${Math.min(5, 1 + s.smite) * (s.result === "crit" ? 2 : 1)}d8` }, "Smite with a level {level} slot: add {dice} radiant damage.")} /></p>}
                   {smites.length > 0 && (

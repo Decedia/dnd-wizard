@@ -13,6 +13,8 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { ItemIcon } from "@/components/ItemIcon";
 import { rowText } from "@/lib/inventory";
 import { Overridable } from "./Overridable";
+import { useDice } from "@/contexts/DiceContext";
+import { d20Group, groupFrom, type RollGroup } from "@/lib/dice-roll";
 
 interface AttacksAndSpellcastingSectionProps {
   character: Character;
@@ -23,6 +25,7 @@ interface AttacksAndSpellcastingSectionProps {
 export function AttacksAndSpellcastingSection({ character, onChange, editMode = true }: AttacksAndSpellcastingSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
   const { t, language } = useLanguage();
+  const dice = useDice();
   const sneakAttack = getSneakAttackDice(character);
   const classAttacks = character.attacks.filter((a) => a.source === "class");
   const weaponAttacks = character.attacks.filter((a) => a.source === "weapon");
@@ -78,7 +81,7 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
                   <span className="text-base font-bold text-[var(--color-text-primary)] flex-1">{details ? rowText(details.weapon, language).name : attack.name}</span>
                   {details && (
                     <span className="text-sm font-bold text-ink bg-paper px-3 py-1.5 surface">
-                      <Overridable id={`attack:${details.weapon.id}`} label={t("override.toHit", { name: rowText(details.weapon, language).name }, "{name} to hit")} signed editMode={editMode}>
+                      <Overridable id={`attack:${details.weapon.id}`} label={t("override.toHit", { name: rowText(details.weapon, language).name }, "{name} to hit")} signed editMode={editMode} roll={details.attackBonus}>
                         +{details.attackBonus}
                       </Overridable>{" "}
                       to hit ({details.abilityKey.toUpperCase()})
@@ -100,6 +103,23 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
                         </span>
                       </div>
                       <span className="text-sm text-[var(--color-text-secondary)] font-medium">({details.abilityKey.toUpperCase()} modifier)</span>
+                      {dice && !editMode && details.damageDice && (() => {
+                        const name = rowText(details.weapon, language).name;
+                        const damage = groupFrom(t("dice.damage", "Damage"), `${details.damageDice}${details.damageBonus >= 0 ? "+" : ""}${details.damageBonus}`);
+                        const groups = [d20Group(t("dice.toHit", "To hit"), details.attackBonus), damage].filter((g): g is RollGroup => !!g);
+                        return (
+                          <div className="flex gap-2 pt-1">
+                            <button type="button" onClick={() => dice.roll(name, groups)} className="btn btn-primary !px-3 !py-1.5 text-xs">
+                              {t("dice.rollAttack", "Roll attack")}
+                            </button>
+                            {damage && (
+                              <button type="button" onClick={() => dice.roll(name, [damage])} className="btn btn-secondary !px-3 !py-1.5 text-xs">
+                                {t("dice.rollDamage", "Roll damage")}
+                              </button>
+                            )}
+                          </div>
+                        );
+                      })()}
                     </>
                   )}
                     {!details && attack.damageType && (

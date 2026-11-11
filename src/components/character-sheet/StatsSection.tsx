@@ -94,7 +94,7 @@ export function StatsSection({ character, onChange, editMode = true }: StatsSect
                   />
                   <span className="text-xs font-semibold text-ink">{key.toUpperCase()}</span>
                 </div>
-                <Overridable id={`save:${key}`} label={t("override.save", { ability: key.toUpperCase() }, "{ability} saving throw")} signed editMode={editMode} className="text-sm font-bold text-ink">
+                <Overridable id={`save:${key}`} label={t("override.save", { ability: key.toUpperCase() }, "{ability} saving throw")} signed editMode={editMode} roll={st.value} className="text-sm font-bold text-ink">
                   {st.value >= 0 ? `+${st.value}` : st.value}
                 </Overridable>
               </div>

@@ -36,6 +36,7 @@ import { DotsThreeIcon as DotsThree, TrashIcon as Trash, ExportIcon as Export, U
 import { syncGrantedSpells } from "@/lib/granted-spells";
 import { undoLevelUp, undoableChange } from "@/lib/level-snapshot";
 import { BottomSheet } from "@/components/modals/BottomSheet";
+import { DiceProvider } from "@/contexts/DiceContext";
 
 const GRANT_SOURCES = ["race", "class", "subclass", "level", "raceChoices", "circleTerrain", "optionalClassFeatures", "sources", "featureSelections"] as const;
 
@@ -258,6 +259,7 @@ export function CharacterView() {
   const shownTab: TabId = activeTab === "spells" && !canCast ? "combat" : activeTab;
 
   return (
+    <DiceProvider>
     <div className="min-h-screen bg-paper">
       <AppHeader title="" subtitle={t("character.sheet")} editMode={editMode} onEditModeChange={setEditMode} onSave={handleSave} />
 
@@ -477,6 +479,7 @@ export function CharacterView() {
         </div>
       )}
     </div>
+    </DiceProvider>
   );
 }
 

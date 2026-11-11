@@ -103,7 +103,7 @@ export function CombatStatsSection({ character, onChange, editMode = true, onOpe
         <Overridable id="speed" label={t("sheet.speed", "Speed")} editMode={editMode} className="no-underline">
           <SpeedStat value={character.speed} />
         </Overridable>
-        <Overridable id="initiative" label={t("sheet.initiative", "Initiative")} signed editMode={editMode} className="no-underline">
+        <Overridable id="initiative" label={t("sheet.initiative", "Initiative")} signed editMode={editMode} roll={character.initiative ?? 0} className="no-underline">
         <div className="relative flex items-center justify-center">
           <svg viewBox="0 0 100 100" className="h-[72px] w-[72px]" aria-hidden="true">
             <circle cx="50" cy="50" r="44" fill="var(--color-surface)" stroke="var(--color-ink)" strokeWidth="2.5" />

@@ -86,7 +86,7 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
             </Overridable>
           </Field>
           <Field label={t("spellcasting.attackBonus")}>
-            <Overridable id="spellAttackBonus" label={t("spellcasting.attackBonus")} signed editMode={editMode} className="text-sm font-bold text-ink">
+            <Overridable id="spellAttackBonus" label={t("spellcasting.attackBonus")} signed editMode={editMode} roll={character.spellAttackBonus} className="text-sm font-bold text-ink">
               {character.spellAttackBonus >= 0 ? `+${character.spellAttackBonus}` : character.spellAttackBonus}
             </Overridable>
           </Field>
