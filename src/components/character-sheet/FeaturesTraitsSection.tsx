@@ -13,76 +13,24 @@ import { saveCharacter } from "@/lib/storage";
 import type { Character } from "@/lib/storage";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getStatBadgeStyle } from "@/lib/badge-styles";
-import {
-  buildDataset,
-  characterPools,
-  findEngineFeature,
-  poolFieldFor,
-  renderBadge,
-  resolve,
-  slotLabel,
-  spendFromPool,
-  triggerLabel,
-  type BuiltDataset,
-  type ResolveContext,
-  type ResolvedFeature,
-} from "@/lib/feature-engine";
+import { ruleFor, ruleKey, usesMax, type FeatureRule, type PoolField } from "@/data/turn-features";
+import { featureRounds, roundsText } from "@/lib/timers";
 import { BottomSheet } from "@/components/modals/BottomSheet";
+import { ResourceToken } from "@/components/ResourceToken";
 import { RichText, RichInline } from "@/components/RichText";
 import { FEATURE_GROUP_ORDER, getAsiFeats, getFeatPicks, getFeaturePicks, matchesFeatureSearch, poolMax, type FeatureGroup } from "@/lib/feature-groups";
-
-/**
- * The character sheet tracks a few resource pools by name. A feature whose cost
- * names one of these spends it when used, so a "3 / rest" style badge actually
- * counts down instead of sitting at its maximum.
- *
- * Pools the sheet does not yet track (ki, Channel Divinity, superiority dice)
- * are deliberately absent rather than faked at zero-and-stuck.
- */
-/**
- * The engine entry behind a stored character feature, or null if it has none.
- * Used for values the resolver does not carry, such as the sourcebook.
- */
-function engineFeatureFor(
-  character: Character,
-  feature: Character["features"][number],
-  dataset: BuiltDataset
-) {
-  return (
-    (feature.engineId && dataset.byId.get(feature.engineId)) ||
-    findEngineFeature(ownerFor(character, feature), feature.name, dataset) ||
-    null
-  );
-}
 
 /**
  * The kind of a stored feature's source, accepting both the string form written
  * today ("race") and the object form older saves carry ({type: "race"}). The
  * SRD lookups below are gated on this, and an old character's object source
- * failed every comparison, so no translation was found and the summary fell
- * through to the engine's English.
+ * failed every comparison, so no translation was found.
  */
 function sourceKind(feature: any): string | null {
   const source = feature?.source;
   if (typeof source === "string") return source;
   if (source && typeof source === "object" && typeof source.type === "string") return source.type;
   return null;
-}
-
-/**
- * Which class, subclass or race owns a stored feature, so the engine lookup can
- * disambiguate a name like "Extra Attack" that six different classes have.
- * The owner lives on the character rather than on each feature, because every
- * feature of a source shares it.
- */
-function ownerFor(character: Character, feature: Character["features"][number]): string | undefined {
-  // sourceKind, because an old save's object source would otherwise resolve the
-  // owner to undefined and every engine lookup would fall back to a bare name.
-  const kind = sourceKind(feature);
-  if (kind === "subclass") return character.subclass;
-  if (kind === "race") return character.race;
-  if (kind === "class") return character.class;
-  return undefined;
 }
 
 
@@ -195,8 +143,6 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
   }, [sortedFeatures]);
 
   const enrichedFeatures = useMemo(() => {
-    const engineDataset = buildDataset();
-
     try {
       return visibleFeatures.map((feature) => {
         const existing = feature as any;
@@ -274,9 +220,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
         // language the character was created in.
         const resolvedDescription = srdFeature?.description ?? existing.description ?? "";
 
-        // No mechanic text is appended to the summary. It used to be built here
-        // from the stored fields, which duplicated the badge row and mixed two
-        // sources: the badge row is the engine's, this was not.
+        // No mechanic text is appended to the summary; the badge row shows it.
         const fallbackSummary = (() => {
           const firstSentence = resolvedDescription.split(/[.\n]/)[0].trim();
           const words = firstSentence.split(/\s+/);
@@ -295,11 +239,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
           grantsSkills: srdFeature?.grantsSkills ?? existing.grantsSkills ?? false,
           grantsProficiency: srdFeature?.grantsProficiency ?? existing.grantsProficiency ?? false,
           source: srdSource ?? existing.source ?? derivedSource ?? null,
-          // The engine's sourcebook wins: it is per-entry and verified, whereas
-          // this lookup falls back to "PHB" whenever the SRD entry has no source.
-          // The engine's sourcebook wins: it is per-entry and verified, whereas
-          // this lookup falls back to "PHB" whenever the SRD entry has no source.
-          book: engineFeatureFor(character, feature, engineDataset)?.source?.book ?? book ?? (existing as any).book ?? null,
+          book: book ?? (existing as any).book ?? null,
         };
       });
     } catch {
@@ -308,102 +248,78 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
   }, [visibleFeatures, character, feats, language]);
 
   /**
-   * The combat engine resolved once per render, keyed by the character feature's
-   * own id. A feature is matched through its stamped engineId, so a Barbarian's
-   * Rage and a Cleric's Rage resolve to different entries with different
-   * numbers.
+   * What a feature takes and spends, from the hand-checked table the turn
+   * helper uses (src/data/turn-features.ts), so the two always agree. A
+   * feature with no rule is always on and lists under its own group.
    */
-  const engineDataset = useMemo(() => buildDataset(), []);
+  const ruleOf = (feature: { name?: string }): FeatureRule | undefined => (feature.name ? ruleFor(character, feature.name) : undefined);
 
-  /**
-   * featuresUsedThisTurn stores the sheet's own feature ids, but resolve()
-   * compares engine ids, so the list is translated. Without this every feature
-   * reads as unused and no charge ever decrements.
-   */
-  const usedEngineIds = useMemo(() => {
-    const byStored = new Map<string, string>();
-    for (const feature of character.features || []) {
-      const engineFeature =
-        (feature.engineId && engineDataset.byId.get(feature.engineId)) ||
-        findEngineFeature(ownerFor(character, feature), feature.name, engineDataset);
-      if (engineFeature) byStored.set(feature.id, engineFeature.id);
+  const slotOf = (rule: FeatureRule) =>
+    rule.bonusWith && (character.features || []).some((f) => rule.bonusWith!.test(f.name || "")) ? "bonus" : rule.slot;
+
+  type Track = { kind: "pool"; field: PoolField; current: number; max: number } | { kind: "uses"; key: string; current: number; max: number };
+
+  /** What a feature spends, as dots: a pool the sheet tracks, or the feature's own uses per rest. */
+  const trackOf = (rule: FeatureRule | undefined): Track | null => {
+    if (rule?.pool) {
+      const max = poolMax(character, rule.pool.field);
+      if (!max) return null;
+      return { kind: "pool", field: rule.pool.field, current: Math.min(max, Math.max(0, Number(character[rule.pool.field]) || 0)), max };
     }
-    return (character.featuresUsedThisTurn || [])
-      .map((storedId) => byStored.get(storedId))
-      .filter((id): id is string => Boolean(id));
-  }, [character, engineDataset]);
-
-  const resolveContext = useMemo<ResolveContext>(
-    () => ({
-      level: character.level || 1,
-      character,
-      pools: characterPools(character),
-      usedThisTurn: usedEngineIds,
-      activeStates: character.activeStates || [],
-    }),
-    [character, usedEngineIds]
-  );
-
-  const resolvedByStoredId = useMemo(() => {
-    const out = new Map<string, ResolvedFeature>();
-    for (const feature of character.features || []) {
-      const engineFeature =
-        (feature.engineId && engineDataset.byId.get(feature.engineId)) ||
-        findEngineFeature(ownerFor(character, feature), feature.name, engineDataset);
-      if (engineFeature) out.set(feature.id, resolve(engineFeature, resolveContext));
+    if (rule?.uses) {
+      const key = ruleKey(rule);
+      const max = usesMax(rule, character);
+      return { kind: "uses", key, current: Math.max(0, max - (character.featureUses?.[key] ?? 0)), max };
     }
-    return out;
-  }, [character, resolveContext, engineDataset]);
+    return null;
+  };
 
-  const resolvedFor = (storedId: string): ResolvedFeature | undefined => resolvedByStoredId.get(storedId);
+  const setTrack = (track: Track, value: number) => {
+    const left = Math.max(0, Math.min(track.max, value));
+    if (track.kind === "pool") onChange({ [track.field]: left } as Partial<Character>);
+    else onChange({ featureUses: { ...(character.featureUses || {}), [track.key]: track.max - left } });
+  };
 
-
-
-  /**
-   * Badges come from the combat engine and nowhere else.
-   *
-   * There used to be a fallback that rebuilt badges from the stored
-   * actionType / uses / requirement / scaling / book fields. That was the wrong
-   * data - "see class table" as a charge count, a feature's own name repeated as
-   * its type - and mixing it with engine badges meant a feature could show both
-   * a correct number and a wrong one. A feature with no engine entry, such as
-   * homebrew, now shows no mechanic badge, which is the honest answer rather
-   * than an invented one.
-   */
-  /**
-   * Badge values are keys, not text: the engine holds no locale, so it must not
-   * bake English into anything a player reads. The period inside a charge, the
-   * unit inside a duration and the resource name are themselves keys.
-   */
-  /**
-   * A cost the player sizes, resolved against the pool the character actually
-   * holds. `min` is the floor the rules set and `max` is what is left, because
-   * you cannot spend what you do not have.
-   */
-  const spendModalResolved = spendModalFeature ? resolvedFor(spendModalFeature.id) : undefined;
-  const chosenCost = spendModalResolved?.resources.find((r) => r.sized === true);
-  const spendableCost = chosenCost
-    ? {
-        resource: chosenCost.id,
-        min: Math.max(1, chosenCost.spendMin ?? 1),
-        max: Math.max(1, chosenCost.available),
-        pool: chosenCost.available,
-      }
-    : null;
-  // A hit-point pool runs to 65, so a step of one would need 65 clicks.
+  /** A pool the player spends any amount of (Lay on Hands), with what is left. */
+  const sizedPoolOf = (feature: { name?: string } | null) => {
+    const field = feature ? ruleOf(feature)?.variablePool : undefined;
+    if (!field) return null;
+    const left = Math.max(0, Number(character[field]) || 0);
+    return left > 0 ? { field, min: 1, max: left, pool: left } : null;
+  };
+  const spendableCost = sizedPoolOf(spendModalFeature);
+  // A hit-point pool runs to 100, so a step of one would need 100 clicks.
   const spendStep = spendableCost && spendableCost.max > 20 ? 5 : 1;
 
+  const openSpend = (feature: any) => {
+    const cost = sizedPoolOf(feature);
+    if (!cost) return;
+    setSelectedFeature(null);
+    setSpendTargetIsSelf(true);
+    setSpendTargetName("");
+    setSpendReceipt(null);
+    setSpendModalFeature(feature);
+    setSpendAmount(Math.max(cost.min, Math.min(cost.max, spendAmount)));
+  };
+
+  /** How long a feature lasts once used, as "Lasts 1 min". */
+  const lastsText = (feature: { name?: string }) => {
+    const rounds = feature.name ? featureRounds(character, feature.name) : null;
+    if (!rounds) return null;
+    const span = roundsText(rounds);
+    return t("turn.lasts", { time: t(`timer.span.${span.unit}`, { n: span.n }, `{n} ${span.unit}`) }, "Lasts {time}");
+  };
+
   const getFeatureBadges = (feature: any): string[] => {
-    const badges = resolvedFor(feature.id)?.badges ?? [];
-    return badges.map((badge) => {
-      const values = { ...(badge.values ?? {}) };
-      if (typeof values.per === "string") values.per = t(`engine.per.${values.per}`, values.per);
-      if (typeof values.unit === "string") values.unit = t(`engine.unit.${values.unit}`, values.unit);
-      if (typeof values.resource === "string") {
-        values.resource = t(`engine.resource.${values.resource}`, values.resource.replace(/_/g, " "));
-      }
-      return t(badge.key, values, renderBadge(badge));
-    });
+    const rule = ruleOf(feature);
+    if (!rule) return [];
+    const slot = slotOf(rule);
+    const out = [t(`turn.slot.${slot}`, slot)];
+    if (rule.when) out.push(t(`turn.when.${rule.when}`, rule.when));
+    if (rule.spellSlot) out.push(t("feature.usesSpellSlot", "Spends a spell slot"));
+    const lasts = lastsText(feature);
+    if (lasts) out.push(lasts);
+    return out;
   };
 
   const getFeatureLevel = (feature: any): number | null => {
@@ -417,66 +333,11 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
     return !!source && typeof source === "object" && source.type === "race";
   };
 
-  /**
-   * The detail rows a popup shows, built from the engine's typed data: what the
-   * feature requires, what ends it, and what it does. These were the stored
-   * prose fields before, which is where "see class table" surfaced to a player.
-   */
-  const getFeatureDetailRows = (feature: any): { label: string; value: string }[] => {
-    const resolved = resolvedFor(feature.id);
-    if (!resolved) return [];
-    const rows: { label: string; value: string }[] = [];
-    const push = (key: string, fallback: string, value: unknown) => {
-      if (value) rows.push({ label: t(key, fallback), value: String(value) });
-    };
-
-    if (resolved.gates.length > 0) {
-      push("feature.requires", "Requires", resolved.gatesUnmet.length > 0 ? resolved.gatesUnmet.join(", ") : resolved.gates.join(", "));
-    }
-    if (resolved.targeting) {
-      const range = resolved.targeting.range ? `${resolved.targeting.range.value} ${resolved.targeting.range.unit}` : null;
-      push("feature.range", "Range", [range, resolved.targeting.shape, resolved.targeting.description].filter(Boolean).join(", "));
-    }
-    if (resolved.trigger) {
-      push("feature.trigger", "Triggers on", triggerLabel(resolved.trigger) ?? resolved.trigger.event.replace(/_/g, " "));
-    }
-    if (resolved.duration) {
-      push("feature.duration", "Duration", `${resolved.duration.value} ${t(`engine.unit.${resolved.duration.unit}`, resolved.duration.unit)}`);
-    }
-    if (resolved.effects.some((e) => e.kind === "restriction")) {
-      const rules = resolved.effects.filter((e) => e.kind === "restriction").flatMap((e) => (e as any).rules as string[]);
-      push("feature.restrictions", "Restrictions", rules.join(", "));
-    }
-    const damagers = resolved.effects.filter((e) => e.kind === "resistance" || e.kind === "immunity");
-    if (damagers.length > 0) {
-      push("feature.resistances", "Resists", damagers.map((e) => ((e as any).damageTypes ?? []) .join(", ")).join("; "));
-    }
-    push("feature.source", "Source", `${resolved.owner}${resolved.variant ? ` (${resolved.variant})` : ""} - ${resolved.effects.length} effect(s)`);
-    return rows;
-  };
-
-  /**
-   * Marking a feature used also spends whatever it costs, so the pool the badge
-   * reads from reflects the spend. Un-marking gives it back, because the toggle
-   * is a correction as much as an action.
-   */
+  /** Marks a feature used this turn, or unmarks it. What it spends is tracked by its dots. */
   const toggleFeatureUsed = (featureId: string) => {
     const current = character.featuresUsedThisTurn || [];
     const used = current.includes(featureId);
-    const resolved = resolvedFor(featureId);
-    const patch: Partial<Character> = {
-      featuresUsedThisTurn: used ? current.filter((id) => id !== featureId) : [...current, featureId],
-    };
-    const delta = used ? 1 : -1;
-    for (const cost of resolved?.resources ?? []) {
-      // A cost the player sizes is spent through the stepper, not the toggle.
-      if (cost.sized) continue;
-      const field = poolFieldFor(cost.id);
-      if (!field) continue;
-      const held = (character[field] as number | undefined) ?? 0;
-      (patch as Record<string, unknown>)[field] = Math.max(0, held + delta * cost.required);
-    }
-    onChange(patch);
+    onChange({ featuresUsedThisTurn: used ? current.filter((id) => id !== featureId) : [...current, featureId] });
   };
 
   // ---- Grouped list: Use first, then class, subclass, race, feats, other ----
@@ -498,11 +359,11 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
   };
 
   const rows = enrichedFeatures.map((feature) => {
-    const resolved = resolvedFor(feature.id);
+    const rule = ruleOf(feature);
     const kind = sourceKind(feature);
     const featInfo = getFeatPicks(character, feature.name);
     const isFeat = featInfo.taken || ((kind === "feat" || kind === "custom" || !kind) && feats.some((f) => f.name === feature.name));
-    const usable = resolved !== undefined && resolved.activation !== "passive";
+    const usable = rule !== undefined;
     const home: FeatureGroup = isFeat ? "feat" : kind === "class" || kind === "subclass" || kind === "race" ? kind : "other";
     const level = isFeat ? featInfo.level : getFeatureLevel(feature);
     const picks = isFeat
@@ -517,13 +378,10 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
       : home === "race" ? t("feature.racial", "Racial")
       : home === "feat" ? [t("features.feat", "Feat"), levelLabel].filter(Boolean).join(" · ")
       : "";
-    const poolCost = (resolved?.resources ?? []).find((r) => r.tracked && !r.sized && poolFieldFor(r.id));
-    const poolField = poolCost ? poolFieldFor(poolCost.id) : null;
-    const poolTop = poolField ? poolMax(character, poolField) : null;
-    const pool = poolField && poolTop ? { field: poolField, current: Math.min(poolTop, Math.max(0, ((character as any)[poolField] as number) ?? 0)), max: poolTop } : null;
-    const summary = ((feature as any).summary || resolved?.summary || (feature.description || "").slice(0, 160)) as string;
+    const pool = trackOf(rule);
+    const summary = ((feature as any).summary || (feature.description || "").slice(0, 160)) as string;
     // Feats always list under Feats, with their spend controls, so every feat taken shows there.
-    return { feature, resolved, group: usable && home !== "feat" ? ("use" as FeatureGroup) : home, home, level, levelLabel, origin, picks, pool, summary, missing: missingFor(feature.name), usable };
+    return { feature, group: usable && home !== "feat" ? ("use" as FeatureGroup) : home, home, level, levelLabel, origin, picks, pool, summary, missing: missingFor(feature.name), usable };
   });
   type Row = (typeof rows)[number];
 
@@ -554,7 +412,6 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
     return { id: g, title, sub, items };
   }).filter((g) => g.items.length > 0);
 
-  const setPool = (field: keyof Character, value: number) => onChange({ [field]: value } as Partial<Character>);
 
   const openFeature = (feature: any) => {
     setSpendAmount(1);
@@ -570,7 +427,10 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
   ];
 
   const renderRow = (r: Row, index: number) => {
-    const { feature, resolved, pool } = r;
+    const { feature, pool } = r;
+    const sizedField = ruleOf(feature)?.variablePool;
+    const sizedMax = sizedField ? poolMax(character, sizedField) : null;
+    const sizedPool = sizedField && sizedMax ? { current: Math.max(0, Number(character[sizedField]) || 0), max: sizedMax } : null;
     const featureUsed = (character.featuresUsedThisTurn || []).includes(feature.id);
     const badges = r.group === "use" ? getFeatureBadges(feature) : [];
     return (
@@ -603,9 +463,6 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
               ))}
             </span>
           )}
-          {resolved && !resolved.available && resolved.blockedBy && !resolved.used && r.group === "use" && !pool && (
-            <span className="mt-1.5 block text-[11px] text-[var(--color-text-muted)]">{resolved.blockedBy}</span>
-          )}
         </button>
         {r.missing.length > 0 && (
           <div className="px-3.5 pb-2">
@@ -620,7 +477,11 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
         )}
         {r.group === "use" && (
           <div className="flex items-center justify-between gap-2 px-3.5 pb-3">
-            {pool ? (
+            {sizedPool ? (
+              <button type="button" className="btn btn-secondary" disabled={!sizedPoolOf(feature)} onClick={() => openSpend(feature)}>
+                {t("feature.spendChoose", "Choose an amount")}
+              </button>
+            ) : pool ? (
               pool.max <= 8 ? (
                 <div className="flex flex-wrap gap-1.5">
                   {Array.from({ length: pool.max }, (_, i) => {
@@ -630,20 +491,19 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                         key={i}
                         type="button"
                         aria-label={t(spent ? "features.restoreUse" : "features.spendUse", { name: feature.name }, spent ? "Restore a use of {name}" : "Spend a use of {name}")}
-                        onClick={() => setPool(pool.field, spent ? pool.current + 1 : pool.current - 1)}
-                        className={`h-8 w-8 rounded-full transition-colors ${
-                          spent
-                            ? "border-[1.5px] border-dashed border-[var(--color-border-strong,#B8B2A7)] bg-[var(--color-surface)]"
-                            : "border-[1.5px] border-[var(--color-accent-indigo-500)] bg-[var(--color-accent-indigo-500)]"
-                        }`}
-                      />
+                        onClick={() => setTrack(pool, spent ? pool.current + 1 : pool.current - 1)}
+                        className="rounded-full p-0.5 transition-transform active:scale-90"
+                      >
+                        <ResourceToken resource={pool.kind === "pool" ? pool.field : undefined} filled={!spent} />
+                      </button>
                     );
                   })}
                 </div>
               ) : (
                 <div className="flex items-center gap-2">
-                  <button type="button" aria-label={t("features.spendUse", { name: feature.name }, "Spend a use of {name}")} onClick={() => setPool(pool.field, Math.max(0, pool.current - 1))} className="h-8 w-8 rounded-full border border-[var(--color-border)] font-bold text-[var(--color-text-secondary)]">−</button>
-                  <button type="button" aria-label={t("features.restoreUse", { name: feature.name }, "Restore a use of {name}")} onClick={() => setPool(pool.field, Math.min(pool.max, pool.current + 1))} className="h-8 w-8 rounded-full border border-[var(--color-border)] font-bold text-[var(--color-text-secondary)]">+</button>
+                  <ResourceToken resource={pool.kind === "pool" ? pool.field : undefined} filled={pool.current > 0} />
+                  <button type="button" aria-label={t("features.spendUse", { name: feature.name }, "Spend a use of {name}")} disabled={pool.current <= 0} onClick={() => setTrack(pool, pool.current - 1)} className="btn btn-secondary">−</button>
+                  <button type="button" aria-label={t("features.restoreUse", { name: feature.name }, "Restore a use of {name}")} disabled={pool.current >= pool.max} onClick={() => setTrack(pool, pool.current + 1)} className="btn btn-secondary">+</button>
                 </div>
               )
             ) : (
@@ -661,9 +521,9 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                 {featureUsed ? t("spells.used") : t("spells.use")}
               </button>
             )}
-            {pool && (
+            {(pool || sizedPool) && (
               <span className="text-xs text-[var(--color-text-muted)]">
-                {t("features.usesLeft", { current: pool.current, max: pool.max }, "{current} of {max} left")}
+                {t("features.usesLeft", { current: pool ? pool.current : sizedPool!.current, max: pool ? pool.max : sizedPool!.max }, "{current} of {max} left")}
               </span>
             )}
           </div>
@@ -833,7 +693,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                         : "border-[var(--color-border)] text-[var(--color-text-muted)]"
                     }`}
                   >
-                    {t("feature.spendSelf", character.name || "Self")}
+                    {character.name || t("feature.spendSelf", "Self")}
                   </button>
                   <button
                     type="button"
@@ -876,9 +736,8 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                   type="button"
                   disabled={!spendTargetIsSelf && spendTargetName.trim().length === 0}
                   onClick={() => {
-                    const patch = spendFromPool(character, spendableCost.resource, spendAmount);
-                    if (!patch) return;
-                    onChange(patch);
+                    const spent = Math.max(1, Math.min(spendableCost.max, spendAmount));
+                    onChange({ [spendableCost.field]: spendableCost.pool - spent } as Partial<Character>);
                     const who = spendTargetIsSelf ? character.name || t("feature.spendSelf", "Self") : spendTargetName.trim();
                     setSpendReceipt(
                       t(
@@ -899,26 +758,9 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
         {popupFeat && <FeatModal feat={popupFeat} onClose={() => setPopupFeatName(null)} />}
         {selectedFeature && (() => {
           const badges = getFeatureBadges(selectedFeature);
-          const detailRows = getFeatureDetailRows(selectedFeature);
-
           const sheetLevel = getFeatureLevel(selectedFeature);
           const source = selectedFeature.source && typeof selectedFeature.source === "object" ? selectedFeature.source : null;
-          const selectedResolved = resolvedFor(selectedFeature.id);
-
-          // The card's own view of a sized cost, from the feature in this popup.
-          const sized = selectedResolved?.resources.find((r) => r.sized === true);
-          const popupSizedCost = sized
-            ? {
-                resource: sized.id,
-                min: Math.max(1, sized.spendMin ?? 1),
-                max: Math.max(1, sized.available),
-                pool: sized.available,
-              }
-            : null;
-          const sheetIsActive = selectedResolved !== undefined && selectedResolved.activation !== "passive";
-          const sheetDuration =
-            (selectedResolved?.duration ? `${selectedResolved.duration.value} ${selectedResolved.duration.unit}` : null) ||
-            (sheetIsActive ? "Instantaneous" : "");
+          const popupSizedCost = sizedPoolOf(selectedFeature);
           return (
             <BottomSheet
               isOpen={!!selectedFeature}
@@ -953,19 +795,9 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                       {t("feature.levelN", { level: sheetLevel }, "Level {level}")}
                     </span>
                   )}
-                  <span className="rounded-full border border-[var(--color-border)] bg-[var(--color-bg)] px-2.5 py-1 text-[10px] font-semibold text-[var(--color-text-secondary)]">
-                    {/* The slot, not a two-way Active/Passive split. "Bonus
-                        Action" and "Reaction" are the useful facts and both
-                        used to collapse into "Active". */}
-                    {selectedResolved
-                      ? t(`engine.badge.${selectedResolved.activation}`, slotLabel(selectedResolved.activation))
-                      : sheetIsActive
-                        ? t("feature.active", "Active")
-                        : t("feature.passive", "Passive")}
-                  </span>
-                  {sheetDuration && (
+                  {!ruleOf(selectedFeature) && (
                     <span className="rounded-full border border-[var(--color-border)] bg-[var(--color-bg)] px-2.5 py-1 text-[10px] font-semibold text-[var(--color-text-secondary)]">
-                      ⏱ {sheetDuration}
+                      {t("feature.passive", "Passive")}
                     </span>
                   )}
                 </div>
@@ -979,13 +811,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                 {popupSizedCost && (
                   <button
                     type="button"
-                    onClick={() => {
-                      setSpendTargetIsSelf(true);
-                      setSpendTargetName("");
-                      setSpendReceipt(null);
-                      setSpendModalFeature(selectedFeature);
-                      setSpendAmount(Math.max(popupSizedCost.min, Math.min(popupSizedCost.max, spendAmount)));
-                    }}
+                    onClick={() => openSpend(selectedFeature)}
                     className="mb-2 flex w-full items-center justify-between gap-2 rounded-full border border-[var(--color-accent-indigo-500)] bg-[var(--color-bg)] px-3 py-2 text-left transition-colors hover:bg-[var(--color-paper-muted)]"
                   >
                     <span className="text-xs font-semibold text-[var(--color-text-primary)]">
@@ -997,16 +823,6 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
                   </button>
                 )}
 
-                {detailRows.length > 0 && (
-                  <div className="space-y-2 border-t border-[var(--color-border-muted)] pt-2">
-                    {detailRows.map((row) => (
-                      <div key={row.label}>
-                        <span className="block text-[10px] font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">{row.label}</span>
-                        <div className="text-sm text-[var(--color-text-primary)] leading-relaxed"><RichText text={row.value} /></div>
-                      </div>
-                    ))}
-                  </div>
-                )}
               </div>
             </BottomSheet>
           );

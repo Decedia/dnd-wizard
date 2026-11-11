@@ -87,7 +87,7 @@ export interface Character {
   toolProficiencies: string[];
   expertise: string[];
   passivePerception: number;
-  features: { id: string; name: string; description: string; source?: "race" | "class" | "subclass" | "custom"; locked?: boolean; /** Id of the matching entry in the combat engine dataset, stamped when the feature is created. Badges and charges are read from there, so the character sheet and the turn menu cannot disagree. Absent on custom features, which have no engine entry. */ engineId?: string; actionType?: "action" | "bonus_action" | "reaction" | "free" | "passive"; value?: string; summary?: string | null; featureType?: string | null; uses?: { total: number | string; recharge: string; current: number } | null; requirement?: string | null; duration?: string | null; endsIf?: string | null; effect?: string | null; onUse?: string | null; scaling?: string | null; grantsSpells?: boolean; grantsAttack?: boolean; grantsSkills?: boolean; grantsProficiency?: boolean }[];
+  features: { id: string; name: string; description: string; source?: "race" | "class" | "subclass" | "custom"; locked?: boolean; actionType?: "action" | "bonus_action" | "reaction" | "free" | "passive"; value?: string; summary?: string | null; featureType?: string | null; uses?: { total: number | string; recharge: string; current: number } | null; requirement?: string | null; duration?: string | null; endsIf?: string | null; effect?: string | null; onUse?: string | null; scaling?: string | null; grantsSpells?: boolean; grantsAttack?: boolean; grantsSkills?: boolean; grantsProficiency?: boolean }[];
   costumeSpells: { id: string; name: string; description: string }[];
   subclass?: string;
   subclassIndex?: string;
@@ -95,7 +95,7 @@ export interface Character {
   attacks: { id: string; name: string; attackBonus: number; damageType: string; sneakAttack?: string; source?: "weapon" | "class" | "grapple" | "shove"; classFeatureName?: string; description?: string }[];
   otherProficiencies: string;
   languages: string[];
-  spells: { id: string; name: string; level: number; source: "srd" | "custom"; srdSpellName?: string; damageDice?: string; damageType?: string; description?: string; summary?: string; grantsFeatureId?: string; /** Given free by subclass, race or an optional feature; removed when that source is gone. */ granted?: boolean }[];
+  spells: { id: string; name: string; level: number; source: "srd" | "custom"; srdSpellName?: string; damageDice?: string; damageType?: string; description?: string; summary?: string; /** Given free by subclass, race or an optional feature; removed when that source is gone. */ granted?: boolean }[];
   spellcastingAbility: string;
   spellSaveDc: number;
   spellAttackBonus: number;
@@ -672,7 +672,9 @@ function normalizeCharacterFields(c: Character): Character {
     activeBuffs: (c as any).activeBuffs || [],
     levelHp: (c as any).levelHp || {},
     ...migrateCoins(c),
-    spells: (c.spells || []).map((spell) => {
+    spells: (c.spells || []).map((saved) => {
+      // Old saves link feat spells to the retired combat engine data; nothing reads it.
+      const { grantsFeatureId: _retired, ...spell } = saved as typeof saved & { grantsFeatureId?: string };
       const srdSpellName = spell.srdSpellName || spell.name;
       const mechanic = spell.source === "srd" ? getSpellMechanic(srdSpellName) : undefined;
       
@@ -711,7 +713,9 @@ function normalizeCharacterFields(c: Character): Character {
     variantHumanAbilities: (c as any).variantHumanAbilities,
     variantHumanSkill: (c as any).variantHumanSkill,
     // A row with no name and no text is an abandoned "Add feature" tap.
-    features: (c.features || []).filter((f) => f.name?.trim() || f.description?.trim()).map((feature) => {
+    features: (c.features || []).filter((f) => f.name?.trim() || f.description?.trim()).map((saved) => {
+      // Old saves carry an id into the retired combat engine data; nothing reads it.
+      const { engineId: _retired, ...feature } = saved as typeof saved & { engineId?: string };
       const description = feature.description || "";
       const actionType = (feature as any).actionType;
       const uses = (feature as any).uses;
@@ -981,10 +985,6 @@ function getClassResourceValue(classData: any, resourceName: string, level: numb
   return typeof val === "number" ? val : 0;
 }
 
-/**
- * Whether the character has a feat, matched by its engine id first and its
- * display name second, since older saves have no engineId stamped.
- */
 /** Walking speed before bonuses: the player's own base, else the race's, else 30. */
 export function getBaseSpeed(character: Pick<Character, "baseSpeed" | "race" | "ruleset"> & { raceChoices?: Record<string, string> }): number {
   if (typeof character.baseSpeed === "number" && character.baseSpeed > 0) return character.baseSpeed;
@@ -1002,7 +1002,7 @@ export function getBaseSpeed(character: Pick<Character, "baseSpeed" | "race" | "
 export function getHpBonusPerLevel(character: Character): number {
   const picks = Object.entries(character.featureSelections || {});
   const tookTough =
-    hasFeat(character, "feat.tough") ||
+    hasFeat(character, "Tough") ||
     picks.some(([key, value]) => (/^asi-feat-\d+$/.test(key) || key === "variant-human-feat") && value?.[0] === "Tough");
   return (tookTough ? 2 : 0) +
     (character.race === "Hill Dwarf" ? 1 : 0) +
@@ -1022,16 +1022,14 @@ export function getPassiveScore(
   const proficient = character.skills?.[skill] ?? false;
   const expert = proficient && (character.expertise || []).includes(skill);
   const ability = skill === "Investigation" ? character.int : character.wis;
-  const observant = skill !== "Insight" && hasFeat(character as Character, "feat.observant");
+  const observant = skill !== "Insight" && hasFeat(character as Character, "Observant");
   return 10 + getModifier(ability) + (proficient ? profBonus : 0) + (expert ? profBonus : 0) + (observant ? 5 : 0);
 }
 
-function hasFeat(character: Character, engineId: string): boolean {
-  const name = engineId.replace(/^feat\./, "").replace(/_/g, " ");
-  return (character.features ?? []).some((f) => {
-    if (f.engineId === engineId) return true;
-    return normaliseFeatureName(f.name) === normaliseFeatureName(name);
-  });
+/** Whether the character has taken a feat, by its name ("Heavy Armor Master"). */
+function hasFeat(character: Character, featName: string): boolean {
+  const name = normaliseFeatureName(featName);
+  return (character.features ?? []).some((f) => normaliseFeatureName(f.name) === name);
 }
 
 /** "Heavy Armor Master" and "heavy_armor_master" are the same feat. */
@@ -1092,7 +1090,7 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   }
 
   // Alert: +5 initiative.
-  const initiative = getModifier(character.dex) + (hasFeat(character, "feat.alert") ? 5 : 0);
+  const initiative = getModifier(character.dex) + (hasFeat(character, "Alert") ? 5 : 0);
 
   const passivePerception = getPassiveScore(character, "Perception");
 
@@ -1136,11 +1134,10 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   let maxSuperiorityDice = 0;
   let luckPoints = 0;
 
-  // Pools the engine owns rather than a class table: luck points come from the
-  // Lucky feat, and superiority dice from the Battle Master archetype.
+  // Luck points come from the Lucky feat, not a class table.
   {
     const level = character.level;
-    if (hasFeat(character, "feat.lucky")) luckPoints = 3;
+    if (hasFeat(character, "Lucky")) luckPoints = 3;
   }
 
   if (classData) {
@@ -1204,9 +1201,9 @@ export function computeDerivedStats(character: Character): Partial<Character> {
       layOnHandsPool = maxLayOnHandsPool;
     }
 
-    // Fighter: Battle Master superiority dice
-    if (hasFeat(character, "feat.battle_master")) {
-      maxSuperiorityDice = getClassResourceValue(classData, "superiorityDice", level) as number;
+    // Fighter, Battle Master: 4 superiority dice at level 3, 5 at 7, 6 at 15.
+    if (classData.name === "Fighter" && character.subclass === "Battle Master" && level >= 3) {
+      maxSuperiorityDice = level >= 15 ? 6 : level >= 7 ? 5 : 4;
       superiorityDice = maxSuperiorityDice;
     }
 
@@ -1253,7 +1250,7 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   const hasBarbarianUnarmored = hasUnarmoredDefense && character.class === "Barbarian";
   const hasMonkUnarmored = hasUnarmoredDefense && character.class === "Monk" && !hasShield;
   // Dragon Hide (feat) sets unarmored AC the same way as Draconic Resilience.
-  const hasDraconicResilience = (character.features?.some(f => f.name.toLowerCase().includes("draconic resilience")) ?? false) || hasFeat(character, "feat.dragon_hide");
+  const hasDraconicResilience = (character.features?.some(f => f.name.toLowerCase().includes("draconic resilience")) ?? false) || hasFeat(character, "Dragon Hide");
   const hasNaturalArmor = character.features?.some(f => f.name.toLowerCase().includes("natural armor")) ?? false;
   const hasBladesong = character.features?.some(f => f.name.toLowerCase().includes("bladesong")) ?? false;
 
@@ -1330,8 +1327,8 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   // The race's walking speed, or the base the player typed; never the last
   // derived value, which already carries the bonuses below.
   let speed = getBaseSpeed(character);
-  if (hasFeat(character, "feat.mobile")) speed += 10;
-  if (hasFeat(character, "feat.squat_nimbleness")) speed += 5;
+  if (hasFeat(character, "Mobile")) speed += 10;
+  if (hasFeat(character, "Squat Nimbleness")) speed += 5;
   // Monk unarmored movement bonus
   if (classData?.name === "Monk" && !hasArmor && equippedShields.length === 0) {
     const umVal = getClassResourceValue(classData, "unarmoredMovement", character.level);

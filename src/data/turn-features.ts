@@ -1,7 +1,7 @@
 // Which features a player actively uses on a turn: what they take (action,
 // bonus action, reaction, or nothing) and what they spend. Checked by hand
-// against the rulebooks; the combat engine data is not used here because it
-// has wrong entries. A feature with no rule stays in the "always on" list.
+// against the rulebooks. The Features tab and the turn helper both read it.
+// A feature with no rule stays in the "always on" list.
 import type { Character } from "@/lib/storage";
 
 export type FeatureSlot = "action" | "bonus" | "reaction" | "free";

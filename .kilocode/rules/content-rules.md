@@ -118,13 +118,20 @@ tokens (`src/lib/damage-types.ts`); never use raw palette colours.
 
 ## 7. Data file hygiene
 
-- **Never JSON round-trip `src/data/engine/features/feat/*.json`.** Those files are
-  hand-formatted with inline objects; a parse/stringify cycle rewrites hundreds of unrelated
-  lines. Apply exact text replacements. Same caution for any file with inline objects.
+- **The combat engine data (`src/data/engine`, `src/lib/feature-engine.ts`) was retired on
+  2026-11-11. Do not bring it back.** It was a second copy of the class/race/feat data with
+  wrong entries. What it did now lives in: `src/data/turn-features.ts` (what a feature takes
+  and spends, used by the turn helper and the Features tab), `src/lib/feat-requirements.ts`
+  (feat prerequisites), `src/data/feat-flavor.ts` (feat "why pick this" lines),
+  `src/lib/timers.ts` (durations), `src/lib/healing.ts`, `src/lib/spell-damage-bonus.ts`.
+  Extend those; a test fails if anything imports the old engine paths.
+
+- **Never JSON round-trip hand-formatted data files.** A parse/stringify cycle rewrites
+  hundreds of unrelated lines. Apply exact text replacements.
 - Delete dead fields rather than leaving them to rot (the `flavorText` removal is the model).
-- Do not invent prerequisites. Engine `requires` must match the rules — Great Weapon Master
-  and Crossbow Expert were given requirements the PHB never gave them, which silently blocked
-  both feats. Check the SRD `prerequisites` field before writing an engine `requires`.
+- Do not invent prerequisites. `src/lib/feat-requirements.ts` must match the rules. The old
+  combat engine data gave Alert, Dual Wielder and Keen Mind ability requirements the books never
+  gave them, which silently blocked those feats.
 - New option data (feat sub-choices, group labels) belongs in a typed module with `labelId`
   keys, e.g. `src/data/feat-options.ts`, so labels localize instead of being baked in.
 

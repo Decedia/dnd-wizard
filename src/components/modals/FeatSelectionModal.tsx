@@ -12,13 +12,12 @@ import {
 import {
   getStaticFeats,
   getStaticSpells,
-  meetsPrerequisites,
-  describeFeatRequirements,
-  getEngineFeatFlavor,
   type SRDFeat,
   type FeatOptionGroup,
 } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
+import { describeFeatRequirements, meetsPrerequisites } from "@/lib/feat-requirements";
+import { FEAT_FLAVOR, featFlavorKey } from "@/data/feat-flavor";
 import { getTakenSpellNames } from "@/lib/taken-spells";
 import { isRecommended } from "@/lib/recommendations";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -541,8 +540,7 @@ export function FeatSelectionModal({
 
 function FeatInfo({ feat, character }: { feat: SRDFeat; character?: Character }) {
   const { t } = useLanguage();
-  const engineFlavor = getEngineFeatFlavor(feat.name);
-  const flavorText = engineFlavor.flavorId ? t(engineFlavor.flavorId, engineFlavor.flavor) : engineFlavor.flavor;
+  const flavorText = FEAT_FLAVOR[feat.name] ? t(featFlavorKey(feat.name), FEAT_FLAVOR[feat.name]) : undefined;
   const sourceLabel = feat.book || feat.source;
   const lines = describeFeatRequirements(character ?? ({} as Character), feat.name, t);
   const prerequisiteText = feat.prerequisites ?? (lines.length > 0 ? lines.map((l) => l.text).join(" • ") : null);

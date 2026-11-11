@@ -6,6 +6,8 @@ D&D 5e Character Manager — a mobile-first PWA built with Next.js 16 + React 19
 
 ## Current State
 
+> **2026-11-11: the combat engine data (`src/data/engine`, `src/lib/feature-engine.ts`, the `engine:*` scripts, `docs/ENGINE.md`) was deleted.** Notes below that describe it are history. See `.kilocode/rules/content-rules.md` section 7 for where each job moved.
+
 **App Status**: ✅ Fully functional D&D 5e character manager with creation wizard, level-up flow, character sheet, and combat tracking. Supports English and Indonesian (Bahasa Indonesia) via custom i18n system.
 
 ### Localization

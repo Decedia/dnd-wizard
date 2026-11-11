@@ -301,8 +301,7 @@ const turnFeatures = (character: Character) => {
 
 /**
  * Features the player uses on a turn, from the hand-checked table in
- * src/data/turn-features.ts: the slot each takes and what it spends. The
- * combat engine data (src/data/engine) is not used; it has wrong entries.
+ * src/data/turn-features.ts: the slot each takes and what it spends.
  */
 function featureOptions(character: Character): TurnOption[] {
   const out: TurnOption[] = [];
