@@ -65,3 +65,16 @@ export function spellAttackParts(character: Character, ability = character.spell
 
 /** An ability check: the ability modifier. */
 export const abilityCheckParts = (character: Abilities, key: string): BonusPart[] => [abilityPart(character, key)];
+
+/**
+ * Spell attack bonus and save DC for one spell: a 2024 species spell uses the
+ * ability picked for the species, everything else the class numbers.
+ */
+export function spellNumbersFor(character: Character, ability?: string): { attack: number; dc: number; parts: BonusPart[] } {
+  if (!ability || ability === character.spellcastingAbility) {
+    return { attack: character.spellAttackBonus ?? 0, dc: character.spellSaveDc || 0, parts: spellAttackParts(character) };
+  }
+  const mod = getModifier(((character as unknown as Record<string, number>)[ability]) ?? 10);
+  const prof = getProficiencyBonus(character.level || 1);
+  return { attack: mod + prof, dc: 8 + mod + prof, parts: [abilityPart(character, ability), { source: "@prof", value: prof }] };
+}

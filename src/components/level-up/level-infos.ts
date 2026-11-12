@@ -588,7 +588,8 @@ export function buildLevelInfos(
     const swapsSpells = isBard || isSorcerer || className === "Warlock" || className === "Ranger" || isThirdCasterSubclass;
     const canReplaceSpell = swapsSpells && level > 1 && (character.spells || []).some((s) => s.level > 0);
     const subclassFlags = getSubclassFlagsByName(className, subclassSelection || "", character.sources, language, character.ruleset);
-    const isLoreBard = isBard && subclassFlags.grantsMagicalSecrets;
+    // 2024 Lore: Magical Discoveries, two spells from the Cleric, Druid or Wizard list at 6.
+    const isLoreBard = isBard && (subclassFlags.grantsMagicalSecrets || (rules2024 && subclassSelection === "College of Lore"));
     const subclassSpellSelectionCount = isLoreBard && level === 6 ? 2 : 0;
 
     const hasSpellSelectionFromClass = !!(classData.spellcastingAbility && (slotsChanged || cantripsChanged || spellsKnownChanged));

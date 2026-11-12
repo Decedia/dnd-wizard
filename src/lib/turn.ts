@@ -4,7 +4,8 @@
 import type { Character } from "@/lib/storage";
 import { getFeatureValue, getModifier, getProficiencyBonus, isPreparationCaster } from "@/lib/storage";
 import type { BonusPart } from "@/lib/dice-roll";
-import { spellAttackParts } from "@/lib/roll-parts";
+import { spellNumbersFor } from "@/lib/roll-parts";
+import { speciesSpellAbility } from "@/lib/origin-2024";
 import { getWeaponAttackDetails, isRaging } from "@/lib/weapon-attacks";
 import { equipRow, heldInHands, unequipRow, type Hand, type InventoryRow } from "@/lib/inventory";
 import { getFreeCastSpells, getGrantedSpellNames } from "@/lib/granted-spells";
@@ -21,7 +22,7 @@ import { concentrationTimer, expiredTimerPatch, featureRounds, featureTimerId, R
 export type TurnSlot = "action" | "bonus" | "reaction" | "free";
 export type TurnGroup = "attack" | "spell" | "feature" | "basic";
 /** Why an option cannot be used; the panel turns it into a sentence. */
-export type TurnBlock = "noSlot" | "empty" | "actionFirst" | "attackFirst" | "raging" | "notRaging" | "shaped" | "full" | "slotsFull" | "usedThisTurn";
+export type TurnBlock = "noSlot" | "empty" | "actionFirst" | "attackFirst" | "raging" | "notRaging" | "shaped" | "full" | "slotsFull" | "usedThisTurn" | "wildShapeLeft";
 
 export interface TurnOption {
   key: string;
@@ -278,6 +279,7 @@ function spellOptions(character: Character, srdSpells: SrdSpell[]): TurnOption[]
     const free = freeCasts.has(lookup);
     if (level > 0 && prepares && !prepared.has(spell.id) && !granted.has(lookup) && !free) continue;
 
+    const numbers = spellNumbersFor(character, speciesSpellAbility(character, spell.srdSpellName || spell.name));
     const option: TurnOption = {
       key: `spell:${spell.id}`,
       slot,
@@ -290,9 +292,9 @@ function spellOptions(character: Character, srdSpells: SrdSpell[]): TurnOption[]
       spellLevel: level,
       school: srd?.school || undefined,
       damageBonuses: srd ? spellDamageBonuses(character, { name: srd.name, level, school: srd.school, classes: srd.classes, damageType: srd.damage?.damageType, description: srd.description }) : undefined,
-      saveDc: srd?.saveType ? character.spellSaveDc || undefined : undefined,
-      spellAttack: srd && (srd.attackType || srd.attack_type) ? character.spellAttackBonus ?? 0 : undefined,
-      spellAttackParts: srd && (srd.attackType || srd.attack_type) ? spellAttackParts(character) : undefined,
+      saveDc: srd?.saveType ? numbers.dc || undefined : undefined,
+      spellAttack: srd && (srd.attackType || srd.attack_type) ? numbers.attack : undefined,
+      spellAttackParts: srd && (srd.attackType || srd.attack_type) ? numbers.parts : undefined,
       spend: { spellsUsedThisTurn: [...(character.spellsUsedThisTurn || []).filter((id) => id !== spell.id), spell.id] },
     };
     let castLevel = level;
@@ -477,6 +479,66 @@ function flexibleCastingOptions(character: Character, featureName: string): Turn
 }
 
 /**
+ * 2024 Druid: Wild Resurgence (a spell slot for a Wild Shape use, or a use for a
+ * level 1 slot) and Archdruid (a use back on initiative, uses into one slot).
+ */
+function druidOptions(character: Character, featureName: string): TurnOption[] {
+  const uses = character.wildShapeUses ?? 0;
+  const expended = character.spellSlotsExpended || {};
+  const featureUses = character.featureUses || {};
+  const out: TurnOption[] = [];
+  const row = (key: string, nameKey: string, summary: string, extra: Partial<TurnOption>): TurnOption => ({
+    key: `druid:${key}`, slot: "free", group: "feature", name: featureName, nameKey, summary, summaryKey: `turn.druid.${key}`, spend: {}, ...extra,
+  });
+  if (featureName === "Wild Resurgence") {
+    const open = lowestOpenSlot(character, 1);
+    const mark = "turn:wildResurgence";
+    const usedThisTurn = character.featuresUsedThisTurn || [];
+    const toShape = row("slotToShape", "turn.druid.slotToShapeName", "With no Wild Shape uses left, spend a spell slot to get one back. Once per turn.", { oncePerTurn: true });
+    if (open !== null) toShape.cost = { key: "turn.cost.slot", values: { level: open } };
+    if (uses > 0) toShape.blocked = "wildShapeLeft";
+    else if (open === null) toShape.blocked = "noSlot";
+    else if (usedThisTurn.includes(mark)) toShape.blocked = "usedThisTurn";
+    else toShape.spend = { wildShapeUses: 1, spellSlotsExpended: { ...expended, [open]: (expended[open] ?? 0) + 1 }, featuresUsedThisTurn: [...usedThisTurn, mark] };
+    out.push(toShape);
+
+    const used = featureUses.wildResurgence ?? 0;
+    const toSlot = row("shapeToSlot", "turn.druid.shapeToSlotName", "Spend a Wild Shape use to get a spent level 1 spell slot back. Once per long rest.", {
+      cost: { key: "turn.cost.uses", values: { left: used ? 0 : 1, max: 1 } },
+    });
+    if (used || uses <= 0) toSlot.blocked = "empty";
+    else if ((expended[1] ?? 0) <= 0) toSlot.blocked = "slotsFull";
+    else toSlot.spend = { wildShapeUses: uses - 1, spellSlotsExpended: { ...expended, 1: (expended[1] ?? 0) - 1 }, featureUses: { ...featureUses, wildResurgence: 1 } };
+    out.push(toSlot);
+  } else if (featureName === "Archdruid") {
+    const evergreen = row("evergreen", "turn.druid.evergreenName", "When you roll initiative with no Wild Shape uses left, get one back.", { when: "onInitiative" });
+    if (uses > 0) evergreen.blocked = "wildShapeLeft";
+    else evergreen.spend = { wildShapeUses: 1 };
+    out.push(evergreen);
+
+    // Nature Magician: each use is worth 2 spell levels, once per long rest.
+    const used = featureUses.natureMagician ?? 0;
+    const magic: TurnOption[] = [];
+    for (let count = 1; count * 2 <= 9; count++) {
+      const level = count * 2;
+      if ((character.spellSlots?.[level] ?? 0) <= 0) continue;
+      const option = row("natureMagician", "turn.druid.natureMagicianName", "Turn Wild Shape uses into one spent spell slot: 2 slot levels per use. Once per long rest.", {
+        key: `druid:natureMagician:${level}`,
+        nameValues: { level },
+        cost: { key: "turn.cost.natureMagician", values: { amount: count, left: uses } },
+      });
+      if (used || uses < count) option.blocked = "empty";
+      else if ((expended[level] ?? 0) <= 0) option.blocked = "slotsFull";
+      else option.spend = { wildShapeUses: uses - count, spellSlotsExpended: { ...expended, [level]: (expended[level] ?? 0) - 1 }, featureUses: { ...featureUses, natureMagician: 1 } };
+      magic.push(option);
+    }
+    const open = magic.filter((o) => !o.blocked);
+    out.push(...(open.length > 0 ? open : magic.slice(0, 1)));
+  }
+  return out;
+}
+
+/**
  * Features the player uses on a turn, from the hand-checked table in
  * src/data/turn-features.ts: the slot each takes and what it spends.
  */
@@ -491,6 +553,10 @@ function featureOptions(character: Character): TurnOption[] {
     // 2024: Font of Magic holds both: creating a slot (bonus action) and converting one (no action).
     if (character.ruleset === "2024" && feature.name === "Font of Magic") {
       out.push(...flexibleCastingOptions(character, "Creating Spell Slots"), ...flexibleCastingOptions(character, "Converting Spell Slots").map((o) => ({ ...o, slot: "free" as const })));
+      continue;
+    }
+    if (character.ruleset === "2024" && (feature.name === "Wild Resurgence" || feature.name === "Archdruid")) {
+      out.push(...druidOptions(character, feature.name));
       continue;
     }
     const subs = subOptions(character, feature);

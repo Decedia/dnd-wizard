@@ -182,7 +182,9 @@ export function useLevelCardState(props: LevelCardProps) {
     const spellsCount = lvlSpells.filter((s: string) => !s.endsWith(":0")).length;
     return cantripsCount >= info.cantripSelectionCount && spellsCount >= info.spellSelectionCount;
   })();
-  const isComplete = isHpComplete && isAsiComplete && isSubclassComplete && isFeatureChoicesComplete && isClassFeatureChoicesComplete && isExpertiseComplete && isSpellSelectionComplete;
+  // Magical Secrets and the Lore Bard's picks have their own picker.
+  const isSecretsComplete = (info.magicalSecretsCount === 0 || magicalSecretsSpells.length >= info.magicalSecretsCount) && (info.subclassSpellSelectionCount === 0 || subclassSpellSelections.length >= info.subclassSpellSelectionCount);
+  const isComplete = isHpComplete && isAsiComplete && isSubclassComplete && isFeatureChoicesComplete && isClassFeatureChoicesComplete && isExpertiseComplete && isSpellSelectionComplete && isSecretsComplete;
 
   const setSectionRef = (id: string) => (el: HTMLDivElement | null) => {
     sectionRefs.current[id] = el;

@@ -484,6 +484,8 @@ export interface SubOption extends Omit<FeatureRule, "name" | "bonusWith" | "onl
   summary: string;
   /** Only from this character level. */
   minLevel?: number;
+  /** Only for this subclass (Thief's Stealth Attack). */
+  subclass?: string;
 }
 
 export interface SubOptionGroup {
@@ -650,6 +652,7 @@ export const SUB_OPTIONS: SubOptionGroup[] = [
       { name: "Daze", key: "cunningDaze", slot: "free", when: "onHit", condition: "sneakDice2", minLevel: 14, summary: "The target makes a CON save or on its next turn can only move, or act, or take a bonus action." },
       { name: "Knock Out", key: "cunningKnockOut", slot: "free", when: "onHit", condition: "sneakDice6", minLevel: 14, summary: "The target makes a CON save or falls unconscious for 1 minute or until it takes damage." },
       { name: "Obscure", key: "cunningObscure", slot: "free", when: "onHit", condition: "sneakDice3", minLevel: 14, summary: "The target makes a DEX save or is blinded until the end of its next turn." },
+      { name: "Stealth Attack", key: "cunningStealthAttack", slot: "free", when: "onHit", condition: "sneakDice1", minLevel: 9, subclass: "Thief", summary: "If you are invisible from the Hide action, this attack doesn't end it, as long as you end the turn behind three-quarters or total cover." },
     ],
   },
   {
@@ -707,7 +710,7 @@ export function subOptionsFor(character: Character, group: SubOptionGroup, picks
   const chosen = group.picks ? group.picks(character) : picks;
   // Picks are saved as "Feature: Option" for some features (Hunter's Prey: Colossus Slayer).
   const picked = (name: string) => chosen.includes(name) || chosen.some((p) => p.endsWith(`: ${name}`));
-  return group.options.filter((o) => (!group.picked || picked(o.name)) && (!o.minLevel || (character.level || 1) >= o.minLevel));
+  return group.options.filter((o) => (!group.picked || picked(o.name)) && (!o.minLevel || (character.level || 1) >= o.minLevel) && (!o.subclass || character.subclass === o.subclass));
 }
 
 /** A stable key for a rule's own uses, from its pattern. */
