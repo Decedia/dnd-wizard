@@ -94,7 +94,7 @@ export function StepFeatures() {
           )}
           {info.classFeatureChoices && info.classFeatureChoices.length > 0 && (
             info.classFeatureChoices
-              .filter((fc) => fc.name !== "Pact Boon" && fc.name !== "Eldritch Invocations")
+              .filter((fc) => fc.name !== "Pact Boon" && (fc.name !== "Eldritch Invocations" || info.rules2024))
               .map((fc) => {
                 const isMetamagic = fc.name === "Metamagic";
                 const availableOptions = isMetamagic
@@ -187,7 +187,7 @@ export function StepFeatures() {
         );
       })()}
 
-      {show("features") && !subclassOnly && character.class === "Warlock" && info.level === 3 && subclassSelection && (() => {
+      {show("features") && !subclassOnly && character.class === "Warlock" && info.level === 3 && !info.rules2024 && subclassSelection && (() => {
         const pactBoon = classFeatureChoices["Pact Boon"] || "";
         return (
           <div className="p-3 rounded-lg border border-purple-300 bg-purple-50/30">
@@ -238,7 +238,7 @@ export function StepFeatures() {
         );
       })()}
 
-      {show("features") && !subclassOnly && character.class === "Warlock" && info.level >= 3 && !subclassSelection && (
+      {show("features") && !subclassOnly && character.class === "Warlock" && info.level >= 3 && !info.rules2024 && !subclassSelection && (
         <div className="p-3 rounded-lg border border-purple-300 bg-purple-50/30">
           <div className="flex items-center gap-2 mb-1">
             <Crown className="h-3.5 w-3.5 text-purple-600" />
@@ -248,7 +248,7 @@ export function StepFeatures() {
         </div>
       )}
 
-      {show("features") && !subclassOnly && character.class === "Warlock" && info.level >= 2 && (() => {
+      {show("features") && !subclassOnly && character.class === "Warlock" && info.level >= 2 && !info.rules2024 && (() => {
         const invocationFeature = info.classFeatureChoices?.find(fc => fc.name === "Eldritch Invocations");
         if (!invocationFeature) return null;
         const currentInvocations = invocationSelections;

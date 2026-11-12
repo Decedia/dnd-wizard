@@ -540,7 +540,8 @@ export function getStaticSubclasses(className: string, sources?: string[], rules
   return filtered
     .filter((s) => !sources || sources.length === 0 || sources.includes(s.source || "PHB"))
     .map((s) => {
-      const subChoices = choicesMap[s.name] || {};
+      // 2024 subclasses carry their own pick lists.
+      const subChoices = (is2024 ? s.featureChoices : choicesMap[s.name]) || {};
       return {
         index: s.index,
         name: s.name,

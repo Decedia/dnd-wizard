@@ -464,6 +464,11 @@ const FEAT_OPTIONS_2024: Record<string, FeatOptionGroup[]> = {
   Skilled: repeated([
     optionGroup("skill_or_tool", "feat.opt.skillOrTool", "Skill or Tool", [...SKILLS, ...TOOLS], 3),
   ]),
+  // General feats and Epic Boons give +1 to an ability (Epic Boons up to 30).
+  Grappler: [abilityGroup("str", "dex")],
+  ...Object.fromEntries(
+    ["Boon of Combat Prowess", "Boon of Dimensional Travel", "Boon of Fate", "Boon of Irresistible Offense", "Boon of Spell Recall", "Boon of the Night Spirit", "Boon of Truesight"].map((name) => [name, [abilityGroup(...ALL_ABILITIES)]]),
+  ),
 };
 
 export function getFeatOptionGroups(featName: string, ruleset?: string): FeatOptionGroup[] {

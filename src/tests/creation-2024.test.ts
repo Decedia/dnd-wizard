@@ -23,6 +23,7 @@ import { buildLevelInfos } from "@/components/level-up/level-infos";
 import { getStaticClass } from "@/lib/srd-client";
 import { CLASS_GEAR_2024, BACKGROUND_GEAR_2024 } from "@/data/starting-gear-2024";
 import { findCatalogItem } from "@/data/item-catalog";
+import { applyFeatGrants, featAbilityIncreases } from "@/lib/feat-grants";
 
 const base = (patch: Partial<Character> = {}): Character => ({ ...createEmptyCharacter(), ruleset: "2024", sources: ["PHB"], ...patch });
 
@@ -182,5 +183,87 @@ describe("2024 level 1", () => {
   test("Protector and Warden train armor and weapons", () => {
     const c = applyClassChoices2024(base({ class: "Cleric", featureSelections: { "class-feature-1-Divine Order": ["Protector"] } }));
     expect(c.otherProficiencies).toBe("Martial Weapons, Heavy Armor");
+  });
+});
+
+describe("2024 level-up", () => {
+  const infoAt = (className: string, level: number, patch: Partial<Character> = {}, subclass = "") => {
+    const c = base({ class: className, level: level - 1, int: 16, wis: 16, cha: 16, subclass, ...patch });
+    return buildLevelInfos(c, level, getStaticClass(className, "2024"), subclass, level - 1, false, "en").at(-1)!;
+  };
+  const choice = (info: ReturnType<typeof infoAt>, name: string) => info.classFeatureChoices?.find((c) => c.name === name);
+  const names = (info: ReturnType<typeof infoAt>, name: string) => choice(info, name)?.options.map((o) => o.name) || [];
+
+  test("Warlock invocations follow the table, their level and their pact", () => {
+    expect(choice(infoAt("Warlock", 2), "Eldritch Invocations")?.count).toBe(2);
+    expect(names(infoAt("Warlock", 2), "Eldritch Invocations")).toContain("Devil's Sight");
+    expect(names(infoAt("Warlock", 2), "Eldritch Invocations")).not.toContain("Thirsting Blade");
+    expect(choice(infoAt("Warlock", 3), "Eldritch Invocations")).toBeUndefined();
+    const blade = { featureSelections: { "class-feature-1-Eldritch Invocations": ["Pact of the Blade"] } };
+    expect(names(infoAt("Warlock", 5, blade), "Eldritch Invocations")).toContain("Thirsting Blade");
+    expect(names(infoAt("Warlock", 5, blade), "Eldritch Invocations")).not.toContain("Pact of the Blade");
+    expect(names(infoAt("Warlock", 5), "Eldritch Invocations")).not.toContain("Thirsting Blade");
+    expect(infoAt("Warlock", 5).classFeatures.find((v) => v.name === "Invocations")?.value).toBe("5");
+  });
+
+  test("Mystic Arcanum offers that level's Warlock spells", () => {
+    const opts = names(infoAt("Warlock", 11), "Mystic Arcanum (6th level)");
+    expect(opts.length).toBeGreaterThan(0);
+    expect(opts).toContain("Circle of Death");
+  });
+
+  test("Metamagic at 2, 10 and 17, two each, never twice", () => {
+    expect(choice(infoAt("Sorcerer", 2), "Metamagic")?.count).toBe(2);
+    expect(names(infoAt("Sorcerer", 2), "Metamagic")).toHaveLength(10);
+    const later = infoAt("Sorcerer", 10, { featureSelections: { "class-feature-2-Metamagic": ["Quickened Spell, Subtle Spell"] } });
+    expect(names(later, "Metamagic")).not.toContain("Quickened Spell");
+    expect(names(later, "Metamagic")).toHaveLength(8);
+  });
+
+  test("Fighters train more mastery weapons at 4, 10 and 16", () => {
+    const at4 = infoAt("Fighter", 4, { featureSelections: { "class-feature-1-Weapon Mastery": ["Longsword, Shortbow, Greataxe"] } });
+    expect(choice(at4, "Weapon Mastery")?.count).toBe(1);
+    expect(names(at4, "Weapon Mastery")).not.toContain("Longsword");
+    expect(choice(infoAt("Fighter", 5), "Weapon Mastery")).toBeUndefined();
+    expect(choice(infoAt("Fighter", 16), "Weapon Mastery")?.count).toBe(1);
+  });
+
+  test("subclass picks: Champion's second style skips the first, Hunter's Prey, Draconic affinity", () => {
+    const champ = infoAt("Fighter", 7, { featureSelections: { "class-feature-1-Fighting Style": ["Defense"] } }, "Champion");
+    const style = champ.subclassFeatureChoices?.find((c) => c.name === "Additional Fighting Style");
+    expect(style?.options.map((o) => o.name)).not.toContain("Defense");
+    expect(style?.options.map((o) => o.name)).toContain("Archery");
+    expect(infoAt("Ranger", 3, {}, "Hunter").subclassFeatureChoices?.find((c) => c.name === "Hunter's Prey")?.options.map((o) => o.name)).toEqual(["Colossus Slayer", "Horde Breaker"]);
+    expect(infoAt("Sorcerer", 6, {}, "Draconic Sorcery").subclassFeatureChoices?.[0].options).toHaveLength(5);
+    expect(infoAt("Bard", 3, {}, "College of Lore").subclassFeatureChoices?.[0].count).toBe(3);
+  });
+
+  test("level 19 is a feat pick, and Bard's Magical Secrets adds no extra spells", () => {
+    const l19 = infoAt("Rogue", 19);
+    expect([l19.asi, l19.epicBoon]).toEqual([true, true]);
+    expect(infoAt("Rogue", 18).asi).toBe(false);
+    const bard10 = infoAt("Bard", 10);
+    expect([bard10.magicalSecretsCount, bard10.spellSelectionCount]).toEqual([0, 1]);
+  });
+
+  test("Ranger and Wizard expertise; class numbers come from the 2024 table", () => {
+    const skills = { skills: { Arcana: true, Stealth: true, History: true } };
+    expect(infoAt("Ranger", 2, skills).expertise?.count).toBe(1);
+    expect(infoAt("Wizard", 2, skills).expertise?.availableOptions.sort()).toEqual(["Arcana", "History"]);
+    expect(infoAt("Barbarian", 5).classFeatures.find((v) => v.name === "Rage Uses")?.value).toBe("3");
+    expect(infoAt("Barbarian", 5).features.map((f) => f.name)).not.toContain("Barbarian Subclass");
+  });
+
+  test("Primal Knowledge and Deft Explorer picks are applied", () => {
+    const barb = applyClassChoices2024(base({ class: "Barbarian", level: 3, featureSelections: { "class-feature-3-Primal Knowledge": ["Perception"] } }));
+    expect(barb.skills.Perception).toBe(true);
+    const ranger = applyClassChoices2024(base({ class: "Ranger", level: 2, featureSelections: { "class-feature-2-Deft Explorer": ["Elvish, Sylvan"] } }));
+    expect(ranger.languages).toEqual(expect.arrayContaining(["Elvish", "Sylvan"]));
+  });
+
+  test("an Epic Boon raises a score past 20, Grappler doesn't", () => {
+    expect(applyFeatGrants(base({ str: 20 }), "Boon of Combat Prowess", { ability: "str" }).str).toBe(21);
+    expect(applyFeatGrants(base({ str: 20 }), "Grappler", { ability: "str" }).str).toBe(20);
+    expect(featAbilityIncreases("Grappler", { ability: "dex" }, "2024")).toEqual({ dex: 1 });
   });
 });

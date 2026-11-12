@@ -192,8 +192,7 @@ export default function CharacterCreate() {
           router.replace(`/character?id=${final.id}`);
         }}
         minLevel={1}
-        // 2024 characters start at level 1 until the 2024 level-up is built.
-        maxLevel={character.ruleset === "2024" ? 1 : Math.max(10, character.rebuildOf?.level ?? 1)}
+        maxLevel={Math.max(10, character.rebuildOf?.level ?? 1)}
         initialLevel={character.rebuildOf?.level}
         title={character.rebuildOf ? t("rebuild.classLevelTitle", "Back to your level") : t("creator.startingLevel")}
         subtitle={character.rebuildOf

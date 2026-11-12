@@ -36,8 +36,10 @@ interface FeatSelectionModalProps {
   takenSpells?: Set<string>;
   /** "2024" lists 2024 feats with their 2024 picks. */
   ruleset?: string;
-  /** Only feats of this 2024 category ("Origin"). */
-  category?: string;
+  /** Only feats of this 2024 category ("Origin"), or of these categories. */
+  category?: string | string[];
+  /** 2024: leave out feats that need a higher character level (Epic Boons before 19). */
+  characterLevel?: number;
   /** Only this feat (a background's Origin feat, which is set). */
   onlyFeat?: string;
   /** Picks made already and not asked again (the background's Magic Initiate list). */
@@ -69,6 +71,7 @@ export function FeatSelectionModal({
   takenSpells,
   ruleset,
   category,
+  characterLevel,
   onlyFeat,
   fixedOptions,
   initialOptions,
@@ -78,9 +81,12 @@ export function FeatSelectionModal({
   const feats = useMemo(
     () =>
       getStaticFeats(sources, ruleset, language).filter(
-        (f) => (!category || f.category === category) && (!onlyFeat || f.name === onlyFeat),
+        (f) =>
+          (!category || (Array.isArray(category) ? category.includes(f.category || "") : f.category === category)) &&
+          (!onlyFeat || f.name === onlyFeat) &&
+          (!characterLevel || !f.minLevel || f.minLevel <= characterLevel),
       ),
-    [sources, ruleset, language, category, onlyFeat],
+    [sources, ruleset, language, category, characterLevel, onlyFeat],
   );
   const [search, setSearch] = useState("");
   const [pendingSelection, setPendingSelection] = useState<string | null>(selectedFeat || null);
