@@ -12,6 +12,7 @@ import { applySubclassFeatures, applySubclassSpellGrants, syncBaseFeatures } fro
 import { normalizeDescription } from "@/lib/level-up";
 import { applyFeatGrants, encodeFeatOptions, featAbilityIncreases } from "@/lib/feat-grants";
 import { REPEATABLE_FEATS } from "@/lib/feature-groups";
+import { applyClassChoices2024 } from "@/lib/origin-2024";
 import { isUnknownAsi, type LevelPicks } from "@/lib/level-choices";
 import { usesOptionalClassFeatures } from "@/data/optional-class-features";
 import { getTakenSpellNames } from "@/lib/taken-spells";
@@ -28,6 +29,23 @@ import { ABILITIES, AbilityKey, LevelInfo, LevelPart, LevelUpWizardProps, buildL
 import { LevelCard } from "./level-up/LevelCard";
 import { StatCard } from "./level-up/StatCard";
 
+
+/** The ability increases one ASI pick gives: +2, +1/+1, or a feat's +1. */
+function buildAllocation(st: { mode: "single" | "double" | "feat"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey; feat?: string; featOptions?: Record<string, string> } | undefined, ruleset: string | undefined): Record<AbilityKey, number> {
+  const alloc: Record<AbilityKey, number> = { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 };
+  if (!st) return alloc;
+  if (st.mode === "single" && st.single) alloc[st.single] = 2;
+  if (st.mode === "double") {
+    if (st.d1) alloc[st.d1] = 1;
+    if (st.d2) alloc[st.d2] = 1;
+  }
+  // A feat's +1 (Resilient, Actor, half feats) counts for previews and later picks.
+  // When the level-up is saved, applyFeatGrants adds it, not this allocation.
+  if (st.mode === "feat" && st.feat) {
+    for (const [k, v] of Object.entries(featAbilityIncreases(st.feat, st.featOptions, ruleset))) alloc[k as AbilityKey] += v;
+  }
+  return alloc;
+}
 
 export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLevel, title, subtitle, startFromLevelOne, initialLevel, auto, autoView, onAutoStuck, subclassOnly, suggestAll, redo }: LevelUpWizardProps) {
   const { language, tDesc } = useLanguage();
@@ -152,10 +170,17 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     prevTargetLevelRef.current = targetLevel;
   }, [targetLevel]);
 
-  const baseLevelInfos = useMemo(
-    () => buildLevelInfos(character, targetLevel, classData, subclassSelection, currentLevel, !!startFromLevelOne, language),
-    [character, targetLevel, classData, subclassSelection, currentLevel, startFromLevelOne, language]
-  );
+  // Picks made earlier in this same level-up count as known, so a 2024 invocation that needs
+  // a pact (Thirsting Blade needs Pact of the Blade) opens up at a later level of the jump.
+  const baseLevelInfos = useMemo(() => {
+    const pending = Object.fromEntries(
+      Object.entries(classFeatureChoices).flatMap(([lvl, choices]) =>
+        Object.entries(choices || {}).filter(([, v]) => v).map(([name, value]) => [`class-feature-${lvl}-${name}`, [value]])
+      )
+    );
+    const withPending = Object.keys(pending).length ? { ...character, featureSelections: { ...character.featureSelections, ...pending } } : character;
+    return buildLevelInfos(withPending, targetLevel, classData, subclassSelection, currentLevel, !!startFromLevelOne, language);
+  }, [character, classFeatureChoices, targetLevel, classData, subclassSelection, currentLevel, startFromLevelOne, language]);
   // A replaced spell is swapped for a new one, so that level picks one more spell.
   // A feature that comes back at a later level (maneuvers, disciplines, Metamagic,
   // Expertise) hides what other levels of this same level-up already picked, so a
@@ -195,7 +220,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     const onlyLogged = (info: LevelInfo): LevelInfo => ({
       ...info,
       asi: info.asi && !!redo?.asi,
-      classFeatureChoices: info.classFeatureChoices?.filter((fc) => fc.name !== "Eldritch Invocations" || redo?.invocations !== undefined),
+      classFeatureChoices: info.classFeatureChoices?.filter((fc) => fc.name !== "Eldritch Invocations" || info.rules2024 || redo?.invocations !== undefined),
       hasSpellSelection: info.hasSpellSelection && redo?.spells !== undefined,
       canReplaceSpell: info.canReplaceSpell && redo?.spells !== undefined,
       magicalSecretsCount: redo?.magicalSecrets !== undefined ? info.magicalSecretsCount : 0,
@@ -203,6 +228,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       circleTerrainSelection: false,
       bonusCantripSelection: false,
     });
+    const fightingStyles = new Set(Object.values(classFeatureChoices).map((choices) => choices?.["Fighting Style"]).filter(Boolean));
     return baseLevelInfos.map((raw) => {
       const info = subclassOnly ? onlySubclass(raw) : redo ? onlyLogged(raw) : raw;
       const expertiseTaken = new Set(
@@ -215,7 +241,10 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
         ...info,
         ...(replacedSpells[info.level] ? { hasSpellSelection: true, spellSelectionCount: info.spellSelectionCount + 1 } : {}),
         ...(orderCantrip ? { hasSpellSelection: true, cantripSelectionCount: info.cantripSelectionCount + 1 } : {}),
-        subclassFeatureChoices: withoutOthers(info.subclassFeatureChoices, subclassFeatureChoices, info.level),
+        subclassFeatureChoices: withoutOthers(info.subclassFeatureChoices, subclassFeatureChoices, info.level)?.map((fc) =>
+          // Champion's Additional Fighting Style can't repeat the Fighting Style picked in this same level-up.
+          fc.name === "Additional Fighting Style" ? { ...fc, options: fc.options.filter((o) => !fightingStyles.has(o.name)) } : fc
+        ),
         classFeatureChoices: withoutOthers(info.classFeatureChoices, classFeatureChoices, info.level),
         expertise: info.expertise && {
           ...info.expertise,
@@ -241,21 +270,6 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   const setReplacedInvocation = (level: number, invocation: string) => setReplacedInvocations((prev) => ({ ...prev, [level]: invocation }));
   const setExpertise = (level: number, list: string[]) => setExpertiseSelections((prev) => ({ ...prev, [level]: list }));
 
-  const buildAllocation = (st?: { mode: "single" | "double" | "feat"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey; feat?: string; featOptions?: Record<string, string> }): Record<AbilityKey, number> => {
-    const alloc: Record<AbilityKey, number> = { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 };
-    if (!st) return alloc;
-    if (st.mode === "single" && st.single) alloc[st.single] = 2;
-    if (st.mode === "double") {
-      if (st.d1) alloc[st.d1] = 1;
-      if (st.d2) alloc[st.d2] = 1;
-    }
-    // A feat's +1 (Resilient, Actor, half feats) counts for previews and later picks.
-    // When the level-up is saved, applyFeatGrants adds it, not this allocation.
-    if (st.mode === "feat" && st.feat) {
-      for (const [k, v] of Object.entries(featAbilityIncreases(st.feat, st.featOptions))) alloc[k as AbilityKey] += v;
-    }
-    return alloc;
-  };
 
   const baseScores = useCallback(
     (excludeLevel?: number): Record<AbilityKey, number> => {
@@ -267,7 +281,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
         const lvl = Number(lvlStr);
         if (lvl === excludeLevel) continue;
         if (!st || !st.mode) continue;
-        const alloc = buildAllocation(st);
+        const alloc = buildAllocation(st, character.ruleset);
         (Object.keys(alloc) as AbilityKey[]).forEach((k) => (base[k] += alloc[k]));
       }
       return base;
@@ -279,7 +293,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     const pendingAbilityChanges: Record<AbilityKey, number> = { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 };
     for (const [, st] of Object.entries(asiSelections)) {
       if (!st || !st.mode) continue;
-      const alloc = buildAllocation(st);
+      const alloc = buildAllocation(st, character.ruleset);
       (Object.keys(alloc) as AbilityKey[]).forEach((k) => { pendingAbilityChanges[k] += alloc[k]; });
     }
 
@@ -323,7 +337,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       features: pendingFeatures,
       featureSelections: pendingFeatureSelections,
     };
-  }, [character, asiSelections, subclassSelection, subclassFeatureChoices, classFeatureChoices, expertiseSelections, invocationSelections, pactTomeCantrips, buildAllocation]);
+  }, [character, asiSelections, subclassSelection, subclassFeatureChoices, classFeatureChoices, expertiseSelections, invocationSelections, pactTomeCantrips]);
 
   // Every spell the character has or has picked anywhere in this wizard, so no
   // picker offers a spell twice. Free spells are counted at the target level.
@@ -347,7 +361,8 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   };
 
   const isFeatureSelected = useCallback((lvl: number, name: string, isSubclass: boolean): boolean => {
-    if (name === "Eldritch Invocations") {
+    // 2014 invocations have their own picker; 2024 ones are an ordinary feature pick.
+    if (name === "Eldritch Invocations" && character.ruleset !== "2024") {
       const stateValue = invocationSelections[lvl];
       if (stateValue && stateValue.length > 0) return true;
       const persisted = character.featureSelections?.["warlock-invocations"];
@@ -486,6 +501,8 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     draft.toolProficiencies = Array.from(newToolProficiencies);
     // Expertise picked at a level-up counts on the sheet (it was only kept as a pick before).
     draft.expertise = [...new Set([...(draft.expertise || []), ...Object.values(expertiseSelections).flat()])];
+    // 2024 picks that train something (Primal Knowledge's skill, Deft Explorer's languages, Protector).
+    draft = { ...applyClassChoices2024({ ...draft, level: targetLevel }), level: draft.level };
 
     if (startFromLevelOne) {
       const levelHp: Record<number, number> = { 1: hitDie + conMod };
@@ -551,7 +568,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
           draft = applyFeatGrants(draft, st.feat, st.featOptions);
         }
       } else {
-        const alloc = buildAllocation(st);
+        const alloc = buildAllocation(st, character.ruleset);
         const hasAlloc = Object.values(alloc).some((v) => v > 0);
         if (!hasAlloc) continue;
         draft = { ...draft, appliedAsi: [...(draft.appliedAsi || []), lvl] };
@@ -1054,11 +1071,16 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   const [showAllFor, setShowAllFor] = useState<Record<string, boolean>>({});
   const whyText = (why: Why) => (language === "id" ? why.id : why.en);
   const featNames = useMemo(() => {
-    const owned = new Set((character.features || []).map((f) => f.name));
-    return getStaticFeats(character.sources, character.ruleset)
+    // A Fighting Style picked as a class feature counts as owned too.
+    const owned = new Set([...(character.features || []).map((f) => f.name), ...Object.values(character.featureSelections || {}).flat()]);
+    // 2024: an Ability Score Improvement level offers General feats (the +2 / +1+1 is one of them),
+    // and Fighting Style feats to classes that have that feature.
+    const allowed2024 = new Set(["General", ...(["Fighter", "Paladin", "Ranger"].includes(character.class) ? ["Fighting Style"] : [])]);
+    return getStaticFeats(character.ruleset === "2024" ? [] : character.sources, character.ruleset)
+      .filter((f) => character.ruleset !== "2024" || (allowed2024.has(f.category || "") && f.name !== "Ability Score Improvement"))
       .map((f) => f.name)
-      .filter((name) => !owned.has(name) && getFeatOptionGroups(name).length === 0);
-  }, [character.features, character.sources, character.ruleset]);
+      .filter((name) => !owned.has(name) && getFeatOptionGroups(name, character.ruleset).length === 0);
+  }, [character.features, character.featureSelections, character.sources, character.ruleset, character.class]);
   const classSpellList = useMemo(
     () => getStaticSpells(character.sources, character.ruleset).filter((s) => s.classes?.includes(character.class)),
     [character.sources, character.ruleset, character.class]
@@ -1129,7 +1151,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
         });
       }
       const invocations = classChoice("Eldritch Invocations");
-      if (invocations && character.class === "Warlock" && lvl >= 2) {
+      if (invocations && character.class === "Warlock" && lvl >= 2 && !info.rules2024) {
         const count = invocations.count || 1;
         const current = invocationSelections[lvl] || [];
         const knowsEldritchBlast =
@@ -1328,7 +1350,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       }
       for (const [isSubclass, list] of [[false, info.classFeatureChoices], [true, info.subclassFeatureChoices]] as const) {
         for (const fc of list || []) {
-          if (fc.name === "Eldritch Invocations" || isFeatureSelected(lvl, fc.name, isSubclass)) continue;
+          if ((fc.name === "Eldritch Invocations" && !info.rules2024) || isFeatureSelected(lvl, fc.name, isSubclass)) continue;
           const options = fc.name === "Pact Boon"
             ? getPactBoons().filter((b: any) => b.source !== "TCE" || usesOptionalClassFeatures(character)).map((b: any) => b.name)
             : fc.options.map((o) => o.name);
@@ -1346,7 +1368,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
         changed = true;
       }
       const invocations = info.classFeatureChoices?.find((fc) => fc.name === "Eldritch Invocations");
-      if (invocations && cls === "Warlock" && lvl >= 2 && !(invocationSelections[lvl] || []).length && (pactBoon || lvl < 3)) {
+      if (invocations && cls === "Warlock" && lvl >= 2 && !info.rules2024 && !(invocationSelections[lvl] || []).length && (pactBoon || lvl < 3)) {
         const knowsEldritchBlast = [...Object.entries(spellSelections), ...Object.entries(pickedNow)].some(([l, picks]) => Number(l) <= lvl && picks.includes("Eldritch Blast:0"));
         const known = new Set(Object.entries(invocationSelections).filter(([l]) => Number(l) !== lvl).flatMap(([, picks]) => picks || []));
         const open = getAvailableInvocations(lvl, pactBoon, [], knowsEldritchBlast, character.sources, usesOptionalClassFeatures(character))

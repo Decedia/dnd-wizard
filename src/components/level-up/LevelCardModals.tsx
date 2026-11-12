@@ -3,6 +3,9 @@
 import { SpellSelectionModal } from "../modals/SpellSelectionModal";
 import { REPEATABLE_FEATS } from "@/lib/feature-groups";
 import { FeatSelectionModal } from "../modals/FeatSelectionModal";
+
+/** 2024 classes with the Fighting Style feature, who may take Fighting Style feats. */
+const FIGHTING_STYLE_CLASSES_2024 = ["Fighter", "Paladin", "Ranger"];
 import { SubclassDetailsModal } from "../modals/SubclassDetailsModal";
 import { SubclassSelectionModal } from "../modals/SubclassSelectionModal";
 import { FeatureSelectionModal } from "../modals/FeatureSelectionModal";
@@ -183,8 +186,14 @@ export function LevelCardModals() {
       {showAsiFeatModal && (
         <FeatSelectionModal
           selectedFeat={asiSelection?.feat}
-          sources={character.sources}
+          sources={character.ruleset === "2024" ? [] : character.sources}
+          ruleset={character.ruleset}
+          // 2024: General feats, Fighting Style feats for classes with that feature, Epic Boons from 19.
+          category={character.ruleset === "2024" ? ["General", ...(FIGHTING_STYLE_CLASSES_2024.includes(character.class) ? ["Fighting Style"] : []), ...(info.epicBoon ? ["Epic Boon"] : [])] : undefined}
+          characterLevel={character.ruleset === "2024" ? info.level : undefined}
           disabledFeats={[
+            // The +2 / +1+1 choice above is the Ability Score Improvement feat.
+            ...(character.ruleset === "2024" ? ["Ability Score Improvement"] : []),
             ...(character.features || []).filter((f: any) => f.name && f.source !== "custom").map((f: any) => f.name),
             ...Object.values(character.featureSelections || {}).flat(),
             // Feats picked at other levels of this level-up.

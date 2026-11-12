@@ -28,10 +28,14 @@ describe("2024 classes", () => {
       expect(c.subclassLevel).toBe(3);
       expect(c.levels).toHaveLength(20);
       c.levels.forEach((lvl: any, i: number) => {
-        expect([i + 1, lvl.features.map((f: any) => f.name)]).toEqual([i + 1, want.levels[i].features]);
+        // Picks added on top of the table (more invocations, more mastery weapons) are left out;
+        // Mystic Arcanum carries its spell level in the name.
+        const fromTable = lvl.features.filter((f: any) => !f.added).map((f: any) => f.name.replace(/^Mystic Arcanum \(\dth level\)$/, "Mystic Arcanum"));
+        expect([i + 1, fromTable]).toEqual([i + 1, want.levels[i].features]);
         expect([i + 1, lvl.spellSlots ?? {}]).toEqual([i + 1, want.levels[i].slots]);
         expect([i + 1, lvl.classSpecific ?? null]).toEqual([i + 1, want.levels[i].classSpecific ?? null]);
-        expect(lvl.asi).toBe(want.levels[i].features.includes("Ability Score Improvement"));
+        // The Epic Boon level is a feat pick too.
+        expect(lvl.asi).toBe(want.levels[i].features.includes("Ability Score Improvement") || want.levels[i].features.includes("Epic Boon"));
         for (const f of lvl.features) expect(f.description.length).toBeGreaterThan(0);
       });
     });

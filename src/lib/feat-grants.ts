@@ -1,5 +1,5 @@
 import { getFeatOptionGroups } from "@/data/feat-options";
-import { getStaticSpells } from "./srd-client";
+import { getStaticFeat, getStaticSpells } from "./srd-client";
 import { SKILLS, type Character } from "./storage";
 import { normalizeDescription } from "./level-up";
 
@@ -85,10 +85,12 @@ export function applyFeatGrants(character: Character, featName: string, options:
   const skillNames = new Set<string>(SKILLS.map((s) => s.name));
 
   const scores: Record<string, number> = {};
+  // A 2024 Epic Boon can raise a score to 30.
+  const cap = ruleset === "2024" && getStaticFeat(featName, ruleset)?.category === "Epic Boon" ? 30 : MAX_SCORE;
   const raise = (ability: string, amount: number) => {
     if (!ABILITY_KEYS.includes(ability)) return;
     const current = scores[ability] ?? ((character as any)[ability] as number) ?? 10;
-    scores[ability] = Math.min(MAX_SCORE, current + amount);
+    scores[ability] = Math.min(cap, current + amount);
   };
   for (const [ability, amount] of Object.entries(featAbilityIncreases(featName, options, ruleset))) raise(ability, amount);
 

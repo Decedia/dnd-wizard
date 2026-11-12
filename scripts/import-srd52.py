@@ -272,7 +272,126 @@ CLASS_CHOICES = {
     ]},
 }
 
+# Metamagic options (SRD 5.2), in own words. Sorcery point cost first.
+METAMAGIC = [
+    option("Careful Spell", "1 point. Creatures you pick automatically pass the spell's saving throw and take no damage if they would take half."),
+    option("Distant Spell", "1 point. Double the spell's range, or make a Touch spell reach 30 feet."),
+    option("Empowered Spell", "1 point. Reroll some of the spell's damage dice (up to your Charisma modifier) and keep the new rolls."),
+    option("Extended Spell", "1 point. Double the spell's duration (up to 24 hours) and get Advantage on saves to keep Concentration on it."),
+    option("Heightened Spell", "2 points. One target has Disadvantage on its saves against the spell."),
+    option("Quickened Spell", "2 points. Cast the spell as a Bonus Action, if you haven't cast a level 1+ spell this turn."),
+    option("Seeking Spell", "1 point. Reroll a missed spell attack roll."),
+    option("Subtle Spell", "1 point. Cast without Verbal, Somatic or Material components that have no cost, so no one sees you cast."),
+    option("Transmuted Spell", "1 point. Change the spell's damage type to Acid, Cold, Fire, Lightning, Poison or Thunder."),
+    option("Twinned Spell", "1 point. Cast the spell as if one level higher, when that lets it target one more creature."),
+]
+METAMAGIC_PICKS = {2: 2, 10: 2, 17: 2}
+
+
+def invocation(name, description, min_level=1, requires=None):
+    out = option(name, description)
+    if min_level > 1:
+        out["minLevel"] = min_level
+    if requires:
+        out["requires"] = requires
+    return out
+
+
+# Eldritch Invocations (SRD 5.2) with their level and pact prerequisites, in own words.
+# Lessons of the First Ones is left out: it needs an Origin feat pick the wizard can't make yet.
+INVOCATIONS = [
+    invocation("Agonizing Blast", "Add your Charisma modifier to the damage of one Warlock cantrip that deals damage (like Eldritch Blast).", 2),
+    invocation("Armor of Shadows", "Cast Mage Armor on yourself at will, without a spell slot."),
+    invocation("Ascendant Step", "Cast Levitate on yourself at will, without a spell slot.", 5),
+    invocation("Devil's Sight", "See normally in Dim Light and Darkness, even magical Darkness, out to 120 feet.", 2),
+    invocation("Devouring Blade", "Thirsting Blade gives you two extra attacks instead of one.", 12, "Thirsting Blade"),
+    invocation("Eldritch Mind", "Advantage on Constitution saving throws to keep Concentration."),
+    invocation("Eldritch Smite", "When you hit with your pact weapon, spend a Pact Magic slot for extra Force damage (1d8, plus 1d8 per slot level) and you can knock the target Prone.", 5, "Pact of the Blade"),
+    invocation("Eldritch Spear", "One Warlock cantrip that deals damage gets a much longer range (30 feet per Warlock level).", 2),
+    invocation("Fiendish Vigor", "Cast False Life on yourself at will, without a spell slot, and get the highest number of Temporary Hit Points.", 2),
+    invocation("Gaze of Two Minds", "As a Bonus Action, touch a willing creature and see and hear through its senses.", 5),
+    invocation("Gift of the Depths", "Breathe underwater, swim at your Speed, and cast Water Breathing once per Long Rest without a slot.", 5),
+    invocation("Gift of the Protectors", "Creatures who write their names in your Book of Shadows drop to 1 Hit Point instead of 0, once each per Long Rest.", 9, "Pact of the Tome"),
+    invocation("Investment of the Chain Master", "Your familiar gets fly and swim speeds, attacks when you command it with a Bonus Action, and uses your spell save DC.", 5, "Pact of the Chain"),
+    invocation("Lifedrinker", "Your pact weapon deals an extra 1d6 Necrotic, Psychic or Radiant damage on a hit, and once per turn you can spend a Hit Die to heal.", 9, "Pact of the Blade"),
+    invocation("Mask of Many Faces", "Cast Disguise Self at will, without a spell slot.", 2),
+    invocation("Master of Myriad Forms", "Cast Alter Self at will, without a spell slot.", 5),
+    invocation("Misty Visions", "Cast Silent Image at will, without a spell slot.", 2),
+    invocation("One with Shadows", "While in Dim Light or Darkness, cast Invisibility on yourself without a spell slot.", 5),
+    invocation("Otherworldly Leap", "Cast Jump on yourself at will, without a spell slot.", 2),
+    invocation("Pact of the Blade", "Conjure a pact weapon or bond with a magic weapon. You use Charisma to hit and for damage with it."),
+    invocation("Pact of the Chain", "You learn Find Familiar and your familiar can take special forms, such as an imp or a sprite."),
+    invocation("Pact of the Tome", "A Book of Shadows with three cantrips and two 1st-level rituals of your choice from any class."),
+    invocation("Repelling Blast", "When a Warlock cantrip that deals damage hits a Large or smaller creature, push it up to 10 feet away.", 2),
+    invocation("Thirsting Blade", "Attack twice with your pact weapon when you take the Attack action.", 5, "Pact of the Blade"),
+    invocation("Visions of Distant Realms", "Cast Arcane Eye at will, without a spell slot.", 9),
+    invocation("Whispers of the Grave", "Cast Speak with Dead at will, without a spell slot.", 7),
+    invocation("Witch Sight", "You have Truesight out to 30 feet.", 15),
+]
+
+# Standard and rare languages (SRD 5.2), minus Common which everyone speaks.
+LANGUAGES_2024 = ["Common Sign Language", "Draconic", "Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc", "Abyssal", "Celestial", "Deep Speech", "Infernal", "Primordial", "Sylvan", "Undercommon"]
+
+# Picks at higher levels that the source tables only describe in text. Descriptions are own words.
+LEVEL_CHOICES = {
+    ("Barbarian", "Primal Knowledge"): {"type": "single", "grants": "skill", "description": "Pick one more skill from the Barbarian list.", "options": [option(s, "") for s in ["Animal Handling", "Athletics", "Intimidation", "Nature", "Perception", "Survival"]]},
+    ("Ranger", "Deft Explorer"): {"type": "multiple", "count": 2, "grants": "language", "description": "Pick two languages. (Your Expertise pick is asked separately.)", "options": [option(n, "") for n in LANGUAGES_2024]},
+    ("Cleric", "Blessed Strikes"): {"type": "single", "options": [
+        option("Divine Strike", "Once per turn, a weapon hit deals an extra 1d8 Necrotic or Radiant damage (2d8 at level 14)."),
+        option("Potent Spellcasting", "Add your Wisdom modifier to the damage of your Cleric cantrips."),
+    ]},
+    ("Druid", "Elemental Fury"): {"type": "single", "options": [
+        option("Potent Spellcasting", "Add your Wisdom modifier to the damage of your Druid cantrips."),
+        option("Primal Strike", "Once per turn, a weapon or Beast-form hit deals an extra 1d8 Cold, Fire, Lightning or Thunder damage (2d8 at level 15)."),
+    ]},
+}
+
 fighting_styles = [f for f in feats_raw if f["type"] == "fighting-style"]
+spells_by_level = {}
+for sp in spells_raw:
+    if any(cl["name"] == "Warlock" for cl in sp["classes"]):
+        spells_by_level.setdefault(sp["level"], []).append(sp["name"])
+ORDINAL = {6: "6th", 7: "7th", 8: "8th", 9: "9th"}
+ARCANUM_LEVELS = {11: 6, 13: 7, 15: 8, 17: 9}
+
+
+def add_feature(c, lvl, feature):
+    """A pick the source table leaves out, added to that level's features (marked, so the lock test can tell)."""
+    feature = {**feature, "added": True}
+    c["levels"][lvl - 1]["features"].append(feature)
+    c["features"].append({**feature, "level": lvl})
+
+
+for c in classes:
+    name = c["name"]
+    if name == "Warlock":
+        known = {lv["level"]: (lv.get("classSpecific") or {}).get("eldritch_invocations", 0) for lv in c["levels"]}
+        for lvl in range(2, 21):
+            gained = known[lvl] - known[lvl - 1]
+            if gained > 0:
+                add_feature(c, lvl, {"name": "Eldritch Invocations", "description": f"You learn {gained} more Eldritch Invocation{'s' if gained > 1 else ''}.", "choices": {"type": "multiple", "count": gained, "options": INVOCATIONS}})
+        for lvl, spell_level in ARCANUM_LEVELS.items():
+            for f in c["levels"][lvl - 1]["features"]:
+                if f["name"] == "Mystic Arcanum":
+                    f["name"] = f"Mystic Arcanum ({ORDINAL[spell_level]} level)"
+                    f["choices"] = {"type": "spells", "count": 1, "description": f"Pick one level {spell_level} Warlock spell. You can cast it once per Long Rest without a spell slot.", "options": [option(n, "") for n in sorted(spells_by_level.get(spell_level, []))]}
+            for f in c["features"]:
+                if f["name"] == "Mystic Arcanum" and f["level"] == lvl:
+                    f["name"] = f"Mystic Arcanum ({ORDINAL[spell_level]} level)"
+    if name == "Sorcerer":
+        for level in c["levels"]:
+            for f in level["features"]:
+                if f["name"] == "Metamagic" and level["level"] in METAMAGIC_PICKS:
+                    count = METAMAGIC_PICKS[level["level"]]
+                    f["choices"] = {"type": "multiple", "count": count, "description": f"Pick {count} Metamagic options.", "options": METAMAGIC}
+    for level in c["levels"]:
+        for f in level["features"]:
+            if (name, f["name"]) in LEVEL_CHOICES:
+                f["choices"] = LEVEL_CHOICES[(name, f["name"])]
+            # The Epic Boon level is a feat pick, like an Ability Score Improvement.
+            if f["name"] == "Epic Boon":
+                level["asi"] = True
+
 for c in classes:
     name = c["name"]
     if name in FIXES["weapon_mastery_flat"]:
@@ -293,6 +412,17 @@ for c in classes:
                 f["choices"] = {"type": "single", "options": [option(fs["name"] if fs["name"] != "Two Weapon Fighting" else FIXES["two_weapon_fighting"], clean(fs["description"])) for fs in fighting_styles]}
             elif (name, f["name"]) in CLASS_CHOICES and level["level"] == 1:
                 f["choices"] = CLASS_CHOICES[(name, f["name"])]
+    # More weapons to train as the Weapon Mastery column grows (Barbarian 4 and 10, Fighter 4, 10 and 16).
+    if name in MASTERY_WEAPONS:
+        for lvl in range(2, 21):
+            gained = c["weaponMastery"][str(lvl)] - c["weaponMastery"][str(lvl - 1)]
+            if gained > 0:
+                add_feature(c, lvl, {"name": "Weapon Mastery", "description": f"Train {gained} more kind{'s' if gained > 1 else ''} of weapon for Weapon Mastery.", "choices": {
+                    "type": "multiple",
+                    "count": gained,
+                    "description": f"Pick {gained} more kind{'s' if gained > 1 else ''} of weapon.",
+                    "options": [option(w["name"], f"{w['mastery']}: {mastery_raw[w['mastery']]}") for w in WEAPONS if MASTERY_WEAPONS[name](w)],
+                }})
     for f in c["features"]:
         match = next((x for lv in c["levels"] if lv["level"] == f["level"] for x in lv["features"] if x["name"] == f["name"] and "choices" in x), None)
         if match:
@@ -304,6 +434,26 @@ weapon_mastery = {
 }
 
 # ---------------------------------------------------------------- subclasses
+
+SKILL_NAMES = ["Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception", "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature", "Perception", "Performance", "Persuasion", "Religion", "Sleight of Hand", "Stealth", "Survival"]
+
+# Subclass features that ask for a pick, in the same shape as the 2014 subclass pick lists. Own words.
+SUBCLASS_CHOICES = {
+    "College of Lore": {"Bonus Proficiencies": {"count": 3, "grants": {"mode": "proficiency"}, "options": [option(n, "") for n in SKILL_NAMES]}},
+    "Champion": {"Additional Fighting Style": {"count": 1, "fightingStyle": True, "options": [option(fs["name"] if fs["name"] != "Two Weapon Fighting" else FIXES["two_weapon_fighting"], clean(fs["description"])) for fs in feats_raw if fs["type"] == "fighting-style"]}},
+    "Hunter": {
+        "Hunter's Prey": {"count": 1, "options": [
+            option("Colossus Slayer", "Once per turn, a weapon hit on a creature missing any Hit Points deals an extra 1d8 damage."),
+            option("Horde Breaker", "Once per turn, make one more attack with the same weapon against a different creature within 5 feet of the first target."),
+        ]},
+        "Defensive Tactics": {"count": 1, "options": [
+            option("Escape the Horde", "Opportunity Attacks against you have Disadvantage."),
+            option("Multiattack Defense", "After a creature hits you, its other attacks against you this turn have Disadvantage."),
+        ]},
+    },
+    "Circle of the Land": {"Circle of the Land Spells": {"count": 1, "options": [option(land, "Always-prepared spells: " + ", ".join(sp for lvl in sorted(spells, key=int) for sp in spells[lvl]) + ". You can change your land after a Long Rest.") for land, spells in LAND_SPELLS.items()]}},
+    "Draconic Sorcery": {"Elemental Affinity": {"count": 1, "options": [option(t, f"Resistance to {t} damage, and add your Charisma modifier to one damage roll of a spell that deals {t} damage.") for t in ["Acid", "Cold", "Fire", "Lightning", "Poison"]]}},
+}
 
 subclasses = []
 for s in subclasses_raw:
@@ -324,6 +474,8 @@ for s in subclasses_raw:
         "description": clean(s["description"]),
         "features": feats,
     }
+    if s["name"] in SUBCLASS_CHOICES:
+        entry["featureChoices"] = SUBCLASS_CHOICES[s["name"]]
     if s["name"] in SUBCLASS_SPELLS:
         entry["expandedSpells"] = SUBCLASS_SPELLS[s["name"]]
     if s["name"] == "Circle of the Land":

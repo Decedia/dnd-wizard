@@ -166,6 +166,10 @@ export interface LevelInfo {
   maxPrepared?: number;
   preparedCount?: number;
   expertise?: { count: number; selected: string[]; availableOptions: string[] };
+  /** 2024 rules: the level 19 Epic Boon feat (any feat you qualify for, Epic Boons suggested). */
+  epicBoon?: boolean;
+  /** 2024 rules: the level's info comes from SRD 5.2 tables. */
+  rules2024?: boolean;
 }
 
 export type ChoiceOption = { name: string; description: string; icon?: string };
@@ -222,11 +226,41 @@ export function getProficiencyBonus(level: number): number {
   return 6;
 }
 
-/** 2024 Expertise: new picks by class and level (SRD 5.2 class tables). */
+/** 2024 Expertise: new picks by class and level (SRD 5.2 class tables; Ranger's Deft Explorer, Wizard's Scholar). */
 const EXPERTISE_2024: Record<string, Record<number, number>> = {
   Rogue: { 1: 2, 6: 2 },
   Bard: { 2: 2, 9: 2 },
+  Ranger: { 2: 1, 9: 2 },
+  Wizard: { 2: 1 },
 };
+
+/** Scholar: the Wizard's expertise is one of these skills. */
+const SCHOLAR_SKILLS = ["Arcana", "History", "Investigation", "Medicine", "Nature", "Religion"];
+
+/** The numbers a 2024 class level gives, from the SRD 5.2 table columns. */
+function classValues2024(className: string, classSpecific: Record<string, any> | undefined, character: Character, level: number): { name: string; value: string }[] {
+  const cs = classSpecific || {};
+  const out: { name: string; value: string }[] = [];
+  const push = (name: string, value: unknown) => {
+    if (value !== undefined && value !== null && value !== 0) out.push({ name, value: String(value) });
+  };
+  push("Rage Uses", cs.rage_count);
+  if (cs.rage_damage_bonus) push("Rage Damage", `+${cs.rage_damage_bonus}`);
+  if (cs.bardic_inspiration_die) push("Bardic Inspiration", `d${cs.bardic_inspiration_die}`);
+  if (className === "Bard") push("Bardic Inspiration Uses", Math.max(1, getModifier(character.cha)));
+  push("Channel Divinity", cs.channel_divinity_charges);
+  push("Wild Shape", cs.wild_shape_uses);
+  push("Second Wind", cs.second_wind_uses);
+  push("Weapon Mastery", cs.weapon_mastery);
+  if (cs.martial_arts_die) push("Martial Arts", `d${cs.martial_arts_die}`);
+  push("Focus Points", cs.focus_points);
+  if (cs.unarmored_movement_bonus) push("Movement", `+${cs.unarmored_movement_bonus} ft`);
+  if (cs.sneak_attack) push("Sneak Attack", `${cs.sneak_attack.dice_count}d${cs.sneak_attack.dice_value}`);
+  push("Sorcery Points", cs.sorcery_points);
+  push("Invocations", cs.eldritch_invocations);
+  if (className === "Paladin") push("Lay on Hands", `${level * 5} HP`);
+  return out;
+}
 
 export function buildLevelInfos(
   character: Character,
@@ -261,6 +295,8 @@ export function buildLevelInfos(
 
     const features = (levelData?.features || [])
       .filter((f: any) => !isReplacedFeature(f.name, optional))
+      // 2024 tables list "Fighter Subclass" at each subclass level; the subclass's own features show instead.
+      .filter((f: any) => !(rules2024 && f.name === `${className} Subclass`))
       .filter((f: any) => {
         const src = f.source;
         if (!src) return true;
@@ -323,9 +359,9 @@ export function buildLevelInfos(
       spellsKnown = spellsKnownByLevel[className][level];
     }
 
-    const classFeatures: { name: string; value: string }[] = [];
+    const classFeatures: { name: string; value: string }[] = rules2024 ? classValues2024(className, (levelData as any)?.classSpecific, character, level) : [];
 
-    if (className === "Bard") {
+    if (className === "Bard" && !rules2024) {
       classFeatures.push({ name: "Bardic Inspiration", value: `${getBardicInspirationDie({ ...character, level } as Character)}` });
     }
 
@@ -337,7 +373,7 @@ export function buildLevelInfos(
       "Movement",
     ];
 
-    for (const name of featureNames) {
+    for (const name of rules2024 ? [] : featureNames) {
       const value = getFeatureValue(name, { ...character, level } as Character);
       if (value) {
         classFeatures.push({ name, value });
@@ -382,6 +418,12 @@ export function buildLevelInfos(
                 })
                 .flatMap(([, v]) => (v || []).flatMap((s) => String(s).split(", ")))
             );
+            // Champion's Additional Fighting Style can't repeat the class's Fighting Style.
+            if (f.name === "Additional Fighting Style") {
+              for (const [key, v] of Object.entries(character.featureSelections || {})) {
+                if (/^class-feature-\d+-Fighting Style$/.test(key)) (v || []).forEach((x) => pickedBefore.add(String(x)));
+              }
+            }
             subclassFeatureChoices.push({
               name: f.name,
               description: desc,
@@ -418,12 +460,20 @@ export function buildLevelInfos(
           count: f.choices.count || 1,
         });
       } else if (f.choices && f.choices.options && f.choices.options.length > 0) {
-        let options = f.choices.options.map((opt: any) => ({
-          name: typeof opt === "string" ? opt : opt.name,
-          description: typeof opt === "string" ? "" : (opt.description || ""),
-          icon: typeof opt === "string" ? undefined : opt.icon,
-        }));
-        if (f.name === "Fighting Style") options = fightingStyleOptions(className, options, usesOptionalClassFeatures(character), language);
+        // 2024 Eldritch Invocations: a level and sometimes an earlier invocation (a pact) are needed.
+        const known = new Set(
+          Object.entries(character.featureSelections || {})
+            .filter(([key]) => key.match(/^class-feature-\d+-(.*)$/)?.[1] === f.name)
+            .flatMap(([, v]) => (v || []).flatMap((x) => String(x).split(", ")))
+        );
+        let options = f.choices.options
+          .filter((opt: any) => typeof opt === "string" || ((!opt.minLevel || opt.minLevel <= level) && (!opt.requires || known.has(opt.requires))))
+          .map((opt: any) => ({
+            name: typeof opt === "string" ? opt : opt.name,
+            description: typeof opt === "string" ? "" : (opt.description || ""),
+            icon: typeof opt === "string" ? undefined : opt.icon,
+          }));
+        if (f.name === "Fighting Style" && !rules2024) options = fightingStyleOptions(className, options, usesOptionalClassFeatures(character), language);
         if (f.name === "Expertise") options = expertiseOptions(className, options, character);
         if (f.name.startsWith("Mystic Arcanum")) options = mysticArcanumOptions(f.name, options, { ...character, level }, subclassSelection, language);
         // Metamagic and other repeat picks skip what earlier level-ups saved.
@@ -433,6 +483,8 @@ export function buildLevelInfos(
             .flatMap(([, v]) => (v || []).flatMap((x) => String(x).split(", ")))
         );
         if (pickedBefore.size) options = options.filter((o: ChoiceOption) => !pickedBefore.has(o.name));
+        // A language pick (Deft Explorer) skips languages the character already speaks.
+        if (f.choices.grants === "language") options = options.filter((o: ChoiceOption) => !knownLanguages.has(o.name));
         classFeatureChoices.push({
           name: f.name,
           description: f.description || "",
@@ -528,7 +580,8 @@ export function buildLevelInfos(
     const isBard = className === "Bard";
     const isSorcerer = className === "Sorcerer";
     const magicalSecretsLevels = [10, 14, 18];
-    const magicalSecretsCount = isBard && magicalSecretsLevels.includes(level) ? 2 : 0;
+    // 2024 Magical Secrets only widens the lists a Bard prepares from; it adds no spells.
+    const magicalSecretsCount = isBard && !rules2024 && magicalSecretsLevels.includes(level) ? 2 : 0;
     // Magical Secrets spells are part of the Spells Known column, not extra.
     if (magicalSecretsCount > 0) spellSelectionCount = Math.max(0, spellSelectionCount - magicalSecretsCount);
     // Classes that learn a fixed list of spells may swap one of them each level.
@@ -558,7 +611,7 @@ export function buildLevelInfos(
     const expertise2024 = rules2024 ? EXPERTISE_2024[className]?.[level] : undefined;
     if (expertise2024) {
       const proficient = Object.entries(character.skills).filter(([, on]) => on).map(([name]) => name);
-      const options = className === "Rogue" ? [...proficient, "Thieves' Tools"] : proficient;
+      const options = className === "Rogue" ? [...proficient, "Thieves' Tools"] : className === "Wizard" ? proficient.filter((s) => SCHOLAR_SKILLS.includes(s)) : proficient;
       expertise = { count: expertise2024, selected: [], availableOptions: options.filter((o) => !(character.expertise || []).includes(o)) };
     } else if (className === "Rogue" && !rules2024) {
       const expertiseScaling = (classData as any).scalingFeatures?.find((f: any) => f.type === "feature" && f.name === "Expertise");
@@ -620,11 +673,12 @@ export function buildLevelInfos(
       // The land is chosen once (at 3rd level); ask only if it is still missing.
       circleTerrainSelection: className === "Druid" && subclassFlags.requiresTerrainSelection && !character.circleTerrain &&
         level === [3, 5, 7, 9].find((l) => l >= loopStart),
-      bonusCantripSelection: className === "Druid" && subclassFlags.requiresTerrainSelection && level === 2,
+      bonusCantripSelection: !rules2024 && className === "Druid" && subclassFlags.requiresTerrainSelection && level === 2,
       spellbookTotal: spellbookTotal,
       maxPrepared: maxPrepared,
       preparedCount: preparedCount,
       expertise,
+      ...(rules2024 ? { rules2024: true, epicBoon: level === 19 } : {}),
     });
   }
 
@@ -644,7 +698,7 @@ export function levelParts(info: LevelInfo, subclassSelection: string, className
     !!info.classFeatureChoices?.length ||
     (!!info.expertise && info.expertise.count > 0) ||
     (className === "Wizard" && info.level === 18) ||
-    (className === "Warlock" && info.level === 3) ||
+    (className === "Warlock" && info.level === 3 && !info.rules2024) ||
     info.circleTerrainSelection;
   if (features) parts.push("features");
   if (info.hasSpellSelection || info.magicalSecretsCount > 0 || info.subclassSpellSelectionCount > 0 || info.canReplaceSpell || info.bonusCantripSelection) parts.push("spells");

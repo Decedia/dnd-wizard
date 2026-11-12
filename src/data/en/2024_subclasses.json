@@ -62,7 +62,89 @@
           "level": 14,
           "description": "When you make an ability check or attack roll and fail, you can expend one use of Bardic Inspiration; roll the Bardic Inspiration die, and add the number rolled to the d20, potentially turning a failure into a success. On a failure, the Bardic Inspiration isn't expended."
         }
-      ]
+      ],
+      "featureChoices": {
+        "Bonus Proficiencies": {
+          "count": 3,
+          "grants": {
+            "mode": "proficiency"
+          },
+          "options": [
+            {
+              "name": "Acrobatics",
+              "description": ""
+            },
+            {
+              "name": "Animal Handling",
+              "description": ""
+            },
+            {
+              "name": "Arcana",
+              "description": ""
+            },
+            {
+              "name": "Athletics",
+              "description": ""
+            },
+            {
+              "name": "Deception",
+              "description": ""
+            },
+            {
+              "name": "History",
+              "description": ""
+            },
+            {
+              "name": "Insight",
+              "description": ""
+            },
+            {
+              "name": "Intimidation",
+              "description": ""
+            },
+            {
+              "name": "Investigation",
+              "description": ""
+            },
+            {
+              "name": "Medicine",
+              "description": ""
+            },
+            {
+              "name": "Nature",
+              "description": ""
+            },
+            {
+              "name": "Perception",
+              "description": ""
+            },
+            {
+              "name": "Performance",
+              "description": ""
+            },
+            {
+              "name": "Persuasion",
+              "description": ""
+            },
+            {
+              "name": "Religion",
+              "description": ""
+            },
+            {
+              "name": "Sleight of Hand",
+              "description": ""
+            },
+            {
+              "name": "Stealth",
+              "description": ""
+            },
+            {
+              "name": "Survival",
+              "description": ""
+            }
+          ]
+        }
+      }
     },
     {
       "class": "Cleric",
@@ -157,6 +239,29 @@
           "description": "As a Magic action, you can expend a use of your Wild Shape and cause spectral trees and vines to appear in a 15-foot Cube on the ground within 120 feet of yourself. They last there for 1 minute or until you have the Incapacitated condition or die. You and your allies have Half Cover while in that area, and your allies gain the current Resistance of your Nature's Ward while there.\n\nAs a Bonus Action, you can move the Cube up to 60 feet to ground within 120 feet of yourself."
         }
       ],
+      "featureChoices": {
+        "Circle of the Land Spells": {
+          "count": 1,
+          "options": [
+            {
+              "name": "Arid",
+              "description": "Always-prepared spells: Blur, Burning Hands, Fire Bolt, Fireball, Blight, Wall of Stone. You can change your land after a Long Rest."
+            },
+            {
+              "name": "Polar",
+              "description": "Always-prepared spells: Fog Cloud, Hold Person, Ray of Frost, Sleet Storm, Ice Storm, Cone of Cold. You can change your land after a Long Rest."
+            },
+            {
+              "name": "Temperate",
+              "description": "Always-prepared spells: Misty Step, Shocking Grasp, Sleep, Lightning Bolt, Freedom of Movement, Tree Stride. You can change your land after a Long Rest."
+            },
+            {
+              "name": "Tropical",
+              "description": "Always-prepared spells: Acid Splash, Ray of Sickness, Web, Stinking Cloud, Polymorph, Insect Plague. You can change your land after a Long Rest."
+            }
+          ]
+        }
+      },
       "expandedSpellsByOption": {
         "Arid": {
           "3": [
@@ -264,7 +369,31 @@
           "level": 18,
           "description": "You attain the pinnacle of resilience in battle, giving you these benefits.\n\nDefy Death. You have Advantage on Death Saving Throws. Moreover, when you roll 18-20 on a Death Saving Throw, you gain the benefit of rolling a 20 on it.\n\nHeroic Rally. At the start of each of your turns, you regain Hit Points equal to 5 plus your Constitution modifier if you are Bloodied and have at least 1 Hit Point."
         }
-      ]
+      ],
+      "featureChoices": {
+        "Additional Fighting Style": {
+          "count": 1,
+          "fightingStyle": true,
+          "options": [
+            {
+              "name": "Archery",
+              "description": "You gain a +2 bonus to attack rolls you make with Ranged weapons."
+            },
+            {
+              "name": "Defense",
+              "description": "While you're wearing Light, Medium, or Heavy armor, you gain a +1 bonus to Armor Class."
+            },
+            {
+              "name": "Great Weapon Fighting",
+              "description": "When you roll damage for an attack you make with a Melee weapon that you are holding with two hands, you can treat any 1 or 2 on a damage die as a 3. The weapon must have the Two-Handed or Versatile property to gain this benefit."
+            },
+            {
+              "name": "Two-Weapon Fighting",
+              "description": "When you make an extra attack as a result of using a weapon that has the Light property, you can add your ability modifier to the damage of that attack if you aren't already adding it to the damage."
+            }
+          ]
+        }
+      }
     },
     {
       "class": "Monk",
@@ -392,7 +521,35 @@
           "level": 15,
           "description": "When you take damage, you can take a Reaction to give yourself Resistance to that damage and any other damage of the same type until the end of the current turn."
         }
-      ]
+      ],
+      "featureChoices": {
+        "Hunter's Prey": {
+          "count": 1,
+          "options": [
+            {
+              "name": "Colossus Slayer",
+              "description": "Once per turn, a weapon hit on a creature missing any Hit Points deals an extra 1d8 damage."
+            },
+            {
+              "name": "Horde Breaker",
+              "description": "Once per turn, make one more attack with the same weapon against a different creature within 5 feet of the first target."
+            }
+          ]
+        },
+        "Defensive Tactics": {
+          "count": 1,
+          "options": [
+            {
+              "name": "Escape the Horde",
+              "description": "Opportunity Attacks against you have Disadvantage."
+            },
+            {
+              "name": "Multiattack Defense",
+              "description": "After a creature hits you, its other attacks against you this turn have Disadvantage."
+            }
+          ]
+        }
+      }
     },
     {
       "class": "Rogue",
@@ -467,6 +624,33 @@
           "description": "You can cast Summon Dragon without a Material component. You can also cast it once without a spell slot, and you regain the ability to cast it in this way when you finish a Long Rest.\n\nWhenever you start casting the spell, you can modify it so that it doesn't require Concentration. If you do so, the spell's duration becomes 1 minute for that casting."
         }
       ],
+      "featureChoices": {
+        "Elemental Affinity": {
+          "count": 1,
+          "options": [
+            {
+              "name": "Acid",
+              "description": "Resistance to Acid damage, and add your Charisma modifier to one damage roll of a spell that deals Acid damage."
+            },
+            {
+              "name": "Cold",
+              "description": "Resistance to Cold damage, and add your Charisma modifier to one damage roll of a spell that deals Cold damage."
+            },
+            {
+              "name": "Fire",
+              "description": "Resistance to Fire damage, and add your Charisma modifier to one damage roll of a spell that deals Fire damage."
+            },
+            {
+              "name": "Lightning",
+              "description": "Resistance to Lightning damage, and add your Charisma modifier to one damage roll of a spell that deals Lightning damage."
+            },
+            {
+              "name": "Poison",
+              "description": "Resistance to Poison damage, and add your Charisma modifier to one damage roll of a spell that deals Poison damage."
+            }
+          ]
+        }
+      },
       "expandedSpells": {
         "3": [
           "Alter Self",

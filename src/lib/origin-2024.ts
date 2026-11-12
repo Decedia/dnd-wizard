@@ -4,7 +4,7 @@
  * Origin feat, the species gives traits only, and gear comes in set packages
  * or gold. Picks are kept in featureSelections under the keys below.
  */
-import { activeRaceChoices, getStaticBackgrounds2024, getStaticRace, lineageChoiceOf, type SRDBackground2024 } from "./srd-client";
+import { activeRaceChoices, getStaticBackgrounds2024, getStaticClass, getStaticRace, lineageChoiceOf, type SRDBackground2024 } from "./srd-client";
 import { getFeatOptionGroups } from "@/data/feat-options";
 import { BACKGROUND_GEAR_2024, CLASS_GEAR_2024, type GearPackage } from "@/data/starting-gear-2024";
 import { addRows, backgroundGearRows, expandToRows } from "./inventory";
@@ -219,13 +219,30 @@ const ORDER_TRAINING: Record<string, string[]> = {
   Warden: ["Martial Weapons", "Medium Armor"],
 };
 
-/** Adds the weapon and armor training of a Divine Order or Primal Order pick. Safe to repeat. */
+/**
+ * Adds what 2024 class picks give: the training of a Divine Order or Primal Order
+ * pick, and the skill or languages of picks marked with grants (Primal Knowledge,
+ * Deft Explorer). Safe to repeat.
+ */
 export function applyClassChoices2024(character: Character): Character {
   if (!is2024(character)) return character;
   const picks = ["Divine Order", "Primal Order"].map((name) => character.featureSelections?.[`class-feature-1-${name}`]?.[0]).filter(Boolean) as string[];
   const add = picks.flatMap((p) => ORDER_TRAINING[p] || []);
-  if (add.length === 0) return character;
   const other = (character.otherProficiencies || "").split(/,\s*/).filter(Boolean);
   for (const a of add) if (!other.includes(a)) other.push(a);
-  return { ...character, otherProficiencies: other.join(", ") };
+  const skills = { ...character.skills };
+  const languages = new Set(character.languages || []);
+  const levels = getStaticClass(character.class, "2024")?.levels || [];
+  for (const [i, level] of levels.slice(0, character.level || 1).entries()) {
+    for (const f of level.features as { name: string; choices?: { grants?: string } }[]) {
+      const grants = f.choices?.grants;
+      if (!grants) continue;
+      const chosen = (character.featureSelections?.[`class-feature-${i + 1}-${f.name}`] || []).flatMap((v) => String(v).split(", ").filter(Boolean));
+      for (const name of chosen) {
+        if (grants === "skill") skills[name] = true;
+        if (grants === "language") languages.add(name);
+      }
+    }
+  }
+  return { ...character, otherProficiencies: other.join(", "), skills, languages: [...languages] };
 }
