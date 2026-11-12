@@ -36,10 +36,8 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
   const classData = data.class ? getStaticClass(data.class, data.ruleset) : null;
   const profBonus = getProficiencyBonus(data.level);
   const skillChoices = classData?.skillChoices || null;
-  const backgroundSkills = useMemo(
-    () => backgroundSkillsOf(data),
-    [data.ruleset, data.background],
-  );
+  const { ruleset, background } = data;
+  const backgroundSkills = useMemo(() => backgroundSkillsOf({ ruleset, background }), [ruleset, background]);
 
   // Skills the race already granted. Counting these toward the class allowance
   // would silently shortchange the character - a Half-Elf who takes Stealth
