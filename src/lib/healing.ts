@@ -85,8 +85,14 @@ export function spellHealing(character: Character, spell: HealingSpell, slotLeve
 export function featureHealing(character: Character, featureName: string, amount?: number): Healing | null {
   const level = character.level || 1;
   if (/^Second Wind/.test(featureName)) return { dice: "1d10", bonus: level, selfOnly: true, notes: [], parts: [{ source: "@level", value: level }] };
-  if (/^Wholeness of Body/.test(featureName)) return { dice: "", bonus: 3 * level, selfOnly: true, notes: [] };
-  if (/^Lay on Hands/.test(featureName) && amount) return { dice: "", bonus: amount, notes: [] };
+  if (/^Wholeness of Body/.test(featureName)) {
+    if (character.ruleset !== "2024") return { dice: "", bonus: 3 * level, selfOnly: true, notes: [] };
+    // 2024: a roll of the Martial Arts die plus the Wisdom modifier (at least 1).
+    const die = level >= 17 ? 12 : level >= 11 ? 10 : level >= 5 ? 8 : 6;
+    const wis = Math.max(1, getModifier(character.wis ?? 10));
+    return { dice: `1d${die}`, bonus: wis, selfOnly: true, notes: [], parts: [{ source: "@wis", value: wis }] };
+  }
+  if (/^Lay on Hands/i.test(featureName) && amount) return { dice: "", bonus: amount, notes: [] };
   if (/^Hand of Healing/.test(featureName)) {
     const die = level >= 17 ? 10 : level >= 11 ? 8 : level >= 5 ? 6 : 4;
     return { dice: `1d${die}`, bonus: getModifier(character.wis ?? 10), notes: [], parts: [{ source: "@wis", value: getModifier(character.wis ?? 10) }] };

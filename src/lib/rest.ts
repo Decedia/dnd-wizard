@@ -30,8 +30,32 @@ const num = (character: Character, field: keyof Character) => (typeof character[
 function refillsOn(character: Character, pool: (typeof POOLS)[number], kind: RestKind): boolean {
   if (kind === "long") return true;
   if (pool.rest === "short") return true;
+  if (character.ruleset === "2024" && ONE_BACK_2024.has(pool.field)) return true;
   return pool.field === "bardicInspirationUses" && character.class === "Bard" && character.level >= 5;
 }
+
+/** 2024 pools that get one use back on a short rest and all on a long rest. */
+const ONE_BACK_2024 = new Set<keyof Character>(["rages", "channelDivinityUses", "wildShapeUses"]);
+
+/** A pool's value after the rest. */
+function poolAfter(character: Character, pool: (typeof POOLS)[number], kind: RestKind): number {
+  const max = num(character, pool.max);
+  if (kind === "short" && character.ruleset === "2024" && ONE_BACK_2024.has(pool.field)) return Math.min(max, num(character, pool.field) + 1);
+  return max;
+}
+
+/** Sorcerous Restoration: the sorcery points a short rest gives back (2014 level 20: 4; 2024 level 5: half the level, once per long rest). */
+const RESTORATION_KEY = "rest:sorcerousRestoration";
+function sorcerousRestoration(character: Character): number {
+  if (character.class !== "Sorcerer") return 0;
+  const level = character.level || 1;
+  const missing = num(character, "maxSorceryPoints") - num(character, "sorceryPoints");
+  if (character.ruleset === "2024") return level >= 5 && !character.featureUses?.[RESTORATION_KEY] ? Math.min(missing, Math.floor(level / 2)) : 0;
+  return level >= 20 ? Math.min(missing, 4) : 0;
+}
+
+/** The rest line for a pool: a 2024 Monk's pool is Focus Points. */
+const poolLabel = (character: Character, pool: (typeof POOLS)[number]) => (pool.field === "kiPoints" && character.ruleset === "2024" ? "focus" : pool.label);
 
 function zeroSpent(character: Character): Record<number, number> {
   return Object.fromEntries(Object.keys(character.spellSlots || {}).map((k) => [Number(k), 0]));
@@ -73,7 +97,7 @@ export function shortRestPatch(character: Character, hitDiceSpent = 0, healed = 
     featureUses: featureUsesAfterRest(character.featureUses, "short", character),
   };
   for (const pool of POOLS) {
-    if (num(character, pool.max) > 0 && refillsOn(character, pool, "short")) (patch as any)[pool.field] = num(character, pool.max);
+    if (num(character, pool.max) > 0 && refillsOn(character, pool, "short")) (patch as any)[pool.field] = poolAfter(character, pool, "short");
   }
   // Pact Magic slots come back on a short rest.
   if (character.class === "Warlock") patch.spellSlotsExpended = zeroSpent(character);
@@ -86,9 +110,11 @@ export function shortRestPatch(character: Character, hitDiceSpent = 0, healed = 
     patch.spellSlotsExpended = spent;
     patch.arcaneRecoveryUsed = true;
   }
-  // Sorcerous Restoration (Sorcerer 20): 4 sorcery points.
-  if (character.class === "Sorcerer" && character.level >= 20) {
-    patch.sorceryPoints = Math.min(num(character, "maxSorceryPoints"), num(character, "sorceryPoints") + 4);
+  // Sorcerous Restoration: sorcery points back (2024: once per long rest).
+  const restored = sorcerousRestoration(character);
+  if (restored > 0) {
+    patch.sorceryPoints = num(character, "sorceryPoints") + restored;
+    if (character.ruleset === "2024") patch.featureUses = { ...patch.featureUses, [RESTORATION_KEY]: 1 };
   }
   return patch;
 }
@@ -161,11 +187,11 @@ export function restGains(character: Character, kind: RestKind): RestGain[] {
   for (const pool of POOLS) {
     const max = num(character, pool.max);
     if (max <= 0 || !refillsOn(character, pool, kind)) continue;
-    const back = max - num(character, pool.field);
-    if (back > 0) gains.push({ id: pool.label, values: { count: back } });
+    const back = poolAfter(character, pool, kind) - num(character, pool.field);
+    if (back > 0) gains.push({ id: poolLabel(character, pool), values: { count: back } });
   }
-  if (kind === "short" && character.class === "Sorcerer" && character.level >= 20) {
-    const back = Math.min(4, num(character, "maxSorceryPoints") - num(character, "sorceryPoints"));
+  if (kind === "short") {
+    const back = sorcerousRestoration(character);
     if (back > 0) gains.push({ id: "sorceryPoints", values: { count: back } });
   }
   const used = new Set(character.freeCastsUsed || []);

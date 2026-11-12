@@ -23,6 +23,7 @@ import { GiRun } from "react-icons/gi";
 import { getSpellSchoolStyle } from "@/lib/spell-schools";
 import { getSchoolBadgeStyle } from "@/lib/badge-styles";
 import { SpellDamageBonusLines, SpellDamageLine } from "@/components/SpellDamageBonus";
+import { MasteryChip, MasteryLine } from "@/components/WeaponMastery";
 import { useDice } from "@/contexts/DiceContext";
 import { optionRollGroups } from "@/lib/turn-rolls";
 import { GiRollingDices } from "react-icons/gi";
@@ -83,9 +84,10 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
   const localSummary = useMemo(() => {
     const map = new Map<string, string>();
     const add = (f: any) => typeof f?.summary === "string" && f.summary && map.set(f.name, f.summary);
-    const cls: any = getStaticClass(character.class, undefined, character.ruleset, language);
+    const cls: any = getStaticClass(character.class, character.ruleset, undefined, language);
     for (const level of cls?.levels || []) for (const f of level.features || []) add(f);
-    if (character.subclass) for (const f of getStaticSubclassDetails(character.class, character.subclass, language)?.features || []) add(f);
+    // Subclass summaries are 2014 text; a 2024 subclass keeps its own descriptions.
+    if (character.subclass && character.ruleset !== "2024") for (const f of getStaticSubclassDetails(character.class, character.subclass, language)?.features || []) add(f);
     return map;
   }, [character.class, character.subclass, character.ruleset, language]);
 
@@ -272,6 +274,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
             {o.when && <span className="rounded-full border border-[var(--color-border)] px-1.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)]">{t(`turn.when.${o.when}`)}</span>}
             {o.oncePerTurn && <span className="rounded-full border border-[var(--color-border)] px-1.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)]">{t("turn.when.oncePerTurn", "Once per turn")}</span>}
             {o.school && schoolChip(o.school)}
+            {o.mastery && <MasteryChip mastery={o.mastery} />}
             {o.lastsRounds && (() => { const d = roundsText(o.lastsRounds); return <span className="rounded-full border border-[var(--color-border)] px-1.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)]">{t("turn.lasts", { time: t(`timer.span.${d.unit}`, { n: d.n }) })}</span>; })()}
             {o.concentration && <span className="rounded-full border border-dashed border-[var(--color-border-active)] px-1.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)]">{t("turn.concentration", "Concentration")}</span>}
           </span>
@@ -280,6 +283,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
               <RichDice off><RichInline text={text} /></RichDice>
             </span>
           )}
+          {o.mastery && <MasteryLine mastery={o.mastery} />}
           {o.condition && !reason && <span className="mt-0.5 block text-[11px] font-semibold text-[var(--color-text-primary)]">{t(`turn.cond.${o.condition}`)}</span>}
           <RichDice off>
             <SpellDamageLine parts={o.spellDamage} />

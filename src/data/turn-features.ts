@@ -9,7 +9,8 @@ export type FeatureSlot = "action" | "bonus" | "reaction" | "free";
 /** When a feature applies, shown as one short line. Locale keys `turn.when.*`. */
 export type FeatureWhen =
   | "onHit" | "onAttackRoll" | "afterAttack" | "afterDash" | "firstAttack" | "onFailSave" | "onDamage"
-  | "whenAttacked" | "onMiss" | "whileRaging" | "afterCast" | "atZeroHp" | "onCritOrKill" | "oncePerTurn" | "onCast";
+  | "whenAttacked" | "onMiss" | "whileRaging" | "afterCast" | "atZeroHp" | "onCritOrKill" | "oncePerTurn" | "onCast"
+  | "onFail" | "onFailCheck" | "onInitiative";
 
 export type PoolField =
   | "rages" | "kiPoints" | "channelDivinityUses" | "actionSurgeUses" | "indomitableUses" | "layOnHandsPool"
@@ -26,8 +27,15 @@ export interface FeatureRule {
   pool?: { field: PoolField; amount: number };
   /** The player chooses how much of the pool to spend (Lay on Hands). */
   variablePool?: PoolField;
-  /** Its own uses, counted in `character.featureUses` and refilled on a rest. */
-  uses?: { max: Count; per: "short" | "long" };
+  /**
+   * Its own uses, counted in `character.featureUses` and refilled on a rest.
+   * `shortRegain`: a long-rest feature that gets this many back on a short rest (2024 Second Wind).
+   */
+  uses?: { max: Count; per: "short" | "long"; shortRegain?: number };
+  /** Counts its uses under this key, shared with another feature (Tactical Mind spends Second Wind). */
+  usesKey?: string;
+  /** Using it fills this pool back to its maximum (Uncanny Metabolism). */
+  refill?: PoolField;
   /** When its own uses are gone, it can still be used by spending this pool (Psi Warrior). */
   orPool?: { field: PoolField; amount: number };
   /** Using it gives one back to this pool, up to its maximum (Psi Warrior's recovery). */
@@ -64,6 +72,8 @@ const lvl = (c: Character) => c.level || 1;
 /** Dice that grow at set levels: byLevel([[1, "1d4"], [6, "1d6"]]). */
 const byLevel = (steps: [number, string][]) => (c: Character) => steps.filter(([from]) => lvl(c) >= from).pop()?.[1] ?? steps[0][1];
 const CON = (c: Character) => atLeast1(mod(c.con));
+/** A count that grows at set levels: byCount([[1, 2], [5, 3]]). */
+const byCount = (steps: [number, number][]) => (c: Character) => steps.filter(([at]) => lvl(c) >= at).pop()?.[1] ?? steps[0][1];
 
 const cd = { field: "channelDivinityUses", amount: 1 } as const;
 const ki = (amount: number) => ({ field: "kiPoints", amount }) as const;
@@ -352,6 +362,117 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Slasher/, slot: "free", when: "onHit", oncePerTurn: true, condition: "slashing" },
 ];
 
+/** A pick saved for a class or subclass feature ("Divine Strike" for Blessed Strikes). */
+const picked = (c: Character, feature: string, option: string) =>
+  Object.entries(c.featureSelections || {}).some(([key, values]) => key.endsWith(`-${feature}`) && (values || []).some((v) => String(v).split(", ").includes(option)));
+const from = (level: number) => (c: Character) => lvl(c) >= level;
+const rage = { field: "rages", amount: 1 } as const;
+
+/**
+ * The same table for the 2024 rules (SRD 5.2): new action timings (Wild Shape
+ * and Lay On Hands take a bonus action), uses that grow with level (Second
+ * Wind, Favored Enemy) and the 2024 names. A 2024 character reads only this one.
+ */
+export const FEATURE_RULES_2024: FeatureRule[] = [
+  // ----- Barbarian -----
+  { name: /^Rage$/, slot: "bonus", pool: rage },
+  { name: /^Reckless Attack/, slot: "free", when: "firstAttack" },
+  { name: /^Relentless Rage/, slot: "free", when: "atZeroHp", condition: "relentlessRage" },
+  { name: /^Persistent Rage/, slot: "free", when: "onInitiative", uses: long1, refill: "rages" },
+  { name: /^Frenzy/, slot: "free", when: "onHit", oncePerTurn: true, condition: "frenzy", dice: (c) => `${Math.max(1, c.rageDamage || 2)}d6` },
+  { name: /^Retaliation/, slot: "reaction", when: "onDamage" },
+  { name: /^Intimidating Presence/, slot: "bonus", uses: long1, orPool: rage },
+
+  // ----- Bard -----
+  { name: /^Bardic Inspiration/, slot: "bonus", pool: bardic },
+  { name: /^Countercharm/, slot: "reaction", when: "onFailSave", condition: "charmedOrFrightened" },
+  { name: /^Cutting Words/, slot: "reaction", pool: bardic },
+  { name: /^Peerless Skill/, slot: "free", when: "onFail", pool: bardic },
+
+  // ----- Cleric -----
+  { name: /^Preserve Life/, slot: "action", pool: cd },
+  { name: /^Divine Intervention$/, slot: "action", uses: long1 },
+  { name: /^Blessed Strikes/, slot: "free", when: "onHit", oncePerTurn: true, condition: "weapon", auto: true, dice: byLevel([[1, "1d8"], [14, "2d8"]]), only: (c) => picked(c, "Blessed Strikes", "Divine Strike") },
+
+  // ----- Druid -----
+  { name: /^Wild Shape/, slot: "bonus", pool: wild },
+  { name: /^Wild Companion/, slot: "action", pool: wild },
+  { name: /^Land's Aid/, slot: "action", pool: wild },
+  { name: /^Nature's Sanctuary/, slot: "action", pool: wild },
+  { name: /^Elemental Fury/, slot: "free", when: "onHit", oncePerTurn: true, condition: "weapon", auto: true, dice: byLevel([[1, "1d8"], [15, "2d8"]]), only: (c) => picked(c, "Elemental Fury", "Primal Strike") },
+
+  // ----- Fighter -----
+  { name: /^Second Wind/, slot: "bonus", usesKey: "secondWind", uses: { max: (c) => (lvl(c) >= 10 ? 4 : lvl(c) >= 4 ? 3 : 2), per: "long", shortRegain: 1 } },
+  { name: /^Tactical Mind/, slot: "free", when: "onFailCheck", usesKey: "secondWind", uses: { max: (c) => (lvl(c) >= 10 ? 4 : lvl(c) >= 4 ? 3 : 2), per: "long", shortRegain: 1 }, dice: () => "1d10" },
+  { name: /^Action Surge/, slot: "free", pool: { field: "actionSurgeUses", amount: 1 }, restoresAction: true },
+  { name: /^Indomitable$/, slot: "free", when: "onFailSave", pool: { field: "indomitableUses", amount: 1 } },
+
+  // ----- Monk -----
+  { name: /^Martial Arts/, slot: "bonus" },
+  { name: /^Uncanny Metabolism/, slot: "free", when: "onInitiative", uses: long1, refill: "kiPoints" },
+  { name: /^Deflect Attacks/, slot: "reaction", when: "onDamage" },
+  { name: /^Slow Fall/, slot: "reaction" },
+  { name: /^Stunning Strike/, slot: "free", when: "onHit", oncePerTurn: true, pool: ki(1) },
+  { name: /^Disciplined Survivor/, slot: "free", when: "onFailSave", pool: ki(1) },
+  { name: /^Superior Defense/, slot: "free", pool: ki(3) },
+  { name: /^Wholeness of Body/, slot: "bonus", uses: { max: WIS, per: "long" } },
+  { name: /^Quivering Palm/, slot: "free", when: "onHit", pool: ki(4) },
+
+  // ----- Paladin -----
+  { name: /^Lay on Hands/i, slot: "bonus", variablePool: "layOnHandsPool" },
+  { name: /^Paladin's Smite/, slot: "bonus", when: "onHit", uses: long1 },
+  { name: /^Faithful Steed/, slot: "action", uses: long1 },
+  { name: /^Abjure Foes/, slot: "action", pool: cd },
+  { name: /^Sacred Weapon/, slot: "free", when: "firstAttack", pool: cd },
+  { name: /^Radiant Strikes/, slot: "free", when: "onHit", condition: "meleeWeapon", auto: true, dice: () => "1d8" },
+  { name: /^Holy Nimbus/, slot: "bonus", uses: long1 },
+
+  // ----- Ranger -----
+  { name: /^Favored Enemy/, slot: "bonus", uses: { max: byCount([[1, 2], [5, 3], [9, 4], [13, 5], [17, 6]]), per: "long" } },
+  { name: /^Tireless/, slot: "action", uses: { max: WIS, per: "long" } },
+  { name: /^Nature's Veil/, slot: "bonus", uses: { max: WIS, per: "long" } },
+  { name: /^Superior Hunter's Prey/, slot: "free", when: "onHit", oncePerTurn: true, condition: "huntersMark" },
+  { name: /^Superior Hunter's Defense/, slot: "reaction", when: "onDamage" },
+
+  // ----- Rogue -----
+  { name: /^Sneak Attack/, slot: "free", when: "onHit", oncePerTurn: true, condition: "sneakAttack" },
+  { name: /^Cunning Action/, slot: "bonus" },
+  { name: /^Steady Aim/, slot: "bonus", condition: "notMoved" },
+  { name: /^Uncanny Dodge/, slot: "reaction", when: "whenAttacked" },
+  { name: /^Fast Hands/, slot: "bonus" },
+  { name: /^Stroke of Luck/, slot: "free", when: "onFail", uses: short1 },
+
+  // ----- Sorcerer -----
+  // Sorcery Incarnate (level 7): with no uses left, 2 sorcery points pay for it.
+  { name: /^Innate Sorcery/, slot: "bonus", uses: { max: 2, per: "long" }, orPool: sp(2), only: from(7) },
+  { name: /^Innate Sorcery/, slot: "bonus", uses: { max: 2, per: "long" } },
+  { name: /^Dragon Wings/, slot: "bonus", uses: long1, orPool: sp(3) },
+  { name: /^Dragon Companion/, slot: "action", uses: long1 },
+
+  // ----- Warlock -----
+  { name: /^Dark One's Own Luck/, slot: "free", when: "onFailSave", uses: { max: CHA, per: "long" }, dice: () => "1d10" },
+  { name: /^Hurl Through Hell/, slot: "free", when: "onHit", oncePerTurn: true, uses: long1 },
+
+  // ----- Wizard -----
+  { name: /^Overchannel/, slot: "free", when: "afterCast" },
+
+  // ----- Species -----
+  { name: /^Breath Weapon/, slot: "action", condition: "replacesAttack", uses: { max: prof, per: "long" } },
+  { name: /^Draconic Flight/, slot: "bonus", uses: long1, only: from(5) },
+  { name: /^Large Form/, slot: "bonus", uses: long1, only: from(5) },
+  { name: /^Stonecunning/, slot: "bonus", uses: { max: prof, per: "long" } },
+  { name: /^Adrenaline Rush/, slot: "bonus", uses: { max: prof, per: "short" } },
+  { name: /^Relentless Endurance/, slot: "free", when: "atZeroHp", uses: long1 },
+
+  // ----- Feats -----
+  { name: /^Savage Attacker/, slot: "free", when: "onHit", oncePerTurn: true, condition: "rerollDamage" },
+  { name: /^Boon of Combat Prowess/, slot: "free", when: "onMiss", oncePerTurn: true },
+  { name: /^Boon of Dimensional Travel/, slot: "free", when: "afterAttack" },
+  { name: /^Boon of Fate/, slot: "free", when: "onFail", uses: short1, dice: () => "2d4" },
+  { name: /^Boon of Spell Recall/, slot: "free", when: "onCast", uses: long1 },
+  { name: /^Boon of the Night Spirit/, slot: "bonus" },
+];
+
 /**
  * Options inside one feature: the Metamagic, maneuvers and runes the player
  * picked, and the parts of Psionic Power. Each becomes its own row in the turn
@@ -373,10 +494,19 @@ export interface SubOptionGroup {
   picked: boolean;
   /** Only for characters this returns true for (a Soulknife's Psionic Power is a different feature). */
   only?: (c: Character) => boolean;
+  /** Where the picks are saved, when not under the feature's own name (a species choice). */
+  picks?: (c: Character) => string[];
   options: SubOption[];
 }
 
 const die = { field: "superiorityDice", amount: 1 } as const;
+const is2024 = (c: Character) => c.ruleset === "2024";
+const giantUses = { max: prof, per: "long" } as const;
+/** Goliath picks: the id ending in the species data, and the option's name. */
+const GIANT_ANCESTRY: [string, string][] = [
+  ["clouds-jaunt", "Cloud's Jaunt"], ["fires-burn", "Fire's Burn"], ["frosts-chill", "Frost's Chill"],
+  ["hills-tumble", "Hill's Tumble"], ["stones-endurance", "Stone's Endurance"], ["storms-thunder", "Storm's Thunder"],
+];
 const psi = { field: "psionicDice", amount: 1 } as const;
 const maneuver = (name: string, key: string, slot: FeatureSlot, summary: string, when?: FeatureWhen): SubOption => ({ name, key, slot, when, pool: die, summary });
 const metamagic = (name: string, key: string, points: number, summary: string): SubOption => ({ name, key, slot: "free", when: "onCast", pool: sp(points), summary });
@@ -388,6 +518,7 @@ export const SUB_OPTIONS: SubOptionGroup[] = [
   {
     feature: "Metamagic",
     picked: true,
+    only: (c) => c.ruleset !== "2024",
     options: [
       metamagic("Careful Spell", "careful", 1, "Creatures you choose automatically succeed on the spell's saving throw."),
       metamagic("Distant Spell", "distant", 1, "Double the spell's range. A touch spell reaches 30 feet."),
@@ -479,18 +610,110 @@ export const SUB_OPTIONS: SubOptionGroup[] = [
       { name: "Recover a psionic die", key: "psionicRecover", slot: "bonus", uses: short1, gain: "psionicDice", summary: "Get one psionic die back. Once per short rest." },
     ],
   },
+  // ----- 2024 rules -----
+  {
+    feature: "Metamagic",
+    picked: true,
+    only: is2024,
+    options: [
+      metamagic("Careful Spell", "careful", 1, "Creatures you choose automatically succeed on the spell's saving throw and take no damage from it if they would take half."),
+      metamagic("Distant Spell", "distant", 1, "Add 30 feet to the spell's range, or a touch spell reaches 30 feet."),
+      metamagic("Empowered Spell", "empowered", 1, "Reroll some damage dice (up to your CHA modifier) and keep the new rolls."),
+      metamagic("Extended Spell", "extended", 1, "Double the spell's duration, up to 24 hours. Advantage on saves to keep concentrating on it."),
+      metamagic("Heightened Spell", "heightened2024", 2, "One target has disadvantage on its saves against the spell."),
+      metamagic("Quickened Spell", "quickened", 2, "Cast a spell that takes an action as a bonus action instead."),
+      metamagic("Seeking Spell", "seeking2024", 1, "Reroll the d20 of a spell attack that missed."),
+      metamagic("Subtle Spell", "subtle", 1, "Cast the spell with no words, no gestures and no material parts that have no cost."),
+      metamagic("Transmuted Spell", "transmuted", 1, "Change the damage type to acid, cold, fire, lightning, poison or thunder."),
+      metamagic("Twinned Spell", "twinned2024", 1, "A spell that can target one more creature when cast at a higher level counts as one level higher."),
+    ],
+  },
+  {
+    feature: "Monk's Focus",
+    picked: false,
+    only: is2024,
+    options: [
+      { name: "Flurry of Blows", key: "flurry2024", slot: "bonus", pool: ki(1), summary: "Make two unarmed strikes." },
+      { name: "Patient Defense", key: "patientDefense2024", slot: "bonus", summary: "Take the Disengage action. No Focus needed." },
+      { name: "Patient Defense + Dodge", key: "patientDefenseFocus", slot: "bonus", pool: ki(1), summary: "Take both the Disengage and the Dodge action." },
+      { name: "Step of the Wind", key: "stepOfTheWind2024", slot: "bonus", summary: "Take the Dash action. No Focus needed." },
+      { name: "Step of the Wind + Disengage", key: "stepOfTheWindFocus", slot: "bonus", pool: ki(1), summary: "Take both the Disengage and the Dash action, and your jump distance doubles this turn." },
+    ],
+  },
+  {
+    feature: "Cunning Strike",
+    picked: false,
+    only: is2024,
+    options: [
+      { name: "Poison", key: "cunningPoison", slot: "free", when: "onHit", condition: "sneakDice1", summary: "The target makes a CON save or is poisoned for 1 minute (it saves again at the end of each turn)." },
+      { name: "Trip", key: "cunningTrip", slot: "free", when: "onHit", condition: "sneakDice1", summary: "A Large or smaller target makes a DEX save or falls prone." },
+      { name: "Withdraw", key: "cunningWithdraw", slot: "free", when: "onHit", condition: "sneakDice1", summary: "Right after the attack, move up to half your speed without opportunity attacks." },
+      { name: "Daze", key: "cunningDaze", slot: "free", when: "onHit", condition: "sneakDice2", minLevel: 14, summary: "The target makes a CON save or on its next turn can only move, or act, or take a bonus action." },
+      { name: "Knock Out", key: "cunningKnockOut", slot: "free", when: "onHit", condition: "sneakDice6", minLevel: 14, summary: "The target makes a CON save or falls unconscious for 1 minute or until it takes damage." },
+      { name: "Obscure", key: "cunningObscure", slot: "free", when: "onHit", condition: "sneakDice3", minLevel: 14, summary: "The target makes a DEX save or is blinded until the end of its next turn." },
+    ],
+  },
+  {
+    feature: "Brutal Strike",
+    picked: false,
+    only: is2024,
+    options: [
+      { name: "Forceful Blow", key: "forcefulBlow", slot: "free", when: "onHit", oncePerTurn: true, condition: "brutalStrike", dice: byLevel([[1, "1d10"], [17, "2d10"]]), summary: "Push the target 15 feet away, then move up to half your speed toward it without opportunity attacks." },
+      { name: "Hamstring Blow", key: "hamstringBlow", slot: "free", when: "onHit", oncePerTurn: true, condition: "brutalStrike", dice: byLevel([[1, "1d10"], [17, "2d10"]]), summary: "The target's speed drops by 15 feet until the start of your next turn." },
+      { name: "Staggering Blow", key: "staggeringBlow", slot: "free", when: "onHit", oncePerTurn: true, condition: "brutalStrike", minLevel: 13, dice: byLevel([[1, "1d10"], [17, "2d10"]]), summary: "The target has disadvantage on its next save and can't make opportunity attacks until your next turn." },
+      { name: "Sundering Blow", key: "sunderingBlow", slot: "free", when: "onHit", oncePerTurn: true, condition: "brutalStrike", minLevel: 13, dice: byLevel([[1, "1d10"], [17, "2d10"]]), summary: "The next attack roll by someone else against the target before your next turn gets +5." },
+    ],
+  },
+  {
+    feature: "Channel Divinity",
+    picked: false,
+    only: (c) => is2024(c) && c.class === "Cleric",
+    options: [
+      { name: "Divine Spark", key: "divineSpark", slot: "action", pool: cd, summary: "Heal a creature within 30 feet, or deal radiant or necrotic damage to it (CON save for half)." },
+      { name: "Turn Undead", key: "turnUndead2024", slot: "action", pool: cd, summary: "Undead within 30 feet make a WIS save or are frightened and flee for 1 minute." },
+    ],
+  },
+  {
+    feature: "Channel Divinity",
+    picked: false,
+    only: (c) => is2024(c) && c.class === "Paladin",
+    options: [
+      { name: "Divine Sense", key: "divineSense2024", slot: "bonus", pool: cd, summary: "For 10 minutes, sense celestials, fiends and undead within 60 feet, and places that are blessed or cursed." },
+    ],
+  },
+  {
+    feature: "Giant Ancestry",
+    picked: true,
+    only: is2024,
+    picks: (c) => GIANT_ANCESTRY.filter(([id]) => c.raceChoices?.["goliath-2024-lineage"] === `giant-ancestry-${id}`).map(([, name]) => name),
+    options: [
+      { name: "Cloud's Jaunt", key: "cloudsJaunt", slot: "bonus", uses: giantUses, summary: "Teleport up to 30 feet to a space you can see." },
+      { name: "Fire's Burn", key: "firesBurn", slot: "free", when: "onHit", uses: giantUses, dice: () => "1d10", summary: "Your hit deals 1d10 extra fire damage." },
+      { name: "Frost's Chill", key: "frostsChill", slot: "free", when: "onHit", uses: giantUses, dice: () => "1d6", summary: "Your hit deals 1d6 extra cold damage and the target's speed drops by 10 feet until your next turn." },
+      { name: "Hill's Tumble", key: "hillsTumble", slot: "free", when: "onHit", uses: giantUses, summary: "A Large or smaller target you hit falls prone." },
+      { name: "Stone's Endurance", key: "stonesEndurance", slot: "reaction", when: "onDamage", uses: giantUses, dice: () => "1d12", summary: "Reduce the damage by 1d12 plus your CON modifier." },
+      { name: "Storm's Thunder", key: "stormsThunder", slot: "reaction", when: "onDamage", uses: giantUses, dice: () => "1d8", summary: "The creature that hurt you, if within 60 feet, takes 1d8 thunder damage." },
+    ],
+  },
 ];
+
+/** The group of sub-options a feature has for this character, if any. */
+export function subOptionGroupFor(character: Character, featureName: string): SubOptionGroup | undefined {
+  return SUB_OPTIONS.find((g) => g.feature === featureName && (!g.only || g.only(character)));
+}
 
 /** The sub-options this character can use for one feature. */
 export function subOptionsFor(character: Character, group: SubOptionGroup, picks: string[]): SubOption[] {
   if (group.only && !group.only(character)) return [];
+  const chosen = group.picks ? group.picks(character) : picks;
   // Picks are saved as "Feature: Option" for some features (Hunter's Prey: Colossus Slayer).
-  const picked = (name: string) => picks.includes(name) || picks.some((p) => p.endsWith(`: ${name}`));
+  const picked = (name: string) => chosen.includes(name) || chosen.some((p) => p.endsWith(`: ${name}`));
   return group.options.filter((o) => (!group.picked || picked(o.name)) && (!o.minLevel || (character.level || 1) >= o.minLevel));
 }
 
 /** A stable key for a rule's own uses, from its pattern. */
 export function ruleKey(rule: FeatureRule | SubOption): string {
+  if (rule.usesKey) return rule.usesKey;
   return "key" in rule ? `sub:${rule.key}` : rule.name.source;
 }
 
@@ -499,9 +722,12 @@ export function usesMax(rule: FeatureRule | SubOption, character: Character): nu
   return Math.max(1, typeof rule.uses.max === "function" ? rule.uses.max(character) : rule.uses.max);
 }
 
+/** The feature table for the character's rule set. */
+export const rulesFor = (character: Pick<Character, "ruleset"> | undefined) => (character?.ruleset === "2024" ? FEATURE_RULES_2024 : FEATURE_RULES);
+
 /** The rule for a feature name on this character, if it is one the player uses on a turn. */
 export function ruleFor(character: Character, featureName: string): FeatureRule | undefined {
-  return FEATURE_RULES.find((r) => r.name.test(featureName) && (!r.only || r.only(character))) ?? customRule(character, featureName);
+  return rulesFor(character).find((r) => r.name.test(featureName) && (!r.only || r.only(character))) ?? customRule(character, featureName);
 }
 
 const escapeRegExp = (text: string) => text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -517,17 +743,24 @@ function customRule(character: Character, featureName: string): FeatureRule | un
   };
 }
 
-/** Counted uses that a rest gives back: all of them on a long rest, the short-rest ones on a short rest. */
+/**
+ * Counted uses that a rest gives back: all of them on a long rest, the
+ * short-rest ones on a short rest, and one use of a long-rest feature that
+ * says so (2024 Second Wind).
+ */
 export function featureUsesAfterRest(used: Record<string, number> | undefined, kind: "short" | "long", character?: Character): Record<string, number> {
   if (kind === "long" || !used) return {};
   const custom = (character?.features || [])
     .filter((f) => f.source === "custom" && f.turn?.uses?.per === "short")
     .map((f) => (character ? customRule(character, f.name) : undefined))
     .filter((r): r is FeatureRule => !!r);
-  const shortKeys = new Set([
-    ...FEATURE_RULES.filter((r) => r.uses?.per === "short").map(ruleKey),
-    ...SUB_OPTIONS.flatMap((g) => g.options).filter((o) => o.uses?.per === "short").map(ruleKey),
-    ...custom.map(ruleKey),
-  ]);
-  return Object.fromEntries(Object.entries(used).filter(([key]) => !shortKeys.has(key)));
+  const all: (FeatureRule | SubOption)[] = [...rulesFor(character), ...SUB_OPTIONS.filter((g) => !character || !g.only || g.only(character)).flatMap((g) => g.options)];
+  const shortKeys = new Set([...all.filter((r) => r.uses?.per === "short").map(ruleKey), ...custom.map(ruleKey)]);
+  const regain = new Map(all.filter((r) => r.uses?.shortRegain).map((r) => [ruleKey(r), r.uses!.shortRegain!]));
+  return Object.fromEntries(
+    Object.entries(used)
+      .filter(([key]) => !shortKeys.has(key))
+      .map(([key, n]): [string, number] => [key, Math.max(0, n - (regain.get(key) ?? 0))])
+      .filter(([, n]) => n > 0)
+  );
 }

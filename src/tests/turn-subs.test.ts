@@ -148,7 +148,7 @@ test("every sub-option names a real pick in the app data", () => {
     // Hunter picks are saved as "Hunter's Prey: Colossus Slayer".
     ...Object.values(choices.Ranger.Hunter).flatMap((f: any) => f.options.map((o: any) => o.name.split(": ").pop())),
   ]);
-  const classes = readFileSync("src/data/en/2014_classes.json", "utf8");
+  const classes = ["2014_classes", "2024_classes", "2024_species"].map((f) => readFileSync(`src/data/en/${f}.json`, "utf8")).join("\n");
   const feats = readFileSync("src/data/feat-options.ts", "utf8");
   for (const group of SUB_OPTIONS) {
     if (!group.picked) continue;

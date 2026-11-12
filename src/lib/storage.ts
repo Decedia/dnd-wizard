@@ -257,6 +257,13 @@ export function getFeatureValue(featureName: string, character: Character): stri
 
   const lower = featureName.toLowerCase();
 
+  // 2024 classes carry these numbers in their level table.
+  if (character.ruleset === "2024") {
+    const cs = ((classData as any).levels?.[level - 1]?.classSpecific || {}) as Record<string, any>;
+    if (lower.includes("sneak attack") && cs.sneak_attack) return `${cs.sneak_attack.dice_count}d${cs.sneak_attack.dice_value}`;
+    if (lower.includes("martial arts") && cs.martial_arts_die) return `d${cs.martial_arts_die}`;
+  }
+
   if (lower.includes("lay on hands") && classData.name === "Paladin") {
     return `${level * 5} HP`;
   }
