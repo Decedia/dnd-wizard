@@ -36,9 +36,39 @@ const featsDataMap = { en: featsDataEn, id: featsDataId } as const;
 
 import subclassSpellsData from "@/data/subclass_spells.json";
 
-import races2024DataEn from "@/data/en/2024_phb.json";
-import races2024DataId from "@/data/id/2024_phb.json";
-const races2024DataMap = { en: races2024DataEn, id: races2024DataId } as const;
+// 2024 rules (SRD 5.2, built by scripts/import-srd52.py). English only for now;
+// other languages fall back to it.
+import species2024En from "@/data/en/2024_species.json";
+import classes2024En from "@/data/en/2024_classes.json";
+import subclasses2024En from "@/data/en/2024_subclasses.json";
+import spells2024En from "@/data/en/2024_spells.json";
+import feats2024En from "@/data/en/2024_feats.json";
+import backgrounds2024En from "@/data/en/2024_backgrounds.json";
+const species2024Map: Record<string, { races: unknown[] }> = { en: species2024En };
+const classes2024Map: Record<string, { classes: unknown[] }> = { en: classes2024En };
+const subclasses2024Map: Record<string, { subclasses: unknown[] }> = { en: subclasses2024En };
+const spells2024Map: Record<string, { spells: unknown[] }> = { en: spells2024En };
+const feats2024Map: Record<string, { feats: unknown[] }> = { en: feats2024En };
+const backgrounds2024Map: Record<string, { backgrounds: SRDBackground2024[] }> = { en: backgrounds2024En as { backgrounds: SRDBackground2024[] } };
+
+/** A 2024 background: it gives the ability increases and an Origin feat. */
+export interface SRDBackground2024 {
+  name: string;
+  ruleset: "2024";
+  source: string;
+  /** The three abilities the +2/+1 or +1/+1/+1 goes to. */
+  abilityScores: string[];
+  /** The Origin feat, with its spell list in brackets for Magic Initiate. */
+  feat: string;
+  skills: string[];
+  tools: string[];
+  toolChoice: string | null;
+  equipment: string;
+}
+
+export function getStaticBackgrounds2024(locale: string = "en"): SRDBackground2024[] {
+  return pickLocaleData(backgrounds2024Map, locale).backgrounds;
+}
 
 import { getFeatOptionGroups, type FeatOptionGroup } from "@/data/feat-options";
 
@@ -370,7 +400,7 @@ function inRuleSet(record: unknown, ruleset?: string): boolean {
 
 export function getStaticRaces(sources?: string[], ruleset?: string, locale: string = "en"): SRDRace[] {
   const racesData = pickLocaleData(racesDataMap, locale) as any;
-  const races2024Data = pickLocaleData(races2024DataMap, locale) as any;
+  const races2024Data = pickLocaleData(species2024Map, locale) as any;
   const races2014 = racesData.races as SRDRace[];
   const races2024 = (races2024Data as any).races as SRDRace[];
   const merged = ruleSetOf(ruleset) === "2024" ? races2024 : races2014;
@@ -426,7 +456,7 @@ export function getStaticRace(name: string, ruleset?: string, locale: string = "
 
 export function getStaticClasses(sources?: string[], ruleset?: string, locale: string = "en"): SRDClass[] {
   const classesData = pickLocaleData(classesDataMap, locale) as any;
-  const races2024Data = pickLocaleData(races2024DataMap, locale) as any;
+  const races2024Data = pickLocaleData(classes2024Map, locale) as any;
   const classes2014 = classesData.classes as unknown as SRDClass[];
   const classes2024 = (races2024Data as any).classes as unknown as SRDClass[];
   const merged = ruleSetOf(ruleset) === "2024" ? classes2024 : classes2014;
@@ -476,8 +506,10 @@ export interface SRDSubclass {
 
 export function getStaticSubclasses(className: string, sources?: string[], ruleset?: string, locale: string = "en"): SRDSubclass[] {
   const subclassesData = pickLocaleData(subclassesDataMap, locale) as any;
-  const all = (subclassesData as any).subclasses as any[];
-  const choicesMap = (subclassChoicesData as any)[className] || {};
+  const is2024 = ruleSetOf(ruleset) === "2024";
+  const all = is2024 ? (pickLocaleData(subclasses2024Map, locale).subclasses as any[]) : ((subclassesData as any).subclasses as any[]);
+  // The pick lists are 2014 ones; 2024 subclasses that share a name (Hunter) must not get them.
+  const choicesMap = is2024 ? {} : (subclassChoicesData as any)[className] || {};
   let filtered = all.filter((s) => s.class === className);
   filtered = filtered.filter((s) => inRuleSet(s, ruleset));
   return filtered
@@ -559,6 +591,9 @@ export function getStaticSubclasses(className: string, sources?: string[], rules
           return [out, ...extras];
         }),
         source: s.source || "PHB",
+        ...(s.ruleset ? { ruleset: s.ruleset } : {}),
+        ...(is2024 && s.expandedSpells ? { expandedSpells: s.expandedSpells } : {}),
+        ...(is2024 && s.expandedSpellsByOption ? { expandedSpellsByOption: s.expandedSpellsByOption } : {}),
       };
     });
 }
@@ -624,6 +659,11 @@ export function getStaticClassDetails(className: string, sources?: string[], rul
 export function getStaticSpells(sources?: string[], ruleset?: string, locale: string = "en"): SRDSpell[] {
   const spellsData = pickLocaleData(spellsDataMap, locale) as any;
   const raw = Array.isArray((spellsData as any).spells) ? (spellsData as any).spells : (spellsData as any) || [];
+  if (ruleSetOf(ruleset) === "2024") {
+    const spells2024 = (pickLocaleData(spells2024Map, locale).spells as any[]).map(normalizeSpell) as SRDSpell[];
+    if (!sources || sources.length === 0) return spells2024;
+    return spells2024.filter((s) => sources.includes(s.source || "PHB"));
+  }
   const spells: SRDSpell[] = raw.map(normalizeSpell);
   let filtered = applySpellLocalesOverrides(spells, locale);
   filtered = filtered.filter((s) => inRuleSet(s, ruleset));
@@ -947,6 +987,8 @@ export function getClassSpells(classOrSubclassId: string, locale: string = "en")
 
 export function getStaticFeats(sources?: string[], ruleset?: string, locale: string = "en"): SRDFeat[] {
   const featsData = pickLocaleData(featsDataMap, locale) as any;
+  // 2024 feats share names with 2014 ones (Alert, Grappler) but not their options.
+  if (ruleSetOf(ruleset) === "2024") return pickLocaleData(feats2024Map, locale).feats as SRDFeat[];
   const feats = featsData.feats as SRDFeat[];
   let filtered = feats;
   filtered = filtered.filter((f) => inRuleSet(f, ruleset));
