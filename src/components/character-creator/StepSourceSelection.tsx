@@ -1,5 +1,6 @@
 "use client";
 
+import { RULESET_2024_READY, rulesetOf } from "@/lib/rulesets";
 import { useState, useEffect } from "react";
 import { SOURCE_OPTIONS } from "@/components/SourceBadge";
 import { BookCard } from "@/components/BookCard";
@@ -167,7 +168,7 @@ type ContentMode = "phb_only" | "all" | "custom";
 export function StepSourceSelection({ data, onChange }: { data: { sources: string[]; ruleset?: "2014" | "2024"; optionalClassFeatures?: boolean }; onChange: (patch: { sources?: string[]; ruleset?: "2014" | "2024"; optionalClassFeatures?: boolean }) => void }) {
   const { t } = useLanguage();
   const selectedSources = data.sources || ["PHB"];
-  const ruleset = data.ruleset || "2014";
+  const ruleset = rulesetOf(data);
   const { setRuleset: setSrdRuleset } = useSRD();
 
   const [contentMode, setContentMode] = useState<ContentMode>("phb_only");
@@ -224,6 +225,7 @@ export function StepSourceSelection({ data, onChange }: { data: { sources: strin
         </p>
       </div>
 
+      {RULESET_2024_READY && (
       <div className="flex bg-[var(--color-bg)] p-1 rounded-xl mb-6">
         {(["2014", "2024"] as const).map((rs) => (
           <button
@@ -240,6 +242,7 @@ export function StepSourceSelection({ data, onChange }: { data: { sources: strin
           </button>
         ))}
       </div>
+      )}
 
       <div className="space-y-3">
         <button
