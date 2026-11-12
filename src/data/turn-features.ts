@@ -469,7 +469,6 @@ export const FEATURE_RULES_2024: FeatureRule[] = [
   { name: /^Boon of Combat Prowess/, slot: "free", when: "onMiss", oncePerTurn: true },
   { name: /^Boon of Dimensional Travel/, slot: "free", when: "afterAttack" },
   { name: /^Boon of Fate/, slot: "free", when: "onFail", uses: short1, dice: () => "2d4" },
-  { name: /^Boon of Spell Recall/, slot: "free", when: "onCast", uses: long1 },
   { name: /^Boon of the Night Spirit/, slot: "bonus" },
 ];
 
