@@ -9,7 +9,7 @@ import { getWeaponAttackDetails, isRaging } from "@/lib/weapon-attacks";
 import { equipRow, heldInHands, unequipRow, type Hand, type InventoryRow } from "@/lib/inventory";
 import { getFreeCastSpells, getGrantedSpellNames } from "@/lib/granted-spells";
 import { advanceTurn, parseDurationToTurns } from "@/lib/spellEffects";
-import { ruleFor, ruleKey, SUB_OPTIONS, subOptionsFor, usesMax, type FeatureRule, type FeatureWhen, type PoolField, type SubOption } from "@/data/turn-features";
+import { ruleFor, ruleKey, subOptionGroupFor, subOptionsFor, usesMax, type FeatureRule, type FeatureWhen, type PoolField, type SubOption } from "@/data/turn-features";
 import { getFeaturePicks } from "@/lib/feature-groups";
 import { beastByName, type Beast } from "@/data/wild-shapes";
 import { spellDamageBonuses, type SpellDamageBonus } from "@/lib/spell-damage-bonus";
@@ -56,6 +56,8 @@ export interface TurnOption {
   spellLevel?: number;
   /** Spell school as in the spell data ("Evocation"). */
   school?: string;
+  /** The 2024 weapon mastery property the character can use with this attack ("Topple"). */
+  mastery?: string;
   /** What it heals, when it heals (the panel asks who and adds the HP). */
   heal?: Healing;
   /** Casting this ends the concentration spell named here. */
@@ -202,6 +204,7 @@ function offHandAttack(character: Character): TurnOption | null {
     damage: `${details.damageDice} ${signed(bonus)} ${details.damageType} damage`.replace(" + 0 ", " "),
     damageRoll: details.damageDice ? { dice: details.damageDice, parts, type: details.damageType } : undefined,
     detail: weaponDetail(off),
+    mastery: details.mastery,
     // The bonus attack comes after taking the Attack action with the other hand.
     blocked: character.attackedThisTurn ? undefined : "attackFirst",
     spend: {},
@@ -228,6 +231,7 @@ function attackOptions(character: Character): TurnOption[] {
       damageRoll: details?.damageDice ? { dice: details.damageDice, parts: details.damageParts, type: details.damageType } : undefined,
       damage: details && details.damageDice ? `${details.damageDice} ${signed(details.damageBonus)} ${details.damageType} damage`.replace(" + 0 ", " ") : attack.damageType ? `${attack.damageType} damage` : undefined,
       detail: details ? weaponDetail(details.weapon) : attack.description || undefined,
+      mastery: details?.mastery,
       spend: {},
     });
   }
@@ -355,18 +359,21 @@ export function featureDice(character: Character, name: string, pool?: PoolField
   return m ? `${m[1] || 1}d${m[2]}` : undefined;
 }
 
+/** The cost line's locale key; a 2024 Monk spends Focus Points, not ki. */
+const costKey = (character: Character, field: PoolField) => (field === "kiPoints" && character.ruleset === "2024" ? "turn.cost.focusPoints" : `turn.cost.${field}`);
+
 function ruleOption(character: Character, rule: FeatureRule | SubOption, base: Pick<TurnOption, "key" | "name" | "summary" | "summaryKey" | "detail">, slot: TurnSlot): TurnOption {
   const option: TurnOption = { ...base, slot, group: "feature", when: rule.when, spend: {} };
   const dice = rule.dice?.(character) ?? featureDice(character, base.name, rule.pool?.field ?? rule.orPool?.field);
   if (dice) option.featureDice = dice;
   if (rule.pool) {
     const left = poolLeft(character, rule.pool.field);
-    option.cost = { key: `turn.cost.${rule.pool.field}`, values: { amount: rule.pool.amount, left } };
+    option.cost = { key: costKey(character, rule.pool.field), values: { amount: rule.pool.amount, left } };
     if (left < rule.pool.amount) option.blocked = "empty";
     else (option.spend as any)[rule.pool.field] = left - rule.pool.amount;
   } else if (rule.variablePool) {
     const left = poolLeft(character, rule.variablePool);
-    const costKey = rule.variablePool === "sorceryPoints" ? "turn.cost.sorceryPointsByLevel" : rule.variablePool === "kiPoints" ? "turn.cost.kiChoose" : `turn.cost.${rule.variablePool}`;
+    const costKey = rule.variablePool === "sorceryPoints" ? "turn.cost.sorceryPointsByLevel" : rule.variablePool === "kiPoints" ? (character.ruleset === "2024" ? "turn.cost.focusChoose" : "turn.cost.kiChoose") : `turn.cost.${rule.variablePool}`;
     option.cost = { key: costKey, values: { amount: "", left } };
     if (left <= 0) option.blocked = "empty";
     else option.amount = { field: rule.variablePool, max: left };
@@ -380,7 +387,7 @@ function ruleOption(character: Character, rule: FeatureRule | SubOption, base: P
       option.spend.featureUses = { ...(character.featureUses || {}), [key]: used + 1 };
     } else if (rule.orPool && orLeft >= rule.orPool.amount) {
       // The free use is gone, so it costs a die from the pool instead.
-      option.cost = { key: `turn.cost.${rule.orPool.field}`, values: { amount: rule.orPool.amount, left: orLeft } };
+      option.cost = { key: costKey(character, rule.orPool.field), values: { amount: rule.orPool.amount, left: orLeft } };
       (option.spend as any)[rule.orPool.field] = orLeft - rule.orPool.amount;
     } else {
       option.cost = { key: "turn.cost.uses", values: { left: 0, max } };
@@ -403,6 +410,10 @@ function ruleOption(character: Character, rule: FeatureRule | SubOption, base: P
   }
   if (rule.condition) option.condition = rule.condition;
   if (rule.auto === true || (typeof rule.auto === "function" && rule.auto(character))) option.auto = true;
+  if (rule.refill && !option.blocked) {
+    const max = Number((character as any)[`max${rule.refill[0].toUpperCase()}${rule.refill.slice(1)}`]) || 0;
+    (option.spend as any)[rule.refill] = max;
+  }
   if (rule.gain && !option.blocked) {
     const max = Number((character as any)[`max${rule.gain[0].toUpperCase()}${rule.gain.slice(1)}`]) || 0;
     const left = poolLeft(character, rule.gain);
@@ -414,7 +425,7 @@ function ruleOption(character: Character, rule: FeatureRule | SubOption, base: P
 
 /** Sub-options (Metamagic, maneuvers, runes, Psionic Power) for the features that have them. */
 function subOptions(character: Character, feature: { id: string; name: string }): TurnOption[] | null {
-  const group = SUB_OPTIONS.find((g) => g.feature === feature.name);
+  const group = subOptionGroupFor(character, feature.name);
   if (!group) return null;
   const subs = subOptionsFor(character, group, getFeaturePicks(character, feature.name));
   if (subs.length === 0) return null;
@@ -477,6 +488,11 @@ function featureOptions(character: Character): TurnOption[] {
       out.push(...flexibleCastingOptions(character, feature.name));
       continue;
     }
+    // 2024: Font of Magic holds both: creating a slot (bonus action) and converting one (no action).
+    if (character.ruleset === "2024" && feature.name === "Font of Magic") {
+      out.push(...flexibleCastingOptions(character, "Creating Spell Slots"), ...flexibleCastingOptions(character, "Converting Spell Slots").map((o) => ({ ...o, slot: "free" as const })));
+      continue;
+    }
     const subs = subOptions(character, feature);
     if (subs) {
       out.push(...subs);
@@ -516,7 +532,7 @@ function featureOptions(character: Character): TurnOption[] {
 /** Features with no entry in the table: always on, or not something done on a turn. A reading list. */
 function featureList(character: Character): TurnMenu["features"] {
   return turnFeatures(character)
-    .filter((f) => !ruleFor(character, f.name) && !/^Flexible Casting/.test(f.name) && !subOptions(character, f))
+    .filter((f) => !ruleFor(character, f.name) && !/^Flexible Casting/.test(f.name) && !(character.ruleset === "2024" && f.name === "Font of Magic") && !subOptions(character, f))
     .map((f) => ({ id: f.id, name: f.name, description: f.description || "" }));
 }
 

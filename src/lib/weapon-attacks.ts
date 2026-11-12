@@ -3,6 +3,7 @@ import { addsProficiencyToAttack } from "./proficiency";
 import { withOverrideParts } from "./roll-parts";
 import { sumParts, type BonusPart } from "./dice-roll";
 import { isFinesseOrRanged, weaponAbility, weaponDamageDice } from "./inventory";
+import { weaponMastery } from "./weapon-mastery";
 
 export const isRaging = (character: Pick<Character, "activeStates">) => (character.activeStates || []).includes("raging");
 
@@ -42,5 +43,7 @@ export function getWeaponAttackDetails(character: Character, attack: Character["
     strMod,
     dexMod,
     rageBonus: abilityKey === "str" ? rage : 0,
+    /** The 2024 mastery property the character can use with this weapon. */
+    mastery: weaponMastery(character, weapon),
   };
 }

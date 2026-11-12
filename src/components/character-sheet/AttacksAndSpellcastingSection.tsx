@@ -1,6 +1,7 @@
 "use client";
 
 import { getWeaponAttackDetails as weaponAttackDetails, isRaging } from "@/lib/weapon-attacks";
+import { MasteryChip, MasteryLine } from "@/components/WeaponMastery";
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import type { Character } from "@/lib/storage";
@@ -105,6 +106,12 @@ export function AttacksAndSpellcastingSection({ character, onChange, editMode = 
                         </span>
                       </div>
                       <span className="text-sm text-[var(--color-text-secondary)] font-medium">({details.abilityKey.toUpperCase()} modifier)</span>
+                      {details.mastery && (
+                        <div>
+                          <MasteryChip mastery={details.mastery} />
+                          <MasteryLine mastery={details.mastery} />
+                        </div>
+                      )}
                       {dice && !editMode && details.damageDice && (() => {
                         const name = rowText(details.weapon, language).name;
                         const damage = damageGroup(t("dice.damage", "Damage"), details.damageDice, details.damageParts);
