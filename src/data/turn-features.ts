@@ -44,6 +44,12 @@ export interface FeatureRule {
   oncePerTurn?: boolean;
   /** A condition the player checks, shown as one line. Locale key `turn.cond.<condition>`. */
   condition?: string;
+  /**
+   * Fires by itself when its trigger happens (an attack hits): no tap, nothing to
+   * spend, and nothing the app can't see. A function when it only fires in some
+   * state (Divine Fury while raging). The player can still take it off the hit.
+   */
+  auto?: boolean | ((c: Character) => boolean);
   /** The damage dice it adds when used on a hit ("1d8"), by character level. */
   dice?: (c: Character) => string;
 }
@@ -82,7 +88,7 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Rage$/, slot: "bonus", pool: { field: "rages", amount: 1 } },
   { name: /^Reckless Attack/, slot: "free", when: "firstAttack" },
   { name: /^Frenzy/, slot: "bonus", when: "whileRaging" },
-  { name: /^Divine Fury/, slot: "free", when: "onHit", oncePerTurn: true, condition: "firstHit", dice: (c) => `1d6+${Math.floor(lvl(c) / 2)}` },
+  { name: /^Divine Fury/, slot: "free", when: "onHit", oncePerTurn: true, condition: "firstHit", auto: (c) => (c.activeStates || []).includes("raging"), dice: (c) => `1d6+${Math.floor(lvl(c) / 2)}` },
   { name: /^Intimidating Presence/, slot: "action" },
   { name: /^Retaliation/, slot: "reaction", when: "onDamage" },
   { name: /^Spirit Shield/, slot: "reaction", when: "whileRaging" },
@@ -119,8 +125,8 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Steps of Night/, slot: "bonus", uses: { max: prof, per: "long" } },
   { name: /^Blessing of the Trickster/, slot: "action" },
   { name: /^Corona of Light/, slot: "action" },
-  { name: /^Divine Strike/, slot: "free", when: "onHit", oncePerTurn: true, condition: "weapon", dice: byLevel([[1, "1d8"], [14, "2d8"]]) },
-  { name: /^Blessed Strikes/, slot: "free", when: "onHit", oncePerTurn: true, condition: "cantripOrWeapon", dice: () => "1d8" },
+  { name: /^Divine Strike/, slot: "free", when: "onHit", oncePerTurn: true, condition: "weapon", auto: true, dice: byLevel([[1, "1d8"], [14, "2d8"]]) },
+  { name: /^Blessed Strikes/, slot: "free", when: "onHit", oncePerTurn: true, condition: "cantripOrWeapon", auto: true, dice: () => "1d8" },
   { name: /^Embodiment of the Law/, slot: "free", when: "onCast", uses: { max: WIS, per: "long" } },
 
   // ----- Druid -----
@@ -189,6 +195,7 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Divine Sense/, slot: "action", uses: { max: (c) => 1 + CHA(c), per: "long" } },
   { name: /^Lay on Hands/, slot: "action", variablePool: "layOnHandsPool" },
   { name: /^Divine Smite/, slot: "free", when: "onHit", spellSlot: true },
+  { name: /^Improved Divine Smite/, slot: "free", when: "onHit", condition: "meleeWeapon", auto: true, dice: () => "1d8" },
   { name: /^Cleansing Touch/, slot: "action", uses: { max: CHA, per: "long" } },
   { name: /^Glorious Defense/, slot: "reaction", when: "whenAttacked", uses: { max: CHA, per: "long" } },
   { name: /^Vigilant Rebuke/, slot: "reaction" },
@@ -202,13 +209,13 @@ export const FEATURE_RULES: FeatureRule[] = [
   { name: /^Planar Warrior/, slot: "bonus" },
   { name: /^Slayer's Prey/, slot: "bonus" },
   { name: /^Hunter's Sense/, slot: "action", uses: { max: WIS, per: "long" } },
-  { name: /^Dreadful Strikes/, slot: "free", when: "onHit", oncePerTurn: true, dice: byLevel([[1, "1d4"], [11, "1d6"]]) },
-  { name: /^Gathered Swarm/, slot: "free", when: "onHit", oncePerTurn: true, dice: byLevel([[1, "1d6"], [11, "1d8"]]) },
+  { name: /^Dreadful Strikes/, slot: "free", when: "onHit", oncePerTurn: true, auto: true, dice: byLevel([[1, "1d4"], [11, "1d6"]]) },
+  { name: /^Gathered Swarm/, slot: "free", when: "onHit", oncePerTurn: true, auto: true, dice: byLevel([[1, "1d6"], [11, "1d8"]]) },
   { name: /^Stalker's Flurry/, slot: "free", when: "onMiss" },
   { name: /^Ethereal Step/, slot: "bonus", uses: short1 },
   { name: /^(Shadowy Dodge|Spectral Defense|Slayer's Counter|Beguiling Twist)/, slot: "reaction" },
   { name: /^Favored Foe/, slot: "free", when: "onHit", uses: { max: prof, per: "long" }, dice: byLevel([[1, "1d4"], [6, "1d6"], [14, "1d8"]]) },
-  { name: /^Dread Ambusher/, slot: "free", when: "onHit", oncePerTurn: true, condition: "firstTurn", dice: () => "1d8" },
+  { name: /^Dread Ambusher/, slot: "free", when: "onHit", oncePerTurn: true, condition: "firstTurn", auto: (c) => (c.turnRound ?? 1) <= 1, dice: () => "1d8" },
   { name: /^Misty Wanderer/, slot: "bonus", uses: { max: WIS, per: "long" } },
   { name: /^Swarming Dispersal/, slot: "reaction", when: "onDamage", uses: { max: prof, per: "long" } },
   { name: /^Drake Companion/, slot: "action", uses: long1 },
