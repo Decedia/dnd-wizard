@@ -23,6 +23,7 @@ import { HumanVariantConfig, type HumanVariantConfigPayload } from "@/components
 import { HalfElfConfig, type HalfElfConfigPayload } from "@/components/modals/HalfElfConfig";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { RichText, RichInline } from "@/components/RichText";
+import { decodeFeatOptions } from "@/lib/feat-grants";
 import {
   CheckIcon as Check,
   CaretRightIcon as ChevronRight,
@@ -71,6 +72,10 @@ export interface SelectionOption {
   recommendationText?: string;
   /** Parent race that is only playable through one of its subraces. */
   requiresSubrace?: boolean;
+  /** The race record this card picks, when the card's own name differs (Variant Human). */
+  raceName?: string;
+  /** One plain line on what the card gives, shown under its name. */
+  summary?: string;
 }
 
 export interface ConfigChoice {
@@ -141,7 +146,8 @@ function isHalfElfRace(raceName: string): boolean {
   return raceName.startsWith("Half-Elf");
 }
 
-function findParentRaceName(name: string, candidates: string[]): string | null {
+function findParentRaceName(name: string, candidates: string[], raceName?: string): string | null {
+  if (raceName && raceName !== name) return raceName;
   if (RACE_PARENT_ALIASES[name]) return RACE_PARENT_ALIASES[name];
   let best: string | null = null;
   for (const candidate of candidates) {
@@ -164,7 +170,7 @@ function groupRacesByParent(
 ): RaceGroup[] {
   const groups = new Map<string, SelectionOption[]>();
   for (const race of races) {
-    const groupName = findParentRaceName(race.name, parentCandidates) ?? race.name;
+    const groupName = findParentRaceName(race.name, parentCandidates, race.raceName) ?? race.name;
     const existing = groups.get(groupName);
     if (existing) {
       existing.push(race);
@@ -275,7 +281,8 @@ export function UnifiedSelectionModal<T extends SelectionType>({
         races.map((race) => race.name),
         language,
       );
-      return races.map((race) => ({
+      return races.flatMap((race) => {
+        const option: SelectionOption = {
         name: race.name,
         categoryName: getRaceCategoryName(race.name, races.map((r) => r.name)),
         source: race.source || "PHB",
@@ -289,7 +296,20 @@ export function UnifiedSelectionModal<T extends SelectionType>({
         isRecommended: (race as any).recommendation?.is_recommended || false,
         recommendationText: (race as any).recommendation?.text || "",
         requiresSubrace: race.requiresSubrace || false,
-      })) as SelectionOption[];
+        };
+        // Human and Variant Human are two cards side by side, like subraces.
+        if (race.name !== "Human" || option.choiceType !== "variant") return [option];
+        return [
+          { ...option, hasChoice: false, choiceType: undefined, summary: t("modal.humanSummary", "+1 to every ability score and one extra language.") },
+          {
+            ...option,
+            name: t("origin.variantHuman", "Variant Human"),
+            raceName: "Human",
+            isRecommended: false,
+            summary: t("modal.variantHumanSummary", "+1 to two ability scores, one skill and one feat."),
+          },
+        ];
+      });
     }
   }, [selectionType, characterSources, language, t]);
 
@@ -403,7 +423,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
       if (!selectedItem) return;
       const payload: SelectionPayload<T> = {
         type: selectionType,
-        name: selectedItem.name,
+        name: selectedItem.raceName ?? selectedItem.name,
         source: selectedItem.source,
         ...(configChoice && requireChoice ? { configChoice } : {}),
         features: {
@@ -411,9 +431,6 @@ export function UnifiedSelectionModal<T extends SelectionType>({
           children: configChoice && requireChoice ? [configChoice.featureData] : [],
         },
       };
-      if (selectedItem.name === "Human" && configChoice?.featureData?.choiceType === "variant") {
-        (payload as any).variantConfig = configChoice.featureData.variantConfig;
-      }
       onConfirm(payload);
       onClose();
     } else if (step === "info") {
@@ -421,7 +438,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
     } else if (step === "list" && previewItem && !previewItem.hasChoice) {
       const payload: SelectionPayload<T> = {
         type: selectionType,
-        name: previewItem.name,
+        name: previewItem.raceName ?? previewItem.name,
         source: previewItem.source,
         features: {
           core: previewItem,
@@ -471,8 +488,10 @@ export function UnifiedSelectionModal<T extends SelectionType>({
 
   const showInfo = step === "info" && !!infoItem;
 
-  const isHumanVariantStep = step === "config" && selectedItem?.name === "Human" && selectedItem.choiceType === "variant";
-  const variantHumanSelected = isHumanVariantStep && configChoice?.featureData?.choiceType === "variant";
+  const isHumanVariantStep = step === "config" && selectedItem?.raceName === "Human" && selectedItem.choiceType === "variant";
+  // Reopening the picker on a Variant Human keeps the earlier picks.
+  const keptVariant = currentCharacter?.race === "Human" && currentCharacter?.raceVariant === "variant";
+  const variantData = isHumanVariantStep ? (configChoice?.featureData as HumanVariantConfigPayload | undefined) : undefined;
   // Half-Elf: both picks must be made before the race can be confirmed. Without
   // this the button enabled itself on mount, because HalfElfConfig reports an
   // empty payload through useEffect as soon as it renders.
@@ -491,17 +510,20 @@ export function UnifiedSelectionModal<T extends SelectionType>({
     if (skillGap > 0) halfElfMissing.push(t("modal.missingSkills", { n: skillGap }, "Pilih {n} skill"));
     for (const c of halfElfOpenChoices) halfElfMissing.push(t("modal.missingChoice", { name: c.name }, "Pick {name}"));
   }
+  if (isHumanVariantStep) {
+    const abilityGap = 2 - (variantData?.abilities?.length || 0);
+    if (abilityGap > 0) halfElfMissing.push(t("modal.missingAbilities", { n: abilityGap }, "Pilih {n} ability"));
+    if (!variantData?.skill) halfElfMissing.push(t("modal.missingSkills", { n: 1 }, "Pilih {n} skill"));
+    if (!variantData?.feat) halfElfMissing.push(t("modal.missingFeat", "Pick a feat"));
+  }
   const halfElfComplete = halfElfMissing.length === 0;
   const isConfirmDisabled =
     step === "config"
-      ? !halfElfComplete || (requireChoice && !configChoice && !(isHumanVariantStep && !variantHumanSelected))
+      ? !halfElfComplete || (requireChoice && !configChoice)
       : step === "info"
         ? !infoItem
         : !previewItem || (previewItem.hasChoice && !configChoice && requireChoice);
 
-  const isHumanVariantConfig = step === "config" && selectedItem?.name === "Human" && selectedItem.choiceType === "variant";
-  const variantEnabled = isHumanVariantConfig && configChoice?.featureData?.choiceType === "variant";
-  const canConfirmHuman = isHumanVariantConfig && !variantEnabled;
 
   const stickyHeader = (
     <div className="sticky top-0 z-20 shrink-0 bg-surface border-b border-border-strong px-4 py-3 space-y-2">
@@ -547,7 +569,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
       <button
         type="button"
         onClick={handleCancel}
-        className="flex-1 py-2.5 px-4 text-sm font-medium rounded-lg border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:bg-[var(--color-bg)] transition-colors"
+        className="btn btn-secondary flex-1"
       >
         {step === "config" || step === "info" ? t("common.back", "Back") : t("common.cancel", "Cancel")}
       </button>
@@ -555,11 +577,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
         type="button"
         onClick={handleConfirm}
         disabled={isConfirmDisabled}
-        className={`flex-1 py-2.5 px-4 text-sm font-semibold rounded-lg transition-all ${
-          isConfirmDisabled
-            ? "bg-[var(--color-bg)] text-[var(--color-text-muted)] cursor-not-allowed"
-            : "bg-[var(--color-accent-indigo-600)] text-white hover:bg-[var(--color-accent-indigo-700)] active:bg-[var(--color-accent-indigo-800)]"
-        }`}
+        className="btn btn-primary flex-1"
       >
         {confirmLabel}
       </button>
@@ -680,6 +698,9 @@ export function UnifiedSelectionModal<T extends SelectionType>({
                                     </span>
                                   )}
                                 </div>
+                                {opt.summary && (
+                                  <p className="mt-1 text-xs leading-relaxed text-ink-muted">{opt.summary}</p>
+                                )}
                                 {selectionType === "class" && opt.description && (
                                   <p className="mt-1 text-xs leading-relaxed text-ink-muted"><RichInline text={opt.description} /></p>
                                 )}
@@ -754,13 +775,12 @@ export function UnifiedSelectionModal<T extends SelectionType>({
                     } as any);
                   }}
                 />
-              ) : selectedItem.name === "Human" ? (
+              ) : isHumanVariantStep ? (
                 <HumanVariantConfig
-                  initialEnabled={!!configChoice}
-                  initialAbilities={configChoice?.featureData?.abilities || []}
-                  initialSkill={configChoice?.featureData?.skill}
-                  initialFeat={configChoice?.featureData?.feat}
-                  initialFeatOptions={configChoice?.featureData?.featOptions}
+                  initialAbilities={configChoice?.featureData?.abilities || (keptVariant ? currentCharacter.variantHumanAbilities : undefined) || []}
+                  initialSkill={configChoice?.featureData?.skill ?? (keptVariant ? currentCharacter.variantHumanSkill : undefined)}
+                  initialFeat={configChoice?.featureData?.feat ?? (keptVariant ? currentCharacter.featureSelections?.["variant-human-feat"]?.[0] : undefined)}
+                  initialFeatOptions={configChoice?.featureData?.featOptions ?? (keptVariant ? decodeFeatOptions(currentCharacter.featureSelections?.["variant-human-feat-options"]) : undefined)}
                   disabledFeats={[
                     ...(currentCharacter?.features || []).filter((f: any) => f.name && f.source !== "custom").map((f: any) => f.name),
                     ...Object.values(currentCharacter?.featureSelections || {}).flat(),
@@ -768,13 +788,9 @@ export function UnifiedSelectionModal<T extends SelectionType>({
                   character={currentCharacter}
                   sources={currentCharacter?.sources}
                   onChange={(variantConfig) => {
-                    if (!variantConfig.enabled) {
-                      setConfigChoice(null);
-                      return;
-                    }
                     setConfigChoice({
                       id: "variant-human",
-                      name: "Variant Human",
+                      name: t("origin.variantHuman", "Variant Human"),
                       description: t("modal.variantHumanDescription", "You gain +1 to two different ability scores of your choice, proficiency in one skill of your choice, and one feat of your choice."),
                       featureData: { ...variantConfig, choiceType: "variant" },
                       parentChoiceId: "human-variant",
@@ -1202,8 +1218,10 @@ function formatDarkvision(
 }
 
 function RaceInfoPanel({ option, characterSources, language, t }: RaceInfoPanelProps) {
-  const details = getStaticRaceDetails(option.name, characterSources, undefined, language);
-  const abilityIncreases = Object.entries(details?.abilityScoreIncreases || {});
+  const details = getStaticRaceDetails(option.raceName ?? option.name, characterSources, undefined, language);
+  // Variant Human swaps the +1 to everything for its own picks.
+  const isVariantHuman = option.raceName === "Human" && option.choiceType === "variant";
+  const abilityIncreases = isVariantHuman ? [] : Object.entries(details?.abilityScoreIncreases || {});
   const traits = details?.traits || [];
   const languages = details?.languages || [];
 
@@ -1248,6 +1266,15 @@ function RaceInfoPanel({ option, characterSources, language, t }: RaceInfoPanelP
           value={languages.length > 0 ? languages.join(", ") : ""}
         />
       </div>
+
+      {isVariantHuman && (
+        <div>
+          <InfoSectionLabel>{t("modal.abilityBonuses", "Bonus Kemampuan")}</InfoSectionLabel>
+          <p className="mt-1.5 text-xs leading-relaxed text-ink-muted">
+            {t("modal.variantHumanDescription", "You gain +1 to two different ability scores of your choice, proficiency in one skill of your choice, and one feat of your choice.")}
+          </p>
+        </div>
+      )}
 
       {(abilityIncreases.length > 0 || details?.flexibleAsi) && (
         <div>
