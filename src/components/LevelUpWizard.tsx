@@ -406,6 +406,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     if (info.asi && !asiIsValid(asiSelections[lvl])) return false;
     if (info.subclassOptions && !subclassSelection) return false;
     if (!spellSelectionComplete) return false;
+    if ((magicalSecretsSelections[lvl] || []).length < info.magicalSecretsCount || (subclassSpellSelections[lvl] || []).length < info.subclassSpellSelectionCount) return false;
     if (info.subclassFeatureChoices) {
       for (const fc of info.subclassFeatureChoices) {
         if (!isFeatureSelected(lvl, fc.name, true)) return false;
@@ -458,9 +459,13 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
           items.push({ level: lvl, label: t("levelUp.taskSpells", "Level {level} — Select spells", { level: lvl }), sectionId: `spells-${lvl}` });
         }
       }
+      // Magical Secrets and the Lore Bard's picks.
+      if ((magicalSecretsSelections[lvl] || []).length < info.magicalSecretsCount || (subclassSpellSelections[lvl] || []).length < info.subclassSpellSelectionCount) {
+        items.push({ level: lvl, label: t("levelUp.taskSpells", "Level {level} — Select spells", { level: lvl }), sectionId: `spells-${lvl}` });
+      }
     }
     return items;
-  }, [levelInfos, asiSelections, subclassSelection, spellSelections, hpValues, startFromLevelOne, expertiseSelections, isFeatureSelected, t]);
+  }, [levelInfos, asiSelections, subclassSelection, spellSelections, magicalSecretsSelections, subclassSpellSelections, hpValues, startFromLevelOne, expertiseSelections, isFeatureSelected, t]);
 
   const handleFinish = () => {
     if (!classData) return;
@@ -644,6 +649,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
           });
           magicalSecretsIds.push(id);
         }
+        if (level === 0 && !cantrips.some((c) => c.name === name)) cantrips.push({ id: `cantrip-${name}`.replace(/\s+/g, "-"), name });
       }
     }
 
@@ -661,6 +667,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
           });
           magicalSecretsIds.push(id);
         }
+        if (level === 0 && !cantrips.some((c) => c.name === name)) cantrips.push({ id: `cantrip-${name}`.replace(/\s+/g, "-"), name });
       }
     }
 

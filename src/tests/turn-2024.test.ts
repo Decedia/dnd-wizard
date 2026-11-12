@@ -7,6 +7,8 @@ import { restGains, shortRestPatch } from "@/lib/rest";
 import { computeDerivedStats, createEmptyCharacter, getFeatureValue, type Character } from "@/lib/storage";
 import { featureHealing } from "@/lib/healing";
 import { weaponMastery } from "@/lib/weapon-mastery";
+import { spellNumbersFor } from "@/lib/roll-parts";
+import { speciesSpellAbility } from "@/lib/origin-2024";
 import { translations as en } from "@/locales/en.js";
 import { translations as id } from "@/locales/id.js";
 
@@ -59,6 +61,8 @@ describe("2024 feature table", () => {
       ...SUB_OPTIONS.flatMap((g) => g.options).flatMap((o) => [`turn.sub.${o.key}`, o.condition && `turn.cond.${o.condition}`]),
       ...["Cleave", "Graze", "Nick", "Push", "Sap", "Slow", "Topple", "Vex"].map((m) => `mastery.text.${m}`),
       "turn.cost.focusPoints", "turn.cost.focusChoose", "rest.gain.focus",
+      "turn.block.wildShapeLeft", "turn.cost.natureMagician",
+      ...["slotToShape", "shapeToSlot", "evergreen", "natureMagician"].flatMap((k) => [`turn.druid.${k}`, `turn.druid.${k}Name`]),
     ].filter((k): k is string => !!k);
     expect(keys.filter((k) => !(k in (en as any)))).toEqual([]);
     expect(keys.filter((k) => !(k in (id as any)))).toEqual([]);
@@ -110,6 +114,49 @@ describe("2024 class features on a turn", () => {
     const p = make({ class: "Paladin", level: 3 }, ["Channel Divinity", "Lay On Hands"]);
     expect(find(p, "Divine Sense")!.slot).toBe("bonus");
     expect(find(p, "Lay On Hands")!.amount).toEqual({ field: "layOnHandsPool", max: 15 });
+  });
+
+  test("Thief gets Stealth Attack at 9, other Rogues don't", () => {
+    const thief = make({ class: "Rogue", level: 9, subclass: "Thief" }, ["Cunning Strike"]);
+    expect(options(thief).map((o) => o.name)).toContain("Stealth Attack");
+    const assassin = make({ class: "Rogue", level: 9, subclass: "Assassin" }, ["Cunning Strike"]);
+    expect(options(assassin).map((o) => o.name)).not.toContain("Stealth Attack");
+  });
+
+  test("Wild Resurgence trades slots and Wild Shape uses", () => {
+    const druid = make({ class: "Druid", level: 5 }, ["Wild Resurgence"]);
+    const rows = (c: Character) => options(c).filter((o) => o.key.startsWith("druid:"));
+    // Uses left: no slot for a use; no spent level 1 slot to get back.
+    expect(rows(druid).map((o) => o.blocked)).toEqual(["wildShapeLeft", "slotsFull"]);
+    const empty = { ...druid, wildShapeUses: 0 } as Character;
+    const toShape = rows(empty).find((o) => o.key === "druid:slotToShape")!;
+    expect(toShape.blocked).toBeUndefined();
+    const after = { ...empty, ...optionPatch(toShape) } as Character;
+    expect(after.wildShapeUses).toBe(1);
+    expect(after.spellSlotsExpended?.[1]).toBe(1);
+    expect(rows(after).find((o) => o.key === "druid:slotToShape")!.blocked).toBe("wildShapeLeft");
+    const toSlot = rows(after).find((o) => o.key === "druid:shapeToSlot")!;
+    const back = { ...after, ...optionPatch(toSlot) } as Character;
+    expect([back.wildShapeUses, back.spellSlotsExpended?.[1]]).toEqual([0, 0]);
+    expect(rows({ ...back, wildShapeUses: 1, spellSlotsExpended: { 1: 1 } } as Character).find((o) => o.key === "druid:shapeToSlot")!.blocked).toBe("empty");
+  });
+
+  test("Archdruid: a use back on initiative, and uses into one slot", () => {
+    const druid = { ...make({ class: "Druid", level: 20 }, ["Archdruid"]), wildShapeUses: 0, spellSlotsExpended: { 4: 1 } } as Character;
+    const evergreen = options(druid).find((o) => o.key === "druid:evergreen")!;
+    expect(evergreen.when).toBe("onInitiative");
+    expect(evergreen.spend.wildShapeUses).toBe(1);
+    const twoUses = { ...druid, wildShapeUses: 2 } as Character;
+    const magic = options(twoUses).find((o) => o.key === "druid:natureMagician:4")!;
+    const after = { ...twoUses, ...optionPatch(magic) } as Character;
+    expect([after.wildShapeUses, after.spellSlotsExpended?.[4]]).toEqual([0, 0]);
+  });
+
+  test("a 2024 species spell uses the ability picked for the species", () => {
+    const c = make({ class: "Fighter", level: 5, race: "Tiefling", int: 8, cha: 16, raceChoices: { "tiefling-2024-lineage": "fiendish-legacy-infernal", "tiefling-2024-spell-ability": "cha" } } as Partial<Character>, []);
+    expect(speciesSpellAbility(c, "Fire Bolt")).toBe("cha");
+    expect(speciesSpellAbility(c, "Magic Missile")).toBeUndefined();
+    expect(spellNumbersFor(c, "cha")).toMatchObject({ attack: 6, dc: 14 });
   });
 
   test("Cunning Strike options open up with level", () => {

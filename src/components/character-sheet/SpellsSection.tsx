@@ -26,7 +26,8 @@ import { rollGroups } from "@/components/dice/roll-flow";
 import { spellDamageBonuses } from "@/lib/spell-damage-bonus";
 import { useDice } from "@/contexts/DiceContext";
 import { d20Group, damageGroup, partsFor, spellDamageGroups } from "@/lib/dice-roll";
-import { spellAttackParts } from "@/lib/roll-parts";
+import { spellNumbersFor } from "@/lib/roll-parts";
+import { speciesSpellAbility } from "@/lib/origin-2024";
 import { GiRollingDices } from "react-icons/gi";
 
 interface SpellsSectionProps {
@@ -264,8 +265,9 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
     const srd = srdSpells.find((sp) => sp.name === name) as { attackType?: string; attack_type?: string; heal_at_slot_level?: unknown } | undefined;
     const heal = spellHealing(character, { name, level: spell.level, heal_at_slot_level: srd?.heal_at_slot_level }, spell.level);
     const healGroup = heal?.dice && !heal.maxDice ? damageGroup(t("dice.heal", "Healing"), heal.dice, partsFor(heal.bonus, heal.parts)) : null;
+    const numbers = spellNumbersFor(character, speciesSpellAbility(character, name));
     return [
-      ...(srd && (srd.attackType || srd.attack_type) ? [d20Group(t("dice.toHit", "To hit"), character.spellAttackBonus ?? 0, spellAttackParts(character))] : []),
+      ...(srd && (srd.attackType || srd.attack_type) ? [d20Group(t("dice.toHit", "To hit"), numbers.attack, numbers.parts)] : []),
       ...spellDamageGroups(damageOf(spell) || [], t("dice.damage", "Damage"), spell.name),
       ...(healGroup ? [healGroup] : []),
     ];

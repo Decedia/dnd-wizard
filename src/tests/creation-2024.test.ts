@@ -244,6 +244,9 @@ describe("2024 level-up", () => {
     expect(infoAt("Rogue", 18).asi).toBe(false);
     const bard10 = infoAt("Bard", 10);
     expect([bard10.magicalSecretsCount, bard10.spellSelectionCount]).toEqual([0, 1]);
+    // College of Lore, Magical Discoveries: two picks at 6.
+    const c = { ...createEmptyCharacter(), class: "Bard", ruleset: "2024", level: 5, subclass: "College of Lore" } as Character;
+    expect(buildLevelInfos(c, 6, getStaticClass("Bard", "2024"), "College of Lore", 5, false, "en").at(-1)!.subclassSpellSelectionCount).toBe(2);
   });
 
   test("Ranger and Wizard expertise; class numbers come from the 2024 table", () => {
