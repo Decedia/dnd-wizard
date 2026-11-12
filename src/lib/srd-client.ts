@@ -36,20 +36,21 @@ const featsDataMap = { en: featsDataEn, id: featsDataId } as const;
 
 import subclassSpellsData from "@/data/subclass_spells.json";
 
-// 2024 rules (SRD 5.2, built by scripts/import-srd52.py). English only for now;
-// other languages fall back to it.
+// 2024 rules (SRD 5.2, built by scripts/import-srd52.py). Indonesian text
+// comes from src/data/id/2024_text.json (see locale-2024.ts).
+import { withIndonesian } from "./locale-2024";
 import species2024En from "@/data/en/2024_species.json";
 import classes2024En from "@/data/en/2024_classes.json";
 import subclasses2024En from "@/data/en/2024_subclasses.json";
 import spells2024En from "@/data/en/2024_spells.json";
 import feats2024En from "@/data/en/2024_feats.json";
 import backgrounds2024En from "@/data/en/2024_backgrounds.json";
-const species2024Map: Record<string, { races: unknown[] }> = { en: species2024En };
-const classes2024Map: Record<string, { classes: unknown[] }> = { en: classes2024En };
-const subclasses2024Map: Record<string, { subclasses: unknown[] }> = { en: subclasses2024En };
-const spells2024Map: Record<string, { spells: unknown[] }> = { en: spells2024En };
-const feats2024Map: Record<string, { feats: unknown[] }> = { en: feats2024En };
-const backgrounds2024Map: Record<string, { backgrounds: SRDBackground2024[] }> = { en: backgrounds2024En as { backgrounds: SRDBackground2024[] } };
+const species2024Map: Record<string, { races: unknown[] }> = withIndonesian(species2024En);
+const classes2024Map: Record<string, { classes: unknown[] }> = withIndonesian(classes2024En);
+const subclasses2024Map: Record<string, { subclasses: unknown[] }> = withIndonesian(subclasses2024En);
+const spells2024Map: Record<string, { spells: unknown[] }> = withIndonesian(spells2024En);
+const feats2024Map: Record<string, { feats: unknown[] }> = withIndonesian(feats2024En);
+const backgrounds2024Map: Record<string, { backgrounds: SRDBackground2024[] }> = withIndonesian(backgrounds2024En as { backgrounds: SRDBackground2024[] });
 
 /** A 2024 background: it gives the ability increases and an Origin feat. */
 export interface SRDBackground2024 {
@@ -647,9 +648,9 @@ function withSpellOptions(raw: any, sources?: string[], ruleset?: string, locale
   return { ...choice, options };
 }
 
-export function getStaticSubclassDetails(className: string, subclassName: string, locale: string = "en"): { name: string; description: string[]; features: { name: string; description: string[]; level?: number }[] } | null {
-  const subclassesData = pickLocaleData(subclassesDataMap, locale) as any;
-  const all = (subclassesData as any).subclasses as any[];
+export function getStaticSubclassDetails(className: string, subclassName: string, locale: string = "en", ruleset?: string): { name: string; description: string[]; features: { name: string; description: string[]; level?: number }[] } | null {
+  // 2024 subclasses share names with 2014 ones (Champion, Thief) but not their features.
+  const all = (ruleset === "2024" ? pickLocaleData(subclasses2024Map, locale).subclasses : (pickLocaleData(subclassesDataMap, locale) as any).subclasses) as any[];
   const found = all.find((s) => s.class === className && s.name === subclassName);
   if (!found) return null;
 

@@ -192,7 +192,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
               }
             }
           } else if (kind === "race" && character.race) {
-            const race = getStaticRace(character.race, undefined, language);
+            const race = getStaticRace(character.race, character.ruleset, language);
             // Choices as well as traits: Variant Human is a choice option, not a
             // trait, so searching traits alone never found it and it fell through
             // to the English stored text.

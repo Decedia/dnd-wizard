@@ -44,10 +44,14 @@ export function CharacterView() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const id = searchParams.get("id") ?? "";
-  const { data: srdData } = useSRD();
+  const { data: srdData, setRuleset: setSrdRuleset } = useSRD();
   const { t, language } = useLanguage();
 
   const [character, setCharacter] = useState<Character | null>(null);
+
+  // The shared SRD data (spell cards, level-up pickers) follows the open character's rule set.
+  const characterRuleset = character?.ruleset === "2024" ? "2024" : "2014";
+  useEffect(() => { setSrdRuleset(characterRuleset); }, [characterRuleset, setSrdRuleset]);
   const [turnOpen, setTurnOpen] = useState(false);
   const [restKind, setRestKind] = useState<"short" | "long" | null>(null);
   const [undoOpen, setUndoOpen] = useState(false);

@@ -56,7 +56,7 @@ export function IdentitySection({ character, onChange, editMode = true }: Identi
 
   // The selected class and race carry their own reference text. Surfaces it here so
   // the enhanced descriptions and racial traits are reachable from the sheet.
-  const selectedRace = character.race ? getStaticRace(character.race, undefined, language) : undefined;
+  const selectedRace = character.race ? getStaticRace(character.race, character.ruleset, language) : undefined;
   const selectedClass = character.class ? getStaticClass(character.class, character.ruleset, undefined, language) : undefined;
   const raceTraits = (selectedRace?.traits || []).filter((trait: any) => (trait.summary || trait.description) as string);
 

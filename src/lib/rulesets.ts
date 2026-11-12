@@ -1,10 +1,10 @@
 export type Ruleset = "2014" | "2024";
 
 /**
- * The 2024 rules are still being built. Until this is true the creator offers
- * only 2014 rules, and a draft that somehow holds "2024" is treated as 2014.
+ * The 2024 rules (SRD 5.2) are released: the creator offers both rule sets.
+ * Set to false to hide 2024 again; drafts holding "2024" then load as 2014.
  */
-export const RULESET_2024_READY = false;
+export const RULESET_2024_READY = true;
 
 /**
  * Testing 2024 before it ships: open the creator with ?rules2024 to turn it on

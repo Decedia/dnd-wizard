@@ -116,7 +116,7 @@ function toolNames(character: Character): Set<string> {
 }
 
 function spellRow(character: Character, name: string, level: number, language: string) {
-  const spell = getStaticSpells(character.sources, undefined, language).find((s) => s.name === name);
+  const spell = getStaticSpells(character.sources, character.ruleset, language).find((s) => s.name === name);
   return { id: `spell-${name}-${level}`.replace(/\s+/g, "-"), name, level, source: "srd" as const, srdSpellName: name, description: normalizeDescription(spell?.description) };
 }
 

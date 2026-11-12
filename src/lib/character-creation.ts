@@ -964,7 +964,7 @@ function applyOptionalFeatureGrants(character: Character, optional: OptionalClas
     for (const [lvl, names] of Object.entries(feature.spells || {})) {
       if (Number(lvl) > (character.level || 1)) continue;
       for (const name of names) {
-        const spell = getStaticSpells(character.sources).find((s) => s.name === name);
+        const spell = getStaticSpells(character.sources, character.ruleset).find((s) => s.name === name);
         const level = spell?.level ?? 1;
         if (spells.some((s) => s.name === name && s.level === level)) continue;
         spells.push({ id: `spell-${name}-${level}`.replace(/\s+/g, "-"), name, level, source: "srd", srdSpellName: name, description: normalizeDescription(spell?.description) } as any);
@@ -1083,7 +1083,7 @@ function applyChoiceGrants(character: Character, features: any[]): Character {
       const spells = [...(next.spells || [])];
       const domain = new Set((next as any).domainSpells || []);
       for (const n of names) {
-        const spell = getStaticSpells(next.sources).find((s) => s.name === n);
+        const spell = getStaticSpells(next.sources, next.ruleset).find((s) => s.name === n);
         if (!spell) continue;
         const level = spell.level || 0;
         if (!spells.some((s) => s.name === n && s.level === level)) {

@@ -426,7 +426,7 @@ export default function Home() {
             <a href="https://game-icons.net" target="_blank" rel="noopener noreferrer" className="underline">Game Icons</a>{" "}
             (Lorc, Delapouite {t("home.creditsAnd", "and others")}),{" "}
             <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener noreferrer" className="underline">CC BY 3.0</a>.{" "}
-            {t("home.creditsSrd", "Includes material from the System Reference Document 5.1 by Wizards of the Coast LLC,")}{" "}
+            {t("home.creditsSrd", "Includes material from the System Reference Documents 5.1 and 5.2 by Wizards of the Coast LLC,")}{" "}
             <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer" className="underline">CC BY 4.0</a>.
           </p>
         </div>
