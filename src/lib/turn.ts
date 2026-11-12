@@ -73,6 +73,8 @@ export interface TurnOption {
   when?: FeatureWhen;
   /** Once per turn: greyed out after a tap until End turn. */
   oncePerTurn?: boolean;
+  /** Fires by itself when an attack hits (see `FeatureRule.auto`). */
+  auto?: boolean;
   /** A condition the player checks before using it; locale key `turn.cond.*`. */
   condition?: string;
   /** The player picks how much of this pool to spend (Lay on Hands). */
@@ -400,6 +402,7 @@ function ruleOption(character: Character, rule: FeatureRule | SubOption, base: P
     else option.spend.featuresUsedThisTurn = [...usedThisTurn, mark];
   }
   if (rule.condition) option.condition = rule.condition;
+  if (rule.auto === true || (typeof rule.auto === "function" && rule.auto(character))) option.auto = true;
   if (rule.gain && !option.blocked) {
     const max = Number((character as any)[`max${rule.gain[0].toUpperCase()}${rule.gain.slice(1)}`]) || 0;
     const left = poolLeft(character, rule.gain);
@@ -739,9 +742,89 @@ export function lastHitIndex(character: Character): number {
 /** A feature that adds damage on a hit (Colossus Slayer, Sneak Attack): it rolls with that swing's damage. */
 export const addsHitDamage = (o: TurnOption) => o.group === "feature" && o.slot === "free" && !!o.when && ON_HIT_WHEN.has(o.when) && !!o.featureDice && !o.amount;
 
+/** Damage a feature or spell adds to one hit, kept on the swing. */
+export type SwingExtra = NonNullable<NonNullable<Character["swings"]>[number]["extras"]>[number];
+
 /** Puts a feature's damage dice on swing `index`, so its damage roll (and Roll again) includes them. */
-export function swingExtraPatch(character: Character, index: number, name: string, dice: string): Partial<Character> {
-  return { swings: (character.swings || []).map((s, i) => (i === index ? { ...s, extras: [...(s.extras || []), { name, dice }] } : s)) };
+export function swingExtraPatch(character: Character, index: number, name: string, dice: string, auto = false): Partial<Character> {
+  return { swings: (character.swings || []).map((s, i) => (i === index ? { ...s, extras: [...(s.extras || []), { name, dice, ...(auto ? { auto } : {}) }] } : s)) };
+}
+
+/** Spells that add a die to every hit while their timer runs. */
+const HIT_SPELLS: { name: string; dice: string }[] = [
+  { name: "Hunter's Mark", dice: "1d6" },
+  { name: "Hex", dice: "1d6" },
+];
+
+/** The dice a running spell adds to each hit (Hunter's Mark, Hex). */
+export function spellHitExtras(character: Pick<Character, "activeBuffs">): SwingExtra[] {
+  const running = new Set((character.activeBuffs || []).map((b) => b.name.toLowerCase()));
+  return HIT_SPELLS.filter((sp) => running.has(sp.name.toLowerCase())).map((sp) => ({ ...sp, auto: true }));
+}
+
+/**
+ * What fires by itself when an attack hits: the features marked `auto` that are
+ * free to use right now, and the spells that ride on every hit. `marks` are the
+ * once-per-turn features this uses up.
+ */
+export function autoHitExtras(character: Character): { extras: SwingExtra[]; marks: string[] } {
+  const extras: SwingExtra[] = [];
+  const marks: string[] = [];
+  const used = character.featuresUsedThisTurn || [];
+  for (const o of featureOptions(character)) {
+    if (!o.auto || o.blocked || !addsHitDamage(o)) continue;
+    // Auto never spends a resource; only the once-per-turn mark.
+    if (Object.keys(o.spend).some((k) => k !== "featuresUsedThisTurn")) continue;
+    const mark = (o.spend.featuresUsedThisTurn || []).find((m) => !used.includes(m));
+    extras.push({ name: o.name, dice: o.featureDice!, auto: true, ...(mark ? { mark } : {}) });
+    if (mark) marks.push(mark);
+  }
+  return { extras: [...extras, ...spellHitExtras(character)], marks };
+}
+
+/**
+ * Sets a swing's result. A hit or crit also fires the auto features: their dice
+ * go on the swing and their once-per-turn use is taken.
+ */
+export function hitPatch(character: Character, index: number, result: SwingResult): Partial<Character> {
+  const base = swingResultPatch(character, index, result);
+  if (result !== "hit" && result !== "crit") return base;
+  const { extras, marks } = autoHitExtras(character);
+  if (extras.length === 0) return base;
+  return {
+    swings: (base.swings || []).map((s, i) => (i === index ? { ...s, extras: [...(s.extras || []), ...extras.filter((x) => !(s.extras || []).some((e) => e.name === x.name))] } : s)),
+    ...(marks.length ? { featuresUsedThisTurn: [...(character.featuresUsedThisTurn || []), ...marks] } : {}),
+  };
+}
+
+/** Takes an extra off a swing: its rolled damage comes off the total and its once-per-turn use comes back. */
+export function removeSwingExtraPatch(character: Character, index: number, name: string): Partial<Character> {
+  const extra = (character.swings || [])[index]?.extras?.find((x) => x.name === name);
+  if (!extra) return {};
+  return {
+    swings: (character.swings || []).map((s, i) =>
+      i === index ? { ...s, extras: (s.extras || []).filter((x) => x.name !== name), ...(s.damage !== undefined && extra.total ? { damage: Math.max(0, s.damage - extra.total) } : {}) } : s,
+    ),
+    ...(extra.mark ? { featuresUsedThisTurn: (character.featuresUsedThisTurn || []).filter((m) => m !== extra.mark) } : {}),
+  };
+}
+
+/**
+ * Keeps a damage roll on its swing: the total, and each extra's own share (by
+ * group label) so it can be taken off again. `add` puts the roll on top of the damage already there.
+ */
+export function swingDamagePatch(character: Character, index: number, labels: string[], totals: number[], add = false): Partial<Character> {
+  const sum = totals.reduce((a, b) => a + b, 0);
+  return {
+    swings: (character.swings || []).map((s, i) => {
+      if (i !== index) return s;
+      const extras = s.extras?.map((x) => {
+        const at = labels.indexOf(x.name);
+        return at >= 0 ? { ...x, total: totals[at] ?? 0 } : x;
+      });
+      return { ...s, damage: (add ? s.damage || 0 : 0) + sum, ...(extras ? { extras } : {}) };
+    }),
+  };
 }
 
 /** Doubles every die in a damage line, for a critical hit: "1d8 + 3" becomes "2d8 + 3". */

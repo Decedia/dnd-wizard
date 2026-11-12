@@ -17,7 +17,7 @@ import { getMaxPreparedSpells, type Character } from "@/lib/storage";
 import type { Beast } from "@/data/wild-shapes";
 import { needsPrepare, preparableSpells } from "@/lib/prepared-spells";
 import { PrepareSpellsSheet } from "@/components/PrepareSpellsSheet";
-import { addsHitDamage, amountPatch, critDamage, critExtraDice, lastHitIndex, swingExtraPatch, isSwingOption, swingPatch, swingResultPatch, wildShapePatch, buildTurnMenu, endEncounterPatch, isSlotUsed, optionPatch, type TurnGroup, type TurnOption, type TurnSlot } from "@/lib/turn";
+import { addsHitDamage, autoHitExtras, hitPatch, swingDamagePatch, amountPatch, critDamage, critExtraDice, lastHitIndex, swingExtraPatch, isSwingOption, swingPatch, wildShapePatch, buildTurnMenu, endEncounterPatch, isSlotUsed, optionPatch, type TurnGroup, type TurnOption, type TurnSlot } from "@/lib/turn";
 import { CheckIcon as Check, LightningBoltIcon as LightningBolt, ClockIcon as Clock, ShieldCheckIcon as ShieldCheck, CaretDownIcon as ChevronDown } from "@/components/icons";
 import { GiRun } from "react-icons/gi";
 import { getSpellSchoolStyle } from "@/lib/spell-schools";
@@ -142,20 +142,19 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
    * A feature that adds damage to a hit (Colossus Slayer, Sneak Attack): its dice join that swing.
    * Damage not rolled yet rolls them with the weapon; damage already rolled gets them added on top.
    */
-  const addToHit = (o: TurnOption, index: number) => {
-    const name = nameOf(o);
-    const extra = o.featureDice!;
+  const addToHit = (o: TurnOption | null, index: number, extraName?: string, extraDice?: string) => {
+    const name = o ? nameOf(o) : extraName!;
+    const extra = o ? o.featureDice! : extraDice!;
     const swing = (character.swings || [])[index];
-    takeOption(o, undefined, undefined, true);
-    onChange(swingExtraPatch(character, index, name, extra));
+    if (o) takeOption(o, undefined, undefined, true);
+    onChange(swingExtraPatch(character, index, name, extra, !o));
     // Undo takes the dice off the swing too.
-    setLast((l) => (l ? { ...l, undo: { ...l.undo, swings: character.swings } } : l));
+    if (o) setLast((l) => (l ? { ...l, undo: { ...l.undo, swings: character.swings } } : l));
     if (!dice || swing?.damage === undefined) return;
     const group = groupFrom(name, swing.result === "crit" ? critDamage(extra) : extra);
     if (!group) return;
     rollAndClose(dice, name, [group], (res) => {
-      const add = res[0]?.total ?? 0;
-      onChange({ swings: (latest.current.swings || []).map((s, i) => (i === index ? { ...s, damage: (s.damage || 0) + add } : s)) });
+      onChange(swingDamagePatch(latest.current, index, [name], [res[0]?.total ?? 0], true));
       setRolled({ name, text: rollSummary([group], res) });
     });
   };
@@ -179,17 +178,18 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
       rollAttack(dice, hitLabels, {
         name,
         toHit,
-        damage: groups.filter((g) => !g.d20Test),
+        // A swing that hits also rolls what fires by itself on a hit (Divine Strike, Hunter's Mark).
+        damage: [...groups.filter((g) => !g.d20Test), ...(swingIndex >= 0 ? autoHitExtras(character).extras.map((x) => groupFrom(x.name, x.dice)).filter((g): g is RollGroup => !!g) : [])],
         critExtra: extraGroup ? [extraGroup] : [],
         onResult: (result) => {
-          if (swingIndex >= 0) onChange(swingResultPatch(latest.current, swingIndex, result));
+          if (swingIndex >= 0) onChange(hitPatch(latest.current, swingIndex, result));
           if (result === "miss") setRolled({ name, text: hitLabels.miss });
         },
         onDamage: (gs, res) => {
           // A swing keeps its own "Roll again" in the attack list, so the line here only shows the result.
           if (swingIndex >= 0) setRolled({ name, text: rollSummary(gs, res) });
           else showDamage(name, gs, res);
-          if (swingIndex >= 0) onChange({ swings: (latest.current.swings || []).map((s, i) => (i === swingIndex ? { ...s, damage: res.reduce((a, r) => a + r.total, 0) } : s)) });
+          if (swingIndex >= 0) onChange(swingDamagePatch(latest.current, swingIndex, gs.map((g) => g.label), res.map((r) => r.total)));
         },
       });
       return;
@@ -359,7 +359,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
       <div className="space-y-5 px-4 py-4">
         <WildShapeCard character={character} onChange={onChange} />
         <Timers character={character} onChange={onChange} />
-        <SwingTracker character={character} menu={menu} nameOf={nameOf} onUse={(o) => (rollsOf(o).length ? rollOption(o) : takeOption(o))} onChange={onChange} onRolled={(name, text) => setRolled({ name, text })} />
+        <SwingTracker character={character} menu={menu} nameOf={nameOf} onUse={(o) => (rollsOf(o).length ? rollOption(o) : takeOption(o))} onAddExtra={(i, name, extraDice) => addToHit(null, i, name, extraDice)} onChange={onChange} onRolled={(name, text) => setRolled({ name, text })} />
         {mustPrepare && (
           <div className="rounded-[var(--radius-md)] border border-amber-500/60 bg-amber-500/10 px-3 py-3">
             <div className="text-sm font-bold text-[var(--color-text-primary)]">{t("turn.prepare.title", "No spells ready")}</div>
