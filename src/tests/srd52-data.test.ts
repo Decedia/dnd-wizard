@@ -1,7 +1,8 @@
 // @ts-ignore - bun:test is provided by the Bun runtime
 import { describe, expect, test } from "bun:test";
 import fixture from "./fixtures/srd52-checked.json";
-import { getStaticBackgrounds2024, getStaticClasses, getStaticFeats, getStaticRaces, getStaticSpells, getStaticSubclasses } from "@/lib/srd-client";
+import weaponMastery from "@/data/en/2024_weapon_mastery.json";
+import { getStaticBackgrounds2024, getStaticClasses, getStaticFeats, getStaticRaces, getStaticSpells, getStaticSubclasses, lineageChoiceOf } from "@/lib/srd-client";
 
 // The 2024 rules data (SRD 5.2) is locked to a checked copy. A change here
 // means the data changed: check it against the rules text before updating
@@ -57,10 +58,28 @@ describe("2024 subclasses", () => {
 describe("2024 species, backgrounds, feats", () => {
   test("species", () => {
     const got = Object.fromEntries(
-      getStaticRaces([], "2024").map((s: any) => [s.name, { size: s.size, speed: s.speed, darkvision: s.darkvision, traits: s.traits.map((t: any) => t.name), options: (s.choices || []).flatMap((c: any) => c.options.map((o: any) => o.name)) }]),
+      getStaticRaces([], "2024").map((s: any) => [s.name, { size: s.size, speed: s.speed, darkvision: s.darkvision, traits: s.traits.map((t: any) => t.name), options: (s.choices?.[0]?.id.endsWith("-lineage") ? s.choices[0].options : []).map((o: any) => o.name) }]),
     );
     expect(got).toEqual(fixture.species);
     for (const s of getStaticRaces([], "2024")) expect(s.abilityScoreIncreases).toEqual({});
+  });
+  test("lineage spells by character level", () => {
+    const got: Record<string, unknown> = {};
+    for (const s of getStaticRaces([], "2024")) for (const o of lineageChoiceOf(s)?.options || []) if (o.spells) got[o.name] = o.spells;
+    expect(got).toEqual(fixture.lineageSpells);
+  });
+  test("species picks: Keen Senses, Skillful, size, Wood Elf speed", () => {
+    const race = (name: string) => getStaticRaces([], "2024").find((r) => r.name === name)!;
+    expect(race("Elf").skillChoice).toEqual({ count: 1, options: ["Insight", "Perception", "Survival"] });
+    expect(race("Human").skillChoice).toEqual({ count: 1 });
+    expect(race("Human").originFeat).toBe(true);
+    expect(race("Tiefling").spells).toEqual({ "1": ["Thaumaturgy"] });
+    for (const name of ["Human", "Tiefling"]) expect(race(name).choices?.find((c) => c.id.endsWith("-size"))?.options?.map((o) => o.name)).toEqual(["Medium", "Small"]);
+    for (const name of ["Elf", "Gnome", "Tiefling"]) expect(race(name).choices?.find((c) => c.id.endsWith("-spell-ability"))?.options?.map((o) => o.id)).toEqual(["int", "wis", "cha"]);
+    expect(lineageChoiceOf(race("Elf"))?.options?.find((o) => o.name === "Wood Elf")?.speed).toBe(35);
+  });
+  test("weapon mastery properties", () => {
+    expect(weaponMastery.weapons).toEqual(fixture.weaponMastery);
   });
   test("backgrounds", () => {
     const got = Object.fromEntries(getStaticBackgrounds2024().map((b) => [b.name, { abilityScores: b.abilityScores, feat: b.feat, skills: b.skills, tools: b.tools }]));

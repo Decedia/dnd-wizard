@@ -2,7 +2,7 @@
 
 import { useCallback, useMemo } from "react";
 import { Check, Info, Star } from "@phosphor-icons/react";
-import { getBackgroundData } from "@/data/backgrounds";
+import { backgroundSkillsOf } from "@/lib/origin-2024";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { isRecommended } from "@/lib/recommendations";
 import { getStaticClass, getStaticRace } from "@/lib/srd-client";
@@ -36,10 +36,8 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
   const classData = data.class ? getStaticClass(data.class, data.ruleset) : null;
   const profBonus = getProficiencyBonus(data.level);
   const skillChoices = classData?.skillChoices || null;
-  const backgroundSkills = useMemo(
-    () => getBackgroundData(data.background)?.skillProficiencies || [],
-    [data.background],
-  );
+  const { ruleset, background } = data;
+  const backgroundSkills = useMemo(() => backgroundSkillsOf({ ruleset, background }), [ruleset, background]);
 
   // Skills the race already granted. Counting these toward the class allowance
   // would silently shortchange the character - a Half-Elf who takes Stealth
@@ -207,7 +205,9 @@ export function StepSkills({ data, onChange }: StepSkillsProps) {
         <div className="mb-6 rounded-2xl border-2 border-ink/30 bg-surface p-4">
           <div className="mb-2 flex items-center justify-between">
             <h3 className="text-sm font-bold text-ink">
-              {t("skills.raceChoiceTitle", { race: data.race }, "From your race ({race})")}
+              {data.ruleset === "2024"
+                ? t("skills.speciesChoiceTitle", { race: data.race }, "From your species ({race})")
+                : t("skills.raceChoiceTitle", { race: data.race }, "From your race ({race})")}
             </h3>
             <span className="text-sm font-black text-ink">
               {racePicks.length} / {raceSkillChoice.count}

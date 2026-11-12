@@ -5,6 +5,7 @@ import { normalizeDescription } from "./level-up";
 import type { Character } from "./storage";
 import { FEAT_FIXED_GRANTS, decodeFeatOptions } from "./feat-grants";
 import { getFeatOptionGroups } from "@/data/feat-options";
+import { speciesSpells2024 } from "./origin-2024";
 
 type SpellOwner = Pick<Character, "class" | "subclass" | "level" | "race" | "raceChoices" | "featureSelections" | "sources" | "ruleset" | "circleTerrain" | "optionalClassFeatures">;
 
@@ -39,9 +40,11 @@ export function getGrantedSpellNames(character: SpellOwner): string[] {
     }
   }
   if (character.class === "Druid" && character.circleTerrain) names.push(...getCircleSpells(character.circleTerrain, level));
-  names.push(...upTo(RACE_SPELLS[character.race], level));
+  // RACE_SPELLS is 2014 races; a 2024 species' spells come with its lineage.
+  if (character.ruleset === "2024") names.push(...speciesSpells2024(character));
+  else names.push(...upTo(RACE_SPELLS[character.race], level));
   // A cantrip the race lets the player pick (High Elf).
-  for (const choice of activeRaceChoices(getStaticRaceDetails(character.race, character.sources)?.choices, character.raceChoices)) {
+  for (const choice of activeRaceChoices(getStaticRaceDetails(character.race, character.sources, character.ruleset)?.choices, character.raceChoices)) {
     if (!choice.spellList) continue;
     const picked = choice.options?.find((o) => o.id === character.raceChoices?.[choice.id]);
     if (picked) names.push(picked.name);
@@ -143,7 +146,7 @@ function takenFeats(character: Pick<Character, "featureSelections" | "features">
   const selections = character.featureSelections || {};
   const taken = new Map<string, Record<string, string>>();
   for (const [key, values] of Object.entries(selections)) {
-    if (!/^asi-feat-\d+$/.test(key) && key !== "variant-human-feat") continue;
+    if (!/^asi-feat-\d+$/.test(key) && !/^(variant-human-feat|origin-feat-(background|species))$/.test(key)) continue;
     const name = values?.[0];
     if (name) taken.set(name, { ...taken.get(name), ...decodeFeatOptions(selections[`${key}-options`]) });
   }
@@ -166,11 +169,12 @@ export function getFreeCastSpells(character: SpellOwner & Pick<Character, "featu
     if (out.some((c) => c.name.toLowerCase() === name.toLowerCase())) return;
     out.push({ name, rest: SHORT_REST[source]?.includes(name) ? "short" : "long" });
   };
-  for (const name of upTo(RACE_SPELLS[character.race], level)) add(name, character.race);
+  const raceSpells = character.ruleset === "2024" ? speciesSpells2024(character) : upTo(RACE_SPELLS[character.race], level);
+  for (const name of raceSpells) add(name, character.race);
   for (const [feat, options] of takenFeats(character)) {
     if (NO_FREE_CAST.has(feat)) continue;
-    for (const name of FEAT_FIXED_GRANTS[feat]?.spells || []) add(name, feat);
-    for (const group of getFeatOptionGroups(feat)) {
+    if (character.ruleset !== "2024") for (const name of FEAT_FIXED_GRANTS[feat]?.spells || []) add(name, feat);
+    for (const group of getFeatOptionGroups(feat, character.ruleset)) {
       if (group.type === "spell" && options[group.id]) add(options[group.id], feat);
     }
   }

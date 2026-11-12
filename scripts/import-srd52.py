@@ -6,7 +6,8 @@ Usage:
 
 Download the inputs from
   https://raw.githubusercontent.com/5e-bits/5e-database/main/src/2024/en/5e-SRD-<Name>.json
-for Classes, Levels, Features, Subclasses, Species, Traits, Backgrounds, Feats, Spells.
+for Classes, Levels, Features, Subclasses, Species, Subspecies, Traits, Backgrounds, Feats,
+Spells, Equipment, Weapon-Mastery-Properties.
 
 Writes src/data/en/2024_{classes,subclasses,species,backgrounds,feats,spells}.json.
 The source has known errors (it was wrong about 2014 Warlock tables before), so every
@@ -32,6 +33,7 @@ levels_raw = load("Levels")
 features_raw = {f["index"]: f for f in load("Features")}
 subclasses_raw = load("Subclasses")
 species_raw = load("Species")
+subspecies_raw = {x["index"]: x for x in load("Subspecies")}
 traits_raw = {t["index"]: t for t in load("Traits")}
 backgrounds_raw = load("Backgrounds")
 feats_raw = load("Feats")
@@ -218,6 +220,89 @@ for c in classes_raw:
         entry["weaponMastery"] = {str(k): v for k, v in mastery.items()}
     classes.append(entry)
 
+# ---------------------------------------------------------------- level 1 class picks
+
+equipment_raw = load("Equipment")
+mastery_raw = {m["name"]: clean(m["description"]) for m in load("Weapon-Mastery-Properties")}
+WEAPONS = []
+for e in equipment_raw:
+    if not e.get("mastery"):
+        continue
+    cats = {c["index"] for c in e["equipment_categories"]}
+    WEAPONS.append({
+        "name": e["name"],
+        "mastery": e["mastery"]["name"],
+        "martial": "martial-weapons" in cats,
+        "melee": "melee-weapons" in cats,
+        "properties": [p["name"] for p in e.get("properties", [])],
+    })
+
+# Which weapons each class can train with Weapon Mastery (it needs proficiency).
+MASTERY_WEAPONS = {
+    "Barbarian": lambda w: not w["martial"] or w["melee"],
+    "Fighter": lambda w: True,
+    "Paladin": lambda w: True,
+    "Ranger": lambda w: True,
+    "Rogue": lambda w: not w["martial"] or "Finesse" in w["properties"] or "Light" in w["properties"],
+}
+# Paladin, Ranger and Rogue have 2 mastery weapons at every level; the source's tables leave the column out.
+FIXES["weapon_mastery_flat"] = {"Paladin": 2, "Ranger": 2, "Rogue": 2}
+
+
+def option(name, description):
+    return {"name": name, "description": description}
+
+
+# Picks the level 1 features ask for, as the wizard's feature choices. Descriptions are short own-words summaries.
+CLASS_CHOICES = {
+    ("Cleric", "Divine Order"): {"type": "single", "options": [
+        option("Protector", "Trained for battle: Martial weapons and Heavy armor."),
+        option("Thaumaturge", "One extra Cleric cantrip, and add your Wisdom modifier (at least +1) to Intelligence (Arcana or Religion) checks."),
+    ]},
+    ("Druid", "Primal Order"): {"type": "single", "options": [
+        option("Magician", "One extra Druid cantrip, and add your Wisdom modifier (at least +1) to Intelligence (Arcana or Nature) checks."),
+        option("Warden", "Trained for battle: Martial weapons and Medium armor."),
+    ]},
+    ("Warlock", "Eldritch Invocations"): {"type": "single", "options": [
+        option("Pact of the Blade", "Conjure a pact weapon or bond with a magic weapon. You use Charisma to hit and for damage with it."),
+        option("Pact of the Chain", "You learn Find Familiar and your familiar can take special forms, such as an imp or a sprite."),
+        option("Pact of the Tome", "A Book of Shadows with three cantrips and two 1st-level rituals of your choice from any class."),
+        option("Armor of Shadows", "Cast Mage Armor on yourself at will, without a spell slot."),
+        option("Eldritch Mind", "Advantage on Constitution saving throws to keep Concentration."),
+    ]},
+}
+
+fighting_styles = [f for f in feats_raw if f["type"] == "fighting-style"]
+for c in classes:
+    name = c["name"]
+    if name in FIXES["weapon_mastery_flat"]:
+        c["weaponMastery"] = {str(l): FIXES["weapon_mastery_flat"][name] for l in range(1, 21)}
+    if name == "Wizard":
+        c["spellbookSpells"] = {str(l): 6 + 2 * (l - 1) for l in range(1, 21)}
+    for level in c["levels"]:
+        for f in level["features"]:
+            if f["name"] == "Weapon Mastery" and name in MASTERY_WEAPONS:
+                count = c["weaponMastery"][str(level["level"])]
+                f["choices"] = {
+                    "type": "multiple",
+                    "count": count,
+                    "description": f"Pick {count} kinds of weapons. With those you can use their mastery move.",
+                    "options": [option(w["name"], f"{w['mastery']}: {mastery_raw[w['mastery']]}") for w in WEAPONS if MASTERY_WEAPONS[name](w)],
+                }
+            elif f["name"] == "Fighting Style":
+                f["choices"] = {"type": "single", "options": [option(fs["name"] if fs["name"] != "Two Weapon Fighting" else FIXES["two_weapon_fighting"], clean(fs["description"])) for fs in fighting_styles]}
+            elif (name, f["name"]) in CLASS_CHOICES and level["level"] == 1:
+                f["choices"] = CLASS_CHOICES[(name, f["name"])]
+    for f in c["features"]:
+        match = next((x for lv in c["levels"] if lv["level"] == f["level"] for x in lv["features"] if x["name"] == f["name"] and "choices" in x), None)
+        if match:
+            f["choices"] = match["choices"]
+
+weapon_mastery = {
+    "weapons": {w["name"]: w["mastery"] for w in WEAPONS},
+    "properties": mastery_raw,
+}
+
 # ---------------------------------------------------------------- subclasses
 
 subclasses = []
@@ -254,6 +339,68 @@ def trait(index):
 
 
 SIZE_OPTIONS = {"Human": ["Medium", "Small"], "Tiefling": ["Medium", "Small"]}
+# Species whose lineage spells use an ability the player picks (Elven Lineage, Gnomish Lineage, Fiendish Legacy).
+SPELL_ABILITY_CHOICE = {"Elf", "Gnome", "Tiefling"}
+# The lineage tables, written out from the trait text: the source splits them
+# over many small traits and leaves out Speak with Animals, Prestidigitation
+# (Rock Gnome) and Druidcraft (Wood Elf). Spells are keyed by character level.
+LINEAGE_EXTRA = {
+    "elven-lineage-drow": {
+        "description": "Darkvision 120 feet. Dancing Lights cantrip. Faerie Fire at level 3, Darkness at level 5.",
+        "darkvision": 120,
+        "spells": {"1": ["Dancing Lights"], "3": ["Faerie Fire"], "5": ["Darkness"]},
+    },
+    "elven-lineage-high-elf": {
+        "description": "Prestidigitation cantrip (swap it for another Wizard cantrip after a Long Rest). Detect Magic at level 3, Misty Step at level 5.",
+        "spells": {"1": ["Prestidigitation"], "3": ["Detect Magic"], "5": ["Misty Step"]},
+    },
+    "elven-lineage-wood-elf": {
+        "description": "Speed 35 feet. Druidcraft cantrip. Longstrider at level 3, Pass without Trace at level 5.",
+        "speed": 35,
+        "spells": {"1": ["Druidcraft"], "3": ["Longstrider"], "5": ["Pass without Trace"]},
+    },
+    "gnomish-lineage-forest-gnome": {
+        "description": "Minor Illusion cantrip. Speak with Animals always prepared, cast free a number of times equal to your Proficiency Bonus per Long Rest.",
+        "spells": {"1": ["Minor Illusion", "Speak with Animals"]},
+    },
+    "gnomish-lineage-rock-gnome": {
+        "description": "Mending and Prestidigitation cantrips. Spend 10 minutes to build a Tiny clockwork toy that makes one Prestidigitation effect.",
+        "spells": {"1": ["Mending", "Prestidigitation"]},
+    },
+    "fiendish-legacy-abyssal": {
+        "description": "Resistance to Poison damage. Poison Spray cantrip. Ray of Sickness at level 3, Hold Person at level 5.",
+        "resistance": "Poison",
+        "spells": {"1": ["Poison Spray"], "3": ["Ray of Sickness"], "5": ["Hold Person"]},
+    },
+    "fiendish-legacy-chthonic": {
+        "description": "Resistance to Necrotic damage. Chill Touch cantrip. False Life at level 3, Ray of Enfeeblement at level 5.",
+        "resistance": "Necrotic",
+        "spells": {"1": ["Chill Touch"], "3": ["False Life"], "5": ["Ray of Enfeeblement"]},
+    },
+    "fiendish-legacy-infernal": {
+        "description": "Resistance to Fire damage. Fire Bolt cantrip. Hellish Rebuke at level 3, Darkness at level 5.",
+        "resistance": "Fire",
+        "spells": {"1": ["Fire Bolt"], "3": ["Hellish Rebuke"], "5": ["Darkness"]},
+    },
+}
+# Spells a species trait gives everyone of that species (Otherworldly Presence).
+SPECIES_SPELLS = {"Tiefling": {"1": ["Thaumaturgy"]}}
+# Skill picks from species traits: Keen Senses (one of three) and Skillful (any one).
+SPECIES_SKILL_CHOICE = {
+    "Elf": {"count": 1, "options": ["Insight", "Perception", "Survival"]},
+    "Human": {"count": 1},
+}
+
+
+def lineage_text(sub):
+    """Dragonborn ancestry and Goliath ancestry options: the damage type, or the boon's text."""
+    parts = []
+    for t in sub["traits"]:
+        if t["name"].startswith("Breath Weapon: "):
+            parts.append(f"{t['name'].split(': ')[1]} breath and resistance.")
+        elif not t["name"].startswith("Damage Resistance"):
+            parts.append(clean(traits_raw[t["index"]]["description"]))
+    return " ".join(parts)
 species = []
 for s in species_raw:
     traits = [trait(t["index"]) for t in s["traits"]]
@@ -270,11 +417,32 @@ for s in species_raw:
     choices = []
     if s.get("subspecies"):
         group = s["subspecies"][0]["name"].split(":")[0]
+        options = []
+        for x in s["subspecies"]:
+            option = {"id": x["index"], "name": x["name"].split(": ", 1)[1]}
+            option.update(LINEAGE_EXTRA.get(x["index"]) or {"description": lineage_text(subspecies_raw[x["index"]])})
+            options.append(option)
         choices.append({
             "id": f"{s['index']}-2024-lineage",
             "name": group,
             "type": "single",
-            "options": [{"id": x["index"], "name": x["name"].split(": ", 1)[1]} for x in s["subspecies"]],
+            "options": options,
+        })
+    if s["name"] in SPELL_ABILITY_CHOICE:
+        choices.append({
+            "id": f"{s['index']}-2024-spell-ability",
+            "name": "Spellcasting ability",
+            "description": "The ability your lineage spells use. Pick the one your class casts with, or your highest mental score.",
+            "type": "single",
+            "options": [{"id": k, "name": n} for k, n in (("int", "Intelligence"), ("wis", "Wisdom"), ("cha", "Charisma"))],
+        })
+    if s["name"] in SIZE_OPTIONS:
+        choices.append({
+            "id": f"{s['index']}-2024-size",
+            "name": "Size",
+            "description": "Small or Medium. It changes nothing else for you.",
+            "type": "single",
+            "options": [{"id": z.lower(), "name": z} for z in SIZE_OPTIONS[s["name"]]],
         })
     entry = {
         "name": s["name"],
@@ -292,6 +460,13 @@ for s in species_raw:
     }
     if s["name"] in SIZE_OPTIONS:
         entry["sizeOptions"] = SIZE_OPTIONS[s["name"]]
+    if s["name"] in SPECIES_SPELLS:
+        entry["spells"] = SPECIES_SPELLS[s["name"]]
+    if s["name"] in SPECIES_SKILL_CHOICE:
+        entry["skillChoice"] = SPECIES_SKILL_CHOICE[s["name"]]
+    if s["name"] == "Human":
+        # Versatile: an Origin feat of the player's choice.
+        entry["originFeat"] = True
     if choices:
         entry["choices"] = choices
     species.append(entry)
@@ -394,6 +569,8 @@ def write(name, key, rows):
 
 
 write("classes", "classes", classes)
+(OUT / "2024_weapon_mastery.json").write_text(json.dumps(weapon_mastery, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+print(f"2024_weapon_mastery.json: {len(WEAPONS)}")
 write("subclasses", "subclasses", subclasses)
 write("species", "races", species)
 write("backgrounds", "backgrounds", backgrounds)

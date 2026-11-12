@@ -14,9 +14,9 @@ export function slugify(name: string): string {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
-export function getSubclassFlagsByName(className: string, subclassName: string, sources: string[] | undefined, language: string): Record<string, boolean> {
+export function getSubclassFlagsByName(className: string, subclassName: string, sources: string[] | undefined, language: string, ruleset?: string): Record<string, boolean> {
   if (!subclassName) return {};
-  const subclasses = getStaticSubclasses(className, sources, undefined, language);
+  const subclasses = getStaticSubclasses(className, sources, ruleset, language);
   const found = subclasses.find(s => s.name.toLowerCase() === subclassName.toLowerCase());
   if (!found?.index) return {};
   return getSubclassFlags(found.index);
@@ -222,6 +222,12 @@ export function getProficiencyBonus(level: number): number {
   return 6;
 }
 
+/** 2024 Expertise: new picks by class and level (SRD 5.2 class tables). */
+const EXPERTISE_2024: Record<string, Record<number, number>> = {
+  Rogue: { 1: 2, 6: 2 },
+  Bard: { 2: 2, 9: 2 },
+};
+
 export function buildLevelInfos(
   character: Character,
   targetLevel: number,
@@ -240,6 +246,10 @@ export function buildLevelInfos(
   const className = classData.name;
 
   const loopStart = showLevelOne ? 1 : startLevel + 1;
+  // 2024 rules: every caster prepares a number of spells from the class table,
+  // and a Wizard also writes spells in a spellbook. There are no "spells known".
+  const rules2024 = (classData as { ruleset?: string }).ruleset === "2024";
+  const preparedTable = (classData as { preparedSpells?: Record<string, number> }).preparedSpells || {};
 
   for (let level = loopStart; level <= targetLevel; level++) {
     const levelData = classData.levels[level - 1];
@@ -309,7 +319,7 @@ export function buildLevelInfos(
       Warlock: { 1: 2, 2: 3, 3: 4, 4: 5, 5: 6, 6: 7, 7: 8, 8: 9, 9: 10, 10: 10, 11: 11, 12: 11, 13: 12, 14: 12, 15: 13, 16: 13, 17: 14, 18: 14, 19: 15, 20: 15 },
       Ranger: { 2: 2, 3: 3, 4: 3, 5: 4, 6: 4, 7: 5, 8: 5, 9: 6, 10: 6, 11: 7, 12: 7, 13: 8, 14: 8, 15: 9, 16: 9, 17: 10, 18: 10, 19: 11, 20: 11 },
     };
-    if (spellsKnown === undefined && spellsKnownByLevel[className] && spellsKnownByLevel[className][level]) {
+    if (!rules2024 && spellsKnown === undefined && spellsKnownByLevel[className] && spellsKnownByLevel[className][level]) {
       spellsKnown = spellsKnownByLevel[className][level];
     }
 
@@ -335,7 +345,7 @@ export function buildLevelInfos(
     }
 
     const unlockLevel = classData.subclassLevel ?? 3;
-    const subclasses = getStaticSubclasses(className, character.sources, undefined, language);
+    const subclasses = getStaticSubclasses(className, character.sources, character.ruleset, language);
     const subclassOptions = level === unlockLevel && !character.subclass && subclasses.length > 0
       ? subclasses.map((s) => ({ name: s.name, description: s.description, hasDetails: true })).sort((a, b) => (isRecommended("subclass", b.name, className) ? 1 : 0) - (isRecommended("subclass", a.name, className) ? 1 : 0))
       : undefined;
@@ -473,8 +483,8 @@ export function buildLevelInfos(
       : getMaxSpellLevel(className, level, character.ruleset);
 
     // Spell selection count is based on class-specific rules, NEVER on slot counts
-    const isSpellsKnownCaster = ["Sorcerer", "Bard", "Warlock", "Ranger"].includes(className);
-    const isPrepCaster = ["Cleric", "Druid", "Artificer", "Paladin"].includes(className);
+    const isSpellsKnownCaster = !rules2024 && ["Sorcerer", "Bard", "Warlock", "Ranger"].includes(className);
+    const isPrepCaster = !rules2024 && ["Cleric", "Druid", "Artificer", "Paladin"].includes(className);
     let spellSelectionCount = isSpellsKnownCaster
       ? (spellsKnownChanged ? (spellsKnown || 0) - prevSpellsKnown : 0)
       : (className === "Wizard" ? 2 : 0);
@@ -485,6 +495,11 @@ export function buildLevelInfos(
       const currentTotal = sb[String(level)] || 0;
       const prevTotal = level > 1 ? (sb[String(level - 1)] || 0) : 0;
       spellSelectionCount = currentTotal - prevTotal;
+    }
+
+    // 2024: the new prepared spells this level adds (a Wizard's come from the spellbook count above).
+    if (rules2024 && className !== "Wizard" && classData.spellcastingAbility) {
+      spellSelectionCount = (preparedTable[String(level)] || 0) - (level > 1 ? preparedTable[String(level - 1)] || 0 : 0);
     }
 
     // Arcane Trickster: spells known progression (like Wizard but half-caster)
@@ -519,7 +534,7 @@ export function buildLevelInfos(
     // Classes that learn a fixed list of spells may swap one of them each level.
     const swapsSpells = isBard || isSorcerer || className === "Warlock" || className === "Ranger" || isThirdCasterSubclass;
     const canReplaceSpell = swapsSpells && level > 1 && (character.spells || []).some((s) => s.level > 0);
-    const subclassFlags = getSubclassFlagsByName(className, subclassSelection || "", character.sources, language);
+    const subclassFlags = getSubclassFlagsByName(className, subclassSelection || "", character.sources, language, character.ruleset);
     const isLoreBard = isBard && subclassFlags.grantsMagicalSecrets;
     const subclassSpellSelectionCount = isLoreBard && level === 6 ? 2 : 0;
 
@@ -540,7 +555,12 @@ export function buildLevelInfos(
 
     // Rogue Expertise
     let expertise: LevelInfo["expertise"];
-    if (className === "Rogue") {
+    const expertise2024 = rules2024 ? EXPERTISE_2024[className]?.[level] : undefined;
+    if (expertise2024) {
+      const proficient = Object.entries(character.skills).filter(([, on]) => on).map(([name]) => name);
+      const options = className === "Rogue" ? [...proficient, "Thieves' Tools"] : proficient;
+      expertise = { count: expertise2024, selected: [], availableOptions: options.filter((o) => !(character.expertise || []).includes(o)) };
+    } else if (className === "Rogue" && !rules2024) {
       const expertiseScaling = (classData as any).scalingFeatures?.find((f: any) => f.type === "feature" && f.name === "Expertise");
       if (expertiseScaling?.values) {
         const sortedLevels = Object.keys(expertiseScaling.values).map(Number).sort((a, b) => a - b);

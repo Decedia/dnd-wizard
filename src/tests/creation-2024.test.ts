@@ -1,0 +1,186 @@
+// @ts-ignore - bun:test is provided by the Bun runtime
+import { describe, expect, test } from "bun:test";
+import { createEmptyCharacter, getBaseSpeed, type Character } from "@/lib/storage";
+import {
+  applyBackground2024,
+  applyClassChoices2024,
+  applyOrigin2024,
+  backgroundAsiValid,
+  backgroundLanguageCount,
+  backgroundSkillsOf,
+  gear2024Complete,
+  origin2024Complete,
+  originFeatComplete,
+  originFeatPatch,
+  originFeats,
+  pickGearPatch,
+  speciesSpells2024,
+} from "@/lib/origin-2024";
+import { getRaceAsi } from "@/lib/race-grants";
+import { getGrantedSpellNames, getFreeCastSpells } from "@/lib/granted-spells";
+import { getCreationSteps, racePatch, syncBaseFeatures } from "@/lib/character-creation";
+import { buildLevelInfos } from "@/components/level-up/level-infos";
+import { getStaticClass } from "@/lib/srd-client";
+import { CLASS_GEAR_2024, BACKGROUND_GEAR_2024 } from "@/data/starting-gear-2024";
+import { findCatalogItem } from "@/data/item-catalog";
+
+const base = (patch: Partial<Character> = {}): Character => ({ ...createEmptyCharacter(), ruleset: "2024", sources: ["PHB"], ...patch });
+
+function woodElfWizard(): Character {
+  let c = base({ class: "Wizard", name: "Test", alignment: "Neutral Good" });
+  c = { ...c, ...racePatch(c, { name: "Elf", configChoice: { parentChoiceId: "elf-2024-lineage", featureData: { id: "elven-lineage-wood-elf" } } }) };
+  c = { ...c, raceChoices: { ...c.raceChoices, "elf-2024-spell-ability": "int" } };
+  c = { ...c, ...applyBackground2024(c, "Sage") };
+  return c;
+}
+
+describe("2024 background", () => {
+  test("gives its skills, tool and Origin feat, and takes the old one's back", () => {
+    let c = base({ skills: { Perception: true } });
+    c = { ...c, ...applyBackground2024(c, "Criminal") };
+    expect(c.skills).toEqual({ Perception: true, "Sleight of Hand": true, Stealth: true });
+    expect(c.toolProficiencies).toEqual(["Thieves' Tools"]);
+    expect(originFeats(c).map((f) => f.name)).toEqual(["Alert"]);
+    c = { ...c, ...applyBackground2024(c, "Acolyte") };
+    expect(c.skills).toEqual({ Perception: true, Insight: true, Religion: true });
+    const [feat] = originFeats(c);
+    expect(feat.name).toBe("Magic Initiate");
+    expect(feat.options.spell_class).toBe("cleric");
+  });
+
+  test("its skills come from the 2024 list, and it gives no languages", () => {
+    // The 2014 Criminal has Deception; the 2024 one has Sleight of Hand.
+    expect(backgroundSkillsOf(base({ background: "Criminal" }))).toEqual(["Sleight of Hand", "Stealth"]);
+    expect(backgroundLanguageCount(base({ background: "Acolyte" }))).toBe(0);
+  });
+
+  test("the increase is +2/+1 or +1/+1/+1 among its three abilities only", () => {
+    const soldier = base({ background: "Soldier" });
+    expect(backgroundAsiValid({ ...soldier, flexAsi: { str: 2, con: 1 } })).toBe(true);
+    expect(backgroundAsiValid({ ...soldier, flexAsi: { str: 1, dex: 1, con: 1 } })).toBe(true);
+    expect(backgroundAsiValid({ ...soldier, flexAsi: { str: 2, wis: 1 } })).toBe(false);
+    expect(backgroundAsiValid({ ...soldier, flexAsi: { str: 2, dex: 2 } })).toBe(false);
+    expect(getRaceAsi({ ...soldier, race: "Dwarf", flexAsi: { str: 2, con: 1 } })).toEqual({ str: 2, con: 1 });
+    // No species bonus under 2024 rules, and nothing until the placement is legal.
+    expect(getRaceAsi({ ...soldier, race: "Dwarf", flexAsi: {} })).toEqual({});
+  });
+});
+
+describe("2024 species", () => {
+  test("a lineage gives its spells by level, and Wood Elf walks 35 feet", () => {
+    const c = woodElfWizard();
+    expect(speciesSpells2024({ ...c, level: 1 })).toEqual(["Druidcraft"]);
+    expect(speciesSpells2024({ ...c, level: 5 })).toEqual(["Druidcraft", "Longstrider", "Pass without Trace"]);
+    expect(getGrantedSpellNames({ ...c, level: 3 })).toEqual(["Druidcraft", "Longstrider"]);
+    expect(getFreeCastSpells({ ...c, level: 3 }).map((s) => s.name)).toEqual(["Longstrider"]);
+    expect(getBaseSpeed(c)).toBe(35);
+  });
+
+  test("a Tiefling knows Thaumaturgy, and 2014 race spells don't leak in", () => {
+    const c = base({ race: "Tiefling", raceChoices: { "tiefling-2024-lineage": "fiendish-legacy-chthonic" }, level: 3 });
+    expect(getGrantedSpellNames(c)).toEqual(["Thaumaturgy", "Chill Touch", "False Life"]);
+  });
+
+  test("only the lineage becomes a trait row; size and spell ability don't", () => {
+    const c = syncBaseFeatures(woodElfWizard());
+    const race = c.features.filter((f) => f.source === "race").map((f) => f.name);
+    expect(race).toContain("Wood Elf");
+    expect(race).not.toContain("Intelligence");
+    expect(race).toContain("Magic Initiate");
+  });
+});
+
+describe("2024 Origin feats", () => {
+  test("the background's Magic Initiate keeps its list; picks finish it", () => {
+    let c = woodElfWizard();
+    const [feat] = originFeats(c);
+    expect(originFeatComplete(feat)).toBe(false);
+    c = { ...c, ...originFeatPatch(c, feat, "Magic Initiate", { spell_ability: "int", cantrip_1: "Light", cantrip_2: "Mage Hand", first_level_spell: "Shield" }) };
+    const [done] = originFeats(c);
+    expect(done.options.spell_class).toBe("wizard");
+    expect(originFeatComplete(done)).toBe(true);
+    const out = applyOrigin2024(c);
+    expect(out.cantrips.map((s) => s.name).sort()).toEqual(["Light", "Mage Hand"]);
+    expect(out.spells.map((s) => s.name)).toContain("Shield");
+    // The spellcasting ability pick is not an increase.
+    expect(out.int).toBe(c.int);
+  });
+
+  test("a Human also picks one Origin feat (Versatile)", () => {
+    let c = base({ race: "Human", class: "Fighter" });
+    c = { ...c, ...applyBackground2024(c, "Soldier") };
+    const feats = originFeats(c);
+    expect(feats.map((f) => [f.source, f.name])).toEqual([["background", "Savage Attacker"], ["species", ""]]);
+    c = { ...c, ...originFeatPatch(c, feats[1], "Skilled", { skill_or_tool_1: "Arcana", skill_or_tool_2: "History", skill_or_tool_3: "Dice Set" }) };
+    const out = applyOrigin2024(c);
+    expect(out.skills.Arcana).toBe(true);
+    expect(out.toolProficiencies).toContain("Dice Set");
+  });
+
+  test("the Origin step needs species answers, the Soldier's gaming set and every feat pick", () => {
+    let c = base({ race: "Human", class: "Fighter" });
+    c = { ...c, ...applyBackground2024(c, "Soldier") };
+    c = { ...c, raceChoices: { "human-2024-size": "medium" } };
+    c = { ...c, ...originFeatPatch(c, originFeats(c)[1], "Alert", {}) };
+    expect(origin2024Complete(c)).toBe(false);
+    c = { ...c, featureSelections: { ...c.featureSelections, "background-tool-2024": ["Dice Set"] } };
+    expect(origin2024Complete(c)).toBe(true);
+    expect(getCreationSteps(c).find((s) => s.id === "origin")?.completed).toBe(true);
+    expect(applyOrigin2024(c).toolProficiencies).toContain("Dice Set");
+  });
+});
+
+describe("2024 starting gear", () => {
+  test("every package item is in the catalog", () => {
+    for (const table of [CLASS_GEAR_2024, BACKGROUND_GEAR_2024]) {
+      for (const [name, packages] of Object.entries(table)) {
+        for (const pkg of packages) for (const line of pkg.items) if ("id" in line) expect([name, line.id, !!findCatalogItem(line.id)]).toEqual([name, line.id, true]);
+      }
+    }
+    expect(Object.keys(CLASS_GEAR_2024).sort()).toEqual(["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"]);
+  });
+
+  test("picking a package swaps the last pick's items and gold", () => {
+    let c = base({ class: "Fighter", background: "Soldier" });
+    c = { ...c, ...pickGearPatch(c, "class", "A") };
+    expect(c.inventory.some((r) => r.itemId === "greatsword")).toBe(true);
+    c = { ...c, ...pickGearPatch(c, "class", "C") };
+    expect(c.inventory.some((r) => r.itemId === "greatsword")).toBe(false);
+    expect(c.inventory.filter((r) => r.itemId === "gp").reduce((n, r) => n + r.quantity, 0)).toBe(155);
+    expect(gear2024Complete(c)).toBe(false);
+    c = { ...c, ...pickGearPatch(c, "background", "B") };
+    expect(gear2024Complete(c)).toBe(true);
+    expect(c.inventory.filter((r) => r.itemId === "gp").reduce((n, r) => n + r.quantity, 0)).toBe(205);
+  });
+});
+
+describe("2024 level 1", () => {
+  const level1 = (className: string, patch: Partial<Character> = {}) => {
+    const c = base({ class: className, level: 1, int: 16, wis: 16, cha: 16, ...patch });
+    return buildLevelInfos(c, 1, getStaticClass(className, "2024"), "", 0, true, "en")[0];
+  };
+
+  test("spell counts come from the 2024 tables", () => {
+    expect([level1("Wizard").cantripSelectionCount, level1("Wizard").spellSelectionCount]).toEqual([3, 6]);
+    expect([level1("Cleric").cantripSelectionCount, level1("Cleric").spellSelectionCount]).toEqual([3, 4]);
+    expect([level1("Sorcerer").cantripSelectionCount, level1("Sorcerer").spellSelectionCount]).toEqual([4, 2]);
+    expect([level1("Paladin").cantripSelectionCount, level1("Paladin").spellSelectionCount]).toEqual([0, 2]);
+    expect(level1("Paladin").hasSpellSelection).toBe(true);
+  });
+
+  test("Weapon Mastery, Fighting Style, Divine Order and Rogue Expertise are asked", () => {
+    const choice = (info: ReturnType<typeof level1>, name: string) => info.classFeatureChoices?.find((c) => c.name === name);
+    expect(choice(level1("Fighter"), "Weapon Mastery")?.count).toBe(3);
+    expect(choice(level1("Fighter"), "Fighting Style")?.options.map((o) => o.name)).toContain("Defense");
+    expect(choice(level1("Barbarian"), "Weapon Mastery")?.options.map((o) => o.name)).not.toContain("Longbow");
+    expect(choice(level1("Rogue"), "Weapon Mastery")?.options.map((o) => o.name)).toContain("Rapier");
+    expect(choice(level1("Rogue"), "Weapon Mastery")?.options.map((o) => o.name)).not.toContain("Longsword");
+    expect(choice(level1("Cleric"), "Divine Order")?.options.map((o) => o.name)).toEqual(["Protector", "Thaumaturge"]);
+    expect(level1("Rogue", { skills: { Stealth: true, Acrobatics: true } }).expertise?.count).toBe(2);
+  });
+
+  test("Protector and Warden train armor and weapons", () => {
+    const c = applyClassChoices2024(base({ class: "Cleric", featureSelections: { "class-feature-1-Divine Order": ["Protector"] } }));
+    expect(c.otherProficiencies).toBe("Martial Weapons, Heavy Armor");
+  });
+});

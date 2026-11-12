@@ -208,9 +208,13 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       const expertiseTaken = new Set(
         Object.entries(expertiseSelections).filter(([lvl]) => Number(lvl) !== info.level).flatMap(([, list]) => list || [])
       );
+      // 2024 Thaumaturge (Divine Order) and Magician (Primal Order) learn one more cantrip.
+      const order = classFeatureChoices[info.level]?.["Divine Order"] || classFeatureChoices[info.level]?.["Primal Order"];
+      const orderCantrip = character.ruleset === "2024" && (order === "Thaumaturge" || order === "Magician");
       return {
         ...info,
         ...(replacedSpells[info.level] ? { hasSpellSelection: true, spellSelectionCount: info.spellSelectionCount + 1 } : {}),
+        ...(orderCantrip ? { hasSpellSelection: true, cantripSelectionCount: info.cantripSelectionCount + 1 } : {}),
         subclassFeatureChoices: withoutOthers(info.subclassFeatureChoices, subclassFeatureChoices, info.level),
         classFeatureChoices: withoutOthers(info.classFeatureChoices, classFeatureChoices, info.level),
         expertise: info.expertise && {
@@ -219,7 +223,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
         },
       };
     });
-  }, [baseLevelInfos, replacedSpells, subclassFeatureChoices, classFeatureChoices, expertiseSelections, subclassOnly, subclassSelection, redo]);
+  }, [baseLevelInfos, replacedSpells, subclassFeatureChoices, classFeatureChoices, expertiseSelections, subclassOnly, subclassSelection, redo, character.ruleset]);
   // The class name the screens are worked out with; the Warlock's and Wizard's
   // own class screens don't show when only the subclass is picked again.
   const partsClass = subclassOnly ? "" : character.class;
@@ -597,7 +601,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
           }
         }
         if (!spells.some((s) => s.name === name && s.level === level)) {
-          const spell = getStaticSpells(character.sources, undefined, language).find((s) => s.name === name);
+          const spell = getStaticSpells(character.sources, character.ruleset, language).find((s) => s.name === name);
           const id = `spell-${name}-${level}`.replace(/\s+/g, "-");
           spells.push({
             id,
@@ -614,7 +618,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
         const [name, levelStr] = entry.split(":");
         const level = Number(levelStr);
         if (!spells.some((s) => s.name === name && s.level === level)) {
-          const spell = getStaticSpells(character.sources, undefined, language).find((s) => s.name === name);
+          const spell = getStaticSpells(character.sources, character.ruleset, language).find((s) => s.name === name);
           const id = `spell-${name}-${level}`.replace(/\s+/g, "-");
           spells.push({
             id,
@@ -631,7 +635,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
         const [name, levelStr] = entry.split(":");
         const level = Number(levelStr);
         if (!spells.some((s) => s.name === name && s.level === level)) {
-          const spell = getStaticSpells(character.sources, undefined, language).find((s) => s.name === name);
+          const spell = getStaticSpells(character.sources, character.ruleset, language).find((s) => s.name === name);
           const id = `spell-${name}-${level}`.replace(/\s+/g, "-");
           spells.push({
             id,
@@ -675,7 +679,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
 
       for (const name of domainSpellNames) {
         if (!currentSpellNames.includes(name.toLowerCase())) {
-          const spell = getStaticSpells(character.sources, undefined, language).find((s) => s.name?.toLowerCase() === name.toLowerCase());
+          const spell = getStaticSpells(character.sources, character.ruleset, language).find((s) => s.name?.toLowerCase() === name.toLowerCase());
           if (spell) {
             const id = `spell-${spell.name}-${spell.level}`.replace(/\s+/g, "-");
             spells.push({
@@ -704,7 +708,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       const currentSpellNames = (draft.spells || []).map((s) => s.name?.toLowerCase());
       for (const name of oathSpellNames) {
         if (!currentSpellNames.includes(name.toLowerCase())) {
-          const spell = getStaticSpells(character.sources, undefined, language).find((s) => s.name?.toLowerCase() === name.toLowerCase());
+          const spell = getStaticSpells(character.sources, character.ruleset, language).find((s) => s.name?.toLowerCase() === name.toLowerCase());
           if (spell) {
             const id = `spell-${spell.name}-${spell.level}`.replace(/\s+/g, "-");
             spells.push({
@@ -726,7 +730,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       const currentSpellNames = spells.map((s) => s.name?.toLowerCase());
       for (const name of traditionSpellNames) {
         if (!currentSpellNames.includes(name.toLowerCase())) {
-          const spell = getStaticSpells(character.sources, undefined, language).find((s) => s.name?.toLowerCase() === name.toLowerCase());
+          const spell = getStaticSpells(character.sources, character.ruleset, language).find((s) => s.name?.toLowerCase() === name.toLowerCase());
           if (spell) {
             const id = `spell-${spell.name}-${spell.level}`.replace(/\s+/g, "-");
             spells.push({
@@ -751,7 +755,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
 
         for (const name of circleSpellNames) {
           if (!currentSpellNames.includes(name.toLowerCase())) {
-            const spell = getStaticSpells(character.sources, undefined, language).find((s) => s.name?.toLowerCase() === name.toLowerCase());
+            const spell = getStaticSpells(character.sources, character.ruleset, language).find((s) => s.name?.toLowerCase() === name.toLowerCase());
             if (spell) {
               const id = `spell-${spell.name}-${spell.level}`.replace(/\s+/g, "-");
               spells.push({
@@ -770,7 +774,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       // Picked at level 2, which a jump from level 1 to 3 passes through.
       for (const selectedBonusCantrip of Object.values(bonusCantripSelections)) {
       if (selectedBonusCantrip && !(draft.bonusCantrips || []).includes(selectedBonusCantrip)) {
-        const spell = getStaticSpells(character.sources, undefined, language).find((s) => s.name?.toLowerCase() === selectedBonusCantrip.toLowerCase());
+        const spell = getStaticSpells(character.sources, character.ruleset, language).find((s) => s.name?.toLowerCase() === selectedBonusCantrip.toLowerCase());
         if (spell) {
           const id = `spell-${spell.name}-${spell.level}`.replace(/\s+/g, "-");
           if (!spells.some((s) => s.name?.toLowerCase() === spell.name.toLowerCase())) {

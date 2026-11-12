@@ -1,5 +1,6 @@
 import { getStaticRace, type SRDRace } from "./srd-client";
 import type { Character } from "./storage";
+import { backgroundAsi } from "./origin-2024";
 
 export const ABILITY_KEYS = ["str", "dex", "con", "int", "wis", "cha"] as const;
 
@@ -14,8 +15,13 @@ export function isFlexAsiValid(race: SRDRace | undefined, flex: Record<string, n
   return values.join(",") === "2,1" || values.join(",") === "1,1,1";
 }
 
-/** Every racial ability increase: the race's fixed ones plus a valid flexible placement. */
-export function getRaceAsi(character: Pick<Character, "race" | "ruleset" | "flexAsi">): Record<string, number> {
+/**
+ * Every origin ability increase: the race's fixed ones plus a valid flexible
+ * placement. Under 2024 rules the species gives none and the background's
+ * +2/+1 or +1/+1/+1 (kept in flexAsi too) is the whole increase.
+ */
+export function getRaceAsi(character: Pick<Character, "race" | "ruleset" | "flexAsi"> & { background?: string }): Record<string, number> {
+  if (character.ruleset === "2024") return backgroundAsi({ ruleset: character.ruleset, background: character.background || "", flexAsi: character.flexAsi });
   const race = getStaticRace(character.race, character.ruleset);
   const out: Record<string, number> = { ...(race?.abilityScoreIncreases || {}) };
   if (race?.flexibleAsi && isFlexAsiValid(race, character.flexAsi)) {

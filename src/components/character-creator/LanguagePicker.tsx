@@ -1,7 +1,7 @@
 "use client";
 
 import { Translate } from "@phosphor-icons/react";
-import { getBackgroundData } from "@/data/backgrounds";
+import { backgroundLanguageCount } from "@/lib/origin-2024";
 import { getStaticRace } from "@/lib/srd-client";
 import { languages as languageList } from "@/data/srd";
 import type { Character } from "@/lib/storage";
@@ -23,8 +23,8 @@ export function LanguagePicker({ data, onChange }: { data: Character; onChange: 
 
   const raceLanguages = getRaceLanguages(data.race, data.ruleset);
   const raceBonusLanguages = getRaceBonusLanguages(data.race, data.ruleset);
-  const backgroundLanguageCount = getBackgroundData(data.background)?.languages || 0;
-  const totalBonusLanguages = raceBonusLanguages + backgroundLanguageCount;
+  const backgroundLanguages = backgroundLanguageCount(data);
+  const totalBonusLanguages = raceBonusLanguages + backgroundLanguages;
   // Languages a class or subclass pick gives (Blessings of Knowledge, Draconic
   // Gift) show as fixed, don't use up a race or background pick, and aren't
   // offered again.

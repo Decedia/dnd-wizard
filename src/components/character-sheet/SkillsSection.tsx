@@ -8,7 +8,7 @@ import { getStaticClass } from "@/lib/srd-client";
 import { getModifier, getProficiencyBonus, type Character } from "@/lib/storage";
 import { skillBonus } from "@/lib/skill-bonus";
 import { Overridable } from "./Overridable";
-import { getBackgroundData } from "@/data/backgrounds";
+import { backgroundSkillsOf } from "@/lib/origin-2024";
 import { StarIcon as Star, XIcon as X, ListChecksIcon as ListChecks, CircleIcon as Circle, InfoIcon } from "@/components/icons";
 import { isRecommended } from "@/lib/recommendations";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -30,8 +30,7 @@ export function SkillsSection({ character, onChange, editMode = true }: SkillsSe
   const skillChoices = classData?.skillChoices || null;
   const allowedSkills = skillChoices?.options || [];
   const maxSelections = skillChoices?.count || 0;
-  const background = getBackgroundData(character.background);
-  const backgroundSkills = background?.skillProficiencies || [];
+  const backgroundSkills = backgroundSkillsOf(character);
   const currentSelections = allowedSkills.filter((skill) => character.skills[skill] && !backgroundSkills.includes(skill)).length;
 
   const isSkillAllowed = (skillName: string) => allowedSkills.includes(skillName);

@@ -449,12 +449,30 @@ const FEAT_OPTIONS: Record<string, FeatOptionGroup[]> = {
   ]),
 };
 
-export function getFeatOptionGroups(featName: string): FeatOptionGroup[] {
+/**
+ * 2024 Origin feats (SRD 5.2). Magic Initiate draws from the Cleric, Druid or
+ * Wizard list, and its spellcasting ability is a pick of its own (no increase).
+ * A background that names the list ("Magic Initiate (Cleric)") fixes spell_class.
+ */
+const FEAT_OPTIONS_2024: Record<string, FeatOptionGroup[]> = {
+  "Magic Initiate": repeated([
+    optionGroup("spell_class", "feat.opt.spellClass", "Spell List Class", SPELLCASTING_CLASSES.filter((c) => ["cleric", "druid", "wizard"].includes(c.value))),
+    optionGroup("spell_ability", "feat.opt.spellAbility", "Spellcasting Ability", ABILITIES.filter((a) => ["int", "wis", "cha"].includes(a.value))),
+    spellGroup("cantrip", "feat.opt.cantrip", "Cantrip", { level: 0, classFromOptionId: "spell_class" }, 2),
+    spellGroup("first_level_spell", "feat.opt.firstLevelSpell", "1st-Level Spell", { level: 1, classFromOptionId: "spell_class" }),
+  ]),
+  Skilled: repeated([
+    optionGroup("skill_or_tool", "feat.opt.skillOrTool", "Skill or Tool", [...SKILLS, ...TOOLS], 3),
+  ]),
+};
+
+export function getFeatOptionGroups(featName: string, ruleset?: string): FeatOptionGroup[] {
+  if (ruleset === "2024") return FEAT_OPTIONS_2024[featName] ?? [];
   return FEAT_OPTIONS[featName] ?? [];
 }
 
-export function hasFeatOptions(featName: string): boolean {
-  return getFeatOptionGroups(featName).length > 0;
+export function hasFeatOptions(featName: string, ruleset?: string): boolean {
+  return getFeatOptionGroups(featName, ruleset).length > 0;
 }
 
 export { FEAT_OPTIONS };

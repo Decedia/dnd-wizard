@@ -3,10 +3,11 @@ import { suggestPrepared } from "./prepared-spells";
 import { LANGUAGE_NAMES } from "@/data/feat-options";
 import { applyFeatGrants, decodeFeatOptions, encodeFeatOptions } from "./feat-grants";
 import { getRaceAsi, getRaceSkills, isFlexAsiValid } from "./race-grants";
+import { applyClassChoices2024, applyOrigin2024, backgroundAsiValid, backgroundSkillsOf, gear2024Complete, is2024, origin2024Complete, originFeats } from "./origin-2024";
 import { addRows, backgroundGearRows, equipRow, weaponAbility } from "./inventory";
 import { applyStartingGold, startingGoldOf } from "./starting-gold";
 import { collectProficiencies, getRowProficiency } from "./proficiency";
-import { activeRaceChoices, getStaticClass, getStaticRace, getStaticRaceDetails, getStaticSubclasses, getStaticEquipments, getStaticWeapons, getStaticArmors, getStaticItems, getStaticFeat, getStaticSpells } from "./srd-client";
+import { activeRaceChoices, lineageChoiceOf, getStaticClass, getStaticRace, getStaticRaceDetails, getStaticSubclasses, getStaticEquipments, getStaticWeapons, getStaticArmors, getStaticItems, getStaticFeat, getStaticSpells } from "./srd-client";
 import { syncGrantedSpells } from "./granted-spells";
 import type { CreationStep } from "./creation-types";
 import { getBackgroundData } from "@/data/backgrounds";
@@ -506,7 +507,7 @@ export function getCreationSteps(character: Character): CreationStep[] {
   const halfElfComplete = halfElfPicksComplete(character);
   // Background lives in Origin: it grants skills, tools and languages, so it
   // must be set before the Skills step in either creation order.
-  const originCompleted =
+  const originCompleted = is2024(character) ? origin2024Complete(character) :
     !!character.background &&
     !!character.class &&
     !!character.race &&
@@ -516,10 +517,14 @@ export function getCreationSteps(character: Character): CreationStep[] {
   const lookCompleted = !!character.name.trim();
   const raceData = character.race ? getStaticRace(character.race, character.ruleset) : undefined;
   const abilitiesCompleted = [character.str, character.dex, character.con, character.int, character.wis, character.cha].every((s) => s > 0)
-    && isFlexAsiValid(raceData, character.flexAsi);
+    && (is2024(character) ? backgroundAsiValid(character) : isFlexAsiValid(raceData, character.flexAsi));
   const raceSkillsDone = !raceData?.skillChoice || getRaceSkills(character).length >= (raceData.skillProficiencies?.length || 0) + raceData.skillChoice.count;
-  const skillsCompleted = raceSkillsDone && (!classData?.skillChoices || Object.entries(character.skills || {}).filter(([name, proficient]) => proficient && classData.skillChoices.options.includes(name) && !getRaceSkills(character).includes(name)).length >= classData.skillChoices.count);
-  const equipmentCompleted = (character.inventory.length > 0 || startingGoldOf(character).mode === "gold") && isEquipmentComplete(character, classData);
+  // Background skills are not class picks, even when the class list has them (a Soldier fighter's Athletics).
+  const backgroundSkills = backgroundSkillsOf(character);
+  const skillsCompleted = raceSkillsDone && (!classData?.skillChoices || Object.entries(character.skills || {}).filter(([name, proficient]) => proficient && classData.skillChoices.options.includes(name) && !getRaceSkills(character).includes(name) && !backgroundSkills.includes(name)).length >= classData.skillChoices.count);
+  const equipmentCompleted = is2024(character)
+    ? gear2024Complete(character)
+    : (character.inventory.length > 0 || startingGoldOf(character).mode === "gold") && isEquipmentComplete(character, classData);
 
   const asiLevels = classData?.levels
     .map((lvl, idx) => ({ level: idx + 1, asi: !!lvl.asi }))
@@ -796,7 +801,7 @@ function getClassFeaturesAtLevel(character: Character, language: string): any[] 
 }
 
 function getRaceTraits(character: Character, language: string): any[] {
-  const race = character.race ? getStaticRaceDetails(character.race, character.sources, undefined, language) : null;
+  const race = character.race ? getStaticRaceDetails(character.race, character.sources, character.ruleset, language) : null;
   if (!race) return [];
   // A trait whose name just repeats the race is data noise, not a feature: the
   // sheet showed a row called "Human" on every human character because the race
@@ -814,7 +819,10 @@ function getRaceTraits(character: Character, language: string): any[] {
     ...extractFeatureFields(t),
   }));
   if (race.choices && character.raceChoices) {
-    for (const choice of activeRaceChoices(race.choices, character.raceChoices)) {
+    // A 2024 species' spellcasting ability and size are settings, not traits: only the lineage gets a row.
+    const lineage = lineageChoiceOf(race);
+    const rowChoices = is2024(character) ? (lineage ? [lineage] : []) : race.choices;
+    for (const choice of activeRaceChoices(rowChoices, character.raceChoices)) {
       const selectedId = character.raceChoices[choice.id];
       if (!selectedId) continue;
       const selectedOption = choice.options?.find((o: any) => o.id === selectedId);
@@ -827,6 +835,11 @@ function getRaceTraits(character: Character, language: string): any[] {
         } as any);
       }
     }
+  }
+  // 2024 Origin feats (the background's, a Human's Versatile pick), as feat rows.
+  for (const feat of originFeats(character)) {
+    const featData = feat.name ? getStaticFeat(feat.name, "2024", language) : undefined;
+    if (featData) traits.push({ name: featData.name, description: featData.description, ...extractFeatureFields({}), summary: null } as any);
   }
   if (character.race === "Human" && character.raceVariant === "variant") {
     // Taken from the race's own choice data so the text is localised, rather
@@ -1343,6 +1356,10 @@ export async function finalizeCreation(character: Character, language = "en"): P
       final = { ...final, skills };
     }
   }
+
+  // 2024: what the Origin feats give (Magic Initiate's spells, Skilled's skills) and the Soldier's gaming set.
+  final = applyOrigin2024(final);
+  final = applyClassChoices2024(final);
 
   // Half-Elf: +1 to the two chosen ability scores, and the two chosen skills.
   // Applied at the end like the Variant Human bonus so the abilities step's

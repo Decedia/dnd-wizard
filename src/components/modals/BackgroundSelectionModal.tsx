@@ -9,6 +9,8 @@ import { backgroundsData, getBackgroundData, type BackgroundData } from "@/data/
 import { useLanguage } from "@/contexts/LanguageContext";
 import { findLocalizedItem } from "@/data/item-catalog";
 import { backgroundGearLabel } from "@/lib/inventory";
+import { getBackground2024, gearPackages } from "@/lib/origin-2024";
+import { getStaticBackgrounds2024, type SRDBackground2024 } from "@/lib/srd-client";
 
 type TFn = ReturnType<typeof useLanguage>["t"];
 
@@ -54,6 +56,72 @@ export function buildBackgroundGroups(t: TFn): PickerGroup[] {
     });
   }
   return groups.filter((g) => g.entries.length > 0);
+}
+
+/** "+2/+1 to STR, DEX or CON · Savage Attacker" */
+export function background2024StatLine(bg: SRDBackground2024, t: TFn): string {
+  const abilities = bg.abilityScores.map((a) => a.toUpperCase()).join(", ");
+  return `${t("background.asiLine", { abilities }, "+2/+1 among {abilities}")} • ${bg.feat}`;
+}
+
+/** The four 2024 backgrounds, in one group. */
+function buildBackground2024Groups(t: TFn): PickerGroup[] {
+  return [{
+    key: "2024",
+    label: t("background.group.2024", "Backgrounds"),
+    flavor: t("background.groupFlavor.2024", "Your background gives your ability increases, a starting feat, two skills and a tool."),
+    icon: <BookOpen size={20} weight="bold" />,
+    entries: getStaticBackgrounds2024().map((bg) => ({
+      name: bg.name,
+      source: "PHB",
+      description: background2024StatLine(bg, t),
+      stats: bg.skills.join(", "),
+    })),
+  }];
+}
+
+function Background2024InfoPanel({ bg, t }: { bg: SRDBackground2024; t: TFn }) {
+  const { language } = useLanguage();
+  const gear = gearPackages("background", bg.name);
+  return (
+    <div className="space-y-4">
+      <div className="rounded-2xl border-2 border-border-strong bg-surface p-4">
+        <h3 className="text-lg font-bold text-ink">{bg.name}</h3>
+        <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
+          <InfoBadge>2024</InfoBadge>
+        </div>
+      </div>
+      <div className="grid grid-cols-2 gap-2">
+        <InfoStatTile label={t("background.abilities", "Ability increases")} value={bg.abilityScores.map((a) => a.toUpperCase()).join(", ")} />
+        <InfoStatTile label={t("background.originFeat", "Starting feat")} value={bg.feat} />
+        <InfoStatTile label={t("background.skills", "Skill")} value={bg.skills.join(", ")} />
+        <InfoStatTile
+          label={t("background.tools", "Alat")}
+          value={bg.tools.join(", ") || (bg.toolChoice ? t("background.gamingSetPick", "One gaming set of your choice") : "")}
+          emptyText={t("background.none", "Tidak ada")}
+        />
+      </div>
+      <InfoCard label={t("background.asiHow", "How the increase works")}>
+        <InfoProse text={t("background.asiHowText", "Add +2 to one of these three abilities and +1 to another, or +1 to all three. You place them on the Ability Scores step.")} />
+      </InfoCard>
+      {gear.length > 0 && (
+        <div>
+          <InfoSectionLabel>{t("background.equipment", "Perlengkapan")}</InfoSectionLabel>
+          <div className="mt-1.5 space-y-1.5">
+            {gear.map((pkg) => (
+              <div key={pkg.letter} className="flex flex-wrap gap-1.5">
+                <InfoChip>{pkg.letter}</InfoChip>
+                {pkg.items.map((line, i) => (
+                  <InfoChip key={i}>{backgroundGearLabel(line, (id) => findLocalizedItem(id, language)?.name ?? id)}</InfoChip>
+                ))}
+                {pkg.gold > 0 && <InfoChip>{pkg.gold} GP</InfoChip>}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export function BackgroundInfoPanel({ bg, t }: { bg: BackgroundData; t: TFn }) {
@@ -105,15 +173,18 @@ interface BackgroundSelectionModalProps {
   current: string;
   onClose: () => void;
   onConfirm: (background: string) => void;
+  /** "2024" lists the 2024 backgrounds (ability increases and an Origin feat). */
+  ruleset?: string;
 }
 
-export function BackgroundSelectionModal({ isOpen, current, onClose, onConfirm }: BackgroundSelectionModalProps) {
+export function BackgroundSelectionModal({ isOpen, current, onClose, onConfirm, ruleset }: BackgroundSelectionModalProps) {
   const { t } = useLanguage();
+  const is2024 = ruleset === "2024";
   const [picked, setPicked] = useState(current);
   const [search, setSearch] = useState("");
   const [infoName, setInfoName] = useState<string | null>(null);
 
-  const groups = useMemo(() => buildBackgroundGroups(t), [t]);
+  const groups = useMemo(() => (is2024 ? buildBackground2024Groups(t) : buildBackgroundGroups(t)), [t, is2024]);
   // The modal mounts fresh on each open, so the current background's group starts open.
   const [openGroups, setOpenGroups] = useState<string[]>(() => {
     const key = groups.find((g) => g.entries.some((e) => e.name === current))?.key;
@@ -136,14 +207,15 @@ export function BackgroundSelectionModal({ isOpen, current, onClose, onConfirm }
       .filter((g) => g.entries.length > 0);
   }, [groups, search]);
 
-  const infoBg = infoName ? getBackgroundData(infoName) : undefined;
-  const pickedBg = getBackgroundData(picked);
+  const infoBg = infoName ? (is2024 ? getBackground2024(infoName) : getBackgroundData(infoName)) : undefined;
+  const pickedBg = is2024 ? getBackground2024(picked) : getBackgroundData(picked);
+  const pickedSkills = pickedBg ? ("skills" in pickedBg ? pickedBg.skills : pickedBg.skillProficiencies) : [];
 
   const footer = (
     <div className="flex flex-wrap gap-2 bg-[var(--color-surface)] px-4 py-3">
       {!infoBg && pickedBg && (
         <p className="w-full text-xs font-semibold text-ink-muted">
-          {t("background.grants", "Memberi")}: <span className="text-ink">{pickedBg.skillProficiencies.join(", ")}</span>
+          {t("background.grants", "Memberi")}: <span className="text-ink">{pickedSkills.join(", ")}</span>
         </p>
       )}
       <button
@@ -199,7 +271,7 @@ export function BackgroundSelectionModal({ isOpen, current, onClose, onConfirm }
       )}
       <div className="min-h-0 flex-1 space-y-3 overflow-y-auto overscroll-contain p-4 pb-8">
         {infoBg ? (
-          <BackgroundInfoPanel bg={infoBg} t={t} />
+          "abilityScores" in infoBg ? <Background2024InfoPanel bg={infoBg} t={t} /> : <BackgroundInfoPanel bg={infoBg} t={t} />
         ) : filtered.length === 0 ? (
           <p className="py-8 text-center text-sm text-ink-muted">
             {t("background.noResults", "Tidak ada latar belakang yang cocok dengan pencarianmu.")}
@@ -208,7 +280,7 @@ export function BackgroundSelectionModal({ isOpen, current, onClose, onConfirm }
           <WeaponPickerList
             groups={filtered}
             openGroups={openGroups}
-            forceOpen={search.trim().length > 0}
+            forceOpen={is2024 || search.trim().length > 0}
             selections={picked ? [picked] : []}
             onToggleGroup={(key, open) =>
               setOpenGroups((prev) =>

@@ -1,7 +1,7 @@
 // @ts-ignore - bun:test is provided by the Bun runtime
 import { describe, expect, test } from "bun:test";
 import { getStaticClasses, getStaticFeats, getStaticRaces, getStaticSpells, getStaticSubclasses } from "@/lib/srd-client";
-import { RULESET_2024_READY, rulesetOf } from "@/lib/rulesets";
+import { rules2024Available, rulesetOf } from "@/lib/rulesets";
 
 const rs = (record: unknown) => (record as { ruleset?: string }).ruleset || "2014";
 
@@ -31,7 +31,7 @@ describe("rule sets never mix", () => {
 
 describe("rulesetOf", () => {
   test("2024 stays off until it is ready", () => {
-    expect(rulesetOf({ ruleset: "2024" })).toBe(RULESET_2024_READY ? "2024" : "2014");
+    expect(rulesetOf({ ruleset: "2024" })).toBe(rules2024Available() ? "2024" : "2014");
     expect(rulesetOf({})).toBe("2014");
     expect(rulesetOf(undefined)).toBe("2014");
   });
@@ -41,6 +41,6 @@ describe("loading a character", () => {
   test("a character saved as 2024 before 2024 was ready loads as 2014", async () => {
     const { normalizeCharacter, createEmptyCharacter } = await import("@/lib/storage");
     const loaded = normalizeCharacter({ ...createEmptyCharacter(), ruleset: "2024" });
-    expect(loaded.ruleset).toBe(RULESET_2024_READY ? "2024" : "2014");
+    expect(loaded.ruleset).toBe(rules2024Available() ? "2024" : "2014");
   });
 });

@@ -96,6 +96,13 @@ export interface SRDRace {
   flexibleAsi?: "lineage" | "one";
   /** A parent race (Elf, Dwarf) that is only played through a subrace. */
   requiresSubrace?: boolean;
+  /** 2024: "2024" on every species record. */
+  ruleset?: string;
+  /** 2024: spells every member knows, by character level (Tiefling: Thaumaturgy). */
+  spells?: Record<string, string[]>;
+  /** 2024 Human (Versatile): an Origin feat of the player's choice. */
+  originFeat?: boolean;
+  sizeOptions?: string[] | null;
 }
 
 export interface RaceChoice {
@@ -103,11 +110,25 @@ export interface RaceChoice {
   name: string;
   description?: string;
   type: "single" | "language" | "proficiency" | "cantrip";
-  options?: { id: string; name: string; description?: string }[];
+  options?: {
+    id: string;
+    name: string;
+    description?: string;
+    /** 2024 lineages: spells by character level, and what the lineage changes. */
+    spells?: Record<string, string[]>;
+    speed?: number;
+    darkvision?: number;
+    resistance?: string;
+  }[];
   /** A cantrip pick from this class's list; options are built from the spell data. */
   spellList?: string;
   /** Shown only when another choice has this value (a half-elf's cantrip needs "cantrip"). */
   requires?: Record<string, string>;
+}
+
+/** A 2024 species' lineage pick (Elven Lineage, Draconic Ancestor), if it has one. */
+export function lineageChoiceOf(race: Pick<SRDRace, "choices"> | undefined): RaceChoice | undefined {
+  return race?.choices?.find((c) => c.id.endsWith("-2024-lineage"));
 }
 
 /** The race choices that apply given what is picked so far. */
@@ -317,6 +338,10 @@ export interface SRDFeat {
   book?: string;
   summary?: string;
   options?: FeatOptionGroup[];
+  /** 2024 feats: Origin, General, Fighting Style or Epic Boon. */
+  category?: string;
+  repeatable?: boolean;
+  minLevel?: number;
 }
 
  export interface SRDLanguage {
@@ -988,7 +1013,12 @@ export function getClassSpells(classOrSubclassId: string, locale: string = "en")
 export function getStaticFeats(sources?: string[], ruleset?: string, locale: string = "en"): SRDFeat[] {
   const featsData = pickLocaleData(featsDataMap, locale) as any;
   // 2024 feats share names with 2014 ones (Alert, Grappler) but not their options.
-  if (ruleSetOf(ruleset) === "2024") return pickLocaleData(feats2024Map, locale).feats as SRDFeat[];
+  if (ruleSetOf(ruleset) === "2024") {
+    return (pickLocaleData(feats2024Map, locale).feats as SRDFeat[]).map((feat) => {
+      const options = getFeatOptionGroups(feat.name, "2024");
+      return options.length > 0 ? { ...feat, options } : feat;
+    });
+  }
   const feats = featsData.feats as SRDFeat[];
   let filtered = feats;
   filtered = filtered.filter((f) => inRuleSet(f, ruleset));

@@ -13,6 +13,7 @@ import { LevelUpWizard } from "@/components/LevelUpWizard";
 import { StepAbilities } from "@/components/character-creator/StepAbilities";
 import { StepSkills } from "@/components/character-creator/StepSkills";
 import { StepEquipment } from "@/components/character-creator/StepEquipment";
+import { StepEquipment2024 } from "@/components/character-creator/StepEquipment2024";
 import { StepLook } from "@/components/character-creator/StepLook";
 import { CreationOrderPicker } from "@/components/character-creator/CreationOrderPicker";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -27,6 +28,7 @@ import {
 } from "@/lib/character-creation";
 import { getCharacter, saveCharacter } from "@/lib/storage";
 import { classRebuildDraft, finishClassRebuild } from "@/lib/rebuild";
+import { syncRules2024Preview } from "@/lib/rulesets";
 
 export default function CharacterCreate() {
   const router = useRouter();
@@ -38,6 +40,7 @@ export default function CharacterCreate() {
   // Picking the class again for a saved character (?rebuild=<id>): the old one, kept until the new one is saved.
   const [rebuildFrom, setRebuildFrom] = useState<Character | null>(null);
   useEffect(() => {
+    syncRules2024Preview(window.location.search);
     const id = new URLSearchParams(window.location.search).get("rebuild");
     if (!id) return;
     let cancelled = false;
@@ -126,7 +129,9 @@ export default function CharacterCreate() {
       case "skills":
         return <StepSkills data={character} onChange={update} />;
       case "equipment":
-        return <StepEquipment data={character} onChange={update} />;
+        return character.ruleset === "2024"
+          ? <StepEquipment2024 data={character} onChange={update} />
+          : <StepEquipment data={character} onChange={update} />;
       case "look":
         return <StepLook data={character} onChange={update} />;
       default:
@@ -187,7 +192,8 @@ export default function CharacterCreate() {
           router.replace(`/character?id=${final.id}`);
         }}
         minLevel={1}
-        maxLevel={Math.max(10, character.rebuildOf?.level ?? 1)}
+        // 2024 characters start at level 1 until the 2024 level-up is built.
+        maxLevel={character.ruleset === "2024" ? 1 : Math.max(10, character.rebuildOf?.level ?? 1)}
         initialLevel={character.rebuildOf?.level}
         title={character.rebuildOf ? t("rebuild.classLevelTitle", "Back to your level") : t("creator.startingLevel")}
         subtitle={character.rebuildOf
