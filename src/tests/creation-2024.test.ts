@@ -1,6 +1,6 @@
 // @ts-ignore - bun:test is provided by the Bun runtime
 import { describe, expect, test } from "bun:test";
-import { createEmptyCharacter, getBaseSpeed, type Character } from "@/lib/storage";
+import { computeDerivedStats, createEmptyCharacter, getBaseSpeed, getMaxPreparedSpells, isPreparationCaster, type Character } from "@/lib/storage";
 import {
   applyBackground2024,
   applyClassChoices2024,
@@ -265,5 +265,44 @@ describe("2024 level-up", () => {
     expect(applyFeatGrants(base({ str: 20 }), "Boon of Combat Prowess", { ability: "str" }).str).toBe(21);
     expect(applyFeatGrants(base({ str: 20 }), "Grappler", { ability: "str" }).str).toBe(20);
     expect(featAbilityIncreases("Grappler", { ability: "dex" }, "2024")).toEqual({ dex: 1 });
+  });
+});
+
+describe("2024 sheet", () => {
+  const at = (className: string, level: number, patch: Partial<Character> = {}) => {
+    const c = syncBaseFeatures(base({ class: className, level, wis: 16, cha: 16, ...patch }));
+    return { ...c, ...computeDerivedStats(c) } as Character;
+  };
+
+  test("class pools come from the 2024 table", () => {
+    expect([at("Barbarian", 5).maxRages, at("Barbarian", 5).rageDamage]).toEqual([3, 2]);
+    expect(at("Monk", 5).maxKiPoints).toBe(5);
+    expect(at("Cleric", 6).maxChannelDivinityUses).toBe(3);
+    expect(at("Paladin", 11).maxChannelDivinityUses).toBe(3);
+    expect(at("Druid", 2).maxWildShapeUses).toBe(2);
+    expect(at("Sorcerer", 5).maxSorceryPoints).toBe(5);
+    expect([at("Fighter", 17).maxActionSurgeUses, at("Fighter", 13).maxIndomitableUses]).toEqual([2, 2]);
+  });
+
+  test("prepared counts follow the table; only a Wizard prepares from a bigger list", () => {
+    expect(getMaxPreparedSpells(at("Cleric", 5))).toBe(9);
+    expect(getMaxPreparedSpells(at("Warlock", 5))).toBe(6);
+    expect(isPreparationCaster(at("Cleric", 5))).toBe(false);
+    expect(isPreparationCaster(at("Wizard", 5))).toBe(true);
+  });
+
+  test("always-prepared spells: subclass lists, the chosen land, Divine Smite, Hunter's Mark", () => {
+    expect(getGrantedSpellNames(at("Cleric", 5, { subclass: "Life Domain" }))).toEqual(["Aid", "Bless", "Cure Wounds", "Lesser Restoration", "Mass Healing Word", "Revivify"]);
+    expect(getGrantedSpellNames(at("Paladin", 2))).toEqual(["Divine Smite"]);
+    expect(getGrantedSpellNames(at("Ranger", 1))).toEqual(["Hunter's Mark"]);
+    const land = at("Druid", 3, { subclass: "Circle of the Land", featureSelections: { "subclass-feature-3-Circle of the Land Spells": ["Arid"] } });
+    expect(getGrantedSpellNames(land)).toEqual(["Blur", "Burning Hands", "Fire Bolt"]);
+  });
+
+  test("the feature list has no subclass markers, added picks or repeated rows", () => {
+    const names = at("Fighter", 17).features.map((f) => f.name);
+    expect(names).not.toContain("Fighter Subclass");
+    expect(names.filter((n) => n === "Action Surge")).toHaveLength(1);
+    expect(names.filter((n) => n === "Weapon Mastery")).toHaveLength(1);
   });
 });
