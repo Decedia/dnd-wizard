@@ -790,6 +790,14 @@ function getClassFeaturesAtLevel(character: Character, language: string): any[] 
     if (index + 1 > character.level) return;
     (level.features || []).forEach((f: any) => {
       if (isPlaceholderFeature(f?.name)) return;
+      // 2024 tables: "Fighter Subclass" marks subclass levels, picks added on top of the
+      // table (more invocations) are not features, and a feature that comes back at a
+      // later level (Action Surge, Indomitable) keeps one row.
+      const rules2024 = character.ruleset === "2024";
+      if (f.added || (rules2024 && f.name === `${classData.name} Subclass`)) return;
+      // The later entry has the stronger text ("twice per rest"), so it replaces the earlier one.
+      const earlier = rules2024 ? features.findIndex((x) => x.name === f.name) : -1;
+      if (earlier >= 0) features.splice(earlier, 1);
       features.push({
         name: String(f.name).replace(TIER_SUFFIX, "").trim(),
         description: normalizeDescription(f.description),

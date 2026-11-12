@@ -1270,8 +1270,28 @@ export function computeDerivedStats(character: Character): Partial<Character> {
     }
   }
 
-  // Paladin: one Channel Divinity from level 3 (Sacred Oath).
-  if (classData?.name === "Paladin" && character.level >= 3) maxChannelDivinityUses = 1;
+  // 2024 classes: the pools come from the SRD 5.2 table columns.
+  if (classData && character.ruleset === "2024") {
+    const level = character.level || 1;
+    const cs = ((classData.levels[level - 1] as { classSpecific?: Record<string, number> } | undefined)?.classSpecific || {}) as Record<string, number>;
+    if (classData.name === "Barbarian") {
+      maxRages = cs.rage_count || 0;
+      rageDamage = cs.rage_damage_bonus || 0;
+    }
+    // Focus Points use the Ki pool.
+    if (classData.name === "Monk") maxKiPoints = cs.focus_points || 0;
+    if (classData.name === "Cleric" || classData.name === "Paladin") maxChannelDivinityUses = cs.channel_divinity_charges || 0;
+    if (classData.name === "Druid") maxWildShapeUses = cs.wild_shape_uses || 0;
+    if (classData.name === "Sorcerer") maxSorceryPoints = cs.sorcery_points || 0;
+    if (classData.name === "Warlock") invocationsKnown = maxInvocationsKnown = cs.eldritch_invocations || 0;
+    if (classData.name === "Fighter") {
+      maxActionSurgeUses = level >= 17 ? 2 : level >= 2 ? 1 : 0;
+      maxIndomitableUses = level >= 17 ? 3 : level >= 13 ? 2 : level >= 9 ? 1 : 0;
+    }
+  } else if (classData?.name === "Paladin" && character.level >= 3) {
+    // Paladin: one Channel Divinity from level 3 (Sacred Oath).
+    maxChannelDivinityUses = 1;
+  }
 
   // What is left in a pool belongs to the player; only its ceiling is derived.
   // Without this every change to the sheet refilled every pool.
@@ -1633,6 +1653,8 @@ function keepPool(current: number | undefined, oldMax: number | undefined, max: 
 export function getMaxPreparedSpells(character: Character): number {
   const classData = getStaticClass(character.class, character.ruleset);
   if (!classData?.spellcastingAbility) return 0;
+  // 2024: every caster prepares the number in its class table.
+  if (character.ruleset === "2024") return (classData as { preparedSpells?: Record<string, number> }).preparedSpells?.[String(character.level || 1)] || 0;
   const abilityScore = character[classData.spellcastingAbility as keyof Character] as number;
   const abilityMod = getModifier(abilityScore || 10);
   if (character.class === "Cleric" || character.class === "Druid") {
@@ -1648,6 +1670,9 @@ export function getMaxPreparedSpells(character: Character): number {
 }
 
 export function isPreparationCaster(character: Character): boolean {
+  // 2024: the level-up picks each caster's prepared spells straight away; only a
+  // Wizard's spellbook holds more spells than are prepared.
+  if (character.ruleset === "2024") return character.class === "Wizard";
   return ["Cleric", "Druid", "Paladin", "Wizard", "Artificer"].includes(character.class);
 }
 

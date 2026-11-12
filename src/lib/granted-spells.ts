@@ -12,6 +12,12 @@ type SpellOwner = Pick<Character, "class" | "subclass" | "level" | "race" | "rac
 const upTo = (table: Record<string | number, string[]> | undefined, level: number) =>
   Object.entries(table || {}).flatMap(([lvl, names]) => (Number(lvl) <= level ? names : []));
 
+/** 2024 class features that keep a spell always prepared: Favored Enemy, Paladin's Smite. */
+const CLASS_SPELLS_2024: Record<string, Record<number, string[]>> = {
+  Ranger: { 1: ["Hunter's Mark"] },
+  Paladin: { 2: ["Divine Smite"] },
+};
+
 /**
  * Every spell the character has for free at their level: domain, oath and
  * other subclass spells, Circle of the Land terrain spells, racial spells and
@@ -33,13 +39,20 @@ export function getGrantedSpellNames(character: SpellOwner): string[] {
       const picked = (character.featureSelections?.[`subclass-feature-${f.level}-${f.name}`] || []).flatMap((v) => String(v).split(", ").filter(Boolean));
       names.push(...(grants.spells ? picked.map((p) => grants.spells![p]).filter(Boolean) : picked));
     }
-    if (index) {
+    // 2024 subclasses carry their always-prepared spells; Circle of the Land's follow the land picked.
+    if (character.ruleset === "2024") {
+      const sub = subclass as { expandedSpells?: Record<string, string[]>; expandedSpellsByOption?: Record<string, Record<string, string[]>> } | undefined;
+      names.push(...upTo(sub?.expandedSpells, level));
+      const land = character.featureSelections?.["subclass-feature-3-Circle of the Land Spells"]?.[0];
+      if (land) names.push(...upTo(sub?.expandedSpellsByOption?.[land], level));
+    } else if (index) {
       if (character.class === "Cleric") names.push(...getDomainSpells(index, level));
       if (character.class === "Paladin") names.push(...getOathSpells(index, level));
       names.push(...getSubclassSpellGrants(index, level));
     }
   }
-  if (character.class === "Druid" && character.circleTerrain) names.push(...getCircleSpells(character.circleTerrain, level));
+  if (character.ruleset === "2024") names.push(...upTo(CLASS_SPELLS_2024[character.class || ""], level));
+  if (character.class === "Druid" && character.circleTerrain && character.ruleset !== "2024") names.push(...getCircleSpells(character.circleTerrain, level));
   // RACE_SPELLS is 2014 races; a 2024 species' spells come with its lineage.
   if (character.ruleset === "2024") names.push(...speciesSpells2024(character));
   else names.push(...upTo(RACE_SPELLS[character.race], level));
