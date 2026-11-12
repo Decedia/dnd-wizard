@@ -1,7 +1,7 @@
 import { rulesetOf } from "@/lib/rulesets";
 import { overrideOf, withOverride, type NumberOverride } from "./overrides";
 import type { LevelPicks } from "./level-choices";
-import { getStaticClass, getStaticRace, getStaticSubclasses, getDomainSpells, getCircleSpells as getJsonCircleSpells, getCircleTerrainTypes as getJsonCircleTerrainTypes, getOathSpells, getWizardTraditionSpells, getSubclassFlags, getPactBoons } from "@/lib/srd-client";
+import { getStaticClass, getStaticRace, lineageChoiceOf, getStaticSubclasses, getDomainSpells, getCircleSpells as getJsonCircleSpells, getCircleTerrainTypes as getJsonCircleTerrainTypes, getOathSpells, getWizardTraditionSpells, getSubclassFlags, getPactBoons } from "@/lib/srd-client";
 import { computeBuffModifiers, type ActiveBuff } from "@/lib/spellEffects";
 import { getSpellMechanic } from "@/lib/spell-mechanics-accessor";
 import { coinRows, coinsFromInventory, isFinesseOrRanged, weaponAbility, weaponDamageDice, withCatalogStats, withChoiceInfo } from "@/lib/inventory";
@@ -1024,7 +1024,11 @@ function getClassResourceValue(classData: any, resourceName: string, level: numb
 /** Walking speed before bonuses: the player's own base, else the race's, else 30. */
 export function getBaseSpeed(character: Pick<Character, "baseSpeed" | "race" | "ruleset"> & { raceChoices?: Record<string, string> }): number {
   if (typeof character.baseSpeed === "number" && character.baseSpeed > 0) return character.baseSpeed;
-  const raceSpeed = character.race ? getStaticRace(character.race, character.ruleset)?.speed : undefined;
+  const race = character.race ? getStaticRace(character.race, character.ruleset) : undefined;
+  // A 2024 lineage can set its own speed (Wood Elf: 35 feet).
+  const lineageChoice = character.ruleset === "2024" ? lineageChoiceOf(race) : undefined;
+  const lineage = lineageChoice?.options?.find((o) => o.id === character.raceChoices?.[lineageChoice.id]);
+  const raceSpeed = lineage?.speed ?? race?.speed;
   const base = typeof raceSpeed === "number" && raceSpeed > 0 ? raceSpeed : 30;
   // A wood half-elf who takes Fleet of Foot walks 35 feet.
   const fleet = character.race?.startsWith("Half-Elf (") && character.raceChoices?.["half-elf-versatility"] === "fleet-of-foot";

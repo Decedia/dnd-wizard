@@ -1,6 +1,7 @@
 "use client";
 
-import { RULESET_2024_READY, rulesetOf } from "@/lib/rulesets";
+import { rules2024Available, rulesetOf } from "@/lib/rulesets";
+import type { Character } from "@/lib/storage";
 import { useState, useEffect } from "react";
 import { SOURCE_OPTIONS } from "@/components/SourceBadge";
 import { BookCard } from "@/components/BookCard";
@@ -165,7 +166,7 @@ const ALL_BOOK_IDS = SOURCE_OPTIONS.map((s) => s.id);
 
 type ContentMode = "phb_only" | "all" | "custom";
 
-export function StepSourceSelection({ data, onChange }: { data: { sources: string[]; ruleset?: "2014" | "2024"; optionalClassFeatures?: boolean }; onChange: (patch: { sources?: string[]; ruleset?: "2014" | "2024"; optionalClassFeatures?: boolean }) => void }) {
+export function StepSourceSelection({ data, onChange }: { data: Pick<Character, "sources" | "ruleset" | "optionalClassFeatures">; onChange: (patch: Partial<Character>) => void }) {
   const { t } = useLanguage();
   const selectedSources = data.sources || ["PHB"];
   const ruleset = rulesetOf(data);
@@ -196,8 +197,17 @@ export function StepSourceSelection({ data, onChange }: { data: { sources: strin
     }
   };
 
+  // Each rule set has its own classes, species and backgrounds, so switching
+  // clears what was picked from the other one.
   const setRuleset = (next: "2014" | "2024") => {
-    onChange({ sources: selectedSources, ruleset: next });
+    if (next === ruleset) return;
+    onChange({
+      sources: ["PHB"],
+      ruleset: next,
+      optionalClassFeatures: false,
+      ...rulesetResetPatch(),
+    });
+    setContentMode("phb_only");
     setSrdRuleset(next);
   };
 
@@ -225,7 +235,7 @@ export function StepSourceSelection({ data, onChange }: { data: { sources: strin
         </p>
       </div>
 
-      {RULESET_2024_READY && (
+      {rules2024Available() && (
       <div className="flex bg-[var(--color-bg)] p-1 rounded-xl mb-6">
         {(["2014", "2024"] as const).map((rs) => (
           <button
@@ -244,6 +254,16 @@ export function StepSourceSelection({ data, onChange }: { data: { sources: strin
       </div>
       )}
 
+      {ruleset === "2024" && (
+        <div className="rounded-2xl border-2 border-border-strong bg-surface p-4">
+          <h3 className="text-sm font-bold text-ink">{t("ruleset.2024BooksTitle", "2024 core rules")}</h3>
+          <p className="mt-1 text-xs leading-relaxed text-ink-muted">
+            {t("ruleset.2024BooksDesc", "Uses the free 2024 core rules: 9 species, 12 classes with one subclass each, and 4 backgrounds. Your background now gives your ability increases and a starting feat.")}
+          </p>
+        </div>
+      )}
+
+      {ruleset === "2014" && (
       <div className="space-y-3">
         <button
           type="button"
@@ -341,6 +361,7 @@ export function StepSourceSelection({ data, onChange }: { data: { sources: strin
           </div>
         </button>
       </div>
+      )}
 
       {ruleset === "2014" && selectedSources.includes("TCE") && (
         <label className="flex items-start gap-3 p-4 rounded-2xl border-2 border-[var(--color-border)] bg-[var(--color-surface)] cursor-pointer">
@@ -361,7 +382,7 @@ export function StepSourceSelection({ data, onChange }: { data: { sources: strin
         </label>
       )}
 
-      {contentMode === "custom" && (
+      {ruleset === "2014" && contentMode === "custom" && (
         <div className="mt-6 pt-6 border-t border-[var(--color-border)] animate-in fade-in slide-in-from-top-4 duration-300">
           <div className="flex justify-between items-center mb-4">
             <h3 className="font-bold text-sm text-[var(--color-text-primary)]">{t("creator.booksSelected", "Books selected")}</h3>
@@ -400,4 +421,27 @@ export function StepSourceSelection({ data, onChange }: { data: { sources: strin
       <BookExplainer isOpen={showBookExplainer} onClose={() => setShowBookExplainer(false)} />
     </div>
   );
+}
+
+/** What a rule set switch clears: every pick that came from the old rule set's data. */
+export function rulesetResetPatch(): Partial<Character> {
+  return {
+    class: "",
+    subclass: undefined,
+    race: "",
+    raceVariant: undefined,
+    raceChoices: {},
+    raceSkillPicks: [],
+    flexAsi: {},
+    background: "",
+    skills: {},
+    toolProficiencies: [],
+    inventory: [],
+    spells: [],
+    cantrips: [],
+    features: [],
+    featureSelections: {},
+    appliedAsi: [],
+    attacks: [],
+  };
 }

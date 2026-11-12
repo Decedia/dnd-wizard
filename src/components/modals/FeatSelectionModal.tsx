@@ -34,6 +34,16 @@ interface FeatSelectionModalProps {
   character?: Character;
   /** Spells the character already has (getTakenSpellNames); worked out from `character` when left out. */
   takenSpells?: Set<string>;
+  /** "2024" lists 2024 feats with their 2024 picks. */
+  ruleset?: string;
+  /** Only feats of this 2024 category ("Origin"). */
+  category?: string;
+  /** Only this feat (a background's Origin feat, which is set). */
+  onlyFeat?: string;
+  /** Picks made already and not asked again (the background's Magic Initiate list). */
+  fixedOptions?: Record<string, string>;
+  /** Picks to start from when reopening. */
+  initialOptions?: Record<string, string>;
 }
 
 type ModalStep = "list" | "info" | "spell";
@@ -57,15 +67,26 @@ export function FeatSelectionModal({
   disabledFeats = [],
   character,
   takenSpells,
+  ruleset,
+  category,
+  onlyFeat,
+  fixedOptions,
+  initialOptions,
 }: FeatSelectionModalProps) {
   const { t, language } = useLanguage();
   const knownSpells = useMemo(() => takenSpells ?? (character ? getTakenSpellNames(character) : null), [takenSpells, character]);
-  const feats = useMemo(() => getStaticFeats(sources, undefined, language), [sources, language]);
+  const feats = useMemo(
+    () =>
+      getStaticFeats(sources, ruleset, language).filter(
+        (f) => (!category || f.category === category) && (!onlyFeat || f.name === onlyFeat),
+      ),
+    [sources, ruleset, language, category, onlyFeat],
+  );
   const [search, setSearch] = useState("");
   const [pendingSelection, setPendingSelection] = useState<string | null>(selectedFeat || null);
   const [sourceFilter, setSourceFilter] = useState<string>("ALL");
   const [prereqFilter, setPrereqFilter] = useState<"all" | "with" | "without">("all");
-  const [optionSelections, setOptionSelections] = useState<FeatOptions>({});
+  const [optionSelections, setOptionSelections] = useState<FeatOptions>(() => ({ ...initialOptions, ...fixedOptions }));
   const [step, setStep] = useState<ModalStep>("list");
   const [infoFeat, setInfoFeat] = useState<SRDFeat | null>(null);
   const [spellTarget, setSpellTarget] = useState<{ optionId: string; group: FeatOptionGroup } | null>(
@@ -111,8 +132,8 @@ export function FeatSelectionModal({
   );
 
   const optionGroups = useMemo<FeatOptionGroup[]>(
-    () => (pendingFeat?.options ?? []).filter((group) => group.count > 0),
-    [pendingFeat],
+    () => (pendingFeat?.options ?? []).filter((group) => group.count > 0 && !fixedOptions?.[group.id]),
+    [pendingFeat, fixedOptions],
   );
 
   const missingOptionIds = useMemo(
@@ -149,7 +170,7 @@ export function FeatSelectionModal({
       : undefined;
     const classes = filter.classes ?? (classFilter ? [classFilter] : []);
 
-    let spells = getStaticSpells(sources, undefined, language);
+    let spells = getStaticSpells(sources, ruleset, language);
     if (filter.level !== undefined) {
       spells = spells.filter((spell) => spell.level === filter.level);
     }
@@ -181,14 +202,14 @@ export function FeatSelectionModal({
     if (!spellSearch.trim()) return spells;
     const q = spellSearch.toLowerCase();
     return spells.filter((spell) => spell.name.toLowerCase().includes(q));
-  }, [spellTarget, optionSelections, sources, spellSearch, language, knownSpells]);
+  }, [spellTarget, optionSelections, sources, ruleset, spellSearch, language, knownSpells]);
 
   const handleSelectFeat = useCallback((feat: SRDFeat) => {
     setPendingSelection((prev) => {
-      if (prev !== feat.name) setOptionSelections({});
+      if (prev !== feat.name) setOptionSelections({ ...fixedOptions });
       return feat.name;
     });
-  }, []);
+  }, [fixedOptions]);
 
   const handleFeatOptionChange = useCallback((optionId: string, value: string) => {
     setOptionSelections((prev) => ({ ...prev, [optionId]: value }));
@@ -294,6 +315,7 @@ export function FeatSelectionModal({
             />
           </div>
 
+          {!category && (
           <div className="mb-3 space-y-2">
             <div className="scrollbar-hide flex gap-1.5 overflow-x-auto pb-0.5">
               <button
@@ -338,6 +360,7 @@ export function FeatSelectionModal({
               </button>
             </div>
           </div>
+          )}
 
           {filteredFeats.length === 0 && (
             <p className="py-6 text-center text-sm text-ink-muted">

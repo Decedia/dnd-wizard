@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { Sword, Users, CaretRight, Scroll, Info } from "@phosphor-icons/react";
+import { Sword, Users, CaretRight, Scroll, Info, Star } from "@phosphor-icons/react";
 import { getStaticClasses, getStaticRaces, type SRDClass, type SRDRace } from "@/lib/srd-client";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
@@ -9,7 +9,9 @@ import { ClassSelectionModal } from "../modals/ClassSelectionModal";
 import { RaceSelectionModal } from "../modals/RaceSelectionModal";
 import { CLASS_ICONS } from "../modals/UnifiedSelectionModal";
 import { RACE_ICONS } from "@/components/race-icons";
-import { BackgroundSelectionModal, backgroundStatLine } from "../modals/BackgroundSelectionModal";
+import { BackgroundSelectionModal, backgroundStatLine, background2024StatLine } from "../modals/BackgroundSelectionModal";
+import { applyBackground2024, chosenLineage, getBackground2024, is2024 } from "@/lib/origin-2024";
+import { BackgroundToolPick2024, OriginFeats2024, SpeciesPicks2024 } from "./Origin2024Picks";
 import { LanguagePicker } from "./LanguagePicker";
 import { getBackgroundData } from "@/data/backgrounds";
 import { applyBackground, racePatch } from "@/lib/character-creation";
@@ -58,6 +60,8 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
   const selectedClass = classes.find((c) => c.name === data.class);
   const selectedRace = races.find((r) => r.name === data.race);
   const selectedBackground = getBackgroundData(data.background);
+  const rules2024 = is2024(data);
+  const background2024 = rules2024 ? getBackground2024(data.background) : undefined;
 
   const truncate = (text?: string, max = 140) => {
     if (!text) return "";
@@ -70,15 +74,18 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
     (payload: any) => {
       const className = payload.name;
       if (className !== data.class) {
+        // 2024: the background's feat, tool and gear picks don't depend on the class, so they stay.
+        const keep = (key: string) => rules2024 && /^(origin-feat-|background-tool-2024|gear-2024-background)/.test(key);
+        const backgroundSkills = background2024?.skills || [];
         onChange({
           class: className,
           subclass: undefined,
-          inventory: [],
-          skills: {},
+          inventory: rules2024 ? data.inventory.filter((r) => r.grantedFrom?.startsWith("background:")) : [],
+          skills: Object.fromEntries(backgroundSkills.map((s) => [s, true])),
           spells: [],
           cantrips: [],
           features: [],
-          featureSelections: {},
+          featureSelections: Object.fromEntries(Object.entries(data.featureSelections || {}).filter(([k]) => keep(k))),
           appliedAsi: [],
           attacks: [],
           costumeSpells: [],
@@ -86,7 +93,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
       }
       setClassModalOpen(false);
     },
-    [data.class, onChange]
+    [data.class, data.inventory, data.featureSelections, rules2024, background2024, onChange]
   );
 
   const handleRaceSelect = useCallback(
@@ -110,12 +117,14 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
         <div className="flex gap-3 rounded-2xl border border-ink/20 bg-ink/10 p-4">
           <Info size={18} weight="bold" className="mt-0.5 shrink-0 text-ink" />
           <p className="text-xs leading-relaxed text-ink/80">
-            {t("origin.introHint", "Your class, race and background decide your stats and skills. Tap a card to see the options.")}
+            {rules2024
+              ? t("origin.introHint2024", "Your class, species and background decide your stats and skills. Under the 2024 rules your background gives your ability increases and a starting feat.")
+              : t("origin.introHint", "Your class, race and background decide your stats and skills. Tap a card to see the options.")}
           </p>
         </div>
 
         <section>
-          <SectionHeader icon={<Sword size={14} weight="bold" className="text-ink" />}>{t("origin.sectionClassRace", "Class & race")}</SectionHeader>
+          <SectionHeader icon={<Sword size={14} weight="bold" className="text-ink" />}>{rules2024 ? t("origin.sectionClassSpecies", "Class & species") : t("origin.sectionClassRace", "Class & race")}</SectionHeader>
           <div className="space-y-3">
             <PickRow
               label={`${t("form.class", "Class")} *`}
@@ -126,10 +135,12 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
               onClick={() => setClassModalOpen(true)}
             />
             <PickRow
-              label={`${t("form.race", "Race")} *`}
-              title={data.race ? (data.race === "Human" && data.raceVariant === "variant" ? t("origin.variantHuman", "Variant Human") : data.race) : t("origin.selectRace", "Pilih Ras")}
+              label={`${rules2024 ? t("form.species", "Species") : t("form.race", "Race")} *`}
+              title={data.race ? (data.race === "Human" && data.raceVariant === "variant" ? t("origin.variantHuman", "Variant Human") : data.race) : rules2024 ? t("origin.selectSpecies", "Choose a species") : t("origin.selectRace", "Pilih Ras")}
               subtitle={data.race
-                ? data.race === "Human" && data.raceVariant === "variant"
+                ? rules2024
+                  ? [chosenLineage(data)?.name, truncate(selectedRace?.traits?.map((tr) => tr.name).join(", "))].filter(Boolean).join(" · ")
+                  : data.race === "Human" && data.raceVariant === "variant"
                   ? [
                       (data.variantHumanAbilities || []).map((ab) => `+1 ${ab.toUpperCase()}`).join(", "),
                       data.variantHumanSkill,
@@ -141,6 +152,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
               chosen={!!data.race}
               onClick={() => setRaceModalOpen(true)}
             />
+            {rules2024 && <SpeciesPicks2024 data={data} onChange={onChange} />}
           </div>
         </section>
 
@@ -149,12 +161,22 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
           <PickRow
             label={`${t("form.background", "Background")} *`}
             title={data.background || t("origin.chooseBackground", "Pilih Latar Belakang")}
-            subtitle={selectedBackground ? backgroundStatLine(selectedBackground, t) : t("origin.backgroundExamples", "Acolyte, Soldier, Sage...")}
+            subtitle={background2024
+              ? background2024StatLine(background2024, t)
+              : selectedBackground && !rules2024 ? backgroundStatLine(selectedBackground, t) : t("origin.backgroundExamples", "Acolyte, Soldier, Sage...")}
             icon={<Scroll className="h-6 w-6" />}
-            chosen={!!data.background}
+            chosen={rules2024 ? !!background2024 : !!data.background}
             onClick={() => setBackgroundModalOpen(true)}
           />
+          {rules2024 && <div className="mt-3"><BackgroundToolPick2024 data={data} onChange={onChange} /></div>}
         </section>
+
+        {rules2024 && (data.background || data.race === "Human") && (
+          <section>
+            <SectionHeader icon={<Star size={14} weight="bold" className="text-ink" />}>{t("origin.sectionFeats", "Starting feats")}</SectionHeader>
+            <OriginFeats2024 data={data} onChange={onChange} />
+          </section>
+        )}
 
         <LanguagePicker data={data} onChange={onChange} />
       </div>
@@ -173,9 +195,10 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
         <BackgroundSelectionModal
           isOpen={true}
           current={data.background}
+          ruleset={data.ruleset}
           onClose={() => setBackgroundModalOpen(false)}
           onConfirm={(bg) => {
-            if (bg !== data.background) onChange(applyBackground(data, bg));
+            if (bg !== data.background) onChange(rules2024 ? applyBackground2024(data, bg) : applyBackground(data, bg));
           }}
         />
       )}

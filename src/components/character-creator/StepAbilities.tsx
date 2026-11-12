@@ -7,6 +7,7 @@ import { isRecommended } from "@/lib/recommendations";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getStaticRace } from "@/lib/srd-client";
 import { isFlexAsiValid } from "@/lib/race-grants";
+import { backgroundAsiValid, getBackground2024, is2024 } from "@/lib/origin-2024";
 
 /**
  * Where a race with a flexible increase puts it. Lineages pick +2 and +1, or
@@ -15,12 +16,15 @@ import { isFlexAsiValid } from "@/lib/race-grants";
 function FlexAsiPicker({ data, onChange }: { data: Character; onChange: (patch: Partial<Character>) => void }) {
   const { t } = useLanguage();
   const race = data.race ? getStaticRace(data.race, data.ruleset) : undefined;
-  if (!race?.flexibleAsi) return null;
+  // 2024: the background gives the +2/+1 or +1/+1/+1, among its three abilities.
+  const background = is2024(data) ? getBackground2024(data.background) : undefined;
+  if (!race?.flexibleAsi && !background) return null;
   const flex = data.flexAsi || {};
-  const fixed = Object.keys(race.abilityScoreIncreases || {});
-  const isLineage = race.flexibleAsi === "lineage";
+  const fixed = Object.keys(race?.abilityScoreIncreases || {});
+  const isLineage = !!background || race?.flexibleAsi === "lineage";
   const amounts = isLineage ? [0, 1, 2] : [0, 1];
-  const valid = isFlexAsiValid(race, flex);
+  const valid = background ? backgroundAsiValid(data) : isFlexAsiValid(race, flex);
+  const shown = ABILITIES.filter((a) => (background ? background.abilityScores.includes(a.key) : isLineage || !fixed.includes(a.key)));
   const set = (key: string, value: number) => {
     const next = { ...flex, [key]: value };
     if (value === 2) for (const k of Object.keys(next)) if (k !== key && next[k] === 2) next[k] = 0;
@@ -29,14 +33,20 @@ function FlexAsiPicker({ data, onChange }: { data: Character; onChange: (patch: 
   };
   return (
     <div className={`mb-6 rounded-2xl border-2 p-4 ${valid ? "border-ink/30" : "border-warning-400"} bg-surface`}>
-      <h3 className="text-sm font-bold text-ink">{t("abilities.flexTitle", { race: data.race }, "Racial increase ({race})")}</h3>
+      <h3 className="text-sm font-bold text-ink">
+        {background
+          ? t("abilities.backgroundFlexTitle", { background: background.name }, "Background increase ({background})")
+          : t("abilities.flexTitle", { race: data.race }, "Racial increase ({race})")}
+      </h3>
       <p className="mt-1 mb-3 text-xs text-ink-muted">
-        {isLineage
+        {background
+          ? t("abilities.backgroundFlexHint", "Give +2 to one of these and +1 to another, or +1 to all three. Put the +2 on your class's main ability.")
+          : isLineage
           ? t("abilities.flexLineage", "Give +2 to one score and +1 to another, or +1 to three different scores.")
           : t("abilities.flexOne", "Give +1 to one more score of your choice.")}
       </p>
       <div className="grid grid-cols-3 gap-2">
-        {ABILITIES.filter((a) => isLineage || !fixed.includes(a.key)).map((a) => (
+        {shown.map((a) => (
           <div key={a.key} className="rounded-lg border border-border-strong p-2 text-center">
             <div className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">{a.label}</div>
             <div className="mt-1 flex justify-center gap-1">
@@ -557,7 +567,9 @@ export function StepAbilities({ data, onChange }: StepAbilitiesProps) {
       <div>{ABILITIES.map(renderStatRow)}</div>
 
       <p className="mt-4 text-center text-[11px] font-medium leading-relaxed text-ink-muted">
-        {t("abilities.notFinalValue", "This is not your final ability score. Racial bonuses from your race are added afterwards.")}
+        {is2024(data)
+          ? t("abilities.notFinalValue2024", "This is not your final ability score. Your background increase is added afterwards.")
+          : t("abilities.notFinalValue", "This is not your final ability score. Racial bonuses from your race are added afterwards.")}
       </p>
     </section>
   );

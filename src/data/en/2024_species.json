@@ -41,43 +41,53 @@
           "options": [
             {
               "id": "draconic-ancestor-black",
-              "name": "Black"
+              "name": "Black",
+              "description": "Acid breath and resistance."
             },
             {
               "id": "draconic-ancestor-blue",
-              "name": "Blue"
+              "name": "Blue",
+              "description": "Lightning breath and resistance."
             },
             {
               "id": "draconic-ancestor-brass",
-              "name": "Brass"
+              "name": "Brass",
+              "description": "Fire breath and resistance."
             },
             {
               "id": "draconic-ancestor-bronze",
-              "name": "Bronze"
+              "name": "Bronze",
+              "description": "Lightning breath and resistance."
             },
             {
               "id": "draconic-ancestor-copper",
-              "name": "Copper"
+              "name": "Copper",
+              "description": "Acid breath and resistance."
             },
             {
               "id": "draconic-ancestor-gold",
-              "name": "Gold"
+              "name": "Gold",
+              "description": "Fire breath and resistance."
             },
             {
               "id": "draconic-ancestor-green",
-              "name": "Green"
+              "name": "Green",
+              "description": "Poison breath and resistance."
             },
             {
               "id": "draconic-ancestor-red",
-              "name": "Red"
+              "name": "Red",
+              "description": "Fire breath and resistance."
             },
             {
               "id": "draconic-ancestor-silver",
-              "name": "Silver"
+              "name": "Silver",
+              "description": "Cold breath and resistance."
             },
             {
               "id": "draconic-ancestor-white",
-              "name": "White"
+              "name": "White",
+              "description": "Cold breath and resistance."
             }
           ]
         }
@@ -146,6 +156,14 @@
         "Common"
       ],
       "extraLanguages": 2,
+      "skillChoice": {
+        "count": 1,
+        "options": [
+          "Insight",
+          "Perception",
+          "Survival"
+        ]
+      },
       "choices": [
         {
           "id": "elf-2024-lineage",
@@ -154,15 +172,73 @@
           "options": [
             {
               "id": "elven-lineage-drow",
-              "name": "Drow"
+              "name": "Drow",
+              "description": "Darkvision 120 feet. Dancing Lights cantrip. Faerie Fire at level 3, Darkness at level 5.",
+              "darkvision": 120,
+              "spells": {
+                "1": [
+                  "Dancing Lights"
+                ],
+                "3": [
+                  "Faerie Fire"
+                ],
+                "5": [
+                  "Darkness"
+                ]
+              }
             },
             {
               "id": "elven-lineage-high-elf",
-              "name": "High Elf"
+              "name": "High Elf",
+              "description": "Prestidigitation cantrip (swap it for another Wizard cantrip after a Long Rest). Detect Magic at level 3, Misty Step at level 5.",
+              "spells": {
+                "1": [
+                  "Prestidigitation"
+                ],
+                "3": [
+                  "Detect Magic"
+                ],
+                "5": [
+                  "Misty Step"
+                ]
+              }
             },
             {
               "id": "elven-lineage-wood-elf",
-              "name": "Wood Elf"
+              "name": "Wood Elf",
+              "description": "Speed 35 feet. Druidcraft cantrip. Longstrider at level 3, Pass without Trace at level 5.",
+              "speed": 35,
+              "spells": {
+                "1": [
+                  "Druidcraft"
+                ],
+                "3": [
+                  "Longstrider"
+                ],
+                "5": [
+                  "Pass without Trace"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "elf-2024-spell-ability",
+          "name": "Spellcasting ability",
+          "description": "The ability your lineage spells use. Pick the one your class casts with, or your highest mental score.",
+          "type": "single",
+          "options": [
+            {
+              "id": "int",
+              "name": "Intelligence"
+            },
+            {
+              "id": "wis",
+              "name": "Wisdom"
+            },
+            {
+              "id": "cha",
+              "name": "Charisma"
             }
           ]
         }
@@ -201,11 +277,45 @@
           "options": [
             {
               "id": "gnomish-lineage-forest-gnome",
-              "name": "Forest Gnome"
+              "name": "Forest Gnome",
+              "description": "Minor Illusion cantrip. Speak with Animals always prepared, cast free a number of times equal to your Proficiency Bonus per Long Rest.",
+              "spells": {
+                "1": [
+                  "Minor Illusion",
+                  "Speak with Animals"
+                ]
+              }
             },
             {
               "id": "gnomish-lineage-rock-gnome",
-              "name": "Rock Gnome"
+              "name": "Rock Gnome",
+              "description": "Mending and Prestidigitation cantrips. Spend 10 minutes to build a Tiny clockwork toy that makes one Prestidigitation effect.",
+              "spells": {
+                "1": [
+                  "Mending",
+                  "Prestidigitation"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "gnome-2024-spell-ability",
+          "name": "Spellcasting ability",
+          "description": "The ability your lineage spells use. Pick the one your class casts with, or your highest mental score.",
+          "type": "single",
+          "options": [
+            {
+              "id": "int",
+              "name": "Intelligence"
+            },
+            {
+              "id": "wis",
+              "name": "Wisdom"
+            },
+            {
+              "id": "cha",
+              "name": "Charisma"
             }
           ]
         }
@@ -246,27 +356,33 @@
           "options": [
             {
               "id": "giant-ancestry-clouds-jaunt",
-              "name": "Cloud's Jaunt"
+              "name": "Cloud's Jaunt",
+              "description": "As a Bonus Action, you magically teleport up to 30 feet to an unoccupied space you can see."
             },
             {
               "id": "giant-ancestry-fires-burn",
-              "name": "Fire's Burn"
+              "name": "Fire's Burn",
+              "description": "When you hit a target with an attack roll and deal damage to it, you can also deal 1d10 Fire damage to that target."
             },
             {
               "id": "giant-ancestry-frosts-chill",
-              "name": "Frost's Chill"
+              "name": "Frost's Chill",
+              "description": "When you hit a target with an attack roll and deal damage to it, you can also deal 1d6 Cold damage to that target and reduce its Speed by 10 feet until the start of your next turn."
             },
             {
               "id": "giant-ancestry-hills-tumble",
-              "name": "Hill's Tumble"
+              "name": "Hill's Tumble",
+              "description": "When you hit a Large or smaller creature with an attack roll and deal damage to it, you can give that target the Prone condition."
             },
             {
               "id": "giant-ancestry-stones-endurance",
-              "name": "Stone's Endurance"
+              "name": "Stone's Endurance",
+              "description": "When you take damage, you can take a Reaction to roll 1d12. Add your Constitution modifier to the number rolled and reduce the damage by that total."
             },
             {
               "id": "giant-ancestry-storms-thunder",
-              "name": "Storm's Thunder"
+              "name": "Storm's Thunder",
+              "description": "When you take damage from a creature within 60 feet of you, you can take a Reaction to deal 1d8 Thunder damage to that creature."
             }
           ]
         }
@@ -334,6 +450,28 @@
       "sizeOptions": [
         "Medium",
         "Small"
+      ],
+      "skillChoice": {
+        "count": 1
+      },
+      "originFeat": true,
+      "choices": [
+        {
+          "id": "human-2024-size",
+          "name": "Size",
+          "description": "Small or Medium. It changes nothing else for you.",
+          "type": "single",
+          "options": [
+            {
+              "id": "medium",
+              "name": "Medium"
+            },
+            {
+              "id": "small",
+              "name": "Small"
+            }
+          ]
+        }
       ]
     },
     {
@@ -391,6 +529,11 @@
         "Medium",
         "Small"
       ],
+      "spells": {
+        "1": [
+          "Thaumaturgy"
+        ]
+      },
       "choices": [
         {
           "id": "tiefling-2024-lineage",
@@ -399,15 +542,90 @@
           "options": [
             {
               "id": "fiendish-legacy-abyssal",
-              "name": "Abyssal"
+              "name": "Abyssal",
+              "description": "Resistance to Poison damage. Poison Spray cantrip. Ray of Sickness at level 3, Hold Person at level 5.",
+              "resistance": "Poison",
+              "spells": {
+                "1": [
+                  "Poison Spray"
+                ],
+                "3": [
+                  "Ray of Sickness"
+                ],
+                "5": [
+                  "Hold Person"
+                ]
+              }
             },
             {
               "id": "fiendish-legacy-chthonic",
-              "name": "Chthonic"
+              "name": "Chthonic",
+              "description": "Resistance to Necrotic damage. Chill Touch cantrip. False Life at level 3, Ray of Enfeeblement at level 5.",
+              "resistance": "Necrotic",
+              "spells": {
+                "1": [
+                  "Chill Touch"
+                ],
+                "3": [
+                  "False Life"
+                ],
+                "5": [
+                  "Ray of Enfeeblement"
+                ]
+              }
             },
             {
               "id": "fiendish-legacy-infernal",
-              "name": "Infernal"
+              "name": "Infernal",
+              "description": "Resistance to Fire damage. Fire Bolt cantrip. Hellish Rebuke at level 3, Darkness at level 5.",
+              "resistance": "Fire",
+              "spells": {
+                "1": [
+                  "Fire Bolt"
+                ],
+                "3": [
+                  "Hellish Rebuke"
+                ],
+                "5": [
+                  "Darkness"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "tiefling-2024-spell-ability",
+          "name": "Spellcasting ability",
+          "description": "The ability your lineage spells use. Pick the one your class casts with, or your highest mental score.",
+          "type": "single",
+          "options": [
+            {
+              "id": "int",
+              "name": "Intelligence"
+            },
+            {
+              "id": "wis",
+              "name": "Wisdom"
+            },
+            {
+              "id": "cha",
+              "name": "Charisma"
+            }
+          ]
+        },
+        {
+          "id": "tiefling-2024-size",
+          "name": "Size",
+          "description": "Small or Medium. It changes nothing else for you.",
+          "type": "single",
+          "options": [
+            {
+              "id": "medium",
+              "name": "Medium"
+            },
+            {
+              "id": "small",
+              "name": "Small"
             }
           ]
         }

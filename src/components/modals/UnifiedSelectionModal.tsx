@@ -4,7 +4,7 @@ import { getTakenSpellNames } from "@/lib/taken-spells";
 import { useState, useMemo, useCallback, useEffect, useLayoutEffect } from "react";
 import { getStaticClasses, getStaticSubclasses } from "@/lib/srd-client";
 import type { Character } from "@/lib/storage";
-import { activeRaceChoices, getStaticRaces, getStaticRaceDetails, type SRDClass, type SRDRace } from "@/lib/srd-client";
+import { activeRaceChoices, getStaticRaces, getStaticRaceDetails, lineageChoiceOf, type SRDClass, type SRDRace } from "@/lib/srd-client";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import {
   InfoBadge,
@@ -220,6 +220,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
   currentCharacter,
 }: SelectionModalProps<T>) {
   const { t, tDesc, language } = useLanguage();
+  const ruleset: string | undefined = currentCharacter?.ruleset;
   const [step, setStep] = useState<SelectionStep>("list");
   const [searchQuery, setSearchQuery] = useState("");
   const [sourceFilter, setSourceFilter] = useState<string>("ALL");
@@ -254,11 +255,11 @@ export function UnifiedSelectionModal<T extends SelectionType>({
 
   const allOptions = useMemo(() => {
     if (selectionType === "class") {
-      const classes = getStaticClasses(characterSources, undefined, language);
+      const classes = getStaticClasses(characterSources, ruleset, language);
       return classes.map((cls) => {
         // Count from the subclass data under the chosen books; the class
         // file's own subclass list is incomplete.
-        const subclassNames = getStaticSubclasses(cls.name, characterSources, undefined, language).map((s) => s.name);
+        const subclassNames = getStaticSubclasses(cls.name, characterSources, ruleset, language).map((s) => s.name);
         return {
         name: cls.name,
         source: cls.source || "PHB",
@@ -276,7 +277,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
       };
       }) as SelectionOption[];
     } else {
-      const races = getStaticRaces(characterSources, undefined, language);
+      const races = getStaticRaces(characterSources, ruleset, language);
       const categoryByRace = buildRaceCategoryIndex(
         races.map((race) => race.name),
         language,
@@ -288,8 +289,11 @@ export function UnifiedSelectionModal<T extends SelectionType>({
         source: race.source || "PHB",
         description: categoryByRace.get(race.name)?.flavor || race.traits?.[0]?.description || "",
         icon: RACE_ICONS[race.name] || RACE_ICONS.Human,
-        hasChoice: isHalfElfRace(race.name) || (race.choices?.length || 0) > 0,
-        choiceType: isHalfElfRace(race.name)
+        // A 2024 species asks only its lineage in this picker.
+        hasChoice: ruleset === "2024" ? !!lineageChoiceOf(race) : isHalfElfRace(race.name) || (race.choices?.length || 0) > 0,
+        choiceType: ruleset === "2024"
+          ? lineageChoiceOf(race)?.name
+          : isHalfElfRace(race.name)
           ? "half_elf"
           : race.choices?.[0]?.type || "ancestry",
         basicStats: `${race.size} • Speed ${race.speed} ft`,
@@ -311,7 +315,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
         ];
       });
     }
-  }, [selectionType, characterSources, language, t]);
+  }, [selectionType, characterSources, language, t, ruleset]);
 
   const filteredOptions = useMemo(() => {
     let options = allOptions.filter((opt) => !opt.requiresSubrace);
@@ -500,7 +504,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
   // A SCAG variant (Half-Elf (Wood Elf)) picks an elf trait instead of skills.
   const halfElfVariant = isHalfElfStep && selectedItem!.name.startsWith("Half-Elf (");
   // Plain call, not a hook: this runs after the early return above.
-  const halfElfRaceChoices = halfElfVariant ? getStaticRaceDetails(selectedItem!.name, characterSources, undefined, language)?.choices || [] : [];
+  const halfElfRaceChoices = halfElfVariant ? getStaticRaceDetails(selectedItem!.name, characterSources, ruleset, language)?.choices || [] : [];
   const halfElfOpenChoices = activeRaceChoices(halfElfRaceChoices, halfElfData?.choices).filter((c) => !halfElfData?.choices?.[c.id]);
   const halfElfMissing: string[] = [];
   if (isHalfElfStep) {
@@ -602,6 +606,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
             <RaceInfoPanel
               option={infoItem.option}
               characterSources={characterSources}
+              ruleset={ruleset}
               language={language}
               t={t}
             />
@@ -803,6 +808,7 @@ export function UnifiedSelectionModal<T extends SelectionType>({
               onChoice={handleConfigChoice}
               selectedChoice={configChoice}
               characterSources={characterSources}
+              ruleset={ruleset}
               language={language}
               requireChoice={requireChoice}
               onRequirementChange={handleRequirementChange}
@@ -866,6 +872,7 @@ interface ConfigDrawerProps {
   onChoice: (choice: ConfigChoice) => void;
   selectedChoice: ConfigChoice | null;
   characterSources: string[];
+  ruleset?: string;
   language: string;
   requireChoice?: boolean;
   onRequirementChange?: (required: boolean) => void;
@@ -879,6 +886,7 @@ function ConfigDrawer({
   onChoice,
   selectedChoice,
   characterSources,
+  ruleset,
   language,
   requireChoice = true,
   onRequirementChange,
@@ -889,19 +897,23 @@ function ConfigDrawer({
   const isHumanVariant = parentOption.name === "Human" && parentOption.choiceType === "variant";
   const configChoices = useMemo(() => {
     if (isHumanVariant && !useVariant) return [];
-    const raceDetails = getStaticRaceDetails(parentOption.name, characterSources, undefined, language);
+    const raceDetails = getStaticRaceDetails(parentOption.name, characterSources, ruleset, language);
     if (!raceDetails || !raceDetails.choices) return [];
-    return raceDetails.choices.flatMap((choice) =>
+    // A 2024 species asks only its lineage here; the spellcasting ability and
+    // size are smaller picks on the Origin step.
+    const lineage = lineageChoiceOf(raceDetails);
+    const asked = ruleset === "2024" ? (lineage ? [lineage] : []) : raceDetails.choices;
+    return asked.flatMap((choice) =>
       (choice.options || []).map((opt) => ({
         id: opt.id || slugify(opt.name),
         name: opt.name,
         description: opt.description || "",
-        effect: choice.type,
+        effect: ruleset === "2024" ? "" : choice.type,
         featureData: { ...opt, choiceType: choice.type },
         parentChoiceId: choice.id,
       }))
     );
-  }, [parentOption, characterSources, language, useVariant, isHumanVariant]);
+  }, [parentOption, characterSources, ruleset, language, useVariant, isHumanVariant]);
 
   useEffect(() => {
     if (isHumanVariant && onRequirementChange) {
@@ -1202,6 +1214,7 @@ function ClassInfoPanel({ option }: { option: SelectionOption }) {
 interface RaceInfoPanelProps {
   option: SelectionOption;
   characterSources?: string[];
+  ruleset?: string;
   language: string;
   t: ReturnType<typeof useLanguage>["t"];
 }
@@ -1217,8 +1230,8 @@ function formatDarkvision(
   return t("common.yes", "Ya");
 }
 
-function RaceInfoPanel({ option, characterSources, language, t }: RaceInfoPanelProps) {
-  const details = getStaticRaceDetails(option.raceName ?? option.name, characterSources, undefined, language);
+function RaceInfoPanel({ option, characterSources, ruleset, language, t }: RaceInfoPanelProps) {
+  const details = getStaticRaceDetails(option.raceName ?? option.name, characterSources, ruleset, language);
   // Variant Human swaps the +1 to everything for its own picks.
   const isVariantHuman = option.raceName === "Human" && option.choiceType === "variant";
   const abilityIncreases = isVariantHuman ? [] : Object.entries(details?.abilityScoreIncreases || {});

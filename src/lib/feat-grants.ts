@@ -59,13 +59,14 @@ export function decodeFeatOptions(entries: string[] | undefined): Record<string,
 }
 
 /** The ability increases a feat gives with these picks, e.g. { con: 1 } for Resilient (Constitution). */
-export function featAbilityIncreases(featName: string, options: Record<string, string> = {}): Record<string, number> {
+export function featAbilityIncreases(featName: string, options: Record<string, string> = {}, ruleset?: string): Record<string, number> {
   const out: Record<string, number> = {};
   const add = (ability: string, amount: number) => {
     if (ABILITY_KEYS.includes(ability)) out[ability] = (out[ability] || 0) + amount;
   };
-  for (const [ability, amount] of Object.entries(FEAT_FIXED_GRANTS[featName]?.asi || {})) add(ability, amount);
-  for (const group of getFeatOptionGroups(featName)) {
+  // The fixed table is 2014 feats; 2024 Origin feats give no ability increase.
+  if (ruleset !== "2024") for (const [ability, amount] of Object.entries(FEAT_FIXED_GRANTS[featName]?.asi || {})) add(ability, amount);
+  for (const group of getFeatOptionGroups(featName, ruleset)) {
     const value = options[group.id];
     if (value && group.id.replace(/_\d+$/, "") === "ability") add(value, 1);
   }
@@ -78,8 +79,9 @@ export function featAbilityIncreases(featName: string, options: Record<string, s
  * the moment the feat is taken.
  */
 export function applyFeatGrants(character: Character, featName: string, options: Record<string, string> = {}): Character {
-  const fixed = FEAT_FIXED_GRANTS[featName] || {};
-  const groups = getFeatOptionGroups(featName);
+  const ruleset = character.ruleset;
+  const fixed: FixedFeatGrants = (ruleset !== "2024" && FEAT_FIXED_GRANTS[featName]) || {};
+  const groups = getFeatOptionGroups(featName, ruleset);
   const skillNames = new Set<string>(SKILLS.map((s) => s.name));
 
   const scores: Record<string, number> = {};
@@ -88,7 +90,7 @@ export function applyFeatGrants(character: Character, featName: string, options:
     const current = scores[ability] ?? ((character as any)[ability] as number) ?? 10;
     scores[ability] = Math.min(MAX_SCORE, current + amount);
   };
-  for (const [ability, amount] of Object.entries(featAbilityIncreases(featName, options))) raise(ability, amount);
+  for (const [ability, amount] of Object.entries(featAbilityIncreases(featName, options, ruleset))) raise(ability, amount);
 
   const skills = { ...character.skills };
   const expertise = new Set(character.expertise || []);
@@ -128,9 +130,9 @@ export function applyFeatGrants(character: Character, featName: string, options:
   const spells = [...(character.spells || [])];
   const cantrips = [...(character.cantrips || [])];
   if (spellNames.length > 0) {
-    const all = getStaticSpells(character.sources);
+    const all = getStaticSpells(character.sources, ruleset);
     for (const name of spellNames) {
-      const spell = all.find((s) => s.name === name) || getStaticSpells([]).find((s) => s.name === name);
+      const spell = all.find((s) => s.name === name) || getStaticSpells([], ruleset).find((s) => s.name === name);
       const level = spell?.level ?? 1;
       if (!spells.some((s) => s.name === name && s.level === level)) {
         spells.push({
@@ -168,9 +170,10 @@ export function applyFeatGrants(character: Character, featName: string, options:
  * picked again.
  */
 export function removeFeatGrants(character: Character, featName: string, options: Record<string, string> = {}): Character {
-  const fixed = FEAT_FIXED_GRANTS[featName] || {};
+  const ruleset = character.ruleset;
+  const fixed: FixedFeatGrants = (ruleset !== "2024" && FEAT_FIXED_GRANTS[featName]) || {};
   const scores: Record<string, number> = {};
-  for (const [ability, amount] of Object.entries(featAbilityIncreases(featName, options))) {
+  for (const [ability, amount] of Object.entries(featAbilityIncreases(featName, options, ruleset))) {
     if (!ABILITY_KEYS.includes(ability)) continue;
     scores[ability] = Math.max(1, ((character as any)[ability] as number ?? 10) - amount);
   }
@@ -188,7 +191,7 @@ export function removeFeatGrants(character: Character, featName: string, options
   for (const name of fixed.tools || []) tools.delete(name);
   other = other.filter((p) => !(fixed.proficiencies || []).includes(p));
 
-  for (const group of getFeatOptionGroups(featName)) {
+  for (const group of getFeatOptionGroups(featName, ruleset)) {
     const value = options[group.id];
     if (!value) continue;
     const base = group.id.replace(/_\d+$/, "");

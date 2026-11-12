@@ -218,7 +218,7 @@ export function StepFeatures() {
                 <FeatureChipSelector
                    name="Book of Shadows"
                    description={t("spell.pactTomeCantripsHint", "Choose three cantrips from any class. They don't count against your cantrips known.")}
-                  options={getStaticSpells(character.sources, undefined, language)
+                  options={getStaticSpells(character.sources, character.ruleset, language)
                     .filter((s) => s.level === 0 && !pactTomeCantrips.includes(s.name))
                     .map((s) => ({ name: s.name, description: s.school || "" }))}
                   selectedValues={pactTomeCantrips}
@@ -335,7 +335,7 @@ export function StepFeatures() {
           {circleTerrain && (() => {
             const circleSpells = getCircleSpells(circleTerrain, info.level);
             const spellsForLevel = circleSpells.filter((name) => {
-              const spell = getStaticSpells(character.sources, undefined, language).find((s) => s.name?.toLowerCase() === name.toLowerCase());
+              const spell = getStaticSpells(character.sources, character.ruleset, language).find((s) => s.name?.toLowerCase() === name.toLowerCase());
               return spell && spell.level <= info.maxSpellLevel;
             });
             if (spellsForLevel.length === 0) return null;

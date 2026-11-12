@@ -57,7 +57,142 @@
         {
           "name": "Weapon Mastery",
           "description": "Your training with weapons allows you to use the mastery properties of two kinds of Simple or Martial Melee weapons of your choice, such as Greataxes and Handaxes. Whenever you finish a Long Rest, you can practice weapon drills and change one of those weapon choices.\n\nWhen you reach certain Barbarian levels, you gain the ability to use the mastery properties of more kinds of weapons, as shown in the Weapon Mastery column of the Barbarian Features table.",
-          "level": 1
+          "level": 1,
+          "choices": {
+            "type": "multiple",
+            "count": 2,
+            "description": "Pick 2 kinds of weapons. With those you can use their mastery move.",
+            "options": [
+              {
+                "name": "Battleaxe",
+                "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+              },
+              {
+                "name": "Club",
+                "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+              },
+              {
+                "name": "Dagger",
+                "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+              },
+              {
+                "name": "Dart",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Flail",
+                "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+              },
+              {
+                "name": "Glaive",
+                "description": "Graze: If your attack roll with this weapon misses a creature, you can deal damage to that creature equal to the ability modifier you used to make the attack roll. This damage is the same type dealt by the weapon, and the damage can be increased only by increasing the ability modifier."
+              },
+              {
+                "name": "Greataxe",
+                "description": "Cleave: If you hit a creature with a melee attack roll using this weapon, you can make a melee attack roll with the weapon against a second creature within 5 feet of the first that is also within your reach. On a hit, the second creature takes the weapon's damage, but don't add your ability modifier to that damage unless that modifier is negative. You can make this extra attack only once per turn."
+              },
+              {
+                "name": "Greatclub",
+                "description": "Push: If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller."
+              },
+              {
+                "name": "Greatsword",
+                "description": "Graze: If your attack roll with this weapon misses a creature, you can deal damage to that creature equal to the ability modifier you used to make the attack roll. This damage is the same type dealt by the weapon, and the damage can be increased only by increasing the ability modifier."
+              },
+              {
+                "name": "Halberd",
+                "description": "Cleave: If you hit a creature with a melee attack roll using this weapon, you can make a melee attack roll with the weapon against a second creature within 5 feet of the first that is also within your reach. On a hit, the second creature takes the weapon's damage, but don't add your ability modifier to that damage unless that modifier is negative. You can make this extra attack only once per turn."
+              },
+              {
+                "name": "Handaxe",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Javelin",
+                "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+              },
+              {
+                "name": "Lance",
+                "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+              },
+              {
+                "name": "Light Crossbow",
+                "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+              },
+              {
+                "name": "Light Hammer",
+                "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+              },
+              {
+                "name": "Longsword",
+                "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+              },
+              {
+                "name": "Mace",
+                "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+              },
+              {
+                "name": "Maul",
+                "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+              },
+              {
+                "name": "Morningstar",
+                "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+              },
+              {
+                "name": "Pike",
+                "description": "Push: If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller."
+              },
+              {
+                "name": "Quarterstaff",
+                "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+              },
+              {
+                "name": "Rapier",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Scimitar",
+                "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+              },
+              {
+                "name": "Shortbow",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Shortsword",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Sickle",
+                "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+              },
+              {
+                "name": "Sling",
+                "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+              },
+              {
+                "name": "Spear",
+                "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+              },
+              {
+                "name": "Trident",
+                "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+              },
+              {
+                "name": "Warhammer",
+                "description": "Push: If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller."
+              },
+              {
+                "name": "War Pick",
+                "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+              },
+              {
+                "name": "Whip",
+                "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+              }
+            ]
+          }
         },
         {
           "name": "Danger Sense",
@@ -189,7 +324,142 @@
             },
             {
               "name": "Weapon Mastery",
-              "description": "Your training with weapons allows you to use the mastery properties of two kinds of Simple or Martial Melee weapons of your choice, such as Greataxes and Handaxes. Whenever you finish a Long Rest, you can practice weapon drills and change one of those weapon choices.\n\nWhen you reach certain Barbarian levels, you gain the ability to use the mastery properties of more kinds of weapons, as shown in the Weapon Mastery column of the Barbarian Features table."
+              "description": "Your training with weapons allows you to use the mastery properties of two kinds of Simple or Martial Melee weapons of your choice, such as Greataxes and Handaxes. Whenever you finish a Long Rest, you can practice weapon drills and change one of those weapon choices.\n\nWhen you reach certain Barbarian levels, you gain the ability to use the mastery properties of more kinds of weapons, as shown in the Weapon Mastery column of the Barbarian Features table.",
+              "choices": {
+                "type": "multiple",
+                "count": 2,
+                "description": "Pick 2 kinds of weapons. With those you can use their mastery move.",
+                "options": [
+                  {
+                    "name": "Battleaxe",
+                    "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+                  },
+                  {
+                    "name": "Club",
+                    "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+                  },
+                  {
+                    "name": "Dagger",
+                    "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+                  },
+                  {
+                    "name": "Dart",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Flail",
+                    "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+                  },
+                  {
+                    "name": "Glaive",
+                    "description": "Graze: If your attack roll with this weapon misses a creature, you can deal damage to that creature equal to the ability modifier you used to make the attack roll. This damage is the same type dealt by the weapon, and the damage can be increased only by increasing the ability modifier."
+                  },
+                  {
+                    "name": "Greataxe",
+                    "description": "Cleave: If you hit a creature with a melee attack roll using this weapon, you can make a melee attack roll with the weapon against a second creature within 5 feet of the first that is also within your reach. On a hit, the second creature takes the weapon's damage, but don't add your ability modifier to that damage unless that modifier is negative. You can make this extra attack only once per turn."
+                  },
+                  {
+                    "name": "Greatclub",
+                    "description": "Push: If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller."
+                  },
+                  {
+                    "name": "Greatsword",
+                    "description": "Graze: If your attack roll with this weapon misses a creature, you can deal damage to that creature equal to the ability modifier you used to make the attack roll. This damage is the same type dealt by the weapon, and the damage can be increased only by increasing the ability modifier."
+                  },
+                  {
+                    "name": "Halberd",
+                    "description": "Cleave: If you hit a creature with a melee attack roll using this weapon, you can make a melee attack roll with the weapon against a second creature within 5 feet of the first that is also within your reach. On a hit, the second creature takes the weapon's damage, but don't add your ability modifier to that damage unless that modifier is negative. You can make this extra attack only once per turn."
+                  },
+                  {
+                    "name": "Handaxe",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Javelin",
+                    "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+                  },
+                  {
+                    "name": "Lance",
+                    "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+                  },
+                  {
+                    "name": "Light Crossbow",
+                    "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+                  },
+                  {
+                    "name": "Light Hammer",
+                    "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+                  },
+                  {
+                    "name": "Longsword",
+                    "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+                  },
+                  {
+                    "name": "Mace",
+                    "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+                  },
+                  {
+                    "name": "Maul",
+                    "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+                  },
+                  {
+                    "name": "Morningstar",
+                    "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+                  },
+                  {
+                    "name": "Pike",
+                    "description": "Push: If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller."
+                  },
+                  {
+                    "name": "Quarterstaff",
+                    "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+                  },
+                  {
+                    "name": "Rapier",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Scimitar",
+                    "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+                  },
+                  {
+                    "name": "Shortbow",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Shortsword",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Sickle",
+                    "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+                  },
+                  {
+                    "name": "Sling",
+                    "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+                  },
+                  {
+                    "name": "Spear",
+                    "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+                  },
+                  {
+                    "name": "Trident",
+                    "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+                  },
+                  {
+                    "name": "Warhammer",
+                    "description": "Push: If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller."
+                  },
+                  {
+                    "name": "War Pick",
+                    "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+                  },
+                  {
+                    "name": "Whip",
+                    "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+                  }
+                ]
+              }
             }
           ],
           "asi": false,
@@ -1173,7 +1443,20 @@
         {
           "name": "Divine Order",
           "description": "You have dedicated yourself to one of the following sacred roles of your choice.\n\nProtector. Trained for battle, you gain proficiency with Martial weapons and training with Heavy armor.\n\nThaumaturge. You know one extra cantrip from the Cleric spell list. In addition, your mystical connection to the divine gives you a bonus to your Intelligence (Arcana or Religion) checks. The bonus equals your Wisdom modifier (minimum of +1).",
-          "level": 1
+          "level": 1,
+          "choices": {
+            "type": "single",
+            "options": [
+              {
+                "name": "Protector",
+                "description": "Trained for battle: Martial weapons and Heavy armor."
+              },
+              {
+                "name": "Thaumaturge",
+                "description": "One extra Cleric cantrip, and add your Wisdom modifier (at least +1) to Intelligence (Arcana or Religion) checks."
+              }
+            ]
+          }
         },
         {
           "name": "Spellcasting",
@@ -1257,7 +1540,20 @@
           "features": [
             {
               "name": "Divine Order",
-              "description": "You have dedicated yourself to one of the following sacred roles of your choice.\n\nProtector. Trained for battle, you gain proficiency with Martial weapons and training with Heavy armor.\n\nThaumaturge. You know one extra cantrip from the Cleric spell list. In addition, your mystical connection to the divine gives you a bonus to your Intelligence (Arcana or Religion) checks. The bonus equals your Wisdom modifier (minimum of +1)."
+              "description": "You have dedicated yourself to one of the following sacred roles of your choice.\n\nProtector. Trained for battle, you gain proficiency with Martial weapons and training with Heavy armor.\n\nThaumaturge. You know one extra cantrip from the Cleric spell list. In addition, your mystical connection to the divine gives you a bonus to your Intelligence (Arcana or Religion) checks. The bonus equals your Wisdom modifier (minimum of +1).",
+              "choices": {
+                "type": "single",
+                "options": [
+                  {
+                    "name": "Protector",
+                    "description": "Trained for battle: Martial weapons and Heavy armor."
+                  },
+                  {
+                    "name": "Thaumaturge",
+                    "description": "One extra Cleric cantrip, and add your Wisdom modifier (at least +1) to Intelligence (Arcana or Religion) checks."
+                  }
+                ]
+              }
             },
             {
               "name": "Spellcasting",
@@ -1748,7 +2044,20 @@
         {
           "name": "Primal Order",
           "description": "You have dedicated yourself to one of the following sacred roles of your choice.\n\nMagician. You know one extra cantrip from the Druid spell list. In addition, your mystical connection to nature gives you a bonus to your Intelligence (Arcana or Nature) checks. The bonus equals your Wisdom modifier (minimum bonus of +1).\n\nWarden. Trained for battle, you gain proficiency with Martial weapons and training with Medium armor.",
-          "level": 1
+          "level": 1,
+          "choices": {
+            "type": "single",
+            "options": [
+              {
+                "name": "Magician",
+                "description": "One extra Druid cantrip, and add your Wisdom modifier (at least +1) to Intelligence (Arcana or Nature) checks."
+              },
+              {
+                "name": "Warden",
+                "description": "Trained for battle: Martial weapons and Medium armor."
+              }
+            ]
+          }
         },
         {
           "name": "Spellcasting",
@@ -1846,7 +2155,20 @@
             },
             {
               "name": "Primal Order",
-              "description": "You have dedicated yourself to one of the following sacred roles of your choice.\n\nMagician. You know one extra cantrip from the Druid spell list. In addition, your mystical connection to nature gives you a bonus to your Intelligence (Arcana or Nature) checks. The bonus equals your Wisdom modifier (minimum bonus of +1).\n\nWarden. Trained for battle, you gain proficiency with Martial weapons and training with Medium armor."
+              "description": "You have dedicated yourself to one of the following sacred roles of your choice.\n\nMagician. You know one extra cantrip from the Druid spell list. In addition, your mystical connection to nature gives you a bonus to your Intelligence (Arcana or Nature) checks. The bonus equals your Wisdom modifier (minimum bonus of +1).\n\nWarden. Trained for battle, you gain proficiency with Martial weapons and training with Medium armor.",
+              "choices": {
+                "type": "single",
+                "options": [
+                  {
+                    "name": "Magician",
+                    "description": "One extra Druid cantrip, and add your Wisdom modifier (at least +1) to Intelligence (Arcana or Nature) checks."
+                  },
+                  {
+                    "name": "Warden",
+                    "description": "Trained for battle: Martial weapons and Medium armor."
+                  }
+                ]
+              }
             },
             {
               "name": "Spellcasting",
@@ -2343,7 +2665,28 @@
         {
           "name": "Fighting Style",
           "description": "You have honed your martial prowess and gain a Fighting Style feat of your choice (see \"Feats\"). Defense is recommended.\n\nWhenever you gain a Fighter level, you can replace the feat you chose with a different Fighting Style feat.",
-          "level": 1
+          "level": 1,
+          "choices": {
+            "type": "single",
+            "options": [
+              {
+                "name": "Archery",
+                "description": "You gain a +2 bonus to attack rolls you make with Ranged weapons."
+              },
+              {
+                "name": "Defense",
+                "description": "While you're wearing Light, Medium, or Heavy armor, you gain a +1 bonus to Armor Class."
+              },
+              {
+                "name": "Great Weapon Fighting",
+                "description": "When you roll damage for an attack you make with a Melee weapon that you are holding with two hands, you can treat any 1 or 2 on a damage die as a 3. The weapon must have the Two-Handed or Versatile property to gain this benefit."
+              },
+              {
+                "name": "Two-Weapon Fighting",
+                "description": "When you make an extra attack as a result of using a weapon that has the Light property, you can add your ability modifier to the damage of that attack if you aren't already adding it to the damage."
+              }
+            ]
+          }
         },
         {
           "name": "Second Wind",
@@ -2353,7 +2696,166 @@
         {
           "name": "Weapon Mastery",
           "description": "Your training with weapons allows you to use the mastery properties of three kinds of Simple or Martial weapons of your choice. Whenever you finish a Long Rest, you can practice weapon drills and change one of those weapon choices.\n\nWhen you reach certain Fighter levels, you gain the ability to use the mastery properties of more kinds of weapons, as shown in the Weapon Mastery column of the Fighter Features table.",
-          "level": 1
+          "level": 1,
+          "choices": {
+            "type": "multiple",
+            "count": 3,
+            "description": "Pick 3 kinds of weapons. With those you can use their mastery move.",
+            "options": [
+              {
+                "name": "Battleaxe",
+                "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+              },
+              {
+                "name": "Blowgun",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Club",
+                "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+              },
+              {
+                "name": "Dagger",
+                "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+              },
+              {
+                "name": "Dart",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Flail",
+                "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+              },
+              {
+                "name": "Glaive",
+                "description": "Graze: If your attack roll with this weapon misses a creature, you can deal damage to that creature equal to the ability modifier you used to make the attack roll. This damage is the same type dealt by the weapon, and the damage can be increased only by increasing the ability modifier."
+              },
+              {
+                "name": "Greataxe",
+                "description": "Cleave: If you hit a creature with a melee attack roll using this weapon, you can make a melee attack roll with the weapon against a second creature within 5 feet of the first that is also within your reach. On a hit, the second creature takes the weapon's damage, but don't add your ability modifier to that damage unless that modifier is negative. You can make this extra attack only once per turn."
+              },
+              {
+                "name": "Greatclub",
+                "description": "Push: If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller."
+              },
+              {
+                "name": "Greatsword",
+                "description": "Graze: If your attack roll with this weapon misses a creature, you can deal damage to that creature equal to the ability modifier you used to make the attack roll. This damage is the same type dealt by the weapon, and the damage can be increased only by increasing the ability modifier."
+              },
+              {
+                "name": "Halberd",
+                "description": "Cleave: If you hit a creature with a melee attack roll using this weapon, you can make a melee attack roll with the weapon against a second creature within 5 feet of the first that is also within your reach. On a hit, the second creature takes the weapon's damage, but don't add your ability modifier to that damage unless that modifier is negative. You can make this extra attack only once per turn."
+              },
+              {
+                "name": "Hand Crossbow",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Handaxe",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Heavy Crossbow",
+                "description": "Push: If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller."
+              },
+              {
+                "name": "Javelin",
+                "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+              },
+              {
+                "name": "Lance",
+                "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+              },
+              {
+                "name": "Light Crossbow",
+                "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+              },
+              {
+                "name": "Light Hammer",
+                "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+              },
+              {
+                "name": "Longbow",
+                "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+              },
+              {
+                "name": "Longsword",
+                "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+              },
+              {
+                "name": "Mace",
+                "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+              },
+              {
+                "name": "Maul",
+                "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+              },
+              {
+                "name": "Morningstar",
+                "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+              },
+              {
+                "name": "Musket",
+                "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+              },
+              {
+                "name": "Pike",
+                "description": "Push: If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller."
+              },
+              {
+                "name": "Pistol",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Quarterstaff",
+                "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+              },
+              {
+                "name": "Rapier",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Scimitar",
+                "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+              },
+              {
+                "name": "Shortbow",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Shortsword",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Sickle",
+                "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+              },
+              {
+                "name": "Sling",
+                "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+              },
+              {
+                "name": "Spear",
+                "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+              },
+              {
+                "name": "Trident",
+                "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+              },
+              {
+                "name": "Warhammer",
+                "description": "Push: If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller."
+              },
+              {
+                "name": "War Pick",
+                "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+              },
+              {
+                "name": "Whip",
+                "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+              }
+            ]
+          }
         },
         {
           "name": "Action Surge",
@@ -2482,7 +2984,28 @@
           "features": [
             {
               "name": "Fighting Style",
-              "description": "You have honed your martial prowess and gain a Fighting Style feat of your choice (see \"Feats\"). Defense is recommended.\n\nWhenever you gain a Fighter level, you can replace the feat you chose with a different Fighting Style feat."
+              "description": "You have honed your martial prowess and gain a Fighting Style feat of your choice (see \"Feats\"). Defense is recommended.\n\nWhenever you gain a Fighter level, you can replace the feat you chose with a different Fighting Style feat.",
+              "choices": {
+                "type": "single",
+                "options": [
+                  {
+                    "name": "Archery",
+                    "description": "You gain a +2 bonus to attack rolls you make with Ranged weapons."
+                  },
+                  {
+                    "name": "Defense",
+                    "description": "While you're wearing Light, Medium, or Heavy armor, you gain a +1 bonus to Armor Class."
+                  },
+                  {
+                    "name": "Great Weapon Fighting",
+                    "description": "When you roll damage for an attack you make with a Melee weapon that you are holding with two hands, you can treat any 1 or 2 on a damage die as a 3. The weapon must have the Two-Handed or Versatile property to gain this benefit."
+                  },
+                  {
+                    "name": "Two-Weapon Fighting",
+                    "description": "When you make an extra attack as a result of using a weapon that has the Light property, you can add your ability modifier to the damage of that attack if you aren't already adding it to the damage."
+                  }
+                ]
+              }
             },
             {
               "name": "Second Wind",
@@ -2490,7 +3013,166 @@
             },
             {
               "name": "Weapon Mastery",
-              "description": "Your training with weapons allows you to use the mastery properties of three kinds of Simple or Martial weapons of your choice. Whenever you finish a Long Rest, you can practice weapon drills and change one of those weapon choices.\n\nWhen you reach certain Fighter levels, you gain the ability to use the mastery properties of more kinds of weapons, as shown in the Weapon Mastery column of the Fighter Features table."
+              "description": "Your training with weapons allows you to use the mastery properties of three kinds of Simple or Martial weapons of your choice. Whenever you finish a Long Rest, you can practice weapon drills and change one of those weapon choices.\n\nWhen you reach certain Fighter levels, you gain the ability to use the mastery properties of more kinds of weapons, as shown in the Weapon Mastery column of the Fighter Features table.",
+              "choices": {
+                "type": "multiple",
+                "count": 3,
+                "description": "Pick 3 kinds of weapons. With those you can use their mastery move.",
+                "options": [
+                  {
+                    "name": "Battleaxe",
+                    "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+                  },
+                  {
+                    "name": "Blowgun",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Club",
+                    "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+                  },
+                  {
+                    "name": "Dagger",
+                    "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+                  },
+                  {
+                    "name": "Dart",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Flail",
+                    "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+                  },
+                  {
+                    "name": "Glaive",
+                    "description": "Graze: If your attack roll with this weapon misses a creature, you can deal damage to that creature equal to the ability modifier you used to make the attack roll. This damage is the same type dealt by the weapon, and the damage can be increased only by increasing the ability modifier."
+                  },
+                  {
+                    "name": "Greataxe",
+                    "description": "Cleave: If you hit a creature with a melee attack roll using this weapon, you can make a melee attack roll with the weapon against a second creature within 5 feet of the first that is also within your reach. On a hit, the second creature takes the weapon's damage, but don't add your ability modifier to that damage unless that modifier is negative. You can make this extra attack only once per turn."
+                  },
+                  {
+                    "name": "Greatclub",
+                    "description": "Push: If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller."
+                  },
+                  {
+                    "name": "Greatsword",
+                    "description": "Graze: If your attack roll with this weapon misses a creature, you can deal damage to that creature equal to the ability modifier you used to make the attack roll. This damage is the same type dealt by the weapon, and the damage can be increased only by increasing the ability modifier."
+                  },
+                  {
+                    "name": "Halberd",
+                    "description": "Cleave: If you hit a creature with a melee attack roll using this weapon, you can make a melee attack roll with the weapon against a second creature within 5 feet of the first that is also within your reach. On a hit, the second creature takes the weapon's damage, but don't add your ability modifier to that damage unless that modifier is negative. You can make this extra attack only once per turn."
+                  },
+                  {
+                    "name": "Hand Crossbow",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Handaxe",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Heavy Crossbow",
+                    "description": "Push: If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller."
+                  },
+                  {
+                    "name": "Javelin",
+                    "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+                  },
+                  {
+                    "name": "Lance",
+                    "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+                  },
+                  {
+                    "name": "Light Crossbow",
+                    "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+                  },
+                  {
+                    "name": "Light Hammer",
+                    "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+                  },
+                  {
+                    "name": "Longbow",
+                    "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+                  },
+                  {
+                    "name": "Longsword",
+                    "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+                  },
+                  {
+                    "name": "Mace",
+                    "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+                  },
+                  {
+                    "name": "Maul",
+                    "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+                  },
+                  {
+                    "name": "Morningstar",
+                    "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+                  },
+                  {
+                    "name": "Musket",
+                    "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+                  },
+                  {
+                    "name": "Pike",
+                    "description": "Push: If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller."
+                  },
+                  {
+                    "name": "Pistol",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Quarterstaff",
+                    "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+                  },
+                  {
+                    "name": "Rapier",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Scimitar",
+                    "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+                  },
+                  {
+                    "name": "Shortbow",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Shortsword",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Sickle",
+                    "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+                  },
+                  {
+                    "name": "Sling",
+                    "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+                  },
+                  {
+                    "name": "Spear",
+                    "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+                  },
+                  {
+                    "name": "Trident",
+                    "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+                  },
+                  {
+                    "name": "Warhammer",
+                    "description": "Push: If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller."
+                  },
+                  {
+                    "name": "War Pick",
+                    "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+                  },
+                  {
+                    "name": "Whip",
+                    "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+                  }
+                ]
+              }
             }
           ],
           "asi": false,
@@ -3403,12 +4085,192 @@
         {
           "name": "Weapon Mastery",
           "description": "Your training with weapons allows you to use the mastery properties of two kinds of weapons of your choice with which you have proficiency, such as Longswords and Javelins.\n\nWhenever you finish a Long Rest, you can change the kinds of weapons you chose. For example, you could switch to using the mastery properties of Halberds and Flails.",
-          "level": 1
+          "level": 1,
+          "choices": {
+            "type": "multiple",
+            "count": 2,
+            "description": "Pick 2 kinds of weapons. With those you can use their mastery move.",
+            "options": [
+              {
+                "name": "Battleaxe",
+                "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+              },
+              {
+                "name": "Blowgun",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Club",
+                "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+              },
+              {
+                "name": "Dagger",
+                "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+              },
+              {
+                "name": "Dart",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Flail",
+                "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+              },
+              {
+                "name": "Glaive",
+                "description": "Graze: If your attack roll with this weapon misses a creature, you can deal damage to that creature equal to the ability modifier you used to make the attack roll. This damage is the same type dealt by the weapon, and the damage can be increased only by increasing the ability modifier."
+              },
+              {
+                "name": "Greataxe",
+                "description": "Cleave: If you hit a creature with a melee attack roll using this weapon, you can make a melee attack roll with the weapon against a second creature within 5 feet of the first that is also within your reach. On a hit, the second creature takes the weapon's damage, but don't add your ability modifier to that damage unless that modifier is negative. You can make this extra attack only once per turn."
+              },
+              {
+                "name": "Greatclub",
+                "description": "Push: If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller."
+              },
+              {
+                "name": "Greatsword",
+                "description": "Graze: If your attack roll with this weapon misses a creature, you can deal damage to that creature equal to the ability modifier you used to make the attack roll. This damage is the same type dealt by the weapon, and the damage can be increased only by increasing the ability modifier."
+              },
+              {
+                "name": "Halberd",
+                "description": "Cleave: If you hit a creature with a melee attack roll using this weapon, you can make a melee attack roll with the weapon against a second creature within 5 feet of the first that is also within your reach. On a hit, the second creature takes the weapon's damage, but don't add your ability modifier to that damage unless that modifier is negative. You can make this extra attack only once per turn."
+              },
+              {
+                "name": "Hand Crossbow",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Handaxe",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Heavy Crossbow",
+                "description": "Push: If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller."
+              },
+              {
+                "name": "Javelin",
+                "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+              },
+              {
+                "name": "Lance",
+                "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+              },
+              {
+                "name": "Light Crossbow",
+                "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+              },
+              {
+                "name": "Light Hammer",
+                "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+              },
+              {
+                "name": "Longbow",
+                "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+              },
+              {
+                "name": "Longsword",
+                "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+              },
+              {
+                "name": "Mace",
+                "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+              },
+              {
+                "name": "Maul",
+                "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+              },
+              {
+                "name": "Morningstar",
+                "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+              },
+              {
+                "name": "Musket",
+                "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+              },
+              {
+                "name": "Pike",
+                "description": "Push: If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller."
+              },
+              {
+                "name": "Pistol",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Quarterstaff",
+                "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+              },
+              {
+                "name": "Rapier",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Scimitar",
+                "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+              },
+              {
+                "name": "Shortbow",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Shortsword",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Sickle",
+                "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+              },
+              {
+                "name": "Sling",
+                "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+              },
+              {
+                "name": "Spear",
+                "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+              },
+              {
+                "name": "Trident",
+                "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+              },
+              {
+                "name": "Warhammer",
+                "description": "Push: If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller."
+              },
+              {
+                "name": "War Pick",
+                "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+              },
+              {
+                "name": "Whip",
+                "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+              }
+            ]
+          }
         },
         {
           "name": "Fighting Style",
           "description": "You gain a Fighting Style feat of your choice (see \"Feats\" for feats). Instead of choosing one of those feats, you can choose the option below.\n\nBlessed Warrior. You learn two Cleric cantrips of your choice (see the Cleric class's section for a list of Cleric spells). Guidance and Sacred Flame are recommended. The chosen cantrips count as Paladin spells for you, and Charisma is your spellcasting ability for them. Whenever you gain a Paladin level, you can replace one of these cantrips with another Cleric cantrip.",
-          "level": 2
+          "level": 2,
+          "choices": {
+            "type": "single",
+            "options": [
+              {
+                "name": "Archery",
+                "description": "You gain a +2 bonus to attack rolls you make with Ranged weapons."
+              },
+              {
+                "name": "Defense",
+                "description": "While you're wearing Light, Medium, or Heavy armor, you gain a +1 bonus to Armor Class."
+              },
+              {
+                "name": "Great Weapon Fighting",
+                "description": "When you roll damage for an attack you make with a Melee weapon that you are holding with two hands, you can treat any 1 or 2 on a damage die as a 3. The weapon must have the Two-Handed or Versatile property to gain this benefit."
+              },
+              {
+                "name": "Two-Weapon Fighting",
+                "description": "When you make an extra attack as a result of using a weapon that has the Light property, you can add your ability modifier to the damage of that attack if you aren't already adding it to the damage."
+              }
+            ]
+          }
         },
         {
           "name": "Paladin's Smite",
@@ -3520,7 +4382,166 @@
             },
             {
               "name": "Weapon Mastery",
-              "description": "Your training with weapons allows you to use the mastery properties of two kinds of weapons of your choice with which you have proficiency, such as Longswords and Javelins.\n\nWhenever you finish a Long Rest, you can change the kinds of weapons you chose. For example, you could switch to using the mastery properties of Halberds and Flails."
+              "description": "Your training with weapons allows you to use the mastery properties of two kinds of weapons of your choice with which you have proficiency, such as Longswords and Javelins.\n\nWhenever you finish a Long Rest, you can change the kinds of weapons you chose. For example, you could switch to using the mastery properties of Halberds and Flails.",
+              "choices": {
+                "type": "multiple",
+                "count": 2,
+                "description": "Pick 2 kinds of weapons. With those you can use their mastery move.",
+                "options": [
+                  {
+                    "name": "Battleaxe",
+                    "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+                  },
+                  {
+                    "name": "Blowgun",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Club",
+                    "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+                  },
+                  {
+                    "name": "Dagger",
+                    "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+                  },
+                  {
+                    "name": "Dart",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Flail",
+                    "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+                  },
+                  {
+                    "name": "Glaive",
+                    "description": "Graze: If your attack roll with this weapon misses a creature, you can deal damage to that creature equal to the ability modifier you used to make the attack roll. This damage is the same type dealt by the weapon, and the damage can be increased only by increasing the ability modifier."
+                  },
+                  {
+                    "name": "Greataxe",
+                    "description": "Cleave: If you hit a creature with a melee attack roll using this weapon, you can make a melee attack roll with the weapon against a second creature within 5 feet of the first that is also within your reach. On a hit, the second creature takes the weapon's damage, but don't add your ability modifier to that damage unless that modifier is negative. You can make this extra attack only once per turn."
+                  },
+                  {
+                    "name": "Greatclub",
+                    "description": "Push: If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller."
+                  },
+                  {
+                    "name": "Greatsword",
+                    "description": "Graze: If your attack roll with this weapon misses a creature, you can deal damage to that creature equal to the ability modifier you used to make the attack roll. This damage is the same type dealt by the weapon, and the damage can be increased only by increasing the ability modifier."
+                  },
+                  {
+                    "name": "Halberd",
+                    "description": "Cleave: If you hit a creature with a melee attack roll using this weapon, you can make a melee attack roll with the weapon against a second creature within 5 feet of the first that is also within your reach. On a hit, the second creature takes the weapon's damage, but don't add your ability modifier to that damage unless that modifier is negative. You can make this extra attack only once per turn."
+                  },
+                  {
+                    "name": "Hand Crossbow",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Handaxe",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Heavy Crossbow",
+                    "description": "Push: If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller."
+                  },
+                  {
+                    "name": "Javelin",
+                    "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+                  },
+                  {
+                    "name": "Lance",
+                    "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+                  },
+                  {
+                    "name": "Light Crossbow",
+                    "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+                  },
+                  {
+                    "name": "Light Hammer",
+                    "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+                  },
+                  {
+                    "name": "Longbow",
+                    "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+                  },
+                  {
+                    "name": "Longsword",
+                    "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+                  },
+                  {
+                    "name": "Mace",
+                    "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+                  },
+                  {
+                    "name": "Maul",
+                    "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+                  },
+                  {
+                    "name": "Morningstar",
+                    "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+                  },
+                  {
+                    "name": "Musket",
+                    "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+                  },
+                  {
+                    "name": "Pike",
+                    "description": "Push: If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller."
+                  },
+                  {
+                    "name": "Pistol",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Quarterstaff",
+                    "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+                  },
+                  {
+                    "name": "Rapier",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Scimitar",
+                    "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+                  },
+                  {
+                    "name": "Shortbow",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Shortsword",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Sickle",
+                    "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+                  },
+                  {
+                    "name": "Sling",
+                    "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+                  },
+                  {
+                    "name": "Spear",
+                    "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+                  },
+                  {
+                    "name": "Trident",
+                    "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+                  },
+                  {
+                    "name": "Warhammer",
+                    "description": "Push: If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller."
+                  },
+                  {
+                    "name": "War Pick",
+                    "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+                  },
+                  {
+                    "name": "Whip",
+                    "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+                  }
+                ]
+              }
             }
           ],
           "asi": false,
@@ -3536,7 +4557,28 @@
           "features": [
             {
               "name": "Fighting Style",
-              "description": "You gain a Fighting Style feat of your choice (see \"Feats\" for feats). Instead of choosing one of those feats, you can choose the option below.\n\nBlessed Warrior. You learn two Cleric cantrips of your choice (see the Cleric class's section for a list of Cleric spells). Guidance and Sacred Flame are recommended. The chosen cantrips count as Paladin spells for you, and Charisma is your spellcasting ability for them. Whenever you gain a Paladin level, you can replace one of these cantrips with another Cleric cantrip."
+              "description": "You gain a Fighting Style feat of your choice (see \"Feats\" for feats). Instead of choosing one of those feats, you can choose the option below.\n\nBlessed Warrior. You learn two Cleric cantrips of your choice (see the Cleric class's section for a list of Cleric spells). Guidance and Sacred Flame are recommended. The chosen cantrips count as Paladin spells for you, and Charisma is your spellcasting ability for them. Whenever you gain a Paladin level, you can replace one of these cantrips with another Cleric cantrip.",
+              "choices": {
+                "type": "single",
+                "options": [
+                  {
+                    "name": "Archery",
+                    "description": "You gain a +2 bonus to attack rolls you make with Ranged weapons."
+                  },
+                  {
+                    "name": "Defense",
+                    "description": "While you're wearing Light, Medium, or Heavy armor, you gain a +1 bonus to Armor Class."
+                  },
+                  {
+                    "name": "Great Weapon Fighting",
+                    "description": "When you roll damage for an attack you make with a Melee weapon that you are holding with two hands, you can treat any 1 or 2 on a damage die as a 3. The weapon must have the Two-Handed or Versatile property to gain this benefit."
+                  },
+                  {
+                    "name": "Two-Weapon Fighting",
+                    "description": "When you make an extra attack as a result of using a weapon that has the Light property, you can add your ability modifier to the damage of that attack if you aren't already adding it to the damage."
+                  }
+                ]
+              }
             },
             {
               "name": "Paladin's Smite",
@@ -3909,6 +4951,28 @@
         "18": 14,
         "19": 15,
         "20": 15
+      },
+      "weaponMastery": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 2,
+        "6": 2,
+        "7": 2,
+        "8": 2,
+        "9": 2,
+        "10": 2,
+        "11": 2,
+        "12": 2,
+        "13": 2,
+        "14": 2,
+        "15": 2,
+        "16": 2,
+        "17": 2,
+        "18": 2,
+        "19": 2,
+        "20": 2
       }
     },
     {
@@ -3971,7 +5035,166 @@
         {
           "name": "Weapon Mastery",
           "description": "Your training with weapons allows you to use the mastery properties of two kinds of weapons of your choice with which you have proficiency, such as Longbows and Shortswords.\n\nWhenever you finish a Long Rest, you can change the kinds of weapons you chose. For example, you could switch to using the mastery properties of Scimitars and Longswords.",
-          "level": 1
+          "level": 1,
+          "choices": {
+            "type": "multiple",
+            "count": 2,
+            "description": "Pick 2 kinds of weapons. With those you can use their mastery move.",
+            "options": [
+              {
+                "name": "Battleaxe",
+                "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+              },
+              {
+                "name": "Blowgun",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Club",
+                "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+              },
+              {
+                "name": "Dagger",
+                "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+              },
+              {
+                "name": "Dart",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Flail",
+                "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+              },
+              {
+                "name": "Glaive",
+                "description": "Graze: If your attack roll with this weapon misses a creature, you can deal damage to that creature equal to the ability modifier you used to make the attack roll. This damage is the same type dealt by the weapon, and the damage can be increased only by increasing the ability modifier."
+              },
+              {
+                "name": "Greataxe",
+                "description": "Cleave: If you hit a creature with a melee attack roll using this weapon, you can make a melee attack roll with the weapon against a second creature within 5 feet of the first that is also within your reach. On a hit, the second creature takes the weapon's damage, but don't add your ability modifier to that damage unless that modifier is negative. You can make this extra attack only once per turn."
+              },
+              {
+                "name": "Greatclub",
+                "description": "Push: If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller."
+              },
+              {
+                "name": "Greatsword",
+                "description": "Graze: If your attack roll with this weapon misses a creature, you can deal damage to that creature equal to the ability modifier you used to make the attack roll. This damage is the same type dealt by the weapon, and the damage can be increased only by increasing the ability modifier."
+              },
+              {
+                "name": "Halberd",
+                "description": "Cleave: If you hit a creature with a melee attack roll using this weapon, you can make a melee attack roll with the weapon against a second creature within 5 feet of the first that is also within your reach. On a hit, the second creature takes the weapon's damage, but don't add your ability modifier to that damage unless that modifier is negative. You can make this extra attack only once per turn."
+              },
+              {
+                "name": "Hand Crossbow",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Handaxe",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Heavy Crossbow",
+                "description": "Push: If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller."
+              },
+              {
+                "name": "Javelin",
+                "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+              },
+              {
+                "name": "Lance",
+                "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+              },
+              {
+                "name": "Light Crossbow",
+                "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+              },
+              {
+                "name": "Light Hammer",
+                "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+              },
+              {
+                "name": "Longbow",
+                "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+              },
+              {
+                "name": "Longsword",
+                "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+              },
+              {
+                "name": "Mace",
+                "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+              },
+              {
+                "name": "Maul",
+                "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+              },
+              {
+                "name": "Morningstar",
+                "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+              },
+              {
+                "name": "Musket",
+                "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+              },
+              {
+                "name": "Pike",
+                "description": "Push: If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller."
+              },
+              {
+                "name": "Pistol",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Quarterstaff",
+                "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+              },
+              {
+                "name": "Rapier",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Scimitar",
+                "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+              },
+              {
+                "name": "Shortbow",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Shortsword",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Sickle",
+                "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+              },
+              {
+                "name": "Sling",
+                "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+              },
+              {
+                "name": "Spear",
+                "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+              },
+              {
+                "name": "Trident",
+                "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+              },
+              {
+                "name": "Warhammer",
+                "description": "Push: If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller."
+              },
+              {
+                "name": "War Pick",
+                "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+              },
+              {
+                "name": "Whip",
+                "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+              }
+            ]
+          }
         },
         {
           "name": "Deft Explorer",
@@ -3981,7 +5204,28 @@
         {
           "name": "Fighting Style",
           "description": "You gain a Fighting Style feat of your choice (see \"Feats\"). Instead of choosing one of those feats, you can choose the option below.\n\nDruidic Warrior. You learn two Druid cantrips of your choice (see the Druid class's section for a list of Druid spells). Guidance and Starry Wisp are recommended. The chosen cantrips count as Ranger spells for you, and Wisdom is your spellcasting ability for them. Whenever you gain a Ranger level, you can replace one of these cantrips with another Druid cantrip.",
-          "level": 2
+          "level": 2,
+          "choices": {
+            "type": "single",
+            "options": [
+              {
+                "name": "Archery",
+                "description": "You gain a +2 bonus to attack rolls you make with Ranged weapons."
+              },
+              {
+                "name": "Defense",
+                "description": "While you're wearing Light, Medium, or Heavy armor, you gain a +1 bonus to Armor Class."
+              },
+              {
+                "name": "Great Weapon Fighting",
+                "description": "When you roll damage for an attack you make with a Melee weapon that you are holding with two hands, you can treat any 1 or 2 on a damage die as a 3. The weapon must have the Two-Handed or Versatile property to gain this benefit."
+              },
+              {
+                "name": "Two-Weapon Fighting",
+                "description": "When you make an extra attack as a result of using a weapon that has the Light property, you can add your ability modifier to the damage of that attack if you aren't already adding it to the damage."
+              }
+            ]
+          }
         },
         {
           "name": "Ranger Subclass",
@@ -4088,7 +5332,166 @@
             },
             {
               "name": "Weapon Mastery",
-              "description": "Your training with weapons allows you to use the mastery properties of two kinds of weapons of your choice with which you have proficiency, such as Longbows and Shortswords.\n\nWhenever you finish a Long Rest, you can change the kinds of weapons you chose. For example, you could switch to using the mastery properties of Scimitars and Longswords."
+              "description": "Your training with weapons allows you to use the mastery properties of two kinds of weapons of your choice with which you have proficiency, such as Longbows and Shortswords.\n\nWhenever you finish a Long Rest, you can change the kinds of weapons you chose. For example, you could switch to using the mastery properties of Scimitars and Longswords.",
+              "choices": {
+                "type": "multiple",
+                "count": 2,
+                "description": "Pick 2 kinds of weapons. With those you can use their mastery move.",
+                "options": [
+                  {
+                    "name": "Battleaxe",
+                    "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+                  },
+                  {
+                    "name": "Blowgun",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Club",
+                    "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+                  },
+                  {
+                    "name": "Dagger",
+                    "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+                  },
+                  {
+                    "name": "Dart",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Flail",
+                    "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+                  },
+                  {
+                    "name": "Glaive",
+                    "description": "Graze: If your attack roll with this weapon misses a creature, you can deal damage to that creature equal to the ability modifier you used to make the attack roll. This damage is the same type dealt by the weapon, and the damage can be increased only by increasing the ability modifier."
+                  },
+                  {
+                    "name": "Greataxe",
+                    "description": "Cleave: If you hit a creature with a melee attack roll using this weapon, you can make a melee attack roll with the weapon against a second creature within 5 feet of the first that is also within your reach. On a hit, the second creature takes the weapon's damage, but don't add your ability modifier to that damage unless that modifier is negative. You can make this extra attack only once per turn."
+                  },
+                  {
+                    "name": "Greatclub",
+                    "description": "Push: If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller."
+                  },
+                  {
+                    "name": "Greatsword",
+                    "description": "Graze: If your attack roll with this weapon misses a creature, you can deal damage to that creature equal to the ability modifier you used to make the attack roll. This damage is the same type dealt by the weapon, and the damage can be increased only by increasing the ability modifier."
+                  },
+                  {
+                    "name": "Halberd",
+                    "description": "Cleave: If you hit a creature with a melee attack roll using this weapon, you can make a melee attack roll with the weapon against a second creature within 5 feet of the first that is also within your reach. On a hit, the second creature takes the weapon's damage, but don't add your ability modifier to that damage unless that modifier is negative. You can make this extra attack only once per turn."
+                  },
+                  {
+                    "name": "Hand Crossbow",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Handaxe",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Heavy Crossbow",
+                    "description": "Push: If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller."
+                  },
+                  {
+                    "name": "Javelin",
+                    "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+                  },
+                  {
+                    "name": "Lance",
+                    "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+                  },
+                  {
+                    "name": "Light Crossbow",
+                    "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+                  },
+                  {
+                    "name": "Light Hammer",
+                    "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+                  },
+                  {
+                    "name": "Longbow",
+                    "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+                  },
+                  {
+                    "name": "Longsword",
+                    "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+                  },
+                  {
+                    "name": "Mace",
+                    "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+                  },
+                  {
+                    "name": "Maul",
+                    "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+                  },
+                  {
+                    "name": "Morningstar",
+                    "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+                  },
+                  {
+                    "name": "Musket",
+                    "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+                  },
+                  {
+                    "name": "Pike",
+                    "description": "Push: If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller."
+                  },
+                  {
+                    "name": "Pistol",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Quarterstaff",
+                    "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+                  },
+                  {
+                    "name": "Rapier",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Scimitar",
+                    "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+                  },
+                  {
+                    "name": "Shortbow",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Shortsword",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Sickle",
+                    "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+                  },
+                  {
+                    "name": "Sling",
+                    "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+                  },
+                  {
+                    "name": "Spear",
+                    "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+                  },
+                  {
+                    "name": "Trident",
+                    "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+                  },
+                  {
+                    "name": "Warhammer",
+                    "description": "Push: If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller."
+                  },
+                  {
+                    "name": "War Pick",
+                    "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+                  },
+                  {
+                    "name": "Whip",
+                    "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+                  }
+                ]
+              }
             }
           ],
           "asi": false,
@@ -4108,7 +5511,28 @@
             },
             {
               "name": "Fighting Style",
-              "description": "You gain a Fighting Style feat of your choice (see \"Feats\"). Instead of choosing one of those feats, you can choose the option below.\n\nDruidic Warrior. You learn two Druid cantrips of your choice (see the Druid class's section for a list of Druid spells). Guidance and Starry Wisp are recommended. The chosen cantrips count as Ranger spells for you, and Wisdom is your spellcasting ability for them. Whenever you gain a Ranger level, you can replace one of these cantrips with another Druid cantrip."
+              "description": "You gain a Fighting Style feat of your choice (see \"Feats\"). Instead of choosing one of those feats, you can choose the option below.\n\nDruidic Warrior. You learn two Druid cantrips of your choice (see the Druid class's section for a list of Druid spells). Guidance and Starry Wisp are recommended. The chosen cantrips count as Ranger spells for you, and Wisdom is your spellcasting ability for them. Whenever you gain a Ranger level, you can replace one of these cantrips with another Druid cantrip.",
+              "choices": {
+                "type": "single",
+                "options": [
+                  {
+                    "name": "Archery",
+                    "description": "You gain a +2 bonus to attack rolls you make with Ranged weapons."
+                  },
+                  {
+                    "name": "Defense",
+                    "description": "While you're wearing Light, Medium, or Heavy armor, you gain a +1 bonus to Armor Class."
+                  },
+                  {
+                    "name": "Great Weapon Fighting",
+                    "description": "When you roll damage for an attack you make with a Melee weapon that you are holding with two hands, you can treat any 1 or 2 on a damage die as a 3. The weapon must have the Two-Handed or Versatile property to gain this benefit."
+                  },
+                  {
+                    "name": "Two-Weapon Fighting",
+                    "description": "When you make an extra attack as a result of using a weapon that has the Light property, you can add your ability modifier to the damage of that attack if you aren't already adding it to the damage."
+                  }
+                ]
+              }
             }
           ],
           "asi": false,
@@ -4479,6 +5903,28 @@
         "18": 14,
         "19": 15,
         "20": 15
+      },
+      "weaponMastery": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 2,
+        "6": 2,
+        "7": 2,
+        "8": 2,
+        "9": 2,
+        "10": 2,
+        "11": 2,
+        "12": 2,
+        "13": 2,
+        "14": 2,
+        "15": 2,
+        "16": 2,
+        "17": 2,
+        "18": 2,
+        "19": 2,
+        "20": 2
       }
     },
     {
@@ -4552,7 +5998,90 @@
         {
           "name": "Weapon Mastery",
           "description": "Your training with weapons allows you to use the mastery properties of two kinds of weapons of your choice with which you have proficiency, such as Daggers and Shortbows.\n\nWhenever you finish a Long Rest, you can change the kinds of weapons you chose. For example, you could switch to using the mastery properties of Scimitars and Shortswords.",
-          "level": 1
+          "level": 1,
+          "choices": {
+            "type": "multiple",
+            "count": 2,
+            "description": "Pick 2 kinds of weapons. With those you can use their mastery move.",
+            "options": [
+              {
+                "name": "Club",
+                "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+              },
+              {
+                "name": "Dagger",
+                "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+              },
+              {
+                "name": "Dart",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Greatclub",
+                "description": "Push: If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller."
+              },
+              {
+                "name": "Hand Crossbow",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Handaxe",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Javelin",
+                "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+              },
+              {
+                "name": "Light Crossbow",
+                "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+              },
+              {
+                "name": "Light Hammer",
+                "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+              },
+              {
+                "name": "Mace",
+                "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+              },
+              {
+                "name": "Quarterstaff",
+                "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+              },
+              {
+                "name": "Rapier",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Scimitar",
+                "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+              },
+              {
+                "name": "Shortbow",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Shortsword",
+                "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+              },
+              {
+                "name": "Sickle",
+                "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+              },
+              {
+                "name": "Sling",
+                "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+              },
+              {
+                "name": "Spear",
+                "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+              },
+              {
+                "name": "Whip",
+                "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+              }
+            ]
+          }
         },
         {
           "name": "Cunning Action",
@@ -4683,7 +6212,90 @@
             },
             {
               "name": "Weapon Mastery",
-              "description": "Your training with weapons allows you to use the mastery properties of two kinds of weapons of your choice with which you have proficiency, such as Daggers and Shortbows.\n\nWhenever you finish a Long Rest, you can change the kinds of weapons you chose. For example, you could switch to using the mastery properties of Scimitars and Shortswords."
+              "description": "Your training with weapons allows you to use the mastery properties of two kinds of weapons of your choice with which you have proficiency, such as Daggers and Shortbows.\n\nWhenever you finish a Long Rest, you can change the kinds of weapons you chose. For example, you could switch to using the mastery properties of Scimitars and Shortswords.",
+              "choices": {
+                "type": "multiple",
+                "count": 2,
+                "description": "Pick 2 kinds of weapons. With those you can use their mastery move.",
+                "options": [
+                  {
+                    "name": "Club",
+                    "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+                  },
+                  {
+                    "name": "Dagger",
+                    "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+                  },
+                  {
+                    "name": "Dart",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Greatclub",
+                    "description": "Push: If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller."
+                  },
+                  {
+                    "name": "Hand Crossbow",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Handaxe",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Javelin",
+                    "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+                  },
+                  {
+                    "name": "Light Crossbow",
+                    "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+                  },
+                  {
+                    "name": "Light Hammer",
+                    "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+                  },
+                  {
+                    "name": "Mace",
+                    "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+                  },
+                  {
+                    "name": "Quarterstaff",
+                    "description": "Topple: If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition."
+                  },
+                  {
+                    "name": "Rapier",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Scimitar",
+                    "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+                  },
+                  {
+                    "name": "Shortbow",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Shortsword",
+                    "description": "Vex: If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+                  },
+                  {
+                    "name": "Sickle",
+                    "description": "Nick: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+                  },
+                  {
+                    "name": "Sling",
+                    "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+                  },
+                  {
+                    "name": "Spear",
+                    "description": "Sap: If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn."
+                  },
+                  {
+                    "name": "Whip",
+                    "description": "Slow: If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet."
+                  }
+                ]
+              }
             }
           ],
           "asi": false,
@@ -5018,7 +6630,29 @@
           "name": "Thief"
         }
       ],
-      "flavor": "Play this if you want to be the sneaky one who hides, picks locks, and lands one big hit."
+      "flavor": "Play this if you want to be the sneaky one who hides, picks locks, and lands one big hit.",
+      "weaponMastery": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 2,
+        "6": 2,
+        "7": 2,
+        "8": 2,
+        "9": 2,
+        "10": 2,
+        "11": 2,
+        "12": 2,
+        "13": 2,
+        "14": 2,
+        "15": 2,
+        "16": 2,
+        "17": 2,
+        "18": 2,
+        "19": 2,
+        "20": 2
+      }
     },
     {
       "name": "Sorcerer",
@@ -5647,7 +7281,32 @@
         {
           "name": "Eldritch Invocations",
           "description": "You have unearthed Eldritch Invocations, pieces of forbidden knowledge that imbue you with an abiding magical ability or other lessons. You gain one invocation of your choice, such as Pact of the Tome. Invocations are described in the \"Eldritch Invocation Options\" section later in this class's description.\n\nPrerequisites. If an invocation has a prerequisite, you must meet it to learn that invocation. For example, if an invocation requires you to be a level 5+ Warlock, you can select the invocation once you reach Warlock level 5.\n\nReplacing and Gaining Invocations. Whenever you gain a Warlock level, you can replace one of your invocations with another one for which you qualify. You can't replace an invocation if it's a prerequisite for another invocation that you have.\n\nWhen you gain certain Warlock levels, you gain more invocations of your choice, as shown in the Invocations column of the Warlock Features table.\n\nYou can't pick the same invocation more than once unless its description says otherwise.",
-          "level": 1
+          "level": 1,
+          "choices": {
+            "type": "single",
+            "options": [
+              {
+                "name": "Pact of the Blade",
+                "description": "Conjure a pact weapon or bond with a magic weapon. You use Charisma to hit and for damage with it."
+              },
+              {
+                "name": "Pact of the Chain",
+                "description": "You learn Find Familiar and your familiar can take special forms, such as an imp or a sprite."
+              },
+              {
+                "name": "Pact of the Tome",
+                "description": "A Book of Shadows with three cantrips and two 1st-level rituals of your choice from any class."
+              },
+              {
+                "name": "Armor of Shadows",
+                "description": "Cast Mage Armor on yourself at will, without a spell slot."
+              },
+              {
+                "name": "Eldritch Mind",
+                "description": "Advantage on Constitution saving throws to keep Concentration."
+              }
+            ]
+          }
         },
         {
           "name": "Pact Magic",
@@ -5741,7 +7400,32 @@
           "features": [
             {
               "name": "Eldritch Invocations",
-              "description": "You have unearthed Eldritch Invocations, pieces of forbidden knowledge that imbue you with an abiding magical ability or other lessons. You gain one invocation of your choice, such as Pact of the Tome. Invocations are described in the \"Eldritch Invocation Options\" section later in this class's description.\n\nPrerequisites. If an invocation has a prerequisite, you must meet it to learn that invocation. For example, if an invocation requires you to be a level 5+ Warlock, you can select the invocation once you reach Warlock level 5.\n\nReplacing and Gaining Invocations. Whenever you gain a Warlock level, you can replace one of your invocations with another one for which you qualify. You can't replace an invocation if it's a prerequisite for another invocation that you have.\n\nWhen you gain certain Warlock levels, you gain more invocations of your choice, as shown in the Invocations column of the Warlock Features table.\n\nYou can't pick the same invocation more than once unless its description says otherwise."
+              "description": "You have unearthed Eldritch Invocations, pieces of forbidden knowledge that imbue you with an abiding magical ability or other lessons. You gain one invocation of your choice, such as Pact of the Tome. Invocations are described in the \"Eldritch Invocation Options\" section later in this class's description.\n\nPrerequisites. If an invocation has a prerequisite, you must meet it to learn that invocation. For example, if an invocation requires you to be a level 5+ Warlock, you can select the invocation once you reach Warlock level 5.\n\nReplacing and Gaining Invocations. Whenever you gain a Warlock level, you can replace one of your invocations with another one for which you qualify. You can't replace an invocation if it's a prerequisite for another invocation that you have.\n\nWhen you gain certain Warlock levels, you gain more invocations of your choice, as shown in the Invocations column of the Warlock Features table.\n\nYou can't pick the same invocation more than once unless its description says otherwise.",
+              "choices": {
+                "type": "single",
+                "options": [
+                  {
+                    "name": "Pact of the Blade",
+                    "description": "Conjure a pact weapon or bond with a magic weapon. You use Charisma to hit and for damage with it."
+                  },
+                  {
+                    "name": "Pact of the Chain",
+                    "description": "You learn Find Familiar and your familiar can take special forms, such as an imp or a sprite."
+                  },
+                  {
+                    "name": "Pact of the Tome",
+                    "description": "A Book of Shadows with three cantrips and two 1st-level rituals of your choice from any class."
+                  },
+                  {
+                    "name": "Armor of Shadows",
+                    "description": "Cast Mage Armor on yourself at will, without a spell slot."
+                  },
+                  {
+                    "name": "Eldritch Mind",
+                    "description": "Advantage on Constitution saving throws to keep Concentration."
+                  }
+                ]
+              }
             },
             {
               "name": "Pact Magic",
@@ -6600,6 +8284,28 @@
         "18": 20,
         "19": 21,
         "20": 22
+      },
+      "spellbookSpells": {
+        "1": 6,
+        "2": 8,
+        "3": 10,
+        "4": 12,
+        "5": 14,
+        "6": 16,
+        "7": 18,
+        "8": 20,
+        "9": 22,
+        "10": 24,
+        "11": 26,
+        "12": 28,
+        "13": 30,
+        "14": 32,
+        "15": 34,
+        "16": 36,
+        "17": 38,
+        "18": 40,
+        "19": 42,
+        "20": 44
       }
     }
   ]

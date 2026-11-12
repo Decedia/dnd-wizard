@@ -50,7 +50,7 @@ export const REPEATABLE_FEATS = new Set(["Elemental Adept"]);
  * first level.
  */
 export function getFeatPicks(
-  character: Pick<Character, "featureSelections">,
+  character: Pick<Character, "featureSelections"> & { ruleset?: string },
   featName: string
 ): { taken: boolean; level: number | null; picks: string[] } {
   const selections = character.featureSelections || {};
@@ -59,13 +59,13 @@ export function getFeatPicks(
   const picks: string[] = [];
   for (const [key, values] of Object.entries(selections)) {
     const asi = key.match(/^asi-feat-(\d+)$/);
-    if (!asi && key !== "variant-human-feat") continue;
+    if (!asi && !/^(variant-human-feat|origin-feat-(background|species))$/.test(key)) continue;
     if (!(values || []).includes(featName)) continue;
     const at = asi ? Number(asi[1]) : 1;
     if (!taken || at < (level ?? 1)) level = asi ? at : null;
     taken = true;
     const options = decodeFeatOptions(selections[`${key}-options`]);
-    for (const group of getFeatOptionGroups(featName)) {
+    for (const group of getFeatOptionGroups(featName, character.ruleset)) {
       for (const [id, value] of Object.entries(options)) {
         if (id !== group.id && id.replace(/_\d+$/, "") !== group.id) continue;
         const label = group.choices?.find((c) => c.value === value)?.label ?? value;
