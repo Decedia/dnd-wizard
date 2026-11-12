@@ -253,6 +253,11 @@ export function StepSourceSelection({ data, onChange }: { data: Pick<Character, 
         ))}
       </div>
       )}
+      {rules2024Available() && (
+        <p className="-mt-4 mb-6 text-xs leading-relaxed text-ink-muted">
+          {t("ruleset.explainer", "Not sure? Ask your group which Player's Handbook they use. 2014 has more choices here; 2024 is the newer book. You can't switch a character later.")}
+        </p>
+      )}
 
       {ruleset === "2024" && (
         <div className="rounded-2xl border-2 border-border-strong bg-surface p-4">

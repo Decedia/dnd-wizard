@@ -7,6 +7,7 @@ import { getStaticFeats, getStaticRace, getStaticSpells } from "./srd-client";
 import { getFeatPicks } from "./feature-groups";
 import { getWeaponAttackDetails } from "./weapon-attacks";
 import { encodePdfCharacterData } from "./pdf-data";
+import { is2024, originFeats } from "./origin-2024";
 
 type PdfLanguage = "en" | "id";
 
@@ -34,7 +35,7 @@ const L: Record<PdfLanguage, Record<string, string>> = {
     details: "Features & traits in full", spellsCont: "Cantrips & spells (continued)", story: "Story", none: "None",
     age: "Age", height: "Height", weight: "Weight", eyes: "Eyes", skin: "Skin", hair: "Hair",
     personality: "Personality", backstoryOnly: "Backstory", allies: "Allies & organizations", additional: "Additional features", treasure: "Treasure",
-    cantrip: "C",
+    cantrip: "C", species: "Species", speciesTraits: "Species traits", originFeat: "Origin feat", mastery: "Mastery",
   },
   id: {
     characterName: "Nama karakter", background: "Latar belakang", class: "Kelas", race: "Ras", subclass: "Subkelas",
@@ -52,7 +53,7 @@ const L: Record<PdfLanguage, Record<string, string>> = {
     details: "Fitur & trait lengkap", spellsCont: "Cantrip & spell (lanjutan)", story: "Cerita", none: "Tidak ada",
     age: "Umur", height: "Tinggi", weight: "Berat", eyes: "Mata", skin: "Kulit", hair: "Rambut",
     personality: "Kepribadian", backstoryOnly: "Latar cerita", allies: "Sekutu & organisasi", additional: "Fitur tambahan", treasure: "Harta",
-    cantrip: "C",
+    cantrip: "C", species: "Spesies", speciesTraits: "Trait spesies", originFeat: "Feat asal", mastery: "Mastery",
   },
 };
 
@@ -153,7 +154,7 @@ function AbilityBox({ character, ability, t }: { character: Character; ability: 
   );
 }
 
-type FeatureLine = { name: string; level?: number | null; summary: string; picks?: string[] };
+type FeatureLine = { name: string; level?: number | null; tag?: string; summary: string; picks?: string[] };
 
 function FeatureList({ items, max, t }: { items: FeatureLine[]; max: number; t: (k: string) => string }) {
   const shown = items.slice(0, max);
@@ -163,7 +164,7 @@ function FeatureList({ items, max, t }: { items: FeatureLine[]; max: number; t: 
         <View key={`${f.name}-${i}`} style={{ marginBottom: 2.5 }}>
           <Text style={[s.small, { maxLines: 2, textOverflow: "ellipsis" }]}>
             <Text style={s.bold}>{f.name}</Text>
-            {f.level ? <Text style={s.muted}>{` ${t("lvlShort")} ${f.level}`}</Text> : null}
+            {f.tag ? <Text style={s.muted}>{` ${f.tag}`}</Text> : f.level ? <Text style={s.muted}>{` ${t("lvlShort")} ${f.level}`}</Text> : null}
             {f.picks && f.picks.length ? <Text style={s.bold}>{` (${f.picks.join(", ")})`}</Text> : null}
             {f.summary ? <Text>{` - ${f.summary}`}</Text> : null}
           </Text>
@@ -192,6 +193,9 @@ function CharacterPdfDocument({ character, language = "en" as PdfLanguage }: { c
   const prof = character.proficiencyBonus || 2;
   const featNames = new Set(getStaticFeats([], character.ruleset).map((f) => f.name));
   const race = character.race ? getStaticRace(character.race, character.ruleset, language) : undefined;
+  // 2024 rules call race "species" and give Origin feats from the background (and a Human's Versatile).
+  const rules2024 = is2024(character);
+  const originNames = new Set(originFeats(character).map((o) => o.name).filter(Boolean));
 
   const features = (character.features || []).filter((f) => f.name);
   const line = (f: Character["features"][number]): FeatureLine => ({ name: f.name, summary: firstSentence(f.summary || f.description) });
@@ -200,7 +204,8 @@ function CharacterPdfDocument({ character, language = "en" as PdfLanguage }: { c
   const raceLines: FeatureLine[] = [];
   for (const f of features) {
     const fp = getFeatPicks(character, f.name);
-    if (fp.taken || ((f.source === "custom" || !f.source) && featNames.has(f.name))) featLines.push({ ...line(f), level: fp.level, picks: fp.picks });
+    if (originNames.has(f.name)) featLines.push({ ...line(f), tag: t("originFeat"), picks: fp.picks });
+    else if (fp.taken || ((f.source === "custom" || !f.source) && featNames.has(f.name))) featLines.push({ ...line(f), level: fp.level, picks: fp.picks });
     else if (f.source === "race") raceLines.push(line(f));
     else classLines.push(line(f));
   }
@@ -214,7 +219,7 @@ function CharacterPdfDocument({ character, language = "en" as PdfLanguage }: { c
         name: attack.name,
         atk: sign(d.attackBonus),
         damage: `${d.damageDice}${d.damageBonus ? ` ${sign(d.damageBonus)}` : ""} ${d.damageType}`.trim(),
-        notes: (d.weapon.properties || []).join(", "),
+        notes: [d.mastery ? `${t("mastery")}: ${d.mastery}` : "", ...(d.weapon.properties || [])].filter(Boolean).join(", "),
       });
     } else if (attack.name) {
       weaponRows.push({ name: attack.name, atk: sign(attack.attackBonus || 0), damage: attack.damageType || "", notes: attack.sneakAttack ? `+${attack.sneakAttack} sneak` : "" });
@@ -291,7 +296,7 @@ function CharacterPdfDocument({ character, language = "en" as PdfLanguage }: { c
               <Field label={t("class")} value={character.class} />
             </View>
             <View style={s.row}>
-              <Field label={t("race")} value={character.race} style={{ marginRight: 6 }} />
+              <Field label={t(rules2024 ? "species" : "race")} value={character.race} style={{ marginRight: 6 }} />
               <Field label={t("subclass")} value={character.subclass} />
             </View>
           </Box>
@@ -407,7 +412,7 @@ function CharacterPdfDocument({ character, language = "en" as PdfLanguage }: { c
             </Box>
 
             <View style={[s.row, { height: 168 }]}>
-              <Box title={t("raceTraits")} style={{ flex: 1, marginRight: 5 }}>
+              <Box title={t(rules2024 ? "speciesTraits" : "raceTraits")} style={{ flex: 1, marginRight: 5 }}>
                 <FeatureList items={raceLines} max={SIDE_MAX} t={t} />
               </Box>
               <Box title={t("feats")} style={{ flex: 1 }}>
@@ -531,7 +536,7 @@ function CharacterPdfDocument({ character, language = "en" as PdfLanguage }: { c
               <Text style={[s.title, { textAlign: "left", fontSize: 9 }]}>{t("details")}</Text>
               {[
                 [t("classFeatures"), classLines, features.filter((f) => classLines.some((c) => c.name === f.name))],
-                [t("raceTraits"), raceLines, features.filter((f) => raceLines.some((c) => c.name === f.name))],
+                [t(rules2024 ? "speciesTraits" : "raceTraits"), raceLines, features.filter((f) => raceLines.some((c) => c.name === f.name))],
                 [t("feats"), featLines, features.filter((f) => featLines.some((c) => c.name === f.name))],
               ].map(([title, lines, list]) =>
                 (list as Character["features"]).length ? (

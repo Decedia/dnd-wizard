@@ -5,6 +5,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { getCharacter, saveCharacter, computeDerivedStats, type Character } from "@/lib/storage";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { LevelUpWizard } from "@/components/LevelUpWizard";
+import { useSRD } from "@/contexts/SRDContext";
 import { withLevelSnapshot } from "@/lib/level-snapshot";
 
 export function LevelUpPage() {
@@ -14,6 +15,10 @@ export function LevelUpPage() {
   const id = searchParams.get("id") ?? "";
 
   const [character, setCharacter] = useState<Character | null>(null);
+  const { setRuleset: setSrdRuleset } = useSRD();
+  // The shared SRD data (spell cards, level-up pickers) follows the open character's rule set.
+  const characterRuleset = character?.ruleset === "2024" ? "2024" : "2014";
+  useEffect(() => { setSrdRuleset(characterRuleset); }, [characterRuleset, setSrdRuleset]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

@@ -8,11 +8,13 @@ import { toPlainText } from "@/lib/rich-text";
 const slug = (name: string) => name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
 /** Subclass description plus one card per feature, in level order. */
-export function SubclassInfo({ characterClass, subclass, description }: { characterClass: string; subclass: string; description?: unknown }) {
+export function SubclassInfo({ characterClass, subclass, description, ruleset }: { characterClass: string; subclass: string; description?: unknown; ruleset?: string }) {
   const { t, tDesc, language } = useLanguage();
-  const details = getStaticSubclassDetails(characterClass, subclass, language);
+  const details = getStaticSubclassDetails(characterClass, subclass, language, ruleset);
   const key = `${characterClass.toLowerCase()}-${slug(subclass)}`;
-  const intro = tDesc(`subclass.desc.${key}`, toPlainText(description ?? details?.description));
+  const plain = toPlainText(description ?? details?.description);
+  // The locale overrides are 2014 text; 2024 data carries its own translation.
+  const intro = ruleset === "2024" ? plain : tDesc(`subclass.desc.${key}`, plain);
   const features = [...(details?.features || [])].sort((a: any, b: any) => (a.level || 0) - (b.level || 0));
 
   return (
@@ -31,7 +33,7 @@ export function SubclassInfo({ characterClass, subclass, description }: { charac
                 )}
                 <span className="min-w-0 text-sm font-bold text-[var(--color-text-primary)]">{f.name}</span>
               </div>
-              <RichText text={tDesc(`subclass.feature.desc.${key}-${slug(f.name)}`, toPlainText(f.description))} className="text-xs text-[var(--color-text-secondary)]" />
+              <RichText text={ruleset === "2024" ? toPlainText(f.description) : tDesc(`subclass.feature.desc.${key}-${slug(f.name)}`, toPlainText(f.description))} className="text-xs text-[var(--color-text-secondary)]" />
             </div>
           ))}
         </div>

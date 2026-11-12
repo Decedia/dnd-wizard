@@ -17,7 +17,7 @@ interface SubclassDetailsModalProps {
 
 export function SubclassDetailsModal({ characterClass, subclass, onClose, character }: SubclassDetailsModalProps) {
   const { t, tDesc, language } = useLanguage();
-  const details = getStaticSubclassDetails(characterClass, subclass, language);
+  const details = getStaticSubclassDetails(characterClass, subclass, language, character?.ruleset);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -31,7 +31,7 @@ export function SubclassDetailsModal({ characterClass, subclass, onClose, charac
   return (
     <BottomSheet isOpen={true} onClose={onClose} title={subclass} showHeader={false}>
       <div className="px-4 pt-4 pb-6 space-y-4">
-        <SubclassInfo characterClass={characterClass} subclass={subclass} />
+        <SubclassInfo characterClass={characterClass} subclass={subclass} ruleset={character?.ruleset} />
         <div className="pt-2">
           <button
             type="button"

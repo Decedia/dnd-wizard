@@ -15,10 +15,11 @@ interface SubclassSelectionModalProps {
   onClose: () => void;
   character?: unknown;
   characterSources?: string[];
+  ruleset?: string;
 }
 
 /** Pick a subclass: a card per subclass with its own icon, one line, and its features under Info. */
-export function SubclassSelectionModal({ options, selected, characterClass, onSelect, onClose }: SubclassSelectionModalProps) {
+export function SubclassSelectionModal({ options, selected, characterClass, onSelect, onClose, ruleset }: SubclassSelectionModalProps) {
   const { t, language } = useLanguage();
   return (
     <OptionPicker
@@ -28,7 +29,7 @@ export function SubclassSelectionModal({ options, selected, characterClass, onSe
       options={options.map((opt) => ({
         name: opt.name,
         line: optionLine("Subclass", opt, language),
-        infoNode: <SubclassInfo characterClass={characterClass} subclass={opt.name} description={opt.description} />,
+        infoNode: <SubclassInfo characterClass={characterClass} subclass={opt.name} description={opt.description} ruleset={ruleset} />,
         Icon: subclassIcon(opt.name),
         recommended: isRecommended("subclass", opt.name, characterClass),
       }))}

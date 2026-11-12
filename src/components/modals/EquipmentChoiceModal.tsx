@@ -206,7 +206,7 @@ export function EquipmentChoiceModal({
   const getWeaponSelectionSummary = (wc: any): string => {
     const selected = wc.selectedWeaponNames || [];
     const count = wc.selectionCount || 1;
-    return `${selected.length}/${count} ${t("equipment.selectedCount", "terpilih")}`;
+    return `${selected.length}/${count} ${t("equipment.selectedCount", "selected")}`;
   };
 
   const renderOptionCard = (opt: any) => {
@@ -262,7 +262,7 @@ export function EquipmentChoiceModal({
         <div key={`wc-${opt.sectionIndex}`} className="space-y-3">
           <SplitSelectionCard
             title={wc.label}
-            subtitle={`${wc.selectedWeaponNames?.length || 0}/${wc.selectionCount || 1} ${t("equipment.selectedCount", "terpilih")}`}
+            subtitle={`${wc.selectedWeaponNames?.length || 0}/${wc.selectionCount || 1} ${t("equipment.selectedCount", "selected")}`}
             icon={<Sword className="h-6 w-6 text-ink-muted" />}
             badges={["PHB"]}
             isSelected={isSelected}

@@ -205,7 +205,7 @@ export function SpellSelectionModal({
           const currentSpells = (character.spells || []).filter(s => s.level > 0).length;
           if (currentSpells >= maxSpellsKnown) return;
         }
-        const srdSpell = getStaticSpells(character.sources, undefined, language).find(s => s.name === name);
+        const srdSpell = getStaticSpells(character.sources, character.ruleset, language).find(s => s.name === name);
         const id = `spell-${name}-${level}`.replace(/\s+/g, "-");
         onChange({
           spells: [...(character.spells || []), { id, name, level, source: "srd" as const, srdSpellName: name, description: Array.isArray(srdSpell?.description) ? srdSpell.description.join("\n") : (srdSpell?.description || "") }],
@@ -287,7 +287,8 @@ export function SpellSelectionModal({
           <RichText
             className="text-xs text-[var(--color-text-secondary)]"
             text={(() => {
-              const translatedDesc = tDesc(`spell.desc.${slugify(sp.name)}`, toPlainText(sp.description));
+              // Locale overrides are 2014 text; 2024 spells carry their own translation.
+              const translatedDesc = (sp as { ruleset?: string }).ruleset === "2024" ? toPlainText(sp.description) : tDesc(`spell.desc.${slugify(sp.name)}`, toPlainText(sp.description));
               const s = (sp as any).effectSummary || (sp as any).summary || "";
               return s ? `${s}\n${translatedDesc}` : translatedDesc;
             })()}

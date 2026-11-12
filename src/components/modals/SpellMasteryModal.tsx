@@ -11,15 +11,16 @@ interface SpellMasteryModalProps {
   onSelectionsChange: (selections: string[]) => void;
   onConfirm: (value: string) => void;
   characterSources?: string[];
+  ruleset?: string;
 }
 
 /** Wizard capstone: two spells (one 1st-level, one 2nd-level) picked from the wizard list. */
-export function SpellMasteryModal({ isOpen, onClose, selections, onConfirm, characterSources = [] }: SpellMasteryModalProps) {
+export function SpellMasteryModal({ isOpen, onClose, selections, onConfirm, characterSources = [], ruleset }: SpellMasteryModalProps) {
   const { t, language } = useLanguage();
   if (!isOpen) return null;
   const levelOf = new Map<string, number>();
   for (const level of [1, 2]) for (const name of getWizardSpellsByLevel(level, characterSources)) levelOf.set(name, level);
-  const data = new Map(getStaticSpells(characterSources, undefined, language).map((s) => [s.name, s]));
+  const data = new Map(getStaticSpells(characterSources, ruleset, language).map((s) => [s.name, s]));
   return (
     <OptionPicker
       isOpen={isOpen}

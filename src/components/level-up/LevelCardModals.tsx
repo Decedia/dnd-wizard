@@ -30,6 +30,7 @@ export function LevelCardModals() {
         <SubclassDetailsModal
           subclass={showSubclassDetails}
           characterClass={character.class}
+          character={character}
           onClose={() => setShowSubclassDetails(null)}
         />
       )}
@@ -40,6 +41,7 @@ export function LevelCardModals() {
           selected={subclassSelection}
           characterClass={character.class}
           characterSources={character.sources}
+          ruleset={character.ruleset}
           onSelect={(name) => { onSubclassSelect(name); setShowSubclassModal(false); }}
           onClose={() => setShowSubclassModal(false)}
         />
@@ -221,6 +223,7 @@ export function LevelCardModals() {
           onSelectionsChange={setSpellMasterySelections}
           onConfirm={(value) => { onClassFeatureChoice("Spell Mastery", value); }}
           characterSources={character.sources}
+          ruleset={character.ruleset}
         />
       )}
 
@@ -232,6 +235,7 @@ export function LevelCardModals() {
           onSelectionsChange={setSignatureSpellsSelections}
           onConfirm={(value) => { onClassFeatureChoice("Signature Spells", value); }}
           characterSources={character.sources}
+          ruleset={character.ruleset}
         />
       )}
 
