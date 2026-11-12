@@ -355,12 +355,25 @@ export async function fetchSRDData(ruleset: string = "2014", locale: string = "e
   return data;
 }
 
+/**
+ * Each lookup reads one rule set only: 2024 data never fills in for 2014 and
+ * the other way round. A record without a `ruleset` field is 2014 data, and
+ * no ruleset given means 2014.
+ */
+function ruleSetOf(ruleset?: string): "2014" | "2024" {
+  return ruleset === "2024" ? "2024" : "2014";
+}
+
+function inRuleSet(record: unknown, ruleset?: string): boolean {
+  return (((record as { ruleset?: string }).ruleset) || "2014") === ruleSetOf(ruleset);
+}
+
 export function getStaticRaces(sources?: string[], ruleset?: string, locale: string = "en"): SRDRace[] {
   const racesData = pickLocaleData(racesDataMap, locale) as any;
   const races2024Data = pickLocaleData(races2024DataMap, locale) as any;
   const races2014 = racesData.races as SRDRace[];
   const races2024 = (races2024Data as any).races as SRDRace[];
-  const merged = [...races2014, ...races2024];
+  const merged = ruleSetOf(ruleset) === "2024" ? races2024 : races2014;
   const seen = new Map<string, SRDRace>();
   for (const race of merged) {
     const key = race.name;
@@ -393,9 +406,7 @@ export function getStaticRaces(sources?: string[], ruleset?: string, locale: str
   }
   const allRaces = Array.from(seen.values());
   let filtered = allRaces;
-  if (ruleset) {
-    filtered = filtered.filter((r) => (r as any).ruleset === ruleset || (!(r as any).ruleset && ruleset === "2014"));
-  }
+  filtered = filtered.filter((r) => inRuleSet(r, ruleset));
   if (!sources || sources.length === 0) return filtered;
   return filtered.filter((r) => sources.includes(r.source || "PHB"));
 }
@@ -418,7 +429,7 @@ export function getStaticClasses(sources?: string[], ruleset?: string, locale: s
   const races2024Data = pickLocaleData(races2024DataMap, locale) as any;
   const classes2014 = classesData.classes as unknown as SRDClass[];
   const classes2024 = (races2024Data as any).classes as unknown as SRDClass[];
-  const merged = [...classes2014, ...classes2024];
+  const merged = ruleSetOf(ruleset) === "2024" ? classes2024 : classes2014;
   const seen = new Map<string, SRDClass>();
   for (const cls of merged) {
     const key = cls.name;
@@ -443,9 +454,7 @@ export function getStaticClasses(sources?: string[], ruleset?: string, locale: s
   }
   const allClasses = Array.from(seen.values());
   let filtered = allClasses;
-  if (ruleset) {
-    filtered = filtered.filter((c) => (c as any).ruleset === ruleset || (!(c as any).ruleset && ruleset === "2014"));
-  }
+  filtered = filtered.filter((c) => inRuleSet(c, ruleset));
   if (!sources || sources.length === 0) return filtered;
   return filtered.filter((c) => sources.includes(c.source || "PHB"));
 }
@@ -470,9 +479,7 @@ export function getStaticSubclasses(className: string, sources?: string[], rules
   const all = (subclassesData as any).subclasses as any[];
   const choicesMap = (subclassChoicesData as any)[className] || {};
   let filtered = all.filter((s) => s.class === className);
-  if (ruleset) {
-    filtered = filtered.filter((s) => (s.ruleset || "2014") === ruleset);
-  }
+  filtered = filtered.filter((s) => inRuleSet(s, ruleset));
   return filtered
     .filter((s) => !sources || sources.length === 0 || sources.includes(s.source || "PHB"))
     .map((s) => {
@@ -619,9 +626,7 @@ export function getStaticSpells(sources?: string[], ruleset?: string, locale: st
   const raw = Array.isArray((spellsData as any).spells) ? (spellsData as any).spells : (spellsData as any) || [];
   const spells: SRDSpell[] = raw.map(normalizeSpell);
   let filtered = applySpellLocalesOverrides(spells, locale);
-  if (ruleset) {
-    filtered = filtered.filter((s) => !(s as any).ruleset || (s as any).ruleset === ruleset);
-  }
+  filtered = filtered.filter((s) => inRuleSet(s, ruleset));
   if (!sources || sources.length === 0) return filtered;
   return filtered.filter((s) => sources.includes(s.source || "PHB"));
 }
@@ -944,9 +949,7 @@ export function getStaticFeats(sources?: string[], ruleset?: string, locale: str
   const featsData = pickLocaleData(featsDataMap, locale) as any;
   const feats = featsData.feats as SRDFeat[];
   let filtered = feats;
-  if (ruleset) {
-    filtered = filtered.filter((f) => (f as any).ruleset === ruleset || (!(f as any).ruleset && ruleset === "2014"));
-  }
+  filtered = filtered.filter((f) => inRuleSet(f, ruleset));
   if (!sources || sources.length === 0) {
     return dedupeFeats(filtered, new Set<string>());
   }

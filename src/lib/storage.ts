@@ -1,3 +1,4 @@
+import { rulesetOf } from "@/lib/rulesets";
 import { overrideOf, withOverride, type NumberOverride } from "./overrides";
 import type { LevelPicks } from "./level-choices";
 import { getStaticClass, getStaticRace, getStaticSubclasses, getDomainSpells, getCircleSpells as getJsonCircleSpells, getCircleTerrainTypes as getJsonCircleTerrainTypes, getOathSpells, getWizardTraditionSpells, getSubclassFlags, getPactBoons } from "@/lib/srd-client";
@@ -703,6 +704,9 @@ function normalizeCharacterFields(c: Character): Character {
     activeStates: (c as any).activeStates || [],
     activeBuffs: (c as any).activeBuffs || [],
     levelHp: (c as any).levelHp || {},
+    // Characters saved as "2024" before the 2024 rules were ready were built
+    // from 2014 data, so they load as 2014.
+    ruleset: rulesetOf(c),
     ...migrateCoins(c),
     spells: (c.spells || []).map((saved) => {
       // Old saves link feat spells to the retired combat engine data; nothing reads it.
