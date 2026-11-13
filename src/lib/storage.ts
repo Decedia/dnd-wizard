@@ -62,12 +62,18 @@ export interface Character {
   objectInteractionUsed?: boolean;
   turnActive?: boolean;
   turnRound?: number;
-  /** Wild Shape: the beast form the druid is in and the form's HP left. */
-  wildShape?: { form: string; hp: number };
+  /**
+   * Wild Shape: the beast form the druid is in and the form's HP left. `run`: this turn it ran 20 ft
+   * straight at the target (Pounce, Charge). `prone`: this turn's target fell prone. `holding`: attacks
+   * holding a grappled target. `swallowed`: a target is inside it (Giant Toad).
+   */
+  wildShape?: { form: string; hp: number; run?: boolean; prone?: boolean; holding?: string[]; swallowed?: boolean };
+  /** Favourite turn options (their keys), shown first in the turn helper. */
+  turnPins?: string[];
   /** True once the Attack action was taken this turn (unlocks the off-hand bonus attack). */
   attackedThisTurn?: boolean;
   /** This turn's weapon swings with the Attack action, in order; "pending" until the player taps Hit, Crit or Miss. */
-  swings?: { key: string; name: string; result: "pending" | "hit" | "crit" | "miss"; smite?: number; /** Damage rolled in the dice tray for this swing. */ damage?: number; /** Damage a feature adds on this hit (Colossus Slayer 1d8). */ extras?: { name: string; dice: string; /** Added by itself on the hit, not by a tap. */ auto?: boolean; /** The once-per-turn mark it took. */ mark?: string; /** Its share of the rolled damage. */ total?: number }[] }[];
+  swings?: { key: string; name: string; result: "pending" | "hit" | "crit" | "miss"; smite?: number; /** Damage rolled in the dice tray for this swing. */ damage?: number; /** Damage a feature adds on this hit (Colossus Slayer 1d8). */ extras?: { name: string; dice: string; /** Added by itself on the hit, not by a tap. */ auto?: boolean; /** The once-per-turn mark it took. */ mark?: string; /** Its share of the rolled damage. */ total?: number }[]; /** The answer to a beast's prone save after this hit. */ trick?: "prone" | "up" }[];
   /** Quick taps in the turn helper: an enemy next to you, a group of enemies, an enemy almost down. Cleared when the fight ends. */
   turnSituation?: { near?: boolean; many?: boolean; low?: boolean };
   // Exhaustion

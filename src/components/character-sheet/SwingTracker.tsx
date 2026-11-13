@@ -7,7 +7,7 @@ import { rollAndClose, rollAttack, rollSummary } from "@/components/dice/roll-fl
 import { useDice } from "@/contexts/DiceContext";
 import { critGroup, d20Group, damageGroup, groupFrom, type RollGroup } from "@/lib/dice-roll";
 import type { Character } from "@/lib/storage";
-import { autoHitExtras, critDamage, critExtraDice, hitPatch, isSwingOption, ON_HIT_WHEN, removeSwingExtraPatch, smiteChoices, smitePatch, spellHitExtras, swingDamagePatch, swingPatch, swingsLeft, type SwingResult, type TurnMenu, type TurnOption } from "@/lib/turn";
+import { autoHitExtras, beastAttackOf, beastProneSave, beastPronePatch, critDamage, critExtraDice, hitPatch, isSwingOption, ON_HIT_WHEN, removeSwingExtraPatch, smiteChoices, smitePatch, spellHitExtras, swingDamagePatch, swingPatch, swingsLeft, type SwingResult, type TurnMenu, type TurnOption } from "@/lib/turn";
 
 interface SwingTrackerProps {
   character: Character;
@@ -102,7 +102,7 @@ export function SwingTracker({ character, menu, nameOf, onUse, onAddExtra, onCha
                           name,
                           toHit: d20Group(t("dice.toHit", "To hit"), o.toHit!, o.toHitParts),
                           // What fires by itself on a hit rolls with the weapon.
-                          damage: damageGroups(o, "hit", undefined, autoHitExtras(character).extras),
+                          damage: damageGroups(o, "hit", undefined, autoHitExtras(character, s.key).extras),
                           critExtra: damageGroups(o, "crit").slice(1),
                           onResult: (r) => onChange(hitPatch(latest.current, i, r)),
                           onDamage: (gs, res) => {
@@ -172,6 +172,7 @@ export function SwingTracker({ character, menu, nameOf, onUse, onAddExtra, onCha
                     </div>
                   )}
                   {s.result === "miss" && <p className="mt-0.5 text-xs text-[var(--color-text-secondary)]">{t("swing.missHint", "No damage. On to the next one.")}</p>}
+                  {hit && <BeastHitLines character={character} index={i} onChange={onChange} />}
                   {!!s.smite && <p className="mt-0.5 text-xs font-semibold text-[var(--color-text-primary)]"><RichInline text={t("swing.smited", { level: s.smite, dice: `${Math.min(5, 1 + s.smite) * (s.result === "crit" ? 2 : 1)}d8` }, "Smite with a level {level} slot: add {dice} radiant damage.")} /></p>}
                   {smites.length > 0 && (
                     <div className="mt-2">
@@ -246,5 +247,34 @@ export function SwingTracker({ character, menu, nameOf, onUse, onAddExtra, onCha
         )
       )}
     </section>
+  );
+}
+
+/**
+ * What a beast's hit does besides damage: the prone save the target makes
+ * (asked once, the answer opens Pounce's bonus bite or a stomp) and the grab.
+ */
+function BeastHitLines({ character, index, onChange }: { character: Character; index: number; onChange: (patch: Partial<Character>) => void }) {
+  const { t } = useLanguage();
+  const swing = (character.swings || [])[index];
+  const attack = swing && beastAttackOf(character, swing.key);
+  if (!swing || !attack) return null;
+  const dc = beastProneSave(character, swing.key);
+  return (
+    <>
+      {dc !== null && !swing.trick && (
+        <div className="mt-2">
+          <p className="text-[11px] font-semibold text-[var(--color-text-primary)]">{t("wild.proneAsk", { dc }, "The target makes a DC {dc} Strength save. Did it fall prone?")}</p>
+          <div className="mt-1.5 flex gap-2">
+            <button type="button" onClick={() => onChange(beastPronePatch(character, index, true))} className="btn btn-secondary flex-1 !py-1.5 text-xs">{t("wild.proneYes", "It fell prone")}</button>
+            <button type="button" onClick={() => onChange(beastPronePatch(character, index, false))} className="btn btn-secondary flex-1 !py-1.5 text-xs">{t("wild.proneNo", "It stayed up")}</button>
+          </div>
+        </div>
+      )}
+      {swing.trick === "prone" && <p className="mt-0.5 text-xs font-semibold text-[var(--color-text-primary)]">{t("wild.proneDone", "Prone: melee attacks against it have advantage until it stands up.")}</p>}
+      {swing.trick === "up" && <p className="mt-0.5 text-xs text-[var(--color-text-secondary)]">{t("wild.proneSaved", "It kept its feet.")}</p>}
+      {attack.grapple && <p className="mt-0.5 text-xs font-semibold text-[var(--color-text-primary)]">{t(attack.grapple.restrained ? "wild.grabbedRestrained" : "wild.grabbed", { dc: attack.grapple.escape }, "You hold the target (escape DC {dc}).")}</p>}
+      {attack.needsHold && <p className="mt-0.5 text-xs font-semibold text-[var(--color-text-primary)]">{t("wild.swallowed", "Swallowed: it is blinded and restrained inside you, and takes 3d6 acid at the start of each of your turns.")}</p>}
+    </>
   );
 }

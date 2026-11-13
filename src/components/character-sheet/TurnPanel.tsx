@@ -64,6 +64,23 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
     try { localStorage.setItem(modeKey, m); } catch { /* storage blocked: keep it for this visit */ }
   };
   const [seeAll, setSeeAll] = useState<Partial<Record<TurnSlot, boolean>>>({});
+  // Favourites stay on top of their slot. Pin with the Pin button or a long press on the row.
+  const pins = character.turnPins || [];
+  const togglePin = (key: string) => onChange({ turnPins: pins.includes(key) ? pins.filter((k) => k !== key) : [...pins, key] });
+  const pressTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const longPressed = useRef(false);
+  const pressStart = (key: string) => {
+    longPressed.current = false;
+    pressTimer.current = setTimeout(() => {
+      longPressed.current = true;
+      togglePin(key);
+      try { navigator.vibrate?.(20); } catch { /* no vibration */ }
+    }, 550);
+  };
+  const pressEnd = () => {
+    if (pressTimer.current) clearTimeout(pressTimer.current);
+    pressTimer.current = null;
+  };
   const sit: Situation = character.turnSituation || {};
   const toggleSit = (k: keyof Situation) => onChange({ turnSituation: { ...sit, [k]: !sit[k] } });
   const picks = mode === "suggest" ? suggestPicks(character, menu, srdSpells, sit) : null;
@@ -113,6 +130,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
     if (o.blocked === "raging") return t("turn.block.raging", "You are already raging.");
     if (o.blocked === "notRaging") return t("turn.block.notRaging", "Only while you rage. Use Rage first.");
     if (o.blocked === "usedThisTurn") return t("turn.block.usedThisTurn", "Used this turn. Ready again next turn.");
+    if (o.blocked === "notHolding") return t("turn.block.notHolding", "Only at the target you hold. Grab one with your bite first.");
     if (o.blocked === "wildShapeLeft") return t("turn.block.wildShapeLeft", "You still have Wild Shape uses. This works only when none are left.");
     if (slotUsed) return t(`turn.block.used.${o.slot}`);
     if (o.blocked === "attackFirst") return t("turn.block.attackFirst", "Attack with your other weapon first (Attack action), then this bonus attack opens.");
@@ -182,7 +200,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
         name,
         toHit,
         // A swing that hits also rolls what fires by itself on a hit (Divine Strike, Hunter's Mark).
-        damage: [...groups.filter((g) => !g.d20Test), ...(swingIndex >= 0 ? autoHitExtras(character).extras.map((x) => groupFrom(x.name, x.dice)).filter((g): g is RollGroup => !!g) : [])],
+        damage: [...groups.filter((g) => !g.d20Test), ...(swingIndex >= 0 ? autoHitExtras(character, o.key).extras.map((x) => groupFrom(x.name, x.dice)).filter((g): g is RollGroup => !!g) : [])],
         critExtra: extraGroup ? [extraGroup] : [],
         onResult: (result) => {
           if (swingIndex >= 0) onChange(hitPatch(latest.current, swingIndex, result));
@@ -260,15 +278,28 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
     const text = textOf(o);
     const full = o.detail || (o.summaryKey ? t(o.summaryKey, o.summary || undefined) : o.summary);
     const rolls = rollsOf(o);
+    const pinned = pins.includes(o.key);
     return (
       <div key={o.key} className={`overflow-hidden rounded-[var(--radius-md)] border bg-[var(--color-surface)] transition-colors hover:border-[var(--color-border-active)] ${best ? "border-2 border-[var(--color-ink)]" : "border-[var(--color-border)]"}`}>
         <button
           type="button"
           disabled={!!reason}
-          onClick={() => takeOption(o)}
-          className="block w-full min-w-0 px-3 py-2 text-left disabled:opacity-45"
+          onClick={() => {
+            if (longPressed.current) return void (longPressed.current = false);
+            takeOption(o);
+          }}
+          onPointerDown={() => pressStart(o.key)}
+          onPointerUp={pressEnd}
+          onPointerLeave={pressEnd}
+          onPointerCancel={pressEnd}
+          onContextMenu={(e) => e.preventDefault()}
+          className="block w-full min-w-0 select-none px-3 py-2 text-left disabled:opacity-45"
         >
-          {best && <span className="mb-0.5 block text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">{t("turn.best", "Best pick")}</span>}
+          {(best || pinned) && (
+            <span className="mb-0.5 block text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">
+              {[pinned ? t("turn.pinned", "Pinned") : null, best ? t("turn.best", "Best pick") : null].filter(Boolean).join(" · ")}
+            </span>
+          )}
           <span className="flex flex-wrap items-center gap-x-2 gap-y-0.5">
             <span className="text-sm font-bold text-[var(--color-text-primary)]">{nameOf(o)}</span>
             {cost && <span className="rounded-full bg-[var(--color-bg)] px-1.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)]">{cost}</span>}
@@ -294,24 +325,25 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
           {pick && <span className="mt-1 block text-xs font-semibold leading-snug text-[var(--color-text-primary)]">{t(`turn.why.${pick.why}`, pick.values || {})}</span>}
           {reason && <span className="mt-0.5 block text-[11px] font-semibold text-[var(--color-text-muted)]">{reason}</span>}
         </button>
-        {(rolls.length > 0 || full) && (
-          <div className="flex flex-wrap items-center gap-2 px-3 pb-2.5">
-            {rolls.length > 0 && (
-              <button
-                type="button"
-                disabled={!!reason}
-                aria-label={t("dice.rollName", { name: nameOf(o) }, "Roll {name}")}
-                onClick={() => rollOption(o)}
-                className="btn btn-primary inline-flex items-center gap-1.5 !px-4 !py-1.5 text-xs disabled:opacity-40"
-              >
-                <GiRollingDices className="h-4 w-4" aria-hidden="true" />
-                {t("dice.rollDice", { dice: groupText(rolls[0]) }, "Roll {dice}")}
-              </button>
-            )}
-            {full && infoButton(nameOf(o), full, [cost, o.school ? t(`spellSchool.${o.school}`, o.school) : null, o.when ? t(`turn.when.${o.when}`) : null, text && o.detail && o.group !== "feature" ? text : null].filter(Boolean).join(" · ") || undefined)}
-          </div>
-        )}
-      </div>
+        <div className="flex flex-wrap items-center gap-2 px-3 pb-2.5">
+          {rolls.length > 0 && (
+            <button
+              type="button"
+              disabled={!!reason}
+              aria-label={t("dice.rollName", { name: nameOf(o) }, "Roll {name}")}
+              onClick={() => rollOption(o)}
+              className="btn btn-primary inline-flex items-center gap-1.5 !px-4 !py-1.5 text-xs disabled:opacity-40"
+            >
+              <GiRollingDices className="h-4 w-4" aria-hidden="true" />
+              {t("dice.rollDice", { dice: groupText(rolls[0]) }, "Roll {dice}")}
+            </button>
+          )}
+          <button type="button" aria-pressed={pinned} onClick={() => togglePin(o.key)} className="btn btn-secondary !px-3 !py-1.5 text-xs">
+            {pinned ? t("turn.unpin", "Unpin") : t("turn.pin", "Pin")}
+          </button>
+          {full && infoButton(nameOf(o), full, [cost, o.school ? t(`spellSchool.${o.school}`, o.school) : null, o.when ? t(`turn.when.${o.when}`) : null, text && o.detail && o.group !== "feature" ? text : null].filter(Boolean).join(" · ") || undefined)}
+        </div>
+    </div>
     );
   };
 
@@ -408,11 +440,22 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
             );
           }
           const used = isSlotUsed(character, slot);
-          const basics = options.filter((o) => o.group === "basic");
+          const pinnedRows = pins.map((k) => options.find((o) => o.key === k)).filter((o): o is TurnOption => !!o);
+          const unpinned = (o: TurnOption) => !pins.includes(o.key);
+          const basics = options.filter((o) => o.group === "basic" && unpinned(o));
+          const slotPicks = picks && slot !== "free" ? picks[slot as "action" | "bonus" | "reaction"] : [];
+          const pinnedList = pinnedRows.length > 0 && (
+            <div className="mb-3 space-y-1.5">
+              {pinnedRows.map((o) => {
+                const pk = slotPicks.find((x) => x.option.key === o.key);
+                return row(o, used, pk, !!pk && slotPicks[0] === pk && !used);
+              })}
+            </div>
+          );
           const fullList = () => (
               <div className="space-y-3">
               {GROUPS.map((group) => {
-                const rows = options.filter((o) => o.group === group);
+                const rows = options.filter((o) => o.group === group && unpinned(o));
                 if (rows.length === 0) return null;
                 return (
                   <div key={group} className="space-y-1.5">
@@ -442,17 +485,22 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
                 {slot !== "free" && <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">{used ? t("turn.state.used", "Used") : t("turn.state.ready", "Ready")}</span>}
               </div>
               <p className="mb-2 text-[11px] text-[var(--color-text-muted)]">{t(`turn.slot.${slot}.hint`)}</p>
+              {pinnedList}
               {picks && slot !== "free" ? (
                 <div className="space-y-1.5">
-                  {used ? <p className="text-[11px] font-semibold text-[var(--color-text-muted)]">{t(`turn.block.used.${slot}`)}</p> : picks[slot as "action" | "bonus" | "reaction"].length === 0 ? (
+                  {used ? <p className="text-[11px] font-semibold text-[var(--color-text-muted)]">{t(`turn.block.used.${slot}`)}</p> : slotPicks.length === 0 ? (
                     <p className="text-[11px] text-[var(--color-text-muted)]">{t("turn.suggest.none", "Nothing stands out right now. See all options below.")}</p>
                   ) : (
-                    picks[slot as "action" | "bonus" | "reaction"].slice(0, 3).filter((pk, i) => i === 0 || pk.score >= 30).map((pk, i) => (
-                      <div key={pk.option.key}>
-                        {i === 1 && <div className="mb-1.5 mt-2 text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">{t("turn.alsoGood", "Also good")}</div>}
-                        {row(pk.option, used, pk, i === 0)}
-                      </div>
-                    ))
+                    // A pinned best pick already shows above, so the list goes on with the next ones.
+                    slotPicks.slice(0, 3).filter((pk, i) => (i === 0 || pk.score >= 30) && unpinned(pk.option)).map((pk, i) => {
+                      const best = pk === slotPicks[0];
+                      return (
+                        <div key={pk.option.key}>
+                          {(i === 1 || (i === 0 && !best)) && <div className="mb-1.5 mt-2 text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">{t("turn.alsoGood", "Also good")}</div>}
+                          {row(pk.option, used, pk, best)}
+                        </div>
+                      );
+                    })
                   )}
                   <button type="button" onClick={() => setSeeAll((s) => ({ ...s, [slot]: !s[slot] }))} className="flex w-full items-center justify-between pt-1 text-[11px] font-bold text-[var(--color-text-secondary)]">
                     <span>{t("turn.seeAll", { count: options.length }, "See all options ({count})")}</span>
