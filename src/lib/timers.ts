@@ -18,7 +18,7 @@ const FEATURE_DURATIONS: [RegExp, Rounds][] = [
   [/^Rage$/, MINUTE],
   [/^Bladesong/, MINUTE],
   [/^Wild Shape/, (c) => Math.max(1, Math.floor((c.level || 2) / 2)) * HOUR],
-  [/^Starry Form/, MINUTE],
+  [/^Starry Form/, 10 * MINUTE],
   [/^Symbiotic Entity/, 10 * MINUTE],
   [/^Summon Wildfire Spirit/, HOUR],
   [/^Spirit Totem/, MINUTE],
@@ -26,7 +26,7 @@ const FEATURE_DURATIONS: [RegExp, Rounds][] = [
   [/^Channel Divinity: (Emissary of Peace|Peerless Athlete)/, 10 * MINUTE],
   [/^Arms of the Astral Self/, 10 * MINUTE],
   [/^(Holy Nimbus|Elder Champion)/, MINUTE],
-  [/^Avenging Angel/, HOUR],
+  [/^Avenging Angel/, (c) => (c.ruleset === "2024" ? 10 * MINUTE : HOUR)],
   [/^Giant's Might/, MINUTE],
   [/^Form of Dread/, MINUTE],
   [/^Hexblade's Curse/, MINUTE],
@@ -36,6 +36,10 @@ const FEATURE_DURATIONS: [RegExp, Rounds][] = [
   [/^Emboldening Bond/, 10 * MINUTE],
   [/^Empty Body/, MINUTE],
   [/^Eldritch Cannon/, HOUR],
+  // 2024 Player's Handbook subclasses.
+  [/^(Vow of Enmity|Invoke Duplicity|Mantle of Majesty|Unbreakable Majesty|Trance of Order)/, MINUTE],
+  [/^Peerless Athlete/, HOUR],
+  [/^(Living Legend|Wrath of the Sea|Revelation in Flesh)/, 10 * MINUTE],
 ];
 
 export const RAGE_TIMER = "feature:rage";
