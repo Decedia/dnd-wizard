@@ -1,0 +1,101 @@
+{
+ "src/locales/id.js": {
+  "damage": 11,
+  "damage type (fire, cold, ...)": 1,
+  "Advantage": 3,
+  "Disadvantage": 2,
+  "ability check": 1,
+  "Action / Bonus Action": 21,
+  "Reaction": 2,
+  "spell / spell slot": 56,
+  "Proficiency": 16,
+  "Expertise": 39,
+  "AC": 3,
+  "ability names (STR, DEX...)": 2,
+  "Concentration": 14,
+  "Short / Long Rest": 11,
+  "conditions (Charmed, Prone...)": 7
+ },
+ "src/data/id/2014_classes.json": {
+  "damage": 81,
+  "Advantage": 15,
+  "Reaction": 1,
+  "spell / spell slot": 5,
+  "Proficiency": 17,
+  "Expertise": 1,
+  "ability names (STR, DEX...)": 26,
+  "Concentration": 2,
+  "conditions (Charmed, Prone...)": 13
+ },
+ "src/data/id/2014_feats.json": {
+  "Action / Bonus Action": 4,
+  "spell / spell slot": 3,
+  "conditions (Charmed, Prone...)": 2
+ },
+ "src/data/id/2014_item_catalog.json": {
+  "damage": 3,
+  "Advantage": 2,
+  "ability check": 30,
+  "spell / spell slot": 21,
+  "Proficiency": 83,
+  "Expertise": 1,
+  "ability names (STR, DEX...)": 1,
+  "conditions (Charmed, Prone...)": 1
+ },
+ "src/data/id/2014_races.json": {
+  "damage": 107,
+  "Advantage": 1,
+  "ability check": 2,
+  "Proficiency": 1,
+  "Expertise": 1,
+  "ability names (STR, DEX...)": 63,
+  "Short / Long Rest": 2,
+  "conditions (Charmed, Prone...)": 7
+ },
+ "src/data/id/2014_spell_mechanics.json": {
+  "damage": 47
+ },
+ "src/data/id/2014_spells.json": {
+  "damage": 1011,
+  "Advantage": 16,
+  "ability check": 2,
+  "Action / Bonus Action": 6,
+  "Reaction": 4,
+  "Proficiency": 2,
+  "Expertise": 3,
+  "ability names (STR, DEX...)": 111,
+  "Concentration": 13,
+  "conditions (Charmed, Prone...)": 139
+ },
+ "src/data/id/2014_subclasses.json": {
+  "damage": 451,
+  "Advantage": 5,
+  "Action / Bonus Action": 6,
+  "Reaction": 2,
+  "spell / spell slot": 4,
+  "Proficiency": 12,
+  "Expertise": 8,
+  "ability names (STR, DEX...)": 80,
+  "Concentration": 8,
+  "conditions (Charmed, Prone...)": 51
+ },
+ "src/data/id/2024_phb_text.json": {
+  "ability check": 1,
+  "Action / Bonus Action": 71,
+  "spell / spell slot": 176,
+  "Expertise": 1,
+  "conditions (Charmed, Prone...)": 5
+ },
+ "src/data/id/2024_text.json": {
+  "damage": 3,
+  "Advantage": 1,
+  "Action / Bonus Action": 30,
+  "spell / spell slot": 966,
+  "Proficiency": 1,
+  "Expertise": 2,
+  "ability names (STR, DEX...)": 3,
+  "conditions (Charmed, Prone...)": 9
+ },
+ "src/data/id/race-categories.json": {},
+ "src/data/id/subclass_feature_choices_text.json": {}
+}
