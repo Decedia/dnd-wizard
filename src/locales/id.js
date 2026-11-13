@@ -2383,4 +2383,5 @@ export const translations = {
   "spell.magicalDiscoveries": "Magical Discoveries",
   "spell.magicalDiscoveriesHint": "Pilih {count} mantra dari daftar Cleric, Druid, atau Wizard. Mantra ini selalu siap.",
   "levelUp.selectSpellsCount": "Pilih {count} mantra...",
+  "quick.origin2024": "Spesies dan latar belakang",
 };
