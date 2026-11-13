@@ -261,18 +261,20 @@ export function DiceTray({ open, onClose, request }: { open: boolean; onClose: (
     );
   };
 
+  // Full screen. Every row keeps its own height (shrink-0) and only the dice
+  // stage gives way, so text never runs over the buttons; a very short
+  // screen scrolls instead.
   return (
-    <>
-      {open && <button type="button" aria-label={t("common.close", "Close")} className="fixed inset-0 z-[1000001] bg-black/20 md:hidden" onClick={onClose} />}
-      <aside
-        aria-label={t("dice.tray", "Dice tray")}
-        aria-hidden={!open}
-        className={`fixed inset-y-0 right-0 z-[1000002] flex w-[min(420px,92vw)] flex-col border-l border-[var(--color-border)] bg-[var(--color-surface)] shadow-2xl transition-transform duration-200 motion-reduce:transition-none ${open ? "translate-x-0" : "pointer-events-none translate-x-[104%]"}`}
-        style={{ paddingTop: "env(safe-area-inset-top, 0px)", paddingBottom: "env(safe-area-inset-bottom, 0px)", paddingRight: "env(safe-area-inset-right, 0px)" }}
-      >
-        <div className="flex items-center gap-2 px-4 pb-2 pt-3">
-          <h2 className="flex-1 text-base font-bold text-[var(--color-text-primary)]">{t("dice.tray", "Dice tray")}</h2>
-          <button type="button" onClick={onClose} aria-label={t("common.close", "Close")} className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-primary)]">
+    <aside
+      aria-label={t("dice.tray", "Dice")}
+      aria-hidden={!open}
+      className={`fixed inset-0 z-[1000002] overflow-y-auto bg-[var(--color-surface)] transition-[opacity,transform] duration-200 motion-reduce:transition-none ${open ? "opacity-100" : "pointer-events-none translate-y-6 opacity-0"}`}
+      style={{ paddingTop: "env(safe-area-inset-top, 0px)", paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
+    >
+      <div className="mx-auto flex h-full max-w-lg flex-col">
+        <div className="flex shrink-0 items-center gap-2 border-b border-[var(--color-border)] px-4 py-3">
+          <h2 className="flex-1 text-lg font-semibold text-[var(--color-text-primary)]">{t("dice.tray", "Dice")}</h2>
+          <button type="button" onClick={onClose} aria-label={t("common.close", "Close")} className="flex h-11 w-11 items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-text-primary)]">
             <X className="h-4 w-4" />
           </button>
         </div>
@@ -280,7 +282,7 @@ export function DiceTray({ open, onClose, request }: { open: boolean; onClose: (
         <div
           ref={stageRef}
           onPointerDown={onStageTap}
-          className="relative mx-4 min-h-[200px] flex-1 cursor-pointer touch-manipulation overflow-hidden rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-bg)]"
+          className="relative min-h-[180px] flex-1 basis-0 cursor-pointer touch-manipulation overflow-hidden bg-[var(--color-bg)]"
         >
           {!entries.length && (
             <p className="pointer-events-none absolute inset-0 flex items-center justify-center px-6 text-center text-sm text-[var(--color-text-muted)]">
@@ -290,25 +292,24 @@ export function DiceTray({ open, onClose, request }: { open: boolean; onClose: (
           <div ref={chipsRef} className="pointer-events-none absolute inset-0" />
         </div>
 
-        <div className="min-h-[64px] px-4 pt-3" aria-live="polite">
+        <div className="shrink-0 border-t border-[var(--color-border)] px-4 py-3" aria-live="polite">
           {!results.length ? (
-            <p className="text-sm text-[var(--color-text-muted)]">{t("dice.noRoll", "No roll yet")}</p>
+            <p className="py-2 text-center text-sm text-[var(--color-text-muted)]">{t("dice.noRoll", "No roll yet")}</p>
           ) : single ? (
-            <div className="flex items-end gap-3">
-              <span className={`text-4xl font-extrabold leading-none tabular-nums ${single.done ? "text-[var(--color-text-primary)]" : "text-[var(--color-text-muted)]"}`}>{single.done ? single.total : "…"}</span>
-              <span className="min-w-0 flex-1 pb-0.5 text-xs leading-snug text-[var(--color-text-muted)]">
-                <b className="font-bold text-[var(--color-text-primary)]">{title || single.entry.group.label}</b>
-                {d20Note(single) && <span className="font-bold text-[var(--color-text-primary)]"> · {d20Note(single)}</span>}
-                <br />
-                {breakdown(single)}
+            <div className="flex flex-col items-center gap-1 text-center">
+              <span className="text-xs font-bold text-[var(--color-text-primary)]">
+                {title || single.entry.group.label}
+                {d20Note(single) && <span className="text-[var(--color-accent-indigo-600)]"> · {d20Note(single)}</span>}
               </span>
+              <span className={`text-5xl font-extrabold leading-none tabular-nums ${single.done ? "text-[var(--color-accent-indigo-600)]" : "text-[var(--color-text-muted)]"}`}>{single.done ? single.total : "…"}</span>
+              <span className="text-xs leading-snug text-[var(--color-text-muted)]">{breakdown(single)}</span>
             </div>
           ) : (
-            <div className="space-y-1">
+            <div className="max-h-[28vh] space-y-2 overflow-y-auto">
               {title && <p className="text-xs font-bold text-[var(--color-text-primary)]">{title}</p>}
               {results.map((r, i) => (
-                <div key={i} className="flex items-baseline gap-3">
-                  <span className={`w-12 text-2xl font-extrabold tabular-nums ${r.done ? "text-[var(--color-text-primary)]" : "text-[var(--color-text-muted)]"}`}>{r.done ? r.total : "…"}</span>
+                <div key={i} className="flex items-start gap-3">
+                  <span className={`w-12 shrink-0 text-2xl font-extrabold leading-tight tabular-nums ${r.done ? "text-[var(--color-accent-indigo-600)]" : "text-[var(--color-text-muted)]"}`}>{r.done ? r.total : "…"}</span>
                   <span className="min-w-0 flex-1 text-xs leading-snug text-[var(--color-text-muted)]">
                     <b className="font-bold text-[var(--color-text-primary)]">{r.entry.group.label}</b>
                     {d20Note(r) && <span className="font-bold text-[var(--color-text-primary)]"> · {d20Note(r)}</span>}
@@ -322,7 +323,7 @@ export function DiceTray({ open, onClose, request }: { open: boolean; onClose: (
         </div>
 
         {allDone && choices.length > 0 && (
-          <div className="flex gap-2 px-4 pt-2">
+          <div className="flex shrink-0 gap-2 px-4 pb-1">
             {choices.map((c) => (
               <button
                 key={c.label}
@@ -331,7 +332,7 @@ export function DiceTray({ open, onClose, request }: { open: boolean; onClose: (
                   setChoices([]);
                   c.onPick();
                 }}
-                className={`btn flex-1 !py-2 text-sm ${c.primary ? "btn-primary" : "btn-secondary"}`}
+                className={`btn flex-1 !py-2.5 text-sm ${c.primary ? "btn-primary" : "btn-secondary"}`}
               >
                 {c.label}
               </button>
@@ -339,16 +340,17 @@ export function DiceTray({ open, onClose, request }: { open: boolean; onClose: (
           </div>
         )}
 
-        <div className="flex items-center gap-1.5 px-4 pt-2" role="group" aria-label={t("dice.d20Mode", "d20 rolls")}>
-          <span className="mr-1 text-[11px] font-bold text-[var(--color-text-muted)]">d20</span>
-          {(["normal", "adv", "dis"] as const).map((m) => (
-            <button key={m} type="button" aria-pressed={mode === m} onClick={() => setMode(m)} className={`btn flex-1 !px-2 !py-1.5 text-xs ${mode === m ? "btn-primary" : "btn-secondary"}`}>
-              {t(`dice.mode.${m}`)}
-            </button>
-          ))}
+        <div className="shrink-0 px-4 pt-2" role="group" aria-label={t("dice.d20Mode", "d20 rolls")}>
+          <div className="grid grid-cols-3 gap-1.5">
+            {(["normal", "adv", "dis"] as const).map((m) => (
+              <button key={m} type="button" aria-pressed={mode === m} onClick={() => setMode(m)} className={`btn !px-2 !py-2.5 text-xs ${mode === m ? "btn-primary" : "btn-secondary"}`}>
+                {t(`dice.mode.${m}`)}
+              </button>
+            ))}
+          </div>
         </div>
 
-        <div className="grid grid-cols-7 gap-1.5 px-4 pt-2">
+        <div className="grid shrink-0 grid-cols-7 gap-1.5 px-4 pt-2">
           {DIE_KINDS.map((k) => (
             <button
               key={k}
@@ -356,9 +358,9 @@ export function DiceTray({ open, onClose, request }: { open: boolean; onClose: (
               disabled={!ready}
               onClick={() => throwOne(k)}
               aria-label={t("dice.throw", { die: k }, "Throw a {die}")}
-              className="flex flex-col items-center gap-0.5 rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] py-2 text-xs font-bold text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] disabled:opacity-40"
+              className="flex flex-col items-center gap-0.5 rounded-xl border border-[var(--color-border)] bg-[var(--color-bg)] py-2.5 text-xs font-bold text-[var(--color-text-primary)] hover:border-[var(--color-border-active)] disabled:opacity-40"
             >
-              <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinejoin="round" aria-hidden="true">
+              <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinejoin="round" aria-hidden="true">
                 <path d={GLYPH[k]} />
               </svg>
               {k}
@@ -366,29 +368,29 @@ export function DiceTray({ open, onClose, request }: { open: boolean; onClose: (
           ))}
         </div>
 
-        <div className="flex gap-2 px-4 pb-3 pt-2">
-          <button type="button" onClick={clear} disabled={!entries.length} className="btn btn-secondary flex-1 disabled:opacity-40">
-            {t("dice.clear", "Clear")}
-          </button>
-          <button type="button" onClick={rollAgain} disabled={!entries.length} className="btn btn-primary flex-1 disabled:opacity-40">
-            {t("dice.again", "Roll again")}
-          </button>
-        </div>
-
         {history.length > 0 && (
-          <div className="max-h-[22vh] overflow-auto border-t border-[var(--color-border)] px-4 pb-3 pt-2">
-            <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">{t("dice.history", "Last rolls")}</p>
-            <ol>
+          <div className="shrink-0 px-4 pt-3">
+            <p className="text-[11px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">{t("dice.history", "Last rolls")}</p>
+            <ol className="mt-1 max-h-[96px] overflow-y-auto">
               {history.map((h) => (
                 <li key={h.key} className="flex gap-2 py-1 text-[13px] tabular-nums">
                   <span className="min-w-0 flex-1 truncate text-[var(--color-text-muted)]">{h.title}</span>
-                  <b className="font-extrabold text-[var(--color-text-primary)]">{h.text}</b>
+                  <b className="shrink-0 font-extrabold text-[var(--color-text-primary)]">{h.text}</b>
                 </li>
               ))}
             </ol>
           </div>
         )}
-      </aside>
-    </>
+
+        <div className="flex shrink-0 gap-2 px-4 pb-4 pt-3">
+          <button type="button" onClick={clear} disabled={!entries.length} className="btn btn-secondary flex-1 !py-3 disabled:opacity-40">
+            {t("dice.clear", "Clear")}
+          </button>
+          <button type="button" onClick={rollAgain} disabled={!entries.length} className="btn btn-primary flex-[2] !py-3 disabled:opacity-40">
+            {t("dice.again", "Roll again")}
+          </button>
+        </div>
+      </div>
+    </aside>
   );
 }
