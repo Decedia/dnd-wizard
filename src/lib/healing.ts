@@ -92,6 +92,11 @@ export function featureHealing(character: Character, featureName: string, amount
     const wis = Math.max(1, getModifier(character.wis ?? 10));
     return { dice: `1d${die}`, bonus: wis, selfOnly: true, notes: [], parts: [{ source: "@wis", value: wis }] };
   }
+  // Aasimar: a d4 per Proficiency Bonus (2024), or HP equal to the level (2014).
+  if (/^Healing Hands/.test(featureName)) {
+    if (character.ruleset !== "2024") return { dice: "", bonus: level, notes: [] };
+    return { dice: `${2 + Math.floor((level - 1) / 4)}d4`, bonus: 0, notes: [] };
+  }
   if (/^Lay on Hands/i.test(featureName) && amount) return { dice: "", bonus: amount, notes: [] };
   if (/^Hand of Healing/.test(featureName)) {
     const die = level >= 17 ? 10 : level >= 11 ? 8 : level >= 5 ? 6 : 4;

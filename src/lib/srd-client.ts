@@ -50,7 +50,10 @@ import feats2024En from "@/data/en/2024_feats.json";
 import backgrounds2024En from "@/data/en/2024_backgrounds.json";
 // 2024 Player's Handbook backgrounds and Origin feats beyond SRD 5.2; source "PHB2024".
 import origins2024Phb from "@/data/en/2024_phb_origins.json";
-const species2024Map: Record<string, { races: unknown[] }> = withIndonesian(species2024En);
+// 2024 Player's Handbook spells and species beyond SRD 5.2; source "PHB2024".
+import spells2024Phb from "@/data/en/2024_phb_spells.json";
+import species2024Phb from "@/data/en/2024_phb_species.json";
+const species2024Map: Record<string, { races: unknown[] }> = withIndonesian({ races: [...species2024En.races, ...species2024Phb.races] });
 // The Player's Handbook Fighting Style feats join every Fighting Style pick, tagged with
 // their book so a picker can leave them out when the character doesn't use it.
 const phbStyles2024 = origins2024Phb.feats
@@ -83,7 +86,7 @@ const classes2024With = {
 };
 const classes2024Map: Record<string, { classes: unknown[] }> = withIndonesian(classes2024With);
 const subclasses2024Map: Record<string, { subclasses: unknown[] }> = withIndonesian(subclasses2024En);
-const spells2024Map: Record<string, { spells: unknown[] }> = withIndonesian(spells2024En);
+const spells2024Map: Record<string, { spells: unknown[] }> = withIndonesian({ spells: [...spells2024En.spells, ...spells2024Phb.spells] });
 const feats2024Map: Record<string, { feats: unknown[] }> = withIndonesian({ feats: [...feats2024En.feats, ...origins2024Phb.feats] });
 const backgrounds2024Map: Record<string, { backgrounds: SRDBackground2024[] }> = withIndonesian({
   backgrounds: [...backgrounds2024En.backgrounds, ...origins2024Phb.backgrounds] as SRDBackground2024[],

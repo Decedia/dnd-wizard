@@ -66,7 +66,7 @@ describe("2024 subclasses", () => {
 describe("2024 species, backgrounds, feats", () => {
   test("species", () => {
     const got = Object.fromEntries(
-      getStaticRaces([], "2024").map((s: any) => [s.name, { size: s.size, speed: s.speed, darkvision: s.darkvision, traits: s.traits.map((t: any) => t.name), options: (s.choices?.[0]?.id.endsWith("-lineage") ? s.choices[0].options : []).map((o: any) => o.name) }]),
+      getStaticRaces(["PHB"], "2024").map((s: any) => [s.name, { size: s.size, speed: s.speed, darkvision: s.darkvision, traits: s.traits.map((t: any) => t.name), options: (s.choices?.[0]?.id.endsWith("-lineage") ? s.choices[0].options : []).map((o: any) => o.name) }]),
     );
     expect(got).toEqual(fixture.species);
     for (const s of getStaticRaces([], "2024")) expect(s.abilityScoreIncreases).toEqual({});
@@ -99,7 +99,7 @@ describe("2024 species, backgrounds, feats", () => {
 });
 
 describe("2024 spells", () => {
-  const spells = getStaticSpells([], "2024");
+  const spells = getStaticSpells(["PHB"], "2024");
   test("339 spells, matching the checked list", () => {
     const got = Object.fromEntries(spells.map((s: any) => [s.name, [s.level, s.school, s.classes, s.concentration, s.ritual, s.castingTime]]));
     expect(got).toEqual(fixture.spells);

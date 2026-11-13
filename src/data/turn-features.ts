@@ -566,6 +566,9 @@ export const FEATURE_RULES_2024: FeatureRule[] = [
   { name: /^Stonecunning/, slot: "bonus", uses: { max: prof, per: "long" } },
   { name: /^Adrenaline Rush/, slot: "bonus", uses: { max: prof, per: "short" } },
   { name: /^Relentless Endurance/, slot: "free", when: "atZeroHp", uses: long1 },
+  // Aasimar (Player's Handbook)
+  { name: /^Healing Hands/, slot: "action", uses: long1 },
+  { name: /^Celestial Revelation/, slot: "bonus", uses: long1, only: from(3) },
 
   // ----- Feats -----
   { name: /^Savage Attacker/, slot: "free", when: "onHit", oncePerTurn: true, condition: "rerollDamage" },
