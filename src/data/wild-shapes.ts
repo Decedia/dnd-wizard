@@ -45,6 +45,21 @@ export interface Beast {
   proneBonus?: string;
   /** Circle of the Moon at level 10: an elemental, which takes two uses of Wild Shape. */
   elemental?: boolean;
+  /** Rampage: after it drops a creature with a melee attack on its turn, a bonus action move (half speed) and this attack. */
+  rampage?: string;
+  /** An action every creature in its space saves against (Whirlwind, Whelm). Used again when a d6 at the start of its turn rolls `recharge` or more. */
+  special?: BeastSpecial;
+}
+
+export interface BeastSpecial {
+  name: string;
+  save: "str";
+  dc: number;
+  /** "3d8 + 2 bludgeoning". */
+  damage: string;
+  /** What a failed save does, in one line. Locale key `wild.special.<beast>`. */
+  note: string;
+  recharge: number;
 }
 
 /** Wild Shape uses a form takes. */
@@ -64,7 +79,7 @@ export const BEASTS: Beast[] = [
   { name: "Brown Bear", cr: 1, ac: 11, hp: 34, speed: 40, climb: 30, multiattack: 2, attacks: [{ name: "Bite", toHit: 6, damage: "1d8 + 4 piercing" }, { name: "Claws", toHit: 6, damage: "2d6 + 4 slashing" }], why: "Lots of HP and two strong attacks. A safe first pick." },
   { name: "Dire Wolf", cr: 1, ac: 14, hp: 37, speed: 50, multiattack: 1, attacks: [{ name: "Bite", toHit: 5, damage: "2d6 + 3 piercing", note: "DC 13 Strength save or the target falls prone.", prone: { dc: 13 } }], why: "Good AC, fast, knocks enemies down. Advantage when a friend is next to the target." },
   { name: "Giant Spider", cr: 1, ac: 14, hp: 26, speed: 30, climb: 30, multiattack: 1, attacks: [{ name: "Bite", toHit: 5, damage: "1d8 + 3 piercing", note: "DC 11 Constitution save or 2d8 poison damage (half on a success)." }], why: "Walks on walls and can web enemies in place." },
-  { name: "Giant Hyena", cr: 1, ac: 12, hp: 45, speed: 50, multiattack: 1, attacks: [{ name: "Bite", toHit: 5, damage: "2d6 + 3 piercing" }], why: "The most HP at this level. When it drops a creature it can move and bite again." },
+  { name: "Giant Hyena", cr: 1, ac: 12, hp: 45, speed: 50, multiattack: 1, attacks: [{ name: "Bite", toHit: 5, damage: "2d6 + 3 piercing" }], rampage: "Bite", why: "The most HP at this level. When it drops a creature it can move and bite again." },
   { name: "Tiger", cr: 1, ac: 12, hp: 37, speed: 40, multiattack: 1, attacks: [{ name: "Bite", toHit: 5, damage: "1d10 + 3 piercing" }, { name: "Claw", toHit: 5, damage: "1d8 + 3 slashing", note: "After a 20 ft run straight at it: DC 13 Strength save or prone, then a bonus action bite.", prone: { dc: 13, run: true } }], run: "pounce", proneBonus: "Bite", why: "Pounce after a 20 ft run: knock the target prone, then bite." },
   { name: "Giant Eagle", cr: 1, ac: 13, hp: 26, speed: 10, fly: 80, multiattack: 2, attacks: [{ name: "Beak", toHit: 5, damage: "1d6 + 3 piercing" }, { name: "Talons", toHit: 5, damage: "2d6 + 3 slashing" }], why: "Flies fast. Great for scouting or carrying a friend." },
   { name: "Giant Toad", cr: 1, ac: 11, hp: 39, speed: 20, swim: 40, multiattack: 1, attacks: [{ name: "Bite", toHit: 4, damage: "1d10 + 2 piercing plus 1d10 poison", note: "The target is grappled (escape DC 13) and restrained.", grapple: { escape: 13, restrained: true, one: true } }, { name: "Swallow", toHit: 4, damage: "1d10 + 2 piercing plus 1d10 poison", note: "A bite at the Medium or smaller target you hold. On a hit you swallow it: the grab ends, it is blinded and restrained inside you and takes 3d6 acid at the start of each of your turns.", needsHold: "Bite" }], why: "Swallows small enemies whole." },
@@ -85,10 +100,10 @@ export const BEASTS: Beast[] = [
 
 /** Elemental Wild Shape (Circle of the Moon, level 10), from the SRD 5.1 elementals. */
 export const ELEMENTALS: Beast[] = [
-  { name: "Air Elemental", cr: 5, ac: 15, hp: 90, speed: 0, fly: 90, multiattack: 2, elemental: true, attacks: [{ name: "Slam", toHit: 8, damage: "2d8 + 5 bludgeoning" }], why: "Flies fast and hovers. Whirlwind (recharge 4-6) flings enemies 20 ft." },
+  { name: "Air Elemental", cr: 5, ac: 15, hp: 90, speed: 0, fly: 90, multiattack: 2, elemental: true, attacks: [{ name: "Slam", toHit: 8, damage: "2d8 + 5 bludgeoning" }], special: { name: "Whirlwind", save: "str", dc: 13, damage: "3d8 + 2 bludgeoning", note: "Each creature in your space: DC 13 Strength save. Fail: full damage, flung up to 20 ft and knocked prone. Success: half damage only.", recharge: 4 }, why: "Flies fast and hovers. Whirlwind (recharge 4-6) flings enemies 20 ft." },
   { name: "Earth Elemental", cr: 5, ac: 17, hp: 126, speed: 30, burrow: 30, multiattack: 2, elemental: true, attacks: [{ name: "Slam", toHit: 8, damage: "2d8 + 5 bludgeoning" }], why: "The toughest: AC 17, lots of HP, and it moves through earth and stone." },
   { name: "Fire Elemental", cr: 5, ac: 13, hp: 102, speed: 50, multiattack: 2, elemental: true, attacks: [{ name: "Touch", toHit: 6, damage: "2d6 + 3 fire", note: "A flammable target catches fire: 1d10 fire at the start of each of its turns until it puts it out." }], why: "Fast, sets enemies on fire, and anyone who touches it gets burned." },
-  { name: "Water Elemental", cr: 5, ac: 14, hp: 114, speed: 30, swim: 90, multiattack: 2, elemental: true, attacks: [{ name: "Slam", toHit: 7, damage: "2d8 + 4 bludgeoning" }], why: "Whelm (recharge 4-6) grabs and drowns enemies around it." },
+  { name: "Water Elemental", cr: 5, ac: 14, hp: 114, speed: 30, swim: 90, multiattack: 2, elemental: true, attacks: [{ name: "Slam", toHit: 7, damage: "2d8 + 4 bludgeoning" }], special: { name: "Whelm", save: "str", dc: 15, damage: "2d8 + 4 bludgeoning", note: "Each creature in your space: DC 15 Strength save. Fail: damage, and a Large or smaller target is grappled (escape DC 14), restrained and can't breathe; it takes the damage again at the start of each of your turns. Success: pushed out of your space, no damage.", recharge: 4 }, why: "Whelm (recharge 4-6) grabs and drowns enemies around it." },
 ];
 
 export const isMoon = (c: Pick<Character, "subclass" | "features">) =>
