@@ -564,6 +564,7 @@ export const translations = {
   "home.importJson": "Import JSON",
   "home.backupAll": "Backup All Characters",
   "home.creditsIcons": "Icons by",
+  "support.title": "SUPPORT",
   "support.feedback": "Send feedback",
   "support.coffee": "Buy me a coffee",
   "support.coffeeSoon": "Thank you! The tip link is coming soon.",

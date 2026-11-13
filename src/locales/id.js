@@ -1254,6 +1254,7 @@ export const translations = {
   "home.importJson": "Impor JSON",
   "home.backupAll": "Cadangkan Semua Karakter",
   "home.creditsIcons": "Ikon oleh",
+  "support.title": "DUKUNGAN",
   "support.feedback": "Kirim masukan",
   "support.coffee": "Traktir kopi",
   "support.coffeeSoon": "Terima kasih! Link traktir segera hadir.",

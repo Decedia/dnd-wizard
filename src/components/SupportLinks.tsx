@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { GiCoffeeCup, GiQuillInk } from "react-icons/gi";
+import { ChatCircleText, Coffee } from "@phosphor-icons/react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 
@@ -23,29 +23,34 @@ export function feedbackHref(page: string, language: string): string {
 export function SupportLinks() {
   const { t, language } = useLanguage();
   const [soon, setSoon] = useState(false);
+  // Same look as the Data management buttons above it.
+  const pill = "flex items-center justify-center gap-2 rounded-full border border-border-muted bg-paper py-2.5 text-sm text-ink transition-colors hover:bg-paper-muted";
   return (
     <>
-      <div className="mt-6 flex flex-wrap justify-center gap-2">
-        <a
-          href={feedbackHref("", language)}
-          // The page address is added on tap, so the server-rendered link matches the first client render.
-          onClick={(e) => { e.currentTarget.href = feedbackHref(window.location.href, language); }}
-          className="btn btn-secondary text-xs"
-        >
-          <GiQuillInk className="h-4 w-4" aria-hidden="true" />
-          {t("support.feedback", "Send feedback")}
-        </a>
-        {COFFEE_URL ? (
-          <a href={COFFEE_URL} target="_blank" rel="noopener noreferrer" className="btn btn-secondary text-xs">
-            <GiCoffeeCup className="h-4 w-4" aria-hidden="true" />
-            {t("support.coffee", "Buy me a coffee")}
+      <div className="mt-8">
+        <h3 className="mb-3 text-xs font-bold tracking-widest text-ink-muted">{t("support.title", "SUPPORT")}</h3>
+        <div className="grid grid-cols-2 gap-3">
+          <a
+            href={feedbackHref("", language)}
+            // The page address is added on tap, so the server-rendered link matches the first client render.
+            onClick={(e) => { e.currentTarget.href = feedbackHref(window.location.href, language); }}
+            className={pill}
+          >
+            <ChatCircleText size={16} />
+            {t("support.feedback", "Send feedback")}
           </a>
-        ) : (
-          <button type="button" onClick={() => setSoon(true)} className="btn btn-secondary text-xs">
-            <GiCoffeeCup className="h-4 w-4" aria-hidden="true" />
-            {t("support.coffee", "Buy me a coffee")}
-          </button>
-        )}
+          {COFFEE_URL ? (
+            <a href={COFFEE_URL} target="_blank" rel="noopener noreferrer" className={pill}>
+              <Coffee size={16} />
+              {t("support.coffee", "Buy me a coffee")}
+            </a>
+          ) : (
+            <button type="button" onClick={() => setSoon(true)} className={pill}>
+              <Coffee size={16} />
+              {t("support.coffee", "Buy me a coffee")}
+            </button>
+          )}
+        </div>
       </div>
       <BottomSheet isOpen={soon} onClose={() => setSoon(false)} title={t("support.coffee", "Buy me a coffee")}>
         <div className="space-y-4 p-4">
