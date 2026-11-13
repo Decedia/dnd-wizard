@@ -15,7 +15,8 @@ import { computeDerivedStats, createEmptyCharacter, getHpBonusPerLevel, type Cha
 import { spellChoicePool } from "@/lib/spell-pool";
 import { upgradeSave } from "@/lib/save-upgrade";
 import { defaultSources, PHB_2024 } from "@/lib/rulesets";
-import { getFeatOptionGroups } from "@/data/feat-options";
+import { getFeatOptionGroups, MASTERY_WEAPONS_2024 } from "@/data/feat-options";
+import masteryData from "@/data/en/2024_weapon_mastery.json";
 import { describeFeatRequirements, FEAT_REQUIREMENTS_2024 } from "@/lib/feat-requirements";
 import { equipRow, rowFromCatalog, type InventoryRow } from "@/lib/inventory";
 import { findCatalogItem } from "@/data/item-catalog";
@@ -256,6 +257,7 @@ describe("2024 Player's Handbook General feats, Fighting Styles and Epic Boons",
     const c = base({ class: "Wizard", featureSelections: { "asi-feat-4": ["Weapon Master"], "asi-feat-4-options": ["ability=dex", "mastery=Rapier"] } });
     expect(weaponMastery(c, { name: "Rapier" })).toBe("Vex");
     expect(weaponMastery(c, { name: "Longsword" })).toBeUndefined();
+    expect(MASTERY_WEAPONS_2024).toEqual(Object.keys(masteryData.weapons));
     const brawler = base({ str: 14, featureSelections: { "class-feature-1-Fighting Style": ["Unarmed Fighting"] } });
     const unarmed = buildTurnMenu(brawler, []).options.find((o) => o.key === "attack:unarmed")!;
     expect(unarmed.damageRoll?.dice).toBe("1d8");

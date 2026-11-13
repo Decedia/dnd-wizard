@@ -6,7 +6,6 @@
  * mechanical terms and stay in English. Group labels are localized through
  * `labelId` so the surrounding UI can render them in the active language.
  */
-import mastery from "@/data/en/2024_weapon_mastery.json";
 
 export interface FeatOptionChoice {
   value: string;
@@ -103,6 +102,15 @@ const TOOLS: FeatOptionChoice[] = [
 ];
 
 const choices = (names: string[]): FeatOptionChoice[] => names.map((n) => ({ value: n, label: n }));
+
+/**
+ * Weapon kinds with a 2024 mastery property (Weapon Master). Kept here, not
+ * imported, because a Node script loads this file; a test keeps it equal to
+ * src/data/en/2024_weapon_mastery.json.
+ */
+export const MASTERY_WEAPONS_2024 = [
+  "Battleaxe", "Blowgun", "Club", "Dagger", "Dart", "Flail", "Glaive", "Greataxe", "Greatclub", "Greatsword", "Halberd", "Hand Crossbow", "Handaxe", "Heavy Crossbow", "Javelin", "Lance", "Light Crossbow", "Light Hammer", "Longbow", "Longsword", "Mace", "Maul", "Morningstar", "Musket", "Pike", "Pistol", "Quarterstaff", "Rapier", "Scimitar", "Shortbow", "Shortsword", "Sickle", "Sling", "Spear", "Trident", "Warhammer", "War Pick", "Whip",
+];
 
 /** The 2024 Artisan's Tools (Crafter, the Artisan background). */
 export const ARTISAN_TOOLS_2024 = [
@@ -519,7 +527,7 @@ const FEAT_OPTIONS_2024: Record<string, FeatOptionGroup[]> = {
   // Ritual spells from any class list, as many as the Proficiency Bonus (2 at level 4).
   "Ritual Caster": repeated([abilityGroup("int", "wis", "cha"), spellGroup("ritual_spell", "feat.opt.ritualSpell", "1st-Level Ritual Spell", { level: 1, ritualOnly: true }, 2)]),
   "Skill Expert": [abilityGroup(...ALL_ABILITIES), optionGroup("skill", "feat.opt.skill", "Skill", SKILLS), optionGroup("expertise", "feat.opt.expertise", "Expertise", SKILLS)],
-  "Weapon Master": [abilityGroup("str", "dex"), optionGroup("mastery", "feat.opt.mastery", "Weapon Mastery", choices(Object.keys(mastery.weapons)))],
+  "Weapon Master": [abilityGroup("str", "dex"), optionGroup("mastery", "feat.opt.mastery", "Weapon Mastery", choices(MASTERY_WEAPONS_2024))],
   "Boon of Energy Resistance": repeated([abilityGroup(...ALL_ABILITIES), optionGroup("resistance", "feat.opt.resistance", "Resistance", choices(["Acid", "Cold", "Fire", "Lightning", "Necrotic", "Poison", "Psychic", "Radiant", "Thunder"]), 2)]),
   // Every skill comes with the boon; the Expertise is a pick.
   "Boon of Skill": [abilityGroup(...ALL_ABILITIES), optionGroup("expertise", "feat.opt.expertise", "Expertise", SKILLS)],
