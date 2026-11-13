@@ -12,7 +12,7 @@ import { getFreeCastSpells, getGrantedSpellNames } from "@/lib/granted-spells";
 import { advanceTurn, parseDurationToTurns } from "@/lib/spellEffects";
 import { ruleFor, ruleKey, subOptionGroupFor, subOptionsFor, usesMax, type FeatureRule, type FeatureWhen, type PoolField, type SubOption } from "@/data/turn-features";
 import { getFeaturePicks } from "@/lib/feature-groups";
-import { beastByName, type Beast } from "@/data/wild-shapes";
+import { beastByName, type Beast, type BeastAttack } from "@/data/wild-shapes";
 import { spellDamageBonuses, type SpellDamageBonus } from "@/lib/spell-damage-bonus";
 import { characterSpellDamage, dealsDirectDamage, type DamagePart } from "@/lib/spell-dice";
 import { featureHealing, healingBonusLines, spellHealing, type Healing } from "@/lib/healing";
@@ -22,7 +22,7 @@ import { concentrationTimer, expiredTimerPatch, featureRounds, featureTimerId, R
 export type TurnSlot = "action" | "bonus" | "reaction" | "free";
 export type TurnGroup = "attack" | "spell" | "feature" | "basic";
 /** Why an option cannot be used; the panel turns it into a sentence. */
-export type TurnBlock = "noSlot" | "empty" | "actionFirst" | "attackFirst" | "raging" | "notRaging" | "shaped" | "full" | "slotsFull" | "usedThisTurn" | "wildShapeLeft";
+export type TurnBlock = "noSlot" | "empty" | "actionFirst" | "attackFirst" | "raging" | "notRaging" | "shaped" | "full" | "slotsFull" | "usedThisTurn" | "wildShapeLeft" | "notHolding";
 
 export interface TurnOption {
   key: string;
@@ -620,20 +620,91 @@ function beastDamageRoll(damage: string): TurnOption["damageRoll"] {
   return { dice: m[1], parts: bonus ? [{ source: "@beast", value: bonus }] : [], type: m[4].trim() };
 }
 
-function beastAttackOptions(beast: Beast): TurnOption[] {
-  return beast.attacks.map((a, i) => ({
-    key: `beast:${i}`,
-    slot: "action" as const,
+/** A beast attack as a turn option. The condition line tells the player who it may target. */
+function beastAttackOption(beast: Beast, a: BeastAttack, i: number, shape: NonNullable<Character["wildShape"]>, slot: "action" | "bonus" = "action"): TurnOption {
+  const holding = shape.holding || [];
+  const tags = ["melee"];
+  if (a.vsProne) tags.push("vsProne");
+  const condition = a.vsProne
+    ? shape.prone ? "proneNow" : "proneOnly"
+    : a.grapple?.one && holding.includes(a.name) ? "heldOnly"
+    : a.notHeld && holding.length ? "notHeld"
+    : a.prone?.run && shape.run ? "runHit"
+    : undefined;
+  return {
+    key: slot === "bonus" ? `beast:bonus:${i}` : `beast:${i}`,
+    slot,
     group: "attack" as const,
     name: a.name,
     summary: a.note || "",
+    summaryKey: a.note ? `wild.note.${beast.name}.${i}` : undefined,
     toHit: a.toHit,
     toHitParts: [{ source: "@beast", value: a.toHit }],
     damage: `${a.damage} damage`,
     damageRoll: beastDamageRoll(a.damage),
-    tags: ["melee"],
+    tags,
+    ...(condition ? { condition } : {}),
+    ...(a.needsHold && !holding.includes(a.needsHold) ? { blocked: "notHolding" as const } : {}),
+    ...(slot === "bonus" ? { nameKey: `wild.run.bonus.${beast.run}`, nameValues: { attack: a.name }, oncePerTurn: true } : {}),
     spend: {},
-  }));
+  };
+}
+
+function beastAttackOptions(beast: Beast, shape: NonNullable<Character["wildShape"]>, usedThisTurn: string[]): TurnOption[] {
+  const options = beast.attacks.map((a, i) => beastAttackOption(beast, a, i, shape));
+  // Pounce, Trampling Charge: the run knocked the target prone, so one more attack as a bonus action.
+  const bonusAt = beast.proneBonus ? beast.attacks.findIndex((a) => a.name === beast.proneBonus) : -1;
+  if (bonusAt >= 0 && shape.run && shape.prone) {
+    const bonus = beastAttackOption(beast, beast.attacks[bonusAt], bonusAt, shape, "bonus");
+    if (usedThisTurn.includes("beast:bonus")) bonus.blocked = "usedThisTurn";
+    else bonus.spend = { featuresUsedThisTurn: [...usedThisTurn, "beast:bonus"] };
+    options.push(bonus);
+  }
+  return options;
+}
+
+/** The beast attack a swing was made with, by the swing's option key ("beast:1"). */
+export function beastAttackOf(character: Pick<Character, "wildShape">, key: string): BeastAttack | undefined {
+  const m = /^beast:(?:bonus:)?(\d+)$/.exec(key);
+  return m ? currentBeast(character)?.attacks[Number(m[1])] : undefined;
+}
+
+/** The prone save a hit with this attack forces now (a run trick only after the run). */
+export function beastProneSave(character: Pick<Character, "wildShape">, key: string): number | null {
+  const a = beastAttackOf(character, key);
+  if (!a?.prone || (a.prone.run && !character.wildShape?.run)) return null;
+  return a.prone.dc;
+}
+
+/** "I ran 20 ft straight at it" for this turn. */
+export function beastRunPatch(character: Pick<Character, "wildShape">, run: boolean): Partial<Character> {
+  return character.wildShape ? { wildShape: { ...character.wildShape, run, ...(run ? {} : { prone: false }) } } : {};
+}
+
+/** The answer to the prone save after swing `index`: the target fell prone or stayed up. */
+export function beastPronePatch(character: Character, index: number, fell: boolean): Partial<Character> {
+  if (!character.wildShape) return {};
+  return {
+    swings: (character.swings || []).map((s, i) => (i === index ? { ...s, trick: fell ? ("prone" as const) : ("up" as const) } : s)),
+    wildShape: { ...character.wildShape, prone: fell || !!character.wildShape.prone },
+  };
+}
+
+/** The held target got free or was let go (`attack` "swallowed": it got out of the beast). */
+export function letGoPatch(character: Pick<Character, "wildShape">, attack: string): Partial<Character> {
+  const shape = character.wildShape;
+  if (!shape) return {};
+  return { wildShape: attack === "swallowed" ? { ...shape, swallowed: false } : { ...shape, holding: (shape.holding || []).filter((h) => h !== attack) } };
+}
+
+/** What a hit with a beast attack does by itself: a grab, or a swallow that ends the bite's grab. */
+function beastHitShape(character: Character, key: string): Character["wildShape"] | undefined {
+  const a = beastAttackOf(character, key);
+  const shape = character.wildShape;
+  if (!a || !shape) return undefined;
+  if (a.needsHold) return { ...shape, swallowed: true, holding: (shape.holding || []).filter((h) => h !== a.needsHold) };
+  if (a.grapple) return { ...shape, holding: [...(shape.holding || []).filter((h) => h !== a.name), a.name] };
+  return undefined;
 }
 
 export function buildTurnMenu(character: Character, srdSpells: SrdSpell[]): TurnMenu {
@@ -652,7 +723,7 @@ export function buildTurnMenu(character: Character, srdSpells: SrdSpell[]): Turn
   const beastSpells = (character.features || []).some((f) => /^Beast Spells/.test(f.name || ""));
   return {
     options: [
-      ...(beast ? beastAttackOptions(beast) : attackOptions(character)),
+      ...(beast && character.wildShape ? beastAttackOptions(beast, character.wildShape, character.featuresUsedThisTurn || []) : attackOptions(character)),
       ...(beast && !beastSpells ? [] : spellOptions(character, srdSpells)),
       ...featureOptions(character),
       ...basics,
@@ -695,12 +766,14 @@ export function endTurnPatch(character: Character, srdSpells: SrdSpell[]): Parti
   }
   const before = character.activeBuffs || [];
   const after = advanceTurn(before);
-  return { turnActive: false, actionUsed: false, bonusActionUsed: false, moveUsed: false, objectInteractionUsed: false, swings: [], attackedThisTurn: false, spellsUsedThisTurn: kept, featuresUsedThisTurn: [], activeBuffs: after, ...expiredTimerPatch(character, before, after) };
+  return { turnActive: false, actionUsed: false, bonusActionUsed: false, moveUsed: false, objectInteractionUsed: false, swings: [], attackedThisTurn: false, spellsUsedThisTurn: kept, featuresUsedThisTurn: [], activeBuffs: after, ...expiredTimerPatch(character, before, after), ...(character.wildShape ? { wildShape: { ...character.wildShape, run: false, prone: false } } : {}) };
 }
 
 /** The fight is over: the round counter starts again, rage and the quick taps end. */
-export function endEncounterPatch(character?: Pick<Character, "activeStates" | "activeBuffs">): Partial<Character> {
+export function endEncounterPatch(character?: Pick<Character, "activeStates" | "activeBuffs" | "wildShape">): Partial<Character> {
   const patch: Partial<Character> = { turnActive: false, turnRound: 0, actionUsed: false, bonusActionUsed: false, reactionUsed: false, moveUsed: false, objectInteractionUsed: false, turnSituation: undefined, swings: [], attackedThisTurn: false };
+  // The form lasts beyond the fight; what it held or swallowed does not.
+  if (character?.wildShape) patch.wildShape = { form: character.wildShape.form, hp: character.wildShape.hp };
   if (character && isRaging(character)) patch.activeStates = (character.activeStates || []).filter((s) => s !== "raging");
   if (character?.activeBuffs?.some((b) => b.spellId === RAGE_TIMER)) patch.activeBuffs = character.activeBuffs.filter((b) => b.spellId !== RAGE_TIMER);
   return patch;
@@ -849,8 +922,11 @@ export function spellHitExtras(character: Pick<Character, "activeBuffs">): Swing
  * free to use right now, and the spells that ride on every hit. `marks` are the
  * once-per-turn features this uses up.
  */
-export function autoHitExtras(character: Character): { extras: SwingExtra[]; marks: string[] } {
+export function autoHitExtras(character: Character, swingKey?: string): { extras: SwingExtra[]; marks: string[] } {
   const extras: SwingExtra[] = [];
+  // A beast's Charge: extra dice on a hit after the 20 ft run.
+  const beastAttack = swingKey ? beastAttackOf(character, swingKey) : undefined;
+  if (beastAttack?.runDamage && character.wildShape?.run) extras.push({ name: "Charge", dice: beastAttack.runDamage, auto: true });
   const marks: string[] = [];
   const used = character.featuresUsedThisTurn || [];
   for (const o of featureOptions(character)) {
@@ -871,9 +947,13 @@ export function autoHitExtras(character: Character): { extras: SwingExtra[]; mar
 export function hitPatch(character: Character, index: number, result: SwingResult): Partial<Character> {
   const base = swingResultPatch(character, index, result);
   if (result !== "hit" && result !== "crit") return base;
-  const { extras, marks } = autoHitExtras(character);
+  const key = (character.swings || [])[index]?.key || "";
+  const shape = beastHitShape(character, key);
+  if (shape) base.wildShape = shape;
+  const { extras, marks } = autoHitExtras(character, key);
   if (extras.length === 0) return base;
   return {
+    ...base,
     swings: (base.swings || []).map((s, i) => (i === index ? { ...s, extras: [...(s.extras || []), ...extras.filter((x) => !(s.extras || []).some((e) => e.name === x.name))] } : s)),
     ...(marks.length ? { featuresUsedThisTurn: [...(character.featuresUsedThisTurn || []), ...marks] } : {}),
   };

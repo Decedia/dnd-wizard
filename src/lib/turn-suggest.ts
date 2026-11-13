@@ -6,6 +6,7 @@
 import { concentrationTimer } from "@/lib/timers";
 import type { Character } from "@/lib/storage";
 import type { TurnMenu, TurnOption } from "@/lib/turn";
+import { isMoon } from "@/data/wild-shapes";
 
 export type Situation = NonNullable<Character["turnSituation"]>;
 
@@ -36,7 +37,9 @@ export function concentratingOn(character: Character, srdSpells: SrdSpell[]): st
   return null;
 }
 
-function score(o: TurnOption, c: Character, sit: Situation, ctx: { conc: string | null; attacks: number; round: number }): Pick | null {
+type Ctx = { conc: string | null; attacks: number; round: number; cantrip: boolean };
+
+function score(o: TurnOption, c: Character, sit: Situation, ctx: Ctx): Pick | null {
   const tags = new Set(o.tags || []);
   const near = !!sit.near;
   const p = (score: number, why: string, values?: Pick["values"]): Pick => ({ option: o, score, why, values });
@@ -44,6 +47,8 @@ function score(o: TurnOption, c: Character, sit: Situation, ctx: { conc: string 
 
   if (o.group === "attack") {
     if (tags.has("offhand")) pick = near ? p(70, "offhand") : null;
+    else if (o.key.startsWith("beast:bonus:")) pick = p(95, "proneBonus");
+    else if (tags.has("vsProne")) pick = c.wildShape?.prone ? p(96, "stompProne") : p(10, "needsProne");
     else if (tags.has("weak")) pick = p(5, "unarmed");
     else if (tags.has("ranged")) pick = near ? p(35, "rangedNear") : p(85, "rangedFar");
     else pick = near ? (ctx.attacks > 1 ? p(90, "meleeExtra", { count: ctx.attacks }) : p(90, "meleeNear")) : p(25, "meleeFar");
@@ -84,15 +89,47 @@ function score(o: TurnOption, c: Character, sit: Situation, ctx: { conc: string 
     else if (id === "dash") pick = near ? null : p(40, "dash");
     else if (id === "opportunityAttack") pick = near ? p(60, "opportunity") : p(20, "opportunityFar");
   }
+  if (pick) pick = tuneForClass(pick, o, c, sit, ctx);
   return pick && pick.score > 0 ? pick : null;
+}
+
+const has = (c: Character, name: RegExp) => (c.features || []).some((f) => name.test(f.name || ""));
+/** Built to fight with a weapon: Bladesinger, Hexblade, Pact of the Blade. */
+const weaponCaster = (c: Character) => has(c, /^(Bladesong|Pact of the Blade|Hex Warrior|Thirsting Blade)/) || JSON.stringify(c.featureSelections || {}).includes("Pact of the Blade");
+
+/**
+ * Class habits on top of the general rules of thumb, for what the general
+ * rules get wrong for one class. Each changes the score and the reason.
+ */
+function tuneForClass(pick: Pick, o: TurnOption, c: Character, sit: Situation, ctx: Ctx): Pick {
+  const near = !!sit.near;
+  const p = (score: number, why: string, values?: Pick["values"]): Pick => ({ option: o, score, why, values });
+  const cls = c.class || "";
+  // Wizards, sorcerers and warlocks hit harder with a cantrip than with a dagger, unless they are built for weapons.
+  if (/^(Wizard|Sorcerer|Warlock)$/.test(cls) && o.group === "attack" && !o.tags?.includes("weak") && !c.wildShape && ctx.cantrip && !weaponCaster(c)) {
+    return p(Math.min(pick.score, 40), "casterWeapon");
+  }
+  if (cls === "Warlock" && o.name === "Eldritch Blast" && !near) return p(88, "eldritchBlast");
+  // Rogues hit, then step away with Cunning Action so the enemy cannot hit back.
+  if (cls === "Rogue" && /^Cunning Action/.test(o.name) && near && c.attackedThisTurn) return p(82, "hitAndRun");
+  if (cls === "Druid" && /^Wild Shape/.test(o.name)) {
+    if (isMoon(c)) return near ? p(90, "wildShapeMoon") : p(70, "wildShapeMoon");
+    // Other 2014 circles are weaker as a beast than with their spells.
+    if (c.ruleset !== "2024") return p(30, "wildShapeSupport");
+  }
+  if (cls === "Bard" && /^Bardic Inspiration/.test(o.name) && ctx.round <= 2) return p(60, "inspire");
+  if (cls === "Monk" && /^Martial Arts/.test(o.name) && near && c.attackedThisTurn) return p(82, "martialArts");
+  return pick;
 }
 
 /**
  * The best picks for each slot, highest first. Blocked options are left out;
  * free options (no action needed) are not ranked, they ride on a hit.
  */
-export function suggestPicks(character: Character, menu: TurnMenu, srdSpells: SrdSpell[], sit: Situation): Record<"action" | "bonus" | "reaction", Pick[]> {
-  const ctx = { conc: concentratingOn(character, srdSpells), attacks: menu.attacksPerAction, round: character.turnRound || 1 };
+export function suggestPicks(character: Character, menu: TurnMenu, srdSpells: SrdSpell[], quickTaps: Situation): Record<"action" | "bonus" | "reaction", Pick[]> {
+  const sit = situationOf(character, quickTaps);
+  const cantrip = menu.options.some((o) => o.group === "spell" && o.spellLevel === 0 && !o.blocked && o.tags?.includes("damage"));
+  const ctx: Ctx = { conc: concentratingOn(character, srdSpells), attacks: menu.attacksPerAction, round: character.turnRound || 1, cantrip };
   const out = { action: [] as Pick[], bonus: [] as Pick[], reaction: [] as Pick[] };
   for (const o of menu.options) {
     if (o.slot === "free" || o.blocked) continue;
@@ -103,8 +140,15 @@ export function suggestPicks(character: Character, menu: TurnMenu, srdSpells: Sr
   return out;
 }
 
+/** The quick taps plus what the sheet already knows: a beast that holds a target, or just knocked one down, is next to it. */
+function situationOf(character: Character, quickTaps: Situation): Situation {
+  const shape = character.wildShape;
+  return { ...quickTaps, near: !!quickTaps.near || !!shape?.holding?.length || !!shape?.prone };
+}
+
 /** One line on where to move, from the quick taps. Locale key under `turn.move.*`. */
-export function moveTip(menu: TurnMenu, character: Character, sit: Situation): string {
+export function moveTip(menu: TurnMenu, character: Character, quickTaps: Situation): string {
+  const sit = situationOf(character, quickTaps);
   const ranged = menu.options.some((o) => !o.blocked && o.slot === "action" && (o.tags?.includes("ranged") || (o.group === "spell" && o.tags?.includes("damage") && !o.tags.includes("touch"))));
   if (sit.near) return hurt(character) ? "turn.move.nearHurt" : "turn.move.near";
   return ranged ? "turn.move.farRanged" : "turn.move.farMelee";

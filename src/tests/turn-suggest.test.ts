@@ -99,3 +99,34 @@ describe("suggestions", () => {
     for (const k of ["near", "nearHurt", "farMelee", "farRanged"]) expect(!!en[`turn.move.${k}`] && !!id[`turn.move.${k}`]).toBe(true);
   });
 });
+
+describe("class habits in Suggest mode", () => {
+  const dagger = { inventory: [{ id: "dg", itemId: "dagger", name: "Dagger", quantity: 1, equipped: true, hand: "main", source: "srd", itemType: "weapon", category: "melee", damageDice: "1d4", damageType: "piercing", properties: ["Finesse", "Light", "Thrown"] }] as any, attacks: [{ id: "dg", name: "Dagger", source: "weapon" }] as any };
+  test("a wizard next to an enemy does not stab with a dagger while a cantrip is ready", () => {
+    const c = wizard({ ...dagger, cantrips: [{ id: "c1", name: "Shocking Grasp" }] as Character["cantrips"] });
+    const pick = suggestPicks(c, buildTurnMenu(c, spells), spells, { near: true }).action;
+    expect(pick[0].option.group).not.toBe("attack");
+    expect(pick.find((p) => p.option.group === "attack")!.why).toBe("casterWeapon");
+  });
+
+  test("a warlock at range leads with Eldritch Blast", () => {
+    const c = make({ class: "Warlock", level: 5, cha: 16, cantrips: [{ id: "eb", name: "Eldritch Blast" }, { id: "fb", name: "Fire Bolt" }] as Character["cantrips"] });
+    const pick = top(c, {}, "action");
+    expect([pick.option.name, pick.why]).toEqual(["Eldritch Blast", "eldritchBlast"]);
+  });
+
+  test("a rogue who attacked steps away with Cunning Action", () => {
+    const c = make({ class: "Rogue", level: 3, dex: 16, ...dagger }, ["Cunning Action", "Sneak Attack"]);
+    expect(top(c, { near: true }, "bonus")?.why).not.toBe("hitAndRun");
+    const after = { ...c, attackedThisTurn: true, actionUsed: true };
+    expect(top(after, { near: true }, "bonus").why).toBe("hitAndRun");
+  });
+
+  test("a Moon druid shapes first; another 2014 circle keeps to spells", () => {
+    const moon = make({ class: "Druid", subclass: "Moon", level: 2, wildShapeUses: 2, maxWildShapeUses: 2 }, ["Wild Shape", "Combat Wild Shape"]);
+    expect(top(moon, { near: true }, "bonus").why).toBe("wildShapeMoon");
+    const land = make({ class: "Druid", subclass: "Land", level: 2, wildShapeUses: 2, maxWildShapeUses: 2 }, ["Wild Shape"]);
+    const ws = suggestPicks(land, buildTurnMenu(land, spells), spells, { near: true }).action.find((p) => /^Wild Shape/.test(p.option.name))!;
+    expect([ws.score, ws.why]).toEqual([30, "wildShapeSupport"]);
+  });
+});
