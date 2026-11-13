@@ -11,6 +11,8 @@ interface FixedFeatGrants {
   tools?: string[];
   languages?: string[];
   spells?: string[];
+  /** Proficiency in every skill (Boon of Skill). */
+  allSkills?: boolean;
 }
 
 export const FEAT_FIXED_GRANTS: Record<string, FixedFeatGrants> = {
@@ -42,9 +44,21 @@ export const FEAT_FIXED_GRANTS: Record<string, FixedFeatGrants> = {
 /** The same for 2024 feats (their ability increases are picks, in feat-options). */
 const FEAT_FIXED_GRANTS_2024: Record<string, FixedFeatGrants> = {
   "Tavern Brawler": { proficiencies: ["Improvised Weapons"] },
+  Chef: { tools: ["Cook's Utensils"] },
+  Poisoner: { tools: ["Poisoner's Kit"] },
+  "Heavily Armored": { proficiencies: ["Heavy Armor"] },
+  "Lightly Armored": { proficiencies: ["Light Armor", "Shields"] },
+  "Moderately Armored": { proficiencies: ["Medium Armor"] },
+  "Martial Weapon Training": { proficiencies: ["Martial Weapons"] },
+  "Fey Touched": { spells: ["Misty Step"] },
+  "Shadow Touched": { spells: ["Invisibility"] },
+  Telekinetic: { spells: ["Mage Hand"] },
+  Telepathic: { spells: ["Detect Thoughts"] },
+  "Boon of Skill": { allSkills: true },
 };
 
-const fixedGrants = (featName: string, ruleset?: string): FixedFeatGrants =>
+/** What a feat gives with no pick, by ruleset. */
+export const fixedGrants = (featName: string, ruleset?: string): FixedFeatGrants =>
   (ruleset === "2024" ? FEAT_FIXED_GRANTS_2024[featName] : FEAT_FIXED_GRANTS[featName]) || {};
 
 const MAX_SCORE = 20;
@@ -113,6 +127,7 @@ export function applyFeatGrants(character: Character, featName: string, options:
   for (const name of fixed.languages || []) languages.add(name);
   for (const name of fixed.tools || []) tools.add(name);
   for (const name of fixed.proficiencies || []) if (!other.includes(name)) other.push(name);
+  if (fixed.allSkills) for (const name of skillNames) skills[name] = true;
 
   for (const group of groups) {
     const value = options[group.id];
@@ -125,6 +140,10 @@ export function applyFeatGrants(character: Character, featName: string, options:
     } else if (base === "expertise") {
       skills[value] = true;
       expertise.add(value);
+    } else if (base === "skill_up") {
+      // Keen Mind, Observant: proficiency, or Expertise when already proficient.
+      if (skills[value]) expertise.add(value);
+      else skills[value] = true;
     } else if (base === "skill" || base === "skill_or_tool") {
       if (skillNames.has(value)) skills[value] = true;
       else tools.add(value);
@@ -208,6 +227,7 @@ export function removeFeatGrants(character: Character, featName: string, options
     if (group.type === "spell") spellNames.add(value);
     else if (base === "ability") { if (featName === "Resilient") saves.delete(value); }
     else if (base === "expertise") expertise.delete(value);
+    else if (base === "skill_up") { if (expertise.has(value)) expertise.delete(value); else delete skills[value]; }
     else if (base === "skill" || base === "skill_or_tool") {
       if (skillNames.has(value)) { delete skills[value]; expertise.delete(value); }
       else tools.delete(value);

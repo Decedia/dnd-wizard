@@ -14,7 +14,7 @@ export interface FeatRequirement {
   ability?: Ability[];
   /** The character's race must be one of these. */
   race?: Race[];
-  armor?: "light" | "medium" | "heavy";
+  armor?: "light" | "medium" | "heavy" | "shield";
   martialWeapon?: boolean;
   spellcasting?: boolean;
 }
@@ -52,6 +52,39 @@ export const FEAT_REQUIREMENTS: Record<string, FeatRequirement> = {
   "Svirfneblin Magic": { race: ["deepGnome"] },
   "War Caster": { spellcasting: true },
   "Wood Elf Magic": { race: ["woodElf"] },
+};
+
+/**
+ * 2024 Player's Handbook feats (Level 4+ is the feat's minLevel). The SRD 5.2
+ * Grappler takes Strength or Dexterity; Spellcasting or Pact Magic counts as
+ * "able to cast".
+ */
+export const FEAT_REQUIREMENTS_2024: Record<string, FeatRequirement> = {
+  Actor: { ability: ["cha"] },
+  Athlete: { ability: ["str", "dex"] },
+  Charger: { ability: ["str", "dex"] },
+  "Crossbow Expert": { ability: ["dex"] },
+  "Defensive Duelist": { ability: ["dex"] },
+  "Dual Wielder": { ability: ["str", "dex"] },
+  "Elemental Adept": { spellcasting: true },
+  Grappler: { ability: ["str", "dex"] },
+  "Great Weapon Master": { ability: ["str"] },
+  "Heavily Armored": { armor: "medium" },
+  "Heavy Armor Master": { armor: "heavy" },
+  "Inspiring Leader": { ability: ["wis", "cha"] },
+  "Keen Mind": { ability: ["int"] },
+  "Medium Armor Master": { armor: "medium" },
+  "Moderately Armored": { armor: "light" },
+  Observant: { ability: ["int", "wis"] },
+  "Polearm Master": { ability: ["str", "dex"] },
+  "Ritual Caster": { ability: ["int", "wis", "cha"] },
+  Sentinel: { ability: ["str", "dex"] },
+  Sharpshooter: { ability: ["dex"] },
+  "Shield Master": { armor: "shield" },
+  Skulker: { ability: ["dex"] },
+  Speedy: { ability: ["dex", "con"] },
+  "Spell Sniper": { spellcasting: true },
+  "War Caster": { spellcasting: true },
 };
 
 const RACE_LABEL: Record<Race, string> = {
@@ -112,14 +145,16 @@ const plain: T = (_key, fallbackOrParams, fallback) => {
 
 /** One line per prerequisite, each with whether the character meets it. Empty when the feat has none. */
 export function describeFeatRequirements(character: Character, featName: string, t: T = plain): FeatRequirementLine[] {
-  const req = FEAT_REQUIREMENTS[featName];
+  const req = (character.ruleset === "2024" ? FEAT_REQUIREMENTS_2024 : FEAT_REQUIREMENTS)[featName];
   if (!req) return [];
   const lines: FeatRequirementLine[] = [];
   if (req.ability) {
     const names = req.ability.map((a) => a.toUpperCase());
     const text = names.length === 1
       ? t("feat.req.abilityMin", { ability: names[0], n: 13 }, "{ability} {n} or higher")
-      : t("feat.req.abilityAny", { a: names[0], b: names[1], n: 13 }, "{a} or {b} {n} or higher");
+      : names.length === 2
+        ? t("feat.req.abilityAny", { a: names[0], b: names[1], n: 13 }, "{a} or {b} {n} or higher")
+        : t("feat.req.abilityAny3", { a: names[0], b: names[1], c: names[2], n: 13 }, "{a}, {b} or {c} {n} or higher");
     lines.push({ text, met: req.ability.some((a) => ((character[a] as number | undefined) ?? 0) >= 13) });
   }
   if (req.race) {

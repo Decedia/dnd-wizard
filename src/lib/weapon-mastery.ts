@@ -2,7 +2,7 @@
 // character uses it only with the kinds they trained (picked at level-up).
 import mastery from "@/data/en/2024_weapon_mastery.json";
 import { findCatalogItem } from "@/data/item-catalog";
-import { getFeaturePicks } from "./feature-groups";
+import { getFeatPicks, getFeaturePicks } from "./feature-groups";
 import type { Character } from "./storage";
 
 export type MasteryName = "Cleave" | "Graze" | "Nick" | "Push" | "Sap" | "Slow" | "Topple" | "Vex";
@@ -20,5 +20,7 @@ export function weaponMastery(character: Pick<Character, "ruleset" | "featureSel
   const kind = weaponKind(row);
   const property = BY_WEAPON[kind];
   if (!property) return undefined;
-  return getFeaturePicks(character, "Weapon Mastery").includes(kind) ? property : undefined;
+  // The Weapon Mastery feature's picks, or the kind chosen with the Weapon Master feat.
+  const trained = getFeaturePicks(character, "Weapon Mastery").includes(kind) || getFeatPicks(character, "Weapon Master").picks.includes(kind);
+  return trained ? property : undefined;
 }

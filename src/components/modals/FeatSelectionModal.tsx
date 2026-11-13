@@ -61,6 +61,15 @@ function pillClass(active: boolean) {
   }`;
 }
 
+/** 2024 feats list General first, then Fighting Styles, Epic Boons and Origin feats; each by name. */
+const CATEGORY_ORDER = ["General", "Fighting Style", "Epic Boon", "Origin"];
+/** "PHB2024" is a stored key; the badge reads "PHB 2024". */
+const bookLabel = (book: string) => (book === "PHB2024" ? "PHB 2024" : book);
+const categoryRank = (category?: string | null) => {
+  const i = CATEGORY_ORDER.indexOf(category || "");
+  return i < 0 ? 0 : i;
+};
+
 export function FeatSelectionModal({
   onSelect,
   onClose,
@@ -85,7 +94,7 @@ export function FeatSelectionModal({
           (!category || (Array.isArray(category) ? category.includes(f.category || "") : f.category === category)) &&
           (!onlyFeat || f.name === onlyFeat) &&
           (!characterLevel || !f.minLevel || f.minLevel <= characterLevel),
-      ),
+      ).sort((a, b) => categoryRank(a.category) - categoryRank(b.category) || a.name.localeCompare(b.name)),
     [sources, ruleset, language, category, characterLevel, onlyFeat],
   );
   const [search, setSearch] = useState("");
@@ -154,6 +163,8 @@ export function FeatSelectionModal({
       const lines = describeFeatRequirements(character as Character, feat.name, t);
       const unmet = lines.some((line) => !line.met);
 
+      // A 2024 feat shows the checked lines, which follow the app language.
+      if (character?.ruleset === "2024" && lines.length > 0) return { text: lines.map((line) => line.text).join(" • "), unmet };
       if (feat.prerequisites) {
         return {
           text: feat.prerequisites,
@@ -419,7 +430,7 @@ export function FeatSelectionModal({
                         <p className="mt-1 line-clamp-2 text-xs text-ink-muted"><RichInline text={feat.description} /></p>
                         {sourceLabel && sourceLabel !== "PHB" && (
                           <span className="mt-1 inline-block rounded bg-paper-muted px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-ink-muted">
-                            {sourceLabel}
+                            {bookLabel(sourceLabel)}
                           </span>
                         )}
                       </div>
@@ -580,7 +591,7 @@ function FeatInfo({ feat, character }: { feat: SRDFeat; character?: Character })
       <div className="rounded-2xl border-2 border-border-strong bg-surface p-4">
         <h3 className="text-lg font-bold text-ink">{feat.name}</h3>
         <div className="mt-1 flex flex-wrap items-center gap-1.5">
-          {sourceLabel && sourceLabel !== "PHB" && <InfoBadge>{sourceLabel}</InfoBadge>}
+          {sourceLabel && sourceLabel !== "PHB" && <InfoBadge>{bookLabel(sourceLabel)}</InfoBadge>}
           {feat.prerequisites === null && lines.length === 0 && (
             <InfoBadge>{t("feat.noPrerequisite", "Tanpa syarat")}</InfoBadge>
           )}

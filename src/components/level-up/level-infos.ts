@@ -466,8 +466,11 @@ export function buildLevelInfos(
             .filter(([key]) => key.match(/^class-feature-\d+-(.*)$/)?.[1] === f.name)
             .flatMap(([, v]) => (v || []).flatMap((x) => String(x).split(", ")))
         );
+        const sources = character.sources;
         let options = f.choices.options
           .filter((opt: any) => typeof opt === "string" || ((!opt.minLevel || opt.minLevel <= level) && (!opt.requires || known.has(opt.requires))))
+          // A Player's Handbook Fighting Style only when the character uses that book.
+          .filter((opt: any) => typeof opt === "string" || !opt.source || !sources?.length || sources.includes(opt.source))
           .map((opt: any) => ({
             name: typeof opt === "string" ? opt : opt.name,
             description: typeof opt === "string" ? "" : (opt.description || ""),

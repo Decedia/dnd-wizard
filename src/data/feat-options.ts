@@ -6,6 +6,7 @@
  * mechanical terms and stay in English. Group labels are localized through
  * `labelId` so the surrounding UI can render them in the active language.
  */
+import mastery from "@/data/en/2024_weapon_mastery.json";
 
 export interface FeatOptionChoice {
   value: string;
@@ -438,9 +439,6 @@ const FEAT_OPTIONS: Record<string, FeatOptionGroup[]> = {
   Skilled: repeated([
     optionGroup("skill_or_tool", "feat.opt.skillOrTool", "Skill or Tool", [...SKILLS, ...TOOLS], 3),
   ]),
-  // 2024 Player's Handbook Origin feats.
-  Crafter: repeated([optionGroup("tool", "feat.opt.tool", "Tool", choices(ARTISAN_TOOLS_2024), 3)]),
-  Musician: repeated([optionGroup("tool", "feat.opt.instrument", "Musical Instrument", choices(MUSICAL_INSTRUMENTS_2024), 3)]),
 
   "Skill Expert": [
     abilityGroup(...ALL_ABILITIES),
@@ -486,6 +484,45 @@ const FEAT_OPTIONS_2024: Record<string, FeatOptionGroup[]> = {
   ...Object.fromEntries(
     ["Boon of Combat Prowess", "Boon of Dimensional Travel", "Boon of Fate", "Boon of Irresistible Offense", "Boon of Spell Recall", "Boon of the Night Spirit", "Boon of Truesight"].map((name) => [name, [abilityGroup(...ALL_ABILITIES)]]),
   ),
+  // 2024 Player's Handbook General feats.
+  ...Object.fromEntries(
+    ([
+      [["Actor"], ["cha"]],
+      [["Athlete", "Charger", "Dual Wielder", "Lightly Armored", "Mage Slayer", "Martial Weapon Training", "Medium Armor Master", "Moderately Armored", "Piercer", "Polearm Master", "Sentinel", "Slasher"], ["str", "dex"]],
+      [["Chef"], ["con", "wis"]],
+      [["Crossbow Expert", "Defensive Duelist", "Sharpshooter", "Skulker"], ["dex"]],
+      [["Crusher"], ["str", "con"]],
+      [["Durable"], ["con"]],
+      [["Great Weapon Master", "Shield Master"], ["str"]],
+      [["Heavily Armored", "Heavy Armor Master"], ["str", "con"]],
+      [["Inspiring Leader"], ["wis", "cha"]],
+      [["Mounted Combatant"], ["str", "dex", "wis"]],
+      [["Poisoner"], ["dex", "int"]],
+      [["Speedy"], ["dex", "con"]],
+      [["Spell Sniper", "Telekinetic", "Telepathic", "War Caster"], ["int", "wis", "cha"]],
+      [["Boon of Fortitude", "Boon of Recovery", "Boon of Speed"], ALL_ABILITIES],
+    ] as [string[], string[]][]).flatMap(([names, keys]) => names.map((name) => [name, [abilityGroup(...keys)]])),
+  ),
+  "Elemental Adept": [abilityGroup("int", "wis", "cha"), optionGroup("damage_type", "feat.opt.damageType", "Damage Type", DAMAGE_TYPES)],
+  "Fey Touched": [
+    abilityGroup("int", "wis", "cha"),
+    spellGroup("first_level_spell", "feat.opt.firstLevelSpell", "1st-Level Spell", { level: 1, schools: ["Divination", "Enchantment"] }),
+  ],
+  "Shadow Touched": [
+    abilityGroup("int", "wis", "cha"),
+    spellGroup("first_level_spell", "feat.opt.firstLevelSpell", "1st-Level Spell", { level: 1, schools: ["Illusion", "Necromancy"] }),
+  ],
+  // Proficiency in the skill, or Expertise when the character already has it.
+  "Keen Mind": [abilityGroup("int"), optionGroup("skill_up", "feat.opt.skillUp", "Skill", SKILLS.filter((s) => ["Arcana", "History", "Investigation", "Nature", "Religion"].includes(s.value)))],
+  Observant: [abilityGroup("int", "wis"), optionGroup("skill_up", "feat.opt.skillUp", "Skill", SKILLS.filter((s) => ["Insight", "Investigation", "Perception"].includes(s.value)))],
+  Resilient: [abilityGroup(...ALL_ABILITIES)],
+  // Ritual spells from any class list, as many as the Proficiency Bonus (2 at level 4).
+  "Ritual Caster": repeated([abilityGroup("int", "wis", "cha"), spellGroup("ritual_spell", "feat.opt.ritualSpell", "1st-Level Ritual Spell", { level: 1, ritualOnly: true }, 2)]),
+  "Skill Expert": [abilityGroup(...ALL_ABILITIES), optionGroup("skill", "feat.opt.skill", "Skill", SKILLS), optionGroup("expertise", "feat.opt.expertise", "Expertise", SKILLS)],
+  "Weapon Master": [abilityGroup("str", "dex"), optionGroup("mastery", "feat.opt.mastery", "Weapon Mastery", choices(Object.keys(mastery.weapons)))],
+  "Boon of Energy Resistance": repeated([abilityGroup(...ALL_ABILITIES), optionGroup("resistance", "feat.opt.resistance", "Resistance", choices(["Acid", "Cold", "Fire", "Lightning", "Necrotic", "Poison", "Psychic", "Radiant", "Thunder"]), 2)]),
+  // Every skill comes with the boon; the Expertise is a pick.
+  "Boon of Skill": [abilityGroup(...ALL_ABILITIES), optionGroup("expertise", "feat.opt.expertise", "Expertise", SKILLS)],
 };
 
 export function getFeatOptionGroups(featName: string, ruleset?: string): FeatOptionGroup[] {

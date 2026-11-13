@@ -955,8 +955,9 @@ export function computeEquippedEffects(character: Character): { ac: number; atta
         // Light armor: full dex bonus
         dexMod = getModifier(character.dex);
       } else if (maxDex > 0) {
-        // Medium armor: dex bonus up to max
-        dexMod = Math.min(getModifier(character.dex), maxDex);
+        // Medium armor: dex bonus up to max (3 instead of 2 with Medium Armor Master)
+        const cap = maxDex === 2 && hasFeat(character, "Medium Armor Master") ? 3 : maxDex;
+        dexMod = Math.min(getModifier(character.dex), cap);
       }
       // Heavy armor (maxDex === 0): no dex bonus
       ac = baseAC + dexMod;
@@ -966,18 +967,8 @@ export function computeEquippedEffects(character: Character): { ac: number; atta
   ac += equippedShields.length * 2;
 
   const hasArmor = bodyArmor !== undefined;
-  if (character.features && character.features.length > 0) {
-    for (const feature of character.features) {
-      const fname = feature.name.toLowerCase();
-      if (fname.includes("defense") && hasArmor) {
-        ac += 1;
-      } else if (fname.includes("dueling")) {
-        // Dueling gives +2 to damage rolls with single weapon, handled in attacks
-      } else if (fname.includes("shield mastery")) {
-        ac += 1;
-      }
-    }
-  }
+  if (hasArmor && hasFightingStyle(character, "Defense")) ac += 1;
+  if ((character.features || []).some((f) => f.name.toLowerCase().includes("shield mastery"))) ac += 1;
 
   const profBonus = getProficiencyBonus(character.level);
   const weaponAttacks: Character["attacks"] = equippedWeapons.map((weapon) => {
@@ -1078,19 +1069,39 @@ export function getHpBonusPerLevel(character: Character): number {
 
 /**
  * Passive Perception, Insight or Investigation: 10 + ability modifier +
- * proficiency (twice with expertise). Observant adds 5 to Perception and
- * Investigation.
+ * proficiency (twice with expertise). The 2014 Observant adds 5 to
+ * Perception and Investigation.
  */
 export function getPassiveScore(
-  character: Pick<Character, "level" | "wis" | "int" | "skills" | "expertise" | "features">,
+  character: Pick<Character, "level" | "wis" | "int" | "skills" | "expertise" | "features"> & { ruleset?: string },
   skill: "Perception" | "Insight" | "Investigation"
 ): number {
   const profBonus = getProficiencyBonus(character.level || 1);
   const proficient = character.skills?.[skill] ?? false;
   const expert = proficient && (character.expertise || []).includes(skill);
   const ability = skill === "Investigation" ? character.int : character.wis;
-  const observant = skill !== "Insight" && hasFeat(character as Character, "Observant");
+  // The 2024 Observant gives a skill and Quick Search instead of +5.
+  const observant = skill !== "Insight" && character.ruleset !== "2024" && hasFeat(character as Character, "Observant");
   return 10 + getModifier(ability) + (proficient ? profBonus : 0) + (expert ? profBonus : 0) + (observant ? 5 : 0);
+}
+
+/**
+ * Whether the character has a Fighting Style: picked for the class feature
+ * (saved as a pick, often also as a feature row), taken as a 2024 Fighting
+ * Style feat, or through Fighting Initiate.
+ */
+export function hasFightingStyle(character: Pick<Character, "features" | "featureSelections">, style: string): boolean {
+  const want = normaliseFeatureName(style);
+  const named = (n: string | undefined) => {
+    const name = normaliseFeatureName(n);
+    return name === want || name === `fighting_style_${want}`;
+  };
+  if ((character.features || []).some((f) => named(f.name))) return true;
+  return Object.entries(character.featureSelections || {}).some(([key, values]) =>
+    /fighting style/i.test(key)
+      ? (values || []).some((v) => String(v).split(", ").some(named))
+      : /-options$/.test(key) && (values || []).some((v) => String(v) === `fighting_style=${style}`),
+  );
 }
 
 /** Whether the character has taken a feat, by its name ("Heavy Armor Master"). */
@@ -1112,6 +1123,15 @@ function normaliseFeatureName(name: string | undefined): string {
 export function ruleMaxHp(character: Pick<Character, "levelHp" | "level">): number | null {
   const levels = character.levelHp ? Object.keys(character.levelHp).length : 0;
   return levels >= (character.level || 1) ? getMaxHpFromLevelHp(character.levelHp) : null;
+}
+
+/**
+ * HP maximum a feat adds on top of the saved maximum, which holds only the
+ * per-level HP: Boon of Fortitude's 40 (not on a maximum typed in by hand).
+ */
+export function hpMaxBonus(character: Character): number {
+  if (character.ruleset !== "2024" || overrideOf(character, "maxHp")?.mode === "set") return 0;
+  return hasFeat(character, "Boon of Fortitude") ? 40 : 0;
 }
 
 /**
@@ -1380,7 +1400,8 @@ export function computeDerivedStats(character: Character): Partial<Character> {
       if (maxDex === null) {
         dexMod = getModifier(character.dex);
       } else if (maxDex > 0) {
-        dexMod = Math.min(getModifier(character.dex), maxDex);
+        // Medium Armor Master lets medium armor take up to +3.
+        dexMod = Math.min(getModifier(character.dex), maxDex === 2 && hasFeat(character, "Medium Armor Master") ? 3 : maxDex);
       }
       ac = baseAC + dexMod;
     } else {
@@ -1409,17 +1430,9 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   // Shield bonus
   ac += equippedShields.length * 2;
 
-  // Feature-based AC bonuses
-  if (character.features && character.features.length > 0) {
-    for (const feature of character.features) {
-      const fname = feature.name.toLowerCase();
-      if (fname.includes("defense") && fname.includes("fighting style") && hasArmor) {
-        ac += 1; // Defense Fighting Style (only with armor)
-      } else if (fname.includes("shield mastery")) {
-        ac += 1; // Shield Master feat (works with or without armor)
-      }
-    }
-  }
+  // Feature-based AC bonuses: the Defense Fighting Style (only in armor) and Shield Mastery.
+  if (hasArmor && hasFightingStyle(character, "Defense")) ac += 1;
+  if ((character.features || []).some((f) => f.name.toLowerCase().includes("shield mastery"))) ac += 1;
 
   // Buff modifiers
   const buffMods = computeBuffModifiers(character.activeBuffs || []);
@@ -1435,6 +1448,8 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   // derived value, which already carries the bonuses below.
   let speed = getBaseSpeed(character);
   if (hasFeat(character, "Mobile")) speed += 10;
+  if (character.ruleset === "2024" && hasFeat(character, "Speedy")) speed += 10;
+  if (character.ruleset === "2024" && hasFeat(character, "Boon of Speed")) speed += 30;
   if (hasFeat(character, "Squat Nimbleness")) speed += 5;
   // Monk unarmored movement bonus
   if (classData?.name === "Monk" && !hasArmor && equippedShields.length === 0) {
@@ -1541,7 +1556,8 @@ export function computeDerivedStats(character: Character): Partial<Character> {
 
   // Apply exhaustion HP max reduction (level 4 halves max HP)
   const baseMaxHp = hpMaxOf(character);
-  const effectiveMaxHp = exhaustionLevel >= 4 ? Math.floor(baseMaxHp / 2) : baseMaxHp;
+  const fullMaxHp = baseMaxHp + hpMaxBonus(character);
+  const effectiveMaxHp = exhaustionLevel >= 4 ? Math.floor(fullMaxHp / 2) : fullMaxHp;
 
   // Cover tracking
   const hasHalfCover = activeStates.includes("cover-half");
