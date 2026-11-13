@@ -1,7 +1,7 @@
 // @ts-ignore - bun:test is provided by the Bun runtime
 import { describe, expect, test } from "bun:test";
-import { BEASTS, beastsFor, type Beast } from "@/data/wild-shapes";
-import { autoHitExtras, beastPronePatch, beastProneSave, beastRunPatch, buildTurnMenu, endEncounterPatch, endTurnPatch, hitPatch, letGoPatch, optionPatch, swingPatch, wildShapePatch } from "@/lib/turn";
+import { BEASTS, ELEMENTALS, beastsFor, type Beast } from "@/data/wild-shapes";
+import { startTurnPatch, isSwingOption, autoHitExtras, beastPronePatch, beastProneSave, beastRunPatch, buildTurnMenu, endEncounterPatch, endTurnPatch, hitPatch, letGoPatch, optionPatch, swingPatch, wildShapePatch } from "@/lib/turn";
 import { suggestPicks } from "@/lib/turn-suggest";
 import { createEmptyCharacter, type Character } from "@/lib/storage";
 import { translations as enAll } from "@/locales/en";
@@ -150,5 +150,34 @@ describe("beast tricks in Suggest mode", () => {
     t = apply(t, beastPronePatch(t, 0, true));
     const bonus = suggestPicks(t, buildTurnMenu(t, []), [], {}).bonus[0];
     expect([bonus.option.key, bonus.why]).toEqual(["beast:bonus:0", "proneBonus"]);
+  });
+});
+
+describe("Rampage, Whirlwind and Whelm", () => {
+  test("a Giant Hyena can Rampage: a bonus action bite, once per turn, after dropping a creature", () => {
+    const c = shaped("Giant Hyena", 6);
+    const rampage = attack(c, "Bite", "bonus")!;
+    expect([rampage.nameKey, rampage.condition]).toEqual(["wild.rampage", "rampage"]);
+    const after = apply(c, optionPatch(rampage));
+    expect(attack(after, "Bite", "bonus")!.blocked).toBe("usedThisTurn");
+    expect([en["wild.rampage"], id["wild.rampage"], en["turn.cond.rampage"], id["turn.cond.rampage"]].every(Boolean)).toBe(true);
+  });
+
+  test("Whirlwind is a save for everyone in the space, not a swing, and recharges on a 4-6", () => {
+    const c = shaped("Air Elemental", 10);
+    const whirl = attack(c, "Whirlwind")!;
+    expect([whirl.saveDc, whirl.damageRoll?.dice, isSwingOption(whirl)]).toEqual([13, "3d8", false]);
+    const used = apply(c, optionPatch(whirl));
+    expect(attack(used, "Whirlwind")!.blocked).toBe("recharging");
+    const low = apply(used, startTurnPatch(used, () => 0.3));
+    expect([low.wildShape?.recharging, low.wildShape?.rechargeRoll]).toEqual([true, 2]);
+    const high = apply(low, startTurnPatch(low, () => 0.6));
+    expect([high.wildShape?.recharging, attack(high, "Whirlwind")!.blocked]).toEqual([false, undefined]);
+  });
+
+  test("Whelm has its own save and text in both languages", () => {
+    const whelm = attack(shaped("Water Elemental", 10), "Whelm")!;
+    expect([whelm.saveDc, whelm.damageRoll?.dice]).toEqual([15, "2d8"]);
+    for (const b of ELEMENTALS.filter((e) => e.special)) expect([b.name, en[`wild.special.${b.name}`], !!id[`wild.special.${b.name}`]]).toEqual([b.name, b.special!.note, true]);
   });
 });

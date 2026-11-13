@@ -22,7 +22,7 @@ import { concentrationTimer, expiredTimerPatch, featureRounds, featureTimerId, R
 export type TurnSlot = "action" | "bonus" | "reaction" | "free";
 export type TurnGroup = "attack" | "spell" | "feature" | "basic";
 /** Why an option cannot be used; the panel turns it into a sentence. */
-export type TurnBlock = "noSlot" | "empty" | "actionFirst" | "attackFirst" | "raging" | "notRaging" | "shaped" | "full" | "slotsFull" | "usedThisTurn" | "wildShapeLeft" | "notHolding";
+export type TurnBlock = "noSlot" | "empty" | "actionFirst" | "attackFirst" | "raging" | "notRaging" | "shaped" | "full" | "slotsFull" | "usedThisTurn" | "wildShapeLeft" | "notHolding" | "recharging";
 
 export interface TurnOption {
   key: string;
@@ -701,6 +701,32 @@ function beastAttackOptions(beast: Beast, shape: NonNullable<Character["wildShap
     else bonus.spend = { featuresUsedThisTurn: [...usedThisTurn, "beast:bonus"] };
     options.push(bonus);
   }
+  // Rampage: after dropping a creature with a melee attack, move half speed and attack again as a bonus action.
+  const rampageAt = beast.rampage ? beast.attacks.findIndex((a) => a.name === beast.rampage) : -1;
+  if (rampageAt >= 0) {
+    const bonus = { ...beastAttackOption(beast, beast.attacks[rampageAt], rampageAt, shape, "bonus"), nameKey: "wild.rampage", condition: "rampage" };
+    if (usedThisTurn.includes("beast:bonus")) bonus.blocked = "usedThisTurn";
+    else bonus.spend = { featuresUsedThisTurn: [...usedThisTurn, "beast:bonus"] };
+    options.push(bonus);
+  }
+  // Whirlwind, Whelm: a save for everyone in the form's space, then it recharges on a d6.
+  if (beast.special) {
+    const sp = beast.special;
+    options.push({
+      key: "beast:special",
+      slot: "action",
+      group: "attack",
+      name: sp.name,
+      summary: sp.note,
+      summaryKey: `wild.special.${beast.name}`,
+      saveDc: sp.dc,
+      damage: `${sp.damage} damage`,
+      damageRoll: beastDamageRoll(sp.damage),
+      tags: ["area", "control", "save"],
+      ...(shape.recharging ? { blocked: "recharging" as const } : {}),
+      spend: { wildShape: { ...shape, recharging: true, rechargeRoll: undefined } },
+    });
+  }
   return options;
 }
 
@@ -787,8 +813,16 @@ export function optionPatch(option: TurnOption): Partial<Character> {
 }
 
 /** A new turn: action, bonus action, movement and reaction all come back. */
-export function startTurnPatch(character: Pick<Character, "turnRound">): Partial<Character> {
-  return { turnActive: true, turnRound: (character.turnRound || 0) + 1, actionUsed: false, bonusActionUsed: false, reactionUsed: false, moveUsed: false, objectInteractionUsed: false, swings: [], attackedThisTurn: false };
+export function startTurnPatch(character: Pick<Character, "turnRound"> & Partial<Pick<Character, "wildShape">>, random: () => number = Math.random): Partial<Character> {
+  // A used Whirlwind or Whelm comes back on a d6 roll of 4-6 at the start of the turn.
+  const shape = character.wildShape;
+  const special = shape?.recharging ? beastByName(shape.form)?.special : undefined;
+  const recharge: Partial<Character> = {};
+  if (shape && special) {
+    const roll = Math.floor(random() * 6) + 1;
+    recharge.wildShape = { ...shape, recharging: roll < special.recharge, rechargeRoll: roll };
+  }
+  return { ...recharge, turnActive: true, turnRound: (character.turnRound || 0) + 1, actionUsed: false, bonusActionUsed: false, reactionUsed: false, moveUsed: false, objectInteractionUsed: false, swings: [], attackedThisTurn: false };
 }
 
 /**
@@ -905,7 +939,7 @@ export function changeHands(
 export type SwingResult = "hit" | "crit" | "miss";
 
 /** A weapon attack option (not a spell, not the off-hand bonus attack). */
-export const isSwingOption = (o: TurnOption) => o.group === "attack" && o.slot === "action";
+export const isSwingOption = (o: TurnOption) => o.group === "attack" && o.slot === "action" && !o.tags?.includes("save");
 
 /** Swings left in this Attack action; 0 when no Attack action is going on. */
 export function swingsLeft(character: Pick<Character, "swings">, perAction: number): number {

@@ -15,7 +15,7 @@ import { XIcon as X } from "@/components/icons";
 import { StateTracker } from "./StateTracker";
 import { Timers } from "./Timers";
 import { RichInline } from "@/components/RichText";
-import { activeResistances, damageResistances, DAMAGE_TYPES, reducedDamage, type Resistance } from "@/lib/resistances";
+import { activeResistances, damageResistances, DAMAGE_TYPES, reducedDamage, resistanceChoicesFor, type Resistance } from "@/lib/resistances";
 import { BuffTracker } from "./BuffTracker";
 import { BasePopup } from "@/components/BasePopup";
 import { initiativeParts, saveParts } from "@/lib/roll-parts";
@@ -24,7 +24,7 @@ import { d20Group } from "@/lib/dice-roll";
 import { GiRollingDices } from "react-icons/gi";
 
 interface CombatStatsSectionProps {
-  character: Pick<Character, "turnRound" | "turnActive" | "ac" | "currentHp" | "maxHp" | "effectiveMaxHp" | "temporaryHp" | "speed" | "baseSpeed" | "race" | "ruleset" | "isCustomHp" | "class" | "sorceryPoints" | "maxSorceryPoints" | "activeStates" | "activeBuffs" | "features" | "actionUsed" | "bonusActionUsed" | "reactionUsed" | "exhaustionLevel" | "initiative" | "hitDiceRemaining" | "hitDiceTotal" | "level" | "dex" | "con" | "savingThrows" | "overrides">;
+  character: Pick<Character, "turnRound" | "turnActive" | "ac" | "currentHp" | "maxHp" | "effectiveMaxHp" | "temporaryHp" | "speed" | "baseSpeed" | "race" | "ruleset" | "isCustomHp" | "class" | "sorceryPoints" | "maxSorceryPoints" | "activeStates" | "activeBuffs" | "features" | "actionUsed" | "bonusActionUsed" | "reactionUsed" | "exhaustionLevel" | "initiative" | "hitDiceRemaining" | "hitDiceTotal" | "level" | "dex" | "con" | "savingThrows" | "overrides" | "chosenResistances">;
   onChange: (patch: Partial<Pick<Character, "ac" | "currentHp" | "maxHp" | "temporaryHp" | "speed" | "baseSpeed" | "isCustomHp" | "sorceryPoints" | "maxSorceryPoints" | "activeStates" | "activeBuffs" | "features" | "actionUsed" | "bonusActionUsed" | "reactionUsed" | "exhaustionLevel">>) => void;
   editMode?: boolean;
   /** Opens the turn panel; starts a new turn when none is running. */
@@ -50,6 +50,7 @@ export function CombatStatsSection({ character, onChange, editMode = true, onOpe
 
   const resistances = damageResistances(character as Character);
   const resistingNow = activeResistances(character as Character);
+  const resistanceChoices = resistanceChoicesFor(character as Character);
   const handleHpAction = useCallback(() => {
     const typed = parseInt(hpAmount, 10);
     const amount = hpModal?.mode === "damage" ? reducedDamage(typed, damageHow) : typed;
@@ -290,9 +291,27 @@ export function CombatStatsSection({ character, onChange, editMode = true, onOpe
         )}
       </div>
 
-      {resistances.length > 0 && (
+      {(resistances.length > 0 || resistanceChoices.length > 0) && (
         <div className="mt-4 pt-3 border-t border-[var(--color-border)]">
           <span className="field-label-light mb-1 block">{t("combat.resistances", "Resistances")}</span>
+          {resistanceChoices.map((choice) => (
+            <label key={choice.feature} className="mb-2 flex items-center justify-between gap-2 text-xs">
+              <span className="text-[var(--color-text-secondary)]">
+                <span className="font-semibold text-[var(--color-text-primary)]">{choice.feature}</span>
+                <span className="block text-[10px] text-[var(--color-text-muted)]">{t(choice.whileRaging ? "combat.pickEachRage" : "combat.pickAfterRest", choice.whileRaging ? "Pick when you rage" : "Pick after each rest")}</span>
+              </span>
+              <select
+                className="input w-36 text-xs"
+                value={choice.pick}
+                onChange={(e) => onChange({ chosenResistances: { ...(character.chosenResistances || {}), [choice.feature]: e.target.value } } as Partial<Character>)}
+              >
+                <option value="">{t("combat.pickNone", "Not picked")}</option>
+                {choice.options(character as Character).map((o) => (
+                  <option key={o} value={o}>{o}</option>
+                ))}
+              </select>
+            </label>
+          ))}
           <ul className="space-y-1">
             {resistanceLines(resistances).map((line) => (
               <li key={line.source + line.mark} className="text-xs text-[var(--color-text-secondary)]">

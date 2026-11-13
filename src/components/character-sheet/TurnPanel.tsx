@@ -131,6 +131,10 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
     if (o.blocked === "notRaging") return t("turn.block.notRaging", "Only while you rage. Use Rage first.");
     if (o.blocked === "usedThisTurn") return t("turn.block.usedThisTurn", "Used this turn. Ready again next turn.");
     if (o.blocked === "notHolding") return t("turn.block.notHolding", "Only at the target you hold. Grab one with your bite first.");
+    if (o.blocked === "recharging") {
+      const roll = character.wildShape?.rechargeRoll;
+      return roll ? t("turn.block.rechargingRoll", { roll }, "Recharging: you rolled {roll}. A 4-6 on the d6 at the start of your turn brings it back.") : t("turn.block.recharging", "Recharging: a 4-6 on the d6 at the start of your next turn brings it back.");
+    }
     if (o.blocked === "wildShapeLeft") return t("turn.block.wildShapeLeft", "You still have Wild Shape uses. This works only when none are left.");
     if (slotUsed) return t(`turn.block.used.${o.slot}`);
     if (o.blocked === "attackFirst") return t("turn.block.attackFirst", "Attack with your other weapon first (Attack action), then this bonus attack opens.");
