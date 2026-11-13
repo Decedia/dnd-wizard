@@ -707,6 +707,7 @@ export const translations = {
   "rest.gain.slots": "{count} spent spell slots",
   "rest.gain.hitDice": "{count} hit dice",
   "rest.gain.exhaustion": "One level of exhaustion goes away",
+  "rest.gain.inspiringLeader": "{amount} temporary hit points from your Inspiring Leader speech (give the same to up to 5 allies)",
   "rest.gain.arcaneRecovery": "Arcane Recovery",
   "rest.gain.ki": "{count} ki points",
   "rest.gain.channelDivinity": "Channel Divinity ({count})",

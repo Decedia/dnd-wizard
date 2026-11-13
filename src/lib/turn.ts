@@ -6,7 +6,7 @@ import { getFeatureValue, getModifier, getProficiencyBonus, hasFeat, hasFighting
 import type { BonusPart } from "@/lib/dice-roll";
 import { spellNumbersFor } from "@/lib/roll-parts";
 import { speciesSpellAbility } from "@/lib/origin-2024";
-import { getWeaponAttackDetails, isRaging } from "@/lib/weapon-attacks";
+import { biggerDie, getWeaponAttackDetails, isRaging, martialArtsDie } from "@/lib/weapon-attacks";
 import { equipRow, heldInHands, unequipRow, type Hand, type InventoryRow } from "@/lib/inventory";
 import { getFreeCastSpells, getGrantedSpellNames } from "@/lib/granted-spells";
 import { advanceTurn, parseDurationToTurns } from "@/lib/spellEffects";
@@ -241,27 +241,31 @@ function attackOptions(character: Character): TurnOption[] {
   }
   const offHand = offHandAttack(character);
   if (offHand) out.push(offHand);
-  const str = getModifier(character.str);
   // 2024 Unarmed Fighting: 1d6 + Strength, 1d8 with no weapon or Shield held.
-  // 2024 Tavern Brawler: 1d4 + Strength. The bigger die wins.
+  // 2024 Tavern Brawler: 1d4 + Strength. Martial Arts: the Monk's die, Strength or Dexterity.
+  // The bigger die wins.
   const hands = heldInHands(character.inventory || []);
-  const unarmedDie = character.ruleset !== "2024"
-    ? undefined
+  const martialDie = martialArtsDie(character);
+  const str = martialDie ? Math.max(getModifier(character.str), getModifier(character.dex)) : getModifier(character.str);
+  const ability = martialDie && getModifier(character.dex) > getModifier(character.str) ? "@dex" : "@str";
+  const styleDie = character.ruleset !== "2024"
+    ? ""
     : hasFightingStyle(character, "Unarmed Fighting")
       ? (hands.main || hands.off ? "1d6" : "1d8")
-      : hasFeat(character, "Tavern Brawler") ? "1d4" : undefined;
+      : hasFeat(character, "Tavern Brawler") ? "1d4" : "";
+  const unarmedDie = biggerDie(styleDie, martialDie || "") || undefined;
   out.push({
     key: "attack:unarmed",
-    tags: ["melee", "weak"],
+    tags: martialDie ? ["melee"] : ["melee", "weak"],
     slot: "action",
     group: "attack",
     name: "",
     nameKey: "turn.unarmed",
     summary: "",
     toHit: str + prof,
-    toHitParts: [{ source: "@str", value: str }, { source: "@prof", value: prof }],
+    toHitParts: [{ source: ability, value: str }, { source: "@prof", value: prof }],
     damage: unarmedDie ? `${unarmedDie} ${signed(str)} bludgeoning damage`.replace(" + 0 ", " ") : `${Math.max(0, 1 + str)} bludgeoning damage`,
-    ...(unarmedDie ? { damageRoll: { dice: unarmedDie, parts: [{ source: "@str", value: str }], type: "bludgeoning" } } : {}),
+    ...(unarmedDie ? { damageRoll: { dice: unarmedDie, parts: [{ source: ability, value: str }], type: "bludgeoning" } } : {}),
     spend: {},
   });
   return out;
@@ -427,6 +431,10 @@ function ruleOption(character: Character, rule: FeatureRule | SubOption, base: P
   if (rule.refill && !option.blocked) {
     const max = Number((character as any)[`max${rule.refill[0].toUpperCase()}${rule.refill.slice(1)}`]) || 0;
     (option.spend as any)[rule.refill] = max;
+  }
+  if (rule.tempHp && !option.blocked) {
+    const amount = rule.tempHp(character);
+    if (amount > (character.temporaryHp || 0)) option.spend.temporaryHp = amount;
   }
   if (rule.gain && !option.blocked) {
     const max = Number((character as any)[`max${rule.gain[0].toUpperCase()}${rule.gain.slice(1)}`]) || 0;

@@ -147,8 +147,8 @@ export function FeatSelectionModal({
   );
 
   const optionGroups = useMemo<FeatOptionGroup[]>(
-    () => (pendingFeat?.options ?? []).filter((group) => group.count > 0 && !fixedOptions?.[group.id]),
-    [pendingFeat, fixedOptions],
+    () => (pendingFeat?.options ?? []).filter((group) => group.count > 0 && !fixedOptions?.[group.id] && (!group.minLevel || !characterLevel || group.minLevel <= characterLevel)),
+    [pendingFeat, fixedOptions, characterLevel],
   );
 
   const missingOptionIds = useMemo(

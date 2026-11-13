@@ -2,6 +2,8 @@
 // and says in one line, in plain words, why a new player might take it.
 // The full pickers stay one tap away; these only make a good first choice easy.
 
+import { getFeatOptionGroups } from "@/data/feat-options";
+
 export type Why = { en: string; id: string };
 export type Pick = { name: string; why: Why };
 export type AbilityKey = "str" | "dex" | "con" | "int" | "wis" | "cha";
@@ -124,6 +126,34 @@ const CLASS_FEATS: Record<string, string[]> = {
   Artificer: ["War Caster", "Lucky"],
 };
 
+/**
+ * 2024 General feats each class gets a lot out of. Lucky, Tough and Alert are
+ * Origin feats in 2024 (not offered at Ability Score Improvement levels).
+ */
+const CLASS_FEATS_2024: Record<string, string[]> = {
+  Barbarian: ["Great Weapon Master", "Sentinel", "Durable"],
+  Bard: ["War Caster", "Inspiring Leader"],
+  Cleric: ["War Caster", "Durable"],
+  Druid: ["War Caster", "Durable"],
+  Fighter: ["Great Weapon Master", "Sentinel", "Durable"],
+  Monk: ["Speedy", "Durable"],
+  Paladin: ["Great Weapon Master", "Sentinel", "Inspiring Leader"],
+  Ranger: ["Sharpshooter", "Speedy"],
+  Rogue: ["Speedy", "Durable"],
+  Sorcerer: ["War Caster", "Durable"],
+  Warlock: ["War Caster", "Durable"],
+  Wizard: ["War Caster", "Durable"],
+};
+
+/** 2024 wording where the feat changed (Great Weapon Master, Sharpshooter), plus the 2024-only feats. */
+const FEAT_WHY_2024: Record<string, Why> = {
+  "Great Weapon Master": { en: "Heavy weapons deal extra damage, and a crit or kill gives a free attack.", id: "Senjata Heavy memberi damage tambahan, dan crit atau kill memberi serangan gratis." },
+  "Sharpshooter": { en: "Ignore cover and shoot far without a penalty.", id: "Abaikan cover dan menembak jauh tanpa penalti." },
+  "Durable": { en: "+1 CON and heal more when you rest. Safe for anyone.", id: "+1 CON dan pulih lebih banyak saat istirahat. Aman untuk siapa pun." },
+  "Speedy": { en: "+10 speed and enemies can't easily slow you down.", id: "+10 speed dan musuh sulit memperlambatmu." },
+  "Inspiring Leader": { en: "Give the whole party temporary HP after a rest.", id: "Beri seluruh party HP sementara setelah istirahat." },
+};
+
 export const FEAT_WHY: Record<string, Why> = {
   "Great Weapon Master": { en: "Trade accuracy for +10 damage with big two-handed weapons.", id: "Tukar akurasi dengan +10 damage memakai senjata dua tangan besar." },
   "Sentinel": { en: "Enemies next to you can't just walk away.", id: "Musuh di dekatmu tidak bisa begitu saja pergi." },
@@ -156,7 +186,7 @@ const ORDER: AbilityKey[] = ["str", "dex", "con", "int", "wis", "cha"];
  * and a feat. Abilities at 20 are skipped; `feats` lists the feats the
  * character may still take.
  */
-export function asiPicks(className: string, scores: Record<AbilityKey, number>, feats: string[]): AsiPick[] {
+export function asiPicks(className: string, scores: Record<AbilityKey, number>, feats: string[], ruleset?: string): AsiPick[] {
   const [main, second] = MAIN_ABILITIES[className] || ["con", "dex"];
   const room = (k: AbilityKey, n: number) => (scores[k] ?? 10) + n <= 20;
   const ranked = [main, second, "con" as AbilityKey, "dex" as AbilityKey, ...ORDER].filter((k, i, a) => a.indexOf(k) === i);
@@ -175,10 +205,31 @@ export function asiPicks(className: string, scores: Record<AbilityKey, number>, 
       why: { en: "A little of both. Best when both scores are odd numbers.", id: "Sedikit untuk keduanya. Paling baik saat kedua skor ganjil." },
     });
   }
-  const featOrder = [...(CLASS_FEATS[className] || []), "Lucky", "Tough", "Alert"];
+  const is2024 = ruleset === "2024";
+  const featOrder = is2024 ? [...(CLASS_FEATS_2024[className] || []), "Durable"] : [...(CLASS_FEATS[className] || []), "Lucky", "Tough", "Alert"];
   const feat = featOrder.find((f) => feats.includes(f));
-  if (feat) picks.push({ kind: "feat", feat, why: FEAT_WHY[feat] || { en: "A strong feat for your class.", id: "Feat yang kuat untuk class-mu." } });
+  const why = feat && ((is2024 && FEAT_WHY_2024[feat]) || FEAT_WHY[feat]);
+  if (feat) picks.push({ kind: "feat", feat, why: why || { en: "A strong feat for your class.", id: "Feat yang kuat untuk class-mu." } });
   return picks.slice(0, 3);
+}
+
+/**
+ * Picks for a suggested feat whose only choice is which ability goes up by 1:
+ * the class's main ability if the feat allows it and it is below 20, else its
+ * second, else the highest score below 20. Null when the feat needs any other
+ * pick (a spell, a skill, a damage type): the full picker asks for those.
+ */
+export function defaultFeatOptions(feat: string, ruleset: string | undefined, className: string, scores: Record<AbilityKey, number>): Record<string, string> | null {
+  const groups = getFeatOptionGroups(feat, ruleset);
+  const out: Record<string, string> = {};
+  for (const g of groups) {
+    if (g.id !== "ability" || g.type !== "select" || !g.choices?.length) return null;
+    const keys = g.choices.map((c) => c.value as AbilityKey);
+    const open = keys.filter((k) => (scores[k] ?? 10) < 20);
+    const ranked = [...(MAIN_ABILITIES[className] || []), ...[...open].sort((a, b) => (scores[b] ?? 10) - (scores[a] ?? 10))];
+    out[g.id] = ranked.find((k) => open.includes(k)) ?? keys[0];
+  }
+  return out;
 }
 
 /** Fighting styles that are easy to use well, per class. */

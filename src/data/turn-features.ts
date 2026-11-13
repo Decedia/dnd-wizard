@@ -60,6 +60,8 @@ export interface FeatureRule {
   auto?: boolean | ((c: Character) => boolean);
   /** The damage dice it adds when used on a hit ("1d8"), by character level. */
   dice?: (c: Character) => string;
+  /** Using it gives the character this many temporary hit points (they don't stack: the higher stays). */
+  tempHp?: (c: Character) => number;
 }
 
 const mod = (score: number | undefined) => Math.floor(((score ?? 10) - 10) / 2);
@@ -587,6 +589,8 @@ export const FEATURE_RULES_2024: FeatureRule[] = [
   { name: /^Slasher$/, slot: "free", when: "onHit", oncePerTurn: true, condition: "slashing" },
   { name: /^Defensive Duelist$/, slot: "reaction", when: "whenAttacked", condition: "finesse" },
   { name: /^Durable$/, slot: "bonus" },
+  // Chef: treats baked on a short rest, eaten as a bonus action for temporary hit points.
+  { name: /^Chef$/, slot: "bonus", uses: { max: prof, per: "short" }, tempHp: prof },
   { name: /^Great Weapon Master$/, slot: "bonus", when: "onCritOrKill" },
   { name: /^Keen Mind$/, slot: "bonus" },
   { name: /^Observant$/, slot: "bonus" },

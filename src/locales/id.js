@@ -160,6 +160,7 @@ export const translations = {
   "rest.gain.slots": "{count} slot mantra yang terpakai",
   "rest.gain.hitDice": "{count} hit dice",
   "rest.gain.exhaustion": "Satu tingkat kelelahan hilang",
+  "rest.gain.inspiringLeader": "{amount} hit point sementara dari pidato Inspiring Leader-mu (beri jumlah yang sama ke maksimal 5 sekutu)",
   "rest.gain.arcaneRecovery": "Arcane Recovery",
   "rest.gain.ki": "{count} poin ki",
   "rest.gain.channelDivinity": "Channel Divinity ({count})",
