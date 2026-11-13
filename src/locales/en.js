@@ -2274,4 +2274,5 @@ export const translations = {
   "spell.magicalDiscoveries": "Magical Discoveries",
   "spell.magicalDiscoveriesHint": "Choose {count} spells from the Cleric, Druid or Wizard list. They are always prepared.",
   "levelUp.selectSpellsCount": "Select {count} spells...",
+  "quick.origin2024": "Species and background",
 };

@@ -7,6 +7,10 @@ import { LANGUAGE_NAMES } from "@/data/feat-options";
 import { RECOMMENDED_SKILLS_PER_CLASS } from "@/lib/recommendations";
 import { SPELL_WHY } from "@/lib/level-up-picks";
 import { SOURCE_OPTIONS } from "@/components/SourceBadge";
+import { getFeatOptionGroups } from "@/data/feat-options";
+import { getStaticSpells } from "@/lib/srd-client";
+import { encodeFeatOptions } from "@/lib/feat-grants";
+import { BACKGROUND_TOOL_KEY, ORIGIN_FEAT_KEY, applyBackground2024, getBackground2024, originFeats, pickGearPatch } from "@/lib/origin-2024";
 
 type AbilityKey = "str" | "dex" | "con" | "int" | "wis" | "cha";
 
@@ -31,6 +35,25 @@ export const QUICK_ORIGINS: Record<string, { race: string; background: string; a
   Warlock: { race: "Tiefling", background: "Charlatan", alignment: "Chaotic Neutral" },
   Wizard: { race: "High Elf", background: "Sage", alignment: "Neutral Good" },
   Artificer: { race: "Rock Gnome", background: "Guild Artisan", alignment: "Neutral" },
+};
+
+/**
+ * 2024 rules (SRD 5.2: 9 species, 4 backgrounds, one subclass per class): the
+ * species and background that suit each class, and the lineage to take.
+ */
+export const QUICK_ORIGINS_2024: Record<string, { race: string; background: string; lineage?: string }> = {
+  Barbarian: { race: "Goliath", background: "Soldier", lineage: "giant-ancestry-stones-endurance" },
+  Bard: { race: "Human", background: "Acolyte" },
+  Cleric: { race: "Dwarf", background: "Acolyte" },
+  Druid: { race: "Elf", background: "Sage", lineage: "elven-lineage-wood-elf" },
+  Fighter: { race: "Human", background: "Soldier" },
+  Monk: { race: "Elf", background: "Criminal", lineage: "elven-lineage-wood-elf" },
+  Paladin: { race: "Dragonborn", background: "Soldier", lineage: "draconic-ancestor-gold" },
+  Ranger: { race: "Elf", background: "Criminal", lineage: "elven-lineage-wood-elf" },
+  Rogue: { race: "Halfling", background: "Criminal" },
+  Sorcerer: { race: "Tiefling", background: "Acolyte", lineage: "fiendish-legacy-infernal" },
+  Warlock: { race: "Tiefling", background: "Acolyte", lineage: "fiendish-legacy-infernal" },
+  Wizard: { race: "Elf", background: "Sage", lineage: "elven-lineage-high-elf" },
 };
 
 /** Where the standard array (15, 14, 13, 12, 10, 8) goes, best score first. */
@@ -107,25 +130,35 @@ export interface QuickPersona {
 }
 
 /** A fresh quick-create draft: class, subclass and the class's usual race, background and alignment. */
-export function startQuickDraft(className: string, subclass: string): Character {
+export function startQuickDraft(className: string, subclass: string, ruleset: "2014" | "2024" = "2014"): Character {
   const origin = QUICK_ORIGINS[className] || QUICK_ORIGINS.Fighter;
   let c: Character = {
     ...initializeCharacter(),
-    sources: QUICK_SOURCES,
-    ruleset: "2014",
+    sources: ruleset === "2024" ? ["PHB"] : QUICK_SOURCES,
+    ruleset,
     class: className,
     abilityMethod: "standard" as any,
     alignment: origin.alignment,
   };
   c = setQuickSubclass(c, subclass);
+  if (ruleset === "2024") {
+    const origin2024 = QUICK_ORIGINS_2024[className] || QUICK_ORIGINS_2024.Fighter;
+    c = { ...c, ...racePatch(c, { name: origin2024.race }) };
+    if (origin2024.lineage) c.raceChoices = { ...c.raceChoices, [`${origin2024.race.toLowerCase()}-2024-lineage`]: origin2024.lineage };
+    return { ...c, ...applyBackground2024(c, origin2024.background) };
+  }
   c = { ...c, ...racePatch(c, { name: origin.race }) };
   c = { ...c, ...applyBackground(c, origin.background) };
   return c;
 }
 
+/** Subclasses quick create offers for the rule set. */
+export const quickSubclasses = (className: string, ruleset: string | undefined, language = "en") =>
+  getStaticSubclasses(className, ruleset === "2024" ? ["PHB"] : QUICK_SOURCES, ruleset === "2024" ? "2024" : "2014", language).filter((s) => s.name);
+
 /** Switch the draft's subclass (by name). */
 export function setQuickSubclass(c: Character, subclass: string): Character {
-  const sub = getStaticSubclasses(c.class, QUICK_SOURCES, "2014").find((s) => s.name === subclass);
+  const sub = quickSubclasses(c.class, c.ruleset).find((s) => s.name === subclass);
   return { ...c, subclass: sub?.name, subclassIndex: sub?.index };
 }
 
@@ -136,6 +169,7 @@ export function setQuickSubclass(c: Character, subclass: string): Character {
  * suggested picks.
  */
 export function completeQuickDraft(draft: Character, persona: QuickPersona, language = "en"): Character {
+  if (draft.ruleset === "2024") return completeQuickDraft2024(draft, persona, language);
   let c: Character = { ...draft, name: persona.name, gender: persona.gender || "" };
   const origin = QUICK_ORIGINS[c.class] || QUICK_ORIGINS.Fighter;
 
@@ -203,6 +237,104 @@ export function completeQuickDraft(draft: Character, persona: QuickPersona, lang
   c.flaw = persona.flaw || "";
   c.appearance = { ...c.appearance, ...(persona.appearance || {}) };
   return syncBaseFeatures(c, language);
+}
+
+/** Persona fields (alignment, traits, look) shared by both rule sets. */
+function withPersona(c: Character, persona: QuickPersona): Character {
+  const origin = QUICK_ORIGINS[c.class] || QUICK_ORIGINS.Fighter;
+  return {
+    ...c,
+    alignment: persona.alignment && alignmentOptions.includes(persona.alignment) ? persona.alignment : c.alignment || origin.alignment,
+    personalityTrait1: persona.personalityTrait1 || "",
+    ideal: persona.ideal || "",
+    bond: persona.bond || "",
+    flaw: persona.flaw || "",
+    appearance: { ...c.appearance, ...(persona.appearance || {}) },
+  };
+}
+
+const MENTAL: AbilityKey[] = ["int", "wis", "cha"];
+
+/**
+ * The 2024 version: standard array, the background's +2/+1 on the class's best
+ * two of its three abilities, species questions answered (lineage, spellcasting
+ * ability, Medium size), the Origin feats and their picks, the class's usual
+ * skills, and gear package A from both class and background.
+ */
+export function completeQuickDraft2024(draft: Character, persona: QuickPersona, language = "en"): Character {
+  let c: Character = { ...draft, name: persona.name, gender: persona.gender || "" };
+  const order = abilityOrder(c.class, c.subclass);
+  order.forEach((key, i) => { (c as any)[key] = STANDARD_ARRAY[i]; });
+
+  const bg = getBackground2024(c.background);
+  const fits = order.filter((k) => bg?.abilityScores.includes(k));
+  c.flexAsi = fits.length >= 2 ? { [fits[0]]: 2, [fits[1]]: 1 } : {};
+
+  // Species questions: the lineage that suits the class, the class's casting ability, Medium.
+  const classData = getStaticClass(c.class, "2024");
+  const casting = String(classData?.spellcastingAbility || "").toLowerCase().slice(0, 3) as AbilityKey;
+  const spellAbility = MENTAL.includes(casting) ? casting : order.find((k) => MENTAL.includes(k)) || "cha";
+  const raceChoices: Record<string, string> = { ...(c.raceChoices || {}) };
+  const species = getStaticRace(c.race, "2024");
+  for (let pass = 0; pass < 3; pass++) {
+    for (const choice of activeRaceChoices(species?.choices, raceChoices)) {
+      if (raceChoices[choice.id]) continue;
+      const ids = (choice.options || []).map((o) => o.id);
+      raceChoices[choice.id] = /-spell-ability$/.test(choice.id) && ids.includes(spellAbility) ? spellAbility : ids.includes("medium") ? "medium" : ids[0];
+    }
+  }
+  c.raceChoices = raceChoices;
+
+  // Skills the background gives come first, then the species pick (Human Skillful, Elf Keen Senses); class picks fill the rest.
+  const taken = new Set([...(bg?.skills || []), ...Object.entries(c.skills || {}).filter(([, v]) => v).map(([k]) => k)]);
+  if (species?.skillChoice) {
+    const options = species.skillChoice.options || SKILL_ORDER;
+    c.raceSkillPicks = preferred(SKILL_ORDER, options.filter((s) => !taken.has(s))).slice(0, species.skillChoice.count);
+  }
+  for (const s of getRaceSkills(c)) taken.add(s);
+  if (classData?.skillChoices) {
+    const { count, options } = classData.skillChoices;
+    const skillOrder = [...(RECOMMENDED_SKILLS_PER_CLASS[c.class] || []), ...SKILL_ORDER];
+    const picks = preferred(skillOrder, options.filter((s) => !taken.has(s))).slice(0, count);
+    picks.forEach((s) => taken.add(s));
+    c.skills = { ...c.skills, ...Object.fromEntries(picks.map((s) => [s, true])) };
+  }
+
+  // Origin feats: a Human's Versatile feat is Alert (Skilled when the background gives Alert).
+  const selections = { ...(c.featureSelections || {}) };
+  if (species?.originFeat && !selections[ORIGIN_FEAT_KEY.species]?.[0]) {
+    selections[ORIGIN_FEAT_KEY.species] = [bg?.feat === "Alert" ? "Skilled" : "Alert"];
+  }
+  if (bg?.toolChoice && !selections[BACKGROUND_TOOL_KEY]?.[0]) selections[BACKGROUND_TOOL_KEY] = ["Dice Set"];
+  c.featureSelections = selections;
+  for (const feat of originFeats(c)) {
+    const options = { ...feat.options };
+    const chosen = new Set<string>();
+    for (const group of getFeatOptionGroups(feat.name, "2024")) {
+      if (options[group.id]) { chosen.add(options[group.id]); continue; }
+      if (group.type === "select") {
+        const values = (group.choices || []).map((o) => o.value);
+        const pick =
+          group.id === "spell_ability" ? spellAbility
+          : group.id === "spell_class" ? values[0]
+          : preferred(SKILL_ORDER, values.filter((v) => !taken.has(v) && !chosen.has(v)))[0];
+        if (pick) { options[group.id] = pick; chosen.add(pick); taken.add(pick); }
+      } else if (group.spell) {
+        const list = options[group.spell.classFromOptionId || ""] || "";
+        const spells = getStaticSpells([], "2024").filter((sp) => sp.level === group.spell!.level && (sp.classes || []).some((cl) => cl.toLowerCase() === list) && !chosen.has(sp.name));
+        const pick = quickSpellOrder(spells)[0]?.name;
+        if (pick) { options[group.id] = pick; chosen.add(pick); }
+      }
+    }
+    c.featureSelections = { ...c.featureSelections, [feat.key]: [feat.name], [`${feat.key}-options`]: encodeFeatOptions(options) };
+  }
+
+  c = { ...c, ...pickGearPatch(c, "class", "A") };
+  c = { ...c, ...pickGearPatch(c, "background", "A") };
+  // Common plus two languages of the player's choice (the species gives the two picks).
+  const known = new Set(species?.languages || ["Common"]);
+  c.languages = preferred(LANGUAGE_ORDER, LANGUAGE_NAMES.filter((l) => !known.has(l))).slice(0, species?.extraLanguages || 0);
+  return syncBaseFeatures(withPersona(c, persona), language);
 }
 
 /** The class's starting gear: every fixed item plus the first option of every choice. */

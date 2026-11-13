@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Sword, Users, Scroll, DiceFive, Info } from "@phosphor-icons/react";
 import { AppHeader } from "@/components/AppHeader";
@@ -8,14 +8,17 @@ import { WizardNav, WIZARD_NAV_SPACE } from "@/components/WizardNav";
 import { LevelUpWizard } from "@/components/LevelUpWizard";
 import { PickRow } from "@/components/character-creator/StepOrigin";
 import { RaceSelectionModal } from "@/components/modals/RaceSelectionModal";
-import { BackgroundSelectionModal, backgroundStatLine } from "@/components/modals/BackgroundSelectionModal";
+import { BackgroundSelectionModal, backgroundStatLine, background2024StatLine } from "@/components/modals/BackgroundSelectionModal";
 import { CLASS_ICONS } from "@/components/modals/UnifiedSelectionModal";
 import { RACE_ICONS } from "@/components/race-icons";
 import { QuickBuildAnimation } from "@/components/character-creator/QuickBuildAnimation";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { getStaticClasses, getStaticSubclasses } from "@/lib/srd-client";
+import { useSRD } from "@/contexts/SRDContext";
+import { rules2024Available } from "@/lib/rulesets";
+import { applyBackground2024, getBackground2024 } from "@/lib/origin-2024";
+import { getStaticClasses } from "@/lib/srd-client";
 import { applyBackground, finalizeCreation, racePatch, type Character } from "@/lib/character-creation";
-import { QUICK_LEVEL, QUICK_ORIGINS, QUICK_SOURCES, completeQuickDraft, setQuickSubclass, startQuickDraft } from "@/lib/quick-create";
+import { QUICK_LEVEL, QUICK_ORIGINS, QUICK_SOURCES, completeQuickDraft, quickSubclasses, setQuickSubclass, startQuickDraft } from "@/lib/quick-create";
 import { SUBCLASS_PICKS } from "@/lib/level-up-picks";
 import { randomName } from "@/lib/random-name";
 import { randomLook, type LookField } from "@/lib/random-look";
@@ -64,19 +67,33 @@ export default function QuickCreate() {
   const [built, setBuilt] = useState<{ base: Character; stuck: boolean } | null>(null);
   const [doneId, setDoneId] = useState<string | null>(null);
 
-  const classes = useMemo(() => getStaticClasses(QUICK_SOURCES, "2014", language).filter((c) => QUICK_ORIGINS[c.name]), [language]);
+  const ruleset: "2014" | "2024" = draft.ruleset === "2024" ? "2024" : "2014";
+  const rules2024 = ruleset === "2024";
+  // The level-up wizard reads the shared SRD data, so it follows the draft's rules.
+  const { setRuleset: setSrdRuleset } = useSRD();
+  useEffect(() => { setSrdRuleset(ruleset); }, [ruleset, setSrdRuleset]);
+  const classes = useMemo(() => getStaticClasses(rules2024 ? ["PHB"] : QUICK_SOURCES, ruleset, language).filter((c) => QUICK_ORIGINS[c.name]), [language, ruleset, rules2024]);
   const subclasses = useMemo(() => {
-    const list = getStaticSubclasses(draft.class, QUICK_SOURCES, "2014", language).filter((s) => s.name);
+    const list = quickSubclasses(draft.class, ruleset, language);
     const order = (SUBCLASS_PICKS[draft.class] || []).map((p) => p.name);
     const rank = (n: string) => (order.indexOf(n) < 0 ? order.length : order.indexOf(n));
     return [...list].sort((a, b) => rank(a.name) - rank(b.name));
-  }, [draft.class, language]);
+  }, [draft.class, language, ruleset]);
   const popular = new Set((SUBCLASS_PICKS[draft.class] || []).slice(0, 2).map((p) => p.name));
   const background = getBackgroundData(draft.background);
+  const background2024 = rules2024 ? getBackground2024(draft.background) : undefined;
 
   const chooseClass = (className: string) => {
-    const first = (SUBCLASS_PICKS[className] || [])[0]?.name || getStaticSubclasses(className, QUICK_SOURCES, "2014")[0]?.name || "";
-    setDraft(startQuickDraft(className, first));
+    const options = quickSubclasses(className, ruleset);
+    const first = (SUBCLASS_PICKS[className] || []).find((p) => options.some((s) => s.name === p.name))?.name || options[0]?.name || "";
+    setDraft(startQuickDraft(className, first, ruleset));
+  };
+  const chooseRuleset = (next: "2014" | "2024") => {
+    if (next === ruleset) return;
+    const options = quickSubclasses(draft.class, next);
+    const first = (SUBCLASS_PICKS[draft.class] || []).find((p) => options.some((s) => s.name === p.name))?.name || options[0]?.name || "";
+    setDraft(startQuickDraft(draft.class, first, next));
+    setTraits({ personalityTrait1: "", ideal: "", bond: "", flaw: "" });
   };
   const rollTraits = (only?: TraitField) => {
     if (!background) return;
@@ -150,6 +167,27 @@ export default function QuickCreate() {
             </p>
           </div>
 
+          {rules2024Available() && (
+            <section>
+              <div className="flex rounded-xl bg-[var(--color-bg)] p-1">
+                {(["2014", "2024"] as const).map((rs) => (
+                  <button
+                    key={rs}
+                    type="button"
+                    aria-pressed={ruleset === rs}
+                    onClick={() => chooseRuleset(rs)}
+                    className={`flex-1 rounded-lg py-2 text-sm font-semibold transition-all ${ruleset === rs ? "bg-[var(--color-surface)] text-[var(--color-text-primary)] shadow-sm" : "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]"}`}
+                  >
+                    {rs === "2014" ? t("ruleset.2014", "2014 Rules") : t("ruleset.2024", "2024 Rules")}
+                  </button>
+                ))}
+              </div>
+              <p className="mt-2 text-xs leading-relaxed text-ink-muted">
+                {t("ruleset.explainer", "Not sure? Ask your group which Player's Handbook they use. 2014 has more choices here; 2024 is the newer book. You can't switch a character later.")}
+              </p>
+            </section>
+          )}
+
           <section>
             <SectionTitle>{t("form.class", "Class")}</SectionTitle>
             <div className="grid grid-cols-3 gap-2">
@@ -196,10 +234,10 @@ export default function QuickCreate() {
           </section>
 
           <section>
-            <SectionTitle>{t("quick.origin", "Race and background")}</SectionTitle>
+            <SectionTitle>{rules2024 ? t("quick.origin2024", "Species and background") : t("quick.origin", "Race and background")}</SectionTitle>
             <div className="space-y-3">
               <PickRow
-                label={t("form.race", "Race")}
+                label={rules2024 ? t("form.species", "Species") : t("form.race", "Race")}
                 title={draft.race === "Human" && draft.raceVariant === "variant" ? t("origin.variantHuman", "Variant Human") : draft.race}
                 subtitle={t("quick.changeHint", "Picked for this class. Tap to change.")}
                 icon={(() => { const Icon = RACE_ICONS[draft.race] || Users; return <Icon className="h-6 w-6" />; })()}
@@ -209,7 +247,7 @@ export default function QuickCreate() {
               <PickRow
                 label={t("form.background", "Background")}
                 title={draft.background}
-                subtitle={background ? backgroundStatLine(background, t) : ""}
+                subtitle={background2024 ? background2024StatLine(background2024, t) : background ? backgroundStatLine(background, t) : ""}
                 icon={<Scroll className="h-6 w-6" />}
                 chosen
                 onClick={() => setBackgroundOpen(true)}
@@ -335,7 +373,7 @@ export default function QuickCreate() {
             setDraft((d) => ({ ...d, ...racePatch(d, payload) }));
             setRaceOpen(false);
           }}
-          characterSources={QUICK_SOURCES}
+          characterSources={draft.sources}
           currentCharacter={draft}
         />
       )}
@@ -343,9 +381,10 @@ export default function QuickCreate() {
         <BackgroundSelectionModal
           isOpen
           current={draft.background}
+          ruleset={ruleset}
           onClose={() => setBackgroundOpen(false)}
           onConfirm={(bg) => {
-            setDraft((d) => ({ ...d, ...applyBackground(d, bg) }));
+            setDraft((d) => ({ ...d, ...(rules2024 ? applyBackground2024(d, bg) : applyBackground(d, bg)) }));
             setTraits({ personalityTrait1: "", ideal: "", bond: "", flaw: "" });
             setBackgroundOpen(false);
           }}

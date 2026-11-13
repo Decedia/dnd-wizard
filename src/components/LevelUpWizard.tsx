@@ -1338,6 +1338,11 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       "Pact Boon": sub === "Hexblade" ? ["Pact of the Blade"] : ["Pact of the Tome", "Pact of the Blade"],
       "Favored Enemy": ["Undead", "Fiends", "Humanoids", "Monstrosities"],
       "Natural Explorer": ["Forest"],
+      // Masteries for the weapons the character carries first, then the usual picks.
+      "Weapon Mastery": [
+        ...(character.inventory || []).map((r) => r.name).filter((n): n is string => !!n),
+        "Longsword", "Greatsword", "Rapier", "Shortsword", "Longbow", "Shortbow", "Handaxe", "Javelin", "Greataxe", "Dagger", "Light Crossbow", "Warhammer",
+      ],
     };
     // Spells picked earlier in this pass, by level, so later picks see them (Agonizing Blast needs Eldritch Blast).
     const pickedNow: Record<number, string[]> = {};
