@@ -3,6 +3,7 @@
 import { getFreeCastSpells } from "./granted-spells";
 import { getStaticClass } from "./srd-client";
 import { getModifier, hpMaxBonus, type Character } from "./storage";
+import { getFeatPicks } from "./feature-groups";
 import { endEncounterPatch } from "./turn";
 import { featureUsesAfterRest } from "@/data/turn-features";
 
@@ -96,6 +97,8 @@ export function shortRestPatch(character: Character, hitDiceSpent = 0, healed = 
     freeCastsUsed: (character.freeCastsUsed || []).filter((n) => !shortCasts.has(n)),
     featureUses: featureUsesAfterRest(character.featureUses, "short", character),
   };
+  const leader = inspiringLeaderTempHp(character);
+  if (leader > (character.temporaryHp || 0)) patch.temporaryHp = leader;
   for (const pool of POOLS) {
     if (num(character, pool.max) > 0 && refillsOn(character, pool, "short")) (patch as any)[pool.field] = poolAfter(character, pool, "short");
   }
@@ -119,13 +122,25 @@ export function shortRestPatch(character: Character, hitDiceSpent = 0, healed = 
   return patch;
 }
 
+/**
+ * Inspiring Leader: a speech after a rest gives temporary hit points equal to the
+ * character level plus the Charisma modifier (2024: the Wisdom or Charisma one the
+ * feat raised). 0 without the feat.
+ */
+export function inspiringLeaderTempHp(character: Character): number {
+  const feat = getFeatPicks(character, "Inspiring Leader");
+  if (!feat.taken && !(character.features || []).some((f) => f.name === "Inspiring Leader")) return 0;
+  const ability = character.ruleset === "2024" && feat.picks.includes("+1 WIS") ? character.wis : character.cha;
+  return Math.max(0, (character.level || 1) + getModifier(ability ?? 10));
+}
+
 /** A long rest (8 hours). */
 export function longRestPatch(character: Character): Partial<Character> {
   const level = character.level || 1;
   const patch: Partial<Character> = {
     ...endEncounterPatch(character),
     currentHp: (character.maxHp || 0) + hpMaxBonus(character),
-    temporaryHp: 0,
+    temporaryHp: inspiringLeaderTempHp(character),
     // Spent hit dice come back up to half the total (at least one), not all.
     hitDiceRemaining: Math.min(level, num(character, "hitDiceRemaining") + Math.max(1, Math.floor(level / 2))),
     deathSaveSuccesses: 0,
@@ -194,6 +209,8 @@ export function restGains(character: Character, kind: RestKind): RestGain[] {
     const back = sorcerousRestoration(character);
     if (back > 0) gains.push({ id: "sorceryPoints", values: { count: back } });
   }
+  const leader = inspiringLeaderTempHp(character);
+  if (leader > (kind === "long" ? 0 : character.temporaryHp || 0)) gains.push({ id: "inspiringLeader", values: { amount: leader } });
   const used = new Set(character.freeCastsUsed || []);
   const casts = getFreeCastSpells(character).filter((c) => used.has(c.name.toLowerCase()) && (kind === "long" || c.rest === "short"));
   if (casts.length > 0) gains.push({ id: "freeCasts", values: { names: casts.map((c) => c.name).join(", ") } });

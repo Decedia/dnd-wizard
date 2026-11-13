@@ -32,6 +32,8 @@ export interface FeatOptionGroup {
   type: "select" | "spell";
   /** How many distinct picks this group grants (renders one control each). */
   count: number;
+  /** Only asked from this character level (a pick that comes with a higher Proficiency Bonus). */
+  minLevel?: number;
   choices?: FeatOptionChoice[];
   spell?: FeatOptionSpellFilter;
 }
@@ -525,7 +527,12 @@ const FEAT_OPTIONS_2024: Record<string, FeatOptionGroup[]> = {
   Observant: [abilityGroup("int", "wis"), optionGroup("skill_up", "feat.opt.skillUp", "Skill", SKILLS.filter((s) => ["Insight", "Investigation", "Perception"].includes(s.value)))],
   Resilient: [abilityGroup(...ALL_ABILITIES)],
   // Ritual spells from any class list, as many as the Proficiency Bonus (2 at level 4).
-  "Ritual Caster": repeated([abilityGroup("int", "wis", "cha"), spellGroup("ritual_spell", "feat.opt.ritualSpell", "1st-Level Ritual Spell", { level: 1, ritualOnly: true }, 2)]),
+  // As many ritual spells as the Proficiency Bonus: 2 at level 4, then one more at 5, 9, 13 and 17.
+  "Ritual Caster": [
+    abilityGroup("int", "wis", "cha"),
+    ...repeated([spellGroup("ritual_spell", "feat.opt.ritualSpell", "1st-Level Ritual Spell", { level: 1, ritualOnly: true }, 6)])
+      .map((g, i) => (i < 2 ? g : { ...g, minLevel: [5, 9, 13, 17][i - 2] })),
+  ],
   "Skill Expert": [abilityGroup(...ALL_ABILITIES), optionGroup("skill", "feat.opt.skill", "Skill", SKILLS), optionGroup("expertise", "feat.opt.expertise", "Expertise", SKILLS)],
   "Weapon Master": [abilityGroup("str", "dex"), optionGroup("mastery", "feat.opt.mastery", "Weapon Mastery", choices(MASTERY_WEAPONS_2024))],
   "Boon of Energy Resistance": repeated([abilityGroup(...ALL_ABILITIES), optionGroup("resistance", "feat.opt.resistance", "Resistance", choices(["Acid", "Cold", "Fire", "Lightning", "Necrotic", "Poison", "Psychic", "Radiant", "Thunder"]), 2)]),

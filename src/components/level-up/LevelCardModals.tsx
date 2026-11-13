@@ -188,6 +188,7 @@ export function LevelCardModals() {
       {showAsiFeatModal && (
         <FeatSelectionModal
           selectedFeat={asiSelection?.feat}
+          initialOptions={asiSelection?.featOptions}
           sources={character.ruleset === "2024" ? [] : character.sources}
           ruleset={character.ruleset}
           // 2024: General feats, Fighting Style feats for classes with that feature, Epic Boons from 19.

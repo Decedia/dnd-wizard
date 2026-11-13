@@ -22,8 +22,7 @@ import { translations as idTranslations } from "@/locales/id";
 import { CheckIcon as Check, MinusIcon as Minus, PlusIcon as Plus, BellIcon as Bell, TargetIcon as Target } from "@/components/icons";
 import { GiDiceTwentyFacesTwenty } from "react-icons/gi";
 import { getStaticFeats } from "@/lib/srd-client";
-import { getFeatOptionGroups } from "@/data/feat-options";
-import { SUBCLASS_PICKS, FIGHTING_STYLE_PICKS, METAMAGIC_PICKS, MANEUVER_PICKS, INVOCATION_PICKS, asiPicks, expertisePicks, spellPicks, topPicks, type Pick as SuggestedPick, type Why } from "@/lib/level-up-picks";
+import { SUBCLASS_PICKS, FIGHTING_STYLE_PICKS, METAMAGIC_PICKS, MANEUVER_PICKS, INVOCATION_PICKS, asiPicks, defaultFeatOptions, expertisePicks, spellPicks, topPicks, type Pick as SuggestedPick, type Why } from "@/lib/level-up-picks";
 import { PickCards, type PickCard } from "./level-up/PickCards";
 import { ABILITIES, AbilityKey, LevelInfo, LevelPart, LevelUpWizardProps, buildLevelInfos, getAvailableInvocations, levelParts, partOfSection } from "./level-up/level-infos";
 import { LevelCard } from "./level-up/LevelCard";
@@ -1086,7 +1085,8 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     return getStaticFeats(character.sources, character.ruleset)
       .filter((f) => character.ruleset !== "2024" || (allowed2024.has(f.category || "") && f.name !== "Ability Score Improvement"))
       .map((f) => f.name)
-      .filter((name) => !owned.has(name) && getFeatOptionGroups(name, character.ruleset).length === 0);
+      // A feat with picks other than one ability can't be a one-tap card (the full picker asks for them).
+      .filter((name) => !owned.has(name) && defaultFeatOptions(name, character.ruleset, character.class, { str: 10, dex: 10, con: 10, int: 10, wis: 10, cha: 10 }) !== null);
   }, [character.features, character.featureSelections, character.sources, character.ruleset, character.class]);
   const classSpellList = useMemo(
     () => getStaticSpells(character.sources, character.ruleset).filter((s) => s.classes?.includes(character.class)),
@@ -1103,7 +1103,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     }
     if (part === "asi" && info.asi) {
       const takenElsewhere = new Set(Object.entries(asiSelections).filter(([l, st]) => Number(l) !== lvl && st?.mode === "feat").map(([, st]) => st.feat));
-      const picks = asiPicks(character.class, baseScores(lvl), featNames.filter((f) => !takenElsewhere.has(f)));
+      const picks = asiPicks(character.class, baseScores(lvl), featNames.filter((f) => !takenElsewhere.has(f)), character.ruleset);
       const st = asiSelections[lvl];
       const keyOf = (p: (typeof picks)[number]) => (p.kind === "single" ? `single:${p.ability}` : p.kind === "double" ? `double:${p.d1}:${p.d2}` : `feat:${p.feat}`);
       const titleOf = (p: (typeof picks)[number]) =>
@@ -1119,7 +1119,11 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
           const [kind, a, b] = key.split(":");
           if (kind === "single") setAsi(lvl, { mode: "single", single: a as AbilityKey, d1: undefined, d2: undefined, feat: undefined, featOptions: undefined });
           else if (kind === "double") setAsi(lvl, { mode: "double", d1: a as AbilityKey, d2: b as AbilityKey, single: undefined, feat: undefined, featOptions: undefined });
-          else setAsi(lvl, { mode: "feat", feat: key.slice(5), single: undefined, d1: undefined, d2: undefined, featOptions: undefined });
+          else {
+            const feat = key.slice(5);
+            const featOptions = defaultFeatOptions(feat, character.ruleset, character.class, baseScores(lvl)) || undefined;
+            setAsi(lvl, { mode: "feat", feat, single: undefined, d1: undefined, d2: undefined, featOptions: featOptions && Object.keys(featOptions).length ? featOptions : undefined });
+          }
         },
       }];
     }
@@ -1354,10 +1358,10 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
         return true;
       }
       if (info.asi && !asiIsValid(asiSelections[lvl])) {
-        const p = asiPicks(cls, baseScores(lvl), featNames)[0];
+        const p = asiPicks(cls, baseScores(lvl), featNames, character.ruleset)[0];
         if (p?.kind === "single") setAsi(lvl, { mode: "single", single: p.ability });
         else if (p?.kind === "double") setAsi(lvl, { mode: "double", d1: p.d1, d2: p.d2 });
-        else if (p?.kind === "feat") setAsi(lvl, { mode: "feat", feat: p.feat });
+        else if (p?.kind === "feat") setAsi(lvl, { mode: "feat", feat: p.feat, featOptions: defaultFeatOptions(p.feat, character.ruleset, cls, baseScores(lvl)) || undefined });
         changed = true;
       }
       for (const [isSubclass, list] of [[false, info.classFeatureChoices], [true, info.subclassFeatureChoices]] as const) {
