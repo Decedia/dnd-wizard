@@ -11,6 +11,8 @@ import type { Character } from "./storage";
  */
 
 export const DAMAGE_TYPES = ["Acid", "Bludgeoning", "Cold", "Fire", "Force", "Lightning", "Necrotic", "Piercing", "Poison", "Psychic", "Radiant", "Slashing", "Thunder"] as const;
+/** Not a damage type: resistance to the damage of spells (Aura of Warding, Spell Resistance). */
+export const SPELL_DAMAGE = "Spell damage";
 
 export interface Resistance {
   /** A damage type from DAMAGE_TYPES. */
@@ -75,7 +77,29 @@ const FEATURE_RESISTANCES: { name: RegExp; types: (c: Character) => string[]; im
   { name: /^Purity of Body/, types: () => ["Poison"], immune: true, ruleset: "2014" },
   { name: /^Nature's Ward/, types: () => ["Poison"], immune: true, ruleset: "2014" },
   { name: /^Infernal Constitution/, types: () => ["Cold", "Poison"] },
+  { name: /^Aura of Warding/, types: () => [SPELL_DAMAGE] },
+  { name: /^Spell Resistance/, types: () => [SPELL_DAMAGE] },
 ];
+
+/**
+ * Resistances the player picks again after a rest or each rage. The pick is
+ * saved in `character.chosenResistances` under the feature name.
+ */
+export const RESISTANCE_CHOICES: { feature: string; ruleset?: "2014" | "2024"; options: (c: Character) => string[]; types: (pick: string) => string[]; whileRaging?: boolean }[] = [
+  // Fiend Warlock, level 10: one type after each rest (2024: not Force).
+  { feature: "Fiendish Resilience", options: (c) => DAMAGE_TYPES.filter((t) => c.ruleset !== "2024" || t !== "Force"), types: (pick) => [pick] },
+  // 2024 Path of the Wild Heart: the Bear option of each rage resists all but Force, Necrotic, Psychic and Radiant.
+  { feature: "Rage of the Wilds", ruleset: "2024", options: () => ["Bear", "Eagle", "Wolf"], types: (pick) => (pick === "Bear" ? DAMAGE_TYPES.filter((t) => !["Force", "Necrotic", "Psychic", "Radiant"].includes(t)) : []), whileRaging: true },
+  // 2024 Circle of the Land, level 10: the type of the land picked at the last long rest.
+  { feature: "Nature's Ward", ruleset: "2024", options: () => ["Fire", "Cold", "Lightning", "Poison"], types: (pick) => [pick] },
+];
+
+/** The pick features this character has, with the saved pick. */
+export function resistanceChoicesFor(character: Character) {
+  const ruleset = character.ruleset === "2024" ? "2024" : "2014";
+  const names = (character.features || []).map((f) => f.name || "");
+  return RESISTANCE_CHOICES.filter((c) => (!c.ruleset || c.ruleset === ruleset) && names.some((n) => n.startsWith(c.feature))).map((c) => ({ ...c, pick: character.chosenResistances?.[c.feature] || "" }));
+}
 
 /** Every resistance and immunity the character has now, one row per type and source. */
 export function damageResistances(character: Character): Resistance[] {
@@ -87,6 +111,9 @@ export function damageResistances(character: Character): Resistance[] {
     const feature = [...names].find((n) => rule.name.test(n));
     if (!feature) continue;
     for (const type of rule.types(character)) out.push({ type, source: feature.replace(/ \(.*\)$/, ""), ...(rule.immune ? { immune: true } : {}), ...(rule.whileRaging ? { whileRaging: true } : {}) });
+  }
+  for (const choice of resistanceChoicesFor(character)) {
+    for (const type of choice.pick ? choice.types(choice.pick) : []) out.push({ type, source: choice.feature, ...(choice.whileRaging ? { whileRaging: true } : {}) });
   }
   // Boon of Energy Resistance: two types picked with the feat.
   for (const pick of getFeatPicks(character, "Boon of Energy Resistance").picks) {

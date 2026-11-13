@@ -156,3 +156,43 @@ describe("Ritual Caster grows with the Proficiency Bonus", () => {
     expect(openFeatPicks({ ...c, ...patch } as Character)).toEqual([]);
   });
 });
+
+import { RESISTANCE_CHOICES, resistanceChoicesFor, SPELL_DAMAGE } from "@/lib/resistances";
+import { feedbackHref, FEEDBACK_EMAIL } from "@/components/SupportLinks";
+import { readFileSync } from "node:fs";
+
+describe("picked resistances", () => {
+  const withFeature = (over: Partial<Character>, name: string) => make({ ...over, features: [{ id: name, name, description: "", source: "subclass" }] as Character["features"] });
+
+  test("Fiendish Resilience counts the type picked after a rest (2024: no Force)", () => {
+    const fiend = withFeature({ class: "Warlock", level: 10 }, "Fiendish Resilience");
+    const [choice] = resistanceChoicesFor(fiend);
+    expect([choice.feature, choice.pick, choice.options(fiend).includes("Force")]).toEqual(["Fiendish Resilience", "", false]);
+    const picked = { ...fiend, chosenResistances: { "Fiendish Resilience": "Fire" } } as Character;
+    expect(damageResistances(picked).map((r) => r.type)).toEqual(["Fire"]);
+  });
+
+  test("2024 Wild Heart Bear resists all but Force, Necrotic, Psychic, Radiant while raging", () => {
+    const barb = { ...withFeature({ class: "Barbarian", level: 3 }, "Rage of the Wilds"), chosenResistances: { "Rage of the Wilds": "Bear" } } as Character;
+    expect(activeResistances(barb)).toEqual([]);
+    expect(activeResistances({ ...barb, activeStates: ["raging"] } as Character).length).toBe(9);
+    expect(damageResistances({ ...barb, chosenResistances: { "Rage of the Wilds": "Wolf" } } as Character)).toEqual([]);
+  });
+
+  test("Aura of Warding resists spell damage; every pick feature exists in the data", () => {
+    expect(damageResistances(withFeature({ class: "Paladin", level: 7 }, "Aura of Warding")).map((r) => r.type)).toEqual([SPELL_DAMAGE]);
+    const data = ["2014_subclasses", "2024_subclasses", "2024_phb_subclasses"].map((f) => readFileSync(`src/data/en/${f}.json`, "utf8")).join("");
+    for (const c of RESISTANCE_CHOICES) expect([c.feature, data.includes(`"name": "${c.feature}"`)]).toEqual([c.feature, true]);
+    for (const k of ["combat.pickAfterRest", "combat.pickEachRage", "combat.pickNone"]) expect([k, !!(en as Record<string, string>)[k], !!(id as Record<string, string>)[k]]).toEqual([k, true, true]);
+  });
+});
+
+describe("support links", () => {
+  test("feedback goes to the owner's email with a subject and a short template", () => {
+    const href = feedbackHref("https://example.test/character?id=x", "en");
+    expect(href.startsWith(`mailto:${FEEDBACK_EMAIL}?subject=`)).toBe(true);
+    expect(decodeURIComponent(href)).toContain("What happened:");
+    expect(decodeURIComponent(feedbackHref("p", "id"))).toContain("Apa yang terjadi:");
+    for (const k of ["support.feedback", "support.coffee", "support.coffeeSoon"]) expect([k, !!(en as Record<string, string>)[k], !!(id as Record<string, string>)[k]]).toEqual([k, true, true]);
+  });
+});

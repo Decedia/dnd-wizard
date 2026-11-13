@@ -27,6 +27,7 @@ import {
   Gear,
 } from "@phosphor-icons/react";
 import { AppHeader } from "@/components/AppHeader";
+import { SupportLinks } from "@/components/SupportLinks";
 import { GiDragonHead } from "react-icons/gi";
 import { getCharacters, saveCharacter, deleteCharacter, type Character } from "@/lib/storage";
 import { importCharacterFromJson } from "@/lib/character-io";
@@ -420,6 +421,8 @@ export default function Home() {
           {importSuccess && (
             <div className="surface mt-2.5 bg-paper px-3 py-2.5 text-body">{importSuccess}</div>
           )}
+
+          <SupportLinks />
 
           <p className="mt-6 text-center text-[11px] leading-relaxed text-ink-muted">
             {t("home.creditsIcons", "Icons by")}{" "}

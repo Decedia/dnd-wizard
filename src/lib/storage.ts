@@ -67,6 +67,8 @@ export interface Character {
    * straight at the target (Pounce, Charge). `prone`: this turn's target fell prone. `holding`: attacks
    * holding a grappled target. `swallowed`: a target is inside it (Giant Toad).
    */
+  /** Resistance picks that change after a rest or each rage, by feature name ("Fiendish Resilience": "Fire"). */
+  chosenResistances?: Record<string, string>;
   wildShape?: { form: string; hp: number; run?: boolean; prone?: boolean; holding?: string[]; swallowed?: boolean; /** Whirlwind or Whelm was used and has not recharged; `rechargeRoll` is the last d6. */ recharging?: boolean; rechargeRoll?: number };
   /** Favourite turn options (their keys), shown first in the turn helper. */
   turnPins?: string[];
