@@ -56,7 +56,8 @@ describe("2024 subclasses", () => {
   }
   test("every always-prepared subclass spell is a 2024 spell", () => {
     const names = new Set(getStaticSpells([], "2024").map((s) => s.name));
-    const subclasses = classes.flatMap((c) => getStaticSubclasses(c.name, [], "2024")) as any[];
+    // SRD subclasses only; the 2024 Player's Handbook ones are checked in phb2024.test.ts.
+    const subclasses = (classes.flatMap((c) => getStaticSubclasses(c.name, [], "2024")) as any[]).filter((s) => (s.source || "PHB") === "PHB");
     const lists = subclasses.flatMap((s) => [s.expandedSpells, ...Object.values(s.expandedSpellsByOption || {})]).filter(Boolean);
     for (const list of lists) for (const spell of Object.values(list).flat() as string[]) expect([spell, names.has(spell)]).toEqual([spell, true]);
   });

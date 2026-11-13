@@ -542,6 +542,657 @@
      "description": "When you deal Sneak Attack damage with a psychic blade, the target makes a Wisdom saving throw (DC 8 + your Dexterity modifier + Proficiency Bonus) or is Stunned for 1 minute. It repeats the save at the end of each of its turns, ending the effect on a success. Once per Long Rest, or spend three dice to do it again."
     }
    ]
+  },
+  {
+   "class": "Bard",
+   "classIndex": "bard",
+   "index": "college-of-dance-2024",
+   "name": "College of Dance",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Move in Harmony with the Cosmos",
+   "description": "Dance bards fight with footwork. Their steps turn Bardic Inspiration into strikes and help friends move around the battlefield.",
+   "features": [
+    {
+     "name": "Dazzling Footwork",
+     "level": 3,
+     "description": "While you wear no armor and hold no Shield, you gain these benefits.\n\nDance Virtuoso. You have Advantage on Charisma (Performance) checks that involve dancing.\n\nUnarmored Defense. Your AC is 10 + your Dexterity modifier + your Charisma modifier.\n\nAgile Strikes. When you spend a use of Bardic Inspiration as part of an action, Bonus Action or Reaction, you can make one Unarmed Strike as part of it.\n\nBardic Damage. Your Unarmed Strikes can use Dexterity for the attack roll. Their damage is one roll of your Bardic Inspiration die + your Dexterity modifier, as Bludgeoning damage. This roll does not spend a use."
+    },
+    {
+     "name": "Inspiring Movement",
+     "level": 6,
+     "description": "When an enemy you can see ends its turn within 5 feet of you, you can take a Reaction and spend a use of Bardic Inspiration to move up to half your Speed. One ally within 30 feet of you can then use its Reaction to move up to half its Speed. Neither move provokes Opportunity Attacks."
+    },
+    {
+     "name": "Tandem Footwork",
+     "level": 6,
+     "description": "When you roll Initiative and are not Incapacitated, you can spend a use of Bardic Inspiration. Roll the die: you and each ally within 30 feet who can see or hear you add the number to Initiative."
+    },
+    {
+     "name": "Leading Evasion",
+     "level": 14,
+     "description": "When an effect lets you make a Dexterity saving throw to take half damage, you take no damage on a success and half on a failure. Creatures within 5 feet of you making the same save get this benefit too. Not while you are Incapacitated."
+    }
+   ]
+  },
+  {
+   "class": "Bard",
+   "classIndex": "bard",
+   "index": "college-of-glamour-2024",
+   "name": "College of Glamour",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Weave Beguiling Fey Magic",
+   "description": "Glamour bards learned their art from the fey. Their magic charms, frightens and fills allies with fresh courage.",
+   "features": [
+    {
+     "name": "Beguiling Magic",
+     "level": 3,
+     "description": "You always have Charm Person and Mirror Image prepared. Right after you cast an Enchantment or Illusion spell with a spell slot, you can make a creature you can see within 60 feet make a Wisdom saving throw against your spell save DC. On a failure it is Charmed or Frightened (your pick) for 1 minute, repeating the save at the end of each of its turns. Once per Long Rest, or spend a use of Bardic Inspiration to do it again."
+    },
+    {
+     "name": "Mantle of Inspiration",
+     "level": 3,
+     "description": "As a Bonus Action, spend a use of Bardic Inspiration and roll the die. Pick a number of creatures within 60 feet up to your Charisma modifier (at least one). Each gains Temporary Hit Points equal to twice the roll, and can use its Reaction to move up to its Speed without provoking Opportunity Attacks."
+    },
+    {
+     "name": "Mantle of Majesty",
+     "level": 6,
+     "description": "You always have Command prepared. As a Bonus Action you cast Command without a spell slot and take on an unearthly majesty for 1 minute (Concentration). While it lasts you can cast Command as a Bonus Action without a slot, and a creature Charmed by you fails its save against it automatically. Once per Long Rest, or spend a level 3+ spell slot to do it again."
+    },
+    {
+     "name": "Unbreakable Majesty",
+     "level": 14,
+     "description": "As a Bonus Action, take on a majestic presence for 1 minute or until you are Incapacitated. The first time a creature hits you with an attack roll on a turn, it must succeed on a Charisma saving throw against your spell save DC or the attack misses instead. Once per Short or Long Rest."
+    }
+   ],
+   "expandedSpells": {
+    "3": [
+     "Charm Person",
+     "Mirror Image"
+    ],
+    "6": [
+     "Command"
+    ]
+   }
+  },
+  {
+   "class": "Bard",
+   "classIndex": "bard",
+   "index": "college-of-valor-2024",
+   "name": "College of Valor",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Sing the Deeds of Ancient Heroes",
+   "description": "Valor bards fight on the front line. Their songs make allies hit harder and dodge better, and they mix spells with weapon swings.",
+   "features": [
+    {
+     "name": "Combat Inspiration",
+     "level": 3,
+     "description": "A creature holding one of your Bardic Inspiration dice can use it in one of these ways.\n\nDefense. When an attack roll hits it, it can take a Reaction, roll the die and add it to its AC against that attack. This can turn the hit into a miss.\n\nOffense. Right after it hits with an attack roll, it can roll the die and add it to the damage."
+    },
+    {
+     "name": "Martial Training",
+     "level": 3,
+     "description": "You gain proficiency with Martial weapons and training with Medium armor and Shields. You can use a Simple or Martial weapon as a Spellcasting Focus for your Bard spells."
+    },
+    {
+     "name": "Extra Attack",
+     "level": 6,
+     "description": "You can attack twice instead of once when you take the Attack action on your turn. You can cast one of your cantrips that takes an action in place of one of those attacks."
+    },
+    {
+     "name": "Battle Magic",
+     "level": 14,
+     "description": "After you cast a spell that takes an action, you can make one weapon attack as a Bonus Action."
+    }
+   ]
+  },
+  {
+   "class": "Cleric",
+   "classIndex": "cleric",
+   "index": "light-domain-2024",
+   "name": "Light Domain",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Bring Light to Banish Darkness",
+   "description": "Light clerics serve gods of the sun and truth. They burn enemies with radiant fire and blind attackers with sudden flashes.",
+   "features": [
+    {
+     "name": "Light Domain Spells",
+     "level": 3,
+     "description": "You always have these spells prepared: Burning Hands, Faerie Fire, Scorching Ray and See Invisibility at level 3; Daylight and Fireball at level 5; Arcane Eye and Wall of Fire at level 7; Flame Strike and Scrying at level 9."
+    },
+    {
+     "name": "Radiance of the Dawn",
+     "level": 3,
+     "description": "As a Magic action, spend a use of Channel Divinity. Magical Darkness within 30 feet of you is dispelled, and each creature of your choice within 30 feet makes a Constitution saving throw. It takes 2d10 + your Cleric level Radiant damage on a failure, or half on a success."
+    },
+    {
+     "name": "Warding Flare",
+     "level": 3,
+     "description": "When a creature you can see within 30 feet makes an attack roll, you can take a Reaction to flash light at it and give the roll Disadvantage. You can do this a number of times equal to your Wisdom modifier (at least once); uses come back after a Long Rest."
+    },
+    {
+     "name": "Improved Warding Flare",
+     "level": 6,
+     "description": "Your Warding Flare uses come back after a Short or Long Rest. When you use it, the target of the attack gains 2d6 + your Wisdom modifier Temporary Hit Points."
+    },
+    {
+     "name": "Corona of Light",
+     "level": 17,
+     "description": "As a Magic action, you shine with sunlight for 1 minute: Bright Light in 60 feet and Dim Light 30 feet beyond. Enemies in the Bright Light have Disadvantage on saving throws against your Radiance of the Dawn and against spells that deal Fire or Radiant damage. You can do this a number of times equal to your Wisdom modifier (at least once); uses come back after a Long Rest."
+    }
+   ],
+   "expandedSpells": {
+    "3": [
+     "Burning Hands",
+     "Faerie Fire",
+     "Scorching Ray",
+     "See Invisibility"
+    ],
+    "5": [
+     "Daylight",
+     "Fireball"
+    ],
+    "7": [
+     "Arcane Eye",
+     "Wall of Fire"
+    ],
+    "9": [
+     "Flame Strike",
+     "Scrying"
+    ]
+   }
+  },
+  {
+   "class": "Cleric",
+   "classIndex": "cleric",
+   "index": "trickery-domain-2024",
+   "name": "Trickery Domain",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Make Mischief and Challenge Authority",
+   "description": "Trickery clerics serve gods of mischief. They sneak, fool and confuse, and fight beside a copy of themselves made of illusion.",
+   "features": [
+    {
+     "name": "Trickery Domain Spells",
+     "level": 3,
+     "description": "You always have these spells prepared: Charm Person, Disguise Self, Invisibility and Pass without Trace at level 3; Hypnotic Pattern and Nondetection at level 5; Confusion and Dimension Door at level 7; Dominate Person and Modify Memory at level 9."
+    },
+    {
+     "name": "Blessing of the Trickster",
+     "level": 3,
+     "description": "As a Magic action, pick yourself or a willing creature within 30 feet. It has Advantage on Dexterity (Stealth) checks until you finish a Long Rest or use this again."
+    },
+    {
+     "name": "Invoke Duplicity",
+     "level": 3,
+     "description": "As a Bonus Action, spend a use of Channel Divinity to make a perfect illusion of yourself in an empty space within 30 feet. It lasts 1 minute.\n\nCast Spells. You can cast spells as if you were in the illusion's space, using your own senses.\n\nDistract. When you and the illusion are both within 5 feet of a creature that can see the illusion, you have Advantage on attack rolls against it.\n\nMove. As a Bonus Action you can move the illusion up to 30 feet, to a space within 120 feet of you."
+    },
+    {
+     "name": "Trickster's Transposition",
+     "level": 6,
+     "description": "When you take the Bonus Action to make or move your illusion, you can teleport and swap places with it."
+    },
+    {
+     "name": "Improved Duplicity",
+     "level": 17,
+     "description": "You and your allies have Advantage on attack rolls against any creature within 5 feet of your illusion. When the illusion ends, you or a creature of your choice within 5 feet of it regains Hit Points equal to your Cleric level."
+    }
+   ],
+   "expandedSpells": {
+    "3": [
+     "Charm Person",
+     "Disguise Self",
+     "Invisibility",
+     "Pass without Trace"
+    ],
+    "5": [
+     "Hypnotic Pattern",
+     "Nondetection"
+    ],
+    "7": [
+     "Confusion",
+     "Dimension Door"
+    ],
+    "9": [
+     "Dominate Person",
+     "Modify Memory"
+    ]
+   }
+  },
+  {
+   "class": "Cleric",
+   "classIndex": "cleric",
+   "index": "war-domain-2024",
+   "name": "War Domain",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Inspire Valor and Smite Foes",
+   "description": "War clerics serve gods of battle. They strike often, guide allies' blows and shrug off weapon hits.",
+   "features": [
+    {
+     "name": "War Domain Spells",
+     "level": 3,
+     "description": "You always have these spells prepared: Guiding Bolt, Magic Weapon, Shield of Faith and Spiritual Weapon at level 3; Crusader's Mantle and Spirit Guardians at level 5; Fire Shield and Freedom of Movement at level 7; Hold Monster and Steel Wind Strike at level 9."
+    },
+    {
+     "name": "Guided Strike",
+     "level": 3,
+     "description": "When you or a creature within 30 feet misses with an attack roll, you can spend a use of Channel Divinity to give that roll +10, which can turn the miss into a hit. Helping someone else uses your Reaction."
+    },
+    {
+     "name": "War Priest",
+     "level": 3,
+     "description": "As a Bonus Action, you can make one attack with a weapon or an Unarmed Strike. You can do this a number of times equal to your Wisdom modifier (at least once); uses come back after a Short or Long Rest."
+    },
+    {
+     "name": "War God's Blessing",
+     "level": 6,
+     "description": "You can spend a use of Channel Divinity to cast Shield of Faith or Spiritual Weapon without a spell slot. Cast this way, the spell needs no Concentration and lasts 1 minute."
+    },
+    {
+     "name": "Avatar of Battle",
+     "level": 17,
+     "description": "You have Resistance to Bludgeoning, Piercing and Slashing damage."
+    }
+   ],
+   "expandedSpells": {
+    "3": [
+     "Guiding Bolt",
+     "Magic Weapon",
+     "Shield of Faith",
+     "Spiritual Weapon"
+    ],
+    "5": [
+     "Crusader's Mantle",
+     "Spirit Guardians"
+    ],
+    "7": [
+     "Fire Shield",
+     "Freedom of Movement"
+    ],
+    "9": [
+     "Hold Monster",
+     "Steel Wind Strike"
+    ]
+   }
+  },
+  {
+   "class": "Paladin",
+   "classIndex": "paladin",
+   "index": "oath-of-glory-2024",
+   "name": "Oath of Glory",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Strive for the Heights of Heroism",
+   "description": "Glory paladins believe they are meant for great deeds. They train body and spirit and lift their allies with them.",
+   "features": [
+    {
+     "name": "Oath of Glory Spells",
+     "level": 3,
+     "description": "You always have these spells prepared: Guiding Bolt and Heroism at level 3; Enhance Ability and Magic Weapon at level 5; Haste and Protection from Energy at level 9; Compulsion and Freedom of Movement at level 13; Legend Lore and Yolande's Regal Presence at level 17."
+    },
+    {
+     "name": "Inspiring Smite",
+     "level": 3,
+     "description": "Right after you cast Divine Smite, you can spend a use of Channel Divinity to hand out 2d8 + your Paladin level Temporary Hit Points, split as you like among creatures of your choice within 30 feet, yourself included."
+    },
+    {
+     "name": "Peerless Athlete",
+     "level": 3,
+     "description": "As a Bonus Action, spend a use of Channel Divinity. For 1 hour you have Advantage on Strength (Athletics) and Dexterity (Acrobatics) checks, and your Long and High Jumps go 10 feet further."
+    },
+    {
+     "name": "Aura of Alacrity",
+     "level": 7,
+     "description": "Your Speed goes up by 10 feet. When an ally enters your Aura of Protection for the first time on a turn, or starts its turn there, its Speed goes up by 10 feet until the end of its next turn."
+    },
+    {
+     "name": "Glorious Defense",
+     "level": 15,
+     "description": "When you or a creature you can see within 10 feet is hit by an attack roll, you can take a Reaction to add your Charisma modifier (at least +1) to the target's AC against it. If the attack then misses, you can make one weapon attack against the attacker as part of this Reaction, if it is in range. You can do this a number of times equal to your Charisma modifier (at least once); uses come back after a Long Rest."
+    },
+    {
+     "name": "Living Legend",
+     "level": 20,
+     "description": "As a Bonus Action, you become a living legend for 10 minutes. You have Advantage on Charisma checks. Once on each of your turns, when you miss with a weapon attack, you can make it hit instead. When you fail a saving throw, you can take a Reaction to reroll it, and you must use the new roll. Once per Long Rest, or spend a level 5 spell slot to do it again."
+    }
+   ],
+   "expandedSpells": {
+    "3": [
+     "Guiding Bolt",
+     "Heroism"
+    ],
+    "5": [
+     "Enhance Ability",
+     "Magic Weapon"
+    ],
+    "9": [
+     "Haste",
+     "Protection from Energy"
+    ],
+    "13": [
+     "Compulsion",
+     "Freedom of Movement"
+    ],
+    "17": [
+     "Legend Lore",
+     "Yolande's Regal Presence"
+    ]
+   }
+  },
+  {
+   "class": "Paladin",
+   "classIndex": "paladin",
+   "index": "oath-of-the-ancients-2024",
+   "name": "Oath of the Ancients",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Preserve Life and Light in the World",
+   "description": "Ancients paladins protect life, joy and nature. Green vines answer their call and old magic keeps them standing.",
+   "features": [
+    {
+     "name": "Oath of the Ancients Spells",
+     "level": 3,
+     "description": "You always have these spells prepared: Ensnaring Strike and Speak with Animals at level 3; Misty Step and Moonbeam at level 5; Plant Growth and Protection from Energy at level 9; Ice Storm and Stoneskin at level 13; Commune with Nature and Tree Stride at level 17."
+    },
+    {
+     "name": "Nature's Wrath",
+     "level": 3,
+     "description": "As a Magic action, spend a use of Channel Divinity to call up ghostly vines. Each creature of your choice within 15 feet makes a Strength saving throw or is Restrained for 1 minute, repeating the save at the end of each of its turns."
+    },
+    {
+     "name": "Aura of Warding",
+     "level": 7,
+     "description": "You and your allies in your Aura of Protection have Resistance to Necrotic, Psychic and Radiant damage."
+    },
+    {
+     "name": "Undying Sentinel",
+     "level": 15,
+     "description": "When you drop to 0 Hit Points and aren't killed outright, you can drop to 1 Hit Point instead and regain Hit Points equal to three times your Paladin level. Once per Long Rest. You also stop aging and can't be aged by magic."
+    },
+    {
+     "name": "Elder Champion",
+     "level": 20,
+     "description": "As a Bonus Action, you take the form of an ancient force of nature for 1 minute.\n\nDiminish Defiance. Enemies in your Aura of Protection have Disadvantage on saving throws against your spells and Channel Divinity.\n\nRegeneration. You regain 10 Hit Points at the start of each of your turns.\n\nSwift Spells. When you cast a spell that takes an action, you can cast it as a Bonus Action instead.\n\nOnce per Long Rest, or spend a level 5 spell slot to do it again."
+    }
+   ],
+   "expandedSpells": {
+    "3": [
+     "Ensnaring Strike",
+     "Speak with Animals"
+    ],
+    "5": [
+     "Misty Step",
+     "Moonbeam"
+    ],
+    "9": [
+     "Plant Growth",
+     "Protection from Energy"
+    ],
+    "13": [
+     "Ice Storm",
+     "Stoneskin"
+    ],
+    "17": [
+     "Commune with Nature",
+     "Tree Stride"
+    ]
+   }
+  },
+  {
+   "class": "Paladin",
+   "classIndex": "paladin",
+   "index": "oath-of-vengeance-2024",
+   "name": "Oath of Vengeance",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Punish Evildoers at Any Cost",
+   "description": "Vengeance paladins hunt those who do great evil. They mark one foe and chase it down without rest.",
+   "features": [
+    {
+     "name": "Oath of Vengeance Spells",
+     "level": 3,
+     "description": "You always have these spells prepared: Bane and Hunter's Mark at level 3; Hold Person and Misty Step at level 5; Haste and Protection from Energy at level 9; Banishment and Dimension Door at level 13; Hold Monster and Scrying at level 17."
+    },
+    {
+     "name": "Vow of Enmity",
+     "level": 3,
+     "description": "When you take the Attack action, you can spend a use of Channel Divinity to swear a vow against a creature you can see within 30 feet. You have Advantage on attack rolls against it for 1 minute or until you use this again. If it drops to 0 Hit Points before the vow ends, you can move the vow to another creature within 30 feet (no action needed)."
+    },
+    {
+     "name": "Relentless Avenger",
+     "level": 7,
+     "description": "When you hit a creature with an Opportunity Attack, its Speed becomes 0 until the end of the turn. You can then move up to half your Speed as part of the same Reaction, without provoking Opportunity Attacks."
+    },
+    {
+     "name": "Soul of Vengeance",
+     "level": 15,
+     "description": "Right after the creature under your Vow of Enmity hits or misses with an attack roll, you can take a Reaction to make a melee attack against it, if it is in range."
+    },
+    {
+     "name": "Avenging Angel",
+     "level": 20,
+     "description": "As a Bonus Action, you take the form of an avenging angel for 10 minutes.\n\nFlight. You sprout wings and have a Fly Speed of 60 feet; you can hover.\n\nFrightful Aura. When an enemy starts its turn in your Aura of Protection, it makes a Wisdom saving throw or is Frightened of you for 1 minute or until it takes damage. Attack rolls against a creature Frightened this way have Advantage.\n\nOnce per Long Rest, or spend a level 5 spell slot to do it again."
+    }
+   ],
+   "expandedSpells": {
+    "3": [
+     "Bane",
+     "Hunter's Mark"
+    ],
+    "5": [
+     "Hold Person",
+     "Misty Step"
+    ],
+    "9": [
+     "Haste",
+     "Protection from Energy"
+    ],
+    "13": [
+     "Banishment",
+     "Dimension Door"
+    ],
+    "17": [
+     "Hold Monster",
+     "Scrying"
+    ]
+   }
+  },
+  {
+   "class": "Ranger",
+   "classIndex": "ranger",
+   "index": "beast-master-2024",
+   "name": "Beast Master",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Bond with a Primal Beast",
+   "description": "Beast Masters fight beside a magical animal friend: a beast of the land, sea or sky that grows stronger with them.",
+   "features": [
+    {
+     "name": "Primal Companion",
+     "level": 3,
+     "description": "You summon a primal beast: a Beast of the Land, Sea or Sky. You can summon a different one after a Long Rest.\n\nIn Combat. The beast acts on your turn and takes the Dodge action unless you command it. As a Bonus Action you can command it to take an action from its stat block or another action. When you take the Attack action, you can give up one of your attacks to command it to take the Beast's Strike action. If you are Incapacitated it acts on its own.\n\nRestore. If it died within the last hour, you can touch it, spend a spell slot and take a Magic action; it returns with full Hit Points after 1 minute."
+    },
+    {
+     "name": "Exceptional Training",
+     "level": 7,
+     "description": "When you take the Bonus Action to command your beast, you can also have it take the Dash, Disengage, Dodge or Help action as its Bonus Action. When it hits, it can deal Force damage instead of its usual type."
+    },
+    {
+     "name": "Bestial Fury",
+     "level": 11,
+     "description": "When you command your beast to take the Beast's Strike action, it can make two attacks. The first time each turn it hits a creature under your Hunter's Mark, it deals extra Force damage equal to that spell's bonus damage."
+    },
+    {
+     "name": "Share Spells",
+     "level": 15,
+     "description": "When you cast a spell that targets yourself, you can also make it affect your beast if it is within 30 feet of you."
+    }
+   ],
+   "featureChoices": {
+    "Primal Companion": {
+     "count": 1,
+     "description": "Pick the beast you summon. You can pick another after a Long Rest.",
+     "options": [
+      {
+       "name": "Beast of the Land",
+       "description": "AC 13 + your Wisdom modifier. Hit Points 5 + five times your Ranger level. Speed 40 feet, Climb 40 feet. Beast's Strike: melee attack using your spell attack bonus, 1d8 + 2 + your Wisdom modifier Piercing damage. Charge: if it moved at least 20 feet straight toward the target first, the hit deals 1d6 extra damage and a Large or smaller target makes a Strength save against your spell save DC or falls Prone."
+      },
+      {
+       "name": "Beast of the Sea",
+       "description": "AC 13 + your Wisdom modifier. Hit Points 5 + five times your Ranger level. Speed 5 feet, Swim 60 feet; breathes air and water. Beast's Strike: melee attack using your spell attack bonus, 1d6 + 2 + your Wisdom modifier Bludgeoning or Piercing damage, and the target is Grappled (escape DC equals your spell save DC)."
+      },
+      {
+       "name": "Beast of the Sky",
+       "description": "AC 13 + your Wisdom modifier. Hit Points 4 + four times your Ranger level. Speed 10 feet, Fly 60 feet; it doesn't provoke Opportunity Attacks when it flies out of reach. Beast's Strike: melee attack using your spell attack bonus, 1d4 + 3 + your Wisdom modifier Slashing damage."
+      }
+     ]
+    }
+   }
+  },
+  {
+   "class": "Ranger",
+   "classIndex": "ranger",
+   "index": "fey-wanderer-2024",
+   "name": "Fey Wanderer",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Wield Fey Mirth and Fury",
+   "description": "Fey Wanderers carry a touch of the Feywild. Their strikes hurt the mind, their charm wins friends, and fey spirits come to help.",
+   "features": [
+    {
+     "name": "Fey Wanderer Spells",
+     "level": 3,
+     "description": "You always have these spells prepared: Charm Person at level 3, Misty Step at level 5, Summon Fey at level 9, Dimension Door at level 13 and Mislead at level 17. You also gain a harmless fey trinket or mark of your choice."
+    },
+    {
+     "name": "Dreadful Strikes",
+     "level": 3,
+     "description": "When you hit a creature with a weapon, you can deal an extra 1d4 Psychic damage. Each creature can take this extra damage only once per turn. The die becomes 1d6 at Ranger level 11."
+    },
+    {
+     "name": "Otherworldly Glamour",
+     "level": 3,
+     "description": "When you make a Charisma check, add your Wisdom modifier (at least +1) to it. You also gain proficiency in one skill of your choice: Deception, Performance or Persuasion."
+    },
+    {
+     "name": "Beguiling Twist",
+     "level": 7,
+     "description": "You have Advantage on saving throws to avoid or end the Charmed or Frightened condition. When you or a creature you can see within 120 feet succeeds on such a save, you can take a Reaction to make a different creature you can see within 120 feet make a Wisdom saving throw against your spell save DC. On a failure it is Charmed or Frightened (your pick) for 1 minute, repeating the save at the end of each of its turns."
+    },
+    {
+     "name": "Fey Reinforcements",
+     "level": 11,
+     "description": "You can cast Summon Fey without a Material component. Once per Long Rest you can cast it without a spell slot. When you cast it, you can choose to need no Concentration; the spell then lasts 1 minute."
+    },
+    {
+     "name": "Misty Wanderer",
+     "level": 15,
+     "description": "You can cast Misty Step without a spell slot a number of times equal to your Wisdom modifier (at least once); uses come back after a Long Rest. When you cast it, you can bring one willing creature within 5 feet of you. It teleports to an empty space of your choice within 5 feet of where you arrive."
+    }
+   ],
+   "featureChoices": {
+    "Otherworldly Glamour": {
+     "count": 1,
+     "grants": {
+      "mode": "proficiency"
+     },
+     "description": "Pick one skill to become proficient in.",
+     "options": [
+      {
+       "name": "Deception",
+       "description": ""
+      },
+      {
+       "name": "Performance",
+       "description": ""
+      },
+      {
+       "name": "Persuasion",
+       "description": ""
+      }
+     ]
+    }
+   },
+   "expandedSpells": {
+    "3": [
+     "Charm Person"
+    ],
+    "5": [
+     "Misty Step"
+    ],
+    "9": [
+     "Summon Fey"
+    ],
+    "13": [
+     "Dimension Door"
+    ],
+    "17": [
+     "Mislead"
+    ]
+   }
+  },
+  {
+   "class": "Ranger",
+   "classIndex": "ranger",
+   "index": "gloom-stalker-2024",
+   "name": "Gloom Stalker",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Draw on Shadow Magic to Fight Your Foes",
+   "description": "Gloom Stalkers hunt in the dark. They strike first, vanish from creatures that see in the dark, and fill enemies with dread.",
+   "features": [
+    {
+     "name": "Gloom Stalker Spells",
+     "level": 3,
+     "description": "You always have these spells prepared: Disguise Self at level 3, Rope Trick at level 5, Fear at level 9, Greater Invisibility at level 13 and Seeming at level 17."
+    },
+    {
+     "name": "Dread Ambusher",
+     "level": 3,
+     "description": "Ambusher's Leap. At the start of your first turn of each combat, your Speed goes up by 10 feet until the end of that turn.\n\nDreadful Strike. When you hit a creature with a weapon, you can deal an extra 2d6 Psychic damage. Once per turn, a number of times equal to your Wisdom modifier (at least once); uses come back after a Long Rest.\n\nInitiative Bonus. Add your Wisdom modifier to your Initiative rolls."
+    },
+    {
+     "name": "Umbral Sight",
+     "level": 3,
+     "description": "You gain Darkvision 60 feet, or 60 more feet if you already have it. While you are entirely in Darkness, you are Invisible to any creature that relies on Darkvision to see you there."
+    },
+    {
+     "name": "Iron Mind",
+     "level": 7,
+     "description": "You gain proficiency in Wisdom saving throws. If you already have it, pick Intelligence or Charisma saving throws instead."
+    },
+    {
+     "name": "Stalker's Flurry",
+     "level": 11,
+     "description": "Your Dreadful Strike now deals 2d8 Psychic damage. When you use it, pick one extra effect.\n\nSudden Strike. You can make another attack with the same weapon against a different creature within 5 feet of the first one and within the weapon's range.\n\nMass Fear. The target and each creature within 10 feet of it make a Wisdom saving throw against your spell save DC, or are Frightened of you until the start of your next turn."
+    },
+    {
+     "name": "Shadowy Dodge",
+     "level": 15,
+     "description": "When a creature makes an attack roll against you, you can take a Reaction to give that roll Disadvantage. Hit or miss, you can then teleport up to 30 feet to an empty space you can see."
+    }
+   ],
+   "expandedSpells": {
+    "3": [
+     "Disguise Self"
+    ],
+    "5": [
+     "Rope Trick"
+    ],
+    "9": [
+     "Fear"
+    ],
+    "13": [
+     "Greater Invisibility"
+    ],
+    "17": [
+     "Seeming"
+    ]
+   }
   }
  ]
 }
