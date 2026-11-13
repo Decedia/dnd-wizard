@@ -35,7 +35,7 @@ export const ID_TERM_RULES: TermRule[] = [
   { term: "critical hit", pattern: w("serangan kritis|pukulan kritis|kritis") },
   {
     term: "conditions (Charmed, Prone...)",
-    pattern: w("terpikat|ketakutan|lumpuh|tak sadarkan diri|tidak sadarkan diri|telungkup|tergeletak|tertahan|terbutakan|tuli|tak terlihat|tidak terlihat|membatu|keracunan|tercengkeram|tercengkram|kelelahan|tak berdaya|tidak berdaya|tertegun|terpana"),
+    pattern: w("terpikat|ketakutan|lumpuh|tak sadarkan diri|tidak sadarkan diri|telungkup|tergeletak|tertahan|terbutakan|tuli|tak kasatmata|tidak kasatmata|membatu|keracunan|tercengkeram|tercengkram|kelelahan|tak berdaya|tidak berdaya|tertegun|terpana"),
   },
 ];
 

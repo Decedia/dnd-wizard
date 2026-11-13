@@ -9,12 +9,11 @@
   "Expertise": 1,
   "ability names (STR, DEX...)": 26,
   "Concentration": 2,
-  "conditions (Charmed, Prone...)": 13
+  "conditions (Charmed, Prone...)": 4
  },
  "src/data/id/2014_feats.json": {
   "Action / Bonus Action": 4,
-  "spell / spell slot": 3,
-  "conditions (Charmed, Prone...)": 2
+  "spell / spell slot": 3
  },
  "src/data/id/2014_item_catalog.json": {
   "damage": 3,
@@ -34,7 +33,7 @@
   "Expertise": 1,
   "ability names (STR, DEX...)": 63,
   "Short / Long Rest": 2,
-  "conditions (Charmed, Prone...)": 7
+  "conditions (Charmed, Prone...)": 1
  },
  "src/data/id/2014_spell_mechanics.json": {
   "damage": 47
@@ -49,7 +48,7 @@
   "Expertise": 3,
   "ability names (STR, DEX...)": 111,
   "Concentration": 13,
-  "conditions (Charmed, Prone...)": 139
+  "conditions (Charmed, Prone...)": 63
  },
  "src/data/id/2014_subclasses.json": {
   "damage": 451,
@@ -61,24 +60,17 @@
   "Expertise": 8,
   "ability names (STR, DEX...)": 80,
   "Concentration": 8,
-  "conditions (Charmed, Prone...)": 51
+  "conditions (Charmed, Prone...)": 27
  },
  "src/data/id/2024_phb_text.json": {
-  "ability check": 1,
-  "Action / Bonus Action": 71,
-  "spell / spell slot": 176,
-  "Expertise": 1,
-  "conditions (Charmed, Prone...)": 5
+  "Expertise": 1
  },
  "src/data/id/2024_text.json": {
-  "damage": 3,
   "Advantage": 1,
-  "Action / Bonus Action": 30,
-  "spell / spell slot": 966,
   "Proficiency": 1,
   "Expertise": 2,
   "ability names (STR, DEX...)": 3,
-  "conditions (Charmed, Prone...)": 9
+  "conditions (Charmed, Prone...)": 2
  },
  "src/data/id/race-categories.json": {},
  "src/data/id/subclass_feature_choices_text.json": {}
