@@ -1193,6 +1193,630 @@
      "Seeming"
     ]
    }
+  },
+  {
+   "class": "Druid",
+   "classIndex": "druid",
+   "index": "circle-of-the-moon-2024",
+   "name": "Circle of the Moon",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Adopt Animal Forms to Guard the Wilds",
+   "description": "Moon druids live in their Wild Shape forms. They turn into tougher beasts than other druids and fight on the front line with moonlight on their side.",
+   "features": [
+    {
+     "name": "Circle of the Moon Spells",
+     "level": 3,
+     "description": "You always have these spells prepared: Cure Wounds, Moonbeam and Starry Wisp at level 3; Conjure Animals at level 5; Fount of Moonlight at level 7; Mass Cure Wounds at level 9. You can cast these spells while in Wild Shape."
+    },
+    {
+     "name": "Circle Forms",
+     "level": 3,
+     "description": "Your Wild Shape is stronger.\n\nChallenge Rating. You can turn into a Beast with a Challenge Rating up to your Druid level divided by 3, rounded down.\n\nArmor Class. In beast form your AC is at least 13 + your Wisdom modifier.\n\nTemporary Hit Points. When you take a Wild Shape form you gain Temporary Hit Points equal to three times your Druid level."
+    },
+    {
+     "name": "Improved Circle Forms",
+     "level": 6,
+     "description": "While in Wild Shape, your attacks can deal Radiant damage instead of their usual type, and you add your Wisdom modifier to your Constitution saving throws."
+    },
+    {
+     "name": "Moonlight Step",
+     "level": 10,
+     "description": "As a Bonus Action, teleport up to 30 feet to an empty space you can see, and you have Advantage on the next attack roll you make before the end of this turn. You can do this a number of times equal to your Wisdom modifier (at least once); uses come back after a Long Rest, or spend a level 2+ spell slot to get one back."
+    },
+    {
+     "name": "Lunar Form",
+     "level": 14,
+     "description": "Once per turn, when you hit with an attack in Wild Shape, you can deal an extra 2d10 Radiant damage. When you use Moonlight Step, you can also teleport one willing creature within 10 feet of you to an empty space within 10 feet of where you arrive."
+    }
+   ],
+   "expandedSpells": {
+    "3": [
+     "Cure Wounds",
+     "Moonbeam",
+     "Starry Wisp"
+    ],
+    "5": [
+     "Conjure Animals"
+    ],
+    "7": [
+     "Fount of Moonlight"
+    ],
+    "9": [
+     "Mass Cure Wounds"
+    ]
+   }
+  },
+  {
+   "class": "Druid",
+   "classIndex": "druid",
+   "index": "circle-of-the-sea-2024",
+   "name": "Circle of the Sea",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Become One with Tides and Storms",
+   "description": "Sea druids carry the ocean with them. A cloud of stormy spray surrounds them, freezing and shoving enemies away.",
+   "features": [
+    {
+     "name": "Circle of the Sea Spells",
+     "level": 3,
+     "description": "You always have these spells prepared: Fog Cloud, Gust of Wind, Ray of Frost, Shatter and Thunderwave at level 3; Lightning Bolt and Water Breathing at level 5; Control Water and Ice Storm at level 7; Conjure Elemental and Hold Monster at level 9."
+    },
+    {
+     "name": "Wrath of the Sea",
+     "level": 3,
+     "description": "As a Bonus Action, spend a use of Wild Shape to wrap yourself in ocean spray: a 5-foot Emanation for 10 minutes. When it appears, and as a Bonus Action on later turns, pick a creature you can see in it. It makes a Constitution saving throw against your spell save DC. On a failure it takes Cold damage equal to a number of d6s equal to your Wisdom modifier (at least one), and a Large or smaller creature is pushed up to 15 feet away from you. It ends early if you are Incapacitated, dismiss it or use it again."
+    },
+    {
+     "name": "Aquatic Affinity",
+     "level": 6,
+     "description": "Your Wrath of the Sea grows to 10 feet, and you gain a Swim Speed equal to your Speed."
+    },
+    {
+     "name": "Stormborn",
+     "level": 10,
+     "description": "While your Wrath of the Sea is active, you have a Fly Speed equal to your Speed and Resistance to Cold, Lightning and Thunder damage."
+    },
+    {
+     "name": "Oceanic Gift",
+     "level": 14,
+     "description": "Instead of around yourself, you can wrap your Wrath of the Sea around one willing creature within 60 feet. It gets the benefits and uses your spell save DC and Wisdom. Spend two uses of Wild Shape to wrap it around both of you."
+    }
+   ],
+   "expandedSpells": {
+    "3": [
+     "Fog Cloud",
+     "Gust of Wind",
+     "Ray of Frost",
+     "Shatter",
+     "Thunderwave"
+    ],
+    "5": [
+     "Lightning Bolt",
+     "Water Breathing"
+    ],
+    "7": [
+     "Control Water",
+     "Ice Storm"
+    ],
+    "9": [
+     "Conjure Elemental",
+     "Hold Monster"
+    ]
+   }
+  },
+  {
+   "class": "Druid",
+   "classIndex": "druid",
+   "index": "circle-of-the-stars-2024",
+   "name": "Circle of the Stars",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Harness Secrets Hidden in Constellations",
+   "description": "Star druids read the night sky. Instead of a beast they take a glowing starry form that shoots light, heals friends or steadies the mind.",
+   "features": [
+    {
+     "name": "Star Map",
+     "level": 3,
+     "description": "You have a star chart as your Spellcasting Focus. You always have Guidance and Guiding Bolt prepared, and you can cast Guiding Bolt without a spell slot a number of times equal to your Wisdom modifier (at least once); uses come back after a Long Rest."
+    },
+    {
+     "name": "Starry Form",
+     "level": 3,
+     "description": "As a Bonus Action, spend a use of Wild Shape to take a starry form for 10 minutes instead of turning into a beast. You shed Bright Light in 10 feet and Dim Light 10 feet beyond. Pick a constellation.\n\nArcher. When you take the form, and as a Bonus Action on later turns, make a ranged spell attack at a creature within 60 feet: 1d8 + your Wisdom modifier Radiant damage on a hit.\n\nChalice. When you cast a spell with a spell slot that restores Hit Points, you or another creature within 30 feet regains 1d8 + your Wisdom modifier Hit Points.\n\nDragon. On an Intelligence or Wisdom check, or a Constitution save to keep Concentration, you can treat a d20 roll of 9 or lower as a 10."
+    },
+    {
+     "name": "Cosmic Omen",
+     "level": 6,
+     "description": "After a Long Rest, roll any die. On an even number you get Weal, on an odd number Woe. When a creature you can see within 30 feet is about to make a D20 Test, you can take a Reaction to roll a d6: with Weal it adds the number, with Woe it subtracts it. You can do this a number of times equal to your Wisdom modifier (at least once); uses come back after a Long Rest."
+    },
+    {
+     "name": "Twinkling Constellations",
+     "level": 10,
+     "description": "Archer and Chalice use 2d8 instead of 1d8. In the Dragon form you also have a Fly Speed of 20 feet and can hover. At the start of each of your turns in Starry Form you can switch constellations."
+    },
+    {
+     "name": "Full of Stars",
+     "level": 14,
+     "description": "While in Starry Form, you have Resistance to Bludgeoning, Piercing and Slashing damage."
+    }
+   ],
+   "expandedSpells": {
+    "3": [
+     "Guidance",
+     "Guiding Bolt"
+    ]
+   }
+  },
+  {
+   "class": "Sorcerer",
+   "classIndex": "sorcerer",
+   "index": "aberrant-sorcery-2024",
+   "name": "Aberrant Sorcery",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Wield Unnatural Psionic Power",
+   "description": "Aberrant sorcerers were touched by a strange being from beyond. They speak mind to mind, cast with pure thought and can twist their bodies.",
+   "features": [
+    {
+     "name": "Psionic Spells",
+     "level": 3,
+     "description": "You always have these spells prepared: Arms of Hadar, Calm Emotions, Detect Thoughts, Dissonant Whispers and Mind Sliver at level 3; Hunger of Hadar and Sending at level 5; Black Tentacles and Summon Aberration at level 7; Telepathic Bond and Telekinesis at level 9. When you gain a Sorcerer level you can swap one of them for another Divination or Enchantment spell of the same level from the Sorcerer list."
+    },
+    {
+     "name": "Telepathic Speech",
+     "level": 3,
+     "description": "As a Bonus Action, pick a creature you can see within 30 feet. You and it can speak mind to mind for a number of minutes equal to your Sorcerer level, while within a number of miles equal to your Charisma modifier (at least 1). You both need to know a language."
+    },
+    {
+     "name": "Psionic Sorcery",
+     "level": 6,
+     "description": "When you cast a level 1+ spell from your Psionic Spells, you can spend Sorcery Points equal to the spell's level instead of a spell slot. Cast this way, it needs no Verbal or Somatic components, and no Material ones unless they are used up or have a cost."
+    },
+    {
+     "name": "Psychic Defenses",
+     "level": 6,
+     "description": "You have Resistance to Psychic damage, and Advantage on saving throws to avoid or end the Charmed or Frightened condition."
+    },
+    {
+     "name": "Revelation in Flesh",
+     "level": 14,
+     "description": "As a Bonus Action, spend 1 or more Sorcery Points. For 10 minutes you gain one benefit per point spent.\n\nAquatic Adaptation. A Swim Speed of twice your Speed, and you can breathe underwater.\n\nGlistening Flight. A Fly Speed equal to your Speed, and you can hover.\n\nSee the Invisible. You see Invisible creatures within 60 feet.\n\nWormlike Movement. You can squeeze through a 1-inch gap, and you can spend 5 feet of movement to escape nonmagical restraints or a grapple."
+    },
+    {
+     "name": "Warping Implosion",
+     "level": 18,
+     "description": "As a Magic action, teleport to an empty space you can see within 120 feet. Each creature within 30 feet of the space you left makes a Strength saving throw. On a failure it takes 3d10 Force damage and is pulled straight toward that space; on a success it takes half damage. Once per Long Rest, or spend 5 Sorcery Points to do it again."
+    }
+   ],
+   "expandedSpells": {
+    "3": [
+     "Arms of Hadar",
+     "Calm Emotions",
+     "Detect Thoughts",
+     "Dissonant Whispers",
+     "Mind Sliver"
+    ],
+    "5": [
+     "Hunger of Hadar",
+     "Sending"
+    ],
+    "7": [
+     "Black Tentacles",
+     "Summon Aberration"
+    ],
+    "9": [
+     "Telepathic Bond",
+     "Telekinesis"
+    ]
+   }
+  },
+  {
+   "class": "Sorcerer",
+   "classIndex": "sorcerer",
+   "index": "clockwork-sorcery-2024",
+   "name": "Clockwork Sorcery",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Channel Cosmic Forces of Order",
+   "description": "Clockwork sorcerers carry the magic of perfect order. They cancel lucky and unlucky rolls, shield friends and set things right.",
+   "features": [
+    {
+     "name": "Clockwork Spells",
+     "level": 3,
+     "description": "You always have these spells prepared: Aid, Alarm, Lesser Restoration and Protection from Evil and Good at level 3; Dispel Magic and Protection from Energy at level 5; Freedom of Movement and Summon Construct at level 7; Greater Restoration and Wall of Force at level 9. When you gain a Sorcerer level you can swap one of them for another Abjuration or Transmutation spell of the same level from the Sorcerer list. A small sign of order also marks you, such as ticking sounds or gear-shaped eyes."
+    },
+    {
+     "name": "Restore Balance",
+     "level": 3,
+     "description": "When a creature you can see within 60 feet is about to roll a d20 with Advantage or Disadvantage, you can take a Reaction to cancel the Advantage or Disadvantage for that roll. You can do this a number of times equal to your Charisma modifier (at least once); uses come back after a Long Rest."
+    },
+    {
+     "name": "Bastion of Law",
+     "level": 6,
+     "description": "As a Magic action, spend 1 to 5 Sorcery Points to put a ward on yourself or a creature within 30 feet. The ward holds that many d8s. When the warded creature takes damage, it can spend any of those dice, roll them and reduce the damage by the total. The ward lasts until you finish a Long Rest or use this again."
+    },
+    {
+     "name": "Trance of Order",
+     "level": 14,
+     "description": "As a Bonus Action, enter a state of order for 1 minute. Attack rolls against you can't have Advantage, and when you make a D20 Test you can treat a roll of 9 or lower as a 10. Once per Long Rest, or spend 5 Sorcery Points to do it again."
+    },
+    {
+     "name": "Clockwork Cavalcade",
+     "level": 18,
+     "description": "As a Magic action, call up spirits of order in a 30-foot Cube from you, choosing any of these.\n\nHeal. Restore up to 100 Hit Points, split as you like among creatures of your choice in the Cube.\n\nRepair. Damaged objects entirely in the Cube are fixed at once.\n\nDispel. Every spell of level 6 or lower ends on creatures and objects of your choice in the Cube.\n\nOnce per Long Rest, or spend 7 Sorcery Points to do it again."
+    }
+   ],
+   "expandedSpells": {
+    "3": [
+     "Aid",
+     "Alarm",
+     "Lesser Restoration",
+     "Protection from Evil and Good"
+    ],
+    "5": [
+     "Dispel Magic",
+     "Protection from Energy"
+    ],
+    "7": [
+     "Freedom of Movement",
+     "Summon Construct"
+    ],
+    "9": [
+     "Greater Restoration",
+     "Wall of Force"
+    ]
+   }
+  },
+  {
+   "class": "Sorcerer",
+   "classIndex": "sorcerer",
+   "index": "wild-magic-sorcery-2024",
+   "name": "Wild Magic Sorcery",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Unleash Chaos as Magic",
+   "description": "Wild Magic sorcerers carry raw chaos. Their spells sometimes cause random surges, and they bend luck for themselves and others.",
+   "features": [
+    {
+     "name": "Wild Magic Surge",
+     "level": 3,
+     "description": "Once per turn, right after you cast a Sorcerer spell with a spell slot, you can roll a d20. On a 20, roll on the Wild Magic Surge table in the Player's Handbook to create a random effect. A surge that is a spell can't be changed with Metamagic."
+    },
+    {
+     "name": "Tides of Chaos",
+     "level": 3,
+     "description": "Before you make a D20 Test, you can give yourself Advantage on it. Once used, the next time you cast a Sorcerer spell with a spell slot before a Long Rest, you automatically roll on the Wild Magic Surge table and get this use back. Otherwise once per Long Rest."
+    },
+    {
+     "name": "Bend Luck",
+     "level": 6,
+     "description": "When another creature you can see makes a D20 Test, you can take a Reaction and spend 1 Sorcery Point to roll a d4 and add it to or subtract it from that roll. You can do this after seeing the roll but before its result is known."
+    },
+    {
+     "name": "Controlled Chaos",
+     "level": 14,
+     "description": "When you roll on the Wild Magic Surge table, roll twice and use either result."
+    },
+    {
+     "name": "Tamed Surge",
+     "level": 18,
+     "description": "Right after you cast a Sorcerer spell with a spell slot, you can pick any effect from the Wild Magic Surge table instead of rolling, except the table's last row. Once per Long Rest."
+    }
+   ]
+  },
+  {
+   "class": "Warlock",
+   "classIndex": "warlock",
+   "index": "archfey-patron-2024",
+   "name": "Archfey Patron",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Bargain with Whimsical Fey",
+   "description": "Archfey warlocks serve a lord or lady of the fey. They blink from place to place, leaving tricks and terror behind.",
+   "features": [
+    {
+     "name": "Archfey Spells",
+     "level": 3,
+     "description": "You always have these spells prepared: Calm Emotions, Faerie Fire, Misty Step, Phantasmal Force and Sleep at level 3; Blink and Plant Growth at level 5; Dominate Beast and Greater Invisibility at level 7; Dominate Person and Seeming at level 9."
+    },
+    {
+     "name": "Steps of the Fey",
+     "level": 3,
+     "description": "You can cast Misty Step without a spell slot a number of times equal to your Charisma modifier (at least once); uses come back after a Long Rest. When you cast it, pick one extra effect.\n\nRefreshing Step. You or a creature you can see within 10 feet gains 1d10 Temporary Hit Points.\n\nTaunting Step. Creatures within 5 feet of the space you left make a Wisdom saving throw against your spell save DC or have Disadvantage on attack rolls against anyone but you until the start of your next turn."
+    },
+    {
+     "name": "Misty Escape",
+     "level": 6,
+     "description": "You can cast Misty Step as a Reaction when you take damage. Steps of the Fey gains two more choices.\n\nDisappearing Step. You are Invisible until the start of your next turn, or until right after you attack, deal damage or cast a spell.\n\nDreadful Step. Creatures within 5 feet of the space you left or arrive in (your pick) make a Wisdom saving throw against your spell save DC or take 2d10 Psychic damage."
+    },
+    {
+     "name": "Beguiling Defenses",
+     "level": 10,
+     "description": "You are immune to the Charmed condition. Right after a creature you can see hits you with an attack roll, you can take a Reaction to halve the damage you take (round down). The attacker makes a Wisdom saving throw against your spell save DC, taking Psychic damage equal to the damage you took on a failure. Once per Long Rest, or spend a Pact Magic slot to do it again."
+    },
+    {
+     "name": "Bewitching Magic",
+     "level": 14,
+     "description": "Right after you cast an Enchantment or Illusion spell that takes an action and uses a spell slot, you can cast Misty Step as part of the same action without a spell slot."
+    }
+   ],
+   "expandedSpells": {
+    "3": [
+     "Calm Emotions",
+     "Faerie Fire",
+     "Misty Step",
+     "Phantasmal Force",
+     "Sleep"
+    ],
+    "5": [
+     "Blink",
+     "Plant Growth"
+    ],
+    "7": [
+     "Dominate Beast",
+     "Greater Invisibility"
+    ],
+    "9": [
+     "Dominate Person",
+     "Seeming"
+    ]
+   }
+  },
+  {
+   "class": "Warlock",
+   "classIndex": "warlock",
+   "index": "celestial-patron-2024",
+   "name": "Celestial Patron",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Call on the Power of the Heavens",
+   "description": "Celestial warlocks serve a being of the Upper Planes. They heal friends with radiant light and burn enemies with holy fire.",
+   "features": [
+    {
+     "name": "Celestial Spells",
+     "level": 3,
+     "description": "You always have these spells prepared: Aid, Cure Wounds, Guiding Bolt, Lesser Restoration, Light and Sacred Flame at level 3; Daylight and Revivify at level 5; Guardian of Faith and Wall of Fire at level 7; Greater Restoration and Summon Celestial at level 9."
+    },
+    {
+     "name": "Healing Light",
+     "level": 3,
+     "description": "You have a pool of d6s equal to 1 + your Warlock level. As a Bonus Action, heal a creature you can see within 60 feet: spend dice from the pool, up to your Charisma modifier (at least one), roll them and restore that many Hit Points. The pool refills after a Long Rest."
+    },
+    {
+     "name": "Radiant Soul",
+     "level": 6,
+     "description": "You have Resistance to Radiant damage. Once per turn, when a spell you cast deals Radiant or Fire damage, add your Charisma modifier to that damage against one of its targets."
+    },
+    {
+     "name": "Celestial Resilience",
+     "level": 10,
+     "description": "When you use Magical Cunning or finish a Short or Long Rest, you gain Temporary Hit Points equal to your Warlock level + your Charisma modifier. Up to five creatures of your choice that you can see also gain half your Warlock level + your Charisma modifier."
+    },
+    {
+     "name": "Searing Vengeance",
+     "level": 14,
+     "description": "When you or an ally within 60 feet is about to make a Death Saving Throw, you can unleash radiant energy instead. That creature regains Hit Points equal to half its Hit Point maximum and can stand up from Prone. Each creature of your choice within 30 feet of it takes 2d8 + your Charisma modifier Radiant damage and is Blinded until the end of the turn. Once per Long Rest."
+    }
+   ],
+   "expandedSpells": {
+    "3": [
+     "Aid",
+     "Cure Wounds",
+     "Guiding Bolt",
+     "Lesser Restoration",
+     "Light",
+     "Sacred Flame"
+    ],
+    "5": [
+     "Daylight",
+     "Revivify"
+    ],
+    "7": [
+     "Guardian of Faith",
+     "Wall of Fire"
+    ],
+    "9": [
+     "Greater Restoration",
+     "Summon Celestial"
+    ]
+   }
+  },
+  {
+   "class": "Warlock",
+   "classIndex": "warlock",
+   "index": "great-old-one-patron-2024",
+   "name": "Great Old One Patron",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Unearth Forbidden Lore of Unknowable Beings",
+   "description": "These warlocks serve a vast and alien mind. They speak through thoughts, hurt minds instead of bodies and see through their enemies.",
+   "features": [
+    {
+     "name": "Great Old One Spells",
+     "level": 3,
+     "description": "You always have these spells prepared: Detect Thoughts, Dissonant Whispers, Phantasmal Force and Hideous Laughter at level 3; Clairvoyance and Hunger of Hadar at level 5; Confusion and Summon Aberration at level 7; Modify Memory and Telekinesis at level 9."
+    },
+    {
+     "name": "Awakened Mind",
+     "level": 3,
+     "description": "As a Bonus Action, link minds with a creature you can see within 30 feet. You can speak mind to mind for a number of minutes equal to your Warlock level, while within a number of miles equal to your Charisma modifier (at least 1). You both need to know a language."
+    },
+    {
+     "name": "Psychic Spells",
+     "level": 3,
+     "description": "When you cast a Warlock spell that deals damage, you can change its damage type to Psychic. You can cast Warlock Enchantment and Illusion spells without Verbal or Somatic components."
+    },
+    {
+     "name": "Clairvoyant Combatant",
+     "level": 6,
+     "description": "When you link minds with Awakened Mind, you can make the creature make a Wisdom saving throw against your spell save DC. On a failure, while the link lasts it has Disadvantage on attack rolls against you and you have Advantage on attack rolls against it. Once per Short or Long Rest, or spend a Pact Magic slot to do it again."
+    },
+    {
+     "name": "Eldritch Hex",
+     "level": 10,
+     "description": "You always have Hex prepared. When you cast it and pick an ability, the target also has Disadvantage on saving throws with that ability while the spell lasts."
+    },
+    {
+     "name": "Thought Shield",
+     "level": 10,
+     "description": "Your thoughts can't be read unless you allow it. You have Resistance to Psychic damage, and a creature that deals Psychic damage to you takes the same amount."
+    },
+    {
+     "name": "Create Thrall",
+     "level": 14,
+     "description": "When you cast Summon Aberration, you can make it need no Concentration; it then lasts 1 minute. The aberration gains Temporary Hit Points equal to your Warlock level + your Charisma modifier. The first time each turn it hits a creature under your Hex, it deals extra Psychic damage equal to Hex's bonus damage."
+    }
+   ],
+   "expandedSpells": {
+    "3": [
+     "Detect Thoughts",
+     "Dissonant Whispers",
+     "Phantasmal Force",
+     "Hideous Laughter"
+    ],
+    "5": [
+     "Clairvoyance",
+     "Hunger of Hadar"
+    ],
+    "7": [
+     "Confusion",
+     "Summon Aberration"
+    ],
+    "9": [
+     "Modify Memory",
+     "Telekinesis"
+    ],
+    "10": [
+     "Hex"
+    ]
+   }
+  },
+  {
+   "class": "Wizard",
+   "classIndex": "wizard",
+   "index": "abjurer-2024",
+   "name": "Abjurer",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Shield Companions and Banish Foes",
+   "description": "Abjurers master protective magic. A magical ward soaks up hits for them and their friends, and they break other casters' spells.",
+   "features": [
+    {
+     "name": "Abjuration Savant",
+     "level": 3,
+     "description": "Pick two Wizard spells of the Abjuration school, each level 2 or lower, and add them to your spellbook for free. Each time you gain access to a new level of spell slots, add one Abjuration spell of that level to your spellbook for free."
+    },
+    {
+     "name": "Arcane Ward",
+     "level": 3,
+     "description": "When you cast an Abjuration spell with a spell slot, you can create a magical ward on yourself that lasts until you finish a Long Rest. Its Hit Point maximum is twice your Wizard level + your Intelligence modifier. When you take damage, the ward takes it first. Each time you cast an Abjuration spell with a slot, the ward regains Hit Points equal to twice the spell's level. As a Bonus Action you can spend a spell slot to restore twice the slot's level instead."
+    },
+    {
+     "name": "Projected Ward",
+     "level": 6,
+     "description": "When a creature you can see within 30 feet takes damage, you can take a Reaction to have your Arcane Ward take that damage instead."
+    },
+    {
+     "name": "Spell Breaker",
+     "level": 10,
+     "description": "You always have Counterspell and Dispel Magic prepared. You can cast Dispel Magic as a Bonus Action and add your Proficiency Bonus to its ability check. When you cast either with a spell slot and it fails to stop a spell, the slot isn't used up."
+    },
+    {
+     "name": "Spell Resistance",
+     "level": 14,
+     "description": "You have Advantage on saving throws against spells and Resistance to the damage of spells."
+    }
+   ],
+   "expandedSpells": {
+    "10": [
+     "Counterspell",
+     "Dispel Magic"
+    ]
+   }
+  },
+  {
+   "class": "Wizard",
+   "classIndex": "wizard",
+   "index": "diviner-2024",
+   "name": "Diviner",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Learn the Secrets of the Multiverse",
+   "description": "Diviners see glimpses of the future. Each day they foresee a few dice rolls and can swap them in for anyone's roll.",
+   "features": [
+    {
+     "name": "Divination Savant",
+     "level": 3,
+     "description": "Pick two Wizard spells of the Divination school, each level 2 or lower, and add them to your spellbook for free. Each time you gain access to a new level of spell slots, add one Divination spell of that level to your spellbook for free."
+    },
+    {
+     "name": "Portent",
+     "level": 3,
+     "description": "After a Long Rest, roll two d20s and write down the numbers. You can replace any D20 Test made by you or a creature you can see with one of these rolls; decide before the roll. Each foretold roll can be used once, and you can use this once per turn. Unused rolls are lost at your next Long Rest."
+    },
+    {
+     "name": "Expert Divination",
+     "level": 6,
+     "description": "When you cast a Divination spell of level 2 or higher with a spell slot, you regain one spent spell slot of a lower level than that spell, no higher than level 5."
+    },
+    {
+     "name": "The Third Eye",
+     "level": 10,
+     "description": "As a Bonus Action, pick one benefit that lasts until you start a Short or Long Rest.\n\nDarkvision. You gain Darkvision 120 feet.\n\nGreater Comprehension. You can read any language.\n\nSee Invisibility. You can cast See Invisibility without a spell slot.\n\nOnce per Short or Long Rest."
+    },
+    {
+     "name": "Greater Portent",
+     "level": 14,
+     "description": "You roll three d20s for Portent instead of two."
+    }
+   ]
+  },
+  {
+   "class": "Wizard",
+   "classIndex": "wizard",
+   "index": "illusionist-2024",
+   "name": "Illusionist",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Weave Subtle Spells of Deception",
+   "description": "Illusionists fool the senses. Their illusions reach farther, need no words, and at high level can even become real for a moment.",
+   "features": [
+    {
+     "name": "Illusion Savant",
+     "level": 3,
+     "description": "Pick two Wizard spells of the Illusion school, each level 2 or lower, and add them to your spellbook for free. Each time you gain access to a new level of spell slots, add one Illusion spell of that level to your spellbook for free."
+    },
+    {
+     "name": "Improved Illusions",
+     "level": 3,
+     "description": "You can cast Illusion spells without Verbal components, and Illusion spells with a range of 10 feet or more get 60 feet more range. You know Minor Illusion without it counting against your cantrips; you can make both a sound and an image with one casting, and cast it as a Bonus Action."
+    },
+    {
+     "name": "Phantasmal Creatures",
+     "level": 6,
+     "description": "You always have Summon Beast and Summon Fey prepared. When you cast either, you can make it an Illusion spell so the creature looks ghostly. Once per Long Rest each, you can cast that illusion version without a spell slot; the creature then has half its usual Hit Points."
+    },
+    {
+     "name": "Illusory Self",
+     "level": 10,
+     "description": "When a creature hits you with an attack roll, you can take a Reaction to put an illusory copy of yourself in the way; the attack misses. Once per Short or Long Rest, or spend a level 2+ spell slot to do it again."
+    },
+    {
+     "name": "Illusory Reality",
+     "level": 14,
+     "description": "When you cast an Illusion spell with a spell slot, you can use a Bonus Action while it lasts to make one inanimate, nonmagical object in the illusion real for 1 minute. The object can't deal damage or cause conditions."
+    }
+   ],
+   "expandedSpells": {
+    "3": [
+     "Minor Illusion"
+    ],
+    "6": [
+     "Summon Beast",
+     "Summon Fey"
+    ]
+   }
   }
  ]
 }

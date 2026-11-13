@@ -107,10 +107,11 @@ export function wildShapeLimits(character: Pick<Character, "level" | "subclass" 
 }
 
 /** Beasts this druid can turn into now, toughest first. */
-export function beastsFor(character: Pick<Character, "level" | "subclass" | "features">): Beast[] {
+export function beastsFor(character: Pick<Character, "level" | "subclass" | "features" | "ruleset">): Beast[] {
   const lim = wildShapeLimits(character);
   const beasts = BEASTS.filter((b) => b.cr <= lim.cr && (lim.swim || !b.swim) && (lim.fly || !b.fly)).sort((a, b) => b.cr - a.cr || b.hp - a.hp);
-  return isMoon(character) && (character.level || 1) >= 10 ? [...ELEMENTALS, ...beasts] : beasts;
+  // Elemental forms are a 2014 Circle of the Moon feature; the 2024 circle has none.
+  return isMoon(character) && character.ruleset !== "2024" && (character.level || 1) >= 10 ? [...ELEMENTALS, ...beasts] : beasts;
 }
 
 export const beastByName = (name: string) => BEASTS.find((b) => b.name === name) ?? ELEMENTALS.find((b) => b.name === name);
