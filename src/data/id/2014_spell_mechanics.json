@@ -112,7 +112,7 @@
       ],
       "scaling": {
         "type": "cantrip",
-        "description": "Di level 5 serangan yang kena juga memberi 1d8 kerusakan guntur tambahan dan kerusakan saat bergerak menjadi 2d8. Keduanya naik 1d8 lagi di level 11 dan level 17.",
+        "description": "Di level 5 serangan yang kena juga memberi 1d8 thunder damage tambahan dan damage saat bergerak menjadi 2d8. Keduanya naik 1d8 lagi di level 11 dan level 17.",
         "appliesTo": "damage"
       },
       "source": "PHB",
@@ -430,7 +430,7 @@
         {
           "type": "buff",
           "trigger": "immediate",
-          "effectType": "advantage",
+          "effectType": "Advantage",
           "duration": "Concentration, up to 1 minute"
         }
       ],
@@ -518,7 +518,7 @@
       ],
       "scaling": {
         "type": "cantrip",
-        "description": "Di level 5 serangan yang kena memberi 1d8 kerusakan api tambahan dan api yang melompat memberi 1d8 + modifier spellcasting-mu. Keduanya naik 1d8 lagi di level 11 dan level 17.",
+        "description": "Di level 5 serangan yang kena memberi 1d8 fire damage tambahan dan api yang melompat memberi 1d8 + modifier spellcasting-mu. Keduanya naik 1d8 lagi di level 11 dan level 17.",
         "appliesTo": "damage"
       },
       "source": "PHB",
@@ -1502,7 +1502,7 @@
         {
           "type": "buff",
           "trigger": "immediate",
-          "effectType": "advantage",
+          "effectType": "Advantage",
           "bonusTo": "the attack roll if the target is wearing armor made of metal",
           "duration": "Instantaneous"
         }
@@ -1748,7 +1748,7 @@
         {
           "type": "buff",
           "trigger": "immediate",
-          "effectType": "advantage",
+          "effectType": "Advantage",
           "bonusTo": "your first attack roll against the target",
           "duration": "Up to 1 round"
         }
@@ -1876,7 +1876,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Setiap level slot di atas 1 menambah 1d6 pada kerusakan melee tambahan.",
+        "description": "Setiap level slot di atas 1 menambah 1d6 pada damage melee tambahan.",
         "appliesTo": "damage",
         "increment": "1d6",
         "startsAtLevel": 3
@@ -2014,7 +2014,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Setiap level slot di atas 1 menambah 5 temporary hit points dan 5 kerusakan dingin.",
+        "description": "Setiap level slot di atas 1 menambah 5 temporary hit points dan 5 cold damage.",
         "appliesTo": "damage",
         "startsAtLevel": 3
       },
@@ -2062,7 +2062,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Setiap level slot di atas 1 menambah 1d6 kerusakan.",
+        "description": "Setiap level slot di atas 1 menambah 1d6 damage.",
         "appliesTo": "damage",
         "increment": "1d6",
         "startsAtLevel": 3
@@ -2296,7 +2296,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Setiap level slot di atas 1 menambah 1d8 kerusakan dan 5 pon berat benda.",
+        "description": "Setiap level slot di atas 1 menambah 1d8 damage dan 5 pon berat benda.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 3
@@ -2339,7 +2339,7 @@
         {
           "type": "condition",
           "trigger": "immediate",
-          "effectType": "frightened",
+          "effectType": "Frightened",
           "duration": "Concentration, up to 1 minute"
         }
       ],
@@ -2423,7 +2423,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Setiap level slot di atas 1 menambah 1d6 kerusakan.",
+        "description": "Setiap level slot di atas 1 menambah 1d6 damage.",
         "appliesTo": "damage",
         "startsAtLevel": 3
       },
@@ -2464,7 +2464,7 @@
         {
           "type": "utility",
           "trigger": "immediate",
-          "description": "You attempt to charm a humanoid you can see within range. It must make a wisdom saving throw, and does so with advantage if you or your companions are fighting it. If it fails the saving throw, it is charmed by you until the spell ends or until you or your companions do anything harmful to it. The charmed creature regards you as a friendly acquaintance. When the spell ends, the creature knows it was charmed by you."
+          "description": "You attempt to charm a humanoid you can see within range. It must make a wisdom saving throw, and does so with Advantage if you or your companions are fighting it. If it fails the saving throw, it is Charmed by you until the spell ends or until you or your companions do anything harmful to it. The Charmed creature regards you as a friendly acquaintance. When the spell ends, the creature knows it was Charmed by you."
         }
       ],
       "scaling": {
@@ -2518,7 +2518,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Setiap level slot di atas 1 menambah 1d8 kerusakan.",
+        "description": "Setiap level slot di atas 1 menambah 1d8 damage.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 3
@@ -2559,7 +2559,7 @@
         {
           "type": "condition",
           "trigger": "immediate",
-          "effectType": "unconscious",
+          "effectType": "Unconscious",
           "duration": "1 round"
         }
       ],
@@ -3012,7 +3012,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Setiap level slot di atas 1 menambah 1d6 kerusakan.",
+        "description": "Setiap level slot di atas 1 menambah 1d6 damage.",
         "appliesTo": "damage",
         "increment": "1d6",
         "startsAtLevel": 3
@@ -3103,7 +3103,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Setiap level slot di atas 1 menambah 1d6 kerusakan.",
+        "description": "Setiap level slot di atas 1 menambah 1d6 damage.",
         "appliesTo": "damage",
         "increment": "1d6",
         "startsAtLevel": 3
@@ -3153,7 +3153,7 @@
         {
           "type": "buff",
           "trigger": "immediate",
-          "effectType": "advantage",
+          "effectType": "Advantage",
           "bonusTo": "this saving throw",
           "duration": "Concentration, up to 1 minute"
         },
@@ -3161,13 +3161,13 @@
           "type": "condition",
           "trigger": "onSave",
           "condition": "failed save",
-          "effectType": "restrained",
+          "effectType": "Restrained",
           "duration": "Concentration, up to 1 minute"
         }
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Setiap level slot di atas 1 menambah 1d6 kerusakan.",
+        "description": "Setiap level slot di atas 1 menambah 1d6 damage.",
         "appliesTo": "damage",
         "increment": "1d6",
         "startsAtLevel": 3
@@ -3212,7 +3212,7 @@
           "type": "condition",
           "trigger": "onSave",
           "condition": "failed save",
-          "effectType": "restrained",
+          "effectType": "Restrained",
           "duration": "Up to 1 minute"
         },
         {
@@ -3295,7 +3295,7 @@
         {
           "type": "condition",
           "trigger": "immediate",
-          "effectType": "invisible",
+          "effectType": "Invisible",
           "duration": "Up to 1 minute"
         }
       ],
@@ -3691,7 +3691,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Setiap level slot di atas 1 menambah 1d10 kerusakan (paling banyak 6d10).",
+        "description": "Setiap level slot di atas 1 menambah 1d10 damage (paling banyak 6d10).",
         "appliesTo": "damage",
         "increment": "1d10",
         "startsAtLevel": 3
@@ -3827,7 +3827,7 @@
         {
           "type": "utility",
           "trigger": "immediate",
-          "description": "A willing creature you touch is imbued with bravery. Until the spell ends, the creature is immune to being frightened and gains temporary hit points equal to your spellcasting ability modifier at the start of each of its turns. When the spell ends, the target loses any remaining temporary hit points from this spell."
+          "description": "A willing creature you touch is imbued with bravery. Until the spell ends, the creature is immune to being Frightened and gains temporary hit points equal to your spellcasting ability modifier at the start of each of its turns. When the spell ends, the target loses any remaining temporary hit points from this spell."
         }
       ],
       "source": "PHB",
@@ -3872,7 +3872,7 @@
         {
           "type": "buff",
           "trigger": "immediate",
-          "effectType": "advantage",
+          "effectType": "Advantage",
           "duration": "Up to 1 minute"
         }
       ],
@@ -3909,7 +3909,7 @@
         {
           "type": "buff",
           "trigger": "immediate",
-          "effectType": "advantage",
+          "effectType": "Advantage",
           "duration": "Up to 1 hour"
         }
       ],
@@ -3959,7 +3959,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Setiap level slot di atas 1 menambah 1d6 pada kerusakan dingin.",
+        "description": "Setiap level slot di atas 1 menambah 1d6 pada cold damage.",
         "appliesTo": "damage",
         "increment": "1d6",
         "startsAtLevel": 3
@@ -4336,7 +4336,7 @@
         {
           "type": "utility",
           "trigger": "immediate",
-          "description": "Until the spell ends, one willing creature you touch is protected against certain types of creatures: aberrations, celestials, elementals, fey, fiends, and undead. The protection grants several benefits. Creatures of those types have disadvantage on attack rolls against the target. The target also can't be charmed, frightened, or possessed by them. If the target is already charmed, frightened, or possessed by such a creature, the target has advantage on any new saving throw against the relevant effect."
+          "description": "Until the spell ends, one willing creature you touch is protected against certain types of creatures: aberrations, celestials, elementals, fey, fiends, and undead. The protection grants several benefits. Creatures of those types have Disadvantage on attack rolls against the target. The target also can't be Charmed, Frightened, or possessed by them. If the target is already Charmed, Frightened, or possessed by such a creature, the target has Advantage on any new saving throw against the relevant effect."
         }
       ],
       "source": "PHB",
@@ -4424,7 +4424,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Setiap level slot di atas 1 menambah 1d8 kerusakan.",
+        "description": "Setiap level slot di atas 1 menambah 1d8 damage.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 3
@@ -4513,7 +4513,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Setiap level slot di atas 1 menambah 1d6 pada kerusakan tambahan serangan pertama.",
+        "description": "Setiap level slot di atas 1 menambah 1d6 pada damage tambahan serangan pertama.",
         "appliesTo": "damage",
         "startsAtLevel": 3
       },
@@ -4721,7 +4721,7 @@
         {
           "type": "condition",
           "trigger": "immediate",
-          "effectType": "unconscious",
+          "effectType": "Unconscious",
           "duration": "1 minute"
         }
       ],
@@ -4772,7 +4772,7 @@
         {
           "type": "condition",
           "trigger": "immediate",
-          "effectType": "invisible",
+          "effectType": "Invisible",
           "duration": "8 hours"
         }
       ],
@@ -4862,7 +4862,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Setiap level slot di atas 1 menambah 2d4 kerusakan.",
+        "description": "Setiap level slot di atas 1 menambah 2d4 damage.",
         "appliesTo": "damage",
         "increment": "2d4",
         "startsAtLevel": 3
@@ -4998,7 +4998,7 @@
         {
           "type": "condition",
           "trigger": "immediate",
-          "effectType": "invisible",
+          "effectType": "Invisible",
           "duration": "1 hour"
         }
       ],
@@ -5130,7 +5130,7 @@
         {
           "type": "buff",
           "trigger": "immediate",
-          "effectType": "advantage",
+          "effectType": "Advantage",
           "bonusTo": "the attack roll",
           "duration": "Concentration, up to 1 minute"
         }
@@ -5229,7 +5229,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Setiap level slot di atas 2 menambah 1d8 kerusakan.",
+        "description": "Setiap level slot di atas 2 menambah 1d8 damage.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 4
@@ -5550,7 +5550,7 @@
         {
           "type": "utility",
           "trigger": "immediate",
-          "description": "You can blind or deafen a foe. Choose one creature that you can see within range to make a constitution saving throw. If it fails, the target is either blinded or deafened (your choice) for the duration. At the end of each of its turns, the target can make a constitution saving throw. On a success, the spell ends."
+          "description": "You can blind or deafen a foe. Choose one creature that you can see within range to make a constitution saving throw. If it fails, the target is either Blinded or Deafened (your choice) for the duration. At the end of each of its turns, the target can make a constitution saving throw. On a success, the spell ends."
         }
       ],
       "scaling": {
@@ -5595,10 +5595,10 @@
         {
           "type": "debuff",
           "trigger": "immediate",
-          "effectType": "disadvantage",
+          "effectType": "Disadvantage",
           "bonusTo": "attack rolls against you",
           "duration": "Up to 1 minute",
-          "description": "Any creature has disadvantage on attack rolls against you. An attacker is immune if it doesn't rely on sight or can see through illusions."
+          "description": "Any creature has Disadvantage on attack rolls against you. An attacker is immune if it doesn't rely on sight or can see through illusions."
         }
       ],
       "source": "PHB",
@@ -5642,7 +5642,7 @@
         {
           "type": "condition",
           "trigger": "immediate",
-          "effectType": "invisible",
+          "effectType": "Invisible",
           "duration": "Up to 1 minute"
         }
       ],
@@ -5692,7 +5692,7 @@
         {
           "type": "utility",
           "trigger": "immediate",
-          "description": "You attempt to suppress strong emotions in a group of people. Each humanoid in a 20-foot-radius sphere centered on a point you choose within range must make a charisma saving throw; a creature can choose to fail this saving throw if it wishes. If a creature fails its saving throw, choose one of the following two effects. You can suppress any effect causing a target to be charmed or frightened. When this spell ends, any suppressed effect resumes, provided that its duration has not expired in the meantime. Alternatively, you can make a target indifferent about creatures of your choice that it is hostile toward. This indifference ends if the target is attacked or harmed by a spell or if it witnesses any of its friends being harmed. When the spell ends, the creature becomes hostile again, unless the DM rules otherwise."
+          "description": "You attempt to suppress strong emotions in a group of people. Each humanoid in a 20-foot-radius sphere centered on a point you choose within range must make a charisma saving throw; a creature can choose to fail this saving throw if it wishes. If a creature fails its saving throw, choose one of the following two effects. You can suppress any effect causing a target to be Charmed or Frightened. When this spell ends, any suppressed effect resumes, provided that its duration has not expired in the meantime. Alternatively, you can make a target indifferent about creatures of your choice that it is hostile toward. This indifference ends if the target is attacked or harmed by a spell or if it witnesses any of its friends being harmed. When the spell ends, the creature becomes hostile again, unless the DM rules otherwise."
         }
       ],
       "source": "PHB",
@@ -5736,7 +5736,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Setiap level slot di atas 2 menambah 2d4 kerusakan.",
+        "description": "Setiap level slot di atas 2 menambah 2d4 damage.",
         "appliesTo": "damage",
         "increment": "2d4",
         "startsAtLevel": 4
@@ -5869,7 +5869,7 @@
         {
           "type": "condition",
           "trigger": "immediate",
-          "effectType": "charmed",
+          "effectType": "Charmed",
           "duration": "Concentration, up to 1 minute"
         }
       ],
@@ -6091,7 +6091,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Setiap level slot di atas 2 menambah 1d8 kerusakan.",
+        "description": "Setiap level slot di atas 2 menambah 1d8 damage.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 4
@@ -6305,7 +6305,7 @@
         {
           "type": "utility",
           "trigger": "immediate",
-          "description": "You weave a distracting string of words, causing creatures of your choice that you can see within range and that can hear you to make a wisdom saving throw. Any creature that can't be charmed succeeds on this saving throw automatically, and if you or your companions are fighting a creature, it has advantage on the save. On a failed save, the target has disadvantage on Wisdom (Perception) checks made to perceive any creature other than you until the spell ends or until the target can no longer hear you. The spell ends if you are incapacitated or can no longer speak."
+          "description": "You weave a distracting string of words, causing creatures of your choice that you can see within range and that can hear you to make a wisdom saving throw. Any creature that can't be Charmed succeeds on this saving throw automatically, and if you or your companions are fighting a creature, it has Advantage on the save. On a failed save, the target has Disadvantage on Wisdom (Perception) checks made to perceive any creature other than you until the spell ends or until the target can no longer hear you. The spell ends if you are Incapacitated or can no longer speak."
         }
       ],
       "source": "PHB",
@@ -6675,7 +6675,7 @@
         {
           "type": "utility",
           "trigger": "immediate",
-          "description": "Choose a humanoid that you can see within range. The target must succeed on a wisdom saving throw or be paralyzed for the duration. At the end of each of its turns, the target can make another wisdom saving throw. On a success, the spell ends on the target."
+          "description": "Choose a humanoid that you can see within range. The target must succeed on a wisdom saving throw or be Paralyzed for the duration. At the end of each of its turns, the target can make another wisdom saving throw. On a success, the spell ends on the target."
         }
       ],
       "scaling": {
@@ -6759,7 +6759,7 @@
         {
           "type": "condition",
           "trigger": "immediate",
-          "effectType": "invisible",
+          "effectType": "Invisible",
           "duration": "Up to 1 hour"
         },
         {
@@ -6885,7 +6885,7 @@
         {
           "type": "utility",
           "trigger": "immediate",
-          "description": "You touch a creature and can end either one disease or one condition afflicting it. The condition can be blinded, deafened, paralyzed, or poisoned."
+          "description": "You touch a creature and can end either one disease or one condition afflicting it. The condition can be Blinded, Deafened, Paralyzed, or Poisoned."
         }
       ],
       "source": "PHB",
@@ -7191,7 +7191,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Setiap level slot di atas 2 menambah 1d8 kerusakan.",
+        "description": "Setiap level slot di atas 2 menambah 1d8 damage.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 4
@@ -7498,14 +7498,14 @@
         {
           "type": "buff",
           "trigger": "immediate",
-          "effectType": "advantage",
-          "bonusTo": "saving throws against being poisoned",
+          "effectType": "Advantage",
+          "bonusTo": "saving throws against being Poisoned",
           "duration": "1 hour"
         },
         {
           "type": "condition",
           "trigger": "immediate",
-          "effectType": "poisoned",
+          "effectType": "Poisoned",
           "duration": "1 hour"
         },
         {
@@ -7634,7 +7634,7 @@
         {
           "type": "condition",
           "trigger": "immediate",
-          "effectType": "invisible",
+          "effectType": "Invisible",
           "duration": "1 hour"
         }
       ],
@@ -7722,7 +7722,7 @@
         {
           "type": "utility",
           "trigger": "immediate",
-          "description": "For the duration of the spell, you see invisible creatures and objects as if they were visible, and you can see through Ethereal. The ethereal objects and creatures appear ghostly translucent."
+          "description": "For the duration of the spell, you see Invisible creatures and objects as if they were visible, and you can see through Ethereal. The ethereal objects and creatures appear ghostly translucent."
         }
       ],
       "source": "PHB",
@@ -7857,7 +7857,7 @@
         {
           "type": "utility",
           "trigger": "immediate",
-          "description": "For the duration, no sound can be created within or pass through a 20-foot-radius sphere centered on a point you choose within range. Any creature or object entirely inside the sphere is immune to thunder damage, and creatures are deafened while entirely inside it. Casting a spell that includes a verbal component is impossible there."
+          "description": "For the duration, no sound can be created within or pass through a 20-foot-radius sphere centered on a point you choose within range. Any creature or object entirely inside the sphere is immune to thunder damage, and creatures are Deafened while entirely inside it. Casting a spell that includes a verbal component is impossible there."
         }
       ],
       "source": "PHB",
@@ -8078,7 +8078,7 @@
           "type": "condition",
           "trigger": "onSave",
           "condition": "failed save",
-          "effectType": "charmed",
+          "effectType": "Charmed",
           "duration": "Up to 8 hours",
           "description": "On a failed save, the target pursues the course of action you described to the best of its ability"
         }
@@ -8124,7 +8124,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Slot lebih tinggi menaikkan AC, hit points, dan kerusakan serangan roh, seperti di stat block-nya.",
+        "description": "Slot lebih tinggi menaikkan AC, hit points, dan damage serangan roh, seperti di stat block-nya.",
         "appliesTo": "damage",
         "startsAtLevel": 4
       },
@@ -8295,7 +8295,7 @@
           "type": "condition",
           "trigger": "onSave",
           "condition": "failed save",
-          "effectType": "restrained",
+          "effectType": "Restrained",
           "duration": "Up to 1 hour"
         },
         {
@@ -8439,7 +8439,7 @@
         {
           "type": "buff",
           "trigger": "immediate",
-          "effectType": "advantage",
+          "effectType": "Advantage",
           "bonusTo": "wisdom saving throws and death saving throws",
           "duration": "Up to 1 minute"
         }
@@ -8622,7 +8622,7 @@
         {
           "type": "condition",
           "trigger": "immediate",
-          "effectType": "unconscious",
+          "effectType": "Unconscious",
           "duration": "10 minutes"
         }
       ],
@@ -8668,7 +8668,7 @@
         {
           "type": "condition",
           "trigger": "immediate",
-          "effectType": "invisible",
+          "effectType": "Invisible",
           "duration": "Up to 10 minutes"
         }
       ],
@@ -9010,9 +9010,9 @@
           "type": "condition",
           "trigger": "onSave",
           "condition": "failed save",
-          "effectType": "frightened",
+          "effectType": "Frightened",
           "duration": "Up to 1 minute",
-          "description": "A target must succeed on a wisdom saving throw or drop whatever it is holding and become frightened for the duration. While frightened by this spell, a creature must take the Dash action and move away from you by the safest available route on each of its turns."
+          "description": "A target must succeed on a wisdom saving throw or drop whatever it is holding and become Frightened for the duration. While Frightened by this spell, a creature must take the Dash action and move away from you by the safest available route on each of its turns."
         }
       ],
       "source": "PHB",
@@ -9214,7 +9214,7 @@
         {
           "type": "buff",
           "trigger": "immediate",
-          "effectType": "advantage",
+          "effectType": "Advantage",
           "bonusTo": "Strength",
           "duration": "Up to 1 hour"
         },
@@ -9264,7 +9264,7 @@
         {
           "type": "condition",
           "trigger": "immediate",
-          "effectType": "invisible",
+          "effectType": "Invisible",
           "duration": "Until dispelled"
         }
       ],
@@ -9326,7 +9326,7 @@
         {
           "type": "buff",
           "trigger": "immediate",
-          "effectType": "advantage",
+          "effectType": "Advantage",
           "bonusTo": "dexterity saving throws",
           "duration": "Up to 1 minute"
         },
@@ -9389,7 +9389,7 @@
         {
           "type": "utility",
           "trigger": "immediate",
-          "description": "You create a twisting pattern of colors that weaves through the air inside a 30-foot cube within range. The pattern appears for a moment and vanishes. Each creature in the area who sees the pattern must make a wisdom saving throw. On a failed save, the creature becomes charmed for the duration. While charmed by this spell, the creature is incapacitated and has a speed of 0. The spell ends for an affected creature if it takes any damage or if someone else uses an action to shake the creature out of its stupor."
+          "description": "You create a twisting pattern of colors that weaves through the air inside a 30-foot cube within range. The pattern appears for a moment and vanishes. Each creature in the area who sees the pattern must make a wisdom saving throw. On a failed save, the creature becomes Charmed for the duration. While Charmed by this spell, the creature is Incapacitated and has a speed of 0. The spell ends for an affected creature if it takes any damage or if someone else uses an action to shake the creature out of its stupor."
         }
       ],
       "source": "PHB",
@@ -9427,7 +9427,7 @@
         {
           "type": "buff",
           "trigger": "immediate",
-          "effectType": "advantage",
+          "effectType": "Advantage",
           "bonusTo": "Intelligence",
           "duration": "Concentration, up to 1 hour"
         },
@@ -9479,7 +9479,7 @@
         {
           "type": "buff",
           "trigger": "immediate",
-          "effectType": "advantage",
+          "effectType": "Advantage",
           "bonusTo": "Intelligence",
           "duration": "1 hour"
         },
@@ -9525,7 +9525,7 @@
         {
           "type": "buff",
           "trigger": "immediate",
-          "effectType": "advantage",
+          "effectType": "Advantage",
           "bonusTo": "Intelligence",
           "duration": "1 hour"
         },
@@ -9571,7 +9571,7 @@
         {
           "type": "buff",
           "trigger": "immediate",
-          "effectType": "advantage",
+          "effectType": "Advantage",
           "bonusTo": "Intelligence",
           "duration": "1 hour"
         },
@@ -9624,7 +9624,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Setiap level slot di atas 3 menambah 1d8 pada kerusakan yang kamu terima.",
+        "description": "Setiap level slot di atas 3 menambah 1d8 pada damage yang kamu terima.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 5
@@ -10124,7 +10124,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Setiap level slot di atas 3 menambah 1d6 kerusakan dan 5 kaki dorongan atau tarikan.",
+        "description": "Setiap level slot di atas 3 menambah 1d6 damage dan 5 kaki dorongan atau tarikan.",
         "appliesTo": "damage",
         "increment": "1d6",
         "startsAtLevel": 5
@@ -10526,7 +10526,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Setiap dua level slot di atas 3 menambah 1d8 kerusakan.",
+        "description": "Setiap dua level slot di atas 3 menambah 1d8 damage.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 5
@@ -10576,7 +10576,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Setiap dua level slot di atas 3 menambah 1d8 kerusakan.",
+        "description": "Setiap dua level slot di atas 3 menambah 1d8 damage.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 5
@@ -10621,7 +10621,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Setiap dua level slot di atas 3 menambah 1d8 kerusakan.",
+        "description": "Setiap dua level slot di atas 3 menambah 1d8 damage.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 5
@@ -10666,7 +10666,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Setiap dua level slot di atas 3 menambah 1d8 kerusakan.",
+        "description": "Setiap dua level slot di atas 3 menambah 1d8 damage.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 5
@@ -10767,7 +10767,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Slot lebih tinggi menaikkan AC, hit points, dan kerusakan serangan roh, seperti di stat block-nya.",
+        "description": "Slot lebih tinggi menaikkan AC, hit points, dan damage serangan roh, seperti di stat block-nya.",
         "appliesTo": "damage",
         "startsAtLevel": 5
       },
@@ -10811,7 +10811,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Slot lebih tinggi menaikkan AC, hit points, dan kerusakan serangan roh, seperti di stat block-nya.",
+        "description": "Slot lebih tinggi menaikkan AC, hit points, dan damage serangan roh, seperti di stat block-nya.",
         "appliesTo": "damage",
         "startsAtLevel": 5
       },
@@ -10855,7 +10855,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Slot lebih tinggi menaikkan AC, hit points, dan kerusakan serangan roh, seperti di stat block-nya.",
+        "description": "Slot lebih tinggi menaikkan AC, hit points, dan damage serangan roh, seperti di stat block-nya.",
         "appliesTo": "damage",
         "startsAtLevel": 5
       },
@@ -10899,7 +10899,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Slot lebih tinggi menaikkan AC, hit points, dan kerusakan serangan roh, seperti di stat block-nya.",
+        "description": "Slot lebih tinggi menaikkan AC, hit points, dan damage serangan roh, seperti di stat block-nya.",
         "appliesTo": "damage",
         "startsAtLevel": 5
       },
@@ -10940,7 +10940,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Slot lebih tinggi menaikkan AC, hit points, dan kerusakan serangan roh, seperti di stat block-nya.",
+        "description": "Slot lebih tinggi menaikkan AC, hit points, dan damage serangan roh, seperti di stat block-nya.",
         "appliesTo": "damage",
         "startsAtLevel": 5
       },
@@ -10981,7 +10981,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Slot lebih tinggi menaikkan AC, hit points, dan kerusakan serangan roh, seperti di stat block-nya.",
+        "description": "Slot lebih tinggi menaikkan AC, hit points, dan damage serangan roh, seperti di stat block-nya.",
         "appliesTo": "damage",
         "startsAtLevel": 5
       },
@@ -11022,7 +11022,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Slot lebih tinggi menaikkan AC, hit points, dan kerusakan serangan roh, seperti di stat block-nya.",
+        "description": "Slot lebih tinggi menaikkan AC, hit points, dan damage serangan roh, seperti di stat block-nya.",
         "appliesTo": "damage",
         "startsAtLevel": 5
       },
@@ -11063,7 +11063,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Slot lebih tinggi menaikkan AC, hit points, dan kerusakan serangan roh, seperti di stat block-nya.",
+        "description": "Slot lebih tinggi menaikkan AC, hit points, dan damage serangan roh, seperti di stat block-nya.",
         "appliesTo": "damage",
         "startsAtLevel": 5
       },
@@ -11104,7 +11104,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Slot lebih tinggi menaikkan AC, hit points, dan kerusakan serangan roh, seperti di stat block-nya.",
+        "description": "Slot lebih tinggi menaikkan AC, hit points, dan damage serangan roh, seperti di stat block-nya.",
         "appliesTo": "damage",
         "startsAtLevel": 5
       },
@@ -11156,7 +11156,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Setiap level slot di atas 3 menambah 1d10 kerusakan.",
+        "description": "Setiap level slot di atas 3 menambah 1d10 damage.",
         "appliesTo": "damage",
         "increment": "1d10",
         "startsAtLevel": 5
@@ -11625,7 +11625,7 @@
         {
           "type": "condition",
           "trigger": "immediate",
-          "effectType": "invisible",
+          "effectType": "Invisible",
           "duration": "Up to 1 hour"
         }
       ],
@@ -11670,7 +11670,7 @@
         {
           "type": "utility",
           "trigger": "immediate",
-          "description": "You attempt to send one creature that you can see within range to another plane of existence. The target must succeed on a charisma saving throw or be banished. If the target is native to the plane of existence you're on, you banish the target to a harmless demiplane. While there, the target is incapacitated. The target remains there until the spell ends, at which point the target reappears in the space it left or in the nearest unoccupied space if that space is occupied. If the target is native to a different plane of existence than the one you're on, the target is banished with a faint popping noise, returning to its home plane. If the spell ends before 1 minute has passed, the target reappears in the space it left or in the nearest unoccupied space if that space is occupied. Otherwise, the target doesn't return."
+          "description": "You attempt to send one creature that you can see within range to another plane of existence. The target must succeed on a charisma saving throw or be banished. If the target is native to the plane of existence you're on, you banish the target to a harmless demiplane. While there, the target is Incapacitated. The target remains there until the spell ends, at which point the target reappears in the space it left or in the nearest unoccupied space if that space is occupied. If the target is native to a different plane of existence than the one you're on, the target is banished with a faint popping noise, returning to its home plane. If the spell ends before 1 minute has passed, the target reappears in the space it left or in the nearest unoccupied space if that space is occupied. Otherwise, the target doesn't return."
         }
       ],
       "scaling": {
@@ -11731,7 +11731,7 @@
           "type": "condition",
           "trigger": "onSave",
           "condition": "failed save",
-          "effectType": "restrained",
+          "effectType": "Restrained",
           "duration": "Up to 1 minute"
         },
         {
@@ -11831,7 +11831,7 @@
         {
           "type": "utility",
           "trigger": "immediate",
-          "description": "Creatures of your choice that you can see within range and that can hear you must make a Wisdom saving throw. A target automatically succeeds on this saving throw if it can't be charmed. On a failed save, a target is affected by this spell. Until the spell ends, you can use a bonus action on each of your turns to designate a direction that is horizontal to you. Each affected target must use as much of its movement as possible to move in that direction on its next turn. It can take its action before it moves. After moving in this way, it can make another Wisdom saving throw to try to end the effect. A target isn't compelled to move into an obviously deadly hazard, such as a fire or pit, but it will provoke opportunity attacks to move in the designated direction."
+          "description": "Creatures of your choice that you can see within range and that can hear you must make a Wisdom saving throw. A target automatically succeeds on this saving throw if it can't be Charmed. On a failed save, a target is affected by this spell. Until the spell ends, you can use a bonus action on each of your turns to designate a direction that is horizontal to you. Each affected target must use as much of its movement as possible to move in that direction on its next turn. It can take its action before it moves. After moving in this way, it can make another Wisdom saving throw to try to end the effect. A target isn't compelled to move into an obviously deadly hazard, such as a fire or pit, but it will provoke opportunity attacks to move in the designated direction."
         }
       ],
       "source": "PHB",
@@ -12148,7 +12148,7 @@
         {
           "type": "buff",
           "trigger": "immediate",
-          "effectType": "advantage",
+          "effectType": "Advantage",
           "bonusTo": "the saving throw",
           "duration": "Up to 1 minute"
         }
@@ -12230,13 +12230,13 @@
         {
           "type": "condition",
           "trigger": "immediate",
-          "effectType": "invisible",
+          "effectType": "Invisible",
           "duration": "8 hours"
         },
         {
           "type": "condition",
           "trigger": "immediate",
-          "effectType": "invisible",
+          "effectType": "Invisible",
           "duration": "8 hours"
         },
         {
@@ -12426,7 +12426,7 @@
         {
           "type": "condition",
           "trigger": "immediate",
-          "effectType": "invisible",
+          "effectType": "Invisible",
           "duration": "Up to 1 minute"
         }
       ],
@@ -13050,7 +13050,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Slot lebih tinggi menaikkan AC, hit points, dan kerusakan serangan roh, seperti di stat block-nya.",
+        "description": "Slot lebih tinggi menaikkan AC, hit points, dan damage serangan roh, seperti di stat block-nya.",
         "appliesTo": "damage",
         "startsAtLevel": 6
       },
@@ -13091,7 +13091,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Slot lebih tinggi menaikkan AC, hit points, dan kerusakan serangan roh, seperti di stat block-nya.",
+        "description": "Slot lebih tinggi menaikkan AC, hit points, dan damage serangan roh, seperti di stat block-nya.",
         "appliesTo": "damage",
         "startsAtLevel": 6
       },
@@ -13132,7 +13132,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Slot lebih tinggi menaikkan AC, hit points, dan kerusakan serangan roh, seperti di stat block-nya.",
+        "description": "Slot lebih tinggi menaikkan AC, hit points, dan damage serangan roh, seperti di stat block-nya.",
         "appliesTo": "damage",
         "startsAtLevel": 6
       },
@@ -13173,7 +13173,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Slot lebih tinggi menaikkan AC, hit points, dan kerusakan serangan roh, seperti di stat block-nya.",
+        "description": "Slot lebih tinggi menaikkan AC, hit points, dan damage serangan roh, seperti di stat block-nya.",
         "appliesTo": "damage",
         "startsAtLevel": 6
       },
@@ -13215,7 +13215,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Slot lebih tinggi menaikkan AC, hit points, dan kerusakan serangan roh, seperti di stat block-nya.",
+        "description": "Slot lebih tinggi menaikkan AC, hit points, dan damage serangan roh, seperti di stat block-nya.",
         "appliesTo": "damage",
         "startsAtLevel": 6
       },
@@ -13469,7 +13469,7 @@
         {
           "type": "utility",
           "trigger": "immediate",
-          "description": "After spending the casting time tracing magical pathways within a precious gemstone, you touch a Huge or smaller beast or plant. The target must have either no Intelligence score or an Intelligence of 3 or less. The target gains an Intelligence of 10. The target also gains the ability to speak one language you know. If the target is a plant, it gains the ability to move its limbs, roots, vines, creepers, and so forth, and it gains senses similar to a human's. Your DM chooses statistics appropriate for the awakened plant, such as the statistics for the awakened shrub or the awakened tree. The awakened beast or plant is charmed by you for 30 days or until you or your companions do anything harmful to it. When the charmed condition ends, the awakened creature chooses whether to remain friendly to you, based on how you treated it while it was charmed."
+          "description": "After spending the casting time tracing magical pathways within a precious gemstone, you touch a Huge or smaller beast or plant. The target must have either no Intelligence score or an Intelligence of 3 or less. The target gains an Intelligence of 10. The target also gains the ability to speak one language you know. If the target is a plant, it gains the ability to move its limbs, roots, vines, creepers, and so forth, and it gains senses similar to a human's. Your DM chooses statistics appropriate for the awakened plant, such as the statistics for the awakened shrub or the awakened tree. The awakened beast or plant is Charmed by you for 30 days or until you or your companions do anything harmful to it. When the Charmed condition ends, the awakened creature chooses whether to remain friendly to you, based on how you treated it while it was Charmed."
         }
       ],
       "source": "PHB",
@@ -13940,7 +13940,7 @@
         {
           "type": "utility",
           "trigger": "immediate",
-          "description": "Shimmering energy surrounds and protects you from fey, undead, and creatures originating from beyond the Material Plane. For the duration, celestials, elementals, fey, fiends, and undead have disadvantage on attack rolls against you. You can end the spell early by using either of the following special functions."
+          "description": "Shimmering energy surrounds and protects you from fey, undead, and creatures originating from beyond the Material Plane. For the duration, celestials, elementals, fey, fiends, and undead have Disadvantage on attack rolls against you. You can end the spell early by using either of the following special functions."
         }
       ],
       "source": "PHB",
@@ -13981,7 +13981,7 @@
         {
           "type": "buff",
           "trigger": "immediate",
-          "effectType": "advantage",
+          "effectType": "Advantage",
           "bonusTo": "the saving throw",
           "duration": "Up to 1 minute"
         }
@@ -14210,7 +14210,7 @@
         {
           "type": "condition",
           "trigger": "immediate",
-          "effectType": "charmed",
+          "effectType": "Charmed",
           "duration": "30 days"
         }
       ],
@@ -14251,7 +14251,7 @@
         {
           "type": "utility",
           "trigger": "immediate",
-          "description": "You imbue a creature you touch with positive energy to undo a debilitating effect. You can reduce the target's exhaustion level by one, or end one of the following effects on the target: \n- One effect that charmed or petrified the target \n- One curse, including the target's attunement to a cursed magic item \n- Any reduction to one of the target's ability scores \n- One effect reducing the target's hit point maximum"
+          "description": "You imbue a creature you touch with positive energy to undo a debilitating effect. You can reduce the target's exhaustion level by one, or end one of the following effects on the target: \n- One effect that Charmed or Petrified the target \n- One curse, including the target's attunement to a cursed magic item \n- Any reduction to one of the target's ability scores \n- One effect reducing the target's hit point maximum"
         }
       ],
       "source": "PHB",
@@ -14331,7 +14331,7 @@
         {
           "type": "utility",
           "trigger": "immediate",
-          "description": "Choose a creature you can see within range. The target must make a saving throw of Wisdom or be paralyzed for the duration of the spell. This spell has no effect against the undead. At the end of each round, the target can make a new saving throw of Wisdom. If successful, the spell ends for the creature."
+          "description": "Choose a creature you can see within range. The target must make a saving throw of Wisdom or be Paralyzed for the duration of the spell. This spell has no effect against the undead. At the end of each round, the target can make a new saving throw of Wisdom. If successful, the spell ends for the creature."
         }
       ],
       "source": "PHB",
@@ -14668,13 +14668,13 @@
         {
           "type": "condition",
           "trigger": "immediate",
-          "effectType": "invisible",
+          "effectType": "Invisible",
           "duration": "Up to 1 hour"
         },
         {
           "type": "condition",
           "trigger": "immediate",
-          "effectType": "invisible",
+          "effectType": "Invisible",
           "duration": "Up to 1 hour"
         }
       ],
@@ -14716,7 +14716,7 @@
         {
           "type": "buff",
           "trigger": "immediate",
-          "effectType": "advantage",
+          "effectType": "Advantage",
           "bonusTo": "the saving throw",
           "duration": "Up to 1 minute"
         }
@@ -15084,7 +15084,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Slot lebih tinggi menaikkan AC, hit points, dan kerusakan serangan roh, seperti di stat block-nya.",
+        "description": "Slot lebih tinggi menaikkan AC, hit points, dan damage serangan roh, seperti di stat block-nya.",
         "appliesTo": "damage",
         "startsAtLevel": 7
       },
@@ -15361,7 +15361,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Setiap level slot di atas 4 menambah 2d4 pada kerusakan pertama.",
+        "description": "Setiap level slot di atas 4 menambah 2d4 pada damage pertama.",
         "appliesTo": "damage",
         "increment": "2d4",
         "startsAtLevel": 7
@@ -15401,7 +15401,7 @@
           "type": "control",
           "trigger": "immediate",
           "effectType": "createBarrier",
-          "description": "An invisible wall of force springs into existence at a point you choose within range. Nothing can physically pass through the wall. It is immune to all damage and can't be dispelled by dispel magic. A disintegrate spell destroys the wall instantly.",
+          "description": "An Invisible wall of force springs into existence at a point you choose within range. Nothing can physically pass through the wall. It is immune to all damage and can't be dispelled by dispel magic. A disintegrate spell destroys the wall instantly.",
           "duration": "Up to 10 minutes"
         }
       ],
@@ -16057,7 +16057,7 @@
           "type": "condition",
           "trigger": "onSave",
           "condition": "failed save",
-          "effectType": "restrained",
+          "effectType": "Restrained",
           "duration": "Up to 1 minute"
         }
       ],
@@ -16243,7 +16243,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Setiap level slot di atas 6 menambah 1d8 kerusakan.",
+        "description": "Setiap level slot di atas 6 menambah 1d8 damage.",
         "appliesTo": "damage",
         "increment": "1d8",
         "startsAtLevel": 8
@@ -16439,7 +16439,7 @@
         {
           "type": "utility",
           "trigger": "immediate",
-          "description": "You bring forth a great feast, including magnificent food and drink. The feast takes 1 hour to consume and disappears at the end of that time, and the beneficial effects don't set in until this hour is over. Up to twelve other creatures can partake of the feast. A creature that partakes of the feast gains several benefits. The creature is cured of all diseases and poison, becomes immune to poison and being frightened, and makes all wisdom saving throws with advantage. Its hit point maximum also increases by 2d10, and it gains the same number of hit points. These benefits last for 24 hours."
+          "description": "You bring forth a great feast, including magnificent food and drink. The feast takes 1 hour to consume and disappears at the end of that time, and the beneficial effects don't set in until this hour is over. Up to twelve other creatures can partake of the feast. A creature that partakes of the feast gains several benefits. The creature is cured of all diseases and poison, becomes immune to poison and being Frightened, and makes all wisdom saving throws with Advantage. Its hit point maximum also increases by 2d10, and it gains the same number of hit points. These benefits last for 24 hours."
         }
       ],
       "source": "PHB",
@@ -16476,7 +16476,7 @@
         {
           "type": "condition",
           "trigger": "immediate",
-          "effectType": "invisible",
+          "effectType": "Invisible",
           "duration": "Until dispelled"
         }
       ],
@@ -16658,7 +16658,7 @@
         {
           "type": "utility",
           "trigger": "immediate",
-          "description": "Choose one creature that you can see within range. The target begins a comic dance in place: shuffling, tapping its feet, and capering for the duration. Creatures that can't be charmed are immune to this spell. A dancing creature must use all its movement to dance without leaving its space and has disadvantage on dexterity saving throws and attack rolls. While the target is affected by this spell, other creatures have advantage on attack rolls against it. As an action, a dancing creature makes a wisdom saving throw to regain control of itself. On a successful save, the spell ends."
+          "description": "Choose one creature that you can see within range. The target begins a comic dance in place: shuffling, tapping its feet, and capering for the duration. Creatures that can't be Charmed are immune to this spell. A dancing creature must use all its movement to dance without leaving its space and has Disadvantage on dexterity saving throws and attack rolls. While the target is affected by this spell, other creatures have Advantage on attack rolls against it. As an action, a dancing creature makes a wisdom saving throw to regain control of itself. On a successful save, the spell ends."
         }
       ],
       "source": "PHB",
@@ -16742,7 +16742,7 @@
         {
           "type": "utility",
           "trigger": "immediate",
-          "description": "You suggest a course of activity (limited to a sentence or two) and magically influence up to twelve creatures of your choice that you can see within range and that can hear and understand you. Creatures that can't be charmed are immune to this effect. The suggestion must be worded in such a manner as to make the course of action sound reasonable. Asking the creature to stab itself, throw itself onto a spear, immolate itself, or do some other obviously harmful act automatically negates the effect of the spell. Each target must make a wisdom saving throw. On a failed save, it pursues the course of action you described to the best of its ability. The suggested course of action can continue for the entire duration. If the suggested activity can be completed in a shorter time, the spell ends when the subject finishes what it was asked to do. You can also specify conditions that will trigger a special activity during the duration. For example, you might suggest that a group of soldiers give all their money to the first beggar they meet. If the condition isn't met before the spell ends, the activity isn't performed. If you or any of your companions damage a creature affected by this spell, the spell ends for that creature."
+          "description": "You suggest a course of activity (limited to a sentence or two) and magically influence up to twelve creatures of your choice that you can see within range and that can hear and understand you. Creatures that can't be Charmed are immune to this effect. The suggestion must be worded in such a manner as to make the course of action sound reasonable. Asking the creature to stab itself, throw itself onto a spear, immolate itself, or do some other obviously harmful act automatically negates the effect of the spell. Each target must make a wisdom saving throw. On a failed save, it pursues the course of action you described to the best of its ability. The suggested course of action can continue for the entire duration. If the suggested activity can be completed in a shorter time, the spell ends when the subject finishes what it was asked to do. You can also specify conditions that will trigger a special activity during the duration. For example, you might suggest that a group of soldiers give all their money to the first beggar they meet. If the condition isn't met before the spell ends, the activity isn't performed. If you or any of your companions damage a creature affected by this spell, the spell ends for that creature."
         }
       ],
       "source": "PHB",
@@ -17037,7 +17037,7 @@
       ],
       "scaling": {
         "type": "slotLevel",
-        "description": "Slot lebih tinggi menaikkan AC, hit points, dan kerusakan serangan roh, seperti di stat block-nya.",
+        "description": "Slot lebih tinggi menaikkan AC, hit points, dan damage serangan roh, seperti di stat block-nya.",
         "appliesTo": "damage",
         "startsAtLevel": 8
       },
@@ -17090,7 +17090,7 @@
         {
           "type": "condition",
           "trigger": "immediate",
-          "effectType": "blinded",
+          "effectType": "Blinded",
           "duration": "Up to 1 minute"
         }
       ],
@@ -17342,7 +17342,7 @@
         {
           "type": "utility",
           "trigger": "immediate",
-          "description": "You and up to ten willing creatures you can see within range assume a gaseous form for the duration, appearing as wisps of cloud. While in this cloud form, a creature has a flying speed of 300 feet and has resistance to damage from nonmagical weapons. The only actions a creature can take in this form are the Dash action or to revert to its normal form. Reverting takes 1 minute, during which time a creature is incapacitated and can't move. Until the spell ends, a creature can revert to cloud form, which also requires the 1-minute transformation. If a creature is in cloud form and flying when the effect ends, the creature descends 60 feet per round for 1 minute until it lands, which it does safely. If it can't land after 1 minute, the creature falls the remaining distance."
+          "description": "You and up to ten willing creatures you can see within range assume a gaseous form for the duration, appearing as wisps of cloud. While in this cloud form, a creature has a flying speed of 300 feet and has resistance to damage from nonmagical weapons. The only actions a creature can take in this form are the Dash action or to revert to its normal form. Reverting takes 1 minute, during which time a creature is Incapacitated and can't move. Until the spell ends, a creature can revert to cloud form, which also requires the 1-minute transformation. If a creature is in cloud form and flying when the effect ends, the creature descends 60 feet per round for 1 minute until it lands, which it does safely. If it can't land after 1 minute, the creature falls the remaining distance."
         }
       ],
       "source": "PHB",
@@ -17586,7 +17586,7 @@
         {
           "type": "utility",
           "trigger": "immediate",
-          "description": "You utter a divine word, imbued with the power that shaped the world at the dawn of creation. Choose any number of creatures you can see within range. Each creature that can hear you must make a Charisma saving throw. On a failed save, a creature suffers an effect based on its current hit points: \n- 50hp or less: deafened for 1 minute \n- 40 hp or less: deafened and blinded for 10 minutes \n- 30 hp or less: blinded, deafened and dazed for 1 hour \n- 20 hp or less: killed instantly. Regardless of its current hit points, a celestial, an elemental, a fey, or a fiend that fails its save is forced back to its plane of origin (if it isn't there already) and can't return to your current plane for 24 hours by any means short of a wish spell."
+          "description": "You utter a divine word, imbued with the power that shaped the world at the dawn of creation. Choose any number of creatures you can see within range. Each creature that can hear you must make a Charisma saving throw. On a failed save, a creature suffers an effect based on its current hit points: \n- 50hp or less: Deafened for 1 minute \n- 40 hp or less: Deafened and Blinded for 10 minutes \n- 30 hp or less: Blinded, Deafened and dazed for 1 hour \n- 20 hp or less: killed instantly. Regardless of its current hit points, a celestial, an elemental, a fey, or a fiend that fails its save is forced back to its plane of origin (if it isn't there already) and can't return to your current plane for 24 hours by any means short of a wish spell."
         }
       ],
       "source": "PHB",
@@ -17662,7 +17662,7 @@
         {
           "type": "condition",
           "trigger": "immediate",
-          "effectType": "unconscious",
+          "effectType": "Unconscious",
           "duration": "6 hours"
         }
       ],
@@ -17844,7 +17844,7 @@
         {
           "type": "condition",
           "trigger": "immediate",
-          "effectType": "invisible",
+          "effectType": "Invisible",
           "duration": "1 hour"
         },
         {
@@ -17890,7 +17890,7 @@
         {
           "type": "condition",
           "trigger": "immediate",
-          "effectType": "invisible",
+          "effectType": "Invisible",
           "duration": "24 hours"
         },
         {
@@ -18093,7 +18093,7 @@
         {
           "type": "utility",
           "trigger": "immediate",
-          "description": "You create an illusory copy of yourself that lasts for the duration. The copy can appear at any location within range that you have seen before, regardless of intervening obstacles. The illusion looks and sounds like you but is intangible. If the illusion takes any damage, it disappears, and the spell ends. You can use your action to move this illusion up to twice your speed, and make it gesture, speak, and behave in whatever way you choose. It mimics your mannerisms perfectly. You can see through its eyes and hear through its ears as if you were in its space. On your turn as a bonus action, you can switch from using its senses to using your own, or back again. While you are using its senses, you are blinded and deafened in regard to your own surroundings. Physical interaction with the image reveals it to be an illusion, because things can pass through it. A creature that uses its action to examine the image can determine that it is an illusion with a successful Intelligence (Investigation) check against your spell save DC. If a creature discerns the illusion for what it is, the creature can see through the image, and any noise it makes sounds hollow to the creature."
+          "description": "You create an illusory copy of yourself that lasts for the duration. The copy can appear at any location within range that you have seen before, regardless of intervening obstacles. The illusion looks and sounds like you but is intangible. If the illusion takes any damage, it disappears, and the spell ends. You can use your action to move this illusion up to twice your speed, and make it gesture, speak, and behave in whatever way you choose. It mimics your mannerisms perfectly. You can see through its eyes and hear through its ears as if you were in its space. On your turn as a bonus action, you can switch from using its senses to using your own, or back again. While you are using its senses, you are Blinded and Deafened in regard to your own surroundings. Physical interaction with the image reveals it to be an illusion, because things can pass through it. A creature that uses its action to examine the image can determine that it is an illusion with a successful Intelligence (Investigation) check against your spell save DC. If a creature discerns the illusion for what it is, the creature can see through the image, and any noise it makes sounds hollow to the creature."
         }
       ],
       "source": "PHB",
@@ -18168,7 +18168,7 @@
         {
           "type": "utility",
           "trigger": "immediate",
-          "description": "You touch a dead creature that has been dead for no more than a century, that didn't die of old age, and that isn't undead. If its soul is free and willing, the target returns to life with all its hit points. This spell neutralizes any poisons and cures normal diseases afflicting the creature when it died. It doesn't, however, remove magical diseases, curses, and the like; if such effects aren't removed prior to casting the spell, they afflict the target on its return to life. This spell closes all mortal wounds and restores any missing body parts. Coming back from the dead is an ordeal. The target takes a -4 penalty to all attack rolls, saving throws, and ability checks. Every time the target finishes a long rest, the penalty is reduced by 1 until it disappears. Casting this spell to restore life to a creature that has been dead for one year or longer taxes you greatly. Until you finish a long rest, you can't cast spells again, and you have disadvantage on all attack rolls, ability checks, and saving throws."
+          "description": "You touch a dead creature that has been dead for no more than a century, that didn't die of old age, and that isn't undead. If its soul is free and willing, the target returns to life with all its hit points. This spell neutralizes any poisons and cures normal diseases afflicting the creature when it died. It doesn't, however, remove magical diseases, curses, and the like; if such effects aren't removed prior to casting the spell, they afflict the target on its return to life. This spell closes all mortal wounds and restores any missing body parts. Coming back from the dead is an ordeal. The target takes a -4 penalty to all attack rolls, saving throws, and ability checks. Every time the target finishes a long rest, the penalty is reduced by 1 until it disappears. Casting this spell to restore life to a creature that has been dead for one year or longer taxes you greatly. Until you finish a long rest, you can't cast spells again, and you have Disadvantage on all attack rolls, ability checks, and saving throws."
         }
       ],
       "source": "PHB",
@@ -18245,7 +18245,7 @@
         {
           "type": "condition",
           "trigger": "immediate",
-          "effectType": "invisible",
+          "effectType": "Invisible",
           "duration": "Until dispelled"
         }
       ],
@@ -18320,7 +18320,7 @@
         {
           "type": "condition",
           "trigger": "immediate",
-          "effectType": "invisible",
+          "effectType": "Invisible",
           "duration": "Until dispelled"
         }
       ],
@@ -18505,7 +18505,7 @@
         {
           "type": "condition",
           "trigger": "immediate",
-          "effectType": "invisible",
+          "effectType": "Invisible",
           "duration": "Up to 1 hour"
         },
         {
@@ -18702,7 +18702,7 @@
         {
           "type": "buff",
           "trigger": "immediate",
-          "effectType": "advantage",
+          "effectType": "Advantage",
           "bonusTo": "the saving throw",
           "duration": "Up to 1 hour"
         }
@@ -18873,7 +18873,7 @@
         {
           "type": "utility",
           "trigger": "immediate",
-          "description": "Divine light washes out from you and coalesces in a soft radiance in a 30-foot radius around you. Creatures of your choice in that radius when you cast this spell shed dim light in a 5-foot radius and have advantage on all saving throws, and other creatures have disadvantage on attack rolls against them until the spell ends. In addition, when a fiend or an undead hits an affected creature with a melee attack, the aura flashes with brilliant light. The attacker must succeed on a constitution saving throw or be blinded until the spell ends."
+          "description": "Divine light washes out from you and coalesces in a soft radiance in a 30-foot radius around you. Creatures of your choice in that radius when you cast this spell shed dim light in a 5-foot radius and have Advantage on all saving throws, and other creatures have Disadvantage on attack rolls against them until the spell ends. In addition, when a fiend or an undead hits an affected creature with a melee attack, the aura flashes with brilliant light. The attacker must succeed on a constitution saving throw or be Blinded until the spell ends."
         }
       ],
       "source": "PHB",
@@ -18966,7 +18966,7 @@
         {
           "type": "condition",
           "trigger": "immediate",
-          "effectType": "blinded",
+          "effectType": "Blinded",
           "duration": "Concentration, up to 10 minutes"
         },
         {
@@ -19042,7 +19042,7 @@
         {
           "type": "utility",
           "trigger": "immediate",
-          "description": "Until the spell ends, one willing creature you touch is immune to psychic damage, any effect that would sense its emotions or read its thoughts, divination spells, and the charmed condition. The spell even foils wish spells and spells or effects of similar power used to affect the target's mind or to gain information about the target."
+          "description": "Until the spell ends, one willing creature you touch is immune to psychic damage, any effect that would sense its emotions or read its thoughts, divination spells, and the Charmed condition. The spell even foils wish spells and spells or effects of similar power used to affect the target's mind or to gain information about the target."
         }
       ],
       "source": "PHB",
@@ -19082,7 +19082,7 @@
         {
           "type": "condition",
           "trigger": "immediate",
-          "effectType": "stunned",
+          "effectType": "Stunned",
           "duration": "Instantaneous"
         }
       ],
@@ -19137,7 +19137,7 @@
         {
           "type": "condition",
           "trigger": "immediate",
-          "effectType": "blinded",
+          "effectType": "Blinded",
           "duration": "Instantaneous"
         }
       ],
@@ -19245,7 +19245,7 @@
         {
           "type": "condition",
           "trigger": "immediate",
-          "effectType": "unconscious",
+          "effectType": "Unconscious",
           "duration": "Special"
         },
         {
@@ -19325,7 +19325,7 @@
         {
           "type": "utility",
           "trigger": "immediate",
-          "description": "You touch a willing creature and bestow a limited ability to see into the immediate future. For the duration, the target can't be surprised and has advantage on attack rolls, ability checks, and saving throws. Additionally, other creatures have disadvantage on attack rolls against the target for the duration. This spell immediately ends if you cast it again before its duration ends."
+          "description": "You touch a willing creature and bestow a limited ability to see into the immediate future. For the duration, the target can't be surprised and has Advantage on attack rolls, ability checks, and saving throws. Additionally, other creatures have Disadvantage on attack rolls against the target for the duration. This spell immediately ends if you cast it again before its duration ends."
         }
       ],
       "source": "PHB",
@@ -19443,7 +19443,7 @@
         {
           "type": "utility",
           "trigger": "immediate",
-          "description": "A flood of healing energy flows from you into injured creatures around you. You restore up to 700 hit points, divided as you choose among any number of creatures that you can see within range. Creatures healed by this spell are also cured of all diseases and any effect making them blinded or deafened. This spell has no effect on undead or constructs."
+          "description": "A flood of healing energy flows from you into injured creatures around you. You restore up to 700 hit points, divided as you choose among any number of creatures that you can see within range. Creatures healed by this spell are also cured of all diseases and any effect making them Blinded or Deafened. This spell has no effect on undead or constructs."
         }
       ],
       "special": [
@@ -19850,7 +19850,7 @@
         {
           "type": "condition",
           "trigger": "immediate",
-          "effectType": "unconscious",
+          "effectType": "Unconscious",
           "duration": "Up to 1 hour"
         },
         {
@@ -20244,7 +20244,7 @@
         {
           "type": "buff",
           "trigger": "immediate",
-          "effectType": "advantage",
+          "effectType": "Advantage",
           "bonusTo": "saving throws against effects that cause blindness",
           "duration": "Concentration, up to 10 minutes"
         },

@@ -4,11 +4,11 @@
   "2014_subclasses.conjuration.conjuration-savant.description": "Pada level 2, biaya emas dan waktu yang kamu habiskan untuk menyalin sihir conjuration ke dalam spellbook milikmu berkurang setengahnya.",
   "2014_subclasses.conjuration.conjuration-savant.summary": "Mengurangi separuh biaya emas dan waktu untuk menyalin sihir conjuration ke dalam spellbook.",
   "2014_subclasses.conjuration.minor-conjuration.description": "Masih di level 2, kamu dapat memunculkan objek-objek kecil.",
-  "2014_subclasses.conjuration.minor-conjuration.summary": "Memunculkan objek nonmagis (maksimal 3 kaki di setiap sisi dan berat 10 pon) di ruang kosong dalam jarak 10 kaki; bertahan selama 1 jam atau sampai objek tersebut menerima kerusakan.",
+  "2014_subclasses.conjuration.minor-conjuration.summary": "Memunculkan objek nonmagis (maksimal 3 kaki di setiap sisi dan berat 10 pon) di ruang kosong dalam jarak 10 kaki; bertahan selama 1 jam atau sampai objek tersebut menerima damage.",
   "2014_subclasses.conjuration.benign-transportation.description": "Pada level 6, kamu dapat bertukar posisi dengan makhluk lain.",
   "2014_subclasses.conjuration.benign-transportation.summary": "Gunakan Bonus Action untuk teleportasi hingga 30 kaki ke ruang kosong yang terlihat, dan bisa bertukar posisi jika teleportasi dilakukan dalam jarak 5 kaki dari makhluk yang bersedia.",
-  "2014_subclasses.conjuration.focused-conjuration.description": "Pada level 10, konsentrasimu pada sihir conjuration tidak akan terputus ketika kamu menerima kerusakan.",
-  "2014_subclasses.conjuration.focused-conjuration.summary": "Konsentrasimu pada sihir conjuration tidak akan terputus saat kamu menerima kerusakan.",
+  "2014_subclasses.conjuration.focused-conjuration.description": "Pada level 10, konsentrasimu pada sihir conjuration tidak akan terputus ketika kamu menerima damage.",
+  "2014_subclasses.conjuration.focused-conjuration.summary": "Konsentrasimu pada sihir conjuration tidak akan terputus saat kamu menerima damage.",
   "2014_subclasses.conjuration.durable-summons.description": "Pada level 14, makhluk-makhluk yang kamu panggil mendapatkan temporary hit points.",
   "2014_subclasses.conjuration.durable-summons.summary": "Makhluk yang kamu panggil mendapatkan temporary hit points."
 }

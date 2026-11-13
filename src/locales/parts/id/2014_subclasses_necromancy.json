@@ -6,9 +6,9 @@
   "2014_subclasses.necromancy.grim-harvest.description": "Masih di level 2, kamu bisa memulihkan hit points ketika kamu berhasil membunuh sebuah makhluk.",
   "2014_subclasses.necromancy.grim-harvest.summary": "Memulihkan hit points saat kamu membunuh makhluk.",
   "2014_subclasses.necromancy.undead-thralls.description": "Pada level 6, kamu mampu membangkitkan undead.",
-  "2014_subclasses.necromancy.undead-thralls.summary": "Undead yang kamu bangkitkan mendapat tambahan hit points serta bonus proficiency pada roll serangan dan kerusakan; kamu bisa memberi perintah menggunakan bonus action.",
-  "2014_subclasses.necromancy.inured-to-undeath.description": "Pada level 10, kamu memiliki resistansi terhadap kerusakan nekrotik.",
-  "2014_subclasses.necromancy.inured-to-undeath.summary": "Mendapatkan resistansi terhadap kerusakan nekrotik.",
+  "2014_subclasses.necromancy.undead-thralls.summary": "Undead yang kamu bangkitkan mendapat tambahan hit points serta bonus proficiency pada roll serangan dan damage; kamu bisa memberi perintah menggunakan bonus action.",
+  "2014_subclasses.necromancy.inured-to-undeath.description": "Pada level 10, kamu memiliki resistansi terhadap necrotic damage.",
+  "2014_subclasses.necromancy.inured-to-undeath.summary": "Mendapatkan resistansi terhadap necrotic damage.",
   "2014_subclasses.necromancy.command-undead.description": "Pada level 14, kamu mampu memerintah makhluk undead.",
   "2014_subclasses.necromancy.command-undead.summary": "Gunakan action untuk memaksa undead dalam jangkauan 60 kaki melakukan Wisdom saving throw atau menjadi Terpesona selama 1 menit. Jumlah penggunaan setara bonus proficiency per long rest."
 }

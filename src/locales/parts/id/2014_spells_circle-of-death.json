@@ -1,5 +1,5 @@
 {
-  "2014_spells.circle-of-death.description": "Sebagai sebuah action, sebuah bola energi negatif beriak keluar dalam radius 60 kaki dari satu titik dalam jangkauan 150 kaki. Setiap makhluk di area tersebut harus melakukan Constitution saving throw. Sasaran menerima **8d6** kerusakan nekrotik jika gagal, atau setengahnya jika berhasil.",
-  "2014_spells.circle-of-death.effectSummary": "Kamu melepaskan bola energi negatif raksasa dari satu titik dalam jangkauan 150 kaki, memberikan kerusakan nekrotik kepada semua makhluk dalam radius 60 kaki.",
-  "2014_spells.circle-of-death.fullDescription": "Sebagai sebuah action, sebuah bola energi negatif beriak keluar dalam radius 60 kaki dari satu titik dalam jangkauan 150 kaki. Setiap makhluk di area tersebut harus melakukan Constitution saving throw. Sasaran menerima **8d6** kerusakan nekrotik jika gagal, atau setengahnya jika berhasil."
+  "2014_spells.circle-of-death.description": "Sebagai sebuah action, sebuah bola energi negatif beriak keluar dalam radius 60 kaki dari satu titik dalam jangkauan 150 kaki. Setiap makhluk di area tersebut harus melakukan Constitution saving throw. Sasaran menerima **8d6** necrotic damage jika gagal, atau setengahnya jika berhasil.",
+  "2014_spells.circle-of-death.effectSummary": "Kamu melepaskan bola energi negatif raksasa dari satu titik dalam jangkauan 150 kaki, memberikan necrotic damage kepada semua makhluk dalam radius 60 kaki.",
+  "2014_spells.circle-of-death.fullDescription": "Sebagai sebuah action, sebuah bola energi negatif beriak keluar dalam radius 60 kaki dari satu titik dalam jangkauan 150 kaki. Setiap makhluk di area tersebut harus melakukan Constitution saving throw. Sasaran menerima **8d6** necrotic damage jika gagal, atau setengahnya jika berhasil."
 }
