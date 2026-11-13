@@ -6,6 +6,7 @@ import { describe, expect, test } from "bun:test";
 import phb from "@/data/en/2024_phb_subclasses.json";
 import srd from "@/data/en/2024_subclasses.json";
 import spells2024 from "@/data/en/2024_spells.json";
+import phbSpells from "@/data/en/2024_phb_spells.json";
 import { getStaticBackgrounds2024, getStaticClass, getStaticFeat, getStaticFeats, getStaticSubclasses } from "@/lib/srd-client";
 import { parseOriginFeat } from "@/lib/origin-2024";
 import { BACKGROUND_GEAR_2024 } from "@/data/starting-gear-2024";
@@ -25,6 +26,10 @@ import { weaponMastery } from "@/lib/weapon-mastery";
 import { initiativeParts } from "@/lib/roll-parts";
 import { getPassiveScore } from "@/lib/storage";
 import { buildTurnMenu } from "@/lib/turn";
+import { getStaticRaces, getStaticSpells } from "@/lib/srd-client";
+import { speciesSpellAbility, speciesSpells2024 } from "@/lib/origin-2024";
+import { featureHealing } from "@/lib/healing";
+import { ruleFor } from "@/data/turn-features";
 
 /** The 2024 book's subclasses, four per class (SRD 5.2 has the first of each). */
 const EXPECTED: Record<string, string[]> = {
@@ -43,10 +48,7 @@ const EXPECTED: Record<string, string[]> = {
 };
 
 /** Always-prepared spells from the 2024 book that SRD 5.2 lacks; the spells PR adds them. */
-const SPELLS_STILL_MISSING = [
-  "Arms of Hadar", "Crusader's Mantle", "Fount of Moonlight", "Hunger of Hadar", "Mind Sliver", "Steel Wind Strike",
-  "Summon Aberration", "Summon Beast", "Summon Celestial", "Summon Construct", "Summon Fey", "Yolande's Regal Presence",
-];
+
 
 describe("2024 Player's Handbook subclasses", () => {
   test("each class has the book's subclasses, once each", () => {
@@ -71,9 +73,9 @@ describe("2024 Player's Handbook subclasses", () => {
   });
 
   test("always-prepared spells are real 2024 spells at levels the class can cast", () => {
-    const known = new Set((spells2024 as any).spells.map((x: any) => x.name));
+    const known = new Set([...(spells2024 as any).spells, ...phbSpells.spells].map((x: any) => x.name));
     const unknown = phb.subclasses.flatMap((s: any) => Object.values(s.expandedSpells || {}).flat() as string[]).filter((n) => !known.has(n));
-    expect([...new Set(unknown)].sort()).toEqual(SPELLS_STILL_MISSING);
+    expect([...new Set(unknown)].sort()).toEqual([]);
     const firstSlot: Record<string, number> = { Bard: 3, Cleric: 3, Paladin: 3, Ranger: 3, Druid: 3, Sorcerer: 3, Warlock: 3, Wizard: 3 };
     for (const s of phb.subclasses as any[]) {
       for (const lvl of Object.keys(s.expandedSpells || {})) expect([s.name, Number(lvl) >= (firstSlot[s.class] ?? 99)]).toEqual([s.name, true]);
@@ -261,5 +263,42 @@ describe("2024 Player's Handbook General feats, Fighting Styles and Epic Boons",
     const brawler = base({ str: 14, featureSelections: { "class-feature-1-Fighting Style": ["Unarmed Fighting"] } });
     const unarmed = buildTurnMenu(brawler, []).options.find((o) => o.key === "attack:unarmed")!;
     expect(unarmed.damageRoll?.dice).toBe("1d8");
+  });
+});
+
+describe("2024 Player's Handbook spells and Aasimar", () => {
+  const BOOK = defaultSources("2024");
+  const phbOnly = getStaticSpells(BOOK, "2024").filter((s) => (s as any).source === "PHB2024");
+
+  test("52 more spells with the book on, none with core rules only; no name repeats an SRD spell", () => {
+    expect(phbOnly.length).toBe(52);
+    expect(getStaticSpells(["PHB"], "2024").some((s) => (s as any).source === "PHB2024")).toBe(false);
+    const srdNames = new Set((spells2024 as any).spells.map((s: any) => s.name));
+    expect(phbOnly.filter((s) => srdNames.has(s.name)).map((s) => s.name)).toEqual([]);
+    const perLevel = phbOnly.reduce((acc: Record<number, number>, s) => ({ ...acc, [s.level]: (acc[s.level] || 0) + 1 }), {});
+    expect(perLevel).toEqual({ 0: 7, 1: 7, 2: 5, 3: 10, 4: 7, 5: 11, 6: 3, 7: 2 });
+  });
+
+  test("every spell has a class, a school, a casting time and its text", () => {
+    const classes = new Set(["Bard", "Cleric", "Druid", "Paladin", "Ranger", "Sorcerer", "Warlock", "Wizard"]);
+    for (const s of phbOnly) {
+      expect([s.name, s.classes.length > 0 && s.classes.every((c) => classes.has(c))]).toEqual([s.name, true]);
+      expect([s.name, !!s.school, !!(s as any).casting_time, s.description.length > 60]).toEqual([s.name, true, true, true]);
+    }
+    const on = (cls: string) => phbOnly.filter((s) => s.classes.includes(cls)).map((s) => s.name);
+    expect(on("Warlock")).toContain("Armor of Agathys");
+    expect(on("Paladin")).toEqual(expect.arrayContaining(["Wrathful Smite", "Thunderous Smite", "Blinding Smite", "Staggering Smite", "Banishing Smite", "Destructive Wave"]));
+    expect(on("Ranger")).toEqual(expect.arrayContaining(["Hail of Thorns", "Lightning Arrow", "Swift Quiver"]));
+  });
+
+  test("Aasimar: listed with the book on; Light uses Charisma; Healing Hands and Celestial Revelation work", () => {
+    expect(getStaticRaces(BOOK, "2024").map((r) => r.name)).toContain("Aasimar");
+    expect(getStaticRaces(["PHB"], "2024").map((r) => r.name)).not.toContain("Aasimar");
+    const a = { ...createEmptyCharacter(), ruleset: "2024", sources: BOOK, race: "Aasimar", class: "Fighter", level: 5 } as Character;
+    expect(speciesSpells2024(a)).toEqual(["Light"]);
+    expect(speciesSpellAbility(a, "Light")).toBe("cha");
+    expect(featureHealing(a, "Healing Hands")?.dice).toBe("3d4");
+    const reveal = ruleFor(a, "Celestial Revelation")!;
+    expect([reveal.slot, reveal.only?.(a), reveal.only?.({ ...a, level: 2 })]).toEqual(["bonus", true, false]);
   });
 });

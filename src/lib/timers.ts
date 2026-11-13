@@ -19,6 +19,7 @@ const FEATURE_DURATIONS: [RegExp, Rounds][] = [
   [/^Bladesong/, MINUTE],
   [/^Wild Shape/, (c) => Math.max(1, Math.floor((c.level || 2) / 2)) * HOUR],
   [/^Starry Form/, 10 * MINUTE],
+  [/^Celestial Revelation/, MINUTE],
   [/^Symbiotic Entity/, 10 * MINUTE],
   [/^Summon Wildfire Spirit/, HOUR],
   [/^Spirit Totem/, MINUTE],

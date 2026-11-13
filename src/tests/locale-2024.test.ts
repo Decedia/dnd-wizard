@@ -13,9 +13,11 @@ import feats from "@/data/en/2024_feats.json";
 import backgrounds from "@/data/en/2024_backgrounds.json";
 import phbSubclasses from "@/data/en/2024_phb_subclasses.json";
 import phbOrigins from "@/data/en/2024_phb_origins.json";
+import phbSpells from "@/data/en/2024_phb_spells.json";
+import phbSpecies from "@/data/en/2024_phb_species.json";
 
 const map = { ...textSrd, ...textPhb } as Record<string, string>;
-const files: Record<string, unknown> = { species, classes, subclasses, spells, feats, backgrounds, phbSubclasses, phbOrigins };
+const files: Record<string, unknown> = { species, classes, subclasses, spells, feats, backgrounds, phbSubclasses, phbOrigins, phbSpells, phbSpecies };
 
 function texts(data: unknown, key?: string, out: string[] = []): string[] {
   if (Array.isArray(data)) data.forEach((v) => texts(v, key, out));
@@ -46,7 +48,7 @@ describe("2024 data Indonesian", () => {
   });
 
   test("the hand-written Player's Handbook map holds only its own texts", () => {
-    const own = new Set([...texts(phbSubclasses), ...texts(phbOrigins)]);
+    const own = new Set([...texts(phbSubclasses), ...texts(phbOrigins), ...texts(phbSpells), ...texts(phbSpecies)]);
     expect(Object.keys(textPhb).filter((k) => !own.has(k)).map((k) => k.slice(0, 60))).toEqual([]);
   });
 });

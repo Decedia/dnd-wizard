@@ -36,10 +36,11 @@ function names2024(): string[] {
   const species = read("2024_species").races as any[];
   const feats = read("2024_feats");
   const phbOrigins = read("2024_phb_origins");
+  const phbSpecies = read("2024_phb_species");
   return [
     ...classes.flatMap((c) => c.features.map((f: any) => f.name)),
     ...[...(subs.subclasses ?? subs), ...(phbSubs.subclasses ?? phbSubs)].flatMap((s: any) => (s.features || []).map((f: any) => f.name)),
-    ...species.flatMap((s) => s.traits.map((t: any) => t.name)),
+    ...[...species, ...phbSpecies.races].flatMap((s: any) => s.traits.map((t: any) => t.name)),
     ...[...(feats.feats ?? feats), ...phbOrigins.feats].map((f: any) => f.name),
   ];
 }

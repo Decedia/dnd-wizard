@@ -249,13 +249,14 @@ export function applyClassChoices2024(character: Character): Character {
 
 /**
  * The ability a 2024 species spell uses (Elf, Gnome and Tiefling pick INT, WIS
- * or CHA), or undefined when the spell is not a species spell or none is picked.
+ * or CHA; Aasimar uses CHA), or undefined when the spell is not a species spell or none is picked.
  */
 export function speciesSpellAbility(character: Pick<Character, "race" | "raceChoices" | "ruleset" | "level">, spellName: string): "int" | "wis" | "cha" | undefined {
   if (!is2024(character) || !character.race) return undefined;
   if (!speciesSpells2024(character).some((n) => n.toLowerCase() === spellName.toLowerCase())) return undefined;
   const species = getStaticRace(character.race, "2024");
   const choice = species?.choices?.find((c) => /-spell-ability$/.test(c.id));
-  const picked = choice ? character.raceChoices?.[choice.id] : undefined;
+  // A species with no pick names its ability (Aasimar: Charisma).
+  const picked = choice ? character.raceChoices?.[choice.id] : (species as any)?.spellAbility;
   return picked === "int" || picked === "wis" || picked === "cha" ? picked : undefined;
 }

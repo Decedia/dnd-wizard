@@ -1,0 +1,1943 @@
+{
+ "spells": [
+  {
+   "index": "blade-ward-2024",
+   "name": "Blade Ward",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 0,
+   "school": {
+    "index": "abjuration",
+    "name": "Abjuration"
+   },
+   "classes": [
+    "Bard",
+    "Sorcerer",
+    "Warlock",
+    "Wizard"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "Self",
+   "components": {
+    "verbal": true,
+    "somatic": true,
+    "material": false,
+    "materialDesc": null
+   },
+   "duration": "up to 1 minute",
+   "concentration": true,
+   "ritual": false,
+   "description": "Until the spell ends, any creature that makes an attack roll against you subtracts 1d4 from the roll.",
+   "higherLevel": ""
+  },
+  {
+   "index": "friends-2024",
+   "name": "Friends",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 0,
+   "school": {
+    "index": "enchantment",
+    "name": "Enchantment"
+   },
+   "classes": [
+    "Bard",
+    "Sorcerer",
+    "Warlock",
+    "Wizard"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "10 feet",
+   "components": {
+    "verbal": false,
+    "somatic": true,
+    "material": true,
+    "materialDesc": "some makeup"
+   },
+   "duration": "up to 1 minute",
+   "concentration": true,
+   "ritual": false,
+   "description": "You fill one creature you can see within range that isn't hostile toward you with a feeling of friendship. It must succeed on a Wisdom saving throw or be Charmed by you for the duration. It succeeds automatically if it isn't a Humanoid, if you are fighting it, or if you cast this spell on it in the past 24 hours.\n\nThe spell ends early if the target takes damage or if you make an attack roll, deal damage, or force anyone to make a saving throw. When the spell ends, the target knows you charmed it.",
+   "higherLevel": "",
+   "dc": {
+    "dc_type": {
+     "index": "wis",
+     "name": "WIS"
+    }
+   }
+  },
+  {
+   "index": "mind-sliver-2024",
+   "name": "Mind Sliver",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 0,
+   "school": {
+    "index": "enchantment",
+    "name": "Enchantment"
+   },
+   "classes": [
+    "Sorcerer",
+    "Warlock",
+    "Wizard"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "60 feet",
+   "components": {
+    "verbal": true,
+    "somatic": false,
+    "material": false,
+    "materialDesc": null
+   },
+   "duration": "1 round",
+   "concentration": false,
+   "ritual": false,
+   "description": "You stab a jolt of psychic energy into the mind of one creature you can see within range. The target must succeed on an Intelligence saving throw or take 1d6 Psychic damage and subtract 1d4 from the next saving throw it makes before the end of your next turn.",
+   "higherLevel": "The damage increases by one die when you reach levels 5, 11, and 17.",
+   "dc": {
+    "dc_type": {
+     "index": "int",
+     "name": "INT"
+    }
+   },
+   "damage": {
+    "damage_type": {
+     "index": "psychic",
+     "name": "Psychic",
+     "url": "/api/2024/damage-types/psychic"
+    },
+    "damage_at_slot_level": {
+     "0": "1d6"
+    }
+   }
+  },
+  {
+   "index": "thorn-whip-2024",
+   "name": "Thorn Whip",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 0,
+   "school": {
+    "index": "transmutation",
+    "name": "Transmutation"
+   },
+   "classes": [
+    "Druid"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "30 feet",
+   "components": {
+    "verbal": true,
+    "somatic": true,
+    "material": true,
+    "materialDesc": "the stem of a thorny plant"
+   },
+   "duration": "Instantaneous",
+   "concentration": false,
+   "ritual": false,
+   "description": "You make a long whip covered in thorns that lashes at a creature in range. Make a melee spell attack against it. On a hit, it takes 1d6 Piercing damage, and if it is Large or smaller, you can pull it up to 10 feet closer to you.",
+   "higherLevel": "The damage increases by one die when you reach levels 5, 11, and 17.",
+   "attack_type": "melee",
+   "damage": {
+    "damage_type": {
+     "index": "piercing",
+     "name": "Piercing",
+     "url": "/api/2024/damage-types/piercing"
+    },
+    "damage_at_slot_level": {
+     "0": "1d6"
+    }
+   }
+  },
+  {
+   "index": "thunderclap-2024",
+   "name": "Thunderclap",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 0,
+   "school": {
+    "index": "evocation",
+    "name": "Evocation"
+   },
+   "classes": [
+    "Bard",
+    "Druid",
+    "Sorcerer",
+    "Warlock",
+    "Wizard"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "Self (5-foot Emanation)",
+   "components": {
+    "verbal": false,
+    "somatic": true,
+    "material": false,
+    "materialDesc": null
+   },
+   "duration": "Instantaneous",
+   "concentration": false,
+   "ritual": false,
+   "description": "Each creature in a 5-foot Emanation around you must succeed on a Constitution saving throw or take 1d6 Thunder damage. The boom can be heard up to 100 feet away.",
+   "higherLevel": "The damage increases by one die when you reach levels 5, 11, and 17.",
+   "dc": {
+    "dc_type": {
+     "index": "con",
+     "name": "CON"
+    }
+   },
+   "damage": {
+    "damage_type": {
+     "index": "thunder",
+     "name": "Thunder",
+     "url": "/api/2024/damage-types/thunder"
+    },
+    "damage_at_slot_level": {
+     "0": "1d6"
+    }
+   }
+  },
+  {
+   "index": "toll-the-dead-2024",
+   "name": "Toll the Dead",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 0,
+   "school": {
+    "index": "necromancy",
+    "name": "Necromancy"
+   },
+   "classes": [
+    "Cleric",
+    "Warlock",
+    "Wizard"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "60 feet",
+   "components": {
+    "verbal": true,
+    "somatic": true,
+    "material": false,
+    "materialDesc": null
+   },
+   "duration": "Instantaneous",
+   "concentration": false,
+   "ritual": false,
+   "description": "You point at one creature you can see within range, and a mournful bell rings in its ears. It must succeed on a Wisdom saving throw or take 1d8 Necrotic damage. If it is missing any of its Hit Points, it takes 1d12 Necrotic damage instead.",
+   "higherLevel": "The damage increases by one die when you reach levels 5, 11, and 17.",
+   "dc": {
+    "dc_type": {
+     "index": "wis",
+     "name": "WIS"
+    }
+   },
+   "damage": {
+    "damage_type": {
+     "index": "necrotic",
+     "name": "Necrotic",
+     "url": "/api/2024/damage-types/necrotic"
+    },
+    "damage_at_slot_level": {
+     "0": "1d8"
+    }
+   }
+  },
+  {
+   "index": "word-of-radiance-2024",
+   "name": "Word of Radiance",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 0,
+   "school": {
+    "index": "evocation",
+    "name": "Evocation"
+   },
+   "classes": [
+    "Cleric"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "Self (5-foot Emanation)",
+   "components": {
+    "verbal": true,
+    "somatic": false,
+    "material": true,
+    "materialDesc": "a sunburst token"
+   },
+   "duration": "Instantaneous",
+   "concentration": false,
+   "ritual": false,
+   "description": "Burning light flares around you. Each creature of your choice in a 5-foot Emanation around you must succeed on a Constitution saving throw or take 1d6 Radiant damage.",
+   "higherLevel": "The damage increases by one die when you reach levels 5, 11, and 17.",
+   "dc": {
+    "dc_type": {
+     "index": "con",
+     "name": "CON"
+    }
+   },
+   "damage": {
+    "damage_type": {
+     "index": "radiant",
+     "name": "Radiant",
+     "url": "/api/2024/damage-types/radiant"
+    },
+    "damage_at_slot_level": {
+     "0": "1d6"
+    }
+   }
+  },
+  {
+   "index": "armor-of-agathys-2024",
+   "name": "Armor of Agathys",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 1,
+   "school": {
+    "index": "abjuration",
+    "name": "Abjuration"
+   },
+   "classes": [
+    "Warlock"
+   ],
+   "casting_time": "1 bonus action",
+   "castingTimeFull": "Bonus Action",
+   "range": "Self",
+   "components": {
+    "verbal": true,
+    "somatic": true,
+    "material": true,
+    "materialDesc": "a shard of blue glass"
+   },
+   "duration": "1 hour",
+   "concentration": false,
+   "ritual": false,
+   "description": "A coat of magical frost covers you. You gain 5 Temporary Hit Points. While you still have any of them, a creature that hits you with a melee attack roll takes 5 Cold damage.",
+   "higherLevel": "The Temporary Hit Points and the Cold damage both go up by 5 for each spell slot level above 1."
+  },
+  {
+   "index": "arms-of-hadar-2024",
+   "name": "Arms of Hadar",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 1,
+   "school": {
+    "index": "conjuration",
+    "name": "Conjuration"
+   },
+   "classes": [
+    "Warlock"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "Self (10-foot Emanation)",
+   "components": {
+    "verbal": true,
+    "somatic": true,
+    "material": false,
+    "materialDesc": null
+   },
+   "duration": "Instantaneous",
+   "concentration": false,
+   "ritual": false,
+   "description": "Dark tendrils burst out of you. Each creature in a 10-foot Emanation around you makes a Strength saving throw. On a failure, it takes 2d6 Necrotic damage and can't take Reactions until the start of its next turn. On a success, it takes half as much damage only.",
+   "higherLevel": "The damage increases by 1d6 for each spell slot level above 1.",
+   "dc": {
+    "dc_type": {
+     "index": "str",
+     "name": "STR"
+    }
+   },
+   "damage": {
+    "damage_type": {
+     "index": "necrotic",
+     "name": "Necrotic",
+     "url": "/api/2024/damage-types/necrotic"
+    },
+    "damage_at_slot_level": {
+     "1": "2d6"
+    }
+   }
+  },
+  {
+   "index": "compelled-duel-2024",
+   "name": "Compelled Duel",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 1,
+   "school": {
+    "index": "enchantment",
+    "name": "Enchantment"
+   },
+   "classes": [
+    "Paladin"
+   ],
+   "casting_time": "1 bonus action",
+   "castingTimeFull": "Bonus Action",
+   "range": "30 feet",
+   "components": {
+    "verbal": true,
+    "somatic": false,
+    "material": false,
+    "materialDesc": null
+   },
+   "duration": "up to 1 minute",
+   "concentration": true,
+   "ritual": false,
+   "description": "You dare one creature you can see within range to fight you. It must succeed on a Wisdom saving throw or, for the duration, have Disadvantage on attack rolls against anyone but you and be unable to willingly move to a space more than 30 feet away from you.\n\nThe spell ends if you attack another creature, cast a spell on an enemy other than the target, an ally of yours damages the target, or you end your turn more than 30 feet away from it.",
+   "higherLevel": "",
+   "dc": {
+    "dc_type": {
+     "index": "wis",
+     "name": "WIS"
+    }
+   }
+  },
+  {
+   "index": "hail-of-thorns-2024",
+   "name": "Hail of Thorns",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 1,
+   "school": {
+    "index": "conjuration",
+    "name": "Conjuration"
+   },
+   "classes": [
+    "Ranger"
+   ],
+   "casting_time": "1 bonus action",
+   "castingTimeFull": "Bonus Action, which you take immediately after hitting a creature with a Ranged weapon",
+   "range": "Self",
+   "components": {
+    "verbal": true,
+    "somatic": false,
+    "material": false,
+    "materialDesc": null
+   },
+   "duration": "Instantaneous",
+   "concentration": false,
+   "ritual": false,
+   "description": "As your shot hits, a rain of thorns bursts from it. The target and each creature within 5 feet of it make a Dexterity saving throw, taking 1d10 Piercing damage on a failure or half as much on a success.",
+   "higherLevel": "The damage increases by 1d10 for each spell slot level above 1.",
+   "dc": {
+    "dc_type": {
+     "index": "dex",
+     "name": "DEX"
+    }
+   },
+   "damage": {
+    "damage_type": {
+     "index": "piercing",
+     "name": "Piercing",
+     "url": "/api/2024/damage-types/piercing"
+    },
+    "damage_at_slot_level": {
+     "1": "1d10"
+    }
+   }
+  },
+  {
+   "index": "thunderous-smite-2024",
+   "name": "Thunderous Smite",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 1,
+   "school": {
+    "index": "evocation",
+    "name": "Evocation"
+   },
+   "classes": [
+    "Paladin"
+   ],
+   "casting_time": "1 bonus action",
+   "castingTimeFull": "Bonus Action, which you take immediately after hitting a target with a Melee weapon or an Unarmed Strike",
+   "range": "Self",
+   "components": {
+    "verbal": true,
+    "somatic": false,
+    "material": false,
+    "materialDesc": null
+   },
+   "duration": "Instantaneous",
+   "concentration": false,
+   "ritual": false,
+   "description": "Your strike rings out with thunder that can be heard 300 feet away. The target takes an extra 2d6 Thunder damage from the attack. If it is a creature, it must succeed on a Strength saving throw or be pushed 10 feet away from you and knocked Prone.",
+   "higherLevel": "The damage increases by 1d6 for each spell slot level above 1.",
+   "dc": {
+    "dc_type": {
+     "index": "str",
+     "name": "STR"
+    }
+   },
+   "damage": {
+    "damage_type": {
+     "index": "thunder",
+     "name": "Thunder",
+     "url": "/api/2024/damage-types/thunder"
+    },
+    "damage_at_slot_level": {
+     "1": "2d6"
+    }
+   }
+  },
+  {
+   "index": "witch-bolt-2024",
+   "name": "Witch Bolt",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 1,
+   "school": {
+    "index": "evocation",
+    "name": "Evocation"
+   },
+   "classes": [
+    "Sorcerer",
+    "Warlock",
+    "Wizard"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "60 feet",
+   "components": {
+    "verbal": true,
+    "somatic": true,
+    "material": true,
+    "materialDesc": "a twig struck by lightning"
+   },
+   "duration": "up to 1 minute",
+   "concentration": true,
+   "ritual": false,
+   "description": "A beam of crackling energy reaches toward a creature within range. Make a ranged spell attack against it. On a hit, it takes 2d12 Lightning damage.\n\nOn each of your later turns, you can take a Bonus Action to deal 1d12 Lightning damage to the target automatically, even if the first attack missed. The spell ends if the target is ever outside the spell's range or has Total Cover from you.",
+   "higherLevel": "The first hit's damage increases by 1d12 for each spell slot level above 1.",
+   "attack_type": "ranged",
+   "damage": {
+    "damage_type": {
+     "index": "lightning",
+     "name": "Lightning",
+     "url": "/api/2024/damage-types/lightning"
+    },
+    "damage_at_slot_level": {
+     "1": "2d12"
+    }
+   }
+  },
+  {
+   "index": "wrathful-smite-2024",
+   "name": "Wrathful Smite",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 1,
+   "school": {
+    "index": "necromancy",
+    "name": "Necromancy"
+   },
+   "classes": [
+    "Paladin"
+   ],
+   "casting_time": "1 bonus action",
+   "castingTimeFull": "Bonus Action, which you take immediately after hitting a target with a Melee weapon or an Unarmed Strike",
+   "range": "Self",
+   "components": {
+    "verbal": true,
+    "somatic": false,
+    "material": false,
+    "materialDesc": null
+   },
+   "duration": "1 minute",
+   "concentration": false,
+   "ritual": false,
+   "description": "The target takes an extra 1d6 Necrotic damage from the attack. It must succeed on a Wisdom saving throw or be Frightened of you until the spell ends. At the end of each of its turns, it repeats the save, ending the spell on a success.",
+   "higherLevel": "The damage increases by 1d6 for each spell slot level above 1.",
+   "dc": {
+    "dc_type": {
+     "index": "wis",
+     "name": "WIS"
+    }
+   },
+   "damage": {
+    "damage_type": {
+     "index": "necrotic",
+     "name": "Necrotic",
+     "url": "/api/2024/damage-types/necrotic"
+    },
+    "damage_at_slot_level": {
+     "1": "1d6"
+    }
+   }
+  },
+  {
+   "index": "arcane-vigor-2024",
+   "name": "Arcane Vigor",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 2,
+   "school": {
+    "index": "abjuration",
+    "name": "Abjuration"
+   },
+   "classes": [
+    "Sorcerer",
+    "Wizard"
+   ],
+   "casting_time": "1 bonus action",
+   "castingTimeFull": "Bonus Action",
+   "range": "Self",
+   "components": {
+    "verbal": true,
+    "somatic": true,
+    "material": false,
+    "materialDesc": null
+   },
+   "duration": "Instantaneous",
+   "concentration": false,
+   "ritual": false,
+   "description": "You draw on your own life force to heal. Spend one or two of your Hit Point Dice, roll them, and regain Hit Points equal to the total plus your spellcasting ability modifier.",
+   "higherLevel": "You can spend one more Hit Point Die for each spell slot level above 2."
+  },
+  {
+   "index": "cloud-of-daggers-2024",
+   "name": "Cloud of Daggers",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 2,
+   "school": {
+    "index": "conjuration",
+    "name": "Conjuration"
+   },
+   "classes": [
+    "Bard",
+    "Sorcerer",
+    "Warlock",
+    "Wizard"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "60 feet",
+   "components": {
+    "verbal": true,
+    "somatic": true,
+    "material": true,
+    "materialDesc": "a sliver of glass"
+   },
+   "duration": "up to 1 minute",
+   "concentration": true,
+   "ritual": false,
+   "description": "You fill a 5-foot Cube within range with spinning daggers. A creature takes 4d4 Slashing damage when the Cube appears in its space, when it enters the Cube for the first time on a turn, or when it ends its turn there. A creature takes this damage only once per turn.\n\nOn your later turns, you can take a Bonus Action to move the Cube up to 30 feet.",
+   "higherLevel": "The damage increases by 2d4 for each spell slot level above 2.",
+   "damage": {
+    "damage_type": {
+     "index": "slashing",
+     "name": "Slashing",
+     "url": "/api/2024/damage-types/slashing"
+    },
+    "damage_at_slot_level": {
+     "2": "4d4"
+    }
+   }
+  },
+  {
+   "index": "cordon-of-arrows-2024",
+   "name": "Cordon of Arrows",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 2,
+   "school": {
+    "index": "transmutation",
+    "name": "Transmutation"
+   },
+   "classes": [
+    "Ranger"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "5 feet",
+   "components": {
+    "verbal": true,
+    "somatic": true,
+    "material": true,
+    "materialDesc": "four or more arrows or bolts"
+   },
+   "duration": "8 hours",
+   "concentration": false,
+   "ritual": false,
+   "description": "You plant four pieces of nonmagical ammunition (arrows or bolts) in the ground within range. Whenever a creature other than you comes within 30 feet of the ammunition for the first time on a turn or ends its turn there, one piece flies up to strike it. The creature must succeed on a Dexterity saving throw or take 2d4 Piercing damage. That piece is then used up. The spell ends when no ammunition is left.\n\nWhen you cast the spell, you can name any creatures you choose, and the spell ignores them.",
+   "higherLevel": "The amount of ammunition goes up by two for each spell slot level above 2.",
+   "dc": {
+    "dc_type": {
+     "index": "dex",
+     "name": "DEX"
+    }
+   },
+   "damage": {
+    "damage_type": {
+     "index": "piercing",
+     "name": "Piercing",
+     "url": "/api/2024/damage-types/piercing"
+    },
+    "damage_at_slot_level": {
+     "2": "2d4"
+    }
+   }
+  },
+  {
+   "index": "crown-of-madness-2024",
+   "name": "Crown of Madness",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 2,
+   "school": {
+    "index": "enchantment",
+    "name": "Enchantment"
+   },
+   "classes": [
+    "Bard",
+    "Sorcerer",
+    "Warlock",
+    "Wizard"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "120 feet",
+   "components": {
+    "verbal": true,
+    "somatic": true,
+    "material": false,
+    "materialDesc": null
+   },
+   "duration": "up to 1 minute",
+   "concentration": true,
+   "ritual": false,
+   "description": "One creature you can see within range must succeed on a Wisdom saving throw or be Charmed by you for the duration. A twisted crown of iron spikes appears on its head.\n\nThe charmed target must use its action before moving on each of its turns to make a melee attack against a creature other than itself that you choose with your mind. It can act normally if you choose no creature or none is in its reach. On your later turns, you must take the Magic action to keep control of the target, or the spell ends. The target repeats the save at the end of each of its turns, ending the spell on a success.",
+   "higherLevel": "",
+   "dc": {
+    "dc_type": {
+     "index": "wis",
+     "name": "WIS"
+    }
+   }
+  },
+  {
+   "index": "summon-beast-2024",
+   "name": "Summon Beast",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 2,
+   "school": {
+    "index": "conjuration",
+    "name": "Conjuration"
+   },
+   "classes": [
+    "Druid",
+    "Ranger"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "90 feet",
+   "components": {
+    "verbal": true,
+    "somatic": true,
+    "material": true,
+    "materialDesc": "a feather, a tuft of fur, and a fish tail inside a gilded acorn worth 200+ GP"
+   },
+   "duration": "up to 1 hour",
+   "concentration": true,
+   "ritual": false,
+   "description": "You call up a Bestial Spirit in an unoccupied space you can see within range. Pick Air, Land, or Water for it. It is Friendly to you and your allies, shares your Initiative and acts right after you, and obeys your spoken commands (no action needed). If you give no command, it takes the Dodge action and moves to avoid danger.\n\n**Bestial Spirit** (Small Beast). AC 11 + the spell's level. HP 20 (Air) or 30 (Land, Water), plus 5 for each spell level above 2. Speed 30 feet; Climb 30 feet (Land); Fly 60 feet (Air); Swim 30 feet (Water). STR 18, DEX 11, CON 16, INT 4, WIS 14, CHA 5. Darkvision 60 feet.\n\n**Flyby** (Air only). It doesn't provoke Opportunity Attacks when it flies out of an enemy's reach. **Pack Tactics** (Land and Water only). It has Advantage on attack rolls against a creature if one of its allies is within 5 feet of that creature. **Water Breathing** (Water only). It can breathe only underwater.\n\n**Multiattack.** It makes a number of Rend attacks equal to half the spell's level (round down). **Rend.** Melee attack, bonus equal to your spell attack modifier, reach 5 feet. Hit: 1d8 + 4 + the spell's level Piercing damage.",
+   "higherLevel": "Use the spell slot's level for the spell's level in the stat block."
+  },
+  {
+   "index": "aura-of-vitality-2024",
+   "name": "Aura of Vitality",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 3,
+   "school": {
+    "index": "evocation",
+    "name": "Evocation"
+   },
+   "classes": [
+    "Cleric",
+    "Druid",
+    "Paladin"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "Self (30-foot Emanation)",
+   "components": {
+    "verbal": true,
+    "somatic": false,
+    "material": false,
+    "materialDesc": null
+   },
+   "duration": "up to 1 minute",
+   "concentration": true,
+   "ritual": false,
+   "description": "Healing energy fills a 30-foot Emanation around you. When you cast the spell, and as a Bonus Action on each of your later turns, you can make one creature in the aura (you included) regain 2d6 Hit Points.",
+   "higherLevel": "The healing increases by 1d6 for each spell slot level above 3."
+  },
+  {
+   "index": "blinding-smite-2024",
+   "name": "Blinding Smite",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 3,
+   "school": {
+    "index": "evocation",
+    "name": "Evocation"
+   },
+   "classes": [
+    "Paladin"
+   ],
+   "casting_time": "1 bonus action",
+   "castingTimeFull": "Bonus Action, which you take immediately after hitting a target with a Melee weapon or an Unarmed Strike",
+   "range": "Self",
+   "components": {
+    "verbal": true,
+    "somatic": false,
+    "material": false,
+    "materialDesc": null
+   },
+   "duration": "up to 1 minute",
+   "concentration": true,
+   "ritual": false,
+   "description": "The target takes an extra 3d8 Radiant damage from the attack and must succeed on a Constitution saving throw or be Blinded until the spell ends. At the end of each of its turns, it repeats the save, ending the spell on a success.",
+   "higherLevel": "The damage increases by 1d8 for each spell slot level above 3.",
+   "dc": {
+    "dc_type": {
+     "index": "con",
+     "name": "CON"
+    }
+   },
+   "damage": {
+    "damage_type": {
+     "index": "radiant",
+     "name": "Radiant",
+     "url": "/api/2024/damage-types/radiant"
+    },
+    "damage_at_slot_level": {
+     "3": "3d8"
+    }
+   }
+  },
+  {
+   "index": "conjure-barrage-2024",
+   "name": "Conjure Barrage",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 3,
+   "school": {
+    "index": "conjuration",
+    "name": "Conjuration"
+   },
+   "classes": [
+    "Ranger"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "Self (60-foot Cone)",
+   "components": {
+    "verbal": true,
+    "somatic": true,
+    "material": true,
+    "materialDesc": "a Melee or Ranged weapon worth at least 1 CP"
+   },
+   "duration": "Instantaneous",
+   "concentration": false,
+   "ritual": false,
+   "description": "You brandish the weapon used to cast the spell, and copies of it fly out in a 60-foot Cone. Each creature in the Cone makes a Dexterity saving throw, taking 5d8 Force damage on a failure or half as much on a success.",
+   "higherLevel": "The damage increases by 1d8 for each spell slot level above 3.",
+   "dc": {
+    "dc_type": {
+     "index": "dex",
+     "name": "DEX"
+    }
+   },
+   "damage": {
+    "damage_type": {
+     "index": "force",
+     "name": "Force",
+     "url": "/api/2024/damage-types/force"
+    },
+    "damage_at_slot_level": {
+     "3": "5d8"
+    }
+   }
+  },
+  {
+   "index": "crusader-s-mantle-2024",
+   "name": "Crusader's Mantle",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 3,
+   "school": {
+    "index": "evocation",
+    "name": "Evocation"
+   },
+   "classes": [
+    "Paladin"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "Self (30-foot Emanation)",
+   "components": {
+    "verbal": true,
+    "somatic": false,
+    "material": false,
+    "materialDesc": null
+   },
+   "duration": "up to 1 minute",
+   "concentration": true,
+   "ritual": false,
+   "description": "Holy power fills a 30-foot Emanation around you. While in it, you and your allies deal an extra 1d4 Radiant damage when you hit with a weapon or an Unarmed Strike.",
+   "higherLevel": "",
+   "damage": {
+    "damage_type": {
+     "index": "radiant",
+     "name": "Radiant",
+     "url": "/api/2024/damage-types/radiant"
+    },
+    "damage_at_slot_level": {
+     "3": "1d4"
+    }
+   }
+  },
+  {
+   "index": "elemental-weapon-2024",
+   "name": "Elemental Weapon",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 3,
+   "school": {
+    "index": "transmutation",
+    "name": "Transmutation"
+   },
+   "classes": [
+    "Druid",
+    "Paladin",
+    "Ranger"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "Touch",
+   "components": {
+    "verbal": true,
+    "somatic": true,
+    "material": false,
+    "materialDesc": null
+   },
+   "duration": "up to 1 hour",
+   "concentration": true,
+   "ritual": false,
+   "description": "A nonmagical weapon you touch becomes magical. Pick Acid, Cold, Fire, Lightning, or Thunder. For the duration, the weapon gives a +1 bonus to attack rolls and deals an extra 1d4 damage of the chosen type when it hits.",
+   "higherLevel": "With a level 5-6 slot, the bonus is +2 and the extra damage 2d4. With a level 7+ slot, the bonus is +3 and the extra damage 3d4."
+  },
+  {
+   "index": "feign-death-2024",
+   "name": "Feign Death",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 3,
+   "school": {
+    "index": "necromancy",
+    "name": "Necromancy"
+   },
+   "classes": [
+    "Bard",
+    "Cleric",
+    "Druid",
+    "Wizard"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "Touch",
+   "components": {
+    "verbal": true,
+    "somatic": true,
+    "material": true,
+    "materialDesc": "a pinch of graveyard dirt"
+   },
+   "duration": "1 hour",
+   "concentration": false,
+   "ritual": true,
+   "description": "You touch a willing creature and make it look dead. For the duration, it has the Blinded and Incapacitated conditions and its Speed is 0. It has Resistance to all damage except Psychic damage. Any disease or poison affecting it is paused until the spell ends.",
+   "higherLevel": ""
+  },
+  {
+   "index": "hunger-of-hadar-2024",
+   "name": "Hunger of Hadar",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 3,
+   "school": {
+    "index": "conjuration",
+    "name": "Conjuration"
+   },
+   "classes": [
+    "Warlock"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "150 feet",
+   "components": {
+    "verbal": true,
+    "somatic": true,
+    "material": true,
+    "materialDesc": "a pickled tentacle"
+   },
+   "duration": "up to 1 minute",
+   "concentration": true,
+   "ritual": false,
+   "description": "You open a gateway to the dark between the stars, a 20-foot-radius Sphere of blackness and bitter cold. The Sphere is Heavily Obscured and Difficult Terrain, and creatures fully inside it are Blinded.\n\nA creature that starts its turn in the Sphere takes 2d6 Cold damage. A creature that ends its turn there must succeed on a Dexterity saving throw or take 2d6 Acid damage as unseen things lick at it.",
+   "higherLevel": "The Cold or Acid damage (your choice) increases by 1d6 for each spell slot level above 3.",
+   "dc": {
+    "dc_type": {
+     "index": "dex",
+     "name": "DEX"
+    }
+   },
+   "damage": {
+    "damage_type": {
+     "index": "cold",
+     "name": "Cold",
+     "url": "/api/2024/damage-types/cold"
+    },
+    "damage_at_slot_level": {
+     "3": "2d6"
+    }
+   }
+  },
+  {
+   "index": "lightning-arrow-2024",
+   "name": "Lightning Arrow",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 3,
+   "school": {
+    "index": "transmutation",
+    "name": "Transmutation"
+   },
+   "classes": [
+    "Ranger"
+   ],
+   "casting_time": "1 bonus action",
+   "castingTimeFull": "Bonus Action, which you take immediately after hitting or missing a target with a ranged attack using a weapon",
+   "range": "Self",
+   "components": {
+    "verbal": true,
+    "somatic": true,
+    "material": false,
+    "materialDesc": null
+   },
+   "duration": "Instantaneous",
+   "concentration": false,
+   "ritual": false,
+   "description": "Your shot turns into a bolt of lightning. Instead of the weapon's usual damage, the target takes 4d8 Lightning damage on a hit, or half as much on a miss. Then each creature within 10 feet of the target makes a Dexterity saving throw, taking 2d8 Lightning damage on a failure or half as much on a success. The ammunition or weapon then returns to normal.",
+   "higherLevel": "Both kinds of damage increase by 1d8 for each spell slot level above 3.",
+   "dc": {
+    "dc_type": {
+     "index": "dex",
+     "name": "DEX"
+    }
+   },
+   "damage": {
+    "damage_type": {
+     "index": "lightning",
+     "name": "Lightning",
+     "url": "/api/2024/damage-types/lightning"
+    },
+    "damage_at_slot_level": {
+     "3": "4d8"
+    }
+   }
+  },
+  {
+   "index": "summon-fey-2024",
+   "name": "Summon Fey",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 3,
+   "school": {
+    "index": "conjuration",
+    "name": "Conjuration"
+   },
+   "classes": [
+    "Druid",
+    "Ranger",
+    "Warlock",
+    "Wizard"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "90 feet",
+   "components": {
+    "verbal": true,
+    "somatic": true,
+    "material": true,
+    "materialDesc": "a gilded flower worth 300+ GP"
+   },
+   "duration": "up to 1 hour",
+   "concentration": true,
+   "ritual": false,
+   "description": "You call up a Fey Spirit in an unoccupied space you can see within range. Pick a mood for it: Fuming, Mirthful, or Tricksy. It is Friendly to you and your allies, shares your Initiative and acts right after you, and obeys your spoken commands (no action needed). If you give no command, it takes the Dodge action and moves to avoid danger.\n\n**Fey Spirit** (Small Fey). AC 12 + the spell's level. HP 30, plus 10 for each spell level above 3. Speed 30 feet; Fly 30 feet. STR 13, DEX 16, CON 14, INT 14, WIS 11, CHA 16. Darkvision 60 feet. Immune to Charmed.\n\n**Multiattack.** It makes a number of Fey Blade attacks equal to half the spell's level (round down). **Fey Blade.** Melee attack, bonus equal to your spell attack modifier, reach 5 feet. Hit: 2d6 + 3 + the spell's level Force damage.\n\n**Fey Step (Bonus Action).** It teleports up to 30 feet to an unoccupied space it can see. Then, by mood: **Fuming:** it has Advantage on its next attack roll this turn. **Mirthful:** one creature it can see within 10 feet must succeed on a Wisdom saving throw against your spell save DC or be Charmed by you and the spirit for 1 minute or until it takes damage. **Tricksy:** it fills a 10-foot Cube within 5 feet of it with magical Darkness until the end of its next turn.",
+   "higherLevel": "Use the spell slot's level for the spell's level in the stat block."
+  },
+  {
+   "index": "summon-undead-2024",
+   "name": "Summon Undead",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 3,
+   "school": {
+    "index": "necromancy",
+    "name": "Necromancy"
+   },
+   "classes": [
+    "Warlock",
+    "Wizard"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "90 feet",
+   "components": {
+    "verbal": true,
+    "somatic": true,
+    "material": true,
+    "materialDesc": "a gilded skull worth 300+ GP"
+   },
+   "duration": "up to 1 hour",
+   "concentration": true,
+   "ritual": false,
+   "description": "You call up an Undead Spirit in an unoccupied space you can see within range. Pick Ghostly, Putrid, or Skeletal for it. It is Friendly to you and your allies, shares your Initiative and acts right after you, and obeys your spoken commands (no action needed). If you give no command, it takes the Dodge action and moves to avoid danger.\n\n**Undead Spirit** (Medium Undead). AC 11 + the spell's level. HP 30 (Ghostly, Putrid) or 20 (Skeletal), plus 10 for each spell level above 3. Speed 30 feet; Fly 40 feet and can hover (Ghostly). STR 12, DEX 16, CON 15, INT 4, WIS 10, CHA 9. Darkvision 60 feet. Immune to Necrotic and Poison damage and to Exhaustion, Frightened, Paralyzed, and Poisoned.\n\n**Incorporeal Passage** (Ghostly only). It can move through creatures and objects as if they were Difficult Terrain; ending its turn inside one deals it 1d10 Force damage. **Festering Aura** (Putrid only). Any other creature that starts its turn within 5 feet of it must succeed on a Constitution saving throw against your spell save DC or be Poisoned until the start of its next turn.\n\n**Multiattack.** It makes a number of attacks equal to half the spell's level (round down). **Deathly Touch** (Ghostly). Melee attack, bonus equal to your spell attack modifier, reach 5 feet. Hit: 1d8 + 3 + the spell's level Necrotic damage, and the target must succeed on a Wisdom saving throw or be Frightened until the end of its next turn. **Grave Bolt** (Skeletal). Ranged attack, range 150 feet. Hit: 2d4 + 3 + the spell's level Necrotic damage. **Rotting Claw** (Putrid). Melee attack, reach 5 feet. Hit: 1d6 + 3 + the spell's level Slashing damage; a Poisoned target must succeed on a Constitution saving throw or be Paralyzed until the end of its next turn.",
+   "higherLevel": "Use the spell slot's level for the spell's level in the stat block."
+  },
+  {
+   "index": "aura-of-purity-2024",
+   "name": "Aura of Purity",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 4,
+   "school": {
+    "index": "abjuration",
+    "name": "Abjuration"
+   },
+   "classes": [
+    "Cleric",
+    "Paladin"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "Self (30-foot Emanation)",
+   "components": {
+    "verbal": true,
+    "somatic": false,
+    "material": false,
+    "materialDesc": null
+   },
+   "duration": "up to 10 minutes",
+   "concentration": true,
+   "ritual": false,
+   "description": "Cleansing energy fills a 30-foot Emanation around you. While in it, you and your allies can't catch a disease, have Resistance to Poison damage, and have Advantage on saving throws to avoid or end the Blinded, Charmed, Deafened, Frightened, Paralyzed, Poisoned, and Stunned conditions.",
+   "higherLevel": ""
+  },
+  {
+   "index": "fount-of-moonlight-2024",
+   "name": "Fount of Moonlight",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 4,
+   "school": {
+    "index": "evocation",
+    "name": "Evocation"
+   },
+   "classes": [
+    "Bard",
+    "Druid"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "Self",
+   "components": {
+    "verbal": true,
+    "somatic": true,
+    "material": false,
+    "materialDesc": null
+   },
+   "duration": "up to 10 minutes",
+   "concentration": true,
+   "ritual": false,
+   "description": "Cool moonlight wraps around you, shedding Bright Light in a 20-foot radius and Dim Light for 20 feet beyond. For the duration, you have Resistance to Radiant damage, and your melee attacks deal an extra 2d6 Radiant damage when they hit.\n\nRight after a creature you can see within 60 feet of you deals damage to you, you can take a Reaction to make it succeed on a Constitution saving throw or be Blinded until the end of your next turn.",
+   "higherLevel": "",
+   "dc": {
+    "dc_type": {
+     "index": "con",
+     "name": "CON"
+    }
+   },
+   "damage": {
+    "damage_type": {
+     "index": "radiant",
+     "name": "Radiant",
+     "url": "/api/2024/damage-types/radiant"
+    },
+    "damage_at_slot_level": {
+     "4": "2d6"
+    }
+   }
+  },
+  {
+   "index": "grasping-vine-2024",
+   "name": "Grasping Vine",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 4,
+   "school": {
+    "index": "conjuration",
+    "name": "Conjuration"
+   },
+   "classes": [
+    "Druid",
+    "Ranger"
+   ],
+   "casting_time": "1 bonus action",
+   "castingTimeFull": "Bonus Action",
+   "range": "60 feet",
+   "components": {
+    "verbal": true,
+    "somatic": true,
+    "material": false,
+    "materialDesc": null
+   },
+   "duration": "up to 1 minute",
+   "concentration": true,
+   "ritual": false,
+   "description": "A grasping vine sprouts from the ground in an unoccupied space you can see within range. When you cast the spell, you can have it lash out at a creature within 30 feet of it that you can see. That creature must succeed on a Dexterity saving throw or take 4d8 Bludgeoning damage and be pulled up to 30 feet toward the vine; if it is Huge or smaller, it is also Grappled (escape DC equal to your spell save DC).\n\nOn each of your later turns, you can take a Bonus Action to have the vine lash out again, at the same creature or another.",
+   "higherLevel": "The damage increases by 1d8 for each spell slot level above 4.",
+   "dc": {
+    "dc_type": {
+     "index": "dex",
+     "name": "DEX"
+    }
+   },
+   "damage": {
+    "damage_type": {
+     "index": "bludgeoning",
+     "name": "Bludgeoning",
+     "url": "/api/2024/damage-types/bludgeoning"
+    },
+    "damage_at_slot_level": {
+     "4": "4d8"
+    }
+   }
+  },
+  {
+   "index": "staggering-smite-2024",
+   "name": "Staggering Smite",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 4,
+   "school": {
+    "index": "enchantment",
+    "name": "Enchantment"
+   },
+   "classes": [
+    "Paladin"
+   ],
+   "casting_time": "1 bonus action",
+   "castingTimeFull": "Bonus Action, which you take immediately after hitting a target with a Melee weapon or an Unarmed Strike",
+   "range": "Self",
+   "components": {
+    "verbal": true,
+    "somatic": false,
+    "material": false,
+    "materialDesc": null
+   },
+   "duration": "Instantaneous",
+   "concentration": false,
+   "ritual": false,
+   "description": "The target takes an extra 4d6 Psychic damage from the attack and must succeed on a Wisdom saving throw or be Stunned until the end of your next turn.",
+   "higherLevel": "The damage increases by 1d6 for each spell slot level above 4.",
+   "dc": {
+    "dc_type": {
+     "index": "wis",
+     "name": "WIS"
+    }
+   },
+   "damage": {
+    "damage_type": {
+     "index": "psychic",
+     "name": "Psychic",
+     "url": "/api/2024/damage-types/psychic"
+    },
+    "damage_at_slot_level": {
+     "4": "4d6"
+    }
+   }
+  },
+  {
+   "index": "summon-aberration-2024",
+   "name": "Summon Aberration",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 4,
+   "school": {
+    "index": "conjuration",
+    "name": "Conjuration"
+   },
+   "classes": [
+    "Warlock",
+    "Wizard"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "90 feet",
+   "components": {
+    "verbal": true,
+    "somatic": true,
+    "material": true,
+    "materialDesc": "a pickled tentacle and an eyeball in a platinum-inlaid vial worth 400+ GP"
+   },
+   "duration": "up to 1 hour",
+   "concentration": true,
+   "ritual": false,
+   "description": "You call up an Aberrant Spirit in an unoccupied space you can see within range. Pick Beholderkin, Mind Flayer, or Slaad for it. It is Friendly to you and your allies, shares your Initiative and acts right after you, and obeys your spoken commands (no action needed). If you give no command, it takes the Dodge action and moves to avoid danger.\n\n**Aberrant Spirit** (Medium Aberration). AC 11 + the spell's level. HP 40, plus 10 for each spell level above 4. Speed 30 feet; Fly 30 feet and can hover (Beholderkin). STR 16, DEX 10, CON 15, INT 16, WIS 10, CHA 6. Darkvision 60 feet. Speaks Deep Speech and understands your languages.\n\n**Regeneration** (Slaad only). It regains 5 Hit Points at the start of its turn if it has at least 1. **Whispering Aura** (Mind Flayer only). At the start of each of its turns, each other creature within 5 feet of it must succeed on a Wisdom saving throw against your spell save DC or take 2d6 Psychic damage.\n\n**Multiattack.** It makes a number of attacks equal to half the spell's level (round down). **Claws** (Slaad). Melee attack, bonus equal to your spell attack modifier, reach 5 feet. Hit: 1d10 + 3 + the spell's level Slashing damage, and the target can't regain Hit Points until the start of the spirit's next turn. **Eye Ray** (Beholderkin). Ranged attack, range 150 feet. Hit: 1d8 + 3 + the spell's level Psychic damage. **Psychic Slam** (Mind Flayer). Melee attack, reach 5 feet. Hit: 1d8 + 3 + the spell's level Psychic damage.",
+   "higherLevel": "Use the spell slot's level for the spell's level in the stat block."
+  },
+  {
+   "index": "summon-construct-2024",
+   "name": "Summon Construct",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 4,
+   "school": {
+    "index": "conjuration",
+    "name": "Conjuration"
+   },
+   "classes": [
+    "Wizard"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "90 feet",
+   "components": {
+    "verbal": true,
+    "somatic": true,
+    "material": true,
+    "materialDesc": "a lockbox worth 400+ GP"
+   },
+   "duration": "up to 1 hour",
+   "concentration": true,
+   "ritual": false,
+   "description": "You call up a Construct Spirit in an unoccupied space you can see within range. Pick Clay, Metal, or Stone for it. It is Friendly to you and your allies, shares your Initiative and acts right after you, and obeys your spoken commands (no action needed). If you give no command, it takes the Dodge action and moves to avoid danger.\n\n**Construct Spirit** (Medium Construct). AC 13 + the spell's level. HP 40, plus 15 for each spell level above 4. Speed 30 feet. STR 18, DEX 10, CON 18, INT 14, WIS 11, CHA 5. Darkvision 60 feet. Resistant to Poison damage; immune to Charmed, Exhaustion, Frightened, Incapacitated, Paralyzed, Petrified, and Poisoned.\n\n**Heated Body** (Metal only). A creature that hits it with a melee attack or starts its turn grappling it takes 1d10 Fire damage. **Stony Lethargy** (Stone only). A creature that starts its turn within 10 feet of it must succeed on a Wisdom saving throw against your spell save DC or have its Speed halved and be unable to take Reactions until the start of its next turn.\n\n**Multiattack.** It makes a number of Slam attacks equal to half the spell's level (round down). **Slam.** Melee attack, bonus equal to your spell attack modifier, reach 5 feet. Hit: 1d8 + 4 + the spell's level Bludgeoning damage.\n\n**Berserk Lashing (Reaction, Clay only).** When it takes damage, it makes a Slam attack against a random creature within 5 feet of it, if there is one.",
+   "higherLevel": "Use the spell slot's level for the spell's level in the stat block."
+  },
+  {
+   "index": "summon-elemental-2024",
+   "name": "Summon Elemental",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 4,
+   "school": {
+    "index": "conjuration",
+    "name": "Conjuration"
+   },
+   "classes": [
+    "Druid",
+    "Ranger",
+    "Wizard"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "90 feet",
+   "components": {
+    "verbal": true,
+    "somatic": true,
+    "material": true,
+    "materialDesc": "air, a pebble, ash, and water inside a gold-inlaid vial worth 400+ GP"
+   },
+   "duration": "up to 1 hour",
+   "concentration": true,
+   "ritual": false,
+   "description": "You call up an Elemental Spirit in an unoccupied space you can see within range. Pick Air, Earth, Fire, or Water for it. It is Friendly to you and your allies, shares your Initiative and acts right after you, and obeys your spoken commands (no action needed). If you give no command, it takes the Dodge action and moves to avoid danger.\n\n**Elemental Spirit** (Large Elemental). AC 11 + the spell's level. HP 50, plus 10 for each spell level above 4. Speed 40 feet; Burrow 40 feet (Earth); Fly 40 feet and can hover (Air); Swim 40 feet (Water). STR 18, DEX 15, CON 17, INT 4, WIS 10, CHA 16. Darkvision 60 feet. Resistant to Acid (Water), Lightning and Thunder (Air), or Piercing and Slashing (Earth) damage; immune to Fire (Fire) and Poison damage; immune to Exhaustion, Paralyzed, Petrified, Poisoned, and Unconscious.\n\n**Amorphous Form** (Air, Fire, and Water only). It can move through a space as narrow as 1 inch wide without it counting as Difficult Terrain.\n\n**Multiattack.** It makes a number of Slam attacks equal to half the spell's level (round down). **Slam.** Melee attack, bonus equal to your spell attack modifier, reach 5 feet. Hit: 1d10 + 4 + the spell's level Bludgeoning damage (Fire damage for the Fire spirit).",
+   "higherLevel": "Use the spell slot's level for the spell's level in the stat block."
+  },
+  {
+   "index": "banishing-smite-2024",
+   "name": "Banishing Smite",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 5,
+   "school": {
+    "index": "conjuration",
+    "name": "Conjuration"
+   },
+   "classes": [
+    "Paladin"
+   ],
+   "casting_time": "1 bonus action",
+   "castingTimeFull": "Bonus Action, which you take immediately after hitting a target with a Melee weapon or an Unarmed Strike",
+   "range": "Self",
+   "components": {
+    "verbal": true,
+    "somatic": false,
+    "material": false,
+    "materialDesc": null
+   },
+   "duration": "up to 1 minute",
+   "concentration": true,
+   "ritual": false,
+   "description": "The target takes an extra 5d10 Force damage from the attack. It must succeed on a Charisma saving throw or be sent to a harmless demiplane for the duration, where it is Incapacitated. When the spell ends, it reappears in the space it left or the nearest unoccupied space.",
+   "higherLevel": "",
+   "dc": {
+    "dc_type": {
+     "index": "cha",
+     "name": "CHA"
+    }
+   },
+   "damage": {
+    "damage_type": {
+     "index": "force",
+     "name": "Force",
+     "url": "/api/2024/damage-types/force"
+    },
+    "damage_at_slot_level": {
+     "5": "5d10"
+    }
+   }
+  },
+  {
+   "index": "circle-of-power-2024",
+   "name": "Circle of Power",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 5,
+   "school": {
+    "index": "abjuration",
+    "name": "Abjuration"
+   },
+   "classes": [
+    "Cleric",
+    "Paladin",
+    "Wizard"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "Self (30-foot Emanation)",
+   "components": {
+    "verbal": true,
+    "somatic": false,
+    "material": false,
+    "materialDesc": null
+   },
+   "duration": "up to 10 minutes",
+   "concentration": true,
+   "ritual": false,
+   "description": "Protective energy fills a 30-foot Emanation around you. While in it, you and your allies have Advantage on saving throws against spells and other magical effects. When one of you succeeds on a save against a spell or magical effect that deals half damage on a success, that creature takes no damage instead.",
+   "higherLevel": ""
+  },
+  {
+   "index": "conjure-volley-2024",
+   "name": "Conjure Volley",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 5,
+   "school": {
+    "index": "conjuration",
+    "name": "Conjuration"
+   },
+   "classes": [
+    "Ranger"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "150 feet",
+   "components": {
+    "verbal": true,
+    "somatic": true,
+    "material": true,
+    "materialDesc": "a Melee or Ranged weapon worth at least 1 CP"
+   },
+   "duration": "Instantaneous",
+   "concentration": false,
+   "ritual": false,
+   "description": "You fire the weapon used to cast the spell at a point within range, and a storm of copies rains down in a 40-foot-radius, 20-foot-high Cylinder centered there. Each creature in it makes a Dexterity saving throw, taking 8d8 Force damage on a failure or half as much on a success.",
+   "higherLevel": "",
+   "dc": {
+    "dc_type": {
+     "index": "dex",
+     "name": "DEX"
+    }
+   },
+   "damage": {
+    "damage_type": {
+     "index": "force",
+     "name": "Force",
+     "url": "/api/2024/damage-types/force"
+    },
+    "damage_at_slot_level": {
+     "5": "8d8"
+    }
+   }
+  },
+  {
+   "index": "destructive-wave-2024",
+   "name": "Destructive Wave",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 5,
+   "school": {
+    "index": "evocation",
+    "name": "Evocation"
+   },
+   "classes": [
+    "Paladin"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "Self (30-foot Emanation)",
+   "components": {
+    "verbal": true,
+    "somatic": false,
+    "material": false,
+    "materialDesc": null
+   },
+   "duration": "Instantaneous",
+   "concentration": false,
+   "ritual": false,
+   "description": "You strike the ground and send out a burst of divine power. Each creature you choose in a 30-foot Emanation around you makes a Constitution saving throw. On a failure, it takes 5d6 Thunder damage plus 5d6 Radiant or Necrotic damage (your choice) and is knocked Prone. On a success, it takes half as much damage only.",
+   "higherLevel": "",
+   "dc": {
+    "dc_type": {
+     "index": "con",
+     "name": "CON"
+    }
+   },
+   "damage": {
+    "damage_type": {
+     "index": "thunder",
+     "name": "Thunder",
+     "url": "/api/2024/damage-types/thunder"
+    },
+    "damage_at_slot_level": {
+     "5": "5d6"
+    }
+   }
+  },
+  {
+   "index": "far-step-2024",
+   "name": "Far Step",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 5,
+   "school": {
+    "index": "conjuration",
+    "name": "Conjuration"
+   },
+   "classes": [
+    "Sorcerer",
+    "Warlock",
+    "Wizard"
+   ],
+   "casting_time": "1 bonus action",
+   "castingTimeFull": "Bonus Action",
+   "range": "Self",
+   "components": {
+    "verbal": true,
+    "somatic": false,
+    "material": false,
+    "materialDesc": null
+   },
+   "duration": "up to 1 minute",
+   "concentration": true,
+   "ritual": false,
+   "description": "You teleport up to 60 feet to an unoccupied space you can see. On each of your later turns before the spell ends, you can take a Bonus Action to teleport this way again.",
+   "higherLevel": ""
+  },
+  {
+   "index": "jallarzi-s-storm-of-radiance-2024",
+   "name": "Jallarzi's Storm of Radiance",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 5,
+   "school": {
+    "index": "evocation",
+    "name": "Evocation"
+   },
+   "classes": [
+    "Warlock",
+    "Wizard"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "120 feet",
+   "components": {
+    "verbal": true,
+    "somatic": true,
+    "material": true,
+    "materialDesc": "a pinch of phosphorus"
+   },
+   "duration": "up to 1 minute",
+   "concentration": true,
+   "ritual": false,
+   "description": "You call down a crackling storm of light in a 10-foot-radius, 30-foot-high Cylinder centered on a point within range. The area is filled with Bright Light. While inside it, creatures are Blinded and Deafened and can't cast spells with a Verbal component.\n\nWhen the Cylinder appears, each creature in it makes a Constitution saving throw, taking 2d10 Radiant damage and 2d10 Thunder damage on a failure or half as much on a success. A creature also makes this save when it enters the area for the first time on a turn or ends its turn there, but only once per turn.",
+   "higherLevel": "Both kinds of damage increase by 1d10 for each spell slot level above 5.",
+   "dc": {
+    "dc_type": {
+     "index": "con",
+     "name": "CON"
+    }
+   },
+   "damage": {
+    "damage_type": {
+     "index": "radiant",
+     "name": "Radiant",
+     "url": "/api/2024/damage-types/radiant"
+    },
+    "damage_at_slot_level": {
+     "5": "2d10"
+    }
+   }
+  },
+  {
+   "index": "steel-wind-strike-2024",
+   "name": "Steel Wind Strike",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 5,
+   "school": {
+    "index": "conjuration",
+    "name": "Conjuration"
+   },
+   "classes": [
+    "Ranger",
+    "Wizard"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "30 feet",
+   "components": {
+    "verbal": false,
+    "somatic": true,
+    "material": true,
+    "materialDesc": "a Melee weapon worth 1+ SP"
+   },
+   "duration": "Instantaneous",
+   "concentration": false,
+   "ritual": false,
+   "description": "You flourish the weapon used to cast the spell and vanish, striking like the wind. Pick up to five creatures you can see within range. Make a melee spell attack against each one; on a hit, it takes 6d10 Force damage. Then you teleport to an unoccupied space you can see within 5 feet of one of the targets.",
+   "higherLevel": "",
+   "attack_type": "melee",
+   "damage": {
+    "damage_type": {
+     "index": "force",
+     "name": "Force",
+     "url": "/api/2024/damage-types/force"
+    },
+    "damage_at_slot_level": {
+     "5": "6d10"
+    }
+   }
+  },
+  {
+   "index": "summon-celestial-2024",
+   "name": "Summon Celestial",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 5,
+   "school": {
+    "index": "conjuration",
+    "name": "Conjuration"
+   },
+   "classes": [
+    "Cleric",
+    "Paladin"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "90 feet",
+   "components": {
+    "verbal": true,
+    "somatic": true,
+    "material": true,
+    "materialDesc": "a reliquary worth 500+ GP"
+   },
+   "duration": "up to 1 hour",
+   "concentration": true,
+   "ritual": false,
+   "description": "You call up a Celestial Spirit in an unoccupied space you can see within range. Pick Avenger or Defender for it. It is Friendly to you and your allies, shares your Initiative and acts right after you, and obeys your spoken commands (no action needed). If you give no command, it takes the Dodge action and moves to avoid danger.\n\n**Celestial Spirit** (Large Celestial). AC 11 + the spell's level, +2 for the Defender. HP 40, plus 10 for each spell level above 5. Speed 30 feet; Fly 40 feet. STR 16, DEX 14, CON 16, INT 10, WIS 14, CHA 16. Darkvision 60 feet. Resistant to Radiant damage; immune to Charmed and Frightened.\n\n**Multiattack.** It makes a number of attacks equal to half the spell's level (round down). **Radiant Bow** (Avenger). Ranged attack, bonus equal to your spell attack modifier, range 150/600 feet. Hit: 2d6 + 2 + the spell's level Radiant damage. **Radiant Mace** (Defender). Melee attack, reach 5 feet. Hit: 1d10 + 3 + the spell's level Radiant damage, and the spirit can pick itself or another creature it can see within 10 feet of the target to gain 1d10 Temporary Hit Points.\n\n**Healing Touch (1/Day).** It touches another creature, which regains 2d8 + the spell's level Hit Points.",
+   "higherLevel": "Use the spell slot's level for the spell's level in the stat block."
+  },
+  {
+   "index": "swift-quiver-2024",
+   "name": "Swift Quiver",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 5,
+   "school": {
+    "index": "transmutation",
+    "name": "Transmutation"
+   },
+   "classes": [
+    "Ranger"
+   ],
+   "casting_time": "1 bonus action",
+   "castingTimeFull": "Bonus Action",
+   "range": "Self",
+   "components": {
+    "verbal": true,
+    "somatic": true,
+    "material": true,
+    "materialDesc": "a Quiver worth 1+ GP"
+   },
+   "duration": "up to 1 minute",
+   "concentration": true,
+   "ritual": false,
+   "description": "Your quiver makes endless ammunition. When you cast the spell, and as a Bonus Action on each of your later turns, you can make two attacks with a weapon that fires arrows or bolts. The spell makes the ammunition for each attack, and each piece vanishes when it hits or misses.",
+   "higherLevel": ""
+  },
+  {
+   "index": "synaptic-static-2024",
+   "name": "Synaptic Static",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 5,
+   "school": {
+    "index": "enchantment",
+    "name": "Enchantment"
+   },
+   "classes": [
+    "Bard",
+    "Sorcerer",
+    "Warlock",
+    "Wizard"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "120 feet",
+   "components": {
+    "verbal": true,
+    "somatic": true,
+    "material": false,
+    "materialDesc": null
+   },
+   "duration": "Instantaneous",
+   "concentration": false,
+   "ritual": false,
+   "description": "You cause psychic energy to burst at a point within range. Each creature in a 20-foot-radius Sphere centered there makes an Intelligence saving throw, taking 8d6 Psychic damage on a failure or half as much on a success.\n\nFor 1 minute after failing, a creature's thoughts are muddled: it subtracts 1d6 from its attack rolls and ability checks and from Constitution saving throws to keep Concentration. It repeats the Intelligence save at the end of each of its turns, ending the effect on a success.",
+   "higherLevel": "",
+   "dc": {
+    "dc_type": {
+     "index": "int",
+     "name": "INT"
+    }
+   },
+   "damage": {
+    "damage_type": {
+     "index": "psychic",
+     "name": "Psychic",
+     "url": "/api/2024/damage-types/psychic"
+    },
+    "damage_at_slot_level": {
+     "5": "8d6"
+    }
+   }
+  },
+  {
+   "index": "yolande-s-regal-presence-2024",
+   "name": "Yolande's Regal Presence",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 5,
+   "school": {
+    "index": "enchantment",
+    "name": "Enchantment"
+   },
+   "classes": [
+    "Bard",
+    "Wizard"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "Self (10-foot Emanation)",
+   "components": {
+    "verbal": true,
+    "somatic": true,
+    "material": true,
+    "materialDesc": "a miniature tiara"
+   },
+   "duration": "up to 1 minute",
+   "concentration": true,
+   "ritual": false,
+   "description": "You take on a commanding, royal bearing in a 10-foot Emanation around you. When you cast the spell, each creature of your choice in it makes a Wisdom saving throw. On a failure, it takes 4d6 Psychic damage and is knocked Prone, and you can push it up to 10 feet away from you. On a success, it takes half as much damage only.\n\nA creature also makes this save when the Emanation moves into its space, when it enters the Emanation, or when it ends its turn there, but only once per turn.",
+   "higherLevel": "",
+   "dc": {
+    "dc_type": {
+     "index": "wis",
+     "name": "WIS"
+    }
+   },
+   "damage": {
+    "damage_type": {
+     "index": "psychic",
+     "name": "Psychic",
+     "url": "/api/2024/damage-types/psychic"
+    },
+    "damage_at_slot_level": {
+     "5": "4d6"
+    }
+   }
+  },
+  {
+   "index": "arcane-gate-2024",
+   "name": "Arcane Gate",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 6,
+   "school": {
+    "index": "conjuration",
+    "name": "Conjuration"
+   },
+   "classes": [
+    "Sorcerer",
+    "Warlock",
+    "Wizard"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "500 feet",
+   "components": {
+    "verbal": true,
+    "somatic": true,
+    "material": false,
+    "materialDesc": null
+   },
+   "duration": "up to 10 minutes",
+   "concentration": true,
+   "ritual": false,
+   "description": "You open two linked portals: one in an unoccupied space within 10 feet of you, and one in an unoccupied space you can see within range. Each is a glowing ring 10 feet across, standing on the ground and facing the direction you choose; it can be entered only from the front. A creature or object that goes into one portal comes out of the other as if the two were next to each other. On each of your turns, you can turn one or both portals to face a new direction (no action needed).",
+   "higherLevel": ""
+  },
+  {
+   "index": "summon-fiend-2024",
+   "name": "Summon Fiend",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 6,
+   "school": {
+    "index": "conjuration",
+    "name": "Conjuration"
+   },
+   "classes": [
+    "Warlock",
+    "Wizard"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "90 feet",
+   "components": {
+    "verbal": true,
+    "somatic": true,
+    "material": true,
+    "materialDesc": "a bloody vial worth 600+ GP"
+   },
+   "duration": "up to 1 hour",
+   "concentration": true,
+   "ritual": false,
+   "description": "You call up a Fiendish Spirit in an unoccupied space you can see within range. Pick Demon, Devil, or Yugoloth for it. It is Friendly to you and your allies, shares your Initiative and acts right after you, and obeys your spoken commands (no action needed). If you give no command, it takes the Dodge action and moves to avoid danger.\n\n**Fiendish Spirit** (Large Fiend). AC 12 + the spell's level. HP 50 (Demon), 40 (Devil), or 60 (Yugoloth), plus 15 for each spell level above 6. Speed 40 feet; Climb 40 feet (Demon); Fly 60 feet (Devil). STR 13, DEX 16, CON 15, INT 10, WIS 10, CHA 16. Darkvision 60 feet. Resistant to Fire damage; immune to Poison damage and Poisoned.\n\n**Death Throes** (Demon only). When it drops to 0 Hit Points or the spell ends, it explodes: each creature within 10 feet of it makes a Dexterity saving throw against your spell save DC, taking 2d10 + the spell's level Fire damage on a failure or half as much on a success. **Devil's Sight** (Devil only). Magical Darkness doesn't block its Darkvision.\n\n**Multiattack.** It makes a number of attacks equal to half the spell's level (round down). **Bite** (Demon). Melee attack, bonus equal to your spell attack modifier, reach 5 feet. Hit: 1d12 + 3 + the spell's level Necrotic damage. **Claws** (Yugoloth). Melee attack, reach 5 feet. Hit: 1d8 + 3 + the spell's level Slashing damage, and right after, it can teleport up to 30 feet to an unoccupied space it can see. **Fiery Strike** (Devil). Melee or ranged attack, reach 5 feet or range 150 feet. Hit: 2d6 + 3 + the spell's level Fire damage.",
+   "higherLevel": "Use the spell slot's level for the spell's level in the stat block."
+  },
+  {
+   "index": "tasha-s-bubbling-cauldron-2024",
+   "name": "Tasha's Bubbling Cauldron",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 6,
+   "school": {
+    "index": "conjuration",
+    "name": "Conjuration"
+   },
+   "classes": [
+    "Warlock",
+    "Wizard"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "5 feet",
+   "components": {
+    "verbal": true,
+    "somatic": true,
+    "material": true,
+    "materialDesc": "a gilded ladle worth 500+ GP"
+   },
+   "duration": "10 minutes",
+   "concentration": false,
+   "ritual": false,
+   "description": "A claw-footed cauldron full of bubbling liquid appears in an unoccupied space within range. Choose a Common or Uncommon potion you are familiar with; the cauldron holds enough of it for a number of potions equal to your spellcasting ability modifier (minimum 1). As a Bonus Action, you or a creature next to the cauldron can draw out one potion. When the spell ends, the cauldron disappears, and so does any potion from it that hasn't been drunk.",
+   "higherLevel": ""
+  },
+  {
+   "index": "dream-of-the-blue-veil-2024",
+   "name": "Dream of the Blue Veil",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 7,
+   "school": {
+    "index": "conjuration",
+    "name": "Conjuration"
+   },
+   "classes": [
+    "Bard",
+    "Sorcerer",
+    "Warlock",
+    "Wizard"
+   ],
+   "casting_time": "10 minutes",
+   "castingTimeFull": "10 minutes",
+   "range": "20 feet",
+   "components": {
+    "verbal": true,
+    "somatic": true,
+    "material": true,
+    "materialDesc": "a magic item or a willing creature from the destination world"
+   },
+   "duration": "6 hours",
+   "concentration": false,
+   "ritual": false,
+   "description": "You and up to eight willing creatures within range fall Unconscious for the duration and dream of another world on the Material Plane, such as a different setting. The spell ends early if you or any of the others take damage or someone uses an action to shake one of you awake.\n\nIf the spell lasts its full duration, you and the others wake up on that world, near the place you dreamed of, along with everything you wear or carry.",
+   "higherLevel": ""
+  },
+  {
+   "index": "power-word-fortify-2024",
+   "name": "Power Word Fortify",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "level": 7,
+   "school": {
+    "index": "enchantment",
+    "name": "Enchantment"
+   },
+   "classes": [
+    "Bard",
+    "Cleric"
+   ],
+   "casting_time": "1 action",
+   "castingTimeFull": "Action",
+   "range": "60 feet",
+   "components": {
+    "verbal": true,
+    "somatic": false,
+    "material": false,
+    "materialDesc": null
+   },
+   "duration": "Instantaneous",
+   "concentration": false,
+   "ritual": false,
+   "description": "You speak a word of strength. Share 120 Temporary Hit Points among up to six creatures you can see within range, in whatever amounts you choose.",
+   "higherLevel": ""
+  }
+ ]
+}

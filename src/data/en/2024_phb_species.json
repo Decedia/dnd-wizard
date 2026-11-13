@@ -1,0 +1,70 @@
+{
+ "races": [
+  {
+   "name": "Aasimar",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "type": "Humanoid",
+   "size": "Medium",
+   "speed": 30,
+   "darkvision": {
+    "range": 60
+   },
+   "abilityScoreIncreases": {},
+   "traits": [
+    {
+     "name": "Celestial Resistance",
+     "description": "You have Resistance to Necrotic damage and Radiant damage."
+    },
+    {
+     "name": "Darkvision",
+     "description": "You can see in Dim Light within 60 feet of you as if it were Bright Light, and in Darkness as if it were Dim Light (in shades of gray)."
+    },
+    {
+     "name": "Healing Hands",
+     "description": "As a Magic action, you touch a creature and roll a number of d4s equal to your Proficiency Bonus. The creature regains Hit Points equal to the total. Once you use this trait, you can't use it again until you finish a Long Rest."
+    },
+    {
+     "name": "Light Bearer",
+     "description": "You know the Light cantrip. Charisma is your spellcasting ability for it."
+    },
+    {
+     "name": "Celestial Revelation",
+     "description": "From character level 3, you can take a Bonus Action to transform for 1 minute or until you end it (no action needed). Once you transform, you can't again until you finish a Long Rest. Each time, pick one of the forms below.\n\nWhile transformed, once on each of your turns you can deal extra damage equal to your Proficiency Bonus to one target when you damage it with an attack or a spell. The extra damage is Necrotic for Necrotic Shroud and Radiant for the other two forms.\n\n**Heavenly Wings.** Two ghostly wings sprout from your back. You have a Fly Speed equal to your Speed.\n\n**Inner Radiance.** Searing light pours from your eyes and mouth. You shed Bright Light in a 10-foot radius and Dim Light for 10 feet beyond, and at the end of each of your turns, each creature within 10 feet of you takes Radiant damage equal to your Proficiency Bonus.\n\n**Necrotic Shroud.** Your eyes turn to pools of darkness and flightless wings grow from your back. Each creature other than your allies within 10 feet of you must succeed on a Charisma saving throw (DC 8 + your Charisma modifier + your Proficiency Bonus) or be Frightened of you until the end of your next turn."
+    }
+   ],
+   "languages": [
+    "Common"
+   ],
+   "extraLanguages": 2,
+   "sizeOptions": [
+    "Medium",
+    "Small"
+   ],
+   "spells": {
+    "1": [
+     "Light"
+    ]
+   },
+   "spellAbility": "cha",
+   "choices": [
+    {
+     "id": "aasimar-2024-size",
+     "name": "Size",
+     "description": "Small or Medium. It changes nothing else for you.",
+     "type": "single",
+     "options": [
+      {
+       "id": "medium",
+       "name": "Medium"
+      },
+      {
+       "id": "small",
+       "name": "Small"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
