@@ -20,14 +20,14 @@ export function feedbackHref(page: string, language: string): string {
 }
 
 /** "Send feedback" and "Buy me a coffee" pills for the home screen. */
-export function SupportLinks() {
+export function SupportLinks({ className = "mt-8" }: { className?: string }) {
   const { t, language } = useLanguage();
   const [soon, setSoon] = useState(false);
   // Same look as the Data management buttons above it.
   const pill = "flex items-center justify-center gap-2 rounded-full border border-border-muted bg-paper py-2.5 text-sm text-ink transition-colors hover:bg-paper-muted";
   return (
     <>
-      <div className="mt-8">
+      <div className={className}>
         <h3 className="mb-3 text-xs font-bold tracking-widest text-ink-muted">{t("support.title", "SUPPORT")}</h3>
         <div className="grid grid-cols-2 gap-3">
           <a

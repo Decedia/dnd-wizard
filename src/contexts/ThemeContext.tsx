@@ -8,9 +8,10 @@ type Theme = "light" | "dark";
 interface ThemeContextType {
   theme: Theme;
   toggleTheme: () => void;
+  setTheme: (theme: Theme) => void;
 }
 
-const ThemeContext = createContext<ThemeContextType>({ theme: "light", toggleTheme: () => {} });
+const ThemeContext = createContext<ThemeContextType>({ theme: "light", toggleTheme: () => {}, setTheme: () => {} });
 
 export function useTheme() {
   return useContext(ThemeContext);
@@ -38,7 +39,9 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     writeStored("dnd-theme", theme === "light" ? "dark" : "light");
   }, [theme]);
 
-  const value = useMemo(() => ({ theme, toggleTheme }), [theme, toggleTheme]);
+  const setTheme = useCallback((next: Theme) => writeStored("dnd-theme", next), []);
+
+  const value = useMemo(() => ({ theme, toggleTheme, setTheme }), [theme, toggleTheme, setTheme]);
 
   return (
     <ThemeContext.Provider value={value}>
