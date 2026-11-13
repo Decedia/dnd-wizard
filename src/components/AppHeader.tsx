@@ -26,7 +26,7 @@ export function AppHeader({ title, subtitle, editMode, onEditModeChange, onSave,
             </div>
             <div className="flex flex-col">
               {title && (
-                <h1 className="font-display text-base font-semibold tracking-tight text-ink">
+                <h1 className="font-heading text-base font-semibold text-ink">
                   {title}
                 </h1>
               )}

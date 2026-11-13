@@ -141,7 +141,7 @@ export function CombatStatsSection({ character, onChange, editMode = true, onOpe
           </div>
           <div className="progress-track" style={{ height: "12px" }}>
             <div
-              className="progress-fill"
+              className="progress-fill hp-fill"
               style={{ width: `${hpPercent}%` }}
             />
           </div>

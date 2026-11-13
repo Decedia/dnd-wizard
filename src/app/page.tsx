@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback, useEffect, useMemo } from "react";
+import { useState, useRef, useCallback, useEffect, useMemo, createElement } from "react";
 import Link from "next/link";
 import {
   Axe,
@@ -15,24 +15,26 @@ import {
   Fire,
   Skull,
   MagicWand,
+  Wrench,
   User,
-  UserPlus,
   FileText,
   FileCode,
   DownloadSimple,
   Plus,
   Trash,
-  CaretRight,
-  CaretLeft,
   Gear,
+  Play,
+  DotsThreeVertical,
+  CaretRight,
 } from "@phosphor-icons/react";
-import { AppHeader } from "@/components/AppHeader";
+import { GiCastle, GiMoon } from "react-icons/gi";
 import { SupportLinks } from "@/components/SupportLinks";
-import { GiDragonHead } from "react-icons/gi";
+import { BottomSheet } from "@/components/modals/BottomSheet";
 import { getCharacters, saveCharacter, deleteCharacter, type Character } from "@/lib/storage";
 import { importCharacterFromJson } from "@/lib/character-io";
 import { useDebug } from "@/lib/debug/DebugContext";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useTheme } from "@/contexts/ThemeContext";
 
 const getClassIcon = (className = "") => {
   const c = className.toLowerCase();
@@ -48,61 +50,39 @@ const getClassIcon = (className = "") => {
   if (c.includes("sorcerer")) return Fire;
   if (c.includes("warlock")) return Skull;
   if (c.includes("wizard")) return MagicWand;
+  if (c.includes("artificer")) return Wrench;
   return User;
 };
 
 type SortKey = "opened" | "newest" | "oldest" | "name";
-const PAGE_SIZES = [5, 10, 20];
-const MAX_VISIBLE_PAGES = 5;
-const MAX_PAGE_ITEMS = MAX_VISIBLE_PAGES + 2;
+/** Hero cards shown before "Show all". */
+const FIRST_CARDS = 6;
 
-type PageItem = number | "gap";
-
-function buildPageItems(current: number, total: number, maxItems: number): PageItem[] {
-  if (total <= maxItems) {
-    return Array.from({ length: total }, (_, i) => i + 1);
-  }
-  const middleSlots = Math.max(1, maxItems - 4);
-  let start = Math.max(2, current - Math.floor(middleSlots / 2));
-  const end = Math.min(total - 1, start + middleSlots - 1);
-  start = Math.max(2, Math.min(start, end - middleSlots + 1));
-  const items: PageItem[] = [1];
-  if (start > 2) items.push("gap");
-  for (let n = start; n <= end; n++) items.push(n);
-  if (end < total - 1) items.push("gap");
-  items.push(total);
-  return items;
-}
+// One look for every pill button on this page (same as the support buttons).
+const pill = "flex items-center justify-center gap-2 rounded-full border border-border-muted bg-paper py-2.5 text-sm text-ink transition-colors hover:bg-paper-muted";
 
 export default function Home() {
   const debug = useDebug();
-  const { t, language } = useLanguage();
+  const { t, language, setLanguage } = useLanguage();
+  const { theme, setTheme } = useTheme();
   const isAdmin = debug.enabled && debug.unlocked;
-  const [characters, setCharacters] = useState<Character[]>([]);
+  const [characters, setCharacters] = useState<Character[] | null>(null);
   const [sortKey, setSortKey] = useState<SortKey>("opened");
-  const [pageSize, setPageSize] = useState(5);
-  const [page, setPage] = useState(1);
+  const [showAll, setShowAll] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [menuFor, setMenuFor] = useState<Character | null>(null);
   const [importError, setImportError] = useState<string | null>(null);
   const [importSuccess, setImportSuccess] = useState<string | null>(null);
   const importInputRef = useRef<HTMLInputElement | null>(null);
   const jsonImportInputRef = useRef<HTMLInputElement | null>(null);
 
   const loadCharacters = useCallback(async () => {
-    const chars = await getCharacters();
-    setCharacters(chars);
+    setCharacters(await getCharacters());
   }, []);
 
   useEffect(() => {
     loadCharacters();
   }, [loadCharacters]);
-
-  const handleImportClick = () => {
-    importInputRef.current?.click();
-  };
-
-  const handleImportJsonClick = () => {
-    jsonImportInputRef.current?.click();
-  };
 
   const handleImportFile = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -114,8 +94,9 @@ export default function Home() {
       const imported = await importCharacterFromPdf(file);
       await saveCharacter(imported);
       setImportSuccess(t("import.success", { name: imported.name || "Unnamed" } as any));
+      setSettingsOpen(false);
       await loadCharacters();
-    } catch (err) {
+    } catch {
       setImportError(t("import.pdfError"));
     } finally {
       e.target.value = "";
@@ -131,8 +112,9 @@ export default function Home() {
       const imported = await importCharacterFromJson(file);
       await saveCharacter(imported);
       setImportSuccess(t("import.success", { name: imported.name || "Unnamed" } as any));
+      setSettingsOpen(false);
       await loadCharacters();
-    } catch (err) {
+    } catch {
       setImportError(t("import.jsonError"));
     } finally {
       e.target.value = "";
@@ -141,6 +123,7 @@ export default function Home() {
 
   const handleDelete = useCallback(async (char: Character) => {
     if (window.confirm(t("delete.confirm", { "char.name": char.name || t("home.unnamedHero") } as any))) {
+      setMenuFor(null);
       await deleteCharacter(char.id);
       await loadCharacters();
     }
@@ -158,7 +141,7 @@ export default function Home() {
   }, []);
 
   const sorted = useMemo(() => {
-    const list = [...characters];
+    const list = [...(characters || [])];
     switch (sortKey) {
       case "newest":
         return list.sort((a, b) => (b.createdAt ?? 0) - (a.createdAt ?? 0));
@@ -168,281 +151,311 @@ export default function Home() {
         return list.sort((a, b) => (a.name || "").localeCompare(b.name || ""));
       case "opened":
       default:
-        // Never-opened characters sort last rather than being treated as 1970.
-        return list.sort((a, b) => {
-          const av = a.lastOpenedAt ?? -1;
-          const bv = b.lastOpenedAt ?? -1;
-          if (av === bv) return (b.createdAt ?? 0) - (a.createdAt ?? 0);
-          return bv - av;
-        });
+        return list.sort(byLastOpened);
     }
   }, [characters, sortKey]);
 
-  const totalPages = Math.max(1, Math.ceil(sorted.length / pageSize));
-  // Clamp so deleting a character on the last page cannot strand the user.
-  const currentPage = Math.min(page, totalPages);
-  const visible = sorted.slice((currentPage - 1) * pageSize, currentPage * pageSize);
-  const pageItems = buildPageItems(currentPage, totalPages, MAX_PAGE_ITEMS);
+  // The hero played last; never-opened heroes count by when they were made.
+  const last = useMemo(() => [...(characters || [])].sort(byLastOpened)[0], [characters]);
+  const visible = showAll ? sorted : sorted.slice(0, FIRST_CARDS);
 
-  const changeSort = (next: SortKey) => {
-    setSortKey(next);
-    setPage(1);
-  };
+  const fileInputs = (
+    <>
+      <input ref={importInputRef} type="file" accept="application/pdf" onChange={handleImportFile} className="hidden" />
+      <input ref={jsonImportInputRef} type="file" accept="application/json" onChange={handleImportJsonFile} className="hidden" />
+    </>
+  );
 
-  const changePageSize = (next: number) => {
-    setPageSize(next);
-    setPage(1);
-  };
+  const messages = (
+    <>
+      {importError && (
+        <div className="surface mx-4 mt-3 border-[var(--color-error-200)] bg-[var(--color-error-50)] px-3 py-2.5 text-xs font-medium text-[var(--color-error-600)]">{importError}</div>
+      )}
+      {importSuccess && <div className="surface mx-4 mt-3 px-3 py-2.5 text-body">{importSuccess}</div>}
+    </>
+  );
+
+  const settingsButton = (
+    <button
+      type="button"
+      onClick={() => setSettingsOpen(true)}
+      aria-label={t("home.settings", "Settings")}
+      className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-border-strong bg-paper/70 text-ink backdrop-blur-sm"
+    >
+      <Gear size={20} />
+    </button>
+  );
+
+  // First load: nothing yet, so neither the empty screen nor the list flashes.
+  if (characters === null) return <div className="min-h-screen bg-paper" />;
+
+  const empty = characters.length === 0;
 
   return (
-    <div className="min-h-screen bg-paper">
-      <AppHeader title={t("app.name")} subtitle={t("nav.myCharacters")} showThemeToggle />
-
-      <main className="px-4 py-4 pb-6">
-        <div className="relative mb-4 overflow-hidden rounded-3xl border border-border-muted bg-paper-muted p-6 shadow-sm">
-          <div className="pointer-events-none absolute -bottom-6 -right-5 select-none text-paper-darker" aria-hidden="true">
-            <GiDragonHead size={168} />
+    <div className="min-h-screen bg-paper pb-28">
+      <div className={`relative overflow-hidden border-b border-border-strong bg-paper-muted ${empty ? "h-[360px]" : "h-[260px]"}`}>
+        <Scene tall={empty} />
+        {settingsButton}
+        {!empty && (
+          <div className="relative z-[1] px-6 pt-16">
+            <p className="text-xs font-semibold tracking-[0.2em] text-[var(--color-accent-indigo-600)]">{t("home.tagline", "YOUR ADVENTURE AWAITS")}</p>
+            <h1 className="mt-1.5 text-[40px] font-extrabold leading-none tracking-wide text-ink">
+              DND
+              <br />
+              WIZARD
+            </h1>
           </div>
-          <div className="relative z-10">
-            <h1 className="text-page-title">{t("home.heroTitle")}</h1>
-            <p className="mt-1 max-w-[200px] text-sm text-muted">{t("home.heroSubtitle")}</p>
+        )}
+      </div>
+
+      {empty ? (
+        <main className="px-4">
+          <div className="relative mt-6 flex flex-col items-center gap-2.5 px-4 text-center">
+            <h1 className="text-[40px] font-extrabold leading-none tracking-wide text-ink">DND WIZARD</h1>
+            <p className="max-w-[290px] text-[15px] leading-relaxed text-ink-muted">{t("home.firstPitch", "Make your first hero. We walk you through every step, one question at a time.")}</p>
           </div>
-        </div>
+          <div className="mt-7 flex flex-col gap-3">
+            <Link href="/character/create" className="btn btn-primary flex h-[52px] items-center justify-center text-base">
+              {t("home.firstStart", "Start your first adventure")}
+            </Link>
+            <button type="button" onClick={() => setSettingsOpen(true)} className={pill}>
+              {t("home.firstImport", "I already have a character (import)")}
+            </button>
+          </div>
+          {messages}
+        </main>
+      ) : (
+        <main>
+          {last && <ContinueCard char={last} />}
+          {messages}
 
-        <Link
-          href="/character/create"
-          className="mb-6 flex w-full cursor-pointer items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-border-muted bg-paper p-4 text-sm font-semibold text-ink transition-colors hover:bg-paper-muted"
-        >
-          <Plus size={18} weight="bold" />
-          <span>{t("home.newCharacter")}</span>
-        </Link>
+          <div className="px-4 pt-3">
+            <Link href="/character/create" className="flex h-12 items-center justify-center gap-2 rounded-full border border-[var(--color-accent-indigo-500)] text-[15px] font-semibold text-[var(--color-accent-indigo-600)] transition-colors hover:bg-[var(--color-accent-indigo-50)]">
+              <Plus size={18} weight="bold" />
+              {t("home.newHero", "New hero")}
+            </Link>
+          </div>
 
-        <section>
-          <h2 className="mb-3 text-xs font-bold tracking-widest text-ink">{t("home.myCharacters")}</h2>
-
-          {characters.length === 0 ? (
-            <div className="flex flex-col items-center justify-center card border-dashed border-border-muted bg-paper py-10 text-center">
-              <UserPlus size={48} weight="duotone" className="mb-2.5 opacity-40" />
-              <p className="text-muted">{t("home.noCharacters")}</p>
+          <section className="px-4 pt-6">
+            <div className="mb-2.5 flex items-center justify-between gap-2">
+              <h2 className="text-base font-semibold tracking-wide text-ink">{t("home.yourHeroes", "Your heroes")}</h2>
+              <label className="flex items-center gap-2 text-xs text-ink-muted">
+                <span className="sr-only">{t("home.sortBy")}</span>
+                <select
+                  value={sortKey}
+                  onChange={(e) => setSortKey(e.target.value as SortKey)}
+                  className="rounded-full border border-border-strong bg-paper px-3 py-1.5 text-xs text-ink"
+                >
+                  <option value="opened">{t("home.sortLastOpened")}</option>
+                  <option value="newest">{t("home.sortNewest")}</option>
+                  <option value="oldest">{t("home.sortOldest")}</option>
+                  <option value="name">{t("home.sortName")}</option>
+                </select>
+              </label>
             </div>
-          ) : (
-            <>
-              <div className="mb-3 flex items-center justify-between gap-2">
-                <label className="flex items-center gap-2 text-xs text-muted">
-                  {t("home.sortBy")}
-                  <select
-                    value={sortKey}
-                    onChange={(e) => changeSort(e.target.value as SortKey)}
-                    className="rounded-lg border border-border-muted bg-paper px-2 py-1.5 text-xs text-ink"
-                  >
-                    <option value="opened">{t("home.sortLastOpened")}</option>
-                    <option value="newest">{t("home.sortNewest")}</option>
-                    <option value="oldest">{t("home.sortOldest")}</option>
-                    <option value="name">{t("home.sortName")}</option>
-                  </select>
-                </label>
-                <span className="text-xs text-muted">
-                  {t("home.showing", { from: (currentPage - 1) * pageSize + 1, to: Math.min(currentPage * pageSize, sorted.length), total: sorted.length } as any)}
-                </span>
-              </div>
+            <ul className="grid grid-cols-2 gap-2.5">
+              {visible.map((char) => (
+                <HeroCard key={char.id} char={char} onMenu={() => setMenuFor(char)} />
+              ))}
+            </ul>
+            {sorted.length > FIRST_CARDS && (
+              <button type="button" onClick={() => setShowAll((v) => !v)} className={`${pill} mt-3 w-full`}>
+                {showAll ? t("home.showLess", "Show less") : t("home.showAll", { count: sorted.length } as any, "Show all ({count})")}
+              </button>
+            )}
+          </section>
+        </main>
+      )}
 
-              <ul className="space-y-2">
-              {visible.map((char) => {
-                const ClassIcon = getClassIcon(char.class);
-                return (
-                  <li
-                    key={char.id}
-                    className="mb-3 flex items-center justify-between rounded-2xl border border-border-muted bg-paper p-3 shadow-sm"
-                  >
-                    <Link
-                      href={`/character?id=${char.id}`}
-                      className="flex min-w-0 flex-1 items-center gap-3"
-                    >
-                      <div className="flex shrink-0 items-center justify-center rounded-xl bg-paper-muted p-2.5 text-ink">
-                        <ClassIcon size={24} weight="duotone" />
-                      </div>
-                      <div className="min-w-0">
-                        <h3 className="truncate text-card-title">
-                          {char.name || t("home.unnamedHero")}
-                        </h3>
-                        <p className="truncate text-muted">
-                          {t("home.lvl", { level: char.level || 1 } as any)} {char.class || t("home.unknown")} •{" "}
-                          {formatDate(char.createdAt, language)}
-                        </p>
-                      </div>
-                    </Link>
-                    <div className="flex shrink-0 items-center gap-3 text-ink-muted">
-                      <button
-                        onClick={() => handleExportJson(char)}
-                        className="flex h-9 w-9 items-center justify-center transition-colors hover:text-[var(--color-accent)]"
-                        aria-label={t("export.json", { "char.name": char.name || t("home.unnamedHero") } as any)}
-                      >
-                        <FileCode size={18} />
-                      </button>
-                      <button
-                        onClick={() => handleDelete(char)}
-                        className="flex h-9 w-9 items-center justify-center transition-colors hover:text-[var(--color-error-600)]"
-                        aria-label={t("delete.confirm", { "char.name": char.name || t("home.unnamedHero") } as any)}
-                      >
-                        <Trash size={18} />
-                      </button>
-                    </div>
-                  </li>
-                );
-              })}
-              </ul>
+      <Credits />
+      {fileInputs}
 
-              {totalPages > 1 && (
-                <nav className="mt-4 flex flex-wrap items-center justify-between gap-2" aria-label={t("home.pagination")}>
-                  <button
-                    onClick={() => setPage((p) => Math.max(1, p - 1))}
-                    disabled={currentPage === 1}
-                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border-muted bg-paper text-ink transition-colors hover:bg-paper-muted disabled:opacity-40"
-                    aria-label={t("home.prevPage")}
-                  >
-                    <CaretLeft size={16} />
-                  </button>
-
-                  <div className="flex min-w-0 flex-wrap items-center justify-center gap-1.5">
-                    {pageItems.map((item, i) =>
-                      item === "gap" ? (
-                        <span
-                          key={`gap-${i}`}
-                          aria-hidden="true"
-                          className="flex h-8 w-6 items-center justify-center text-xs text-muted"
-                        >
-                          &hellip;
-                        </span>
-                      ) : (
-                        <button
-                          key={item}
-                          onClick={() => setPage(item)}
-                          aria-current={item === currentPage ? "page" : undefined}
-                          aria-label={t("home.goToPage", { page: item } as any)}
-                          className={
-                            item === currentPage
-                              ? "flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-accent-indigo-500)] text-xs font-semibold text-white"
-                              : "flex h-8 w-8 items-center justify-center rounded-full border border-border-muted bg-paper text-xs text-ink transition-colors hover:bg-paper-muted"
-                          }
-                        >
-                          {item}
-                        </button>
-                      )
-                    )}
-                  </div>
-
-                  <button
-                    onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-                    disabled={currentPage === totalPages}
-                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border-muted bg-paper text-ink transition-colors hover:bg-paper-muted disabled:opacity-40"
-                    aria-label={t("home.nextPage")}
-                  >
-                    <CaretRight size={16} />
-                  </button>
-                </nav>
-              )}
-
-              <div className="mt-3 flex items-center justify-end gap-2 text-xs text-muted">
-                <label className="flex items-center gap-2">
-                  {t("home.perPage")}
-                  <select
-                    value={pageSize}
-                    onChange={(e) => changePageSize(Number(e.target.value))}
-                    className="rounded-lg border border-border-muted bg-paper px-2 py-1.5 text-xs text-ink"
-                  >
-                    {PAGE_SIZES.map((n) => (
-                      <option key={n} value={n}>
-                        {n}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-              </div>
-            </>
-          )}
-        </section>
-
-        <div className="mt-8">
-          <h3 className="mb-3 text-xs font-bold tracking-widest text-ink-muted">{t("home.dataManagement")}</h3>
-          <div className="grid grid-cols-2 gap-3">
-            <button
-              onClick={handleImportClick}
-              className="flex items-center justify-center gap-2 rounded-full border border-border-muted bg-paper py-2.5 text-sm text-ink transition-colors hover:bg-paper-muted"
-            >
+      <BottomSheet isOpen={settingsOpen} onClose={() => setSettingsOpen(false)} title={t("home.settings", "Settings")}>
+        <div className="flex flex-col gap-5 px-4 pb-4 pt-4">
+          <SettingGroup title={t("home.language", "LANGUAGE")}>
+            <Choice selected={language === "en"} onClick={() => setLanguage("en")}>English</Choice>
+            <Choice selected={language === "id"} onClick={() => setLanguage("id")}>Bahasa Indonesia</Choice>
+          </SettingGroup>
+          <SettingGroup title={t("home.theme", "LOOK")}>
+            <Choice selected={theme === "dark"} onClick={() => setTheme("dark")}>{t("home.themeNight", "Night")}</Choice>
+            <Choice selected={theme === "light"} onClick={() => setTheme("light")}>{t("home.themeParchment", "Parchment")}</Choice>
+          </SettingGroup>
+          <SettingGroup title={t("home.dataManagement")}>
+            <button type="button" onClick={() => importInputRef.current?.click()} className={pill}>
               <FileText size={16} />
               {t("home.importPdf")}
             </button>
-            <button
-              onClick={handleImportJsonClick}
-              className="flex items-center justify-center gap-2 rounded-full border border-border-muted bg-paper py-2.5 text-sm text-ink transition-colors hover:bg-paper-muted"
-            >
+            <button type="button" onClick={() => jsonImportInputRef.current?.click()} className={pill}>
               <FileCode size={16} />
               {t("home.importJson")}
             </button>
-            <button
-              onClick={handleBackupAll}
-              className="col-span-2 mt-1 flex items-center justify-center gap-2 rounded-full border border-border-muted bg-paper py-2.5 text-sm text-ink transition-colors hover:bg-paper-muted"
-            >
-              <DownloadSimple size={16} />
-              {t("home.backupAll")}
-            </button>
-          </div>
-
+            {!empty && (
+              <button type="button" onClick={handleBackupAll} className={`${pill} col-span-2`}>
+                <DownloadSimple size={16} />
+                {t("home.backupAll")}
+              </button>
+            )}
+          </SettingGroup>
+          <SupportLinks className="" />
           {isAdmin && (
-            <Link
-              href="/admin"
-              className="mt-3 flex items-center justify-center gap-2 rounded-full border border-border-muted bg-paper py-2.5 text-sm text-ink opacity-70 transition-opacity hover:opacity-100"
-            >
+            <Link href="/admin" className={`${pill} opacity-70`}>
               <Gear size={16} />
               {t("home.adminLab")}
             </Link>
           )}
-
-          <input
-            ref={importInputRef}
-            type="file"
-            accept="application/pdf"
-            onChange={handleImportFile}
-            className="hidden"
-          />
-          <input
-            ref={jsonImportInputRef}
-            type="file"
-            accept="application/json"
-            onChange={handleImportJsonFile}
-            className="hidden"
-          />
-
-          {importError && (
-            <div className="surface mt-2.5 border-[var(--color-error-200)] bg-[var(--color-error-50)] px-3 py-2.5 text-xs font-medium text-[var(--color-error-600)]">
-              {importError}
-            </div>
-          )}
-          {importSuccess && (
-            <div className="surface mt-2.5 bg-paper px-3 py-2.5 text-body">{importSuccess}</div>
-          )}
-
-          <SupportLinks />
-
-          <p className="mt-6 text-center text-[11px] leading-relaxed text-ink-muted">
-            {t("home.creditsIcons", "Icons by")}{" "}
-            <a href="https://game-icons.net" target="_blank" rel="noopener noreferrer" className="underline">Game Icons</a>{" "}
-            (Lorc, Delapouite {t("home.creditsAnd", "and others")}),{" "}
-            <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener noreferrer" className="underline">CC BY 3.0</a>.{" "}
-            {t("home.creditsSrd", "Includes material from the System Reference Documents 5.1 and 5.2 by Wizards of the Coast LLC,")}{" "}
-            <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer" className="underline">CC BY 4.0</a>.
-          </p>
         </div>
-      </main>
+      </BottomSheet>
+
+      <BottomSheet isOpen={!!menuFor} onClose={() => setMenuFor(null)} title={menuFor?.name || t("home.unnamedHero")}>
+        {menuFor && (
+          <div className="flex flex-col gap-2.5 px-4 pb-4">
+            <Link href={`/character?id=${menuFor.id}`} className={pill}>
+              <CaretRight size={16} />
+              {t("home.open", "Open")}
+            </Link>
+            <button type="button" onClick={() => handleExportJson(menuFor)} className={pill}>
+              <FileCode size={16} />
+              {t("home.exportJson", "Save as JSON file")}
+            </button>
+            <button type="button" onClick={() => handleDelete(menuFor)} className="btn btn-danger flex items-center justify-center gap-2 py-2.5 text-sm">
+              <Trash size={16} />
+              {t("home.delete", "Delete hero")}
+            </button>
+          </div>
+        )}
+      </BottomSheet>
     </div>
   );
 }
 
-function formatDate(timestamp: number, language: string): string {
-  const date = new Date(timestamp);
-  return date.toLocaleDateString(language === "id" ? "id-ID" : "en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  });
+function byLastOpened(a: Character, b: Character) {
+  const av = a.lastOpenedAt ?? -1;
+  const bv = b.lastOpenedAt ?? -1;
+  if (av === bv) return (b.createdAt ?? 0) - (a.createdAt ?? 0);
+  return bv - av;
+}
+
+/** Moon over a castle, drawn with Game Icons. */
+function Scene({ tall }: { tall: boolean }) {
+  return (
+    <div aria-hidden="true" className="pointer-events-none absolute inset-0 select-none">
+      <GiMoon className={`absolute text-[var(--color-accent-indigo-300)] opacity-70 ${tall ? "left-1/2 top-16 -translate-x-1/2" : "right-20 top-7"}`} size={tall ? 92 : 64} />
+      <GiCastle className={`absolute -bottom-3 text-paper-dark ${tall ? "left-1/2 -translate-x-1/2" : "-right-6"}`} size={tall ? 240 : 190} />
+    </div>
+  );
+}
+
+function hpOf(char: Character) {
+  const max = char.maxHp || 0;
+  return { cur: Math.max(0, Math.min(char.currentHp ?? max, max)), max };
+}
+
+function ContinueCard({ char }: { char: Character }) {
+  const { t, language } = useLanguage();
+  const { cur, max } = hpOf(char);
+  const played = char.lastOpenedAt ? relativeTime(char.lastOpenedAt, language) : "";
+  return (
+    <div className="relative mx-4 -mt-9 flex flex-col gap-3.5 rounded-[20px] border border-[var(--color-accent-indigo-500)] bg-[var(--color-surface)] p-4 shadow-sm">
+      <div className="flex items-center gap-3.5">
+        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 border-[var(--color-accent-indigo-500)] bg-paper-muted text-[var(--color-accent-indigo-600)]">
+          {createElement(getClassIcon(char.class), { size: 28, weight: "duotone" })}
+        </div>
+        <div className="min-w-0 flex-1">
+          <p className="text-[11px] font-semibold tracking-[0.15em] text-ink-muted">{t("home.continue", "CONTINUE")}</p>
+          <p className="truncate font-heading text-xl font-semibold text-ink">{char.name || t("home.unnamedHero")}</p>
+          <p className="truncate text-[13px] text-ink-muted">{heroLine(char, t)}</p>
+        </div>
+      </div>
+      {max > 0 && (
+        <div className="flex flex-col gap-1.5">
+          <div className="flex justify-between text-xs text-ink-muted">
+            <span>HP {cur} / {max}</span>
+            {played && <span>{t("home.played", { when: played } as any, "Played {when}")}</span>}
+          </div>
+          <div className="progress-track">
+            <div className="progress-fill hp-fill" style={{ width: `${Math.round((cur / max) * 100)}%` }} />
+          </div>
+        </div>
+      )}
+      <Link href={`/character?id=${char.id}`} className="btn btn-primary flex h-12 items-center justify-center gap-2 text-[15px]">
+        <Play size={16} weight="fill" />
+        {t("home.continueButton", "Continue adventure")}
+      </Link>
+    </div>
+  );
+}
+
+function HeroCard({ char, onMenu }: { char: Character; onMenu: () => void }) {
+  const { t } = useLanguage();
+  return (
+    <li className="relative">
+      <Link href={`/character?id=${char.id}`} className="flex h-full flex-col gap-2 rounded-2xl border border-border-strong bg-[var(--color-surface)] p-3 transition-colors hover:border-[var(--color-accent-indigo-500)]">
+        <div className="flex items-center justify-between pr-8">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-paper-muted text-ink">
+            {createElement(getClassIcon(char.class), { size: 22, weight: "duotone" })}
+          </div>
+          <span className="rounded-full border border-[var(--color-accent-indigo-200)] px-2 py-0.5 text-xs font-bold text-[var(--color-accent-indigo-600)]">
+            {t("home.lvl", { level: char.level || 1 } as any)}
+          </span>
+        </div>
+        <div className="min-w-0">
+          <p className="truncate text-[15px] font-semibold text-ink">{char.name || t("home.unnamedHero")}</p>
+          <p className="truncate text-xs text-ink-muted">{[char.class || t("home.unknown"), char.race].filter(Boolean).join(" · ")}</p>
+        </div>
+      </Link>
+      <button
+        type="button"
+        onClick={onMenu}
+        aria-label={t("home.heroMenu", { name: char.name || t("home.unnamedHero") } as any, "More for {name}")}
+        className="absolute right-1 top-1 flex h-11 w-9 items-center justify-center text-ink-muted"
+      >
+        <DotsThreeVertical size={20} weight="bold" />
+      </button>
+    </li>
+  );
+}
+
+function heroLine(char: Character, t: (k: string, a?: any, fb?: string) => string) {
+  const level = t("home.levelLong", { level: char.level || 1 } as any, "Level {level}");
+  return `${level} ${char.class || t("home.unknown")}${char.race ? ` · ${char.race}` : ""}`;
+}
+
+function SettingGroup({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <div>
+      <h3 className="mb-2 text-xs font-bold tracking-widest text-ink-muted">{title}</h3>
+      <div className="grid grid-cols-2 gap-2.5">{children}</div>
+    </div>
+  );
+}
+
+function Choice({ selected, onClick, children }: { selected: boolean; onClick: () => void; children: React.ReactNode }) {
+  return (
+    <button type="button" onClick={onClick} aria-pressed={selected} className={selected ? "btn btn-primary py-2.5 text-sm" : pill}>
+      {children}
+    </button>
+  );
+}
+
+function Credits() {
+  const { t } = useLanguage();
+  return (
+    <p className="mx-4 mt-8 text-center text-[11px] leading-relaxed text-ink-muted">
+      {t("home.creditsIcons", "Icons by")}{" "}
+      <a href="https://game-icons.net" target="_blank" rel="noopener noreferrer" className="underline">Game Icons</a>{" "}
+      (Lorc, Delapouite {t("home.creditsAnd", "and others")}),{" "}
+      <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener noreferrer" className="underline">CC BY 3.0</a>.{" "}
+      {t("home.creditsSrd", "Includes material from the System Reference Documents 5.1 and 5.2 by Wizards of the Coast LLC,")}{" "}
+      <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer" className="underline">CC BY 4.0</a>.
+    </p>
+  );
+}
+
+function relativeTime(ts: number, language: string): string {
+  const fmt = new Intl.RelativeTimeFormat(language === "id" ? "id" : "en", { numeric: "auto" });
+  const mins = Math.round((ts - Date.now()) / 60000);
+  if (Math.abs(mins) < 60) return fmt.format(mins, "minute");
+  const hours = Math.round(mins / 60);
+  if (Math.abs(hours) < 24) return fmt.format(hours, "hour");
+  return fmt.format(Math.round(hours / 24), "day");
 }

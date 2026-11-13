@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, useMemo, useCallback, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useMemo, useCallback, useSyncExternalStore, type ReactNode } from "react";
 import { useStored, writeStored } from "@/lib/use-stored";
 
 type Theme = "light" | "dark";
@@ -8,27 +8,40 @@ type Theme = "light" | "dark";
 interface ThemeContextType {
   theme: Theme;
   toggleTheme: () => void;
+  setTheme: (theme: Theme) => void;
 }
 
-const ThemeContext = createContext<ThemeContextType>({ theme: "light", toggleTheme: () => {} });
+const ThemeContext = createContext<ThemeContextType>({ theme: "light", toggleTheme: () => {}, setTheme: () => {} });
 
 export function useTheme() {
   return useContext(ThemeContext);
 }
 
+const DARK_QUERY = "(prefers-color-scheme: dark)";
+
+function subscribeScheme(onChange: () => void) {
+  const query = matchMedia(DARK_QUERY);
+  query.addEventListener("change", onChange);
+  return () => query.removeEventListener("change", onChange);
+}
+
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const saved = useStored("dnd-theme");
-  const theme: Theme = saved === "dark" ? "dark" : "light";
+  const systemDark = useSyncExternalStore(subscribeScheme, () => matchMedia(DARK_QUERY).matches, () => false);
+  // No saved pick: follow the device's light or dark setting.
+  const theme: Theme = saved === "dark" || saved === "light" ? saved : systemDark ? "dark" : "light";
 
   useEffect(() => {
-    if (saved) document.documentElement.setAttribute("data-theme", saved);
-  }, [saved]);
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
 
   const toggleTheme = useCallback(() => {
     writeStored("dnd-theme", theme === "light" ? "dark" : "light");
   }, [theme]);
 
-  const value = useMemo(() => ({ theme, toggleTheme }), [theme, toggleTheme]);
+  const setTheme = useCallback((next: Theme) => writeStored("dnd-theme", next), []);
+
+  const value = useMemo(() => ({ theme, toggleTheme, setTheme }), [theme, toggleTheme, setTheme]);
 
   return (
     <ThemeContext.Provider value={value}>
