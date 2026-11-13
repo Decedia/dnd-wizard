@@ -39,6 +39,14 @@ export const FEAT_FIXED_GRANTS: Record<string, FixedFeatGrants> = {
   "Gift of the Metallic Dragon": { spells: ["Cure Wounds"] },
 };
 
+/** The same for 2024 feats (their ability increases are picks, in feat-options). */
+const FEAT_FIXED_GRANTS_2024: Record<string, FixedFeatGrants> = {
+  "Tavern Brawler": { proficiencies: ["Improvised Weapons"] },
+};
+
+const fixedGrants = (featName: string, ruleset?: string): FixedFeatGrants =>
+  (ruleset === "2024" ? FEAT_FIXED_GRANTS_2024[featName] : FEAT_FIXED_GRANTS[featName]) || {};
+
 const MAX_SCORE = 20;
 const ABILITY_KEYS = ["str", "dex", "con", "int", "wis", "cha"];
 
@@ -80,7 +88,7 @@ export function featAbilityIncreases(featName: string, options: Record<string, s
  */
 export function applyFeatGrants(character: Character, featName: string, options: Record<string, string> = {}): Character {
   const ruleset = character.ruleset;
-  const fixed: FixedFeatGrants = (ruleset !== "2024" && FEAT_FIXED_GRANTS[featName]) || {};
+  const fixed = fixedGrants(featName, ruleset);
   const groups = getFeatOptionGroups(featName, ruleset);
   const skillNames = new Set<string>(SKILLS.map((s) => s.name));
 
@@ -173,7 +181,7 @@ export function applyFeatGrants(character: Character, featName: string, options:
  */
 export function removeFeatGrants(character: Character, featName: string, options: Record<string, string> = {}): Character {
   const ruleset = character.ruleset;
-  const fixed: FixedFeatGrants = (ruleset !== "2024" && FEAT_FIXED_GRANTS[featName]) || {};
+  const fixed = fixedGrants(featName, ruleset);
   const scores: Record<string, number> = {};
   for (const [ability, amount] of Object.entries(featAbilityIncreases(featName, options, ruleset))) {
     if (!ABILITY_KEYS.includes(ability)) continue;

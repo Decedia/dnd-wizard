@@ -90,11 +90,11 @@ describe("2024 species, backgrounds, feats", () => {
     expect(weaponMastery.weapons).toEqual(fixture.weaponMastery);
   });
   test("backgrounds", () => {
-    const got = Object.fromEntries(getStaticBackgrounds2024().map((b) => [b.name, { abilityScores: b.abilityScores, feat: b.feat, skills: b.skills, tools: b.tools }]));
+    const got = Object.fromEntries(getStaticBackgrounds2024("en", ["PHB"]).map((b) => [b.name, { abilityScores: b.abilityScores, feat: b.feat, skills: b.skills, tools: b.tools }]));
     expect(got).toEqual(fixture.backgrounds);
   });
   test("feats", () => {
-    expect(Object.fromEntries(getStaticFeats([], "2024").map((f: any) => [f.name, f.category]))).toEqual(fixture.feats);
+    expect(Object.fromEntries(getStaticFeats(["PHB"], "2024").map((f: any) => [f.name, f.category]))).toEqual(fixture.feats);
   });
 });
 

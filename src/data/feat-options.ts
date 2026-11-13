@@ -101,6 +101,17 @@ const TOOLS: FeatOptionChoice[] = [
   { value: "Woodcarver's Tools", label: "Woodcarver's Tools" },
 ];
 
+const choices = (names: string[]): FeatOptionChoice[] => names.map((n) => ({ value: n, label: n }));
+
+/** The 2024 Artisan's Tools (Crafter, the Artisan background). */
+export const ARTISAN_TOOLS_2024 = [
+  "Alchemist's Supplies", "Brewer's Supplies", "Calligrapher's Supplies", "Carpenter's Tools", "Cartographer's Tools", "Cobbler's Tools",
+  "Cook's Utensils", "Glassblower's Tools", "Jeweler's Tools", "Leatherworker's Tools", "Mason's Tools", "Painter's Supplies",
+  "Potter's Tools", "Smith's Tools", "Tinker's Tools", "Weaver's Tools", "Woodcarver's Tools",
+];
+/** The 2024 Musical Instruments (Musician, the Entertainer background). */
+export const MUSICAL_INSTRUMENTS_2024 = ["Bagpipes", "Drum", "Dulcimer", "Flute", "Horn", "Lute", "Lyre", "Pan Flute", "Shawm", "Viol"];
+
 const LANGUAGES: FeatOptionChoice[] = [
   { value: "Abyssal", label: "Abyssal" },
   { value: "Celestial", label: "Celestial" },
@@ -427,6 +438,9 @@ const FEAT_OPTIONS: Record<string, FeatOptionGroup[]> = {
   Skilled: repeated([
     optionGroup("skill_or_tool", "feat.opt.skillOrTool", "Skill or Tool", [...SKILLS, ...TOOLS], 3),
   ]),
+  // 2024 Player's Handbook Origin feats.
+  Crafter: repeated([optionGroup("tool", "feat.opt.tool", "Tool", choices(ARTISAN_TOOLS_2024), 3)]),
+  Musician: repeated([optionGroup("tool", "feat.opt.instrument", "Musical Instrument", choices(MUSICAL_INSTRUMENTS_2024), 3)]),
 
   "Skill Expert": [
     abilityGroup(...ALL_ABILITIES),
@@ -464,6 +478,9 @@ const FEAT_OPTIONS_2024: Record<string, FeatOptionGroup[]> = {
   Skilled: repeated([
     optionGroup("skill_or_tool", "feat.opt.skillOrTool", "Skill or Tool", [...SKILLS, ...TOOLS], 3),
   ]),
+  // 2024 Player's Handbook Origin feats.
+  Crafter: repeated([optionGroup("tool", "feat.opt.tool", "Tool", choices(ARTISAN_TOOLS_2024), 3)]),
+  Musician: repeated([optionGroup("tool", "feat.opt.instrument", "Musical Instrument", choices(MUSICAL_INSTRUMENTS_2024), 3)]),
   // General feats and Epic Boons give +1 to an ability (Epic Boons up to 30).
   Grappler: [abilityGroup("str", "dex")],
   ...Object.fromEntries(

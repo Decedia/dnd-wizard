@@ -39,21 +39,21 @@ export const QUICK_ORIGINS: Record<string, { race: string; background: string; a
 };
 
 /**
- * 2024 rules (SRD 5.2: 9 species, 4 backgrounds, one subclass per class): the
+ * 2024 rules (SRD 5.2 plus the 2024 Player's Handbook backgrounds): the
  * species and background that suit each class, and the lineage to take.
  */
 export const QUICK_ORIGINS_2024: Record<string, { race: string; background: string; lineage?: string }> = {
   Barbarian: { race: "Goliath", background: "Soldier", lineage: "giant-ancestry-stones-endurance" },
-  Bard: { race: "Human", background: "Acolyte" },
+  Bard: { race: "Human", background: "Entertainer" },
   Cleric: { race: "Dwarf", background: "Acolyte" },
-  Druid: { race: "Elf", background: "Sage", lineage: "elven-lineage-wood-elf" },
+  Druid: { race: "Elf", background: "Guide", lineage: "elven-lineage-wood-elf" },
   Fighter: { race: "Human", background: "Soldier" },
-  Monk: { race: "Elf", background: "Criminal", lineage: "elven-lineage-wood-elf" },
+  Monk: { race: "Elf", background: "Hermit", lineage: "elven-lineage-wood-elf" },
   Paladin: { race: "Dragonborn", background: "Soldier", lineage: "draconic-ancestor-gold" },
-  Ranger: { race: "Elf", background: "Criminal", lineage: "elven-lineage-wood-elf" },
+  Ranger: { race: "Elf", background: "Guide", lineage: "elven-lineage-wood-elf" },
   Rogue: { race: "Halfling", background: "Criminal" },
   Sorcerer: { race: "Tiefling", background: "Acolyte", lineage: "fiendish-legacy-infernal" },
-  Warlock: { race: "Tiefling", background: "Acolyte", lineage: "fiendish-legacy-infernal" },
+  Warlock: { race: "Tiefling", background: "Charlatan", lineage: "fiendish-legacy-infernal" },
   Wizard: { race: "Elf", background: "Sage", lineage: "elven-lineage-high-elf" },
 };
 
@@ -306,7 +306,9 @@ export function completeQuickDraft2024(draft: Character, persona: QuickPersona, 
   if (species?.originFeat && !selections[ORIGIN_FEAT_KEY.species]?.[0]) {
     selections[ORIGIN_FEAT_KEY.species] = [bg?.feat === "Alert" ? "Skilled" : "Alert"];
   }
-  if (bg?.toolChoice && !selections[BACKGROUND_TOOL_KEY]?.[0]) selections[BACKGROUND_TOOL_KEY] = ["Dice Set"];
+  if (bg?.toolChoice && !selections[BACKGROUND_TOOL_KEY]?.[0]) {
+    selections[BACKGROUND_TOOL_KEY] = [bg.toolKind === "artisan" ? "Smith's Tools" : bg.toolKind === "instrument" ? "Lute" : "Dice Set"];
+  }
   c.featureSelections = selections;
   for (const feat of originFeats(c)) {
     const options = { ...feat.options };

@@ -1073,7 +1073,7 @@ export function getHpBonusPerLevel(character: Character): number {
     picks.some(([key, value]) => (/^asi-feat-\d+$/.test(key) || key === "variant-human-feat") && value?.[0] === "Tough");
   return (tookTough ? 2 : 0) +
     (character.race === "Hill Dwarf" ? 1 : 0) +
-    (character.class === "Sorcerer" && character.subclass === "Draconic Bloodline" ? 1 : 0);
+    (character.class === "Sorcerer" && (character.subclass === "Draconic Bloodline" || character.subclass === "Draconic Sorcery") ? 1 : 0);
 }
 
 /**
@@ -1219,7 +1219,8 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   // Luck points come from the Lucky feat, not a class table.
   {
     const level = character.level;
-    if (hasFeat(character, "Lucky")) luckPoints = 3;
+    // 2024 Lucky: as many as the Proficiency Bonus.
+    if (hasFeat(character, "Lucky")) luckPoints = character.ruleset === "2024" ? getProficiencyBonus(level) : 3;
   }
 
   if (classData) {
