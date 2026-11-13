@@ -145,7 +145,7 @@ export function StepSpellCounts() {
             <div className="flex-1">
               <div className="text-[10px] font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider">{t("spell.prepareSpells", "Prepare Spells")}</div>
               <div className={`text-xs ${needPrepare ? "text-red-500" : "text-[var(--color-text-primary)]"}`}>
-                {info.maxPrepared} spells preparable
+                {t("spell.preparableCount", "{n} spells preparable", { n: info.maxPrepared })}
                 {info.spellSelectionCount > 0 && (
                   <span className="ml-1">({selectedSpells}/{info.spellSelectionCount} selected)</span>
                 )}

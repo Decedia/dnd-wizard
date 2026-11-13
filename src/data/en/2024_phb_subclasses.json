@@ -1,0 +1,547 @@
+{
+ "subclasses": [
+  {
+   "class": "Barbarian",
+   "classIndex": "barbarian",
+   "index": "path-of-the-wild-heart-2024",
+   "name": "Path of the Wild Heart",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Walk in Community with the Animal World",
+   "description": "Barbarians on this path see themselves as kin to beasts. Their Rage calls on the strength of a bear, the speed of an eagle or the teamwork of a wolf.",
+   "features": [
+    {
+     "name": "Animal Speaker",
+     "level": 3,
+     "description": "You can cast Beast Sense and Speak with Animals, but only as Rituals. Wisdom is your spellcasting ability for them."
+    },
+    {
+     "name": "Rage of the Wilds",
+     "level": 3,
+     "description": "Each time you start your Rage, pick one animal. Its gift lasts while the Rage lasts.\n\nBear. You have Resistance to every damage type except Force, Necrotic, Psychic and Radiant.\n\nEagle. When you start the Rage you can take the Dash and Disengage actions as part of that Bonus Action. While raging you can take one of them as a Bonus Action.\n\nWolf. Your allies have Advantage on attack rolls against any enemy within 5 feet of you."
+    },
+    {
+     "name": "Aspect of the Wilds",
+     "level": 6,
+     "description": "Pick one gift. You can change it after a Long Rest.\n\nOwl. You gain Darkvision 60 feet, or 60 more feet if you already have it.\n\nPanther. You gain a Climb Speed equal to your Speed.\n\nSalmon. You gain a Swim Speed equal to your Speed."
+    },
+    {
+     "name": "Nature Speaker",
+     "level": 10,
+     "description": "You can cast Commune with Nature, but only as a Ritual. Wisdom is your spellcasting ability for it."
+    },
+    {
+     "name": "Power of the Wilds",
+     "level": 14,
+     "description": "Each time you start your Rage, pick one more gift. It lasts while the Rage lasts.\n\nFalcon. While you wear no armor you have a Fly Speed equal to your Speed.\n\nLion. Enemies within 5 feet of you have Disadvantage on attack rolls against anyone but you or another barbarian with this gift.\n\nRam. When you hit a Large or smaller creature with a melee attack, you can knock it Prone."
+    }
+   ]
+  },
+  {
+   "class": "Barbarian",
+   "classIndex": "barbarian",
+   "index": "path-of-the-world-tree-2024",
+   "name": "Path of the World Tree",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Trace the Roots and Branches of the Multiverse",
+   "description": "These barbarians draw on the cosmic tree that links the planes. Their Rage shields friends with life and pulls enemies close.",
+   "features": [
+    {
+     "name": "Vitality of the Tree",
+     "level": 3,
+     "description": "Vitality Surge. When you start your Rage you gain Temporary Hit Points equal to your Barbarian level.\n\nLife-Giving Force. At the start of each of your turns while raging, you can pick another creature within 10 feet of you. It gains Temporary Hit Points: roll as many d6s as your Rage Damage bonus and add them up. They vanish when your Rage ends."
+    },
+    {
+     "name": "Branches of the Tree",
+     "level": 6,
+     "description": "While raging, when a creature you can see starts its turn within 30 feet of you, you can take a Reaction. It makes a Strength saving throw (DC 8 + your Strength modifier + Proficiency Bonus). On a failure you teleport it to an empty space within 5 feet of you, or as close as you can, and its Speed is 0 until the end of that turn."
+    },
+    {
+     "name": "Battering Roots",
+     "level": 10,
+     "description": "On your turn, your reach is 10 feet longer with melee weapons that have the Heavy or Versatile property. When you hit with such a weapon you can use the Push or Topple mastery, on top of the weapon's own mastery."
+    },
+    {
+     "name": "Travel along the Tree",
+     "level": 14,
+     "description": "When you start your Rage, and as a Bonus Action while raging, you can teleport up to 60 feet to a space you can see. Once per Rage you can teleport up to 150 feet instead and bring up to six willing creatures within 10 feet of you, each landing within 10 feet of where you arrive."
+    }
+   ]
+  },
+  {
+   "class": "Barbarian",
+   "classIndex": "barbarian",
+   "index": "path-of-the-zealot-2024",
+   "name": "Path of the Zealot",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Rage in Ecstatic Union with a God",
+   "description": "Zealots are filled with the power of a god. Their fury deals holy or deathly damage and keeps them on their feet.",
+   "features": [
+    {
+     "name": "Divine Fury",
+     "level": 3,
+     "description": "While raging, the first creature you hit on each of your turns with a weapon or Unarmed Strike takes extra damage: 1d6 plus half your Barbarian level, rounded down. Pick Necrotic or Radiant each time."
+    },
+    {
+     "name": "Warrior of the Gods",
+     "level": 3,
+     "description": "You have a pool of d12s for healing: four at level 3, five at level 6, six at level 12 and seven at level 17. As a Bonus Action, spend any number of them, roll them and regain that many Hit Points. The pool refills after a Long Rest."
+    },
+    {
+     "name": "Fanatical Focus",
+     "level": 6,
+     "description": "Once per Rage, when you fail a saving throw, you can reroll it with a bonus equal to your Rage Damage bonus. You must use the new roll."
+    },
+    {
+     "name": "Zealous Presence",
+     "level": 10,
+     "description": "As a Bonus Action, you let out a battle cry. Up to ten creatures of your choice within 60 feet have Advantage on attack rolls and saving throws until the start of your next turn. Once per Long Rest, or spend one use of Rage to do it again."
+    },
+    {
+     "name": "Rage of the Gods",
+     "level": 14,
+     "description": "When you start your Rage you can take on a divine form for 1 minute or until you have 0 Hit Points. You fly at your Speed and can hover, you have Resistance to Necrotic, Psychic and Radiant damage, and when a creature within 30 feet would drop to 0 Hit Points you can take a Reaction and spend a use of Rage to set its Hit Points to your Barbarian level instead. Once per Long Rest, or spend a level 3+ spell slot to do it again."
+    }
+   ]
+  },
+  {
+   "class": "Fighter",
+   "classIndex": "fighter",
+   "index": "battle-master-2024",
+   "name": "Battle Master",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Master Sophisticated Battle Maneuvers",
+   "description": "Battle Masters turn training into tricks. They spend superiority dice on maneuvers that trip, push, rally and outwit.",
+   "features": [
+    {
+     "name": "Combat Superiority",
+     "level": 3,
+     "description": "You learn three maneuvers and have four superiority dice, which are d8s. A maneuver spends one die unless it says otherwise; spent dice come back after a Short or Long Rest. You learn two more maneuvers at levels 7, 10 and 15, and gain a fifth die at level 7 and a sixth at level 15. Maneuver saving throws use DC 8 + your Strength or Dexterity modifier + Proficiency Bonus. When you learn new maneuvers you can also swap one you know."
+    },
+    {
+     "name": "Student of War",
+     "level": 3,
+     "description": "You gain proficiency with one type of Artisan's Tools of your choice and one skill of your choice from the Fighter skill list."
+    },
+    {
+     "name": "Know Your Enemy",
+     "level": 7,
+     "description": "As a Bonus Action, study a creature you can see within 30 feet. You learn its Immunities, Resistances and Vulnerabilities. Once per Long Rest, or spend a superiority die to do it again."
+    },
+    {
+     "name": "Improved Combat Superiority",
+     "level": 10,
+     "description": "Your superiority dice become d10s."
+    },
+    {
+     "name": "Relentless",
+     "level": 15,
+     "description": "Once per turn, when you use a maneuver, you can roll a d8 and use it instead of spending a superiority die."
+    },
+    {
+     "name": "Ultimate Combat Superiority",
+     "level": 18,
+     "description": "Your superiority dice become d12s."
+    }
+   ],
+   "featureChoices": {
+    "Combat Superiority": {
+     "count": 3,
+     "countByLevel": {
+      "3": 3,
+      "7": 2,
+      "10": 2,
+      "15": 2
+     },
+     "description": "Pick the maneuvers you know. Each one spends a superiority die.",
+     "options": [
+      {
+       "name": "Ambush",
+       "description": "When you make a Dexterity (Stealth) check or an Initiative roll, spend a die and add it to the roll (not while Incapacitated)."
+      },
+      {
+       "name": "Bait and Switch",
+       "description": "On your turn, spend a die and 5 feet of movement to swap places with a willing creature within 5 feet. One of you adds the die to AC until the start of your next turn."
+      },
+      {
+       "name": "Commander's Strike",
+       "description": "When you take the Attack action, give up one attack and use a Bonus Action. An ally who can see or hear you can use its Reaction to make one attack and adds the die to its damage."
+      },
+      {
+       "name": "Commanding Presence",
+       "description": "When you make a Charisma (Intimidation, Performance or Persuasion) check, spend a die and add it to the roll."
+      },
+      {
+       "name": "Disarming Attack",
+       "description": "When you hit, spend a die and add it to the damage. The target makes a Strength save or drops one object you choose that it holds."
+      },
+      {
+       "name": "Distracting Strike",
+       "description": "When you hit, spend a die and add it to the damage. The next attack against the target by someone other than you has Advantage, if made before the start of your next turn."
+      },
+      {
+       "name": "Evasive Footwork",
+       "description": "As a Bonus Action, spend a die and take the Disengage action. Add the die to your AC until the start of your next turn."
+      },
+      {
+       "name": "Feinting Attack",
+       "description": "As a Bonus Action, spend a die to feint at a creature within 5 feet. Your next attack against it this turn has Advantage and adds the die to damage on a hit."
+      },
+      {
+       "name": "Goading Attack",
+       "description": "When you hit, spend a die and add it to the damage. The target makes a Wisdom save or has Disadvantage on attacks against anyone but you until the end of your next turn."
+      },
+      {
+       "name": "Lunging Attack",
+       "description": "As a Bonus Action, spend a die and take the Dash action. If you move at least 5 feet in a straight line before hitting with a melee attack this turn, add the die to the damage."
+      },
+      {
+       "name": "Maneuvering Attack",
+       "description": "When you hit, spend a die and add it to the damage. An ally who can see or hear you can use its Reaction to move up to half its Speed without provoking Opportunity Attacks from the target."
+      },
+      {
+       "name": "Menacing Attack",
+       "description": "When you hit, spend a die and add it to the damage. The target makes a Wisdom save or is Frightened of you until the end of your next turn."
+      },
+      {
+       "name": "Parry",
+       "description": "When a melee attack damages you, take a Reaction and spend a die. Reduce the damage by the die roll plus your Strength or Dexterity modifier."
+      },
+      {
+       "name": "Precision Attack",
+       "description": "When you miss with an attack roll, spend a die and add it to the roll. It can turn the miss into a hit."
+      },
+      {
+       "name": "Pushing Attack",
+       "description": "When you hit, spend a die and add it to the damage. A Large or smaller target makes a Strength save or is pushed up to 15 feet away from you."
+      },
+      {
+       "name": "Rally",
+       "description": "As a Bonus Action, spend a die. An ally who can see or hear you gains Temporary Hit Points equal to the die roll plus half your Fighter level."
+      },
+      {
+       "name": "Riposte",
+       "description": "When a creature misses you with a melee attack, take a Reaction and spend a die to make one melee attack against it. Add the die to the damage on a hit."
+      },
+      {
+       "name": "Sweeping Attack",
+       "description": "When you hit with a melee attack, spend a die. Pick another creature within 5 feet of the target and within your reach: if the original attack roll would hit it, it takes damage equal to the die roll."
+      },
+      {
+       "name": "Tactical Assessment",
+       "description": "When you make an Intelligence (History or Investigation) or Wisdom (Insight) check, spend a die and add it to the roll."
+      },
+      {
+       "name": "Trip Attack",
+       "description": "When you hit, spend a die and add it to the damage. A Large or smaller target makes a Strength save or falls Prone."
+      }
+     ]
+    }
+   }
+  },
+  {
+   "class": "Fighter",
+   "classIndex": "fighter",
+   "index": "eldritch-knight-2024",
+   "name": "Eldritch Knight",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Support Combat Skills with Arcane Magic",
+   "description": "Eldritch Knights mix weapon training with wizard magic: shields and blasts between sword swings.",
+   "features": [
+    {
+     "name": "Spellcasting",
+     "level": 3,
+     "description": "You cast Wizard spells, with Intelligence as your spellcasting ability. You know two Wizard cantrips (three at level 10) and prepare three level 1 Wizard spells. The number of prepared spells grows as you level, up to 13 at level 20, and you can swap one prepared spell each time you gain a Fighter level. Your spell slots follow the Eldritch Knight table: two level 1 slots at level 3, up to level 4 slots at level 19."
+    },
+    {
+     "name": "War Bond",
+     "level": 3,
+     "description": "Over a 1-hour ritual during a Short or Long Rest, you bond with a weapon. You can't be disarmed of it unless you are Incapacitated, and as a Bonus Action you can call it to your hand from anywhere on the same plane. You can bond with two weapons; a third replaces one of them."
+    },
+    {
+     "name": "War Magic",
+     "level": 7,
+     "description": "When you take the Attack action, you can replace one of the attacks with casting one of your Wizard cantrips that takes an action."
+    },
+    {
+     "name": "Eldritch Strike",
+     "level": 10,
+     "description": "When you hit a creature with a weapon attack, it has Disadvantage on the next saving throw it makes against a spell you cast before the end of your next turn."
+    },
+    {
+     "name": "Arcane Charge",
+     "level": 15,
+     "description": "When you use Action Surge, you can also teleport up to 30 feet to an empty space you can see, before or after the extra action."
+    },
+    {
+     "name": "Improved War Magic",
+     "level": 18,
+     "description": "When you take the Attack action, you can replace two of the attacks with casting one of your level 1 or 2 Wizard spells that takes an action."
+    }
+   ]
+  },
+  {
+   "class": "Fighter",
+   "classIndex": "fighter",
+   "index": "psi-warrior-2024",
+   "name": "Psi Warrior",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Augment Physical Might with Psionic Power",
+   "description": "Psi Warriors fight with mind as well as muscle: telekinetic shields, mental strikes and flying leaps.",
+   "features": [
+    {
+     "name": "Psionic Power",
+     "level": 3,
+     "description": "Your Psionic Energy dice: four d6s at level 3, six d8s at level 5, eight d8s at level 9, eight d10s at level 11, ten d10s at level 13 and twelve d12s at level 17. You regain one spent die after a Short Rest and all of them after a Long Rest.\n\nProtective Field. When you or a creature you can see within 30 feet takes damage, take a Reaction and spend a die: reduce the damage by the roll plus your Intelligence modifier (minimum 1).\n\nPsionic Strike. Once per turn, right after you hit a creature within 30 feet with an attack, spend a die: it takes extra Force damage equal to the roll plus your Intelligence modifier.\n\nTelekinetic Movement. As a Magic action, move a Large or smaller object, or a willing creature other than you, up to 30 feet. Once per Short or Long Rest, or spend a die to do it again."
+    },
+    {
+     "name": "Telekinetic Adept",
+     "level": 7,
+     "description": "Psi-Powered Leap. As a Bonus Action, gain a Fly Speed equal to twice your Speed until the end of the turn. Once per Short or Long Rest, or spend a die to do it again.\n\nTelekinetic Thrust. When you deal damage with Psionic Strike, the target makes a Strength saving throw (DC 8 + your Intelligence modifier + Proficiency Bonus) or you knock it Prone or push it up to 10 feet."
+    },
+    {
+     "name": "Guarded Mind",
+     "level": 10,
+     "description": "You have Resistance to Psychic damage. If you start your turn Charmed or Frightened, you can spend a die to end every such effect on you."
+    },
+    {
+     "name": "Bulwark of Force",
+     "level": 15,
+     "description": "As a Bonus Action, pick up to as many creatures as your Intelligence modifier (minimum 1) within 30 feet, you included. They have Half Cover for 1 minute or until you are Incapacitated. Once per Long Rest, or spend a die to do it again."
+    },
+    {
+     "name": "Telekinetic Master",
+     "level": 18,
+     "description": "You can cast Telekinesis without a spell slot or components, with Intelligence as the ability. While you concentrate on it, you can make one weapon attack as a Bonus Action on each of your turns. Once per Long Rest, or spend a die to do it again."
+    }
+   ]
+  },
+  {
+   "class": "Monk",
+   "classIndex": "monk",
+   "index": "warrior-of-mercy-2024",
+   "name": "Warrior of Mercy",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Manipulate Forces of Life and Death",
+   "description": "Warriors of Mercy heal with one hand and harm with the other, ending suffering one way or another.",
+   "features": [
+    {
+     "name": "Hand of Harm",
+     "level": 3,
+     "description": "Once per turn, when you hit a creature with an Unarmed Strike and deal damage, you can spend 1 Focus Point to deal extra Necrotic damage equal to one roll of your Martial Arts die plus your Wisdom modifier."
+    },
+    {
+     "name": "Hand of Healing",
+     "level": 3,
+     "description": "As a Magic action, spend 1 Focus Point to touch a creature: it regains Hit Points equal to one roll of your Martial Arts die plus your Wisdom modifier. When you use Flurry of Blows, you can swap one of its strikes for this healing without spending the Focus Point."
+    },
+    {
+     "name": "Implements of Mercy",
+     "level": 3,
+     "description": "You gain proficiency in the Insight and Medicine skills and with the Herbalism Kit."
+    },
+    {
+     "name": "Physician's Touch",
+     "level": 6,
+     "description": "Hand of Harm also leaves the target Poisoned until the end of your next turn. Hand of Healing also ends one of these conditions on the creature: Blinded, Deafened, Paralyzed, Poisoned or Stunned."
+    },
+    {
+     "name": "Flurry of Healing and Harm",
+     "level": 11,
+     "description": "When you use Flurry of Blows, you can swap each strike for Hand of Healing without spending Focus Points. Once per turn you can also use Hand of Harm with a Flurry strike without spending a Focus Point; you can do that a number of times equal to your Wisdom modifier (minimum 1) per Long Rest."
+    },
+    {
+     "name": "Hand of Ultimate Mercy",
+     "level": 17,
+     "description": "As a Magic action, touch a creature that died in the last 24 hours and spend 5 Focus Points. It comes back to life with Hit Points equal to 4d10 plus your Wisdom modifier, and the conditions listed in Physician's Touch end on it. Once per Long Rest."
+    }
+   ]
+  },
+  {
+   "class": "Monk",
+   "classIndex": "monk",
+   "index": "warrior-of-shadow-2024",
+   "name": "Warrior of Shadow",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Harness Shadow Power for Stealth and Subterfuge",
+   "description": "Warriors of Shadow move through darkness, step from shadow to shadow and strike unseen.",
+   "features": [
+    {
+     "name": "Shadow Arts",
+     "level": 3,
+     "description": "Darkness. Spend 1 Focus Point to cast Darkness without components. You can see inside it, and while it lasts you can move it 60 feet at the start of each of your turns.\n\nDarkvision. You gain Darkvision 60 feet, or 60 more feet if you already have it.\n\nShadowy Figments. You know the Minor Illusion cantrip, with Wisdom as the ability."
+    },
+    {
+     "name": "Shadow Step",
+     "level": 6,
+     "description": "While in Dim Light or Darkness, as a Bonus Action you can teleport up to 60 feet to an empty space you can see that is also in Dim Light or Darkness. You then have Advantage on the next melee attack you make before the end of the turn."
+    },
+    {
+     "name": "Improved Shadow Step",
+     "level": 11,
+     "description": "You can spend 1 Focus Point when you use Shadow Step to ignore its light requirement for both spaces. Right after teleporting you can also make one Unarmed Strike as part of the same Bonus Action."
+    },
+    {
+     "name": "Cloak of Shadows",
+     "level": 17,
+     "description": "As a Magic action while in Dim Light or Darkness, spend 3 Focus Points. For 1 minute, until you are Incapacitated or until you end your turn in Bright Light, you are Invisible, you can move through occupied spaces as Difficult Terrain, and Flurry of Blows costs no Focus Points."
+    }
+   ]
+  },
+  {
+   "class": "Monk",
+   "classIndex": "monk",
+   "index": "warrior-of-the-elements-2024",
+   "name": "Warrior of the Elements",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Wield Strikes and Bursts of Elemental Power",
+   "description": "Warriors of the Elements wrap their fists in fire, frost, lightning and wind, reaching and shoving foes from afar.",
+   "features": [
+    {
+     "name": "Elemental Attunement",
+     "level": 3,
+     "description": "At the start of your turn, spend 1 Focus Point to attune for 10 minutes or until you are Incapacitated. While attuned your Unarmed Strikes reach 10 feet farther, can deal Acid, Cold, Fire, Lightning or Thunder damage instead of their usual type, and on a hit you can force a Strength save (your Focus save DC) to push or pull the target up to 10 feet."
+    },
+    {
+     "name": "Manipulate Elements",
+     "level": 3,
+     "description": "You know the Elementalism cantrip, with Wisdom as the ability."
+    },
+    {
+     "name": "Elemental Burst",
+     "level": 6,
+     "description": "As a Magic action, spend 2 Focus Points to make a 20-foot-radius Sphere of energy at a point within 120 feet. Pick Acid, Cold, Fire, Lightning or Thunder. Each creature in it makes a Dexterity saving throw against your Focus save DC, taking three rolls of your Martial Arts die of that type on a failure, or half on a success."
+    },
+    {
+     "name": "Stride of the Elements",
+     "level": 11,
+     "description": "While Elemental Attunement is active, you have a Fly Speed and a Swim Speed equal to your Speed."
+    },
+    {
+     "name": "Elemental Epitome",
+     "level": 17,
+     "description": "While Elemental Attunement is active you gain more:\n\nDamage Resistance. At the start of each turn, pick Acid, Cold, Fire, Lightning or Thunder: you have Resistance to it until your next turn.\n\nDestructive Stride. When you use Step of the Wind, your Speed rises by 20 feet, and creatures you pass within 5 feet of can take one roll of your Martial Arts die of a chosen element (once per creature per turn).\n\nEmpowered Strikes. Once per turn, when you hit with an Unarmed Strike, add one roll of your Martial Arts die of the same type."
+    }
+   ]
+  },
+  {
+   "class": "Rogue",
+   "classIndex": "rogue",
+   "index": "arcane-trickster-2024",
+   "name": "Arcane Trickster",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Enhance Stealth with Arcane Spells",
+   "description": "Arcane Tricksters add wizard magic to their bag of tricks: an invisible mage hand, illusions and stolen spells.",
+   "features": [
+    {
+     "name": "Spellcasting",
+     "level": 3,
+     "description": "You cast Wizard spells, with Intelligence as your spellcasting ability. You know Mage Hand and two other Wizard cantrips (four in total at level 10) and prepare three level 1 Wizard spells. The number of prepared spells grows as you level, up to 13 at level 20, and you can swap one each time you gain a Rogue level. Your spell slots follow the Arcane Trickster table: two level 1 slots at level 3, up to level 4 slots at level 19."
+    },
+    {
+     "name": "Mage Hand Legerdemain",
+     "level": 3,
+     "description": "When you cast Mage Hand you can make the hand Invisible, and you can control it as a Bonus Action. With it you can make Dexterity (Sleight of Hand) checks, for example to pick a lock or a pocket, from up to 30 feet away."
+    },
+    {
+     "name": "Magical Ambush",
+     "level": 9,
+     "description": "If you have the Invisible condition when you cast a spell on a creature, it has Disadvantage on any saving throw it makes against the spell on that turn."
+    },
+    {
+     "name": "Versatile Trickster",
+     "level": 13,
+     "description": "When you use the Trip option of Cunning Strike, you can also aim it at a second creature within 5 feet of your Mage Hand."
+    },
+    {
+     "name": "Spell Thief",
+     "level": 17,
+     "description": "Right after a creature casts a spell that targets you or includes you in its area, take a Reaction. It makes a saving throw with its spellcasting ability against your spell save DC. On a failure the spell has no effect on you, and if it is level 1 or higher and a level you can cast, you know it for 8 hours while the caster can't cast it. Once per Long Rest."
+    }
+   ]
+  },
+  {
+   "class": "Rogue",
+   "classIndex": "rogue",
+   "index": "assassin-2024",
+   "name": "Assassin",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Practice the Grim Art of Death",
+   "description": "Assassins strike first and hardest. Disguises and poison help them get close.",
+   "features": [
+    {
+     "name": "Assassinate",
+     "level": 3,
+     "description": "You have Advantage on Initiative rolls. During the first round of a fight, you have Advantage on attack rolls against any creature that hasn't taken a turn yet, and when your Sneak Attack hits in that round the target takes extra damage equal to your Rogue level."
+    },
+    {
+     "name": "Assassin's Tools",
+     "level": 3,
+     "description": "You gain a Disguise Kit and a Poisoner's Kit and proficiency with both."
+    },
+    {
+     "name": "Infiltration Expertise",
+     "level": 9,
+     "description": "Masterful Mimicry. After hearing someone speak or seeing their handwriting for at least 1 minute, you can copy it. Others need a Wisdom (Insight) check against your Dexterity (Deception) check to spot the fake.\n\nRoving Aim. Your Speed isn't reduced to 0 by using Steady Aim."
+    },
+    {
+     "name": "Envenom Weapons",
+     "level": 13,
+     "description": "When you use the Poison option of Cunning Strike, the target also takes 2d6 Poison damage whether or not it succeeds on the save. This damage ignores Resistance to Poison."
+    },
+    {
+     "name": "Death Strike",
+     "level": 17,
+     "description": "When you hit with Sneak Attack in the first round of a fight, the target makes a Constitution saving throw (DC 8 + your Dexterity modifier + Proficiency Bonus). On a failure the attack's damage is doubled."
+    }
+   ]
+  },
+  {
+   "class": "Rogue",
+   "classIndex": "rogue",
+   "index": "soulknife-2024",
+   "name": "Soulknife",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "summary": "Strike Foes with Psionic Blades",
+   "description": "Soulknives form blades of pure thought, talk mind to mind and slip into minds to stun.",
+   "features": [
+    {
+     "name": "Psionic Power",
+     "level": 3,
+     "description": "Your Psionic Energy dice: four d6s at level 3, six d8s at level 5, eight d8s at level 9, eight d10s at level 11, ten d10s at level 13 and twelve d12s at level 17. You regain one spent die after a Short Rest and all of them after a Long Rest.\n\nPsi-Bolstered Knack. When you fail an ability check that uses a skill or tool you're proficient with, roll one die and add it. The die is spent only if the check then succeeds.\n\nPsychic Whispers. As a Magic action, pick up to as many creatures as your Proficiency Bonus within sight. Roll one die: for that many hours you can speak to each other mind to mind within 1 mile. The first use after a Long Rest is free; after that it spends the die."
+    },
+    {
+     "name": "Psychic Blades",
+     "level": 3,
+     "description": "When you take the Attack action or make an Opportunity Attack, you can make a psychic blade in your free hand for the attack. It is a Simple Melee weapon with Finesse and Thrown (range 60/120 feet) and the Vex mastery, dealing 1d6 Psychic damage plus your ability modifier. Right after attacking with it, you can make a second blade as a Bonus Action to attack again, dealing 1d4 Psychic damage plus your ability modifier."
+    },
+    {
+     "name": "Soul Blades",
+     "level": 9,
+     "description": "Homing Strikes. When an attack with your psychic blade misses, roll one die and add it to the attack roll. The die is spent only if the attack then hits.\n\nPsychic Teleportation. As a Bonus Action, spend a die and throw a blade at an empty space you can see up to 10 times the roll in feet away. You teleport there."
+    },
+    {
+     "name": "Psychic Veil",
+     "level": 13,
+     "description": "As a Magic action, you become Invisible for 1 hour or until you dismiss it. It ends early on you right after you deal damage to a creature or make one make a saving throw. Once per Long Rest, or spend a die to do it again."
+    },
+    {
+     "name": "Rend Mind",
+     "level": 17,
+     "description": "When you deal Sneak Attack damage with a psychic blade, the target makes a Wisdom saving throw (DC 8 + your Dexterity modifier + Proficiency Bonus) or is Stunned for 1 minute. It repeats the save at the end of each of its turns, ending the effect on a success. Once per Long Rest, or spend three dice to do it again."
+    }
+   ]
+  }
+ ]
+}

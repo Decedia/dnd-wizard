@@ -41,12 +41,24 @@ import subclassSpellsData from "@/data/subclass_spells.json";
 import { withIndonesian } from "./locale-2024";
 import species2024En from "@/data/en/2024_species.json";
 import classes2024En from "@/data/en/2024_classes.json";
-import subclasses2024En from "@/data/en/2024_subclasses.json";
+import subclasses2024Srd from "@/data/en/2024_subclasses.json";
+// The rest of the 2024 Player's Handbook (not in SRD 5.2), in our own words; source "PHB2024".
+import subclasses2024Phb from "@/data/en/2024_phb_subclasses.json";
+import { THIRD_CASTERS_2024 } from "@/data/phb2024-third-casters";
 import spells2024En from "@/data/en/2024_spells.json";
 import feats2024En from "@/data/en/2024_feats.json";
 import backgrounds2024En from "@/data/en/2024_backgrounds.json";
 const species2024Map: Record<string, { races: unknown[] }> = withIndonesian(species2024En);
-const classes2024Map: Record<string, { classes: unknown[] }> = withIndonesian(classes2024En);
+const subclasses2024En = { subclasses: [...subclasses2024Srd.subclasses, ...subclasses2024Phb.subclasses] };
+// Each class lists its subclasses; the 2024 Fighter and Rogue also get Eldritch Knight and Arcane Trickster casting.
+const classes2024With = {
+  classes: (classes2024En.classes as any[]).map((c) => ({
+    ...c,
+    ...(THIRD_CASTERS_2024[c.name] || {}),
+    subclasses: [...(c.subclasses || []), ...subclasses2024Phb.subclasses.filter((s) => s.class === c.name).map((s) => ({ index: s.index, name: s.name }))],
+  })),
+};
+const classes2024Map: Record<string, { classes: unknown[] }> = withIndonesian(classes2024With);
 const subclasses2024Map: Record<string, { subclasses: unknown[] }> = withIndonesian(subclasses2024En);
 const spells2024Map: Record<string, { spells: unknown[] }> = withIndonesian(spells2024En);
 const feats2024Map: Record<string, { feats: unknown[] }> = withIndonesian(feats2024En);

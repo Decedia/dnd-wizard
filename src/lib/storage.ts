@@ -343,6 +343,20 @@ export function clampAbilityScore(score: number): number {
   return Math.min(Math.max(score, 1), MAX_ABILITY_SCORE);
 }
 
+/**
+ * Psionic Energy dice. 2014 Psi Warrior (Tasha's): twice the proficiency bonus.
+ * 2024 Psi Warrior and Soulknife: 4 at level 3, 6 at 5, 8 at 9, 10 at 13, 12 at 17.
+ */
+export function psionicDiceMax(character: Pick<Character, "class" | "subclass" | "level" | "ruleset">): number {
+  const level = character.level || 1;
+  if (level < 3) return 0;
+  if (character.ruleset === "2024") {
+    const psionic = (character.class === "Fighter" && character.subclass === "Psi Warrior") || (character.class === "Rogue" && character.subclass === "Soulknife");
+    return psionic ? (level >= 17 ? 12 : level >= 13 ? 10 : level >= 9 ? 8 : level >= 5 ? 6 : 4) : 0;
+  }
+  return character.class === "Fighter" && character.subclass === "Psi Warrior" ? 2 * getProficiencyBonus(level) : 0;
+}
+
 /** Fighters and rogues cast only as an Eldritch Knight or Arcane Trickster. */
 export function castsSpells(character: Pick<Character, "class" | "subclass">): boolean {
   if (character.class === "Fighter" || character.class === "Rogue") return isThirdCaster(character.subclass);
@@ -1317,8 +1331,7 @@ export function computeDerivedStats(character: Character): Partial<Character> {
   wildShapeUses = keepPool(character.wildShapeUses, character.maxWildShapeUses, maxWildShapeUses);
   sorceryPoints = keepPool(character.sorceryPoints, character.maxSorceryPoints, maxSorceryPoints);
   superiorityDice = keepPool(character.superiorityDice, character.maxSuperiorityDice, maxSuperiorityDice);
-  // Psi Warrior (Tasha's), level 3: psionic dice equal to twice the proficiency bonus.
-  const maxPsionicDice = character.class === "Fighter" && character.subclass === "Psi Warrior" && (character.level || 1) >= 3 ? 2 * getProficiencyBonus(character.level || 1) : 0;
+  const maxPsionicDice = psionicDiceMax(character);
   const psionicDice = keepPool(character.psionicDice, character.maxPsionicDice, maxPsionicDice);
   bardicInspirationUses = keepPool(character.bardicInspirationUses, character.maxBardicInspirationUses, maxBardicInspirationUses);
   const maxLuckPoints = luckPoints;

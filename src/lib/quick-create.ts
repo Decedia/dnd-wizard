@@ -1,3 +1,4 @@
+import { defaultSources } from "@/lib/rulesets";
 import { activeRaceChoices, getStaticClass, getStaticRace, getStaticRaceDetails, getStaticRaces, getStaticSubclasses, getStaticWeapons } from "@/lib/srd-client";
 import { applyBackground, buildChoiceGroups, initializeCharacter, racePatch, syncBaseFeatures, type Character } from "@/lib/character-creation";
 import { addRows, expandToRows } from "@/lib/inventory";
@@ -134,7 +135,7 @@ export function startQuickDraft(className: string, subclass: string, ruleset: "2
   const origin = QUICK_ORIGINS[className] || QUICK_ORIGINS.Fighter;
   let c: Character = {
     ...initializeCharacter(),
-    sources: ruleset === "2024" ? ["PHB"] : QUICK_SOURCES,
+    sources: ruleset === "2024" ? defaultSources("2024") : QUICK_SOURCES,
     ruleset,
     class: className,
     abilityMethod: "standard" as any,
