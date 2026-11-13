@@ -1,3 +1,4 @@
+// @ts-ignore - bun:test is provided by the Bun runtime
 import { describe, expect, test } from "bun:test";
 import { readdirSync, readFileSync } from "fs";
 import { join } from "path";
@@ -20,7 +21,7 @@ function strings(value: unknown, out: string[] = []): string[] {
   return out;
 }
 
-const dataDir = join(import.meta.dir, "../data/id");
+const dataDir = join(process.cwd(), "src/data/id");
 const sources: Record<string, string[]> = { "src/locales/id.js": strings(id) };
 for (const f of readdirSync(dataDir).filter((f) => f.endsWith(".json")).sort()) {
   sources[`src/data/id/${f}`] = strings(JSON.parse(readFileSync(join(dataDir, f), "utf8")));
@@ -39,7 +40,7 @@ describe("Indonesian text keeps game terms in English", () => {
     const rows = Object.entries(now).map(([f, c]) => `${f}: ${Object.values(c).reduce((a, b) => a + b, 0)}`);
     console.log(`Translated game terms per file:\n${rows.join("\n")}`);
     if (process.env.ID_TERMS_WRITE) {
-      require("fs").writeFileSync(join(import.meta.dir, "fixtures/id-terms-baseline.json"), JSON.stringify(now, null, 1) + "\n");
+      require("fs").writeFileSync(join(process.cwd(), "src/tests/fixtures/id-terms-baseline.json"), JSON.stringify(now, null, 1) + "\n");
     }
   });
 

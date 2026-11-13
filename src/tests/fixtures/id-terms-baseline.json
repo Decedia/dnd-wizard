@@ -1,21 +1,5 @@
 {
- "src/locales/id.js": {
-  "damage": 11,
-  "damage type (fire, cold, ...)": 1,
-  "Advantage": 3,
-  "Disadvantage": 2,
-  "ability check": 1,
-  "Action / Bonus Action": 21,
-  "Reaction": 2,
-  "spell / spell slot": 56,
-  "Proficiency": 16,
-  "Expertise": 39,
-  "AC": 3,
-  "ability names (STR, DEX...)": 2,
-  "Concentration": 14,
-  "Short / Long Rest": 11,
-  "conditions (Charmed, Prone...)": 7
- },
+ "src/locales/id.js": {},
  "src/data/id/2014_classes.json": {
   "damage": 81,
   "Advantage": 15,
