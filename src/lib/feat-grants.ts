@@ -252,3 +252,36 @@ export function removeFeatGrants(character: Character, featName: string, options
     preparedSpells: (character.preparedSpells || []).filter((id) => kept.has(id)),
   };
 }
+
+/**
+ * Picks a taken feat still owes at the character's level: option groups that
+ * open at a higher level (Ritual Caster's extra spell when the Proficiency
+ * Bonus goes up) and have no value yet.
+ */
+export function openFeatPicks(character: Pick<Character, "featureSelections" | "ruleset" | "level">): { feat: string; key: string; groupIds: string[] }[] {
+  const out: { feat: string; key: string; groupIds: string[] }[] = [];
+  const selections = character.featureSelections || {};
+  for (const [key, values] of Object.entries(selections)) {
+    if (!/^(asi-feat-\d+|variant-human-feat|origin-feat-(background|species))$/.test(key)) continue;
+    const feat = (values || [])[0];
+    if (!feat) continue;
+    const options = decodeFeatOptions(selections[`${key}-options`]);
+    const groupIds = getFeatOptionGroups(feat, character.ruleset)
+      .filter((g) => g.minLevel && g.minLevel <= (character.level || 1) && !options[g.id])
+      .map((g) => g.id);
+    if (groupIds.length) out.push({ feat, key, groupIds });
+  }
+  return out;
+}
+
+/** Saves the picks for those open groups and gives what they grant (spells). Nothing else of the feat is applied again. */
+export function addFeatPicks(character: Character, key: string, feat: string, picks: Record<string, string>): Partial<Character> {
+  const selections = character.featureSelections || {};
+  const options = { ...decodeFeatOptions(selections[`${key}-options`]), ...picks };
+  const granted = applyFeatGrants({ ...character, spells: character.spells || [], cantrips: character.cantrips || [] }, feat, picks);
+  return {
+    featureSelections: { ...selections, [`${key}-options`]: encodeFeatOptions(options) },
+    spells: granted.spells,
+    cantrips: granted.cantrips,
+  };
+}

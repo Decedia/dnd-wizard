@@ -35,6 +35,9 @@ export const biggerDie = (a: string, b: string) => {
   return sides(b) > sides(a) ? b : a;
 };
 
+/** A weapon with the Thrown property. */
+export const isThrowable = (weapon: Row) => (weapon.properties || []).some((p) => p.toLowerCase() === "thrown");
+
 export const isRaging = (character: Pick<Character, "activeStates">) => (character.activeStates || []).includes("raging");
 
 /**
@@ -43,11 +46,13 @@ export const isRaging = (character: Pick<Character, "activeStates">) => (charact
  * (`rageDamage` defaults to the saved rage bonus for the character's level).
  * Returns null when the attack isn't a weapon in the inventory.
  */
-export function getWeaponAttackDetails(character: Character, attack: Character["attacks"][number], rageDamage = character.rageDamage || 0) {
+export function getWeaponAttackDetails(character: Character, attack: Character["attacks"][number], rageDamage = character.rageDamage || 0, opts: { thrown?: boolean } = {}) {
   const weapon = character.inventory.find((i) => i.id === attack.id);
   if (!weapon || weapon.itemType !== "weapon") return null;
   const profBonus = getProficiencyBonus(character.level);
-  const rage = character.class === "Barbarian" && isRaging(character) ? rageDamage : 0;
+  // A melee weapon thrown is a ranged attack: no Dueling, and Rage only in 2024 (any Strength attack).
+  const thrown = !!opts.thrown && weapon.category !== "ranged";
+  const rage = character.class === "Barbarian" && isRaging(character) && (!thrown || character.ruleset === "2024") ? rageDamage : 0;
   const finesseOrRanged = isFinesseOrRanged(weapon);
   const strMod = getModifier(character.str);
   const dexMod = getModifier(character.dex);
@@ -65,14 +70,13 @@ export function getWeaponAttackDetails(character: Character, attack: Character["
   ]);
   // Dueling: a melee weapon in one hand and no other weapon held.
   const hands = heldInHands(character.inventory || []);
-  const dueling = !ranged && hands.main?.id === weapon.id && !hands.twoHanded && hands.off?.itemType !== "weapon" && hasFightingStyle(character, "Dueling");
+  const dueling = !ranged && !thrown && hands.main?.id === weapon.id && !hands.twoHanded && hands.off?.itemType !== "weapon" && hasFightingStyle(character, "Dueling");
   const damageParts: BonusPart[] = [
     { source: `@${abilityKey}`, value: abilityMod },
     ...(abilityKey === "str" && rage ? [{ source: "Rage", value: rage }] : []),
     ...(dueling ? [{ source: "Dueling", value: 2 }] : []),
-    // Thrown Weapon Fighting: +2 damage on a ranged attack with a Thrown weapon (darts here;
-    // a javelin or handaxe listed as a melee attack gets it only when thrown).
-    ...(ranged && (weapon.properties || []).some((p) => p.toLowerCase() === "thrown") && hasFightingStyle(character, "Thrown Weapon Fighting")
+    // Thrown Weapon Fighting: +2 damage on a ranged attack with a Thrown weapon.
+    ...((ranged || thrown) && isThrowable(weapon) && hasFightingStyle(character, "Thrown Weapon Fighting")
       ? [{ source: "Thrown Weapon Fighting", value: 2 }]
       : []),
     // 2024 Great Weapon Master: a Heavy weapon adds the Proficiency Bonus to damage.

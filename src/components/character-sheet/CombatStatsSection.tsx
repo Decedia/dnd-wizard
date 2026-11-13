@@ -14,6 +14,8 @@ import { useState, useCallback } from "react";
 import { XIcon as X } from "@/components/icons";
 import { StateTracker } from "./StateTracker";
 import { Timers } from "./Timers";
+import { RichInline } from "@/components/RichText";
+import { activeResistances, damageResistances, DAMAGE_TYPES, reducedDamage, type Resistance } from "@/lib/resistances";
 import { BuffTracker } from "./BuffTracker";
 import { BasePopup } from "@/components/BasePopup";
 import { initiativeParts, saveParts } from "@/lib/roll-parts";
@@ -38,6 +40,7 @@ export function CombatStatsSection({ character, onChange, editMode = true, onOpe
   const isSorcerer = character.class === "Sorcerer";
   const [hpModal, setHpModal] = useState<{ mode: "heal" | "damage" } | null>(null);
   const [hpAmount, setHpAmount] = useState("");
+  const [damageHow, setDamageHow] = useState<"normal" | "resist" | "immune">("normal");
   const [concentrationCheck, setConcentrationCheck] = useState<{ damage: number; roll?: number } | null>(null);
 
   // Check if character has active concentration spells
@@ -45,9 +48,12 @@ export function CombatStatsSection({ character, onChange, editMode = true, onOpe
   const dice = useDice();
   const isWarCaster = (character.features || []).some((f) => f.name.toLowerCase().includes("war caster"));
 
+  const resistances = damageResistances(character as Character);
+  const resistingNow = activeResistances(character as Character);
   const handleHpAction = useCallback(() => {
-    const amount = parseInt(hpAmount, 10);
-    if (isNaN(amount) || amount <= 0) return;
+    const typed = parseInt(hpAmount, 10);
+    const amount = hpModal?.mode === "damage" ? reducedDamage(typed, damageHow) : typed;
+    if (isNaN(typed) || typed <= 0) return;
     if (hpModal?.mode === "heal") {
       onChange({ currentHp: Math.min(maxHp, character.currentHp + amount) });
     } else if (hpModal?.mode === "damage") {
@@ -76,7 +82,8 @@ export function CombatStatsSection({ character, onChange, editMode = true, onOpe
     }
     setHpModal(null);
     setHpAmount("");
-  }, [hpModal, hpAmount, character, onChange, hasConcentration, maxHp]);
+    setDamageHow("normal");
+  }, [hpModal, hpAmount, character, onChange, hasConcentration, maxHp, damageHow]);
 
   return (
     <SectionCard id="combat-stats" title={t("section.combatStats", "Combat Stats")} icon={<Sword className="h-5 w-5" />}>
@@ -283,6 +290,23 @@ export function CombatStatsSection({ character, onChange, editMode = true, onOpe
         )}
       </div>
 
+      {resistances.length > 0 && (
+        <div className="mt-4 pt-3 border-t border-[var(--color-border)]">
+          <span className="field-label-light mb-1 block">{t("combat.resistances", "Resistances")}</span>
+          <ul className="space-y-1">
+            {resistanceLines(resistances).map((line) => (
+              <li key={line.source + line.mark} className="text-xs text-[var(--color-text-secondary)]">
+                <span className="font-semibold text-[var(--color-text-primary)]">{line.source}</span>
+                {line.mark === "immune" && <span className="ml-1 text-[10px] uppercase text-[var(--color-text-muted)]">{t("combat.immune", "immune")}</span>}
+                {line.mark === "raging" && <span className="ml-1 text-[10px] uppercase text-[var(--color-text-muted)]">{t("combat.whileRaging", "while raging")}</span>}
+                <span className="mx-1">·</span>
+                {line.allBut ? t("combat.allBut", { types: line.allBut.join(", ") }, "all but {types}") : <RichInline text={line.types.join(", ")} />}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       <StateTracker
         activeStates={character.activeStates || []}
         onToggle={(stateId) => {
@@ -383,7 +407,7 @@ export function CombatStatsSection({ character, onChange, editMode = true, onOpe
       {hpModal && (
         <BasePopup
           isOpen={true}
-          onClose={() => { setHpModal(null); setHpAmount(""); setConcentrationCheck(null); }}
+          onClose={() => { setHpModal(null); setHpAmount(""); setConcentrationCheck(null); setDamageHow("normal"); }}
           title={hpModal.mode === "heal" ? t("character.heal") : t("button.takeDamage", "Take Damage")}
           confirmLabel={hpModal.mode === "heal" ? t("character.heal") : t("button.apply")}
           cancelLabel={t("common.cancel")}
@@ -403,6 +427,31 @@ export function CombatStatsSection({ character, onChange, editMode = true, onOpe
               min={1}
             />
           </div>
+          {hpModal?.mode === "damage" && resistingNow.length > 0 && (
+            <div className="mx-4 mb-3">
+              <p className="mb-2 text-[11px] text-[var(--color-text-secondary)]">
+                {t("combat.youResist", "You resist:")} <RichInline text={[...new Set(resistingNow.filter((r) => !r.immune).map((r) => r.type))].join(", ")} />
+                {resistingNow.some((r) => r.immune) && (
+                  <>
+                    {" "}{t("combat.youAreImmune", "Immune:")} <RichInline text={[...new Set(resistingNow.filter((r) => r.immune).map((r) => r.type))].join(", ")} />
+                  </>
+                )}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {(["normal", "resist", ...(resistingNow.some((r) => r.immune) ? ["immune"] : [])] as const).map((how) => (
+                  <button
+                    key={how}
+                    type="button"
+                    onClick={() => setDamageHow(how as "normal" | "resist" | "immune")}
+                    className={`btn ${damageHow === how ? "btn-primary" : "btn-secondary"} text-xs`}
+                  >
+                    {t(`combat.damage.${how}`)}
+                    {hpAmount && parseInt(hpAmount, 10) > 0 ? ` (${reducedDamage(parseInt(hpAmount, 10), how as "normal" | "resist" | "immune")})` : ""}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
           {hpModal?.mode === "damage" && (character.activeBuffs || []).some(b => b.concentration) && !concentrationCheck && (
             <div className="mx-4 mb-3 px-3 py-2 rounded border border-[var(--color-warning-200)] bg-[var(--color-warning-50)]">
               <div className="flex items-center gap-2">
@@ -475,4 +524,19 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
       {children}
     </div>
   );
+}
+
+/** Resistances as one line per source: "Rage (while raging) · Bludgeoning, Piercing, Slashing". */
+function resistanceLines(rows: Resistance[]) {
+  const lines: { source: string; mark: "" | "immune" | "raging"; types: string[]; allBut?: string[] }[] = [];
+  for (const r of rows) {
+    const mark = r.immune ? "immune" : r.whileRaging ? "raging" : "";
+    const line = lines.find((l) => l.source === r.source && l.mark === mark);
+    if (line) line.types.push(r.type);
+    else lines.push({ source: r.source, mark, types: [r.type] });
+  }
+  for (const line of lines) {
+    if (line.types.length >= DAMAGE_TYPES.length - 3) line.allBut = DAMAGE_TYPES.filter((t) => !line.types.includes(t));
+  }
+  return lines;
 }
