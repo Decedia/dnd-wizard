@@ -7,6 +7,7 @@ interface SourceBadgeProps {
 
 const SOURCE_NAMES: Record<string, string> = {
   PHB: "Player's Handbook",
+  PHB2024: "2024 Player's Handbook",
   SCAG: "Sword Coast Adventurer's Guide",
   XGE: "Xanathar's Guide to Everything",
   TCE: "Tasha's Cauldron of Everything",

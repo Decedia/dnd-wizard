@@ -550,7 +550,7 @@ export function buildLevelInfos(
     }
 
     // 2024: the new prepared spells this level adds (a Wizard's come from the spellbook count above).
-    if (rules2024 && className !== "Wizard" && classData.spellcastingAbility) {
+    if (rules2024 && className !== "Wizard" && classData.spellcastingAbility && !rogueWithoutArcaneTrickster) {
       spellSelectionCount = (preparedTable[String(level)] || 0) - (level > 1 ? preparedTable[String(level - 1)] || 0 : 0);
     }
 
@@ -602,7 +602,10 @@ export function buildLevelInfos(
       : undefined;
     const prepAbilityScore = character[classData.spellcastingAbility as keyof Character] as number;
     const prepAbilityMod = getModifier(prepAbilityScore || 10);
-    const maxPrepared = isPrepCaster && classData.spellcastingAbility
+    // 2024: every caster but the Wizard prepares the class table's number of spells.
+    const maxPrepared = rules2024 && className !== "Wizard" && classData.spellcastingAbility && !rogueWithoutArcaneTrickster
+      ? preparedTable[String(level)] || undefined
+      : isPrepCaster && classData.spellcastingAbility
       ? Math.max(1, className === "Artificer" || className === "Paladin" ? prepAbilityMod + Math.floor(level / 2) : prepAbilityMod + level)
       : undefined;
     const preparedCount = isPrepCaster && maxPrepared ? maxPrepared : undefined;

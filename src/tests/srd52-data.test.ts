@@ -2,6 +2,7 @@
 import { describe, expect, test } from "bun:test";
 import fixture from "./fixtures/srd52-checked.json";
 import weaponMastery from "@/data/en/2024_weapon_mastery.json";
+import { THIRD_CASTERS_2024 } from "@/data/phb2024-third-casters";
 import { getStaticBackgrounds2024, getStaticClasses, getStaticFeats, getStaticRaces, getStaticSpells, getStaticSubclasses, lineageChoiceOf } from "@/lib/srd-client";
 
 // The 2024 rules data (SRD 5.2) is locked to a checked copy. A change here
@@ -22,8 +23,10 @@ describe("2024 classes", () => {
       expect(c.skillChoices.count).toBe(want.skillCount);
       expect(c.proficiencies.armor).toEqual(want.armor);
       expect(c.proficiencies.weapons).toEqual(want.weapons);
-      expect(c.cantripsKnown ?? null).toEqual(want.cantrips ?? null);
-      expect(c.preparedSpells ?? null).toEqual(want.prepared ?? null);
+      // Eldritch Knight and Arcane Trickster casting is Player's Handbook data on top of the SRD.
+      const srdOnly = (key: string) => (key in (THIRD_CASTERS_2024[name] || {}) ? undefined : c[key]);
+      expect(srdOnly("cantripsKnown") ?? null).toEqual(want.cantrips ?? null);
+      expect(srdOnly("preparedSpells") ?? null).toEqual(want.prepared ?? null);
       expect(c.weaponMastery ?? null).toEqual(want.weaponMastery ?? null);
       expect(c.subclassLevel).toBe(3);
       expect(c.levels).toHaveLength(20);

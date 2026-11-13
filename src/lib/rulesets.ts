@@ -39,3 +39,11 @@ export function syncRules2024Preview(search: string): void {
 export function rulesetOf(character: { ruleset?: string } | null | undefined): Ruleset {
   return character?.ruleset === "2024" && rules2024Available() ? "2024" : "2014";
 }
+
+/** The source id of the 2024 Player's Handbook content beyond SRD 5.2 (written in our own words). */
+export const PHB_2024 = "PHB2024";
+
+/** The books a new character starts with: the 2024 Player's Handbook is on by default for 2024. */
+export function defaultSources(ruleset: Ruleset): string[] {
+  return ruleset === "2024" ? ["PHB", PHB_2024] : ["PHB"];
+}

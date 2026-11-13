@@ -5,7 +5,7 @@ import { WizardNav, WIZARD_NAV_SPACE } from "./WizardNav";
 import { getStaticClass, getStaticSubclasses, getStaticSpells, getSubclassFlags, getPactBoons, getStaticFeat, getStaticEquipments } from "@/lib/srd-client";
 import { getHitDieAverage, getModifier, computeDerivedStats, getMaxBardicInspirationUses, getDomainSpellNames, getCircleTerrainTypes, getCircleSpells, getOathSpellNames, getWizardTraditionSpellNames, isThirdCaster, getHpBonusPerLevel, castsSpells, getMaxPreparedSpells, isPreparationCaster, type Character } from "@/lib/storage";
 import { fillPrepared, preparableSpells } from "@/lib/prepared-spells";
-import { spellChoicePool, THIRD_CASTER_SCHOOLS } from "@/lib/spell-pool";
+import { spellChoicePool, thirdCasterSchools } from "@/lib/spell-pool";
 import { quickSpellOrder, QUICK_SPELL_ORDER } from "@/lib/quick-create";
 import { PrepareSpellsSheet } from "@/components/PrepareSpellsSheet";
 import { applySubclassFeatures, applySubclassSpellGrants, syncBaseFeatures } from "@/lib/character-creation";
@@ -1398,7 +1398,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
         const cantripsHave = mine.filter((x) => x.endsWith(":0")).length;
         const spellsHave = mine.length - cantripsHave;
         if (cantripsHave < info.cantripSelectionCount || spellsHave < info.spellSelectionCount) {
-          const schools = THIRD_CASTER_SCHOOLS[(sub || "").toLowerCase().replace(/\s+/g, "-")];
+          const schools = thirdCasterSchools(character.ruleset, sub);
           const pool = spellChoicePool(
             { ...character, subclass: sub, subclassIndex: (sub || "").toLowerCase().replace(/\s+/g, "-"), level: lvl },
             { subclass: sub, maxLevel: info.maxSpellLevel, selectionType: info.spellSelectionType, castingLevel: lvl, language }

@@ -35,7 +35,7 @@ function refillsOn(character: Character, pool: (typeof POOLS)[number], kind: Res
 }
 
 /** 2024 pools that get one use back on a short rest and all on a long rest. */
-const ONE_BACK_2024 = new Set<keyof Character>(["rages", "channelDivinityUses", "wildShapeUses"]);
+const ONE_BACK_2024 = new Set<keyof Character>(["rages", "channelDivinityUses", "wildShapeUses", "psionicDice"]);
 
 /** A pool's value after the rest. */
 function poolAfter(character: Character, pool: (typeof POOLS)[number], kind: RestKind): number {

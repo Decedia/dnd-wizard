@@ -1,7 +1,11 @@
 // Indonesian for the 2024 rules data (SRD 5.2). The data files stay English;
 // src/data/id/2024_text.json maps each English rules text to its Indonesian.
 // Names stay English everywhere: picks, rules and saves match on them.
-import textId from "@/data/id/2024_text.json";
+import textSrd from "@/data/id/2024_text.json";
+// Indonesian for the hand-written 2024 Player's Handbook content (src/data/en/2024_phb_*.json).
+import textPhb from "@/data/id/2024_phb_text.json";
+
+const textId: Record<string, string> = { ...textSrd, ...textPhb };
 
 /** The fields that hold rules text a reader sees. */
 export const TEXT_FIELDS_2024 = new Set(["description", "higherLevel", "materialDesc", "flavor", "summary"]);
@@ -22,7 +26,7 @@ export function withIndonesian<T>(en: T): Record<string, T> {
   return {
     en,
     get id() {
-      return (id ??= translate2024(en, textId as Record<string, string>));
+      return (id ??= translate2024(en, textId));
     },
   };
 }

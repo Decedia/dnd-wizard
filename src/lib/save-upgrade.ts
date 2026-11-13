@@ -1,9 +1,10 @@
 import { applyFeatGrants, decodeFeatOptions, FEAT_FIXED_GRANTS } from "./feat-grants";
 import { getStaticClass } from "./srd-client";
+import { PHB_2024 } from "./rulesets";
 import { computeDerivedStats, getHpBonusPerLevel, getMaxHpFromLevelHp, getModifier, type Character } from "./storage";
 
 /** Bump when a new one-time upgrade step is added below. */
-export const SAVE_VERSION = 2;
+export const SAVE_VERSION = 3;
 
 const ABILITY_KEYS = ["str", "dex", "con", "int", "wis", "cha"] as const;
 
@@ -23,7 +24,17 @@ export function upgradeSave(character: Character): Character {
     next = addMissingFeatGrants(next);
   }
   if (from < 2) next = addLevelUpExpertise(next);
+  if (from < 3) next = addPhb2024Source(next);
   return { ...next, saveVersion: SAVE_VERSION };
+}
+
+/**
+ * The 2024 Player's Handbook content came later than the 2024 core rules. A 2024
+ * character made before it gets the book turned on, like new ones (no list = every book).
+ */
+function addPhb2024Source(c: Character): Character {
+  if (c.ruleset !== "2024" || !c.sources?.length || c.sources.includes(PHB_2024)) return c;
+  return { ...c, sources: [...c.sources, PHB_2024] };
 }
 
 /** Per-level HP for every level 1..level, or null when some are missing. */

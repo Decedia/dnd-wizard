@@ -456,6 +456,39 @@ export const FEATURE_RULES_2024: FeatureRule[] = [
   // ----- Wizard -----
   { name: /^Overchannel/, slot: "free", when: "afterCast" },
 
+  // ----- 2024 Player's Handbook subclasses (beyond SRD 5.2) -----
+  // Barbarian
+  { name: /^Divine Fury/, slot: "free", when: "onHit", oncePerTurn: true, condition: "firstHit", auto: (c) => (c.activeStates || []).includes("raging"), dice: (c) => `1d6+${Math.floor(lvl(c) / 2)}` },
+  { name: /^Zealous Presence/, slot: "bonus", uses: long1, orPool: rage },
+  { name: /^Rage of the Gods/, slot: "free", when: "whileRaging", uses: long1 },
+  { name: /^Fanatical Focus/, slot: "free", when: "onFailSave", condition: "oncePerRage" },
+  { name: /^Branches of the Tree/, slot: "reaction", when: "whileRaging" },
+  { name: /^Travel along the Tree/, slot: "bonus", when: "whileRaging" },
+  // Fighter
+  { name: /^Combat Superiority/, slot: "free", when: "onAttackRoll", pool: { field: "superiorityDice", amount: 1 } },
+  { name: /^Know Your Enemy/, slot: "bonus", uses: long1, orPool: { field: "superiorityDice", amount: 1 } },
+  { name: /^War Bond/, slot: "bonus" },
+  { name: /^Telekinetic Adept/, slot: "bonus", uses: short1, orPool: { field: "psionicDice", amount: 1 } },
+  { name: /^Guarded Mind/, slot: "free", when: "onFailSave", pool: { field: "psionicDice", amount: 1 }, condition: "charmedOrFrightened" },
+  { name: /^Bulwark of Force/, slot: "bonus", uses: long1, orPool: { field: "psionicDice", amount: 1 } },
+  { name: /^Telekinetic Master/, slot: "action", uses: long1, orPool: { field: "psionicDice", amount: 1 } },
+  // Monk
+  { name: /^Hand of Harm/, slot: "free", when: "onHit", pool: ki(1), oncePerTurn: true, condition: "unarmed" },
+  { name: /^Hand of Healing/, slot: "action", pool: ki(1) },
+  { name: /^Hand of Ultimate Mercy/, slot: "action", pool: ki(5), uses: long1 },
+  { name: /^Shadow Arts/, slot: "action", pool: ki(1) },
+  { name: /^Shadow Step/, slot: "bonus" },
+  { name: /^Cloak of Shadows/, slot: "action", pool: ki(3) },
+  { name: /^Elemental Attunement/, slot: "free", pool: ki(1) },
+  { name: /^Elemental Burst/, slot: "action", pool: ki(2) },
+  // Rogue
+  { name: /^Mage Hand Legerdemain/, slot: "bonus" },
+  { name: /^Spell Thief/, slot: "reaction", uses: long1 },
+  { name: /^Psychic Blades/, slot: "bonus", when: "afterAttack", only: (c) => c.class === "Rogue" },
+  { name: /^Soul Blades/, slot: "bonus", pool: { field: "psionicDice", amount: 1 } },
+  { name: /^Psychic Veil/, slot: "action", uses: long1, orPool: { field: "psionicDice", amount: 1 } },
+  { name: /^Rend Mind/, slot: "free", when: "onHit", uses: long1, orPool: { field: "psionicDice", amount: 3 } },
+
   // ----- Species -----
   { name: /^Breath Weapon/, slot: "action", condition: "replacesAttack", uses: { max: prof, per: "long" } },
   { name: /^Draconic Flight/, slot: "bonus", uses: long1, only: from(5) },
@@ -531,6 +564,55 @@ export const SUB_OPTIONS: SubOptionGroup[] = [
       { name: "Twinned Spell", key: "twinned", slot: "free", when: "onCast", variablePool: "sorceryPoints", summary: "A spell that targets one creature also targets a second one. Costs points equal to the spell's level (1 for a cantrip)." },
       metamagic("Seeking Spell", "seeking", 2, "Reroll the d20 of a spell attack that missed."),
       metamagic("Transmuted Spell", "transmuted", 1, "Change the damage type to acid, cold, fire, lightning, poison or thunder."),
+    ],
+  },
+  // 2024: the maneuver list changed (no Brace, Grappling Strike or Quick Toss; several work differently).
+  {
+    feature: "Combat Superiority",
+    picked: true,
+    only: is2024,
+    options: [
+      maneuver("Ambush", "ambush", "free", "Add the die to a Stealth check or an initiative roll."),
+      maneuver("Bait and Switch", "baitAndSwitch", "free", "Swap places with an ally within 5 feet. One of you adds the die to AC until your next turn starts."),
+      maneuver("Commander's Strike", "commandersStrike", "bonus", "Give up one of your attacks: an ally uses its reaction to attack and adds your die to the damage."),
+      maneuver("Commanding Presence", "commandingPresence", "free", "Add the die to an Intimidation, Performance or Persuasion check."),
+      maneuver("Disarming Attack", "disarmingAttack", "free", "Add the die to the damage. The target makes a STR save or drops one item it holds.", "onHit"),
+      maneuver("Distracting Strike", "distractingStrike", "free", "Add the die to the damage. The next ally's attack on the target has advantage.", "onHit"),
+      maneuver("Evasive Footwork", "evasiveFootwork2024", "bonus", "Take the Disengage action and add the die to your AC until your next turn starts."),
+      maneuver("Feinting Attack", "feintingAttack", "bonus", "Advantage on your next attack against a creature within 5 feet. Add the die to the damage if it hits."),
+      maneuver("Goading Attack", "goadingAttack", "free", "Add the die to the damage. The target makes a WIS save or has disadvantage attacking anyone but you.", "onHit"),
+      maneuver("Lunging Attack", "lungingAttack2024", "bonus", "Take the Dash action. If you move 5 feet straight before a melee hit this turn, add the die to the damage."),
+      maneuver("Maneuvering Attack", "maneuveringAttack", "free", "Add the die to the damage. An ally can use its reaction to move half its speed without opportunity attacks.", "onHit"),
+      maneuver("Menacing Attack", "menacingAttack", "free", "Add the die to the damage. The target makes a WIS save or is frightened of you until your next turn ends.", "onHit"),
+      maneuver("Parry", "parry2024", "reaction", "When a melee attack damages you, reduce the damage by the die plus your STR or DEX modifier.", "onDamage"),
+      maneuver("Precision Attack", "precisionAttack2024", "free", "When you miss, add the die to the attack roll. It can turn the miss into a hit.", "onMiss"),
+      maneuver("Pushing Attack", "pushingAttack", "free", "Add the die to the damage. A Large or smaller target makes a STR save or is pushed 15 feet.", "onHit"),
+      maneuver("Rally", "rally2024", "bonus", "An ally who can see or hear you gains temporary HP equal to the die plus half your Fighter level."),
+      maneuver("Riposte", "riposte", "reaction", "When a creature misses you in melee, attack it and add the die to the damage.", "whenAttacked"),
+      maneuver("Sweeping Attack", "sweepingAttack", "free", "Another creature within 5 feet takes the die as damage if your attack roll would hit it.", "onHit"),
+      maneuver("Tactical Assessment", "tacticalAssessment", "free", "Add the die to an Investigation, History or Insight check."),
+      maneuver("Trip Attack", "tripAttack", "free", "Add the die to the damage. A Large or smaller target makes a STR save or falls prone.", "onHit"),
+    ],
+  },
+  // 2024 Psi Warrior: no bonus action to get a die back (one returns on a short rest).
+  {
+    feature: "Psionic Power",
+    picked: false,
+    only: (c) => is2024(c) && c.class === "Fighter",
+    options: [
+      { name: "Protective Field", key: "protectiveField", slot: "reaction", when: "onDamage", pool: { field: "psionicDice", amount: 1 }, summary: "Reduce the damage to you or a creature within 30 feet by a psionic die plus your INT modifier." },
+      { name: "Psionic Strike", key: "psionicStrike", slot: "free", when: "onHit", pool: { field: "psionicDice", amount: 1 }, oncePerTurn: true, summary: "Once per turn, deal extra force damage: a psionic die plus your INT modifier." },
+      { name: "Telekinetic Movement", key: "telekineticMovement", slot: "action", uses: short1, orPool: { field: "psionicDice", amount: 1 }, summary: "Move an object or a willing creature up to 30 feet." },
+    ],
+  },
+  // 2024 Soulknife.
+  {
+    feature: "Psionic Power",
+    picked: false,
+    only: (c) => is2024(c) && c.class === "Rogue",
+    options: [
+      { name: "Psi-Bolstered Knack", key: "psiKnack", slot: "free", when: "onFailCheck", pool: { field: "psionicDice", amount: 1 }, summary: "A failed check with a skill or tool you know: add a psionic die. It is spent only if the check then succeeds." },
+      { name: "Psychic Whispers", key: "psychicWhispers", slot: "action", uses: long1, orPool: { field: "psionicDice", amount: 1 }, summary: "Talk mind to mind with a few creatures for hours equal to a psionic die." },
     ],
   },
   {

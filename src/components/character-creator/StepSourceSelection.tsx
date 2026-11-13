@@ -1,6 +1,6 @@
 "use client";
 
-import { rules2024Available, rulesetOf } from "@/lib/rulesets";
+import { defaultSources, PHB_2024, rules2024Available, rulesetOf } from "@/lib/rulesets";
 import type { Character } from "@/lib/storage";
 import { useState, useEffect } from "react";
 import { SOURCE_OPTIONS } from "@/components/SourceBadge";
@@ -181,7 +181,7 @@ export function StepSourceSelection({ data, onChange }: { data: Pick<Character, 
 
   useEffect(() => {
     if (contentMode === "phb_only") {
-      onChange({ sources: ["PHB"], ruleset });
+      onChange({ sources: defaultSources(ruleset), ruleset });
     } else if (contentMode === "all") {
       onChange({ sources: ALL_BOOK_IDS, ruleset });
     }
@@ -202,7 +202,7 @@ export function StepSourceSelection({ data, onChange }: { data: Pick<Character, 
   const setRuleset = (next: "2014" | "2024") => {
     if (next === ruleset) return;
     onChange({
-      sources: ["PHB"],
+      sources: defaultSources(next),
       ruleset: next,
       optionalClassFeatures: false,
       ...rulesetResetPatch(),
@@ -265,6 +265,13 @@ export function StepSourceSelection({ data, onChange }: { data: Pick<Character, 
           <p className="mt-1 text-xs leading-relaxed text-ink-muted">
             {t("ruleset.2024BooksDesc", "Uses the free 2024 core rules: 9 species, 12 classes with one subclass each, and 4 backgrounds. Your background now gives your ability increases and a starting feat.")}
           </p>
+          <label className="mt-3 flex cursor-pointer items-start gap-3 rounded-xl border border-[var(--color-border)] p-3">
+            <input type="checkbox" checked={selectedSources.includes(PHB_2024)} onChange={() => toggleSource(PHB_2024)} className="mt-0.5 h-4 w-4 accent-[var(--color-ink)]" />
+            <span>
+              <span className="block text-sm font-bold text-ink">{t("ruleset.phb2024", "2024 Player's Handbook")}</span>
+              <span className="mt-0.5 block text-xs leading-relaxed text-ink-muted">{t("ruleset.phb2024Desc", "Adds the rest of the 2024 book: more subclasses for every class. Turn it off if your group plays only the free core rules.")}</span>
+            </span>
+          </label>
         </div>
       )}
 
