@@ -2,7 +2,7 @@
 // and reaction right now, and the patches that start a turn, use an option and
 // end a turn. Pure functions, so the panel only renders.
 import type { Character } from "@/lib/storage";
-import { getFeatureValue, getModifier, getProficiencyBonus, hasFeat, isPreparationCaster } from "@/lib/storage";
+import { getFeatureValue, getModifier, getProficiencyBonus, hasFeat, hasFightingStyle, isPreparationCaster } from "@/lib/storage";
 import type { BonusPart } from "@/lib/dice-roll";
 import { spellNumbersFor } from "@/lib/roll-parts";
 import { speciesSpellAbility } from "@/lib/origin-2024";
@@ -184,7 +184,10 @@ function offHandAttack(character: Character): TurnOption | null {
   if (!main || !off || off.itemType !== "weapon" || main.category === "ranged" || off.category === "ranged") return null;
   const names = (character.features || []).map((f) => f.name.toLowerCase());
   const dualWielder = names.some((n) => n === "dual wielder");
-  if (!dualWielder && !(hasProp(main, "light") && hasProp(off, "light"))) return null;
+  // 2014 Dual Wielder: any two one-handed melee weapons. 2024: the main weapon is Light, the other not Two-Handed.
+  const pairOk = hasProp(main, "light") && hasProp(off, "light");
+  const dualOk = character.ruleset === "2024" ? hasProp(main, "light") && !hasProp(off, "two-handed") : true;
+  if (!pairOk && !(dualWielder && dualOk)) return null;
   const attack = (character.attacks || []).find((a) => a.id === off.id);
   const details = attack && getWeaponAttackDetails(character, attack);
   if (!details) return null;
@@ -239,8 +242,14 @@ function attackOptions(character: Character): TurnOption[] {
   const offHand = offHandAttack(character);
   if (offHand) out.push(offHand);
   const str = getModifier(character.str);
-  // 2024 Tavern Brawler: an Unarmed Strike can deal 1d4 + Strength instead.
-  const brawler = character.ruleset === "2024" && hasFeat(character, "Tavern Brawler");
+  // 2024 Unarmed Fighting: 1d6 + Strength, 1d8 with no weapon or Shield held.
+  // 2024 Tavern Brawler: 1d4 + Strength. The bigger die wins.
+  const hands = heldInHands(character.inventory || []);
+  const unarmedDie = character.ruleset !== "2024"
+    ? undefined
+    : hasFightingStyle(character, "Unarmed Fighting")
+      ? (hands.main || hands.off ? "1d6" : "1d8")
+      : hasFeat(character, "Tavern Brawler") ? "1d4" : undefined;
   out.push({
     key: "attack:unarmed",
     tags: ["melee", "weak"],
@@ -251,8 +260,8 @@ function attackOptions(character: Character): TurnOption[] {
     summary: "",
     toHit: str + prof,
     toHitParts: [{ source: "@str", value: str }, { source: "@prof", value: prof }],
-    damage: brawler ? `1d4 ${signed(str)} bludgeoning damage`.replace(" + 0 ", " ") : `${Math.max(0, 1 + str)} bludgeoning damage`,
-    ...(brawler ? { damageRoll: { dice: "1d4", parts: [{ source: "@str", value: str }], type: "bludgeoning" } } : {}),
+    damage: unarmedDie ? `${unarmedDie} ${signed(str)} bludgeoning damage`.replace(" + 0 ", " ") : `${Math.max(0, 1 + str)} bludgeoning damage`,
+    ...(unarmedDie ? { damageRoll: { dice: unarmedDie, parts: [{ source: "@str", value: str }], type: "bludgeoning" } } : {}),
     spend: {},
   });
   return out;

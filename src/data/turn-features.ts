@@ -577,6 +577,27 @@ export const FEATURE_RULES_2024: FeatureRule[] = [
   { name: /^Lucky$/, slot: "free", when: "onAttackRoll", pool: { field: "luckPoints", amount: 1 }, only: (c) => (c.maxLuckPoints || 0) > 0 },
   { name: /^Healer$/, slot: "action" },
   { name: /^Tavern Brawler$/, slot: "free", when: "onHit", oncePerTurn: true, condition: "unarmed" },
+  // 2024 Player's Handbook General feats (Polearm Master, Shield Master: SUB_OPTIONS)
+  { name: /^Charger$/, slot: "free", when: "onHit", oncePerTurn: true, condition: "charge", dice: () => "1d8" },
+  { name: /^Crusher$/, slot: "free", when: "onHit", oncePerTurn: true, condition: "bludgeoning" },
+  { name: /^Piercer$/, slot: "free", when: "onHit", oncePerTurn: true, condition: "piercing" },
+  { name: /^Slasher$/, slot: "free", when: "onHit", oncePerTurn: true, condition: "slashing" },
+  { name: /^Defensive Duelist$/, slot: "reaction", when: "whenAttacked", condition: "finesse" },
+  { name: /^Durable$/, slot: "bonus" },
+  { name: /^Great Weapon Master$/, slot: "bonus", when: "onCritOrKill" },
+  { name: /^Keen Mind$/, slot: "bonus" },
+  { name: /^Observant$/, slot: "bonus" },
+  { name: /^Mage Slayer$/, slot: "free", when: "onFailSave", uses: short1 },
+  { name: /^Poisoner$/, slot: "bonus" },
+  { name: /^Sentinel$/, slot: "reaction" },
+  { name: /^Telekinetic$/, slot: "bonus" },
+  { name: /^War Caster$/, slot: "reaction" },
+  // Fighting Style feats taken at an Ability Score Improvement (class picks: SUB_OPTIONS)
+  { name: /^Interception$/, slot: "reaction" },
+  { name: /^Protection$/, slot: "reaction" },
+  // Epic Boons (Boon of Recovery: SUB_OPTIONS)
+  { name: /^Boon of Energy Resistance/, slot: "reaction", when: "onDamage" },
+  { name: /^Boon of Speed/, slot: "bonus" },
 ];
 
 /**
@@ -622,7 +643,43 @@ const metamagic = (name: string, key: string, points: number, summary: string): 
 const runeUses = { max: (c: Character) => ((c.level || 1) >= 15 ? 2 : 1), per: "short" } as const;
 const rune = (name: string, key: string, slot: FeatureSlot, summary: string, when?: FeatureWhen): SubOption => ({ name, key, slot, when, uses: runeUses, summary });
 
+/** 2024 Fighting Styles that are used on a turn, picked for the class feature or Champion's second one. */
+const fightingStyleUses: SubOption[] = [
+  { name: "Interception", key: "interception", slot: "reaction", summary: "When a creature you can see hits someone within 5 feet of you, reduce the damage by 1d10 + your Proficiency Bonus." },
+  { name: "Protection", key: "protection", slot: "reaction", summary: "When a creature attacks someone within 5 feet of you, raise your shield: attacks against them have disadvantage until your next turn." },
+  { name: "Unarmed Fighting", key: "unarmedFighting", slot: "free", summary: "At the start of your turn, deal 1d4 bludgeoning damage to one creature you are grappling." },
+];
+
 export const SUB_OPTIONS: SubOptionGroup[] = [
+  { feature: "Fighting Style", picked: true, only: is2024, options: fightingStyleUses },
+  { feature: "Additional Fighting Style", picked: true, only: is2024, options: fightingStyleUses },
+  {
+    feature: "Polearm Master",
+    picked: false,
+    only: is2024,
+    options: [
+      { name: "Pole Strike", key: "poleStrike", slot: "bonus", when: "afterAttack", summary: "After the Attack action, hit with the weapon's other end: 1d4 bludgeoning + the same modifier." },
+      { name: "Reactive Strike", key: "reactiveStrike", slot: "reaction", summary: "Make a melee attack against a creature that enters your reach." },
+    ],
+  },
+  {
+    feature: "Shield Master",
+    picked: false,
+    only: is2024,
+    options: [
+      { name: "Shield Bash", key: "shieldBash", slot: "free", when: "onHit", oncePerTurn: true, summary: "After a melee hit, the target makes a STR save or is pushed 5 feet or knocked prone." },
+      { name: "Interpose Shield", key: "interposeShield", slot: "reaction", summary: "On a DEX save for half damage, take no damage if you succeed." },
+    ],
+  },
+  {
+    feature: "Boon of Recovery",
+    picked: false,
+    only: is2024,
+    options: [
+      { name: "Last Stand", key: "lastStand", slot: "free", when: "atZeroHp", uses: long1, summary: "Drop to 1 HP instead of 0 and regain half your HP maximum." },
+      { name: "Recover Vitality", key: "recoverVitality", slot: "bonus", summary: "Roll some of your ten d10s and regain that many HP. They come back after a long rest." },
+    ],
+  },
   {
     feature: "Metamagic",
     picked: true,

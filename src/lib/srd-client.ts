@@ -51,12 +51,33 @@ import backgrounds2024En from "@/data/en/2024_backgrounds.json";
 // 2024 Player's Handbook backgrounds and Origin feats beyond SRD 5.2; source "PHB2024".
 import origins2024Phb from "@/data/en/2024_phb_origins.json";
 const species2024Map: Record<string, { races: unknown[] }> = withIndonesian(species2024En);
-const subclasses2024En = { subclasses: [...subclasses2024Srd.subclasses, ...subclasses2024Phb.subclasses] };
+// The Player's Handbook Fighting Style feats join every Fighting Style pick, tagged with
+// their book so a picker can leave them out when the character doesn't use it.
+const phbStyles2024 = origins2024Phb.feats
+  .filter((f) => f.category === "Fighting Style")
+  .map((f) => ({ name: f.name, description: f.description, source: "PHB2024" }));
+const withPhbStyles = (options: any[]) => [...options, ...phbStyles2024.filter((p) => !options.some((o) => o.name === p.name))];
+const subclasses2024En = {
+  subclasses: [...subclasses2024Srd.subclasses, ...subclasses2024Phb.subclasses].map((s: any) =>
+    s.featureChoices
+      ? {
+          ...s,
+          featureChoices: Object.fromEntries(
+            Object.entries(s.featureChoices as Record<string, any>).map(([name, fc]) => [name, fc.fightingStyle ? { ...fc, options: withPhbStyles(fc.options) } : fc]),
+          ),
+        }
+      : s,
+  ),
+};
 // Each class lists its subclasses; the 2024 Fighter and Rogue also get Eldritch Knight and Arcane Trickster casting.
 const classes2024With = {
   classes: (classes2024En.classes as any[]).map((c) => ({
     ...c,
     ...(THIRD_CASTERS_2024[c.name] || {}),
+    levels: c.levels.map((l: any) => ({
+      ...l,
+      features: l.features.map((f: any) => (f.name === "Fighting Style" && f.choices?.options ? { ...f, choices: { ...f.choices, options: withPhbStyles(f.choices.options) } } : f)),
+    })),
     subclasses: [...(c.subclasses || []), ...subclasses2024Phb.subclasses.filter((s) => s.class === c.name).map((s) => ({ index: s.index, name: s.name }))],
   })),
 };
@@ -592,7 +613,8 @@ export function getStaticSubclasses(className: string, sources?: string[], rules
             book: f.book ?? undefined,
           };
           if (featChoices && Array.isArray(featChoices.options)) {
-            out.choices = featChoices.options.map((opt: any) => ({
+            // An option from a book the character doesn't use (a PHB Fighting Style) is left out.
+            out.choices = featChoices.options.filter((opt: any) => !opt.source || !sources?.length || sources.includes(opt.source)).map((opt: any) => ({
               name: opt.name,
               description: opt.description || "",
               icon: opt.icon,

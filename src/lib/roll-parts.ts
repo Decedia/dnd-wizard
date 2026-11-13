@@ -49,10 +49,10 @@ export function saveParts(character: Partial<Abilities> & Partial<Pick<Character
   return cover ? [...out, { source: "@cover", value: cover }] : out;
 }
 
-/** Initiative: Dexterity modifier, +5 with the Alert feat. */
-export function initiativeParts(character: Pick<Character, "dex" | "features" | "overrides">): BonusPart[] {
+/** Initiative: Dexterity modifier, plus Alert (+5, or the Proficiency Bonus under the 2024 rules). */
+export function initiativeParts(character: Pick<Character, "dex" | "features" | "overrides"> & { ruleset?: string; level?: number }): BonusPart[] {
   const parts = [abilityPart(character, "dex")];
-  if (hasFeat(character as Character, "Alert")) parts.push({ source: "Alert", value: 5 });
+  if (hasFeat(character as Character, "Alert")) parts.push({ source: "Alert", value: character.ruleset === "2024" ? getProficiencyBonus(character.level || 1) : 5 });
   return withOverrideParts(character, "initiative", parts);
 }
 

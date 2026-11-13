@@ -2,7 +2,7 @@
 // The character passed in must carry its derived stats (pool ceilings).
 import { getFreeCastSpells } from "./granted-spells";
 import { getStaticClass } from "./srd-client";
-import { getModifier, type Character } from "./storage";
+import { getModifier, hpMaxBonus, type Character } from "./storage";
 import { endEncounterPatch } from "./turn";
 import { featureUsesAfterRest } from "@/data/turn-features";
 
@@ -124,7 +124,7 @@ export function longRestPatch(character: Character): Partial<Character> {
   const level = character.level || 1;
   const patch: Partial<Character> = {
     ...endEncounterPatch(character),
-    currentHp: character.maxHp || 0,
+    currentHp: (character.maxHp || 0) + hpMaxBonus(character),
     temporaryHp: 0,
     // Spent hit dice come back up to half the total (at least one), not all.
     hitDiceRemaining: Math.min(level, num(character, "hitDiceRemaining") + Math.max(1, Math.floor(level / 2))),
@@ -174,7 +174,7 @@ export function restGains(character: Character, kind: RestKind): RestGain[] {
   const gains: RestGain[] = [];
   const level = character.level || 1;
   if (kind === "long") {
-    const hp = (character.maxHp || 0) - (character.currentHp || 0);
+    const hp = (character.maxHp || 0) + hpMaxBonus(character) - (character.currentHp || 0);
     if (hp > 0) gains.push({ id: "hp", values: { amount: hp } });
     if (slotsSpent(character) > 0) gains.push({ id: "slots", values: { count: slotsSpent(character) } });
     const dice = Math.min(level, num(character, "hitDiceRemaining") + Math.max(1, Math.floor(level / 2))) - num(character, "hitDiceRemaining");

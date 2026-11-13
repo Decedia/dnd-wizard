@@ -3,7 +3,7 @@ import { getOptionalClassFeatures } from "@/data/optional-class-features";
 import { activeRaceChoices, getCircleSpells, getDomainSpells, getOathSpells, getStaticRaceDetails, getStaticSpells, getStaticSubclasses, getSubclassSpellGrants } from "./srd-client";
 import { normalizeDescription } from "./level-up";
 import type { Character } from "./storage";
-import { FEAT_FIXED_GRANTS, decodeFeatOptions } from "./feat-grants";
+import { decodeFeatOptions, fixedGrants } from "./feat-grants";
 import { getFeatOptionGroups } from "@/data/feat-options";
 import { speciesSpells2024 } from "./origin-2024";
 
@@ -155,7 +155,7 @@ const SHORT_REST: Record<string, string[]> = {
 const NO_FREE_CAST = new Set(["Ritual Caster"]);
 
 /** Feats the character took, with their saved picks. */
-function takenFeats(character: Pick<Character, "featureSelections" | "features">): Map<string, Record<string, string>> {
+function takenFeats(character: Pick<Character, "featureSelections" | "features" | "ruleset">): Map<string, Record<string, string>> {
   const selections = character.featureSelections || {};
   const taken = new Map<string, Record<string, string>>();
   for (const [key, values] of Object.entries(selections)) {
@@ -164,7 +164,7 @@ function takenFeats(character: Pick<Character, "featureSelections" | "features">
     if (name) taken.set(name, { ...taken.get(name), ...decodeFeatOptions(selections[`${key}-options`]) });
   }
   for (const f of character.features || []) {
-    if (f.name && FEAT_FIXED_GRANTS[f.name] && !taken.has(f.name)) taken.set(f.name, {});
+    if (f.name && fixedGrants(f.name, character.ruleset).spells && !taken.has(f.name)) taken.set(f.name, {});
   }
   return taken;
 }
@@ -186,7 +186,7 @@ export function getFreeCastSpells(character: SpellOwner & Pick<Character, "featu
   for (const name of raceSpells) add(name, character.race);
   for (const [feat, options] of takenFeats(character)) {
     if (NO_FREE_CAST.has(feat)) continue;
-    if (character.ruleset !== "2024") for (const name of FEAT_FIXED_GRANTS[feat]?.spells || []) add(name, feat);
+    for (const name of fixedGrants(feat, character.ruleset).spells || []) add(name, feat);
     for (const group of getFeatOptionGroups(feat, character.ruleset)) {
       if (group.type === "spell" && options[group.id]) add(options[group.id], feat);
     }
