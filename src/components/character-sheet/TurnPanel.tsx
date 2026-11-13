@@ -281,11 +281,18 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
     const pinned = pins.includes(o.key);
     return (
       <div key={o.key} className={`overflow-hidden rounded-[var(--radius-md)] border bg-[var(--color-surface)] transition-colors hover:border-[var(--color-border-active)] ${best ? "border-2 border-[var(--color-ink)]" : "border-[var(--color-border)]"}`}>
-        <button
-          type="button"
-          disabled={!!reason}
+        {/* A div, not a button, so the dice badges inside can be buttons of their own (tap to roll). */}
+        <div
+          role="button"
+          tabIndex={reason ? -1 : 0}
+          aria-disabled={!!reason}
           onClick={() => {
             if (longPressed.current) return void (longPressed.current = false);
+            if (!reason) takeOption(o);
+          }}
+          onKeyDown={(e) => {
+            if (e.target !== e.currentTarget || reason || (e.key !== "Enter" && e.key !== " ")) return;
+            e.preventDefault();
             takeOption(o);
           }}
           onPointerDown={() => pressStart(o.key)}
@@ -293,7 +300,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
           onPointerLeave={pressEnd}
           onPointerCancel={pressEnd}
           onContextMenu={(e) => e.preventDefault()}
-          className="block w-full min-w-0 select-none px-3 py-2 text-left disabled:opacity-45"
+          className={`block w-full min-w-0 select-none px-3 py-2 text-left ${reason ? "cursor-default opacity-45" : "cursor-pointer"}`}
         >
           {(best || pinned) && (
             <span className="mb-0.5 block text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">
@@ -312,19 +319,19 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
           </span>
           {text && (
             <span className="mt-0.5 block text-xs leading-relaxed text-[var(--color-text-secondary)] line-clamp-3">
-              <RichDice off><RichInline text={text} /></RichDice>
+              <RichDice title={nameOf(o)}><RichInline text={text} /></RichDice>
             </span>
           )}
           {o.mastery && <MasteryLine mastery={o.mastery} />}
           {o.condition && !reason && <span className="mt-0.5 block text-[11px] font-semibold text-[var(--color-text-primary)]">{t(`turn.cond.${o.condition}`)}</span>}
-          <RichDice off>
+          <RichDice title={nameOf(o)}>
             <SpellDamageLine parts={o.spellDamage} />
             <SpellDamageBonusLines bonuses={o.damageBonuses} />
           </RichDice>
           {o.endsConcentration && <span className="mt-1 block text-xs font-semibold text-[var(--color-warning-700)]">{t("turn.endsConc", { name: o.endsConcentration })}</span>}
           {pick && <span className="mt-1 block text-xs font-semibold leading-snug text-[var(--color-text-primary)]">{t(`turn.why.${pick.why}`, pick.values || {})}</span>}
           {reason && <span className="mt-0.5 block text-[11px] font-semibold text-[var(--color-text-muted)]">{reason}</span>}
-        </button>
+        </div>
         <div className="flex flex-wrap items-center gap-2 px-3 pb-2.5">
           {rolls.length > 0 && (
             <button
