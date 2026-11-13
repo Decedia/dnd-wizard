@@ -5,6 +5,7 @@
 import { describe, expect, test } from "bun:test";
 import phb from "@/data/en/2024_phb_subclasses.json";
 import srd from "@/data/en/2024_subclasses.json";
+import spells2024 from "@/data/en/2024_spells.json";
 import { getStaticClass, getStaticSubclasses } from "@/lib/srd-client";
 import { buildLevelInfos } from "@/components/level-up/level-infos";
 import { computeDerivedStats, createEmptyCharacter, type Character } from "@/lib/storage";
@@ -18,7 +19,14 @@ const EXPECTED: Record<string, string[]> = {
   Fighter: ["Battle Master", "Champion", "Eldritch Knight", "Psi Warrior"],
   Monk: ["Warrior of Mercy", "Warrior of Shadow", "Warrior of the Elements", "Warrior of the Open Hand"],
   Rogue: ["Arcane Trickster", "Assassin", "Soulknife", "Thief"],
+  Bard: ["College of Dance", "College of Glamour", "College of Lore", "College of Valor"],
+  Cleric: ["Life Domain", "Light Domain", "Trickery Domain", "War Domain"],
+  Paladin: ["Oath of Devotion", "Oath of Glory", "Oath of Vengeance", "Oath of the Ancients"],
+  Ranger: ["Beast Master", "Fey Wanderer", "Gloom Stalker", "Hunter"],
 };
+
+/** Always-prepared spells from the 2024 book that SRD 5.2 lacks; the spells PR adds them. */
+const SPELLS_STILL_MISSING = ["Crusader's Mantle", "Steel Wind Strike", "Summon Fey", "Yolande's Regal Presence"];
 
 describe("2024 Player's Handbook subclasses", () => {
   test("each class has the book's subclasses, once each", () => {
@@ -30,11 +38,24 @@ describe("2024 Player's Handbook subclasses", () => {
   });
 
   test("every feature has a level and text; levels fit the class's subclass levels", () => {
-    const levels: Record<string, number[]> = { Barbarian: [3, 6, 10, 14], Fighter: [3, 7, 10, 15, 18], Monk: [3, 6, 11, 17], Rogue: [3, 9, 13, 17] };
+    const levels: Record<string, number[]> = {
+      Barbarian: [3, 6, 10, 14], Fighter: [3, 7, 10, 15, 18], Monk: [3, 6, 11, 17], Rogue: [3, 9, 13, 17],
+      Bard: [3, 6, 14], Cleric: [3, 6, 17], Paladin: [3, 7, 15, 20], Ranger: [3, 7, 11, 15],
+    };
     for (const s of phb.subclasses) {
       for (const f of s.features) {
         expect([s.name, f.name, levels[s.class]?.includes(f.level), f.description.length > 15]).toEqual([s.name, f.name, true, true]);
       }
+    }
+  });
+
+  test("always-prepared spells are real 2024 spells at levels the class can cast", () => {
+    const known = new Set((spells2024 as any).spells.map((x: any) => x.name));
+    const unknown = phb.subclasses.flatMap((s: any) => Object.values(s.expandedSpells || {}).flat() as string[]).filter((n) => !known.has(n));
+    expect([...new Set(unknown)].sort()).toEqual(SPELLS_STILL_MISSING);
+    const firstSlot: Record<string, number> = { Bard: 3, Cleric: 3, Paladin: 3, Ranger: 3 };
+    for (const s of phb.subclasses as any[]) {
+      for (const lvl of Object.keys(s.expandedSpells || {})) expect([s.name, Number(lvl) >= (firstSlot[s.class] ?? 99)]).toEqual([s.name, true]);
     }
   });
 
