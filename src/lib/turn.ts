@@ -6,7 +6,7 @@ import { getFeatureValue, getModifier, getProficiencyBonus, hasFeat, hasFighting
 import type { BonusPart } from "@/lib/dice-roll";
 import { spellNumbersFor } from "@/lib/roll-parts";
 import { speciesSpellAbility } from "@/lib/origin-2024";
-import { biggerDie, getWeaponAttackDetails, isRaging, martialArtsDie } from "@/lib/weapon-attacks";
+import { biggerDie, getWeaponAttackDetails, isRaging, isThrowable, martialArtsDie } from "@/lib/weapon-attacks";
 import { equipRow, heldInHands, unequipRow, type Hand, type InventoryRow } from "@/lib/inventory";
 import { getFreeCastSpells, getGrantedSpellNames } from "@/lib/granted-spells";
 import { advanceTurn, parseDurationToTurns } from "@/lib/spellEffects";
@@ -238,6 +238,27 @@ function attackOptions(character: Character): TurnOption[] {
       mastery: details?.mastery,
       spend: {},
     });
+    // A melee weapon with the Thrown property (javelin, handaxe, dagger) can also be thrown.
+    const throwing = details && details.weapon.category !== "ranged" && isThrowable(details.weapon) ? getWeaponAttackDetails(character, attack, undefined, { thrown: true }) : null;
+    if (throwing) {
+      out.push({
+        key: `attack:${attack.id}:thrown`,
+        tags: ["ranged", "thrown"],
+        slot: "action",
+        group: "attack",
+        name: attack.name,
+        nameKey: "turn.throwName",
+        nameValues: { name: attack.name },
+        summary: "",
+        toHit: throwing.attackBonus,
+        toHitParts: throwing.attackParts,
+        damageRoll: throwing.damageDice ? { dice: throwing.damageDice, parts: throwing.damageParts, type: throwing.damageType } : undefined,
+        damage: throwing.damageDice ? `${throwing.damageDice} ${signed(throwing.damageBonus)} ${throwing.damageType} damage`.replace(" + 0 ", " ") : undefined,
+        detail: weaponDetail(throwing.weapon),
+        mastery: throwing.mastery,
+        spend: {},
+      });
+    }
   }
   const offHand = offHandAttack(character);
   if (offHand) out.push(offHand);

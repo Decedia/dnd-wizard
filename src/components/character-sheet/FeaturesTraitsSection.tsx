@@ -10,6 +10,8 @@ import { FeatureSelectionModal } from "../modals/FeatureSelectionModal";
 import { getStaticFeats, getStaticSubclasses, getStaticClass, getStaticRace, getStaticFeat } from "@/lib/srd-client";
 import { syncBaseFeatures, getMissingFeatureChoices, resolveFeatureChoice } from "@/lib/character-creation";
 import { saveCharacter } from "@/lib/storage";
+import { addFeatPicks, decodeFeatOptions, openFeatPicks } from "@/lib/feat-grants";
+import { FeatSelectionModal } from "../modals/FeatSelectionModal";
 import type { Character } from "@/lib/storage";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getStatBadgeStyle } from "@/lib/badge-styles";
@@ -46,6 +48,8 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
   const { onFieldBlur } = useCharacterSheet();
   const { t, tDesc, language } = useLanguage();
   const [popupFeatName, setPopupFeatName] = useState<string | null>(null);
+  // A taken feat that owes picks at this level (Ritual Caster's extra spell).
+  const [featPicksFor, setFeatPicksFor] = useState<{ feat: string; key: string; groupIds: string[] } | null>(null);
   const [selectedFeature, setSelectedFeature] = useState<any | null>(null);
   const [syncing, setSyncing] = useState(false);
   const [missingChoices, setMissingChoices] = useState<ReturnType<typeof getMissingFeatureChoices>>([]);
@@ -400,7 +404,7 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
     const pool = trackOf(rule);
     const summary = ((feature as any).summary || (feature.description || "").slice(0, 160)) as string;
     // Feats always list under Feats, with their spend controls, so every feat taken shows there.
-    return { feature, group: usable && home !== "feat" ? ("use" as FeatureGroup) : home, home, level, levelLabel, origin, picks, pool, summary, missing: missingFor(feature.name), usable };
+    return { feature, group: usable && home !== "feat" ? ("use" as FeatureGroup) : home, home, level, levelLabel, origin, picks, pool, summary, missing: missingFor(feature.name), usable, openPicks: isFeat ? openFeatPicks(character).find((o) => o.feat === feature.name) : undefined };
   });
   type Row = (typeof rows)[number];
 
@@ -483,6 +487,17 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
             </span>
           )}
         </button>
+        {r.openPicks && (
+          <div className="px-3.5 pb-2">
+            <button
+              type="button"
+              onClick={() => setFeatPicksFor(r.openPicks!)}
+              className="inline-flex items-center gap-1.5 min-h-[32px] px-2.5 rounded-full text-xs font-semibold bg-[var(--color-warning-50,#FFF1E6)] text-[var(--color-warning-700,#9A3412)] border border-[var(--color-warning-200,#FED7AA)]"
+            >
+              {t("features.missingPick", { name: feature.name }, "Pick: {name}")}
+            </button>
+          </div>
+        )}
         {r.missing.length > 0 && (
           <div className="px-3.5 pb-2">
             <button
@@ -784,6 +799,23 @@ export function FeaturesTraitsSection({ character, onChange, editMode = true }: 
           </BottomSheet>
         )}
         {popupFeat && <FeatModal feat={popupFeat} onClose={() => setPopupFeatName(null)} />}
+        {featPicksFor && (
+          <FeatSelectionModal
+            onlyFeat={featPicksFor.feat}
+            selectedFeat={featPicksFor.feat}
+            initialOptions={decodeFeatOptions(character.featureSelections?.[`${featPicksFor.key}-options`])}
+            sources={character.ruleset === "2024" ? [] : character.sources}
+            ruleset={character.ruleset}
+            characterLevel={character.level}
+            character={character}
+            onSelect={(_feat, options) => {
+              const picks = Object.fromEntries(featPicksFor.groupIds.filter((id) => options?.[id]).map((id) => [id, options![id]]));
+              if (Object.keys(picks).length) onChange(addFeatPicks(character, featPicksFor.key, featPicksFor.feat, picks));
+              setFeatPicksFor(null);
+            }}
+            onClose={() => setFeatPicksFor(null)}
+          />
+        )}
         {selectedFeature && (() => {
           const badges = getFeatureBadges(selectedFeature);
           const sheetLevel = getFeatureLevel(selectedFeature);

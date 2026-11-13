@@ -95,3 +95,64 @@ describe("2024 feat suggestion cards", () => {
     expect(defaultFeatOptions("War Caster", "2024", "Wizard", { ...scores, int: 16 })).toEqual({ ability: "int" });
   });
 });
+
+import { activeResistances, damageResistances, reducedDamage } from "@/lib/resistances";
+import { addFeatPicks, openFeatPicks } from "@/lib/feat-grants";
+
+describe("damage resistances", () => {
+  const types = (c: Character) => damageResistances(c).map((r) => r.type).sort();
+  const feature = (name: string) => ({ id: name, name, description: "", source: "class" });
+
+  test("species: 2024 Dwarf, Tiefling legacy, Dragonborn ancestor, 2014 Dragonborn, Aasimar", () => {
+    expect(types(make({ race: "Dwarf" }))).toEqual(["Poison"]);
+    expect(types(make({ race: "Tiefling", raceChoices: { "tiefling-2024-lineage": "fiendish-legacy-infernal" } }))).toEqual(["Fire"]);
+    expect(types(make({ race: "Dragonborn", raceChoices: { "dragonborn-2024-lineage": "draconic-ancestor-silver" } }))).toEqual(["Cold"]);
+    expect(types(make({ race: "Dragonborn", ruleset: "2014", raceChoices: { "draconic-ancestry": "red" } }))).toEqual(["Fire"]);
+    expect(types(make({ race: "Aasimar", sources: ["PHB", "PHB2024"] }))).toEqual(["Necrotic", "Radiant"]);
+    expect(types(make({ race: "Human" }))).toEqual([]);
+  });
+
+  test("Rage counts only while raging; the Bear totem resists all but Psychic", () => {
+    const barb = make({ class: "Barbarian", level: 3, ruleset: "2014", features: [feature("Rage"), feature("Totem Spirit")] as Character["features"], featureSelections: { "subclass-feature-3-Totem Spirit": ["Bear"] } });
+    expect(damageResistances(barb).filter((r) => r.source === "Rage").map((r) => r.type)).toEqual(["Bludgeoning", "Piercing", "Slashing"]);
+    expect(activeResistances(barb)).toEqual([]);
+    const raging = { ...barb, activeStates: ["raging"] } as Character;
+    expect(new Set(activeResistances(raging).map((r) => r.type)).size).toBe(12);
+    expect(activeResistances(raging).some((r) => r.type === "Psychic")).toBe(false);
+  });
+
+  test("feats and immunities", () => {
+    const boon = make({ class: "Fighter", level: 19, featureSelections: { "asi-feat-19": ["Boon of Energy Resistance"], "asi-feat-19-options": ["ability=str", "resistance_1=Fire", "resistance_2=Cold"] } });
+    expect(types(boon)).toEqual(["Cold", "Fire"]);
+    const monk = make({ class: "Monk", level: 10, ruleset: "2014", features: [feature("Purity of Body")] as Character["features"] });
+    expect(damageResistances(monk)).toEqual([{ type: "Poison", source: "Purity of Body", immune: true }]);
+    expect([reducedDamage(15, "normal"), reducedDamage(15, "resist"), reducedDamage(15, "immune")]).toEqual([15, 7, 0]);
+  });
+});
+
+describe("thrown attacks", () => {
+  test("a javelin can be thrown, with Thrown Weapon Fighting +2 only on the throw", () => {
+    const inventory = equipRow([item("javelin")], "javelin", "main").inventory;
+    const c = make({ class: "Fighter", level: 1, str: 16, inventory, attacks: [{ id: "javelin", name: "Javelin", source: "weapon" }] as any, featureSelections: { "class-feature-1-Fighting Style": ["Thrown Weapon Fighting"] } });
+    const menu = buildTurnMenu(c, []).options;
+    const melee = menu.find((o) => o.key === "attack:javelin")!;
+    const thrown = menu.find((o) => o.key === "attack:javelin:thrown")!;
+    expect(melee.damageRoll?.parts?.reduce((a, p) => a + p.value, 0)).toBe(3);
+    expect(thrown.damageRoll?.parts?.reduce((a, p) => a + p.value, 0)).toBe(5);
+    expect(thrown.tags).toEqual(["ranged", "thrown"]);
+    expect([en["turn.throwName"], id["turn.throwName"]].every(Boolean)).toBe(true);
+  });
+});
+
+describe("Ritual Caster grows with the Proficiency Bonus", () => {
+  test("level 5 owes a third ritual spell; picking it adds the spell and keeps the old picks", () => {
+    const c = make({ class: "Wizard", level: 5, int: 16, featureSelections: { "asi-feat-4": ["Ritual Caster"], "asi-feat-4-options": ["ability=int", "ritual_spell_1=Detect Magic", "ritual_spell_2=Find Familiar"] } });
+    expect(openFeatPicks(c)).toEqual([{ feat: "Ritual Caster", key: "asi-feat-4", groupIds: ["ritual_spell_3"] }]);
+    expect(openFeatPicks({ ...c, level: 4 } as Character)).toEqual([]);
+    const patch = addFeatPicks(c, "asi-feat-4", "Ritual Caster", { ritual_spell_3: "Alarm" });
+    expect(patch.featureSelections?.["asi-feat-4-options"]).toContain("ritual_spell_3=Alarm");
+    expect(patch.featureSelections?.["asi-feat-4-options"]).toContain("ritual_spell_1=Detect Magic");
+    expect(patch.spells?.some((s) => s.name === "Alarm")).toBe(true);
+    expect(openFeatPicks({ ...c, ...patch } as Character)).toEqual([]);
+  });
+});
