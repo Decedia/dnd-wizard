@@ -6,7 +6,7 @@ import { activeRaceChoices, getStaticFeat, getStaticRace } from "@/lib/srd-clien
 import type { Character } from "@/lib/storage";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { FeatSelectionModal } from "../modals/FeatSelectionModal";
-import { getFeatOptionGroups } from "@/data/feat-options";
+import { ARTISAN_TOOLS_2024, MUSICAL_INSTRUMENTS_2024, getFeatOptionGroups } from "@/data/feat-options";
 import { BACKGROUND_TOOL_KEY, getBackground2024, originFeatComplete, originFeatPatch, originFeats, type OriginFeat } from "@/lib/origin-2024";
 import { PickRow } from "./StepOrigin";
 
@@ -52,16 +52,22 @@ export function SpeciesPicks2024({ data, onChange }: { data: Character; onChange
   );
 }
 
-/** The Soldier's gaming set, and later any other tool a 2024 background lets the player pick. */
+/** The tool a 2024 background lets the player pick: a gaming set, artisan's tools or a musical instrument. */
 export function BackgroundToolPick2024({ data, onChange }: { data: Character; onChange: (patch: Partial<Character>) => void }) {
   const { t } = useLanguage();
   const bg = getBackground2024(data.background);
   if (!bg?.toolChoice) return null;
+  const kind = bg.toolKind || "gaming";
+  const list = kind === "artisan" ? ARTISAN_TOOLS_2024 : kind === "instrument" ? MUSICAL_INSTRUMENTS_2024 : GAMING_SETS_2024;
+  const label = kind === "artisan" ? t("origin.artisanTool", "Artisan's tools") : kind === "instrument" ? t("origin.instrument", "Musical instrument") : t("origin.gamingSet", "Gaming set");
+  const hint = kind === "artisan"
+    ? t("origin.artisanToolHint", "You are trained with one kind of artisan's tools.")
+    : kind === "instrument" ? t("origin.instrumentHint", "You are trained with one musical instrument.") : t("origin.gamingSetHint", "You are trained with one kind of gaming set.");
   return (
     <PillPick
-      label={t("origin.gamingSet", "Gaming set")}
-      hint={t("origin.gamingSetHint", "You are trained with one kind of gaming set.")}
-      options={GAMING_SETS_2024.map((name) => ({ id: name, name }))}
+      label={label}
+      hint={hint}
+      options={list.map((name) => ({ id: name, name }))}
       value={data.featureSelections?.[BACKGROUND_TOOL_KEY]?.[0]}
       onPick={(name) => onChange({ featureSelections: { ...data.featureSelections, [BACKGROUND_TOOL_KEY]: [name] } })}
     />
@@ -110,7 +116,7 @@ export function OriginFeats2024({ data, onChange }: { data: Character; onChange:
           initialOptions={open.options}
           disabledFeats={feats.filter((f) => f.key !== open.key && f.name && !getStaticFeat(f.name, "2024")?.repeatable).map((f) => f.name)}
           character={data}
-          sources={[]}
+          sources={data.sources}
           onClose={() => setOpen(null)}
           onSelect={(feat, options) => onChange(originFeatPatch(data, open, feat.name, options || {}))}
         />

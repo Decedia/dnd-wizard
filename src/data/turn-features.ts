@@ -573,6 +573,10 @@ export const FEATURE_RULES_2024: FeatureRule[] = [
   { name: /^Boon of Dimensional Travel/, slot: "free", when: "afterAttack" },
   { name: /^Boon of Fate/, slot: "free", when: "onFail", uses: short1, dice: () => "2d4" },
   { name: /^Boon of the Night Spirit/, slot: "bonus" },
+  // 2024 Player's Handbook Origin feats
+  { name: /^Lucky$/, slot: "free", when: "onAttackRoll", pool: { field: "luckPoints", amount: 1 }, only: (c) => (c.maxLuckPoints || 0) > 0 },
+  { name: /^Healer$/, slot: "action" },
+  { name: /^Tavern Brawler$/, slot: "free", when: "onHit", oncePerTurn: true, condition: "unarmed" },
 ];
 
 /**

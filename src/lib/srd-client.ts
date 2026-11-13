@@ -48,6 +48,8 @@ import { THIRD_CASTERS_2024 } from "@/data/phb2024-third-casters";
 import spells2024En from "@/data/en/2024_spells.json";
 import feats2024En from "@/data/en/2024_feats.json";
 import backgrounds2024En from "@/data/en/2024_backgrounds.json";
+// 2024 Player's Handbook backgrounds and Origin feats beyond SRD 5.2; source "PHB2024".
+import origins2024Phb from "@/data/en/2024_phb_origins.json";
 const species2024Map: Record<string, { races: unknown[] }> = withIndonesian(species2024En);
 const subclasses2024En = { subclasses: [...subclasses2024Srd.subclasses, ...subclasses2024Phb.subclasses] };
 // Each class lists its subclasses; the 2024 Fighter and Rogue also get Eldritch Knight and Arcane Trickster casting.
@@ -61,8 +63,12 @@ const classes2024With = {
 const classes2024Map: Record<string, { classes: unknown[] }> = withIndonesian(classes2024With);
 const subclasses2024Map: Record<string, { subclasses: unknown[] }> = withIndonesian(subclasses2024En);
 const spells2024Map: Record<string, { spells: unknown[] }> = withIndonesian(spells2024En);
-const feats2024Map: Record<string, { feats: unknown[] }> = withIndonesian(feats2024En);
-const backgrounds2024Map: Record<string, { backgrounds: SRDBackground2024[] }> = withIndonesian(backgrounds2024En as { backgrounds: SRDBackground2024[] });
+const feats2024Map: Record<string, { feats: unknown[] }> = withIndonesian({ feats: [...feats2024En.feats, ...origins2024Phb.feats] });
+const backgrounds2024Map: Record<string, { backgrounds: SRDBackground2024[] }> = withIndonesian({
+  backgrounds: [...backgrounds2024En.backgrounds, ...origins2024Phb.backgrounds] as SRDBackground2024[],
+});
+/** Whether a 2024 entry's book is among the character's sources (no sources: every book). */
+const inSources2024 = (source: string | undefined, sources?: string[]) => !sources || sources.length === 0 || sources.includes(source || "PHB");
 
 /** A 2024 background: it gives the ability increases and an Origin feat. */
 export interface SRDBackground2024 {
@@ -76,11 +82,14 @@ export interface SRDBackground2024 {
   skills: string[];
   tools: string[];
   toolChoice: string | null;
+  /** What kind of tool the player picks when toolChoice is set (Soldier: a gaming set). */
+  toolKind?: "gaming" | "artisan" | "instrument";
   equipment: string;
 }
 
-export function getStaticBackgrounds2024(locale: string = "en"): SRDBackground2024[] {
-  return pickLocaleData(backgrounds2024Map, locale).backgrounds;
+/** The 2024 backgrounds; with sources, only those from the character's books (a saved name is looked up in all). */
+export function getStaticBackgrounds2024(locale: string = "en", sources?: string[]): SRDBackground2024[] {
+  return pickLocaleData(backgrounds2024Map, locale).backgrounds.filter((b) => inSources2024(b.source, sources));
 }
 
 import { getFeatOptionGroups, type FeatOptionGroup } from "@/data/feat-options";
@@ -1028,7 +1037,7 @@ export function getStaticFeats(sources?: string[], ruleset?: string, locale: str
   const featsData = pickLocaleData(featsDataMap, locale) as any;
   // 2024 feats share names with 2014 ones (Alert, Grappler) but not their options.
   if (ruleSetOf(ruleset) === "2024") {
-    return (pickLocaleData(feats2024Map, locale).feats as SRDFeat[]).map((feat) => {
+    return (pickLocaleData(feats2024Map, locale).feats as SRDFeat[]).filter((f) => inSources2024((f as any).source, sources)).map((feat) => {
       const options = getFeatOptionGroups(feat.name, "2024");
       return options.length > 0 ? { ...feat, options } : feat;
     });

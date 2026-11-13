@@ -58,22 +58,29 @@ export function buildBackgroundGroups(t: TFn): PickerGroup[] {
   return groups.filter((g) => g.entries.length > 0);
 }
 
+/** "One gaming set of your choice" and the like, for a background that lets the player pick its tool. */
+export function toolPickLabel(bg: SRDBackground2024, t: TFn): string {
+  if (bg.toolKind === "artisan") return t("background.artisanPick", "One kind of artisan's tools of your choice");
+  if (bg.toolKind === "instrument") return t("background.instrumentPick", "One musical instrument of your choice");
+  return t("background.gamingSetPick", "One gaming set of your choice");
+}
+
 /** "+2/+1 to STR, DEX or CON · Savage Attacker" */
 export function background2024StatLine(bg: SRDBackground2024, t: TFn): string {
   const abilities = bg.abilityScores.map((a) => a.toUpperCase()).join(", ");
   return `${t("background.asiLine", { abilities }, "+2/+1 among {abilities}")} • ${bg.feat}`;
 }
 
-/** The four 2024 backgrounds, in one group. */
-function buildBackground2024Groups(t: TFn): PickerGroup[] {
+/** The 2024 backgrounds from the character's books, in one group. */
+function buildBackground2024Groups(t: TFn, sources?: string[]): PickerGroup[] {
   return [{
     key: "2024",
     label: t("background.group.2024", "Backgrounds"),
     flavor: t("background.groupFlavor.2024", "Your background gives your ability increases, a starting feat, two skills and a tool."),
     icon: <BookOpen size={20} weight="bold" />,
-    entries: getStaticBackgrounds2024().map((bg) => ({
+    entries: getStaticBackgrounds2024("en", sources).map((bg) => ({
       name: bg.name,
-      source: "PHB",
+      source: bg.source,
       description: background2024StatLine(bg, t),
       stats: bg.skills.join(", "),
     })),
@@ -97,7 +104,7 @@ function Background2024InfoPanel({ bg, t }: { bg: SRDBackground2024; t: TFn }) {
         <InfoStatTile label={t("background.skills", "Skill")} value={bg.skills.join(", ")} />
         <InfoStatTile
           label={t("background.tools", "Alat")}
-          value={bg.tools.join(", ") || (bg.toolChoice ? t("background.gamingSetPick", "One gaming set of your choice") : "")}
+          value={[...bg.tools, ...(bg.toolChoice ? [toolPickLabel(bg, t)] : [])].join(", ")}
           emptyText={t("background.none", "Tidak ada")}
         />
       </div>
@@ -175,16 +182,18 @@ interface BackgroundSelectionModalProps {
   onConfirm: (background: string) => void;
   /** "2024" lists the 2024 backgrounds (ability increases and an Origin feat). */
   ruleset?: string;
+  /** The character's books: 2024 backgrounds from a book that is off are left out. */
+  sources?: string[];
 }
 
-export function BackgroundSelectionModal({ isOpen, current, onClose, onConfirm, ruleset }: BackgroundSelectionModalProps) {
+export function BackgroundSelectionModal({ isOpen, current, onClose, onConfirm, ruleset, sources }: BackgroundSelectionModalProps) {
   const { t } = useLanguage();
   const is2024 = ruleset === "2024";
   const [picked, setPicked] = useState(current);
   const [search, setSearch] = useState("");
   const [infoName, setInfoName] = useState<string | null>(null);
 
-  const groups = useMemo(() => (is2024 ? buildBackground2024Groups(t) : buildBackgroundGroups(t)), [t, is2024]);
+  const groups = useMemo(() => (is2024 ? buildBackground2024Groups(t, sources) : buildBackgroundGroups(t)), [t, is2024, sources]);
   // The modal mounts fresh on each open, so the current background's group starts open.
   const [openGroups, setOpenGroups] = useState<string[]>(() => {
     const key = groups.find((g) => g.entries.some((e) => e.name === current))?.key;

@@ -269,7 +269,7 @@ export function StepSourceSelection({ data, onChange }: { data: Pick<Character, 
             <input type="checkbox" checked={selectedSources.includes(PHB_2024)} onChange={() => toggleSource(PHB_2024)} className="mt-0.5 h-4 w-4 accent-[var(--color-ink)]" />
             <span>
               <span className="block text-sm font-bold text-ink">{t("ruleset.phb2024", "2024 Player's Handbook")}</span>
-              <span className="mt-0.5 block text-xs leading-relaxed text-ink-muted">{t("ruleset.phb2024Desc", "Adds the rest of the 2024 book: more subclasses for every class. Turn it off if your group plays only the free core rules.")}</span>
+              <span className="mt-0.5 block text-xs leading-relaxed text-ink-muted">{t("ruleset.phb2024Desc", "Adds the rest of the 2024 book: more subclasses, backgrounds and starting feats. Turn it off if your group plays only the free core rules.")}</span>
             </span>
           </label>
         </div>

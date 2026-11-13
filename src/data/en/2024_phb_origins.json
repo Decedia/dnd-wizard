@@ -1,0 +1,296 @@
+{
+ "backgrounds": [
+  {
+   "name": "Artisan",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "abilityScores": [
+    "str",
+    "dex",
+    "int"
+   ],
+   "feat": "Crafter",
+   "skills": [
+    "Investigation",
+    "Persuasion"
+   ],
+   "tools": [],
+   "toolChoice": "Choose one kind of Artisan's Tools",
+   "toolKind": "artisan",
+   "equipment": "Choose A or B: (A) Artisan's Tools (same as above), 2 Pouches, Traveler's Clothes, 32 GP; or (B) 50 GP"
+  },
+  {
+   "name": "Charlatan",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "abilityScores": [
+    "dex",
+    "con",
+    "cha"
+   ],
+   "feat": "Skilled",
+   "skills": [
+    "Deception",
+    "Sleight of Hand"
+   ],
+   "tools": [
+    "Forgery Kit"
+   ],
+   "toolChoice": null,
+   "equipment": "Choose A or B: (A) Forgery Kit, Costume, Fine Clothes, 15 GP; or (B) 50 GP"
+  },
+  {
+   "name": "Entertainer",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "abilityScores": [
+    "str",
+    "dex",
+    "cha"
+   ],
+   "feat": "Musician",
+   "skills": [
+    "Acrobatics",
+    "Performance"
+   ],
+   "tools": [],
+   "toolChoice": "Choose one kind of Musical Instrument",
+   "toolKind": "instrument",
+   "equipment": "Choose A or B: (A) Musical Instrument (same as above), 2 Costumes, Mirror, Perfume, Traveler's Clothes, 11 GP; or (B) 50 GP"
+  },
+  {
+   "name": "Farmer",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "abilityScores": [
+    "str",
+    "con",
+    "wis"
+   ],
+   "feat": "Tough",
+   "skills": [
+    "Animal Handling",
+    "Nature"
+   ],
+   "tools": [
+    "Carpenter's Tools"
+   ],
+   "toolChoice": null,
+   "equipment": "Choose A or B: (A) Sickle, Carpenter's Tools, Healer's Kit, Iron Pot, Shovel, Traveler's Clothes, 30 GP; or (B) 50 GP"
+  },
+  {
+   "name": "Guard",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "abilityScores": [
+    "str",
+    "int",
+    "wis"
+   ],
+   "feat": "Alert",
+   "skills": [
+    "Athletics",
+    "Perception"
+   ],
+   "tools": [],
+   "toolChoice": "Choose one kind of Gaming Set",
+   "toolKind": "gaming",
+   "equipment": "Choose A or B: (A) Spear, Light Crossbow, 20 Bolts, Gaming Set (same as above), Hooded Lantern, Manacles, Quiver, Traveler's Clothes, 12 GP; or (B) 50 GP"
+  },
+  {
+   "name": "Guide",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "abilityScores": [
+    "dex",
+    "con",
+    "wis"
+   ],
+   "feat": "Magic Initiate (Druid)",
+   "skills": [
+    "Stealth",
+    "Survival"
+   ],
+   "tools": [
+    "Cartographer's Tools"
+   ],
+   "toolChoice": null,
+   "equipment": "Choose A or B: (A) Shortbow, 20 Arrows, Cartographer's Tools, Bedroll, Quiver, Tent, Traveler's Clothes, 3 GP; or (B) 50 GP"
+  },
+  {
+   "name": "Hermit",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "abilityScores": [
+    "con",
+    "wis",
+    "cha"
+   ],
+   "feat": "Healer",
+   "skills": [
+    "Medicine",
+    "Religion"
+   ],
+   "tools": [
+    "Herbalism Kit"
+   ],
+   "toolChoice": null,
+   "equipment": "Choose A or B: (A) Quarterstaff, Herbalism Kit, Bedroll, Book (philosophy), Lamp, Oil (3 flasks), Traveler's Clothes, 16 GP; or (B) 50 GP"
+  },
+  {
+   "name": "Merchant",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "abilityScores": [
+    "con",
+    "int",
+    "cha"
+   ],
+   "feat": "Lucky",
+   "skills": [
+    "Animal Handling",
+    "Persuasion"
+   ],
+   "tools": [
+    "Navigator's Tools"
+   ],
+   "toolChoice": null,
+   "equipment": "Choose A or B: (A) Navigator's Tools, 2 Pouches, Traveler's Clothes, 22 GP; or (B) 50 GP"
+  },
+  {
+   "name": "Noble",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "abilityScores": [
+    "str",
+    "int",
+    "cha"
+   ],
+   "feat": "Skilled",
+   "skills": [
+    "History",
+    "Persuasion"
+   ],
+   "tools": [],
+   "toolChoice": "Choose one kind of Gaming Set",
+   "toolKind": "gaming",
+   "equipment": "Choose A or B: (A) Gaming Set (same as above), Fine Clothes, Perfume, 29 GP; or (B) 50 GP"
+  },
+  {
+   "name": "Sailor",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "abilityScores": [
+    "str",
+    "dex",
+    "wis"
+   ],
+   "feat": "Tavern Brawler",
+   "skills": [
+    "Acrobatics",
+    "Perception"
+   ],
+   "tools": [
+    "Navigator's Tools"
+   ],
+   "toolChoice": null,
+   "equipment": "Choose A or B: (A) Dagger, Navigator's Tools, Rope, Traveler's Clothes, 20 GP; or (B) 50 GP"
+  },
+  {
+   "name": "Scribe",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "abilityScores": [
+    "dex",
+    "int",
+    "wis"
+   ],
+   "feat": "Skilled",
+   "skills": [
+    "Investigation",
+    "Perception"
+   ],
+   "tools": [
+    "Calligrapher's Supplies"
+   ],
+   "toolChoice": null,
+   "equipment": "Choose A or B: (A) Calligrapher's Supplies, Fine Clothes, Lamp, Oil (3 flasks), Parchment (12 sheets), 23 GP; or (B) 50 GP"
+  },
+  {
+   "name": "Wayfarer",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "abilityScores": [
+    "dex",
+    "wis",
+    "cha"
+   ],
+   "feat": "Lucky",
+   "skills": [
+    "Insight",
+    "Stealth"
+   ],
+   "tools": [
+    "Thieves' Tools"
+   ],
+   "toolChoice": null,
+   "equipment": "Choose A or B: (A) 2 Daggers, Thieves' Tools, Gaming Set (any), Bedroll, 2 Pouches, Traveler's Clothes, 16 GP; or (B) 50 GP"
+  }
+ ],
+ "feats": [
+  {
+   "name": "Crafter",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "book": "PHB2024",
+   "category": "Origin",
+   "description": "You gain the following benefits.\n\n**Tool Proficiency.** You gain proficiency with three different Artisan's Tools of your choice.\n\n**Discount.** You get a 20 percent discount when you buy a nonmagical item.\n\n**Fast Crafting.** When you finish a Long Rest, you can make one simple piece of adventuring gear with Artisan's Tools you are proficient with (for example a Ladder with Carpenter's Tools, or a Pouch with Leatherworker's Tools). It falls apart when you finish your next Long Rest.",
+   "repeatable": false
+  },
+  {
+   "name": "Healer",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "book": "PHB2024",
+   "category": "Origin",
+   "description": "You gain the following benefits.\n\n**Battle Medic.** With a Healer's Kit, you can take the Utilize action and spend one use of the kit to tend a creature within 5 feet. That creature can spend one of its Hit Point Dice; you roll it, and it regains that many Hit Points plus your Proficiency Bonus.\n\n**Healing Rerolls.** When you roll a die to restore Hit Points with a spell or with Battle Medic, you can reroll a 1. You must use the new roll.",
+   "repeatable": false
+  },
+  {
+   "name": "Lucky",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "book": "PHB2024",
+   "category": "Origin",
+   "description": "You gain the following benefits.\n\n**Luck Points.** You have Luck Points equal to your Proficiency Bonus. They come back after a Long Rest.\n\n**Advantage.** When you roll a d20 for a D20 Test, you can spend 1 Luck Point to give yourself Advantage on the roll.\n\n**Disadvantage.** When a creature rolls a d20 for an attack roll against you, you can spend 1 Luck Point to give that roll Disadvantage.",
+   "repeatable": false
+  },
+  {
+   "name": "Musician",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "book": "PHB2024",
+   "category": "Origin",
+   "description": "You gain the following benefits.\n\n**Instrument Training.** You gain proficiency with three Musical Instruments of your choice.\n\n**Encouraging Song.** As you finish a Short or Long Rest, you can play a song on an instrument you are proficient with. A number of allies who hear it, up to your Proficiency Bonus, gain Heroic Inspiration.",
+   "repeatable": false
+  },
+  {
+   "name": "Tavern Brawler",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "book": "PHB2024",
+   "category": "Origin",
+   "description": "You gain the following benefits.\n\n**Enhanced Unarmed Strike.** When your Unarmed Strike hits and deals damage, you can deal 1d4 + your Strength modifier Bludgeoning damage instead of the usual damage.\n\n**Damage Rerolls.** When you roll a damage die for your Unarmed Strike, you can reroll a 1. You must use the new roll.\n\n**Improvised Weaponry.** You are proficient with improvised weapons.\n\n**Push.** Once per turn, when your Unarmed Strike hits a creature as part of the Attack action, you can deal the damage and also push it 5 feet away from you.",
+   "repeatable": false
+  },
+  {
+   "name": "Tough",
+   "ruleset": "2024",
+   "source": "PHB2024",
+   "book": "PHB2024",
+   "category": "Origin",
+   "description": "Your Hit Point maximum goes up by twice your character level when you take this feat. Each time you gain a level after that, it goes up by 2 more.",
+   "repeatable": false
+  }
+ ]
+}

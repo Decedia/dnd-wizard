@@ -2,7 +2,7 @@
 // and reaction right now, and the patches that start a turn, use an option and
 // end a turn. Pure functions, so the panel only renders.
 import type { Character } from "@/lib/storage";
-import { getFeatureValue, getModifier, getProficiencyBonus, isPreparationCaster } from "@/lib/storage";
+import { getFeatureValue, getModifier, getProficiencyBonus, hasFeat, isPreparationCaster } from "@/lib/storage";
 import type { BonusPart } from "@/lib/dice-roll";
 import { spellNumbersFor } from "@/lib/roll-parts";
 import { speciesSpellAbility } from "@/lib/origin-2024";
@@ -239,6 +239,8 @@ function attackOptions(character: Character): TurnOption[] {
   const offHand = offHandAttack(character);
   if (offHand) out.push(offHand);
   const str = getModifier(character.str);
+  // 2024 Tavern Brawler: an Unarmed Strike can deal 1d4 + Strength instead.
+  const brawler = character.ruleset === "2024" && hasFeat(character, "Tavern Brawler");
   out.push({
     key: "attack:unarmed",
     tags: ["melee", "weak"],
@@ -249,7 +251,8 @@ function attackOptions(character: Character): TurnOption[] {
     summary: "",
     toHit: str + prof,
     toHitParts: [{ source: "@str", value: str }, { source: "@prof", value: prof }],
-    damage: `${Math.max(0, 1 + str)} bludgeoning damage`,
+    damage: brawler ? `1d4 ${signed(str)} bludgeoning damage`.replace(" + 0 ", " ") : `${Math.max(0, 1 + str)} bludgeoning damage`,
+    ...(brawler ? { damageRoll: { dice: "1d4", parts: [{ source: "@str", value: str }], type: "bludgeoning" } } : {}),
     spend: {},
   });
   return out;

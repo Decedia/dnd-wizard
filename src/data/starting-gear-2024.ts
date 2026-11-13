@@ -69,6 +69,9 @@ export const CLASS_GEAR_2024: Record<string, GearPackage[]> = {
   ],
 };
 
+const travelers: BackgroundGear = { id: "clothes-travelers" };
+const gold50: GearPackage = { letter: "B", items: [], gold: 50 };
+
 export const BACKGROUND_GEAR_2024: Record<string, GearPackage[]> = {
   Acolyte: [
     { letter: "A", items: [{ id: "calligraphers-supplies" }, { id: "book" }, holy, { id: "parchment-one-sheet", quantity: 10 }, { id: "robes" }], gold: 8 },
@@ -87,4 +90,17 @@ export const BACKGROUND_GEAR_2024: Record<string, GearPackage[]> = {
     { letter: "A", items: [{ id: "spear" }, { id: "shortbow" }, { id: "arrow", quantity: 20 }, { choice: "gaming", label: "Gaming set" }, { id: "healers-kit" }, { id: "quiver" }, { id: "clothes-travelers" }], gold: 14 },
     { letter: "B", items: [], gold: 50 },
   ],
+  // 2024 Player's Handbook backgrounds. A "same as above" tool is a pick-one row.
+  Artisan: [{ letter: "A", items: [{ choice: "artisan", label: "Artisan's tools" }, { id: "pouch", quantity: 2 }, travelers], gold: 32 }, gold50],
+  Charlatan: [{ letter: "A", items: [{ id: "forgery-kit" }, { id: "clothes-costume" }, { id: "clothes-fine" }], gold: 15 }, gold50],
+  Entertainer: [{ letter: "A", items: [{ choice: "instrument", label: "Musical instrument" }, { id: "clothes-costume", quantity: 2 }, { id: "mirror-steel" }, { id: "perfume-vial" }, travelers], gold: 11 }, gold50],
+  Farmer: [{ letter: "A", items: [{ id: "sickle" }, { id: "carpenters-tools" }, { id: "healers-kit" }, { id: "pot-iron" }, { id: "shovel" }, travelers], gold: 30 }, gold50],
+  Guard: [{ letter: "A", items: [{ id: "spear" }, { id: "crossbow-light" }, { id: "crossbow-bolt", quantity: 20 }, { choice: "gaming", label: "Gaming set" }, { id: "lantern-hooded" }, { id: "manacles" }, { id: "quiver" }, travelers], gold: 12 }, gold50],
+  Guide: [{ letter: "A", items: [{ id: "shortbow" }, { id: "arrow", quantity: 20 }, { id: "cartographers-tools" }, { id: "bedroll" }, { id: "quiver" }, { id: "tent-two-person" }, travelers], gold: 3 }, gold50],
+  Hermit: [{ letter: "A", items: [{ id: "quarterstaff" }, { id: "herbalism-kit" }, { id: "bedroll" }, { id: "book" }, { id: "lamp" }, { id: "oil-flask", quantity: 3 }, travelers], gold: 16 }, gold50],
+  Merchant: [{ letter: "A", items: [{ id: "navigators-tools" }, { id: "pouch", quantity: 2 }, travelers], gold: 22 }, gold50],
+  Noble: [{ letter: "A", items: [{ choice: "gaming", label: "Gaming set" }, { id: "clothes-fine" }, { id: "perfume-vial" }], gold: 29 }, gold50],
+  Sailor: [{ letter: "A", items: [{ id: "dagger" }, { id: "navigators-tools" }, { id: "rope-hempen-50-feet" }, travelers], gold: 20 }, gold50],
+  Scribe: [{ letter: "A", items: [{ id: "calligraphers-supplies" }, { id: "clothes-fine" }, { id: "lamp" }, { id: "oil-flask", quantity: 3 }, { id: "parchment-one-sheet", quantity: 12 }], gold: 23 }, gold50],
+  Wayfarer: [{ letter: "A", items: [{ id: "dagger", quantity: 2 }, { id: "thieves-tools" }, { choice: "gaming", label: "Gaming set" }, { id: "bedroll" }, { id: "pouch", quantity: 2 }, travelers], gold: 16 }, gold50],
 };

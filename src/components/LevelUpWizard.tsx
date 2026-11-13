@@ -1083,7 +1083,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
     // 2024: an Ability Score Improvement level offers General feats (the +2 / +1+1 is one of them),
     // and Fighting Style feats to classes that have that feature.
     const allowed2024 = new Set(["General", ...(["Fighter", "Paladin", "Ranger"].includes(character.class) ? ["Fighting Style"] : [])]);
-    return getStaticFeats(character.ruleset === "2024" ? [] : character.sources, character.ruleset)
+    return getStaticFeats(character.sources, character.ruleset)
       .filter((f) => character.ruleset !== "2024" || (allowed2024.has(f.category || "") && f.name !== "Ability Score Improvement"))
       .map((f) => f.name)
       .filter((name) => !owned.has(name) && getFeatOptionGroups(name, character.ruleset).length === 0);

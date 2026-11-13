@@ -6,9 +6,12 @@ import { describe, expect, test } from "bun:test";
 import phb from "@/data/en/2024_phb_subclasses.json";
 import srd from "@/data/en/2024_subclasses.json";
 import spells2024 from "@/data/en/2024_spells.json";
-import { getStaticClass, getStaticSubclasses } from "@/lib/srd-client";
+import { getStaticBackgrounds2024, getStaticClass, getStaticFeat, getStaticFeats, getStaticSubclasses } from "@/lib/srd-client";
+import { parseOriginFeat } from "@/lib/origin-2024";
+import { BACKGROUND_GEAR_2024 } from "@/data/starting-gear-2024";
+import { applyFeatGrants } from "@/lib/feat-grants";
 import { buildLevelInfos } from "@/components/level-up/level-infos";
-import { computeDerivedStats, createEmptyCharacter, type Character } from "@/lib/storage";
+import { computeDerivedStats, createEmptyCharacter, getHpBonusPerLevel, type Character } from "@/lib/storage";
 import { spellChoicePool } from "@/lib/spell-pool";
 import { upgradeSave } from "@/lib/save-upgrade";
 import { defaultSources, PHB_2024 } from "@/lib/rulesets";
@@ -115,5 +118,44 @@ describe("2024 Eldritch Knight and Arcane Trickster", () => {
     expect(pool).toContain("Magic Missile");
     expect(pool).toContain("Sleep");
     expect(pool).not.toContain("Cure Wounds");
+  });
+});
+
+describe("2024 Player's Handbook backgrounds and Origin feats", () => {
+  const BACKGROUNDS = ["Acolyte", "Artisan", "Charlatan", "Criminal", "Entertainer", "Farmer", "Guard", "Guide", "Hermit", "Merchant", "Noble", "Sage", "Sailor", "Scribe", "Soldier", "Wayfarer"];
+  const ORIGIN_FEATS = ["Alert", "Crafter", "Healer", "Lucky", "Magic Initiate", "Musician", "Savage Attacker", "Skilled", "Tavern Brawler", "Tough"];
+
+  test("16 backgrounds and 10 Origin feats with the book on; the SRD ones with it off", () => {
+    expect(getStaticBackgrounds2024("en", defaultSources("2024")).map((b) => b.name).sort()).toEqual(BACKGROUNDS);
+    expect(getStaticBackgrounds2024("en", ["PHB"]).map((b) => b.name).sort()).toEqual(["Acolyte", "Criminal", "Sage", "Soldier"]);
+    const origin = (sources: string[]) => getStaticFeats(sources, "2024").filter((f) => f.category === "Origin").map((f) => f.name).sort();
+    expect(origin(defaultSources("2024"))).toEqual(ORIGIN_FEATS);
+    expect(origin(["PHB"])).toEqual(["Alert", "Magic Initiate", "Savage Attacker", "Skilled"]);
+  });
+
+  test("every background: three abilities, two skills, a real Origin feat, a tool, and gear packages", () => {
+    for (const bg of getStaticBackgrounds2024()) {
+      expect([bg.name, bg.abilityScores.length, bg.skills.length]).toEqual([bg.name, 3, 2]);
+      expect([bg.name, !!getStaticFeat(parseOriginFeat(bg.feat).name, "2024")]).toEqual([bg.name, true]);
+      expect([bg.name, bg.tools.length + (bg.toolChoice ? 1 : 0)]).toEqual([bg.name, 1]);
+      expect([bg.name, BACKGROUND_GEAR_2024[bg.name]?.map((p) => p.letter)]).toEqual([bg.name, ["A", "B"]]);
+    }
+  });
+
+  test("Crafter and Musician give three tools; Tavern Brawler trains improvised weapons", () => {
+    const base = { ...createEmptyCharacter(), ruleset: "2024" } as Character;
+    expect(applyFeatGrants(base, "Crafter", { tool_1: "Smith's Tools", tool_2: "Cook's Utensils", tool_3: "Potter's Tools" }).toolProficiencies).toEqual(["Smith's Tools", "Cook's Utensils", "Potter's Tools"]);
+    expect(applyFeatGrants(base, "Musician", { tool_1: "Lute", tool_2: "Drum", tool_3: "Flute" }).toolProficiencies).toEqual(["Lute", "Drum", "Flute"]);
+    expect(applyFeatGrants(base, "Tavern Brawler").otherProficiencies).toBe("Improvised Weapons");
+  });
+
+  test("2024 Lucky gives Luck Points equal to the Proficiency Bonus; 2014 Lucky gives 3", () => {
+    const lucky = (ruleset: string, level: number) =>
+      computeDerivedStats({ ...createEmptyCharacter(), class: "Fighter", ruleset, level, features: [{ id: "f", name: "Lucky", description: "", source: "custom" }] } as Character).maxLuckPoints;
+    expect([lucky("2024", 1), lucky("2024", 9), lucky("2014", 9)]).toEqual([2, 4, 3]);
+  });
+
+  test("Tough adds 2 HP per level", () => {
+    expect(getHpBonusPerLevel({ ...createEmptyCharacter(), ruleset: "2024", features: [{ id: "f", name: "Tough", description: "", source: "custom" }] } as Character)).toBe(2);
   });
 });

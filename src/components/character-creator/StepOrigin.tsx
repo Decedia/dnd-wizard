@@ -196,6 +196,7 @@ export function StepOrigin({ data, onChange }: StepOriginProps) {
           isOpen={true}
           current={data.background}
           ruleset={data.ruleset}
+          sources={data.sources}
           onClose={() => setBackgroundModalOpen(false)}
           onConfirm={(bg) => {
             if (bg !== data.background) onChange(rules2024 ? applyBackground2024(data, bg) : applyBackground(data, bg));
