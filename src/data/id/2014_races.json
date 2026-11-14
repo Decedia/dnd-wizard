@@ -5820,7 +5820,7 @@
         },
         {
           "name": "Saving Face",
-          "description": "Setiap kali Anda membuat ability check dan gagal dengan selisih 4 atau kurang, Anda dapat memperlakukan pelemparan seolah-olah Anda gagal dengan selisih 5. Jika Anda melakukannya, Anda mendapatkan satu poin keberuntungan. Anda dapat mengeluarkan satu poin keberuntungan saat Anda membuat pelemparan serangan, ability check, atau pelemparan selamat untuk melempar d6 tambahan dan menambahkannya ke pelemparan Anda. Anda mendapatkan kembali semua poin keberuntungan saat Anda menyelesaikan Long Rest.",
+          "description": "Hobgoblin pantang terlihat lemah di depan sekutunya. Saat kamu meleset dengan attack roll atau gagal dalam ability check atau saving throw, kamu bisa mendapat bonus untuk roll itu sebanyak jumlah sekutu yang bisa kamu lihat dalam jarak 30 kaki (maksimal +5). Setelah dipakai, fitur ini baru bisa dipakai lagi setelah kamu menyelesaikan Short Rest atau Long Rest.",
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -6351,7 +6351,7 @@
         },
         {
           "name": "Knowledge from a Past Life",
-          "description": "Anda memiliki fragmen ingatan dari kehidupan masa lalu. Ketika Anda melakukan ability check yang menggunakan skill, Anda dapat melempar d6 dan menambahkannya ke hasil roll Anda. Anda dapat menggunakan fitur ini sebanyak bonus keahlian Anda, dan Anda mendapatkan kembali semua penggunaan yang habis ketika Anda selesai melakukan long rest.",
+          "description": "Kamu menyimpan potongan ingatan dari kehidupan sebelumnya. Saat kamu melakukan ability check yang memakai skill, kamu bisa me-roll **d6** setelah melihat hasil d20 dan menambahkan hasilnya ke check itu. Kamu bisa memakai fitur ini sebanyak Proficiency Bonus-mu. Semua pemakaian kembali setelah kamu menyelesaikan Long Rest.",
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -7482,7 +7482,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "[Pasif] Dapat mengamalkan spell hellish rebuke sebagai spell level 2 satu kali dengan sifat ini dan mendapatkan kembali kemampuan untuk melakukannya ketika Anda selesai melakukan Long Rest",
+          "summary": "Kamu tahu cantrip thaumaturgy. Di level 3 kamu bisa cast hellish rebuke sebagai spell level 2, dan di level 5 darkness, masing-masing sekali per Long Rest. Ability untuk spell ini Charisma.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
