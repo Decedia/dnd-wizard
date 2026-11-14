@@ -2,7 +2,7 @@
 
 import { createElement, useEffect, useState, type ReactNode } from "react";
 import Link from "next/link";
-import { CaretLeft, Eye, EyeSlash } from "@phosphor-icons/react";
+import { Eye, EyeSlash, House } from "@phosphor-icons/react";
 import { GiCampfire } from "react-icons/gi";
 import { HeartBottleIcon as Heart, DropIcon as Drop } from "@/components/icons";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -43,10 +43,10 @@ export function SheetHeader({ character, editMode, onHp, onRest, actions }: Shee
         <div className="flex items-center gap-2.5">
           <Link
             href="/"
-            aria-label={t("common.back", "Back")}
+            aria-label={t("nav.home", "Home")}
             className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--color-control-border)] text-[var(--color-text-primary)]"
           >
-            <CaretLeft size={18} weight="bold" />
+            <House size={20} weight="bold" />
           </Link>
           <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-[var(--color-gold)] bg-[var(--color-surface)] text-[var(--color-gold)]">
             {createElement(getClassIcon(character.class), { size: 22, weight: "duotone" })}

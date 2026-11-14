@@ -2459,4 +2459,8 @@ export const translations = {
   "homebrew.deleteAsk": "Delete this spell for good?",
   "homebrew.less": "Less {what}",
   "homebrew.more": "More {what}",
+  "leave.title": "Go back home?",
+  "leave.stay": "Stay",
+  "leave.go": "Go home",
+  "leave.creation": "Your new hero is not saved yet. Going home now throws away the picks you made.",
 };

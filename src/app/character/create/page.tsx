@@ -206,7 +206,7 @@ export default function CharacterCreate() {
 
   return (
     <div className="min-h-screen bg-paper">
-      <AppHeader title={t("creator.title", "Character Creator")} />
+      <AppHeader title={t("creator.title", "Character Creator")} leaveWarning={t("leave.creation", "Your new hero is not saved yet. Going home now throws away the picks you made.")} />
 
       <main className="px-4 py-5" style={{ paddingBottom: WIZARD_NAV_SPACE }}>
         <div className="mx-auto max-w-lg">

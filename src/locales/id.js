@@ -2568,4 +2568,8 @@ export const translations = {
   "homebrew.deleteAsk": "Hapus spell ini untuk selamanya?",
   "homebrew.less": "Kurangi {what}",
   "homebrew.more": "Tambah {what}",
+  "leave.title": "Balik ke beranda?",
+  "leave.stay": "Tetap di sini",
+  "leave.go": "Ke beranda",
+  "leave.creation": "Hero barumu belum disimpan. Kalau balik ke beranda sekarang, semua pilihanmu hilang.",
 };
