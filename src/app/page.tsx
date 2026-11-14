@@ -12,10 +12,11 @@ import {
   Play,
   DotsThreeVertical,
   CaretRight,
+  Coffee,
 } from "@phosphor-icons/react";
 import { GiCastle, GiMoon } from "react-icons/gi";
 import { getClassIcon } from "@/lib/class-icon";
-import { SupportLinks } from "@/components/SupportLinks";
+import { COFFEE_URL, SupportLinks } from "@/components/SupportLinks";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { getCharacters, saveCharacter, deleteCharacter, type Character } from "@/lib/storage";
 import { importCharacterFromJson } from "@/lib/character-io";
@@ -156,6 +157,19 @@ export default function Home() {
     </button>
   );
 
+  // The tip link, always in sight at the top of the home screen.
+  const tipButton = COFFEE_URL ? (
+    <a
+      href={COFFEE_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="absolute left-4 top-4 z-10 flex h-11 items-center gap-2 rounded-full border border-border-strong bg-paper/70 px-4 text-sm font-semibold text-ink backdrop-blur-sm"
+    >
+      <Coffee size={18} />
+      {t("support.coffee", "Buy me a coffee")}
+    </a>
+  ) : null;
+
   // First load: nothing yet, so neither the empty screen nor the list flashes.
   if (characters === null) return <div className="min-h-screen bg-paper" />;
 
@@ -163,11 +177,12 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-paper pb-28">
-      <div className={`relative overflow-hidden border-b border-border-strong bg-paper-muted ${empty ? "h-[360px]" : "h-[260px]"}`}>
+      <div className={`relative overflow-hidden border-b border-border-strong bg-paper-muted ${empty ? "h-[360px]" : "h-[276px]"}`}>
         <Scene tall={empty} />
+        {tipButton}
         {settingsButton}
         {!empty && (
-          <div className="relative z-[1] px-6 pt-16">
+          <div className="relative z-[1] px-6 pt-20">
             <p className="text-xs font-semibold tracking-[0.2em] text-[var(--color-accent-indigo-600)]">{t("home.tagline", "YOUR ADVENTURE AWAITS")}</p>
             <h1 className="mt-1.5 text-[40px] font-extrabold leading-none tracking-wide text-ink">
               DND
