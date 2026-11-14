@@ -34,7 +34,7 @@ import { SpellsSection } from "@/components/character-sheet/SpellsSection";
 import { SpellcastingStatsSection } from "@/components/character-sheet/SpellcastingStatsSection";
 import { AppearanceBioSection } from "@/components/character-sheet/AppearanceBioSection";
 import { PassiveStatsSection } from "@/components/character-sheet/PassiveStatsSection";
-import { PencilSimpleIcon as PencilSimple, DotsThreeIcon as DotsThree, TrashIcon as Trash, ExportIcon as Export, UploadIcon as Upload, CheckCircleIcon as CheckCircle, UserPlusIcon as UserPlus, ClockIcon as Clock, FileJsonIcon as FileJson, CopyIcon as Copy } from "@/components/icons";
+import { PencilSimpleIcon as PencilSimple, DotsThreeIcon as DotsThree, TrashIcon as Trash, ExportIcon as Export, UploadIcon as Upload, CheckCircleIcon as CheckCircle, UserPlusIcon as UserPlus, FileJsonIcon as FileJson, CopyIcon as Copy } from "@/components/icons";
 import { syncGrantedSpells } from "@/lib/granted-spells";
 import { undoLevelUp, undoableChange } from "@/lib/level-snapshot";
 import { finishClone } from "@/lib/clone";
@@ -552,18 +552,6 @@ export function CharacterView() {
         />
       )}
 
-      {!turnOpen && ((character.spellsUsedThisTurn?.length ?? 0) > 0 || (character.featuresUsedThisTurn?.length ?? 0) > 0 || (character.activeBuffs?.length ?? 0) > 0 || character.turnActive) && (
-         <div className="fixed left-1/2 -translate-x-1/2 z-30" style={{ bottom: `calc(${BOTTOM_NAV_SPACE} + 12px)` }}>
-          <button
-            type="button"
-            onClick={endTurn}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-[var(--color-ink)] text-[var(--color-surface)] shadow-lg hover:opacity-90 transition-all"
-          >
-            <Clock className="h-4 w-4" />
-            <span className="text-xs font-semibold">{t("character.endTurn", "End Turn")}</span>
-          </button>
-        </div>
-      )}
     </div>
     </DiceProvider>
   );
