@@ -46,10 +46,10 @@ function withoutSubclassPicks(log: Character["levelChoices"]): Character["levelC
   return Object.fromEntries(Object.entries(log).map(([lvl, { subclassFeatures: _f, subclassSpells: _s, ...rest }]) => [lvl, rest]));
 }
 
-/** Only the free spells stay (race, feats' grants); the ones the player learned go. */
+/** Only the free spells (race, feats' grants) and homebrew spells stay; the ones the player learned go. */
 function withoutChosenSpells(character: Character): Character {
   const free = new Set(getGrantedSpellNames(character).map((n) => n.toLowerCase()));
-  const spells = (character.spells || []).filter((s) => s.granted || free.has(s.name.toLowerCase()));
+  const spells = (character.spells || []).filter((s) => s.granted || !!s.homebrew || free.has(s.name.toLowerCase()));
   const keptIds = new Set(spells.map((s) => s.id));
   return {
     ...character,

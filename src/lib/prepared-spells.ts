@@ -1,6 +1,7 @@
 // Which spells a preparing caster (Cleric, Druid, Paladin, Wizard, Artificer)
 // has ready. One place for the sheet, the turn panel, level-up and creation.
 import { getGrantedSpellNames } from "./granted-spells";
+import { countsTowardLimit } from "./homebrew-spells";
 import { getMaxPreparedSpells, isPreparationCaster, type Character } from "./storage";
 
 export interface PreparableSpell {
@@ -9,13 +10,13 @@ export interface PreparableSpell {
   level: number;
 }
 
-/** Leveled spells that take up a prepared pick. Granted spells are always ready and never count. */
+/** Leveled spells that take up a prepared pick. Granted spells (and homebrew set not to count) are always ready and never count. */
 export function preparableSpells(character: Character): PreparableSpell[] {
   const granted = new Set(getGrantedSpellNames(character).map((n) => n.toLowerCase()));
   const seen = new Set<string>();
   const out: PreparableSpell[] = [];
   for (const s of character.spells || []) {
-    if (!(s.level > 0) || s.granted || granted.has((s.srdSpellName || s.name).toLowerCase()) || seen.has(s.id)) continue;
+    if (!(s.level > 0) || s.granted || !countsTowardLimit(s) || granted.has((s.srdSpellName || s.name).toLowerCase()) || seen.has(s.id)) continue;
     seen.add(s.id);
     out.push({ id: s.id, name: s.name, level: s.level });
   }

@@ -29,6 +29,8 @@ import { d20Group, damageGroup, partsFor, spellDamageGroups } from "@/lib/dice-r
 import { spellNumbersFor } from "@/lib/roll-parts";
 import { speciesSpellAbility } from "@/lib/origin-2024";
 import { GiRollingDices } from "react-icons/gi";
+import { HomebrewSpellSheet } from "./HomebrewSpellSheet";
+import { countsTowardLimit, homebrewAsSrd, homebrewAttack, homebrewDamage, homebrewHealing, isHomebrew, type HomebrewSpell } from "@/lib/homebrew-spells";
 
 interface SpellsSectionProps {
   character: Character;
@@ -65,6 +67,10 @@ interface UnifiedSpell {
   classes?: string[];
   mechanics_badges?: string[];
   lastUpdated?: string;
+  /** A spell the player made up. */
+  homebrew?: HomebrewSpell;
+  castingTime?: string;
+  range?: string;
 }
 
 export function SpellsSection({ character, onChange, editMode = true }: SpellsSectionProps) {
@@ -76,6 +82,8 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
   const [activeTab, setActiveTab] = useState(0);
   const [preparing, setPreparing] = useState(false);
   const [selectedSpell, setSelectedSpell] = useState<UnifiedSpell | null>(null);
+  // The homebrew spell form: "new" for a new spell, or the id of the one being changed.
+  const [homebrewFor, setHomebrewFor] = useState<string | null>(null);
 
   const preparationCaster = isPreparationCaster(character);
   const preparableCount = preparationCaster ? preparableSpells(character).length : 0;
@@ -94,16 +102,20 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
     const used = character.freeCastsUsed || [];
     onChange({ freeCastsUsed: used.includes(key) ? used.filter((n) => n !== key) : [...used, key] });
   };
-  const currentSpellsKnown = (character.spells || []).filter(s => s.level > 0 && !isGranted(s.name)).length;
-  const currentCantripsKnown = (character.spells || []).filter(s => s.level === 0 && !isGranted(s.name)).length;
+  // A homebrew spell set to stay out of the count is always ready, like a granted one.
+  const isFree = (s: Pick<Character["spells"][number], "name" | "homebrew">) => isGranted(s.name) || !countsTowardLimit(s);
+  const currentSpellsKnown = (character.spells || []).filter(s => s.level > 0 && !isFree(s)).length;
+  const currentCantripsKnown = (character.spells || []).filter(s => s.level === 0 && !isFree(s)).length;
   const preparedCount = (character.preparedSpells || []).filter(id => {
     const spell = character.spells.find(s => s.id === id);
-    return spell && spell.level > 0 && !isGranted(spell.name);
+    return spell && spell.level > 0 && !isFree(spell);
   }).length;
 
   const unifiedSpells: UnifiedSpell[] = useMemo(() => {
     return (character.spells || []).map(s => {
-      const srdSpell = s.srdSpellName
+      const srdSpell = isHomebrew(s)
+        ? homebrewAsSrd(s, character.level || 1)
+        : s.srdSpellName
         ? srdSpells.find(sp => sp.name === s.srdSpellName)
         : s.source === "srd"
           ? srdSpells.find(sp => sp.name === s.name)
@@ -113,7 +125,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
       const damageDice = s.damageDice || srdSpell?.damage?.damageDice || "";
       const damageType = s.damageType || srdSpell?.damage?.damageType || "";
       const duration = srdSpell?.duration || "";
-      const srdSource = (srdSpell as any)?.source || "PHB";
+      const srdSource = isHomebrew(s) ? "Homebrew" : (srdSpell as any)?.source || "PHB";
       const school = (srdSpell as any)?.school || "";
       const classes = (srdSpell as any)?.classes || [];
       const mechanic = s.source === "srd" && s.srdSpellName
@@ -135,7 +147,8 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
         classes,
         mechanics_badges: (srdSpell as any)?.mechanics_badges || [],
         lastUpdated: (srdSpell as any)?.lastUpdated || "",
-        effectSummary: srdSpell?.effectSummary || "",
+        // A homebrew spell's text is its description; no separate summary line.
+        effectSummary: isHomebrew(s) ? "" : srdSpell?.effectSummary || "",
         mechanic,
         ritual: (srdSpell as any)?.ritual || false,
         actionType: (srdSpell as any)?.actionType || null,
@@ -148,9 +161,12 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
         escapeCondition: (srdSpell as any)?.escapeCondition || null,
         immunities: (srdSpell as any)?.immunities || null,
         upcastEffect: (srdSpell as any)?.upcastEffect || null,
+        homebrew: s.homebrew,
+        castingTime: (srdSpell as any)?.castingTime || "",
+        range: (srdSpell as any)?.range || "",
       };
     });
-  }, [character.spells, srdSpells]);
+  }, [character.spells, character.level, srdSpells]);
 
   const spellsByLevel = useMemo(() => {
     const map = new Map<number, UnifiedSpell[]>();
@@ -198,7 +214,8 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
   const toggleSpellUsed = useCallback((spellId: string, buffDef?: BuffDefinition, duration?: string, spellName?: string, concentration?: boolean) => {
     const currentUsed = character.spellsUsedThisTurn || [];
     const isUsed = currentUsed.includes(spellId);
-    const timerId = buffDef ? buffDef.id : spellName ? spellTimerId(spellName) : null;
+    const ownSpell = (character.spells || []).find((s) => s.id === spellId);
+    const timerId = ownSpell?.homebrew && spellName ? `spell:${spellName.toLowerCase()}` : buffDef ? buffDef.id : spellName ? spellTimerId(spellName) : null;
     const currentBuffs = character.activeBuffs || [];
     if (isUsed) {
       onChange({ spellsUsedThisTurn: currentUsed.filter(id => id !== spellId), ...(timerId ? { activeBuffs: currentBuffs.filter(b => b.spellId !== timerId) } : {}) });
@@ -219,7 +236,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
     for (const spellId of currentUsed) {
       const charSpell = spells.find(s => s.id === spellId);
       if (!charSpell) continue;
-      const srdSpell = charSpell.srdSpellName ? srdSpells.find(sp => sp.name === charSpell.srdSpellName) : undefined;
+      const srdSpell = isHomebrew(charSpell) ? homebrewAsSrd(charSpell) : charSpell.srdSpellName ? srdSpells.find(sp => sp.name === charSpell.srdSpellName) : undefined;
       const duration = srdSpell?.duration || "";
       const turns = duration ? parseDurationToTurns(duration) : null;
       if (turns !== null && turns > 1) {
@@ -249,18 +266,32 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
     return `${level}th`;
   };
 
-  const bonusesOf = (spell: UnifiedSpell) => [
+  const ownOf = (spell: UnifiedSpell) => {
+    const row = (character.spells || []).find((s) => s.id === spell.id);
+    return row && isHomebrew(row) ? row : null;
+  };
+  const bonusesOf = (spell: UnifiedSpell) => ownOf(spell) ? healingBonusLines(homebrewHealing(character, ownOf(spell)!)) : [
     ...spellDamageBonuses(character, { name: spell.srdSpellName || spell.name, level: spell.level, school: spell.school, classes: spell.classes, damageType: spell.damageType, description: spell.description }),
     ...healingBonusLines(spellHealing(character, { name: spell.srdSpellName || spell.name, level: spell.level, heal_at_slot_level: (srdSpells.find((sp) => sp.name === (spell.srdSpellName || spell.name)) as { heal_at_slot_level?: unknown } | undefined)?.heal_at_slot_level }, spell.level)),
   ];
 
   // Damage at the spell's own level; the turn panel shows it at the slot you will use.
-  const damageOf = (spell: UnifiedSpell) =>
+  const damageOf = (spell: UnifiedSpell) => ownOf(spell) ? homebrewDamage(character, ownOf(spell)!) :
     characterSpellDamage(character, { name: spell.srdSpellName || spell.name, level: spell.level, school: spell.school, classes: spell.classes, damageType: spell.damageType, description: spell.description });
 
   const dice = useDice();
   // To hit (spell attacks) and damage on the cast, for the dice tray.
   const rollGroupsOf = (spell: UnifiedSpell) => {
+    const own = ownOf(spell);
+    if (own) {
+      const attack = homebrewAttack(character, own);
+      const heal = homebrewHealing(character, own);
+      return [
+        ...(attack ? [d20Group(t("dice.toHit", "To hit"), attack.attack, attack.parts)] : []),
+        ...spellDamageGroups(homebrewDamage(character, own) || [], t("dice.damage", "Damage"), spell.name),
+        ...(heal?.dice && !heal.maxDice ? [damageGroup(t("dice.heal", "Healing"), heal.dice, partsFor(heal.bonus, heal.parts))] : []),
+      ].filter((g): g is NonNullable<typeof g> => !!g);
+    }
     const name = spell.srdSpellName || spell.name;
     const srd = srdSpells.find((sp) => sp.name === name) as { attackType?: string; attack_type?: string; heal_at_slot_level?: unknown } | undefined;
     const heal = spellHealing(character, { name, level: spell.level, heal_at_slot_level: srd?.heal_at_slot_level }, spell.level);
@@ -286,6 +317,33 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
         {t("dice.roll", "Roll")}
       </button>
     );
+  };
+
+  /** One line of what a homebrew spell does: to hit or save, casting time, range, duration. */
+  const homebrewLine = (spell: UnifiedSpell) => {
+    const own = ownOf(spell);
+    if (!own) return "";
+    const h = own.homebrew;
+    const attack = homebrewAttack(character, own);
+    const dc = spellNumbersFor(character).dc;
+    return [
+      attack ? t("turn.toHit", { bonus: attack.attack >= 0 ? `+${attack.attack}` : `${attack.attack}` }, "{bonus} to hit") : h.hit === "save" ? t("turn.saveAbilityDc", { ability: h.saveAbility, dc: dc || "?" }, "{ability} save DC {dc}") + (h.halfOnSave ? ` ${t("turn.halfOnSave", "(half on a success)")}` : "") : t("turn.alwaysHits", "Always hits"),
+      t(`turn.slot.${h.castingTime}`),
+      t(`homebrew.range.${h.range}`, h.range),
+      t(`homebrew.duration.${h.duration}`, h.duration),
+      h.concentration ? t("turn.concentration", "Concentration") : "",
+    ].filter(Boolean).join(" · ");
+  };
+  const homebrewTag = <span className="shrink-0 rounded-full border border-[var(--color-gold)] px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-[var(--color-gold)]">{t("homebrew.tag", "Homebrew")}</span>;
+  const saveHomebrew = (row: Character["spells"][number]) => {
+    const spells = character.spells || [];
+    const exists = spells.some((s) => s.id === row.id);
+    onChange({ spells: exists ? spells.map((s) => (s.id === row.id ? row : s)) : [...spells, row] });
+    setHomebrewFor(null);
+    setSelectedSpell(null);
+    // Show the level tab the spell is on.
+    const lv = Array.from(new Set([...spells.filter((s) => s.id !== row.id).map((s) => s.level), row.level])).sort((a, b) => a - b);
+    setActiveTab(Math.max(0, lv.indexOf(row.level)));
   };
 
   const getSummary = (spell: UnifiedSpell) => {
@@ -385,6 +443,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
               <div className="px-3.5 pb-2.5 pt-3">
                 <div className="mb-1.5 flex items-start justify-between gap-2">
                   <h3 className="min-w-0 text-base font-bold leading-tight text-[var(--color-text-primary)]">{spell.name}</h3>
+                  {spell.homebrew && homebrewTag}
                   {spell.school && (() => {
                     const schoolStyle = getSchoolBadgeStyle(spell.school);
                     return (
@@ -412,6 +471,8 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                   </div>
                 )}
 
+                {spell.homebrew && <p className="mb-1.5 text-xs font-semibold text-[var(--color-text-secondary)]">{homebrewLine(spell)}</p>}
+
                 {(bonusesOf(spell).length > 0 || damageOf(spell)) && (
                   <div className="mb-1.5"><SpellDamageLine parts={damageOf(spell)} /><SpellDamageBonusLines bonuses={bonusesOf(spell)} /></div>
                 )}
@@ -427,12 +488,12 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
               {/* Action Footer */}
               <div className="flex items-center justify-between border-t border-[var(--color-border)] bg-[var(--color-bg)] px-3.5 py-2 transition-colors group-active:bg-[var(--color-border-muted)]">
                 <div className="flex items-center gap-2">
-                  {preparationCaster && spell.level > 0 && isGranted(spell.name) && (
+                  {preparationCaster && spell.level > 0 && (isGranted(spell.name) || (spell.homebrew && !spell.homebrew.counts)) && (
                     <span className="px-2 py-1 text-[10px] font-bold rounded bg-[var(--color-success-500)] text-[var(--color-surface)]">
                       {t("spells.alwaysPrepared", "Always prepared")}
                     </span>
                   )}
-                  {preparationCaster && spell.level > 0 && !isGranted(spell.name) && (
+                  {preparationCaster && spell.level > 0 && !isGranted(spell.name) && !(spell.homebrew && !spell.homebrew.counts) && (
                     <button
                       type="button"
                       onClick={(e) => { e.stopPropagation(); togglePrepared(spell.id); }}
@@ -514,14 +575,34 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
       </div>
 
       {editMode && (
-        <button
-          type="button"
-          onClick={() => setShowSpellModal(true)}
-          className="mt-3 btn-secondary flex items-center gap-1.5"
-        >
-          <Plus size={16} />
-          {t("button.addSpells", "Add Spells")}
-        </button>
+        <div className="mt-3 flex flex-wrap gap-2">
+          <button
+            type="button"
+            onClick={() => setShowSpellModal(true)}
+            className="btn-secondary flex items-center gap-1.5"
+          >
+            <Plus size={16} />
+            {t("button.addSpells", "Add Spells")}
+          </button>
+          <button
+            type="button"
+            onClick={() => setHomebrewFor("new")}
+            className="btn-secondary flex items-center gap-1.5"
+          >
+            <Sparkle className="h-4 w-4" />
+            {t("homebrew.make", "Make your own spell")}
+          </button>
+        </div>
+      )}
+
+      {homebrewFor && (
+        <HomebrewSpellSheet
+          character={character}
+          spell={homebrewFor === "new" ? undefined : (() => { const row = (character.spells || []).find((s) => s.id === homebrewFor); return row && isHomebrew(row) ? row : undefined; })()}
+          onSave={saveHomebrew}
+          onDelete={homebrewFor === "new" ? undefined : () => { removeSpell(homebrewFor); setHomebrewFor(null); setSelectedSpell(null); }}
+          onClose={() => setHomebrewFor(null)}
+        />
       )}
 
       {showSpellModal && (
@@ -562,6 +643,12 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
             {selectedSpell.lastUpdated && (
               <p className="text-[10px] text-[var(--color-text-muted)]">{t("glossary.lastUpdated")}: {selectedSpell.lastUpdated}</p>
             )}
+            {selectedSpell.homebrew && (
+              <div className="flex flex-wrap items-center gap-2">
+                {homebrewTag}
+                <span className="text-xs font-semibold text-[var(--color-text-secondary)]">{homebrewLine(selectedSpell)}</span>
+              </div>
+            )}
             <SpellDamageLine parts={damageOf(selectedSpell)} />
             <SpellDamageBonusLines bonuses={bonusesOf(selectedSpell)} />
             {rollButton(selectedSpell)}
@@ -584,6 +671,11 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
             </div>
             {(selectedSpell.classes || []).length > 0 && (
               <p className="text-xs text-[var(--color-text-muted)]">{(selectedSpell.classes || []).join(", ")}</p>
+            )}
+            {selectedSpell.homebrew && (
+              <button type="button" onClick={() => { setHomebrewFor(selectedSpell.id); setSelectedSpell(null); }} className="btn btn-secondary w-full">
+                {t("homebrew.change", "Change this spell")}
+              </button>
             )}
           </div>
         </BottomSheet>

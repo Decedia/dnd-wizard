@@ -15,6 +15,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import type { Character } from "@/lib/storage";
 import { getMaxSpellLevel } from "@/lib/storage";
 import { getGrantedSpellNames } from "@/lib/granted-spells";
+import { countsTowardLimit } from "@/lib/homebrew-spells";
 import { getTakenSpellNames, isSpellTakenElsewhere } from "@/lib/taken-spells";
 
 function slugify(name: string): string {
@@ -199,10 +200,10 @@ export function SpellSelectionModal({
         });
       } else {
         if (level === 0) {
-          const currentCantrips = (character.spells || []).filter(s => s.level === 0).length;
+          const currentCantrips = (character.spells || []).filter(s => s.level === 0 && countsTowardLimit(s)).length;
           if (currentCantrips >= maxCantripsKnown) return;
         } else {
-          const currentSpells = (character.spells || []).filter(s => s.level > 0).length;
+          const currentSpells = (character.spells || []).filter(s => s.level > 0 && countsTowardLimit(s)).length;
           if (currentSpells >= maxSpellsKnown) return;
         }
         const srdSpell = getStaticSpells(character.sources, character.ruleset, language).find(s => s.name === name);
@@ -238,10 +239,10 @@ export function SpellSelectionModal({
   };
 
   const currentCantrips = useMemo(() => onChange
-    ? (character.spells || []).filter(s => s.level === 0)
+    ? (character.spells || []).filter(s => s.level === 0 && countsTowardLimit(s))
     : selectedSpells.filter((s) => s.endsWith(":0")), [onChange, character.spells, selectedSpells]);
   const currentSpells = useMemo(() => onChange
-    ? (character.spells || []).filter(s => s.level > 0)
+    ? (character.spells || []).filter(s => s.level > 0 && countsTowardLimit(s))
     : selectedSpells.filter((s) => !s.endsWith(":0")), [onChange, character.spells, selectedSpells]);
 
   const selectedCantripNames = useMemo(() => new Set(currentCantrips.map(s => typeof s === "string" ? s.split(":")[0] : s.name)), [currentCantrips]);

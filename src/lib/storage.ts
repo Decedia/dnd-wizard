@@ -10,6 +10,7 @@ import { addsProficiencyToAttack } from "@/lib/proficiency";
 import { db, type CharacterRecord, dbGetCharacters, dbGetCharacter, dbSaveCharacter, dbDeleteCharacter, dbTouchCharacterOpened } from "@/lib/db";
 import { SAVE_VERSION, upgradeSave } from "./save-upgrade";
 import { getFreeCastSpells } from "./granted-spells";
+import type { HomebrewSpell } from "./homebrew-spells";
 import { initiativeParts, saveParts, spellAttackParts } from "./roll-parts";
 import { sumParts } from "./dice-roll";
 export interface Character {
@@ -118,7 +119,7 @@ export interface Character {
   attacks: { id: string; name: string; attackBonus: number; damageType: string; sneakAttack?: string; source?: "weapon" | "class" | "grapple" | "shove"; classFeatureName?: string; description?: string }[];
   otherProficiencies: string;
   languages: string[];
-  spells: { id: string; name: string; level: number; source: "srd" | "custom"; srdSpellName?: string; damageDice?: string; damageType?: string; description?: string; summary?: string; /** Given free by subclass, race or an optional feature; removed when that source is gone. */ granted?: boolean }[];
+  spells: { id: string; name: string; level: number; source: "srd" | "custom"; srdSpellName?: string; damageDice?: string; damageType?: string; description?: string; summary?: string; /** Given free by subclass, race or an optional feature; removed when that source is gone. */ granted?: boolean; /** A spell the player made up, with its numbers. */ homebrew?: HomebrewSpell }[];
   spellcastingAbility: string;
   spellSaveDc: number;
   spellAttackBonus: number;
