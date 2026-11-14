@@ -1,27 +1,18 @@
 "use client";
 
-import { GiCampfire, GiNightSleep } from "react-icons/gi";
-
 import { useCharacterSheet } from "./CharacterSheetContext";
 import { SectionCard } from "./SectionCard";
 import { Overridable } from "./Overridable";
-import { ShieldStat } from "./styled/ShieldStat";
 import { SpeedStat } from "./styled/SpeedStat";
-import { SwordIcon as Sword, SparklesIcon as Sparkle, HeartBottleIcon as Heart, DropIcon as Drop, LightningBoltIcon as LightningBolt, ClockIcon as Clock, ShieldCheckIcon as ShieldCheck } from "@/components/icons";
+import { SwordIcon as Sword, SparklesIcon as Sparkle } from "@/components/icons";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getBaseSpeed, type Character } from "@/lib/storage";
-import { useState, useCallback } from "react";
-import { XIcon as X } from "@/components/icons";
 import { StateTracker } from "./StateTracker";
 import { Timers } from "./Timers";
 import { RichInline } from "@/components/RichText";
-import { activeResistances, damageResistances, DAMAGE_TYPES, reducedDamage, resistanceChoicesFor, type Resistance } from "@/lib/resistances";
+import { damageResistances, DAMAGE_TYPES, resistanceChoicesFor, type Resistance } from "@/lib/resistances";
 import { BuffTracker } from "./BuffTracker";
-import { BasePopup } from "@/components/BasePopup";
-import { initiativeParts, saveParts } from "@/lib/roll-parts";
-import { useDice } from "@/contexts/DiceContext";
-import { d20Group } from "@/lib/dice-roll";
-import { GiRollingDices } from "react-icons/gi";
+import { initiativeParts } from "@/lib/roll-parts";
 
 interface CombatStatsSectionProps {
   character: Pick<Character, "turnRound" | "turnActive" | "ac" | "currentHp" | "maxHp" | "effectiveMaxHp" | "temporaryHp" | "speed" | "baseSpeed" | "race" | "ruleset" | "isCustomHp" | "class" | "sorceryPoints" | "maxSorceryPoints" | "activeStates" | "activeBuffs" | "features" | "actionUsed" | "bonusActionUsed" | "reactionUsed" | "exhaustionLevel" | "initiative" | "hitDiceRemaining" | "hitDiceTotal" | "level" | "dex" | "con" | "savingThrows" | "overrides" | "chosenResistances">;
@@ -29,62 +20,14 @@ interface CombatStatsSectionProps {
   editMode?: boolean;
   /** Opens the turn panel; starts a new turn when none is running. */
   onOpenTurn?: () => void;
-  onRest?: (kind: "short" | "long") => void;
 }
 
-export function CombatStatsSection({ character, onChange, editMode = true, onOpenTurn, onRest }: CombatStatsSectionProps) {
+export function CombatStatsSection({ character, onChange, editMode = true, onOpenTurn }: CombatStatsSectionProps) {
   const { onFieldBlur } = useCharacterSheet();
   const { t } = useLanguage();
-  const maxHp = character.effectiveMaxHp ?? character.maxHp;
-  const hpPercent = maxHp > 0 ? Math.min(100, Math.max(0, (character.currentHp / maxHp) * 100)) : 0;
   const isSorcerer = character.class === "Sorcerer";
-  const [hpModal, setHpModal] = useState<{ mode: "heal" | "damage" } | null>(null);
-  const [hpAmount, setHpAmount] = useState("");
-  const [damageHow, setDamageHow] = useState<"normal" | "resist" | "immune">("normal");
-  const [concentrationCheck, setConcentrationCheck] = useState<{ damage: number; roll?: number } | null>(null);
-
-  // Check if character has active concentration spells
-  const hasConcentration = (character.activeBuffs || []).some((b) => b.concentration);
-  const dice = useDice();
-  const isWarCaster = (character.features || []).some((f) => f.name.toLowerCase().includes("war caster"));
-
   const resistances = damageResistances(character as Character);
-  const resistingNow = activeResistances(character as Character);
   const resistanceChoices = resistanceChoicesFor(character as Character);
-  const handleHpAction = useCallback(() => {
-    const typed = parseInt(hpAmount, 10);
-    const amount = hpModal?.mode === "damage" ? reducedDamage(typed, damageHow) : typed;
-    if (isNaN(typed) || typed <= 0) return;
-    if (hpModal?.mode === "heal") {
-      onChange({ currentHp: Math.min(maxHp, character.currentHp + amount) });
-    } else if (hpModal?.mode === "damage") {
-      const tempHp = character.temporaryHp || 0;
-      let remainingDamage = amount;
-      let newTempHp = tempHp;
-      let newHp = character.currentHp;
-      if (tempHp > 0) {
-        if (tempHp >= amount) {
-          newTempHp = tempHp - amount;
-          remainingDamage = 0;
-        } else {
-          newTempHp = 0;
-          remainingDamage = amount - tempHp;
-        }
-      }
-      if (remainingDamage > 0) {
-        newHp = Math.max(0, character.currentHp - remainingDamage);
-      }
-      onChange({ currentHp: newHp, temporaryHp: newTempHp });
-      
-      // Trigger concentration check if taking damage while concentrating
-      if (hasConcentration && remainingDamage > 0) {
-        setConcentrationCheck({ damage: remainingDamage });
-      }
-    }
-    setHpModal(null);
-    setHpAmount("");
-    setDamageHow("normal");
-  }, [hpModal, hpAmount, character, onChange, hasConcentration, maxHp, damageHow]);
 
   return (
     <SectionCard id="combat-stats" title={t("section.combatStats", "Combat Stats")} icon={<Sword className="h-5 w-5" />}>
@@ -109,9 +52,6 @@ export function CombatStatsSection({ character, onChange, editMode = true, onOpe
       )}
 
       <div className="flex items-center justify-center gap-4 mb-3">
-        <Overridable id="ac" label={t("sheet.armorClass", "Armor Class")} editMode={editMode} className="no-underline">
-          <ShieldStat value={character.ac} />
-        </Overridable>
         <Overridable id="speed" label={t("sheet.speed", "Speed")} editMode={editMode} className="no-underline">
           <SpeedStat value={character.speed} />
         </Overridable>
@@ -130,28 +70,6 @@ export function CombatStatsSection({ character, onChange, editMode = true, onOpe
       </div>
 
       <div className="space-y-2.5">
-        <div>
-          <div className="flex items-center justify-between mb-1.5">
-            <span className="field-label-light mb-0">HP</span>
-            <div className="flex items-center gap-2">
-              <span className="text-[10px] font-semibold text-ink-muted">
-                {character.currentHp} / <Overridable id="maxHp" label={t("override.maxHp", "Max HP")} editMode={editMode}>{maxHp}</Overridable>
-              </span>
-            </div>
-          </div>
-          <div className="progress-track" style={{ height: "12px" }}>
-            <div
-              className="progress-fill hp-fill"
-              style={{ width: `${hpPercent}%` }}
-            />
-          </div>
-        </div>
-
-        <div className="flex items-center justify-between text-[11px] font-semibold text-ink-muted">
-          <span>{t("sheet.tempHp", "Temp HP")} {character.temporaryHp || 0}</span>
-          <span>{t("sheet.hitDiceLeft", { left: character.hitDiceRemaining ?? character.level, total: character.hitDiceTotal ?? "" }, "Hit dice {left} left ({total})")}</span>
-        </div>
-
         {isSorcerer && (
           <div>
             <div className="flex items-center justify-between mb-1.5">
@@ -171,25 +89,6 @@ export function CombatStatsSection({ character, onChange, editMode = true, onOpe
             </div>
           </div>
         )}
-      </div>
-
-      <div className="flex items-center justify-center gap-3 mt-4 pt-3 border-t border-[var(--color-border)]">
-        <button
-          type="button"
-          onClick={() => setHpModal({ mode: "heal" })}
-          className="flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--color-success-200)] text-[var(--color-success-700)] hover:bg-[var(--color-success-50)] transition-all"
-        >
-          <Heart className="h-4 w-4" />
-          <span className="text-xs font-semibold">{t("character.heal")}</span>
-        </button>
-        <button
-          type="button"
-          onClick={() => setHpModal({ mode: "damage" })}
-          className="flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--color-error-200)] text-[var(--color-error-700)] hover:bg-[var(--color-error-50)] transition-all"
-        >
-          <Drop className="h-4 w-4" />
-          <span className="text-xs font-semibold">{t("character.damage")}</span>
-        </button>
       </div>
 
       {/* Turn tracker: opens the turn panel */}
@@ -224,22 +123,6 @@ export function CombatStatsSection({ character, onChange, editMode = true, onOpe
         </div>
         {!character.turnRound && <p className="mt-2 text-[11px] text-[var(--color-text-muted)]">{t("turn.cardHint", "Shows everything you can do this turn, one tap each.")}</p>}
       </div>
-
-      {onRest && (
-        <div className="mt-3 flex items-center justify-center gap-3">
-          {(["short", "long"] as const).map((kind) => (
-            <button
-              key={kind}
-              type="button"
-              onClick={() => onRest(kind)}
-              className="flex items-center gap-2 rounded-full border border-[var(--color-border)] px-4 py-2 text-[var(--color-text-primary)] transition-all hover:border-[var(--color-border-active)] hover:bg-[var(--color-bg)]"
-            >
-              {kind === "short" ? <GiCampfire className="h-4 w-4" aria-hidden="true" /> : <GiNightSleep className="h-4 w-4" aria-hidden="true" />}
-              <span className="whitespace-nowrap text-xs font-semibold">{t(`rest.${kind}.title`)}</span>
-            </button>
-          ))}
-        </div>
-      )}
 
       {/* Exhaustion Level Tracker */}
       <div className="mt-4 pt-3 border-t border-[var(--color-border)]">
@@ -422,115 +305,6 @@ export function CombatStatsSection({ character, onChange, editMode = true, onOpe
             </>
           )}
         </div>
-      )}
-      {hpModal && (
-        <BasePopup
-          isOpen={true}
-          onClose={() => { setHpModal(null); setHpAmount(""); setConcentrationCheck(null); setDamageHow("normal"); }}
-          title={hpModal.mode === "heal" ? t("character.heal") : t("button.takeDamage", "Take Damage")}
-          confirmLabel={hpModal.mode === "heal" ? t("character.heal") : t("button.apply")}
-          cancelLabel={t("common.cancel")}
-          onConfirm={handleHpAction}
-          confirmDisabled={!hpAmount || parseInt(hpAmount, 10) <= 0}
-          showFooter={true}
-        >
-          <div className="px-4 py-4">
-            <label className="field-label-light">{t("equipment.amount")}</label>
-            <input
-              type="number"
-              value={hpAmount}
-              onChange={(e) => setHpAmount(e.target.value)}
-              placeholder={t("equipment.enterAmount")}
-              className="input w-full mt-1"
-              autoFocus
-              min={1}
-            />
-          </div>
-          {hpModal?.mode === "damage" && resistingNow.length > 0 && (
-            <div className="mx-4 mb-3">
-              <p className="mb-2 text-[11px] text-[var(--color-text-secondary)]">
-                {t("combat.youResist", "You resist:")} <RichInline text={[...new Set(resistingNow.filter((r) => !r.immune).map((r) => r.type))].join(", ")} />
-                {resistingNow.some((r) => r.immune) && (
-                  <>
-                    {" "}{t("combat.youAreImmune", "Immune:")} <RichInline text={[...new Set(resistingNow.filter((r) => r.immune).map((r) => r.type))].join(", ")} />
-                  </>
-                )}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {(["normal", "resist", ...(resistingNow.some((r) => r.immune) ? ["immune"] : [])] as const).map((how) => (
-                  <button
-                    key={how}
-                    type="button"
-                    onClick={() => setDamageHow(how as "normal" | "resist" | "immune")}
-                    className={`btn ${damageHow === how ? "btn-primary" : "btn-secondary"} text-xs`}
-                  >
-                    {t(`combat.damage.${how}`)}
-                    {hpAmount && parseInt(hpAmount, 10) > 0 ? ` (${reducedDamage(parseInt(hpAmount, 10), how as "normal" | "resist" | "immune")})` : ""}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-          {hpModal?.mode === "damage" && (character.activeBuffs || []).some(b => b.concentration) && !concentrationCheck && (
-            <div className="mx-4 mb-3 px-3 py-2 rounded border border-[var(--color-warning-200)] bg-[var(--color-warning-50)]">
-              <div className="flex items-center gap-2">
-                <span className="text-xs">⚠️</span>
-                 <span className="text-[10px] font-semibold text-[var(--color-warning-700)]">
-                  {t("combat.concentrationCheck", { dc: Math.max(10, Math.floor(parseInt(hpAmount || "0", 10) / 2)) })}
-                 </span>
-              </div>
-              <div className="mt-2">
-                <button
-                  type="button"
-                  disabled={!dice}
-                  onClick={() => {
-                    const damage = parseInt(hpAmount || "0", 10);
-                    const label = t("override.save", { ability: "CON" }, "{ability} saving throw");
-                    const st = character.savingThrows?.con ?? { proficient: false, value: 0 };
-                    // A Constitution save; War Caster gives advantage on it.
-                    const group = { ...d20Group(label, st.value, saveParts(character, "con", st.proficient)), ...(isWarCaster ? { mode: "adv" as const } : {}) };
-                    dice?.roll(t("dice.concentration", "Concentration"), [group], (result) => setConcentrationCheck({ damage, roll: result[0]?.total }), { autoClose: true });
-                  }}
-                  className="btn btn-secondary inline-flex w-full items-center justify-center gap-1.5 !py-1.5 text-xs"
-                >
-                  <GiRollingDices className="h-4 w-4" aria-hidden="true" />
-                  {t("dice.rollConSave", "Roll CON save")}
-                </button>
-                 {isWarCaster && <p className="text-center text-[10px] text-[var(--color-success-600)] mt-1">{t("combat.warCasterAdvantage")}</p>}
-              </div>
-            </div>
-          )}
-          {concentrationCheck && (
-            <div className="mx-4 mb-3 px-3 py-2 rounded border border-[var(--color-warning-200)] bg-[var(--color-warning-50)]">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-xs">🎲</span>
-                <span className="text-[10px] font-semibold text-[var(--color-warning-700)]">
-                  {t("dice.concRolled", { roll: concentrationCheck.roll ?? "", dc: Math.max(10, Math.floor(concentrationCheck.damage / 2)) }, "Rolled {roll} against DC {dc}.")}
-                </span>
-              </div>
-              <div className="flex gap-2">
-                <button
-                  type="button"
-                  onClick={() => {
-                    const current = character.activeBuffs || [];
-                    onChange({ activeBuffs: current.filter((b) => !b.concentration) });
-                    handleHpAction();
-                  }}
-                   className="flex-1 text-[10px] font-semibold text-[var(--color-success-600)] hover:text-[var(--color-success-700)] underline py-1"
-                >
-                  {t("combat.failedBreakConcentration")}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => { setConcentrationCheck(null); handleHpAction(); }}
-                   className="flex-1 text-[10px] font-semibold text-[var(--color-success-600)] hover:text-[var(--color-success-700)] underline py-1"
-                >
-                  {t("combat.successMaintain")}
-                </button>
-              </div>
-            </div>
-          )}
-        </BasePopup>
       )}
     </SectionCard>
   );

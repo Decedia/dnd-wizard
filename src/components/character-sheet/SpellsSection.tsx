@@ -350,11 +350,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
               key={level}
               type="button"
               onClick={() => setActiveTab(idx)}
-              className={`px-3 py-1.5 text-xs font-bold rounded whitespace-nowrap transition-colors ${
-                activeTab === idx
-                  ? "bg-[var(--color-ink)] text-[var(--color-surface)]"
-                  : "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-              }`}
+              className={`btn whitespace-nowrap !px-3.5 !py-1.5 text-xs ${activeTab === idx ? "btn-primary" : "btn-secondary"}`}
             >
               {getLevelLabel(level)}
             </button>
@@ -384,28 +380,31 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
             <div
               key={spell.id}
               onClick={() => setSelectedSpell(spell)}
-              className="relative block w-full text-left bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl shadow-sm cursor-pointer active:scale-[0.98] active:border-[var(--color-border-active)] transition-all duration-75 overflow-hidden mb-4 group"
+              className="group relative block w-full cursor-pointer overflow-hidden rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] text-left transition-all duration-75 active:scale-[0.98] active:border-[var(--color-border-active)]"
             >
-              {/* Content Body */}
-              <div className="p-4 pb-3">
-                {/* Title Block */}
-                <div className="mb-2">
-                  <h3 className="font-bold text-lg text-[var(--color-text-primary)] leading-tight">
-                    {spell.name}
-                  </h3>
-                  <span className="text-xs text-[var(--color-text-muted)] block mt-0.5">
-                    {t("glossary.level", "Level")} {spell.level} {spell.school || ""}
-                  </span>
+              <div className="px-3.5 pb-2.5 pt-3">
+                <div className="mb-1.5 flex items-start justify-between gap-2">
+                  <h3 className="min-w-0 text-base font-bold leading-tight text-[var(--color-text-primary)]">{spell.name}</h3>
+                  {spell.school && (() => {
+                    const schoolStyle = getSchoolBadgeStyle(spell.school);
+                    return (
+                      <span
+                        style={schoolStyle}
+                        className={`shrink-0 rounded-full border px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide ${schoolStyle ? "" : "border-[var(--color-border)] text-[var(--color-text-muted)]"}`}
+                      >
+                        {spell.school}
+                      </span>
+                    );
+                  })()}
                 </div>
 
-                {/* Mechanics Badges Row */}
                 {(spell.mechanics_badges || []).length > 0 && (
-                  <div className="flex flex-wrap gap-1.5 mb-3">
+                  <div className="mb-2 flex flex-wrap gap-1.5">
                     {(spell.mechanics_badges || []).map((badge: string, badgeIdx: number) => (
                       <span
                         key={badgeIdx}
                         style={getStatBadgeStyle(badge)}
-                        className="text-[10px] font-bold px-2 py-0.5 rounded-md border shadow-sm"
+                        className="rounded-md border px-2 py-0.5 text-[10px] font-bold"
                       >
                         {badge}
                       </span>
@@ -414,24 +413,19 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                 )}
 
                 {(bonusesOf(spell).length > 0 || damageOf(spell)) && (
-                  <div className="mb-2"><SpellDamageLine parts={damageOf(spell)} /><SpellDamageBonusLines bonuses={bonusesOf(spell)} /></div>
-                )}
-                {!editMode && rollButton(spell)}
-
-                {spell.duration && (
-                  <span className="block text-[10px] text-[var(--color-text-muted)] mb-2">⏱ {spell.duration}</span>
+                  <div className="mb-1.5"><SpellDamageLine parts={damageOf(spell)} /><SpellDamageBonusLines bonuses={bonusesOf(spell)} /></div>
                 )}
 
-                {/* Summary Text */}
                 {summary && (
-                  <div className="text-sm text-[var(--color-text-secondary)] leading-relaxed line-clamp-3 [&>p]:line-clamp-3">
+                  <div className="text-[13px] leading-snug text-[var(--color-text-secondary)] line-clamp-2 [&>p]:line-clamp-2">
                     <RichDice title={spell.name}><RichText text={summary} /></RichDice>
                   </div>
                 )}
+                {!editMode && <div className="mt-2 empty:hidden">{rollButton(spell)}</div>}
               </div>
 
               {/* Action Footer */}
-              <div className="bg-[var(--color-bg)] border-t border-[var(--color-border)] px-4 py-2.5 flex justify-between items-center group-active:bg-[var(--color-border-muted)] transition-colors">
+              <div className="flex items-center justify-between border-t border-[var(--color-border)] bg-[var(--color-bg)] px-3.5 py-2 transition-colors group-active:bg-[var(--color-border-muted)]">
                 <div className="flex items-center gap-2">
                   {preparationCaster && spell.level > 0 && isGranted(spell.name) && (
                     <span className="px-2 py-1 text-[10px] font-bold rounded bg-[var(--color-success-500)] text-[var(--color-surface)]">
@@ -512,12 +506,7 @@ export function SpellsSection({ character, onChange, editMode = true }: SpellsSe
                     </button>
                   )}
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-bold text-[var(--color-accent-indigo-600)] tracking-wide uppercase">
-                    {t("glossary.viewDetails", "Lihat Detail")}
-                  </span>
-                  <CaretRight size={16} className="text-[var(--color-accent-indigo-500)]" />
-                </div>
+                <CaretRight size={18} aria-label={t("glossary.viewDetails", "View details")} className="shrink-0 text-[var(--color-gold)]" />
               </div>
             </div>
           );
