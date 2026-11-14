@@ -4019,7 +4019,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Kamu mahir menggunakan alat tinker dan bisa menghabiskan 1 jam serta 10 gp untuk membuat perangkat clockwork ukuran Tiny.",
+          "summary": "Kamu punya proficiency dengan alat tinker dan bisa menghabiskan 1 jam serta 10 gp untuk membuat perangkat clockwork ukuran Tiny.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
