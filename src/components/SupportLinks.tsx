@@ -7,8 +7,8 @@ import { BottomSheet } from "@/components/modals/BottomSheet";
 
 /** Where feedback goes. */
 export const FEEDBACK_EMAIL = "auryanmail@gmail.com";
-/** The tip page (Trakteer, Saweria, Ko-fi...). Empty until the owner picks one: the button then says it is coming soon. */
-export const COFFEE_URL = "";
+/** The tip page. Empty shows a "coming soon" note instead. */
+export const COFFEE_URL = "https://ko-fi.com/xauryan";
 
 /** A mailto link with a subject and a short template, so feedback arrives sorted. */
 export function feedbackHref(page: string, language: string): string {
