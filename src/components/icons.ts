@@ -58,6 +58,7 @@ export {
   HiShieldCheck as ShieldCheckIcon,
   HiDocumentText as FileJsonIcon,
   HiArrowDown as DownloadIcon,
+  HiSquare2Stack as CopyIcon,
 } from "react-icons/hi2";
 
 export {
