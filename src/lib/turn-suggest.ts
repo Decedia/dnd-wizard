@@ -4,6 +4,7 @@
 // almost down). Plain rules of thumb for new players, no AI. Each pick
 // carries a one-line reason, a locale key under `turn.why.*`.
 import { concentrationTimer } from "@/lib/timers";
+import { withHomebrew } from "@/lib/homebrew-spells";
 import type { Character } from "@/lib/storage";
 import type { TurnMenu, TurnOption } from "@/lib/turn";
 import { isMoon } from "@/data/wild-shapes";
@@ -31,7 +32,7 @@ export function concentratingOn(character: Character, srdSpells: SrdSpell[]): st
   if (timer) return timer.name;
   for (const id of character.spellsUsedThisTurn || []) {
     const spell = (character.spells || []).find((s) => s.id === id);
-    const srd = spell && srdSpells.find((s) => s.name === (spell.srdSpellName || spell.name));
+    const srd = spell && withHomebrew(character, srdSpells).find((s) => s.name === (spell.srdSpellName || spell.name));
     if (spell && srd?.concentration) return spell.name;
   }
   return null;

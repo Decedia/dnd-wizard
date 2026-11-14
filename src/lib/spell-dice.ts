@@ -101,10 +101,9 @@ const typeMatches = (type: string, wanted?: string[]) => !wanted?.length || type
  * The spell's damage at this casting, with the modifier bonuses already added:
  * a "roll" bonus joins the first matching single-roll part, a "beam" bonus joins every beam.
  * Bonuses that only count sometimes (once per turn, one target) stay out of the total.
- * Null when the spell has no entry in the checked dice table.
+ * Null when the spell has no entry in the checked dice table. A homebrew spell passes its own `parts`.
  */
-export function spellDamage(name: string, spellLevel: number, ctx: CastContext, bonuses: SpellDamageBonus[] = []): DamagePart[] | null {
-  const parts = SPELL_DICE[name];
+export function spellDamage(name: string, spellLevel: number, ctx: CastContext, bonuses: SpellDamageBonus[] = [], parts: DicePart[] | undefined = SPELL_DICE[name]): DamagePart[] | null {
   if (!parts) return null;
   const resolved = parts.map((part) => ({ part, ...resolvePart(part, spellLevel, ctx) }));
 

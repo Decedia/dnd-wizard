@@ -9,6 +9,7 @@ import { speciesSpellAbility } from "@/lib/origin-2024";
 import { biggerDie, getWeaponAttackDetails, isRaging, isThrowable, martialArtsDie } from "@/lib/weapon-attacks";
 import { equipRow, heldInHands, unequipRow, type Hand, type InventoryRow } from "@/lib/inventory";
 import { getFreeCastSpells, getGrantedSpellNames } from "@/lib/granted-spells";
+import { countsTowardLimit, homebrewAttack, homebrewDamage, homebrewHealing, homebrewSaveDc, isHomebrew, withHomebrew, type HomebrewSpell } from "@/lib/homebrew-spells";
 import { advanceTurn, parseDurationToTurns } from "@/lib/spellEffects";
 import { ruleFor, ruleKey, subOptionGroupFor, subOptionsFor, usesMax, type FeatureRule, type FeatureWhen, type PoolField, type SubOption } from "@/data/turn-features";
 import { getFeaturePicks } from "@/lib/feature-groups";
@@ -47,6 +48,12 @@ export interface TurnOption {
   /** Dice a feature rolls (Sneak Attack 3d6, a superiority die, a Bardic Inspiration die). */
   featureDice?: string;
   saveDc?: number;
+  /** The ability the target saves with ("DEX"), when the spell says. */
+  saveAbility?: string;
+  /** The target takes half damage on a successful save. */
+  halfOnSave?: boolean;
+  /** A spell the player made up. */
+  homebrew?: boolean;
   /** What using it spends, as locale key + values. */
   cost?: { key: string; values: Record<string, string | number> };
   concentration?: boolean;
@@ -292,9 +299,24 @@ function attackOptions(character: Character): TurnOption[] {
   return out;
 }
 
+/** A homebrew spell's own to-hit, save and damage bonuses (none from features). */
+function homebrewNumbers(character: Character, own: Character["spells"][number] & { homebrew: HomebrewSpell }): Partial<TurnOption> {
+  const attack = homebrewAttack(character, own);
+  return {
+    damageBonuses: [],
+    saveDc: homebrewSaveDc(character, own),
+    saveAbility: own.homebrew.hit === "save" ? own.homebrew.saveAbility : undefined,
+    halfOnSave: own.homebrew.hit === "save" ? own.homebrew.halfOnSave : undefined,
+    spellAttack: attack?.attack,
+    spellAttackParts: attack?.parts,
+    school: undefined,
+    homebrew: true,
+  };
+}
+
 function spellOptions(character: Character, srdSpells: SrdSpell[]): TurnOption[] {
   const out: TurnOption[] = [];
-  const byName = new Map(srdSpells.map((s) => [s.name.toLowerCase(), s]));
+  const byName = new Map(withHomebrew(character, srdSpells).map((s) => [s.name.toLowerCase(), s as SrdSpell]));
   const granted = new Set(getGrantedSpellNames(character).map((n) => n.toLowerCase()));
   const prepares = isPreparationCaster(character);
   const prepared = new Set(character.preparedSpells || []);
@@ -314,7 +336,8 @@ function spellOptions(character: Character, srdSpells: SrdSpell[]): TurnOption[]
     if (!slot) continue;
     const level = spell.level ?? srd?.level ?? 0;
     const free = freeCasts.has(lookup);
-    if (level > 0 && prepares && !prepared.has(spell.id) && !granted.has(lookup) && !free) continue;
+    const own = "homebrew" in spell && isHomebrew(spell) ? spell : null;
+    if (level > 0 && prepares && !prepared.has(spell.id) && !granted.has(lookup) && !free && (!own || countsTowardLimit(own))) continue;
 
     const numbers = spellNumbersFor(character, speciesSpellAbility(character, spell.srdSpellName || spell.name));
     const option: TurnOption = {
@@ -332,16 +355,19 @@ function spellOptions(character: Character, srdSpells: SrdSpell[]): TurnOption[]
       saveDc: srd?.saveType ? numbers.dc || undefined : undefined,
       spellAttack: srd && (srd.attackType || srd.attack_type) ? numbers.attack : undefined,
       spellAttackParts: srd && (srd.attackType || srd.attack_type) ? numbers.parts : undefined,
+      ...(own ? homebrewNumbers(character, own) : {}),
       spend: { spellsUsedThisTurn: [...(character.spellsUsedThisTurn || []).filter((id) => id !== spell.id), spell.id] },
     };
     let castLevel = level;
     const rounds = spellRounds(srd?.duration, !!srd?.concentration);
+    // A homebrew timer never borrows a book spell's buff effects.
+    const timerId = own ? `spell:${own.name.toLowerCase()}` : spellTimerId(spell.srdSpellName || spell.name);
     if (rounds) {
       option.lastsRounds = rounds;
-      option.spend.activeBuffs = startTimer(character.activeBuffs || [], { spellId: spellTimerId(spell.srdSpellName || spell.name), name: spell.name, concentration: !!srd?.concentration, turnsRemaining: rounds });
+      option.spend.activeBuffs = startTimer(character.activeBuffs || [], { spellId: timerId, name: spell.name, concentration: !!srd?.concentration, turnsRemaining: rounds });
     }
     const current = concentrationTimer(character);
-    if (srd?.concentration && current && current.spellId !== spellTimerId(spell.srdSpellName || spell.name)) option.endsConcentration = current.name;
+    if (srd?.concentration && current && current.spellId !== timerId) option.endsConcentration = current.name;
     if (level > 0) {
       if (free && !freeUsed.has(lookup)) {
         option.cost = { key: "turn.cost.freeCast", values: {} };
@@ -357,8 +383,9 @@ function spellOptions(character: Character, srdSpells: SrdSpell[]): TurnOption[]
         }
       }
     }
-    if (srd && option.damageBonuses) option.spellDamage = characterSpellDamage(character, { name: srd.name, level, school: srd.school, classes: srd.classes }, castLevel, option.damageBonuses);
-    const heal = srd ? spellHealing(character, { name: srd.name, level, heal_at_slot_level: srd.heal_at_slot_level }, castLevel) : null;
+    if (own) option.spellDamage = homebrewDamage(character, own, castLevel);
+    else if (srd && option.damageBonuses) option.spellDamage = characterSpellDamage(character, { name: srd.name, level, school: srd.school, classes: srd.classes }, castLevel, option.damageBonuses);
+    const heal = own ? homebrewHealing(character, own, castLevel) : srd ? spellHealing(character, { name: srd.name, level, heal_at_slot_level: srd.heal_at_slot_level }, castLevel) : null;
     if (heal) {
       option.heal = heal;
       option.damageBonuses = [...(option.damageBonuses || []), ...healingBonusLines(heal)];
@@ -835,7 +862,7 @@ export function endTurnPatch(character: Character, srdSpells: SrdSpell[]): Parti
   for (const spellId of character.spellsUsedThisTurn || []) {
     const spell = (character.spells || []).find((s) => s.id === spellId);
     if (!spell) continue;
-    const srd = spell.srdSpellName ? srdSpells.find((s) => s.name === spell.srdSpellName) : undefined;
+    const srd = isHomebrew(spell) ? withHomebrew(character, srdSpells).find((s) => s.name === spell.name) : spell.srdSpellName ? srdSpells.find((s) => s.name === spell.srdSpellName) : undefined;
     const turns = srd?.duration ? parseDurationToTurns(srd.duration) : null;
     if (turns !== null && turns > 1) kept.push(spellId);
   }

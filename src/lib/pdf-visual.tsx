@@ -1,5 +1,6 @@
 "use client";
 
+import { homebrewAsSrd, isHomebrew } from "./homebrew-spells";
 import { Document, Page, Text, View, StyleSheet, pdf } from "@react-pdf/renderer";
 import type { Character } from "./storage";
 import { getModifier } from "./storage";
@@ -235,7 +236,7 @@ function CharacterPdfDocument({ character, language = "en" as PdfLanguage }: { c
     .filter((x) => x.name)
     .sort((a, b) => a.level - b.level || a.name.localeCompare(b.name))
     .map((x) => {
-      const d = spellData.get(x.name.toLowerCase());
+      const d = (isHomebrew(x) ? homebrewAsSrd(x, character.level || 1) : spellData.get(x.name.toLowerCase())) as { castingTime?: string; range?: string; concentration?: boolean; ritual?: boolean; components?: unknown } | undefined;
       // Components come as a list or a string ("V, S, M (a pinch of sulfur)").
       const raw = d?.components as unknown;
       const comps = (Array.isArray(raw) ? raw : String(raw || "").split(/,\s*/)).map((c) => String(c).trim().charAt(0).toUpperCase());
@@ -247,7 +248,7 @@ function CharacterPdfDocument({ character, language = "en" as PdfLanguage }: { c
         c: !!d?.concentration,
         r: !!d?.ritual,
         m: comps.includes("M"),
-        notes: [x.damageDice, x.damageType].filter(Boolean).join(" "),
+        notes: x.homebrew && x.homebrew.diceCount > 0 ? `${x.homebrew.diceCount}d${x.homebrew.die} ${x.homebrew.damageType}` : [x.damageDice, x.damageType].filter(Boolean).join(" "),
       };
     });
 

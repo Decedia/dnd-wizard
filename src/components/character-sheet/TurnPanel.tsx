@@ -112,8 +112,11 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
   const textOf = (o: TurnOption) => {
     const parts: string[] = [];
     if (o.toHit !== undefined) parts.push(t("turn.toHit", { bonus: signed(o.toHit) }, "{bonus} to hit"));
+    else if (o.spellAttack !== undefined) parts.push(t("turn.toHit", { bonus: signed(o.spellAttack) }, "{bonus} to hit"));
     if (o.damage) parts.push(o.damage);
-    if (o.saveDc) parts.push(t("turn.saveDc", { dc: o.saveDc }, "Save DC {dc}"));
+    if (o.saveDc && o.saveAbility) parts.push(t("turn.saveAbilityDc", { ability: o.saveAbility, dc: o.saveDc }, "{ability} save DC {dc}") + (o.halfOnSave ? ` ${t("turn.halfOnSave", "(half on a success)")}` : ""));
+    else if (o.saveDc) parts.push(t("turn.saveDc", { dc: o.saveDc }, "Save DC {dc}"));
+    if (o.group === "spell" && o.tags?.includes("autoHit")) parts.push(t("turn.alwaysHits", "Always hits"));
     const summary = o.summaryKey ? t(o.summaryKey, o.summary || undefined) : (o.group === "feature" && localSummary.get(o.name)) || o.summary;
     return [parts.join(" · "), summary].filter(Boolean).join(parts.length && summary ? ". " : "");
   };
@@ -317,6 +320,7 @@ export function TurnPanel({ character, srdSpells, onChange, onEndTurn, onClose }
             {o.when && <span className="rounded-full border border-[var(--color-border)] px-1.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)]">{t(`turn.when.${o.when}`)}</span>}
             {o.oncePerTurn && <span className="rounded-full border border-[var(--color-border)] px-1.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)]">{t("turn.when.oncePerTurn", "Once per turn")}</span>}
             {o.school && schoolChip(o.school)}
+            {o.homebrew && <span className="inline-flex items-center rounded-full border border-[var(--color-gold)] px-1.5 py-0.5 text-[10px] font-semibold text-[var(--color-gold)]">{t("homebrew.tag", "Homebrew")}</span>}
             {o.mastery && <MasteryChip mastery={o.mastery} />}
             {o.lastsRounds && (() => { const d = roundsText(o.lastsRounds); return <span className="rounded-full border border-[var(--color-border)] px-1.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)]">{t("turn.lasts", { time: t(`timer.span.${d.unit}`, { n: d.n }) })}</span>; })()}
             {o.concentration && <span className="rounded-full border border-dashed border-[var(--color-border-active)] px-1.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)]">{t("turn.concentration", "Concentration")}</span>}
