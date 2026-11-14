@@ -14,6 +14,8 @@ import { CharacterSheetProvider, type OverrideRequest } from "@/components/chara
 import { ChoicesSection } from "@/components/character-sheet/ChoicesSection";
 import { OverrideSheet } from "@/components/character-sheet/OverrideSheet";
 import { SheetTabs, type TabId } from "@/components/character-sheet/SheetTabs";
+import { SheetHeader } from "@/components/character-sheet/SheetHeader";
+import { HpChangeSheet } from "@/components/character-sheet/HpChangeSheet";
 import { LevelXpSection } from "@/components/character-sheet/LevelXpSection";
 import { IdentitySection } from "@/components/character-sheet/IdentitySection";
 import { StatsSection } from "@/components/character-sheet/StatsSection";
@@ -32,11 +34,12 @@ import { SpellsSection } from "@/components/character-sheet/SpellsSection";
 import { SpellcastingStatsSection } from "@/components/character-sheet/SpellcastingStatsSection";
 import { AppearanceBioSection } from "@/components/character-sheet/AppearanceBioSection";
 import { PassiveStatsSection } from "@/components/character-sheet/PassiveStatsSection";
-import { DotsThreeIcon as DotsThree, TrashIcon as Trash, ExportIcon as Export, UploadIcon as Upload, CheckCircleIcon as CheckCircle, UserPlusIcon as UserPlus, ClockIcon as Clock, FileJsonIcon as FileJson } from "@/components/icons";
+import { PencilSimpleIcon as PencilSimple, DotsThreeIcon as DotsThree, TrashIcon as Trash, ExportIcon as Export, UploadIcon as Upload, CheckCircleIcon as CheckCircle, UserPlusIcon as UserPlus, ClockIcon as Clock, FileJsonIcon as FileJson } from "@/components/icons";
 import { syncGrantedSpells } from "@/lib/granted-spells";
 import { undoLevelUp, undoableChange } from "@/lib/level-snapshot";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { DiceProvider } from "@/contexts/DiceContext";
+import { GiCampfire, GiNightSleep } from "react-icons/gi";
 
 const GRANT_SOURCES = ["race", "class", "subclass", "level", "raceChoices", "circleTerrain", "optionalClassFeatures", "sources", "featureSelections"] as const;
 
@@ -54,6 +57,8 @@ export function CharacterView() {
   useEffect(() => { setSrdRuleset(characterRuleset); }, [characterRuleset, setSrdRuleset]);
   const [turnOpen, setTurnOpen] = useState(false);
   const [restKind, setRestKind] = useState<"short" | "long" | null>(null);
+  const [restPick, setRestPick] = useState(false);
+  const [hpMode, setHpMode] = useState<"heal" | "damage" | null>(null);
   const [undoOpen, setUndoOpen] = useState(false);
   const [overrideReq, setOverrideReq] = useState<OverrideRequest | null>(null);
 
@@ -265,21 +270,33 @@ export function CharacterView() {
   return (
     <DiceProvider>
     <div className="min-h-screen bg-paper">
-      <AppHeader title="" subtitle={t("character.sheet")} editMode={editMode} onEditModeChange={setEditMode} onSave={handleSave} />
-
-      <div className="sticky top-[52px] z-30 bg-paper/90 backdrop-blur-sm border-b border-border-strong">
-        <div className="mx-auto max-w-lg px-4 py-2.5">
-          <div className="flex items-center gap-2">
-            <div className="min-w-0 flex-1">
-              <SheetTabs activeTab={shownTab} onTabChange={setActiveTab} hidden={canCast ? [] : ["spells"]} />
-            </div>
+            <CharacterSheetProvider onFieldBlur={debouncedSave} editOverride={setOverrideReq} overridden={character.overrides}>
+      <SheetHeader
+        character={character}
+        editMode={editMode}
+        onHp={setHpMode}
+        onRest={() => setRestPick(true)}
+        actions={
+          <div className="flex shrink-0 items-center gap-1.5">
+            <button
+              type="button"
+              onClick={() => {
+                if (editMode) handleSave();
+                setEditMode(!editMode);
+              }}
+              aria-label={t("character.editMode", "Edit")}
+              aria-pressed={editMode}
+              className={`flex h-9 w-9 items-center justify-center rounded-full border ${editMode ? "border-[var(--color-gold)] bg-[var(--color-gold)] text-[var(--color-on-gold)]" : "border-[var(--color-control-border)] text-[var(--color-text-primary)]"}`}
+            >
+              <PencilSimple className="h-4 w-4" />
+            </button>
             <div className="relative shrink-0">
               <button
                 type="button"
                 onClick={() => setMenuOpen((v) => !v)}
                 aria-label={t("character.moreActions", "More actions")}
                 aria-expanded={menuOpen}
-                className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)]"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-control-border)] text-[var(--color-text-primary)]"
               >
                 <DotsThree className="h-5 w-5" />
               </button>
@@ -322,14 +339,13 @@ export function CharacterView() {
               )}
             </div>
           </div>
-        </div>
-      </div>
+        }
+      />
 
-      <CharacterSheetProvider onFieldBlur={debouncedSave} editOverride={setOverrideReq} overridden={character.overrides}>
          <main className="mx-auto max-w-lg px-4 py-3 pb-6">
           {shownTab === "combat" && (
             <>
-              <CombatStatsSection character={character} onChange={handleChange} editMode={editMode} onOpenTurn={openTurn} onRest={setRestKind} />
+              <CombatStatsSection character={character} onChange={handleChange} editMode={editMode} onOpenTurn={openTurn} />
               {/* Death saves matter only at 0 HP (or while a count is still marked). */}
               {((character.currentHp || 0) <= 0 || (character.deathSaveSuccesses || 0) > 0 || (character.deathSaveFailures || 0) > 0) && (
                 <DeathSavesSection character={character} onChange={handleChange} editMode={editMode} />
@@ -354,12 +370,12 @@ export function CharacterView() {
           )}
           {shownTab === "spells" && (
             <>
+              <SpellcastingStatsSection character={character} onChange={handleChange} editMode={editMode} />
               <SpellsSection
                 character={character}
                 onChange={handleChange}
                 editMode={editMode}
               />
-              <SpellcastingStatsSection character={character} onChange={handleChange} editMode={editMode} />
             </>
           )}
           {shownTab === "bio" && (
@@ -416,6 +432,31 @@ export function CharacterView() {
           </div>
         </main>
       </CharacterSheetProvider>
+
+      <SheetTabs activeTab={shownTab} onTabChange={setActiveTab} hidden={canCast ? [] : ["spells"]} />
+
+      {hpMode && <HpChangeSheet character={character} mode={hpMode} onChange={handleChange} onClose={() => setHpMode(null)} />}
+
+      {restPick && (
+        <BottomSheet isOpen onClose={() => setRestPick(false)} title={t("sheet.restPick", "Which rest?")}>
+          <div className="grid grid-cols-2 gap-2 px-4 py-4">
+            {(["short", "long"] as const).map((kind) => (
+              <button
+                key={kind}
+                type="button"
+                onClick={() => {
+                  setRestPick(false);
+                  setRestKind(kind);
+                }}
+                className="btn btn-secondary flex-col gap-1 py-3"
+              >
+                {kind === "short" ? <GiCampfire className="h-6 w-6" aria-hidden="true" /> : <GiNightSleep className="h-6 w-6" aria-hidden="true" />}
+                <span className="text-sm font-semibold">{t(`rest.${kind}.title`)}</span>
+              </button>
+            ))}
+          </div>
+        </BottomSheet>
+      )}
 
       {undoOpen && undoSnap && (
         <BottomSheet

@@ -3,20 +3,6 @@
 import { useState, useRef, useCallback, useEffect, useMemo, createElement } from "react";
 import Link from "next/link";
 import {
-  Axe,
-  Guitar,
-  Cross,
-  Leaf,
-  Sword,
-  HandFist,
-  Shield,
-  Crosshair,
-  Knife,
-  Fire,
-  Skull,
-  MagicWand,
-  Wrench,
-  User,
   FileText,
   FileCode,
   DownloadSimple,
@@ -28,6 +14,7 @@ import {
   CaretRight,
 } from "@phosphor-icons/react";
 import { GiCastle, GiMoon } from "react-icons/gi";
+import { getClassIcon } from "@/lib/class-icon";
 import { SupportLinks } from "@/components/SupportLinks";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { getCharacters, saveCharacter, deleteCharacter, type Character } from "@/lib/storage";
@@ -36,23 +23,6 @@ import { useDebug } from "@/lib/debug/DebugContext";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useTheme } from "@/contexts/ThemeContext";
 
-const getClassIcon = (className = "") => {
-  const c = className.toLowerCase();
-  if (c.includes("barbarian")) return Axe;
-  if (c.includes("bard")) return Guitar;
-  if (c.includes("cleric")) return Cross;
-  if (c.includes("druid")) return Leaf;
-  if (c.includes("fighter")) return Sword;
-  if (c.includes("monk")) return HandFist;
-  if (c.includes("paladin")) return Shield;
-  if (c.includes("ranger")) return Crosshair;
-  if (c.includes("rogue")) return Knife;
-  if (c.includes("sorcerer")) return Fire;
-  if (c.includes("warlock")) return Skull;
-  if (c.includes("wizard")) return MagicWand;
-  if (c.includes("artificer")) return Wrench;
-  return User;
-};
 
 type SortKey = "opened" | "newest" | "oldest" | "name";
 /** Hero cards shown before "Show all". */

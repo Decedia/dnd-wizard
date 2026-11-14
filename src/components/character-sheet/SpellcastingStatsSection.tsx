@@ -67,86 +67,65 @@ export function SpellcastingStatsSection({ character, onChange, editMode = true 
 
   return (
     <SectionCard id="spellcasting" title={t("section.spellcastingStats")} icon={<Sparkle className="h-5 w-5" />}>
-      <div className="grid grid-cols-1 gap-4">
-        <Field label={t("spellcasting.ability")}>
-          {editMode ? (
-            <input
-              type="text"
-              value={character.spellcastingAbility}
-              readOnly
-              className="input bg-paper-muted"
-            />
-          ) : (
-            <span className="text-sm font-bold text-[var(--color-text-primary)]">{(character.spellcastingAbility || "—").toUpperCase()}</span>
-          )}
-        </Field>
-        <div className="grid grid-cols-2 gap-3">
-          <Field label={t("spellcasting.saveDc")}>
-            <Overridable id="spellSaveDc" label={t("spellcasting.saveDc")} editMode={editMode} className="text-sm font-bold text-ink">
-              {character.spellSaveDc}
-            </Overridable>
-          </Field>
-          <Field label={t("spellcasting.attackBonus")}>
-            <Overridable id="spellAttackBonus" label={t("spellcasting.attackBonus")} signed editMode={editMode} roll={character.spellAttackBonus} rollParts={spellAttackParts(character)} className="text-sm font-bold text-ink">
-              {character.spellAttackBonus >= 0 ? `+${character.spellAttackBonus}` : character.spellAttackBonus}
-            </Overridable>
-          </Field>
-        </div>
+      <div className="mb-4 flex flex-wrap items-center gap-2">
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--color-control-border)] px-3 py-1.5 text-xs text-[var(--color-text-muted)]">
+          {t("spellcasting.attackBonus")}
+          <Overridable id="spellAttackBonus" label={t("spellcasting.attackBonus")} signed editMode={editMode} roll={character.spellAttackBonus} rollParts={spellAttackParts(character)} className="text-sm font-bold text-[var(--color-gold)]">
+            {character.spellAttackBonus >= 0 ? `+${character.spellAttackBonus}` : character.spellAttackBonus}
+          </Overridable>
+        </span>
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--color-control-border)] px-3 py-1.5 text-xs text-[var(--color-text-muted)]">
+          {t("spellcasting.saveDc")}
+          <Overridable id="spellSaveDc" label={t("spellcasting.saveDc")} editMode={editMode} className="text-sm font-bold text-[var(--color-gold)]">
+            {character.spellSaveDc}
+          </Overridable>
+        </span>
+        {character.spellcastingAbility && (
+          <span className="rounded-full border border-[var(--color-control-border)] px-3 py-1.5 text-xs font-bold text-[var(--color-text-primary)]">{character.spellcastingAbility.toUpperCase()}</span>
+        )}
       </div>
 
-      <div className="mt-4">
+      <div>
         <span className="field-label-light">{t("spellcasting.slots")}</span>
-        <p className="text-[10px] text-[var(--color-text-muted)] mb-2">{t("spellcasting.slotsDescription")}</p>
         {Object.keys(character.spellSlots).length > 0 ? (
-          <div className="grid grid-cols-1 gap-2">
-            {Object.entries(character.spellSlots)
-              .sort(([a], [b]) => Number(a) - Number(b))
-              .map(([level, total]) => {
-                const expended = character.spellSlotsExpended[Number(level)] ?? 0;
-                const remaining = total - expended;
-                return (
-                  <div key={level} className="list-row flex items-center gap-3">
-                    <span className="text-sm font-bold text-[var(--color-text-primary)] w-16">Level {level}</span>
-                    <div className="flex items-center gap-2">
-                      <span className={`text-sm font-bold ${remaining > 0 ? "text-[var(--color-success-600)]" : "text-[var(--color-error-500)]"}`}>
-                        {remaining}
-                      </span>
-                      <span className="text-sm text-[var(--color-text-muted)]">/</span>
-                      <span className="text-sm text-[var(--color-text-primary)]">{total}</span>
-                      <button
-                        type="button"
-                        onClick={() => spendSpellSlot(Number(level))}
-                        disabled={remaining <= 0}
-                        className={`px-2.5 py-1 text-[10px] font-bold rounded transition-colors ${
-                          remaining > 0
-                            ? "bg-[var(--color-ink)] text-[var(--color-surface)] hover:bg-[var(--color-text-primary)]"
-                            : "bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)] opacity-40 cursor-not-allowed"
-                        }`}
-                      >
-                        {t("spellcasting.use")}
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => restoreSpellSlot(Number(level))}
-                        disabled={expended <= 0}
-                        className={`px-2.5 py-1 text-[10px] font-bold rounded transition-colors ${
-                          expended > 0
-                            ? "bg-[var(--color-bg)] text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:border-[var(--color-border-active)]"
-                            : "bg-[var(--color-bg)] text-[var(--color-text-muted)] border border-[var(--color-border)] opacity-40 cursor-not-allowed"
-                        }`}
-                      >
-                        {t("spellcasting.restore")}
-                      </button>
+          <>
+            <div className="mt-1 grid grid-cols-3 gap-2">
+              {Object.entries(character.spellSlots)
+                .filter(([, total]) => total > 0)
+                .sort(([a], [b]) => Number(a) - Number(b))
+                .map(([level, total]) => {
+                  const expended = character.spellSlotsExpended[Number(level)] ?? 0;
+                  const remaining = total - expended;
+                  return (
+                    <div key={level} className="rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-bg)] px-2.5 py-2">
+                      <div className="mb-1.5 flex items-center justify-between text-[11px]">
+                        <span className="font-bold text-[var(--color-text-primary)]">{t("spellcasting.slotLevel", { level }, "Level {level}")}</span>
+                        <span className="text-[var(--color-text-muted)]">{remaining}/{total}</span>
+                      </div>
+                      <div className="flex flex-wrap gap-1.5">
+                        {Array.from({ length: total }, (_, i) => {
+                          const filled = i < remaining;
+                          return (
+                            <button
+                              key={i}
+                              type="button"
+                              onClick={() => (filled ? spendSpellSlot(Number(level)) : restoreSpellSlot(Number(level)))}
+                              aria-label={filled ? t("spellcasting.use") : t("spellcasting.restore")}
+                              className={`h-4 w-4 rounded-full border-2 transition-colors ${filled ? "border-[var(--color-gold)] bg-[var(--color-gold)]" : "border-[var(--color-control-border)] bg-transparent"}`}
+                            />
+                          );
+                        })}
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
-          </div>
+                  );
+                })}
+            </div>
+            <p className="mt-2 text-[10px] text-[var(--color-text-muted)]">{t("spellcasting.pipHint", "Tap a gold dot to use a slot, an empty one to get it back.")}</p>
+          </>
         ) : (
           <p className="text-xs text-[var(--color-text-muted)] mt-1">{t("spellcasting.noSlots")}</p>
         )}
       </div>
-
       {character.class === "Sorcerer" && (
         <div className="mt-4">
           <span className="field-label-light">{t("spellcasting.flexibleCasting")}</span>

@@ -34,6 +34,8 @@ export function BottomNav() {
 
   // Creation and level-up have their own footer and no way out mid-flow.
   if (WIZARD_PATHS.some((p) => pathname?.startsWith(p))) return null;
+  // The sheet docks its own tabs here; its header has the way home.
+  if (pathname === "/character" || pathname === "/character/") return null;
 
   const activeIndex = navItems.findIndex((item) => pathname === item.href);
 

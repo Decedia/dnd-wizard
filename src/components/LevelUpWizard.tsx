@@ -1493,13 +1493,16 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
 
   return (
     <div className="min-h-screen bg-[var(--color-bg)]">
-      <div className="sticky top-0 z-40 bg-[var(--color-surface)]/90 backdrop-blur-sm border-b border-[var(--color-border)]">
+      <div className="sticky top-0 z-40 border-b border-[var(--color-border)] bg-[var(--color-paper-muted)]">
         <div className="mx-auto max-w-lg px-4 py-3">
           <div className="flex items-center justify-between">
               <button onClick={onCancel} className="px-3 py-1.5 text-xs font-semibold text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors rounded-[var(--border-radius-sm)] border border-transparent hover:border-[var(--color-border)]">
                 {t("wizard.cancel", "Cancel")}
               </button>
-              <div className="text-xs font-semibold text-[var(--color-text-primary)]">{title ?? t("levelUp.title", "Level Up")}</div>
+              <div className="text-center">
+                <div className="font-heading text-lg font-extrabold uppercase tracking-wide text-[var(--color-gold)]">{title ?? t("levelUp.flow.levelN", "Level {level}", { level: targetLevel })}</div>
+                <div className="text-[10px] text-[var(--color-text-muted)]">{t("levelUp.flow.stepCount", "Step {n} of {total}", { n: idx + 1, total: steps.length })}</div>
+              </div>
             <button
               type="button"
               onClick={() => setShowNotifPanel(!showNotifPanel)}
@@ -1512,6 +1515,13 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
                 </span>
               )}
             </button>
+          </div>
+          <div className="mt-2.5 flex gap-1" aria-hidden="true">
+            {steps.length <= 14 ? (
+              steps.map((_, i) => <div key={i} className={`h-1 flex-1 rounded-full ${i <= idx ? "bg-[var(--color-gold)]" : "bg-[var(--color-border)]"}`} />)
+            ) : (
+              <div className="h-1 flex-1 overflow-hidden rounded-full bg-[var(--color-border)]"><div className="h-1 bg-[var(--color-gold)]" style={{ width: `${((idx + 1) / steps.length) * 100}%` }} /></div>
+            )}
           </div>
           {toastMessage && (
             <div className="mt-2 py-2 px-3 rounded-[var(--radius-sm)] bg-green-50 border border-green-200 text-center animate-fade-in">

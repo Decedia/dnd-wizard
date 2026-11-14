@@ -15,10 +15,10 @@ export function StatCard({ hp, ac, atk, dc, before, name, subtitle, t }: {
   if (atk !== undefined) stats.push({ key: "atk", label: t("levelUp.flow.spellAttack", "Spell atk"), value: `${atk >= 0 ? "+" : ""}${atk}`, diff: before ? atk - before.atk : 0 });
   if (dc !== undefined) stats.push({ key: "dc", label: t("levelUp.flow.saveDc", "Save DC"), value: String(dc), diff: before ? dc - before.dc : 0 });
   return (
-    <div className="border-t border-[var(--color-border)]">
-      <div className="mx-auto flex max-w-lg items-center gap-3 px-4 py-2">
+    <div className="mx-auto max-w-lg px-4 pb-3">
+      <div className="flex items-center gap-3 rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2">
         <div className="min-w-0 flex-1">
-          <div className="truncate text-xs font-bold text-[var(--color-text-primary)]">{name || "—"}</div>
+          <div className="truncate font-heading text-sm font-semibold text-[var(--color-text-primary)]">{name || "—"}</div>
           <div className="truncate text-[10px] text-[var(--color-text-muted)]">{subtitle}</div>
         </div>
         {stats.map((s) => (
