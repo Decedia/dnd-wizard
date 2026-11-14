@@ -34,9 +34,10 @@ import { SpellsSection } from "@/components/character-sheet/SpellsSection";
 import { SpellcastingStatsSection } from "@/components/character-sheet/SpellcastingStatsSection";
 import { AppearanceBioSection } from "@/components/character-sheet/AppearanceBioSection";
 import { PassiveStatsSection } from "@/components/character-sheet/PassiveStatsSection";
-import { PencilSimpleIcon as PencilSimple, DotsThreeIcon as DotsThree, TrashIcon as Trash, ExportIcon as Export, UploadIcon as Upload, CheckCircleIcon as CheckCircle, UserPlusIcon as UserPlus, ClockIcon as Clock, FileJsonIcon as FileJson } from "@/components/icons";
+import { PencilSimpleIcon as PencilSimple, DotsThreeIcon as DotsThree, TrashIcon as Trash, ExportIcon as Export, UploadIcon as Upload, CheckCircleIcon as CheckCircle, UserPlusIcon as UserPlus, ClockIcon as Clock, FileJsonIcon as FileJson, CopyIcon as Copy } from "@/components/icons";
 import { syncGrantedSpells } from "@/lib/granted-spells";
 import { undoLevelUp, undoableChange } from "@/lib/level-snapshot";
+import { finishClone } from "@/lib/clone";
 import { BottomSheet } from "@/components/modals/BottomSheet";
 import { DiceProvider } from "@/contexts/DiceContext";
 import { GiCampfire, GiNightSleep } from "react-icons/gi";
@@ -60,6 +61,7 @@ export function CharacterView() {
   const [restPick, setRestPick] = useState(false);
   const [hpMode, setHpMode] = useState<"heal" | "damage" | null>(null);
   const [undoOpen, setUndoOpen] = useState(false);
+  const [cloneOpen, setCloneOpen] = useState(false);
   const [overrideReq, setOverrideReq] = useState<OverrideRequest | null>(null);
 
   useEffect(() => {
@@ -305,6 +307,7 @@ export function CharacterView() {
                   <button type="button" aria-label={t("common.close", "Close")} className="fixed inset-0 z-40 cursor-default" onClick={() => setMenuOpen(false)} />
                   <div className="absolute right-0 top-11 z-50 w-56 overflow-hidden rounded-2xl border-2 border-[var(--color-border)] bg-[var(--color-surface)] py-1 shadow-lg">
                     {[
+                      { key: "clone", label: t("clone.menu", "Clone this hero"), Icon: Copy, onClick: () => setCloneOpen(true) },
                       { key: "pdf", label: exportingPdf ? t("admin.generating") : t("character.exportPdf", "Export PDF"), Icon: Export, onClick: handleExport },
                       { key: "json", label: t("character.exportJson", "Export JSON"), Icon: FileJson, onClick: handleExportJson },
                       { key: "ipdf", label: t("home.importPdf"), Icon: Upload, onClick: handleImportClick },
@@ -489,6 +492,44 @@ export function CharacterView() {
                 : t("levelUndo.body", { name: character.name, level: undoSnap.level }, "{name} goes back to level {level}, with the picks, HP and spells from before the level-up.")}
             </p>
             <p>{t("levelUndo.kept", "Gear, coins, notes and backstory stay as they are now.")}</p>
+          </div>
+        </BottomSheet>
+      )}
+
+      {cloneOpen && (
+        <BottomSheet
+          isOpen
+          onClose={() => setCloneOpen(false)}
+          title={t("clone.sheetTitle", "Clone this hero")}
+          footer={
+            <div className="flex items-center gap-2 px-4 py-3">
+              <button type="button" onClick={() => setCloneOpen(false)} className="btn btn-secondary flex-1">{t("common.cancel", "Cancel")}</button>
+              <button
+                type="button"
+                onClick={async () => {
+                  setCloneOpen(false);
+                  // Level 1 has no level-ups to go through: the copy is made right away.
+                  if ((character.level || 1) <= 1) {
+                    const copy = finishClone(character, t("clone.name", { name: character.name || "" }, "{name} (copy)"));
+                    await saveCharacter(copy);
+                    router.push(`/character?id=${copy.id}`);
+                    return;
+                  }
+                  router.push(`/character/level-up?id=${character.id}&clone=1`);
+                }}
+                className="btn btn-primary flex-1"
+              >
+                {(character.level || 1) > 1 ? t("clone.start", "Start") : t("clone.copy", "Make the copy")}
+              </button>
+            </div>
+          }
+        >
+          <div className="space-y-2 px-4 py-4 text-sm text-[var(--color-text-secondary)]">
+            <p>{t("clone.body", "The copy keeps the race, background, ability scores, level 1 class picks, gear and story.")}</p>
+            {(character.level || 1) > 1 && (
+              <p>{t("clone.bodyLevels", { level: character.level || 1 }, "Then it levels up again to level {level}. Every level shows the old picks, so you only change the ones you want.")}</p>
+            )}
+            <p>{t("clone.kept", { name: character.name || "" }, "{name} stays as they are.")}</p>
           </div>
         </BottomSheet>
       )}

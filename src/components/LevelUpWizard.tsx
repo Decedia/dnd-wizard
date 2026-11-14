@@ -13,7 +13,7 @@ import { normalizeDescription } from "@/lib/level-up";
 import { applyFeatGrants, encodeFeatOptions, featAbilityIncreases } from "@/lib/feat-grants";
 import { REPEATABLE_FEATS } from "@/lib/feature-groups";
 import { applyClassChoices2024 } from "@/lib/origin-2024";
-import { isUnknownAsi, type LevelPicks } from "@/lib/level-choices";
+import { isUnknownAsi, type AsiPick, type LevelPicks } from "@/lib/level-choices";
 import { usesOptionalClassFeatures } from "@/data/optional-class-features";
 import { getTakenSpellNames } from "@/lib/taken-spells";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -46,7 +46,7 @@ function buildAllocation(st: { mode: "single" | "double" | "feat"; single?: Abil
   return alloc;
 }
 
-export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLevel, title, subtitle, startFromLevelOne, initialLevel, auto, autoView, onAutoStuck, subclassOnly, suggestAll, redo }: LevelUpWizardProps) {
+export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLevel, title, subtitle, startFromLevelOne, initialLevel, auto, autoView, onAutoStuck, subclassOnly, suggestAll, redo, prefill }: LevelUpWizardProps) {
   const { language, tDesc } = useLanguage();
   const dict = language === "id" ? idTranslations : enTranslations;
   const t = useCallback((key: string, fb?: string, params?: Record<string, string | number>) => {
@@ -74,17 +74,24 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   const hpLocked = !!subclassOnly || !!redo;
   const redoLevel = redo ? effectiveMaxLevel : 0;
   const redoAt = <T,>(value: T | undefined): Record<number, T> => (redo && value !== undefined ? { [redoLevel]: value } : {});
+  // A clone starts every level from the original's picks; a redo starts its one level.
+  const startAt = <K extends keyof LevelPicks>(key: K): Record<number, NonNullable<LevelPicks[K]>> => {
+    if (!prefill) return redoAt(redo?.[key]) as Record<number, NonNullable<LevelPicks[K]>>;
+    const out: Record<number, NonNullable<LevelPicks[K]>> = {};
+    for (const [lvl, picks] of Object.entries(prefill.picks)) if (picks[key] !== undefined) out[Number(lvl)] = picks[key]!;
+    return out;
+  };
   // New levels start at the average roll, so a new player never has to type HP.
   const [hpValues, setHpValues] = useState<Record<number, number>>(() => {
     const init: Record<number, number> = {};
-    for (let lvl = currentLevel + 1; lvl <= targetLevel; lvl++) init[lvl] = averageHp;
+    for (let lvl = currentLevel + 1; lvl <= targetLevel; lvl++) init[lvl] = prefill?.hp[lvl] ?? averageHp;
     return init;
   });
   const [asiSelections, setAsiSelections] = useState<Record<number, { mode: "single" | "double" | "feat"; single?: AbilityKey; d1?: AbilityKey; d2?: AbilityKey; feat?: string; featOptions?: Record<string, string> }>>(() =>
-    redo?.asi && !isUnknownAsi(redo.asi) ? { [redoLevel]: redo.asi } : {}
+    Object.fromEntries(Object.entries(startAt("asi")).filter(([, asi]) => !isUnknownAsi(asi))) as Record<number, AsiPick>
   );
-  const [subclassSelection, setSubclassSelection] = useState<string>(character.subclass || "");
-  const [subclassIndex, setSubclassIndex] = useState<string>(character.subclassIndex || "");
+  const [subclassSelection, setSubclassSelection] = useState<string>(character.subclass || prefill?.subclass || "");
+  const [subclassIndex, setSubclassIndex] = useState<string>(character.subclassIndex || (prefill?.subclass || "").toLowerCase().replace(/\s+/g, "-"));
 
   const handleSubclassSelect = useCallback((name: string) => {
     setSubclassSelection(name);
@@ -93,25 +100,26 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
   }, []);
 
 
-  const [subclassFeatureChoices, setSubclassFeatureChoices] = useState<Record<number, Record<string, string>>>(() => redoAt(redo?.subclassFeatures));
-  const [classFeatureChoices, setClassFeatureChoices] = useState<Record<number, Record<string, string>>>(() => redoAt(redo?.classFeatures));
-  const [spellSelections, setSpellSelections] = useState<Record<number, string[]>>(() => redoAt(redo?.spells));
+  const [subclassFeatureChoices, setSubclassFeatureChoices] = useState<Record<number, Record<string, string>>>(() => startAt("subclassFeatures"));
+  const [classFeatureChoices, setClassFeatureChoices] = useState<Record<number, Record<string, string>>>(() => startAt("classFeatures"));
+  const [spellSelections, setSpellSelections] = useState<Record<number, string[]>>(() => startAt("spells"));
   // The Wizard's prepared list as edited on the recap; null keeps the suggested set.
   const [preparedOverride, setPreparedOverride] = useState<string[] | null>(null);
   const [preparingOpen, setPreparingOpen] = useState(false);
-  const [magicalSecretsSelections, setMagicalSecretsSelections] = useState<Record<number, string[]>>(() => redoAt(redo?.magicalSecrets));
-  const [subclassSpellSelections, setSubclassSpellSelections] = useState<Record<number, string[]>>(() => redoAt(redo?.subclassSpells));
-  const [circleTerrainSelections, setCircleTerrainSelections] = useState<Record<number, string>>({});
-  const [bonusCantripSelections, setBonusCantripSelections] = useState<Record<number, string>>({});
+  const [magicalSecretsSelections, setMagicalSecretsSelections] = useState<Record<number, string[]>>(() => startAt("magicalSecrets"));
+  const [subclassSpellSelections, setSubclassSpellSelections] = useState<Record<number, string[]>>(() => startAt("subclassSpells"));
+  const landLevel = classData?.subclassLevel ?? 2;
+  const [circleTerrainSelections, setCircleTerrainSelections] = useState<Record<number, string>>(() => (prefill?.circleTerrain ? { [landLevel]: prefill.circleTerrain } : {}));
+  const [bonusCantripSelections, setBonusCantripSelections] = useState<Record<number, string>>(() => (prefill?.bonusCantrip ? { [landLevel]: prefill.bonusCantrip } : {}));
   const [replacedSpells, setReplacedSpells] = useState<Record<number, string>>(() => {
     const r = redo?.replacedSpell;
     const row = r && (character.spells || []).find((s) => s.name === r.name && s.level === r.level);
     return row ? { [redoLevel]: row.id } : {};
   });
-  const [invocationSelections, setInvocationSelections] = useState<Record<number, string[]>>(() => redoAt(redo?.invocations));
-  const [replacedInvocations, setReplacedInvocations] = useState<Record<number, string>>(() => redoAt(redo?.replacedInvocation));
+  const [invocationSelections, setInvocationSelections] = useState<Record<number, string[]>>(() => startAt("invocations"));
+  const [replacedInvocations, setReplacedInvocations] = useState<Record<number, string>>(() => startAt("replacedInvocation"));
   const [pactTomeCantrips, setPactTomeCantrips] = useState<string[]>([]);
-  const [expertiseSelections, setExpertiseSelections] = useState<Record<number, string[]>>(() => redoAt(redo?.expertise));
+  const [expertiseSelections, setExpertiseSelections] = useState<Record<number, string[]>>(() => startAt("expertise"));
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [stepIdx, setStepIdx] = useState(0);
   const [showNotifPanel, setShowNotifPanel] = useState(false);
@@ -227,9 +235,22 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
       circleTerrainSelection: false,
       bonusCantripSelection: false,
     });
+    // A clone: a level the original's log doesn't have (an older save) keeps what it had.
+    const cloneLogged = (info: LevelInfo): LevelInfo => {
+      const p = prefill?.picks[info.level];
+      return {
+        ...info,
+        asi: info.asi && !isUnknownAsi(p?.asi),
+        classFeatureChoices: info.classFeatureChoices?.filter((fc) => fc.name !== "Eldritch Invocations" || info.rules2024 || p?.invocations !== undefined),
+        hasSpellSelection: info.hasSpellSelection && p?.spells !== undefined,
+        canReplaceSpell: info.canReplaceSpell && p?.spells !== undefined,
+        magicalSecretsCount: p?.magicalSecrets !== undefined ? info.magicalSecretsCount : 0,
+        subclassSpellSelectionCount: p?.subclassSpells !== undefined ? info.subclassSpellSelectionCount : 0,
+      };
+    };
     const fightingStyles = new Set(Object.values(classFeatureChoices).map((choices) => choices?.["Fighting Style"]).filter(Boolean));
     return baseLevelInfos.map((raw) => {
-      const info = subclassOnly ? onlySubclass(raw) : redo ? onlyLogged(raw) : raw;
+      const info = subclassOnly ? onlySubclass(raw) : redo ? onlyLogged(raw) : prefill ? cloneLogged(raw) : raw;
       const expertiseTaken = new Set(
         Object.entries(expertiseSelections).filter(([lvl]) => Number(lvl) !== info.level).flatMap(([, list]) => list || [])
       );
@@ -251,7 +272,7 @@ export function LevelUpWizard({ character, onCancel, onComplete, minLevel, maxLe
         },
       };
     });
-  }, [baseLevelInfos, replacedSpells, subclassFeatureChoices, classFeatureChoices, expertiseSelections, subclassOnly, subclassSelection, redo, character.ruleset]);
+  }, [baseLevelInfos, replacedSpells, subclassFeatureChoices, classFeatureChoices, expertiseSelections, subclassOnly, subclassSelection, redo, prefill, character.ruleset]);
   // The class name the screens are worked out with; the Warlock's and Wizard's
   // own class screens don't show when only the subclass is picked again.
   const partsClass = subclassOnly ? "" : character.class;

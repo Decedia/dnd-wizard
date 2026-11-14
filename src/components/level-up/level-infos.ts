@@ -7,6 +7,7 @@ import { getHitDieAverage, getModifier, getBardicInspirationDie, getMaxSpellLeve
 import { normalizeDescription } from "@/lib/level-up";
 import invocationsData from "@/data/warlock_invocations.json";
 import { type LevelPicks } from "@/lib/level-choices";
+import type { ClonePrefill } from "@/lib/clone";
 import { getOptionalClassFeatures, getOptionalChoiceOptions, isReplacedFeature, usesOptionalClassFeatures } from "@/data/optional-class-features";
 import { isRecommended } from "@/lib/recommendations";
 
@@ -135,6 +136,11 @@ export interface LevelUpWizardProps {
    * doesn't have (older saves) aren't asked.
    */
   redo?: LevelPicks;
+  /**
+   * A clone levelling back up: every level starts from the original's picks
+   * and HP. Picks the original's log doesn't have (older saves) aren't asked.
+   */
+  prefill?: ClonePrefill;
 }
 
 export interface LevelInfo {
