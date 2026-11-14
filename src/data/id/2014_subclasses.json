@@ -397,7 +397,7 @@
         {
           "name": "Explosive Cannon",
           "level": 9,
-          "description": "Damage cannon Anda meningkat sebesar 1d8. Selain itu, Anda dapat mendetonasikan cannon Anda sebagai action. Setiap makhluk dalam 20 feet dari cannon harus melakukan Dexterity saving throw terhadap spell save DC Anda, menerima 3d8 force damage pada save yang gagal, atau setengahnya pada save yang berhasil.",
+          "description": "Setiap damage roll dari Eldritch Cannon-mu bertambah **1d8**.\n\nSelain itu, sebagai action kamu bisa meledakkan cannon-mu kalau jaraknya tidak lebih dari 60 kaki darimu. Cannon itu hancur, dan setiap makhluk dalam jarak 20 kaki darinya melakukan Dexterity saving throw melawan spell save DC-mu. Kalau gagal, makhluk itu menerima **3d8** force damage, kalau berhasil setengahnya.",
           "featureType": "Active",
           "actionType": "Action",
           "uses": null,
@@ -423,7 +423,7 @@
         {
           "name": "Fortified Position",
           "level": 15,
-          "description": "Anda dan sekutu Anda memiliki half cover saat dalam 10 feet dari cannon Anda. Selain itu, Anda dapat memiliki dua cannon pada saat yang sama, dan Anda dapat mengaktifkan keduanya dengan bonus action yang sama.",
+          "description": "Kamu dan sekutumu mendapat half cover selama berada dalam jarak 10 kaki dari cannon-mu.\n\nSelain itu, kamu bisa punya dua cannon sekaligus. Kamu bisa membuat keduanya dengan action yang sama (tapi bukan dengan spell slot yang sama), dan menggerakkan keduanya dengan Bonus Action yang sama.",
           "featureType": "Active",
           "actionType": "Bonus Action",
           "uses": null,
@@ -512,7 +512,7 @@
         {
           "name": "Steel Defender",
           "level": 3,
-          "description": "Anda dapat menggunakan smith's tools dan 10 gp bahan mentah untuk membuat steel defender di ruang tidak ditempati dalam 5 feet dari Anda. Defender tersebut memiliki AC 15 + proficiency bonus Anda dan hit points yang sama dengan 2 + modifier Intelligence Anda + lima kali artifice level Anda. Ia bersahabat dengan Anda dan rekan-rekan Anda, dan mematuhi perintah Anda. Dalam combat, defender tersebut berbagi initiative count Anda, tetapi mengambil turn-nya segera setelah Anda. Sebagai bonus action, Anda dapat memerintahkan defender untuk bergerak atau menggunakan action Dash, Disengage, atau Help, atau membuat satu melee attack atau ranged attack menggunakan reaction.",
+          "description": "Setiap selesai Long Rest, kamu bisa memakai smith's tools untuk membuat steel defender di ruang kosong dalam jarak 5 kaki darimu. Defender punya AC **15** dan hit points sebanyak **2** + Intelligence modifier-mu + lima kali level artificer-mu. Ia berpihak padamu dan teman-temanmu, dan menuruti perintahmu.\n\nDalam combat, defender memakai Initiative yang sama denganmu dan bergiliran tepat setelahmu. Ia bisa bergerak dan memakai Reaction sendiri, tapi satu-satunya action yang ia ambil adalah Dodge, kecuali kamu memakai Bonus Action di giliranmu untuk menyuruhnya mengambil action lain. Kalau kamu Incapacitated, defender bebas memilih action-nya sendiri.\n\nKalau defender hancur, kamu bisa menghidupkannya lagi dengan spell mending dalam 1 jam, atau membuat yang baru dengan menghabiskan spell slot. Kamu hanya bisa punya satu steel defender.",
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -564,7 +564,7 @@
         {
           "name": "Arcane Jolt",
           "level": 9,
-          "description": "Ketika Anda mengenai makhluk dengan magic weapon, Anda dapat menyalurkan ledakan energi arkane ke target. Target tersebut menerima 2d6 force damage tambahan, dan jika target tersebut adalah construct, ia menerima 2d6 force damage tambahan. Anda dapat menggunakan fitur ini sebanyak modifier Intelligence Anda (minimal sekali), dan Anda mendapatkan kembali semua penggunaan yang dihabiskan ketika Anda menyelesaikan long rest.",
+          "description": "Saat kamu mengenai target dengan serangan senjata magis, atau steel defender-mu mengenai target, kamu bisa menyalurkan energi arcane lewat serangan itu. Pilih salah satu:\n\n- Target menerima tambahan **2d6** force damage.\n- Pilih satu makhluk atau objek yang bisa kamu lihat dalam jarak 30 kaki dari target. Ia memulihkan **2d6** hit points.\n\nKamu bisa memakai fitur ini sebanyak Intelligence modifier-mu (minimal sekali), tapi tidak lebih dari sekali per giliran. Semua pemakaian kembali setelah kamu menyelesaikan Long Rest.",
           "featureType": "Active",
           "actionType": null,
           "uses": null,
@@ -797,7 +797,7 @@
         },
         {
           "name": "Intimidating Presence",
-          "description": "Mulai level 10, kamu bisa menggunakan action untuk menakuti seseorang dengan kehadiranmu yang mengancam. Saat melakukannya, pilih satu makhluk yang bisa kamu lihat dalam jarak **30 kaki**. Jika makhluk tersebut bisa melihat atau mendengarmu, ia harus berhasil melakukan Wisdom saving throw (DC sama dengan **8 + bonus proficiency + modifier Charisma**) atau akan menjadi Frightened terhadapmu hingga akhir giliranmu berikutnya. Pada giliran-giliran selanjutnya, kamu bisa menggunakan action untuk memperpanjang durasi efek ini pada makhluk yang ketakutan tersebut hingga akhir giliranmu berikutnya. Efek ini berakhir jika makhluk tersebut mengakhiri gilirannya di luar jarak pandangmu atau lebih dari **60 kaki** darimu.\n\nJika makhluk tersebut berhasil melakukan saving throw, kamu tidak bisa menggunakan fitur ini kepada makhluk yang sama selama **24 jam**.",
+          "description": "Mulai level 10, kamu bisa menggunakan action untuk menakuti seseorang dengan kehadiranmu yang mengancam. Saat melakukannya, pilih satu makhluk yang bisa kamu lihat dalam jarak **30 kaki**. Jika makhluk tersebut bisa melihat atau mendengarmu, ia harus berhasil melakukan Wisdom saving throw (DC sama dengan **8 + bonus proficiency + modifier Charisma**) atau akan menjadi Frightened terhadapmu hingga akhir giliranmu berikutnya. Pada giliran-giliran selanjutnya, kamu bisa menggunakan action untuk memperpanjang durasi efek ini pada makhluk yang Frightened tersebut hingga akhir giliranmu berikutnya. Efek ini berakhir jika makhluk tersebut mengakhiri gilirannya di luar jarak pandangmu atau lebih dari **60 kaki** darimu.\n\nJika makhluk tersebut berhasil melakukan saving throw, kamu tidak bisa menggunakan fitur ini kepada makhluk yang sama selama **24 jam**.",
           "level": 10,
           "featureType": "Active",
           "actionType": "Action",
@@ -882,7 +882,7 @@
           "actionType": null,
           "duration": "Permanent / Short Rest",
           "summary": "Senjata alamimu menjadi magis, dan kamu mendapatkan bonus pergerakan (berenang, memanjat, atau melompat) setelah beristirahat.",
-          "description": "Spirit liar di dalam Anda tumbuh lebih kuat, mengubah bentuk fisik Anda. Natural weapons yang Anda manifestasikan dengan Form of the Beast sekarang dihitung sebagai magical untuk tujuan mengatasi resistance dan immunity terhadap nonmagical attacks dan damage. Selain itu, saat Anda menyelesaikan short atau long rest, Anda bisa memilih salah satu manfaat berikut sampai rest berikutnya: Swimming (dapatkan swimming speed sama dengan walking speed dan bisa bernapas di bawah air), Climbing (dapatkan climbing speed sama dengan walking speed dan climb permukaan sulit tanpa check), atau Jumping (perpanjang jump distance Anda dengan me-roll Athletics check dan menambahkan total ke jarak dalam feet).",
+          "description": "Roh buas di dalam dirimu makin kuat dan mengubah tubuhmu. Senjata alami dari Form of the Beast sekarang dihitung magis untuk menembus resistance dan immunity terhadap serangan dan damage nonmagis.\n\nSetiap selesai Short Rest atau Long Rest, pilih satu manfaat berikut. Manfaat itu bertahan sampai kamu istirahat lagi:\n- Berenang: kamu dapat swimming speed sama dengan walking speed-mu, dan bisa bernapas di dalam air.\n- Memanjat: kamu dapat climbing speed sama dengan walking speed-mu, dan bisa memanjat permukaan sulit, termasuk merayap terbalik di langit-langit, tanpa ability check.\n- Melompat: saat melompat, kamu bisa melakukan Strength (Athletics) check dan menambah jarak lompatanmu sebanyak hasil check itu dalam kaki. Hanya sekali per giliran.",
           "source": {
             "type": "subclass",
             "name": "Path of the Beast",
@@ -901,7 +901,7 @@
             "recharge": "Long Rest"
           },
           "summary": "Paksa makhluk yang kamu serang dengan senjata alami untuk menerima **2d12** psychic damage atau melakukan serangan jarak dekat ke makhluk lain.",
-          "description": "Saat Anda menghantam makhluk dengan natural weapons saat raging, binatang di dalam Anda bisa mengutuk target Anda dengan fury rabies. Target harus berhasil pada Wisdom saving throw (DC 8 + proficiency bonus Anda + Constitution modifier Anda) atau mengalami salah satu efek berikut (pilihan Anda): target harus menggunakan Reaction-nya untuk membuat melee attack terhadap makhluk lain pilihan Anda yang bisa Anda lihat, atau target menerima 2d12 psychic damage. Anda bisa menggunakan fitur ini sebanyak proficiency bonus Anda, mendapatkan kembali semua penggunaan setelah menyelesaikan long rest.",
+          "description": "Saat kamu mengenai makhluk dengan senjata alamimu selama Rage, binatang di dalam dirimu bisa mengutuk target dengan amukan liar. Target melakukan Wisdom saving throw (DC 8 + Proficiency Bonus + Constitution modifier-mu). Kalau gagal, ia terkena salah satu efek pilihanmu:\n- Target harus memakai Reaction-nya untuk melakukan serangan melee ke makhluk lain pilihanmu yang bisa kamu lihat.\n- Target menerima **2d12** psychic damage.\n\nKamu bisa memakai fitur ini sebanyak Proficiency Bonus-mu. Semua pemakaian kembali setelah kamu menyelesaikan Long Rest.",
           "source": {
             "type": "subclass",
             "name": "Path of the Beast",
@@ -950,7 +950,7 @@
             "recharge": "Long Rest"
           },
           "summary": "Deteksi lokasi dan aliran sihir dari spell atau item magis dalam jarak 60 kaki.",
-          "description": "Sebagai Action, Anda bisa membuka kesadaran Anda ke kehadiran magic yang terkonzentrasi. Sampai akhir turn Anda berikutnya, Anda tahu lokasi spell atau magic item apa pun dalam 60 feet dari Anda yang tidak di belakang total cover. Saat Anda merasakan spell, Anda mempelajari school of magic-nya. Anda bisa menggunakan fitur ini sebanyak proficiency bonus Anda, dan Anda mendapatkan kembali semua penggunaan saat menyelesaikan long rest.",
+          "description": "Sebagai action, kamu bisa merasakan keberadaan sihir di sekitarmu. Sampai akhir giliranmu berikutnya, kamu tahu lokasi setiap spell atau magic item dalam jarak 60 kaki darimu yang tidak berada di balik total cover. Kalau yang kamu rasakan adalah spell, kamu juga tahu school-nya.\n\nKamu bisa memakai fitur ini sebanyak Proficiency Bonus-mu. Semua pemakaian kembali setelah kamu menyelesaikan Long Rest.",
           "source": {
             "type": "subclass",
             "name": "Path of Wild Magic",
@@ -1718,7 +1718,7 @@
           "level": 3,
           "featureType": "Passive",
           "summary": "Memberikan Bardic Inspiration menciptakan mote yang memberikan efek tambahan saat dadu tersebut digunakan untuk check, attack, atau save.",
-          "description": "Setiap kali Anda memberikan Bardic Inspiration die kepada makhluk, Anda dapat mengucapkan satu nada dari Song of Creation untuk menciptakan mote of potential Tiny, yang mengorbit makhluk tersebut dalam 5 feet. Ketika makhluk tersebut menggunakan die, mote tersebut memberikan efek tambahan: Ability Check (menggelindingkan dua kali dan pilih yang tertinggi), Attack Roll (meledak dengan thunder damage sama dengan roll inspirasi ke target dan makhluk dalam 5 ft), atau Saving Throw (mendapatkan temp HP sama dengan roll ditambah modifier Charisma Anda).",
+          "description": "Setiap kali kamu memberi dadu Bardic Inspiration ke seseorang, kamu bisa melantunkan satu nada dari Song of Creation untuk memunculkan bola cahaya kecil (Tiny) yang mengitari makhluk itu dalam jarak **5 kaki**. Saat makhluk itu memakai dadunya, bola ini memberi efek tambahan sesuai jenis roll-nya:\n\n- Ability check: ia me-roll dadu Bardic Inspiration dua kali dan memilih hasil yang ia mau.\n- Attack roll: setelah dadu di-roll, bola itu pecah dengan suara menggelegar. Target dan setiap makhluk pilihanmu dalam jarak **5 kaki** darinya melakukan Constitution saving throw melawan spell save DC-mu. Yang gagal menerima thunder damage sebesar hasil dadu Bardic Inspiration.\n- Saving throw: ia mendapat temporary hit points sebesar hasil dadu Bardic Inspiration + Charisma modifier-mu (minimal 1).",
           "source": {
             "type": "subclass",
             "name": "College of Creation",
@@ -1737,7 +1737,7 @@
             "recharge": "Long Rest / 2nd+ spell slot"
           },
           "summary": "Menciptakan sebuah benda nonmagis dengan nilai maksimal 20 kali level bard kamu dalam satuan gold.",
-          "description": "Sebagai action, Anda dapat menyalurkan sihir Song of Creation untuk membuat satu item non-magis pilihan Anda di ruang tidak ditempati dalam 10 feet dari Anda. Item tersebut harus berukuran tidak lebih besar dari Medium, dan nilainya tidak boleh lebih dari 20 kali bard level Anda dalam gp. Item tersebut berkilau lembut dan bertahan selama jumlah jam sama dengan proficiency bonus Anda. Anda dapat menggunakan fitur ini sekali per long rest, atau dengan menghabiskan spell slot level 2 atau lebih tinggi.",
+          "description": "Sebagai action, kamu bisa memakai sihir Song of Creation untuk membuat satu benda nonmagis pilihanmu di ruang kosong dalam jarak **10 kaki** darimu. Ukurannya paling besar Medium, dan harganya tidak lebih dari **20 × level bard-mu** gp.\n\nBenda itu berkilau samar, dan siapa pun yang menyentuhnya bisa mendengar musik pelan. Benda itu bertahan selama beberapa jam sebanyak Proficiency Bonus-mu. Kamu hanya bisa punya satu benda dari fitur ini.\n\nKamu bisa memakai fitur ini sekali per Long Rest, atau lagi dengan menghabiskan spell slot level 2 atau lebih.",
           "source": {
             "type": "subclass",
             "name": "College of Creation",
@@ -1756,7 +1756,7 @@
             "recharge": "Long Rest / 3rd+ spell slot"
           },
           "summary": "Menghidupkan benda nonmagis ukuran Large atau lebih kecil menjadi construct Dancing Item yang bersahabat.",
-          "description": "Sebagai action, Anda dapat menganimasikan satu item non-magis Large atau lebih kecil dalam 30 feet dari Anda. Item tersebut menggunakan stat block Dancing Item, bersahabat dengan Anda dan rekan-rekan Anda, dan mematuhi perintah mental Anda sebagai bonus action. Ia memiliki aura 10 feet yang meningkatkan pergerakan sekutu dan melambatkan musuh. Ia tetap dianimasikan selama 1 jam, hingga reduced ke 0 HP, atau hingga Anda mati. Anda dapat menggunakan fitur ini sekali per long rest, atau dengan menghabiskan spell slot level 3 atau lebih tinggi.",
+          "description": "Sebagai action, kamu bisa menghidupkan satu benda nonmagis berukuran Large atau lebih kecil dalam jarak **30 kaki** darimu. Benda itu memakai stat block Dancing Item, berpihak padamu dan teman-temanmu, dan menuruti perintahmu. Ia bergiliran tepat setelahmu dan bisa bergerak serta memakai Reaction sendiri, tapi satu-satunya action yang ia ambil adalah Dodge, kecuali kamu memakai Bonus Action untuk menyuruhnya melakukan hal lain.\n\nSaat makhluk memulai gilirannya dalam jarak **10 kaki** dari benda itu, benda itu bisa menambah atau mengurangi walking speed makhluk tersebut sebanyak 10 kaki sampai akhir gilirannya.\n\nBenda itu tetap hidup selama **1 jam**, sampai hit points-nya jadi **0**, atau sampai kamu mati. Kamu bisa memakai fitur ini sekali per Long Rest, atau lagi dengan menghabiskan spell slot level 3 atau lebih.",
           "source": {
             "type": "subclass",
             "name": "College of Creation",
@@ -1843,7 +1843,7 @@
             "recharge": "Long Rest / spell slot"
           },
           "summary": "Buat ucapanmu dapat dimengerti secara magis oleh makhluk terpilih tanpa memedulikan bahasa.",
-          "description": "Anda telah memperoleh kemampuan untuk membuat pidato Anda dimengerti oleh makhluk mana pun. Sebagai action, pilih satu atau lebih makhluk dalam 60 feet dari Anda, sampai jumlah sama dengan modifier Charisma Anda (minimal satu). Makhluk yang dipilih dapat secara magis memahami Anda, terlepas dari bahasa yang Anda gunakan, selama 1 jam. Anda dapat menggunakan fitur ini sekali per long rest, atau dengan menghabiskan spell slot.",
+          "description": "Sekarang ucapanmu bisa dimengerti makhluk apa pun. Sebagai action, pilih sejumlah makhluk dalam jarak 60 kaki darimu, paling banyak sebanyak Charisma modifier-mu (minimal satu). Selama 1 jam, makhluk-makhluk itu bisa memahami ucapanmu secara magis, apa pun bahasa yang kamu pakai.\n\nKamu bisa memakai fitur ini sekali per Long Rest, atau lagi dengan menghabiskan spell slot apa saja.",
           "source": {
             "type": "subclass",
             "name": "College of Eloquence",
@@ -1862,7 +1862,7 @@
             "recharge": "Long Rest"
           },
           "summary": "Berikan dadu Bardic Inspiration ke makhluk lain tanpa mengurangi jatah saat rekan berhasil menggunakan inspirasi.",
-          "description": "Ketika Anda berhasil menginspirasi seseorang, kekuatan eloquence Anda dapat menyebar ke orang lain. Ketika makhluk dalam 60 feet dari Anda menambahkan salah satu Bardic Inspiration dice Anda ke roll-nya dan roll tersebut berhasil, Anda dapat menggunakan reaction untuk memberikan Bardic Inspiration die kepada makhluk lain dalam 60 feet tanpa menghabiskan penggunaan Bardic Inspiration Anda.",
+          "description": "Saat kamu berhasil menyemangati seseorang, semangat itu bisa menular. Kalau makhluk dalam jarak 60 kaki darimu menambahkan dadu Bardic Inspiration-mu ke roll-nya dan roll itu berhasil, kamu bisa memakai Reaction untuk memberi dadu Bardic Inspiration ke makhluk lain dalam jarak 60 kaki yang bisa mendengarmu, tanpa menghabiskan jatah Bardic Inspiration-mu.\n\nKamu bisa memakai Reaction ini sebanyak Charisma modifier-mu (minimal sekali). Semua pemakaian kembali setelah kamu menyelesaikan Long Rest.",
           "source": {
             "type": "subclass",
             "name": "College of Eloquence",
@@ -2497,7 +2497,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Ketika makhluk dalam 60 feet membuat attack roll, ability check, atau damage roll, gunakan Reaction Anda untuk menghabiskan satu penggunaan Bardic Inspiration dan kurangi roll Bardic Inspiration die dari roll makhluk. Harus digunakan sebelum GM menentukan hasilnya.",
+          "summary": "Saat makhluk yang bisa kamu lihat dalam jarak 60 kaki melakukan attack roll, ability check, atau damage roll, pakai Reaction dan satu Bardic Inspiration untuk mengurangi hasil roll-nya dengan dadu Bardic Inspiration. Boleh setelah ia roll, asal sebelum GM menyebut hasilnya.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -2538,7 +2538,7 @@
         },
         {
           "name": "Peerless Skill",
-          "description": "Mulai dari level 14, saat Anda membuat ability check, Anda bisa menghabiskan satu penggunaan Bardic Inspiration. Roll Bardic Inspiration die dan tambahkan angka yang diroll ke ability check Anda. Anda bisa memilih untuk melakukannya setelah Anda me-roll die untuk ability check, tetapi sebelum GM memberitahu Anda apakah Anda berhasil atau gagal.",
+          "description": "Mulai level 14, saat kamu melakukan ability check, kamu bisa menghabiskan satu Bardic Inspiration. Roll dadu Bardic Inspiration dan tambahkan hasilnya ke ability check itu. Kamu boleh memutuskannya setelah roll d20, asal sebelum GM bilang berhasil atau gagal.",
           "level": 14,
           "featureType": "Active",
           "actionType": null,
@@ -2725,7 +2725,7 @@
           "featureType": "Active",
           "actionType": "Action",
           "summary": "Mengusir atau membuang satu makhluk celestial, elemental, fey, atau fiend dalam jarak 30 kaki.",
-          "description": "Sebagai action, Anda menyajikan holy symbol Anda dan salah satu makhluk celestial, elemental, fey, atau fiend dalam 30 feet harus berhasil dalam Wisdom saving throw atau di-turned selama 1 menit. Mulai di level 5, makhluk yang di-turned dengan CR rendah dibanish ke plane asal mereka sebagai gantinya.",
+          "description": "Sebagai action, kamu mengangkat holy symbol-mu dan memilih satu celestial, elemental, fey, atau fiend dalam jarak 30 kaki yang bisa mendengarmu. Makhluk itu harus berhasil dalam Wisdom saving throw. Kalau gagal, ia terusir (turned) selama 1 menit atau sampai ia menerima damage.\n\nMulai level 5, kalau makhluk itu gagal dan CR-nya tidak lebih dari batas di tabel Destroy Undead (CR 1/2 di level 5, naik di level 8, 11, 14, dan 17), ia malah dibuang ke plane asalnya selama 1 menit.",
           "source": {
             "type": "subclass",
             "name": "Arcana Domain",
@@ -2739,7 +2739,7 @@
           "level": 6,
           "featureType": "Passive",
           "summary": "Saat menyembuhkan rekan dengan sihir, kamu bisa mengakhiri satu sihir dengan level yang sama atau lebih rendah pada rekan tersebut.",
-          "description": "Mulai di level 6, ketika Anda mengembalikan hit points kepada sekutu dengan spell level 1 atau lebih tinggi, Anda juga dapat mengakhiri satu spell pilihan Anda pada makhluk tersebut. Level dari spell yang Anda akhiri harus sama dengan atau lebih rendah dari level spell slot yang Anda gunakan untuk menyalin spell penyembuhan.",
+          "description": "Mulai level 6, saat kamu memulihkan hit points sekutu dengan spell level 1 atau lebih, kamu juga bisa mengakhiri satu spell pilihanmu yang sedang mengenai makhluk itu. Level spell yang kamu akhiri harus sama atau lebih rendah dari level spell slot yang kamu pakai untuk spell penyembuh itu.",
           "source": {
             "type": "subclass",
             "name": "Arcana Domain",
@@ -3238,7 +3238,7 @@
       "features": [
         {
           "name": "Blessings of Knowledge",
-          "description": "Di level 1, Anda mempelajari dua bahasa sesuai pilihan Anda dan mendapatkan dua skill sesuai pilihan Anda.",
+          "description": "Di level 1, kamu mempelajari dua bahasa pilihanmu. Kamu juga mendapat proficiency di dua skill pilihanmu dari Arcana, History, Nature, dan Religion, dan Proficiency Bonus-mu dihitung dua kali untuk ability check yang memakai kedua skill itu.",
           "level": 1,
           "featureType": "Passive",
           "actionType": null,
@@ -3418,7 +3418,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Kapanpun Anda menggunakan spell level 1 atau lebih tinggi untuk mengembalikan Hit Points ke makhluk, makhluk itu mendapatkan additional Hit Points sama dengan 2 + level spell.",
+          "summary": "Saat kamu memakai spell level 1 atau lebih untuk memulihkan hit points, targetnya mendapat tambahan hit points sebanyak 2 + level spell itu.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3860,7 +3860,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Paksa beast atau tumbuhan melakukan Wisdom saving throw atau terpesona selama 10 menit, atau sampai menerima damage darimu atau sekutumu.",
+          "summary": "Paksa beast atau tumbuhan melakukan Wisdom saving throw atau menjadi Charmed selama 10 menit, atau sampai menerima damage darimu atau sekutumu.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3934,7 +3934,7 @@
           "featureType": "Active",
           "actionType": "Action",
           "summary": "Mempesona makhluk dalam jangkauan 30 kaki dan memaksa mereka menjatuhkan senjata yang sedang dipegang.",
-          "description": "Sebagai Action, Anda menyajikan holy symbol Anda, dan setiap makhluk pilihan yang bisa melihat atau mendengar Anda dalam 30 feet harus berhasil pada Wisdom saving throw atau di- Charmed oleh Anda sampai akhir turn Anda berikutnya atau sampai itu mengambil damage. Anda juga bisa menyebabkan makhluk yang di- Charmed menjatuhkan apa pun yang mereka pegang ketika mereka gagal saving throw.",
+          "description": "Sebagai action, kamu mengangkat holy symbol-mu. Setiap makhluk pilihanmu dalam jarak 30 kaki yang bisa melihat atau mendengarmu harus berhasil dalam Wisdom saving throw. Kalau gagal, ia menjadi Charmed olehmu sampai akhir giliranmu berikutnya atau sampai ia menerima damage. Kamu juga bisa membuat makhluk yang gagal itu menjatuhkan satu benda pilihanmu yang sedang ia pegang.",
           "source": {
             "type": "subclass",
             "name": "Order Domain",
@@ -4025,7 +4025,7 @@
             "recharge": "Long Rest"
           },
           "summary": "Menciptakan ikatan magis antar rekan, memungkinkan mereka menambahkan **1d4** pada satu attack roll, ability check, atau saving throw per giliran.",
-          "description": "Anda bisa membuat ikatan penguat antar sekutu. Sebagai Action, Anda memilih jumlah makhluk yang bersedia dalam 30 feet dari Anda (yang bisa termasuk diri Anda sendiri) sama dengan proficiency bonus Anda. Selama 10 menit, selama makhluk yang di-bond berada dalam 30 feet dari yang lain, makhluk bisa me-roll 1d4 dan menambahkan angka yang diroll ke attack roll, ability check, atau saving throw yang mereka buat sekali per turn. Anda bisa menggunakan fitur ini sebanyak proficiency bonus Anda per long rest.",
+          "description": "Kamu bisa menjalin ikatan yang saling menguatkan antar sekutu. Sebagai action, pilih makhluk yang bersedia dalam jarak 30 kaki darimu (boleh termasuk dirimu), sebanyak Proficiency Bonus-mu.\n\nSelama 10 menit, selama makhluk yang terikat berada dalam jarak 30 kaki dari makhluk terikat lainnya, ia bisa me-roll **1d4** dan menambahkan hasilnya ke satu attack roll, ability check, atau saving throw. Ini hanya sekali per giliran.\n\nKamu bisa memakai fitur ini sebanyak Proficiency Bonus-mu. Semua pemakaian kembali setelah kamu menyelesaikan Long Rest.",
           "source": {
             "type": "subclass",
             "name": "Peace Domain",
@@ -4928,8 +4928,8 @@
           "name": "Fungal Body",
           "level": 14,
           "featureType": "Passive",
-          "summary": "Kamu imun terhadap kondisi Blinded, Deafened, Takut, atau Keracunan, dan critical hits terhadapmu menjadi serangan biasa.",
-          "description": "Spora jamur di dalam tubuhmu mengubah fisikmu: kamu tidak bisa terkena kondisi Blinded, Deafened, Takut, atau Keracunan. Selain itu, setiap critical hit yang mengenaimu akan dianggap sebagai serangan biasa, kecuali jika kamu sedang dalam kondisi Incapacitated.",
+          "summary": "Kamu imun terhadap kondisi Blinded, Deafened, Frightened, atau Poisoned, dan critical hits terhadapmu menjadi serangan biasa.",
+          "description": "Spora jamur di dalam tubuhmu mengubah fisikmu: kamu tidak bisa terkena kondisi Blinded, Deafened, Frightened, atau Poisoned. Selain itu, setiap critical hit yang mengenaimu akan dianggap sebagai serangan biasa, kecuali jika kamu sedang dalam kondisi Incapacitated.",
           "source": {
             "type": "subclass",
             "name": "Circle of Spores",
@@ -5250,7 +5250,7 @@
             "total": 1,
             "recharge": "Long Rest"
           },
-          "summary": "Saat reduced ke 0 HP, korbankan wildfire spirit Anda untuk turun ke 1 HP dan mendapatkan kembali setengah max HP Anda.",
+          "summary": "Saat HP-mu turun ke 0 dan wildfire spirit-mu ada dalam jarak 120 kaki, kamu bisa mengorbankan spirit itu. Kamu memulihkan setengah HP maksimalmu dan langsung berdiri. Sekali per Long Rest.",
           "description": "Jika hit points kamu turun menjadi 0 dan wildfire spirit milikmu berada dalam jarak **120 kaki**, kamu bisa menggunakan reaction untuk mengorbankan spirit tersebut. Jika dilakukan, hit points kamu menjadi **1 hit point** dan bukan 0, serta setiap makhluk dalam jarak **10 kaki** dari spirit yang dikorbankan menerima fire damage sebesar **2d10** + modifikator Wisdom kamu.",
           "source": {
             "type": "subclass",
@@ -5311,7 +5311,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Mulai dari level 2, Anda bisa regain sebagian magical energy Anda dengan duduk dalam meditasi dan bersekutu dengan alam. (action).",
+          "summary": "Saat Short Rest, pulihkan spell slot yang terpakai dengan total level paling banyak setengah level druid-mu (dibulatkan ke atas), tidak boleh slot level 6 ke atas. Sekali per Long Rest.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5915,7 +5915,7 @@
             "options": [
               {
                 "name": "Commander's Strike",
-                "description": "Gunakan bonus action untuk mengarahkan sekutu untuk menyerang — mereka menambahkan superiority die Anda ke damage mereka",
+                "description": "Saat mengambil Attack action, lepaskan satu seranganmu dan pakai Bonus Action untuk menyuruh satu sekutu menyerang dengan Reaction-nya. Sekutu itu menambahkan superiority die-mu ke damage-nya.",
                 "icon": "📢"
               },
               {
@@ -5925,12 +5925,12 @@
               },
               {
                 "name": "Distracting Strike",
-                "description": "Tambahkan superiority die ke damage — serangan berikutnya terhadap target sebelum turn Anda berikutnya memiliki Advantage",
+                "description": "Tambahkan superiority die ke damage. Serangan berikutnya ke target itu sebelum giliranmu berikutnya mendapat Advantage.",
                 "icon": "👁️"
               },
               {
                 "name": "Evasive Footwork",
-                "description": "Tambahkan superiority die ke AC hingga akhir pergerakan Anda",
+                "description": "Tambahkan superiority die ke AC-mu sampai kamu selesai bergerak.",
                 "icon": "💨"
               },
               {
@@ -5940,7 +5940,7 @@
               },
               {
                 "name": "Goading Attack",
-                "description": "Tambahkan superiority die ke damage — target melakukan WIS save atau memiliki Disadvantage menyerang siapa pun selain Anda",
+                "description": "Tambahkan superiority die ke damage. Target melakukan Wisdom saving throw, kalau gagal ia mendapat Disadvantage saat menyerang siapa pun selain kamu.",
                 "icon": "😤"
               },
               {
@@ -5980,7 +5980,7 @@
               },
               {
                 "name": "Riposte",
-                "description": "Gunakan reaction ketika makhluk miss Anda — buat satu serangan melee dan tambahkan superiority die ke damage",
+                "description": "Pakai Reaction saat makhluk gagal mengenaimu dengan serangan melee. Lakukan satu serangan melee balasan dan tambahkan superiority die ke damage-nya.",
                 "icon": "⚔️"
               },
               {
@@ -6028,157 +6028,157 @@
             "options": [
               {
                 "name": "Alchemist's Supplies",
-                "description": "Perkakas khusus ini mencakup item-item yang dibutuhkan untuk mengejar kerajinan atau perdagangan. Tabel menunjukkan contoh-contoh jenis perkakas yang paling umum, masing-masing memberikan item yang terkait dengan satu kerajinan. Proficiency dengan satu set artisan's tools memungkinkan Anda menambahkan proficiency bonus Anda ke ability checks mana pun yang Anda buat menggunakan perkakas tersebut dalam kerajinan Anda. Setiap jenis artisan's tools memerlukan proficiency terpisah.",
+                "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri.",
                 "icon": "⚗️"
               },
               {
                 "name": "Bagpipes",
-                "description": "Beberapa dari jenis instrumen musik yang paling umum ditampilkan pada tabel sebagai contoh. Jika Anda memiliki proficiency dengan instrumen musik tertentu, Anda dapat menambahkan proficiency bonus Anda ke ability checks mana pun yang Anda buat untuk memainkan musik dengan instrumen tersebut. Seorang bard dapat menggunakan instrumen musik sebagai spellcasting focus. Setiap jenis instrumen musik memerlukan proficiency terpisah.",
+                "description": "Kalau kamu punya proficiency dengan alat musik tertentu, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengan alat itu. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri.",
                 "icon": "🔧"
               },
               {
                 "name": "Brewer's Supplies",
-                "description": "Perkakas khusus ini mencakup item-item yang dibutuhkan untuk mengejar kerajinan atau perdagangan. Tabel menunjukkan contoh-contoh jenis perkakas yang paling umum, masing-masing memberikan item yang terkait dengan satu kerajinan. Proficiency dengan satu set artisan's tools memungkinkan Anda menambahkan proficiency bonus Anda ke ability checks mana pun yang Anda buat menggunakan perkakas tersebut dalam kerajinan Anda. Setiap jenis artisan's tools memerlukan proficiency terpisah.",
+                "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri.",
                 "icon": "🍺"
               },
               {
                 "name": "Calligrapher's Supplies",
-                "description": "Perkakas khusus ini mencakup item-item yang dibutuhkan untuk mengejar kerajinan atau perdagangan. Tabel menunjukkan contoh-contoh jenis perkakas yang paling umum, masing-masing memberikan item yang terkait dengan satu kerajinan. Proficiency dengan satu set artisan's tools memungkinkan Anda menambahkan proficiency bonus Anda ke ability checks mana pun yang Anda buat menggunakan perkakas tersebut dalam kerajinan Anda. Setiap jenis artisan's tools memerlukan proficiency terpisah.",
+                "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri.",
                 "icon": "✒️"
               },
               {
                 "name": "Carpenter's Tools",
-                "description": "Perkakas khusus ini mencakup item-item yang dibutuhkan untuk mengejar kerajinan atau perdagangan. Tabel menunjukkan contoh-contoh jenis perkakas yang paling umum, masing-masing memberikan item yang terkait dengan satu kerajinan. Proficiency dengan satu set artisan's tools memungkinkan Anda menambahkan proficiency bonus Anda ke ability checks mana pun yang Anda buat menggunakan perkakas tersebut dalam kerajinan Anda. Setiap jenis artisan's tools memerlukan proficiency terpisah.",
+                "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri.",
                 "icon": "🪚"
               },
               {
                 "name": "Cartographer's Tools",
-                "description": "Perkakas khusus ini mencakup item-item yang dibutuhkan untuk mengejar kerajinan atau perdagangan. Tabel menunjukkan contoh-contoh jenis perkakas yang paling umum, masing-masing memberikan item yang terkait dengan satu kerajinan. Proficiency dengan satu set artisan's tools memungkinkan Anda menambahkan proficiency bonus Anda ke ability checks mana pun yang Anda buat menggunakan perkakas tersebut dalam kerajinan Anda. Setiap jenis artisan's tools memerlukan proficiency terpisah.",
+                "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri.",
                 "icon": "🗺️"
               },
               {
                 "name": "Cobbler's Tools",
-                "description": "Perkakas khusus ini mencakup item-item yang dibutuhkan untuk mengejar kerajinan atau perdagangan. Tabel menunjukkan contoh-contoh jenis perkakas yang paling umum, masing-masing memberikan item yang terkait dengan satu kerajinan. Proficiency dengan satu set artisan's tools memungkinkan Anda menambahkan proficiency bonus Anda ke ability checks mana pun yang Anda buat menggunakan perkakas tersebut dalam kerajinan Anda. Setiap jenis artisan's tools memerlukan proficiency terpisah.",
+                "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri.",
                 "icon": "👞"
               },
               {
                 "name": "Cook's utensils",
-                "description": "Perkakas khusus ini mencakup item-item yang dibutuhkan untuk mengejar kerajinan atau perdagangan. Tabel menunjukkan contoh-contoh jenis perkakas yang paling umum, masing-masing memberikan item yang terkait dengan satu kerajinan. Proficiency dengan satu set artisan's tools memungkinkan Anda menambahkan proficiency bonus Anda ke ability checks mana pun yang Anda buat menggunakan perkakas tersebut dalam kerajinan Anda. Setiap jenis artisan's tools memerlukan proficiency terpisah.",
+                "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri.",
                 "icon": "🍳"
               },
               {
                 "name": "Dice Set",
-                "description": "Item ini mencakup berbagai jenis potongan game, termasuk dadu dan dek kartu (untuk permainan seperti Three-Dragon Ante). Beberapa contoh umum muncul pada tabel Perkakas, tetapi jenis set permainan lain juga ada. Jika Anda proficient dengan gaming set, Anda dapat menambahkan proficiency bonus Anda ke ability checks yang Anda buat untuk bermain game dengan set tersebut. Setiap jenis gaming set memerlukan proficiency terpisah.",
+                "description": "Satu set alat permainan, seperti dadu atau setumpuk kartu (misalnya untuk Three-Dragon Ante). Kalau kamu punya proficiency dengan gaming set, kamu bisa menambahkan Proficiency Bonus ke ability check untuk bermain dengan set itu. Setiap jenis gaming set butuh proficiency sendiri.",
                 "icon": "🎲"
               },
               {
                 "name": "Drum",
-                "description": "Beberapa dari jenis instrumen musik yang paling umum ditampilkan pada tabel sebagai contoh. Jika Anda memiliki proficiency dengan instrumen musik tertentu, Anda dapat menambahkan proficiency bonus Anda ke ability checks mana pun yang Anda buat untuk memainkan musik dengan instrumen tersebut. Seorang bard dapat menggunakan instrumen musik sebagai spellcasting focus. Setiap jenis instrumen musik memerlukan proficiency terpisah.",
+                "description": "Kalau kamu punya proficiency dengan alat musik tertentu, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengan alat itu. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri.",
                 "icon": "🥁"
               },
               {
                 "name": "Dulcimer",
-                "description": "Beberapa dari jenis instrumen musik yang paling umum ditampilkan pada tabel sebagai contoh. Jika Anda memiliki proficiency dengan instrumen musik tertentu, Anda dapat menambahkan proficiency bonus Anda ke ability checks mana pun yang Anda buat untuk memainkan musik dengan instrumen tersebut. Seorang bard dapat menggunakan instrumen musik sebagai spellcasting focus. Setiap jenis instrumen musik memerlukan proficiency terpisah.",
+                "description": "Kalau kamu punya proficiency dengan alat musik tertentu, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengan alat itu. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri.",
                 "icon": "🎵"
               },
               {
                 "name": "Flute",
-                "description": "Beberapa dari jenis instrumen musik yang paling umum ditampilkan pada tabel sebagai contoh. Jika Anda memiliki proficiency dengan instrumen musik tertentu, Anda dapat menambahkan proficiency bonus Anda ke ability checks mana pun yang Anda buat untuk memainkan musik dengan instrumen tersebut. Seorang bard dapat menggunakan instrumen musik sebagai spellcasting focus. Setiap jenis instrumen musik memerlukan proficiency terpisah.",
+                "description": "Kalau kamu punya proficiency dengan alat musik tertentu, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengan alat itu. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri.",
                 "icon": "🎵"
               },
               {
                 "name": "Glassblower's Tools",
-                "description": "Perkakas khusus ini mencakup item-item yang dibutuhkan untuk mengejar kerajinan atau perdagangan. Tabel menunjukkan contoh-contoh jenis perkakas yang paling umum, masing-masing memberikan item yang terkait dengan satu kerajinan. Proficiency dengan satu set artisan's tools memungkinkan Anda menambahkan proficiency bonus Anda ke ability checks mana pun yang Anda buat menggunakan perkakas tersebut dalam kerajinan Anda. Setiap jenis artisan's tools memerlukan proficiency terpisah.",
+                "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri.",
                 "icon": "🫧"
               },
               {
                 "name": "Horn",
-                "description": "Beberapa dari jenis instrumen musik yang paling umum ditampilkan pada tabel sebagai contoh. Jika Anda memiliki proficiency dengan instrumen musik tertentu, Anda dapat menambahkan proficiency bonus Anda ke ability checks mana pun yang Anda buat untuk memainkan musik dengan instrumen tersebut. Seorang bard dapat menggunakan instrumen musik sebagai spellcasting focus. Setiap jenis instrumen musik memerlukan proficiency terpisah.",
+                "description": "Kalau kamu punya proficiency dengan alat musik tertentu, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengan alat itu. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri.",
                 "icon": "📯"
               },
               {
                 "name": "Jeweler's Tools",
-                "description": "Perkakas khusus ini mencakup item-item yang dibutuhkan untuk mengejar kerajinan atau perdagangan. Tabel menunjukkan contoh-contoh jenis perkakas yang paling umum, masing-masing memberikan item yang terkait dengan satu kerajinan. Proficiency dengan satu set artisan's tools memungkinkan Anda menambahkan proficiency bonus Anda ke ability checks mana pun yang Anda buat menggunakan perkakas tersebut dalam kerajinan Anda. Setiap jenis artisan's tools memerlukan proficiency terpisah.",
+                "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri.",
                 "icon": "💎"
               },
               {
                 "name": "Leatherworker's Tools",
-                "description": "Perkakas khusus ini mencakup item-item yang dibutuhkan untuk mengejar kerajinan atau perdagangan. Tabel menunjukkan contoh-contoh jenis perkakas yang paling umum, masing-masing memberikan item yang terkait dengan satu kerajinan. Proficiency dengan satu set artisan's tools memungkinkan Anda menambahkan proficiency bonus Anda ke ability checks mana pun yang Anda buat menggunakan perkakas tersebut dalam kerajinan Anda. Setiap jenis artisan's tools memerlukan proficiency terpisah.",
+                "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri.",
                 "icon": "🧵"
               },
               {
                 "name": "Lute",
-                "description": "Beberapa dari jenis instrumen musik yang paling umum ditampilkan pada tabel sebagai contoh. Jika Anda memiliki proficiency dengan instrumen musik tertentu, Anda dapat menambahkan proficiency bonus Anda ke ability checks mana pun yang Anda buat untuk memainkan musik dengan instrumen tersebut. Seorang bard dapat menggunakan instrumen musik sebagai spellcasting focus. Setiap jenis instrumen musik memerlukan proficiency terpisah.",
+                "description": "Kalau kamu punya proficiency dengan alat musik tertentu, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengan alat itu. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri.",
                 "icon": "🎵"
               },
               {
                 "name": "Lyre",
-                "description": "Beberapa dari jenis instrumen musik yang paling umum ditampilkan pada tabel sebagai contoh. Jika Anda memiliki proficiency dengan instrumen musik tertentu, Anda dapat menambahkan proficiency bonus Anda ke ability checks mana pun yang Anda buat untuk memainkan musik dengan instrumen tersebut. Seorang bard dapat menggunakan instrumen musik sebagai spellcasting focus. Setiap jenis instrumen musik memerlukan proficiency terpisah.",
+                "description": "Kalau kamu punya proficiency dengan alat musik tertentu, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengan alat itu. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri.",
                 "icon": "🎵"
               },
               {
                 "name": "Mason's Tools",
-                "description": "Perkakas khusus ini mencakup item-item yang dibutuhkan untuk mengejar kerajinan atau perdagangan. Tabel menunjukkan contoh-contoh jenis perkakas yang paling umum, masing-masing memberikan item yang terkait dengan satu kerajinan. Proficiency dengan satu set artisan's tools memungkinkan Anda menambahkan proficiency bonus Anda ke ability checks mana pun yang Anda buat menggunakan perkakas tersebut dalam kerajinan Anda. Setiap jenis artisan's tools memerlukan proficiency terpisah.",
+                "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri.",
                 "icon": "🧱"
               },
               {
                 "name": "Navigator's Tools",
-                "description": "Set instrumen ini digunakan untuk navigasi di laut. Proficiency dengan navigator's tools memungkinkan Anda menetapkan course kapal dan mengikuti chart navigasi. Selain itu, perkakas ini memungkinkan Anda menambahkan proficiency bonus Anda ke ability checks mana pun yang Anda buat untuk tidak tersesat di laut.",
+                "description": "Alat-alat untuk navigasi di laut. Dengan proficiency di navigator's tools, kamu bisa menentukan rute kapal dan membaca peta navigasi. Kamu juga bisa menambahkan Proficiency Bonus ke ability check supaya tidak tersesat di laut.",
                 "icon": "🧭"
               },
               {
                 "name": "Painter's Supplies",
-                "description": "Perkakas khusus ini mencakup item-item yang dibutuhkan untuk mengejar kerajinan atau perdagangan. Tabel menunjukkan contoh-contoh jenis perkakas yang paling umum, masing-masing memberikan item yang terkait dengan satu kerajinan. Proficiency dengan satu set artisan's tools memungkinkan Anda menambahkan proficiency bonus Anda ke ability checks mana pun yang Anda buat menggunakan perkakas tersebut dalam kerajinan Anda. Setiap jenis artisan's tools memerlukan proficiency terpisah.",
+                "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri.",
                 "icon": "🎨"
               },
               {
                 "name": "Pan flute",
-                "description": "Beberapa dari jenis instrumen musik yang paling umum ditampilkan pada tabel sebagai contoh. Jika Anda memiliki proficiency dengan instrumen musik tertentu, Anda dapat menambahkan proficiency bonus Anda ke ability checks mana pun yang Anda buat untuk memainkan musik dengan instrumen tersebut. Seorang bard dapat menggunakan instrumen musik sebagai spellcasting focus. Setiap jenis instrumen musik memerlukan proficiency terpisah.",
+                "description": "Kalau kamu punya proficiency dengan alat musik tertentu, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengan alat itu. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri.",
                 "icon": "🎵"
               },
               {
                 "name": "Playing Card Set",
-                "description": "Item ini mencakup berbagai jenis potongan game, termasuk dadu dan dek kartu (untuk permainan seperti Three-Dragon Ante). Beberapa contoh umum muncul pada tabel Perkakas, tetapi jenis set permainan lain juga ada. Jika Anda proficient dengan gaming set, Anda dapat menambahkan proficiency bonus Anda ke ability checks yang Anda buat untuk bermain game dengan set tersebut. Setiap jenis gaming set memerlukan proficiency terpisah.",
+                "description": "Satu set alat permainan, seperti dadu atau setumpuk kartu (misalnya untuk Three-Dragon Ante). Kalau kamu punya proficiency dengan gaming set, kamu bisa menambahkan Proficiency Bonus ke ability check untuk bermain dengan set itu. Setiap jenis gaming set butuh proficiency sendiri.",
                 "icon": "🃏"
               },
               {
                 "name": "Potter's Tools",
-                "description": "Perkakas khusus ini mencakup item-item yang dibutuhkan untuk mengejar kerajinan atau perdagangan. Tabel menunjukkan contoh-contoh jenis perkakas yang paling umum, masing-masing memberikan item yang terkait dengan satu kerajinan. Proficiency dengan satu set artisan's tools memungkinkan Anda menambahkan proficiency bonus Anda ke ability checks mana pun yang Anda buat menggunakan perkakas tersebut dalam kerajinan Anda. Setiap jenis artisan's tools memerlukan proficiency terpisah.",
+                "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri.",
                 "icon": "🏺"
               },
               {
                 "name": "Shawm",
-                "description": "Beberapa dari jenis instrumen musik yang paling umum ditampilkan pada tabel sebagai contoh. Jika Anda memiliki proficiency dengan instrumen musik tertentu, Anda dapat menambahkan proficiency bonus Anda ke ability checks mana pun yang Anda buat untuk memainkan musik dengan instrumen tersebut. Seorang bard dapat menggunakan instrumen musik sebagai spellcasting focus. Setiap jenis instrumen musik memerlukan proficiency terpisah.",
+                "description": "Kalau kamu punya proficiency dengan alat musik tertentu, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengan alat itu. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri.",
                 "icon": "🎵"
               },
               {
                 "name": "Smith's Tools",
-                "description": "Perkakas khusus ini mencakup item-item yang dibutuhkan untuk mengejar kerajinan atau perdagangan. Tabel menunjukkan contoh-contoh jenis perkakas yang paling umum, masing-masing memberikan item yang terkait dengan satu kerajinan. Proficiency dengan satu set artisan's tools memungkinkan Anda menambahkan proficiency bonus Anda ke ability checks mana pun yang Anda buat menggunakan perkakas tersebut dalam kerajinan Anda. Setiap jenis artisan's tools memerlukan proficiency terpisah.",
+                "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri.",
                 "icon": "⚒️"
               },
               {
                 "name": "Thieves' Tools",
-                "description": "Set perkakas ini mencakup file kecil, set kunci, cermin kecil yang dipasang pada gagang logam, gunting bermata sempit, dan sepasang tang. Proficiency dengan perkakas ini memungkinkan Anda menambahkan proficiency bonus Anda ke ability checks mana pun yang Anda buat untuk menjinakkan perangkap atau membuka kunci.",
+                "description": "Isinya kikir kecil, satu set alat pembuka kunci, cermin kecil bergagang logam, gunting bermata ramping, dan sebuah tang. Dengan proficiency di alat ini, kamu bisa menambahkan Proficiency Bonus ke ability check untuk menjinakkan jebakan atau membuka kunci.",
                 "icon": "🔓"
               },
               {
                 "name": "Tinker's Tools",
-                "description": "Perkakas khusus ini mencakup item-item yang dibutuhkan untuk mengejar kerajinan atau perdagangan. Tabel menunjukkan contoh-contoh jenis perkakas yang paling umum, masing-masing memberikan item yang terkait dengan satu kerajinan. Proficiency dengan satu set artisan's tools memungkinkan Anda menambahkan proficiency bonus Anda ke ability checks mana pun yang Anda buat menggunakan perkakas tersebut dalam kerajinan Anda. Setiap jenis artisan's tools memerlukan proficiency terpisah.",
+                "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri.",
                 "icon": "🔧"
               },
               {
                 "name": "Viol",
-                "description": "Beberapa dari jenis instrumen musik yang paling umum ditampilkan pada tabel sebagai contoh. Jika Anda memiliki proficiency dengan instrumen musik tertentu, Anda dapat menambahkan proficiency bonus Anda ke ability checks mana pun yang Anda buat untuk memainkan musik dengan instrumen tersebut. Seorang bard dapat menggunakan instrumen musik sebagai spellcasting focus. Setiap jenis instrumen musik memerlukan proficiency terpisah.",
+                "description": "Kalau kamu punya proficiency dengan alat musik tertentu, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengan alat itu. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri.",
                 "icon": "🎵"
               },
               {
                 "name": "Weaver's Tools",
-                "description": "Perkakas khusus ini mencakup item-item yang dibutuhkan untuk mengejar kerajinan atau perdagangan. Tabel menunjukkan contoh-contoh jenis perkakas yang paling umum, masing-masing memberikan item yang terkait dengan satu kerajinan. Proficiency dengan satu set artisan's tools memungkinkan Anda menambahkan proficiency bonus Anda ke ability checks mana pun yang Anda buat menggunakan perkakas tersebut dalam kerajinan Anda. Setiap jenis artisan's tools memerlukan proficiency terpisah.",
+                "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri.",
                 "icon": "🪡"
               },
               {
                 "name": "Woodcarver's Tools",
-                "description": "Perkakas khusus ini mencakup item-item yang dibutuhkan untuk mengejar kerajinan atau perdagangan. Tabel menunjukkan contoh-contoh jenis perkakas yang paling umum, masing-masing memberikan item yang terkait dengan satu kerajinan. Proficiency dengan satu set artisan's tools memungkinkan Anda menambahkan proficiency bonus Anda ke ability checks mana pun yang Anda buat menggunakan perkakas tersebut dalam kerajinan Anda. Setiap jenis artisan's tools memerlukan proficiency terpisah.",
+                "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri.",
                 "icon": "🪵"
               }
             ]
@@ -6745,7 +6745,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Di awal setiap turn Anda, Anda mendapatkan kembali hit points sama dengan 5 + modifier Constitution Anda jika Anda tidak memiliki lebih dari setengah hit points.",
+          "summary": "Di awal setiap giliranmu, kalau HP-mu tinggal setengah atau kurang (tapi bukan 0), kamu memulihkan hit points sebanyak 5 + Constitution modifier-mu.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -8231,8 +8231,8 @@
           "name": "Physician's Touch",
           "level": 6,
           "featureType": "Passive",
-          "summary": "Hands of Healing kini bisa menghilangkan kondisi Blinded, Deafened, Paralyzed, Keracunan, atau Pusing; Hands of Harm bisa memberikan kondisi Poisoned tanpa saving throw.",
-          "description": "Mulai level 6, kamu bisa memberikan bantuan medis yang lebih hebat melalui sentuhanmu. Saat menggunakan Hands of Healing, kamu juga bisa menghilangkan satu penyakit atau satu kondisi yang menyerang sasaran: Blinded, Deafened, Paralyzed, Keracunan, atau Pusing.\n\nSaat kamu menggunakan Hands of Harm pada sebuah makhluk, kamu bisa membuat makhluk tersebut terkena kondisi Poisoned hingga akhir giliranmu berikutnya.",
+          "summary": "Hands of Healing kini bisa menghilangkan kondisi Blinded, Deafened, Paralyzed, Poisoned, atau Stunned; Hands of Harm bisa memberikan kondisi Poisoned tanpa saving throw.",
+          "description": "Mulai level 6, kamu bisa memberikan bantuan medis yang lebih hebat melalui sentuhanmu. Saat menggunakan Hands of Healing, kamu juga bisa menghilangkan satu penyakit atau satu kondisi yang menyerang sasaran: Blinded, Deafened, Paralyzed, Poisoned, atau Stunned.\n\nSaat kamu menggunakan Hands of Harm pada sebuah makhluk, kamu bisa membuat makhluk tersebut terkena kondisi Poisoned hingga akhir giliranmu berikutnya.",
           "source": {
             "type": "subclass",
             "name": "Way of Mercy",
@@ -8265,7 +8265,7 @@
             "recharge": "Long Rest / 5 Ki"
           },
           "summary": "Gunakan 5 ki untuk menghidupkan kembali makhluk yang mati dalam 24 jam terakhir dengan hit points sebesar 4d10 + modifier Wisdom.",
-          "description": "Penguasaanmu atas energi kehidupan membuka jalan menuju belas kasih tertinggi. Sebagai sebuah action, kamu bisa menyentuh mayat makhluk yang mati dalam 24 jam terakhir dan menghabiskan 5 ki point. Makhluk tersebut hidup kembali dan mendapatkan hit points sejumlah **4d10** ditambah modifier Wisdom milikmu.\n\nJika makhluk tersebut mati saat sedang terkena salah satu kondisi berikut, ia akan bangkit dengan kondisi tersebut hilang: Blinded, Deafened, Paralyzed, Keracunan, dan Pusing.\n\nSetelah menggunakan fitur ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan long rest.",
+          "description": "Penguasaanmu atas energi kehidupan membuka jalan menuju belas kasih tertinggi. Sebagai sebuah action, kamu bisa menyentuh mayat makhluk yang mati dalam 24 jam terakhir dan menghabiskan 5 ki point. Makhluk tersebut hidup kembali dan mendapatkan hit points sejumlah **4d10** ditambah modifier Wisdom milikmu.\n\nJika makhluk tersebut mati saat sedang terkena salah satu kondisi berikut, ia akan bangkit dengan kondisi tersebut hilang: Blinded, Deafened, Paralyzed, Poisoned, dan Stunned.\n\nSetelah menggunakan fitur ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan long rest.",
           "source": {
             "type": "subclass",
             "name": "Way of Mercy",
@@ -9938,7 +9938,7 @@
           "name": "Aura of Hate",
           "level": 7,
           "featureType": "Passive",
-          "summary": "Tambahkan Charisma modifier Anda ke melee weapon damage roll untuk Anda sendiri dan fiend/undead friendly dalam 10 ft.",
+          "summary": "Kamu, serta fiend dan undead dalam jarak 10 kaki darimu, menambahkan Charisma modifier-mu (minimal +1) ke damage roll serangan senjata melee.",
           "description": "Mulai level 7, kamu, serta semua fiend dan undead dalam jarak **10 kaki** darimu, mendapatkan bonus pada rolls damage senjata jarak dekat sebesar modifier Charisma kamu (minimal **+1**).\n\nPada level 18, jangkauan aura ini meningkat menjadi **30 kaki**.",
           "source": {
             "type": "subclass",
@@ -12213,7 +12213,7 @@
         },
         {
           "name": "Panache",
-          "description": "Pada level 9, pesonamu menjadi sangat persuasif. Dengan menggunakan action, kamu bisa melakukan Charisma check (Persuasion) yang dikontestasikan dengan Charisma check (Intimidation) dari target. Makhluk tersebut harus bisa mendengarmu, dan kamu harus memiliki bahasa yang sama dengannya.\n\nJika kamu berhasil, makhluk tersebut terpesona (Charmed) olehmu selama **1 menit**. Selama Charmed, makhluk itu bersikap ramah kepadamu dan sekutumu. Jika kamu gagal, makhluk tersebut menjadi imun terhadap fitur Panache milikmu selama **24 jam**.",
+          "description": "Pada level 9, pesonamu menjadi sangat persuasif. Dengan menggunakan action, kamu bisa melakukan Charisma check (Persuasion) yang dikontestasikan dengan Charisma check (Intimidation) dari target. Makhluk tersebut harus bisa mendengarmu, dan kamu harus memiliki bahasa yang sama dengannya.\n\nJika kamu berhasil, makhluk tersebut Charmed olehmu selama **1 menit**. Selama Charmed, makhluk itu bersikap ramah kepadamu dan sekutumu. Jika kamu gagal, makhluk tersebut menjadi imun terhadap fitur Panache milikmu selama **24 jam**.",
           "level": 9,
           "featureType": "Active",
           "actionType": "Action",
@@ -12591,7 +12591,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Pada save yang gagal, makhluk tersebut menerima 5d10 force damage dan diteleportasi ke ruang tidak ditempati pilihan Anda yang dapat Anda lihat dalam 30 feet dari Anda. (action).",
+          "summary": "Sebagai action, teleport ke ruang kosong yang bisa kamu lihat dalam jarak 120 kaki. Setiap makhluk dalam jarak 30 kaki dari tempat asalmu melakukan Strength saving throw: gagal menerima 3d10 force damage dan tertarik ke tempat itu, berhasil setengah damage. Sekali per Long Rest, atau dengan 5 sorcery points.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13018,7 +13018,7 @@
         },
         {
           "name": "Draconic Presence",
-          "description": "Mulai level 18, kamu bisa menyalurkan kehadiran mengerikan dari leluhur nagamu, membuat makhluk di sekitarmu merasa kagum atau ketakutan. Sebagai sebuah action, kamu bisa menghabiskan **5** sorcery points untuk memancarkan aura kekaguman atau ketakutan (pilih salah satu) dalam jangkauan **60 kaki**. Selama **1 menit** atau sampai kamu kehilangan Concentration (seperti saat cast sihir Concentration), setiap makhluk musuh yang memulai gilirannya di dalam aura ini harus berhasil melakukan Wisdom saving throw. Jika gagal, mereka akan menjadi Charmed (jika kamu memilih kekaguman) atau Takut (jika kamu memilih ketakutan) hingga aura berakhir. Makhluk yang berhasil melakukan saving throw ini akan menjadi imun terhadap auramu selama **24 jam**.",
+          "description": "Mulai level 18, kamu bisa menyalurkan kehadiran mengerikan dari leluhur nagamu, membuat makhluk di sekitarmu merasa kagum atau ketakutan. Sebagai sebuah action, kamu bisa menghabiskan **5** sorcery points untuk memancarkan aura kekaguman atau ketakutan (pilih salah satu) dalam jangkauan **60 kaki**. Selama **1 menit** atau sampai kamu kehilangan Concentration (seperti saat cast sihir Concentration), setiap makhluk musuh yang memulai gilirannya di dalam aura ini harus berhasil melakukan Wisdom saving throw. Jika gagal, mereka akan menjadi Charmed (jika kamu memilih kekaguman) atau Frightened (kalau kamu memilih rasa takut) hingga aura berakhir. Makhluk yang berhasil melakukan saving throw ini akan menjadi imun terhadap auramu selama **24 jam**.",
           "level": 18,
           "featureType": "Active",
           "actionType": "Action",
@@ -13738,7 +13738,7 @@
         {
           "level": 10,
           "name": "Beguiling Defenses",
-          "description": "Mulai level 10, patronmu mengajarimu cara membalikkan sihir pengendali pikiran musuh kepada mereka sendiri. Kamu imun terhadap kondisi Charmed, dan ketika makhluk lain mencoba membuatmu terpesona, kamu dapat menggunakan reaction untuk mencoba membalikkan efek tersebut kepada makhluk itu. Makhluk tersebut harus berhasil melakukan Wisdom saving throw melawan warlock spell save DC milikmu, atau ia akan Charmed olehmu selama **1 menit** atau sampai makhluk tersebut menerima damage apa pun.",
+          "description": "Mulai level 10, patronmu mengajarimu cara membalikkan sihir pengendali pikiran musuh kepada mereka sendiri. Kamu imun terhadap kondisi Charmed, dan ketika makhluk lain mencoba membuatmu Charmed, kamu dapat menggunakan reaction untuk mencoba membalikkan efek tersebut kepada makhluk itu. Makhluk tersebut harus berhasil melakukan Wisdom saving throw melawan warlock spell save DC milikmu, atau ia akan Charmed olehmu selama **1 menit** atau sampai makhluk tersebut menerima damage apa pun.",
           "featureType": "Active",
           "actionType": "Reaction",
           "uses": null,
@@ -15349,7 +15349,7 @@
         },
         {
           "name": "Convergent Future",
-          "description": "Mulai di level 14, Anda dapat melihat ke masa depan dan melihat hasil dari suatu tindakan. Ketika Anda atau makhluk yang dapat Anda lihat dalam 30 feet dari Anda membuat attack roll, ability check, atau saving throw, Anda dapat menggunakan reaction untuk mengabaikan roll tersebut. Sebagai gantinya, Anda dapat memilih hasil roll tersebut menjadi yang tertinggi atau terendah yang mungkin. Anda dapat menggunakan fitur ini sebanyak modifier Intelligence Anda (minimal sekali), dan Anda mendapatkan kembali semua penggunaan yang dihabiskan ketika Anda menyelesaikan long rest.",
+          "description": "Mulai level 14, kamu bisa mengintip masa depan dan melihat akibat sebuah tindakan. Saat kamu atau makhluk yang bisa kamu lihat dalam jarak 60 kaki melakukan attack roll, ability check, atau saving throw, kamu bisa memakai Reaction untuk mengabaikan hasil dadunya. Lalu kamu tentukan apakah angkanya pas angka minimum untuk berhasil, atau satu angka di bawahnya.\n\nSetiap kali memakai fitur ini, kamu mendapat satu level Exhaustion. Exhaustion dari fitur ini hanya hilang lewat Long Rest.",
           "level": 14,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -16052,7 +16052,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Action: medan gravitasi 30 kaki; musuh menerima 2d10 force damage dan tertahan (Strength saving throw).",
+          "summary": "Action: medan gravitasi 30 kaki; musuh menerima 2d10 force damage dan menjadi Restrained (Strength saving throw).",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -16392,7 +16392,7 @@
         },
         {
           "name": "Awakened Spellbook",
-          "description": "Mulai level 2, kamu memiliki spellbook yang telah dibangkitkan oleh sihirmu. Spellbook ini memberikan Advantage berikut:\n\n- Kamu bisa menggunakan spellbook ini sebagai spellcasting focus untuk sihir wizard milikmu.\n\n- Saat kamu merapalkan sihir wizard menggunakan spell slot, kamu bisa mengganti tipe kerusakannya untuk sementara dengan tipe damage dari sihir lain di spellbook-mu yang memiliki level yang sama. Perubahan ini bertahan selama durasi sihir tersebut.\n\n- Saat kamu merapalkan sihir wizard sebagai ritual, kamu bisa menggunakan waktu casting normal sihir tersebut tanpa perlu menambah waktu 10 menit. Setelah menggunakan keuntungan ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan long rest.\n\n- Jika spellbook-mu hilang, kamu bisa melakukan ritual khusus untuk membuat yang baru. Ritual ini memakan waktu 8 jam, dan kamu harus memiliki akses ke spellbook wizard lain untuk menyalin sihir-sihirmu. Spellbook baru ini akan menjadi awakened spellbook milikmu.",
+          "description": "Mulai level 2, kamu memiliki spellbook yang telah dibangkitkan oleh sihirmu. Spellbook ini memberikan Advantage berikut:\n\n- Kamu bisa menggunakan spellbook ini sebagai spellcasting focus untuk sihir wizard milikmu.\n\n- Saat kamu merapalkan sihir wizard menggunakan spell slot, kamu bisa mengganti tipe kerusakannya untuk sementara dengan tipe damage dari sihir lain di spellbook-mu yang memiliki level yang sama. Perubahan ini bertahan selama durasi sihir tersebut.\n\n- Saat kamu merapalkan sihir wizard sebagai ritual, kamu bisa menggunakan waktu casting normal sihir tersebut tanpa perlu menambah waktu 10 menit. Setelah memakai manfaat ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan long rest.\n\n- Jika spellbook-mu hilang, kamu bisa melakukan ritual khusus untuk membuat yang baru. Ritual ini memakan waktu 8 jam, dan kamu harus memiliki akses ke spellbook wizard lain untuk menyalin sihir-sihirmu. Spellbook baru ini akan menjadi awakened spellbook milikmu.",
           "level": 2,
           "featureType": "Active",
           "actionType": null,
