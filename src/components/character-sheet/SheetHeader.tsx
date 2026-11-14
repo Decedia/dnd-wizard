@@ -1,8 +1,8 @@
 "use client";
 
-import { createElement, type ReactNode } from "react";
+import { createElement, useEffect, useState, type ReactNode } from "react";
 import Link from "next/link";
-import { CaretLeft } from "@phosphor-icons/react";
+import { CaretLeft, Eye, EyeSlash } from "@phosphor-icons/react";
 import { GiCampfire } from "react-icons/gi";
 import { HeartBottleIcon as Heart, DropIcon as Drop } from "@/components/icons";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -25,6 +25,16 @@ export function SheetHeader({ character, editMode, onHp, onRest, actions }: Shee
   const maxHp = character.effectiveMaxHp ?? character.maxHp;
   const hpPercent = maxHp > 0 ? Math.min(100, Math.max(0, (character.currentHp / maxHp) * 100)) : 0;
   const level = t("home.lvl", { level: character.level || 1 } as any, "Lvl {level}");
+  const nameKey = `dnd-hide-name:${character.id}`;
+  const [nameHidden, setNameHidden] = useState(false);
+  useEffect(() => {
+    try { setNameHidden(localStorage.getItem(nameKey) === "1"); } catch { /* storage blocked: name stays shown */ }
+  }, [nameKey]);
+  const toggleName = () => {
+    const next = !nameHidden;
+    setNameHidden(next);
+    try { localStorage.setItem(nameKey, next ? "1" : "0"); } catch { /* storage blocked: keep it for this visit */ }
+  };
   const line = `${level} ${character.class || ""}${character.subclass ? ` · ${character.subclass}` : ""}`;
 
   return (
@@ -42,7 +52,20 @@ export function SheetHeader({ character, editMode, onHp, onRest, actions }: Shee
             {createElement(getClassIcon(character.class), { size: 22, weight: "duotone" })}
           </div>
           <div className="min-w-0 flex-1">
-            <h1 className="truncate font-heading text-lg font-semibold leading-tight text-[var(--color-text-primary)]">{character.name || t("home.unnamedHero")}</h1>
+            <div className="flex min-w-0 items-center gap-1">
+              <h1 className={`truncate font-heading text-lg font-semibold leading-tight ${nameHidden ? "italic text-[var(--color-text-muted)]" : "text-[var(--color-text-primary)]"}`}>
+                {nameHidden ? t("sheet.nameHidden", "Hidden") : character.name || t("home.unnamedHero")}
+              </h1>
+              <button
+                type="button"
+                onClick={toggleName}
+                aria-label={nameHidden ? t("sheet.showName", "Show name") : t("sheet.hideName", "Hide name")}
+                aria-pressed={nameHidden}
+                className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[var(--color-text-muted)] hover:bg-[var(--color-bg)]"
+              >
+                {nameHidden ? <EyeSlash size={16} /> : <Eye size={16} />}
+              </button>
+            </div>
             <p className="line-clamp-2 text-xs leading-snug text-[var(--color-text-muted)]">{line}</p>
           </div>
           <Overridable id="ac" label={t("sheet.armorClass", "Armor Class")} editMode={editMode} className="no-underline">
