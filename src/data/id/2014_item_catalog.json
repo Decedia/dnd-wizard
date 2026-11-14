@@ -101,7 +101,7 @@
       "description": "Busur tinggi dengan daya tarik yang kuat, mampu mengirimkan anak panah jarak jauh dengan akurasi yang mematikan. Dibuat dari sepotong kayu berkualitas, membutuhkan kekuatan dan keterampilan untuk menguasainya."
     },
     "net": {
-      "description": "Jaring jaring berbobot yang dirancang untuk menjerat dan menahan musuh. Jika dilempar dengan efektif, ia dapat melumpuhkan makhluk dan menjadikannya tidak berdaya."
+      "description": "Jaring berpemberat untuk menjerat musuh. Makhluk Large atau lebih kecil yang terkena jaring ini menjadi Restrained sampai ia bebas. Ia atau makhluk lain bisa memakai action untuk melakukan Strength check DC 10 supaya lepas, atau memberi 5 slashing damage ke jaring (AC 10) untuk memotongnya."
     },
     "leather-armor": {
       "description": "Penutup dada dan pelindung bahu dari kulit yang diperkeras, menawarkan perlindungan ringan sekaligus memungkinkan mobilitas penuh. Disukai oleh pengintai dan penyamun, ini adalah baju besi paling sederhana yang masih memberikan pertahanan yang berarti."
@@ -116,7 +116,7 @@
       "description": "Lapisan kulit yang ditutupi sisik logam yang tumpang tindih, menyerupai kulit naga atau ikan. Ia menawarkan perlindungan yang baik dengan bobot sedang, meskipun banyak sisik kecilnya yang dapat tersangkut dan tersangkut."
     },
     "breastplate": {
-      "description": "Sepotong dada logam yang menutupi batang tubuh sambil membiarkan kaki bebas untuk bergerak. Ia menawarkan perlindungan yang kokoh tanpa bobot pakaian lengkap, menjadikannya pilihan favorit para prajurit dan petualang yang menghargai pertahanan dan ketangkasan."
+      "description": "Pelindung dada dari logam yang dipasang pas di badan, dipakai dengan bahan kulit yang lentur. Lengan dan kaki tidak banyak terlindungi, tapi bagian vital tubuh terlindungi dengan baik dan pemakainya tetap bisa bergerak leluasa."
     },
     "half-plate-armor": {
       "description": "Kombinasi potongan pelat baja yang menutupi kira-kira separuh tubuh, dipasangkan dengan brigandine atau kulit di sisanya. Ia menawarkan perlindungan substansial dengan bobot lebih ringan dibandingkan pelat penuh, meskipun sambungan artikulasinya menimbulkan sedikit kebisingan."
@@ -209,7 +209,7 @@
       "description": "Kain tebal yang ditenun, digunakan untuk kehangatan saat tidur atau sebagai tirai, pembungkus, atau pelapis."
     },
     "block-and-tackle": {
-      "description": "Seperangkat katrol dengan kabel yang dijalin melaluinya dan pengait untuk dipasang pada benda, balok dan tekel memungkinkan Anda mengangkat hingga empat kali beban yang biasanya dapat Anda angkat."
+      "description": "Satu set katrol dengan tali yang melewatinya dan pengait untuk mengaitkan benda. Dengan alat ini kamu bisa mengangkat beban sampai empat kali lipat dari yang biasanya bisa kamu angkat."
     },
     "book": {
       "description": "Buku yang berisi pengetahuan, cerita, atau catatan. Bisa menjadi sumber informasi berharga."
@@ -311,19 +311,19 @@
       "description": "Perkakas panjat yang termasuk tali, karabiner, dan pijak. Memungkinkan kamu memanjat permukaan yang sulit dengan Advantage pada STR (Athletics) checks."
     },
     "disguise-kit": {
-      "description": "Kantong kosmetik, pewarna rambut, dan alat peraga kecil ini memungkinkan Anda membuat penyamaran yang mengubah penampilan fisik Anda. Proficiency dengan kit ini memungkinkan Anda menambahkan Proficiency Bonus ke ability check apa pun yang Anda lakukan untuk membuat penyamaran visual."
+      "description": "Kantong berisi kosmetik, pewarna rambut, dan properti kecil untuk menyamar dan mengubah penampilanmu. Dengan proficiency di kit ini, kamu bisa menambahkan Proficiency Bonus ke ability check untuk membuat penyamaran visual."
     },
     "forgery-kit": {
-      "description": "Kotak kecil ini berisi berbagai kertas dan perkamen, pena dan tinta, segel dan lilin penyegel, daun emas dan perak, serta perlengkapan lain yang diperlukan untuk membuat pemalsuan dokumen fisik yang meyakinkan. Proficiency dengan kit ini memungkinkan Anda menambahkan Proficiency Bonus ke ability check apa pun yang Anda lakukan untuk membuat pemalsuan fisik dokumen."
+      "description": "Kotak kecil berisi berbagai kertas dan perkamen, pena dan tinta, segel dan lilin, lembaran emas dan perak, serta perlengkapan lain untuk memalsukan dokumen dengan meyakinkan. Dengan proficiency di kit ini, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memalsukan dokumen."
     },
     "herbalism-kit": {
-      "description": "Kit ini berisi berbagai instrumen seperti gunting, lesung dan alu, serta kantong dan botol yang digunakan oleh ahli herbal untuk membuat obat dan ramuan. Proficiency dengan kit ini memungkinkan Anda menambahkan Proficiency Bonus ke ability check apa pun yang Anda lakukan untuk mengidentifikasi atau menerapkan herbal. Selain itu, proficiency dalam menggunakan peralatan ini diperlukan untuk membuat antitoksin dan ramuan penyembuhan."
+      "description": "Kit berisi gunting tanaman, lumpang dan alu, serta kantong dan botol kecil yang dipakai ahli herbal untuk meracik obat dan ramuan. Dengan proficiency di kit ini, kamu bisa menambahkan Proficiency Bonus ke ability check untuk mengenali atau memakai tanaman obat. Proficiency ini juga dibutuhkan untuk membuat antitoxin dan potion of healing."
     },
     "mess-kit": {
       "description": "Kotak timah ini berisi cangkir dan peralatan makan sederhana. Kotaknya dijepit, dan satu sisinya dapat digunakan sebagai panci masak dan sisi lainnya sebagai piring atau mangkuk dangkal."
     },
     "poisoners-kit": {
-      "description": "Perlengkapan peracun mencakup botol, bahan kimia, dan peralatan lain yang diperlukan untuk pembuatan racun. Proficiency dengan kit ini memungkinkan Anda menambahkan Proficiency Bonus ke ability check apa pun yang Anda lakukan untuk membuat atau menggunakan racun."
+      "description": "Berisi botol kecil, bahan kimia, dan peralatan lain untuk membuat racun. Dengan proficiency di kit ini, kamu bisa menambahkan Proficiency Bonus ke ability check untuk membuat atau memakai racun."
     },
     "ladder-10-foot": {
       "description": "Tangga kayu 10 feet yang digunakan untuk memanjat ke tempat yang lebih tinggi."
@@ -386,7 +386,7 @@
       "description": "Tabung yang dapat menampung hingga 20 arrows."
     },
     "ram-portable": {
-      "description": "Anda dapat menggunakan ram portabel untuk mendobrak pintu. Saat melakukannya, Anda mendapatkan bonus +4 pada Strength check. Satu karakter lain dapat membantu Anda menggunakan ram, memberi Anda keuntungan dalam pemeriksaan ini."
+      "description": "Kamu bisa memakai pendobrak portabel untuk menjebol pintu. Saat melakukannya, kamu mendapat bonus +4 untuk Strength check. Satu karakter lain bisa membantumu memakai pendobrak ini, sehingga kamu mendapat Advantage pada check itu."
     },
     "rations-1-day": {
       "description": "Makanan sehari yang terdiri dari daging kering, roti keras, dan makanan tahan lama. Cukup untuk 1 hari."
@@ -485,46 +485,46 @@
       "description": "Alat-alat khusus ini mencakup item-item yang diperlukan untuk mengejar kerajinan atau perdagangan. Tabel menunjukkan contoh jenis kerajinan yang paling umum."
     },
     "brewers-supplies": {
-      "description": "Alat-alat khusus ini mencakup barang-barang yang dibutuhkan untuk menekuni suatu kerajinan atau perdagangan. Tabel ini menunjukkan contoh jenis perkakas yang paling umum, masing-masing menyediakan item yang berkaitan dengan satu kerajinan. Proficiency dengan seperangkat alat pengrajin memungkinkan Anda menambahkan Proficiency Bonus ke ability check apa pun yang Anda lakukan menggunakan alat dalam kerajinan Anda. Setiap jenis perkakas pengrajin memerlukan proficiency tersendiri."
+      "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri."
     },
     "calligraphers-supplies": {
-      "description": "Alat-alat khusus ini mencakup barang-barang yang dibutuhkan untuk menekuni suatu kerajinan atau perdagangan. Tabel ini menunjukkan contoh jenis perkakas yang paling umum, masing-masing menyediakan item yang berkaitan dengan satu kerajinan. Proficiency dengan seperangkat alat pengrajin memungkinkan Anda menambahkan Proficiency Bonus ke ability check apa pun yang Anda lakukan menggunakan alat dalam kerajinan Anda. Setiap jenis perkakas pengrajin memerlukan proficiency tersendiri."
+      "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri."
     },
     "carpenters-tools": {
-      "description": "Alat-alat khusus ini mencakup barang-barang yang dibutuhkan untuk menekuni suatu kerajinan atau perdagangan. Tabel ini menunjukkan contoh jenis perkakas yang paling umum, masing-masing menyediakan item yang berkaitan dengan satu kerajinan. Proficiency dengan seperangkat alat pengrajin memungkinkan Anda menambahkan Proficiency Bonus ke ability check apa pun yang Anda lakukan menggunakan alat dalam kerajinan Anda. Setiap jenis perkakas pengrajin memerlukan proficiency tersendiri."
+      "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri."
     },
     "cartographers-tools": {
-      "description": "Alat-alat khusus ini mencakup barang-barang yang dibutuhkan untuk menekuni suatu kerajinan atau perdagangan. Tabel ini menunjukkan contoh jenis perkakas yang paling umum, masing-masing menyediakan item yang berkaitan dengan satu kerajinan. Proficiency dengan seperangkat alat pengrajin memungkinkan Anda menambahkan Proficiency Bonus ke ability check apa pun yang Anda lakukan menggunakan alat dalam kerajinan Anda. Setiap jenis perkakas pengrajin memerlukan proficiency tersendiri."
+      "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri."
     },
     "cobblers-tools": {
-      "description": "Alat-alat khusus ini mencakup barang-barang yang dibutuhkan untuk menekuni suatu kerajinan atau perdagangan. Tabel ini menunjukkan contoh jenis perkakas yang paling umum, masing-masing menyediakan item yang berkaitan dengan satu kerajinan. Proficiency dengan seperangkat alat pengrajin memungkinkan Anda menambahkan Proficiency Bonus ke ability check apa pun yang Anda lakukan menggunakan alat dalam kerajinan Anda. Setiap jenis perkakas pengrajin memerlukan proficiency tersendiri."
+      "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri."
     },
     "cooks-utensils": {
-      "description": "Alat-alat khusus ini mencakup barang-barang yang dibutuhkan untuk menekuni suatu kerajinan atau perdagangan. Tabel ini menunjukkan contoh jenis perkakas yang paling umum, masing-masing menyediakan item yang berkaitan dengan satu kerajinan. Proficiency dengan seperangkat alat pengrajin memungkinkan Anda menambahkan Proficiency Bonus ke ability check apa pun yang Anda lakukan menggunakan alat dalam kerajinan Anda. Setiap jenis perkakas pengrajin memerlukan proficiency tersendiri."
+      "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri."
     },
     "glassblowers-tools": {
-      "description": "Alat-alat khusus ini mencakup barang-barang yang dibutuhkan untuk menekuni suatu kerajinan atau perdagangan. Tabel ini menunjukkan contoh jenis perkakas yang paling umum, masing-masing menyediakan item yang berkaitan dengan satu kerajinan. Proficiency dengan seperangkat alat pengrajin memungkinkan Anda menambahkan Proficiency Bonus ke ability check apa pun yang Anda lakukan menggunakan alat dalam kerajinan Anda. Setiap jenis perkakas pengrajin memerlukan proficiency tersendiri."
+      "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri."
     },
     "jewelers-tools": {
-      "description": "Alat-alat khusus ini mencakup barang-barang yang dibutuhkan untuk menekuni suatu kerajinan atau perdagangan. Tabel ini menunjukkan contoh jenis perkakas yang paling umum, masing-masing menyediakan item yang berkaitan dengan satu kerajinan. Proficiency dengan seperangkat alat pengrajin memungkinkan Anda menambahkan Proficiency Bonus ke ability check apa pun yang Anda lakukan menggunakan alat dalam kerajinan Anda. Setiap jenis perkakas pengrajin memerlukan proficiency tersendiri."
+      "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri."
     },
     "leatherworkers-tools": {
-      "description": "Alat-alat khusus ini mencakup barang-barang yang dibutuhkan untuk menekuni suatu kerajinan atau perdagangan. Tabel ini menunjukkan contoh jenis perkakas yang paling umum, masing-masing menyediakan item yang berkaitan dengan satu kerajinan. Proficiency dengan seperangkat alat pengrajin memungkinkan Anda menambahkan Proficiency Bonus ke ability check apa pun yang Anda lakukan menggunakan alat dalam kerajinan Anda. Setiap jenis perkakas pengrajin memerlukan proficiency tersendiri."
+      "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri."
     },
     "masons-tools": {
-      "description": "Alat-alat khusus ini mencakup barang-barang yang dibutuhkan untuk menekuni suatu kerajinan atau perdagangan. Tabel ini menunjukkan contoh jenis perkakas yang paling umum, masing-masing menyediakan item yang berkaitan dengan satu kerajinan. Proficiency dengan seperangkat alat pengrajin memungkinkan Anda menambahkan Proficiency Bonus ke ability check apa pun yang Anda lakukan menggunakan alat dalam kerajinan Anda. Setiap jenis perkakas pengrajin memerlukan proficiency tersendiri."
+      "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri."
     },
     "painters-supplies": {
-      "description": "Alat-alat khusus ini mencakup barang-barang yang dibutuhkan untuk menekuni suatu kerajinan atau perdagangan. Tabel ini menunjukkan contoh jenis perkakas yang paling umum, masing-masing menyediakan item yang berkaitan dengan satu kerajinan. Proficiency dengan seperangkat alat pengrajin memungkinkan Anda menambahkan Proficiency Bonus ke ability check apa pun yang Anda lakukan menggunakan alat dalam kerajinan Anda. Setiap jenis perkakas pengrajin memerlukan proficiency tersendiri."
+      "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri."
     },
     "potters-tools": {
-      "description": "Alat-alat khusus ini mencakup barang-barang yang dibutuhkan untuk menekuni suatu kerajinan atau perdagangan. Tabel ini menunjukkan contoh jenis perkakas yang paling umum, masing-masing menyediakan item yang berkaitan dengan satu kerajinan. Proficiency dengan seperangkat alat pengrajin memungkinkan Anda menambahkan Proficiency Bonus ke ability check apa pun yang Anda lakukan menggunakan alat dalam kerajinan Anda. Setiap jenis perkakas pengrajin memerlukan proficiency tersendiri."
+      "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri."
     },
     "smiths-tools": {
-      "description": "Alat-alat khusus ini mencakup barang-barang yang dibutuhkan untuk menekuni suatu kerajinan atau perdagangan. Tabel ini menunjukkan contoh jenis perkakas yang paling umum, masing-masing menyediakan item yang berkaitan dengan satu kerajinan. Proficiency dengan seperangkat alat pengrajin memungkinkan Anda menambahkan Proficiency Bonus ke ability check apa pun yang Anda lakukan menggunakan alat dalam kerajinan Anda. Setiap jenis perkakas pengrajin memerlukan proficiency tersendiri."
+      "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri."
     },
     "tinkers-tools": {
-      "description": "Alat-alat khusus ini mencakup barang-barang yang dibutuhkan untuk menekuni suatu kerajinan atau perdagangan. Tabel ini menunjukkan contoh jenis perkakas yang paling umum, masing-masing menyediakan item yang berkaitan dengan satu kerajinan. Proficiency dengan seperangkat alat pengrajin memungkinkan Anda menambahkan Proficiency Bonus ke ability check apa pun yang Anda lakukan menggunakan alat dalam kerajinan Anda. Setiap jenis perkakas pengrajin memerlukan proficiency tersendiri."
+      "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri."
     },
     "weavers-tools": {
       "description": "Alat-alat khusus ini mencakup item-item yang diperlukan untuk mengejar kerajinan atau perdagangan. Tabel menampilkan contoh-contoh dari beberapa jenis alat yang paling umum."
@@ -533,47 +533,47 @@
       "description": "Alat-alat khusus ini mencakup item-item yang diperlukan untuk mengejar kerajinan atau perdagangan. Tabel menampilkan contoh-contoh dari beberapa jenis alat yang paling umum."
     },
     "dice-set": {
-      "description": "Item ini mencakup berbagai macam potongan permainan, termasuk dadu dan setumpuk kartu (untuk permainan seperti Three-Dragon Ante). Beberapa contoh umum muncul di tabel Alat, namun jenis set permainan lainnya juga ada. Jika Anda mahir menggunakan set game, Anda dapat menambahkan Proficiency Bonus ke ability check yang Anda lakukan untuk memainkan game dengan set tersebut. Setiap jenis set permainan memerlukan proficiency tersendiri."
+      "description": "Satu set alat permainan, seperti dadu atau setumpuk kartu (misalnya untuk Three-Dragon Ante). Kalau kamu punya proficiency dengan gaming set, kamu bisa menambahkan Proficiency Bonus ke ability check untuk bermain dengan set itu. Setiap jenis gaming set butuh proficiency sendiri."
     },
     "playing-card-set": {
-      "description": "Item ini mencakup berbagai macam potongan permainan, termasuk dadu dan setumpuk kartu (untuk permainan seperti Three-Dragon Ante). Beberapa contoh umum muncul di tabel Alat, namun jenis set permainan lainnya juga ada. Jika Anda mahir menggunakan set game, Anda dapat menambahkan Proficiency Bonus ke ability check yang Anda lakukan untuk memainkan game dengan set tersebut. Setiap jenis set permainan memerlukan proficiency tersendiri."
+      "description": "Satu set alat permainan, seperti dadu atau setumpuk kartu (misalnya untuk Three-Dragon Ante). Kalau kamu punya proficiency dengan gaming set, kamu bisa menambahkan Proficiency Bonus ke ability check untuk bermain dengan set itu. Setiap jenis gaming set butuh proficiency sendiri."
     },
     "bagpipes": {
       "description": "Beberapa jenis paling umum dari musical instruments ditunjukkan pada tabel. Bagi banyak races, penyediaan ini hanya mencakup instrument yang paling umum untuk race tersebut."
     },
     "drum": {
-      "description": "Beberapa jenis alat musik yang paling umum ditampilkan pada tabel sebagai contoh. Jika Anda mahir menggunakan alat musik tertentu, Anda dapat menambahkan Proficiency Bonus ke ability check apa pun yang Anda lakukan untuk memainkan musik dengan instrumen tersebut. Seorang penyair dapat menggunakan alat musik sebagai fokus perapalan spell. Setiap jenis alat musik memerlukan proficiency tersendiri."
+      "description": "Kalau kamu punya proficiency dengan alat musik tertentu, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengan alat itu. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri."
     },
     "dulcimer": {
-      "description": "Beberapa jenis alat musik yang paling umum ditampilkan pada tabel sebagai contoh. Jika Anda mahir menggunakan alat musik tertentu, Anda dapat menambahkan Proficiency Bonus ke ability check apa pun yang Anda lakukan untuk memainkan musik dengan instrumen tersebut. Seorang penyair dapat menggunakan alat musik sebagai fokus perapalan spell. Setiap jenis alat musik memerlukan proficiency tersendiri."
+      "description": "Kalau kamu punya proficiency dengan alat musik tertentu, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengan alat itu. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri."
     },
     "flute": {
-      "description": "Beberapa jenis alat musik yang paling umum ditampilkan pada tabel sebagai contoh. Jika Anda mahir menggunakan alat musik tertentu, Anda dapat menambahkan Proficiency Bonus ke ability check apa pun yang Anda lakukan untuk memainkan musik dengan instrumen tersebut. Seorang penyair dapat menggunakan alat musik sebagai fokus perapalan spell. Setiap jenis alat musik memerlukan proficiency tersendiri."
+      "description": "Kalau kamu punya proficiency dengan alat musik tertentu, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengan alat itu. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri."
     },
     "lute": {
-      "description": "Beberapa jenis alat musik yang paling umum ditampilkan pada tabel sebagai contoh. Jika Anda mahir menggunakan alat musik tertentu, Anda dapat menambahkan Proficiency Bonus ke ability check apa pun yang Anda lakukan untuk memainkan musik dengan instrumen tersebut. Seorang penyair dapat menggunakan alat musik sebagai fokus perapalan spell. Setiap jenis alat musik memerlukan proficiency tersendiri."
+      "description": "Kalau kamu punya proficiency dengan alat musik tertentu, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengan alat itu. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri."
     },
     "lyre": {
-      "description": "Beberapa jenis alat musik yang paling umum ditampilkan pada tabel sebagai contoh. Jika Anda mahir menggunakan alat musik tertentu, Anda dapat menambahkan Proficiency Bonus ke ability check apa pun yang Anda lakukan untuk memainkan musik dengan instrumen tersebut. Seorang penyair dapat menggunakan alat musik sebagai fokus perapalan spell. Setiap jenis alat musik memerlukan proficiency tersendiri."
+      "description": "Kalau kamu punya proficiency dengan alat musik tertentu, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengan alat itu. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri."
     },
     "horn": {
-      "description": "Beberapa jenis alat musik yang paling umum ditampilkan pada tabel sebagai contoh. Jika Anda mahir menggunakan alat musik tertentu, Anda dapat menambahkan Proficiency Bonus ke ability check apa pun yang Anda lakukan untuk memainkan musik dengan instrumen tersebut. Seorang penyair dapat menggunakan alat musik sebagai fokus perapalan spell. Setiap jenis alat musik memerlukan proficiency tersendiri."
+      "description": "Kalau kamu punya proficiency dengan alat musik tertentu, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengan alat itu. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri."
     },
     "pan-flute": {
       "name": "Pan Flute",
       "description": "Sebuah instrumen tiup yang terdiri dari beberapa pipa dengan panjang bertingkat yang diikat bersama. Menghasilkan melodi yang angin dan menyentuh."
     },
     "shawm": {
-      "description": "Beberapa jenis alat musik yang paling umum ditampilkan pada tabel sebagai contoh. Jika Anda mahir menggunakan alat musik tertentu, Anda dapat menambahkan Proficiency Bonus ke ability check apa pun yang Anda lakukan untuk memainkan musik dengan instrumen tersebut. Seorang penyair dapat menggunakan alat musik sebagai fokus perapalan spell. Setiap jenis alat musik memerlukan proficiency tersendiri."
+      "description": "Kalau kamu punya proficiency dengan alat musik tertentu, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengan alat itu. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri."
     },
     "viol": {
-      "description": "Beberapa jenis alat musik yang paling umum ditampilkan dalam tabel sebagai contoh. Jika kamu memiliki keahlian dengan alat musik tertentu, kamu bisa menambahkan bonus keahlianmu ke setiap ability check yang kamu lakukan untuk memainkan musik dengan alat tersebut."
+      "description": "Kalau kamu punya proficiency dengan alat musik tertentu, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengan alat itu. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri."
     },
     "navigators-tools": {
-      "description": "Seperangkat instrumen ini digunakan untuk navigasi di laut. Proficiency dengan alat navigator memungkinkan Anda memetakan jalur kapal dan mengikuti peta navigasi. Selain itu, alat ini memungkinkan Anda menambahkan Proficiency Bonus ke ability check apa pun yang Anda lakukan agar tidak tersesat di laut."
+      "description": "Alat-alat untuk navigasi di laut. Dengan proficiency di navigator's tools, kamu bisa menentukan rute kapal dan membaca peta navigasi. Kamu juga bisa menambahkan Proficiency Bonus ke ability check supaya tidak tersesat di laut."
     },
     "thieves-tools": {
-      "description": "Seperangkat alat ini meliputi sebuah kikir kecil, satu set kunci pengunci, cermin kecil yang dipasang pada gagang logam, satu set gunting berbilah sempit, dan tang. Proficiency dengan alat ini memungkinkan Anda menambahkan Proficiency Bonus ke ability check apa pun yang Anda lakukan untuk melucuti jebakan atau membuka kunci."
+      "description": "Isinya kikir kecil, satu set alat pembuka kunci, cermin kecil bergagang logam, gunting bermata ramping, dan sebuah tang. Dengan proficiency di alat ini, kamu bisa menambahkan Proficiency Bonus ke ability check untuk menjinakkan jebakan atau membuka kunci."
     },
     "camel": {
       "description": "Binatang beban gurun yang besar, mampu membawa beban berat melintasi medan gersang selama berhari-hari tanpa air. Lebih lambat dari kuda tetapi lebih cocok untuk kondisi gurun."
@@ -651,7 +651,7 @@
       "description": "Pelana eksotis diperlukan untuk mengendarai gunung air atau terbang apa pun."
     },
     "saddle-military": {
-      "description": "Pelana militer menguatkan pengendaranya, membantu Anda menjaga tempat duduk Anda tetap aktif dalam pertempuran. Ini memberi Anda Advantage pada pemeriksaan apa pun yang Anda lakukan untuk tetap terpasang."
+      "description": "Pelana militer menahan tubuh penunggangnya supaya tetap duduk mantap di atas tunggangan saat bertarung. Kamu mendapat Advantage pada check apa pun untuk tetap berada di atas tunggangan."
     },
     "saddle-pack": {
       "description": "Sepasang tas kulit yang dirancang untuk digantung di kedua sisi pelana kuda, digunakan untuk membawa perbekalan dalam perjalanan jauh."
