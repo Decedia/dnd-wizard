@@ -21,6 +21,8 @@ export const ID_TERM_RULES: TermRule[] = [
   { term: "Disadvantage", pattern: w("kerugian") },
   { term: "saving throw", pattern: w("lemparan penyelamatan|lemparan selamat|penyelamatan|roll penyelamatan") },
   { term: "ability check", pattern: w("pemeriksaan kemampuan|cek kemampuan") },
+  { term: "ability score", pattern: w("skor kemampuan|nilai kemampuan") },
+  { term: "roll (attack roll, damage roll...)", pattern: w("lemparan") },
   { term: "Action / Bonus Action", pattern: w("aksi bonus|aksi") },
   { term: "Reaction", pattern: w("reaksi") },
   { term: "spell / spell slot", pattern: w("mantra|slot mantra") },
@@ -35,8 +37,9 @@ export const ID_TERM_RULES: TermRule[] = [
   { term: "critical hit", pattern: w("serangan kritis|pukulan kritis|kritis") },
   {
     term: "conditions (Charmed, Prone...)",
-    pattern: w("terpikat|ketakutan|lumpuh|tak sadarkan diri|tidak sadarkan diri|telungkup|tergeletak|tertahan|terbutakan|tuli|tak kasatmata|tidak kasatmata|membatu|keracunan|tercengkeram|tercengkram|kelelahan|tak berdaya|tidak berdaya|tertegun|terpana"),
+    pattern: w("terpikat|terpesona|ketakutan|tidak mampu bertindak|lumpuh|tak sadarkan diri|tidak sadarkan diri|telungkup|tergeletak|tertahan|terbutakan|tuli|tak kasatmata|tidak kasatmata|membatu|keracunan|tercengkeram|tercengkram|kelelahan|tak berdaya|tidak berdaya|tertegun|terpana"),
   },
+  { term: "kamu (casual, not formal Anda)", pattern: w("Anda") },
 ];
 
 /** How many times each rule matches in a text. */

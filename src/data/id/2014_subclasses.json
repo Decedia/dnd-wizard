@@ -115,7 +115,7 @@
         {
           "name": "Chemical Mastery",
           "level": 15,
-          "description": "Kamu mendapatkan resistansi terhadap acid damage dan racun, serta memiliki Advantage pada saving throws untuk menghindari kondisi Keracunan.",
+          "description": "Kamu mendapatkan resistansi terhadap acid damage dan racun, serta memiliki Advantage pada saving throws untuk menghindari kondisi Poisoned.",
           "featureType": "Passive",
           "actionType": null,
           "uses": null,
@@ -125,7 +125,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Mendapatkan resistansi terhadap acid damage dan racun, serta Advantage pada saving throws melawan kondisi Keracunan.",
+          "summary": "Mendapatkan resistansi terhadap acid damage dan racun, serta Advantage pada saving throws melawan kondisi Poisoned.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -966,7 +966,7 @@
           "actionType": "Bonus Action",
           "duration": "1 minute (Rage)",
           "summary": "Lakukan roll **d8** saat melakukan rage untuk memicu efek magis acak.",
-          "description": "Energi magis bergejolak di dalam dirimu. Setiap kali kamu memasuki rage, lakukan roll pada tabel Wild Magic Surge untuk menentukan efek magis yang muncul:\n- 1: Setiap makhluk pilihanmu dalam jangkauan 30 kaki menerima **1d12** necrotic damage dan kamu mendapatkan **1d12** temporary hit points.\n- 2: Kamu bisa melakukan teleportasi hingga 30 kaki sebagai bonus action pada setiap giliranmu.\n- 3: Kamu memanggil roh tak kasat mata dalam jangkauan 30 kaki yang meledak dan memberikan **1d6** force damage saat mengenai sasaran.\n- 4: Senjatamu terisi sihir, memberikan tambahan **1d6** force damage serta mendapatkan properti light dan thrown.\n- 5: Kamu membalas serangan lawan, memberikan **1d6** force damage kepada makhluk yang menyerangmu hingga kena.\n- 6: Kamu mendapatkan aura pelindung yang memberikan bonus +1 pada AC untukmu dan rekan dalam jangkauan 10 kaki.\n- 7: Tanah dalam jangkauan 15 kaki darimu menjadi difficult terrain bagi musuh.\n- 8: Kamu menembakkan sinar cahaya radiasi hingga 30 kaki, membuat sasaran menjadi Buta dan memberikan **1d6** radiant damage.",
+          "description": "Energi magis bergejolak di dalam dirimu. Setiap kali kamu memasuki rage, lakukan roll pada tabel Wild Magic Surge untuk menentukan efek magis yang muncul:\n- 1: Setiap makhluk pilihanmu dalam jangkauan 30 kaki menerima **1d12** necrotic damage dan kamu mendapatkan **1d12** temporary hit points.\n- 2: Kamu bisa melakukan teleportasi hingga 30 kaki sebagai bonus action pada setiap giliranmu.\n- 3: Kamu memanggil roh tak kasat mata dalam jangkauan 30 kaki yang meledak dan memberikan **1d6** force damage saat mengenai sasaran.\n- 4: Senjatamu terisi sihir, memberikan tambahan **1d6** force damage serta mendapatkan properti light dan thrown.\n- 5: Kamu membalas serangan lawan, memberikan **1d6** force damage kepada makhluk yang menyerangmu hingga kena.\n- 6: Kamu mendapatkan aura pelindung yang memberikan bonus +1 pada AC untukmu dan rekan dalam jangkauan 10 kaki.\n- 7: Tanah dalam jangkauan 15 kaki darimu menjadi difficult terrain bagi musuh.\n- 8: Kamu menembakkan sinar cahaya radiasi hingga 30 kaki, membuat sasaran menjadi Blinded dan memberikan **1d6** radiant damage.",
           "source": {
             "type": "subclass",
             "name": "Path of Wild Magic",
@@ -1268,7 +1268,7 @@
         },
         {
           "name": "Totemic Attunement",
-          "description": "Pada level 14, kamu mendapatkan manfaat magis berdasarkan hewan totem yang kamu pilih. Kamu boleh memilih hewan yang sama dengan pilihanmu di level 3 atau memilih hewan yang berbeda.\n\nBear. Saat raging, makhluk apa pun dalam jarak 5 kaki darimu yang memusuhi kamu mendapatkan Disadvantage pada attack rolls terhadap sasaran selain kamu atau karakter lain yang memiliki fitur ini. Musuh kebal terhadap efek ini jika mereka tidak bisa melihat atau mendengar kamu, atau jika mereka tidak bisa dibuat Takut.\n\nEagle. Saat raging, kamu memiliki kecepatan terbang yang sama dengan kecepatan jalanmu saat ini. Manfaat ini hanya bekerja dalam durasi singkat; kamu akan jatuh jika mengakhiri giliranmu di udara dan tidak ada hal lain yang menopangmu.\n\nWolf. Saat raging, kamu bisa menggunakan bonus action pada giliranmu untuk membuat makhluk berukuran Large atau lebih kecil menjadi Prone ketika kamu mengenainya dengan melee weapon attack.",
+          "description": "Pada level 14, kamu mendapatkan manfaat magis berdasarkan hewan totem yang kamu pilih. Kamu boleh memilih hewan yang sama dengan pilihanmu di level 3 atau memilih hewan yang berbeda.\n\nBear. Saat raging, makhluk apa pun dalam jarak 5 kaki darimu yang memusuhi kamu mendapatkan Disadvantage pada attack rolls terhadap sasaran selain kamu atau karakter lain yang memiliki fitur ini. Musuh kebal terhadap efek ini jika mereka tidak bisa melihat atau mendengar kamu, atau jika mereka tidak bisa dibuat Frightened.\n\nEagle. Saat raging, kamu memiliki kecepatan terbang yang sama dengan kecepatan jalanmu saat ini. Manfaat ini hanya bekerja dalam durasi singkat; kamu akan jatuh jika mengakhiri giliranmu di udara dan tidak ada hal lain yang menopangmu.\n\nWolf. Saat raging, kamu bisa menggunakan bonus action pada giliranmu untuk membuat makhluk berukuran Large atau lebih kecil menjadi Prone ketika kamu mengenainya dengan melee weapon attack.",
           "level": 14,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -2486,7 +2486,7 @@
         },
         {
           "name": "Cutting Words",
-          "description": "Masih di level 3, kamu belajar menggunakan kecerdikanmu untuk mengalihkan perhatian, membingungkan, serta menjatuhkan kepercayaan diri dan kompetensi orang lain.\n\nKetika makhluk yang bisa kamu lihat dalam jarak 60 kaki melakukan attack roll, ability check, atau damage roll, kamu bisa menggunakan reaction untuk menghabiskan satu penggunaan Bardic Inspiration. Lempar dadu Bardic Inspiration dan kurangi hasil roll makhluk tersebut dengan angka yang muncul.\n\nKamu bisa memilih untuk menggunakan fitur ini setelah makhluk tersebut melakukan roll, tetapi sebelum GM menentukan apakah attack roll atau ability check tersebut berhasil atau gagal, atau sebelum makhluk tersebut memberikan damage. Makhluk tersebut imun jika ia tidak bisa mendengarmu atau jika ia imun terhadap kondisi terpesona (Charmed).",
+          "description": "Masih di level 3, kamu belajar menggunakan kecerdikanmu untuk mengalihkan perhatian, membingungkan, serta menjatuhkan kepercayaan diri dan kompetensi orang lain.\n\nKetika makhluk yang bisa kamu lihat dalam jarak 60 kaki melakukan attack roll, ability check, atau damage roll, kamu bisa menggunakan reaction untuk menghabiskan satu penggunaan Bardic Inspiration. Lempar dadu Bardic Inspiration dan kurangi hasil roll makhluk tersebut dengan angka yang muncul.\n\nKamu bisa memilih untuk menggunakan fitur ini setelah makhluk tersebut melakukan roll, tetapi sebelum GM menentukan apakah attack roll atau ability check tersebut berhasil atau gagal, atau sebelum makhluk tersebut memberikan damage. Makhluk tersebut imun jika ia tidak bisa mendengarmu atau jika ia imun terhadap kondisi Charmed.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -3576,7 +3576,7 @@
         },
         {
           "name": "Warding Flare",
-          "description": "Pada level 1, kamu bisa menghadang musuh dengan cahaya ilahi. Saat kamu diserang oleh makhluk yang berada dalam jangkauan **30 kaki** dan terlihat olehmu, kamu bisa menggunakan reaction untuk memberikan Disadvantage pada attack roll serangan tersebut dengan memunculkan kilatan cahaya di depan penyerang.\n\nFitur ini tidak berpengaruh jika penyerang tidak bisa melihat atau kebal terhadap kondisi Buta.\n\nKamu bisa menggunakan fitur ini sebanyak jumlah modifier Wisdom kamu (minimal satu kali). Kamu mendapatkan kembali semua penggunaan yang telah terpakai setelah menyelesaikan long rest.",
+          "description": "Pada level 1, kamu bisa menghadang musuh dengan cahaya ilahi. Saat kamu diserang oleh makhluk yang berada dalam jangkauan **30 kaki** dan terlihat olehmu, kamu bisa menggunakan reaction untuk memberikan Disadvantage pada attack roll serangan tersebut dengan memunculkan kilatan cahaya di depan penyerang.\n\nFitur ini tidak berpengaruh jika penyerang tidak bisa melihat atau kebal terhadap kondisi Blinded.\n\nKamu bisa menggunakan fitur ini sebanyak jumlah modifier Wisdom kamu (minimal satu kali). Kamu mendapatkan kembali semua penggunaan yang telah terpakai setelah menyelesaikan long rest.",
           "level": 1,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -3771,7 +3771,7 @@
         },
         {
           "name": "Channel Divinity: Charm Animals and Plants",
-          "description": "Mulai level 2, kamu bisa menggunakan Channel Divinity untuk mempesona hewan dan tumbuhan. Sebagai sebuah action, kamu menyentuh makhluk beast atau tumbuhan dalam jarak **30 kaki** darimu yang bisa melihat atau mendengarmu. Sasaran tersebut harus berhasil melakukan Wisdom saving throw atau akan terpesona olehmu selama **1 menit**, atau sampai kamu atau sekutumu memberikan damage kepadanya.",
+          "description": "Mulai level 2, kamu bisa menggunakan Channel Divinity untuk mempesona hewan dan tumbuhan. Sebagai sebuah action, kamu menyentuh makhluk beast atau tumbuhan dalam jarak **30 kaki** darimu yang bisa melihat atau mendengarmu. Sasaran tersebut harus berhasil melakukan Wisdom saving throw atau akan Charmed olehmu selama **1 menit**, atau sampai kamu atau sekutumu memberikan damage kepadanya.",
           "level": 2,
           "featureType": "Active",
           "actionType": "Action",
@@ -3849,7 +3849,7 @@
         },
         {
           "name": "Master of Nature",
-          "description": "Mulai level 17, kamu bisa menggunakan action untuk mempesona beast dan tumbuhan. Saat kamu menggunakan Channel Divinity untuk mempesona hewan dan tumbuhan, sasaran harus berhasil melakukan Wisdom saving throw atau akan terpesona olehmu selama **10 menit**, atau sampai kamu atau sekutumu memberikan damage kepadanya.",
+          "description": "Mulai level 17, kamu bisa menggunakan action untuk mempesona beast dan tumbuhan. Saat kamu menggunakan Channel Divinity untuk mempesona hewan dan tumbuhan, sasaran harus berhasil melakukan Wisdom saving throw atau akan Charmed olehmu selama **10 menit**, atau sampai kamu atau sekutumu memberikan damage kepadanya.",
           "level": 17,
           "featureType": "Active",
           "actionType": "Action",
@@ -4341,7 +4341,7 @@
         },
         {
           "name": "Channel Divinity: Cloak of Shadows",
-          "description": "Pada level 6, kamu bisa menggunakan Channel Divinity untuk menjadi tidak terlihat. Dengan menggunakan sebuah action, kamu menjadi tidak terlihat sampai akhir giliranmu berikutnya, atau sampai kamu melakukan serangan atau memaksa makhluk lain melakukan saving throw.",
+          "description": "Pada level 6, kamu bisa menggunakan Channel Divinity untuk menjadi Invisible. Dengan menggunakan sebuah action, kamu menjadi Invisible sampai akhir giliranmu berikutnya, atau sampai kamu melakukan serangan atau memaksa makhluk lain melakukan saving throw.",
           "level": 6,
           "featureType": "Active",
           "actionType": "Action",
@@ -4352,7 +4352,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Menjadi tidak terlihat hingga akhir giliranmu berikutnya, atau sampai kamu menyerang atau memaksa makhluk melakukan saving throw.",
+          "summary": "Menjadi Invisible hingga akhir giliranmu berikutnya, atau sampai kamu menyerang atau memaksa makhluk melakukan saving throw.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4928,8 +4928,8 @@
           "name": "Fungal Body",
           "level": 14,
           "featureType": "Passive",
-          "summary": "Kamu imun terhadap kondisi Buta, Tuli, Takut, atau Keracunan, dan critical hits terhadapmu menjadi serangan biasa.",
-          "description": "Spora jamur di dalam tubuhmu mengubah fisikmu: kamu tidak bisa terkena kondisi Buta, Tuli, Takut, atau Keracunan. Selain itu, setiap critical hit yang mengenaimu akan dianggap sebagai serangan biasa, kecuali jika kamu sedang dalam kondisi Tidak Mampu Bertindak.",
+          "summary": "Kamu imun terhadap kondisi Blinded, Deafened, Takut, atau Keracunan, dan critical hits terhadapmu menjadi serangan biasa.",
+          "description": "Spora jamur di dalam tubuhmu mengubah fisikmu: kamu tidak bisa terkena kondisi Blinded, Deafened, Takut, atau Keracunan. Selain itu, setiap critical hit yang mengenaimu akan dianggap sebagai serangan biasa, kecuali jika kamu sedang dalam kondisi Incapacitated.",
           "source": {
             "type": "subclass",
             "name": "Circle of Spores",
@@ -5154,7 +5154,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gunakan reaction untuk memanggil spirit bear dalam jarak 60 kaki dengan 40 temporary hit points saat hit points kamu menjadi 0 atau kamu tidak mampu bertindak.",
+          "summary": "Gunakan reaction untuk memanggil spirit bear dalam jarak 60 kaki dengan 40 temporary hit points saat hit points kamu menjadi 0 atau kamu Incapacitated.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5638,17 +5638,17 @@
         },
         {
           "name": "Arcane Shot Options",
-          "description": "Opsi-opsi berikut tersedia untuk kamu gunakan saat mengaktifkan fitur Arcane Shot:\n\nBanishing Arrow: Kamu mengasingkan sasaran yang terkena hit ke sebuah demiplane yang tidak berbahaya hingga akhir giliranmu berikutnya. Sasaran tersebut menghilang dan menjadi Tidak Mampu Bertindak. Saat efek berakhir, sasaran muncul kembali di posisi semula atau di ruang kosong terdekat.\n\nBeguiling Arrow: Pesonamu memberikan psychic damage dan membuat sasaran menjadi Terpesona olehmu.\n\nBursting Arrow: Anak panah menciptakan ledakan energi yang memberikan damage kepada sasaran dan hingga dua makhluk lain dalam jangkauan **10 kaki** darinya.\n\nEnfeebling Arrow: Sasaran harus melakukan Constitution saving throw. Jika gagal, sasaran hanya memberikan setengah damage saat melakukan serangan senjata hingga akhir giliranmu berikutnya.\n\nGrasping Arrow: Akar tanaman muncul dari anak panah, melilit sasaran dan hingga dua makhluk lain dalam jangkauan **10 kaki** darinya.\n\nMind-Scrambling Arrow: Sasaran harus melakukan Wisdom saving throw. Jika gagal, sasaran tidak bisa menggunakan reactions hingga awal giliranmu berikutnya dan harus melakukan roll **d6** untuk menentukan perilakunya.\n\nPiercing Arrow: Kamu melakukan serangan jarak jauh seperti biasa. Anak panah ini akan menembus sasaran dan berlanjut ke makhluk lain di belakangnya.\n\nSeeking Arrow: Kamu mendapatkan penglihatan magis mengenai lokasi sasaran. Kamu melakukan serangan jarak jauh seperti biasa. Jika serangan meleset, kamu bisa menggunakan bonus action untuk melakukan serangan baru terhadap sasaran yang sama.\n\nShadow Arrow: Kamu menjalin sihir ilusi ke dalam anak panahmu, membuat sasaran menjadi Buta hingga akhir giliranmu berikutnya.",
+          "description": "Opsi-opsi berikut tersedia untuk kamu gunakan saat mengaktifkan fitur Arcane Shot:\n\nBanishing Arrow: Kamu mengasingkan sasaran yang terkena hit ke sebuah demiplane yang tidak berbahaya hingga akhir giliranmu berikutnya. Sasaran tersebut menghilang dan menjadi Incapacitated. Saat efek berakhir, sasaran muncul kembali di posisi semula atau di ruang kosong terdekat.\n\nBeguiling Arrow: Pesonamu memberikan psychic damage dan membuat sasaran menjadi Charmed olehmu.\n\nBursting Arrow: Anak panah menciptakan ledakan energi yang memberikan damage kepada sasaran dan hingga dua makhluk lain dalam jangkauan **10 kaki** darinya.\n\nEnfeebling Arrow: Sasaran harus melakukan Constitution saving throw. Jika gagal, sasaran hanya memberikan setengah damage saat melakukan serangan senjata hingga akhir giliranmu berikutnya.\n\nGrasping Arrow: Akar tanaman muncul dari anak panah, melilit sasaran dan hingga dua makhluk lain dalam jangkauan **10 kaki** darinya.\n\nMind-Scrambling Arrow: Sasaran harus melakukan Wisdom saving throw. Jika gagal, sasaran tidak bisa menggunakan reactions hingga awal giliranmu berikutnya dan harus melakukan roll **d6** untuk menentukan perilakunya.\n\nPiercing Arrow: Kamu melakukan serangan jarak jauh seperti biasa. Anak panah ini akan menembus sasaran dan berlanjut ke makhluk lain di belakangnya.\n\nSeeking Arrow: Kamu mendapatkan penglihatan magis mengenai lokasi sasaran. Kamu melakukan serangan jarak jauh seperti biasa. Jika serangan meleset, kamu bisa menggunakan bonus action untuk melakukan serangan baru terhadap sasaran yang sama.\n\nShadow Arrow: Kamu menjalin sihir ilusi ke dalam anak panahmu, membuat sasaran menjadi Blinded hingga akhir giliranmu berikutnya.",
           "level": 3,
           "choices": [
             {
               "name": "Banishing Arrow",
-              "description": "Kamu mengasingkan sasaran yang terkena hit ke sebuah demiplane yang tidak berbahaya hingga akhir giliranmu berikutnya. Sasaran tersebut menghilang dan menjadi Tidak Mampu Bertindak. Saat efek berakhir, sasaran muncul kembali di posisi semula atau di ruang kosong terdekat.",
+              "description": "Kamu mengasingkan sasaran yang terkena hit ke sebuah demiplane yang tidak berbahaya hingga akhir giliranmu berikutnya. Sasaran tersebut menghilang dan menjadi Incapacitated. Saat efek berakhir, sasaran muncul kembali di posisi semula atau di ruang kosong terdekat.",
               "lastUpdated": "2026-09-29"
             },
             {
               "name": "Beguiling Arrow",
-              "description": "Pesonamu memberikan psychic damage dan membuat sasaran menjadi Terpesona olehmu.",
+              "description": "Pesonamu memberikan psychic damage dan membuat sasaran menjadi Charmed olehmu.",
               "lastUpdated": "2026-09-29"
             },
             {
@@ -5678,7 +5678,7 @@
             },
             {
               "name": "Shadow Arrow",
-              "description": "Kamu menyisipkan sihir ilusi ke dalam anak panahmu, membuat sasaran menjadi Buta hingga akhir giliranmu berikutnya.",
+              "description": "Kamu menyisipkan sihir ilusi ke dalam anak panahmu, membuat sasaran menjadi Blinded hingga akhir giliranmu berikutnya.",
               "lastUpdated": "2026-09-29"
             }
           ],
@@ -6487,7 +6487,7 @@
         },
         {
           "name": "Unwavering Mark",
-          "description": "Mulai level 3, kamu bisa mengintimidasi lawan, menggagalkan serangan mereka, dan menghukum mereka jika melukai orang lain. Saat kamu mengenai makhluk dengan serangan senjata jarak dekat, kamu bisa menandai makhluk tersebut hingga akhir giliranmu berikutnya. Efek ini berakhir lebih awal jika kamu menjadi tidak mampu bertindak, mati, atau jika ada orang lain yang menandai sasaran tersebut.\n\nSelama makhluk bertanda berada dalam jarak 5 kaki darimu, ia memiliki Disadvantage pada setiap attack roll yang tidak menargetkanmu. Selain itu, jika makhluk bertanda memberikan damage kepada siapa pun selain dirimu, kamu bisa melakukan serangan jarak dekat spesial terhadap makhluk tersebut sebagai bonus action pada giliranmu berikutnya. Kamu memiliki Advantage pada attack roll tersebut, dan jika kena, senjatamu memberikan damage tambahan sebesar setengah dari level fighter kamu.\n\nTerlepas dari apakah kamu menggunakan bonus action ini atau tidak, kamu bisa menggunakannya sebanyak jumlah bonus proficiency kamu, dan kamu mendapatkan kembali semua penggunaan yang terpakai setelah menyelesaikan long rest.",
+          "description": "Mulai level 3, kamu bisa mengintimidasi lawan, menggagalkan serangan mereka, dan menghukum mereka jika melukai orang lain. Saat kamu mengenai makhluk dengan serangan senjata jarak dekat, kamu bisa menandai makhluk tersebut hingga akhir giliranmu berikutnya. Efek ini berakhir lebih awal jika kamu menjadi Incapacitated, mati, atau jika ada orang lain yang menandai sasaran tersebut.\n\nSelama makhluk bertanda berada dalam jarak 5 kaki darimu, ia memiliki Disadvantage pada setiap attack roll yang tidak menargetkanmu. Selain itu, jika makhluk bertanda memberikan damage kepada siapa pun selain dirimu, kamu bisa melakukan serangan jarak dekat spesial terhadap makhluk tersebut sebagai bonus action pada giliranmu berikutnya. Kamu memiliki Advantage pada attack roll tersebut, dan jika kena, senjatamu memberikan damage tambahan sebesar setengah dari level fighter kamu.\n\nTerlepas dari apakah kamu menggunakan bonus action ini atau tidak, kamu bisa menggunakannya sebanyak jumlah bonus proficiency kamu, dan kamu mendapatkan kembali semua penggunaan yang terpakai setelah menyelesaikan long rest.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -7385,7 +7385,7 @@
             "recharge": "Long Rest"
           },
           "summary": "Paksa penyerang dalam 60 feet yang menghantam sekutu untuk me-roll ulang d20 dan mengambil roll baru.",
-          "description": "Kamu belajar menggunakan sihir rune untuk melindungi rekan-rekanmu. Ketika makhluk lain yang bisa kamu lihat dalam jarak 60 kaki terkena serangan dari attack roll, kamu bisa menggunakan reaction untuk memaksa penyerang tersebut mengulang lemparan d20 dan menggunakan hasil roll yang baru. Kamu bisa menggunakan fitur ini sebanyak jumlah bonus proficiency kamu per long rest.",
+          "description": "Kamu belajar menggunakan sihir rune untuk melindungi rekan-rekanmu. Ketika makhluk lain yang bisa kamu lihat dalam jarak 60 kaki terkena serangan dari attack roll, kamu bisa menggunakan reaction untuk memaksa penyerang tersebut mengulang roll d20 dan menggunakan hasil roll yang baru. Kamu bisa menggunakan fitur ini sebanyak jumlah bonus proficiency kamu per long rest.",
           "source": {
             "type": "subclass",
             "name": "Rune Knight",
@@ -7656,7 +7656,7 @@
         },
         {
           "name": "Strength Before Death",
-          "description": "Mulai level 18, semangat bertarungmu dapat menunda jemputan maut. Jika kamu menerima damage yang membuat hit points kamu menjadi **0** namun tidak langsung membunuhmu, kamu bisa menggunakan reaction untuk menunda kondisi tidak sadar, dan kamu bisa segera mengambil satu giliran ekstra, memotong giliran yang sedang berlangsung saat ini.\n\nSelama kamu memiliki **0** hit points pada giliran ekstra tersebut, menerima damage akan menyebabkan kegagalan death saving throw, dan **tiga** kegagalan dapat membunuhmu.\n\nSetelah giliran ekstra berakhir, kamu akan jatuh tidak sadar jika hit points kamu masih **0**. Setelah menggunakan fitur ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan long rest.",
+          "description": "Mulai level 18, semangat bertarungmu dapat menunda jemputan maut. Jika kamu menerima damage yang membuat hit points kamu menjadi **0** namun tidak langsung membunuhmu, kamu bisa menggunakan reaction untuk menunda kondisi Unconscious, dan kamu bisa segera mengambil satu giliran ekstra, memotong giliran yang sedang berlangsung saat ini.\n\nSelama kamu memiliki **0** hit points pada giliran ekstra tersebut, menerima damage akan menyebabkan kegagalan death saving throw, dan **tiga** kegagalan dapat membunuhmu.\n\nSetelah giliran ekstra berakhir, kamu akan jatuh tidak sadar jika hit points kamu masih **0**. Setelah menggunakan fitur ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan long rest.",
           "level": 18,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -8066,7 +8066,7 @@
       "classIndex": "monk",
       "index": "shadow",
       "flavorText": "Tradisi Monastik\n\nMonk dari Way of Shadow menempuh jalan kegelapan dan pengintaian. Mereka menguasai penggunaan ki untuk memanipulasi bayangan, memberi mereka kekuatan untuk menghilang dari pandangan dan menyerang dari kegelapan dengan presisi yang mematikan.\n\nPara biksu ini berperan sebagai mata-mata, pembunuh, dan penyusup, menggunakan seni mereka untuk bergerak tanpa terlihat dan mencuri rahasia. Mereka adalah penguasa malam yang sejati, mampu menyatu dengan bayangan tergelap dan menghilang sesuka hati.",
-      "description": "Monk dari Way of Shadow mengikuti jalan kegelapan dan pengintaian. Mereka belajar menggunakan ki untuk memanipulasi bayangan, menjadi tidak terlihat, dan menyerang dari kegelapan dengan presisi yang mematikan.\n\nPara biksu ini adalah mata-mata, pembunuh, dan penyusup yang menggunakan kemampuan mereka untuk bergerak tanpa terlihat dan mengumpulkan informasi. Mereka adalah penguasa malam yang mampu menyatu dengan bayangan dan menghilang sesuka hati.",
+      "description": "Monk dari Way of Shadow mengikuti jalan kegelapan dan pengintaian. Mereka belajar menggunakan ki untuk memanipulasi bayangan, menjadi Invisible, dan menyerang dari kegelapan dengan presisi yang mematikan.\n\nPara biksu ini adalah mata-mata, pembunuh, dan penyusup yang menggunakan kemampuan mereka untuk bergerak tanpa terlihat dan mengumpulkan informasi. Mereka adalah penguasa malam yang mampu menyatu dengan bayangan dan menghilang sesuka hati.",
       "features": [
         {
           "name": "Shadow Arts",
@@ -8122,7 +8122,7 @@
         },
         {
           "name": "Cloak of Shadows",
-          "description": "Pada level 11, kamu telah belajar untuk menyatu dengan bayangan. Selama kamu berada di area cahaya redup atau kegelapan, kamu dapat menggunakan action untuk menjadi tidak terlihat. Kamu akan tetap tidak terlihat sampai kamu melakukan serangan, cast sihir, atau memasuki area cahaya terang.",
+          "description": "Pada level 11, kamu telah belajar untuk menyatu dengan bayangan. Selama kamu berada di area cahaya redup atau kegelapan, kamu dapat menggunakan action untuk menjadi Invisible. Kamu akan tetap Invisible sampai kamu melakukan serangan, cast sihir, atau memasuki area cahaya terang.",
           "level": 11,
           "featureType": "Active",
           "actionType": "Action",
@@ -8133,7 +8133,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Menjadi tidak terlihat saat berada di cahaya redup atau kegelapan sampai kamu menyerang, cast sihir, atau memasuki cahaya terang.",
+          "summary": "Menjadi Invisible saat berada di cahaya redup atau kegelapan sampai kamu menyerang, cast sihir, atau memasuki cahaya terang.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -8231,8 +8231,8 @@
           "name": "Physician's Touch",
           "level": 6,
           "featureType": "Passive",
-          "summary": "Hands of Healing kini bisa menghilangkan kondisi Buta, Tuli, Lumpuh, Keracunan, atau Pusing; Hands of Harm bisa memberikan kondisi Keracunan tanpa saving throw.",
-          "description": "Mulai level 6, kamu bisa memberikan bantuan medis yang lebih hebat melalui sentuhanmu. Saat menggunakan Hands of Healing, kamu juga bisa menghilangkan satu penyakit atau satu kondisi yang menyerang sasaran: Buta, Tuli, Lumpuh, Keracunan, atau Pusing.\n\nSaat kamu menggunakan Hands of Harm pada sebuah makhluk, kamu bisa membuat makhluk tersebut terkena kondisi Keracunan hingga akhir giliranmu berikutnya.",
+          "summary": "Hands of Healing kini bisa menghilangkan kondisi Blinded, Deafened, Paralyzed, Keracunan, atau Pusing; Hands of Harm bisa memberikan kondisi Poisoned tanpa saving throw.",
+          "description": "Mulai level 6, kamu bisa memberikan bantuan medis yang lebih hebat melalui sentuhanmu. Saat menggunakan Hands of Healing, kamu juga bisa menghilangkan satu penyakit atau satu kondisi yang menyerang sasaran: Blinded, Deafened, Paralyzed, Keracunan, atau Pusing.\n\nSaat kamu menggunakan Hands of Harm pada sebuah makhluk, kamu bisa membuat makhluk tersebut terkena kondisi Poisoned hingga akhir giliranmu berikutnya.",
           "source": {
             "type": "subclass",
             "name": "Way of Mercy",
@@ -8265,7 +8265,7 @@
             "recharge": "Long Rest / 5 Ki"
           },
           "summary": "Gunakan 5 ki untuk menghidupkan kembali makhluk yang mati dalam 24 jam terakhir dengan hit points sebesar 4d10 + modifier Wisdom.",
-          "description": "Penguasaanmu atas energi kehidupan membuka jalan menuju belas kasih tertinggi. Sebagai sebuah action, kamu bisa menyentuh mayat makhluk yang mati dalam 24 jam terakhir dan menghabiskan 5 ki point. Makhluk tersebut hidup kembali dan mendapatkan hit points sejumlah **4d10** ditambah modifier Wisdom milikmu.\n\nJika makhluk tersebut mati saat sedang terkena salah satu kondisi berikut, ia akan bangkit dengan kondisi tersebut hilang: Buta, Tuli, Lumpuh, Keracunan, dan Pusing.\n\nSetelah menggunakan fitur ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan long rest.",
+          "description": "Penguasaanmu atas energi kehidupan membuka jalan menuju belas kasih tertinggi. Sebagai sebuah action, kamu bisa menyentuh mayat makhluk yang mati dalam 24 jam terakhir dan menghabiskan 5 ki point. Makhluk tersebut hidup kembali dan mendapatkan hit points sejumlah **4d10** ditambah modifier Wisdom milikmu.\n\nJika makhluk tersebut mati saat sedang terkena salah satu kondisi berikut, ia akan bangkit dengan kondisi tersebut hilang: Blinded, Deafened, Paralyzed, Keracunan, dan Pusing.\n\nSetelah menggunakan fitur ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan long rest.",
           "source": {
             "type": "subclass",
             "name": "Way of Mercy",
@@ -8735,8 +8735,8 @@
           "level": 6,
           "featureType": "Active",
           "actionType": "Action",
-          "summary": "Memaksa semua makhluk dalam jarak 30 kaki yang melihatmu melakukan Wisdom saving throw atau menjadi Takut padamu hingga akhir giliranmu berikutnya.",
-          "description": "Sebagai sebuah action, kamu memancarkan aura kematian yang mengerikan. Setiap makhluk dalam jarak **30 kaki** darimu yang bisa melihatmu harus berhasil melakukan Wisdom saving throw atau akan menjadi Takut padamu hingga akhir giliranmu berikutnya.",
+          "summary": "Memaksa semua makhluk dalam jarak 30 kaki yang melihatmu melakukan Wisdom saving throw atau menjadi Frightened padamu hingga akhir giliranmu berikutnya.",
+          "description": "Sebagai sebuah action, kamu memancarkan aura kematian yang mengerikan. Setiap makhluk dalam jarak **30 kaki** darimu yang bisa melihatmu harus berhasil melakukan Wisdom saving throw atau akan menjadi Frightened padamu hingga akhir giliranmu berikutnya.",
           "source": {
             "type": "subclass",
             "name": "Way of the Long Death",
@@ -8841,7 +8841,7 @@
         },
         {
           "name": "Searing Sunburst",
-          "description": "Pada level 11, kamu mendapatkan kemampuan untuk menciptakan bola cahaya yang meledak menjadi ledakan radiasi yang dahsyat. Dengan menggunakan action, kamu bisa menciptakan sebuah bola yang berpusat pada satu titik yang bisa kamu lihat dalam jangkauan 150 kaki darimu. Bola tersebut memiliki radius 20 kaki.\n\nSetiap makhluk di area tersebut harus melakukan Constitution saving throw. Makhluk yang gagal menerima **2d6** radiant damage untuk setiap poin ki yang kamu habiskan, atau setengah dari jumlah tersebut jika berhasil. Makhluk yang gagal dalam saving throw ini juga akan menjadi Buta sampai akhir giliranmu berikutnya.",
+          "description": "Pada level 11, kamu mendapatkan kemampuan untuk menciptakan bola cahaya yang meledak menjadi ledakan radiasi yang dahsyat. Dengan menggunakan action, kamu bisa menciptakan sebuah bola yang berpusat pada satu titik yang bisa kamu lihat dalam jangkauan 150 kaki darimu. Bola tersebut memiliki radius 20 kaki.\n\nSetiap makhluk di area tersebut harus melakukan Constitution saving throw. Makhluk yang gagal menerima **2d6** radiant damage untuk setiap poin ki yang kamu habiskan, atau setengah dari jumlah tersebut jika berhasil. Makhluk yang gagal dalam saving throw ini juga akan menjadi Blinded sampai akhir giliranmu berikutnya.",
           "level": 11,
           "featureType": "Active",
           "actionType": "Action",
@@ -8852,7 +8852,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Menciptakan bola cahaya radius 20 kaki dalam jangkauan 150 kaki; makhluk yang gagal saving throw terkena **2d6** radiant damage per poin ki dan menjadi Buta.",
+          "summary": "Menciptakan bola cahaya radius 20 kaki dalam jangkauan 150 kaki; makhluk yang gagal saving throw terkena **2d6** radiant damage per poin ki dan menjadi Blinded.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -8932,7 +8932,7 @@
         },
         {
           "name": "Channel Divinity: Nature's Wrath",
-          "description": "Kamu bisa menggunakan Channel Divinity untuk memanggil kekuatan purba guna menjerat musuh. Dengan menggunakan action, kamu bisa memunculkan tanaman rambat spektral yang tumbuh dan mengikat makhluk yang bisa kamu lihat dalam jarak 10 kaki darimu. Makhluk tersebut harus berhasil melakukan Strength atau Dexterity saving throw (pilih salah satu) atau akan menjadi Terikat.\n\nSelama terikat oleh tanaman rambat tersebut, makhluk itu harus mengulangi saving throw pada akhir setiap gilirannya. Jika berhasil, ia terbebas dan tanaman rambat tersebut lenyap.",
+          "description": "Kamu bisa menggunakan Channel Divinity untuk memanggil kekuatan purba guna menjerat musuh. Dengan menggunakan action, kamu bisa memunculkan tanaman rambat spektral yang tumbuh dan mengikat makhluk yang bisa kamu lihat dalam jarak 10 kaki darimu. Makhluk tersebut harus berhasil melakukan Strength atau Dexterity saving throw (pilih salah satu) atau akan menjadi Restrained.\n\nSelama terikat oleh tanaman rambat tersebut, makhluk itu harus mengulangi saving throw pada akhir setiap gilirannya. Jika berhasil, ia terbebas dan tanaman rambat tersebut lenyap.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Action",
@@ -9101,7 +9101,7 @@
         },
         {
           "name": "Channel Divinity: Sacred Weapon",
-          "description": "Sebagai sebuah action, kamu bisa menggunakan Channel Divinity untuk mengisi satu senjata yang kamu pegang dengan energi positif. Selama 1 menit, kamu menambahkan modifier Charisma ke attack rolls yang dilakukan dengan senjata tersebut (minimal bonus **+1**). Senjata ini juga memancarkan cahaya terang dalam radius **20 kaki** dan cahaya redup hingga **20** kaki setelahnya. Jika senjata tersebut belum bersifat magis, maka senjata itu menjadi magis selama durasi ini.\n\nKamu bisa mengakhiri efek ini pada giliranmu sebagai bagian dari action lainnya. Efek ini akan berakhir jika kamu tidak lagi memegang atau membawa senjata tersebut, atau jika kamu menjadi tidak sadar.",
+          "description": "Sebagai sebuah action, kamu bisa menggunakan Channel Divinity untuk mengisi satu senjata yang kamu pegang dengan energi positif. Selama 1 menit, kamu menambahkan modifier Charisma ke attack rolls yang dilakukan dengan senjata tersebut (minimal bonus **+1**). Senjata ini juga memancarkan cahaya terang dalam radius **20 kaki** dan cahaya redup hingga **20** kaki setelahnya. Jika senjata tersebut belum bersifat magis, maka senjata itu menjadi magis selama durasi ini.\n\nKamu bisa mengakhiri efek ini pada giliranmu sebagai bagian dari action lainnya. Efek ini akan berakhir jika kamu tidak lagi memegang atau membawa senjata tersebut, atau jika kamu menjadi Unconscious.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Action",
@@ -9153,7 +9153,7 @@
         },
         {
           "name": "Aura of Devotion",
-          "description": "Mulai level 7, kamu dan makhluk bersahabat dalam jarak **10** kaki darimu tidak bisa terkena kondisi Terpesona selama kamu masih sadar.\n\nPada level 18, jangkauan aura ini meningkat menjadi **30** kaki.",
+          "description": "Mulai level 7, kamu dan makhluk bersahabat dalam jarak **10** kaki darimu tidak bisa terkena kondisi Charmed selama kamu masih sadar.\n\nPada level 18, jangkauan aura ini meningkat menjadi **30** kaki.",
           "level": 7,
           "featureType": "Passive",
           "actionType": null,
@@ -9164,7 +9164,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Kamu dan rekan dalam jarak 10 kaki tidak bisa terpesona selama kamu sadar; jarak meningkat menjadi 30 kaki pada level 18.",
+          "summary": "Kamu dan rekan dalam jarak 10 kaki tidak bisa Charmed selama kamu sadar; jarak meningkat menjadi 30 kaki pada level 18.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -9244,7 +9244,7 @@
       "features": [
         {
           "name": "Channel Divinity: Conquering Presence",
-          "description": "Saat kamu mengambil sumpah ini pada level 3, kamu mendapatkan opsi Channel Divinity berikut:\n\nConquering Presence: Sebagai sebuah action, kamu memaksa setiap makhluk pilihanmu yang bisa kamu lihat dalam jangkauan 30 kaki untuk melakukan Wisdom saving throw. Jika makhluk tersebut gagal, ia akan menjadi Takut kepadamu selama 1 menit. Makhluk yang Takut dapat mengulangi saving throw tersebut di akhir setiap gilirannya, dan efek ini akan berakhir jika ia berhasil.\n\nGuided Strike: Saat kamu melakukan attack roll, kamu bisa menggunakan Channel Divinity untuk mendapatkan bonus **+10** pada attack roll tersebut. Kamu menentukan pilihan ini setelah melihat hasil roll, tetapi sebelum DM menentukan apakah serangan tersebut kena atau meleset.",
+          "description": "Saat kamu mengambil sumpah ini pada level 3, kamu mendapatkan opsi Channel Divinity berikut:\n\nConquering Presence: Sebagai sebuah action, kamu memaksa setiap makhluk pilihanmu yang bisa kamu lihat dalam jangkauan 30 kaki untuk melakukan Wisdom saving throw. Jika makhluk tersebut gagal, ia akan menjadi Frightened kepadamu selama 1 menit. Makhluk yang Takut dapat mengulangi saving throw tersebut di akhir setiap gilirannya, dan efek ini akan berakhir jika ia berhasil.\n\nGuided Strike: Saat kamu melakukan attack roll, kamu bisa menggunakan Channel Divinity untuk mendapatkan bonus **+10** pada attack roll tersebut. Kamu menentukan pilihan ini setelah melihat hasil roll, tetapi sebelum DM menentukan apakah serangan tersebut kena atau meleset.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Action",
@@ -9270,7 +9270,7 @@
         },
         {
           "name": "Channel Divinity: Guided Strike",
-          "description": "Saat melakukan attack roll, kamu bisa memakai Channel Divinity untuk mendapat bonus +10 pada lemparan itu. Kamu memutuskan setelah melihat hasil lemparan, tapi sebelum tahu kena atau tidak.",
+          "description": "Saat melakukan attack roll, kamu bisa memakai Channel Divinity untuk mendapat bonus +10 pada roll itu. Kamu memutuskan setelah melihat hasil roll, tapi sebelum tahu kena atau tidak.",
           "level": 3,
           "featureType": "Active",
           "actionType": null,
@@ -9299,7 +9299,7 @@
         },
         {
           "name": "Aura of Conquest",
-          "description": "Mulai level 7, kamu terus-menerus memancarkan aura mengancam selama kamu tidak dalam kondisi Tidak Mampu Bertindak. Aura ini menjangkau 10 kaki dari dirimu ke segala arah, namun tidak bisa menembus total cover. Jika ada makhluk yang Takut kepadamu, kecepatannya berkurang menjadi 0 selama berada di dalam aura, dan makhluk tersebut menerima psychic damage sebesar setengah dari level Paladin kamu jika ia mengakhiri gilirannya di sana.\n\nPada level 18, jangkauan aura ini meningkat menjadi 30 kaki.",
+          "description": "Mulai level 7, kamu terus-menerus memancarkan aura mengancam selama kamu tidak dalam kondisi Incapacitated. Aura ini menjangkau 10 kaki dari dirimu ke segala arah, namun tidak bisa menembus total cover. Jika ada makhluk yang Takut kepadamu, kecepatannya berkurang menjadi 0 selama berada di dalam aura, dan makhluk tersebut menerima psychic damage sebesar setengah dari level Paladin kamu jika ia mengakhiri gilirannya di sana.\n\nPada level 18, jangkauan aura ini meningkat menjadi 30 kaki.",
           "level": 7,
           "featureType": "Passive",
           "actionType": null,
@@ -9474,7 +9474,7 @@
             "recharge": "Long Rest / 5th spell slot"
           },
           "summary": "Bertransformasi selama 1 menit untuk mendapat Advantage pada Charisma check, mengubah satu serangan meleset menjadi kena per giliran, dan mengulang saving throw yang gagal menggunakan reaction.",
-          "description": "Kamu bisa memperkuat dirimu dengan legenda takdirmu. Sebagai bonus action, kamu mendapatkan manfaat berikut selama **1 menit**:\n\n- Kamu diberkati dengan aura luar biasa, sehingga mendapatkan Advantage pada semua Charisma check.\n- Sekali pada setiap giliranmu, ketika kamu melakukan serangan senjata dan meleset, kamu bisa membuat serangan tersebut menjadi kena.\n- Jika kamu gagal dalam saving throw, kamu bisa menggunakan reaction untuk mengulang lemparan tersebut.",
+          "description": "Kamu bisa memperkuat dirimu dengan legenda takdirmu. Sebagai bonus action, kamu mendapatkan manfaat berikut selama **1 menit**:\n\n- Kamu diberkati dengan aura luar biasa, sehingga mendapatkan Advantage pada semua Charisma check.\n- Sekali pada setiap giliranmu, ketika kamu melakukan serangan senjata dan meleset, kamu bisa membuat serangan tersebut menjadi kena.\n- Jika kamu gagal dalam saving throw, kamu bisa menggunakan reaction untuk mengulang roll tersebut.",
           "source": {
             "type": "subclass",
             "name": "Oath of Glory",
@@ -9924,8 +9924,8 @@
           "level": 3,
           "featureType": "Active",
           "actionType": "Action",
-          "summary": "Membuat makhluk-makhluk pilihan dalam jarak 30 kaki menjadi takut kepadamu selama 1 menit jika gagal melakukan Wisdom saving throw.",
-          "description": "Sebagai sebuah action, kamu menyalurkan emosi tergelap dan memfokuskannya menjadi ledakan ancaman magis. Setiap makhluk pilihanmu dalam jarak **30 kaki** yang bisa melihatmu harus melakukan Wisdom saving throw. Jika gagal, sasaran menjadi Takut kepadamu selama **1 menit**.",
+          "summary": "Membuat makhluk-makhluk pilihan dalam jarak 30 kaki menjadi Frightened kepadamu selama 1 menit jika gagal melakukan Wisdom saving throw.",
+          "description": "Sebagai sebuah action, kamu menyalurkan emosi tergelap dan memfokuskannya menjadi ledakan ancaman magis. Setiap makhluk pilihanmu dalam jarak **30 kaki** yang bisa melihatmu harus melakukan Wisdom saving throw. Jika gagal, sasaran menjadi Frightened kepadamu selama **1 menit**.",
           "source": {
             "type": "subclass",
             "name": "Oathbreaker",
@@ -9972,7 +9972,7 @@
             "recharge": "Long Rest"
           },
           "summary": "Bertransformasi selama 1 menit untuk memancarkan aura 30 kaki yang memberi 4d10 psychic damage pada musuh yang takut dan memungkinkan serangan bayangan via bonus action.",
-          "description": "Pada level 20, kamu bisa menggunakan sebuah action untuk menyelimuti dirimu dengan aura kegelapan selama 1 menit. Aura ini memancarkan cahaya redup dalam radius 30 kaki.\n\nMusuh di dalam aura ini menerima **4d10** psychic damage pada awal giliran mereka jika mereka sedang dalam kondisi Takut. Selain itu, kamu bisa menggunakan bonus action untuk melakukan serangan sihir jarak dekat terhadap satu sasaran, memberikan **3d10** + modifier Charisma necrotic damage.",
+          "description": "Pada level 20, kamu bisa menggunakan sebuah action untuk menyelimuti dirimu dengan aura kegelapan selama 1 menit. Aura ini memancarkan cahaya redup dalam radius 30 kaki.\n\nMusuh di dalam aura ini menerima **4d10** psychic damage pada awal giliran mereka jika mereka sedang dalam kondisi Frightened. Selain itu, kamu bisa menggunakan bonus action untuk melakukan serangan sihir jarak dekat terhadap satu sasaran, memberikan **3d10** + modifier Charisma necrotic damage.",
           "source": {
             "type": "subclass",
             "name": "Oathbreaker",
@@ -10021,7 +10021,7 @@
         },
         {
           "name": "Channel Divinity: Abjure Enemy",
-          "description": "Sebagai sebuah action, kamu menunjukkan simbol suci dan mengucapkan doa pengutukan menggunakan Channel Divinity. Pilih satu makhluk yang bisa kamu lihat dalam jarak 60 kaki. Makhluk tersebut harus melakukan Wisdom saving throw, kecuali jika ia kebal terhadap kondisi takut (Frightened). Makhluk jenis Fiend dan Undead memiliki Disadvantage pada saving throw ini.\n\nJika gagal, makhluk tersebut menjadi takut selama 1 menit atau sampai ia menerima damage apa pun. Selama dalam kondisi takut, kecepatan (speed) makhluk tersebut menjadi 0, dan ia tidak bisa mendapatkan bonus kecepatan apa pun.\n\nJika berhasil, kecepatan makhluk tersebut berkurang setengahnya selama 1 menit atau sampai ia menerima damage apa pun.",
+          "description": "Sebagai sebuah action, kamu menunjukkan simbol suci dan mengucapkan doa pengutukan menggunakan Channel Divinity. Pilih satu makhluk yang bisa kamu lihat dalam jarak 60 kaki. Makhluk tersebut harus melakukan Wisdom saving throw, kecuali jika ia kebal terhadap kondisi Frightened. Makhluk jenis Fiend dan Undead memiliki Disadvantage pada saving throw ini.\n\nJika gagal, makhluk tersebut menjadi Frightened selama 1 menit atau sampai ia menerima damage apa pun. Selama dalam kondisi Frightened, kecepatan (speed) makhluk tersebut menjadi 0, dan ia tidak bisa mendapatkan bonus kecepatan apa pun.\n\nJika berhasil, kecepatan makhluk tersebut berkurang setengahnya selama 1 menit atau sampai ia menerima damage apa pun.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Action",
@@ -10032,7 +10032,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gunakan action untuk memaksa makhluk dalam jarak 60 kaki melakukan Wisdom save atau menjadi takut dan tidak bisa bergerak.",
+          "summary": "Gunakan action untuk memaksa makhluk dalam jarak 60 kaki melakukan Wisdom save atau menjadi Frightened dan tidak bisa bergerak.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -10125,7 +10125,7 @@
         },
         {
           "name": "Avenging Angel",
-          "description": "Pada level 20, kamu bisa berubah wujud menjadi malaikat pembalas. Dengan menggunakan action, kamu mengalami transformasi. Selama 1 jam, kamu mendapatkan manfaat berikut:\n\n- Sayap tumbuh dari punggungmu dan memberimu kecepatan terbang **60 kaki**.\n- Kamu memancarkan aura ancaman dalam radius **30 kaki**. Pertama kali makhluk musuh memasuki aura ini atau memulai gilirannya di sana selama pertempuran, makhluk tersebut harus berhasil melakukan Wisdom saving throw atau menjadi takut kepadamu selama 1 menit atau sampai ia menerima damage apa pun. Attack rolls melawan makhluk yang takut ini mendapatkan Advantage.\n\nSetelah menggunakan fitur ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan long rest.",
+          "description": "Pada level 20, kamu bisa berubah wujud menjadi malaikat pembalas. Dengan menggunakan action, kamu mengalami transformasi. Selama 1 jam, kamu mendapatkan manfaat berikut:\n\n- Sayap tumbuh dari punggungmu dan memberimu kecepatan terbang **60 kaki**.\n- Kamu memancarkan aura ancaman dalam radius **30 kaki**. Pertama kali makhluk musuh memasuki aura ini atau memulai gilirannya di sana selama pertempuran, makhluk tersebut harus berhasil melakukan Wisdom saving throw atau menjadi Frightened kepadamu selama 1 menit atau sampai ia menerima damage apa pun. Attack rolls melawan makhluk yang takut ini mendapatkan Advantage.\n\nSetelah menggunakan fitur ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan long rest.",
           "level": 20,
           "featureType": "Active",
           "actionType": "Action",
@@ -10627,7 +10627,7 @@
           "level": 3,
           "featureType": "Passive",
           "summary": "Dapatkan 60 ft darkvision (atau +30 ft), dan menjadi sepenuhnya Invisible ke creature yang bergantung pada darkvision dalam darkness.",
-          "description": "Pada level 3, kamu mendapatkan darkvision dengan jangkauan **60 kaki**. Jika kamu sudah memiliki darkvision dari rasmu, jangkauannya bertambah **30 kaki**.\n\nKamu juga ahli dalam menghindari makhluk yang mengandalkan darkvision. Saat berada di kegelapan, kamu menjadi tidak terlihat bagi makhluk mana pun yang mengandalkan darkvision untuk melihatmu di kegelapan tersebut.",
+          "description": "Pada level 3, kamu mendapatkan darkvision dengan jangkauan **60 kaki**. Jika kamu sudah memiliki darkvision dari rasmu, jangkauannya bertambah **30 kaki**.\n\nKamu juga ahli dalam menghindari makhluk yang mengandalkan darkvision. Saat berada di kegelapan, kamu menjadi Invisible bagi makhluk mana pun yang mengandalkan darkvision untuk melihatmu di kegelapan tersebut.",
           "source": {
             "type": "subclass",
             "name": "Gloom Stalker",
@@ -11148,7 +11148,7 @@
         },
         {
           "name": "Writhing Tide",
-          "description": "Pada level 7, kamu bisa meminta kawanan tersebut untuk mengangkatmu. Sebagai bonus action, kamu mendapatkan kecepatan terbang 10 kaki. Kecepatan ini bertahan selama 1 menit atau sampai kamu mengalami kondisi Tidak Mampu Bertindak. Kamu bisa menggunakan fitur ini sebanyak jumlah bonus proficiency milikmu, dan semua penggunaan yang telah terpakai akan pulih setelah kamu menyelesaikan long rest.",
+          "description": "Pada level 7, kamu bisa meminta kawanan tersebut untuk mengangkatmu. Sebagai bonus action, kamu mendapatkan kecepatan terbang 10 kaki. Kecepatan ini bertahan selama 1 menit atau sampai kamu mengalami kondisi Incapacitated. Kamu bisa menggunakan fitur ini sebanyak jumlah bonus proficiency milikmu, dan semua penggunaan yang telah terpakai akan pulih setelah kamu menyelesaikan long rest.",
           "level": 7,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -11159,7 +11159,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gunakan bonus action untuk mendapatkan kecepatan terbang 10 kaki selama 1 menit atau sampai kamu tidak mampu bertindak. Bisa digunakan sebanyak bonus proficiency, pulih setelah long rest.",
+          "summary": "Gunakan bonus action untuk mendapatkan kecepatan terbang 10 kaki selama 1 menit atau sampai kamu Incapacitated. Bisa digunakan sebanyak bonus proficiency, pulih setelah long rest.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -11268,7 +11268,7 @@
         },
         {
           "name": "Mage Hand Legerdemain",
-          "description": "Mulai level 3, saat kamu cast mage hand, kamu bisa membuat tangan spektral tersebut menjadi tidak terlihat, dan kamu dapat melakukan tugas tambahan berikut dengannya:\n\n- Menyimpan satu objek yang sedang dipegang tangan tersebut ke dalam wadah yang dipakai atau dibawa oleh makhluk lain.\n- Mengambil sebuah objek dari wadah yang dipakai atau dibawa oleh makhluk lain.\n- Menggunakan thieves' tools untuk membobol kunci dan menjinakkan jebakan dari jarak jauh.\n\nKamu bisa melakukan salah satu tugas ini tanpa disadari oleh makhluk lain jika kamu berhasil melakukan check Dexterity (Sleight of Hand) yang diadu dengan check Wisdom (Perception) makhluk tersebut. Selain itu, kamu bisa menggunakan bonus action yang diberikan oleh Cunning Action untuk mengontrol tangan ini.",
+          "description": "Mulai level 3, saat kamu cast mage hand, kamu bisa membuat tangan spektral tersebut menjadi Invisible, dan kamu dapat melakukan tugas tambahan berikut dengannya:\n\n- Menyimpan satu objek yang sedang dipegang tangan tersebut ke dalam wadah yang dipakai atau dibawa oleh makhluk lain.\n- Mengambil sebuah objek dari wadah yang dipakai atau dibawa oleh makhluk lain.\n- Menggunakan thieves' tools untuk membobol kunci dan menjinakkan jebakan dari jarak jauh.\n\nKamu bisa melakukan salah satu tugas ini tanpa disadari oleh makhluk lain jika kamu berhasil melakukan check Dexterity (Sleight of Hand) yang diadu dengan check Wisdom (Perception) makhluk tersebut. Selain itu, kamu bisa menggunakan bonus action yang diberikan oleh Cunning Action untuk mengontrol tangan ini.",
           "level": 3,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -11279,7 +11279,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Membuat mage hand menjadi tidak terlihat untuk mengambil/menyimpan barang dari wadah makhluk lain, membobol kunci, atau menjinakkan jebakan. Kontrol tangan ini menggunakan bonus action dari Cunning Action.",
+          "summary": "Membuat mage hand menjadi Invisible untuk mengambil/menyimpan barang dari wadah makhluk lain, membobol kunci, atau menjinakkan jebakan. Kontrol tangan ini menggunakan bonus action dari Cunning Action.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -12101,7 +12101,7 @@
           "level": 9,
           "featureType": "Active",
           "summary": "Habiskan Psionic Energy dice untuk meningkatkan missed psychic blade attack rolls atau teleport hingga 10x roll dalam feet.",
-          "description": "Kamu bisa memadukan bilah psikismu dengan kekuatan psionik melalui dua cara baru:\n\n- Homing Strikes: Jika serangan bilah psikismu meleset, kamu bisa menambahkan satu dadu Psionic Energy ke attack roll tersebut. Dadu hanya dianggap terpakai jika serangan tersebut akhirnya mengenai sasaran.\n- Psychic Teleportation: Sebagai bonus action, kamu bisa melemparkan bilah sejauh **10** kali hasil lemparan dadu Psionic Energy dalam satuan kaki, lalu berteleportasi ke ruang kosong tersebut.",
+          "description": "Kamu bisa memadukan bilah psikismu dengan kekuatan psionik melalui dua cara baru:\n\n- Homing Strikes: Jika serangan bilah psikismu meleset, kamu bisa menambahkan satu dadu Psionic Energy ke attack roll tersebut. Dadu hanya dianggap terpakai jika serangan tersebut akhirnya mengenai sasaran.\n- Psychic Teleportation: Sebagai bonus action, kamu bisa melemparkan bilah sejauh **10** kali hasil roll dadu Psionic Energy dalam satuan kaki, lalu berteleportasi ke ruang kosong tersebut.",
           "source": {
             "type": "subclass",
             "name": "Soulknife",
@@ -12119,8 +12119,8 @@
             "total": 1,
             "recharge": "Long Rest / 1 Psionic Die"
           },
-          "summary": "Menjadi tidak terlihat sepenuhnya selama 1 jam menggunakan action; efek berakhir jika kamu memberikan damage atau memaksa saving throw.",
-          "description": "Kamu bisa menciptakan selubung statis psikis untuk menyamarkan keberadaan fisikmu. Dengan menggunakan action, kamu bisa menjadi tidak terlihat secara magis, termasuk semua yang kamu kenakan atau bawa, selama **1 jam** atau sampai kamu mengakhiri efek ini. Efek tidak terlihat ini akan langsung berakhir setelah kamu memberikan damage kepada makhluk atau memaksa makhluk melakukan saving throw. Kamu bisa menggunakan fitur ini sekali setiap long rest, atau dengan menghabiskan satu Psionic Energy die.",
+          "summary": "Menjadi Invisible sepenuhnya selama 1 jam menggunakan action; efek berakhir jika kamu memberikan damage atau memaksa saving throw.",
+          "description": "Kamu bisa menciptakan selubung statis psikis untuk menyamarkan keberadaan fisikmu. Dengan menggunakan action, kamu bisa menjadi Invisible secara magis, termasuk semua yang kamu kenakan atau bawa, selama **1 jam** atau sampai kamu mengakhiri efek ini. Efek tidak terlihat ini akan langsung berakhir setelah kamu memberikan damage kepada makhluk atau memaksa makhluk melakukan saving throw. Kamu bisa menggunakan fitur ini sekali setiap long rest, atau dengan menghabiskan satu Psionic Energy die.",
           "source": {
             "type": "subclass",
             "name": "Soulknife",
@@ -12213,7 +12213,7 @@
         },
         {
           "name": "Panache",
-          "description": "Pada level 9, pesonamu menjadi sangat persuasif. Dengan menggunakan action, kamu bisa melakukan Charisma check (Persuasion) yang dikontestasikan dengan Charisma check (Intimidation) dari target. Makhluk tersebut harus bisa mendengarmu, dan kamu harus memiliki bahasa yang sama dengannya.\n\nJika kamu berhasil, makhluk tersebut terpesona (Charmed) olehmu selama **1 menit**. Selama terpesona, makhluk itu bersikap ramah kepadamu dan sekutumu. Jika kamu gagal, makhluk tersebut menjadi imun terhadap fitur Panache milikmu selama **24 jam**.",
+          "description": "Pada level 9, pesonamu menjadi sangat persuasif. Dengan menggunakan action, kamu bisa melakukan Charisma check (Persuasion) yang dikontestasikan dengan Charisma check (Intimidation) dari target. Makhluk tersebut harus bisa mendengarmu, dan kamu harus memiliki bahasa yang sama dengannya.\n\nJika kamu berhasil, makhluk tersebut terpesona (Charmed) olehmu selama **1 menit**. Selama Charmed, makhluk itu bersikap ramah kepadamu dan sekutumu. Jika kamu gagal, makhluk tersebut menjadi imun terhadap fitur Panache milikmu selama **24 jam**.",
           "level": 9,
           "featureType": "Active",
           "actionType": "Action",
@@ -12450,7 +12450,7 @@
       "features": [
         {
           "name": "Telepathic Speech",
-          "description": "Pada level 1, kamu bisa menggunakan action untuk menyentuh pikiran makhluk yang bersedia dan membangun hubungan telepatis dengannya. Hingga efek ini berakhir, kamu dan makhluk tersebut bisa saling berbagi kata-kata, gambar, suara, dan pesan sensorik lainnya melalui hubungan ini. Hubungan akan terputus jika kamu dan makhluk tersebut berada di plane eksistensi yang berbeda, atau jika salah satu dari kalian menjadi tidak mampu bertindak (Incapacitated). Makhluk tersebut harus mampu memahami setidaknya satu bahasa.",
+          "description": "Pada level 1, kamu bisa menggunakan action untuk menyentuh pikiran makhluk yang bersedia dan membangun hubungan telepatis dengannya. Hingga efek ini berakhir, kamu dan makhluk tersebut bisa saling berbagi kata-kata, gambar, suara, dan pesan sensorik lainnya melalui hubungan ini. Hubungan akan terputus jika kamu dan makhluk tersebut berada di plane eksistensi yang berbeda, atau jika salah satu dari kalian menjadi Incapacitated. Makhluk tersebut harus mampu memahami setidaknya satu bahasa.",
           "level": 1,
           "featureType": "Active",
           "actionType": "Action",
@@ -12655,7 +12655,7 @@
           "featureType": "Active",
           "actionType": "Action",
           "summary": "Habiskan 1 sampai 5 sorcery point untuk menciptakan pelindung berupa kumpulan d8 yang dapat mengurangi damage yang diterima.",
-          "description": "Kamu bisa memberikan perisai keteraturan yang berkilauan kepada makhluk. Sebagai action, kamu bisa menghabiskan **1 sampai 5** sorcery point untuk menciptakan pelindung magis di sekitarmu atau makhluk lain yang bisa kamu lihat dalam jangkauan 30 kaki. Pelindung ini memiliki jumlah dadu **d8** yang setara dengan jumlah sorcery point yang dihabiskan. Ketika makhluk yang dilindungi menerima damage, ia bisa menggunakan sejumlah dadu tersebut, melakukan roll, dan mengurangi damage yang diterima sebesar total hasil lemparan tersebut.",
+          "description": "Kamu bisa memberikan perisai keteraturan yang berkilauan kepada makhluk. Sebagai action, kamu bisa menghabiskan **1 sampai 5** sorcery point untuk menciptakan pelindung magis di sekitarmu atau makhluk lain yang bisa kamu lihat dalam jangkauan 30 kaki. Pelindung ini memiliki jumlah dadu **d8** yang setara dengan jumlah sorcery point yang dihabiskan. Ketika makhluk yang dilindungi menerima damage, ia bisa menggunakan sejumlah dadu tersebut, melakukan roll, dan mengurangi damage yang diterima sebesar total hasil roll tersebut.",
           "source": {
             "type": "subclass",
             "name": "Clockwork Soul",
@@ -12794,7 +12794,7 @@
         },
         {
           "name": "Otherworldly Wings",
-          "description": "Pada level 14, kamu bisa menggunakan bonus action untuk memunculkan sepasang sayap spektral dari punggungmu. Selama sayap ini ada, kamu memiliki kecepatan terbang **30 kaki**. Sayap ini akan bertahan sampai kamu menjadi tidak mampu bertindak, mati, atau kamu menghilangkannya menggunakan bonus action. Kamu bisa memunculkan sayap ini sebanyak jumlah bonus proficiency milikmu, dan semua penggunaan yang telah terpakai akan pulih kembali setelah kamu menyelesaikan long rest.",
+          "description": "Pada level 14, kamu bisa menggunakan bonus action untuk memunculkan sepasang sayap spektral dari punggungmu. Selama sayap ini ada, kamu memiliki kecepatan terbang **30 kaki**. Sayap ini akan bertahan sampai kamu menjadi Incapacitated, mati, atau kamu menghilangkannya menggunakan bonus action. Kamu bisa memunculkan sayap ini sebanyak jumlah bonus proficiency milikmu, dan semua penggunaan yang telah terpakai akan pulih kembali setelah kamu menyelesaikan long rest.",
           "level": 14,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -12805,7 +12805,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Munculkan sayap spektral menggunakan bonus action untuk mendapatkan kecepatan terbang 30 kaki hingga kamu tidak mampu bertindak, mati, atau menghilangkannya.",
+          "summary": "Munculkan sayap spektral menggunakan bonus action untuk mendapatkan kecepatan terbang 30 kaki hingga kamu Incapacitated, mati, atau menghilangkannya.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13018,7 +13018,7 @@
         },
         {
           "name": "Draconic Presence",
-          "description": "Mulai level 18, kamu bisa menyalurkan kehadiran mengerikan dari leluhur nagamu, membuat makhluk di sekitarmu merasa kagum atau ketakutan. Sebagai sebuah action, kamu bisa menghabiskan **5** sorcery points untuk memancarkan aura kekaguman atau ketakutan (pilih salah satu) dalam jangkauan **60 kaki**. Selama **1 menit** atau sampai kamu kehilangan Concentration (seperti saat cast sihir Concentration), setiap makhluk musuh yang memulai gilirannya di dalam aura ini harus berhasil melakukan Wisdom saving throw. Jika gagal, mereka akan menjadi Terpesona (jika kamu memilih kekaguman) atau Takut (jika kamu memilih ketakutan) hingga aura berakhir. Makhluk yang berhasil melakukan saving throw ini akan menjadi imun terhadap auramu selama **24 jam**.",
+          "description": "Mulai level 18, kamu bisa menyalurkan kehadiran mengerikan dari leluhur nagamu, membuat makhluk di sekitarmu merasa kagum atau ketakutan. Sebagai sebuah action, kamu bisa menghabiskan **5** sorcery points untuk memancarkan aura kekaguman atau ketakutan (pilih salah satu) dalam jangkauan **60 kaki**. Selama **1 menit** atau sampai kamu kehilangan Concentration (seperti saat cast sihir Concentration), setiap makhluk musuh yang memulai gilirannya di dalam aura ini harus berhasil melakukan Wisdom saving throw. Jika gagal, mereka akan menjadi Charmed (jika kamu memilih kekaguman) atau Takut (jika kamu memilih ketakutan) hingga aura berakhir. Makhluk yang berhasil melakukan saving throw ini akan menjadi imun terhadap auramu selama **24 jam**.",
           "level": 18,
           "featureType": "Active",
           "actionType": "Action",
@@ -13029,7 +13029,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Habiskan 5 sorcery points menggunakan action untuk memancarkan aura kekaguman atau ketakutan selama 1 menit, membuat makhluk musuh dalam jarak 60 kaki menjadi Terpesona atau Takut.",
+          "summary": "Habiskan 5 sorcery points menggunakan action untuk memancarkan aura kekaguman atau ketakutan selama 1 menit, membuat makhluk musuh dalam jarak 60 kaki menjadi Charmed atau Frightened.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13161,7 +13161,7 @@
         },
         {
           "name": "Umbral Form",
-          "description": "Mulai level 18, kamu bisa menggunakan bonus action dan menghabiskan **5** sorcery points untuk mengubah tubuhmu menjadi bayangan hidup selama **1 menit**. Dalam wujud ini, kamu memiliki resistansi terhadap semua jenis damage kecuali psychic damage dan radiasi, serta bisa bergerak menembus makhluk lain dan objek seolah-olah itu adalah difficult terrain. Kamu menerima **5** force damage jika mengakhiri giliranmu di dalam sebuah objek. Selain itu, kamu menjadi tidak terlihat selama berada di cahaya redup atau kegelapan.",
+          "description": "Mulai level 18, kamu bisa menggunakan bonus action dan menghabiskan **5** sorcery points untuk mengubah tubuhmu menjadi bayangan hidup selama **1 menit**. Dalam wujud ini, kamu memiliki resistansi terhadap semua jenis damage kecuali psychic damage dan radiasi, serta bisa bergerak menembus makhluk lain dan objek seolah-olah itu adalah difficult terrain. Kamu menerima **5** force damage jika mengakhiri giliranmu di dalam sebuah objek. Selain itu, kamu menjadi Invisible selama berada di cahaya redup atau kegelapan.",
           "level": 18,
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -13172,7 +13172,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gunakan 5 sorcery points untuk mendapat resistansi sebagian besar damage, menembus objek, dan menjadi tidak terlihat di cahaya redup atau kegelapan.",
+          "summary": "Gunakan 5 sorcery points untuk mendapat resistansi sebagian besar damage, menembus objek, dan menjadi Invisible di cahaya redup atau kegelapan.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13686,7 +13686,7 @@
         {
           "level": 1,
           "name": "Fey Presence",
-          "description": "Mulai level 1, patronmu memberimu kemampuan untuk memproyeksikan aura fey yang memikat sekaligus mengerikan. Sebagai sebuah action, kamu bisa membuat setiap makhluk dalam area kubus berukuran **10 kaki** yang berpusat darimu melakukan Wisdom saving throw melawan warlock spell save DC milikmu. Makhluk yang gagal dalam saving throw akan menjadi Terpesona atau Takut terhadapmu (pilihanmu) hingga akhir giliranmu berikutnya. Setelah menggunakan fitur ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan short atau long rest.",
+          "description": "Mulai level 1, patronmu memberimu kemampuan untuk memproyeksikan aura fey yang memikat sekaligus mengerikan. Sebagai sebuah action, kamu bisa membuat setiap makhluk dalam area kubus berukuran **10 kaki** yang berpusat darimu melakukan Wisdom saving throw melawan warlock spell save DC milikmu. Makhluk yang gagal dalam saving throw akan menjadi Charmed atau Frightened terhadapmu (pilihanmu) hingga akhir giliranmu berikutnya. Setelah menggunakan fitur ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan short atau long rest.",
           "featureType": "Active",
           "actionType": "Action",
           "uses": null,
@@ -13696,7 +13696,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Paksa makhluk dalam kubus 10 kaki melakukan Wisdom save atau menjadi Terpesona atau Takut hingga akhir giliranmu berikutnya.",
+          "summary": "Paksa makhluk dalam kubus 10 kaki melakukan Wisdom save atau menjadi Charmed atau Frightened hingga akhir giliranmu berikutnya.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13712,7 +13712,7 @@
         {
           "level": 6,
           "name": "Misty Escape",
-          "description": "Mulai level 6, kamu bisa menghilang dalam kepulan kabut saat menerima serangan. Ketika kamu menerima damage, kamu dapat menggunakan reaction untuk menjadi tidak terlihat dan teleportasi hingga **60 kaki** ke ruang kosong yang bisa kamu lihat. Kamu tetap tidak terlihat sampai awal giliranmu berikutnya, atau sampai kamu menyerang atau cast sihir. Setelah menggunakan fitur ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan short atau long rest.",
+          "description": "Mulai level 6, kamu bisa menghilang dalam kepulan kabut saat menerima serangan. Ketika kamu menerima damage, kamu dapat menggunakan reaction untuk menjadi Invisible dan teleportasi hingga **60 kaki** ke ruang kosong yang bisa kamu lihat. Kamu tetap Invisible sampai awal giliranmu berikutnya, atau sampai kamu menyerang atau cast sihir. Setelah menggunakan fitur ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan short atau long rest.",
           "featureType": "Active",
           "actionType": "Reaction",
           "uses": null,
@@ -13722,7 +13722,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gunakan reaction untuk menjadi tidak terlihat dan teleportasi hingga 60 kaki ke ruang kosong yang bisa kamu lihat.",
+          "summary": "Gunakan reaction untuk menjadi Invisible dan teleportasi hingga 60 kaki ke ruang kosong yang bisa kamu lihat.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13738,7 +13738,7 @@
         {
           "level": 10,
           "name": "Beguiling Defenses",
-          "description": "Mulai level 10, patronmu mengajarimu cara membalikkan sihir pengendali pikiran musuh kepada mereka sendiri. Kamu imun terhadap kondisi terpesona, dan ketika makhluk lain mencoba membuatmu terpesona, kamu dapat menggunakan reaction untuk mencoba membalikkan efek tersebut kepada makhluk itu. Makhluk tersebut harus berhasil melakukan Wisdom saving throw melawan warlock spell save DC milikmu, atau ia akan terpesona olehmu selama **1 menit** atau sampai makhluk tersebut menerima damage apa pun.",
+          "description": "Mulai level 10, patronmu mengajarimu cara membalikkan sihir pengendali pikiran musuh kepada mereka sendiri. Kamu imun terhadap kondisi Charmed, dan ketika makhluk lain mencoba membuatmu terpesona, kamu dapat menggunakan reaction untuk mencoba membalikkan efek tersebut kepada makhluk itu. Makhluk tersebut harus berhasil melakukan Wisdom saving throw melawan warlock spell save DC milikmu, atau ia akan Charmed olehmu selama **1 menit** atau sampai makhluk tersebut menerima damage apa pun.",
           "featureType": "Active",
           "actionType": "Reaction",
           "uses": null,
@@ -13748,7 +13748,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Kamu imun terhadap kondisi terpesona; saat menjadi sasaran efek charm, kamu bisa menggunakan reaction untuk mencoba membalikkan efek tersebut.",
+          "summary": "Kamu imun terhadap kondisi Charmed; saat menjadi sasaran efek charm, kamu bisa menggunakan reaction untuk mencoba membalikkan efek tersebut.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13764,7 +13764,7 @@
         {
           "level": 14,
           "name": "Dark Delirium",
-          "description": "Mulai level 14, kamu bisa menjerumuskan makhluk ke dalam alam ilusi. Sebagai sebuah action, pilih satu makhluk yang bisa kamu lihat dalam jarak **60 kaki**. Makhluk tersebut harus melakukan Wisdom saving throw melawan warlock spell save DC milikmu. Jika gagal, ia akan terpesona atau takut kepadamu (kamu yang memilih) selama **1 menit** atau sampai konsentrasimu terputus (seperti saat kamu berkonsentrasi pada sihir). Efek ini berakhir lebih cepat jika makhluk tersebut menerima damage apa pun. Selama ilusi ini berlangsung, makhluk tersebut merasa tersesat di alam berkabut yang wujudnya kamu tentukan. Makhluk itu hanya bisa melihat dan mendengar dirinya sendiri, kamu, dan ilusi tersebut. Kamu harus menyelesaikan short atau long rest sebelum bisa menggunakan fitur ini kembali.",
+          "description": "Mulai level 14, kamu bisa menjerumuskan makhluk ke dalam alam ilusi. Sebagai sebuah action, pilih satu makhluk yang bisa kamu lihat dalam jarak **60 kaki**. Makhluk tersebut harus melakukan Wisdom saving throw melawan warlock spell save DC milikmu. Jika gagal, ia akan Charmed atau takut kepadamu (kamu yang memilih) selama **1 menit** atau sampai konsentrasimu terputus (seperti saat kamu berkonsentrasi pada sihir). Efek ini berakhir lebih cepat jika makhluk tersebut menerima damage apa pun. Selama ilusi ini berlangsung, makhluk tersebut merasa tersesat di alam berkabut yang wujudnya kamu tentukan. Makhluk itu hanya bisa melihat dan mendengar dirinya sendiri, kamu, dan ilusi tersebut. Kamu harus menyelesaikan short atau long rest sebelum bisa menggunakan fitur ini kembali.",
           "featureType": "Active",
           "actionType": "Action",
           "uses": null,
@@ -13774,7 +13774,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gunakan action untuk memaksa makhluk dalam jarak 60 kaki melakukan Wisdom save atau menjadi terpesona atau takut di alam ilusi.",
+          "summary": "Gunakan action untuk memaksa makhluk dalam jarak 60 kaki melakukan Wisdom save atau menjadi Charmed atau takut di alam ilusi.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14035,7 +14035,7 @@
         {
           "level": 1,
           "name": "Hexblade's Curse",
-          "description": "Mulai level 1, kamu mendapatkan kemampuan untuk memberikan kutukan pahit kepada seseorang. Sebagai bonus action, pilih satu makhluk yang bisa kamu lihat dalam jangkauan 30 kaki. Sasaran tersebut akan terkutuk selama 1 menit.\n\nKutukan ini berakhir lebih awal jika sasaran mati, kamu mati, atau kamu menjadi tidak mampu bertindak. Selama kutukan masih aktif, kamu mendapatkan Advantage berikut:\n- Kamu mendapat bonus pada rolls damage terhadap sasaran yang terkutuk sebesar bonus proficiency kamu.\n- Setiap attack roll yang kamu lakukan terhadap sasaran terkutuk menjadi critical hit jika hasil roll pada d20 adalah 19 atau 20.\n- Jika sasaran mati, kamu memulihkan hit points sebesar level warlock kamu + modifier Charisma kamu (minimal 1 hit point).\n\nKamu dapat menggunakan fitur ini sebanyak jumlah bonus proficiency kamu, dan semua penggunaan yang telah terpakai akan pulih setelah kamu menyelesaikan long rest.",
+          "description": "Mulai level 1, kamu mendapatkan kemampuan untuk memberikan kutukan pahit kepada seseorang. Sebagai bonus action, pilih satu makhluk yang bisa kamu lihat dalam jangkauan 30 kaki. Sasaran tersebut akan terkutuk selama 1 menit.\n\nKutukan ini berakhir lebih awal jika sasaran mati, kamu mati, atau kamu menjadi Incapacitated. Selama kutukan masih aktif, kamu mendapatkan Advantage berikut:\n- Kamu mendapat bonus pada rolls damage terhadap sasaran yang terkutuk sebesar bonus proficiency kamu.\n- Setiap attack roll yang kamu lakukan terhadap sasaran terkutuk menjadi critical hit jika hasil roll pada d20 adalah 19 atau 20.\n- Jika sasaran mati, kamu memulihkan hit points sebesar level warlock kamu + modifier Charisma kamu (minimal 1 hit point).\n\nKamu dapat menggunakan fitur ini sebanyak jumlah bonus proficiency kamu, dan semua penggunaan yang telah terpakai akan pulih setelah kamu menyelesaikan long rest.",
           "featureType": "Active",
           "actionType": "Bonus Action",
           "uses": null,
@@ -14720,7 +14720,7 @@
         {
           "name": "Form of Dread",
           "level": 1,
-          "description": "Kamu bisa menggunakan bonus action untuk berubah menjadi wujud kematian yang mengerikan. Selama 1 menit, kamu mendapatkan manfaat berikut:\n\n- Kamu mendapatkan temporary hit points sebesar **1d10** + level warlock kamu.\n- Sekali pada setiap giliranmu, saat kamu mengenai makhluk dengan serangan, kamu bisa memaksa sasaran tersebut melakukan Wisdom saving throw melawan spell save DC milikmu. Jika gagal, sasaran tersebut menjadi takut (Frightened) kepadamu hingga akhir giliranmu berikutnya.\n\nKamu bisa berubah sebanyak jumlah bonus proficiency kamu, dan semua penggunaan yang telah terpakai akan pulih kembali setelah kamu menyelesaikan long rest.",
+          "description": "Kamu bisa menggunakan bonus action untuk berubah menjadi wujud kematian yang mengerikan. Selama 1 menit, kamu mendapatkan manfaat berikut:\n\n- Kamu mendapatkan temporary hit points sebesar **1d10** + level warlock kamu.\n- Sekali pada setiap giliranmu, saat kamu mengenai makhluk dengan serangan, kamu bisa memaksa sasaran tersebut melakukan Wisdom saving throw melawan spell save DC milikmu. Jika gagal, sasaran tersebut menjadi Frightened kepadamu hingga akhir giliranmu berikutnya.\n\nKamu bisa berubah sebanyak jumlah bonus proficiency kamu, dan semua penggunaan yang telah terpakai akan pulih kembali setelah kamu menyelesaikan long rest.",
           "featureType": "Active",
           "actionType": "Bonus Action",
           "uses": null,
@@ -14730,7 +14730,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gunakan bonus action untuk mendapatkan temporary hit points sebesar 1d10 + level warlock dan kemampuan untuk membuat makhluk yang kamu serang menjadi takut.",
+          "summary": "Gunakan bonus action untuk mendapatkan temporary hit points sebesar 1d10 + level warlock dan kemampuan untuk membuat makhluk yang kamu serang menjadi Frightened.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -14798,7 +14798,7 @@
         {
           "name": "Spirit Projection",
           "level": 14,
-          "description": "Sebagai sebuah action, kamu bisa memproyeksikan rohmu keluar dari tubuh. Tubuhmu akan menjadi tidak sadar dan tampak seperti sudah mati selama rohmu terproyeksi.\n\nRohmu menyerupai versi spektral dari tubuhmu dan memiliki statistik berikut:\n- Memiliki **1** hit point dan imun terhadap semua damage kecuali force damage (force).\n- Tidak bisa melakukan actions atau melancarkan sihir.\n- Bisa bergerak menembus makhluk dan objek seolah-olah area tersebut adalah difficult terrain.\n- Memiliki kecepatan terbang **40 kaki** dan bisa melayang (hover).\n\nSelama terproyeksi, kamu bisa menggunakan action untuk kembali ke tubuhmu. Tubuhmu akan sadar kembali setelah rohmu kembali masuk ke dalamnya.\n\nSetelah menggunakan fitur ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan long rest.",
+          "description": "Sebagai sebuah action, kamu bisa memproyeksikan rohmu keluar dari tubuh. Tubuhmu akan menjadi Unconscious dan tampak seperti sudah mati selama rohmu terproyeksi.\n\nRohmu menyerupai versi spektral dari tubuhmu dan memiliki statistik berikut:\n- Memiliki **1** hit point dan imun terhadap semua damage kecuali force damage (force).\n- Tidak bisa melakukan actions atau melancarkan sihir.\n- Bisa bergerak menembus makhluk dan objek seolah-olah area tersebut adalah difficult terrain.\n- Memiliki kecepatan terbang **40 kaki** dan bisa melayang (hover).\n\nSelama terproyeksi, kamu bisa menggunakan action untuk kembali ke tubuhmu. Tubuhmu akan sadar kembali setelah rohmu kembali masuk ke dalamnya.\n\nSetelah menggunakan fitur ini, kamu tidak bisa menggunakannya lagi sampai kamu menyelesaikan long rest.",
           "featureType": "Active",
           "actionType": "Action",
           "uses": null,
@@ -14847,7 +14847,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Kamu memiliki Advantage saat melakukan saving throw agar tidak terkena kondisi Takut.",
+          "summary": "Kamu memiliki Advantage saat melakukan saving throw agar tidak terkena kondisi Frightened.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -15245,7 +15245,7 @@
       "features": [
         {
           "name": "Chronal Shift",
-          "description": "Mulai level 2, kamu bisa menggunakan sihir untuk mengendalikan aliran waktu di sekitar makhluk secara terbatas. Saat kamu atau makhluk yang bisa kamu lihat dalam jarak 30 kaki melakukan attack roll, ability check, atau saving throw, kamu bisa menggunakan reaction untuk melempar **d8** dan menerapkan hasilnya pada roll tersebut.\n\nKamu bisa menggunakan fitur ini setelah roll dilakukan, tetapi sebelum DM menentukan apakah attack roll, ability check, atau saving throw tersebut berhasil atau gagal.\n\nHasil lemparan **d8** ditambahkan ke total jika roll tersebut adalah attack roll atau ability check, atau dikurangi dari total jika roll tersebut adalah saving throw.\n\nKamu bisa menggunakan fitur ini sebanyak dua kali, dan semua penggunaan yang telah terpakai akan pulih kembali setelah kamu menyelesaikan long rest.",
+          "description": "Mulai level 2, kamu bisa menggunakan sihir untuk mengendalikan aliran waktu di sekitar makhluk secara terbatas. Saat kamu atau makhluk yang bisa kamu lihat dalam jarak 30 kaki melakukan attack roll, ability check, atau saving throw, kamu bisa menggunakan reaction untuk melempar **d8** dan menerapkan hasilnya pada roll tersebut.\n\nKamu bisa menggunakan fitur ini setelah roll dilakukan, tetapi sebelum DM menentukan apakah attack roll, ability check, atau saving throw tersebut berhasil atau gagal.\n\nHasil roll **d8** ditambahkan ke total jika roll tersebut adalah attack roll atau ability check, atau dikurangi dari total jika roll tersebut adalah saving throw.\n\nKamu bisa menggunakan fitur ini sebanyak dua kali, dan semua penggunaan yang telah terpakai akan pulih kembali setelah kamu menyelesaikan long rest.",
           "level": 2,
           "featureType": "Active",
           "actionType": "Reaction",
@@ -16338,7 +16338,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gunakan action untuk memaksa undead dalam jangkauan 60 kaki melakukan Wisdom saving throw atau menjadi Terpesona selama 1 menit. Jumlah penggunaan setara bonus proficiency per long rest.",
+          "summary": "Gunakan action untuk memaksa undead dalam jangkauan 60 kaki melakukan Wisdom saving throw atau menjadi Charmed selama 1 menit. Jumlah penggunaan setara bonus proficiency per long rest.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -16704,7 +16704,7 @@
         },
         {
           "name": "Power Surge",
-          "description": "Mulai level 6, kamu bisa menyimpan energi magis di dalam tubuhmu untuk memperkuat sihirmu. Kamu memiliki kumpulan power surge, yang jumlahnya berupa **d6** sebanyak level wizard kamu. Saat kamu melakukan attack roll atau saving throw, kamu bisa menghabiskan satu power surge untuk menambahkan hasil lemparan **d6** ke totalnya. Kamu hanya bisa menggunakan fitur ini satu kali per giliran. Kamu mendapatkan kembali semua power surge yang telah terpakai setelah menyelesaikan long rest.",
+          "description": "Mulai level 6, kamu bisa menyimpan energi magis di dalam tubuhmu untuk memperkuat sihirmu. Kamu memiliki kumpulan power surge, yang jumlahnya berupa **d6** sebanyak level wizard kamu. Saat kamu melakukan attack roll atau saving throw, kamu bisa menghabiskan satu power surge untuk menambahkan hasil roll **d6** ke totalnya. Kamu hanya bisa menggunakan fitur ini satu kali per giliran. Kamu mendapatkan kembali semua power surge yang telah terpakai setelah menyelesaikan long rest.",
           "level": 6,
           "featureType": "Active",
           "actionType": null,
@@ -16715,7 +16715,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gunakan satu power surge untuk menambahkan hasil lemparan **d6** ke attack roll atau saving throw.",
+          "summary": "Gunakan satu power surge untuk menambahkan hasil roll **d6** ke attack roll atau saving throw.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,

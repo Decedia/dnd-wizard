@@ -1,43 +1,52 @@
 {
- "src/locales/id.js": {},
+ "src/locales/id.js": {
+  "ability score": 10,
+  "roll (attack roll, damage roll...)": 9,
+  "kamu (casual, not formal Anda)": 5
+ },
  "src/data/id/2014_classes.json": {
-  "Advantage": 2,
+  "Advantage": 1,
   "Proficiency": 3,
   "Expertise": 1,
-  "conditions (Charmed, Prone...)": 4
+  "conditions (Charmed, Prone...)": 2,
+  "kamu (casual, not formal Anda)": 64
  },
  "src/data/id/2014_feats.json": {},
  "src/data/id/2014_item_catalog.json": {
-  "Advantage": 2,
+  "Advantage": 1,
   "Proficiency": 9,
   "Expertise": 1,
   "ability names (STR, DEX...)": 1,
-  "conditions (Charmed, Prone...)": 1
+  "conditions (Charmed, Prone...)": 1,
+  "kamu (casual, not formal Anda)": 94
  },
  "src/data/id/2014_races.json": {
   "Proficiency": 1,
   "Expertise": 1,
-  "conditions (Charmed, Prone...)": 1
+  "conditions (Charmed, Prone...)": 1,
+  "kamu (casual, not formal Anda)": 19
  },
- "src/data/id/2014_spell_mechanics.json": {},
  "src/data/id/2014_spells.json": {
-  "Advantage": 4,
+  "Advantage": 2,
   "Expertise": 3,
-  "ability names (STR, DEX...)": 7,
-  "conditions (Charmed, Prone...)": 57
+  "ability names (STR, DEX...)": 4,
+  "conditions (Charmed, Prone...)": 17
  },
  "src/data/id/2014_subclasses.json": {
   "Advantage": 2,
   "Proficiency": 2,
   "Expertise": 8,
   "ability names (STR, DEX...)": 11,
-  "conditions (Charmed, Prone...)": 24
+  "conditions (Charmed, Prone...)": 15,
+  "kamu (casual, not formal Anda)": 264
  },
  "src/data/id/2024_phb_text.json": {
+  "roll (attack roll, damage roll...)": 28,
   "Expertise": 1
  },
  "src/data/id/2024_text.json": {
   "Advantage": 1,
+  "roll (attack roll, damage roll...)": 18,
   "Proficiency": 1,
   "Expertise": 2,
   "ability names (STR, DEX...)": 3,
@@ -45,64 +54,10 @@
  },
  "src/data/id/race-categories.json": {},
  "src/data/id/subclass_feature_choices_text.json": {},
- "src/locales/parts/id/.enhance-classes-races-progress.json": {},
- "src/locales/parts/id/.enhance-progress.json": {},
- "src/locales/parts/id/2014_classes.json": {
-  "Advantage": 33,
-  "Disadvantage": 7,
-  "saving throw": 58,
-  "Proficiency": 2,
-  "Expertise": 197,
-  "ability names (STR, DEX...)": 20,
-  "conditions (Charmed, Prone...)": 26
- },
- "src/locales/parts/id/2014_classes_*": {
-  "Advantage": 2,
-  "saving throw": 1,
-  "Proficiency": 3,
-  "Expertise": 6,
-  "ability names (STR, DEX...)": 2,
-  "conditions (Charmed, Prone...)": 5
- },
- "src/locales/parts/id/2014_feats.json": {
-  "Advantage": 1,
-  "Proficiency": 1,
-  "conditions (Charmed, Prone...)": 1
- },
- "src/locales/parts/id/2014_races.json": {
-  "saving throw": 2,
-  "Proficiency": 1,
-  "Expertise": 3,
-  "conditions (Charmed, Prone...)": 2
- },
- "src/locales/parts/id/2014_spell_mechanics_*": {},
  "src/locales/parts/id/2014_spells.json": {
-  "Advantage": 4,
-  "Expertise": 3,
-  "ability names (STR, DEX...)": 7,
-  "conditions (Charmed, Prone...)": 55
- },
- "src/locales/parts/id/2014_spells_*": {
-  "Advantage": 4,
-  "Expertise": 3,
-  "ability names (STR, DEX...)": 7,
-  "conditions (Charmed, Prone...)": 55
- },
- "src/locales/parts/id/2014_subclasses.json": {
-  "Advantage": 30,
-  "Disadvantage": 8,
-  "saving throw": 23,
-  "Proficiency": 3,
-  "Expertise": 242,
-  "ability names (STR, DEX...)": 17,
-  "critical hit": 1,
-  "conditions (Charmed, Prone...)": 25
- },
- "src/locales/parts/id/2014_subclasses_*": {
   "Advantage": 2,
-  "Proficiency": 2,
-  "Expertise": 8,
-  "ability names (STR, DEX...)": 12,
-  "conditions (Charmed, Prone...)": 26
+  "Expertise": 3,
+  "ability names (STR, DEX...)": 4,
+  "conditions (Charmed, Prone...)": 11
  }
 }

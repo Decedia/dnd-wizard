@@ -26,12 +26,9 @@ const sources: Record<string, string[]> = { "src/locales/id.js": strings(id) };
 for (const f of readdirSync(dataDir).filter((f) => f.endsWith(".json")).sort()) {
   sources[`src/data/id/${f}`] = strings(JSON.parse(readFileSync(join(dataDir, f), "utf8")));
 }
-// Per-entry overrides (src/locales/parts/id), counted per group: 2014_spells_fireball.json goes under 2014_spells.
-const partsDir = join(process.cwd(), "src/locales/parts/id");
-for (const f of readdirSync(partsDir).filter((f) => f.endsWith(".json")).sort()) {
-  const group = `src/locales/parts/id/${f.replace(/^(2014_spell_mechanics|2014_spells|2014_subclasses|2014_classes)_.*$/, "$1_*")}`;
-  (sources[group] ||= []).push(...strings(JSON.parse(readFileSync(join(partsDir, f), "utf8"))));
-}
+// Spell text overrides shown on top of src/data/id/2014_spells.json.
+const spellParts = join(process.cwd(), "src/locales/parts/id/2014_spells.json");
+sources["src/locales/parts/id/2014_spells.json"] = strings(JSON.parse(readFileSync(spellParts, "utf8")));
 
 function counts(texts: string[]): Record<string, number> {
   const totals = ID_TERM_RULES.map(() => 0);

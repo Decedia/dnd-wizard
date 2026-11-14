@@ -77,7 +77,7 @@
       "features": [
         {
           "name": "Rage",
-          "description": "Dalam pertempuran, kamu bertarung dengan keganasan primal. Pada giliranmu, kamu bisa masuk ke mode rage menggunakan bonus action. Selama dalam kondisi rage, kamu mendapatkan manfaat berikut jika tidak memakai heavy armor:\n\n- Kamu memiliki Advantage pada Strength check dan Strength saving throw.\n\n- Saat melakukan serangan senjata jarak dekat menggunakan Kekuatan, kamu mendapat bonus **+2** pada roll damage. Bonus ini akan meningkat seiring kenaikan levelmu.\n\n- Kamu memiliki resistansi terhadap bludgeoning damage, tembus, dan potong.\n\nJika kamu bisa cast sihir, kamu tidak dapat cast atau berkonsentrasi pada sihir tersebut selama sedang rage.\n\nKondisi rage ini bertahan selama **1 menit**. Efeknya akan berakhir lebih awal jika kamu dibuat tidak sadar, atau jika giliranmu berakhir dan kamu belum menyerang makhluk musuh atau menerima damage sejak akhir giliranmu sebelumnya. Kamu juga bisa mengakhiri rage pada giliranmu menggunakan bonus action.\n\nSetelah kamu menggunakan rage sebanyak batas maksimal sesuai level barbarian kamu, kamu harus menyelesaikan long rest sebelum bisa menggunakan rage kembali. Kamu bisa rage sebanyak **2** kali pada level 1, **3** kali pada level 3, **4** kali pada level 6, **5** kali pada level 12, dan **6** kali pada level 17.",
+          "description": "Dalam pertempuran, kamu bertarung dengan keganasan primal. Pada giliranmu, kamu bisa masuk ke mode rage menggunakan bonus action. Selama dalam kondisi rage, kamu mendapatkan manfaat berikut jika tidak memakai heavy armor:\n\n- Kamu memiliki Advantage pada Strength check dan Strength saving throw.\n\n- Saat melakukan serangan senjata jarak dekat menggunakan Kekuatan, kamu mendapat bonus **+2** pada roll damage. Bonus ini akan meningkat seiring kenaikan levelmu.\n\n- Kamu memiliki resistansi terhadap bludgeoning damage, tembus, dan potong.\n\nJika kamu bisa cast sihir, kamu tidak dapat cast atau berkonsentrasi pada sihir tersebut selama sedang rage.\n\nKondisi rage ini bertahan selama **1 menit**. Efeknya akan berakhir lebih awal jika kamu dibuat Unconscious, atau jika giliranmu berakhir dan kamu belum menyerang makhluk musuh atau menerima damage sejak akhir giliranmu sebelumnya. Kamu juga bisa mengakhiri rage pada giliranmu menggunakan bonus action.\n\nSetelah kamu menggunakan rage sebanyak batas maksimal sesuai level barbarian kamu, kamu harus menyelesaikan long rest sebelum bisa menggunakan rage kembali. Kamu bisa rage sebanyak **2** kali pada level 1, **3** kali pada level 3, **4** kali pada level 6, **5** kali pada level 12, dan **6** kali pada level 17.",
           "type": "feature",
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -137,7 +137,7 @@
           "features": [
             {
               "name": "Rage",
-              "description": "Dalam pertempuran, kamu bertarung dengan keganasan primal. Pada giliranmu, kamu bisa masuk ke mode rage menggunakan bonus action. Selama dalam kondisi raging, kamu mendapatkan manfaat berikut jika tidak memakai heavy armor:\n\n- Kamu memiliki Advantage pada Strength check dan Strength saving throw.\n\n- Saat melakukan serangan senjata melee menggunakan Kekuatan, kamu mendapat bonus **+2** pada roll damage. Bonus ini akan meningkat seiring kenaikan levelmu.\n\n- Kamu memiliki resistansi terhadap bludgeoning damage, tembus, dan potong.\n\nJika kamu bisa cast sihir, kamu tidak bisa cast atau berkonsentrasi pada sihir selama dalam kondisi raging.\n\nKondisi rage ini bertahan selama **1 menit**. Efeknya berakhir lebih awal jika kamu dibuat tidak sadar, atau jika giliranmu berakhir dan kamu belum menyerang makhluk musuh atau menerima damage sejak giliran terakhirmu. Kamu juga bisa mengakhiri rage pada giliranmu menggunakan bonus action.\n\nSetelah kamu menggunakan rage sebanyak batas maksimal sesuai level barbarian-mu, kamu harus menyelesaikan long rest sebelum bisa menggunakannya kembali. Kamu bisa melakukan rage sebanyak **2** kali pada level 1, **3** kali pada level 3, **4** kali pada level 6, **5** kali pada level 12, dan **6** kali pada level 17.",
+              "description": "Dalam pertempuran, kamu bertarung dengan keganasan primal. Pada giliranmu, kamu bisa masuk ke mode rage menggunakan bonus action. Selama dalam kondisi raging, kamu mendapatkan manfaat berikut jika tidak memakai heavy armor:\n\n- Kamu memiliki Advantage pada Strength check dan Strength saving throw.\n\n- Saat melakukan serangan senjata melee menggunakan Kekuatan, kamu mendapat bonus **+2** pada roll damage. Bonus ini akan meningkat seiring kenaikan levelmu.\n\n- Kamu memiliki resistansi terhadap bludgeoning damage, tembus, dan potong.\n\nJika kamu bisa cast sihir, kamu tidak bisa cast atau berkonsentrasi pada sihir selama dalam kondisi raging.\n\nKondisi rage ini bertahan selama **1 menit**. Efeknya berakhir lebih awal jika kamu dibuat Unconscious, atau jika giliranmu berakhir dan kamu belum menyerang makhluk musuh atau menerima damage sejak giliran terakhirmu. Kamu juga bisa mengakhiri rage pada giliranmu menggunakan bonus action.\n\nSetelah kamu menggunakan rage sebanyak batas maksimal sesuai level barbarian-mu, kamu harus menyelesaikan long rest sebelum bisa menggunakannya kembali. Kamu bisa melakukan rage sebanyak **2** kali pada level 1, **3** kali pada level 3, **4** kali pada level 6, **5** kali pada level 12, dan **6** kali pada level 17.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Bonus Action",
@@ -225,7 +225,7 @@
             },
             {
               "name": "Danger Sense",
-              "description": "Pada level 2, kamu memiliki insting tajam untuk merasakan jika ada sesuatu yang tidak beres di sekitarmu, memberimu keunggulan saat menghindar dari bahaya. Kamu memiliki Advantage pada saving throws Dexterity terhadap efek yang bisa kamu lihat, seperti jebakan dan sihir. Untuk mendapatkan manfaat ini, kamu tidak boleh dalam kondisi Buta, Tuli, atau Tidak Mampu Bertindak.",
+              "description": "Pada level 2, kamu memiliki insting tajam untuk merasakan jika ada sesuatu yang tidak beres di sekitarmu, memberimu keunggulan saat menghindar dari bahaya. Kamu memiliki Advantage pada saving throws Dexterity terhadap efek yang bisa kamu lihat, seperti jebakan dan sihir. Untuk mendapatkan manfaat ini, kamu tidak boleh dalam kondisi Blinded, Deafened, atau Tidak Mampu Bertindak.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -236,7 +236,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Mendapatkan Advantage pada saving throws Dexterity terhadap efek yang bisa kamu lihat, selama kamu tidak sedang Buta, Tuli, atau Tidak Mampu Bertindak.",
+              "summary": "Mendapatkan Advantage pada saving throws Dexterity terhadap efek yang bisa kamu lihat, selama kamu tidak sedang Blinded, Deafened, atau Tidak Mampu Bertindak.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -291,7 +291,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Saat mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -302,7 +302,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1 pada level 4, 8, 12, 16, dan 19.",
+              "summary": "Tingkatkan satu ability score sebesar 2 atau dua ability score sebesar 1 pada level 4, 8, 12, 16, dan 19.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -449,7 +449,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Ketika kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, serta 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Ketika kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, serta 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -460,7 +460,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar **2** atau dua skor kemampuan sebesar **1** pada level tertentu.",
+              "summary": "Tingkatkan satu ability score sebesar **2** atau dua ability score sebesar **1** pada level tertentu.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -581,7 +581,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Ketika kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar 2, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar 1. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui 20 menggunakan fitur ini.",
+              "description": "Ketika kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar 2, atau meningkatkan dua ability score pilihanmu masing-masing sebesar 1. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui 20 menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -592,7 +592,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1.",
+              "summary": "Tingkatkan satu ability score sebesar 2 atau dua ability score sebesar 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -680,7 +680,7 @@
           "features": [
             {
               "name": "Persistent Rage",
-              "description": "Mulai level 15, rage milikmu menjadi sangat hebat sehingga efeknya hanya akan berakhir lebih awal jika kamu menjadi Tidak Sadar atau jika kamu sendiri yang memilih untuk mengakhirinya.",
+              "description": "Mulai level 15, rage milikmu menjadi sangat hebat sehingga efeknya hanya akan berakhir lebih awal jika kamu menjadi Unconscious atau jika kamu sendiri yang memilih untuk mengakhirinya.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -691,7 +691,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "rage kamu hanya akan berakhir jika kamu menjadi Tidak Sadar atau jika kamu memilih untuk mengakhirinya.",
+              "summary": "rage kamu hanya akan berakhir jika kamu menjadi Unconscious atau jika kamu memilih untuk mengakhirinya.",
               "grantsSpells": false,
               "grantsAttack": true,
               "grantsSkills": false,
@@ -713,7 +713,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -724,7 +724,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar **2** atau dua skor kemampuan sebesar **1**.",
+              "summary": "Tingkatkan satu ability score sebesar **2** atau dua ability score sebesar **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -812,7 +812,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -823,7 +823,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar **2** atau dua skor kemampuan sebesar **1**.",
+              "summary": "Tingkatkan satu ability score sebesar **2** atau dua ability score sebesar **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -1333,7 +1333,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -1344,7 +1344,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar **2** atau dua skor kemampuan sebesar **1**.",
+              "summary": "Tingkatkan satu ability score sebesar **2** atau dua ability score sebesar **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -1432,7 +1432,7 @@
           "features": [
             {
               "name": "Countercharm",
-              "description": "Pada level 6, kamu memperoleh kemampuan untuk menggunakan nada musik atau kata-kata kekuatan guna mengganggu efek yang memengaruhi pikiran. Dengan menggunakan action, kamu bisa memulai pertunjukan yang berlangsung hingga akhir giliranmu berikutnya. Selama waktu tersebut, kamu dan semua makhluk kawan dalam jarak **30 kaki** darimu mendapatkan Advantage pada saving throws melawan kondisi Takut atau Terpesona. Makhluk tersebut harus bisa mendengarmu untuk mendapatkan manfaat ini. Pertunjukan berakhir lebih awal jika kamu menjadi Tidak Mampu Bertindak, terkena efek silenced, atau jika kamu mengakhirinya secara sengaja (tidak memerlukan action).",
+              "description": "Pada level 6, kamu memperoleh kemampuan untuk menggunakan nada musik atau kata-kata kekuatan guna mengganggu efek yang memengaruhi pikiran. Dengan menggunakan action, kamu bisa memulai pertunjukan yang berlangsung hingga akhir giliranmu berikutnya. Selama waktu tersebut, kamu dan semua makhluk kawan dalam jarak **30 kaki** darimu mendapatkan Advantage pada saving throws melawan kondisi Frightened atau Charmed. Makhluk tersebut harus bisa mendengarmu untuk mendapatkan manfaat ini. Pertunjukan berakhir lebih awal jika kamu menjadi Incapacitated, terkena efek silenced, atau jika kamu mengakhirinya secara sengaja (tidak memerlukan action).",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Action",
@@ -1443,7 +1443,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Gunakan action untuk memberi Advantage pada saving throws melawan kondisi Terpesona atau Takut bagi dirimu dan rekan dalam jarak 30 kaki.",
+              "summary": "Gunakan action untuk memberi Advantage pada saving throws melawan kondisi Charmed atau Frightened bagi dirimu dan rekan dalam jarak 30 kaki.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -1506,7 +1506,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -1517,7 +1517,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar **2** atau dua skor kemampuan sebesar **1**.",
+              "summary": "Tingkatkan satu ability score sebesar **2** atau dua ability score sebesar **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -1919,7 +1919,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Ketika kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Ketika kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -1930,7 +1930,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Meningkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1.",
+              "summary": "Meningkatkan satu ability score sebesar 2 atau dua ability score sebesar 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -2384,7 +2384,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui 20 menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui 20 menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -2395,7 +2395,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan masing-masing sebesar 1.",
+              "summary": "Tingkatkan satu ability score sebesar 2 atau dua ability score masing-masing sebesar 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -2823,7 +2823,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -2834,7 +2834,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar **2** atau dua skor kemampuan sebesar **1**.",
+              "summary": "Tingkatkan satu ability score sebesar **2** atau dua ability score sebesar **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3374,7 +3374,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu dapat meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui angka **20** menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu dapat meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui angka **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -3385,7 +3385,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1 pada level 4, 8, 12, 16, dan 19.",
+              "summary": "Tingkatkan satu ability score sebesar 2 atau dua ability score sebesar 1 pada level 4, 8, 12, 16, dan 19.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3574,7 +3574,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui angka **20** menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui angka **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -3585,7 +3585,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1 pada level 4, 8, 12, 16, dan 19.",
+              "summary": "Tingkatkan satu ability score sebesar 2 atau dua ability score sebesar 1 pada level 4, 8, 12, 16, dan 19.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3782,7 +3782,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar 2, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar 1. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui angka 20 menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar 2, atau meningkatkan dua ability score pilihanmu masing-masing sebesar 1. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui angka 20 menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -3793,7 +3793,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1 pada level-level tertentu.",
+              "summary": "Tingkatkan satu ability score sebesar 2 atau dua ability score sebesar 1 pada level-level tertentu.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3892,7 +3892,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar 2, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar 1. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui angka 20 menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar 2, atau meningkatkan dua ability score pilihanmu masing-masing sebesar 1. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui angka 20 menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -3903,7 +3903,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1 pada level-level tertentu.",
+              "summary": "Tingkatkan satu ability score sebesar 2 atau dua ability score sebesar 1 pada level-level tertentu.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -4046,7 +4046,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu dapat meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu dapat meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -4057,7 +4057,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar **2** atau dua skor kemampuan sebesar **1**.",
+              "summary": "Tingkatkan satu ability score sebesar **2** atau dua ability score sebesar **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -4514,7 +4514,7 @@
             },
             {
               "name": "Ability Score Improvement",
-              "description": "Ketika kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Ketika kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -4525,7 +4525,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan salah satu skor kemampuanmu sebesar 2, atau dua skor kemampuan sebesar 1.",
+              "summary": "Tingkatkan salah satu skor kemampuanmu sebesar 2, atau dua ability score sebesar 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -4608,7 +4608,7 @@
           "features": [
             {
               "name": "Wild Shape (CR 1 or below)",
-              "description": "Mulai level 2, kamu bisa menggunakan action untuk berubah wujud secara magis menjadi hewan yang pernah kamu lihat sebelumnya. Kamu bisa menggunakan fitur ini sebanyak **2** kali. Kamu mendapatkan kembali penggunaan yang telah terpakai setelah menyelesaikan short atau long rest.\n\nLevel Druid menentukan hewan apa saja yang bisa kamu tiru, seperti yang tertera pada tabel Beast Shapes. Sebagai contoh, pada level 2, kamu bisa berubah menjadi hewan apa pun dengan challenge rating 1/4 atau lebih rendah yang tidak memiliki kecepatan terbang atau berenang.\n\nKamu bisa bertahan dalam wujud hewan selama beberapa jam sesuai dengan setengah dari level Druid kamu (dibulatkan ke bawah). Setelah itu, kamu akan kembali ke wujud normal kecuali kamu menggunakan penggunaan fitur ini lagi. Kamu bisa kembali ke wujud normal lebih awal dengan menggunakan bonus action pada giliranmu. Kamu akan otomatis kembali ke wujud normal jika menjadi tidak sadar, hit points mencapai 0, atau mati.\n\nSelama kamu bertransformasi, aturan berikut berlaku:\n\n- Statistik permainanmu digantikan oleh statistik hewan tersebut, tetapi kamu tetap mempertahankan alignment, kepribadian, serta skor Intelligence, Wisdom, dan Charisma milikmu. Kamu juga tetap memiliki semua proficiency skill dan saving throw, ditambah dengan proficiency yang dimiliki makhluk tersebut. Jika makhluk itu memiliki proficiency yang sama denganmu dan bonus pada stat block-nya lebih tinggi, gunakan bonus milik makhluk tersebut. Jika makhluk itu memiliki legendary atau lair actions, kamu tidak bisa menggunakannya.\n\n- Saat bertransformasi, kamu menggunakan hit points dan Hit Dice milik hewan tersebut. Ketika kembali ke wujud normal, hit points kamu kembali ke jumlah sebelum kamu bertransformasi. Namun, jika kamu kembali ke wujud normal karena hit points mencapai 0, sisa damage yang berlebih akan terbawa ke wujud normalmu. Contohnya, jika kamu menerima 10 damage dalam wujud hewan dan hanya tersisa 1 hit point, kamu akan kembali ke wujud normal dan menerima 9 damage. Selama damage berlebih ini tidak membuat wujud normalmu mencapai 0 hit points, kamu tidak akan menjadi tidak sadar.\n\n- Kamu tidak bisa cast sihir, dan kemampuanmu untuk berbicara atau melakukan action yang membutuhkan tangan terbatas pada kemampuan wujud hewanmu. Namun, transformasi ini tidak memutus konsentrasimu pada sihir yang sudah di-cast, atau menghalangimu melakukan actions yang merupakan bagian dari sihir yang sudah aktif, seperti call lightning.\n\n- Kamu tetap mendapatkan manfaat dari fitur kelas, ras, atau sumber lainnya dan bisa menggunakannya jika wujud barumu secara fisik mampu melakukannya. Namun, kamu tidak bisa menggunakan indra spesialmu, seperti darkvision, kecuali wujud barumu juga memiliki indra tersebut.\n\n- Kamu bisa memilih apakah perlengkapanmu jatuh ke tanah di posisimu, menyatu ke dalam wujud baru, atau tetap dipakai. Perlengkapan yang dipakai berfungsi normal, tetapi GM yang menentukan apakah praktis bagi wujud baru tersebut untuk memakai perlengkapan itu berdasarkan bentuk dan ukurannya. Perlengkapanmu tidak berubah ukuran atau bentuk mengikuti wujud baru, dan perlengkapan apa pun yang tidak bisa dipakai harus jatuh ke tanah atau menyatu. Perlengkapan yang menyatu tidak memberikan efek apa pun sampai kamu meninggalkan wujud tersebut.",
+              "description": "Mulai level 2, kamu bisa menggunakan action untuk berubah wujud secara magis menjadi hewan yang pernah kamu lihat sebelumnya. Kamu bisa menggunakan fitur ini sebanyak **2** kali. Kamu mendapatkan kembali penggunaan yang telah terpakai setelah menyelesaikan short atau long rest.\n\nLevel Druid menentukan hewan apa saja yang bisa kamu tiru, seperti yang tertera pada tabel Beast Shapes. Sebagai contoh, pada level 2, kamu bisa berubah menjadi hewan apa pun dengan challenge rating 1/4 atau lebih rendah yang tidak memiliki kecepatan terbang atau berenang.\n\nKamu bisa bertahan dalam wujud hewan selama beberapa jam sesuai dengan setengah dari level Druid kamu (dibulatkan ke bawah). Setelah itu, kamu akan kembali ke wujud normal kecuali kamu menggunakan penggunaan fitur ini lagi. Kamu bisa kembali ke wujud normal lebih awal dengan menggunakan bonus action pada giliranmu. Kamu akan otomatis kembali ke wujud normal jika menjadi Unconscious, hit points mencapai 0, atau mati.\n\nSelama kamu bertransformasi, aturan berikut berlaku:\n\n- Statistik permainanmu digantikan oleh statistik hewan tersebut, tetapi kamu tetap mempertahankan alignment, kepribadian, serta skor Intelligence, Wisdom, dan Charisma milikmu. Kamu juga tetap memiliki semua proficiency skill dan saving throw, ditambah dengan proficiency yang dimiliki makhluk tersebut. Jika makhluk itu memiliki proficiency yang sama denganmu dan bonus pada stat block-nya lebih tinggi, gunakan bonus milik makhluk tersebut. Jika makhluk itu memiliki legendary atau lair actions, kamu tidak bisa menggunakannya.\n\n- Saat bertransformasi, kamu menggunakan hit points dan Hit Dice milik hewan tersebut. Ketika kembali ke wujud normal, hit points kamu kembali ke jumlah sebelum kamu bertransformasi. Namun, jika kamu kembali ke wujud normal karena hit points mencapai 0, sisa damage yang berlebih akan terbawa ke wujud normalmu. Contohnya, jika kamu menerima 10 damage dalam wujud hewan dan hanya tersisa 1 hit point, kamu akan kembali ke wujud normal dan menerima 9 damage. Selama damage berlebih ini tidak membuat wujud normalmu mencapai 0 hit points, kamu tidak akan menjadi Unconscious.\n\n- Kamu tidak bisa cast sihir, dan kemampuanmu untuk berbicara atau melakukan action yang membutuhkan tangan terbatas pada kemampuan wujud hewanmu. Namun, transformasi ini tidak memutus konsentrasimu pada sihir yang sudah di-cast, atau menghalangimu melakukan actions yang merupakan bagian dari sihir yang sudah aktif, seperti call lightning.\n\n- Kamu tetap mendapatkan manfaat dari fitur kelas, ras, atau sumber lainnya dan bisa menggunakannya jika wujud barumu secara fisik mampu melakukannya. Namun, kamu tidak bisa menggunakan indra spesialmu, seperti darkvision, kecuali wujud barumu juga memiliki indra tersebut.\n\n- Kamu bisa memilih apakah perlengkapanmu jatuh ke tanah di posisimu, menyatu ke dalam wujud baru, atau tetap dipakai. Perlengkapan yang dipakai berfungsi normal, tetapi GM yang menentukan apakah praktis bagi wujud baru tersebut untuk memakai perlengkapan itu berdasarkan bentuk dan ukurannya. Perlengkapanmu tidak berubah ukuran atau bentuk mengikuti wujud baru, dan perlengkapan apa pun yang tidak bisa dipakai harus jatuh ke tanah atau menyatu. Perlengkapan yang menyatu tidak memberikan efek apa pun sampai kamu meninggalkan wujud tersebut.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Bonus Action",
@@ -4634,7 +4634,7 @@
             },
             {
               "name": "Ability Score Improvement",
-              "description": "Ketika kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Ketika kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -4645,7 +4645,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1.",
+              "summary": "Tingkatkan satu ability score sebesar 2 atau dua ability score sebesar 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -4736,7 +4736,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Ketika kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Ketika kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -4747,7 +4747,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1.",
+              "summary": "Tingkatkan satu ability score sebesar 2 atau dua ability score sebesar 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -4846,7 +4846,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Ketika kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Ketika kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -4857,7 +4857,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1.",
+              "summary": "Tingkatkan satu ability score sebesar 2 atau dua ability score sebesar 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -4973,7 +4973,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Ketika kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu dapat meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Ketika kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu dapat meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -4984,7 +4984,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1.",
+              "summary": "Tingkatkan satu ability score sebesar 2 atau dua ability score sebesar 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -5472,7 +5472,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Ketika kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Ketika kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -5483,7 +5483,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1.",
+              "summary": "Tingkatkan satu ability score sebesar 2 atau dua ability score sebesar 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -5538,7 +5538,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Ketika kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Ketika kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -5549,7 +5549,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1.",
+              "summary": "Tingkatkan satu ability score sebesar 2 atau dua ability score sebesar 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -5604,7 +5604,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kemudian pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui angka **20** menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kemudian pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui angka **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -5615,7 +5615,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar **2** atau dua skor kemampuan sebesar **1**.",
+              "summary": "Tingkatkan satu ability score sebesar **2** atau dua ability score sebesar **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -5736,7 +5736,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kemudian pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui angka **20** menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kemudian pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui angka **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -5747,7 +5747,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar **2** atau dua skor kemampuan sebesar **1**.",
+              "summary": "Tingkatkan satu ability score sebesar **2** atau dua ability score sebesar **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -5802,7 +5802,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -5813,7 +5813,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Naikkan satu skor kemampuan sebesar **2** atau dua skor kemampuan sebesar **1**.",
+              "summary": "Naikkan satu ability score sebesar **2** atau dua ability score sebesar **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -5868,7 +5868,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -5879,7 +5879,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Naikkan satu skor kemampuan sebesar **2** atau dua skor kemampuan sebesar **1**.",
+              "summary": "Naikkan satu ability score sebesar **2** atau dua ability score sebesar **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -5993,7 +5993,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -6004,7 +6004,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Naikkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1 pada level 4, 8, 12, 16, dan 19.",
+              "summary": "Naikkan satu ability score sebesar 2 atau dua ability score sebesar 1 pada level 4, 8, 12, 16, dan 19.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -6254,7 +6254,7 @@
         "19": 3,
         "20": 3
       },
-      "description": "Pada level 2, Anda memilih gaya pertarungan tertentu sebagai spesialisasi Anda. Pilih satu dari opsi berikut. Anda tidak dapat memilih opsi Gaya Pertarungan yang sama lebih dari sekali, bahkan jika Anda kemudian memiliki kesempatan untuk memilih lagi.\n\n#### Archery\nAnda mendapatkan bonus +2 ke roll serangan yang Anda buat dengan senjata jarak jauh.\n\n#### Defense\nSaat Anda mengenakan armor, Anda mendapatkan bonus +1 ke AC.\n\n#### Dueling\nSaat Anda memegang senjata senjata dalam satu tangan dan tidak memegang senjata lain, Anda mendapatkan bonus +2 ke roll damage dengan senjata tersebut.\n\n#### Great Weapon Fighting\nSaat Anda mengayunkan dadu damage dan mendapatkan hasil 1 atau 2 pada serangan yang Anda lakukan dengan senjata dua tangan yang Anda genggam dengan kedua tangan, Anda dapat mengulang roll dadu tersebut dan harus menggunakan hasil baru, bahkan jika hasilnya juga 1 atau 2. Senjata harus memiliki properti two-handed atau versatile untuk Anda mendapatkan manfaat ini.\n\n#### Protection\nSaat makhluk yang Anda lihat menyerang target selain Anda yang berada dalam jarak 5 kaki dari Anda, Anda dapat menggunakan Reaction Anda untuk memberikan Disadvantage pada roll serangan tersebut. Anda harus memegang perisai.\n\n#### Two-Weapon Fighting\nSaat Anda berpertarungan dengan dua senjata, Anda dapat menambahkan modifier kemampuan Anda ke damage dari serangan kedua.\n\n\nAnda memiliki cadangan stamina terbatas yang dapat Anda gunakan untuk melindungi diri sendiri dari damage. Pada giliran Anda, Anda dapat menggunakan bonus action untuk mendapatkan kembali hit points sebesar 1d10 + level fighter Anda. Setelah Anda menggunakan fitur ini, Anda harus menyelesaikan short rest atau long rest sebelum dapat menggunakannya lagi.\n\n\nMulai dari level 2, Anda dapat mendorong diri sendiri melebihi batas normal Anda untuk sesaat. Pada giliran Anda, Anda dapat mengambil satu tindakan tambahan di atas tindakan reguler Anda dan possible bonus action.\n\nSetelah Anda menggunakan fitur ini, Anda harus menyelesaikan short rest atau long rest sebelum dapat menggunakannya lagi. Mulai dari level 17, Anda dapat menggunakan fitur ini dua kali sebelum istirahat, tetapi hanya sekali dalam satu giliran.\n\n\nPada level 3, Anda memilih archetype yang Anda usahakan naungkan dalam gaya dan teknik pertarungan Anda. Pilih Champion, Battle Master, atau Eldritch Knight, semua dijelaskan di akhir deskripsi kelas. Archetype yang Anda pilih akan memberi Anda fitur pada level 3 dan lagi pada level 7, 10, 15, dan 18.\n\n\nKetika Anda mencapai level 4, dan lagi pada level 6, 8, 12, 14, 16, dan 19, Anda dapat meningkatkan satu skor kemampuan pilihan Anda sebesar 2, atau Anda dapat meningkatkan dua skor kemampuan pilihan Anda sebesar 1. Seperti biasa, Anda tidak dapat meningkatkan skor kemampuan di atas 20 menggunakan fitur ini.\n\n\nMulai dari level 5, Anda dapat menyerang dua kali, bukan sekali, setiap kali Anda mengambil tindakan Attack pada giliran Anda.\n\nJumlah serangan meningkat menjadi tiga ketika Anda mencapai level 11 dalam kelas ini dan menjadi empat ketika Anda mencapai level 20 dalam kelas ini.\n\n\nMulai dari level 9, Anda dapat mengulang roll saving throw yang Anda gagal. Jika Anda melakukannya, Anda harus menggunakan roll baru, dan Anda tidak dapat menggunakan fitur ini lagi hingga Anda menyelesaikan long rest.\n\nAnda dapat menggunakan fitur ini dua kali antara long rests mulai dari level 13 dan tiga kali antara long rests mulai dari level 17.\n\n\nBerbagai fighter memilih pendekatan yang berbeda dalam menyempurnakan keahlian pertarungan mereka. Archetype martial yang Anda pilih untuk ditiru mencerminkan pendekatan Anda.",
+      "description": "Pada level 2, Anda memilih gaya pertarungan tertentu sebagai spesialisasi Anda. Pilih satu dari opsi berikut. Anda tidak dapat memilih opsi Gaya Pertarungan yang sama lebih dari sekali, bahkan jika Anda kemudian memiliki kesempatan untuk memilih lagi.\n\n#### Archery\nAnda mendapatkan bonus +2 ke roll serangan yang Anda buat dengan senjata jarak jauh.\n\n#### Defense\nSaat Anda mengenakan armor, Anda mendapatkan bonus +1 ke AC.\n\n#### Dueling\nSaat Anda memegang senjata senjata dalam satu tangan dan tidak memegang senjata lain, Anda mendapatkan bonus +2 ke roll damage dengan senjata tersebut.\n\n#### Great Weapon Fighting\nSaat Anda mengayunkan dadu damage dan mendapatkan hasil 1 atau 2 pada serangan yang Anda lakukan dengan senjata dua tangan yang Anda genggam dengan kedua tangan, Anda dapat mengulang roll dadu tersebut dan harus menggunakan hasil baru, bahkan jika hasilnya juga 1 atau 2. Senjata harus memiliki properti two-handed atau versatile untuk Anda mendapatkan manfaat ini.\n\n#### Protection\nSaat makhluk yang Anda lihat menyerang target selain Anda yang berada dalam jarak 5 kaki dari Anda, Anda dapat menggunakan Reaction Anda untuk memberikan Disadvantage pada roll serangan tersebut. Anda harus memegang perisai.\n\n#### Two-Weapon Fighting\nSaat Anda berpertarungan dengan dua senjata, Anda dapat menambahkan modifier kemampuan Anda ke damage dari serangan kedua.\n\n\nAnda memiliki cadangan stamina terbatas yang dapat Anda gunakan untuk melindungi diri sendiri dari damage. Pada giliran Anda, Anda dapat menggunakan bonus action untuk mendapatkan kembali hit points sebesar 1d10 + level fighter Anda. Setelah Anda menggunakan fitur ini, Anda harus menyelesaikan short rest atau long rest sebelum dapat menggunakannya lagi.\n\n\nMulai dari level 2, Anda dapat mendorong diri sendiri melebihi batas normal Anda untuk sesaat. Pada giliran Anda, Anda dapat mengambil satu tindakan tambahan di atas tindakan reguler Anda dan possible bonus action.\n\nSetelah Anda menggunakan fitur ini, Anda harus menyelesaikan short rest atau long rest sebelum dapat menggunakannya lagi. Mulai dari level 17, Anda dapat menggunakan fitur ini dua kali sebelum istirahat, tetapi hanya sekali dalam satu giliran.\n\n\nPada level 3, Anda memilih archetype yang Anda usahakan naungkan dalam gaya dan teknik pertarungan Anda. Pilih Champion, Battle Master, atau Eldritch Knight, semua dijelaskan di akhir deskripsi kelas. Archetype yang Anda pilih akan memberi Anda fitur pada level 3 dan lagi pada level 7, 10, 15, dan 18.\n\n\nKetika Anda mencapai level 4, dan lagi pada level 6, 8, 12, 14, 16, dan 19, Anda dapat meningkatkan satu ability score pilihan Anda sebesar 2, atau Anda dapat meningkatkan dua ability score pilihan Anda sebesar 1. Seperti biasa, Anda tidak dapat meningkatkan ability score di atas 20 menggunakan fitur ini.\n\n\nMulai dari level 5, Anda dapat menyerang dua kali, bukan sekali, setiap kali Anda mengambil tindakan Attack pada giliran Anda.\n\nJumlah serangan meningkat menjadi tiga ketika Anda mencapai level 11 dalam kelas ini dan menjadi empat ketika Anda mencapai level 20 dalam kelas ini.\n\n\nMulai dari level 9, Anda dapat mengulang roll saving throw yang Anda gagal. Jika Anda melakukannya, Anda harus menggunakan roll baru, dan Anda tidak dapat menggunakan fitur ini lagi hingga Anda menyelesaikan long rest.\n\nAnda dapat menggunakan fitur ini dua kali antara long rests mulai dari level 13 dan tiga kali antara long rests mulai dari level 17.\n\n\nBerbagai fighter memilih pendekatan yang berbeda dalam menyempurnakan keahlian pertarungan mereka. Archetype martial yang Anda pilih untuk ditiru mencerminkan pendekatan Anda.",
       "source": "PHB",
       "recommendation": {
         "is_recommended": true,
@@ -6651,7 +6651,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Ketika kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar 2, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar 1. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui 20 menggunakan fitur ini.",
+              "description": "Ketika kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar 2, atau meningkatkan dua ability score pilihanmu masing-masing sebesar 1. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui 20 menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -6662,7 +6662,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1 pada level 4, 8, 12, 16, dan 19.",
+              "summary": "Tingkatkan satu ability score sebesar 2 atau dua ability score sebesar 1 pada level 4, 8, 12, 16, dan 19.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -6854,7 +6854,7 @@
             },
             {
               "name": "Stillness of Mind",
-              "description": "Mulai level 7, kamu bisa menggunakan action untuk mengakhiri satu efek pada dirimu yang menyebabkan kamu menjadi Terpesona atau Takut.",
+              "description": "Mulai level 7, kamu bisa menggunakan action untuk mengakhiri satu efek pada dirimu yang menyebabkan kamu menjadi Charmed atau Frightened.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Action",
@@ -6865,7 +6865,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Gunakan action untuk menghilangkan efek Terpesona atau Takut pada dirimu sendiri.",
+              "summary": "Gunakan action untuk menghilangkan efek Charmed atau Frightened pada dirimu sendiri.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -6887,7 +6887,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -6898,7 +6898,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar 2, atau dua skor kemampuan sebesar 1, pada level 4, 8, 12, 16, dan 19.",
+              "summary": "Tingkatkan satu ability score sebesar 2, atau dua ability score sebesar 1, pada level 4, 8, 12, 16, dan 19.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -7019,7 +7019,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -7030,7 +7030,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar 2, atau dua skor kemampuan sebesar 1, pada level 4, 8, 12, 16, dan 19.",
+              "summary": "Tingkatkan satu ability score sebesar 2, atau dua ability score sebesar 1, pada level 4, 8, 12, 16, dan 19.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -7085,7 +7085,7 @@
           "features": [
             {
               "name": "Diamond Soul",
-              "description": "Mulai level 14, penguasaan ki memberikanmu proficiency dalam semua saving throws.\n\nSelain itu, setiap kali kamu melakukan saving throw dan gagal, kamu bisa menghabiskan **1** ki point untuk mengulang lemparan tersebut dan menggunakan hasil yang kedua.",
+              "description": "Mulai level 14, penguasaan ki memberikanmu proficiency dalam semua saving throws.\n\nSelain itu, setiap kali kamu melakukan saving throw dan gagal, kamu bisa menghabiskan **1** ki point untuk mengulang roll tersebut dan menggunakan hasil yang kedua.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -7118,7 +7118,7 @@
           "features": [
             {
               "name": "Timeless Body",
-              "description": "Pada level 15, ki dalam dirimu menopang tubuhmu sehingga kamu tidak mengalami kelemahan akibat usia tua, dan kamu tidak bisa ditua kan secara magis. Meski begitu, kamu tetap bisa mati karena usia tua. Selain itu, kamu tidak lagi membutuhkan makanan atau air.",
+              "description": "Pada level 15, ki dalam dirimu menopang tubuhmu sehingga kamu tidak mengalami kelemahan akibat usia tua, dan kamu tidak bisa dibuat menua secara magis. Meski begitu, kamu tetap bisa mati karena usia tua. Selain itu, kamu tidak lagi membutuhkan makanan atau air.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -7129,7 +7129,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Kamu tidak lagi butuh makan atau minum, tidak mengalami penurunan fisik karena usia tua, dan tidak bisa ditua kan secara magis.",
+              "summary": "Kamu tidak lagi butuh makan atau minum, tidak mengalami penurunan fisik karena usia tua, dan tidak bisa dibuat menua secara magis.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -7151,7 +7151,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Ketika kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Ketika kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -7162,7 +7162,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1 pada level 4, 8, 12, 16, dan 19.",
+              "summary": "Tingkatkan satu ability score sebesar 2 atau dua ability score sebesar 1 pada level 4, 8, 12, 16, dan 19.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -7217,7 +7217,7 @@
           "features": [
             {
               "name": "Empty Body",
-              "description": "Mulai level 18, kamu bisa menggunakan action untuk menghabiskan **4** ki point agar menjadi tidak terlihat selama **1** menit. Selama waktu tersebut, kamu juga memiliki resistansi terhadap semua jenis damage kecuali force damage.\n\nSelain itu, kamu bisa menghabiskan **8** ki point untuk cast sihir astral projection tanpa membutuhkan komponen material. Saat melakukannya, kamu tidak bisa membawa makhluk lain bersamamu.",
+              "description": "Mulai level 18, kamu bisa menggunakan action untuk menghabiskan **4** ki point agar menjadi Invisible selama **1** menit. Selama waktu tersebut, kamu juga memiliki resistansi terhadap semua jenis damage kecuali force damage.\n\nSelain itu, kamu bisa menghabiskan **8** ki point untuk cast sihir astral projection tanpa membutuhkan komponen material. Saat melakukannya, kamu tidak bisa membawa makhluk lain bersamamu.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Action",
@@ -7228,7 +7228,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Habiskan 4 ki point untuk menjadi tidak terlihat dan mendapat resistansi damage selama 1 menit, atau 8 ki point untuk melakukan astral projection sendirian.",
+              "summary": "Habiskan 4 ki point untuk menjadi Invisible dan mendapat resistansi damage selama 1 menit, atau 8 ki point untuk melakukan astral projection sendirian.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -7250,7 +7250,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Ketika kamu mencapai level 4, dan kemudian pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Ketika kamu mencapai level 4, dan kemudian pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -7261,7 +7261,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1 pada level 4, 8, 12, 16, dan 19.",
+              "summary": "Tingkatkan satu ability score sebesar 2 atau dua ability score sebesar 1 pada level 4, 8, 12, 16, dan 19.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -7833,7 +7833,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat mencapai level 4, dan kembali pada level 8, 12, 16, serta 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Saat mencapai level 4, dan kembali pada level 8, 12, 16, serta 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -7844,7 +7844,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan masing-masing sebesar 1.",
+              "summary": "Tingkatkan satu ability score sebesar 2 atau dua ability score masing-masing sebesar 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -7976,7 +7976,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu dapat meningkatkan satu skor kemampuan pilihanmu sebesar 2, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar 1. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui 20 menggunakan fitur ini.",
+              "description": "Saat mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu dapat meningkatkan satu ability score pilihanmu sebesar 2, atau meningkatkan dua ability score pilihanmu masing-masing sebesar 1. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui 20 menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -7987,7 +7987,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1 pada level 4, 8, 12, 16, dan 19.",
+              "summary": "Tingkatkan satu ability score sebesar 2 atau dua ability score sebesar 1 pada level 4, 8, 12, 16, dan 19.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -8096,7 +8096,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu dapat meningkatkan satu skor kemampuan pilihanmu sebesar 2, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar 1. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui 20 menggunakan fitur ini.",
+              "description": "Saat mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu dapat meningkatkan satu ability score pilihanmu sebesar 2, atau meningkatkan dua ability score pilihanmu masing-masing sebesar 1. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui 20 menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -8107,7 +8107,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1.",
+              "summary": "Tingkatkan satu ability score sebesar 2 atau dua ability score sebesar 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -8220,7 +8220,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar 2, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar 1. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui 20 menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar 2, atau meningkatkan dua ability score pilihanmu masing-masing sebesar 1. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui 20 menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -8231,7 +8231,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Meningkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1.",
+              "summary": "Meningkatkan satu ability score sebesar 2 atau dua ability score sebesar 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -8309,7 +8309,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar 2, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar 1. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui 20 menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar 2, atau meningkatkan dua ability score pilihanmu masing-masing sebesar 1. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui 20 menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -8320,7 +8320,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Meningkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1.",
+              "summary": "Meningkatkan satu ability score sebesar 2 atau dua ability score sebesar 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -8655,7 +8655,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Mendapatkan bonus proficiency ganda untuk beberapa check di medan favorit dan memperoleh berbagai keuntungan saat menjelajah di wilayah tersebut.",
+              "summary": "Mendapatkan bonus proficiency ganda untuk beberapa check di medan favorit dan memperoleh berbagai Advantage saat menjelajah di wilayah tersebut.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -8811,7 +8811,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -8822,7 +8822,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1.",
+              "summary": "Tingkatkan satu ability score sebesar 2 atau dua ability score sebesar 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -9014,7 +9014,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -9025,7 +9025,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Meningkatkan satu skor kemampuan sebesar **2** atau dua skor kemampuan sebesar **1**.",
+              "summary": "Meningkatkan satu ability score sebesar **2** atau dua ability score sebesar **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -9200,7 +9200,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui angka **20** menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui angka **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -9211,7 +9211,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Meningkatkan satu skor kemampuan sebesar **2** atau dua skor kemampuan sebesar **1**.",
+              "summary": "Meningkatkan satu ability score sebesar **2** atau dua ability score sebesar **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -9370,7 +9370,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Ketika kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Ketika kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -9381,7 +9381,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1.",
+              "summary": "Tingkatkan satu ability score sebesar 2 atau dua ability score sebesar 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -9420,7 +9420,7 @@
           "features": [
             {
               "name": "Feral Senses",
-              "description": "Pada level 18, kamu mendapatkan indra supernatural yang membantumu melawan makhluk yang tidak bisa kamu lihat. Saat kamu menyerang makhluk yang tidak terlihat, keterbatasan penglihatanmu tidak memberikan Disadvantage pada attack rolls terhadap makhluk tersebut.\n\nKamu juga menyadari lokasi makhluk tak terlihat apa pun dalam jarak **30 kaki** darimu, asalkan makhluk tersebut tidak sedang bersembunyi darimu dan kamu tidak sedang Buta atau Tuli.",
+              "description": "Pada level 18, kamu mendapatkan indra supernatural yang membantumu melawan makhluk yang tidak bisa kamu lihat. Saat kamu menyerang makhluk yang tidak terlihat, keterbatasan penglihatanmu tidak memberikan Disadvantage pada attack rolls terhadap makhluk tersebut.\n\nKamu juga menyadari lokasi makhluk tak terlihat apa pun dalam jarak **30 kaki** darimu, asalkan makhluk tersebut tidak sedang bersembunyi darimu dan kamu tidak sedang Blinded atau Deafened.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -9459,7 +9459,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Ketika kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Ketika kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -9470,7 +9470,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1.",
+              "summary": "Tingkatkan satu ability score sebesar 2 atau dua ability score sebesar 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -10025,7 +10025,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Ketika kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Ketika kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -10036,7 +10036,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar **2** atau dua skor kemampuan masing-masing sebesar **1**.",
+              "summary": "Tingkatkan satu ability score sebesar **2** atau dua ability score masing-masing sebesar **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -10176,7 +10176,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Ketika kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Ketika kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -10187,7 +10187,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar **2** atau dua skor kemampuan sebesar **1**.",
+              "summary": "Tingkatkan satu ability score sebesar **2** atau dua ability score sebesar **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -10242,7 +10242,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Ketika kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Ketika kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -10253,7 +10253,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar **2** atau dua skor kemampuan sebesar **1**.",
+              "summary": "Tingkatkan satu ability score sebesar **2** atau dua ability score sebesar **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -10308,7 +10308,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -10319,7 +10319,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar **2** atau dua skor kemampuan sebesar **1**.",
+              "summary": "Tingkatkan satu ability score sebesar **2** atau dua ability score sebesar **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -10440,7 +10440,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -10451,7 +10451,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar **2** atau dua skor kemampuan sebesar **1**.",
+              "summary": "Tingkatkan satu ability score sebesar **2** atau dua ability score sebesar **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -10539,7 +10539,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Ketika kamu mencapai level 4, dan kemudian pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui angka **20** menggunakan fitur ini.",
+              "description": "Ketika kamu mencapai level 4, dan kemudian pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui angka **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -10550,7 +10550,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar **2** atau dua skor kemampuan sebesar **1**.",
+              "summary": "Tingkatkan satu ability score sebesar **2** atau dua ability score sebesar **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -11158,7 +11158,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Ketika kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Ketika kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -11169,7 +11169,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1 pada level 4, 8, 12, 16, dan 19.",
+              "summary": "Tingkatkan satu ability score sebesar 2 atau dua ability score sebesar 1 pada level 4, 8, 12, 16, dan 19.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -11252,7 +11252,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Ketika kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Ketika kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -11263,7 +11263,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1.",
+              "summary": "Tingkatkan satu ability score sebesar 2 atau dua ability score sebesar 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -11393,7 +11393,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Ketika kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui angka **20** menggunakan fitur ini.",
+              "description": "Ketika kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui angka **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -11404,7 +11404,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1.",
+              "summary": "Tingkatkan satu ability score sebesar 2 atau dua ability score sebesar 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -11503,7 +11503,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Ketika kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui angka **20** menggunakan fitur ini.",
+              "description": "Ketika kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui angka **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -11514,7 +11514,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1.",
+              "summary": "Tingkatkan satu ability score sebesar 2 atau dua ability score sebesar 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -11670,7 +11670,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Ketika kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Ketika kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -11681,7 +11681,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1.",
+              "summary": "Tingkatkan satu ability score sebesar 2 atau dua ability score sebesar 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -11888,7 +11888,7 @@
         "19": 19,
         "20": 20
       },
-      "description": "Sebuah peristiwa di masa lalumu, atau dalam kehidupan orang tua maupun leluhurmu, telah meninggalkan jejak yang tak terhapuskan dan memberimu kekuatan sihir arcane. Sumber sihir inilah, apa pun asalnya, yang menjadi bahan bakar spell-mantramu.\n\n#### Cantrips\n\nPada level 1, kamu menguasai empat cantrip pilihanmu dari daftar sihir sorcerer. Kamu akan mempelajari cantrip sorcerer tambahan pada level yang lebih tinggi, sebagaimana tertera pada kolom Cantrips Known di tabel Sorcerer.\n\n#### Spell Slots\n\nTabel Sorcerer menunjukkan berapa banyak spell slots yang kamu miliki untuk cast sihir level 1 ke atas. Untuk cast salah satu sihir ini, kamu harus menghabiskan satu slot yang levelnya setara atau lebih tinggi dari level sihir tersebut. Kamu mendapatkan kembali semua spell slots yang telah terpakai setelah menyelesaikan long rest.\n\nSebagai contoh, jika kamu menguasai sihir level 1 *burning hands* dan memiliki spell slot level 1 dan level 2 yang tersedia, kamu bisa cast *burning hands* menggunakan salah satu dari kedua slot tersebut.\n\n#### Spells Known of 1st Level and Higher\n\nKamu menguasai dua sihir level 1 pilihanmu dari daftar sihir sorcerer.\n\nKolom Spells Known pada tabel Sorcerer menunjukkan kapan kamu mempelajari lebih banyak sihir sorcerer pilihanmu. Setiap sihir tersebut harus memiliki level yang sesuai dengan spell slots yang kamu miliki. Misalnya, saat mencapai level 3 di kelas ini, kamu bisa mempelajari satu sihir baru level 1 atau 2.\n\nSelain itu, setiap kali kamu naik level di kelas ini, kamu bisa memilih salah satu sihir sorcerer yang sudah kamu kuasai dan menggantinya dengan sihir lain dari daftar sihir sorcerer, yang levelnya juga harus sesuai dengan spell slots yang kamu miliki.\n\n#### Spellcasting Ability\n\nCharisma adalah kemampuan cast sihirmu untuk sihir sorcerer, karena kekuatan sihirmu bergantung pada kemampuanmu memproyeksikan kehendakmu ke dunia. Kamu menggunakan Charisma setiap kali sebuah sihir merujuk pada kemampuan cast sihirmu. Selain itu, kamu menggunakan modifier Charisma saat menentukan saving throw DC untuk sihir sorcerer yang kamu rapalkan dan saat melakukan attack roll dengannya.\n\n**Spell save DC** = 8 + bonus proficiency + modifier Charisma\n\n**Spell attack modifier** = bonus proficiency + modifier Charisma\n\n#### Spellcasting Focus\n\nKamu bisa menggunakan arcane focus sebagai alat bantu cast sihir sorcerer.\n\nPilihlah sebuah sorcerous origin yang menjelaskan sumber kekuatan sihir bawaanmu: Draconic Bloodline atau Wild Magic, yang keduanya dijelaskan di akhir deskripsi kelas.\n\nPilihanmu memberikan fitur tertentu saat kamu memilihnya di level 1, dan kembali lagi pada level 6, 14, dan 18.\n\nPada level 2, kamu mengakses sumber sihir yang dalam di dalam dirimu. Sumber ini direpresentasikan oleh sorcery points, yang memungkinkanmu menciptakan berbagai efek magis.\n\n#### Sorcery Points\n\nKamu memiliki 2 sorcery points, dan akan mendapatkan lebih banyak saat mencapai level yang lebih tinggi, seperti yang tertera pada kolom Sorcery Points di tabel Sorcerer. Kamu tidak boleh memiliki sorcery points lebih banyak dari yang tertera di tabel untuk levelmu. Kamu mendapatkan kembali semua sorcery points yang terpakai setelah menyelesaikan long rest.\n\n#### Flexible Casting\n\nKamu bisa menggunakan sorcery points untuk mendapatkan spell slots tambahan, atau mengorbankan spell slots untuk mendapatkan sorcery points tambahan. Kamu akan mempelajari cara lain dalam menggunakan sorcery points seiring kenaikan levelmu.\n\n**_Creating Spell Slots._** Kamu bisa mengubah sorcery points yang belum terpakai menjadi satu spell slot menggunakan bonus action pada giliranmu. Tabel Creating Spell Slots menunjukkan biaya untuk membuat spell slot pada level tertentu. Kamu hanya bisa membuat spell slots maksimal hingga level 5.\n\nSetiap spell slot yang dibuat dengan fitur ini akan hilang setelah kamu menyelesaikan long rest.\n\n**Creating Spell Slots (table)**\n\n| Spell Slot Level | Sorcery Point Cost |\n|------------------|--------------------|\n| 1st              | 2                  |\n| 2nd              | 3                  |\n| 3rd              | 5                  |\n| 4th              | 6                  |\n| 5th              | 7                  |\n\n**_Converting a Spell Slot to Sorcery Points._** Sebagai bonus action pada giliranmu, kamu bisa menghabiskan satu spell slot dan mendapatkan sorcery points sejumlah level dari slot tersebut.\n\nPada level 3, kamu mendapatkan kemampuan untuk memodifikasi sihirmu agar sesuai dengan kebutuhanmu. Kamu mendapatkan dua opsi Metamagic pilihanmu dari daftar berikut. Kamu akan mendapatkan satu opsi tambahan pada level 10 dan 17.\n\nKecuali disebutkan lain, kamu hanya bisa menggunakan satu opsi Metamagic pada satu sihir saat merapalkannya.\n\n#### Careful Spell\n\nSaat cast sihir yang memaksa makhluk lain melakukan saving throw, kamu bisa melindungi beberapa makhluk tersebut dari dampak penuh sihirmu. Untuk melakukannya, kamu menghabiskan 1 sorcery point dan memilih sejumlah makhluk hingga maksimal sebesar modifier Karismamu (minimal satu makhluk). Makhluk yang terpilih otomatis berhasil dalam saving throw melawan sihir tersebut.\n\n#### Distant Spell\n\nSaat cast sihir dengan jangkauan 5 kaki atau lebih, kamu bisa menghabiskan 1 sorcery point untuk melipatgandakan jangkauan sihir tersebut.\n\nSaat cast sihir dengan jangkauan sentuhan (touch), kamu bisa menghabiskan 1 sorcery point untuk mengubah jangkauannya menjadi 30 kaki.\n\n#### Empowered Spell\n\nSaat melakukan roll damage untuk sebuah sihir, kamu bisa menghabiskan 1 sorcery point untuk melempar ulang sejumlah dadu damage hingga maksimal sebesar modifier Karismamu (minimal satu). Kamu harus menggunakan hasil roll yang baru.\n\nKamu bisa menggunakan Empowered Spell meskipun sudah menggunakan opsi Metamagic lain saat cast sihir tersebut.\n\n#### Extended Spell\n\nSaat cast sihir dengan durasi 1 menit atau lebih, kamu bisa menghabiskan 1 sorcery point untuk melipatgandakan durasinya, hingga maksimal 24 jam.\n\n#### Heightened Spell\n\nSaat cast sihir yang memaksa makhluk melakukan saving throw untuk menahan efeknya, kamu bisa menghabiskan 3 sorcery points untuk memberikan Disadvantage pada saving throw pertama satu sasaran sihir tersebut.\n\n#### Quickened Spell\n\nSaat cast sihir dengan waktu casting 1 action, kamu bisa menghabiskan 2 sorcery points untuk mengubah waktu casting-nya menjadi 1 bonus action untuk penggunaan kali ini.\n\n#### Subtle Spell\n\nSaat cast sihir, kamu bisa menghabiskan 1 sorcery point untuk merapalkannya tanpa komponen somatik maupun verbal.\n\n#### Twinned Spell\n\nSaat cast sihir yang hanya menyasar satu makhluk dan tidak memiliki jangkauan diri sendiri (self), kamu bisa menghabiskan sorcery points sejumlah level sihir tersebut untuk menyasar makhluk kedua dalam jangkauan dengan sihir yang sama (1 sorcery point jika sihir tersebut adalah cantrip).\n\nSihir yang bisa digunakan haruslah sihir yang tidak mampu menyasar lebih dari satu makhluk pada level sihir saat ini. Contohnya, *magic missile* dan *scorching ray* tidak bisa digunakan, tetapi *ray of frost* dan *chromatic orb* bisa.\n\nKetika mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar 2, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar 1. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui 20 menggunakan fitur ini.\n\nPada level 20, kamu mendapatkan kembali 4 sorcery points yang telah terpakai setiap kali menyelesaikan short rest.\n\nSorcerer yang berbeda mengklaim asal-usul yang berbeda pula untuk sihir bawaan mereka. Meski banyak variasi, sebagian besar asal-usul ini terbagi menjadi dua kategori: garis keturunan naga (draconic bloodline) dan sihir liar (wild magic).",
+      "description": "Sebuah peristiwa di masa lalumu, atau dalam kehidupan orang tua maupun leluhurmu, telah meninggalkan jejak yang tak terhapuskan dan memberimu kekuatan sihir arcane. Sumber sihir inilah, apa pun asalnya, yang menjadi bahan bakar spell-mantramu.\n\n#### Cantrips\n\nPada level 1, kamu menguasai empat cantrip pilihanmu dari daftar sihir sorcerer. Kamu akan mempelajari cantrip sorcerer tambahan pada level yang lebih tinggi, sebagaimana tertera pada kolom Cantrips Known di tabel Sorcerer.\n\n#### Spell Slots\n\nTabel Sorcerer menunjukkan berapa banyak spell slots yang kamu miliki untuk cast sihir level 1 ke atas. Untuk cast salah satu sihir ini, kamu harus menghabiskan satu slot yang levelnya setara atau lebih tinggi dari level sihir tersebut. Kamu mendapatkan kembali semua spell slots yang telah terpakai setelah menyelesaikan long rest.\n\nSebagai contoh, jika kamu menguasai sihir level 1 *burning hands* dan memiliki spell slot level 1 dan level 2 yang tersedia, kamu bisa cast *burning hands* menggunakan salah satu dari kedua slot tersebut.\n\n#### Spells Known of 1st Level and Higher\n\nKamu menguasai dua sihir level 1 pilihanmu dari daftar sihir sorcerer.\n\nKolom Spells Known pada tabel Sorcerer menunjukkan kapan kamu mempelajari lebih banyak sihir sorcerer pilihanmu. Setiap sihir tersebut harus memiliki level yang sesuai dengan spell slots yang kamu miliki. Misalnya, saat mencapai level 3 di kelas ini, kamu bisa mempelajari satu sihir baru level 1 atau 2.\n\nSelain itu, setiap kali kamu naik level di kelas ini, kamu bisa memilih salah satu sihir sorcerer yang sudah kamu kuasai dan menggantinya dengan sihir lain dari daftar sihir sorcerer, yang levelnya juga harus sesuai dengan spell slots yang kamu miliki.\n\n#### Spellcasting Ability\n\nCharisma adalah kemampuan cast sihirmu untuk sihir sorcerer, karena kekuatan sihirmu bergantung pada kemampuanmu memproyeksikan kehendakmu ke dunia. Kamu menggunakan Charisma setiap kali sebuah sihir merujuk pada kemampuan cast sihirmu. Selain itu, kamu menggunakan modifier Charisma saat menentukan saving throw DC untuk sihir sorcerer yang kamu rapalkan dan saat melakukan attack roll dengannya.\n\n**Spell save DC** = 8 + bonus proficiency + modifier Charisma\n\n**Spell attack modifier** = bonus proficiency + modifier Charisma\n\n#### Spellcasting Focus\n\nKamu bisa menggunakan arcane focus sebagai alat bantu cast sihir sorcerer.\n\nPilihlah sebuah sorcerous origin yang menjelaskan sumber kekuatan sihir bawaanmu: Draconic Bloodline atau Wild Magic, yang keduanya dijelaskan di akhir deskripsi kelas.\n\nPilihanmu memberikan fitur tertentu saat kamu memilihnya di level 1, dan kembali lagi pada level 6, 14, dan 18.\n\nPada level 2, kamu mengakses sumber sihir yang dalam di dalam dirimu. Sumber ini direpresentasikan oleh sorcery points, yang memungkinkanmu menciptakan berbagai efek magis.\n\n#### Sorcery Points\n\nKamu memiliki 2 sorcery points, dan akan mendapatkan lebih banyak saat mencapai level yang lebih tinggi, seperti yang tertera pada kolom Sorcery Points di tabel Sorcerer. Kamu tidak boleh memiliki sorcery points lebih banyak dari yang tertera di tabel untuk levelmu. Kamu mendapatkan kembali semua sorcery points yang terpakai setelah menyelesaikan long rest.\n\n#### Flexible Casting\n\nKamu bisa menggunakan sorcery points untuk mendapatkan spell slots tambahan, atau mengorbankan spell slots untuk mendapatkan sorcery points tambahan. Kamu akan mempelajari cara lain dalam menggunakan sorcery points seiring kenaikan levelmu.\n\n**_Creating Spell Slots._** Kamu bisa mengubah sorcery points yang belum terpakai menjadi satu spell slot menggunakan bonus action pada giliranmu. Tabel Creating Spell Slots menunjukkan biaya untuk membuat spell slot pada level tertentu. Kamu hanya bisa membuat spell slots maksimal hingga level 5.\n\nSetiap spell slot yang dibuat dengan fitur ini akan hilang setelah kamu menyelesaikan long rest.\n\n**Creating Spell Slots (table)**\n\n| Spell Slot Level | Sorcery Point Cost |\n|------------------|--------------------|\n| 1st              | 2                  |\n| 2nd              | 3                  |\n| 3rd              | 5                  |\n| 4th              | 6                  |\n| 5th              | 7                  |\n\n**_Converting a Spell Slot to Sorcery Points._** Sebagai bonus action pada giliranmu, kamu bisa menghabiskan satu spell slot dan mendapatkan sorcery points sejumlah level dari slot tersebut.\n\nPada level 3, kamu mendapatkan kemampuan untuk memodifikasi sihirmu agar sesuai dengan kebutuhanmu. Kamu mendapatkan dua opsi Metamagic pilihanmu dari daftar berikut. Kamu akan mendapatkan satu opsi tambahan pada level 10 dan 17.\n\nKecuali disebutkan lain, kamu hanya bisa menggunakan satu opsi Metamagic pada satu sihir saat merapalkannya.\n\n#### Careful Spell\n\nSaat cast sihir yang memaksa makhluk lain melakukan saving throw, kamu bisa melindungi beberapa makhluk tersebut dari dampak penuh sihirmu. Untuk melakukannya, kamu menghabiskan 1 sorcery point dan memilih sejumlah makhluk hingga maksimal sebesar modifier Karismamu (minimal satu makhluk). Makhluk yang terpilih otomatis berhasil dalam saving throw melawan sihir tersebut.\n\n#### Distant Spell\n\nSaat cast sihir dengan jangkauan 5 kaki atau lebih, kamu bisa menghabiskan 1 sorcery point untuk melipatgandakan jangkauan sihir tersebut.\n\nSaat cast sihir dengan jangkauan sentuhan (touch), kamu bisa menghabiskan 1 sorcery point untuk mengubah jangkauannya menjadi 30 kaki.\n\n#### Empowered Spell\n\nSaat melakukan roll damage untuk sebuah sihir, kamu bisa menghabiskan 1 sorcery point untuk melempar ulang sejumlah dadu damage hingga maksimal sebesar modifier Karismamu (minimal satu). Kamu harus menggunakan hasil roll yang baru.\n\nKamu bisa menggunakan Empowered Spell meskipun sudah menggunakan opsi Metamagic lain saat cast sihir tersebut.\n\n#### Extended Spell\n\nSaat cast sihir dengan durasi 1 menit atau lebih, kamu bisa menghabiskan 1 sorcery point untuk melipatgandakan durasinya, hingga maksimal 24 jam.\n\n#### Heightened Spell\n\nSaat cast sihir yang memaksa makhluk melakukan saving throw untuk menahan efeknya, kamu bisa menghabiskan 3 sorcery points untuk memberikan Disadvantage pada saving throw pertama satu sasaran sihir tersebut.\n\n#### Quickened Spell\n\nSaat cast sihir dengan waktu casting 1 action, kamu bisa menghabiskan 2 sorcery points untuk mengubah waktu casting-nya menjadi 1 bonus action untuk penggunaan kali ini.\n\n#### Subtle Spell\n\nSaat cast sihir, kamu bisa menghabiskan 1 sorcery point untuk merapalkannya tanpa komponen somatik maupun verbal.\n\n#### Twinned Spell\n\nSaat cast sihir yang hanya menyasar satu makhluk dan tidak memiliki jangkauan diri sendiri (self), kamu bisa menghabiskan sorcery points sejumlah level sihir tersebut untuk menyasar makhluk kedua dalam jangkauan dengan sihir yang sama (1 sorcery point jika sihir tersebut adalah cantrip).\n\nSihir yang bisa digunakan haruslah sihir yang tidak mampu menyasar lebih dari satu makhluk pada level sihir saat ini. Contohnya, *magic missile* dan *scorching ray* tidak bisa digunakan, tetapi *ray of frost* dan *chromatic orb* bisa.\n\nKetika mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar 2, atau meningkatkan dua ability score pilihanmu masing-masing sebesar 1. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui 20 menggunakan fitur ini.\n\nPada level 20, kamu mendapatkan kembali 4 sorcery points yang telah terpakai setiap kali menyelesaikan short rest.\n\nSorcerer yang berbeda mengklaim asal-usul yang berbeda pula untuk sihir bawaan mereka. Meski banyak variasi, sebagian besar asal-usul ini terbagi menjadi dua kategori: garis keturunan naga (draconic bloodline) dan sihir liar (wild magic).",
       "source": "PHB",
       "recommendation": {
         "is_recommended": false,
@@ -12247,7 +12247,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -12258,7 +12258,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Naikkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1.",
+              "summary": "Naikkan satu ability score sebesar 2 atau dua ability score sebesar 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -12501,7 +12501,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -12512,7 +12512,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Naikkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1 pada level 4, 8, 12, 16, dan 19.",
+              "summary": "Naikkan satu ability score sebesar 2 atau dua ability score sebesar 1 pada level 4, 8, 12, 16, dan 19.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -12712,7 +12712,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui angka **20** menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui angka **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -12723,7 +12723,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Meningkatkan satu skor kemampuan sebesar **2** atau dua skor kemampuan sebesar **1** pada level 4, 8, 12, 16, dan 19.",
+              "summary": "Meningkatkan satu ability score sebesar **2** atau dua ability score sebesar **1** pada level 4, 8, 12, 16, dan 19.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -13041,7 +13041,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -13052,7 +13052,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Meningkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1, maksimal hingga 20.",
+              "summary": "Meningkatkan satu ability score sebesar 2 atau dua ability score sebesar 1, maksimal hingga 20.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -13215,7 +13215,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar 2, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar 1. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui 20 menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar 2, atau meningkatkan dua ability score pilihanmu masing-masing sebesar 1. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui 20 menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -13226,7 +13226,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Meningkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1 pada level 4, 8, 12, 16, dan 19.",
+              "summary": "Meningkatkan satu ability score sebesar 2 atau dua ability score sebesar 1 pada level 4, 8, 12, 16, dan 19.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -13643,7 +13643,7 @@
         "19": 8,
         "20": 8
       },
-      "description": "Pada level 1, kamu membuat perjanjian dengan makhluk dunia lain pilihanmu: the Archfey, the Fiend, atau the Great Old One, yang masing-masing dijelaskan di akhir deskripsi kelas ini. Pilihanmu memberikan fitur pada level 1, serta pada level 6, 10, dan 14.\n\n Riset arkana dan sihir yang diberikan oleh patronmu membuatmu mahir dalam menggunakan sihir.\n\n#### Cantrips\n\nKamu menguasai dua cantrip pilihanmu dari daftar sihir Warlock. Kamu akan mempelajari cantrip Warlock tambahan pada level yang lebih tinggi, sebagaimana tertera pada kolom Cantrips Known di tabel Warlock.\n\n#### Spell Slots\n\nTabel Warlock menunjukkan berapa banyak spell slots yang kamu miliki. Tabel tersebut juga menunjukkan level dari slot tersebut; semua spell slots milikmu berada pada level yang sama. Untuk cast sihir Warlock level 1 atau lebih tinggi, kamu harus menghabiskan satu spell slot. Kamu mendapatkan kembali semua spell slots yang telah terpakai setelah menyelesaikan short atau long rest.\n\nSebagai contoh, saat kamu level 5, kamu memiliki dua spell slots level 3. Untuk cast sihir level 1 seperti *thunderwave*, kamu harus menghabiskan salah satu slot tersebut, dan sihir itu akan di-cast sebagai sihir level 3.\n\n#### Spells Known of 1st Level and Higher\n\nPada level 1, kamu menguasai dua sihir level 1 pilihanmu dari daftar sihir Warlock.\n\nKolom Spells Known pada tabel Warlock menunjukkan kapan kamu mempelajari lebih banyak sihir Warlock level 1 atau lebih tinggi. Sihir yang kamu pilih tidak boleh memiliki level yang lebih tinggi dari yang tertera pada kolom Slot Level di tabel untuk levelmu. Contohnya, saat mencapai level 6, kamu mempelajari satu sihir Warlock baru, yang bisa berupa sihir level 1, 2, atau 3.\n\nSelain itu, setiap kali kamu naik level di kelas ini, kamu bisa memilih salah satu sihir Warlock yang kamu kuasai dan menggantinya dengan sihir lain dari daftar sihir Warlock, yang levelnya harus sesuai dengan spell slots yang kamu miliki.\n\n#### Spellcasting Ability\n\nCharisma adalah kemampuan cast sihirmu untuk sihir Warlock, jadi gunakanlah Charisma setiap kali sebuah sihir merujuk pada spellcasting ability. Selain itu, gunakan modifier Charisma saat menentukan saving throw DC untuk sihir Warlock yang kamu cast dan saat melakukan attack roll dengannya.\n\n**Spell save DC** = 8 + bonus proficiency + modifier Charisma\n\n**Spell attack modifier** = bonus proficiency + modifier Charisma\n\n#### Spellcasting Focus\n\nKamu bisa menggunakan arcane focus sebagai fokus cast sihir untuk sihir Warlock milikmu.\n\nDalam studimu tentang ilmu okultisme, kamu telah menemukan eldritch invocations, fragmen pengetahuan terlarang yang memberimu kemampuan magis permanen.\n\nPada level 2, kamu mendapatkan dua eldritch invocations pilihanmu. Opsi invocation tersedia di akhir deskripsi kelas ini. Saat mencapai level Warlock tertentu, kamu mendapatkan invocation tambahan, sebagaimana tertera pada kolom Invocations Known di tabel Warlock.\n\nSelain itu, setiap kali kamu naik level di kelas ini, kamu bisa memilih salah satu invocation yang kamu kuasai dan menggantinya dengan invocation lain yang bisa kamu pelajari pada level tersebut.\n\nPada level 3, patron dunia lainmu memberikan hadiah atas pengabdianmu yang setia. Kamu mendapatkan salah satu fitur berikut pilihanmu.\n\n#### Pact of the Chain\n\nKamu mempelajari sihir *find familiar* dan bisa meng-cast-nya sebagai ritual. Sihir ini tidak dihitung dalam jumlah sihir yang kamu kuasai.\n\nSaat cast sihir ini, kamu bisa memilih salah satu bentuk familiar normal atau salah satu bentuk spesial berikut: imp, pseudodragon, quasit, atau sprite.\n\nSelain itu, ketika kamu mengambil action Attack, kamu bisa melepaskan satu seranganmu untuk membiarkan familiarmu melakukan satu serangannya sendiri menggunakan reaction-nya.\n\n#### Pact of the Blade\n\nKamu bisa menggunakan action untuk menciptakan senjata pakta di tanganmu yang kosong. Kamu bisa memilih bentuk senjata jarak dekat ini setiap kali kamu menciptakannya. Kamu memiliki proficiency dengan senjata tersebut selama kamu memegangnya. Senjata ini dianggap magis untuk tujuan menembus resistance dan immunity terhadap serangan serta damage nonmagis.\n\nSenjata paktamu akan menghilang jika berada lebih dari 5 kaki darimu selama 1 menit atau lebih. Senjata ini juga menghilang jika kamu menggunakan fitur ini lagi, jika kamu menghilangkan senjata tersebut (tidak butuh action), atau jika kamu mati.\n\nKamu bisa mengubah satu senjata magis menjadi senjata paktamu dengan melakukan ritual khusus sambil memegang senjata tersebut. Ritual ini dilakukan selama 1 jam, yang bisa dilakukan saat short rest. Setelah itu, kamu bisa menghilangkan senjata tersebut ke ruang extradimensional, dan senjata itu akan muncul setiap kali kamu menciptakan senjata paktamu. Kamu tidak bisa melakukan ini pada artifact atau senjata sentient. Senjata tersebut berhenti menjadi senjata paktamu jika kamu mati, jika kamu melakukan ritual 1 jam pada senjata lain, atau jika kamu melakukan ritual 1 jam untuk memutus ikatan dengannya. Senjata itu akan muncul di kakimu jika masih berada di ruang extradimensional saat ikatan terputus.\n\n#### Pact of the Tome\n\nPatronmu memberimu grimoire yang disebut Book of Shadows. Saat mendapatkan fitur ini, pilih tiga cantrip dari daftar sihir kelas mana pun (ketiganya tidak harus dari daftar yang sama). Selama buku itu ada padamu, kamu bisa cast cantrip tersebut sesuka hati. Cantrip ini tidak dihitung dalam jumlah cantrip yang kamu kuasai. Jika cantrip tersebut tidak ada di daftar sihir Warlock, mereka tetap dianggap sebagai sihir Warlock bagimu.\n\nJika kamu kehilangan Book of Shadows, kamu bisa melakukan upacara selama 1 jam untuk mendapatkan penggantinya dari patronmu. Upacara ini bisa dilakukan saat short atau long rest, dan akan menghancurkan buku sebelumnya. Buku ini akan menjadi abu saat kamu mati.\n\n> ### Your Pact Boon\n>\n> Setiap opsi Pact Boon menghasilkan makhluk atau objek spesial yang mencerminkan sifat patronmu.\n>\n> **_Pact of the Chain._** Familiar-mu lebih cerdik daripada familiar biasa. Bentuk default-nya bisa mencerminkan patronmu, seperti sprite dan pseudodragon untuk Archfey, serta imp dan quasit untuk Fiend. Karena sifat Great Old One yang tak terduga, bentuk familiar apa pun cocok untuknya.\n>\n> **_Pact of the Blade._** Jika patronmu adalah Archfey, senjatamu mungkin berupa bilah ramping yang dililit tanaman merambat. Jika kamu mengabdi pada Fiend, senjatamu bisa berupa kapak dari logam hitam dengan hiasan api. Jika patronmu adalah Great Old One, senjatamu mungkin berupa tombak kuno dengan permata di ujungnya yang terukir menyerupai mata mengerikan yang tak pernah berkedip.\n>\n> **_Pact of the Tome._** Book of Shadows milikmu mungkin berupa buku mewah bertepi emas berisi sihir enchantment dan illusion pemberian Archfey. Bisa juga berupa buku berat bersampul kulit iblis dengan paku besi, berisi sihir conjuration dan pengetahuan terlarang tentang wilayah gelap kosmos pemberian Fiend. Atau bisa berupa buku harian lusuh milik orang gila yang kehilangan akal karena kontak dengan Great Old One, berisi potongan sihir yang hanya bisa dipahami dan di-cast berkat kegilaanmu yang mulai tumbuh.\n\nSaat mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar 2, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar 1. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui 20 menggunakan fitur ini.\n\nPada level 11, patronmu memberimu rahasia magis yang disebut arcanum. Pilih satu sihir level 6 dari daftar sihir Warlock sebagai arcanum ini.\n\nKamu bisa cast sihir arcanum-mu satu kali tanpa menghabiskan spell slot. Kamu harus menyelesaikan long rest sebelum bisa melakukannya lagi.\n\nPada level yang lebih tinggi, kamu mendapatkan lebih banyak sihir Warlock yang bisa di-cast dengan cara ini: satu sihir level 7 pada level 13, satu sihir level 8 pada level 15, dan satu sihir level 9 pada level 17. Kamu mendapatkan kembali semua penggunaan Mystic Arcanum setelah menyelesaikan long rest.\n\nPada level 20, kamu bisa menarik cadangan kekuatan mistis dari dalam dirimu sambil memohon kepada patronmu untuk memulihkan spell slots yang terpakai. Kamu bisa menghabiskan 1 menit memohon bantuan patronmu untuk memulihkan semua spell slots yang terpakai dari fitur Pact Magic. Setelah memulihkan spell slots dengan fitur ini, kamu harus menyelesaikan long rest sebelum bisa melakukannya lagi.\n\nJika sebuah eldritch invocation memiliki prasyarat, kamu harus memenuhinya untuk mempelajarinya. Kamu bisa mempelajari invocation tersebut tepat saat kamu memenuhi prasyaratnya. Prasyarat level merujuk pada levelmu di kelas ini.\n\n#### Agonizing Blast\n\n*Prasyarat:* cantrip *eldritch blast*\n\nSaat kamu cast *eldritch blast*, tambahkan modifier Charisma pada damage yang dihasilkan saat serangan mengenai sasaran.\n\n#### Armor of Shadows\n\nKamu bisa cast *mage armor* pada dirimu sendiri sesuka hati, tanpa menghabiskan spell slot atau komponen material.\n\n#### Ascendant Step\n\n*Prasyarat: level 9*\n\nKamu bisa cast *levitate* pada dirimu sendiri sesuka hati, tanpa menghabiskan spell slot atau komponen material.\n\n#### Beast Speech\n\nKamu bisa cast *speak with animals* sesuka hati, tanpa menghabiskan spell slot.\n\n#### Beguiling Influence\n\nKamu mendapatkan proficiency dalam skill Deception dan Persuasion.\n\n#### Bewitching Whispers\n\n*Prasyarat: level 7*\n\nKamu bisa cast *compulsion* satu kali menggunakan spell slot Warlock. Kamu tidak bisa melakukannya lagi sampai menyelesaikan long rest.\n\n#### Book of Ancient Secrets\n\n*Prasyarat: fitur Pact of the Tome*\n\nKamu sekarang bisa menuliskan ritual magis di Book of Shadows milikmu. Pilih dua sihir level 1 yang memiliki tag ritual dari daftar sihir kelas mana pun (keduanya tidak harus dari daftar yang sama). Sihir tersebut muncul di buku dan tidak dihitung dalam jumlah sihir yang kamu kuasai. Dengan memegang Book of Shadows, kamu bisa cast sihir terpilih tersebut sebagai ritual. Kamu tidak bisa cast sihir tersebut kecuali sebagai ritual, kecuali jika kamu mempelajarinya melalui cara lain. Kamu juga bisa cast sihir Warlock yang kamu kuasai sebagai ritual jika sihir tersebut memiliki tag ritual.\n\nDalam petualanganmu, kamu bisa menambahkan sihir ritual lain ke Book of Shadows. Saat menemukan sihir tersebut, kamu bisa menambahkannya ke buku jika level sihir tersebut sama dengan atau kurang dari setengah level Warlock-mu (dibulatkan ke atas) dan jika kamu memiliki waktu untuk menyalinnya. Untuk setiap level sihir, proses penyalinan memakan waktu 2 jam dan biaya 50 gp untuk tinta langka yang dibutuhkan.\n\n#### Chains of Carceri\n\n*Prasyarat: level 15, fitur Pact of the Chain*\n\nKamu bisa cast *hold monster* sesuka hati—dengan sasaran celestial, fiend, atau elemental—tanpa menghabiskan spell slot atau komponen material. Kamu harus menyelesaikan long rest sebelum bisa menggunakan invocation ini pada makhluk yang sama lagi.\n\n#### Devil's Sight\n\nKamu bisa melihat dengan normal dalam kegelapan, baik magis maupun nonmagis, hingga jarak 120 kaki.\n\n#### Dreadful Word\n\n*Prasyarat: level 7*\n\nKamu bisa cast *confusion* satu kali menggunakan spell slot Warlock. Kamu tidak bisa melakukannya lagi sampai menyelesaikan long rest.\n\n#### Eldritch Sight\n\nKamu bisa cast *detect magic* sesuka hati, tanpa menghabiskan spell slot.\n\n#### Eldritch Spear\n\n*Prasyarat:* cantrip *eldritch blast*\n\nSaat kamu cast *eldritch blast*, jangkauannya menjadi 300 kaki.\n\n#### Eyes of the Rune Keeper\n\nKamu bisa membaca semua bentuk tulisan.\n\n#### Fiendish Vigor\n\nKamu bisa cast *false life* pada dirimu sendiri sesuka hati sebagai sihir level 1, tanpa menghabiskan spell slot atau komponen material.\n\n#### Gaze of Two Minds\n\nKamu bisa menggunakan action untuk menyentuh humanoid yang bersedia dan melihat melalui indranya hingga akhir giliranmu berikutnya. Selama makhluk tersebut berada di plane eksistensi yang sama denganmu, kamu bisa menggunakan action pada giliran berikutnya untuk mempertahankan koneksi ini, memperpanjang durasinya hingga akhir giliranmu berikutnya. Saat melihat melalui indra makhluk lain, kamu mendapatkan manfaat dari indra spesial yang dimiliki makhluk tersebut, tetapi kamu menjadi Buta dan Tuli terhadap lingkungan sekitarmu sendiri.\n\n#### Lifedrinker\n\n*Prasyarat: level 12, fitur Pact of the Blade*\n\nSaat kamu mengenai makhluk dengan senjata paktamu, makhluk tersebut menerima necrotic damage tambahan sebesar modifier Charisma-mu (minimal 1).\n\n#### Mask of Many Faces\n\nKamu bisa cast *disguise self* sesuka hati, tanpa menghabiskan spell slot.\n\n#### Master of Myriad Forms\n\n*Prasyarat: level 15*\n\nKamu bisa cast *alter self* sesuka hati, tanpa menghabiskan spell slot.\n\n#### Minions of Chaos\n\n*Prasyarat: level 9*\n\nKamu bisa cast *conjure elemental* satu kali menggunakan spell slot Warlock. Kamu tidak bisa melakukannya lagi sampai menyelesaikan long rest.\n\n#### Mire the Mind\n\n*Prasyarat: level 5*\n\nKamu bisa cast *slow* satu kali menggunakan spell slot Warlock. Kamu tidak bisa melakukannya lagi sampai menyelesaikan long rest.\n\n#### Misty Visions\n\nKamu bisa cast *silent image* sesuka hati, tanpa menghabiskan spell slot atau komponen material.\n\n#### One with Shadows\n\n*Prasyarat: level 5*\n\nSaat kamu berada di area cahaya redup atau kegelapan, kamu bisa menggunakan action untuk menjadi Tidak Terlihat sampai kamu bergerak atau mengambil action atau reaction.\n\n#### Otherworldly Leap\n\n*Prasyarat: level 9*\n\nKamu bisa cast *jump* pada dirimu sendiri sesuka hati, tanpa menghabiskan spell slot atau komponen material.\n\n#### Repelling Blast\n\n*Prasyarat:* cantrip *eldritch blast*\n\nSaat kamu mengenai makhluk dengan *eldritch blast*, kamu bisa mendorong makhluk tersebut hingga 10 kaki menjauh darimu dalam garis lurus.\n\n#### Sculptor of Flesh\n\n*Prasyarat: level 7*\n\nKamu bisa cast *polymorph* satu kali menggunakan spell slot Warlock. Kamu tidak bisa melakukannya lagi sampai menyelesaikan long rest.\n\n#### Sign of Ill Omen\n\n*Prasyarat: level 5*\n\nKamu bisa cast *bestow curse* satu kali menggunakan spell slot Warlock. Kamu tidak bisa melakukannya lagi sampai menyelesaikan long rest.\n\n#### Thief of Five Fates\n\nKamu bisa cast *bane* satu kali menggunakan spell slot Warlock. Kamu tidak bisa melakukannya lagi sampai menyelesaikan long rest.\n\n#### Thirsting Blade\n\n*Prasyarat: level 5, fitur Pact of the Blade*\n\nKamu bisa menyerang dengan senjata paktamu dua kali, bukan sekali, setiap kali kamu mengambil action Attack pada giliranmu.\n\n#### Visions of Distant Realms\n\n*Prasyarat: level 15*\n\nKamu bisa cast *arcane eye* sesuka hati, tanpa menghabiskan spell slot.\n\n#### Voice of the Chain Master\n\n*Prasyarat: fitur Pact of the Chain*\n\nKamu bisa berkomunikasi secara telepatis dengan familiar-mu dan melihat melalui indranya selama kalian berada di plane eksistensi yang sama. Selain itu, saat melihat melalui indra familiar-mu, kamu juga bisa berbicara melalui familiar tersebut dengan suaramu sendiri, meskipun familiar-mu biasanya tidak mampu berbicara.\n\n#### Whispers of the Grave\n\n*Prasyarat: level 9*\n\nKamu bisa cast *speak with dead* sesuka hati, tanpa menghabiskan spell slot.\n\n#### Witch Sight\n\n*Prasyarat: level 15*\n\nKamu bisa melihat wujud asli dari shapechanger atau makhluk yang tersembunyi oleh sihir illusion atau transmutation selama makhluk tersebut berada dalam jarak 30 kaki darimu dan dalam jangkauan penglihatan.\n\nMakhluk yang menjadi patron bagi Warlock adalah penghuni perkasa dari plane eksistensi lain—bukan dewa, tetapi kekuatannya hampir setara dewa. Berbagai patron memberikan akses ke kekuatan dan invocation yang berbeda kepada Warlock mereka, dan mengharapkan imbalan yang signifikan sebagai gantinya.\n\nBeberapa patron mengoleksi banyak Warlock, memberikan pengetahuan mistis dengan relatif bebas atau membanggakan kemampuan mereka untuk mengikat manusia fana sesuai kehendak mereka. Patron lain memberikan kekuatan mereka dengan enggan, dan mungkin hanya membuat pakta dengan satu Warlock saja. Warlock yang melayani patron yang sama mungkin menganggap satu sama lain sebagai sekutu, saudara, atau rival.",
+      "description": "Pada level 1, kamu membuat perjanjian dengan makhluk dunia lain pilihanmu: the Archfey, the Fiend, atau the Great Old One, yang masing-masing dijelaskan di akhir deskripsi kelas ini. Pilihanmu memberikan fitur pada level 1, serta pada level 6, 10, dan 14.\n\n Riset arkana dan sihir yang diberikan oleh patronmu membuatmu mahir dalam menggunakan sihir.\n\n#### Cantrips\n\nKamu menguasai dua cantrip pilihanmu dari daftar sihir Warlock. Kamu akan mempelajari cantrip Warlock tambahan pada level yang lebih tinggi, sebagaimana tertera pada kolom Cantrips Known di tabel Warlock.\n\n#### Spell Slots\n\nTabel Warlock menunjukkan berapa banyak spell slots yang kamu miliki. Tabel tersebut juga menunjukkan level dari slot tersebut; semua spell slots milikmu berada pada level yang sama. Untuk cast sihir Warlock level 1 atau lebih tinggi, kamu harus menghabiskan satu spell slot. Kamu mendapatkan kembali semua spell slots yang telah terpakai setelah menyelesaikan short atau long rest.\n\nSebagai contoh, saat kamu level 5, kamu memiliki dua spell slots level 3. Untuk cast sihir level 1 seperti *thunderwave*, kamu harus menghabiskan salah satu slot tersebut, dan sihir itu akan di-cast sebagai sihir level 3.\n\n#### Spells Known of 1st Level and Higher\n\nPada level 1, kamu menguasai dua sihir level 1 pilihanmu dari daftar sihir Warlock.\n\nKolom Spells Known pada tabel Warlock menunjukkan kapan kamu mempelajari lebih banyak sihir Warlock level 1 atau lebih tinggi. Sihir yang kamu pilih tidak boleh memiliki level yang lebih tinggi dari yang tertera pada kolom Slot Level di tabel untuk levelmu. Contohnya, saat mencapai level 6, kamu mempelajari satu sihir Warlock baru, yang bisa berupa sihir level 1, 2, atau 3.\n\nSelain itu, setiap kali kamu naik level di kelas ini, kamu bisa memilih salah satu sihir Warlock yang kamu kuasai dan menggantinya dengan sihir lain dari daftar sihir Warlock, yang levelnya harus sesuai dengan spell slots yang kamu miliki.\n\n#### Spellcasting Ability\n\nCharisma adalah kemampuan cast sihirmu untuk sihir Warlock, jadi gunakanlah Charisma setiap kali sebuah sihir merujuk pada spellcasting ability. Selain itu, gunakan modifier Charisma saat menentukan saving throw DC untuk sihir Warlock yang kamu cast dan saat melakukan attack roll dengannya.\n\n**Spell save DC** = 8 + bonus proficiency + modifier Charisma\n\n**Spell attack modifier** = bonus proficiency + modifier Charisma\n\n#### Spellcasting Focus\n\nKamu bisa menggunakan arcane focus sebagai fokus cast sihir untuk sihir Warlock milikmu.\n\nDalam studimu tentang ilmu okultisme, kamu telah menemukan eldritch invocations, fragmen pengetahuan terlarang yang memberimu kemampuan magis permanen.\n\nPada level 2, kamu mendapatkan dua eldritch invocations pilihanmu. Opsi invocation tersedia di akhir deskripsi kelas ini. Saat mencapai level Warlock tertentu, kamu mendapatkan invocation tambahan, sebagaimana tertera pada kolom Invocations Known di tabel Warlock.\n\nSelain itu, setiap kali kamu naik level di kelas ini, kamu bisa memilih salah satu invocation yang kamu kuasai dan menggantinya dengan invocation lain yang bisa kamu pelajari pada level tersebut.\n\nPada level 3, patron dunia lainmu memberikan hadiah atas pengabdianmu yang setia. Kamu mendapatkan salah satu fitur berikut pilihanmu.\n\n#### Pact of the Chain\n\nKamu mempelajari sihir *find familiar* dan bisa meng-cast-nya sebagai ritual. Sihir ini tidak dihitung dalam jumlah sihir yang kamu kuasai.\n\nSaat cast sihir ini, kamu bisa memilih salah satu bentuk familiar normal atau salah satu bentuk spesial berikut: imp, pseudodragon, quasit, atau sprite.\n\nSelain itu, ketika kamu mengambil action Attack, kamu bisa melepaskan satu seranganmu untuk membiarkan familiarmu melakukan satu serangannya sendiri menggunakan reaction-nya.\n\n#### Pact of the Blade\n\nKamu bisa menggunakan action untuk menciptakan senjata pakta di tanganmu yang kosong. Kamu bisa memilih bentuk senjata jarak dekat ini setiap kali kamu menciptakannya. Kamu memiliki proficiency dengan senjata tersebut selama kamu memegangnya. Senjata ini dianggap magis untuk tujuan menembus resistance dan immunity terhadap serangan serta damage nonmagis.\n\nSenjata paktamu akan menghilang jika berada lebih dari 5 kaki darimu selama 1 menit atau lebih. Senjata ini juga menghilang jika kamu menggunakan fitur ini lagi, jika kamu menghilangkan senjata tersebut (tidak butuh action), atau jika kamu mati.\n\nKamu bisa mengubah satu senjata magis menjadi senjata paktamu dengan melakukan ritual khusus sambil memegang senjata tersebut. Ritual ini dilakukan selama 1 jam, yang bisa dilakukan saat short rest. Setelah itu, kamu bisa menghilangkan senjata tersebut ke ruang extradimensional, dan senjata itu akan muncul setiap kali kamu menciptakan senjata paktamu. Kamu tidak bisa melakukan ini pada artifact atau senjata sentient. Senjata tersebut berhenti menjadi senjata paktamu jika kamu mati, jika kamu melakukan ritual 1 jam pada senjata lain, atau jika kamu melakukan ritual 1 jam untuk memutus ikatan dengannya. Senjata itu akan muncul di kakimu jika masih berada di ruang extradimensional saat ikatan terputus.\n\n#### Pact of the Tome\n\nPatronmu memberimu grimoire yang disebut Book of Shadows. Saat mendapatkan fitur ini, pilih tiga cantrip dari daftar sihir kelas mana pun (ketiganya tidak harus dari daftar yang sama). Selama buku itu ada padamu, kamu bisa cast cantrip tersebut sesuka hati. Cantrip ini tidak dihitung dalam jumlah cantrip yang kamu kuasai. Jika cantrip tersebut tidak ada di daftar sihir Warlock, mereka tetap dianggap sebagai sihir Warlock bagimu.\n\nJika kamu kehilangan Book of Shadows, kamu bisa melakukan upacara selama 1 jam untuk mendapatkan penggantinya dari patronmu. Upacara ini bisa dilakukan saat short atau long rest, dan akan menghancurkan buku sebelumnya. Buku ini akan menjadi abu saat kamu mati.\n\n> ### Your Pact Boon\n>\n> Setiap opsi Pact Boon menghasilkan makhluk atau objek spesial yang mencerminkan sifat patronmu.\n>\n> **_Pact of the Chain._** Familiar-mu lebih cerdik daripada familiar biasa. Bentuk default-nya bisa mencerminkan patronmu, seperti sprite dan pseudodragon untuk Archfey, serta imp dan quasit untuk Fiend. Karena sifat Great Old One yang tak terduga, bentuk familiar apa pun cocok untuknya.\n>\n> **_Pact of the Blade._** Jika patronmu adalah Archfey, senjatamu mungkin berupa bilah ramping yang dililit tanaman merambat. Jika kamu mengabdi pada Fiend, senjatamu bisa berupa kapak dari logam hitam dengan hiasan api. Jika patronmu adalah Great Old One, senjatamu mungkin berupa tombak kuno dengan permata di ujungnya yang terukir menyerupai mata mengerikan yang tak pernah berkedip.\n>\n> **_Pact of the Tome._** Book of Shadows milikmu mungkin berupa buku mewah bertepi emas berisi sihir enchantment dan illusion pemberian Archfey. Bisa juga berupa buku berat bersampul kulit iblis dengan paku besi, berisi sihir conjuration dan pengetahuan terlarang tentang wilayah gelap kosmos pemberian Fiend. Atau bisa berupa buku harian lusuh milik orang gila yang kehilangan akal karena kontak dengan Great Old One, berisi potongan sihir yang hanya bisa dipahami dan di-cast berkat kegilaanmu yang mulai tumbuh.\n\nSaat mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar 2, atau meningkatkan dua ability score pilihanmu masing-masing sebesar 1. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui 20 menggunakan fitur ini.\n\nPada level 11, patronmu memberimu rahasia magis yang disebut arcanum. Pilih satu sihir level 6 dari daftar sihir Warlock sebagai arcanum ini.\n\nKamu bisa cast sihir arcanum-mu satu kali tanpa menghabiskan spell slot. Kamu harus menyelesaikan long rest sebelum bisa melakukannya lagi.\n\nPada level yang lebih tinggi, kamu mendapatkan lebih banyak sihir Warlock yang bisa di-cast dengan cara ini: satu sihir level 7 pada level 13, satu sihir level 8 pada level 15, dan satu sihir level 9 pada level 17. Kamu mendapatkan kembali semua penggunaan Mystic Arcanum setelah menyelesaikan long rest.\n\nPada level 20, kamu bisa menarik cadangan kekuatan mistis dari dalam dirimu sambil memohon kepada patronmu untuk memulihkan spell slots yang terpakai. Kamu bisa menghabiskan 1 menit memohon bantuan patronmu untuk memulihkan semua spell slots yang terpakai dari fitur Pact Magic. Setelah memulihkan spell slots dengan fitur ini, kamu harus menyelesaikan long rest sebelum bisa melakukannya lagi.\n\nJika sebuah eldritch invocation memiliki prasyarat, kamu harus memenuhinya untuk mempelajarinya. Kamu bisa mempelajari invocation tersebut tepat saat kamu memenuhi prasyaratnya. Prasyarat level merujuk pada levelmu di kelas ini.\n\n#### Agonizing Blast\n\n*Prasyarat:* cantrip *eldritch blast*\n\nSaat kamu cast *eldritch blast*, tambahkan modifier Charisma pada damage yang dihasilkan saat serangan mengenai sasaran.\n\n#### Armor of Shadows\n\nKamu bisa cast *mage armor* pada dirimu sendiri sesuka hati, tanpa menghabiskan spell slot atau komponen material.\n\n#### Ascendant Step\n\n*Prasyarat: level 9*\n\nKamu bisa cast *levitate* pada dirimu sendiri sesuka hati, tanpa menghabiskan spell slot atau komponen material.\n\n#### Beast Speech\n\nKamu bisa cast *speak with animals* sesuka hati, tanpa menghabiskan spell slot.\n\n#### Beguiling Influence\n\nKamu mendapatkan proficiency dalam skill Deception dan Persuasion.\n\n#### Bewitching Whispers\n\n*Prasyarat: level 7*\n\nKamu bisa cast *compulsion* satu kali menggunakan spell slot Warlock. Kamu tidak bisa melakukannya lagi sampai menyelesaikan long rest.\n\n#### Book of Ancient Secrets\n\n*Prasyarat: fitur Pact of the Tome*\n\nKamu sekarang bisa menuliskan ritual magis di Book of Shadows milikmu. Pilih dua sihir level 1 yang memiliki tag ritual dari daftar sihir kelas mana pun (keduanya tidak harus dari daftar yang sama). Sihir tersebut muncul di buku dan tidak dihitung dalam jumlah sihir yang kamu kuasai. Dengan memegang Book of Shadows, kamu bisa cast sihir terpilih tersebut sebagai ritual. Kamu tidak bisa cast sihir tersebut kecuali sebagai ritual, kecuali jika kamu mempelajarinya melalui cara lain. Kamu juga bisa cast sihir Warlock yang kamu kuasai sebagai ritual jika sihir tersebut memiliki tag ritual.\n\nDalam petualanganmu, kamu bisa menambahkan sihir ritual lain ke Book of Shadows. Saat menemukan sihir tersebut, kamu bisa menambahkannya ke buku jika level sihir tersebut sama dengan atau kurang dari setengah level Warlock-mu (dibulatkan ke atas) dan jika kamu memiliki waktu untuk menyalinnya. Untuk setiap level sihir, proses penyalinan memakan waktu 2 jam dan biaya 50 gp untuk tinta langka yang dibutuhkan.\n\n#### Chains of Carceri\n\n*Prasyarat: level 15, fitur Pact of the Chain*\n\nKamu bisa cast *hold monster* sesuka hati—dengan sasaran celestial, fiend, atau elemental—tanpa menghabiskan spell slot atau komponen material. Kamu harus menyelesaikan long rest sebelum bisa menggunakan invocation ini pada makhluk yang sama lagi.\n\n#### Devil's Sight\n\nKamu bisa melihat dengan normal dalam kegelapan, baik magis maupun nonmagis, hingga jarak 120 kaki.\n\n#### Dreadful Word\n\n*Prasyarat: level 7*\n\nKamu bisa cast *confusion* satu kali menggunakan spell slot Warlock. Kamu tidak bisa melakukannya lagi sampai menyelesaikan long rest.\n\n#### Eldritch Sight\n\nKamu bisa cast *detect magic* sesuka hati, tanpa menghabiskan spell slot.\n\n#### Eldritch Spear\n\n*Prasyarat:* cantrip *eldritch blast*\n\nSaat kamu cast *eldritch blast*, jangkauannya menjadi 300 kaki.\n\n#### Eyes of the Rune Keeper\n\nKamu bisa membaca semua bentuk tulisan.\n\n#### Fiendish Vigor\n\nKamu bisa cast *false life* pada dirimu sendiri sesuka hati sebagai sihir level 1, tanpa menghabiskan spell slot atau komponen material.\n\n#### Gaze of Two Minds\n\nKamu bisa menggunakan action untuk menyentuh humanoid yang bersedia dan melihat melalui indranya hingga akhir giliranmu berikutnya. Selama makhluk tersebut berada di plane eksistensi yang sama denganmu, kamu bisa menggunakan action pada giliran berikutnya untuk mempertahankan koneksi ini, memperpanjang durasinya hingga akhir giliranmu berikutnya. Saat melihat melalui indra makhluk lain, kamu mendapatkan manfaat dari indra spesial yang dimiliki makhluk tersebut, tetapi kamu menjadi Blinded dan Deafened terhadap lingkungan sekitarmu sendiri.\n\n#### Lifedrinker\n\n*Prasyarat: level 12, fitur Pact of the Blade*\n\nSaat kamu mengenai makhluk dengan senjata paktamu, makhluk tersebut menerima necrotic damage tambahan sebesar modifier Charisma-mu (minimal 1).\n\n#### Mask of Many Faces\n\nKamu bisa cast *disguise self* sesuka hati, tanpa menghabiskan spell slot.\n\n#### Master of Myriad Forms\n\n*Prasyarat: level 15*\n\nKamu bisa cast *alter self* sesuka hati, tanpa menghabiskan spell slot.\n\n#### Minions of Chaos\n\n*Prasyarat: level 9*\n\nKamu bisa cast *conjure elemental* satu kali menggunakan spell slot Warlock. Kamu tidak bisa melakukannya lagi sampai menyelesaikan long rest.\n\n#### Mire the Mind\n\n*Prasyarat: level 5*\n\nKamu bisa cast *slow* satu kali menggunakan spell slot Warlock. Kamu tidak bisa melakukannya lagi sampai menyelesaikan long rest.\n\n#### Misty Visions\n\nKamu bisa cast *silent image* sesuka hati, tanpa menghabiskan spell slot atau komponen material.\n\n#### One with Shadows\n\n*Prasyarat: level 5*\n\nSaat kamu berada di area cahaya redup atau kegelapan, kamu bisa menggunakan action untuk menjadi Invisible sampai kamu bergerak atau mengambil action atau reaction.\n\n#### Otherworldly Leap\n\n*Prasyarat: level 9*\n\nKamu bisa cast *jump* pada dirimu sendiri sesuka hati, tanpa menghabiskan spell slot atau komponen material.\n\n#### Repelling Blast\n\n*Prasyarat:* cantrip *eldritch blast*\n\nSaat kamu mengenai makhluk dengan *eldritch blast*, kamu bisa mendorong makhluk tersebut hingga 10 kaki menjauh darimu dalam garis lurus.\n\n#### Sculptor of Flesh\n\n*Prasyarat: level 7*\n\nKamu bisa cast *polymorph* satu kali menggunakan spell slot Warlock. Kamu tidak bisa melakukannya lagi sampai menyelesaikan long rest.\n\n#### Sign of Ill Omen\n\n*Prasyarat: level 5*\n\nKamu bisa cast *bestow curse* satu kali menggunakan spell slot Warlock. Kamu tidak bisa melakukannya lagi sampai menyelesaikan long rest.\n\n#### Thief of Five Fates\n\nKamu bisa cast *bane* satu kali menggunakan spell slot Warlock. Kamu tidak bisa melakukannya lagi sampai menyelesaikan long rest.\n\n#### Thirsting Blade\n\n*Prasyarat: level 5, fitur Pact of the Blade*\n\nKamu bisa menyerang dengan senjata paktamu dua kali, bukan sekali, setiap kali kamu mengambil action Attack pada giliranmu.\n\n#### Visions of Distant Realms\n\n*Prasyarat: level 15*\n\nKamu bisa cast *arcane eye* sesuka hati, tanpa menghabiskan spell slot.\n\n#### Voice of the Chain Master\n\n*Prasyarat: fitur Pact of the Chain*\n\nKamu bisa berkomunikasi secara telepatis dengan familiar-mu dan melihat melalui indranya selama kalian berada di plane eksistensi yang sama. Selain itu, saat melihat melalui indra familiar-mu, kamu juga bisa berbicara melalui familiar tersebut dengan suaramu sendiri, meskipun familiar-mu biasanya tidak mampu berbicara.\n\n#### Whispers of the Grave\n\n*Prasyarat: level 9*\n\nKamu bisa cast *speak with dead* sesuka hati, tanpa menghabiskan spell slot.\n\n#### Witch Sight\n\n*Prasyarat: level 15*\n\nKamu bisa melihat wujud asli dari shapechanger atau makhluk yang tersembunyi oleh sihir illusion atau transmutation selama makhluk tersebut berada dalam jarak 30 kaki darimu dan dalam jangkauan penglihatan.\n\nMakhluk yang menjadi patron bagi Warlock adalah penghuni perkasa dari plane eksistensi lain—bukan dewa, tetapi kekuatannya hampir setara dewa. Berbagai patron memberikan akses ke kekuatan dan invocation yang berbeda kepada Warlock mereka, dan mengharapkan imbalan yang signifikan sebagai gantinya.\n\nBeberapa patron mengoleksi banyak Warlock, memberikan pengetahuan mistis dengan relatif bebas atau membanggakan kemampuan mereka untuk mengikat manusia fana sesuai kehendak mereka. Patron lain memberikan kekuatan mereka dengan enggan, dan mungkin hanya membuat pakta dengan satu Warlock saja. Warlock yang melayani patron yang sama mungkin menganggap satu sama lain sebagai sekutu, saudara, atau rival.",
       "source": "PHB",
       "recommendation": {
         "is_recommended": false,
@@ -13911,7 +13911,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Saat mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -13922,7 +13922,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar **2** atau dua skor kemampuan sebesar **1**.",
+              "summary": "Tingkatkan satu ability score sebesar **2** atau dua ability score sebesar **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -14005,7 +14005,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kemudian pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kemudian pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -14016,7 +14016,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar **2** atau dua skor kemampuan sebesar **1**.",
+              "summary": "Tingkatkan satu ability score sebesar **2** atau dua ability score sebesar **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -14107,7 +14107,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kemudian pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kemudian pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -14118,7 +14118,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar **2** atau dua skor kemampuan sebesar **1**.",
+              "summary": "Tingkatkan satu ability score sebesar **2** atau dua ability score sebesar **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -14217,7 +14217,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kemudian pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kemudian pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -14228,7 +14228,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar **2** atau dua skor kemampuan sebesar **1**.",
+              "summary": "Tingkatkan satu ability score sebesar **2** atau dua ability score sebesar **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -14390,7 +14390,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Ketika kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu dapat meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Ketika kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu dapat meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -14401,7 +14401,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar **2** atau dua skor kemampuan sebesar **1**.",
+              "summary": "Tingkatkan satu ability score sebesar **2** atau dua ability score sebesar **1**.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -14884,7 +14884,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar 2, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar 1. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui 20 menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar 2, atau meningkatkan dua ability score pilihanmu masing-masing sebesar 1. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui 20 menggunakan fitur ini.",
               "featureType": "Passive",
               "actionType": null,
               "uses": null,
@@ -14894,7 +14894,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1.",
+              "summary": "Tingkatkan satu ability score sebesar 2 atau dua ability score sebesar 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -15023,7 +15023,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kembali pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "featureType": "Passive",
               "actionType": null,
               "uses": null,
@@ -15033,7 +15033,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Tingkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1.",
+              "summary": "Tingkatkan satu ability score sebesar 2 atau dua ability score sebesar 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -15166,7 +15166,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "featureType": "Passive",
               "actionType": null,
               "uses": null,
@@ -15176,7 +15176,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Meningkatkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1.",
+              "summary": "Meningkatkan satu ability score sebesar 2 atau dua ability score sebesar 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -15287,7 +15287,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "featureType": "Passive",
               "actionType": null,
               "uses": null,
@@ -15297,7 +15297,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Naikkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1.",
+              "summary": "Naikkan satu ability score sebesar 2 atau dua ability score sebesar 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -15374,7 +15374,7 @@
           "features": [
             {
               "name": "Ability Score Improvement",
-              "description": "Saat kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu skor kemampuan pilihanmu sebesar **2**, atau meningkatkan dua skor kemampuan pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan skor kemampuan melampaui **20** menggunakan fitur ini.",
+              "description": "Saat kamu mencapai level 4, dan kembali lagi pada level 8, 12, 16, dan 19, kamu bisa meningkatkan satu ability score pilihanmu sebesar **2**, atau meningkatkan dua ability score pilihanmu masing-masing sebesar **1**. Seperti biasa, kamu tidak bisa meningkatkan ability score melampaui **20** menggunakan fitur ini.",
               "featureType": "Passive",
               "actionType": null,
               "uses": null,
@@ -15384,7 +15384,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Granted multiple times at class-specific levels",
-              "summary": "Naikkan satu skor kemampuan sebesar 2 atau dua skor kemampuan sebesar 1.",
+              "summary": "Naikkan satu ability score sebesar 2 atau dua ability score sebesar 1.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,

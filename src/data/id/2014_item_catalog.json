@@ -651,7 +651,7 @@
       "description": "Pelana eksotis diperlukan untuk mengendarai gunung air atau terbang apa pun."
     },
     "saddle-military": {
-      "description": "Pelana militer menguatkan pengendaranya, membantu Anda menjaga tempat duduk Anda tetap aktif dalam pertempuran. Ini memberi Anda keuntungan pada pemeriksaan apa pun yang Anda lakukan untuk tetap terpasang."
+      "description": "Pelana militer menguatkan pengendaranya, membantu Anda menjaga tempat duduk Anda tetap aktif dalam pertempuran. Ini memberi Anda Advantage pada pemeriksaan apa pun yang Anda lakukan untuk tetap terpasang."
     },
     "saddle-pack": {
       "description": "Sepasang tas kulit yang dirancang untuk digantung di kedua sisi pelana kuda, digunakan untuk membawa perbekalan dalam perjalanan jauh."
@@ -779,7 +779,7 @@
     "Monk": "Termasuk monk weapon, jadi monk bisa memakai Dexterity alih-alih Strength dan dadu damage Martial Arts dengan senjata ini.",
     "Reach": "Menambah 5 kaki ke jangkauanmu saat menyerang dengan senjata ini, termasuk saat melakukan opportunity attack.",
     "Special": "Senjata ini punya aturan khusus. Lihat Aturan Khusus di bawah.",
-    "Thrown": "Kamu bisa melempar senjata ini untuk melakukan ranged attack, memakai modifier kemampuan yang sama seperti melee attack dengan senjata ini. Lemparan melewati jarak normal, sampai jarak jauh, terkena Disadvantage.",
+    "Thrown": "Kamu bisa melempar senjata ini untuk melakukan ranged attack, memakai modifier kemampuan yang sama seperti melee attack dengan senjata ini. Roll melewati jarak normal, sampai jarak jauh, terkena Disadvantage.",
     "Two-Handed": "Kamu butuh dua tangan untuk menyerang dengan senjata ini.",
     "Versatile": "Senjata ini bisa dipakai dengan satu atau dua tangan. Memegangnya dengan dua tangan untuk melee attack memakai damage dua tangan."
   }
