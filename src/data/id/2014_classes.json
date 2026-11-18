@@ -77,7 +77,7 @@
       "features": [
         {
           "name": "Rage",
-          "description": "Dalam pertempuran, kamu bertarung dengan keganasan primal. Pada giliranmu, kamu bisa masuk ke mode rage menggunakan bonus action. Selama dalam kondisi rage, kamu mendapatkan manfaat berikut jika tidak memakai heavy armor:\n\n- Kamu memiliki Advantage pada Strength check dan Strength saving throw.\n\n- Saat melakukan serangan senjata jarak dekat menggunakan Kekuatan, kamu mendapat bonus **+2** pada roll damage. Bonus ini akan meningkat seiring kenaikan levelmu.\n\n- Kamu memiliki resistansi terhadap bludgeoning damage, tembus, dan potong.\n\nJika kamu bisa cast sihir, kamu tidak dapat cast atau berkonsentrasi pada sihir tersebut selama sedang rage.\n\nKondisi rage ini bertahan selama **1 menit**. Efeknya akan berakhir lebih awal jika kamu dibuat Unconscious, atau jika giliranmu berakhir dan kamu belum menyerang makhluk musuh atau menerima damage sejak akhir giliranmu sebelumnya. Kamu juga bisa mengakhiri rage pada giliranmu menggunakan bonus action.\n\nSetelah kamu menggunakan rage sebanyak batas maksimal sesuai level barbarian kamu, kamu harus menyelesaikan long rest sebelum bisa menggunakan rage kembali. Kamu bisa rage sebanyak **2** kali pada level 1, **3** kali pada level 3, **4** kali pada level 6, **5** kali pada level 12, dan **6** kali pada level 17.",
+          "description": "Di giliranmu, kamu bisa mulai Rage dengan bonus action. Selama Rage, asalkan tidak memakai heavy armor, kamu dapat:\n\n- Advantage di Strength check dan Strength saving throw.\n- +2 damage untuk serangan melee weapon yang memakai Strength. Bonus ini naik di level lebih tinggi.\n- Resistance terhadap bludgeoning, piercing, dan slashing damage, jadi damage jenis itu yang kamu terima dibagi dua.\n\nSelama Rage, kamu tidak bisa cast spell atau menjaga Concentration.\n\nRage bertahan 1 menit. Rage berhenti lebih cepat kalau kamu Unconscious, atau kalau giliranmu selesai dan sejak giliran sebelumnya kamu belum menyerang musuh dan belum kena damage. Kamu juga bisa menghentikannya sendiri di giliranmu dengan bonus action.\n\nKamu bisa Rage 2 kali sebelum harus long rest. Jumlahnya jadi 3 di level 3, 4 di level 6, 5 di level 12, dan 6 di level 17.",
           "type": "feature",
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -91,7 +91,7 @@
           "effect": "Enter a furious battle state",
           "onUse": "Advantage on STR checks and saves, bonus damage on STR melee attacks, resistance to bludgeoning/piercing/slashing damage",
           "scaling": "Rage damage +2 at levels 1-8, +3 at levels 9-15, +4 at level 16+",
-          "summary": "Mendapat Advantage pada cek dan Strength saving throw, resistansi terhadap bludgeoning damage, tembus, dan potong, serta bonus damage serangan senjata jarak dekat.",
+          "summary": "Bonus action untuk mulai Rage: Advantage di Strength check dan Strength saving throw, +2 damage melee pakai Strength, dan resistance terhadap bludgeoning, piercing, dan slashing damage.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -106,7 +106,7 @@
         },
         {
           "name": "Unarmored Defense",
-          "description": "Mulai level 1, selama kamu tidak mengenakan armor dan tidak menggunakan perisai, AC kamu menjadi **10** + modifier Dexterity + modifier Wisdom.",
+          "description": "Selama kamu tidak memakai armor, AC kamu jadi 10 + Dexterity modifier + Constitution modifier. Kamu tetap boleh memakai shield.",
           "type": "feature",
           "featureType": "Passive",
           "actionType": null,
@@ -117,7 +117,7 @@
           "effect": "Calculate AC without armor",
           "onUse": null,
           "scaling": null,
-          "summary": "Menghitung AC menggunakan 10 + modifier Dexterity + modifier Wisdom saat tidak mengenakan armor maupun perisai.",
+          "summary": "Tanpa armor, AC kamu = 10 + Dexterity modifier + Constitution modifier. Shield tetap boleh.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -137,7 +137,7 @@
           "features": [
             {
               "name": "Rage",
-              "description": "Dalam pertempuran, kamu bertarung dengan keganasan primal. Pada giliranmu, kamu bisa masuk ke mode rage menggunakan bonus action. Selama dalam kondisi raging, kamu mendapatkan manfaat berikut jika tidak memakai heavy armor:\n\n- Kamu memiliki Advantage pada Strength check dan Strength saving throw.\n\n- Saat melakukan serangan senjata melee menggunakan Kekuatan, kamu mendapat bonus **+2** pada roll damage. Bonus ini akan meningkat seiring kenaikan levelmu.\n\n- Kamu memiliki resistansi terhadap bludgeoning damage, tembus, dan potong.\n\nJika kamu bisa cast sihir, kamu tidak bisa cast atau berkonsentrasi pada sihir selama dalam kondisi raging.\n\nKondisi rage ini bertahan selama **1 menit**. Efeknya berakhir lebih awal jika kamu dibuat Unconscious, atau jika giliranmu berakhir dan kamu belum menyerang makhluk musuh atau menerima damage sejak giliran terakhirmu. Kamu juga bisa mengakhiri rage pada giliranmu menggunakan bonus action.\n\nSetelah kamu menggunakan rage sebanyak batas maksimal sesuai level barbarian-mu, kamu harus menyelesaikan long rest sebelum bisa menggunakannya kembali. Kamu bisa melakukan rage sebanyak **2** kali pada level 1, **3** kali pada level 3, **4** kali pada level 6, **5** kali pada level 12, dan **6** kali pada level 17.",
+              "description": "Di giliranmu, kamu bisa mulai Rage dengan bonus action. Selama Rage, asalkan tidak memakai heavy armor, kamu dapat:\n\n- Advantage di Strength check dan Strength saving throw.\n- +2 damage untuk serangan melee weapon yang memakai Strength. Bonus ini naik di level lebih tinggi.\n- Resistance terhadap bludgeoning, piercing, dan slashing damage, jadi damage jenis itu yang kamu terima dibagi dua.\n\nSelama Rage, kamu tidak bisa cast spell atau menjaga Concentration.\n\nRage bertahan 1 menit. Rage berhenti lebih cepat kalau kamu Unconscious, atau kalau giliranmu selesai dan sejak giliran sebelumnya kamu belum menyerang musuh dan belum kena damage. Kamu juga bisa menghentikannya sendiri di giliranmu dengan bonus action.\n\nKamu bisa Rage 2 kali sebelum harus long rest. Jumlahnya jadi 3 di level 3, 4 di level 6, 5 di level 12, dan 6 di level 17.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Bonus Action",
@@ -151,7 +151,7 @@
               "effect": null,
               "onUse": "Advantage on STR checks and saves, bonus damage on STR melee attacks, resistance to bludgeoning/piercing/slashing damage",
               "scaling": "Rage damage +2 at levels 1-8, +3 at levels 9-15, +4 at level 16+",
-              "summary": "Masuk ke mode rage untuk mendapat Advantage pada cek dan save Kekuatan, resistansi bludgeoning damage, tembus, dan potong, serta bonus damage serangan melee Kekuatan.",
+              "summary": "Bonus action untuk mulai Rage: Advantage di Strength check dan Strength saving throw, +2 damage melee pakai Strength, dan resistance terhadap bludgeoning, piercing, dan slashing damage.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -166,7 +166,7 @@
             },
             {
               "name": "Unarmored Defense",
-              "description": "Mulai level 1, selama kamu tidak memakai armor dan tidak menggunakan perisai, AC kamu adalah **10** + modifier Dexterity + modifier Wisdom.",
+              "description": "Selama kamu tidak memakai armor, AC kamu jadi 10 + Dexterity modifier + Constitution modifier. Kamu tetap boleh memakai shield.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -177,7 +177,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Saat tidak memakai armor maupun perisai, AC kamu menjadi 10 + modifier Dexterity + modifier Wisdom.",
+              "summary": "Tanpa armor, AC kamu = 10 + Dexterity modifier + Constitution modifier. Shield tetap boleh.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -199,7 +199,7 @@
           "features": [
             {
               "name": "Reckless Attack",
-              "description": "Mulai level 2, kamu bisa mengabaikan pertahananmu demi menyerang dengan penuh keganasan. Saat melakukan serangan pertama di giliranmu, kamu bisa memilih untuk menyerang secara membabi buta (recklessly). Jika melakukannya, kamu mendapatkan Advantage pada attack rolls senjata jarak dekat yang menggunakan Kekuatan selama giliran ini, tetapi attack rolls yang ditujukan kepadamu juga memiliki Advantage hingga giliranmu berikutnya.",
+              "description": "Saat menyerang pertama kali di giliranmu, kamu boleh memilih menyerang secara nekat. Kalau begitu, serangan melee weapon yang memakai Strength dapat Advantage sepanjang giliran ini. Sebagai gantinya, semua attack roll ke kamu juga dapat Advantage sampai giliranmu berikutnya.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Special",
@@ -210,7 +210,7 @@
               "effect": null,
               "onUse": "Gain Advantage on all melee weapon attack rolls using STR this turn — attackers also have Advantage against you until your next turn",
               "scaling": null,
-              "summary": "Mendapatkan Advantage pada attack rolls senjata jarak dekat berbasis Kekuatan giliran ini, tetapi serangan terhadapmu juga memiliki Advantage hingga giliranmu berikutnya.",
+              "summary": "Advantage untuk serangan melee pakai Strength giliran ini, tapi musuh juga dapat Advantage menyerangmu sampai giliranmu berikutnya.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -225,7 +225,7 @@
             },
             {
               "name": "Danger Sense",
-              "description": "Pada level 2, kamu memiliki insting tajam untuk merasakan jika ada sesuatu yang tidak beres di sekitarmu, memberimu keunggulan saat menghindar dari bahaya. Kamu memiliki Advantage pada saving throws Dexterity terhadap efek yang bisa kamu lihat, seperti jebakan dan sihir. Untuk mendapatkan manfaat ini, kamu tidak boleh dalam kondisi Blinded, Deafened, atau Incapacitated.",
+              "description": "Kamu punya firasat tajam saat ada bahaya. Kamu dapat Advantage di Dexterity saving throw melawan efek yang bisa kamu lihat, misalnya jebakan atau spell. Ini tidak berlaku kalau kamu sedang Blinded, Deafened, atau Incapacitated.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -236,7 +236,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Mendapatkan Advantage pada saving throws Dexterity terhadap efek yang bisa kamu lihat, selama kamu tidak sedang Blinded, Deafened, atau Incapacitated.",
+              "summary": "Advantage di Dexterity saving throw melawan efek yang bisa kamu lihat, selama tidak Blinded, Deafened, atau Incapacitated.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -258,7 +258,7 @@
           "features": [
             {
               "name": "Primal Path",
-              "description": "Pada level 3, kamu memilih jalur yang membentuk sifat dari rage milikmu. Pilih antara Path of the Berserker atau Path of the Totem Warrior, yang keduanya dijelaskan di akhir deskripsi kelas. Pilihanmu memberikan fitur pada level 3, dan kemudian lagi pada level 6, 10, dan 14.",
+              "description": "Di level 3, kamu memilih jalan yang membentuk gaya Rage kamu, misalnya Path of the Berserker atau Path of the Totem Warrior. Pilihan ini memberi fitur di level 3, lalu di level 6, 10, dan 14.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -269,7 +269,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Pilih jalur yang menentukan sifat rage kamu, memberikan fitur tambahan pada level 3, 6, 10, dan 14.",
+              "summary": "Pilih subclass Barbarian. Fiturnya datang di level 3, 6, 10, dan 14.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -1067,7 +1067,7 @@
       "features": [
         {
           "name": "Spellcasting: Bard",
-          "description": "Kamu telah belajar untuk mengurai dan membentuk kembali jalinan realitas agar selaras dengan keinginan dan musikmu. Sihir-sihirmu adalah bagian dari repertoar luas yang kamu miliki, sebuah kekuatan magis yang bisa kamu sesuaikan dengan berbagai situasi.",
+          "description": "Kamu bisa cast spell lewat musik dan kata-kata. Spell Bard menjadi bagian dari repertoar kamu, dan bisa kamu sesuaikan dengan situasi.",
           "type": "feature",
           "featureType": "Passive",
           "actionType": null,
@@ -1078,7 +1078,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Kamu bisa cast sihir dengan mengubah jalinan realitas melalui musik dan kekuatan tekadmu.",
+          "summary": "Kamu bisa cast spell Bard lewat musik dan kata-kata.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1093,7 +1093,7 @@
         },
         {
           "name": "Bardic Inspiration (d6)",
-          "description": "Kamu bisa menginspirasi orang lain melalui kata-kata yang menggelora atau musik. Untuk melakukannya, kamu menggunakan bonus action di giliranmu untuk memilih satu makhluk selain dirimu dalam jarak 60 kaki darimu yang bisa mendengarmu. Makhluk itu mendapatkan satu Bardic Inspiration die, yaitu d6. Sekali dalam 10 menit berikutnya, makhluk itu bisa menggulir die dan menambahkannya ke satu ability check, attack roll, atau saving throw yang ia buat. Makhluk bisa menunggu sampai setelah ia menggulir d20 sebelum memutuskan menggunakan Bardic Inspiration die, tetapi harus memutuskan sebelum GM mengatakan apakah roll berhasil atau gagal. Setelah Bardic Inspiration die digulir, itu hilang. Makhluk bisa memiliki hanya satu Bardic Inspiration die sekaligus.\nKamu bisa menggunakan fitur ini sebanyak Charisma modifiermu (minimal sekali). Kamu mendapatkan kembali penggunaan yang dihabiskan saat kamu menyelesaikan long rest.\nBardic Inspiration diemu berubah saat kamu mencapai level tertentu di kelas ini. Die menjadi d8 di level 5, d10 di level 10, dan d12 di level 15.",
+          "description": "Pakai bonus action di giliranmu untuk menyemangati satu makhluk lain (bukan dirimu) dalam jarak 60 feet yang bisa mendengarmu. Makhluk itu mendapat satu dadu Bardic Inspiration, yaitu d6.\n\nDalam 10 menit ke depan, ia boleh melempar dadu itu sekali dan menambahkan hasilnya ke satu ability check, attack roll, atau saving throw. Ia boleh menunggu hasil d20 dulu, tapi harus memutuskan sebelum GM bilang berhasil atau gagal. Setelah dilempar, dadunya hilang. Satu makhluk hanya bisa memegang satu dadu Bardic Inspiration dalam satu waktu.\n\nKamu bisa memakai fitur ini sebanyak Charisma modifier kamu (minimal 1 kali). Semua pemakaian pulih setelah long rest.\n\nDadunya naik jadi d8 di level 5, d10 di level 10, dan d12 di level 15.",
           "type": "feature",
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -1104,7 +1104,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gunakan bonus action untuk memberi satu makhluk dalam jangkauan 60 kaki sebuah **d6** yang bisa ditambahkan ke satu ability check, attack roll, atau saving throw dalam 10 menit.",
+          "summary": "Bonus action: beri teman dalam 60 feet dadu d6 untuk ditambahkan ke satu ability check, attack roll, atau saving throw dalam 10 menit.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -1124,7 +1124,7 @@
           "features": [
             {
               "name": "Spellcasting: Bard",
-              "description": "Kamu telah belajar cara mengurai dan membentuk kembali jalinan realitas agar selaras dengan keinginan dan musikmu. Sihir-sihirmu adalah bagian dari repertoar luas yang kamu miliki, sebuah kekuatan magis yang bisa kamu sesuaikan dengan berbagai situasi.",
+              "description": "Kamu bisa cast spell lewat musik dan kata-kata. Spell Bard menjadi bagian dari repertoar kamu, dan bisa kamu sesuaikan dengan situasi.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -1135,7 +1135,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Kamu bisa cast sihir dengan menyelaraskan keinginan dan musikmu untuk mengubah jalinan realitas.",
+              "summary": "Kamu bisa cast spell Bard lewat musik dan kata-kata.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -1150,7 +1150,7 @@
             },
             {
               "name": "Bardic Inspiration (d6)",
-              "description": "Kamu bisa menginspirasi orang lain melalui kata-kata atau musik yang menggugah. Untuk melakukannya, gunakan Bonus Action pada giliranmu untuk memilih satu makhluk selain dirimu dalam jarak **60 kaki** yang bisa mendengarmu. Makhluk tersebut mendapatkan satu dadu Bardic Inspiration, yaitu **d6**. Dalam waktu **10 menit** ke depan, makhluk tersebut bisa roll dadu ini dan menambahkan hasilnya ke satu ability check, attack roll, atau saving throw yang ia lakukan. Makhluk tersebut boleh menunggu sampai setelah ia roll d20 sebelum memutuskan untuk menggunakan dadu Bardic Inspiration, namun harus memutuskan sebelum GM memberi tahu apakah roll tersebut berhasil atau gagal. Setelah dadu Bardic Inspiration digunakan, dadu tersebut hilang. Seorang makhluk hanya bisa memiliki satu dadu Bardic Inspiration dalam satu waktu.\n\nKamu bisa menggunakan fitur ini sebanyak jumlah modifier Charisma kamu (minimal satu kali). Kamu mendapatkan kembali semua penggunaan yang telah terpakai setelah menyelesaikan long rest.\n\nUkuran dadu Bardic Inspiration kamu akan meningkat saat kamu mencapai level tertentu di kelas ini. Dadu tersebut menjadi **d8** pada level 5, **d10** pada level 10, dan **d12** pada level 15.",
+              "description": "Pakai bonus action di giliranmu untuk menyemangati satu makhluk lain (bukan dirimu) dalam jarak 60 feet yang bisa mendengarmu. Makhluk itu mendapat satu dadu Bardic Inspiration, yaitu d6.\n\nDalam 10 menit ke depan, ia boleh melempar dadu itu sekali dan menambahkan hasilnya ke satu ability check, attack roll, atau saving throw. Ia boleh menunggu hasil d20 dulu, tapi harus memutuskan sebelum GM bilang berhasil atau gagal. Setelah dilempar, dadunya hilang. Satu makhluk hanya bisa memegang satu dadu Bardic Inspiration dalam satu waktu.\n\nKamu bisa memakai fitur ini sebanyak Charisma modifier kamu (minimal 1 kali). Semua pemakaian pulih setelah long rest.\n\nDadunya naik jadi d8 di level 5, d10 di level 10, dan d12 di level 15.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Bonus Action",
@@ -1161,7 +1161,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Gunakan Bonus Action untuk memberi d6 kepada makhluk dalam jarak 60 kaki; bisa ditambahkan ke ability check, attack roll, atau saving throw selama 10 menit.",
+              "summary": "Bonus action: beri teman dalam 60 feet dadu d6 untuk ditambahkan ke satu ability check, attack roll, atau saving throw dalam 10 menit.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -1185,7 +1185,7 @@
           "features": [
             {
               "name": "Jack of All Trades",
-              "description": "Mulai level 2, kamu bisa menambahkan setengah dari bonus proficiency kamu, dibulatkan ke bawah, pada setiap ability check yang kamu lakukan yang sebelumnya tidak menyertakan bonus proficiency tersebut.",
+              "description": "Setiap ability check yang belum memakai Proficiency Bonus kamu dapat tambahan setengah Proficiency Bonus (dibulatkan ke bawah).",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -1196,7 +1196,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Tambahkan setengah dari bonus proficiency kamu (dibulatkan ke bawah) pada setiap ability check yang tidak menggunakan bonus proficiency tersebut.",
+              "summary": "Tambah setengah Proficiency Bonus (bulat ke bawah) ke ability check yang belum memakai Proficiency Bonus.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -1211,7 +1211,7 @@
             },
             {
               "name": "Song of Rest (d6)",
-              "description": "Mulai level 2, kamu bisa menggunakan musik atau orasi yang menenangkan untuk membantu memulihkan rekanmu yang terluka selama short rest. Jika kamu atau makhluk kawan lainnya yang mendengar penampilanmu memulihkan hit points di akhir short rest dengan menggunakan satu atau lebih Hit Dice, masing-masing makhluk tersebut mendapatkan tambahan **1d6** hit points.\n\nTambahan hit points ini akan meningkat saat kamu mencapai level tertentu di kelas ini: menjadi **1d8** pada level 9, **1d10** pada level 13, dan **1d12** pada level 17.",
+              "description": "Saat short rest, kamu bisa memainkan musik atau bercerita untuk memulihkan semangat teman-temanmu. Kamu dan setiap teman yang bisa mendengarmu, yang memulihkan HP dengan memakai Hit Dice di akhir short rest itu, mendapat tambahan 1d6 HP.\n\nDadunya naik jadi 1d8 di level 9, 1d10 di level 13, dan 1d12 di level 17.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -1222,7 +1222,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Saat short rest, kamu dan rekan yang menggunakan Hit Dice untuk memulihkan kesehatan mendapatkan tambahan 1d6 hit points.",
+              "summary": "Saat short rest, kamu dan teman yang memakai Hit Dice dapat tambahan 1d6 HP.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -1246,7 +1246,7 @@
           "features": [
             {
               "name": "Expertise",
-              "description": "Pada level 1, pilih dua dari skill yang kamu kuasai, atau satu skill dan proficiency kamu dengan thieves' tools. Bonus proficiency kamu menjadi dua kali lipat untuk setiap ability check yang menggunakan salah satu dari pilihan tersebut.\n\nPada level 6, kamu bisa memilih dua lagi proficiency (baik skill maupun thieves' tools) untuk mendapatkan manfaat yang sama.",
+              "description": "Pilih dua skill yang sudah kamu kuasai (proficient). Untuk ability check yang memakai skill itu, Proficiency Bonus kamu dihitung dua kali lipat.\n\nDi level 10, kamu boleh memilih dua skill lagi.",
               "type": "feature",
               "choices": {
                 "type": "skills",
@@ -1282,7 +1282,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Choose two more skills at level 6",
-              "summary": "Lipat gandakan bonus proficiency untuk dua skill pilihan, atau satu skill dan thieves' tools.",
+              "summary": "Proficiency Bonus jadi dua kali lipat untuk dua skill pilihanmu.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": true,
@@ -1297,7 +1297,7 @@
             },
             {
               "name": "Bard College",
-              "description": "Pada level 3, kamu mendalami teknik lanjutan dari bard college pilihanmu, seperti College of Lore. Pilihan ini memberimu fitur-fitur khusus pada level 3, serta pada level 6 dan 14.",
+              "description": "Di level 3, kamu masuk ke satu bard college, misalnya College of Lore. Pilihan ini memberi fitur di level 3, lalu di level 6 dan 14.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -1308,7 +1308,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Pilih sebuah bard college untuk mendapatkan fitur spesialisasi pada level 3, 6, dan 14.",
+              "summary": "Pilih subclass Bard. Fiturnya datang di level 3, 6, dan 14.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -1583,7 +1583,7 @@
           "features": [
             {
               "name": "Expertise",
-              "description": "Pada level 1, pilih dua dari proficiency skill milikmu, atau satu proficiency skill dan kemahiranmu dalam menggunakan thieves' tools. Bonus proficiency kamu menjadi dua kali lipat untuk setiap ability check yang menggunakan proficiency yang telah dipilih tersebut.\n\nPada level 6, kamu bisa memilih dua proficiency tambahan (baik skill maupun thieves' tools) untuk mendapatkan manfaat ini.",
+              "description": "Pilih dua skill yang sudah kamu kuasai (proficient). Untuk ability check yang memakai skill itu, Proficiency Bonus kamu dihitung dua kali lipat.\n\nDi level 10, kamu boleh memilih dua skill lagi.",
               "type": "feature",
               "choices": {
                 "type": "skills",
@@ -1619,7 +1619,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Choose two more skills at level 6",
-              "summary": "Menggandakan bonus proficiency untuk dua proficiency skill pilihan, atau satu skill dan thieves' tools.",
+              "summary": "Proficiency Bonus jadi dua kali lipat untuk dua skill pilihanmu.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": true,
@@ -3081,7 +3081,7 @@
       "features": [
         {
           "name": "Spellcasting: Cleric",
-          "description": "Kamu bisa merapalkan sihir cleric dengan berperan sebagai perantara bagi kekuatan ilahi.",
+          "description": "Sebagai perantara kekuatan dewamu, kamu bisa cast spell Cleric.",
           "type": "feature",
           "featureType": "Passive",
           "actionType": null,
@@ -3092,7 +3092,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Merapalkan sihir cleric dengan menjadi perantara kekuatan ilahi.",
+          "summary": "Kamu bisa cast spell Cleric lewat kekuatan dewamu.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3107,7 +3107,7 @@
         },
         {
           "name": "Divine Domain",
-          "description": "Pilih satu domain yang terkait dengan deitamu, seperti Knowledge, Life, Light, Nature, Tempest, Trickery, atau War. Hanya domain Life yang didetailkan dalam OGL SRD. Domain tambahan dijelaskan dalam rulebooks resmi atau produk dari penerbit lain.\nDomainmu memberikanmu domain spells dan fitur lain saat kamu memilihnya di level 1. Juga memberikanmu cara tambahan untuk menggunakan Channel Divinity saat kamu mendapatkan fitur itu di level 2, dan manfaat tambahan di level 6, 8, dan 17.",
+          "description": "Pilih satu domain yang berhubungan dengan dewamu, misalnya Knowledge, Life, Light, Nature, Tempest, Trickery, atau War.\n\nDomain ini langsung memberi domain spells dan fitur lain di level 1. Di level 2, domain juga menambah pilihan Channel Divinity, lalu memberi fitur lagi di level 6, 8, dan 17.",
           "type": "feature",
           "featureType": "Active",
           "actionType": null,
@@ -3118,7 +3118,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Mendapatkan sihir dan fitur khusus berdasarkan domain yang berkaitan dengan dewamu.",
+          "summary": "Pilih subclass Cleric. Fiturnya datang di level 1, 2, 6, 8, dan 17.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3133,7 +3133,7 @@
         },
         {
           "name": "Domain Spells",
-          "description": "Setiap domain memiliki daftar sihir—yang disebut domain spells—yang kamu dapatkan pada level cleric tertentu sesuai deskripsi domain tersebut. Setelah kamu mendapatkan domain spell, sihir tersebut akan selalu dalam kondisi prepared, dan tidak dihitung dalam jumlah maksimal sihir yang bisa kamu persiapkan setiap harinya.\n\nJika kamu memiliki domain spell yang tidak terdaftar dalam daftar sihir cleric, sihir tersebut tetap dianggap sebagai sihir cleric bagimu.",
+          "description": "Setiap domain punya daftar spell sendiri yang kamu dapat di level Cleric tertentu. Domain spell selalu prepared dan tidak dihitung dalam jumlah spell yang bisa kamu prepare setiap hari.\n\nKalau ada domain spell yang tidak ada di daftar spell Cleric, spell itu tetap dihitung sebagai spell Cleric untukmu.",
           "type": "feature",
           "featureType": "Passive",
           "actionType": null,
@@ -3144,7 +3144,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Mendapatkan sihir domain tertentu yang selalu siap digunakan dan tidak mengurangi batas harian sihir yang dipersiapkan.",
+          "summary": "Spell dari domain kamu selalu prepared dan tidak memakan jatah prepare harian.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -3164,7 +3164,7 @@
           "features": [
             {
               "name": "Spellcasting: Cleric",
-              "description": "Sebagai perantara kekuatan ilahi, kamu memiliki kemampuan untuk cast sihir cleric.",
+              "description": "Sebagai perantara kekuatan dewamu, kamu bisa cast spell Cleric.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -3175,7 +3175,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Kamu bisa cast sihir cleric sebagai perantara kekuatan ilahi.",
+              "summary": "Kamu bisa cast spell Cleric lewat kekuatan dewamu.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3190,7 +3190,7 @@
             },
             {
               "name": "Divine Domain",
-              "description": "Pilih satu domain yang berkaitan dengan dewamu, seperti Knowledge, Life, Light, Nature, Tempest, Trickery, atau War. Hanya domain Life yang dijelaskan secara rinci dalam Open Game Licensed SRD. Domain tambahan dapat ditemukan dalam buku aturan resmi atau produk dari penerbit lain.\n\nDomain pilihanmu memberikan domain spells dan fitur lainnya saat kamu memilihnya di level 1. Domain ini juga memberikan cara tambahan untuk menggunakan Channel Divinity saat kamu mendapatkan fitur tersebut di level 2, serta memberikan manfaat tambahan pada level 6, 8, dan 17.",
+              "description": "Pilih satu domain yang berhubungan dengan dewamu, misalnya Knowledge, Life, Light, Nature, Tempest, Trickery, atau War.\n\nDomain ini langsung memberi domain spells dan fitur lain di level 1. Di level 2, domain juga menambah pilihan Channel Divinity, lalu memberi fitur lagi di level 6, 8, dan 17.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -3201,7 +3201,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Pilih domain ilahi untuk mendapatkan sihir dan fitur khusus pada level tertentu.",
+              "summary": "Pilih subclass Cleric. Fiturnya datang di level 1, 2, 6, 8, dan 17.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3216,7 +3216,7 @@
             },
             {
               "name": "Domain Spells",
-              "description": "Setiap domain memiliki daftar sihir—disebut domain spells—yang kamu dapatkan pada level cleric yang tertera dalam deskripsi domain tersebut. Setelah kamu mendapatkan domain spell, sihir tersebut akan selalu dalam kondisi prepared, dan tidak dihitung dalam jumlah maksimal sihir yang bisa kamu siapkan setiap harinya.\n\nJika kamu memiliki domain spell yang tidak terdaftar dalam daftar sihir cleric, sihir tersebut tetap dianggap sebagai sihir cleric bagimu.",
+              "description": "Setiap domain punya daftar spell sendiri yang kamu dapat di level Cleric tertentu. Domain spell selalu prepared dan tidak dihitung dalam jumlah spell yang bisa kamu prepare setiap hari.\n\nKalau ada domain spell yang tidak ada di daftar spell Cleric, spell itu tetap dihitung sebagai spell Cleric untukmu.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -3227,7 +3227,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Dapatkan sihir domain khusus yang selalu siap dan tidak mengurangi batas harian sihirmu.",
+              "summary": "Spell dari domain kamu selalu prepared dan tidak memakan jatah prepare harian.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3251,7 +3251,7 @@
           "features": [
             {
               "name": "Channel Divinity (1/rest)",
-              "description": "Pada level 2, kamu memperoleh kemampuan untuk menyalurkan energi ilahi langsung dari dewamu untuk memicu berbagai efek magis. Kamu memulai dengan dua efek: Turn Undead dan satu efek yang ditentukan oleh domain-mu. Beberapa domain memberikan efek tambahan seiring kenaikan levelmu, sebagaimana tercantum dalam deskripsi domain tersebut.\n\nSaat menggunakan Channel Divinity, kamu memilih efek mana yang ingin diciptakan. Kamu harus menyelesaikan short atau long rest untuk bisa menggunakan Channel Divinity kembali.\n\nBeberapa efek Channel Divinity memerlukan saving throw. Saat menggunakan efek dari kelas ini, DC yang digunakan adalah spell save DC cleric milikmu.\n\nMulai level 6, kamu bisa menggunakan Channel Divinity sebanyak **2** kali di antara waktu istirahat, dan mulai level 18, kamu bisa menggunakannya sebanyak **3** kali. Kamu akan memulihkan semua penggunaan yang telah terpakai setelah menyelesaikan short atau long rest.",
+              "description": "Kamu bisa menyalurkan energi langsung dari dewamu untuk membuat efek sihir. Di awal kamu punya dua pilihan efek: Turn Undead dan satu efek dari domain kamu. Beberapa domain menambah pilihan di level lebih tinggi.\n\nSaat memakai Channel Divinity, pilih satu efek. Setelah itu, kamu harus short rest atau long rest sebelum bisa memakainya lagi.\n\nKalau efeknya meminta saving throw, DC-nya sama dengan spell save DC Cleric kamu.\n\nMulai level 6 kamu bisa memakainya 2 kali di antara rest, dan mulai level 18 jadi 3 kali.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -3262,7 +3262,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Gunakan energi ilahi untuk memicu efek seperti Turn Undead; pulihkan penggunaan setelah short atau long rest.",
+              "summary": "Pakai energi dewamu untuk efek seperti Turn Undead. Pulih setelah short rest atau long rest.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3277,7 +3277,7 @@
             },
             {
               "name": "Channel Divinity: Turn Undead",
-              "description": "Sebagai sebuah action, kamu menunjukkan simbol suci milikmu dan mengucapkan doa untuk mengusir undead. Setiap makhluk undead dalam jarak **30 kaki** yang bisa melihat atau mendengarmu harus melakukan Wisdom saving throw. Jika makhluk tersebut gagal dalam saving throw, ia akan terkena efek 'turned' selama **1 menit** atau sampai ia menerima damage apa pun.\n\nMakhluk yang terkena efek 'turned' harus menghabiskan gilirannya untuk mencoba menjauh darimu sejauh mungkin, dan tidak boleh secara sengaja bergerak ke area dalam jarak **30 kaki** darimu. Makhluk tersebut juga tidak bisa menggunakan reactions. Untuk action, ia hanya bisa menggunakan action Dash atau mencoba meloloskan diri dari efek yang menghambat pergerakannya. Jika tidak ada tempat untuk bergerak, makhluk tersebut bisa menggunakan action Dodge.",
+              "description": "Sebagai action, kamu mengangkat holy symbol dan mengucapkan doa. Setiap undead dalam jarak 30 feet yang bisa melihat atau mendengarmu melakukan Wisdom saving throw. Kalau gagal, ia terusir (turned) selama 1 menit atau sampai ia kena damage.\n\nUndead yang terusir harus memakai gilirannya untuk menjauh sejauh mungkin darimu, dan tidak boleh sengaja mendekat dalam jarak 30 feet darimu. Ia juga tidak bisa memakai reaction. Action-nya hanya boleh Dash atau usaha lepas dari efek yang menahannya bergerak. Kalau tidak ada tempat untuk menjauh, ia boleh memakai Dodge.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Reaction",
@@ -3288,7 +3288,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Gunakan action untuk memaksa makhluk undead dalam jarak 30 kaki melakukan Wisdom saving throw atau menjadi terpengaruh efek 'turned' selama 1 menit.",
+              "summary": "Action: undead dalam 30 feet melakukan Wisdom saving throw. Kalau gagal, mereka kabur darimu selama 1 menit.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3303,7 +3303,7 @@
             },
             {
               "name": "Divine Domain feature",
-              "description": "Pilih satu domain yang berkaitan dengan dewamu, seperti Knowledge, Life, Light, Nature, Tempest, Trickery, atau War. Hanya domain Life yang dijelaskan secara mendetail dalam Open Game Licensed SRD. Domain tambahan lainnya dapat ditemukan di buku aturan resmi atau produk dari penerbit lain.\n\nDomain pilihanmu memberikan sihir domain dan fitur lainnya saat kamu memilihnya di level 1. Domain ini juga memberikan cara tambahan untuk menggunakan Channel Divinity saat kamu mendapatkan fitur tersebut di level 2, serta memberikan Advantage tambahan pada level 6, 8, dan 17.",
+              "description": "Pilih satu domain yang berhubungan dengan dewamu, misalnya Knowledge, Life, Light, Nature, Tempest, Trickery, atau War.\n\nDomain ini langsung memberi domain spells dan fitur lain di level 1. Di level 2, domain juga menambah pilihan Channel Divinity, lalu memberi fitur lagi di level 6, 8, dan 17.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -3314,7 +3314,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Pilih domain ilahi untuk mendapatkan sihir dan fitur khusus pada level 1, 2, 6, 8, dan 17.",
+              "summary": "Pilih subclass Cleric. Fiturnya datang di level 1, 2, 6, 8, dan 17.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3338,7 +3338,7 @@
           "features": [
             {
               "name": "Domain Spells",
-              "description": "Setiap domain memiliki daftar sihir—yang disebut domain spells—yang kamu dapatkan pada level cleric tertentu sesuai deskripsi domain tersebut. Setelah kamu mendapatkan domain spell, sihir tersebut akan selalu dalam kondisi prepared, dan tidak dihitung dalam jumlah maksimal sihir yang bisa kamu prepare setiap harinya.\n\nJika kamu memiliki domain spell yang tidak terdaftar dalam daftar sihir cleric, sihir tersebut tetap dianggap sebagai sihir cleric bagimu.",
+              "description": "Setiap domain punya daftar spell sendiri yang kamu dapat di level Cleric tertentu. Domain spell selalu prepared dan tidak dihitung dalam jumlah spell yang bisa kamu prepare setiap hari.\n\nKalau ada domain spell yang tidak ada di daftar spell Cleric, spell itu tetap dihitung sebagai spell Cleric untukmu.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -3349,7 +3349,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Dapatkan sihir khusus dari domainmu yang selalu dalam kondisi prepared dan tidak mengurangi batas harianmu.",
+              "summary": "Spell dari domain kamu selalu prepared dan tidak memakan jatah prepare harian.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3410,7 +3410,7 @@
           "features": [
             {
               "name": "Domain Spells",
-              "description": "Setiap domain memiliki daftar sihir—yang disebut domain spells—yang kamu dapatkan pada level cleric tertentu sesuai deskripsi domain tersebut. Setelah kamu mendapatkan domain spell, sihir tersebut akan selalu dalam kondisi prepared, dan tidak dihitung dalam jumlah maksimal sihir yang bisa kamu prepare setiap harinya.\n\nJika kamu memiliki domain spell yang tidak terdaftar dalam daftar sihir cleric, sihir tersebut tetap dianggap sebagai sihir cleric bagimu.",
+              "description": "Setiap domain punya daftar spell sendiri yang kamu dapat di level Cleric tertentu. Domain spell selalu prepared dan tidak dihitung dalam jumlah spell yang bisa kamu prepare setiap hari.\n\nKalau ada domain spell yang tidak ada di daftar spell Cleric, spell itu tetap dihitung sebagai spell Cleric untukmu.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -3421,7 +3421,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Dapatkan sihir khusus dari domainmu yang selalu dalam kondisi prepared dan tidak mengurangi batas harianmu.",
+              "summary": "Spell dari domain kamu selalu prepared dan tidak memakan jatah prepare harian.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3499,7 +3499,7 @@
             },
             {
               "name": "Divine Domain feature",
-              "description": "Pilih satu domain yang berkaitan dengan dewamu, seperti Knowledge, Life, Light, Nature, Tempest, Trickery, atau War. Hanya domain Life yang dijelaskan secara mendetail dalam Open Game Licensed SRD. Domain tambahan lainnya dapat ditemukan di buku aturan resmi atau produk dari penerbit lain.\n\nDomain yang kamu pilih memberikan domain spells dan fitur lainnya saat kamu memilihnya di level 1. Domain ini juga memberikan cara tambahan untuk menggunakan Channel Divinity saat kamu mendapatkan fitur tersebut di level 2, serta memberikan Advantage tambahan pada level 6, 8, dan 17.",
+              "description": "Pilih satu domain yang berhubungan dengan dewamu, misalnya Knowledge, Life, Light, Nature, Tempest, Trickery, atau War.\n\nDomain ini langsung memberi domain spells dan fitur lain di level 1. Di level 2, domain juga menambah pilihan Channel Divinity, lalu memberi fitur lagi di level 6, 8, dan 17.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -3510,7 +3510,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Pilih domain yang berkaitan dengan dewamu, seperti Knowledge, Life, Light, Nature, Tempest, Trickery, atau War.",
+              "summary": "Pilih subclass Cleric. Fiturnya datang di level 1, 2, 6, 8, dan 17.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3536,7 +3536,7 @@
           "features": [
             {
               "name": "Domain Spells",
-              "description": "Setiap domain memiliki daftar sihir—yang disebut domain spells—yang kamu dapatkan pada level cleric tertentu sesuai deskripsi domain tersebut. Setelah kamu mendapatkan domain spell, sihir tersebut akan selalu dalam kondisi prepared, dan tidak dihitung dalam jumlah maksimal sihir yang bisa kamu siapkan setiap harinya.\n\nJika kamu memiliki domain spell yang tidak terdaftar dalam daftar sihir cleric, sihir tersebut tetap dianggap sebagai sihir cleric bagimu.",
+              "description": "Setiap domain punya daftar spell sendiri yang kamu dapat di level Cleric tertentu. Domain spell selalu prepared dan tidak dihitung dalam jumlah spell yang bisa kamu prepare setiap hari.\n\nKalau ada domain spell yang tidak ada di daftar spell Cleric, spell itu tetap dihitung sebagai spell Cleric untukmu.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -3547,7 +3547,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Dapatkan sihir domain khusus pada level tertentu yang selalu siap digunakan dan tidak mengurangi batas harianmu.",
+              "summary": "Spell dari domain kamu selalu prepared dan tidak memakan jatah prepare harian.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3626,7 +3626,7 @@
             },
             {
               "name": "Divine Domain feature",
-              "description": "Pilih satu domain yang berkaitan dengan dewamu, seperti Knowledge, Life, Light, Nature, Tempest, Trickery, atau War. Hanya domain Life yang dijelaskan secara mendetail dalam Open Game Licensed SRD. Domain tambahan lainnya dapat ditemukan di buku aturan resmi atau produk dari penerbit lain.\n\nDomain yang kamu pilih memberikan domain spells dan fitur lainnya saat kamu memilihnya di level 1. Domain ini juga memberikan cara tambahan untuk menggunakan Channel Divinity saat kamu mendapatkan fitur tersebut di level 2, serta memberikan Advantage tambahan pada level 6, 8, dan 17.",
+              "description": "Pilih satu domain yang berhubungan dengan dewamu, misalnya Knowledge, Life, Light, Nature, Tempest, Trickery, atau War.\n\nDomain ini langsung memberi domain spells dan fitur lain di level 1. Di level 2, domain juga menambah pilihan Channel Divinity, lalu memberi fitur lagi di level 6, 8, dan 17.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -3637,7 +3637,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Pilih domain yang berkaitan dengan dewamu, seperti Knowledge, Life, Light, Nature, Tempest, Trickery, atau War.",
+              "summary": "Pilih subclass Cleric. Fiturnya datang di level 1, 2, 6, 8, dan 17.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3664,7 +3664,7 @@
           "features": [
             {
               "name": "Domain Spells",
-              "description": "Setiap domain memiliki daftar sihir—yang disebut domain spells—yang kamu dapatkan pada level cleric tertentu sesuai deskripsi domain tersebut. Setelah kamu mendapatkan domain spell, sihir tersebut akan selalu dalam kondisi prepared, dan tidak dihitung dalam jumlah maksimal sihir yang bisa kamu siapkan setiap harinya.\n\nJika kamu memiliki domain spell yang tidak terdaftar dalam daftar sihir cleric, sihir tersebut tetap dianggap sebagai sihir cleric bagimu.",
+              "description": "Setiap domain punya daftar spell sendiri yang kamu dapat di level Cleric tertentu. Domain spell selalu prepared dan tidak dihitung dalam jumlah spell yang bisa kamu prepare setiap hari.\n\nKalau ada domain spell yang tidak ada di daftar spell Cleric, spell itu tetap dihitung sebagai spell Cleric untukmu.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -3675,7 +3675,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Mendapatkan sihir khusus dari domain pilihanmu pada level tertentu; sihir ini selalu siap dan tidak mengurangi batas harian.",
+              "summary": "Spell dari domain kamu selalu prepared dan tidak memakan jatah prepare harian.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -3960,7 +3960,7 @@
             },
             {
               "name": "Divine Domain feature",
-              "description": "Pilih satu domain yang berkaitan dengan dewamu, seperti Knowledge, Life, Light, Nature, Tempest, Trickery, atau War. Hanya domain Life yang dijelaskan secara detail dalam Open Game Licensed SRD. Domain tambahan dapat ditemukan di buku aturan resmi atau produk dari penerbit lain.\n\nDomain yang kamu pilih memberikan sihir domain dan fitur lainnya saat kamu memilihnya di level 1. Domain ini juga memberikan cara tambahan untuk menggunakan Channel Divinity saat kamu mendapatkan fitur tersebut di level 2, serta memberikan manfaat tambahan pada level 6, 8, dan 17.",
+              "description": "Pilih satu domain yang berhubungan dengan dewamu, misalnya Knowledge, Life, Light, Nature, Tempest, Trickery, atau War.\n\nDomain ini langsung memberi domain spells dan fitur lain di level 1. Di level 2, domain juga menambah pilihan Channel Divinity, lalu memberi fitur lagi di level 6, 8, dan 17.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -3971,7 +3971,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Pilih domain yang berkaitan dengan dewamu untuk mendapatkan sihir dan fitur khusus.",
+              "summary": "Pilih subclass Cleric. Fiturnya datang di level 1, 2, 6, 8, dan 17.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -4300,7 +4300,7 @@
       "features": [
         {
           "name": "Spellcasting: Druid",
-          "description": "Dengan memanfaatkan esensi ilahi dari alam itu sendiri, kamu dapat merapalkan sihir untuk membentuk esensi tersebut sesuai dengan keinginanmu.",
+          "description": "Kamu menarik kekuatan dari alam untuk cast spell Druid.",
           "type": "feature",
           "featureType": "Passive",
           "actionType": null,
@@ -4311,7 +4311,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Merapalkan sihir dengan memanfaatkan dan membentuk esensi ilahi dari alam.",
+          "summary": "Kamu bisa cast spell Druid lewat kekuatan alam.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4326,7 +4326,7 @@
         },
         {
           "name": "Druidic",
-          "description": "Kamu tahu Druidic, bahasa rahasia druids. Kamu bisa berbicara bahasa itu dan menggunakannya untuk meninggalkan pesan tersembunyi. Kamu dan orang lain yang tahu bahasa ini otomatis menemukan pesan seperti itu. Orang lain menemukan keberadaan pesan dengan successful DC 15 Wisdom (Perception) check tetapi tidak bisa memecahkannya tanpa magic.",
+          "description": "Kamu menguasai Druidic, bahasa rahasia para druid. Kamu bisa berbicara dengan bahasa ini dan meninggalkan pesan tersembunyi. Siapa pun yang tahu Druidic langsung melihat pesan itu. Yang lain bisa menyadari ada pesan lewat Wisdom (Perception) check DC 15, tapi tidak bisa membacanya tanpa sihir.",
           "type": "feature",
           "featureType": "Active",
           "actionType": null,
@@ -4337,7 +4337,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Berbicara dan menulis dalam bahasa rahasia para druid untuk meninggalkan pesan tersembunyi.",
+          "summary": "Kamu menguasai Druidic, bahasa rahasia para druid, dan bisa meninggalkan pesan tersembunyi.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -4357,7 +4357,7 @@
           "features": [
             {
               "name": "Spellcasting: Druid",
-              "description": "Dengan memanfaatkan esensi ilahi dari alam itu sendiri, kamu dapat cast sihir untuk membentuk esensi tersebut sesuai dengan keinginanmu.",
+              "description": "Kamu menarik kekuatan dari alam untuk cast spell Druid.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -4368,7 +4368,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Gunakan esensi ilahi alam untuk cast sihir sesuai keinginanmu.",
+              "summary": "Kamu bisa cast spell Druid lewat kekuatan alam.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -4383,7 +4383,7 @@
             },
             {
               "name": "Druidic",
-              "description": "Kamu menguasai Druidic, bahasa rahasia para druid. Kamu bisa berbicara dalam bahasa ini dan menggunakannya untuk meninggalkan pesan tersembunyi. Kamu dan orang lain yang menguasai bahasa ini akan otomatis menyadari keberadaan pesan tersebut. Orang lain hanya bisa menyadari adanya pesan dengan berhasil melakukan DC 15 Wisdom (Perception) check, tetapi mereka tidak bisa memecahkan kodenya tanpa bantuan sihir.",
+              "description": "Kamu menguasai Druidic, bahasa rahasia para druid. Kamu bisa berbicara dengan bahasa ini dan meninggalkan pesan tersembunyi. Siapa pun yang tahu Druidic langsung melihat pesan itu. Yang lain bisa menyadari ada pesan lewat Wisdom (Perception) check DC 15, tapi tidak bisa membacanya tanpa sihir.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -4394,7 +4394,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Kamu menguasai Druidic, bahasa rahasia para druid.",
+              "summary": "Kamu menguasai Druidic, bahasa rahasia para druid, dan bisa meninggalkan pesan tersembunyi.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -4418,7 +4418,7 @@
           "features": [
             {
               "name": "Wild Shape (CR 1/4 or below, no flying or swim speed)",
-              "description": "Mulai level 2, kamu bisa menggunakan action untuk berubah wujud secara magis menjadi binatang yang pernah kamu lihat sebelumnya. Kamu bisa menggunakan fitur ini sebanyak dua kali, dan penggunaan yang telah terpakai akan pulih kembali setelah kamu menyelesaikan short atau long rest.\n\nLevel druid-mu menentukan binatang apa saja yang bisa kamu tiru, seperti yang tertera pada tabel Beast Shapes. Sebagai contoh, pada level 2, kamu bisa berubah menjadi binatang apa pun yang memiliki challenge rating **1/4** atau lebih rendah, selama binatang tersebut tidak memiliki kecepatan terbang (flying speed) atau berenang (swimming speed).\n\nKamu bisa bertahan dalam wujud binatang selama beberapa jam, jumlahnya setara dengan setengah level druid-mu (dibulatkan ke bawah). Setelah itu, kamu akan kembali ke wujud normal kecuali kamu menggunakan satu lagi penggunaan fitur ini. Kamu bisa kembali ke wujud normal lebih awal dengan menggunakan bonus action pada giliranmu. Kamu akan otomatis kembali ke wujud normal jika jatuh pingsan, hit points mencapai 0, atau mati.\n\nSelama kamu bertransformasi, aturan berikut berlaku:\n\n- Statistik permainanmu digantikan oleh statistik binatang tersebut, tetapi kamu tetap mempertahankan alignment, kepribadian, serta skor Intelligence, Wisdom, dan Charisma milikmu. Kamu juga tetap memiliki semua profisiensi skill dan saving throw, di samping mendapatkan profisiensi milik makhluk tersebut. Jika makhluk itu memiliki proficiency yang sama denganmu dan bonus pada stat block-nya lebih tinggi dari milikmu, gunakan bonus milik makhluk tersebut. Jika makhluk itu memiliki legendary atau lair actions, kamu tidak bisa menggunakannya.\n\n- Saat bertransformasi, kamu menggunakan hit points dan Hit Dice milik binatang tersebut. Ketika kembali ke wujud normal, hit points kamu akan kembali ke jumlah sebelum kamu bertransformasi. Namun, jika kamu kembali ke wujud normal karena hit points mencapai 0, sisa damage yang berlebih akan terbawa ke wujud normalmu. Contohnya, jika kamu menerima **10** damage dalam wujud hewan dan hanya memiliki **1** hit point tersisa, kamu akan kembali ke wujud normal dan menerima **9** damage. Selama damage berlebih ini tidak membuat hit points wujud normalmu menjadi 0, kamu tidak akan jatuh pingsan.\n\n- Kamu tidak bisa cast sihir, dan kemampuanmu untuk berbicara atau melakukan action apa pun yang membutuhkan tangan terbatas pada kemampuan fisik wujud binatangmu. Transformasi ini tidak memutus Concentration pada sihir yang sudah kamu rapalkan, dan tidak menghalangimu melakukan actions yang merupakan bagian dari sihir yang sudah aktif, seperti call lightning.\n\n- Kamu tetap mendapatkan manfaat dari fitur kelas, ras, atau sumber lain dan bisa menggunakannya selama wujud barumu mampu melakukannya secara fisik. Namun, kamu tidak bisa menggunakan indra spesialmu, seperti darkvision, kecuali wujud barumu juga memiliki indra tersebut.\n\n- Kamu bisa memilih apakah perlengkapanmu jatuh ke tanah di posisimu, menyatu ke dalam wujud baru, atau tetap dipakai. Perlengkapan yang dipakai berfungsi normal, tetapi GM yang menentukan apakah praktis bagi wujud baru tersebut untuk memakai perlengkapan itu berdasarkan bentuk dan ukuran makhluknya. Perlengkapanmu tidak berubah ukuran atau bentuk mengikuti wujud baru, dan perlengkapan apa pun yang tidak bisa dipakai oleh wujud baru harus jatuh ke tanah atau menyatu dengannya. Perlengkapan yang menyatu dengan wujud tersebut tidak memberikan efek apa pun sampai kamu meninggalkan wujud itu.",
+              "description": "Pakai action untuk berubah wujud menjadi beast yang pernah kamu lihat. Kamu bisa memakai fitur ini 2 kali, dan pemakaiannya pulih setelah short rest atau long rest.\n\nLevel Druid kamu menentukan beast apa yang bisa dipilih. Di level 2, pilihannya beast dengan CR 1/4 atau lebih rendah yang tidak punya flying speed atau swimming speed.\n\nKamu bisa bertahan dalam wujud beast selama jam sebanyak setengah level Druid kamu (dibulatkan ke bawah). Setelah itu kamu kembali ke wujud asli, kecuali kamu memakai Wild Shape lagi. Kamu bisa kembali lebih cepat dengan bonus action di giliranmu. Kamu otomatis kembali kalau Unconscious, jatuh ke 0 HP, atau mati.\n\nSelama berubah wujud:\n\n- Stat kamu diganti stat beast itu, tapi kamu tetap punya alignment, kepribadian, serta Intelligence, Wisdom, dan Charisma sendiri. Proficiency skill dan saving throw kamu tetap ada, ditambah milik beast. Kalau sama-sama proficient dan bonus beast lebih tinggi, pakai bonus beast. Legendary action dan lair action beast tidak bisa dipakai.\n- Kamu memakai HP dan Hit Dice beast. Saat kembali ke wujud asli, HP kamu kembali seperti sebelum berubah. Tapi kalau kamu kembali karena HP beast habis, sisa damage-nya terbawa ke wujud asli. Contoh: beast tinggal 1 HP lalu kena 10 damage, jadi kamu kembali ke wujud asli dan kena 9 damage. Selama sisa damage itu tidak membuat HP wujud asli jadi 0, kamu tidak pingsan.\n- Kamu tidak bisa cast spell. Berbicara dan memakai tangan juga terbatas sesuai kemampuan beast. Tapi berubah wujud tidak memutus Concentration pada spell yang sudah kamu cast, dan tidak menghalangi action yang jadi bagian dari spell itu, misalnya call lightning.\n- Fitur dari class, race, atau sumber lain tetap bisa dipakai kalau tubuh barumu sanggup melakukannya. Indra khusus seperti darkvision hanya bisa dipakai kalau beast itu juga punya.\n- Kamu memilih apakah perlengkapanmu jatuh ke tanah, menyatu dengan wujud baru, atau tetap dipakai. Perlengkapan yang dipakai berfungsi normal, tapi GM yang memutuskan apakah masuk akal untuk bentuk dan ukuran beast itu. Ukuran perlengkapan tidak ikut berubah. Yang tidak bisa dipakai harus jatuh atau menyatu. Perlengkapan yang menyatu tidak berfungsi sampai kamu kembali ke wujud asli.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Bonus Action",
@@ -4429,7 +4429,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Gunakan action untuk berubah wujud secara magis menjadi binatang yang pernah kamu lihat.",
+              "summary": "Action: berubah wujud menjadi beast yang pernah kamu lihat. 2 kali, pulih setelah short rest atau long rest.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -4444,7 +4444,7 @@
             },
             {
               "name": "Druid Circle",
-              "description": "Pada level 2, kamu memilih untuk mengidentifikasi diri dengan sebuah lingkaran druid, seperti Circle of the Land. Pilihanmu ini memberikan fitur tambahan pada level 2, dan kembali lagi pada level 6, 10, dan 14.",
+              "description": "Di level 2, kamu bergabung dengan satu circle druid, misalnya Circle of the Land. Pilihan ini memberi fitur di level 2, lalu di level 6, 10, dan 14.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -4455,7 +4455,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Bergabunglah dengan lingkaran druid untuk mendapatkan fitur spesialisasi.",
+              "summary": "Pilih subclass Druid. Fiturnya datang di level 2, 6, 10, dan 14.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -5223,7 +5223,7 @@
       "features": [
         {
           "name": "Fighting Style",
-          "description": "Pada level 2, kamu memilih satu gaya bertarung khusus sebagai spesialisasi kamu. Pilih salah satu opsi berikut. Kamu tidak boleh mengambil opsi Fighting Style yang sama lebih dari satu kali, meskipun nantinya kamu mendapatkan kesempatan untuk memilih gaya bertarung lagi.",
+          "description": "Pilih satu gaya bertarung sebagai keahlianmu. Kamu tidak bisa mengambil gaya yang sama lebih dari sekali, walaupun nanti dapat kesempatan memilih lagi.",
           "type": "feature",
           "featureType": "Passive",
           "actionType": null,
@@ -5234,7 +5234,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Pilih gaya bertarung khusus untuk mendapatkan Advantage tertentu dalam pertempuran.",
+          "summary": "Pilih satu gaya bertarung. Gaya yang sama tidak bisa diambil dua kali.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5249,7 +5249,7 @@
         },
         {
           "name": "Second Wind",
-          "description": "Kamu memiliki stamina terbatas yang bisa kamu gunakan untuk melindungi diri dari luka. Pada giliranmu, kamu bisa menggunakan bonus action untuk memulihkan hit points sejumlah **1d10** + level fighter kamu. Setelah menggunakan fitur ini, kamu harus menyelesaikan short rest atau long rest sebelum bisa menggunakannya kembali.",
+          "description": "Di giliranmu, pakai bonus action untuk memulihkan HP sebanyak 1d10 + level Fighter kamu. Setelah dipakai, kamu harus short rest atau long rest sebelum bisa memakainya lagi.",
           "type": "feature",
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -5263,7 +5263,7 @@
           "effect": "Recover from injuries mid-combat",
           "onUse": "Regain 1d10 + your Fighter level in HP",
           "scaling": null,
-          "summary": "Gunakan bonus action untuk memulihkan **1d10** + level fighter kamu dalam bentuk hit points.",
+          "summary": "Bonus action: pulihkan 1d10 + level Fighter HP. Sekali per short rest atau long rest.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -5283,7 +5283,7 @@
           "features": [
             {
               "name": "Fighting Style",
-              "description": "Pada level 2, kamu mengadopsi gaya bertarung tertentu sebagai spesialisasi kamu. Pilih salah satu opsi berikut. Kamu tidak bisa mengambil opsi Fighting Style yang sama lebih dari satu kali, meskipun nantinya kamu mendapat kesempatan untuk memilih lagi.",
+              "description": "Pilih satu gaya bertarung sebagai keahlianmu. Kamu tidak bisa mengambil gaya yang sama lebih dari sekali, walaupun nanti dapat kesempatan memilih lagi.",
               "type": "feature",
               "choices": {
                 "type": "single",
@@ -5355,7 +5355,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Pilih gaya bertarung spesialisasi.",
+              "summary": "Pilih satu gaya bertarung. Gaya yang sama tidak bisa diambil dua kali.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -5370,7 +5370,7 @@
             },
             {
               "name": "Second Wind",
-              "description": "Kamu memiliki stamina terbatas yang bisa kamu gunakan untuk melindungi diri dari bahaya. Pada giliranmu, kamu dapat menggunakan Bonus Action untuk memulihkan hit points sejumlah **1d10** + level Fighter kamu. Setelah menggunakan fitur ini, kamu harus menyelesaikan short rest atau Long Rest sebelum dapat menggunakannya kembali.",
+              "description": "Di giliranmu, pakai bonus action untuk memulihkan HP sebanyak 1d10 + level Fighter kamu. Setelah dipakai, kamu harus short rest atau long rest sebelum bisa memakainya lagi.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Bonus Action",
@@ -5384,7 +5384,7 @@
               "effect": null,
               "onUse": "Regain 1d10 + your Fighter level in HP",
               "scaling": null,
-              "summary": "Gunakan Bonus Action untuk memulihkan hit points sebesar 1d10 + level Fighter.",
+              "summary": "Bonus action: pulihkan 1d10 + level Fighter HP. Sekali per short rest atau long rest.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -5406,7 +5406,7 @@
           "features": [
             {
               "name": "Action Surge (1 use)",
-              "description": "Mulai level 2, kamu bisa memacu dirimu melampaui batas normal untuk sesaat. Pada giliranmu, kamu bisa mengambil satu action tambahan di luar action reguler dan bonus action yang mungkin kamu miliki.\n\nSetelah menggunakan fitur ini, kamu harus menyelesaikan short atau long rest sebelum bisa menggunakannya kembali. Mulai level 17, kamu bisa menggunakannya dua kali sebelum istirahat, tetapi tetap hanya boleh satu kali dalam satu giliran yang sama.",
+              "description": "Di giliranmu, kamu bisa mengambil satu action tambahan, selain action biasa dan bonus action kamu.\n\nSetelah dipakai, kamu harus short rest atau long rest sebelum bisa memakainya lagi. Mulai level 17, kamu bisa memakainya 2 kali di antara rest, tapi tetap hanya sekali per giliran.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Bonus Action",
@@ -5417,7 +5417,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Lakukan satu action tambahan di giliranmu.",
+              "summary": "Satu action tambahan di giliranmu. Sekali per short rest atau long rest.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -5439,7 +5439,7 @@
           "features": [
             {
               "name": "Martial Archetype",
-              "description": "Pada level 3, kamu memilih sebuah arketipe yang ingin kamu tiru dalam gaya dan teknik bertarungmu, contohnya Champion. Arketipe yang kamu pilih akan memberimu fitur pada level 3, dan selanjutnya pada level 7, 10, 15, dan 18.",
+              "description": "Di level 3, kamu memilih gaya bertarung yang ingin kamu dalami, misalnya Champion. Pilihan ini memberi fitur di level 3, lalu di level 7, 10, 15, dan 18.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -5450,7 +5450,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Pilih arketipe pertarungan, seperti Champion, untuk mendapatkan fitur spesialisasi.",
+              "summary": "Pilih subclass Fighter. Fiturnya datang di level 3, 7, 10, 15, dan 18.",
               "grantsSpells": false,
               "grantsAttack": true,
               "grantsSkills": false,
@@ -6339,7 +6339,7 @@
       "features": [
         {
           "name": "Unarmored Defense",
-          "description": "Mulai level 1, selama kamu tidak memakai armor dan tidak menggunakan perisai, AC kamu adalah 10 + modifier Dexterity + modifier Wisdom.",
+          "description": "Selama kamu tidak memakai armor dan tidak memegang shield, AC kamu jadi 10 + Dexterity modifier + Wisdom modifier.",
           "type": "feature",
           "featureType": "Passive",
           "actionType": null,
@@ -6350,7 +6350,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "AC kamu menjadi 10 + modifier Dexterity + modifier Wisdom saat tidak memakai armor maupun perisai.",
+          "summary": "Tanpa armor dan shield, AC kamu = 10 + Dexterity modifier + Wisdom modifier.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -6365,7 +6365,7 @@
         },
         {
           "name": "Martial Arts",
-          "description": "Di level 1, latihan martial artsmu memberikanmu penguasaan gaya combat yang menggunakan unarmed strikes dan monk weapons, yaitu shortswords dan simple melee weapons apapun yang tidak memiliki property two-handed atau heavy.\nKamu mendapatkan manfaat berikut selagi kamu tidak bersenjata atau mengayun hanya monk weapons dan kamu tidak memakai armor atau mengayun shield:\n- Kamu bisa menggunakan Dexterity alih-alih Strength untuk attack dan damage rolls dari unarmed strikes dan monk weapons.\n- Kamu bisa menggulir d4 sebagai ganti damage normal dari unarmed strike atau monk weapon. Die ini berubah saat kamu mendapatkan monk levels, seperti yang ditunjukkan di kolom Martial Arts dari Table: The Monk.\n- Saat kamu menggunakan Attack action dengan unarmed strike atau monk weapon di giliranmu, kamu bisa membuat satu unarmed strike sebagai bonus action. Misalnya, jika kamu mengambil Attack action dan menyerang dengan quarterstaff, kamu juga bisa membuat unarmed strike sebagai bonus action, asumsi kamu belum mengambil bonus action di giliran ini.",
+          "description": "Kamu ahli bertarung dengan unarmed strike dan monk weapon. Monk weapon adalah shortsword dan semua simple melee weapon yang tidak punya property two-handed atau heavy.\n\nSelama kamu tidak bersenjata atau hanya memegang monk weapon, dan tidak memakai armor atau shield:\n\n- Kamu boleh memakai Dexterity, bukan Strength, untuk attack roll dan damage roll unarmed strike dan monk weapon.\n- Kamu boleh memakai d4 sebagai ganti damage biasa unarmed strike atau monk weapon. Dadu ini naik sesuai level Monk (lihat kolom Martial Arts di tabel Monk).\n- Kalau kamu memakai Attack action dengan unarmed strike atau monk weapon, kamu boleh melakukan satu unarmed strike lagi sebagai bonus action. Contoh: kamu menyerang pakai quarterstaff, lalu memukul dengan tangan kosong pakai bonus action, asalkan bonus action belum dipakai giliran itu.\n\nBeberapa biara memakai versi khusus monk weapon, misalnya nunchaku (dua batang kayu yang disambung rantai pendek) atau kama (sabit dengan bilah lebih pendek dan lurus). Apa pun namanya, pakai saja stat senjata aslinya.",
           "type": "feature",
           "featureType": "Active",
           "actionType": "Bonus Action",
@@ -6376,7 +6376,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gunakan Dexterity untuk serangan tak bersenjata dan senjata monk, tingkatkan dadu kerusakannya, dan lakukan satu serangan tak bersenjata sebagai bonus action saat menyerang.",
+          "summary": "Pakai Dexterity untuk unarmed strike dan monk weapon, damage d4, dan satu unarmed strike tambahan dengan bonus action setelah Attack.",
           "grantsSpells": false,
           "grantsAttack": true,
           "grantsSkills": false,
@@ -6396,7 +6396,7 @@
           "features": [
             {
               "name": "Unarmored Defense",
-              "description": "Mulai level 1, selama kamu tidak memakai armor dan tidak menggunakan perisai, AC kamu adalah **10** + modifier Dexterity + modifier Wisdom.",
+              "description": "Selama kamu tidak memakai armor dan tidak memegang shield, AC kamu jadi 10 + Dexterity modifier + Wisdom modifier.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -6407,7 +6407,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Saat tidak memakai armor maupun perisai, AC kamu adalah 10 + modifier Dexterity + modifier Wisdom.",
+              "summary": "Tanpa armor dan shield, AC kamu = 10 + Dexterity modifier + Wisdom modifier.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -6422,7 +6422,7 @@
             },
             {
               "name": "Martial Arts",
-              "description": "Pada level 1, latihan bela dirimu memberimu penguasaan gaya pertarungan yang menggunakan serangan tak bersenjata dan senjata monk, yaitu shortsword serta semua senjata jarak dekat sederhana yang tidak memiliki sifat two-handed atau heavy.\n\nKamu mendapatkan Advantage berikut selama kamu tidak bersenjata atau hanya menggunakan senjata monk, serta tidak memakai armor maupun perisai:\n\n- Kamu bisa menggunakan Dexterity sebagai pengganti Kekuatan untuk rolls serangan dan damage dari serangan tak bersenjata maupun senjata monk.\n\n- Kamu bisa melempar **d4** sebagai pengganti damage normal dari serangan tak bersenjata atau senjata monk. Dadu ini akan berubah seiring bertambahnya level monk kamu, seperti yang tertera pada kolom Martial Arts di Tabel: The Monk.\n\n- Ketika kamu menggunakan action Attack dengan serangan tak bersenjata atau senjata monk pada giliranmu, kamu bisa melakukan satu serangan tak bersenjata sebagai bonus action. Contohnya, jika kamu mengambil action Attack dan menyerang dengan quarterstaff, kamu juga bisa melakukan serangan tak bersenjata sebagai bonus action, asalkan kamu belum menggunakan bonus action pada giliran ini.\n\nBeberapa biara menggunakan bentuk khusus dari senjata monk. Contohnya, kamu mungkin menggunakan pemukul yang terdiri dari dua batang kayu yang dihubungkan rantai pendek (disebut nunchaku) atau sabit dengan bilah yang lebih pendek dan lurus (disebut kama). Apa pun nama yang kamu gunakan untuk senjata monk, kamu tetap menggunakan statistik permainan yang tersedia untuk senjata tersebut.",
+              "description": "Kamu ahli bertarung dengan unarmed strike dan monk weapon. Monk weapon adalah shortsword dan semua simple melee weapon yang tidak punya property two-handed atau heavy.\n\nSelama kamu tidak bersenjata atau hanya memegang monk weapon, dan tidak memakai armor atau shield:\n\n- Kamu boleh memakai Dexterity, bukan Strength, untuk attack roll dan damage roll unarmed strike dan monk weapon.\n- Kamu boleh memakai d4 sebagai ganti damage biasa unarmed strike atau monk weapon. Dadu ini naik sesuai level Monk (lihat kolom Martial Arts di tabel Monk).\n- Kalau kamu memakai Attack action dengan unarmed strike atau monk weapon, kamu boleh melakukan satu unarmed strike lagi sebagai bonus action. Contoh: kamu menyerang pakai quarterstaff, lalu memukul dengan tangan kosong pakai bonus action, asalkan bonus action belum dipakai giliran itu.\n\nBeberapa biara memakai versi khusus monk weapon, misalnya nunchaku (dua batang kayu yang disambung rantai pendek) atau kama (sabit dengan bilah lebih pendek dan lurus). Apa pun namanya, pakai saja stat senjata aslinya.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Bonus Action",
@@ -6433,7 +6433,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Gunakan Dexterity untuk serangan tak bersenjata dan senjata monk, gunakan **d4** untuk damage, dan lakukan serangan tak bersenjata sebagai bonus action setelah menyerang.",
+              "summary": "Pakai Dexterity untuk unarmed strike dan monk weapon, damage d4, dan satu unarmed strike tambahan dengan bonus action setelah Attack.",
               "grantsSpells": false,
               "grantsAttack": true,
               "grantsSkills": false,
@@ -6455,7 +6455,7 @@
           "features": [
             {
               "name": "Ki",
-              "description": "Mulai level 2, latihanmu memungkinkanmu untuk mengendalikan energi mistis yang disebut ki. Aksesmu terhadap energi ini diwakili oleh sejumlah poin ki. Level monk kamu menentukan jumlah poin yang kamu miliki, seperti yang tertera pada kolom Ki Points di Tabel: The Monk.\n\nKamu bisa menghabiskan poin-poin ini untuk mengaktifkan berbagai fitur ki. Kamu memulai dengan tiga fitur: Flurry of Blows, Patient Defense, dan Step of the Wind. Kamu akan mempelajari lebih banyak fitur ki seiring bertambahnya level di kelas ini.\n\nKetika kamu menghabiskan poin ki, poin tersebut tidak bisa digunakan kembali sampai kamu menyelesaikan short atau long rest, di mana pada akhir istirahat tersebut kamu menarik kembali semua ki yang telah terpakai. Kamu harus menghabiskan setidaknya **30 menit** dari waktu istirahat untuk bermeditasi guna memulihkan poin ki kamu.\n\nBeberapa fitur ki mewajibkan sasaranmu melakukan saving throw untuk menahan efek fitur tersebut. DC saving throw dihitung sebagai berikut:\n\nKi save DC = **8** + bonus proficiency + modifier Wisdom",
+              "description": "Latihanmu membuka energi mistis bernama ki. Jumlah ki point kamu mengikuti level Monk (lihat kolom Ki Points di tabel Monk).\n\nKi point dipakai untuk fitur ki. Di awal kamu tahu tiga: Flurry of Blows, Patient Defense, dan Step of the Wind. Fitur ki lain datang di level berikutnya.\n\nKi point yang sudah dipakai pulih semua setelah short rest atau long rest. Kamu perlu bermeditasi minimal 30 menit selama rest itu.\n\nKalau fitur ki meminta saving throw, DC-nya adalah:\n\nKi save DC = 8 + Proficiency Bonus + Wisdom modifier",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -6466,7 +6466,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Gunakan poin ki untuk mengaktifkan fitur seperti Flurry of Blows, Patient Defense, dan Step of the Wind; pulihkan poin setelah short atau long rest.",
+              "summary": "Ki point untuk Flurry of Blows, Patient Defense, dan Step of the Wind. Pulih setelah short rest atau long rest.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -6481,7 +6481,7 @@
             },
             {
               "name": "Flurry of Blows",
-              "description": "Segera setelah kamu mengambil action Attack pada giliranmu, kamu bisa menghabiskan **1** poin ki untuk melakukan dua serangan tak bersenjata sebagai bonus action.",
+              "description": "Tepat setelah memakai Attack action di giliranmu, kamu bisa memakai 1 ki point untuk melakukan dua unarmed strike sebagai bonus action.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Bonus Action",
@@ -6492,7 +6492,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Habiskan 1 poin ki untuk melakukan dua serangan tak bersenjata sebagai bonus action setelah mengambil action Attack.",
+              "summary": "1 ki point: dua unarmed strike dengan bonus action setelah Attack.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -6507,7 +6507,7 @@
             },
             {
               "name": "Patient Defense",
-              "description": "Kamu bisa menghabiskan 1 poin ki untuk melakukan action Dodge sebagai bonus action pada giliranmu.",
+              "description": "Kamu bisa memakai 1 ki point untuk mengambil Dodge action sebagai bonus action di giliranmu.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Bonus Action",
@@ -6518,7 +6518,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Gunakan 1 poin ki untuk melakukan action Dodge sebagai bonus action di giliranmu.",
+              "summary": "1 ki point: Dodge dengan bonus action.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -6533,7 +6533,7 @@
             },
             {
               "name": "Step of the Wind",
-              "description": "Kamu bisa menghabiskan 1 poin ki untuk melakukan action Disengage atau Dash sebagai bonus action pada giliranmu, dan jarak lompatanmu menjadi dua kali lipat selama giliran tersebut.",
+              "description": "Kamu bisa memakai 1 ki point untuk mengambil Disengage atau Dash sebagai bonus action di giliranmu. Jarak lompatanmu juga jadi dua kali lipat sepanjang giliran itu.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Bonus Action",
@@ -6544,7 +6544,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Gunakan 1 poin ki untuk melakukan action Disengage atau Dash sebagai bonus action, serta menggandakan jarak lompatanmu selama giliran tersebut.",
+              "summary": "1 ki point: Disengage atau Dash dengan bonus action, dan lompatan dua kali lebih jauh.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -6559,7 +6559,7 @@
             },
             {
               "name": "Unarmored Movement",
-              "description": "Mulai level 2, kecepatan gerakmu meningkat sebesar 10 kaki selama kamu tidak memakai armor atau menggunakan perisai. Bonus ini akan terus meningkat saat kamu mencapai level monk tertentu, sebagaimana tertera pada Tabel: The Monk.\n\nPada level 9, kamu mendapatkan kemampuan untuk bergerak di sepanjang permukaan vertikal dan di atas cairan pada giliranmu tanpa terjatuh selama pergerakan tersebut.",
+              "description": "Speed kamu bertambah 10 feet selama tidak memakai armor atau shield. Bonus ini naik di level Monk tertentu (lihat tabel Monk).\n\nDi level 9, kamu bisa bergerak di dinding tegak dan di atas cairan selama giliranmu tanpa jatuh.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -6570,7 +6570,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Meningkatkan kecepatan gerakmu sebesar 10 kaki selama kamu tidak memakai armor atau menggunakan perisai.",
+              "summary": "Speed +10 feet selama tidak memakai armor atau shield.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -6592,7 +6592,7 @@
           "features": [
             {
               "name": "Monastic Tradition",
-              "description": "Ketika kamu mencapai level 3, kamu berkomitmen pada sebuah tradisi monastik, contohnya Way of the Open Hand. Tradisimu akan memberikan berbagai fitur pada level 3, dan kembali lagi pada level 6, 11, serta 17.",
+              "description": "Di level 3, kamu mendalami satu tradisi biara, misalnya Way of the Open Hand. Pilihan ini memberi fitur di level 3, lalu di level 6, 11, dan 17.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -6603,7 +6603,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Pilihlah tradisi monastik, seperti Way of the Open Hand, saat mencapai level 3.",
+              "summary": "Pilih subclass Monk. Fiturnya datang di level 3, 6, 11, dan 17.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -6618,7 +6618,7 @@
             },
             {
               "name": "Deflect Missiles",
-              "description": "Mulai level 3, kamu bisa menggunakan reaction untuk menangkis atau menangkap proyektil saat kamu terkena serangan senjata jarak jauh. Saat melakukannya, damage yang kamu terima dari serangan tersebut berkurang sebesar **1d10** + modifier Dexterity + level monk kamu.\n\nJika kamu berhasil mengurangi kerusakannya hingga 0, kamu bisa menangkap proyektil tersebut asalkan ukurannya cukup kecil untuk digenggam satu tangan dan kamu memiliki setidaknya satu tangan yang bebas. Jika kamu menangkap proyektil dengan cara ini, kamu bisa menghabiskan 1 poin ki untuk melakukan serangan jarak jauh menggunakan senjata atau amunisi yang baru saja kamu tangkap sebagai bagian dari reaction yang sama. Kamu melakukan serangan ini dengan proficiency, terlepas dari proficiency senjatamu, dan proyektil tersebut dianggap sebagai senjata monk untuk serangan ini, dengan jangkauan normal 20 kaki dan jangkauan jauh 60 kaki.",
+              "description": "Saat kamu kena ranged weapon attack, kamu bisa memakai reaction untuk menangkis atau menangkap proyektilnya. Damage yang kamu terima berkurang 1d10 + Dexterity modifier + level Monk kamu.\n\nKalau damage-nya jadi 0, kamu bisa menangkap proyektil itu, asalkan cukup kecil untuk dipegang satu tangan dan kamu punya satu tangan kosong. Kalau berhasil menangkap, kamu bisa memakai 1 ki point untuk langsung melemparnya balik sebagai bagian dari reaction yang sama. Serangan ini dihitung proficient dan memakai monk weapon, dengan jarak normal 20 feet dan jarak jauh 60 feet.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Reaction",
@@ -6629,7 +6629,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Gunakan reaction untuk mengurangi damage dari serangan senjata jarak jauh, dan berpotensi menangkap proyektil tersebut untuk dilemparkan kembali.",
+              "summary": "Reaction saat kena ranged weapon attack: kurangi damage 1d10 + Dexterity modifier + level Monk, bisa ditangkap dan dilempar balik.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -6920,7 +6920,7 @@
           "features": [
             {
               "name": "Unarmored Movement",
-              "description": "Mulai level 2, kecepatanmu bertambah **10 kaki** selama kamu tidak memakai armor atau menggunakan perisai. Bonus ini akan meningkat saat kamu mencapai level Monk tertentu, sebagaimana tertera dalam Tabel: The Monk.\n\nPada level 9, kamu mendapatkan kemampuan untuk bergerak di sepanjang permukaan vertikal dan di atas cairan selama giliranmu tanpa terjatuh saat bergerak.",
+              "description": "Speed kamu bertambah 10 feet selama tidak memakai armor atau shield. Bonus ini naik di level Monk tertentu (lihat tabel Monk).\n\nDi level 9, kamu bisa bergerak di dinding tegak dan di atas cairan selama giliranmu tanpa jatuh.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -6931,7 +6931,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Kecepatanmu bertambah 10 kaki saat tidak memakai armor atau perisai; bisa bergerak di permukaan vertikal dan cairan pada level 9.",
+              "summary": "Speed +10 feet selama tidak memakai armor atau shield.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -7505,7 +7505,7 @@
       "features": [
         {
           "name": "Divine Sense",
-          "description": "Kehadiran kejahatan yang kuat terasa oleh indramu seperti bau busuk, dan kebaikan yang kuat terdengar seperti musik surgawi di telingamu. Sebagai sebuah action, kamu bisa membuka kesadaranmu untuk mendeteksi kekuatan tersebut. Hingga akhir giliranmu berikutnya, kamu mengetahui lokasi celestial, fiend, atau undead mana pun dalam jarak **60 kaki** darimu yang tidak terhalang total cover. Kamu mengetahui jenis makhluk tersebut (celestial, fiend, atau undead), tetapi tidak mengetahui identitas spesifiknya. Dalam radius yang sama, kamu juga mendeteksi keberadaan tempat atau objek yang telah dikuduskan (consecrated) atau dinajiskan (desecrated), seperti efek dari sihir hallow.\n\nKamu bisa menggunakan fitur ini sebanyak **1 + modifier Charisma kamu**. Kamu mendapatkan kembali semua penggunaan yang telah terpakai setelah menyelesaikan long rest.",
+          "description": "Sebagai action, kamu membuka indramu untuk merasakan kekuatan baik dan jahat. Sampai akhir giliranmu berikutnya, kamu tahu lokasi setiap celestial, fiend, atau undead dalam jarak 60 feet yang tidak berada di balik total cover. Kamu tahu jenisnya (celestial, fiend, atau undead), tapi tidak tahu siapa dia. Dalam jarak yang sama, kamu juga merasakan tempat atau benda yang disucikan atau dinodai, seperti spell hallow.\n\nKamu bisa memakai fitur ini sebanyak 1 + Charisma modifier kamu. Semua pemakaian pulih setelah long rest.",
           "type": "feature",
           "featureType": "Active",
           "actionType": "Action",
@@ -7516,7 +7516,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gunakan action untuk mendeteksi lokasi dan jenis celestial, fiend, dan undead, serta tempat yang dikuduskan atau dinajiskan dalam jangkauan 60 kaki.",
+          "summary": "Action: rasakan celestial, fiend, dan undead dalam 60 feet sampai akhir giliranmu berikutnya.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -7531,7 +7531,7 @@
         },
         {
           "name": "Lay on Hands",
-          "description": "Sentuhanmu yang terberkati dapat menyembuhkan luka. Kamu memiliki kumpulan kekuatan penyembuhan yang terisi kembali saat kamu melakukan long rest. Dengan kumpulan tersebut, kamu bisa memulihkan total hit points sejumlah level paladin kamu x **5**.\n\nSebagai sebuah action, kamu bisa menyentuh seorang makhluk dan mengambil kekuatan dari kumpulan tersebut untuk memulihkan sejumlah hit points kepada makhluk itu, hingga batas maksimal sisa poin yang ada di kumpulanmu.\n\nSebagai alternatif, kamu bisa menghabiskan **5** hit points dari kumpulan penyembuhanmu untuk menyembuhkan satu penyakit atau menetralkan satu racun yang menyerang sasaran. Kamu bisa menyembuhkan beberapa penyakit dan menetralkan beberapa racun dalam satu kali penggunaan Lay on Hands, dengan menghabiskan hit points secara terpisah untuk masing-masing efek.\n\nFitur ini tidak berpengaruh pada undead dan construct.",
+          "description": "Sentuhanmu bisa menyembuhkan luka. Kamu punya kolam penyembuhan berisi HP sebanyak level Paladin x 5, yang terisi penuh setelah long rest.\n\nSebagai action, sentuh satu makhluk dan pulihkan HP-nya dengan mengambil dari kolam itu, sebanyak yang kamu mau selama sisanya cukup.\n\nAtau, pakai 5 HP dari kolam untuk menyembuhkan satu penyakit atau menetralkan satu racun pada target. Kamu boleh menyembuhkan beberapa penyakit dan racun sekaligus, asalkan bayar 5 HP untuk masing-masing.\n\nFitur ini tidak bekerja pada undead dan construct.",
           "type": "feature",
           "featureType": "Active",
           "actionType": "Action",
@@ -7542,7 +7542,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Gunakan action untuk menyembuhkan makhluk menggunakan kumpulan hit points atau habiskan 5 hit points untuk mengobati penyakit atau menetralkan racun.",
+          "summary": "Action: sentuh makhluk untuk memulihkan HP dari kolam berisi level Paladin x 5, atau bayar 5 untuk menyembuhkan penyakit atau racun.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -7562,7 +7562,7 @@
           "features": [
             {
               "name": "Divine Sense",
-              "description": "Kehadiran kejahatan yang kuat terasa oleh indramu seperti bau busuk, sementara kebaikan yang perkasa terdengar seperti musik surgawi di telingamu. Sebagai sebuah action, kamu bisa membuka kesadaranmu untuk mendeteksi kekuatan tersebut. Hingga akhir giliranmu berikutnya, kamu mengetahui lokasi celestial, fiend, atau undead mana pun dalam jangkauan **60 kaki** darimu yang tidak terhalang oleh total cover. Kamu mengetahui tipe makhluk tersebut (celestial, fiend, atau undead), tetapi tidak mengetahui identitasnya. Dalam radius yang sama, kamu juga bisa mendeteksi keberadaan tempat atau objek yang telah dikuduskan (consecrated) atau dinodai (desecrated), seperti efek dari sihir hallow.\n\nKamu bisa menggunakan fitur ini sebanyak **1 + modifier Charisma** milikmu. Kamu mendapatkan kembali semua penggunaan yang telah terpakai setelah menyelesaikan long rest.",
+              "description": "Sebagai action, kamu membuka indramu untuk merasakan kekuatan baik dan jahat. Sampai akhir giliranmu berikutnya, kamu tahu lokasi setiap celestial, fiend, atau undead dalam jarak 60 feet yang tidak berada di balik total cover. Kamu tahu jenisnya (celestial, fiend, atau undead), tapi tidak tahu siapa dia. Dalam jarak yang sama, kamu juga merasakan tempat atau benda yang disucikan atau dinodai, seperti spell hallow.\n\nKamu bisa memakai fitur ini sebanyak 1 + Charisma modifier kamu. Semua pemakaian pulih setelah long rest.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Action",
@@ -7573,7 +7573,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Gunakan action untuk mendeteksi celestial, fiend, undead, serta tempat yang dikuduskan atau dinodai dalam jangkauan 60 kaki.",
+              "summary": "Action: rasakan celestial, fiend, dan undead dalam 60 feet sampai akhir giliranmu berikutnya.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -7588,7 +7588,7 @@
             },
             {
               "name": "Lay on Hands",
-              "description": "Sentuhanmu yang terberkati dapat menyembuhkan luka. Kamu memiliki kumpulan kekuatan penyembuhan yang akan terisi kembali setelah kamu melakukan long rest. Dengan kumpulan tersebut, kamu bisa memulihkan total hit points sebesar level paladin x **5**.\n\nSebagai sebuah action, kamu bisa menyentuh sebuah makhluk dan mengambil kekuatan dari kumpulan tersebut untuk memulihkan sejumlah hit points kepada makhluk itu, hingga batas maksimal sisa poin yang ada di kumpulanmu.\n\nSebagai alternatif, kamu bisa menghabiskan **5** hit points dari kumpulan penyembuhanmu untuk menyembuhkan satu penyakit atau menetralkan satu racun yang menyerang sasaran. Kamu bisa menyembuhkan beberapa penyakit dan menetralkan beberapa racun dalam satu kali penggunaan Lay on Hands, dengan menghabiskan hit points secara terpisah untuk masing-masing efek.\n\nFitur ini tidak berpengaruh pada undead dan construct.",
+              "description": "Sentuhanmu bisa menyembuhkan luka. Kamu punya kolam penyembuhan berisi HP sebanyak level Paladin x 5, yang terisi penuh setelah long rest.\n\nSebagai action, sentuh satu makhluk dan pulihkan HP-nya dengan mengambil dari kolam itu, sebanyak yang kamu mau selama sisanya cukup.\n\nAtau, pakai 5 HP dari kolam untuk menyembuhkan satu penyakit atau menetralkan satu racun pada target. Kamu boleh menyembuhkan beberapa penyakit dan racun sekaligus, asalkan bayar 5 HP untuk masing-masing.\n\nFitur ini tidak bekerja pada undead dan construct.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Action",
@@ -7599,7 +7599,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Gunakan action untuk menyembuhkan makhluk atau mengobati penyakit/racun menggunakan kumpulan hit points sebesar level paladin x 5.",
+              "summary": "Action: sentuh makhluk untuk memulihkan HP dari kolam berisi level Paladin x 5, atau bayar 5 untuk menyembuhkan penyakit atau racun.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -7621,7 +7621,7 @@
           "features": [
             {
               "name": "Fighting Style",
-              "description": "Pada level 2, kamu mengadopsi gaya bertarung tertentu sebagai spesialisasi kamu. Pilih salah satu opsi berikut. Kamu tidak bisa mengambil opsi Fighting Style lebih dari satu kali, meskipun nantinya kamu mendapat kesempatan untuk memilih lagi.",
+              "description": "Pilih satu gaya bertarung sebagai keahlianmu. Kamu tidak bisa mengambil gaya yang sama lebih dari sekali, walaupun nanti dapat kesempatan memilih lagi.",
               "type": "feature",
               "choices": {
                 "type": "single",
@@ -7644,7 +7644,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Pilih satu gaya bertarung spesialisasi; kamu tidak bisa mengambil gaya yang sama lebih dari satu kali.",
+              "summary": "Pilih satu gaya bertarung. Gaya yang sama tidak bisa diambil dua kali.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -7659,7 +7659,7 @@
             },
             {
               "name": "Spellcasting: Paladin",
-              "description": "Pada level 2, kamu telah belajar menarik sihir divine melalui meditasi dan doa untuk cast sihir sebagaimana yang dilakukan oleh seorang cleric.",
+              "description": "Di level 2, kamu belajar cast spell lewat meditasi dan doa, mirip Cleric.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -7670,7 +7670,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Kamu bisa cast sihir divine melalui meditasi dan doa, serupa dengan cleric.",
+              "summary": "Kamu bisa cast spell Paladin lewat meditasi dan doa.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -7685,7 +7685,7 @@
             },
             {
               "name": "Divine Smite",
-              "description": "Mulai level 2, saat kamu berhasil mengenai makhluk dengan serangan senjata jarak dekat, kamu bisa menghabiskan satu spell slot untuk memberikan radiant damage kepada sasaran tersebut sebagai tambahan dari damage senjata. Damage tambahannya adalah **2d8** untuk spell slot level 1, ditambah **1d8** untuk setiap level sihir di atas level 1, hingga maksimal **5d8**. Damage ini meningkat sebesar **1d8** jika sasarannya adalah undead atau fiend.",
+              "description": "Saat serangan melee weapon kamu kena, kamu bisa memakai satu spell slot untuk menambah radiant damage ke target, di luar damage senjata. Tambahannya 2d8 untuk spell slot level 1, ditambah 1d8 untuk setiap level slot di atas 1, maksimal 5d8. Kalau targetnya undead atau fiend, tambah 1d8 lagi.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -7696,7 +7696,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Habiskan satu spell slot saat berhasil menyerang dengan senjata jarak dekat untuk memberikan radiant damage tambahan kepada sasaran.",
+              "summary": "Saat serangan melee kena, pakai spell slot untuk tambahan radiant damage: 2d8 di slot level 1, +1d8 per level di atasnya.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -7720,7 +7720,7 @@
           "features": [
             {
               "name": "Divine Health",
-              "description": "Pada level 3, sihir suci yang mengalir dalam dirimu membuatmu kebal terhadap penyakit.",
+              "description": "Sihir suci dalam dirimu membuatmu kebal terhadap penyakit.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -7731,7 +7731,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Pada level 3, sihir suci yang mengalir dalam dirimu membuatmu kebal terhadap penyakit.",
+              "summary": "Kamu kebal terhadap penyakit.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -7746,7 +7746,7 @@
             },
             {
               "name": "Sacred Oath",
-              "description": "Saat mencapai level 3, kamu mengucapkan sumpah yang mengikatmu sebagai paladin selamanya. Hingga saat ini, kamu berada dalam tahap persiapan, berkomitmen pada jalan ini tetapi belum bersumpah. Sekarang kamu memilih sebuah sumpah, seperti Oath of Devotion.\n\nPilihanmu memberikan fitur pada level 3, dan kembali pada level 7, 15, serta 20. Fitur-fitur tersebut mencakup oath spells dan fitur Channel Divinity.",
+              "description": "Di level 3, kamu mengucapkan sumpah yang mengikatmu sebagai Paladin selamanya, misalnya Oath of Devotion. Sebelumnya kamu masih dalam tahap persiapan.\n\nPilihan ini memberi fitur di level 3, lalu di level 7, 15, dan 20, termasuk oath spells dan Channel Divinity.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -7757,7 +7757,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Pilih sumpah suci yang memberimu fitur khusus dan sihir tertentu.",
+              "summary": "Pilih subclass Paladin. Fiturnya datang di level 3, 7, 15, dan 20.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -7772,7 +7772,7 @@
             },
             {
               "name": "Oath Spells",
-              "description": "Setiap sumpah memiliki daftar sihir yang terkait. Kamu mendapatkan akses ke sihir-sihir ini pada level yang ditentukan dalam deskripsi sumpah tersebut. Setelah kamu mendapatkan akses ke sebuah oath spell, sihir tersebut akan selalu dalam kondisi prepared. Oath spells tidak dihitung dalam jumlah maksimal sihir yang bisa kamu prepare setiap harinya.\n\nJika kamu mendapatkan oath spell yang tidak ada dalam daftar sihir paladin, sihir tersebut tetap dianggap sebagai sihir paladin bagimu.",
+              "description": "Setiap sumpah punya daftar spell yang kamu dapat di level tertentu. Oath spell selalu prepared dan tidak dihitung dalam jumlah spell yang bisa kamu prepare setiap hari.\n\nKalau ada oath spell yang tidak ada di daftar spell Paladin, spell itu tetap dihitung sebagai spell Paladin untukmu.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -7783,7 +7783,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Mendapatkan akses ke sihir khusus dari sumpahmu yang selalu dalam kondisi prepared.",
+              "summary": "Spell dari sumpahmu selalu prepared dan tidak memakan jatah prepare harian.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -7798,7 +7798,7 @@
             },
             {
               "name": "Channel Divinity",
-              "description": "Sumpahmu memungkinkan kamu menyalurkan energi ilahi untuk memicu efek magis. Setiap opsi Channel Divinity yang diberikan oleh sumpahmu menjelaskan cara penggunaannya.\n\nSaat menggunakan Channel Divinity, kamu memilih opsi mana yang ingin digunakan. Setelah itu, kamu harus menyelesaikan short atau long rest sebelum bisa menggunakan Channel Divinity kembali.\n\nBeberapa efek Channel Divinity memerlukan saving throws. Saat kamu menggunakan efek seperti itu dari kelas ini, DC-nya setara dengan paladin spell save DC milikmu.",
+              "description": "Sumpahmu memungkinkan kamu menyalurkan energi suci untuk efek sihir. Setiap pilihan Channel Divinity dari sumpahmu menjelaskan cara memakainya.\n\nSaat memakai Channel Divinity, pilih satu efek. Setelah itu, kamu harus short rest atau long rest sebelum bisa memakainya lagi.\n\nKalau efeknya meminta saving throw, DC-nya sama dengan spell save DC Paladin kamu.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -7809,7 +7809,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Gunakan energi ilahi untuk memicu efek magis; kamu harus menyelesaikan short atau long rest untuk menggunakan fitur ini kembali.",
+              "summary": "Pakai energi suci dari sumpahmu untuk efek khusus. Sekali per short rest atau long rest.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -8527,7 +8527,7 @@
       "features": [
         {
           "name": "Favored Enemy (1 type)",
-          "description": "Mulai level 1, kamu memiliki pengalaman luas dalam mempelajari, melacak, memburu, bahkan berbicara dengan tipe musuh tertentu.\n\nPilih satu tipe favored enemy: aberration, beast, celestial, construct, dragon, elemental, fey, fiend, giant, monstrosity, ooze, plant, atau undead. Sebagai alternatif, kamu bisa memilih dua ras humanoid (seperti gnoll dan orc) sebagai musuh favoritmu.\n\nKamu mendapatkan Advantage pada check Wisdom (Survival) untuk melacak musuh favoritmu, serta pada check Intelligence untuk mengingat informasi tentang mereka.\n\nSaat mendapatkan fitur ini, kamu juga mempelajari satu bahasa pilihanmu yang digunakan oleh musuh favoritmu, jika mereka memiliki bahasa.\n\nKamu memilih satu tambahan favored enemy beserta bahasanya pada level 6 dan 14. Seiring bertambahnya level, pilihanmu sebaiknya mencerminkan tipe monster yang kamu temui dalam petualanganmu.",
+          "description": "Kamu berpengalaman mempelajari, melacak, memburu, bahkan berbicara dengan satu jenis musuh.\n\nPilih satu jenis: aberration, beast, celestial, construct, dragon, elemental, fey, fiend, giant, monstrosity, ooze, plant, atau undead. Atau, pilih dua ras humanoid (misalnya gnoll dan orc).\n\nKamu dapat Advantage di Wisdom (Survival) check untuk melacak favored enemy kamu, dan di Intelligence check untuk mengingat informasi tentang mereka.\n\nKamu juga belajar satu bahasa yang dipakai favored enemy kamu, kalau mereka punya bahasa.\n\nDi level 6 dan 14, kamu memilih satu favored enemy lagi beserta bahasanya.",
           "type": "feature",
           "featureType": "Active",
           "actionType": null,
@@ -8538,7 +8538,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Dapatkan Advantage pada check Wisdom (Survival) untuk melacak dan check Intelligence untuk mengingat informasi tentang tipe musuh tertentu.",
+          "summary": "Advantage untuk melacak dan mengingat info tentang satu jenis musuh pilihanmu, plus satu bahasa mereka.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -8553,7 +8553,7 @@
         },
         {
           "name": "Natural Explorer (1 terrain type)",
-          "description": "Kamu sangat mengenal satu tipe lingkungan alam dan ahli dalam bepergian serta bertahan hidup di wilayah tersebut. Pilih satu tipe medan favorit: arctic, coast, desert, forest, grassland, mountain, atau swamp. Saat kamu melakukan check Intelligence atau Wisdom yang berkaitan dengan medan favoritmu, bonus proficiency kamu menjadi dua kali lipat jika kamu menggunakan skill yang kamu kuasai.\n\nSaat bepergian selama satu jam atau lebih di medan favoritmu, kamu mendapatkan manfaat berikut:\n\n- Difficult terrain tidak memperlambat perjalanan kelompokmu.\n\n- Kelompokmu tidak bisa tersesat kecuali karena cara magis.\n\n- Kamu tetap waspada terhadap bahaya meskipun sedang melakukan aktivitas lain saat bepergian (seperti mencari makan, navigasi, atau melacak).\n\n- Jika bepergian sendirian, kamu bisa bergerak secara stealthy dengan kecepatan normal.\n\n- Saat mencari makan (foraging), kamu menemukan makanan dua kali lebih banyak dari biasanya.\n\n- Saat melacak makhluk lain, kamu juga mengetahui jumlah pasti mereka, ukuran mereka, dan sudah berapa lama mereka melewati area tersebut.\n\nKamu memilih tipe medan favorit tambahan pada level 6 dan 10.",
+          "description": "Kamu sangat mengenal satu jenis medan: arctic, coast, desert, forest, grassland, mountain, atau swamp. Saat melakukan Intelligence check atau Wisdom check yang berhubungan dengan medan itu, Proficiency Bonus kamu dihitung dua kali lipat kalau kamu memakai skill yang kamu kuasai.\n\nSaat berjalan satu jam atau lebih di medan favorit kamu:\n\n- Difficult terrain tidak memperlambat perjalanan kelompokmu.\n- Kelompokmu tidak bisa tersesat, kecuali karena sihir.\n- Kamu tetap waspada terhadap bahaya walaupun sedang sibuk mencari makan, menunjukkan arah, atau melacak.\n- Kalau berjalan sendirian, kamu bisa bergerak diam-diam dengan kecepatan normal.\n- Saat mencari makan, kamu menemukan dua kali lipat dari biasanya.\n- Saat melacak makhluk lain, kamu juga tahu jumlah pastinya, ukurannya, dan sudah berapa lama mereka lewat.\n\nDi level 6 dan 10, kamu memilih satu medan favorit lagi.",
           "type": "feature",
           "featureType": "Active",
           "actionType": null,
@@ -8564,7 +8564,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Dapatkan bonus proficiency ganda untuk skill di medan pilihan dan berbagai manfaat perjalanan saat menjelajahi lingkungan tersebut.",
+          "summary": "Proficiency Bonus dua kali lipat untuk check terkait medan favorit, plus banyak kemudahan saat menjelajah di sana.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -8584,7 +8584,7 @@
           "features": [
             {
               "name": "Favored Enemy (1 type)",
-              "description": "Mulai level 1, kamu memiliki pengalaman luas dalam mempelajari, melacak, memburu, bahkan berbicara dengan tipe musuh tertentu.\n\nPilih satu tipe favored enemy: aberrations, beasts, celestials, constructs, dragons, elementals, fey, fiends, giants, monstrosities, oozes, plants, atau undead. Sebagai alternatif, kamu bisa memilih dua ras humanoid (seperti gnolls dan orcs) sebagai favored enemy.\n\nKamu memiliki Advantage pada Wisdom check (Survival) untuk melacak favored enemy milikmu, serta pada Intelligence check untuk mengingat informasi tentang mereka.\n\nSaat kamu mendapatkan fitur ini, kamu juga mempelajari satu bahasa pilihanmu yang digunakan oleh favored enemy tersebut, jika mereka memang berbicara.\n\nKamu memilih satu favored enemy tambahan, beserta bahasa yang terkait, pada level 6 dan 14. Seiring bertambahnya level, pilihanmu sebaiknya mencerminkan tipe monster yang kamu temui dalam petualanganmu.",
+              "description": "Kamu berpengalaman mempelajari, melacak, memburu, bahkan berbicara dengan satu jenis musuh.\n\nPilih satu jenis: aberration, beast, celestial, construct, dragon, elemental, fey, fiend, giant, monstrosity, ooze, plant, atau undead. Atau, pilih dua ras humanoid (misalnya gnoll dan orc).\n\nKamu dapat Advantage di Wisdom (Survival) check untuk melacak favored enemy kamu, dan di Intelligence check untuk mengingat informasi tentang mereka.\n\nKamu juga belajar satu bahasa yang dipakai favored enemy kamu, kalau mereka punya bahasa.\n\nDi level 6 dan 14, kamu memilih satu favored enemy lagi beserta bahasanya.",
               "type": "feature",
               "choices": {
                 "type": "single",
@@ -8615,7 +8615,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Mendapatkan Advantage pada Wisdom check (Survival) untuk melacak dan Intelligence check untuk mengingat informasi tentang tipe musuh tertentu.",
+              "summary": "Advantage untuk melacak dan mengingat info tentang satu jenis musuh pilihanmu, plus satu bahasa mereka.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -8630,7 +8630,7 @@
             },
             {
               "name": "Natural Explorer (1 terrain type)",
-              "description": "Kamu sangat mengenal satu jenis lingkungan alam dan ahli dalam menjelajah serta bertahan hidup di wilayah tersebut. Pilih satu jenis medan favorit: arctic, coast, desert, forest, grassland, mountain, atau swamp. Saat kamu melakukan check Intelligence atau Wisdom yang berkaitan dengan medan favoritmu, bonus proficiency kamu menjadi dua kali lipat jika kamu menggunakan skill yang kamu kuasai.\n\nSelama menjelajah selama satu jam atau lebih di medan favoritmu, kamu mendapatkan Advantage berikut:\n\n- Medan sulit (difficult terrain) tidak memperlambat perjalanan kelompokmu.\n\n- Kelompokmu tidak bisa tersesat, kecuali karena pengaruh sihir.\n\n- Kamu tetap waspada terhadap bahaya meskipun sedang melakukan aktivitas lain saat menjelajah (seperti mencari makan, navigasi, atau melacak).\n\n- Jika kamu menjelajah sendirian, kamu bisa bergerak secara mengendap-endap (stealthily) dengan kecepatan normal.\n\n- Saat mencari makan, kamu menemukan jumlah makanan dua kali lebih banyak dari biasanya.\n\n- Saat melacak makhluk lain, kamu juga mengetahui jumlah pasti mereka, ukuran mereka, dan sudah berapa lama mereka melewati area tersebut.\n\nKamu bisa memilih jenis medan favorit tambahan pada level 6 dan 10.",
+              "description": "Kamu sangat mengenal satu jenis medan: arctic, coast, desert, forest, grassland, mountain, atau swamp. Saat melakukan Intelligence check atau Wisdom check yang berhubungan dengan medan itu, Proficiency Bonus kamu dihitung dua kali lipat kalau kamu memakai skill yang kamu kuasai.\n\nSaat berjalan satu jam atau lebih di medan favorit kamu:\n\n- Difficult terrain tidak memperlambat perjalanan kelompokmu.\n- Kelompokmu tidak bisa tersesat, kecuali karena sihir.\n- Kamu tetap waspada terhadap bahaya walaupun sedang sibuk mencari makan, menunjukkan arah, atau melacak.\n- Kalau berjalan sendirian, kamu bisa bergerak diam-diam dengan kecepatan normal.\n- Saat mencari makan, kamu menemukan dua kali lipat dari biasanya.\n- Saat melacak makhluk lain, kamu juga tahu jumlah pastinya, ukurannya, dan sudah berapa lama mereka lewat.\n\nDi level 6 dan 10, kamu memilih satu medan favorit lagi.",
               "type": "feature",
               "choices": {
                 "type": "single",
@@ -8655,7 +8655,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Mendapatkan bonus proficiency ganda untuk beberapa check di medan favorit dan memperoleh berbagai Advantage saat menjelajah di wilayah tersebut.",
+              "summary": "Proficiency Bonus dua kali lipat untuk check terkait medan favorit, plus banyak kemudahan saat menjelajah di sana.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -8677,7 +8677,7 @@
           "features": [
             {
               "name": "Fighting Style",
-              "description": "Pada level 2, kamu mengadopsi gaya bertarung tertentu sebagai spesialisasi kamu. Pilih salah satu opsi berikut. Kamu tidak boleh mengambil opsi Fighting Style yang sama lebih dari satu kali, meskipun nantinya kamu mendapatkan kesempatan untuk memilih lagi.",
+              "description": "Pilih satu gaya bertarung sebagai keahlianmu. Kamu tidak bisa mengambil gaya yang sama lebih dari sekali, walaupun nanti dapat kesempatan memilih lagi.",
               "type": "feature",
               "choices": {
                 "type": "single",
@@ -8700,7 +8700,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Pilih gaya bertarung spesialisasi untuk mendapatkan Advantage tertentu dalam pertempuran.",
+              "summary": "Pilih satu gaya bertarung. Gaya yang sama tidak bisa diambil dua kali.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -8715,7 +8715,7 @@
             },
             {
               "name": "Spellcasting: Ranger",
-              "description": "Saat mencapai level 2, kamu telah belajar menggunakan esensi magis alam untuk cast sihir, sama seperti yang dilakukan oleh seorang druid.",
+              "description": "Di level 2, kamu belajar memakai sihir alam untuk cast spell, mirip Druid.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -8726,7 +8726,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Menggunakan esensi magis alam untuk cast sihir, serupa dengan seorang druid.",
+              "summary": "Kamu bisa cast spell Ranger lewat sihir alam.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -8750,7 +8750,7 @@
           "features": [
             {
               "name": "Ranger Archetype",
-              "description": "Pada level 3, kamu memilih sebuah archetype yang ingin kamu tiru, seperti Hunter. Pilihanmu ini memberikan fitur pada level 3, dan kembali lagi pada level 7, 11, dan 15.",
+              "description": "Di level 3, kamu memilih gaya Ranger yang ingin kamu dalami, misalnya Hunter. Pilihan ini memberi fitur di level 3, lalu di level 7, 11, dan 15.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -8761,7 +8761,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Pilih archetype Ranger, seperti Hunter, untuk mendapatkan fitur-fitur spesialisasi.",
+              "summary": "Pilih subclass Ranger. Fiturnya datang di level 3, 7, 11, dan 15.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -8776,7 +8776,7 @@
             },
             {
               "name": "Primeval Awareness",
-              "description": "Mulai level 3, kamu bisa menggunakan action dan menghabiskan satu spell slot ranger untuk memfokuskan kesadaranmu pada area di sekitarmu. Selama **1 menit** per level spell slot yang kamu gunakan, kamu bisa merasakan apakah tipe makhluk berikut ada dalam jarak **1 mil** darimu (atau hingga **6 mil** jika kamu berada di medan favorit): aberrations, celestials, dragons, elementals, fey, fiends, dan undead. Fitur ini tidak memberitahukan lokasi maupun jumlah makhluk tersebut.",
+              "description": "Pakai action dan satu spell slot Ranger untuk memusatkan indramu. Selama 1 menit per level spell slot yang kamu pakai, kamu bisa merasakan apakah ada aberration, celestial, dragon, elemental, fey, fiend, atau undead dalam jarak 1 mil (atau sampai 6 mil di medan favorit kamu). Fitur ini tidak memberi tahu lokasi atau jumlah mereka.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Action",
@@ -8787,7 +8787,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Gunakan satu spell slot ranger dan satu action untuk merasakan keberadaan tipe makhluk tertentu dalam jarak 1 mil (atau 6 mil di medan favorit).",
+              "summary": "Action + spell slot: rasakan apakah ada aberration, celestial, dragon, elemental, fey, fiend, atau undead dalam 1 mil.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -9766,7 +9766,7 @@
       "features": [
         {
           "name": "Expertise",
-          "description": "Pada level 1, pilih dua dari skill yang kamu kuasai, atau satu skill dan proficiency kamu dengan thieves' tools. Bonus proficiency kamu menjadi dua kali lipat untuk setiap ability check yang menggunakan salah satu dari pilihan tersebut.\n\nPada level 6, kamu bisa memilih dua proficiency tambahan (baik skill maupun thieves' tools) untuk mendapatkan Advantage ini.",
+          "description": "Pilih dua skill yang sudah kamu kuasai (proficient), atau satu skill dan thieves' tools. Untuk ability check yang memakai pilihan itu, Proficiency Bonus kamu dihitung dua kali lipat.\n\nDi level 6, kamu boleh memilih dua lagi.",
           "type": "feature",
           "featureType": "Passive",
           "actionType": null,
@@ -9777,7 +9777,7 @@
           "effect": null,
           "onUse": null,
           "scaling": "Choose two more skills at level 6",
-          "summary": "Lipat gandakan bonus proficiency untuk dua skill pilihanmu, atau satu skill dan thieves' tools.",
+          "summary": "Proficiency Bonus jadi dua kali lipat untuk dua skill pilihanmu (atau satu skill dan thieves' tools).",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": true,
@@ -9792,7 +9792,7 @@
         },
         {
           "name": "Sneak Attack",
-          "description": "Mulai level 1, kamu tahu cara menyerang secara tersembunyi dan memanfaatkan kelengahan musuh. Sekali per giliran, kamu bisa memberikan tambahan damage **1d6** kepada satu makhluk yang kamu pukul jika kamu memiliki Advantage pada attack roll. Serangan ini harus menggunakan senjata finesse atau senjata jarak jauh.\n\nKamu tidak memerlukan Advantage pada attack roll jika ada musuh lain dari sasaran tersebut berada dalam jarak **5 kaki** darinya, musuh tersebut tidak sedang Incapacitated, dan kamu tidak memiliki Disadvantage pada attack roll.\n\nJumlah damage tambahan ini akan meningkat seiring bertambahnya levelmu di kelas ini, sebagaimana tertera pada kolom Sneak Attack di tabel Rogue.",
+          "description": "Sekali per giliran, kalau seranganmu kena, kamu bisa menambah 1d6 damage.\n\nSenjatanya harus finesse weapon (misalnya dagger atau rapier) atau ranged weapon (misalnya shortbow). Kamu juga butuh salah satu dari ini: Advantage pada attack roll, atau ada teman kamu dalam jarak 5 feet dari target. Teman itu tidak boleh Incapacitated, dan kamu tidak boleh sedang kena Disadvantage.\n\nDadunya bertambah 1d6 setiap 2 level Rogue, sampai 10d6 di level 19.",
           "type": "feature",
           "featureType": "Active",
           "actionType": null,
@@ -9806,7 +9806,7 @@
           "effect": "Deal extra damage when you have Advantage",
           "onUse": "Add Sneak Attack dice to one attack's damage this turn",
           "scaling": "1d6 at level 1, increases by 1d6 every two Rogue levels up to 10d6 at level 19",
-          "summary": "Berikan damage tambahan sekali per giliran jika kamu memiliki Advantage atau ada rekan dalam jarak 5 kaki dari sasaran.",
+          "summary": "Sekali per giliran: +1d6 damage dengan finesse weapon atau ranged weapon, kalau punya Advantage atau ada teman di dekat target.",
           "grantsSpells": false,
           "grantsAttack": true,
           "grantsSkills": false,
@@ -9821,7 +9821,7 @@
         },
         {
           "name": "Thieves' Cant",
-          "description": "Selama pelatihan rogue, kamu mempelajari thieves' cant, sebuah campuran rahasia antara dialek, jargon, dan kode yang memungkinkanmu menyisipkan pesan tersembunyi dalam percakapan yang terlihat normal. Hanya makhluk lain yang menguasai thieves' cant yang bisa memahami pesan tersebut. Menyampaikan pesan dengan cara ini membutuhkan waktu empat kali lebih lama dibandingkan berbicara secara lugas.\n\nSelain itu, kamu memahami serangkaian tanda dan simbol rahasia yang digunakan untuk menyampaikan pesan singkat dan sederhana, seperti apakah suatu area berbahaya atau merupakan wilayah guild pencuri, apakah ada harta karun di sekitar, atau apakah orang-orang di area tersebut adalah sasaran empuk atau bisa menyediakan rumah aman bagi pencuri yang sedang melarikan diri.",
+          "description": "Kamu menguasai thieves' cant, campuran dialek, istilah, dan kode rahasia untuk menyembunyikan pesan di dalam obrolan biasa. Hanya yang juga tahu thieves' cant yang bisa memahaminya. Menyampaikan pesan dengan cara ini makan waktu empat kali lebih lama.\n\nKamu juga paham tanda dan simbol rahasia untuk pesan singkat, misalnya apakah suatu tempat berbahaya, wilayah guild pencuri, ada barang berharga di dekat situ, orangnya mudah ditipu, atau ada tempat aman untuk pencuri yang sedang kabur.",
           "type": "feature",
           "featureType": "Active",
           "actionType": null,
@@ -9832,7 +9832,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Berkomunikasi menggunakan kode rahasia berupa dialek dan jargon, serta membaca tanda tersembunyi para kriminal.",
+          "summary": "Bahasa rahasia para pencuri untuk menyelipkan pesan di obrolan biasa, plus tanda dan simbol rahasia.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -9852,7 +9852,7 @@
           "features": [
             {
               "name": "Expertise",
-              "description": "Pada level 1, pilih dua dari proficiency skill milikmu, atau satu proficiency skill dan kemahiranmu dalam menggunakan thieves' tools. Bonus proficiency milikmu menjadi dua kali lipat untuk setiap ability check yang menggunakan salah satu dari proficiency yang dipilih tersebut.\n\nPada level 6, kamu bisa memilih dua proficiency tambahan (baik skill maupun thieves' tools) untuk mendapatkan Advantage ini.",
+              "description": "Pilih dua skill yang sudah kamu kuasai (proficient), atau satu skill dan thieves' tools. Untuk ability check yang memakai pilihan itu, Proficiency Bonus kamu dihitung dua kali lipat.\n\nDi level 6, kamu boleh memilih dua lagi.",
               "type": "feature",
               "choices": {
                 "type": "skills",
@@ -9882,7 +9882,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Choose two more skills at level 6",
-              "summary": "Lipat gandakan bonus proficiency untuk ability check menggunakan dua skill atau thieves' tools pilihan.",
+              "summary": "Proficiency Bonus jadi dua kali lipat untuk dua skill pilihanmu (atau satu skill dan thieves' tools).",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": true,
@@ -9897,7 +9897,7 @@
             },
             {
               "name": "Sneak Attack",
-              "description": "Mulai level 1, kamu tahu cara menyerang secara tersembunyi dan memanfaatkan kelengahan musuh. Sekali per giliran, kamu bisa memberikan tambahan damage **1d6** kepada satu makhluk yang kamu pukul jika kamu memiliki Advantage pada attack roll. Serangan ini harus menggunakan senjata finesse atau senjata jarak jauh.\n\nKamu tidak memerlukan Advantage pada attack roll jika ada musuh lain dari sasaran tersebut berada dalam jarak **5 kaki** darinya, musuh tersebut tidak sedang dalam kondisi Incapacitated, dan kamu tidak memiliki Disadvantage pada attack roll.\n\nJumlah tambahan damage ini akan meningkat seiring bertambahnya levelmu di kelas ini, sebagaimana tertera pada kolom Sneak Attack di tabel Rogue.",
+              "description": "Sekali per giliran, kalau seranganmu kena, kamu bisa menambah 1d6 damage.\n\nSenjatanya harus finesse weapon (misalnya dagger atau rapier) atau ranged weapon (misalnya shortbow). Kamu juga butuh salah satu dari ini: Advantage pada attack roll, atau ada teman kamu dalam jarak 5 feet dari target. Teman itu tidak boleh Incapacitated, dan kamu tidak boleh sedang kena Disadvantage.\n\nDadunya bertambah 1d6 setiap 2 level Rogue, sampai 10d6 di level 19.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -9911,7 +9911,7 @@
               "effect": null,
               "onUse": "Add Sneak Attack dice to one attack's damage this turn",
               "scaling": "1d6 at level 1, increases by 1d6 every two Rogue levels up to 10d6 at level 19",
-              "summary": "Berikan tambahan damage 1d6 sekali per giliran kepada makhluk yang kamu serang menggunakan senjata finesse atau jarak jauh jika kamu memiliki Advantage atau ada rekan di samping sasaran.",
+              "summary": "Sekali per giliran: +1d6 damage dengan finesse weapon atau ranged weapon, kalau punya Advantage atau ada teman di dekat target.",
               "grantsSpells": false,
               "grantsAttack": true,
               "grantsSkills": false,
@@ -9926,7 +9926,7 @@
             },
             {
               "name": "Thieves' Cant",
-              "description": "Selama pelatihan rogue, kamu mempelajari thieves' cant, sebuah campuran rahasia antara dialek, jargon, dan kode yang memungkinkanmu menyembunyikan pesan di dalam percakapan yang terlihat normal. Hanya makhluk lain yang menguasai thieves' cant yang bisa memahami pesan tersebut. Menyampaikan pesan dengan cara ini membutuhkan waktu empat kali lebih lama dibandingkan berbicara secara lugas.\n\nSelain itu, kamu memahami serangkaian tanda dan simbol rahasia yang digunakan untuk menyampaikan pesan singkat dan sederhana, seperti apakah suatu area berbahaya atau merupakan wilayah guild pencuri, apakah ada harta karun di sekitar, atau apakah orang-orang di area tersebut adalah sasaran empuk atau bisa menyediakan rumah aman bagi pencuri yang sedang buron.",
+              "description": "Kamu menguasai thieves' cant, campuran dialek, istilah, dan kode rahasia untuk menyembunyikan pesan di dalam obrolan biasa. Hanya yang juga tahu thieves' cant yang bisa memahaminya. Menyampaikan pesan dengan cara ini makan waktu empat kali lebih lama.\n\nKamu juga paham tanda dan simbol rahasia untuk pesan singkat, misalnya apakah suatu tempat berbahaya, wilayah guild pencuri, ada barang berharga di dekat situ, orangnya mudah ditipu, atau ada tempat aman untuk pencuri yang sedang kabur.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -9937,7 +9937,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Gunakan campuran dialek dan kode rahasia untuk menyembunyikan pesan dalam percakapan serta memahami tanda dan simbol rahasia.",
+              "summary": "Bahasa rahasia para pencuri untuk menyelipkan pesan di obrolan biasa, plus tanda dan simbol rahasia.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -9959,7 +9959,7 @@
           "features": [
             {
               "name": "Cunning Action",
-              "description": "Mulai level 2, kecepatan berpikir dan kelincahanmu memungkinkanmu untuk bergerak dan bertindak dengan cepat. Kamu bisa menggunakan bonus action pada setiap giliranmu dalam pertarungan. action ini hanya bisa digunakan untuk mengambil action Dash, Disengage, atau Hide.",
+              "description": "Di setiap giliranmu saat bertarung, kamu bisa memakai bonus action untuk Dash, Disengage, atau Hide.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Bonus Action",
@@ -9970,7 +9970,7 @@
               "effect": null,
               "onUse": "Take the Dash, Disengage, or Hide action as a bonus action",
               "scaling": null,
-              "summary": "Gunakan bonus action pada setiap giliranmu saat bertarung untuk mengambil action Dash, Disengage, atau Hide.",
+              "summary": "Bonus action untuk Dash, Disengage, atau Hide di setiap giliran.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -9992,7 +9992,7 @@
           "features": [
             {
               "name": "Roguish Archetype",
-              "description": "Pada level 3, kamu memilih arketipe yang kamu contoh dalam menerapkan kemampuan rogue-mu, seperti Thief. Arketipe tambahan tersedia dalam materi sumber asli. Pilihan arketipemu memberimu fitur pada level 3, dan kemudian pada level 9, 13, dan 17.",
+              "description": "Di level 3, kamu memilih gaya Rogue yang ingin kamu dalami, misalnya Thief. Pilihan ini memberi fitur di level 3, lalu di level 9, 13, dan 17.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -10003,7 +10003,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Pilih arketipe rogue, seperti Thief, untuk mendapatkan fitur spesialisasi pada level 3, 9, 13, dan 17.",
+              "summary": "Pilih subclass Rogue. Fiturnya datang di level 3, 9, 13, dan 17.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -10091,7 +10091,7 @@
           "features": [
             {
               "name": "Expertise",
-              "description": "Pada level 1, pilih dua dari skill yang kamu kuasai, atau satu skill dan kemahiranmu dalam menggunakan thieves' tools. Bonus proficiency kamu menjadi dua kali lipat untuk setiap ability check yang menggunakan salah satu dari proficiency yang kamu pilih tersebut.\n\nPada level 6, kamu bisa memilih dua proficiency tambahan (baik skill maupun thieves' tools) untuk mendapatkan Advantage yang sama.",
+              "description": "Pilih dua skill yang sudah kamu kuasai (proficient), atau satu skill dan thieves' tools. Untuk ability check yang memakai pilihan itu, Proficiency Bonus kamu dihitung dua kali lipat.\n\nDi level 6, kamu boleh memilih dua lagi.",
               "type": "feature",
               "choices": {
                 "type": "skills",
@@ -10121,7 +10121,7 @@
               "effect": null,
               "onUse": null,
               "scaling": "Choose two more skills at level 6",
-              "summary": "Dapatkan bonus proficiency dua kali lipat untuk ability check menggunakan skill atau thieves' tools pilihanmu.",
+              "summary": "Proficiency Bonus jadi dua kali lipat untuk dua skill pilihanmu (atau satu skill dan thieves' tools).",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": true,
@@ -10878,7 +10878,7 @@
       "features": [
         {
           "name": "Spellcasting: Sorcerer",
-          "description": "Sebuah peristiwa di masa lalumu, atau dalam kehidupan orang tua maupun leluhurmu, telah meninggalkan jejak yang tak terhapuskan dan mengisi dirimu dengan sihir arcane. Sumber sihir inilah, apa pun asal-usulnya, yang menjadi bahan bakar bagi setiap sihir yang kamu lancarkan.",
+          "description": "Sebuah kejadian di masa lalumu, atau di hidup orang tua atau leluhurmu, meninggalkan sihir arcane di dalam dirimu. Sihir bawaan inilah sumber spell kamu.",
           "type": "feature",
           "featureType": "Passive",
           "actionType": null,
@@ -10889,7 +10889,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Kamu memiliki sihir arcane bawaan yang berasal dari peristiwa masa lalu atau garis keturunan leluhurmu.",
+          "summary": "Kamu bisa cast spell Sorcerer dari sihir yang sudah ada di dalam dirimu.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -10904,7 +10904,7 @@
         },
         {
           "name": "Sorcerous Origin",
-          "description": "Pilihlah sebuah sorcerous origin yang menjelaskan dari mana asal kekuatan sihir bawaanmu, contohnya adalah Draconic Bloodline.\n\nPilihan ini memberimu berbagai fitur saat kamu memilihnya di level 1, dan kemudian lagi pada level 6, 14, dan 18.",
+          "description": "Pilih asal sihir bawaanmu, misalnya Draconic Bloodline. Pilihan ini memberi fitur di level 1, lalu di level 6, 14, dan 18.",
           "type": "feature",
           "featureType": "Active",
           "actionType": null,
@@ -10915,7 +10915,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Pilih sumber kekuatan sihir bawaanmu, seperti Draconic Bloodline, untuk mendapatkan fitur kelas yang spesifik.",
+          "summary": "Pilih subclass Sorcerer. Fiturnya datang di level 1, 6, 14, dan 18.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -10935,7 +10935,7 @@
           "features": [
             {
               "name": "Spellcasting: Sorcerer",
-              "description": "Peristiwa di masa lalumu, atau kehidupan orang tua maupun leluhurmu, meninggalkan jejak abadi yang memberimu kekuatan sihir arcane. Sumber sihir ini, apa pun asalnya, menjadi bahan bakar bagi setiap sihir yang kamu lancarkan.",
+              "description": "Sebuah kejadian di masa lalumu, atau di hidup orang tua atau leluhurmu, meninggalkan sihir arcane di dalam dirimu. Sihir bawaan inilah sumber spell kamu.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -10946,7 +10946,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Peristiwa di masa lalumu, atau kehidupan orang tua maupun leluhurmu, meninggalkan jejak abadi yang memberimu kekuatan sihir arcane.",
+              "summary": "Kamu bisa cast spell Sorcerer dari sihir yang sudah ada di dalam dirimu.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -10961,7 +10961,7 @@
             },
             {
               "name": "Sorcerous Origin",
-              "description": "Pilih sebuah sorcerous origin yang menjelaskan asal-usul kekuatan sihir bawaanmu, contohnya adalah Draconic Bloodline.\n\nPilihanmu akan memberikan berbagai fitur saat kamu memilihnya di level 1, dan kemudian lagi pada level 6, 14, dan 18.",
+              "description": "Pilih asal sihir bawaanmu, misalnya Draconic Bloodline. Pilihan ini memberi fitur di level 1, lalu di level 6, 14, dan 18.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -10972,7 +10972,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Pilih sorcerous origin, seperti Draconic Bloodline, untuk menentukan sumber kekuatan sihir bawaanmu.",
+              "summary": "Pilih subclass Sorcerer. Fiturnya datang di level 1, 6, 14, dan 18.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -10996,7 +10996,7 @@
           "features": [
             {
               "name": "Font of Magic",
-              "description": "Pada level 2, kamu mulai mengakses sumber sihir yang dalam di dalam dirimu. Sumber ini direpresentasikan oleh sorcery points, yang memungkinkanmu menciptakan berbagai efek magis.\n\nSorcery Points\n\nKamu memiliki **2** sorcery points, dan jumlahnya akan bertambah seiring kenaikan levelmu, sebagaimana tertera pada kolom Sorcery Points di tabel Sorcerer. Kamu tidak bisa memiliki sorcery points lebih banyak dari yang tertera di tabel untuk levelmu. Kamu mendapatkan kembali semua sorcery points yang telah terpakai setelah menyelesaikan long rest.",
+              "description": "Kamu bisa menimba sumber sihir di dalam dirimu. Sumber ini berbentuk sorcery points, yang bisa dipakai untuk berbagai efek sihir.\n\nKamu punya 2 sorcery points, dan jumlahnya naik di level lebih tinggi (lihat kolom Sorcery Points di tabel Sorcerer). Sorcery points kamu tidak bisa melebihi angka di tabel untuk levelmu. Semua sorcery points pulih setelah long rest.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -11007,7 +11007,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Gunakan sorcery points untuk menciptakan berbagai efek magis.",
+              "summary": "Kamu punya sorcery points untuk efek sihir. Pulih setelah long rest.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -11022,7 +11022,7 @@
             },
             {
               "name": "Flexible Casting: Creating Spell Slots",
-              "description": "Kamu bisa mengubah sorcery points yang belum terpakai menjadi satu spell slot menggunakan bonus action pada giliranmu. Tabel Creating Spell Slots menunjukkan biaya untuk membuat spell slot pada level tertentu. Kamu hanya bisa membuat spell slot maksimal hingga level 5.\n\nSetiap spell slot yang kamu buat dengan fitur ini akan hilang setelah kamu menyelesaikan long rest.",
+              "description": "Di giliranmu, pakai bonus action untuk menukar sorcery points jadi satu spell slot. Biayanya ada di tabel Creating Spell Slots. Slot paling tinggi yang bisa dibuat adalah level 5.\n\nSpell slot hasil fitur ini hilang setelah long rest.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Bonus Action",
@@ -11033,7 +11033,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Gunakan bonus action untuk menukar sorcery points menjadi satu spell slot hingga level 5.",
+              "summary": "Bonus action: tukar sorcery points jadi satu spell slot (maksimal level 5).",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -11048,7 +11048,7 @@
             },
             {
               "name": "Flexible Casting: Converting Spell Slot",
-              "description": "Sebagai bonus action pada giliranmu, kamu bisa mengorbankan satu spell slot untuk mendapatkan sorcery points dalam jumlah yang sama dengan level slot tersebut.",
+              "description": "Di giliranmu, pakai bonus action untuk menghabiskan satu spell slot dan mendapat sorcery points sebanyak level slot itu.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Bonus Action",
@@ -11059,7 +11059,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Gunakan bonus action untuk mengorbankan satu spell slot dan mendapatkan sorcery points sejumlah level slot tersebut.",
+              "summary": "Bonus action: tukar satu spell slot jadi sorcery points sebanyak level slot itu.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -11083,7 +11083,7 @@
           "features": [
             {
               "name": "Metamagic",
-              "description": "Pada level 3, kamu mendapatkan kemampuan untuk memodifikasi sihirmu agar sesuai dengan kebutuhanmu. Kamu bisa memilih dua opsi Metamagic dari daftar yang tersedia. Kamu akan mendapatkan satu opsi tambahan pada level 10 dan 17.\n\nKecuali disebutkan lain, kamu hanya bisa menggunakan satu opsi Metamagic pada satu sihir saat kamu merapalkannya.",
+              "description": "Kamu bisa mengubah cara kerja spell sesuai kebutuhan. Pilih dua opsi Metamagic. Kamu dapat satu lagi di level 10 dan 17.\n\nSetiap kali cast spell, kamu hanya boleh memakai satu opsi Metamagic, kecuali ada keterangan lain.",
               "type": "feature",
               "choices": {
                 "type": "multiple",
@@ -11133,7 +11133,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Modifikasi sihirmu menggunakan berbagai opsi Metamagic.",
+              "summary": "Pilih dua opsi Metamagic untuk mengubah spell kamu dengan sorcery points.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -11302,7 +11302,7 @@
           "features": [
             {
               "name": "Metamagic",
-              "description": "Pada level 3, kamu mendapatkan kemampuan untuk memodifikasi sihirmu agar sesuai dengan kebutuhanmu. Kamu bisa memilih dua opsi Metamagic dari daftar yang tersedia. Kamu akan mendapatkan satu opsi tambahan pada level 10 dan level 17.\n\nKecuali disebutkan lain, kamu hanya bisa menggunakan satu opsi Metamagic pada satu sihir saat kamu merapalkannya.",
+              "description": "Kamu bisa mengubah cara kerja spell sesuai kebutuhan. Pilih dua opsi Metamagic. Kamu dapat satu lagi di level 10 dan 17.\n\nSetiap kali cast spell, kamu hanya boleh memakai satu opsi Metamagic, kecuali ada keterangan lain.",
               "type": "feature",
               "choices": {
                 "type": "multiple",
@@ -11352,7 +11352,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Modifikasi sihir kamu menggunakan berbagai opsi Metamagic sesuai kebutuhan.",
+              "summary": "Pilih dua opsi Metamagic untuk mengubah spell kamu dengan sorcery points.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -11545,7 +11545,7 @@
           "features": [
             {
               "name": "Metamagic",
-              "description": "Pada level 3, kamu mendapatkan kemampuan untuk memodifikasi sihirmu agar sesuai dengan kebutuhanmu. Kamu bisa memilih dua opsi Metamagic dari daftar yang tersedia. Kamu akan mendapatkan satu opsi tambahan pada level 10 dan level 17.\n\nKecuali disebutkan lain, kamu hanya bisa menggunakan satu opsi Metamagic pada satu sihir saat kamu merapalkannya.",
+              "description": "Kamu bisa mengubah cara kerja spell sesuai kebutuhan. Pilih dua opsi Metamagic. Kamu dapat satu lagi di level 10 dan 17.\n\nSetiap kali cast spell, kamu hanya boleh memakai satu opsi Metamagic, kecuali ada keterangan lain.",
               "type": "feature",
               "choices": {
                 "type": "multiple",
@@ -11595,7 +11595,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Modifikasi sihir kamu menggunakan berbagai opsi Metamagic sesuai kebutuhan.",
+              "summary": "Pilih dua opsi Metamagic untuk mengubah spell kamu dengan sorcery points.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -11997,7 +11997,7 @@
       "features": [
         {
           "name": "Otherworldly Patron",
-          "description": "Pada level 1, kamu telah membuat perjanjian dengan makhluk dari dunia lain pilihanmu, contohnya The Fiend. Pilihan ini memberimu berbagai fitur pada level 1, serta pada level 6, 10, dan 14.",
+          "description": "Kamu membuat perjanjian dengan makhluk dari dunia lain, misalnya The Fiend. Pilihan ini memberi fitur di level 1, lalu di level 6, 10, dan 14.",
           "type": "feature",
           "featureType": "Passive",
           "actionType": null,
@@ -12008,7 +12008,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Kamu membuat perjanjian dengan makhluk dari dunia lain, seperti The Fiend, untuk mendapatkan berbagai fitur kuat.",
+          "summary": "Pilih subclass Warlock. Fiturnya datang di level 1, 6, 10, dan 14.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -12023,7 +12023,7 @@
         },
         {
           "name": "Pact Magic",
-          "description": "Berkat riset arkana dan kekuatan sihir yang diberikan oleh patronmu, kamu menjadi proficient dengan berbagai sihir.",
+          "description": "Riset sihir arcane dan kekuatan dari patron kamu membuatmu bisa cast spell.",
           "type": "feature",
           "featureType": "Passive",
           "actionType": null,
@@ -12034,7 +12034,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Riset arkana dan kekuatan dari patron memberikanmu kemampuan untuk cast sihir.",
+          "summary": "Kamu bisa cast spell Warlock dari kekuatan patron kamu.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -12054,7 +12054,7 @@
           "features": [
             {
               "name": "Otherworldly Patron",
-              "description": "Pada level 1, kamu telah membuat perjanjian dengan makhluk asing pilihanmu, contohnya seperti The Fiend. Pilihanmu ini memberikan fitur-fitur tertentu pada level 1, dan kembali lagi pada level 6, 10, dan 14.",
+              "description": "Kamu membuat perjanjian dengan makhluk dari dunia lain, misalnya The Fiend. Pilihan ini memberi fitur di level 1, lalu di level 6, 10, dan 14.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -12065,7 +12065,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Buat perjanjian dengan makhluk asing, seperti The Fiend, untuk mendapatkan berbagai fitur.",
+              "summary": "Pilih subclass Warlock. Fiturnya datang di level 1, 6, 10, dan 14.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -12080,7 +12080,7 @@
             },
             {
               "name": "Pact Magic",
-              "description": "Riset arkana yang kamu lakukan serta sihir yang dianugerahkan oleh patronmu telah memberimu kemudahan dalam menguasai berbagai sihir.",
+              "description": "Riset sihir arcane dan kekuatan dari patron kamu membuatmu bisa cast spell.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -12091,7 +12091,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Kuasai penggunaan sihir melalui riset arkana dan kekuatan magis dari patron kamu.",
+              "summary": "Kamu bisa cast spell Warlock dari kekuatan patron kamu.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -12115,7 +12115,7 @@
           "features": [
             {
               "name": "Eldritch Invocations",
-              "description": "Dalam studimu mengenai ilmu okultisme, kamu telah menemukan eldritch invocations, yaitu potongan pengetahuan terlarang yang memberimu kemampuan magis permanen.\n\nPada level 2, kamu mendapatkan dua eldritch invocations pilihanmu. Opsi invocasi tersedia di bagian akhir deskripsi kelas. Saat kamu mencapai level warlock tertentu, kamu akan mendapatkan invocasi tambahan sesuai dengan kolom Invocations Known pada tabel Warlock.\n\nSelain itu, setiap kali kamu naik level di kelas ini, kamu bisa memilih salah satu invocasi yang sudah kamu kuasai dan menggantinya dengan invocasi lain yang bisa kamu pelajari pada level tersebut.",
+              "description": "Dari ilmu gaib yang kamu pelajari, kamu menemukan eldritch invocations, potongan pengetahuan terlarang yang memberimu kemampuan sihir permanen.\n\nDi level 2, pilih dua invocation. Kamu dapat invocation tambahan di level Warlock tertentu (lihat kolom Invocations Known di tabel Warlock).\n\nSetiap naik level Warlock, kamu juga boleh mengganti satu invocation yang kamu tahu dengan invocation lain yang bisa kamu pelajari di level itu.",
               "type": "feature",
               "choices": {
                 "type": "invocations",
@@ -12170,7 +12170,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Dapatkan potongan pengetahuan terlarang yang memberimu kemampuan magis permanen.",
+              "summary": "Pilih dua invocation, kemampuan sihir permanen. Bisa ditukar setiap naik level.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -12194,7 +12194,7 @@
           "features": [
             {
               "name": "Pact Boon",
-              "description": "Pada level 3, patron asingmu memberikan hadiah atas kesetiaanmu dalam mengabdi. Kamu mendapatkan salah satu fitur berikut pilihanmu.",
+              "description": "Di level 3, patron kamu memberi hadiah atas kesetiaanmu. Pilih satu: Pact of the Chain, Pact of the Blade, atau Pact of the Tome.",
               "type": "feature",
               "choices": {
                 "type": "single",
@@ -12223,7 +12223,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Pilih satu hadiah spesial yang dianugerahkan oleh patron asingmu.",
+              "summary": "Pilih satu hadiah dari patron: Pact of the Chain, Pact of the Blade, atau Pact of the Tome.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -12282,7 +12282,7 @@
           "features": [
             {
               "name": "Eldritch Invocations",
-              "description": "Dalam studimu mengenai ilmu okultisme, kamu telah menemukan eldritch invocations, fragmen pengetahuan terlarang yang memberimu kemampuan magis permanen.\n\nPada level 2, kamu mendapatkan dua eldritch invocations pilihanmu. Opsi invocation tersedia di bagian akhir deskripsi kelas. Saat kamu mencapai level Warlock tertentu, kamu akan mendapatkan invocation tambahan sesuai dengan kolom Invocations Known pada tabel Warlock.\n\nSelain itu, setiap kali kamu naik level di kelas ini, kamu bisa memilih salah satu invocation yang kamu kuasai dan menggantinya dengan invocation lain yang bisa kamu pelajari pada level tersebut.",
+              "description": "Dari ilmu gaib yang kamu pelajari, kamu menemukan eldritch invocations, potongan pengetahuan terlarang yang memberimu kemampuan sihir permanen.\n\nDi level 2, pilih dua invocation. Kamu dapat invocation tambahan di level Warlock tertentu (lihat kolom Invocations Known di tabel Warlock).\n\nSetiap naik level Warlock, kamu juga boleh mengganti satu invocation yang kamu tahu dengan invocation lain yang bisa kamu pelajari di level itu.",
               "type": "feature",
               "choices": {
                 "type": "invocations",
@@ -12350,7 +12350,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Dapatkan fragmen pengetahuan terlarang yang memberimu kemampuan magis permanen.",
+              "summary": "Pilih dua invocation, kemampuan sihir permanen. Bisa ditukar setiap naik level.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -12409,7 +12409,7 @@
           "features": [
             {
               "name": "Eldritch Invocations",
-              "description": "Dalam studimu mengenai ilmu okultisme, kamu telah menemukan eldritch invocations, fragmen pengetahuan terlarang yang memberimu kemampuan magis permanen.\n\nPada level 2, kamu mendapatkan dua eldritch invocations pilihanmu. Opsi invocation tersedia di bagian akhir deskripsi kelas. Saat kamu mencapai level Warlock tertentu, kamu akan mendapatkan invocation tambahan sesuai dengan kolom Invocations Known pada tabel Warlock.\n\nSelain itu, setiap kali kamu naik level di kelas ini, kamu bisa memilih salah satu invocation yang kamu kuasai dan menggantinya dengan invocation lain yang bisa kamu pelajari pada level tersebut.",
+              "description": "Dari ilmu gaib yang kamu pelajari, kamu menemukan eldritch invocations, potongan pengetahuan terlarang yang memberimu kemampuan sihir permanen.\n\nDi level 2, pilih dua invocation. Kamu dapat invocation tambahan di level Warlock tertentu (lihat kolom Invocations Known di tabel Warlock).\n\nSetiap naik level Warlock, kamu juga boleh mengganti satu invocation yang kamu tahu dengan invocation lain yang bisa kamu pelajari di level itu.",
               "type": "feature",
               "choices": {
                 "type": "invocations",
@@ -12477,7 +12477,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Dapatkan fragmen pengetahuan terlarang yang memberimu kemampuan magis permanen.",
+              "summary": "Pilih dua invocation, kemampuan sihir permanen. Bisa ditukar setiap naik level.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -12536,7 +12536,7 @@
           "features": [
             {
               "name": "Eldritch Invocations",
-              "description": "Dalam studimu mengenai ilmu okultisme, kamu telah menemukan eldritch invocations, fragmen pengetahuan terlarang yang memberimu kemampuan magis permanen.\n\nPada level 2, kamu mendapatkan dua eldritch invocations pilihanmu. Opsi invocation tersedia di bagian akhir deskripsi kelas. Saat kamu mencapai level Warlock tertentu, kamu akan mendapatkan invocation tambahan sesuai dengan kolom Invocations Known pada tabel Warlock.\n\nSelain itu, setiap kali kamu naik level di kelas ini, kamu bisa memilih salah satu invocation yang kamu kuasai dan menggantinya dengan invocation lain yang bisa kamu pelajari pada level tersebut.",
+              "description": "Dari ilmu gaib yang kamu pelajari, kamu menemukan eldritch invocations, potongan pengetahuan terlarang yang memberimu kemampuan sihir permanen.\n\nDi level 2, pilih dua invocation. Kamu dapat invocation tambahan di level Warlock tertentu (lihat kolom Invocations Known di tabel Warlock).\n\nSetiap naik level Warlock, kamu juga boleh mengganti satu invocation yang kamu tahu dengan invocation lain yang bisa kamu pelajari di level itu.",
               "type": "feature",
               "choices": {
                 "type": "invocations",
@@ -12604,7 +12604,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Dapatkan fragmen pengetahuan terlarang yang memberimu kemampuan magis permanen.",
+              "summary": "Pilih dua invocation, kemampuan sihir permanen. Bisa ditukar setiap naik level.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -12738,7 +12738,7 @@
             },
             {
               "name": "Eldritch Invocations",
-              "description": "Melalui studimu tentang ilmu okultisme, kamu telah menemukan eldritch invocations, yaitu fragmen pengetahuan terlarang yang memberimu kemampuan magis permanen.\n\nPada level 2, kamu mendapatkan dua eldritch invocations pilihanmu. Opsi invocasi tersedia di bagian akhir deskripsi kelas. Saat mencapai level warlock tertentu, kamu akan mendapatkan invocasi tambahan sesuai dengan kolom Invocations Known pada tabel Warlock.\n\nSelain itu, setiap kali kamu naik level di kelas ini, kamu bisa memilih salah satu invocasi yang sudah kamu kuasai dan menggantinya dengan invocasi lain yang bisa kamu pelajari pada level tersebut.",
+              "description": "Dari ilmu gaib yang kamu pelajari, kamu menemukan eldritch invocations, potongan pengetahuan terlarang yang memberimu kemampuan sihir permanen.\n\nDi level 2, pilih dua invocation. Kamu dapat invocation tambahan di level Warlock tertentu (lihat kolom Invocations Known di tabel Warlock).\n\nSetiap naik level Warlock, kamu juga boleh mengganti satu invocation yang kamu tahu dengan invocation lain yang bisa kamu pelajari di level itu.",
               "type": "feature",
               "choices": {
                 "type": "invocations",
@@ -12806,7 +12806,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Mendapatkan fragmen pengetahuan terlarang yang memberimu kemampuan magis permanen.",
+              "summary": "Pilih dua invocation, kemampuan sihir permanen. Bisa ditukar setiap naik level.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -12949,7 +12949,7 @@
             },
             {
               "name": "Eldritch Invocations",
-              "description": "Dalam mempelajari ilmu okultisme, kamu telah menemukan eldritch invocations, potongan pengetahuan terlarang yang memberimu kemampuan magis permanen.\n\nPada level 2, kamu mendapatkan dua eldritch invocations pilihanmu. Opsi invocation tersedia di akhir deskripsi kelas. Saat mencapai level warlock tertentu, kamu akan mendapatkan invocation tambahan sesuai dengan kolom Invocations Known pada tabel Warlock.\n\nSelain itu, setiap kali kamu naik level di kelas ini, kamu bisa memilih salah satu invocation yang kamu kuasai dan menggantinya dengan invocation lain yang bisa kamu pelajari pada level tersebut.",
+              "description": "Dari ilmu gaib yang kamu pelajari, kamu menemukan eldritch invocations, potongan pengetahuan terlarang yang memberimu kemampuan sihir permanen.\n\nDi level 2, pilih dua invocation. Kamu dapat invocation tambahan di level Warlock tertentu (lihat kolom Invocations Known di tabel Warlock).\n\nSetiap naik level Warlock, kamu juga boleh mengganti satu invocation yang kamu tahu dengan invocation lain yang bisa kamu pelajari di level itu.",
               "type": "feature",
               "choices": {
                 "type": "invocations",
@@ -13017,7 +13017,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Mendapatkan pengetahuan terlarang yang memberikan kemampuan magis permanen, yang bisa kamu tukar saat level up.",
+              "summary": "Pilih dua invocation, kemampuan sihir permanen. Bisa ditukar setiap naik level.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -13123,7 +13123,7 @@
           "features": [
             {
               "name": "Eldritch Invocations",
-              "description": "Melalui studimu tentang ilmu okultisme, kamu telah menemukan eldritch invocations, yaitu potongan pengetahuan terlarang yang memberimu kemampuan magis permanen.\n\nPada level 2, kamu mendapatkan dua eldritch invocations pilihanmu. Opsi invocation tersedia di bagian akhir deskripsi kelas. Saat kamu mencapai level Warlock tertentu, kamu akan mendapatkan tambahan invocation pilihanmu, sebagaimana tertera pada kolom Invocations Known di tabel Warlock.\n\nSelain itu, setiap kali kamu naik level di kelas ini, kamu bisa memilih salah satu invocation yang sudah kamu kuasai dan menggantinya dengan invocation lain yang bisa kamu pelajari pada level tersebut.",
+              "description": "Dari ilmu gaib yang kamu pelajari, kamu menemukan eldritch invocations, potongan pengetahuan terlarang yang memberimu kemampuan sihir permanen.\n\nDi level 2, pilih dua invocation. Kamu dapat invocation tambahan di level Warlock tertentu (lihat kolom Invocations Known di tabel Warlock).\n\nSetiap naik level Warlock, kamu juga boleh mengganti satu invocation yang kamu tahu dengan invocation lain yang bisa kamu pelajari di level itu.",
               "type": "feature",
               "choices": {
                 "type": "invocations",
@@ -13191,7 +13191,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Dapatkan potongan pengetahuan terlarang yang memberimu kemampuan magis permanen.",
+              "summary": "Pilih dua invocation, kemampuan sihir permanen. Bisa ditukar setiap naik level.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -13743,7 +13743,7 @@
       "features": [
         {
           "name": "Spellcasting: Wizard",
-          "description": "Sebagai pelajar sihir arcane, kamu memiliki sebuah buku sihir yang berisi berbagai spell, yang menunjukkan sekilas potensi kekuatan sejatimu.",
+          "description": "Sebagai murid sihir arcane, kamu punya spellbook berisi spell-spell pertamamu.",
           "type": "feature",
           "featureType": "Passive",
           "actionType": null,
@@ -13754,7 +13754,7 @@
           "effect": null,
           "onUse": null,
           "scaling": null,
-          "summary": "Kamu memiliki sebuah buku sihir berisi spell arcane yang menjadi awal dari kekuatan sejatimu.",
+          "summary": "Kamu bisa cast spell Wizard dari spellbook kamu.",
           "grantsSpells": true,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13769,7 +13769,7 @@
         },
         {
           "name": "Arcane Recovery",
-          "description": "Kamu telah belajar memulihkan sebagian energi sihirmu dengan mempelajari buku sihirmu. Sekali sehari setelah menyelesaikan short rest, kamu bisa memilih spell slots yang telah terpakai untuk dipulihkan. Total level dari spell slots yang dipulihkan harus sama dengan atau kurang dari setengah level wizard-mu (dibulatkan ke atas), dan tidak ada slot yang boleh berlevel 6 atau lebih tinggi.\n\nSebagai contoh, jika kamu adalah wizard level 4, kamu bisa memulihkan spell slots dengan total dua level. Kamu bisa memulihkan satu spell slot level 2, atau dua spell slot level 1.",
+          "description": "Kamu bisa memulihkan sebagian energi sihir dengan membaca spellbook. Sekali sehari, saat selesai short rest, pilih spell slot yang sudah terpakai untuk dipulihkan. Total level slot-nya maksimal setengah level Wizard kamu (dibulatkan ke atas), dan tidak boleh ada slot level 6 ke atas.\n\nContoh: Wizard level 4 bisa memulihkan total 2 level slot, yaitu satu slot level 2 atau dua slot level 1.",
           "type": "feature",
           "featureType": "Active",
           "actionType": "Special",
@@ -13783,7 +13783,7 @@
           "effect": null,
           "onUse": "Recover expended spell slots with combined level up to half your Wizard level rounded up",
           "scaling": "Recovery pool grows as your Wizard level increases",
-          "summary": "Kamu telah mempelajari cara regain beberapa magical energymu dengan studying spellbookmu.",
+          "summary": "Sekali sehari setelah short rest, pulihkan spell slot dengan total level maksimal setengah level Wizard (bulat ke atas).",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -13803,7 +13803,7 @@
           "features": [
             {
               "name": "Spellcasting: Wizard",
-              "description": "Sebagai pelajar sihir arcane, kamu memiliki sebuah buku spell yang berisi berbagai sihir, yang menjadi bukti awal dari kekuatan sejatimu.",
+              "description": "Sebagai murid sihir arcane, kamu punya spellbook berisi spell-spell pertamamu.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -13814,7 +13814,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Kamu memiliki buku spell berisi sihir arcane yang merepresentasikan pertumbuhan kekuatanmu.",
+              "summary": "Kamu bisa cast spell Wizard dari spellbook kamu.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -13829,7 +13829,7 @@
             },
             {
               "name": "Arcane Recovery",
-              "description": "Kamu telah belajar cara memulihkan sebagian energi sihirmu dengan mempelajari buku sihirmu. Sekali sehari setelah kamu menyelesaikan short rest, kamu bisa memilih beberapa spell slots yang sudah terpakai untuk dipulihkan. Total level dari spell slots yang dipulihkan tidak boleh melebihi setengah dari level Wizard kamu (dibulatkan ke atas), dan tidak ada slot yang dipulihkan boleh memiliki level 6 atau lebih tinggi.\n\nSebagai contoh, jika kamu adalah Wizard level 4, kamu bisa memulihkan spell slots dengan total maksimal 2 level. Kamu bisa memilih untuk memulihkan satu spell slot level 2, atau dua spell slot level 1.",
+              "description": "Kamu bisa memulihkan sebagian energi sihir dengan membaca spellbook. Sekali sehari, saat selesai short rest, pilih spell slot yang sudah terpakai untuk dipulihkan. Total level slot-nya maksimal setengah level Wizard kamu (dibulatkan ke atas), dan tidak boleh ada slot level 6 ke atas.\n\nContoh: Wizard level 4 bisa memulihkan total 2 level slot, yaitu satu slot level 2 atau dua slot level 1.",
               "type": "feature",
               "featureType": "Active",
               "actionType": "Special",
@@ -13843,7 +13843,7 @@
               "effect": null,
               "onUse": "Recover expended spell slots with combined level up to half your Wizard level rounded up",
               "scaling": "Recovery pool grows as your Wizard level increases",
-              "summary": "Pulihkan spell slots yang telah terpakai dengan total level maksimal setengah dari level Wizard kamu (dibulatkan ke atas) setelah melakukan short rest.",
+              "summary": "Sekali sehari setelah short rest, pulihkan spell slot dengan total level maksimal setengah level Wizard (bulat ke atas).",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -13867,7 +13867,7 @@
           "features": [
             {
               "name": "Arcane Tradition",
-              "description": "Saat mencapai level 2, kamu memilih sebuah arcane tradition, yang menentukan arah praktik sihirmu melalui salah satu dari delapan sekolah sihir, seperti Evocation.\n\nPilihanmu ini memberikan fitur pada level 2, dan selanjutnya pada level 6, 10, dan 14.",
+              "description": "Di level 2, kamu memilih satu school sihir untuk didalami, misalnya Evocation. Pilihan ini memberi fitur di level 2, lalu di level 6, 10, dan 14.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -13878,7 +13878,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Pilih sekolah sihir untuk spesialisasi, yang memberikan fitur pada level 2, 6, 10, dan 14.",
+              "summary": "Pilih subclass Wizard. Fiturnya datang di level 2, 6, 10, dan 14.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -14729,7 +14729,7 @@
           "features": [
             {
               "name": "Magical Tinkering",
-              "description": "Kamu belajar cara memasukkan percikan sihir ke dalam benda biasa. Kamu dapat menyentuh objek nonmagis berukuran Tiny menggunakan action dan memberikannya salah satu properti magis berikut: memancarkan cahaya terang dalam radius **5 kaki**, mengeluarkan pesan rekaman, terus-menerus mengeluarkan bau atau suara, atau menampilkan efek visual statis. Properti ini bertahan selamanya. Kamu dapat memberikan efek ini pada jumlah objek maksimal sebanyak modifier Intelligence milikmu.",
+              "description": "Sebagai action, sentuh satu benda nonmagis berukuran Tiny dan beri salah satu efek ini:\n\n- Memancarkan bright light dalam radius 5 feet.\n- Memutar pesan rekaman.\n- Terus mengeluarkan bau atau suara.\n- Menampilkan gambar diam.\n\nEfeknya bertahan selamanya. Jumlah benda yang bisa kamu beri efek sekaligus sama dengan Intelligence modifier kamu.",
               "featureType": "Active",
               "actionType": "Action",
               "uses": null,
@@ -14739,7 +14739,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Sentuh objek nonmagis berukuran Tiny untuk memberikan efek cahaya, suara, bau, atau visual.",
+              "summary": "Action: sentuh benda Tiny dan beri efek cahaya, pesan rekaman, bau atau suara, atau gambar.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -14754,7 +14754,7 @@
             },
             {
               "name": "Spellcasting",
-              "description": "Kamu telah mempelajari cara kerja sihir dan cara merapalkannya dengan menyalurkan energi sihir melalui objek. Kamu harus memegang spellcasting focus (thieves' tools atau artisan's tools) saat merapalkan sihir. Kamu mengetahui **2** cantrips. Kamu menyiapkan sihir dalam jumlah yang setara dengan modifier Intelligence + setengah dari level artificer milikmu, dibulatkan ke bawah (minimal satu sihir).",
+              "description": "Kamu cast spell lewat benda. Saat cast spell, kamu harus memegang spellcasting focus berupa thieves' tools atau artisan's tools. Kamu tahu 2 cantrip. Jumlah spell yang bisa kamu prepare adalah Intelligence modifier + setengah level Artificer (dibulatkan ke bawah), minimal 1.",
               "featureType": "Active",
               "actionType": "Action",
               "uses": {
@@ -14767,7 +14767,7 @@
               "effect": null,
               "onUse": "Cast a prepared spell by expending a spell slot of the appropriate level",
               "scaling": "Gain higher spell slots and more spellbook spells as you level",
-              "summary": "Merapalkan sihir menggunakan peralatan sebagai fokus, dengan jumlah sihir yang disiapkan berdasarkan Intelligence dan levelmu.",
+              "summary": "Cast spell lewat alat. Jumlah spell prepared = Intelligence modifier + setengah level Artificer.",
               "grantsSpells": true,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -14791,7 +14791,7 @@
           "features": [
             {
               "name": "Infuse Item",
-              "description": "Kamu telah memperoleh kemampuan untuk memberikan infus magis tertentu pada benda biasa. Saat kamu mendapatkan fitur ini, pilih 4 artificer infusions untuk dipelajari. Setiap kali kamu menyelesaikan long rest, kamu dapat menyentuh objek nonmagis dan memberikannya salah satu artificer infusion yang kamu kuasai. Kamu dapat memberikan infus pada jumlah item yang tertera di kolom Infused Items.",
+              "description": "Kamu bisa memberi sihir pada barang biasa. Saat mendapat fitur ini, pelajari 4 artificer infusion. Setiap selesai long rest, kamu bisa menyentuh benda nonmagis dan memberinya satu infusion. Jumlah barang yang bisa di-infuse sekaligus ada di kolom Infused Items.",
               "featureType": "Active",
               "actionType": null,
               "uses": null,
@@ -14801,7 +14801,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Berikan infus magis pada objek nonmagis untuk memberikan properti spesial.",
+              "summary": "Beri sihir pada barang biasa setelah long rest. Kamu tahu 4 infusion.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -14825,7 +14825,7 @@
           "features": [
             {
               "name": "The Right Tool for the Job",
-              "description": "Kamu telah belajar cara menciptakan alat yang tepat sesuai kebutuhanmu. Selama kamu memegang thieves' tools atau artisan's tools, kamu dapat menciptakan satu set artisan's tools secara magis di ruang kosong dalam jarak 5 kaki darimu. Proses pembuatan ini membutuhkan waktu 1 jam kerja tanpa gangguan.",
+              "description": "Selama kamu memegang thieves' tools atau artisan's tools, kamu bisa membuat satu set artisan's tools secara magis di ruang kosong dalam jarak 5 feet. Prosesnya butuh 1 jam kerja tanpa terputus.",
               "featureType": "Passive",
               "actionType": null,
               "uses": null,
@@ -14835,7 +14835,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Ciptakan satu set artisan's tools secara magis dalam waktu 1 jam.",
+              "summary": "Buat satu set artisan's tools secara magis dalam 1 jam.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -14850,7 +14850,7 @@
             },
             {
               "name": "Artificer Specialist",
-              "description": "Kamu memilih tipe spesialis yang kamu kuasai: Alchemist, Armorer, Artillerist, atau Battle Smith. Pilihan ini akan memberimu berbagai fitur pada level 5, serta level 9 dan 15.",
+              "description": "Di level 3, kamu memilih spesialisasi: Alchemist, Armorer, Artillerist, atau Battle Smith. Pilihan ini memberi fitur di level 3, lalu di level 5, 9, dan 15.",
               "featureType": "Active",
               "actionType": null,
               "uses": null,
@@ -14860,7 +14860,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "Pilih spesialisasi kamu: Alchemist, Armorer, Artillerist, atau Battle Smith.",
+              "summary": "Pilih subclass Artificer. Fiturnya datang di level 3, 5, 9, dan 15.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
