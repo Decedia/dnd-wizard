@@ -40,6 +40,12 @@ export const ID_TERM_RULES: TermRule[] = [
     pattern: w("terpikat|terpesona|ketakutan|tidak mampu bertindak|lumpuh|tak sadarkan diri|tidak sadarkan diri|telungkup|tergeletak|tertahan|terbutakan|tuli|tak kasatmata|tidak kasatmata|membatu|keracunan|tercengkeram|tercengkram|kelelahan|tak berdaya|tidak berdaya|tertegun|terpana"),
   },
   { term: "kamu (casual, not formal Anda)", pattern: w("Anda") },
+  { term: "feet (distances stay in feet)", pattern: w("\\d+ kaki") },
+  { term: "Strength", pattern: w("(?:check|save|saving throw|modifier|skor|menggunakan|memakai|berbasis) kekuatan") },
+  { term: "resistance", pattern: w("resistansi|resistensi") },
+  { term: "melee / ranged weapon", pattern: w("(?:senjata|serangan) jarak (?:dekat|jauh)") },
+  { term: "damage type (piercing, slashing)", pattern: w("tembus|tusukan|tebasan|potong") },
+  { term: "no slang (cuma, nggak)", pattern: w("cuma|cuman|nggak|ngga|gak|enggak") },
 ];
 
 /** How many times each rule matches in a text. */
