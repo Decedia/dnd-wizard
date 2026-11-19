@@ -106,7 +106,7 @@
         },
         {
           "name": "Unarmored Defense",
-          "description": "Beginning at 1st level, while you are wearing no armor and not wielding a shield, your AC equals **10** + your Dexterity modifier + your Wisdom modifier.",
+          "description": "While you are not wearing any armor, your AC equals **10** + your Dexterity modifier + your Constitution modifier. You can use a shield and still gain this benefit.",
           "type": "feature",
           "featureType": "Passive",
           "actionType": null,
@@ -117,7 +117,7 @@
           "effect": "Calculate AC without armor",
           "onUse": null,
           "scaling": null,
-          "summary": "Calculate your AC using 10 + your Dexterity modifier + your Wisdom modifier while wearing no armor and not wielding a shield.",
+          "summary": "While you aren't wearing armor, your AC equals 10 + your Dexterity modifier + your Constitution modifier. You can still use a shield.",
           "grantsSpells": false,
           "grantsAttack": false,
           "grantsSkills": false,
@@ -166,7 +166,7 @@
             },
             {
               "name": "Unarmored Defense",
-              "description": "Beginning at 1st level, while you are wearing no armor and not wielding a shield, your AC equals **10** + your Dexterity modifier + your Wisdom modifier.",
+              "description": "While you are not wearing any armor, your AC equals **10** + your Dexterity modifier + your Constitution modifier. You can use a shield and still gain this benefit.",
               "type": "feature",
               "featureType": "Passive",
               "actionType": null,
@@ -177,7 +177,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "While wearing no armor and not wielding a shield, your AC equals 10 + your Dexterity modifier + your Wisdom modifier.",
+              "summary": "While you aren't wearing armor, your AC equals 10 + your Dexterity modifier + your Constitution modifier. You can still use a shield.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -1246,7 +1246,7 @@
           "features": [
             {
               "name": "Expertise",
-              "description": "At 1st level, choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves' tools. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies.\n\nAt 6th level, you can choose two more of your proficiencies (in skills or with thieves' tools) to gain this benefit.",
+              "description": "At 3rd level, choose two of your skill proficiencies. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies.\n\nAt 10th level, you can choose another two skill proficiencies to gain this benefit.",
               "type": "feature",
               "choices": {
                 "type": "skills",
@@ -1583,7 +1583,7 @@
           "features": [
             {
               "name": "Expertise",
-              "description": "At 1st level, choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves' tools. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies.\n\nAt 6th level, you can choose two more of your proficiencies (in skills or with thieves' tools) to gain this benefit.",
+              "description": "At 3rd level, choose two of your skill proficiencies. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies.\n\nAt 10th level, you can choose another two skill proficiencies to gain this benefit.",
               "type": "feature",
               "choices": {
                 "type": "skills",
@@ -4904,7 +4904,7 @@
           "features": [
             {
               "name": "Timeless Body",
-              "description": "At 15th level, your ki sustains you so that you suffer none of the frailty of old age, and you can't be aged magically. You can still die of old age, however. In addition, you no longer need food or water.",
+              "description": "Starting at 18th level, the primal magic that you wield causes you to age more slowly. For every 10 years that pass, your body ages only 1 year.",
               "type": "feature",
               "featureType": "Active",
               "actionType": null,
@@ -4915,7 +4915,7 @@
               "effect": null,
               "onUse": null,
               "scaling": null,
-              "summary": "You suffer no frailty from old age, cannot be aged magically, and no longer require food or water.",
+              "summary": "For every 10 years that pass, your body ages only 1 year.",
               "grantsSpells": false,
               "grantsAttack": false,
               "grantsSkills": false,
@@ -5223,7 +5223,7 @@
       "features": [
         {
           "name": "Fighting Style",
-          "description": "At 2nd level, you adopt a particular style of fighting as your specialty. Choose one of the following options. You cannot take the same Fighting Style option more than once, even if you gain the opportunity to choose a style again later.",
+          "description": "You adopt a particular style of fighting as your specialty. Choose one of the following options. You can't take a Fighting Style option more than once, even if you later get to choose again.",
           "type": "feature",
           "featureType": "Passive",
           "actionType": null,
@@ -5283,7 +5283,7 @@
           "features": [
             {
               "name": "Fighting Style",
-              "description": "At 2nd level, you adopt a particular style of fighting as your specialty. Choose one of the following options. You can't take a Fighting Style option more than once, even if you later get to choose again.",
+              "description": "You adopt a particular style of fighting as your specialty. Choose one of the following options. You can't take a Fighting Style option more than once, even if you later get to choose again.",
               "type": "feature",
               "choices": {
                 "type": "single",
@@ -14850,7 +14850,7 @@
             },
             {
               "name": "Artificer Specialist",
-              "description": "You choose the type of specialist you are: Alchemist, Armorer, Artillerist, or Battle Smith. Your choice grants you features at 5th level and again at 9th and 15th level.",
+              "description": "You choose the type of specialist you are: Alchemist, Armorer, Artillerist, or Battle Smith. Your choice grants you features at 3rd level and again at 5th, 9th, and 15th level.",
               "featureType": "Active",
               "actionType": null,
               "uses": null,

@@ -7,12 +7,8 @@
   "no slang (cuma, nggak)": 4
  },
  "src/data/id/2014_classes.json": {
-  "Advantage": 1,
-  "Proficiency": 1,
-  "feet (distances stay in feet)": 34,
-  "Strength": 2,
-  "resistance": 4,
-  "melee / ranged weapon": 6
+  "feet (distances stay in feet)": 10,
+  "melee / ranged weapon": 1
  },
  "src/data/id/2014_feats.json": {},
  "src/data/id/2014_item_catalog.json": {
