@@ -24,12 +24,7 @@
   "damage type (piercing, slashing)": 4
  },
  "src/data/id/2014_spells.json": {
-  "conditions (Charmed, Prone...)": 6,
-  "feet (distances stay in feet)": 522,
-  "Strength": 2,
-  "resistance": 5,
-  "melee / ranged weapon": 6,
-  "damage type (piercing, slashing)": 6
+  "feet (distances stay in feet)": 12
  },
  "src/data/id/2014_subclasses.json": {
   "Advantage": 1,
