@@ -26,12 +26,12 @@
  "src/data/id/2014_spells.json": {
   "Expertise": 3,
   "ability names (STR, DEX...)": 4,
-  "conditions (Charmed, Prone...)": 15,
-  "feet (distances stay in feet)": 1525,
-  "Strength": 15,
-  "resistance": 33,
+  "conditions (Charmed, Prone...)": 11,
+  "feet (distances stay in feet)": 1228,
+  "Strength": 10,
+  "resistance": 27,
   "melee / ranged weapon": 12,
-  "damage type (piercing, slashing)": 34
+  "damage type (piercing, slashing)": 28
  },
  "src/data/id/2014_subclasses.json": {
   "Advantage": 1,
