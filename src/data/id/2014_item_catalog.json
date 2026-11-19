@@ -2,716 +2,716 @@
   "version": 1,
   "items": {
     "club": {
-      "description": "Sebatang kayu sederhana yang dibentuk menjadi senjata. Kasar namun efektif, hal ini telah berfungsi sebagai alat kekerasan sejak awal."
+      "description": "Sebatang kayu yang dibentuk jadi senjata. Kasar tapi ampuh, dan sudah dipakai untuk berkelahi sejak zaman dulu."
     },
     "dagger": {
-      "description": "Pisau pendek bermata dua yang dirancang untuk menusuk dan menebas. Ringan dan dapat disembunyikan, ini adalah alat serbaguna baik dalam pertempuran maupun kehidupan sehari-hari."
+      "description": "Pisau pendek bermata dua untuk menusuk dan menyayat. Ringan dan mudah disembunyikan, berguna di pertarungan maupun sehari-hari."
     },
     "greatclub": {
-      "description": "Sebuah tongkat besar dan berat yang dibuat dari kayu tebal atau kayu yang diikat. Kasar dan berukuran besar, bobotnya menghasilkan gaya tumpul yang luar biasa."
+      "description": "Pentungan besar dari batang kayu tebal. Kasar dan berat, tapi hantamannya sangat keras."
     },
     "handaxe": {
-      "description": "Kapak kecil dan ringan yang dirancang untuk digunakan atau dilempar dengan satu tangan. Keseimbangannya membuatnya sama efektifnya dalam pertempuran jarak dekat atau dilemparkan ke sasaran yang jauh."
+      "description": "Kapak kecil yang ringan, bisa dipakai dengan satu tangan atau dilempar. Seimbang untuk pertarungan dekat maupun dilempar ke target jauh."
     },
     "javelin": {
-      "description": "Tombak ringan yang dirancang terutama untuk melempar. Desain aerodinamisnya memungkinkannya dilempar dengan jarak jauh dan daya tembus."
+      "description": "Tombak ringan yang dibuat terutama untuk dilempar. Bentuknya membuatnya bisa melesat jauh dan menancap kuat."
     },
     "light-hammer": {
-      "description": "Palu kecil dan seimbang yang dapat dilempar atau digunakan dalam pertarungan jarak dekat. Kepalanya yang ringkas menghasilkan kekuatan gada yang terfokus."
+      "description": "Palu kecil yang seimbang, bisa dilempar atau dipakai bertarung dari dekat."
     },
     "mace": {
-      "description": "Kepala logam berat yang dipasang pada poros kokoh, dirancang untuk menghancurkan dan memukul dengan gada. Melawan musuh yang memiliki lapis baja berat, dampak terkonsentrasinya sangatlah efektif."
+      "description": "Kepala logam berat di ujung gagang kokoh, dibuat untuk menghantam. Sangat efektif melawan musuh berzirah tebal."
     },
     "quarterstaff": {
-      "description": "Panjang kayu yang mengeras, biasanya panjangnya enam hingga delapan kaki. Sederhana namun efektif, senjata ini dapat digunakan sebagai senjata serbaguna atau alat bantu berjalan."
+      "description": "Tongkat kayu keras sepanjang enam sampai delapan feet. Sederhana tapi efektif, bisa jadi senjata atau tongkat jalan."
     },
     "sickle": {
-      "description": "Pisau pertanian melengkung yang disesuaikan untuk pertempuran. Ujungnya yang bengkok dapat menangkap anggota tubuh dan menghasilkan sayatan, meskipun pada dasarnya alat ini digunakan untuk bertani."
+      "description": "Sabit pertanian yang diubah jadi senjata. Mata lengkungnya bisa mengait dan menyayat, walau aslinya alat bertani."
     },
     "spear": {
-      "description": "Poros sederhana dengan ujung runcing, dapat digunakan untuk menusuk atau melempar. Salah satu senjata tertua dan paling andal yang diketahui peradaban."
+      "description": "Gagang dengan ujung runcing, bisa untuk menusuk atau dilempar. Salah satu senjata tertua dan paling bisa diandalkan."
     },
     "crossbow-light": {
-      "description": "Panah kecil dan sederhana yang mudah dimuat dan ditembakkan. Populer di kalangan pelancong dan milisi karena keandalan dan kemudahan penggunaannya."
+      "description": "Crossbow kecil yang mudah diisi dan ditembakkan. Populer di kalangan pengelana dan milisi karena praktis."
     },
     "dart": {
-      "description": "Proyektil kecil berbobot yang dirancang untuk dilempar dengan akurat. Mudah disembunyikan dan cepat dilempar, anak panah disukai oleh mereka yang lebih menyukai presisi jarak jauh."
+      "description": "Proyektil kecil berpemberat untuk dilempar dengan tepat. Mudah disembunyikan dan cepat dilempar."
     },
     "shortbow": {
-      "description": "Busur kompak yang cocok untuk berburu dan pertempuran kecil. Mudah untuk ditangani dan ditembakkan dengan cepat, ini adalah senjata yang dapat diandalkan bagi mereka yang bertarung dalam jarak jauh."
+      "description": "Busur ringkas untuk berburu dan pertempuran kecil. Mudah dipakai dan cepat ditembakkan."
     },
     "sling": {
-      "description": "Tali kulit sederhana yang digunakan untuk melemparkan batu atau peluru timah dengan kecepatan tinggi. Kuno namun mematikan, memerlukan keterampilan namun dapat menyerang dari jarak jauh."
+      "description": "Tali kulit sederhana untuk melontarkan batu atau peluru timah dengan kencang. Kuno tapi mematikan, dan bisa menjangkau jauh."
     },
     "battleaxe": {
-      "description": "Kapak berbilah lebar yang dipasang pada tangkai kokoh, dirancang untuk perang. Kepalanya yang berat memberikan pukulan tebas yang dahsyat, membelah armor dan perisai."
+      "description": "Kapak bermata lebar dengan gagang kokoh, dibuat untuk perang. Kepalanya yang berat bisa membelah armor dan shield."
     },
     "flail": {
-      "description": "Bola logam berduri yang diikatkan pada pegangan dengan rantai. Serangan berayunnya dapat melewati perisai dan menghasilkan damage yang sangat besar."
+      "description": "Bola logam berduri yang terhubung ke gagang dengan rantai. Ayunannya bisa melewati shield dan menghantam keras."
     },
     "glaive": {
-      "description": "Sebuah polearm dengan bilah bermata tunggal yang dipasang di ujung poros panjang. Jangkauannya memungkinkan pengguna untuk menyerang musuh dari jarak yang aman."
+      "description": "Senjata bergagang panjang dengan bilah bermata satu di ujungnya. Jangkauannya membuatmu bisa menyerang dari jarak aman."
     },
     "greataxe": {
-      "description": "Kapak yang sangat besar dengan bilah yang berat dan lebar. Dipegang dengan dua tangan, senjata ini menghasilkan pukulan tebas dahsyat yang dapat menembus pertahanan terberat."
+      "description": "Kapak raksasa dengan bilah lebar dan berat. Dipakai dengan dua tangan, tebasannya bisa menembus pertahanan paling tangguh."
     },
     "greatsword": {
-      "description": "Bilah dua tangan yang menjulang tinggi dengan panjang dan berat yang luar biasa. Penguasaan senjata ini memungkinkan terjadinya tebasan besar yang dapat menjatuhkan banyak musuh."
+      "description": "Pedang dua tangan yang panjang dan berat. Ayunannya yang lebar bisa menjatuhkan banyak musuh."
     },
     "lance": {
-      "description": "Senjata panjang dan kokoh yang dirancang untuk pertempuran jarak jauh. Saat diletakkan di bawah lengan saat melakukan serangan, senjata ini menghasilkan damage menusuk yang sangat parah."
+      "description": "Tombak panjang dan kokoh untuk bertarung di atas kuda. Saat dipakai menerjang, tusukannya sangat kuat."
     },
     "longsword": {
-      "description": "Pisau serbaguna dengan panjang sedang, seimbang untuk penggunaan satu atau dua tangan. Senjata ksatria yang klasik, ia unggul dalam menebas dan menusuk."
+      "description": "Pedang serbaguna yang bisa dipakai satu atau dua tangan. Senjata khas para ksatria, bagus untuk menebas maupun menusuk."
     },
     "maul": {
-      "description": "Palu godam berkepala dua yang sangat berat. Jika digunakan dengan dua tangan, pukulan telaknya dapat menghancurkan tulang dan menghancurkan perisai."
+      "description": "Palu godam raksasa yang sangat berat. Dipakai dengan dua tangan, hantamannya bisa meremukkan tulang dan shield."
     },
     "morningstar": {
-      "description": "Gada berduri dengan kepala berat dan bergelang yang dirancang untuk menusuk dan merobek. Desainnya yang brutal menimbulkan luka tusuk yang pedih."
+      "description": "Gada berduri dengan kepala berat. Durinya menusuk dan merobek."
     },
     "pike": {
-      "description": "Tombak yang sangat panjang yang digunakan oleh formasi infanteri. Jangkauannya yang ekstrim memungkinkan barisan tentara untuk menyerang musuh yang mendekat dari belakang garis depan."
+      "description": "Tombak tusuk yang sangat panjang, dipakai barisan infanteri. Jangkauannya membuat prajurit di barisan belakang tetap bisa menyerang musuh yang mendekat."
     },
     "rapier": {
-      "description": "Pedang ramping dan runcing yang dirancang untuk ditusukkan. Disukai oleh para duelist dan bangsawan, ia menekankan kecepatan dan proficiency dibandingkan kekuatan mentah."
+      "description": "Pedang ramping berujung tajam untuk menusuk. Disukai para duelist dan bangsawan karena mengutamakan kecepatan dan ketepatan."
     },
     "scimitar": {
-      "description": "Pedang melengkung bermata satu yang dirancang untuk menebas. Bilahnya yang menyapu memungkinkan pemotongan yang cepat dan anggun serta disukai oleh kavaleri dan skirmisher."
+      "description": "Pedang lengkung bermata satu untuk menebas. Bilahnya bisa diayun dengan cepat dan luwes."
     },
     "shortsword": {
-      "description": "Bilah ringan bermata dua dengan panjang sedang. Sangat cocok untuk menusuk dan memotong dengan cepat, ini adalah senjata favorit di kalangan prajurit dan petualang."
+      "description": "Pedang ringan bermata dua dengan panjang sedang. Cocok untuk serangan cepat, dan jadi senjata cadangan favorit prajurit."
     },
     "trident": {
-      "description": "Tombak bercabang tiga yang dirancang untuk jarak dekat dan lempar. Terkait dengan masyarakat pesisir dan pertempuran di perairan, senjata ini efektif di darat dan laut."
+      "description": "Tombak bermata tiga, bisa untuk bertarung dekat atau dilempar. Identik dengan masyarakat pesisir, dan efektif di darat maupun di air."
     },
     "whip": {
-      "description": "Sebuah cambuk panjang dan fleksibel dari kulit braided atau tali. Meskipun bukan senjata perang dalam arti tradisional, jangkauan dan kesanggupannya membuatnya mematikan di tangan yang terampil."
+      "description": "Cambuk panjang dari kulit atau tali yang dikepang. Bukan senjata perang biasa, tapi jangkauannya membuatnya berbahaya di tangan yang terampil."
     },
     "blowgun": {
-      "description": "Sebuah tabung sempit yang digunakan untuk mendorong anak panah kecil dengan menghirup udara. Diam dan mematikan, ia lebih mengutamakan sembunyi-sembunyi daripada kekerasan."
+      "description": "Tabung sempit untuk meniupkan jarum kecil. Senyap, cocok untuk menyerang diam-diam."
     },
     "crossbow-hand": {
-      "description": "Panah kompak yang dapat dipegang dan ditembakkan dengan satu tangan. Ukurannya yang tersembunyi menjadikannya alat favorit para pembunuh dan pengintai."
+      "description": "Crossbow kecil yang bisa dipegang dan ditembakkan dengan satu tangan. Ukurannya yang mudah disembunyikan disukai pembunuh bayaran dan pengintai."
     },
     "crossbow-heavy": {
-      "description": "Sebuah panah besar dengan daya tarik yang kuat, mampu meluncurkan baut dengan kekuatan yang luar biasa. Bobot dan ukurannya memerlukan dua tangan untuk mengoperasikannya."
+      "description": "Crossbow besar dengan tarikan kuat yang melontarkan bolt dengan tenaga besar. Berat dan besar, jadi butuh dua tangan."
     },
     "longbow": {
-      "description": "Busur tinggi dengan daya tarik yang kuat, mampu mengirimkan anak panah jarak jauh dengan akurasi yang mematikan. Dibuat dari sepotong kayu berkualitas, membutuhkan kekuatan dan keterampilan untuk menguasainya."
+      "description": "Busur tinggi dengan tarikan kuat yang bisa menembakkan panah sangat jauh dengan tepat. Butuh tenaga dan latihan untuk menguasainya."
     },
     "net": {
-      "description": "Jaring berpemberat untuk menjerat musuh. Makhluk Large atau lebih kecil yang terkena jaring ini menjadi Restrained sampai ia bebas. Ia atau makhluk lain bisa memakai action untuk melakukan Strength check DC 10 supaya lepas, atau memberi 5 slashing damage ke jaring (AC 10) untuk memotongnya."
+      "description": "Jaring berpemberat untuk menjerat musuh.\n\nMakhluk Large atau lebih kecil yang kena net jadi Restrained sampai bebas. Net tidak berpengaruh pada makhluk tanpa wujud padat atau makhluk Huge ke atas. Makhluk bisa memakai action untuk Strength check DC 10, membebaskan dirinya atau makhluk lain dalam jangkauannya kalau berhasil. Memberi 5 slashing damage ke net (AC 10) juga membebaskan makhluk tanpa melukainya, dan menghancurkan net itu.\n\nSaat memakai action, bonus action, atau reaction untuk menyerang dengan net, kamu hanya bisa melakukan satu serangan, berapa pun jumlah serangan yang biasanya bisa kamu lakukan."
     },
     "leather-armor": {
-      "description": "Penutup dada dan pelindung bahu dari kulit yang diperkeras, menawarkan perlindungan ringan sekaligus memungkinkan mobilitas penuh. Disukai oleh pengintai dan penyamun, ini adalah baju besi paling sederhana yang masih memberikan pertahanan yang berarti."
+      "description": "Pelindung dada dan bahu dari kulit yang dikeraskan. Perlindungannya ringan tapi gerakanmu tetap bebas."
     },
     "hide-armor": {
-      "description": "Kulit binatang yang tebal dilapisi dan direbus agar kaku, dibuat menjadi pakaian yang kasar namun fungsional. Umum di kalangan orang barbar dan penghuni hutan belantara, ini memberikan perlindungan dasar dengan biaya rendah."
+      "description": "Kulit binatang tebal yang dilapis dan direbus supaya kaku. Kasar tapi berguna, dan murah."
     },
     "chain-shirt": {
-      "description": "Kemeja dari cincin logam yang saling bertautan dikenakan sebagai alternatif yang lebih ringan dari surat berantai. Ini menawarkan perlindungan yang layak sekaligus memberikan kebebasan bergerak yang lebih besar, sering kali dikenakan di bawah pakaian atau dikombinasikan dengan baju besi lainnya."
+      "description": "Kemeja dari cincin logam yang saling mengait, lebih ringan dari chain mail. Perlindungannya lumayan dan gerakan lebih bebas. Sering dipakai di balik pakaian."
     },
     "scale-mail": {
-      "description": "Lapisan kulit yang ditutupi sisik logam yang tumpang tindih, menyerupai kulit naga atau ikan. Ia menawarkan perlindungan yang baik dengan bobot sedang, meskipun banyak sisik kecilnya yang dapat tersangkut dan tersangkut."
+      "description": "Mantel kulit yang dilapisi sisik logam bertumpuk, mirip sisik naga atau ikan. Perlindungannya bagus dengan berat sedang. Membuat check Dexterity (Stealth) kena Disadvantage."
     },
     "breastplate": {
-      "description": "Pelindung dada dari logam yang dipasang pas di badan, dipakai dengan bahan kulit yang lentur. Lengan dan kaki tidak banyak terlindungi, tapi bagian vital tubuh terlindungi dengan baik dan pemakainya tetap bisa bergerak leluasa."
+      "description": "Pelindung dada logam yang pas di badan, kaki tetap bebas bergerak. Perlindungannya kokoh tanpa beban satu set armor penuh, dan tidak mengganggu Stealth."
     },
     "half-plate-armor": {
-      "description": "Kombinasi potongan pelat baja yang menutupi kira-kira separuh tubuh, dipasangkan dengan brigandine atau kulit di sisanya. Ia menawarkan perlindungan substansial dengan bobot lebih ringan dibandingkan pelat penuh, meskipun sambungan artikulasinya menimbulkan sedikit kebisingan."
+      "description": "Potongan plate yang menutupi kira-kira separuh tubuh, sisanya kulit atau kain berlapis logam. Perlindungannya besar dengan berat lebih ringan dari plate penuh. Membuat check Dexterity (Stealth) kena Disadvantage."
     },
     "ring-mail": {
-      "description": "Setelan kulit dengan cincin tebal dijahit untuk perlindungan tambahan. Desain lama yang menawarkan pertahanan sederhana, kurang efektif dibandingkan pelindung rantai tetapi lebih mudah diproduksi."
+      "description": "Baju kulit yang dijahit cincin logam berat. Desain lama dengan perlindungan sedang, kalah dari chain mail tapi lebih mudah dibuat. Membuat check Dexterity (Stealth) kena Disadvantage."
     },
     "chain-mail": {
-      "description": "Cincin logam yang saling bertautan ditenun menjadi kemeja yang menutupi batang tubuh dan lengan. Berat dan tahan lama, memberikan perlindungan yang sangat baik namun berisik dan membutuhkan kekuatan yang besar agar dapat dipakai secara efektif."
+      "description": "Cincin logam yang saling mengait menutupi badan dan lengan. Berat dan awet, perlindungannya sangat baik. Butuh Strength 13 supaya speed tidak berkurang, dan membuat check Dexterity (Stealth) kena Disadvantage."
     },
     "splint-armor": {
-      "description": "Potongan logam vertikal dipaku pada alas kulit dan kain. Konstruksinya mirip dengan flail, ia menawarkan perlindungan berat dengan biaya moderat, meskipun bobotnya membatasi mobilitas."
+      "description": "Lempengan logam vertikal yang dipaku ke lapisan kulit dan kain. Perlindungannya berat dengan harga sedang. Butuh Strength 15 supaya speed tidak berkurang, dan membuat check Dexterity (Stealth) kena Disadvantage."
     },
     "plate-armor": {
-      "description": "Setelan lengkap pelat baja yang dipasang dengan hati-hati dan diartikulasikan menutupi seluruh bodi. Merupakan puncak dari kapal lapis baja, ia memberikan perlindungan yang tiada tandingannya namun harganya sangat mahal dan membutuhkan kekuatan yang besar untuk dipakai."
+      "description": "Satu set penuh lempengan baja yang menutupi seluruh tubuh. Puncak hasil kerja pembuat armor, perlindungannya tak tertandingi tapi sangat mahal. Butuh Strength 15 supaya speed tidak berkurang, dan membuat check Dexterity (Stealth) kena Disadvantage."
     },
     "shield": {
-      "description": "Penghalang genggam dari kayu atau logam yang digunakan untuk menahan pukulan. Jika digunakan begitu saja, ia memberikan peningkatan cepat pada pertahanan dan dapat digunakan secara ofensif dalam serangan perisai."
+      "description": "Perisai kayu atau logam yang dipegang di satu tangan untuk menangkis serangan. Menambah AC sebesar 2."
     },
     "abacus": {
-      "description": "Rangkaian manik-manik pada batang yang digunakan untuk menghitung dan perhitungan. Penting untuk pedagang, bankir, dan siapa pun yang perlu menjaga catatan yang tepat saat bepergian."
+      "description": "Bingkai berisi manik-manik di batang untuk menghitung. Penting untuk pedagang dan siapa pun yang perlu mencatat keuangan di perjalanan."
     },
     "acid-vial": {
-      "description": "Sebagai Action, kamu dapat menyiramkan isi vial ini ke creature dalam 5 feet darimu atau melempar vial hingga 20 feet. Saat melempar, setiap creatures dalam 5 feet dari target harus melakukan DC 10 DEX saving throw. Kegagalan = 1d6 acid damage, Keberhasilan = setengah damage."
+      "description": "Pakai action untuk menyiramkan isi botol ini ke makhluk dalam jarak 5 feet, atau melemparnya sampai 20 feet sampai pecah. Lakukan ranged attack terhadap makhluk atau benda, dengan asam ini dihitung sebagai improvised weapon. Kalau kena, target kena 2d6 acid damage."
     },
     "alchemists-fire-flask": {
-      "description": "Cairan lengket dan mengadhesif yang menyala saat terpapar udara. Sebagai Action, kamu dapat melempar flask ini hingga 20 feet, menghancurkannya saat menghantam permukaan. Setiap creatures dalam 5 feet dari area harus melakukan DC 10 DEX saving throw. Kegagalan = 1d4 fire damage saat awal dan 1d4 fire damage di akhir setiap giliranmu selama 1 minute. Keberhasilan = setengah damage saat awal, tanpa damage berkelanjutan."
+      "description": "Cairan lengket yang langsung menyala saat kena udara. Pakai action untuk melempar botol ini sampai 20 feet sampai pecah. Lakukan ranged attack terhadap makhluk atau benda, dengan cairan ini dihitung sebagai improvised weapon. Kalau kena, target kena 1d4 fire damage di awal setiap gilirannya. Makhluk bisa memakai action untuk Dexterity check DC 10 untuk memadamkan apinya."
     },
     "alms-box": {
-      "description": "Kotak kecil untuk sedekah, biasanya ditemukan dalam priest's pack."
+      "description": "Kotak kecil untuk sedekah. Biasanya ada di priest's pack."
     },
     "arrow": {
-      "description": "Proyektil bertangkah yang dirancang untuk digunakan dengan bow. Setiap arrow terdiri dari shaft kayu, fletching, dan kepala arrow logam."
+      "description": "Proyektil bergagang untuk busur. Terdiri dari gagang kayu, bulu penyeimbang, dan mata panah logam."
     },
     "block-of-incense": {
-      "description": "Batang wewangian, biasanya ditemukan dalam priest's pack. Digunakan untuk ritual keagamaan."
+      "description": "Sebongkah dupa. Biasanya ada di priest's pack."
     },
     "blowgun-needle": {
-      "description": "Anak panah kecil dan ringan yang dirancang untuk digunakan dengan sumpitan. Seringkali dilapisi dengan racun untuk penghapusan diam-diam."
+      "description": "Jarum kecil dan ringan untuk blowgun. Sering dilumuri racun untuk serangan diam-diam."
     },
     "censer": {
-      "description": "Dispenser wewangian, biasanya ditemukan dalam priest's pack. Digunakan untuk ritual keagamaan."
+      "description": "Pedupaan untuk membakar dupa. Biasanya ada di priest's pack."
     },
     "crossbow-bolt": {
-      "description": "Poros pendek dan tebal yang dirancang untuk digunakan dengan panah otomatis. Lebih pendek dan lebih berat dari anak panah, ia memberikan dampak yang luar biasa pada jarak dekat hingga menengah."
+      "description": "Gagang pendek dan tebal untuk crossbow. Lebih pendek dan berat dari panah."
     },
     "sling-bullet": {
-      "description": "Pelet batu atau timah yang halus dan bulat yang dirancang untuk digunakan dengan gendongan. Mudah ditemukan atau diproduksi, peluru selempang adalah amunisi masyarakat awam."
+      "description": "Batu bulat atau peluru timah untuk sling. Mudah ditemukan atau dibuat."
     },
     "amulet": {
-      "description": "Sebuah holy symbol adalah representasi dari seorang god atau pantheon. Bisa menjadi amulet, reliquary, atau item lainnya."
+      "description": "Holy symbol adalah lambang dewa atau kumpulan dewa. Bentuknya bisa berupa jimat bergambar lambang dewa, lambang yang diukir atau ditempel di shield sebagai emblem, atau kotak kecil berisi potongan relik suci. Cleric atau paladin bisa memakai holy symbol sebagai spellcasting focus. Caranya, pegang di tangan, pakai sampai terlihat, atau pasang di shield."
     },
     "antitoxin-vial": {
-      "description": "Creature yang meminum vial cairan ini mendapatkan Advantage pada saving throws terhadap poison selama 1 hour. Tidak memberikan manfaat jika creature sedang terkena poison."
+      "description": "Makhluk yang meminum cairan ini dapat Advantage pada saving throw terhadap racun selama 1 jam. Tidak berpengaruh pada undead dan construct."
     },
     "crystal": {
-      "description": "Fokus misterius adalah benda khusus--sebuah bola, kristal, tongkat, tongkat yang dibuat khusus, kayu sepanjang tongkat, atau benda serupa--yang dirancang untuk menyalurkan kekuatan spell misterius. Seorang penyihir, penyihir, atau penyihir dapat menggunakan item tersebut sebagai fokus perapalan spell."
+      "description": "Arcane focus adalah benda khusus, seperti orb, kristal, rod, staff khusus, tongkat kayu berbentuk wand, atau benda serupa, yang dibuat untuk menyalurkan kekuatan spell arcane. Sorcerer, warlock, atau wizard bisa memakainya sebagai spellcasting focus."
     },
     "orb": {
-      "description": "Fokus misterius adalah benda khusus--sebuah bola, kristal, tongkat, tongkat yang dibuat khusus, kayu sepanjang tongkat, atau benda serupa--yang dirancang untuk menyalurkan kekuatan spell misterius. Seorang penyihir, penyihir, atau penyihir dapat menggunakan item tersebut sebagai fokus perapalan spell."
+      "description": "Arcane focus adalah benda khusus, seperti orb, kristal, rod, staff khusus, tongkat kayu berbentuk wand, atau benda serupa, yang dibuat untuk menyalurkan kekuatan spell arcane. Sorcerer, warlock, atau wizard bisa memakainya sebagai spellcasting focus."
     },
     "rod": {
-      "description": "Fokus misterius adalah benda khusus--sebuah bola, kristal, tongkat, tongkat yang dibuat khusus, kayu sepanjang tongkat, atau benda serupa--yang dirancang untuk menyalurkan kekuatan spell misterius. Seorang penyihir, penyihir, atau penyihir dapat menggunakan item tersebut sebagai fokus perapalan spell."
+      "description": "Arcane focus adalah benda khusus, seperti orb, kristal, rod, staff khusus, tongkat kayu berbentuk wand, atau benda serupa, yang dibuat untuk menyalurkan kekuatan spell arcane. Sorcerer, warlock, atau wizard bisa memakainya sebagai spellcasting focus."
     },
     "staff": {
-      "description": "Fokus misterius adalah benda khusus--sebuah bola, kristal, tongkat, tongkat yang dibuat khusus, kayu sepanjang tongkat, atau benda serupa--yang dirancang untuk menyalurkan kekuatan spell misterius. Seorang penyihir, penyihir, atau penyihir dapat menggunakan item tersebut sebagai fokus perapalan spell."
+      "description": "Arcane focus adalah benda khusus, seperti orb, kristal, rod, staff khusus, tongkat kayu berbentuk wand, atau benda serupa, yang dibuat untuk menyalurkan kekuatan spell arcane. Sorcerer, warlock, atau wizard bisa memakainya sebagai spellcasting focus."
     },
     "wand": {
-      "description": "Sebuah fokus arcane adalah item khusus--sebuah orb, kristal, rod, staff yang dibuat khusus, wand-like rod, atau item lain yang memchannelkan magic arcane."
+      "description": "Arcane focus adalah benda khusus, seperti orb, kristal, rod, staff khusus, tongkat kayu berbentuk wand, atau benda serupa, yang dibuat untuk menyalurkan kekuatan spell arcane. Sorcerer, warlock, atau wizard bisa memakainya sebagai spellcasting focus."
     },
     "backpack": {
-      "description": "Kantong kulit yang kuat dengan tali bahu, dirancang untuk membawa peralatan di punggung. Memiliki banyak kompartemen dan dapat menampung hingga 30 pounds."
+      "description": "Tas kulit kokoh bertali bahu untuk membawa perlengkapan di punggung. Punya beberapa kantong dan muat persediaan untuk beberapa hari."
     },
     "ball-bearings-bag-of-1000": {
-      "description": "Sebagai Action, kamu dapat menuangkan bola-bola logam kecil ini dari kantongnya untuk menutupi area 10 feet square. Setiap creatures yang bergerak melalui area ini harus melakukan DC 10 DEX saving throw atau terpeleset. Kegagalan = terjerat sampai beristirahat."
+      "description": "Pakai action untuk menumpahkan bola-bola logam kecil ini dari kantongnya, menutupi area datar berbentuk persegi 10 feet. Makhluk yang bergerak melewati area itu melakukan Dexterity saving throw DC 10. Kalau gagal, ia jatuh Prone. Makhluk yang bergerak dengan setengah speed tidak perlu melakukan saving throw."
     },
     "barrel": {
-      "description": "Tong kayu yang kuat, sering digunakan untuk menyimpan cairan, makanan, atau barang lainnya. Beratnya sekitar 40 pounds ketika kosong."
+      "description": "Tong kayu besar berikat besi untuk menyimpan cairan atau barang kering. Muat sampai 40 galon cairan."
     },
     "basket": {
-      "description": "Keranjang anyaman dari bambu atau rotan, digunakan untuk membawa barang-barang ringan."
+      "description": "Keranjang anyaman untuk membawa barang, mengumpulkan bahan, atau menyimpan barang. Ringan dan serbaguna."
     },
     "bedroll": {
-      "description": "Selimut tebal yang dilipat, digunakan untuk tidur di luar. Memberikan comfort dan kehangatan saat beristirahat di alam liar."
+      "description": "Perlengkapan tidur gulung, berisi selimut tebal dan kasur tipis yang diikat tali kulit. Penting untuk tidur nyaman di luar."
     },
     "bell": {
-      "description": "Bel kecil yang menghasilkan suara nyaring saat diketuk. Sering digunakan untuk penandaan atau peringatan."
+      "description": "Lonceng logam kecil yang berbunyi nyaring. Berguna untuk memberi tanda, membangunkan penjaga, atau menarik perhatian."
     },
     "blanket": {
-      "description": "Kain tebal yang ditenun, digunakan untuk kehangatan saat tidur atau sebagai tirai, pembungkus, atau pelapis."
+      "description": "Kain tebal untuk menghangatkan badan saat tidur, atau dipakai sebagai tirai, pembungkus, atau alas."
     },
     "block-and-tackle": {
-      "description": "Satu set katrol dengan tali yang melewatinya dan pengait untuk mengaitkan benda. Dengan alat ini kamu bisa mengangkat beban sampai empat kali lipat dari yang biasanya bisa kamu angkat."
+      "description": "Seperangkat katrol dengan tali dan kait untuk dikaitkan ke benda. Dengan alat ini, kamu bisa mengangkat sampai empat kali berat yang biasanya bisa kamu angkat."
     },
     "book": {
-      "description": "Buku yang berisi pengetahuan, cerita, atau catatan. Bisa menjadi sumber informasi berharga."
+      "description": "Buku bisa berisi puisi, catatan sejarah, pengetahuan tentang bidang tertentu, diagram mesin gnome, atau apa saja yang bisa ditulis atau digambar. Buku berisi spell disebut spellbook."
     },
     "bottle-glass": {
-      "description": "Botol kaca yang digunakan untuk menyimpan cairan. Rapuh dan bisa pecah jika jatuh."
+      "description": "Wadah kaca rapuh berleher sempit dengan sumbat gabus, untuk menyimpan cairan seperti ramuan, tinta, atau anggur."
     },
     "bucket": {
-      "description": "Ember yang digunakan untuk membawa air atau barang lainnya. Bisa terbuat dari kayu, logam, atau plastik."
+      "description": "Wadah silinder dari kayu atau logam dengan pegangan, untuk membawa air atau bahan lain."
     },
     "caltrops": {
-      "description": "Jejak-jejak logam dengan paku-paku tajam yang ditempatkan di tanah. Setiap creatures yang bergerak melalui area caltrops harus melakukan DC 10 DEX saving throw. Kegagalan = 1 piercing damage dan speed berkurang 10 feet sampai beristirahat."
+      "description": "Pakai action untuk menyebar sekantong caltrop ke area persegi 5 feet. Makhluk yang masuk ke area itu melakukan Dexterity saving throw DC 15. Kalau gagal, ia berhenti bergerak di giliran itu dan kena 1 piercing damage. Setelah kena damage ini, walking speed-nya berkurang 10 feet sampai ia pulih minimal 1 HP. Makhluk yang bergerak dengan setengah speed tidak perlu melakukan saving throw."
     },
     "candle": {
-      "description": "Selama 1 hour, candle menyala terang dalam radius 5 feet dan cahaya remang untuk tambahan 5 feet."
+      "description": "Selama 1 jam, lilin memancarkan cahaya terang berradius 5 feet dan cahaya redup 5 feet lagi."
     },
     "case-crossbow-bolt": {
-      "description": "Kotak kayu ini dapat menampung hingga dua puluh crossbow bolts."
+      "description": "Kotak kayu yang muat sampai dua puluh crossbow bolt."
     },
     "case-map-or-scroll": {
-      "description": "Kotak kayu atau pipa logam yang digunakan untuk melindungi peta atau scroll dari damage dan kelembaban."
+      "description": "Tabung kulit yang muat sampai sepuluh lembar kertas atau lima lembar perkamen yang digulung."
     },
     "chain-10-feet": {
-      "description": "Rantai memiliki 10 hit points. Bisa dipatahkan dengan successful DC 20 STR check."
+      "description": "Rantai punya 10 HP. Bisa diputus dengan Strength check DC 20."
     },
     "chalk-1-piece": {
-      "description": "Batu kapur kecil, biasanya digunakan untuk menandai atau menulis di permukaan keras."
+      "description": "Sebatang kapur untuk menandai permukaan. Berguna untuk meninggalkan tanda, menandai jalan, atau menghitung."
     },
     "chest": {
-      "description": "Peti kayu yang kuat dengan kunci, digunakan untuk menyimpan barang berharga. Beratnya sekitar 25 pounds ketika kosong."
+      "description": "Peti kayu besar bertutup engsel dan kunci, diperkuat ikatan besi. Untuk menyimpan harta, barang dagangan, atau barang pribadi."
     },
     "clothes-common": {
-      "description": "Pakaian sehari-hari yang sederhana dan fungsional. Cocok untuk kebanyakan situasi."
+      "description": "Satu set pakaian sederhana untuk rakyat biasa: kemeja, celana atau rok, dan alas kaki."
     },
     "clothes-costume": {
-      "description": "Pakaian kostum yang dirancang untuk penampilan atau peran tertentu. Bisa digunakan untuk menyamar atau panggung."
+      "description": "Pakaian rumit untuk menyamar atau tampil. Bisa termasuk topeng, kain unik, dan aksesori untuk membantumu jadi orang lain."
     },
     "clothes-fine": {
-      "description": "Pakaian halus yang terbuat dari bahan berkualitas tinggi. Memberikan kesan status sosial tinggi."
+      "description": "Satu set pakaian mahal dari kain bagus dengan jahitan rapi, lengkap dengan lapisan sutra, kancing hias, dan aksesori yang serasi."
     },
     "clothes-travelers": {
-      "description": "Pakaian bepergian yang tahan lama dan nyaman. Dirancang untuk perjalanan panjang dan kondisi alam liar."
+      "description": "Satu set pakaian kuat untuk perjalanan jauh, termasuk jubah, sepatu bot, dan topi lebar."
     },
     "component-pouch": {
-      "description": "Kantong kecil yang berisi komponen-komponen material yang dibutuhkan untuk mencatat spell. Menggantikan material components yang tidak memiliki cost."
+      "description": "Kantong sabuk kulit kecil yang kedap air, dengan sekat-sekat untuk menyimpan semua komponen material dan barang khusus yang kamu butuhkan untuk cast spell. Komponen yang harganya disebut di deskripsi spell tidak termasuk."
     },
     "crowbar": {
-      "description": "Menggunakan crowbar memberikan Advantage pada STR checks dimana leverage crowbar dapat diterapkan."
+      "description": "Memakai linggis memberi Advantage pada Strength check yang bisa terbantu daya ungkitnya."
     },
     "sprig-of-mistletoe": {
-      "description": "Fokus druidic mungkin berupa setangkai mistletoe atau holly, tongkat atau tongkat yang terbuat dari yew atau kayu khusus lainnya, tongkat yang ditarik seluruhnya dari pohon hidup, atau objek totem yang menggabungkan bulu, bulu, tulang, dan gigi dari hewan suci. Seorang druid dapat menggunakan objek seperti itu sebagai fokus perapalan spell."
+      "description": "Druidic focus bisa berupa ranting mistletoe atau holly, tongkat kecil atau tongkat kerajaan dari kayu yew atau kayu khusus lain, tongkat yang diambil utuh dari pohon hidup, atau totem berhias bulu, rambut, tulang, dan gigi hewan suci. Druid bisa memakai benda ini sebagai spellcasting focus."
     },
     "totem": {
-      "description": "Fokus druidic mungkin berupa setangkai mistletoe atau holly, tongkat atau tongkat yang terbuat dari yew atau kayu khusus lainnya, tongkat yang ditarik seluruhnya dari pohon hidup, atau objek totem yang menggabungkan bulu, bulu, tulang, dan gigi dari hewan suci. Seorang druid dapat menggunakan objek seperti itu sebagai fokus perapalan spell."
+      "description": "Druidic focus bisa berupa ranting mistletoe atau holly, tongkat kecil atau tongkat kerajaan dari kayu yew atau kayu khusus lain, tongkat yang diambil utuh dari pohon hidup, atau totem berhias bulu, rambut, tulang, dan gigi hewan suci. Druid bisa memakai benda ini sebagai spellcasting focus."
     },
     "wooden-staff": {
-      "description": "Sebuah fokus druidic bisa berupa semangkuk pohon mistletoe atau holly, wand atau scepter made of yew atau kayu khusus lainnya, atau staff."
+      "description": "Druidic focus bisa berupa ranting mistletoe atau holly, tongkat kecil atau tongkat kerajaan dari kayu yew atau kayu khusus lain, tongkat yang diambil utuh dari pohon hidup, atau totem berhias bulu, rambut, tulang, dan gigi hewan suci. Druid bisa memakai benda ini sebagai spellcasting focus."
     },
     "yew-wand": {
-      "description": "Sebuah fokus druidic bisa berupa semangkuk pohon mistletoe atau holly, wand atau scepter made of yew atau kayu khusus lainnya."
+      "description": "Druidic focus bisa berupa ranting mistletoe atau holly, tongkat kecil atau tongkat kerajaan dari kayu yew atau kayu khusus lain, tongkat yang diambil utuh dari pohon hidup, atau totem berhias bulu, rambut, tulang, dan gigi hewan suci. Druid bisa memakai benda ini sebagai spellcasting focus."
     },
     "emblem": {
-      "description": "Simbol suci adalah representasi dewa atau panteon. Itu bisa berupa jimat yang menggambarkan simbol yang mewakili dewa, simbol yang sama diukir atau dihias dengan hati-hati sebagai lambang pada perisai, atau kotak kecil yang berisi pecahan relik suci.\nLampiran B mencantumkan simbol-simbol yang umumnya diasosiasikan dengan banyak dewa di multiverse. Seorang ulama atau paladin dapat menggunakan simbol suci sebagai fokus perapalan spell. Untuk menggunakan simbol dengan cara ini, caster spell harus memegangnya di tangan, memakainya secara kasat mata, atau membawanya pada perisai."
+      "description": "Holy symbol adalah lambang dewa atau kumpulan dewa. Bentuknya bisa berupa jimat bergambar lambang dewa, lambang yang diukir atau ditempel di shield sebagai emblem, atau kotak kecil berisi potongan relik suci. Cleric atau paladin bisa memakai holy symbol sebagai spellcasting focus. Caranya, pegang di tangan, pakai sampai terlihat, atau pasang di shield."
     },
     "fishing-tackle": {
-      "description": "Peralatan pancing yang termasuk pancing, umpan, dan joran. Digunakan untuk menangkap ikan di sungai atau danau."
+      "description": "Perlengkapan memancing: joran kayu, senar sutra, pelampung gabus, kail baja, pemberat timah, umpan tiruan, dan jaring kecil."
     },
     "flask-or-tankard": {
-      "description": "Botol atau gelas yang digunakan untuk menyimpan dan minum cairan."
+      "description": "Wadah kecil untuk minuman, bisa berupa cangkir keramik untuk bir atau botol logam untuk minuman keras."
     },
     "grappling-hook": {
-      "description": "Kait baja yang digunakan untuk memanjat dinding atau menambatkan kapal. Bisa dilempar hingga 30 feet."
+      "description": "Kait logam bercabang yang diikat ke tali, untuk dikaitkan ke tepian, dinding, atau tiang supaya bisa memanjat atau menyeberang."
     },
     "hammer": {
-      "description": "Palu kecil yang digunakan untuk memukul benda atau menaruh paku."
+      "description": "Alat sederhana berkepala berat untuk memaku, memecah benda, atau membentuk logam."
     },
     "hammer-sledge": {
-      "description": "Palu besar yang digunakan untuk memukul benda dengan kekuatan besar."
+      "description": "Palu besar dua tangan dengan kepala besi berat, untuk memecah batu, menancapkan pasak, atau merobohkan bangunan."
     },
     "holy-water-flask": {
-      "description": "Air suci yang dikuduskan oleh cleric. Sebagai Action, kamu dapat melempar flask ini hingga 20 feet atau menyiramkannya ke undead. Undead yang terkena harus melakukan DC 10 WIS saving throw. Kegagalan = 2d6 radiant damage, Keberhasilan = setengah damage."
+      "description": "Pakai action untuk menyiramkan isi botol ini ke makhluk dalam jarak 5 feet, atau melemparnya sampai 20 feet sampai pecah. Lakukan ranged attack terhadap makhluk, dengan air suci ini dihitung sebagai improvised weapon. Kalau target fiend atau undead, ia kena 2d6 radiant damage. Cleric atau paladin bisa membuat air suci lewat ritual khusus: butuh 1 jam, bubuk perak senilai 25 gp, dan satu spell slot level 1."
     },
     "hourglass": {
-      "description": "Pasir yang mengalir melalui lapisan-lapisan kaca, digunakan untuk mengukur waktu."
+      "description": "Jam pasir dari dua tabung kaca. Pasirnya mengalir habis dalam tepat satu jam."
     },
     "hunting-trap": {
-      "description": "Jebak yang digunakan untuk menangkap hewan. Membutuhkan 1 minute untuk dipasang. Ketika activated, makhluk yang memijaknya harus melakukan DC 13 DEX saving throw atau terjebak. Terjebak = 1d4 piercing damage dan speed berkurang 10 feet hingga beristirahat."
+      "description": "Pakai action untuk memasang jebakan ini. Jebakan berupa cincin baja bergerigi yang menutup saat makhluk menginjak pelat di tengahnya, dan dirantai ke benda yang tidak bisa bergerak, seperti pohon atau pasak di tanah. Makhluk yang menginjak pelat melakukan Dexterity saving throw DC 13. Kalau gagal, ia kena 1d4 piercing damage dan berhenti bergerak. Setelah itu, sampai bebas, geraknya dibatasi panjang rantai (biasanya 3 feet). Makhluk bisa memakai action untuk Strength check DC 13, membebaskan dirinya atau makhluk lain dalam jangkauannya kalau berhasil. Setiap check yang gagal memberi 1 piercing damage ke makhluk yang terjebak."
     },
     "ink-1-ounce-bottle": {
-      "description": "Botol tinta 1 ons, digunakan untuk menulis atau melukis. Tinta hitam adalah yang paling umum."
+      "description": "Botol kecil berisi tinta hitam atau berwarna, untuk menulis, menggambar peta, atau menghias naskah."
     },
     "ink-pen": {
-      "description": "Pena tinta yang digunakan untuk menulis dengan tinta. Bisa digunakan untuk menandatangani dokumen atau menulis surat."
+      "description": "Pena celup dari bulu burung dengan ujung yang diruncingkan, untuk menulis atau menggambar."
     },
     "jug-or-pitcher": {
-      "description": "Buyung atau kendi yang digunakan untuk menyimpan dan menuang cairan. Bisa menampung hingga 1 gallon."
+      "description": "Kendi keramik atau logam dengan pegangan dan corong, untuk menyimpan dan menuang cairan."
     },
     "climbers-kit": {
-      "description": "Perkakas panjat yang termasuk tali, karabiner, dan pijak. Memungkinkan kamu memanjat permukaan yang sulit dengan Advantage pada STR (Athletics) checks."
+      "description": "Perlengkapan memanjat: piton khusus, ujung sepatu, sarung tangan, dan harness. Pakai action untuk mengaitkan diri. Setelah itu, kamu tidak bisa jatuh lebih dari 25 feet dari titik kaitan, dan tidak bisa memanjat lebih dari 25 feet dari titik itu tanpa melepas kaitan."
     },
     "disguise-kit": {
-      "description": "Kantong berisi kosmetik, pewarna rambut, dan properti kecil untuk menyamar dan mengubah penampilanmu. Dengan proficiency di kit ini, kamu bisa menambahkan Proficiency Bonus ke ability check untuk membuat penyamaran visual."
+      "description": "Kantong berisi kosmetik, pewarna rambut, dan properti kecil untuk menyamar dan mengubah penampilan. Proficiency dengan kit ini membuatmu bisa menambahkan Proficiency Bonus ke ability check untuk membuat penyamaran visual."
     },
     "forgery-kit": {
-      "description": "Kotak kecil berisi berbagai kertas dan perkamen, pena dan tinta, segel dan lilin, lembaran emas dan perak, serta perlengkapan lain untuk memalsukan dokumen dengan meyakinkan. Dengan proficiency di kit ini, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memalsukan dokumen."
+      "description": "Kotak kecil berisi berbagai kertas dan perkamen, pena dan tinta, segel dan lilin segel, lembaran emas dan perak, dan bahan lain untuk memalsukan dokumen. Proficiency dengan kit ini membuatmu bisa menambahkan Proficiency Bonus ke ability check untuk memalsukan dokumen."
     },
     "herbalism-kit": {
-      "description": "Kit berisi gunting tanaman, lumpang dan alu, serta kantong dan botol kecil yang dipakai ahli herbal untuk meracik obat dan ramuan. Dengan proficiency di kit ini, kamu bisa menambahkan Proficiency Bonus ke ability check untuk mengenali atau memakai tanaman obat. Proficiency ini juga dibutuhkan untuk membuat antitoxin dan potion of healing."
+      "description": "Kit berisi gunting, lumpang dan alu, serta kantong dan botol kecil untuk membuat obat dan ramuan dari tanaman. Proficiency dengan kit ini membuatmu bisa menambahkan Proficiency Bonus ke ability check untuk mengenali atau memakai tanaman obat. Proficiency ini juga dibutuhkan untuk membuat antitoxin dan Potion of Healing."
     },
     "mess-kit": {
-      "description": "Kotak timah ini berisi cangkir dan peralatan makan sederhana. Kotaknya dijepit, dan satu sisinya dapat digunakan sebagai panci masak dan sisi lainnya sebagai piring atau mangkuk dangkal."
+      "description": "Kotak timah berisi cangkir dan alat makan sederhana. Kotaknya bisa dibuka jadi dua: satu sisi untuk wajan, sisi lain untuk piring atau mangkuk dangkal."
     },
     "poisoners-kit": {
-      "description": "Berisi botol kecil, bahan kimia, dan peralatan lain untuk membuat racun. Dengan proficiency di kit ini, kamu bisa menambahkan Proficiency Bonus ke ability check untuk membuat atau memakai racun."
+      "description": "Kit berisi botol kecil, bahan kimia, dan peralatan untuk membuat racun. Proficiency dengan kit ini membuatmu bisa menambahkan Proficiency Bonus ke ability check untuk membuat atau memakai racun."
     },
     "ladder-10-foot": {
-      "description": "Tangga kayu 10 feet yang digunakan untuk memanjat ke tempat yang lebih tinggi."
+      "description": "Tangga kayu sepanjang 10 feet. Berguna untuk memanjat dinding, pohon, atau rintangan tinggi lain."
     },
     "lamp": {
-      "description": "Lampu yang menyala dengan minyak atau lilin. Menyediakan cahaya terang dalam radius 15 feet dan cahaya remang untuk tambahan 15 feet."
+      "description": "Lampu memancarkan cahaya terang berradius 15 feet dan cahaya redup 30 feet lagi. Setelah dinyalakan, menyala selama 6 jam dengan satu botol (1 pint) oil."
     },
     "lantern-bullseye": {
-      "description": "Lentera dengan lensa yang memfokuskan cahaya menjadi sinar terang. Menyediakan cahaya terang 60 feet di depan dan cahaya remang 30 feet di sekitarnya."
+      "description": "Lentera ini memancarkan cahaya terang berbentuk kerucut 60 feet dan cahaya redup 60 feet lagi. Setelah dinyalakan, menyala selama 6 jam dengan satu botol (1 pint) oil."
     },
     "lantern-hooded": {
-      "description": "Lentera dengan tudung yang dapat ditutup atau dibuka. Menyediakan cahaya terang dalam radius 30 feet. Bisa ditutup untuk menyembunyikan cahaya."
+      "description": "Lentera ini memancarkan cahaya terang berradius 30 feet dan cahaya redup 30 feet lagi. Setelah dinyalakan, menyala selama 6 jam dengan satu botol (1 pint) oil. Pakai action untuk menurunkan tudungnya, sehingga cahayanya tinggal cahaya redup berradius 5 feet."
     },
     "little-bag-of-sand": {
-      "description": "Kantong pasir kecil, biasanya ditemukan dalam scholar's pack. Digunakan untuk menimbu atau mensterilkan."
+      "description": "Kantong kecil berisi pasir. Biasanya ada di scholar's pack."
     },
     "lock": {
-      "description": "Kunci yang digunakan untuk mengamankan peti, pintu, atau petak. Memerlukan thieves' tools untuk dibuka."
+      "description": "Gembok ini dilengkapi kunci. Tanpa kunci, makhluk yang punya proficiency dengan thieves' tools bisa membukanya dengan Dexterity check DC 15. DM bisa menyediakan gembok yang lebih bagus dengan harga lebih mahal."
     },
     "magnifying-glass": {
-      "description": "Kaca pembesar yang digunakan untuk melihat objek kecil dengan lebih jelas. Memberikan Advantage pada checks yang memerlukan pemeriksaan detail."
+      "description": "Lensa untuk melihat benda kecil lebih dekat. Bisa juga dipakai menyalakan api sebagai pengganti batu api, asal ada cahaya seterang matahari, bahan bakar kering, dan sekitar 5 menit. Kaca pembesar memberi Advantage pada ability check untuk menilai atau memeriksa benda kecil atau sangat detail."
     },
     "manacles": {
-      "description": "Besi belintang yang digunakan untuk membelenggu creature. Memerlukan DC 20 DEX check untuk dibuka dengan thieves' tools, atau DC 15 STR check untuk mematahkannya."
+      "description": "Borgol logam ini bisa mengikat makhluk Small atau Medium. Lepas dari borgol butuh Dexterity check DC 20. Mematahkannya butuh Strength check DC 20. Setiap borgol dilengkapi satu kunci. Tanpa kunci, makhluk yang punya proficiency dengan thieves' tools bisa membukanya dengan Dexterity check DC 15. Borgol punya 15 HP."
     },
     "mirror-steel": {
-      "description": "Cermin baja yang digunakan untuk melihat sekitar sudut, memeriksa kondisi, atau sebagai sinyal."
+      "description": "Cermin baja kecil yang dipoles. Berguna untuk mengintip ke balik sudut, memberi isyarat dari jauh, atau bercermin."
     },
     "oil-flask": {
-      "description": "Minyak yang bisa digunakan sebagai bahan bakar. Sebagai Action, kamu dapat menuangkan minyak ini ke ground dalam 5 feet. Sebagai Action, kamu dapat menerangkan minyak dengan api, menciptakan area cahaya 10 feet untuk 1 minute. Jika dilempar pada creature, harus melakukan DC 10 DEX saving throw. Kegagalan = 1 fire damage dari api."
+      "description": "Oil biasanya disimpan di botol tanah liat berisi 1 pint.\n\nPakai action untuk menyiramkan oil ke makhluk dalam jarak 5 feet, atau melempar botolnya sampai 20 feet sampai pecah. Lakukan ranged attack terhadap makhluk atau benda, dengan oil ini dihitung sebagai improvised weapon. Kalau kena, target berlumur oil. Kalau target kena fire damage sebelum oil-nya kering (setelah 1 menit), ia kena tambahan 5 fire damage dari oil yang terbakar.\n\nKamu juga bisa menuang oil ke tanah datar untuk menutupi area persegi 5 feet. Kalau dinyalakan, oil terbakar selama 2 ronde dan memberi 5 fire damage ke makhluk yang masuk ke area atau mengakhiri gilirannya di sana. Satu makhluk hanya bisa kena damage ini sekali per giliran."
     },
     "paper-one-sheet": {
-      "description": "Sepotong kertas yang digunakan untuk menulis, melukis, atau melipat menjadi origami."
+      "description": "Selembar kertas halus untuk menulis surat, menggambar peta, atau mencatat hal penting."
     },
     "parchment-one-sheet": {
-      "description": "Sepotong parchment yang terbuat dari kulit hewan, digunakan untuk menulis dokumen penting atau spell."
+      "description": "Selembar kulit hewan yang diolah untuk ditulisi. Lebih awet dari kertas, dipakai untuk dokumen penting dan peta."
     },
     "perfume-vial": {
-      "description": "Botol wewangian yang digunakan untuk menutupi bau atau membuat aroma yang menyenangkan."
+      "description": "Botol kristal kecil berisi wewangian pekat. Sekali pakai cukup untuk menutupi bau tak sedap atau menunjukkan status sosial."
     },
     "pick-miners": {
-      "description": "Batu akik yang digunakan oleh penambang untuk memecahkan batu. Bisa digunakan sebagai senjata."
+      "description": "Alat berat berujung runcing untuk memecah batu dan bijih tambang."
     },
     "piton": {
-      "description": "Paku baja yang ditanam ke dinding atau tebing untuk memanjat atau mengamankan tali."
+      "description": "Pasak logam runcing yang ditancapkan ke batu atau kayu sebagai tempat mengaitkan tali. Penting untuk memanjat tebing curam."
     },
     "poison-basic-vial": {
-      "description": "Racun dasar yang bisa ditambahkan ke senjata. Sebagai bonus action, kamu dapat menerapkan racun ini ke senjata atau amunisi. Creature yang terkena serangan dengan senjata ini harus melakukan DC 10 CON saving throw. Kegagalan = 1d4 poison damage."
+      "description": "Racun dalam botol ini bisa dilumurkan ke satu senjata slashing atau piercing, atau sampai tiga amunisi. Melumurkannya butuh action. Makhluk yang kena senjata atau amunisi beracun melakukan Constitution saving throw DC 10. Kalau gagal, ia kena 1d4 poison damage. Setelah dilumurkan, racun bertahan 1 menit sebelum kering."
     },
     "pole-10-foot": {
-      "description": "Tongkat 10 feet yang digunakan untuk memeriksa lantai, menyeimbangkan, atau menolak benda dari jarak jauh."
+      "description": "Galah kayu kokoh sepanjang 10 feet. Berguna untuk memeriksa lubang, mengukur kedalaman, menjatuhkan benda, atau jadi senjata darurat."
     },
     "pot-iron": {
-      "description": "Panci besi yang digunakan untuk memasak makanan di api unggun."
+      "description": "Panci besi tuang bertutup yang tahan api langsung. Untuk merebus air, memasak sup, atau melelehkan bahan."
     },
     "pouch": {
-      "description": "Kantong kecil yang digunakan untuk menyimpan item kecil seperti koin atau bolt."
+      "description": "Kantong kain atau kulit yang muat sampai 20 sling bullet atau 50 blowgun needle, atau barang lain. Kantong bersekat untuk komponen spell disebut component pouch."
     },
     "quiver": {
-      "description": "Tabung yang dapat menampung hingga 20 arrows."
+      "description": "Tabung panah yang muat sampai 20 arrow."
     },
     "ram-portable": {
-      "description": "Kamu bisa memakai pendobrak portabel untuk menjebol pintu. Saat melakukannya, kamu mendapat bonus +4 untuk Strength check. Satu karakter lain bisa membantumu memakai pendobrak ini, sehingga kamu mendapat Advantage pada check itu."
+      "description": "Pendobrak untuk menjebol pintu. Saat memakainya, kamu dapat +4 pada Strength check. Satu karakter lain bisa membantu, sehingga check itu dapat Advantage."
     },
     "rations-1-day": {
-      "description": "Makanan sehari yang terdiri dari daging kering, roti keras, dan makanan tahan lama. Cukup untuk 1 hari."
+      "description": "Ransum makanan kering untuk perjalanan jauh, seperti dendeng, buah kering, biskuit keras, dan kacang."
     },
     "reliquary": {
-      "description": "Simbol suci adalah representasi dewa atau panteon. Itu bisa berupa jimat yang menggambarkan simbol yang mewakili dewa, simbol yang sama diukir atau dihias dengan hati-hati sebagai lambang pada perisai, atau kotak kecil yang berisi pecahan relik suci.\nLampiran B mencantumkan simbol-simbol yang umumnya diasosiasikan dengan banyak dewa di multiverse. Seorang ulama atau paladin dapat menggunakan simbol suci sebagai fokus perapalan spell. Untuk menggunakan simbol dengan cara ini, caster spell harus memegangnya di tangan, memakainya secara kasat mata, atau membawanya pada perisai."
+      "description": "Holy symbol adalah lambang dewa atau kumpulan dewa. Bentuknya bisa berupa jimat bergambar lambang dewa, lambang yang diukir atau ditempel di shield sebagai emblem, atau kotak kecil berisi potongan relik suci. Cleric atau paladin bisa memakai holy symbol sebagai spellcasting focus. Caranya, pegang di tangan, pakai sampai terlihat, atau pasang di shield."
     },
     "robes": {
-      "description": "Jubah panjang yang dikenakan oleh cleric, druid, atau wizard. Nyaman dan tidak menghalangi gerakan."
+      "description": "Pakaian longgar dari bahu sampai mata kaki. Umum dipakai wizard, pendeta, dan cendekiawan."
     },
     "rope-hempen-50-feet": {
-      "description": "Tali, baik yang terbuat dari rami atau sutra, memiliki 2 titik pukulan dan dapat diledakkan dengan Strength check DC 17."
+      "description": "Tali, baik dari rami maupun sutra, punya 2 HP dan bisa diputus dengan Strength check DC 17."
     },
     "rope-silk-50-feet": {
-      "description": "Tali sutra 50 feet yang ringan dan kuat. Bisa menampung hingga 600 pounds."
+      "description": "Tali, baik dari rami maupun sutra, punya 2 HP dan bisa diputus dengan Strength check DC 17."
     },
     "sack": {
-      "description": "Kantong besar yang digunakan untuk menyimpan barang-barang. Bisa menampung hingga 30 pounds."
+      "description": "Karung kain atau kulit bertali serut, untuk membawa barang banyak, jarahan, atau persediaan."
     },
     "scale-merchants": {
-      "description": "Timbangan pedagang yang digunakan untuk menimbang barang dagangan. Memungkinkan kamu menentukan berat item dengan akurat."
+      "description": "Timbangan kecil dengan piringan dan anak timbangan sampai 2 pound. Kamu bisa mengukur berat benda kecil dengan tepat, seperti logam mulia atau barang dagangan, untuk menaksir nilainya."
     },
     "sealing-wax": {
-      "description": "Lilin segel yang dilebur dan diterapkan pada amplop atau dokumen untuk menutupnya dengan aman."
+      "description": "Sebatang lilin keras yang meleleh saat dipanaskan, untuk menyegel surat dan paket. Sering dicap dengan cincin segel untuk membuktikan pengirimnya."
     },
     "shovel": {
-      "description": "Sekop yang digunakan untuk menggali tanah, pasir, atau salju."
+      "description": "Sekop berbilah lebar dengan gagang, untuk menggali tanah, pasir, atau salju."
     },
     "signal-whistle": {
-      "description": "Peluit yang digunakan untuk mengirim sinyal. Suaranya bisa terdengar hingga 600 feet."
+      "description": "Peluit logam kecil yang bunyinya nyaring dan terdengar sampai jauh. Dipakai memberi isyarat ke teman saat jarak pandang buruk."
     },
     "signet-ring": {
-      "description": "Cincin dengan segi yang ditanam, digunakan untuk menandatangani dokumen dengan cap."
+      "description": "Cincin berlambang keluarga, serikat, atau segel resmi. Ditekan ke lilin hangat untuk mengesahkan dokumen."
     },
     "small-knife": {
-      "description": "Pisau kecil, biasanya ditemukan di tas pelajar."
+      "description": "Pisau kecil. Biasanya ada di scholar's pack."
     },
     "soap": {
-      "description": "Sabun yang digunakan untuk membersihkan diri atau pakaian."
+      "description": "Sabun batangan untuk membersihkan luka, mencuci pakaian, atau menjaga kebersihan."
     },
     "spellbook": {
-      "description": "Buku yang berisi catatan spell yang dipelajari oleh wizard. Diperlukan untuk mempersiapkan dan mencatat spell."
+      "description": "Penting untuk wizard. Buku bersampul kulit dengan 100 halaman vellum kosong untuk mencatat spell."
     },
     "spike-iron": {
-      "description": "Paku besi yang berat, lebih besar dan lebih kokoh dari piton. Digunakan sebagai jangkar pintu, senjata improvisasi, atau pendukung struktural."
+      "description": "Pasak besi berat, lebih besar dan kuat dari piton. Bisa dipakai mengganjal pintu, jadi senjata darurat, atau penopang."
     },
     "spyglass": {
-      "description": "Teropong yang digunakan untuk melihat objek dari jarak jauh. Memungkinkan kamu melihat detail hingga 10 kali lipat lebih jauh."
+      "description": "Benda yang dilihat lewat teropong ini terlihat dua kali lebih besar."
     },
     "string-10-feet": {
-      "description": "Tali sepanjang 10 kaki, biasanya ditemukan di bungkusan pencuri."
+      "description": "Benang sepanjang 10 feet. Biasanya ada di burglar's pack."
     },
     "tent-two-person": {
-      "description": "Tenda yang cukup untuk dua orang. Memberikan perlindungan dari cuaca ekstrem."
+      "description": "Tenda kanvas sederhana yang mudah dibawa. Muat untuk dua orang tidur."
     },
     "tinderbox": {
-      "description": "Kotak yang berisi batu api, baja, dan korek api. Digunakan untuk menyalakan api."
+      "description": "Kotak kecil berisi batu api, baja pemantik, dan bahan bakar kering (biasanya kain yang dibasahi sedikit minyak). Menyalakan obor, atau benda lain dengan bahan bakar terbuka yang banyak, butuh action. Menyalakan api lain butuh 1 menit."
     },
     "torch": {
-      "description": "Tongkat yang dilapisi bahan mudah terbakar. Menyediakan cahaya terang dalam radius 20 feet dan cahaya remang untuk tambahan 20 feet. Dapat dilemparkan untuk menyerang (1 fire damage)."
+      "description": "Obor menyala selama 1 jam, memancarkan cahaya terang berradius 20 feet dan cahaya redup 20 feet lagi. Kalau kamu melakukan melee attack dengan obor yang menyala dan kena, seranganmu memberi 1 fire damage."
     },
     "vestments": {
-      "description": "Pakaian keagamaan, biasanya terdapat di tas pendeta."
+      "description": "Pakaian ibadah. Biasanya ada di priest's pack."
     },
     "vial": {
-      "description": "Botol kecil yang digunakan untuk menyimpan cairan atau racun."
+      "description": "Botol kaca kecil bersumbat rapat, untuk menyimpan ramuan, racun, atau cairan berharga. Biasanya muat sekitar satu ons."
     },
     "waterskin": {
-      "description": "Kantong kulit yang digunakan untuk menyimpan air atau minuman lainnya. Bisa menampung hingga 4 pounds cairan."
+      "description": "Kantong kulit untuk membawa air atau minuman. Kalau penuh, muat sekitar satu galon, cukup untuk satu pengelana selama sehari."
     },
     "whetstone": {
-      "description": "Batu asahan yang digunakan untuk menajamkan senjata tajam."
+      "description": "Batu asah datar untuk menajamkan bilah dan alat."
     },
     "burglars-pack": {
-      "description": "Koleksi perlengkapan yang dikurasi untuk calon nakal, termasuk ransel, bantalan bola, tali, lonceng, lilin, linggis, palu, piton, lentera, minyak, ransum, kotak tinder, kantong air, dan tali."
+      "description": "Paket untuk calon pencuri: backpack, ball bearings, benang, lonceng, lilin, linggis, palu, piton, lentera bertudung, oil, ransum, tinderbox, waterskin, dan tali."
     },
     "diplomats-pack": {
-      "description": "Koleksi barang-barang untuk negosiator perjalanan, antara lain peti, kotak peta, pakaian bagus, perlengkapan menulis, lampu, minyak, kertas, parfum, lilin penyegel, dan sabun."
+      "description": "Paket untuk juru runding: peti, tabung peta, pakaian bagus, perlengkapan menulis, lampu, oil, kertas, parfum, lilin segel, dan sabun."
     },
     "dungeoneers-pack": {
-      "description": "Perlengkapan penting untuk menjelajah bawah tanah, termasuk ransel, linggis, palu, piton, obor, kotak tinder, ransum, kantong air, dan tali."
+      "description": "Perlengkapan untuk menjelajah bawah tanah: backpack, linggis, palu, piton, obor, tinderbox, ransum, waterskin, dan tali."
     },
     "entertainers-pack": {
-      "description": "Perlengkapan untuk pemain keliling, termasuk ransel, kasur gulung, kostum, lilin, ransum, kantong air, dan perlengkapan penyamaran."
+      "description": "Perlengkapan penghibur keliling: backpack, bedroll, kostum, lilin, ransum, waterskin, dan disguise kit."
     },
     "explorers-pack": {
-      "description": "Perlengkapan lengkap untuk perjalanan di hutan belantara, termasuk ransel, kasur gulung, perlengkapan mess, kotak tinder, obor, ransum, kantung air, dan tali."
+      "description": "Paket lengkap untuk menjelajah alam liar: backpack, bedroll, mess kit, tinderbox, obor, ransum, waterskin, dan tali."
     },
     "priests-pack": {
-      "description": "Koleksi barang-barang ulama keliling antara lain tas punggung, selimut, lilin, kotak sedekah, dupa, pedupaan, jubah, ransum, kantong air, dan jubah."
+      "description": "Paket untuk pendeta keliling: backpack, selimut, lilin, kotak sedekah, dupa, pedupaan, pakaian ibadah, ransum, dan waterskin."
     },
     "scholars-pack": {
-      "description": "Perlengkapan untuk akademisi keliling, termasuk ransel, buku pengetahuan, tinta, pena tinta, perkamen, pasir, dan pisau kecil."
+      "description": "Paket untuk cendekiawan keliling: backpack, buku pengetahuan, tinta, pena, perkamen, kantong pasir, dan pisau kecil."
     },
     "alchemists-supplies": {
-      "description": "Alat-alat khusus ini mencakup item-item yang diperlukan untuk mengejar kerajinan atau perdagangan. Tabel menunjukkan contoh jenis kerajinan yang paling umum."
+      "description": "Alat khusus untuk menekuni satu kerajinan atau pekerjaan. Proficiency dengan artisan's tools membuatmu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu dalam kerajinanmu. Setiap jenis artisan's tools butuh proficiency sendiri."
     },
     "brewers-supplies": {
-      "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri."
+      "description": "Alat khusus untuk menekuni satu kerajinan atau pekerjaan. Proficiency dengan artisan's tools membuatmu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu dalam kerajinanmu. Setiap jenis artisan's tools butuh proficiency sendiri."
     },
     "calligraphers-supplies": {
-      "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri."
+      "description": "Alat khusus untuk menekuni satu kerajinan atau pekerjaan. Proficiency dengan artisan's tools membuatmu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu dalam kerajinanmu. Setiap jenis artisan's tools butuh proficiency sendiri."
     },
     "carpenters-tools": {
-      "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri."
+      "description": "Alat khusus untuk menekuni satu kerajinan atau pekerjaan. Proficiency dengan artisan's tools membuatmu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu dalam kerajinanmu. Setiap jenis artisan's tools butuh proficiency sendiri."
     },
     "cartographers-tools": {
-      "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri."
+      "description": "Alat khusus untuk menekuni satu kerajinan atau pekerjaan. Proficiency dengan artisan's tools membuatmu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu dalam kerajinanmu. Setiap jenis artisan's tools butuh proficiency sendiri."
     },
     "cobblers-tools": {
-      "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri."
+      "description": "Alat khusus untuk menekuni satu kerajinan atau pekerjaan. Proficiency dengan artisan's tools membuatmu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu dalam kerajinanmu. Setiap jenis artisan's tools butuh proficiency sendiri."
     },
     "cooks-utensils": {
-      "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri."
+      "description": "Alat khusus untuk menekuni satu kerajinan atau pekerjaan. Proficiency dengan artisan's tools membuatmu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu dalam kerajinanmu. Setiap jenis artisan's tools butuh proficiency sendiri."
     },
     "glassblowers-tools": {
-      "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri."
+      "description": "Alat khusus untuk menekuni satu kerajinan atau pekerjaan. Proficiency dengan artisan's tools membuatmu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu dalam kerajinanmu. Setiap jenis artisan's tools butuh proficiency sendiri."
     },
     "jewelers-tools": {
-      "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri."
+      "description": "Alat khusus untuk menekuni satu kerajinan atau pekerjaan. Proficiency dengan artisan's tools membuatmu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu dalam kerajinanmu. Setiap jenis artisan's tools butuh proficiency sendiri."
     },
     "leatherworkers-tools": {
-      "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri."
+      "description": "Alat khusus untuk menekuni satu kerajinan atau pekerjaan. Proficiency dengan artisan's tools membuatmu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu dalam kerajinanmu. Setiap jenis artisan's tools butuh proficiency sendiri."
     },
     "masons-tools": {
-      "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri."
+      "description": "Alat khusus untuk menekuni satu kerajinan atau pekerjaan. Proficiency dengan artisan's tools membuatmu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu dalam kerajinanmu. Setiap jenis artisan's tools butuh proficiency sendiri."
     },
     "painters-supplies": {
-      "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri."
+      "description": "Alat khusus untuk menekuni satu kerajinan atau pekerjaan. Proficiency dengan artisan's tools membuatmu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu dalam kerajinanmu. Setiap jenis artisan's tools butuh proficiency sendiri."
     },
     "potters-tools": {
-      "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri."
+      "description": "Alat khusus untuk menekuni satu kerajinan atau pekerjaan. Proficiency dengan artisan's tools membuatmu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu dalam kerajinanmu. Setiap jenis artisan's tools butuh proficiency sendiri."
     },
     "smiths-tools": {
-      "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri."
+      "description": "Alat khusus untuk menekuni satu kerajinan atau pekerjaan. Proficiency dengan artisan's tools membuatmu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu dalam kerajinanmu. Setiap jenis artisan's tools butuh proficiency sendiri."
     },
     "tinkers-tools": {
-      "description": "Perkakas ini berisi alat-alat untuk satu kerajinan atau pekerjaan tertentu. Kalau kamu punya proficiency dengan satu set artisan's tools, kamu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu untuk kerajinannya. Setiap jenis artisan's tools butuh proficiency sendiri."
+      "description": "Alat khusus untuk menekuni satu kerajinan atau pekerjaan. Proficiency dengan artisan's tools membuatmu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu dalam kerajinanmu. Setiap jenis artisan's tools butuh proficiency sendiri."
     },
     "weavers-tools": {
-      "description": "Alat-alat khusus ini mencakup item-item yang diperlukan untuk mengejar kerajinan atau perdagangan. Tabel menampilkan contoh-contoh dari beberapa jenis alat yang paling umum."
+      "description": "Alat khusus untuk menekuni satu kerajinan atau pekerjaan. Proficiency dengan artisan's tools membuatmu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu dalam kerajinanmu. Setiap jenis artisan's tools butuh proficiency sendiri."
     },
     "woodcarvers-tools": {
-      "description": "Alat-alat khusus ini mencakup item-item yang diperlukan untuk mengejar kerajinan atau perdagangan. Tabel menampilkan contoh-contoh dari beberapa jenis alat yang paling umum."
+      "description": "Alat khusus untuk menekuni satu kerajinan atau pekerjaan. Proficiency dengan artisan's tools membuatmu bisa menambahkan Proficiency Bonus ke ability check yang memakai alat itu dalam kerajinanmu. Setiap jenis artisan's tools butuh proficiency sendiri."
     },
     "dice-set": {
-      "description": "Satu set alat permainan, seperti dadu atau setumpuk kartu (misalnya untuk Three-Dragon Ante). Kalau kamu punya proficiency dengan gaming set, kamu bisa menambahkan Proficiency Bonus ke ability check untuk bermain dengan set itu. Setiap jenis gaming set butuh proficiency sendiri."
+      "description": "Gaming set mencakup berbagai alat permainan, termasuk dadu dan kartu (misalnya untuk permainan Three-Dragon Ante). Kalau punya proficiency dengan gaming set, kamu bisa menambahkan Proficiency Bonus ke ability check untuk bermain dengan set itu. Setiap jenis gaming set butuh proficiency sendiri."
     },
     "playing-card-set": {
-      "description": "Satu set alat permainan, seperti dadu atau setumpuk kartu (misalnya untuk Three-Dragon Ante). Kalau kamu punya proficiency dengan gaming set, kamu bisa menambahkan Proficiency Bonus ke ability check untuk bermain dengan set itu. Setiap jenis gaming set butuh proficiency sendiri."
+      "description": "Gaming set mencakup berbagai alat permainan, termasuk dadu dan kartu (misalnya untuk permainan Three-Dragon Ante). Kalau punya proficiency dengan gaming set, kamu bisa menambahkan Proficiency Bonus ke ability check untuk bermain dengan set itu. Setiap jenis gaming set butuh proficiency sendiri."
     },
     "bagpipes": {
-      "description": "Beberapa jenis paling umum dari musical instruments ditunjukkan pada tabel. Bagi banyak races, penyediaan ini hanya mencakup instrument yang paling umum untuk race tersebut."
+      "description": "Kalau punya proficiency dengan alat musik ini, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengannya. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri."
     },
     "drum": {
-      "description": "Kalau kamu punya proficiency dengan alat musik tertentu, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengan alat itu. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri."
+      "description": "Kalau punya proficiency dengan alat musik ini, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengannya. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri."
     },
     "dulcimer": {
-      "description": "Kalau kamu punya proficiency dengan alat musik tertentu, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengan alat itu. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri."
+      "description": "Kalau punya proficiency dengan alat musik ini, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengannya. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri."
     },
     "flute": {
-      "description": "Kalau kamu punya proficiency dengan alat musik tertentu, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengan alat itu. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri."
+      "description": "Kalau punya proficiency dengan alat musik ini, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengannya. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri."
     },
     "lute": {
-      "description": "Kalau kamu punya proficiency dengan alat musik tertentu, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengan alat itu. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri."
+      "description": "Kalau punya proficiency dengan alat musik ini, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengannya. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri."
     },
     "lyre": {
-      "description": "Kalau kamu punya proficiency dengan alat musik tertentu, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengan alat itu. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri."
+      "description": "Kalau punya proficiency dengan alat musik ini, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengannya. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri."
     },
     "horn": {
-      "description": "Kalau kamu punya proficiency dengan alat musik tertentu, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengan alat itu. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri."
+      "description": "Kalau punya proficiency dengan alat musik ini, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengannya. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri."
     },
     "pan-flute": {
       "name": "Pan Flute",
-      "description": "Sebuah instrumen tiup yang terdiri dari beberapa pipa dengan panjang bertingkat yang diikat bersama. Menghasilkan melodi yang angin dan menyentuh."
+      "description": "Kalau punya proficiency dengan alat musik ini, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengannya. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri."
     },
     "shawm": {
-      "description": "Kalau kamu punya proficiency dengan alat musik tertentu, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengan alat itu. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri."
+      "description": "Kalau punya proficiency dengan alat musik ini, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengannya. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri."
     },
     "viol": {
-      "description": "Kalau kamu punya proficiency dengan alat musik tertentu, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengan alat itu. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri."
+      "description": "Kalau punya proficiency dengan alat musik ini, kamu bisa menambahkan Proficiency Bonus ke ability check untuk memainkan musik dengannya. Bard bisa memakai alat musik sebagai spellcasting focus. Setiap jenis alat musik butuh proficiency sendiri."
     },
     "navigators-tools": {
-      "description": "Alat-alat untuk navigasi di laut. Dengan proficiency di navigator's tools, kamu bisa menentukan rute kapal dan membaca peta navigasi. Kamu juga bisa menambahkan Proficiency Bonus ke ability check supaya tidak tersesat di laut."
+      "description": "Seperangkat alat navigasi di laut. Proficiency dengan navigator's tools membuatmu bisa memetakan rute kapal dan membaca peta navigasi. Kamu juga bisa menambahkan Proficiency Bonus ke ability check agar tidak tersesat di laut."
     },
     "thieves-tools": {
-      "description": "Isinya kikir kecil, satu set alat pembuka kunci, cermin kecil bergagang logam, gunting bermata ramping, dan sebuah tang. Dengan proficiency di alat ini, kamu bisa menambahkan Proficiency Bonus ke ability check untuk menjinakkan jebakan atau membuka kunci."
+      "description": "Berisi kikir kecil, set pembuka kunci, cermin kecil bergagang logam, gunting bermata sempit, dan tang. Proficiency dengan alat ini membuatmu bisa menambahkan Proficiency Bonus ke ability check untuk menjinakkan jebakan atau membuka kunci."
     },
     "camel": {
-      "description": "Binatang beban gurun yang besar, mampu membawa beban berat melintasi medan gersang selama berhari-hari tanpa air. Lebih lambat dari kuda tetapi lebih cocok untuk kondisi gurun."
+      "description": "Hewan beban gurun yang besar, bisa membawa muatan berat di daerah kering berhari-hari tanpa minum. Lebih lambat dari kuda, tapi lebih cocok untuk gurun."
     },
     "donkey": {
-      "description": "Seekor binatang beban yang kokoh dan kokoh. Lebih lambat dari kuda tetapi lebih dapat diandalkan di medan yang kasar dan lebih murah perawatannya."
+      "description": "Hewan beban yang tangguh dan mantap langkahnya. Lebih lambat dari kuda, tapi lebih andal di medan kasar dan lebih murah dirawat."
     },
     "elephant": {
-      "description": "Binatang buas raksasa yang digunakan sebagai mesin perang hidup atau alat transportasi berat. Gajah dapat membawa beban yang sangat besar dan menakutkan dalam pertempuran."
+      "description": "Hewan raksasa yang dipakai sebagai mesin perang hidup atau pengangkut berat. Bisa membawa muatan sangat besar dan menakutkan di medan perang."
     },
     "horse-draft": {
-      "description": "Seekor kuda besar dan kuat yang dibiakkan untuk menarik beban berat, bukan kecepatan. Penting untuk mengangkut gerobak dan gerobak jarak jauh."
+      "description": "Kuda besar dan kuat yang dibiakkan untuk menarik beban berat, bukan untuk kecepatan."
     },
     "horse-riding": {
-      "description": "Tunggangan terlatih yang cocok untuk dikendarai. Lebih cepat dan lebih lincah daripada kuda penarik, ini adalah kuda standar bagi para petualang dan kavaleri."
+      "description": "Kuda tunggang terlatih. Lebih cepat dan lincah dari kuda penarik, dan jadi tunggangan standar petualang dan pasukan berkuda."
     },
     "mastiff": {
-      "description": "Jenis anjing besar dan kuat yang dilatih untuk menjaga, berburu, atau berperang. Setia dan galak, mastiff bisa menjadi teman dan hewan penjaga yang sangat baik."
+      "description": "Anjing besar dan kuat yang dilatih untuk menjaga, berburu, atau berperang. Setia dan galak."
     },
     "pony": {
-      "description": "Kuda kecil yang cocok untuk penunggang ringan atau sebagai hewan pengangkut. Berjalan dengan mantap di jalur pegunungan, kuda poni disukai oleh para halfling dan kurcaci."
+      "description": "Kuda kecil untuk penunggang ringan atau pengangkut barang. Mantap di jalur pegunungan, dan disukai halfling dan dwarf."
     },
     "barding-padded": {
-      "description": "Barding adalah baju besi yang dirancang untuk melindungi kepala, leher, dada, dan tubuh hewan. Semua jenis armor yang ditampilkan di tabel Armor dapat dibeli sebagai barding. Harganya empat kali lipat dibandingkan baju besi yang dibuat untuk humanoid, dan beratnya dua kali lipat."
+      "description": "Barding adalah armor untuk melindungi kepala, leher, dada, dan badan hewan. Semua jenis armor di tabel Armor bisa dibeli sebagai barding. Harganya empat kali armor yang sama untuk humanoid, dan beratnya dua kali lipat."
     },
     "barding-leather": {
-      "description": "Barding adalah baju besi yang dirancang untuk melindungi kepala, leher, dada, dan tubuh hewan. Semua jenis armor yang ditampilkan di tabel Armor dapat dibeli sebagai barding. Harganya empat kali lipat dibandingkan baju besi yang dibuat untuk humanoid, dan beratnya dua kali lipat."
+      "description": "Barding adalah armor untuk melindungi kepala, leher, dada, dan badan hewan. Semua jenis armor di tabel Armor bisa dibeli sebagai barding. Harganya empat kali armor yang sama untuk humanoid, dan beratnya dua kali lipat."
     },
     "barding-studded-leather": {
-      "description": "Barding adalah baju besi yang dirancang untuk melindungi kepala, leher, dada, dan tubuh hewan. Semua jenis armor yang ditampilkan di tabel Armor dapat dibeli sebagai barding. Harganya empat kali lipat dibandingkan baju besi yang dibuat untuk humanoid, dan beratnya dua kali lipat."
+      "description": "Barding adalah armor untuk melindungi kepala, leher, dada, dan badan hewan. Semua jenis armor di tabel Armor bisa dibeli sebagai barding. Harganya empat kali armor yang sama untuk humanoid, dan beratnya dua kali lipat."
     },
     "barding-hide": {
-      "description": "Barding adalah baju besi yang dirancang untuk melindungi kepala, leher, dada, dan tubuh hewan. Semua jenis armor yang ditampilkan di tabel Armor dapat dibeli sebagai barding. Harganya empat kali lipat dibandingkan baju besi yang dibuat untuk humanoid, dan beratnya dua kali lipat."
+      "description": "Barding adalah armor untuk melindungi kepala, leher, dada, dan badan hewan. Semua jenis armor di tabel Armor bisa dibeli sebagai barding. Harganya empat kali armor yang sama untuk humanoid, dan beratnya dua kali lipat."
     },
     "barding-chain-shirt": {
-      "description": "Barding adalah baju besi yang dirancang untuk melindungi kepala, leher, dada, dan tubuh hewan. Semua jenis armor yang ditampilkan di tabel Armor dapat dibeli sebagai barding. Harganya empat kali lipat dibandingkan baju besi yang dibuat untuk humanoid, dan beratnya dua kali lipat."
+      "description": "Barding adalah armor untuk melindungi kepala, leher, dada, dan badan hewan. Semua jenis armor di tabel Armor bisa dibeli sebagai barding. Harganya empat kali armor yang sama untuk humanoid, dan beratnya dua kali lipat."
     },
     "barding-scale-mail": {
-      "description": "Barding adalah baju besi yang dirancang untuk melindungi kepala, leher, dada, dan tubuh hewan. Semua jenis armor yang ditampilkan di tabel Armor dapat dibeli sebagai barding. Harganya empat kali lipat dibandingkan baju besi yang dibuat untuk humanoid, dan beratnya dua kali lipat."
+      "description": "Barding adalah armor untuk melindungi kepala, leher, dada, dan badan hewan. Semua jenis armor di tabel Armor bisa dibeli sebagai barding. Harganya empat kali armor yang sama untuk humanoid, dan beratnya dua kali lipat."
     },
     "barding-breastplate": {
-      "description": "Barding adalah baju besi yang dirancang untuk melindungi kepala, leher, dada, dan tubuh hewan. Semua jenis armor yang ditampilkan di tabel Armor dapat dibeli sebagai barding. Harganya empat kali lipat dibandingkan baju besi yang dibuat untuk humanoid, dan beratnya dua kali lipat."
+      "description": "Barding adalah armor untuk melindungi kepala, leher, dada, dan badan hewan. Semua jenis armor di tabel Armor bisa dibeli sebagai barding. Harganya empat kali armor yang sama untuk humanoid, dan beratnya dua kali lipat."
     },
     "barding-half-plate": {
-      "description": "Barding adalah baju besi yang dirancang untuk melindungi kepala, leher, dada, dan tubuh hewan. Semua jenis armor yang ditampilkan di tabel Armor dapat dibeli sebagai barding. Harganya empat kali lipat dibandingkan baju besi yang dibuat untuk humanoid, dan beratnya dua kali lipat."
+      "description": "Barding adalah armor untuk melindungi kepala, leher, dada, dan badan hewan. Semua jenis armor di tabel Armor bisa dibeli sebagai barding. Harganya empat kali armor yang sama untuk humanoid, dan beratnya dua kali lipat."
     },
     "barding-ring-mail": {
-      "description": "Barding adalah baju besi yang dirancang untuk melindungi kepala, leher, dada, dan tubuh hewan. Semua jenis armor yang ditampilkan di tabel Armor dapat dibeli sebagai barding. Harganya empat kali lipat dibandingkan baju besi yang dibuat untuk humanoid, dan beratnya dua kali lipat."
+      "description": "Barding adalah armor untuk melindungi kepala, leher, dada, dan badan hewan. Semua jenis armor di tabel Armor bisa dibeli sebagai barding. Harganya empat kali armor yang sama untuk humanoid, dan beratnya dua kali lipat."
     },
     "barding-chain-mail": {
-      "description": "Barding adalah baju besi yang dirancang untuk melindungi kepala, leher, dada, dan tubuh hewan. Semua jenis armor yang ditampilkan di tabel Armor dapat dibeli sebagai barding. Harganya empat kali lipat dibandingkan baju besi yang dibuat untuk humanoid, dan beratnya dua kali lipat."
+      "description": "Barding adalah armor untuk melindungi kepala, leher, dada, dan badan hewan. Semua jenis armor di tabel Armor bisa dibeli sebagai barding. Harganya empat kali armor yang sama untuk humanoid, dan beratnya dua kali lipat."
     },
     "barding-splint": {
-      "description": "Barding adalah baju besi yang dirancang untuk melindungi kepala, leher, dada, dan tubuh hewan. Semua jenis armor yang ditampilkan di tabel Armor dapat dibeli sebagai barding. Harganya empat kali lipat dibandingkan baju besi yang dibuat untuk humanoid, dan beratnya dua kali lipat."
+      "description": "Barding adalah armor untuk melindungi kepala, leher, dada, dan badan hewan. Semua jenis armor di tabel Armor bisa dibeli sebagai barding. Harganya empat kali armor yang sama untuk humanoid, dan beratnya dua kali lipat."
     },
     "barding-plate": {
-      "description": "Barding adalah baju besi yang dirancang untuk melindungi kepala, leher, dada, dan tubuh hewan. Semua jenis armor yang ditampilkan di tabel Armor dapat dibeli sebagai barding. Harganya empat kali lipat dibandingkan baju besi yang dibuat untuk humanoid, dan beratnya dua kali lipat."
+      "description": "Barding adalah armor untuk melindungi kepala, leher, dada, dan badan hewan. Semua jenis armor di tabel Armor bisa dibeli sebagai barding. Harganya empat kali armor yang sama untuk humanoid, dan beratnya dua kali lipat."
     },
     "bit-and-bridle": {
-      "description": "Tutup kepala yang digunakan untuk mengendalikan kuda atau sejenisnya, terdiri dari batangan logam (bit) yang dipasang di mulut hewan dan tali kekang (kekang) yang dipasang di kepala."
+      "description": "Perlengkapan kepala untuk mengendalikan kuda atau tunggangan serupa: batang logam di mulut hewan (bit) dan tali di sekitar kepala (bridle)."
     },
     "carriage": {
-      "description": "Kendaraan tertutup beroda empat yang dirancang untuk mengangkut penumpang dengan relatif nyaman. Ditarik oleh kuda, ia memiliki tempat duduk empuk dan atap."
+      "description": "Kereta beroda empat yang tertutup untuk membawa penumpang dengan nyaman. Ditarik kuda, dengan kursi empuk dan atap."
     },
     "cart": {
-      "description": "Kendaraan terbuka beroda dua yang ditarik oleh hewan penarik, digunakan untuk mengangkut barang, perbekalan, atau sampah. Sederhana dan bermanfaat."
+      "description": "Gerobak terbuka beroda dua yang ditarik hewan, untuk mengangkut barang atau persediaan."
     },
     "chariot": {
-      "description": "Kendaraan ringan beroda dua yang ditarik oleh kuda, digunakan untuk transportasi cepat atau pertempuran berkuda. Desainnya yang terbuka memungkinkan pengendaranya bertarung sambil bergerak."
+      "description": "Kereta perang ringan beroda dua yang ditarik kuda, untuk perjalanan cepat atau bertarung. Desainnya terbuka sehingga penumpang bisa bertarung sambil bergerak."
     },
     "animal-feed-1-day": {
-      "description": "Satu hari pakan untuk tunggal mount atau beast of burden. Biasanya campuran dari biji-bijian, sayuran kering, dan hay."
+      "description": "Pakan untuk satu tunggangan atau hewan beban selama sehari, biasanya campuran biji-bijian, sayur kering, dan jerami."
     },
     "saddle-exotic": {
-      "description": "Pelana eksotis diperlukan untuk mengendarai gunung air atau terbang apa pun."
+      "description": "Pelana exotic dibutuhkan untuk menunggangi tunggangan air atau terbang."
     },
     "saddle-military": {
-      "description": "Pelana militer menahan tubuh penunggangnya supaya tetap duduk mantap di atas tunggangan saat bertarung. Kamu mendapat Advantage pada check apa pun untuk tetap berada di atas tunggangan."
+      "description": "Pelana militer menahan penunggang supaya tetap duduk di atas tunggangan saat bertarung. Memberi Advantage pada check untuk tetap berada di atas tunggangan."
     },
     "saddle-pack": {
-      "description": "Sepasang tas kulit yang dirancang untuk digantung di kedua sisi pelana kuda, digunakan untuk membawa perbekalan dalam perjalanan jauh."
+      "description": "Sepasang tas kulit yang digantung di kedua sisi pelana, untuk membawa persediaan di perjalanan jauh."
     },
     "saddle-riding": {
-      "description": "Jok kulit diikatkan ke punggung kuda dengan tali pengikat dan gesper, memberikan stabilitas dan kenyamanan bagi pengendara."
+      "description": "Dudukan kulit yang diikat ke punggung kuda dengan tali dan gesper, supaya penunggang stabil dan nyaman."
     },
     "saddlebags": {
-      "description": "Tas kulit bertulang yang dipasang di belakang pelana, digunakan untuk membawa perbekalan, perlengkapan, dan barang-barang pribadi selama perjalanan."
+      "description": "Tas kulit tebal yang dipasang di belakang pelana, untuk membawa bekal dan barang pribadi saat bepergian."
     },
     "sled": {
-      "description": "Kendaraan dengan alas datar yang dirancang untuk meluncur di atas salju atau es. Ditarik oleh hewan atau manusia, sangat penting untuk mengangkut barang di lingkungan Arktik."
+      "description": "Kereta beralas datar untuk meluncur di salju atau es. Ditarik hewan atau orang, penting untuk mengangkut barang di daerah bersalju."
     },
     "stabling-1-day": {
-      "description": "Papan sehari untuk satu kandang, termasuk kandang, pakan, air, dan perawatan dasar."
+      "description": "Biaya menitipkan satu tunggangan selama sehari, termasuk kandang, pakan, air, dan perawatan dasar."
     },
     "wagon": {
-      "description": "Kendaraan empat roda yang ditarik oleh binatang pengangkut, digunakan untuk mengangkut barang, persediaan, atau penumpang di jalan dan jalur."
+      "description": "Kereta beroda empat yang ditarik hewan, untuk mengangkut barang, persediaan, atau penumpang di jalan."
     },
     "galley": {
-      "description": "Sebuah kapal perang besar yang digerakkan oleh deretan dayung dan layar. Digunakan untuk pertempuran laut dan mengangkut pasukan melintasi perairan terbuka."
+      "description": "Kapal perang besar yang digerakkan barisan dayung dan layar. Dipakai untuk perang laut dan mengangkut pasukan."
     },
     "keelboat": {
-      "description": "Perahu lunas dan perahu dayung digunakan di danau dan sungai. Jika menuju ke arah hilir, tambahkan kecepatan arus (biasanya 3 mil per jam) dengan kecepatan kendaraan. Kendaraan ini tidak dapat didayung melawan arus yang besar, namun dapat ditarik ke hulu oleh hewan penarik di tepian. Sebuah perahu dayung memiliki berat 100 pon, jika para petualang membawanya melalui darat."
+      "description": "Keelboat dan rowboat dipakai di danau dan sungai. Kalau bergerak mengikuti arus, tambahkan kecepatan arus (biasanya 3 mil per jam) ke kecepatan perahu. Perahu ini tidak bisa didayung melawan arus yang cukup kuat, tapi bisa ditarik ke hulu oleh hewan dari tepi sungai. Rowboat beratnya 100 pound, kalau petualang perlu membawanya lewat darat."
     },
     "longship": {
-      "description": "Kapal panjang dengan rancangan dangkal yang digerakkan oleh dayung dan satu layar. Dirancang untuk pelayaran laut terbuka dan navigasi sungai."
+      "description": "Kapal panjang dan dangkal yang digerakkan dayung dan satu layar. Bisa berlayar di laut lepas maupun di sungai."
     },
     "rowboat": {
-      "description": "Perahu lunas dan perahu dayung digunakan di danau dan sungai. Jika menuju ke arah hilir, tambahkan kecepatan arus (biasanya 3 mil per jam) dengan kecepatan kendaraan. Kendaraan ini tidak dapat didayung melawan arus yang besar, namun dapat ditarik ke hulu oleh hewan penarik di tepian. Sebuah perahu dayung memiliki berat 100 pon, jika para petualang membawanya melalui darat."
+      "description": "Keelboat dan rowboat dipakai di danau dan sungai. Kalau bergerak mengikuti arus, tambahkan kecepatan arus (biasanya 3 mil per jam) ke kecepatan perahu. Perahu ini tidak bisa didayung melawan arus yang cukup kuat, tapi bisa ditarik ke hulu oleh hewan dari tepi sungai. Rowboat beratnya 100 pound, kalau petualang perlu membawanya lewat darat."
     },
     "sailing-ship": {
-      "description": "Kapal laut besar yang ditenagai oleh banyak tiang dan layar. Mampu melintasi lautan dan membawa kargo atau awak kapal dalam jumlah besar."
+      "description": "Kapal laut besar dengan beberapa tiang dan layar. Bisa menyeberangi lautan dengan banyak muatan atau awak."
     },
     "warship": {
-      "description": "Sebuah vessel besar yang sangat dilengkapi senjata yang dirancang untuk perang laut. Dilengkapi dengan ram, ballistae, dan marines, vessel ini mendominasi laut."
+      "description": "Kapal besar bersenjata lengkap untuk perang laut, dengan pendobrak, ballista, dan pasukan."
     },
     "cp": {
       "name": "Keping tembaga",
-      "description": "Koin tembaga. Sepuluh keping tembaga sama dengan satu keping perak."
+      "description": "Koin tembaga. Sepuluh copper piece sama dengan satu silver piece."
     },
     "sp": {
       "name": "Keping perak",
-      "description": "Koin perak, paling umum di kalangan rakyat biasa. Sepuluh keping perak sama dengan satu keping emas."
+      "description": "Koin perak, koin paling umum di kalangan rakyat biasa. Sepuluh silver piece sama dengan satu gold piece."
     },
     "ep": {
       "name": "Keping elektrum",
-      "description": "Koin campuran emas dan perak, bernilai lima keping perak. Jarang ditemui di luar timbunan harta lama."
+      "description": "Koin electrum dari campuran emas dan perak, bernilai lima silver piece. Jarang ditemukan di luar timbunan harta lama."
     },
     "gp": {
       "name": "Keping emas",
-      "description": "Koin emas, satuan baku untuk pembelian besar. Satu keping emas bernilai sepuluh keping perak."
+      "description": "Koin emas, satuan standar untuk pembelian besar. Satu gold piece bernilai sepuluh silver piece."
     },
     "pp": {
       "name": "Keping platinum",
-      "description": "Koin platinum, langka dan berharga. Satu keping platinum bernilai sepuluh keping emas."
+      "description": "Koin platinum, langka dan berharga. Satu platinum piece bernilai sepuluh gold piece."
     },
     "prayer-book": {
       "name": "Buku doa",
-      "description": "Buku kecil berisi doa dan nyanyian pujian dari imanmu."
+      "description": "Buku kecil berisi doa dan pujian sesuai keyakinanmu."
     },
     "stick-of-incense": {
       "name": "Batang dupa",
@@ -719,27 +719,27 @@
     },
     "tools-of-the-con": {
       "name": "Perlengkapan penipu",
-      "description": "Alat untuk tipuan pilihanmu, misalnya botol berisi cairan berwarna, dadu berpemberat, kartu bertanda, atau cincin cap bangsawan palsu."
+      "description": "Properti untuk satu jenis tipuan pilihanmu, misalnya botol bersumbat berisi cairan berwarna, dadu berpemberat, setumpuk kartu bertanda, atau cincin segel bangsawan palsu."
     },
     "favor-of-an-admirer": {
       "name": "Kenang-kenangan pengagum",
-      "description": "Tanda mata dari seorang pengagum, misalnya surat cinta, seikat rambut, atau pernak-pernik."
+      "description": "Kenang-kenangan dari seorang pengagum, misalnya surat cinta, seikat rambut, atau pernak-pernik."
     },
     "letter-of-introduction": {
       "name": "Surat pengantar",
-      "description": "Surat dari serikatmu yang menjaminmu kepada sesama anggota."
+      "description": "Surat dari serikatmu yang menjaminmu di depan anggota serikat lain."
     },
     "scroll-case-of-notes": {
       "name": "Tabung gulungan berisi catatan",
-      "description": "Tabung gulungan yang penuh catatan dari kajian atau doamu."
+      "description": "Tabung gulungan berisi catatan dari belajar atau doamu."
     },
     "scroll-of-pedigree": {
       "name": "Gulungan silsilah",
-      "description": "Gulungan yang mencatat garis keturunan bangsawanmu."
+      "description": "Gulungan berisi catatan garis keturunan keluarga bangsawanmu."
     },
     "hunting-trophy": {
       "name": "Trofi hewan buruan",
-      "description": "Trofi dari hewan yang kamu bunuh, misalnya tanduk, cakar, atau kulit."
+      "description": "Trofi dari hewan yang kamu buru, misalnya tanduk, cakar, atau kulit."
     },
     "letter-from-a-dead-colleague": {
       "name": "Surat dari rekan yang telah tiada",
@@ -747,11 +747,11 @@
     },
     "lucky-charm": {
       "name": "Jimat keberuntungan",
-      "description": "Jimat kecil yang kamu yakini membawa untung, misalnya kaki kelinci atau batu berlubang."
+      "description": "Jimat kecil yang kamu percaya membawa keberuntungan, misalnya kaki kelinci atau batu berlubang."
     },
     "insignia-of-rank": {
       "name": "Lencana pangkat",
-      "description": "Lencana yang menunjukkan pangkatmu di pasukan tempatmu bertugas."
+      "description": "Lencana yang menunjukkan pangkatmu di pasukan tempatmu dulu bertugas."
     },
     "trophy-from-a-fallen-enemy": {
       "name": "Trofi dari musuh yang gugur",
@@ -759,28 +759,28 @@
     },
     "map-of-your-home-city": {
       "name": "Peta kota asalmu",
-      "description": "Peta kota tempatmu tumbuh besar."
+      "description": "Peta kota tempatmu dibesarkan."
     },
     "pet-mouse": {
       "name": "Tikus peliharaan",
-      "description": "Tikus peliharaan yang ikut bepergian bersamamu."
+      "description": "Tikus peliharaan yang ikut berpetualang bersamamu."
     },
     "token-of-your-parents": {
       "name": "Kenangan orang tua",
-      "description": "Tanda mata kecil untuk mengenang orang tuamu."
+      "description": "Kenang-kenangan kecil untuk mengingat orang tuamu."
     }
   },
   "weaponProperties": {
-    "Ammunition": "Kamu hanya bisa melakukan ranged attack dengan senjata ini jika punya amunisinya. Setiap serangan memakai satu amunisi, dan mengambilnya termasuk bagian dari serangan. Setelah pertarungan, kamu bisa menghabiskan 1 menit untuk mengambil kembali setengah amunisi yang terpakai. Serangan melewati jarak normal, sampai jarak jauh, terkena Disadvantage.",
-    "Finesse": "Pilih modifier Strength atau Dexterity untuk attack roll dan damage roll. Kedua roll harus memakai modifier yang sama.",
-    "Heavy": "Makhluk Small terkena Disadvantage pada attack roll dengan senjata ini. Senjata ini terlalu besar dan berat untuk dipakai dengan baik oleh makhluk Small.",
-    "Light": "Kecil dan mudah dipegang, cocok untuk bertarung dengan dua senjata. Saat menyerang dengan light melee weapon di satu tangan, kamu bisa memakai bonus action untuk menyerang dengan light melee weapon lain di tangan satunya.",
-    "Loading": "Mengisi senjata ini butuh waktu, jadi kamu hanya bisa menembakkan satu amunisi saat memakai action, bonus action, atau reaction untuk menembak, berapa pun jumlah serangan yang biasanya bisa kamu lakukan.",
-    "Monk": "Termasuk monk weapon, jadi monk bisa memakai Dexterity alih-alih Strength dan dadu damage Martial Arts dengan senjata ini.",
-    "Reach": "Menambah 5 kaki ke jangkauanmu saat menyerang dengan senjata ini, termasuk saat melakukan opportunity attack.",
-    "Special": "Senjata ini punya aturan khusus. Lihat Aturan Khusus di bawah.",
-    "Thrown": "Kamu bisa melempar senjata ini untuk melakukan ranged attack, memakai modifier kemampuan yang sama seperti melee attack dengan senjata ini. Roll melewati jarak normal, sampai jarak jauh, terkena Disadvantage.",
+    "Ammunition": "Kamu hanya bisa melakukan ranged attack dengan senjata ini kalau punya amunisinya. Setiap serangan memakai satu amunisi, dan mengambilnya sudah termasuk bagian dari serangan. Setelah pertarungan, kamu bisa memakai 1 menit untuk mengambil kembali setengah amunisi yang terpakai. Serangan di luar jarak normal, sampai jarak maksimal, kena Disadvantage.",
+    "Finesse": "Pilih modifier Strength atau Dexterity untuk attack roll dan damage roll. Keduanya harus memakai modifier yang sama.",
+    "Heavy": "Makhluk Small kena Disadvantage pada attack roll dengan senjata ini, karena ukurannya terlalu besar dan berat untuk dipakai dengan baik.",
+    "Light": "Kecil dan mudah dipegang, cocok untuk bertarung dengan dua senjata. Saat memakai action Attack dengan light melee weapon di satu tangan, kamu bisa memakai bonus action untuk menyerang dengan light melee weapon lain di tangan satunya.",
+    "Loading": "Mengisi senjata ini butuh waktu. Kamu hanya bisa menembakkan satu amunisi saat memakai action, bonus action, atau reaction untuk menembak, berapa pun jumlah serangan yang biasanya bisa kamu lakukan.",
+    "Monk": "Termasuk monk weapon, jadi monk bisa memakai Dexterity sebagai ganti Strength dan dadu damage Martial Arts dengan senjata ini.",
+    "Reach": "Menambah jangkauanmu 5 feet saat menyerang dengan senjata ini, termasuk saat opportunity attack.",
+    "Special": "Senjata ini punya aturan khusus. Lihat deskripsinya.",
+    "Thrown": "Kamu bisa melempar senjata ini untuk melakukan ranged attack, dengan modifier ability yang sama seperti melee attack dengan senjata ini. Serangan di luar jarak normal, sampai jarak maksimal, kena Disadvantage.",
     "Two-Handed": "Kamu butuh dua tangan untuk menyerang dengan senjata ini.",
-    "Versatile": "Senjata ini bisa dipakai dengan satu atau dua tangan. Memegangnya dengan dua tangan untuk melee attack memakai damage dua tangan."
+    "Versatile": "Senjata ini bisa dipakai dengan satu atau dua tangan. Kalau dipegang dua tangan untuk melee attack, pakai damage dua tangan."
   }
 }
