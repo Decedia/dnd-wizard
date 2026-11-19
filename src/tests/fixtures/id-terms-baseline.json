@@ -24,11 +24,10 @@
   "damage type (piercing, slashing)": 4
  },
  "src/data/id/2014_spells.json": {
-  "Advantage": 2,
   "Expertise": 3,
   "ability names (STR, DEX...)": 4,
   "conditions (Charmed, Prone...)": 15,
-  "feet (distances stay in feet)": 1823,
+  "feet (distances stay in feet)": 1525,
   "Strength": 15,
   "resistance": 33,
   "melee / ranged weapon": 12,
@@ -65,15 +64,5 @@
  "src/data/id/subclass_feature_choices_text.json": {
   "melee / ranged weapon": 6
  },
- "src/locales/parts/id/2014_spells.json": {
-  "Advantage": 2,
-  "Expertise": 3,
-  "ability names (STR, DEX...)": 4,
-  "conditions (Charmed, Prone...)": 11,
-  "feet (distances stay in feet)": 1284,
-  "Strength": 15,
-  "resistance": 49,
-  "melee / ranged weapon": 30,
-  "damage type (piercing, slashing)": 38
- }
+ "src/locales/parts/id/2014_spells.json": {}
 }
