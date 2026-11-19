@@ -2,7 +2,6 @@
  "src/locales/id.js": {
   "ability score": 8,
   "feet (distances stay in feet)": 55,
-  "Strength": 1,
   "melee / ranged weapon": 6,
   "no slang (cuma, nggak)": 4
  },
@@ -11,10 +10,7 @@
   "melee / ranged weapon": 1
  },
  "src/data/id/2014_feats.json": {},
- "src/data/id/2014_item_catalog.json": {
-  "feet (distances stay in feet)": 2,
-  "damage type (piercing, slashing)": 2
- },
+ "src/data/id/2014_item_catalog.json": {},
  "src/data/id/2014_races.json": {
   "conditions (Charmed, Prone...)": 1,
   "feet (distances stay in feet)": 156,
